@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>BindOpen.Standard</AssemblyName>
-    <PackageId>BindOpen.Standard</PackageId>
+    <AssemblyName>BindOpen.Framework.Standard</AssemblyName>
+    <PackageId>BindOpen.Framework.Standard</PackageId>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library provides standard classes.</Description>
     <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Framework.Standard</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Standard.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Standard.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

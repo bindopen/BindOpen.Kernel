@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.Databases.MSSqlServer</name>
+        <name>BindOpen.Framework.Databases.MSSqlServer</name>
     </assembly>
     <members>
         <member name="T:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer">
