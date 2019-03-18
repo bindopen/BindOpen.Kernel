@@ -1,0 +1,1984 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Framework.Runtime</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Framework.Runtime.Application.Encryption.EncryptionHelper">
+            <summary>
+            This class represents a encryption box.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Encryption.EncryptionHelper.EncryptData(System.String,System.String,System.Byte[])">
+            <summary>
+            Encrypts data.
+            </summary>
+            <param name="aSecretKey">The secret key to consider.</param>
+            <param name="aSecretKeyIV">The secret IV key to consider.</param>
+            <param name="inputBytes">The input bytes to consider.</param>
+            <returns>Returns the decrypted data.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Encryption.EncryptionHelper.DecryptData(System.String,System.String,System.Byte[])">
+            <summary>
+            Decrypts data.
+            </summary>
+            <param name="aSecretKey">The secret key to consider.</param>
+            <param name="aSecretKeyIV">The secret IV key to consider.</param>
+            <param name="inputBytes">The input bytes to consider.</param>
+            <returns>Returns the decrypted data.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage">
+            <summary>
+            This class represents a application languages.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage.UICultureName">
+            <summary>
+            The UI culture of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage.CultureName">
+            <summary>
+            The culture name of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage.#ctor">
+            <summary>
+            Instantiates a new instance of ApplicationLanguage class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation">
+            <summary>
+            This class represents a product limitation.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.RegistrationMode">
+            <summary>
+            The registration mode of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.MetricsConfigurationUniqueName">
+            <summary>
+            The business metrics unique name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.DisplayedTitle">
+            <summary>
+            Displayed metrics title of this instance.
+            </summary>
+            <remarks>It is used if the business metrics cannot be found.</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.Description">
+            <summary>
+            Displayed metrics description of this instance.
+            </summary>
+            <remarks>It is used if the business metrics cannot be found.</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.LimitValue">
+            <summary>
+            The limit value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.WarningThresholdValue">
+            <summary>
+            The warning threshold value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.IsOnlyDuringEvaluation">
+            <summary>
+            Indicates whether this instance is during evaluation only.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.IsTracked">
+            <summary>
+            Indicates whether this instance is tracked.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.IsCritical">
+            <summary>
+            Indicates whether this instance is critical.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.ExtraPurchaseUrl">
+            <summary>
+            The extra purchase URL of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.TargetElementReferences">
+            <summary>
+            The target element references of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Limitations.ProductLimitation.#ctor">
+            <summary>
+            Instantiates a new instance of the ProductLimitation class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage">
+            <summary>
+            This structure respresents a display message.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayMessageOption">
+            <summary>
+            This enumeration lists all the possible display message options.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayMessageOption.CannotBeHidden">
+            <summary>
+            The automatic message cannot be hidden.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayMessageOption.CanBeHidden">
+            <summary>
+            The automatic message can be hidden.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayMessageOption.CanBeHiddenForEver">
+            <summary>
+            The automatic message can be hidden forever.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayCondition">
+            <summary>
+            Display condition of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayedLabel">
+            <summary>
+            Displayed label of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.LinkUri">
+            <summary>
+            Link URI of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.DisplayOption">
+            <summary>
+            Display option of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.Kind">
+            <summary>
+            Kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.CanBeHidden">
+            <summary>
+            Indicates whether this instance can be hidden.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.IsAutomaticRedirection">
+            <summary>
+            Indicates whether the redirection of this instance is automatic.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.#ctor">
+            <summary>
+            Creates a new instance of the DisplayMessage class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Messages.DisplayMessage.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.ApplicationInstanceKind">
+            <summary>
+            This enumerates the possible application instance kinds.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationInstanceKind.Autonomous">
+            <summary>
+            Works independantly.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationInstanceKind.InCloud">
+            <summary>
+            Works within a cloud system.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance">
+            <summary>
+            This class represents an application module instance accessible by a visitor.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Module">
+            <summary>
+            The module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.ModuleName">
+            <summary>
+            The name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Uri">
+            <summary>
+            The URI of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.AbsoluteUri">
+            <summary>
+            The URI of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.ApplicationExecutionPath">
+            <summary>
+            The application execution path of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.IsLocal">
+            <summary>
+            Indicates whether this instance is local.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.AccessibilityLevel">
+            <summary>
+            The accessibility level of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Indexation">
+            <summary>
+            Indexation of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Kind">
+            <summary>
+            Kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.SubKind">
+            <summary>
+            Sub kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Sections">
+            <summary>
+            The sections of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.OptionSet">
+            <summary>
+            The otpions of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.#ctor(BindOpen.Framework.Runtime.Application.Modules.AppModule,System.String)">
+            <summary>
+            Initializes a new instance of ApplicationModule class.
+            </summary>
+            <param name="aParentApplicationModule">The parent of the visitor application module.</param>
+            <param name="moduleName">Name of the instance.</param>
+            <param name="url">URL of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this instance.
+            </summary>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="updateModes">The update modes to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Log of the operation.</returns>
+            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.GetSectionWithCompleteName(System.String)">
+            <summary>
+            Returns the application section of this instance with the specified complete name.
+            </summary>
+            <returns>The application section of this instance with the specified complete name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.GetSectionWithName(System.String)">
+            <summary>
+            Returns the application section of this instance with the specified name.
+            </summary>
+            <returns>The application section of this instance with the specified name.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind">
+            <summary>
+            This enumerates the possible kinds of visitor application module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind.None">
+            <summary>
+            None. Used when the application module is not defined.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind.Website">
+            <summary>
+            Website.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind.WebService">
+            <summary>
+            Web service.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind.WindowsDesktop">
+            <summary>
+            Windows desktop.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleKind.WindowsService">
+            <summary>
+            Windows service.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleSubKind">
+            <summary>
+            This enumeration lists the possible sub kinds of an application module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleSubKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleSubKind.Parent">
+            <summary>
+            Parent module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleSubKind.SubModule">
+            <summary>
+            The sub module. A parent module can be composed by technical sub modules of different tiers.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleSubKind.Universe">
+            <summary>
+            The universe. A universe is a functional subdivision of a parent module.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.AppModule">
+            <summary>
+            This class represents a Sphere application module.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.IconFileName">
+            <summary>
+            File name of the icon of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.Rank">
+            <summary>
+            Rank of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.ThumbIconFileName">
+            <summary>
+            File name of the thumb icon of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.IsVisible">
+            <summary>
+            Indicates whether this instance is visible.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.Sections">
+            <summary>
+            The sub sections of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.Languages">
+            <summary>
+            The languages of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppModule.DefaultUICulture">
+            <summary>
+            The default UI culture name of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the ApplicationModule class.
+            </summary>
+            <param name="name">The name of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.GetSubSectionWithName(System.String)">
+            <summary>
+            Returns the sub section with the specified name.
+            </summary>
+            <param name="name">The name of the sub application sections to return.</param>
+            <returns>The sub application section with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.GetSubSectionWithUniqueName(System.String)">
+            <summary>
+            Returns the sub section with the specified unique name.
+            </summary>
+            <param name="completeName">The complete name of the sub application sections to return.</param>
+            <returns>The sub application sections with the specified unique name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.GetLanguageWithUICulture(System.String)">
+            <summary>
+            Gets the specified language.
+            </summary>
+            <param name="uiCulureName">The UI culture name.</param>
+            <returns>The language to return.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.AddSection(BindOpen.Framework.Runtime.Application.Modules.AppSection)">
+            <summary>
+            Adds the specified section.
+            </summary>
+            <param name="sections">The section to add.</param>
+            <returns>Returns the specified section.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.AddSections(BindOpen.Framework.Runtime.Application.Modules.AppSection[])">
+            <summary>
+            Adds the specified sections.
+            </summary>
+            <param name="sections">The sections to add.</param>
+            <returns>Returns the specified sections.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this instance.
+            </summary>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="updateModes">The update modes to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Log of the operation.</returns>
+            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Modules.AppSection">
+            <summary>
+            This class represents a visitor application module section.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.Module">
+            <summary>
+            The module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.Parent">
+            <summary>
+            The section parent of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.SubSections">
+            <summary>
+            The sub sections of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.IsVisible">
+            <summary>
+            Indicates whether this instance is visible.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.IconFileName">
+            <summary>
+            File name of the icon of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.ThumbIconFileName">
+            <summary>
+            File name of the thumb icon of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Modules.AppSection.Rank">
+            <summary>
+            Rank of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.#ctor(System.String,BindOpen.Framework.Runtime.Application.Modules.AppModule,BindOpen.Framework.Runtime.Application.Modules.AppSection)">
+            <summary>
+            Initializes a new instance of the ApplicationModuleSection class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="module">The application module of the instance.</param>
+            <param name="parent">The parent section of the instance.</param>
+            <param name="visitor">The visitor of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.AddSection(BindOpen.Framework.Runtime.Application.Modules.AppSection)">
+            <summary>
+            Adds the specified section.
+            </summary>
+            <param name="sections">The section to add.</param>
+            <returns>Returns the specified section.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.AddSections(BindOpen.Framework.Runtime.Application.Modules.AppSection[])">
+            <summary>
+            Adds the specified sections.
+            </summary>
+            <param name="sections">The sections to add.</param>
+            <returns>Returns the specified sections.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.Key">
+            <summary>
+            Returns the identifier key.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.GetSubSectionWithName(System.String)">
+            <summary>
+            Returns the sub section with the specified name.
+            </summary>
+            <param name="name">The name of the sub application sections to return.</param>
+            <returns>The sub application section with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.GetSubSectionWithUniqueName(System.String)">
+            <summary>
+            Returns the sub section with the specified unique name.
+            </summary>
+            <param name="key">The key of the sub application sections to return.</param>
+            <returns>The sub application sections with the specified unique name.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup">
+            <summary>
+            This enumeration lists the possible groups of actions.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Adding">
+            <summary>
+            Adding.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Modifying">
+            <summary>
+            Modifying.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Exporting">
+            <summary>
+            Exporting.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Searching">
+            <summary>
+            Searching.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Navigation">
+            <summary>
+            Navigation.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionGroup.Custom">
+            <summary>
+            Custom.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.ActionKind">
+            <summary>
+            This enumerates the possible kinds of action.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.None">
+            <summary>
+            None can access.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Access">
+            <summary>
+            Access.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.View">
+            <summary>
+            View.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Download">
+            <summary>
+            Download.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Print">
+            <summary>
+            Print.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Search">
+            <summary>
+            Search.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Create">
+            <summary>
+            Create.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Edit">
+            <summary>
+            Edit.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.FullEdit">
+            <summary>
+            Full edit.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Delete">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Duplicate">
+            <summary>
+            Duplicate.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Import">
+            <summary>
+            Import.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Export">
+            <summary>
+            Export.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Custom">
+            <summary>
+            Custom.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.ActionMode">
+            <summary>
+            This enumeration lists the possible modes of action.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionMode.View">
+            <summary>
+            View.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionMode.Insertion">
+            <summary>
+            Insertion.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionMode.Edition">
+            <summary>
+            Edition.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind">
+            <summary>
+            This enumeration lists the possible kinds of user actions.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.All">
+            <summary>
+            All actions. It is represented by the '*' character.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.LogAs">
+            <summary>
+            Log as another user.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.QuickSearch">
+            <summary>
+            Make a quick search an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.BasicSearch">
+            <summary>
+            Make a basic search an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.AdvancedSearch">
+            <summary>
+            Advanced search an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Add">
+            <summary>
+            Add an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Duplicate">
+            <summary>
+            Duplicate an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Properties">
+            <summary>
+            View properties of an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Refresh">
+            <summary>
+            Refresh.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Edit">
+            <summary>
+            Edit an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Delete">
+            <summary>
+            Delete an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Export">
+            <summary>
+            Export an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Import">
+            <summary>
+            Import an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Print">
+            <summary>
+            Print an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Back">
+            <summary>
+            Go backward.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Insert">
+            <summary>
+            Insert an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.InsertCancel">
+            <summary>
+            Cancel when inserting an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Save">
+            <summary>
+            Save properties of an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.SaveCancel">
+            <summary>
+            Cancel when saving properties of an entity object.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Custom">
+            <summary>
+            Custom action.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.PageKind">
+            <summary>
+            This enumeration lists the possible kinds of pages.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Standard">
+            <summary>
+            Standard.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Default">
+            <summary>
+            Default page.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Main">
+            <summary>
+            Main page.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Login">
+            <summary>
+            Login page.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Home">
+            <summary>
+            Home page.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.PageKind.Specified">
+            <summary>
+            Specified page.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Products.ProductInformation">
+            <summary>
+            This class represents the information about the product.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Products.ProductInformation.SupportedLanguage">
+            <summary>
+            This enumeration lists the supported languages.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.SupportedLanguage.English">
+            <summary>
+            English
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductKind">
+            <summary>
+            This enumeration lists all the possible product kinds.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductKind.Any">
+            <summary>
+            Any
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductKind.Application">
+            <summary>
+            Application
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductKind.Module">
+            <summary>
+            Module
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductAffiliateNetwork">
+            <summary>
+            This enumeration lists all the possible product affiliate network.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductAffiliateNetwork.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductAffiliateNetwork.MyCommerce">
+            <summary>
+            MyCommerce
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.Kind">
+            <summary>
+            Product kind of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.Version">
+            <summary>
+            Version of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.Author">
+            <summary>
+            The author of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ImageFileName">
+            <summary>
+            The image file name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ReleaseDate">
+            <summary>
+            Release date of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.DescriptionUrl">
+            <summary>
+            URL of the description of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ProductPurchaseUrl">
+            <summary>
+            URL to purchase the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.TechnicalSupportUrl">
+            <summary>
+            URL to technical support.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.GiveFeedBackUrl">
+            <summary>
+            URL to give feed back.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.Limitations">
+            <summary>
+            Limitations of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.SupportedLanguages">
+            <summary>
+            Languages to consider.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.CopyrightStatement">
+            <summary>
+            Copyright statement of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.CopyrightYear">
+            <summary>
+            Copyright year of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.Company">
+            <summary>
+            Company of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.CompanyUrl">
+            <summary>
+            URL of the company of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.AffiliateNetwork">
+            <summary>
+            Affiliate network of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.HelpFileName">
+            <summary>
+            Help file name of the product.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.PackageManagerUri">
+            <summary>
+            The URI of the package manager file.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.ExtensionPackageManagerUri">
+            <summary>
+            URI of the extension versioning information file.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Products.ProductInformation.MajorUpdateLevel">
+            <summary>
+            Indicates when a version can be considered as major.
+            </summary>
+            <remarks>Versions are formated as a.b.c.d.
+            When the major update level equals to 0, the version will be considered as major only if its a.b.c.d is greater than the current ones.
+            When the major update level equals to 1, the version will be considered as major only if its a.b.c is greater than the current ones.
+            When the major update level equals to 2, the version will be considered as major only if its a.b is greater than the current ones.
+            When the major update level equals to 3, the version will be considered as major only if its a is greater than the current ones.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Products.ProductInformation.#ctor">
+            <summary>
+            Instantiates a new instance of the ProductInformation class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Products.ProductRegistrationMode">
+            <summary>
+            This enumerates the possible modes of product registration.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductRegistrationMode.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductRegistrationMode.Registered">
+            <summary>
+            Registered.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Products.ProductRegistrationMode.Unregistered">
+            <summary>
+            Unregistered.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege">
+            <summary>
+            This structure respresents a right granted by an application.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.ApplicationPrivilegeEntityKind">
+            <summary>
+            This enumeration lists the possible entity kinds of application privilege.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.ApplicationPrivilegeEntityKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.ApplicationPrivilegeEntityKind.Section">
+            <summary>
+            Page or page section.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.ApplicationPrivilegeEntityKind.Class">
+            <summary>
+            Object class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.EntityUniqueName">
+            <summary>
+            Entity unique name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.EntityKind">
+            <summary>
+            Entity kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.EntityName">
+            <summary>
+            Entity name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.DefaultPermissions">
+            <summary>
+            Default privileges of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.#ctor">
+            <summary>
+            Creates a new instance of the ApplicationPrivilege class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.#ctor(System.String,System.String,BindOpen.Framework.Runtime.Application.Rights.UserPermission[])">
+            <summary>
+            Creates a new instance of the ActionPermission class.
+            </summary>
+            <param name="entityKind">The entity kind to consider.</param>
+            <param name="entityName">The entity name to consider.</param>
+            <param name="defaultPermissions">The default permissions to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.SetDefaultPermission(BindOpen.Framework.Runtime.Application.Rights.UserPermission)">
+            <summary>
+            Sets the specified permission.
+            </summary>
+            <param name="permission">The action rule.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.SetDefaultPermission(System.String,System.Boolean)">
+            <summary>
+            Sets the specified default permission.
+            </summary>
+            <param name="actionName">Name of the action.</param>
+            <param name="value">Value.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.SetDefaultPermission(System.String,System.String)">
+            <summary>
+            Sets the specified default permission.
+            </summary>
+            <param name="actionName">Name of the action to consider.</param>
+            <param name="stringValue">String value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.ApplicationPrivilege.GetDefaultPermission(System.String)">
+            <summary>
+            Return the default privilege of this instance.
+            </summary>
+            <param name="actionName">Action name to consider.</param>
+            <returns>The specified action rule of this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Rights.UserPermission">
+            <summary>
+            This structure respresents an user permission.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.UserPermission.ActionName">
+            <summary>
+            Action name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.UserPermission.Value">
+            <summary>
+            The value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Rights.UserPermission.ValueScript">
+            <summary>
+            The value of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor">
+            <summary>
+            Creates a new instance of the UserPermission class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the UserPermission class.
+            </summary>
+            <param name="actionName">The action name to consider.</param>
+            <param name="valueScript">The value script to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKind,System.String)">
+            <summary>
+            Creates a new instance of the UserPermission class.
+            </summary>
+            <param name="actionKind">The action kind to consider.</param>
+            <param name="valueScript">The value script to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Creates a new instance of the UserPermission class.
+            </summary>
+            <param name="actionName">The action name to consider.</param>
+            <param name="value">The boolean value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKind,System.Nullable{System.Boolean})">
+            <summary>
+            Creates a new instance of the UserPermission class.
+            </summary>
+            <param name="actionKind">The action kind to consider.</param>
+            <param name="value">The boolean value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.GetValue(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Gets the value of this instance.
+            </summary>
+            <param name="scriptInterpreter">The script interpreter to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <returns>Returns the value of this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential">
+            <summary>
+            This structure corresponds to a credential.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.DomainId">
+            <summary>
+            ID of domain.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.DomainIdSpecified">
+            <summary>
+            Specification of the DomainId property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.Login">
+            <summary>
+            Login.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.LoginSpecified">
+            <summary>
+            Specification of the Login property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.Password">
+            <summary>
+            Password.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.PasswordSpecified">
+            <summary>
+            Specification of the Password property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.TokenValue">
+            <summary>
+            Token value.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.TokenValueSpecified">
+            <summary>
+            Specification of the TokenValue property of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.#ctor">
+            <summary>
+            Creates a new instance of the ApplicationCredential class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Security.ApplicationCredential.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a new instance of the ApplicationCredential class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="aDomainId">The domain ID to consider.</param>
+            <param name="login">The login to consider.</param>
+            <param name="aPassword">The password to consider.</param>
+            <param name="aTokenValue">The token value to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind">
+            <summary>
+            This enumeration lists all the possible application log kinds.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind.Application">
+            <summary>
+            Application logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind.Runtime">
+            <summary>
+            Runtime logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind.Runtime_Users">
+            <summary>
+            Runtime users logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationLogKind.Runtime_Users_Anonymous">
+            <summary>
+            Anonymous runtime users logs.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind">
+            <summary>
+            This enumeration lists all the possible kinds of application path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.AppFolder">
+            <summary>
+            The application folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.DefaultLogFolder">
+            <summary>
+            The default log folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.ExtensionsFolder">
+            <summary>
+            The extensions folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.LibraryFolder">
+            <summary>
+            The library folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.LogFolder">
+            <summary>
+            The log folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.RoamingFolder">
+            <summary>
+            The roaming folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.RuntimeFolder">
+            <summary>
+            The runtime folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.SettingsFile">
+            <summary>
+            The settings file.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.SettingsFolder">
+            <summary>
+            The settings folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.TemporaryFolder">
+            <summary>
+            The temporary folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind.UsersFolder">
+            <summary>
+            The users folder.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService">
+            <summary>
+            This class represents an application manager.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._appFolderPath">
+            <summary>
+            The application folder path of this instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._settingsFilePath">
+            <summary>
+            The application configuration file path of this instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._runtimeFolderPath">
+            <summary>
+            The roaming application folder path of this instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._isLoadCompleted">
+            <summary>
+            Indicates whether this instance is loaded.
+            </summary>
+            <remarks>The value can be assigned.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompletedEventHandler">
+            <summary>
+            This delegate is called when the application is successfully initialized.
+            </summary>
+            <param name="sender">The application manager.</param>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._AUTHENTICATIONTIMEOUT">
+            <summary>
+            Maximum number of minutes : authentication 
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.ApplicationModule">
+            <summary>
+            The application module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Settings">
+            <summary>
+            The settings of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.UserSettingsSet">
+            <summary>
+            The set of user settings of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.SettingsSpecificationSet">
+            <summary>
+            The set of settings specifications of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionState">
+            <summary>
+            The current execution state of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionStatus">
+            <summary>
+            The current execution status of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.AckPeriod">
+            <summary>
+            Execution status of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.AppDomainPool">
+            <summary>
+            Application domain pool of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Log">
+            <summary>
+            Log of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.IsLoadCompleted">
+            <summary>
+            Indicates whether the platform information is loaded.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor">
+            <summary>
+            Instantiates a new instance of the ApplicationManager class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseAppFolder(System.String)">
+            <summary>
+            Uses the specified application folder path.
+            </summary>
+            <param name="appFolderPath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseSettingsFile(System.String)">
+            <summary>
+            Uses the specified application settings file path.
+            </summary>
+            <param name="appSettingsFilePath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseRuntimeFolder(System.String)">
+            <summary>
+            Uses the specified runtime folder path.
+            </summary>
+            <param name="runtimeFolderPath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseModule(BindOpen.Framework.Runtime.Application.Modules.AppModule)">
+            <summary>
+            Uses the specified module.
+            </summary>
+            <param name="module"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseExtensions(BindOpen.Framework.Core.Extensions.AppExtensionConfiguration)">
+            <summary>
+            Uses the specified extension configuration.
+            </summary>
+            <param name="extensionConfiguration"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseSettings``1(System.String,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+            <summary>
+            Uses the specified configuration specification.
+            </summary>
+            <typeparam name="T">The application configuration class to consider.</typeparam>
+            <param name="configFilePath">The path of the configuration file to consider.</param>
+            <param name="specificationSet">The set of data element specifcations to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+            <summary>
+            Uses the specified configuration specification.
+            </summary>
+            <typeparam name="T">The application configuration class to consider.</typeparam>
+            <param name="specificationSet">The set of data element specifcations to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.Logger[])">
+            <summary>
+            Uses the specified configuration specification.
+            </summary>
+            <param name="specificationSet"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.UseDefaultLogger">
+            <summary>
+            Uses the default logger.
+            </summary>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.SaveConfiguration">
+            <summary>
+            Saves configuration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Acknowledge">
+            <summary>
+            Acknowledges this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.GetCredential(System.String)">
+            <summary>
+            Get the credential with the specified name.
+            </summary>
+            <param name="name">Name</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.GetPath(BindOpen.Framework.Runtime.Application.Services.ApplicationPathKind)">
+            <summary>
+            Returns the path of the application temporary folder.
+            </summary>
+            <param name="pathKind">The kind of paths.</param>
+            <returns>The path of the application temporary folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.LoadSettings(System.String,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            Loads the application configuration of this instance.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <returns>Returns the loading log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService._ApplicationInstanceName">
+            <summary>
+            Gets the name of the application instance.
+            </summary>
+            <returns>Returns the name of the application instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ConnectionService">
+            <summary>
+            This class represents a connection service.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
+            <summary>
+            Instantiates a new instance of the ConnectionManager class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a connector.
+            </summary>
+            <param name="dataSourceName">The data source name to consider.</param>
+            <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+            <param name="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(BindOpen.Framework.Core.Application.Datasources.DataSourceService,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a connector.
+            </summary>
+            <param name="dataSourceManager">The source manager to consider.</param>
+            <param name="dataSourceName">The data source name to consider.</param>
+            <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+            <param name="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(BindOpen.Framework.Core.Data.Items.Source.DataSource,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a connector.
+            </summary>
+            <param name="dataSource">The data source to consider.</param>
+            <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+            <param name="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Configuration.Connectors.ConnectorConfiguration,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a connector using the specified data module and connector unique name.
+            </summary>
+            <param name="configuration">The connector configuration to consider.</param>
+            <param name="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Close(BindOpen.Framework.Core.Data.Connections.Connection)">
+            <summary>
+            Closes the specified connector.
+            </summary>
+            <param name="connector">The connector to consider.</param>
+            <returns>Returns the log of execution.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this instance.
+            </summary>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="updateModes">The update modes to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Log of the operation.</returns>
+            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ScopedService">
+            <summary>
+            This class represents a scoped manager.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ScopedService._appScope">
+            <summary>
+            The scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.AppScope">
+            <summary>
+            The application scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.AppExtension">
+            <summary>
+            The application extension of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.DataContext">
+            <summary>
+            The data context of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.ScriptInterpreter">
+            <summary>
+            Script interpreter of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.DataSourceService">
+            <summary>
+            Data source service of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.ConnectionService">
+            <summary>
+            Connection manager of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor">
+            <summary>
+            Instantiates a new instance of the ScopedManager class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
+            <summary>
+            Instantiates a new instance of the ScopedManager class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize">
+            <summary>
+            Initializes information.
+            </summary>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T">The runtime application scope to consider.</typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.SettingsKind">
+            <summary>
+            This enumeration lists all the possible kinds of settings.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.SettingsKind.StandaloneApplicationModuleName">
+            <summary>
+            The name of the standalone application module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.SettingsKind.RuntimeMode">
+            <summary>
+            The runtime mode.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.AppSettings">
+            <summary>
+            This class represents an application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.Credentials">
+            <summary>
+            The credentials of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.DataSources">
+            <summary>
+            The data sources of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ApplicationInstanceKind">
+            <summary>
+            The application instance kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ApplicationInstanceId">
+            <summary>
+            Application instance ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.DefaultUICultureName">
+            <summary>
+            Default current UI culture name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.DefaultTheme">
+            <summary>
+            Default theme of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.CookieDomain">
+            <summary>
+            Cookie domain name of this instance.
+            </summary>
+            <example>toto.com, titi.com...</example>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.CurrentRuntimeMode">
+            <summary>
+            Runtime mode of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ExecutionLevel">
+            <summary>
+            Execution level of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ServerInstanceName">
+            <summary>
+            Name of the platform server instance of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ApplicationInstanceName">
+            <summary>
+            Name of the application instance of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.IsUserTrackingEnabled">
+            <summary>
+            Indicates whether user tracking is enabled.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.ExtensionsFolderPath">
+            <summary>
+            The extensions folder path of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.LogFolderPath">
+            <summary>
+            The path of the log folder.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.AppSettings.RuntimeFolderPath">
+            <summary>
+            The path of the runtime folder.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the AppSettings class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            Instantiates a new instance of the AppSettings class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String[])">
+            <summary>
+            Instantiates a new instance of the AppSettings class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="usingFilePaths">The paths of the using files to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Updates information for storage.
+            </summary>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Updates information for runtime.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.AppSettings.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this instance.
+            </summary>
+            <typeparam name="T">The application configuration class to consider.</typeparam>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="updateModes">The update modes to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Log of the operation.</returns>
+            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptWordDefinition_runtime">
+            <summary>
+            This class represents a 'Runtime' script word definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptWordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(application.folderPath).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptWordDefinition_runtime.Var_RoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(roaming.folderPath).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptWordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(applicationModuleName).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptWordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(applicationInstanceName).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel">
+            <summary>
+            This enumerates the possible levels of execution.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.DEV">
+            <summary>
+            Development.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.OAT">
+            <summary>
+            Operation Acceptance Testing.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.UAT">
+            <summary>
+            User Acceptance Testing.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.PROD">
+            <summary>
+            Production.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ApplicationExecutionLevel.DEM">
+            <summary>
+            Demonstration.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.System.InstanceIndexation">
+            <summary>
+            This enumeration lists the possible visibilities of an application module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.None">
+            <summary>
+            The application module is not indexed. Standalone application instances are not indexed.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Default">
+            <summary>
+            Default saying that the indexation is the one of the application module. And if it is Default, then None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Central">
+            <summary>
+            Global application module instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Cloud">
+            <summary>
+            Cloud application module instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Box">
+            <summary>
+            Box application module instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Standalone">
+            <summary>
+            Standalone.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.System.ModuleOperatingSystem">
+            <summary>
+            This enumeration lists all the possible module operating systems.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ModuleOperatingSystem.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ModuleOperatingSystem.Windows">
+            <summary>
+            Windows
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.ModuleOperatingSystem.Linux">
+            <summary>
+            Linux
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope">
+            <summary>
+            This class represents a runtime application scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope.ConnectionService">
+            <summary>
+            The connection service of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope.#ctor">
+            <summary>
+            Instantiates a new instance of the RuntimeAppScope class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope.#ctor(System.AppDomain)">
+            <summary>
+            Instantiates a new instance of the RuntimeAppScope class.
+            </summary>
+            <param name="appDomain">The application domain to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
+            <summary>
+            Instantiates a new instance of the RuntimeAppScope class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope.SetAppDomain(System.AppDomain)">
+            <summary>
+            Sets the specified application domain.
+            </summary>
+            <param name="appDomain">The application domain to instance.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScopeHelper">
+            <summary>
+            This class represents a runtime application scope helper.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.RuntimeAppScopeHelper.Check(BindOpen.Framework.Core.Application.Scopes.RuntimeAppScope,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Check the specified item.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="isAppExtensionChecked">Indicates whether the application extension is chekced.</param>
+            <param name="isScriptInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
+            <param name="isConnectionManagerChecked">Indicates whether the connection service is chekced.</param>
+            <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
+            <param name="isDataSourceServiceChecked">Indicates whether the data module manager is chekced.</param>
+            <returns>The log of check log.</returns>
+        </member>
+    </members>
+</doc>
