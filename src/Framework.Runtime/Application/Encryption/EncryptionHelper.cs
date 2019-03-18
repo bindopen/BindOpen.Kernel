@@ -10,7 +10,6 @@ namespace BindOpen.Framework.Runtime.Application.Encryption
     /// </summary>
     public static class EncryptionHelper
     {
-
         // ---------------------------------------
         // PROCESSING
         // ---------------------------------------
@@ -133,7 +132,5 @@ namespace BindOpen.Framework.Runtime.Application.Encryption
         }
 
         #endregion
-
-
     }
 }

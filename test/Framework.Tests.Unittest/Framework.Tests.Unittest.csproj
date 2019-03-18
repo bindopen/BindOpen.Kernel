@@ -9,6 +9,7 @@
     <Product>BindOpen.Framework</Product>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <PackageId>BindOpen.Framework.Unittest</PackageId>
+    <RootNamespace>BindOpen.Framework.Unittest</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

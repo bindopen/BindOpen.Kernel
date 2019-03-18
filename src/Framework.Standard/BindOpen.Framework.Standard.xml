@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.Standard</name>
+        <name>BindOpen.Framework.Standard</name>
     </assembly>
     <members>
         <member name="T:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection">
