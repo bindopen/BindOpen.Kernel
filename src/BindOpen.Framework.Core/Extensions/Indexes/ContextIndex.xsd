@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:dkm="http://www.w3.org/2001/dkm.xsd"
+  elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/dkm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../data/items/DataItem.xsd" />
+  <xs:include schemaLocation="../../extensions/items/context/DataContextExtensionDefinition.xsd" />
+  <xs:include schemaLocation="../../extensions/items/AppExtensionItemGroup.xsd" />
+
+  
+  <xs:element name="context.index" type="dkm:ContextIndex" />
+
+  <xs:complexType name="ContextIndex">
+    <xs:complexContent mixed="false">
+      <xs:extension base="dkm:AppExtensionItemIndex_Context" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AppExtensionItemIndex_Context">
+    <xs:complexContent mixed="false">
+      <xs:extension base="dkm:StoredDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="dkm:ArrayOfDataContextExtensionDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="dkm:ArrayOfAppExtensionItemGroup" />
+        </xs:sequence>
+        <xs:attribute name="libraryId" type="xs:string" />
+        <xs:attribute name="library" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataContextExtensionDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="dkm:DataContextExtensionDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

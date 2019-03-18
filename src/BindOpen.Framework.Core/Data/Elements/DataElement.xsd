@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../data/items/IndexedDataItem.xsd" />
+  <xs:include schemaLocation="../../data/items/DataItemizationMode.xsd" />
+  <xs:include schemaLocation="../../data/references/DataReference.xsd" />
+  <xs:include schemaLocation="../../data/common/Arrays.xsd" />
+  <xs:include schemaLocation="../../data/elements/DataElementSpecification.xsd" />
+  <xs:include schemaLocation="../../data/elements/sets/DataElementSet.xsd" />
+  <xs:include schemaLocation="../../system/diagnostics/events/EventKind.xsd" />
+
+  <xs:complexType name="DataElement" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:IndexedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="itemReference" type="bdo:DataReference" />
+          <xs:element minOccurs="0" maxOccurs="1" name="items" type="bdo:ArrayOfString" />
+          <xs:element minOccurs="0" maxOccurs="1" name="propertyDetail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="eventKind" type="bdo:EventKind" />
+        </xs:sequence>
+        <xs:attribute use="optional" name="itemizationMode" type="bdo:DataItemizationMode" />
+        <xs:attribute use="optional" name="script" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

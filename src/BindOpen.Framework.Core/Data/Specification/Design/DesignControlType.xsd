@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="DesignControlType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Auto" />
+      <xs:enumeration value="TextBox" />
+      <xs:enumeration value="CheckBox" />
+      <xs:enumeration value="RadioButtonList" />
+      <xs:enumeration value="Calendar" />
+      <xs:enumeration value="ListBox" />
+      <xs:enumeration value="ComboBox" />
+      <xs:enumeration value="Label" />
+      <xs:enumeration value="LinkButton" />
+      <xs:enumeration value="Hyperlink" />
+      <xs:enumeration value="DownloadLinkButton" />
+      <xs:enumeration value="MemoTextBox" />
+      <xs:enumeration value="PasswordTextBox" />
+      <xs:enumeration value="ClientFileSelector" />
+      <xs:enumeration value="ProgressBar" />
+      <xs:enumeration value="TimeSelector" />
+      <xs:enumeration value="WeekDaySelector" />
+      <xs:enumeration value="DictionaryEditor" />
+      <xs:enumeration value="DatabaseTableEditor" />
+      <xs:enumeration value="EmailEditor" />
+      <xs:enumeration value="CarrierConfigurationEditor" />
+      <xs:enumeration value="Custom" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

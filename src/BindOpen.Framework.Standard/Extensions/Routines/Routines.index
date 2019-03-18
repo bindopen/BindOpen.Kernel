@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<routines.index library="standard"
+  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns:SchemaLocation="bdo:RoutineConfigurationIndex RoutineConfigurationIndex.xsd">
+  
+  <creationDate>2011-07-07</creationDate>
+  <lastModificationDate>2016-10-15</lastModificationDate>
+
+  <definitions>
+
+    <!-- ItemIsRequired -->
+    
+    <add.definition name="itemIsRequired">
+      <title>
+        <add.value>Item is required</add.value>
+      </title>
+      <itemClass>.Routines.Routine_ItemIsRequired</itemClass>
+      <outputResultCodes>
+        <add name="ERROR_ITEMREQUIRED"></add>
+      </outputResultCodes>
+    </add.definition>
+
+    <!-- TextFormat -->
+
+    <add.definition name="textFormatMustBe">
+      <title>
+        <add.value>The format must be the specified one.</add.value>
+      </title>
+      <itemClass>.Routines.Routine_TextFormatMustBe</itemClass>
+      <outputResultCodes>
+        <add name="ERROR_FORMAT"></add>
+      </outputResultCodes>
+    </add.definition>
+
+  </definitions>
+  
+</routines.index>

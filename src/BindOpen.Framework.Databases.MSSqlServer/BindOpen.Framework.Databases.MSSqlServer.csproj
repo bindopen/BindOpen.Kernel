@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>BindOpen.Databases.MSSqlServer</AssemblyName>
+    <PackageId>BindOpen.Databases.MSSqlServer</PackageId>
+    <Product>BindOpen</Product>
+    <Company>meltingSoft</Company>
+    <Copyright>Copyright �meltingSoft 2011-2018</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles MS SQL Server database connections.</Description>
+    <Authors>Sumer Team</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Queries\Builders\DbQueryBuilder_PostgreSql.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Queries\Builders\ve-27F.tmp" />
+    <None Remove="Extensions\Connectors\Connectors.index" />
+    <None Remove="library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Extensions\Connectors\Connectors.index" />
+    <EmbeddedResource Include="Library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BindOpen.Framework.Databases\BindOpen.Framework.Databases.csproj" />
+  </ItemGroup>
+
+</Project>

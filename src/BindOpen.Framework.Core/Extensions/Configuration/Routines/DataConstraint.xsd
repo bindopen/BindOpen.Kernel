@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:dkm="http://www.w3.org/2001/dkm.xsd"
+  elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/dkm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../extensions/items/routines/Routine.xsd" />
+  <xs:include schemaLocation="../../../data/items/dictionary/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="../../../system/diagnostics/events/ConditionalEvent.xsd" />
+
+  <xs:complexType name="DataConstraint" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="dkm:Routine">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="outputEventSet" type="dkm:DataItemSetOfConditionalEvent" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DataItemSetOfConditionalEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="dkm:DictionaryDataItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="items" type="dkm:ArrayOfConditionalEvent1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfConditionalEvent1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="dkm:ConditionalEvent" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

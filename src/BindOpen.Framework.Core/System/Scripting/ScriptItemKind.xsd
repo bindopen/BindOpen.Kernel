@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="ScriptItemKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="Function" />
+      <xs:enumeration value="Variable" />
+      <xs:enumeration value="Text" />
+      <xs:enumeration value="Syntax" />
+      <xs:enumeration value="Literal" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

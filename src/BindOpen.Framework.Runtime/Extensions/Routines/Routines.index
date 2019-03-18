@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<routines.index library="runtime"
+  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns:SchemaLocation="bdo:RoutineConfigurationIndex RoutineConfigurationIndex.xsd">
+  
+  <creationDate>2011-07-07</creationDate>
+  <lastModificationDate>2016-10-15</lastModificationDate>
+
+  <definitions>
+  </definitions>
+  
+</routines.index>

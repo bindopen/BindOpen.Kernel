@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Unittest</AssemblyName>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles database connections.</Description>
+    <Authors>Sumer Team</Authors>
+    <Company>BindOpen</Company>
+    <Product>BindOpen.Framework</Product>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <PackageId>BindOpen.Framework.Unittest</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BindOpen.Framework.Core\BindOpen.Framework.Core.csproj" />
+    <ProjectReference Include="..\..\src\BindOpen.Framework.Databases.MSSqlServer\BindOpen.Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\src\BindOpen.Framework.Databases\BindOpen.Framework.Databases.csproj" />
+    <ProjectReference Include="..\..\src\BindOpen.Framework.Runtime\BindOpen.Framework.Runtime.csproj" />
+    <ProjectReference Include="..\..\src\BindOpen.Framework.Standard\BindOpen.Framework.Standard.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿using System;
+using System.Xml.Serialization;
+
+namespace BindOpen.Framework.Core.System.Processing
+{
+    /// <summary>
+    /// This enumeration represents the possible process execution states.
+    /// </summary>
+    [Serializable()]
+    [XmlType("ProcessExecutionState", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    public enum ProcessExecutionState
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Pending.
+        /// </summary>
+        Pending,
+
+        /// <summary>
+        /// Ended.
+        /// </summary>
+        Ended
+    }
+
+}

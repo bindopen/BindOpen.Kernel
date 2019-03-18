@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<scriptWords.index library="standard"
+  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns:SchemaLocation="bdo:ScriptWordIndex ScriptWordIndex.xsd">
+
+  <creationDate>2010-08-05</creationDate>
+  <lastModificationDate>2016-08-19</lastModificationDate>
+  <definitions>
+
+    <!-- Functions -->
+
+    <!-- $ISEMPTY(value) -->
+    <add.definition name="ISEMPTY">
+      <creationDate>2011-11-26</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Indicates whether the specified value is empty.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_IsEmpty</functionName>
+      <parameter.specification>
+        <scalar name="condition" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $TEXT(value) -->
+    <add.definition name="TEXT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns the parameter into text value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Text</functionName>
+      <parameter.specification>
+        <scalar name="value" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $FORMATTEXT(value, format) -->
+    <add.definition name="FORMATTEXT">
+      <creationDate>2011-11-25</creationDate>
+      <lastModificationDate>2011-11-25</lastModificationDate>
+      <description>
+        <add.value>Returns the value formated by the specified format.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_FormatText</functionName>
+      <parameter.specification>
+        <scalar name="value" valueType="Text" />
+        <scalar name="format" valueType="Text" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $IF(condition,value1,value2) -->
+    <add.definition name="IF">
+      <creationDate>2011-06-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns value1 if condition is true, value2 otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_If</functionName>
+      <parameter.specification>
+        <scalar name="condition" valueType="Any" />
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $NOT(boolean) -->
+    <add.definition name="NOT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns FALSE if the parameter is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Not</functionName>
+      <parameter.specification>
+        <scalar name="boolean" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $OR(boolean1, boolean2...) -->
+    <add.definition name="OR">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if one of the parameters is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Or</functionName>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>boolean</repeatedParameterName>
+    </add.definition>
+
+    <!-- $AND(boolean1, boolean2...) -->
+    <add.definition name="AND">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if all of the parameters is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_And</functionName>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>boolean</repeatedParameterName>
+    </add.definition>
+
+    <!-- $XOR(boolean1, boolean2) -->
+    <add.definition name="XOR">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if one of the two parameters is TRUE and but not both, and returns FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Xor</functionName>
+      <parameter.specification>
+        <scalar name="boolean1" valueType="Any" />
+        <scalar name="boolean2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $ISEQUAL(value1, value2) -->
+    <add.definition name="ISEQUAL">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if the first parameter equals to the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_IsEqual</functionName>
+      <parameter.specification>
+        <scalar name="boolean1" valueType="Any" />
+        <scalar name="boolean2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $ISNOTSEQUAL(value1, value2) -->
+    <add.definition name="ISDIFFERENT">
+      <creationDate>2011-06-19</creationDate>
+      <lastModificationDate>2011-06-19</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if the first parameter does not equal to the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_IsDifferent</functionName>
+      <parameter.specification>
+        <scalar name="boolean1" valueType="Any" />
+        <scalar name="boolean2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $(GETCURRENTDATETIME) -->
+    <add.definition name="GETCURRENTDATETIME">
+      <creationDate>2011-05-31</creationDate>
+      <lastModificationDate>2011-05-31</lastModificationDate>
+      <description>
+        <add.value>Returns the current date time.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Fun_GetCurrentDateTime</functionName>
+      <returnValueType>Date</returnValueType>
+      <children>
+
+        <!-- $(GETCURRENTDATETIME).FORMAT('format') -->
+        <add.definition name="FORMAT">
+          <creationDate>2011-05-31</creationDate>
+          <lastModificationDate>2011-05-31</lastModificationDate>
+          <description>
+            <add.value>Returns the current date into the specified format.</add.value>
+          </description>
+          <kind>Function</kind>
+          <functionName>Fun_DateTime_Format</functionName>
+          <parameter.specification>
+            <scalar name="format" valueType="Text" />
+          </parameter.specification>
+        </add.definition>
+
+        <!-- $(GETCURRENTDATETIME).TIMESTAMP() -->
+        <add.definition name="TIMESTAMP">
+          <creationDate>2010-08-05</creationDate>
+          <lastModificationDate>2011-05-31</lastModificationDate>
+          <description>
+            <add.value>Returns the current date timestamp.</add.value>
+          </description>
+          <kind>Function</kind>
+          <functionName>Fun_DateTime_TimeStamp</functionName>
+        </add.definition>
+
+        <!-- $(GETCURRENTDATETIME).ADD(year, month, day, hour, minute, second) -->
+        <add.definition name="ADD">
+          <creationDate>2011-05-31</creationDate>
+          <lastModificationDate>2011-05-31</lastModificationDate>
+          <description>
+            <add.value>Returns the current date timestamp menus a specified date. To add a specified date, use negative numbers.</add.value>
+          </description>
+          <kind>Function</kind>
+          <functionName>Fun_DateTime_Add</functionName>
+          <parameter.specification>
+            <scalar name="year" valueType="Integer" />
+            <scalar name="month" valueType="Integer" />
+            <scalar name="day" valueType="Integer" />
+            <scalar name="hour" valueType="Integer" />
+            <scalar name="minute" valueType="Integer" />
+            <scalar name="second" valueType="Integer" />
+          </parameter.specification>
+          <children>
+            <!-- $(GETCURRENTDATETIME).ADD(year, month, day, hour, minute, second).FORMAT(format) -->
+            <add.definition referenceUniqueName="Standard:Fun_GetCurrentDateTime_Format" />
+          </children>                              
+        </add.definition>
+
+      </children>
+    </add.definition>
+
+    <!-- $DATAMODULE(name) -->
+    <add.definition name="DATAMODULE">
+      <creationDate>2011-06-12</creationDate>
+      <lastModificationDate>2011-06-12</lastModificationDate>
+      <description>
+        <add.value>Returns the specified data module.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_DataModule</functionName>
+      <parameter.specification>
+        <scalar name="name" valueType="Text" />
+      </parameter.specification>
+
+      <children>
+
+        <!-- $DATAMODULE(name).NAME() -->
+        <add.definition name="NAME">
+          <creationDate>2011-05-31</creationDate>
+          <lastModificationDate>2011-05-31</lastModificationDate>
+          <description>
+            <add.value>Returns the name of the specified data module.</add.value>
+          </description>
+          <kind>Function</kind>
+          <functionName>Fun_DataModule_Name</functionName>
+        </add.definition>
+      </children>
+    </add.definition>
+
+    <!-- Variables -->
+    
+    <!-- $(EMPTY) -->
+    <add.definition name="EMPTY">
+      <creationDate>2011-06-12</creationDate>
+      <lastModificationDate>2011-06-12</lastModificationDate>
+      <description>
+        <add.value>Returns the empty value.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_GetEmpty</functionName>
+    </add.definition>
+
+    <!-- $(LITERAL_TAB) -->
+    <add.definition name="LITERAL_TAB">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Represents the tabulation character (ASCII code - 9).</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_Literal_Tab</functionName>
+    </add.definition>
+
+    <!-- $(LITERAL_CR) -->
+    <add.definition name="LITERAL_CR">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Represents the carriage return character (ASCII code - 13).</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_Literal_Cr</functionName>
+    </add.definition>
+
+    <!-- $(LITERAL_CARRETPOS) -->
+    <add.definition name="LITERAL_CARRETPOS">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Is used to locate the position of the carret in the script in a edition mode.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_Literal_CarretPos</functionName>
+    </add.definition>
+
+    <!-- $(LITERAL_CARRETPOS) -->
+    <add.definition name="LITERAL_CARRETPOS">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Is used to locate the position of the carret in the script in a edition mode.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_Literal_CarretPos</functionName>
+    </add.definition>
+
+    <!-- $(roaming.folderpath) -->
+    <add.definition name="roaming.folderpath">
+      <creationDate>2017-11-01</creationDate>
+      <lastModificationDate>2017-11-01</lastModificationDate>
+      <description>
+        <add.value>The path of the roaming folder.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_RoamingFolderPath</functionName>
+    </add.definition>
+
+    <!-- $(mydocuments.folderpath) -->
+    <add.definition name="mydocuments.folderpath">
+      <creationDate>2017-11-01</creationDate>
+      <lastModificationDate>2017-11-01</lastModificationDate>
+      <description>
+        <add.value>The path of the 'My Documents' folder.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_MyDocumentsFolderPath</functionName>
+    </add.definition>
+
+  </definitions>
+
+  <definitionClass>.Scriptwords.ScriptWordDefinition_standard</definitionClass>
+</scriptWords.index>

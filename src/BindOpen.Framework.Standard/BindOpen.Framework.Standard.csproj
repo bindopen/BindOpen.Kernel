@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>BindOpen.Standard</AssemblyName>
+    <PackageId>BindOpen.Standard</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library provides standard classes.</Description>
+    <Authors>Sumer Team</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Standard.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\repository\**" />
+    <EmbeddedResource Remove="Data\repository\**" />
+    <None Remove="Data\repository\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\Carriers\EmailPath.cs" />
+    <Compile Remove="Extensions\Carriers\FolderFile.cs" />
+    <Compile Remove="Extensions\Carriers\_RepositoryFile_bkp.cs" />
+    <Compile Remove="Extensions\Connectors\DataSource_Ftp.cs" />
+    <Compile Remove="Extensions\Connectors\DataSource_Scp.cs" />
+    <Compile Remove="Extensions\Connectors\DataSource_SFtp.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryConnector_Ftp.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryConnector_NFSRemote.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryConnector_Scp.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryConnector_SFtp.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryDataSource.cs" />
+    <Compile Remove="Extensions\Connectors\RepositoryManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\Carriers\carriers.index" />
+    <None Remove="Extensions\Connectors\connectors.index" />
+    <None Remove="Extensions\Entities\entities.index" />
+    <None Remove="Extensions\Handlers\handlers.index" />
+    <None Remove="Extensions\Metrics\metrics.index" />
+    <None Remove="Extensions\Routines\routines.index" />
+    <None Remove="Extensions\Scriptwords\scriptwords.index" />
+    <None Remove="Extensions\Tasks\tasks.index" />
+    <None Remove="library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Extensions\Carriers\Carriers.index" />
+    <EmbeddedResource Include="Extensions\Connectors\Connectors.index" />
+    <EmbeddedResource Include="Extensions\Entities\Entities.index" />
+    <EmbeddedResource Include="Extensions\Handlers\Handlers.index" />
+    <EmbeddedResource Include="Extensions\Metrics\Metrics.index" />
+    <EmbeddedResource Include="Extensions\Routines\Routines.index" />
+    <EmbeddedResource Include="Extensions\Scriptwords\Scriptwords.index" />
+    <EmbeddedResource Include="Extensions\Tasks\Tasks.index" />
+    <EmbeddedResource Include="Library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BindOpen.Framework.Core\BindOpen.Framework.Core.csproj" />
+  </ItemGroup>
+
+</Project>

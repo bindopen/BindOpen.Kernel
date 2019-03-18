@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="DescribedDataItem.xsd" />
+
+  <xs:complexType name="IndexedDataItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:DescribedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="index" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

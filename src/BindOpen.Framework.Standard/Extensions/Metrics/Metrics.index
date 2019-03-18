@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<metrics.index library="standard"
+  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns:SchemaLocation="bdo:MetricsIndex MetricsIndex.xsd">
+  
+  <creationDate>2011-07-07</creationDate>
+  <lastModificationDate>2016-10-15</lastModificationDate>
+  
+  <definitions />
+  
+</metrics.index>

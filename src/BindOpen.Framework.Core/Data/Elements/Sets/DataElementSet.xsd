@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../data/items/StoredDataItem.xsd" />
+  <xs:include schemaLocation="../../../data/elements/carrier/CarrierElement.xsd" />
+  <!--<xs:include schemaLocation="../../../data/elements/document/DocumentElement.xsd" />-->
+  <xs:include schemaLocation="../../../data/elements/entity/EntityElement.xsd" />
+  <xs:include schemaLocation="../../../data/elements/meta/MetaDataElement.xsd" />
+  <xs:include schemaLocation="../../../data/elements/object/ObjectElement.xsd" />
+  <xs:include schemaLocation="../../../data/elements/scalar/ScalarElement.xsd" />
+  <xs:include schemaLocation="../../../data/elements/schema/SchemaElement.xsd" />
+  <xs:include schemaLocation="../../../data/elements/source/SourceElement.xsd" />
+
+  <xs:complexType name="DataElementSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:DataItem">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="carrier" nillable="true" type="bdo:CarrierElement" />
+            <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="bdo:DocumentElement" />-->
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entity" nillable="true" type="bdo:EntityElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="object" nillable="true" type="bdo:ObjectElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="meta" nillable="true" type="bdo:MetaDataElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="scalar" nillable="true" type="bdo:ScalarElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="schema" nillable="true" type="bdo:SchemaElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="source" nillable="true" type="bdo:SourceElement" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

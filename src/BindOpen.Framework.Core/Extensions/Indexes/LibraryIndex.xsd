@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../data/items/DescribedDataItem.xsd" />
+  <xs:include schemaLocation="../../extensions/libraries/LibraryDefinition.xsd" />
+
+  <xs:element name="libraries.index" type="bdo:LibraryIndex" />
+
+  <xs:complexType name="LibraryIndex">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:DescribedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="libraries" type="bdo:ArrayOfLibraryDefinition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfLibraryDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="bdo:LibraryDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
