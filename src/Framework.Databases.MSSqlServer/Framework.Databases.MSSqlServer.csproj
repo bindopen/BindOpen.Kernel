@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.Framework.Databases\BindOpen.Framework.Databases.csproj" />
+    <ProjectReference Include="..\Framework.Databases\Framework.Databases.csproj" />
   </ItemGroup>
 
 </Project>

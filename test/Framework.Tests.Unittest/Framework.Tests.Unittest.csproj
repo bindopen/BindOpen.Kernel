@@ -23,11 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BindOpen.Framework.Core\BindOpen.Framework.Core.csproj" />
-    <ProjectReference Include="..\..\src\BindOpen.Framework.Databases.MSSqlServer\BindOpen.Framework.Databases.MSSqlServer.csproj" />
-    <ProjectReference Include="..\..\src\BindOpen.Framework.Databases\BindOpen.Framework.Databases.csproj" />
-    <ProjectReference Include="..\..\src\BindOpen.Framework.Runtime\BindOpen.Framework.Runtime.csproj" />
-    <ProjectReference Include="..\..\src\BindOpen.Framework.Standard\BindOpen.Framework.Standard.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>
 
 </Project>

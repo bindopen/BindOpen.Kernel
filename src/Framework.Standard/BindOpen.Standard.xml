@@ -1,0 +1,1048 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Standard</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection">
+            <summary>
+            This interfaces represents a connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Pull(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls a remote file to a local URI.
+            </summary>
+            <param name="remoteFileUri">The remote URI to consider.</param>
+            <param name="localPathUri">The URI of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Pull(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pulls a remote files in folder to a local URI.
+            </summary>
+            <param name="remoteFileUri">The remote URI to consider.</param>
+            <param name="remoteFilter">The remote filter to consider.</param>
+            <param name="localPathUri">The URI of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Pull(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls remote files to a local URI.
+            </summary>
+            <param name="remoteFileUris">The remote URIs to consider.</param>
+            <param name="localPathUri">The URI of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Push(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes a local file to a remote URI.
+            </summary>
+            <param name="localFileUri">The local URI to consider.</param>
+            <param name="remotePathUri">The URI of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Push(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pushes a local file in folder to a remote URI.
+            </summary>
+            <param name="localFileUri">The local URI to consider.</param>
+            <param name="localFilter">The local filter to consider.</param>
+            <param name="remotePathUri">The URI of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.Push(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes local files to a remote URI.
+            </summary>
+            <param name="localFileUris">The local URIs to consider.</param>
+            <param name="remotePathUri">The URI of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.GetFiles(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the list of elements of the remote folder.
+            </summary>
+            <param name="folderUri">The URI of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+            <returns>Lists of elements of the remote folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.IRepositoryConnection.DeleteItems(System.String,System.String,System.DateTime,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Deletes the items.
+            </summary>
+            <param name="folderUri">The URI of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="timeLimit">The date time limit to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection">
+            <summary>
+            This class represents a repository connection.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Connector">
+            <summary>
+            The connector of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryConnection class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.#ctor(BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector)">
+            <summary>
+            Instantiates a new instance of the RepositoryConnection class.
+            </summary>
+            <param name="connector">The connector to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Pull(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls a remote file to a local Uri.
+            </summary>
+            <param name="remoteFileUri">The remote Uri to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Pull(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pulls a remote files in folder to a local Uri.
+            </summary>
+            <param name="remoteFileUri">The remote Uri to consider.</param>
+            <param name="remoteFilter">The remote filter to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Pull(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls remote files to a local Uri.
+            </summary>
+            <param name="remoteFileUris">The remote Uris to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Push(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes a local file to a remote Uri.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Push(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pushes a local file in folder to a remote Uri.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="localFilter">The local filter to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.Push(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes local files to a remote Uri.
+            </summary>
+            <param name="localFileUris">The local Uris to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.GetFiles(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the list of elements of the remote folder.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+            <returns>Lists of elements of the remote folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Data.Connections.RepositoryConnection.DeleteItems(System.String,System.String,System.DateTime,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Deletes the items.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="timeLimit">The date time limit to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Data.Queries.DataQueries_standard">
+            <summary>
+            This class contains data queries for the 'Standard' extension.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard">
+            <summary>
+            This enumeration lists all the possible kinds of 'Standard' carriers.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard.File">
+            <summary>
+            File.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard.Folder">
+            <summary>
+            Folder.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standardExtension">
+            <summary>
+            This class represents an extension of the CarrierKind_standard enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standardExtension.GetUniqueName(BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the unique name corresponding to the specified carrier kind.
+            </summary>
+            <param name="aCarrierKind_standard">The carrier unique name to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile">
+            <summary>
+            This class represents a repository file.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.Length">
+            <summary>
+            The length of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+            <param name="path">The path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+            <param name="fileName">The file name of the instance.</param>
+            <param name="folderPath">The folder path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.#ctor(System.String,BindOpen.Framework.Core.Extensions.Configuration.Carriers.CarrierConfiguration,System.String,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="relativePath">The relative path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFile.Check``1(System.Boolean,``0,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Checks this instance.
+            </summary>
+            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFolder">
+            <summary>
+            This class represents a repository folder.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFolder.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryFolder class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFolder.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFolder class.
+            </summary>
+            <param name="path">The path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFolder.#ctor(System.String,BindOpen.Framework.Core.Extensions.Configuration.Carriers.CarrierConfiguration,System.String,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+            <summary>
+            Instantiates a new instance of the RepositoryFolder class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="relativePath">The relative path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryFolder.Check``1(System.Boolean,``0,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Checks this instance.
+            </summary>
+            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryItem">
+            <summary>
+            This class represents a repository item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryItem.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryItem class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryItem.#ctor(System.String,System.String,BindOpen.Framework.Core.Extensions.Configuration.Carriers.CarrierConfiguration,System.String,System.String,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+            <summary>
+            Instantiates a new instance of the RepositoryItem class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="definitionName">The definition name to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="namePreffix">The name preffix to consider.</param>
+            <param name="relativePath">The relative path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Carriers.RepositoryItem.SetPath(System.String,System.String)">
+            <summary>
+            Sets the path of this instance.
+            </summary>
+            <param name="path">The new path to consider. Null to update the existing one.</param>
+            <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
+            <returns>Returns True if this instance exists. False otherwise.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Common.Extension_standard">
+            <summary>
+            This class represents the standard extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Common.Extension_standard.GetUniqueName_standard(System.String)">
+            <summary>
+            Gets the database unique name.
+            </summary>
+            <param name="uniqueName">The unique name to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard">
+            <summary>
+            This enumeration lists all the possible kinds of the 'Standard' connectors.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.Local">
+            <summary>
+            Local.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.Remote">
+            <summary>
+            Remote.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.Ftp">
+            <summary>
+            FTP.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.Scp">
+            <summary>
+            SCP.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard.SFtp">
+            <summary>
+            SFTP.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standardExtension">
+            <summary>
+            This class represents an extension of the ConnectorKind_standard enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standardExtension.GetUniqueName(BindOpen.Framework.Standard.Extensions.Connectors.ConnectorKind_standard)">
+            <summary>
+            Gets the unique name corresponding to the specified connector kind.
+            </summary>
+            <param name="connectorKind_standard">The connector kind to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector">
+            <summary>
+            This class represents a file NFS connector.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.#ctor">
+            <summary>
+            Instantiates a new instance of the NFSConnectorLocal class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.#ctor(System.String,BindOpen.Framework.Core.Extensions.Configuration.Connectors.ConnectorConfiguration,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+            <summary>
+            This instantiates a new instance of the NFSConnectorLocal class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.Open">
+            <summary>
+            Opens a connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.Close">
+            <summary>
+            Closes the existing connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.Pull(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Gets a remote file to a local Uri.
+            </summary>
+            <param name="remoteFileUri">The remote Uri to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.Push(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Posts a local file to a remote Uri.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.WaitForFile(System.String,System.Int32,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Waits for the specified file to be accessible.
+            </summary>
+            <param name="path">The path of the file to consider.</param>
+            <param name="aSecondNumber">The number of seconds to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns true if the file is available. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.GetFiles(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the list of elements of the remote folder.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of files to consider.</param>
+            <returns>Lists of elements of the remote folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.DeleteFile(System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Deletes a local file.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="log">The log to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.DeleteFolder(System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Deletes a local folder.
+            </summary>
+            <param name="localfolderUri">The local Uri to consider.</param>
+            <param name="log">The log to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.NFSConnector.DeleteItems(System.String,System.String,System.DateTime,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Deletes the items.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="timeLimit">The date time limit to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector">
+            <summary>
+            This class represents a repository connector.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryConnector class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.#ctor(System.String,System.String,BindOpen.Framework.Core.Extensions.Configuration.Connectors.ConnectorConfiguration,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+            <summary>
+            This instantiates a new instance of the RepositoryConnector class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="definitionName">The definition name to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Pull(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls a remote file to a local Uri.
+            </summary>
+            <param name="remoteFileUri">The remote Uri to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Pull(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pulls a remote files in folder to a local Uri.
+            </summary>
+            <param name="remoteFileUri">The remote Uri to consider.</param>
+            <param name="remoteFilter">The remote filter to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Pull(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pulls remote files to a local Uri.
+            </summary>
+            <param name="remoteFileUris">The remote Uris to consider.</param>
+            <param name="localPathUri">The Uri of the local path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Push(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes a local file to a remote Uri.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Push(System.String,System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,System.Boolean)">
+            <summary>
+            Pushes a local file in folder to a remote Uri.
+            </summary>
+            <param name="localFileUri">The local Uri to consider.</param>
+            <param name="localFilter">The local filter to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.Push(System.Collections.Generic.List{System.String},System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Pushes local files to a remote Uri.
+            </summary>
+            <param name="localFileUris">The local Uris to consider.</param>
+            <param name="remotePathUri">The Uri of the remote path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.GetFiles(System.String,System.String,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the list of elements of the remote folder.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+            <returns>Lists of elements of the remote folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Connectors.RepositoryConnector.DeleteItems(System.String,System.String,System.DateTime,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Standard.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Deletes the items.
+            </summary>
+            <param name="folderUri">The Uri of the folder path to consider.</param>
+            <param name="filter">The filter to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="timeLimit">The date time limit to consider.</param>
+            <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+            <param name="fileKind">The kind of elements to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard">
+            <summary>
+            This enumeration lists all the possible kinds of the 'Standard' handlers.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.BdOS">
+            <summary>
+            BdO Script.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.DynamicDataContext">
+            <summary>
+            Dynamic data context.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.XmlFile">
+            <summary>
+            Xml file.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.XmlFileReferenceInDatabase">
+            <summary>
+            Xml file reference in database.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.TextFromFile">
+            <summary>
+            Text from file.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.TextFileReferenceInDatabase">
+            <summary>
+            Text file reference in database.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.Database">
+            <summary>
+            Database.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.TextFromXmlString">
+            <summary>
+            Xml String.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.TextString">
+            <summary>
+            Text String.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.EmbedResource">
+            <summary>
+            Embed resource
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.WebService">
+            <summary>
+            Web service
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.ReferenceSourceId">
+            <summary>
+            Reference source ID
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard.SourceId">
+            <summary>
+            Source ID
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Handlers.HandlerUniqueName_standardExtension">
+            <summary>
+            This class represents an extension of the HandlerUniqueName_standard enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Handlers.HandlerUniqueName_standardExtension.GetUniqueName(BindOpen.Framework.Standard.Extensions.Handlers.HandlerKind_standard)">
+            <summary>
+            Gets the unique name corresponding to the specified handler kind.
+            </summary>
+            <param name="kind">The handler kind to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Handlers.ObjectFromFile">
+            <summary>
+            This static class represents the handler 
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Handlers.ObjectFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Gets the target objects from the specified source.
+            </summary>
+            <param name="sourceElement">The source element to consider.</param>
+            <param name="pathDetail">The path detail to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the target objects.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Handlers.ObjectFromFile.Post(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement@,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Posts the selected targets to the source.
+            </summary>
+            <param name="targetObject">The target object to consider.</param>
+            <param name="sourceDataElement">The source data element to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the source object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Handlers.TextFromFile">
+            <summary>
+            This static class represents the handler 
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Handlers.TextFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Gets the target objects from the specified source.
+            </summary>
+            <param name="sourceElement">The source element to consider.</param>
+            <param name="pathDetail">The path detail to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the target objects.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Handlers.TextFromFile.Post(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement@,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Posts the selected targets to the source.
+            </summary>
+            <param name="targetObject">The target object to consider.</param>
+            <param name="sourceDataElement">The source data element to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the source object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard">
+            <summary>
+            This enumeration lists all the possible kinds of the 'Standard' routines.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard.ItemIsRequired">
+            <summary>
+            Item is required.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard.TextFormatMustBe">
+            <summary>
+            Text format must sbe.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standardExtension">
+            <summary>
+            This class represents an extension of the RoutineConfigurationKind_standard enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standardExtension.GetUniqueName(BindOpen.Framework.Standard.Extensions.Routines.RoutineConfigurationKind_standard)">
+            <summary>
+            Gets the unique name corresponding to the specified routine kind.
+            </summary>
+            <param name="routineKind_standard">The routine kind to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Routines.Routine_ItemIsRequired">
+            <summary>
+            This class represents a routine 'ItemIsRequired'.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Routines.Routine_ItemIsRequired.#ctor">
+            <summary>
+            Instantiates a new instance of the Routine_ItemIsRequired class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Routines.Routine_ItemIsRequired.CustomExecute(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,System.Object[])">
+            <summary>
+            Executes customly this instance.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="item">The item to use.</param>
+            <param name="dataElement">The element to use.</param>
+            <param name="objects">The objects to use.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Routines.Routine_TextFormatMustBe">
+            <summary>
+            This class represents a routine 'TextFormatMustBe'.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Routines.Routine_TextFormatMustBe.#ctor">
+            <summary>
+            Instantiates a new instance of the Routine_TextFormatMustBe class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Routines.Routine_TextFormatMustBe.CustomExecute(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,System.Object[])">
+            <summary>
+            Executes customly this instance.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="item">The item to use.</param>
+            <param name="dataElement">The element to use.</param>
+            <param name="objects">The objects to use.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard">
+            <summary>
+            This class represents a 'Standard' script definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_IsEmpty(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $ISEMPTY.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_Text(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $TEXT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_FormatText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $FORMAT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_If(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $IF.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_Not(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $NOT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_Or(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $OR.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_And(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $AND.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_Xor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $XOR.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_IsEqual(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $ISEQUAL.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_IsDifferent(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $ISDIFFERENT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_GetCurrentDateTime(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(GETCURRENTDATETIME).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_DateTime_Format(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $GETCURRENTDATE().FORMAT(aFormat).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_DateTime_TimeStamp(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $GETCURRENTDATE().TIMESTAMP().
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_DateTime_Add(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $GETCURRENTDATE().SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_DataModule(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word %DATAMODULE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Fun_DataModule_Name(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word %DATAMODULE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_GetEmpty(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(EMPTY).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_Literal_Tab(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(LITERAL_TAB).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_Literal_Cr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(LITERAL_CR).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_Literal_CarretPos(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(LITERAL_CARRETPOS).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_RoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(roaming.folderPath).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Standard.Extensions.Scriptwords.ScriptWordDefinition_standard.Var_MyDocumentsFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Configuration.Scriptwords.ScriptWord,System.Object[])">
+            <summary>
+            Evaluates the script word $(myDocuments.folderPath).
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+    </members>
+</doc>
