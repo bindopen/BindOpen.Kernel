@@ -9,6 +9,7 @@
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles runtime.</Description>
     <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Framework.Runtime</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -4,7 +4,6 @@ using BindOpen.Framework.Databases.Extensions.Carriers;
 
 namespace BindOpen.Framework.Databases.Extensions.Scriptwords
 {
-
     /// <summary>
     /// This class represents a script helper concerning database.
     /// </summary>
@@ -182,6 +181,5 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         {
             return "$SqlOr(" + ScriptHelper_Database.GetSqlTextFilterString(sqlDbFieldString, values) + ")";
         }
-
     }
 }

@@ -1,16 +1,14 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Languages
 {
-
     /// <summary>
     /// This class represents a application languages.
     /// </summary>
     public class ApplicationLanguage : DescribedDataItem
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -39,7 +37,6 @@ namespace BindOpen.Framework.Runtime.Application.Languages
 
         #endregion
 
-
         // -------------------------------------------------------
         // CONSTRUCTORS
         // -------------------------------------------------------
@@ -54,6 +51,5 @@ namespace BindOpen.Framework.Runtime.Application.Languages
         }
 
         #endregion
-
     }
 }

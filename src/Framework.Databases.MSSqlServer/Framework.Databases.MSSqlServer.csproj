@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>BindOpen.Databases.MSSqlServer</AssemblyName>
-    <PackageId>BindOpen.Databases.MSSqlServer</PackageId>
-    <Product>BindOpen</Product>
-    <Company>meltingSoft</Company>
-    <Copyright>Copyright �meltingSoft 2011-2018</Copyright>
+    <AssemblyName>BindOpen.Framework.Databases.MSSqlServer</AssemblyName>
+    <PackageId>BindOpen.Framework.Databases.MSSqlServer</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles MS SQL Server database connections.</Description>
     <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Framework.Databases.MSSqlServer</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Databases.MSSqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

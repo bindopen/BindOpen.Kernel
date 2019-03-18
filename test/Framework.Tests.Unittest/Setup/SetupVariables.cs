@@ -67,7 +67,7 @@ namespace BindOpen.Framework.UnitTest.Setup
                             new ConnectorConfiguration(
                                 null,
                                 DatabaseConnectorKind.MSSqlServer.GetUniqueName(),
-                                @"Provider=SQLOLEDB.1;Data Source=wisteria.arvixe.com\MSSQLSERVER,1433;Initial Catalog=PTF_CENTRAL_DB;User Id=adminapps;Password=AdminA2011;")
+                                @"<Enter.Connection.String.Here>")
                         )
                     );
                     SetupVariables._DataSourceService = dataSourceManager;
