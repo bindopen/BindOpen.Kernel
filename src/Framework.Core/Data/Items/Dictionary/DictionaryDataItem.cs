@@ -211,9 +211,15 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public DictionaryDataItem(DataRow dataRow)
         {
             if (dataRow != null)
+            {
                 foreach (String stringObject in this.__UICultureNames)
+                {
                     if ((!dataRow.IsNull(stringObject)) || (dataRow[stringObject] != DBNull.Value))
+                    {
                         this.AddValue(stringObject.ToLower(), dataRow[stringObject.ToUpper()].ToString());
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -224,7 +230,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public DictionaryDataItem(Object object1)
         {
             if (object1 != null)
+            {
                 foreach (String stringObject in this.__UICultureNames)
+                {
                     try
                     {
                         PropertyInfo propertyInfo = object1.GetType().GetProperty(stringObject);
@@ -236,7 +244,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
                     }
                     catch
                     {
-                    }      
+                    }
+                }
+            }
         }
 
         #endregion

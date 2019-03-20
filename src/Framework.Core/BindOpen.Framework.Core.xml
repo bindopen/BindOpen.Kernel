@@ -262,11 +262,20 @@
             Instantiates a new instance of the Configuration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElement[])">
             <summary>
             Instantiates a new instance of the Configuration class.
             </summary>
             <param name="appScope">The application scope to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Instantiates a new instance of the Configuration class.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.Set(System.Object,System.String)">
             <summary>
@@ -313,7 +322,7 @@
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.Load``1(System.String,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
-            Instantiates a new instance of ConfigurationStatement class from a xml file.
+            Instantiates a new instance of Configuration class from a xml file.
             </summary>
             <param name="filePath">The file path to consider.</param>
             <param name="log">The log to consider.</param>
@@ -321,6 +330,22 @@
             <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
             <param name="mustFileExist">Indicates whether the file must exist.</param>
             <returns>The Xml operation project defined in the Xml file.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Configuration.ConfigurationBundle">
+            <summary>
+            This class represents a configuration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationBundle.#ctor">
+            <summary>
+            Instantiates a new instance of the ConfigurationBundle class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationBundle.#ctor(BindOpen.Framework.Core.Data.Items.Dictionary.DataKeyValue[])">
+            <summary>
+            Instantiates a new instance of the ConfigurationBundle class.
+            </summary>
+            <param name="values">The values to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration">
             <summary>
@@ -353,12 +378,42 @@
             </summary>
             <param name="appScope">The application scope to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.#ctor(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            Instantiates a new instance of the UsableConfiguration class.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String[])">
             <summary>
             Instantiates a new instance of the UsableConfiguration class.
             </summary>
             <param name="appScope">The application scope to consider.</param>
             <param name="usingFilePaths">The paths of the using files to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.#ctor(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String[])">
+            <summary>
+            Instantiates a new instance of the UsableConfiguration class.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="usingFilePaths">The paths of the using files to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Instantiates a new instance of the UsableConfiguration class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.#ctor(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Instantiates a new instance of the UsableConfiguration class.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.SaveXml(System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
