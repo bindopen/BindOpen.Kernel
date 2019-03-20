@@ -37,7 +37,6 @@
             <summary>
             Instantiates a new instance of the DbQueryBuilder_MSSqlServer class.
             </summary>
-            <param name="scriptInterpreter">The script interpreter to consider.</param>
             <param name="appScope">The application scope to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,System.String@)">
@@ -163,14 +162,14 @@
             </summary>
             <param name="condition"></param>
             <param name="value1"></param>
-            <param name="valu2"></param>
+            <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.GetSqlText_Not(System.String)">
             <summary>
             Evaluates the script word $SQLNOT.
             </summary>
-            <param name="parameters">The parameters to consider.</param>
+            <param name="value1">The value 1 to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.GetSqlText_Or(System.Object[])">

@@ -27,7 +27,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
-
     /// <summary>
     /// This class represents a data element.
     /// </summary>

@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="condition"></param>
         /// <param name="value1"></param>
-        /// <param name="valu2"></param>
+        /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
         public override String GetSqlText_If(string condition, string value1, string value2)
         {
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <summary>
         /// Evaluates the script word $SQLNOT.
         /// </summary>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="value1">The value 1 to consider.</param>
         /// <returns>The interpreted string value.</returns>
         public override String GetSqlText_Not(string value1)
         {
