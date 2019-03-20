@@ -11,8 +11,8 @@
     <!-- msSqlServer -->
 
     <add.definition name="client">
-      <creationDate></creationDate>
-      <lastModificationDate></lastModificationDate>
+      <creationDate>2018-12-20</creationDate>
+      <lastModificationDate>2018-12-20</lastModificationDate>
       <title>
         <add.value>Microsoft SQL Server</add.value>
       </title>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -89,12 +90,53 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Instantiates a new instance of the UsableConfiguration class.
         /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        public UsableConfiguration(string filePath, IAppScope appScope)
+            : base(filePath, appScope)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
         public UsableConfiguration(IAppScope appScope, params String[] usingFilePaths)
             : base(appScope)
         {
             this.UsingFilePaths = usingFilePaths?.ToList();
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="usingFilePaths">The paths of the using files to consider.</param>
+        public UsableConfiguration(string filePath, IAppScope appScope, params String[] usingFilePaths)
+            : base(filePath, appScope)
+        {
+            this.UsingFilePaths = usingFilePaths?.ToList();
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        public UsableConfiguration(IAppScope appScope, params DataElement[] items) : base(appScope, items)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        public UsableConfiguration(string filePath, IAppScope appScope, params DataElement[] items) : base(filePath, appScope, items)
+        {
         }
 
         #endregion

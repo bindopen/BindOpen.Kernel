@@ -25,7 +25,6 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <summary>
         /// Instantiates a new instance of the DbQueryBuilder_MSSqlServer class.
         /// </summary>
-        /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         public DbQueryBuilder_MSSqlServer(
             IAppScope appScope = null)

@@ -84,10 +84,20 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public Configuration(IAppScope appScope)
-            : base()
+        /// <param name="items">The items to consider.</param>
+        public Configuration(IAppScope appScope, params DataElement[] items) : this(null, appScope, items)
         {
-            this.CurrentFilePath = null;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the Configuration class.
+        /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        public Configuration(string filePath, IAppScope appScope, params DataElement[] items) : base(items)
+        {
+            this.CurrentFilePath = filePath;
             this.AppScope = appScope;
         }
 
@@ -255,7 +265,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         }
 
         /// <summary>
-        /// Instantiates a new instance of ConfigurationStatement class from a xml file.
+        /// Instantiates a new instance of Configuration class from a xml file.
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="log">The log to consider.</param>
