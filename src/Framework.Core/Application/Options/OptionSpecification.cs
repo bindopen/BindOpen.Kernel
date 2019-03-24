@@ -1,4 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Common;
+﻿using System;
+using System.Linq;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -6,9 +9,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification.Constraints;
 using BindOpen.Framework.Core.Extensions.Configuration.Routines;
-using System;
-using System.Linq;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
@@ -136,7 +136,6 @@ namespace BindOpen.Framework.Core.Application.Options
 
         #endregion
 
-
         // -------------------------------------------------------------
         // ACCESSORS
         // -------------------------------------------------------------
@@ -192,6 +191,5 @@ namespace BindOpen.Framework.Core.Application.Options
         }
 
         #endregion
-
     }
 }

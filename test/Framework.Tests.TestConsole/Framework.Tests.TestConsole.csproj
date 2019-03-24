@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Labs.TestConsole</AssemblyName>
+    <Product>BindOpen.Framework.Labs</Product>
+    <Company>BindOpen</Company>
+    <Authors>Sumer Team</Authors>
+    <PackageId>BindOpen.Framework.Labs.TestConsole</PackageId>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles messages.</Description>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <RootNamespace>BindOpen.Framework.Labs.TestConsole</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="app_data\**" />
+    <Compile Remove="runtime\**" />
+    <Compile Remove="run\**" />
+    <EmbeddedResource Remove="app_data\**" />
+    <EmbeddedResource Remove="runtime\**" />
+    <EmbeddedResource Remove="run\**" />
+    <None Remove="app_data\**" />
+    <None Remove="runtime\**" />
+    <None Remove="run\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BindOpen.Framework.Databases.MSSqlServer" Version="1.0.1.868" />
+    <PackageReference Include="BindOpen.Framework.Runtime" Version="1.0.1.868" />
+    <PackageReference Include="BindOpen.Framework.Standard" Version="1.0.1.868" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+</Project>

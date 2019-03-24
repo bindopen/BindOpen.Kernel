@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://meltingsoft.com/bindopen/xsd">
+  
+  <scalar name="applicationInstanceName" value="test.console" />
+  <scalar name="cookieDomain" value=".meltingsoft.com" />
+  <scalar name="defaultTheme" value="default" />
+  <scalar name="defaultUICultureName" value="fr-FR" />
+  
+  <scalar name="applicationInstanceKind" value="Autonomous" />
+  <scalar name="currentRuntimeMode" value="Debug" />
+  <scalar name="executionLevel" value="Development" />
+  
+  <scalar name="isUserTrackingEnabled" value="true" valueType="Boolean" />
+
+  <!--<scalar name="extensions.folderPath" script="$(application.folderPath)app_data\extensions" />-->
+  <!--<scalar name="log.folderPath" script="$(application.folderPath)app_data\log" />-->
+  <!--<scalar name="runtime.folderPath" script="$(application.folderPath)app_data\log" />-->
+  <!--<scalar name="settings.filePath" script="$(application.folderPath)app_data\log" />-->
+  
+  <scalar name="sky.folderPath" script="$(application.folderPath) ..\app_data\sky" />
+
+  <credentials>
+    <credential name="crendential1">
+      <domainId>bindopen.com</domainId>
+      <login>userA@meltingsoft.com</login>
+      <password>passwordC</password>
+    </credential>
+    <credential name="crendential2">
+      <login>userB@meltingsoft.com</login>
+      <password>passwordB</password>
+    </credential>
+  </credentials>
+  
+  <dataSources>
+    <!--<add name="smtp_default"  connector="messages$smtp">
+      <detail>
+        <scalar name="host" value="smtp.googlemail.com" />
+        <scalar name="port" value="587" valueType="Integer" />
+        <scalar name="isDefaultCredentialsUsed" value="true" valueType="Boolean" />
+        <scalar name="isSslEnabled" value="true" valueType="Boolean" />
+        <scalar name="timeout" value="60000" valueType="Integer" />
+        <scalar name="login" value="login@meltingsoft.com" />
+        <scalar name="password" value="passwordA" />
+      </detail>
+    </add>-->    
+    <add name="sphere.identity" kind="Database">
+      <configuration definition="database.mssqlserver$client">
+        <detail>
+          <scalar name="databaseKind" value="MSSqlServer" />
+        </detail>
+        <connectionString>          
+          <![CDATA[Data Source=HERMES\SRV_DEV0;Initial Catalog=mfw_platform_db;User Id=adminapp;Password=Admin_A2011;]]>
+          <!--<![CDATA[Data Source=37.58.85.228,779;Initial Catalog=meltings_PTF_CENTRAL_DB;User Id=meltings_PTF_CENTRAL_DB_adminapps;Password=Admin_A2011;]]>-->
+        </connectionString>
+      </configuration>
+    </add>    
+    
+  </dataSources>
+  
+</app.settings>
