@@ -7,6 +7,7 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Hosts.Options;
 using BindOpen.Framework.Runtime.Application.Security;
+using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
@@ -14,7 +15,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// The interface defines the application host.
     /// </summary>
-    public interface IAppHost : IScopedHost
+    public interface IAppHost : IScopedService
     {
         // Execution ---------------------------------
 

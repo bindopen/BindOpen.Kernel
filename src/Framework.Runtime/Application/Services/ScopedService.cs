@@ -5,14 +5,13 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Runtime.Application.Services;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts
+namespace BindOpen.Framework.Runtime.Application.Services
 {
     /// <summary>
-    /// This class represents a scoped host.
+    /// This class represents a scoped service.
     /// </summary>
-    public class ScopedHost : IdentifiedDataItem, IScopedHost
+    public class ScopedService : IdentifiedDataItem, IScopedService
     {
         // ------------------------------------------
         // VARIABLES
@@ -94,17 +93,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ScopedHostService class.
+        /// Instantiates a new instance of the ScopedService class.
         /// </summary>
-        public ScopedHost() : base("")
+        public ScopedService() : base("")
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ScopedHostService class.
+        /// Instantiates a new instance of the ScopedService class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public ScopedHost(IRuntimeAppScope appScope) : base("")
+        public ScopedService(IRuntimeAppScope appScope) : base("")
         {
             this._appScope = appScope;
         }

@@ -350,41 +350,6 @@
             Saves settings.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost">
-            <summary>
-            This interface defines a scoped service host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.AppExtension">
-            <summary>
-            The application extension.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.AppScope">
-            <summary>
-            The application scope.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.ConnectionService">
-            <summary>
-            The connection service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.DataContext">
-            <summary>
-            The data context.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.DataSourceService">
-            <summary>
-            The data source service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IScopedHost.ScriptInterpreter">
-            <summary>
-            The script interpreter.
-            </summary>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions">
             <summary>
             This class represents an application host configuration.
@@ -646,70 +611,6 @@
             </summary>
             <param name="module">The module.</param>
             <returns>Returns the application host option.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost">
-            <summary>
-            This class represents a scoped host.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost._appScope">
-            <summary>
-            The scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.AppScope">
-            <summary>
-            The application scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.AppExtension">
-            <summary>
-            The application extension of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.DataContext">
-            <summary>
-            The data context of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.ScriptInterpreter">
-            <summary>
-            Script interpreter of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.DataSourceService">
-            <summary>
-            Data source service of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.ConnectionService">
-            <summary>
-            Connection manager of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.#ctor">
-            <summary>
-            Instantiates a new instance of the ScopedHostService class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
-            <summary>
-            Instantiates a new instance of the ScopedHostService class.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.Initialize">
-            <summary>
-            Initializes information.
-            </summary>
-            <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ScopedHost.Initialize``1">
-            <summary>
-            Initializes information.
-            </summary>
-            <typeparam name="T">The runtime application scope to consider.</typeparam>
-            <returns>Returns the log of the task.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.SettingsKind">
             <summary>
@@ -1962,6 +1863,105 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IScopedService">
+            <summary>
+            This interface defines a scoped service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.AppExtension">
+            <summary>
+            The application extension.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.AppScope">
+            <summary>
+            The application scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.ConnectionService">
+            <summary>
+            The connection service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.DataContext">
+            <summary>
+            The data context.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.DataSourceService">
+            <summary>
+            The data source service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.ScriptInterpreter">
+            <summary>
+            The script interpreter.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ScopedService">
+            <summary>
+            This class represents a scoped service.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ScopedService._appScope">
+            <summary>
+            The scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.AppScope">
+            <summary>
+            The application scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.AppExtension">
+            <summary>
+            The application extension of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.DataContext">
+            <summary>
+            The data context of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.ScriptInterpreter">
+            <summary>
+            Script interpreter of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.DataSourceService">
+            <summary>
+            Data source service of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.ConnectionService">
+            <summary>
+            Connection manager of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor">
+            <summary>
+            Instantiates a new instance of the ScopedService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
+            <summary>
+            Instantiates a new instance of the ScopedService class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize">
+            <summary>
+            Initializes information.
+            </summary>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T">The runtime application scope to consider.</typeparam>
+            <returns>Returns the log of the task.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.AppSettings">
             <summary>

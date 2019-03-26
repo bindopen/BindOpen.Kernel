@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <param name="charNumber">The number of characters to consider.</param>
-        /// <param name="dotAdded">Indicates whether dots are added.</param>
+        /// <param name="addedString">Indicates whether dots are added.</param>
         /// <returns>Returns the specified string shorten.</returns>
         public static String GetShortString(this String st, int charNumber, String addedString = "...")
         {

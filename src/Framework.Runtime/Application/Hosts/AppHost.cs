@@ -17,6 +17,7 @@ using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Hosts.Options;
 using BindOpen.Framework.Runtime.Application.Security;
+using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
@@ -24,7 +25,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class AppHost : ScopedHost, IAppHost
+    public class AppHost : ScopedService, IAppHost
     {
         // ------------------------------------------
         // VARIABLES
