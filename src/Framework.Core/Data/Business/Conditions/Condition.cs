@@ -3,18 +3,18 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Core.Data.Business.Conditions
 {
     /// <summary>
-    /// This class represents a business condition.
+    /// This class represents a condition.
     /// </summary>
     [Serializable()]
-    [XmlType("BusinessConditon", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "businessConditon", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Condition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlRoot(ElementName = "condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     //[XmlInclude(typeof(BusinessQueryCondition))]
-    [XmlInclude(typeof(BusinessScriptCondition))]
-    [XmlInclude(typeof(AdvancedBusinessCondition))]
-    public abstract class BusinessCondition : DataItem
+    [XmlInclude(typeof(ScriptCondition))]
+    [XmlInclude(typeof(AdvancedCondition))]
+    public abstract class Condition : DataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// Value that expresses that the condition is satisfied.
+        /// The value that expresses that the condition is satisfied.
         /// </summary>
         [XmlElement("trueValue")]
         public String TrueValue { get; set; } = "";
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BusinessCondition class.
         /// </summary>
-        protected BusinessCondition() : this(null)
+        protected Condition() : this(null)
         {
         }
 
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// Instantiates a new instance of the BusinessCondition class.
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
-        protected BusinessCondition(String trueValue) : base()
+        protected Condition(String trueValue) : base()
         {
             this.TrueValue= trueValue;
         }

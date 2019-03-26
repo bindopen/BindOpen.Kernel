@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
+﻿using BindOpen.Framework.Core.Data.Business.Conditions;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
 using System;
@@ -8,12 +8,12 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
 {
 
     /// <summary>
-    /// This class represents a business condition using a business query.
+    /// This class represents a condition using a business query.
     /// </summary>
     [Serializable()]
     [XmlType("BusinessQueryCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "BusinessQueryCondition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class BusinessQueryCondition : BusinessCondition
+    public class BusinessQueryCondition : Condition
     {
 
         // ------------------------------------------

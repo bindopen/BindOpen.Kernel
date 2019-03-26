@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Items;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Entities
+namespace BindOpen.Framework.Core.Data.Business.Entities
 {
-
     /// <summary>
     /// This class represents the business entity.
     /// </summary>
@@ -14,7 +13,6 @@ namespace BindOpen.Framework.Core.Data.Entities
     [XmlRoot(ElementName = "entity", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class BusinessEntity : DescribedDataItem
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -25,7 +23,6 @@ namespace BindOpen.Framework.Core.Data.Entities
         private String _ImageFileName = null;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -55,7 +52,6 @@ namespace BindOpen.Framework.Core.Data.Entities
 
         #endregion
 
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -70,7 +66,6 @@ namespace BindOpen.Framework.Core.Data.Entities
         }
 
         #endregion
-
     }
 
 }

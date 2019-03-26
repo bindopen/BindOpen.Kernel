@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="condition"></param>
         /// <param name="value1"></param>
-        /// <param name="valu2"></param>
+        /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
         public virtual String GetSqlText_If(string condition, string value1, string value2)
         {
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <summary>
         /// Evaluates the script word $SQLNOT.
         /// </summary>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="value1">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
         public virtual String GetSqlText_Not(string value1)
         {

@@ -17,7 +17,7 @@
   <!--<scalar name="runtime.folderPath" script="$(application.folderPath)app_data\log" />-->
   <!--<scalar name="settings.filePath" script="$(application.folderPath)app_data\log" />-->
   
-  <scalar name="sky.folderPath" script="$(application.folderPath) ..\app_data\sky" />
+  <scalar name="test.folderPath" script="$(application.folderPath) ..\app_data\sky" />
 
   <credentials>
     <credential name="crendential1">

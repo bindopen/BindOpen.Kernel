@@ -4,12 +4,8 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Databases.Data.Connections;
-using BindOpen.Framework.Databases.Extensions.Carriers;
-using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
-using BindOpen.Framework.Labs.Platform.Api.Dal.Database.Queries.Iam;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.TestConsole.Settings;
 
 namespace BindOpen.TestConsole
@@ -20,13 +16,12 @@ namespace BindOpen.TestConsole
     /// <remarks>This allows </remarks>
     internal static class Program
     {
-        public static IAppService _AppService = null;
+        public static IAppHost _AppHost = null;
 
         private static void Main(string[] args)
         {
-            // we test argument handling
-
-
+            //// we test argument handling
+            //TestArguments.Test();
 
             //Log log = new Log();
             //log.Execution = new ProcessExecution() {
@@ -53,34 +48,37 @@ namespace BindOpen.TestConsole
 
             //var model = AppDomain.CurrentDomain.GetAssemblies().SelectMany(p => p.GetTypes()).Where(p => p.FullName.Contains("Queries_"));
 
-            DbField field = new DbField();
-            field.Name = "test";
-            field.Alias = "alias";
+            //DbField field = new DbField();
+            //field.Name = "test";
+            //field.Alias = "alias";
 
-            Program._AppService = new AppService()
+            Program._AppHost = new AppHost()
+                .Configure(options=>
+                    options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
+                    .SetModule(new AppModule("app.test"))
+                    .DefineSettings<TestAppSettings>()
+                    .SetExtensions(
+                        new AppExtensionConfiguration()
+                            .AddExtension("BindOpen.Framework.Databases")
+                            .AddExtension("BindOpen.Framework.Databases.MSSqlServer"))
+                    .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
+                    .AddDefaultLogger()
+                    .SetLoggers(
+                        LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
+                )
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-                .UseRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
-                .UseModule(new AppModule("app.test"))
-                .UseSettings<TestAppSettings>()
-                .UseExtensions(
-                    new AppExtensionConfiguration()
-                        .AddExtension("BindOpen.Framework.Databases")
-                        .AddExtension("BindOpen.Framework.Databases.MSSqlServer"))
-                .UseDefaultLogger()
-                .UseLoggers(
-                    LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
                 .Start();
 
-            Console.WriteLine(Program._AppService.GetPath(ApplicationPathKind.SettingsFile));
+            Console.WriteLine(Program._AppHost.GetKnownPath(ApplicationPathKind.SettingsFile));
 
             String script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
-            string resultScript = Program._AppService.ScriptInterpreter.Interprete(
-                    script, null, Program._AppService.Log);
+            string resultScript = Program._AppHost.ScriptInterpreter.Interprete(
+                    script, null, Program._AppHost.Log);
 
 
-            var st = Program._AppService.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
+            var st = Program._AppHost.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
 
-            var dbQuery = Queries_Tenants.InsertOrganization("tenantA");
+            //var dbQuery = Queries_Tenants.InsertOrganization("tenantA");
                 //.Filter(
                 //    "name='Tenant'"
                 //    , Program._AppManager.Log
@@ -106,14 +104,14 @@ namespace BindOpen.TestConsole
                 //        , new ApiScriptField("Provider.Name", new DbField("DisplayName", "provider"))
                 //));
 
-            Program._AppService.Log.Append(new DbQueryBuilder_MSSqlServer(Program._AppService.AppScope).BuildQuery(dbQuery, null, out string sqlQuery));
+            //Program._AppHost.Log.Append(new DbQueryBuilder_MSSqlServer(Program._AppHost.AppScope).BuildQuery(dbQuery, null, out string sqlQuery));
 
-            using (DatabaseConnection connection =
-                Program._AppService.ConnectionService?.Open<DatabaseConnection>("test.db", null, Program._AppService.Log))
-            {
-            }
+            //using (DatabaseConnection connection =
+            //    Program._AppHost.ConnectionService?.Open<DatabaseConnection>("test.db", null, Program._AppHost.Log))
+            //{
+            //}
 
-            Console.WriteLine(sqlQuery);
+            //Console.WriteLine(sqlQuery);
 
             //using (DatabaseConnection connection =
             //    Program._AppManager.ConnectionService.Open<DatabaseConnection>("test.db", null, Program._AppManager.Log))
@@ -186,7 +184,7 @@ namespace BindOpen.TestConsole
         //stopwatch.Stop();
         //Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
 
-        ////AppSettings configuration = new AppSettings(Program._ApplicationManager.AppScope)
+        ////AppSettings configuration = new AppSettings(Program._AppHost.AppScope)
         ////{
         ////    ApplicationInstanceId = "applicationInstanceId",
         ////    ExecutionLevel = ApplicationExecutionLevel.DEV,

@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Items;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Business.Conditions;
+using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Cases
+namespace BindOpen.Framework.Core.Data.Business.Cases
 {
-
     /// <summary>
     /// This class represents a business case.
     /// </summary>
@@ -14,17 +13,15 @@ namespace BindOpen.Framework.Core.Data.Cases
     [XmlRoot(ElementName = "businessCase", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class BusinessCase :DescribedDataItem
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
-        private BusinessCondition _BusinessCondition = null;
+        private Condition _BusinessCondition = null;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -36,14 +33,13 @@ namespace BindOpen.Framework.Core.Data.Cases
         /// Business condition of this instance.
         /// </summary>
         [XmlElement("businessCondition")]
-        public BusinessCondition BusinessCondition
+        public Condition BusinessCondition
         {
             get { return this._BusinessCondition; }
             set { this._BusinessCondition = value; }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -59,7 +55,5 @@ namespace BindOpen.Framework.Core.Data.Cases
         }
 
         #endregion
-
-
     }
 }

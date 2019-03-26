@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Entities;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Business.Entities;
 
 namespace BindOpen.Framework.Core.Application.Entities
 {
@@ -13,18 +13,6 @@ namespace BindOpen.Framework.Core.Application.Entities
     [XmlRoot(ElementName = "applicationEntity", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class ApplicationEntity : BusinessEntity
     {
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private ApplicationEntityScope _Scope = ApplicationEntityScope.Any;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -35,14 +23,9 @@ namespace BindOpen.Framework.Core.Application.Entities
         /// The scope of this instance.
         /// </summary>
         [XmlElement("scope")]
-        public ApplicationEntityScope Scope
-        {
-            get { return this._Scope; }
-            set { this._Scope = value; }
-        }
+        public ApplicationEntityScope Scope { get; set; } = ApplicationEntityScope.Any;
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -56,11 +39,10 @@ namespace BindOpen.Framework.Core.Application.Entities
         /// <param name="aScope">The entity scope to consider.</param>
         public ApplicationEntity(ApplicationEntityScope aScope) : base()
         {
-            this._Scope = aScope;
+            this.Scope = aScope;
         }
 
         #endregion
-
     }
 
 }

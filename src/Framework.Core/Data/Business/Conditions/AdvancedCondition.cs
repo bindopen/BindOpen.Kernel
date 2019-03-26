@@ -1,21 +1,20 @@
-﻿using BindOpen.Framework.Core.System.Scripting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Core.Data.Business.Conditions
 {
 
     /// <summary>
-    /// This class represents an advanced business condition.
+    /// This class represents an advanced condition.
     /// </summary>
     [Serializable()]
     [XmlType("AdvancedBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "advancedBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class AdvancedBusinessCondition : BusinessCondition
+    [XmlRoot(ElementName = "advanced.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    public class AdvancedCondition : Condition
     {
-
         // --------------------------------------------------
         // ENUMERATIONS
         // --------------------------------------------------
@@ -23,7 +22,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
         #region Enumerations
 
         /// <summary>
-        /// This enumeration lists the possible view advanced business condition kinds.
+        /// This enumeration lists the possible view advanced condition kinds.
         /// </summary>
         public enum AdvancedBusinessConditonKind
         {
@@ -31,6 +30,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
             /// And.
             /// </summary>
             And,
+
             /// <summary>
             /// Or.
             /// </summary>
@@ -39,19 +39,6 @@ namespace BindOpen.Framework.Core.Data.Conditions
 
         #endregion
 
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private List<BusinessCondition> _BusinessConditions = new List<BusinessCondition>();
-        private AdvancedBusinessConditonKind _Kind = AdvancedBusinessConditonKind.And;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -59,28 +46,19 @@ namespace BindOpen.Framework.Core.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// Business conditions of this instance.
-        /// </summary>
-        [XmlArray("businessConditions")]
-        [XmlArrayItem("businessCondition")]
-        public List<BusinessCondition> BusinessConditions
-        {
-            get { return this._BusinessConditions; }
-            set { this._BusinessConditions = value; }
-        }
-
-        /// <summary>
         /// Kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public AdvancedBusinessConditonKind Kind
-        {
-            get { return this._Kind; }
-            set { this._Kind = value; }
-        }
+        public AdvancedBusinessConditonKind Kind { get; set; } = AdvancedBusinessConditonKind.And;
+
+        /// <summary>
+        /// Conditions of this instance.
+        /// </summary>
+        [XmlArray("conditions")]
+        [XmlArrayItem("condition")]
+        public List<Condition> Conditions { get; set; } = new List<Condition>();
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -91,21 +69,31 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the AdvancedBusinessConditon class.
         /// </summary>
-        public AdvancedBusinessCondition()
+        public AdvancedCondition()
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the AdvancedBusinessConditon class.
         /// </summary>
-        /// <param name="businessConditions">The business conditions to consider.</param>
-        public AdvancedBusinessCondition(List<BusinessCondition> businessConditions)
+        /// <param name="conditions">The conditions to consider.</param>
+        public AdvancedCondition(params Condition[] conditions)
         {
-            this._BusinessConditions = businessConditions;
+            this.Conditions = conditions?.ToList();
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the AdvancedBusinessConditon class.
+        /// </summary>
+        /// <param name="trueValue">The true value to consider.</param>
+        /// <param name="conditions">The conditions to consider.</param>
+        public AdvancedCondition(string trueValue, params Condition[] conditions)
+        {
+            this.TrueValue = trueValue;
+            this.Conditions = conditions?.ToList();
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
@@ -118,14 +106,13 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// </summary>
         public override Object Clone()
         {
-            AdvancedBusinessCondition aAdvancedBusinessCondition = new AdvancedBusinessCondition();
-            aAdvancedBusinessCondition.BusinessConditions.AddRange(this._BusinessConditions.Select(p => p.Clone() as BusinessCondition));
+            AdvancedCondition aAdvancedBusinessCondition = new AdvancedCondition();
+            aAdvancedBusinessCondition.Conditions.AddRange(this.Conditions.Select(p => p.Clone() as Condition));
 
             return aAdvancedBusinessCondition;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // PROCESS
@@ -144,21 +131,19 @@ namespace BindOpen.Framework.Core.Data.Conditions
             ScriptVariableSet scriptVariableSet)
         {
             Boolean isAllConditionSatisfied = true;
-            foreach (BusinessCondition aBusinessCondition in this._BusinessConditions)
-                switch (this._Kind)
+            foreach (Condition condition in this.Conditions)
+                switch (this.Kind)
                 {
                     case AdvancedBusinessConditonKind.And:
-                        isAllConditionSatisfied &= aBusinessCondition.Evaluate(scriptInterpreter, scriptVariableSet);
+                        isAllConditionSatisfied &= condition.Evaluate(scriptInterpreter, scriptVariableSet);
                         break;
                     case AdvancedBusinessConditonKind.Or:
-                        isAllConditionSatisfied |= aBusinessCondition.Evaluate(scriptInterpreter, scriptVariableSet);
+                        isAllConditionSatisfied |= condition.Evaluate(scriptInterpreter, scriptVariableSet);
                         break;
                 }
             return isAllConditionSatisfied;
         }
 
         #endregion
-
-
     }
 }

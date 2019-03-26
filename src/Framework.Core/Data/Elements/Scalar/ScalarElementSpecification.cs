@@ -22,7 +22,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class ScalarElementSpecification : DataElementSpecification
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -52,7 +51,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -135,7 +133,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
         #endregion
 
-
         // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
@@ -206,7 +203,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
         #endregion
 
-
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
         // --------------------------------------------------
@@ -215,7 +211,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -234,7 +229,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         }
 
         #endregion
-
     }
 
 }

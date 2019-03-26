@@ -9,69 +9,32 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Runtime.Application.Hosts.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.Framework.Runtime.Application.Services
+namespace BindOpen.Framework.Runtime.Application.Hosts
 {
     /// <summary>
-    /// This class represents an application manager.
+    /// This class represents an application host.
     /// </summary>
-    public class AppService : ScopedService, IAppService
+    public class AppHost : ScopedHost, IAppHost
     {
-        // ------------------------------------------
-        // CONSTANTS
-        // ------------------------------------------
-
-        #region Constants
-
-        public static readonly string _DefaultSettingsFileName = "appsettings.xml";
-
-        #endregion
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
+        private AppHostOptions _options = new AppHostOptions();
+
         // General ----------------------
-
-        private readonly String _id = "";
-
-        private AppModule _applicationModule = null;
-        private AppExtensionConfiguration _appExtensionConfiguration = null;
-
-        //private LoggerMode _LoggerMode = LoggerMode.Manual;
-
-        // Paths ----------------------
-
-        /// <summary>
-        /// The application folder path of this instance.
-        /// </summary>
-        private String _appFolderPath = null;
-
-        /// <summary>
-        /// The application configuration file path of this instance.
-        /// </summary>
-        private String _settingsFilePath = null;
-
-        /// <summary>
-        /// The roaming application folder path of this instance.
-        /// </summary>
-        private String _runtimeFolderPath = null;
-
-        // Tracking ----------------------
-
-        private readonly Log _log;
 
         /// <summary>
         /// Indicates whether this instance is loaded.
@@ -84,7 +47,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// This delegate is called when the application is successfully initialized.
         /// </summary>
-        /// <param name="sender">The application manager.</param>
+        /// <param name="sender">The application host</param>
         public delegate void OnLoadCompletedEventHandler(object sender);
 
         /// <summary>
@@ -95,51 +58,25 @@ namespace BindOpen.Framework.Runtime.Application.Services
         #endregion
 
         // ------------------------------------------
-        // CONSTANTS
-        // ------------------------------------------
-
-        #region Constants
-
-        /// <summary>
-        /// Maximum number of minutes : authentication 
-        /// </summary>
-        public const int _AUTHENTICATIONTIMEOUT = 30;
-
-        #endregion
-
-        // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
 
-        // Settings ----------------------
-
         /// <summary>
-        /// The application module of this instance.
+        /// The options of this instance.
         /// </summary>
-        public AppModule ApplicationModule
-        {
-            get
-            {
-                return this._applicationModule;
-            }
-        }
+        public AppHostOptions Options => _options;
 
         /// <summary>
         /// The settings of this instance.
         /// </summary>
-        public AppSettings Settings { get; set; } = null;
+        public AppSettings Settings => Options?.Settings;
 
         /// <summary>
         /// The set of user settings of this instance.
         /// </summary>
         public DataElementSet UserSettingsSet { get; set; } = new DataElementSet();
-
-        /// <summary>
-        /// The set of settings specifications of this instance.
-        /// </summary>
-        public DataElementSpecificationSet SettingsSpecificationSet { get; set; } = new DataElementSpecificationSet();
 
         // Execution ----------------------
 
@@ -148,8 +85,8 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public ProcessExecutionState CurrentExecutionState
         {
-            get { return ((this._log != null) && (this._log.Task != null) ? this._log.Execution.State : ProcessExecutionState.None); }
-            set { if ((_log != null) && (this._log.Task != null)) this._log.Execution.State = value; }
+            get => Log?.Execution != null ? Log.Execution.State : ProcessExecutionState.None;
+            set { if (Log?.Execution != null) Log.Execution.State = value; }
         }
 
         /// <summary>
@@ -157,14 +94,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public ProcessExecutionStatus CurrentExecutionStatus
         {
-            get { return ((this._log != null) && (this._log.Task != null) ? this._log.Execution.Status : ProcessExecutionStatus.None); }
-            set { if ((_log != null) && (this._log.Task != null)) this._log.Execution.Status = value; }
+            get => Log?.Execution != null ? Log.Execution.Status : ProcessExecutionStatus.None;
+            set { if (Log?.Execution != null) Log.Execution.Status = value; }
         }
-
-        /// <summary>
-        /// Execution status of this instance.
-        /// </summary>
-        public TimeSpan AckPeriod { get; set; } = new TimeSpan();
 
         // Loading information ----------------------
 
@@ -178,10 +110,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Log of this instance.
         /// </summary>
-        public Log Log
-        {
-            get { return this._log; }
-        }
+        public Log Log { get; }
 
         /// <summary>
         /// Indicates whether the platform information is loaded.
@@ -200,190 +129,26 @@ namespace BindOpen.Framework.Runtime.Application.Services
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ApplicationManager class.
+        /// Instantiates a new instance of the AppService class.
         /// </summary>
-        public AppService()
+        public AppHost() : base()
         {
-            // we determine the file path
-            this._id = IdentifiedDataItem.NewGuid();
-
             // we initiate the log of this instance
-            this._log = new Log(_ => false)
+            this.Log = new Log(_ => false)
             {
-                Id = this._id
+                Id = this.Id
             };
 
-            this.UseAppFolder(Directory.GetCurrentDirectory());
+            // we initiate the options
+            this.Options.SetAppFolder(Directory.GetCurrentDirectory());
 
-            this.UseExtensions(
+            this.Options.SetExtensions(
                 new AppExtensionConfiguration(
                     new AppExtensionFilter("BindOpen.Framework.Runtime"),
                     new AppExtensionFilter("BindOpen.Framework.Standard")));
 
-            this.UseSettings<AppSettings>();
-
             // we instantiate the loaded extension handler and the application script interperter
             this.AppDomainPool = new AppDomainPool();
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // USAGE
-        // ------------------------------------------
-
-        #region Usage
-
-        /// <summary>
-        /// Uses the specified application folder path.
-        /// </summary>
-        /// <param name="appFolderPath"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseAppFolder(String appFolderPath)
-        {
-            this._appFolderPath = appFolderPath.GetEndedString(@"\").ToPath();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified application settings file path.
-        /// </summary>
-        /// <param name="appSettingsFilePath"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseSettingsFile(String appSettingsFilePath)
-        {
-            if (appSettingsFilePath?.StartsWith(@"\") == true || appSettingsFilePath?.EndsWith(@"\") == true || appSettingsFilePath?.EndsWith(@"\..") == true)
-            {
-                appSettingsFilePath = appSettingsFilePath.GetEndedString(@"\") + AppService._DefaultSettingsFileName;
-            }
-
-            this._settingsFilePath = appSettingsFilePath.ToPath();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified runtime folder path.
-        /// </summary>
-        /// <param name="runtimeFolderPath"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseRuntimeFolder(String runtimeFolderPath)
-        {
-            this._runtimeFolderPath = runtimeFolderPath.GetEndedString(@"\").ToPath();
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified module.
-        /// </summary>
-        /// <param name="module"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseModule(AppModule module)
-        {
-            this._applicationModule = module;
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified extension configuration.
-        /// </summary>
-        /// <param name="extensionConfiguration"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseExtensions(AppExtensionConfiguration extensionConfiguration)
-        {
-            if (extensionConfiguration != null)
-            {
-
-                (this._appExtensionConfiguration ?? (this._appExtensionConfiguration = new AppExtensionConfiguration())).Merge(extensionConfiguration);
-
-                if (this._appExtensionConfiguration.DefaultFolderPath == null)
-                    this._appExtensionConfiguration.DefaultFolderPath = this._appFolderPath;
-                else if (this._appExtensionConfiguration.DefaultSourceKinds == null)
-                    this._appExtensionConfiguration.DefaultSourceKinds = new List<DataSourceKind>() { DataSourceKind.Memory, DataSourceKind.Repository };
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified configuration specification.
-        /// </summary>
-        /// <typeparam name="T">The application configuration class to consider.</typeparam>
-        /// <param name="configFilePath">The path of the configuration file to consider.</param>
-        /// <param name="specificationSet">The set of data element specifcations to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseSettings<T>(
-            string configFilePath = null,
-            DataElementSpecificationSet specificationSet = null)
-            where T : AppSettings, new()
-        {
-            this.Settings = new T();
-            this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecificationSet();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the specified configuration specification.
-        /// </summary>
-        /// <typeparam name="T">The application configuration class to consider.</typeparam>
-        /// <param name="specificationSet">The set of data element specifcations to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseSettings<T>(
-            DataElementSpecificationSet specificationSet)
-            where T : AppSettings, new()
-        {
-            return this.UseSettings<T>(null, specificationSet);
-        }
-
-        /// <summary>
-        /// Uses the specified configuration specification.
-        /// </summary>
-        /// <param name="specificationSet"></param>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseLoggers(params Logger[] loggers)
-        {
-            this._log?.AddLoggers(loggers);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Uses the default logger.
-        /// </summary>
-        /// <returns>Returns this instance.</returns>
-        public IAppService UseDefaultLogger()
-        {
-            this._log?.AddLoggers(LoggerFactory.Create<SnapLogger>(
-                    Logger.__DefaultName, LoggerMode.Auto, DataSourceKind.Repository, false, null,
-                    this.GetPath(ApplicationPathKind.DefaultLogFolder), "log_" + this._id + ".txt"));
-
-            return this;
-        }
-
-        private string GetDefaultSettingsFilePath()
-        {
-            // by default, settings file is {{runtime folder}}\settings\appsettings.xml
-            string defaultSettingsFilePath = string.IsNullOrEmpty(this._runtimeFolderPath) ? null : this._runtimeFolderPath + @"settings\".ToPath() + AppService._DefaultSettingsFileName;
-
-            if (!File.Exists(defaultSettingsFilePath))
-            {
-                // by default, settings file is {{runtime folder}}\appsettings.xml
-                defaultSettingsFilePath = string.IsNullOrEmpty(this._runtimeFolderPath) ? null : this._runtimeFolderPath + AppService._DefaultSettingsFileName;
-                if (!File.Exists(defaultSettingsFilePath))
-                {
-                    // then {{application folder}}\app_data\appsettings.xml
-                    defaultSettingsFilePath = string.IsNullOrEmpty(this._appFolderPath) ? null : this._appFolderPath + @"app_data\".ToPath() + AppService._DefaultSettingsFileName;
-                    if (!File.Exists(defaultSettingsFilePath))
-                    {
-                        // then {{application folder}}\appsettings.xml
-                        defaultSettingsFilePath = this._appFolderPath + AppService._DefaultSettingsFileName;
-                    }
-                }
-            }
-
-            return defaultSettingsFilePath;
         }
 
         #endregion
@@ -395,10 +160,22 @@ namespace BindOpen.Framework.Runtime.Application.Services
         #region Processing
 
         /// <summary>
+        /// Configures the application host.
+        /// </summary>
+        /// <param name="setupOptions">The action to setup the application host.</param>
+        /// <returns>Returns the application host.</returns>
+        public IAppHost Configure(Action<IAppHostOptions> setupOptions)
+        {
+            setupOptions?.Invoke(this.Options);
+
+            return this;
+        }
+
+        /// <summary>
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public virtual IAppService Start(Log log = null)
+        public IAppHost Start(Log log = null)
         {
             log = log ?? new Log();
 
@@ -419,7 +196,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
                 log.Sanitize();
 
-                this._log.Append(log);
+                this.Log.Append(log);
             }
 
             return this;
@@ -429,29 +206,20 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public virtual IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
-            this._log.End(executionStatus);
+            this.Log.End(executionStatus);
             return this;
         }
 
         /// <summary>
-        /// Saves configuration.
+        /// Saves settings.
         /// </summary>
-        public void SaveConfiguration()
+        public void SaveSettings()
         {
-            String filePath = this.GetPath(ApplicationPathKind.SettingsFolder) + "appsettings.xml";
+            String filePath = this.GetKnownPath(ApplicationPathKind.SettingsFolder) + "appsettings.xml";
             if ((this.UserSettingsSet != null) && (!String.IsNullOrEmpty(filePath)))
                 this.UserSettingsSet.SaveXml(filePath);
-        }
-
-        /// <summary>
-        /// Acknowledges this instance.
-        /// </summary>
-        /// <returns></returns>
-        public virtual Log Acknowledge()
-        {
-            return new Log();
         }
 
         #endregion
@@ -475,7 +243,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             {
                 Name = "[unkwnon]"
             };
-            return this.Settings?.Credentials.FirstOrDefault(p => p.KeyEquals(name));
+            return this.Options?.Settings?.Credentials.Find(p => p.KeyEquals(name));
         }
 
         // Paths --------------------------------------
@@ -485,55 +253,81 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="pathKind">The kind of paths.</param>
         /// <returns>The path of the application temporary folder.</returns>
-        public virtual String GetPath(ApplicationPathKind pathKind)
+        public virtual String GetKnownPath(ApplicationPathKind pathKind)
         {
             String path = null;
             switch (pathKind)
             {
                 case ApplicationPathKind.AppFolder:
-                    path = this._appFolderPath;
+                    path = this.Options?.AppFolderPath;
                     break;
                 case ApplicationPathKind.DefaultLogFolder:
-                    path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"logs\";
+                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"logs\";
                     break;
                 case ApplicationPathKind.ExtensionsFolder:
-                    path = this.Settings.ExtensionsFolderPath;
+                    path = this.Options?.Settings?.ExtensionsFolderPath;
                     if (String.IsNullOrEmpty(path))
-                        path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"extensions\";
+                        path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"extensions\";
                     break;
                 case ApplicationPathKind.LibraryFolder:
-                    path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"lib\";
+                    path = this.Options?.LibraryFolderPath;
+                    if (String.IsNullOrEmpty(path))
+                        path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"lib\";
                     break;
                 case ApplicationPathKind.LogFolder:
-                    path = this.Settings.LogFolderPath;
+                    path = this.Options?.Settings?.LogFolderPath;
                     if (String.IsNullOrEmpty(path))
-                        path = this.GetPath(ApplicationPathKind.DefaultLogFolder);
+                        path = this.GetKnownPath(ApplicationPathKind.DefaultLogFolder);
                     break;
                 case ApplicationPathKind.RoamingFolder:
                     path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
                     break;
                 case ApplicationPathKind.RuntimeFolder:
-                    path = this._runtimeFolderPath;
+                    path = this.Options?.RuntimeFolderPath;
                     if (String.IsNullOrEmpty(path))
-                        path = this.Settings?.RuntimeFolderPath;
+                        path = this.Options?.Settings?.RuntimeFolderPath;
                     break;
                 case ApplicationPathKind.SettingsFile:
-                    path = this._settingsFilePath;
+                    path = this.Options?.SettingsFilePath;
                     if (String.IsNullOrEmpty(path))
                         path = this.GetDefaultSettingsFilePath();
                     break;
                 case ApplicationPathKind.SettingsFolder:
-                    path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"settings\";
+                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"settings\";
                     break;
                 case ApplicationPathKind.TemporaryFolder:
-                    path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"temp\";
+                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"temp\";
                     break;
                 case ApplicationPathKind.UsersFolder:
-                    path = this.GetPath(ApplicationPathKind.RuntimeFolder) + @"users\";
+                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"users\";
                     break;
             }
 
             return (String.IsNullOrEmpty(path) ? StringHelper.__NoneString : path).ToPath();
+        }
+
+        private string GetDefaultSettingsFilePath()
+        {
+            // by default, settings file is {{runtime folder}}\settings\appsettings.xml
+            string defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.RuntimeFolderPath) ? null : this.Options?.RuntimeFolderPath + @"settings\".ToPath() + AppHostOptions._DEFAULTSETTINGSFILENAME;
+
+            if (!File.Exists(defaultSettingsFilePath))
+            {
+                // by default, settings file is {{runtime folder}}\appsettings.xml
+                defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.RuntimeFolderPath) ? null : this.Options?.RuntimeFolderPath + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                if (!File.Exists(defaultSettingsFilePath))
+                {
+                    // then {{application folder}}\app_data\appsettings.xml
+                    defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.AppFolderPath) ? null : this.Options?.AppFolderPath + @"app_data\".ToPath() + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                    if (!File.Exists(defaultSettingsFilePath))
+                    {
+                        // then {{application folder}}\appsettings.xml
+                        defaultSettingsFilePath = this.Options?.AppFolderPath + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                    }
+                }
+            }
+
+            return defaultSettingsFilePath;
         }
 
         #endregion
@@ -554,8 +348,17 @@ namespace BindOpen.Framework.Runtime.Application.Services
             this._appScope = new T();
             this._appScope.SetAppDomain(AppDomain.CurrentDomain);
 
+            // we initialize logging
+            if (this.Options?.IsDefaultLoggerUsed == true)
+            {
+                this.Log.AddLoggers(LoggerFactory.Create<SnapLogger>(
+                    Logger.__DefaultName, LoggerMode.Auto, DataSourceKind.Repository, false, null,
+                    this.GetKnownPath(ApplicationPathKind.DefaultLogFolder), "log_" + this.Id + ".txt"));
+            }
+            this.Log.AddLoggers(this.Options?.Loggers);
+
             // we initialize the application scope
-            this.AppScope.DataContext.AddSystemItem("currentApplicationManager", this);
+            this.AppScope.DataContext.AddSystemItem("appHost", this);
             this.AppScope.DataSourceService = new DataSourceService();
 
             Log log = new Log();
@@ -565,8 +368,12 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             // we load the extensions
             this.AppScope.AppExtension.Clear();
+            if (string.IsNullOrEmpty(this.Options?.ExtensionConfiguration.DefaultFolderPath))
+            {
+                this.Options.ExtensionConfiguration.DefaultFolderPath = this.GetKnownPath( ApplicationPathKind.LibraryFolder);
+            }
             log.Append(
-                this.AppScope.AppExtension.LoadLibrary(this._appExtensionConfiguration),
+                this.AppScope.AppExtension.LoadLibrary(this.Options?.ExtensionConfiguration),
                 p => p.HasErrorsOrExceptionsOrWarnings());
             this.AppScope.Update<RuntimeAppScope>();
 
@@ -580,7 +387,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                     // we load the application settings
                     log.AddMessage("Loading application settings...");
 
-                    String settingsFilePath = this.GetPath(ApplicationPathKind.SettingsFile);
+                    String settingsFilePath = this.GetKnownPath(ApplicationPathKind.SettingsFile);
 
                     if (string.IsNullOrEmpty(settingsFilePath))
                         settingsFilePath = this.GetDefaultSettingsFilePath();
@@ -595,22 +402,27 @@ namespace BindOpen.Framework.Runtime.Application.Services
                     {
                         log.AddMessage("Application settings loaded");
 
-                        this.Settings.AppScope = this._appScope;
-                        this.Settings.Update(appSettings);
-                        this.Settings.Update(new DataElementSpecificationSet(
-                            this.SettingsSpecificationSet?.Items?
+                        if (this.Options?.Settings!=null)
+                        {
+                            this.Options.Settings.AppScope = this._appScope;
+                        }
+                        this.Options?.Settings?.Update(appSettings);
+                        this.Options?.Settings?.Update(new DataElementSpecificationSet(
+                            this.Options?.SettingsSpecificationSet?.Items?
                                 .Where(p =>
                                     p.SpecificationLevels.Has(SpecificationLevel.Definition)
                                     || p.SpecificationLevels.Has(SpecificationLevel.Configuration)).ToArray()),
                             null,
                             new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
 
-                        if (String.IsNullOrEmpty(this.Settings.ApplicationInstanceName))
-                            this.Settings.ApplicationInstanceName = AppService._ApplicationInstanceName;
+                        if (this.Options?.Settings!=null && String.IsNullOrEmpty(this.Options.Settings.ApplicationInstanceName))
+                        {
+                            this.Options.Settings.ApplicationInstanceName = _ApplicationInstanceName;
+                        }
 
                         // we update the log folder path
 
-                        this._log.SetFilePath(this.GetPath(ApplicationPathKind.LogFolder), true);
+                        this.Log.SetFilePath(this.GetKnownPath(ApplicationPathKind.LogFolder), true);
 
                         //// we load configuration
 
@@ -628,7 +440,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                         this.DataSourceService.Clear();
                         if (this.AppExtension != null)
                         {
-                            foreach (DataSource dataSource in this.Settings.DataSources)
+                            foreach (DataSource dataSource in this.Options?.Settings?.DataSources)
                             {
                                 this.DataSourceService.AddSource(dataSource);
                             }
@@ -640,7 +452,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                 }
 
                 // if at this end, neither exceptions nor errors occured then
-                if ((this.GetType() == typeof(AppService)) && (!log.HasErrorsOrExceptions()))
+                if ((this.GetType() == typeof(AppHost)) && (!log.HasErrorsOrExceptions()))
                 {
                     // we indicate that the configuration has been well loaded
                     log.AddMessage("Application configuration loaded");
@@ -655,7 +467,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             }
 
             this._isLoadCompleted = !log.HasErrorsOrExceptions();
-            if (this.GetType() == typeof(AppService))
+            if (this.GetType() == typeof(AppHost))
                 this.LoadComplete();
 
             return log;
@@ -696,13 +508,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Gets the name of the application instance.
         /// </summary>
         /// <returns>Returns the name of the application instance.</returns>
-        public static String _ApplicationInstanceName
-        {
-            get
-            {
-                return (Environment.MachineName ?? "").ToUpper();
-            }
-        }
+        public static String _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
 
         #endregion
     }

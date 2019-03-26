@@ -1,4 +1,5 @@
 ﻿using System;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 
 namespace BindOpen.Framework.Core.Application.Scopes
