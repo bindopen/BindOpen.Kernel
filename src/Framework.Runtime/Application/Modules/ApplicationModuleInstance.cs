@@ -235,14 +235,14 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         //        // we determine if an instance of the application module or one of its child is present in the current application instance
         //        aIsCurrentApplicationModuleLocal =
         //            (this._ApplicationModuleRow.EXECUTIONPATH!= String.Empty)&&
-        //            (Directory.Exists(visitor.ApplicationManager.GetPath(ApplicationManager.ApplicationPathKind.AppFolder) + this._ApplicationModuleRow.EXECUTIONPATH.ToLower()) &
-        //            moduleInstance.APPLICATIONINSTANCERow.NAME.ToUpper() == visitor.ApplicationManager.Configuration.ApplicationInstanceName.ToUpper());
+        //            (Directory.Exists(visitor.AppService.GetPath(AppService.ApplicationPathKind.AppFolder) + this._ApplicationModuleRow.EXECUTIONPATH.ToLower()) &
+        //            moduleInstance.APPLICATIONINSTANCERow.NAME.ToUpper() == visitor.AppService.Configuration.ApplicationInstanceName.ToUpper());
         //        if (!aIsCurrentApplicationModuleLocal)
         //            foreach (ApplicationModule aCurrentAPPLICATIONMODULERow in this._ApplicationModuleRow.GetAPPLICATIONMODULERows())
         //                if (aIsCurrentApplicationModuleLocal =
         //                    (aCurrentAPPLICATIONMODULERow.EXECUTIONPATH != String.Empty) &&
-        //                    (Directory.Exists(visitor.ApplicationManager.GetPath(ApplicationManager.ApplicationPathKind.AppFolder) + aCurrentAPPLICATIONMODULERow.EXECUTIONPATH.ToLower())) &
-        //                    moduleInstance.APPLICATIONINSTANCERow.NAME.ToUpper() == visitor.ApplicationManager.Configuration.ApplicationInstanceName.ToUpper()
+        //                    (Directory.Exists(visitor.AppService.GetPath(AppService.ApplicationPathKind.AppFolder) + aCurrentAPPLICATIONMODULERow.EXECUTIONPATH.ToLower())) &
+        //                    moduleInstance.APPLICATIONINSTANCERow.NAME.ToUpper() == visitor.AppService.Configuration.ApplicationInstanceName.ToUpper()
         //                    )
         //                    break;
 
@@ -251,7 +251,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         //            foreach (ApplicationModule aCurrentAPPLICATIONMODULERow in this._ApplicationModuleRow.APPLICATIONMODULERowParent.GetAPPLICATIONMODULERows())
         //                if (aIsCurrentApplicationModuleBrotherLocal =
         //                    (aCurrentAPPLICATIONMODULERow.EXECUTIONPATH != String.Empty )&&
-        //                    Directory.Exists(visitor.ApplicationManager.GetPath(ApplicationManager.ApplicationPathKind.AppFolder) + aCurrentAPPLICATIONMODULERow.EXECUTIONPATH.ToLower()))
+        //                    Directory.Exists(visitor.AppService.GetPath(AppService.ApplicationPathKind.AppFolder) + aCurrentAPPLICATIONMODULERow.EXECUTIONPATH.ToLower()))
         //                    break;
 
         //        // the application module location is local if it/one of its children/one its brother is local
@@ -287,7 +287,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         //                // we search the child sub application module instance that has the same indexation
         //                ApplicationModuleInstance aChildAPPLICATIONMODULEINSTANCERow =
         //                    (from ApplicationModuleInstance aCurrentAPPLICATIONMODULEINSTANCERow
-        //                     in this._Visitor.ApplicationManager.PlatformDataSet.APPLICATIONMODULEINSTANCE
+        //                     in this._Visitor.AppService.PlatformDataSet.APPLICATIONMODULEINSTANCE
         //                     where
         //                        (aCurrentAPPLICATIONMODULEINSTANCERow.APPLICATIONMODULE_ID == aChildAPPLICATIONMODULERow.ID) &
         //                        (
@@ -361,7 +361,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         //                // we search the child sub application module instance that has the same indexation
         //                ApplicationModuleInstance aChildAPPLICATIONMODULEINSTANCERow =
         //                    (from ApplicationModuleInstance aCurrentAPPLICATIONMODULEINSTANCERow
-        //                     in this._Visitor.ApplicationManager.PlatformDataSet.APPLICATIONMODULEINSTANCE
+        //                     in this._Visitor.AppService.PlatformDataSet.APPLICATIONMODULEINSTANCE
         //                     where
         //                        (aCurrentAPPLICATIONMODULEINSTANCERow.APPLICATIONMODULE_ID == aChildAPPLICATIONMODULERow.ID) &
         //                        (

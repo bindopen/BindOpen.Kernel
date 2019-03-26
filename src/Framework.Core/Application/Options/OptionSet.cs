@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using System;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
@@ -14,7 +14,6 @@ namespace BindOpen.Framework.Core.Application.Options
     [XmlRoot("optionSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class OptionSet : DataElementSet
     {
-
         // -------------------------------------------------------------
         // CONSTRUCTORS
         // -------------------------------------------------------------
@@ -30,7 +29,6 @@ namespace BindOpen.Framework.Core.Application.Options
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
@@ -67,7 +65,6 @@ namespace BindOpen.Framework.Core.Application.Options
 
         #endregion
 
-
         // ------------------------------------------
         // MUTATORS
         // ------------------------------------------
@@ -101,6 +98,5 @@ namespace BindOpen.Framework.Core.Application.Options
         }
 
         #endregion
-
     }
 }

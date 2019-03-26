@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Runtime.Application.Services
+﻿namespace BindOpen.Framework.Runtime.Application.Hosts
 {
     /// <summary>
     /// This enumeration lists all the possible kinds of application path.

@@ -34,7 +34,15 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Only value.
         /// </summary>
         OnlyValue,
+
+        /// <summary>
+        /// Complete name as alias.
+        /// </summary>
         CompleteNameAsAlias,
+
+        /// <summary>
+        /// Only name as alias.
+        /// </summary>
         OnlyNameAsAlias
     }
 }

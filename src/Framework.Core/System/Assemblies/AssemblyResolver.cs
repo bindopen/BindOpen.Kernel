@@ -11,6 +11,9 @@ namespace BindOpen.Framework.Core.System.Assemblies
     [Serializable()]
     public class AssemblyResolver : DataItem
     {
+        // NOTE: This class includes temporary comments due to the fact
+        // that we are expecting .net core to provide more appdomain apis
+        // such as pooling
 
         /// <summary>
         /// Resolves the domain i.e. initializes the assembly resolving routines.
@@ -19,18 +22,18 @@ namespace BindOpen.Framework.Core.System.Assemblies
         static public ResolveEventHandler Resolve(
             AppDomain appDomain)
         {
-            //if (appDomain != null)
-            //{
-            //    AssemblyResolver assemblyResolver =
-            //        appDomain.CreateInstanceFromAndUnwrap(
-            //          Assembly.GetExecutingAssembly().Location,
-            //          typeof(AssemblyResolver).FullName) as AssemblyResolver;
+            if (appDomain != null)
+            {
+                //AssemblyResolver assemblyResolver =
+                //    appDomain.CreateInstanceFromAndUnwrap(
+                //      Assembly.GetExecutingAssembly().Location,
+                //      typeof(AssemblyResolver).FullName) as AssemblyResolver;
 
-            //    if (appDomain == AppDomain.CurrentDomain)
-            //        return assemblyResolver.GetResolvedDomain(appDomain, appDomainSetup);
-            //    else
-            //        assemblyResolver.ResolveDomain(appDomain, appDomainSetup);
-            //}
+                //if (appDomain == AppDomain.CurrentDomain)
+                //    return assemblyResolver.GetResolvedDomain(appDomain, appDomainSetup);
+                //else
+                //    assemblyResolver.ResolveDomain(appDomain, appDomainSetup);
+            }
 
             return null;
         }
@@ -73,7 +76,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     String assemblyFullName = (new AssemblyName(args.Name)).FullName;
 
                     try
-                    {
+                    {                        
                         //filePath = appDomainSetup.PrivateBinPath + assemblyName + ".dll";
                         //if (!string.IsNullOrEmpty(appDomainSetup.PrivateBinPath) && (File.Exists(filePath)))
                         //    assembly = AppDomainPool.LoadAssemblyFromFile(AppDomain.CurrentDomain, filePath);

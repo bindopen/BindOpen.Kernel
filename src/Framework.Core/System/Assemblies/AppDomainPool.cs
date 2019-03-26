@@ -178,11 +178,11 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
         public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, Log log = null)
-        {            
+        {
             Assembly assembly = null;
 
-            if (((appDomain != null) & (!string.IsNullOrEmpty(filePath))) &&
-                (global::System.IO.File.Exists(filePath)))
+            if (((appDomain != null) & (!string.IsNullOrEmpty(filePath)))
+                && (global::System.IO.File.Exists(filePath)))
             {
                 String assemblyName = Path.GetFileNameWithoutExtension(filePath);
                 foreach (global::System.Reflection.Assembly currentAssembly in appDomain.GetAssemblies())
@@ -209,8 +209,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     }
                     catch (Exception ex)
                     {
-                        if (log != null)
-                            log.AddEvent(new LogEvent(
+                        log?.AddEvent(new LogEvent(
                                 EventKind.Exception,
                                 title: "Error while attempting to load assembly from file '" + filePath + "'",
                                 description: ex.ToString()));
@@ -232,29 +231,29 @@ namespace BindOpen.Framework.Core.System.Assemblies
         {
             Assembly assembly = null;
 
-            if ((appDomain != null) & (!String.IsNullOrEmpty(assemblyName)))
+            if ((appDomain != null) && (!String.IsNullOrEmpty(assemblyName)))
             {
-                assembly = appDomain.GetAssemblies().FirstOrDefault(p => p.GetName().Name.KeyEquals(assemblyName));
+                assembly = Array.Find(appDomain.GetAssemblies(), p => p.GetName().Name.KeyEquals(assemblyName));
                 if (assembly == null)
+                {
                     try
                     {
                         assembly = Assembly.Load(assemblyName);
                     }
                     catch (FileNotFoundException)
                     {
-                        if (log != null)
-                            log.AddEvent(new LogEvent(
+                        log?.AddEvent(new LogEvent(
                                 EventKind.Error,
                                 title: "Could not find the assembly '" + assemblyName + "'"));
                     }
                     catch (Exception ex)
                     {
-                        if (log != null)
-                            log.AddEvent(new LogEvent(
+                        log?.AddEvent(new LogEvent(
                                 EventKind.Exception,
                                 title: "Error while attempting to load assembly '" + assemblyName + "'",
                                 description: ex.ToString()));
                     }
+                }
             }
 
             return assembly;

@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Runtime.Application.Services;
+using BindOpen.Framework.Runtime.Application.Hosts;
 
 namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
 {
@@ -35,12 +35,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            AppService applicationManager =
-                appScope.DataContext.GetSystemItem("currentApplicationManager") as AppService;
-            if (applicationManager == null)
+            AppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            if (appHostService == null)
                 return "<!--Application manager missing-->";
 
-            return applicationManager.GetPath(ApplicationPathKind.AppFolder);
+            return appHostService.GetKnownPath(ApplicationPathKind.AppFolder);
         }
 
         /// <summary>
@@ -59,12 +59,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            AppService applicationManager =
-                appScope.DataContext.GetSystemItem("currentApplicationManager") as AppService;
-            if (applicationManager == null)
+            IAppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            if (appHostService == null)
                 return "<!--Application manager missing-->";
 
-            return applicationManager.GetPath(ApplicationPathKind.RoamingFolder);
+            return appHostService.GetKnownPath(ApplicationPathKind.RoamingFolder);
         }
 
         /// <summary>
@@ -83,12 +83,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            AppService applicationManager =
-                appScope.DataContext.GetSystemItem("currentApplicationManager") as AppService;
-            if (applicationManager == null)
+            AppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            if (appHostService == null)
                 return "<!--Application manager missing-->";
 
-            return applicationManager.ApplicationModule?.Name ?? "";
+            return appHostService?.Options.ApplicationModule?.Name ?? "";
         }
 
         /// <summary>
@@ -107,13 +107,13 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null || appScope.DataContext == null)
                 return "<!--Application scope missing-->";
-            AppService applicationManager =
-                appScope.DataContext.GetSystemItem("currentApplicationManager") as AppService;
-            if (applicationManager == null)
+            AppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            if (appHostService == null)
                 return "<!--Application manager missing-->";
 
-            return applicationManager.Settings?.ApplicationInstanceName ?? "";
-        }        
+            return appHostService?.Options.Settings?.ApplicationInstanceName ?? "";
+        }
 
         #endregion
 

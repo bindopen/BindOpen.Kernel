@@ -1,31 +1,18 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.System.Scripting;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Expression;
+using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Core.Data.Business.Conditions
 {
-
     /// <summary>
-    /// This class represents a business condition.
+    /// This class represents a script condition.
     /// </summary>
     [Serializable()]
-    [XmlType("BusinessScriptCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "businessScriptCondition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class BusinessScriptCondition : BusinessCondition
+    [XmlType("ScriptBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlRoot(ElementName = "script.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    public class ScriptCondition : Condition
     {
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private DataExpression _Expression = null;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -36,14 +23,9 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// Expression script representing the condition.
         /// </summary>
         [XmlElement("expression")]
-        public DataExpression Expression
-        {
-            get { return this._Expression; }
-            set { this._Expression = value; }
-        }
+        public DataExpression Expression { get; set; } = null;
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -54,40 +36,42 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BusinessScriptCondition class.
         /// </summary>
-        public BusinessScriptCondition()
+        public ScriptCondition()
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the BusinessScriptCondition class.
         /// </summary>
-        public BusinessScriptCondition(String aTrueValue, DataExpression aExpression) : base(aTrueValue)
+        /// <param name="trueValue">The true value to consider.</param>
+        /// <param name="expression">The expression to consider.</param>
+        public ScriptCondition(string trueValue, DataExpression expression) : base(trueValue)
         {
-            this._Expression = aExpression;
+            this.Expression = expression;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
 
-        #region
+        #region Accessors
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
         public override Object Clone()
         {
-            BusinessScriptCondition aBusinessScriptCondition = new BusinessScriptCondition();
-            aBusinessScriptCondition.Expression = this.Expression.Clone() as DataExpression;
+            ScriptCondition condition = new ScriptCondition
+            {
+                Expression = this.Expression.Clone() as DataExpression
+            };
 
-            return aBusinessScriptCondition;
+            return condition;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // PROCESS
@@ -105,15 +89,12 @@ namespace BindOpen.Framework.Core.Data.Conditions
             ScriptInterpreter scriptInterpreter,
             ScriptVariableSet scriptVariableSet)
         {
-            if (this._Expression == null)
+            if (this.Expression == null)
                 return false;
 
-            return (scriptInterpreter.Interprete(this._Expression, scriptVariableSet) ?? "").ToString().ToUpper().Trim()
-                == this.TrueValue.ToUpper().Trim();
+            return (scriptInterpreter.Interprete(this.Expression, scriptVariableSet) ?? "").ToUpper().Trim() == this.TrueValue.ToUpper().Trim();
         }
 
         #endregion
-
-
     }
 }

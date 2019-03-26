@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
+﻿using BindOpen.Framework.Core.Data.Business.Conditions;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         /// Display condition of this instance.
         /// </summary>
         [XmlElement("displayCondition")]
-        public BusinessScriptCondition DisplayCondition
+        public ScriptCondition DisplayCondition
         {
             set;
             get;
@@ -167,7 +167,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         public override Object Clone()
         {
             DisplayMessage aDisplayMessage = base.Clone() as DisplayMessage;
-            aDisplayMessage.DisplayCondition = this.DisplayCondition.Clone() as BusinessScriptCondition;
+            aDisplayMessage.DisplayCondition = this.DisplayCondition.Clone() as ScriptCondition;
             aDisplayMessage.DisplayedLabel = this.DisplayedLabel.Clone() as DictionaryDataItem;
             return aDisplayMessage;
         }

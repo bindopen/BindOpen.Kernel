@@ -35,7 +35,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             List<DataSourceKind> dataSourceKinds = null,
             String libraryFolderPath = null)
         {
-            if ((libraryDefinition == null) | (appDomain == null))
+            if ((libraryDefinition == null) || (appDomain == null))
                 return null;
 
             if (extensionItemKinds == null)
@@ -67,16 +67,19 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                     switch (dataSourceKind)
                     {
                         case DataSourceKind.Memory:
-                            if (log != null)
-                                log.AddCheckpoint("Loading assembly '" + library.Definition.AssemblyName + "' from dll");
+                            log?.AddCheckpoint("Loading assembly '" + library.Definition.AssemblyName + "' from dll");
                             assembly = AppDomainPool.LoadAssembly(appDomain, library.Definition.AssemblyName, subLog);
                             break;
                         case DataSourceKind.Repository:
-                            String filePath = libraryFolderPath.GetEndedString(@"\").ToPath() + library.Definition.FileName;
+                            string fileName = library.Definition.FileName;
+                            if (string.IsNullOrEmpty(library.Definition.FileName))
+                            {
+                                fileName = libraryDefinition.AssemblyName + ".dll";
+                            }
+                            String filePath = libraryFolderPath.GetEndedString(@"\").ToPath() + fileName;
                             if (!File.Exists(filePath))
                             {
-                                if (log != null)
-                                    log.AddError("Could not find the assembly file path '" + filePath + "'");
+                                log?.AddError("Could not find the assembly file path '" + filePath + "'");
                             }
                             else
                             {
@@ -84,13 +87,11 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
 
                                 if (assembly == null)
                                 {
-                                    if (log != null)
-                                        log.AddError("Could not load assembly '" + filePath + "'");
+                                    log?.AddError("Could not load assembly '" + filePath + "'");
                                 }
                                 else
                                 {
-                                    if (log != null)
-                                        log.AddCheckpoint("Loading assembly from file '" + filePath + "'");
+                                    log?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
                                     assembly = Assembly.LoadFrom(filePath);
                                 }
                             }
@@ -105,6 +106,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                             library.Definition = LibraryLoader.GetLibraryDefinition(assembly, subLog);
 
                         if (!subLog.HasErrorsOrExceptions())
+                        {
                             foreach (AppExtensionItemKind libraryItemKind in new List<AppExtensionItemKind>()
                             {
                                 AppExtensionItemKind.Carrier,
@@ -117,17 +119,24 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                                 AppExtensionItemKind.ScriptWord,
                                 AppExtensionItemKind.Task,
                             })
+                            {
                                 if ((extensionItemKinds.Contains(AppExtensionItemKind.Any)) || (extensionItemKinds.Contains(libraryItemKind)))
                                 {
                                     Log subSubLog = new Log();
                                     int count = library.LoadItemIndex(assembly, libraryItemKind, subSubLog);
                                     if (subSubLog.HasErrorsOrExceptionsOrWarnings())
+                                    {
                                         subLog.AddSubLog(
                                             subSubLog,
                                             title: "Loading '" + libraryItemKind.ToString() + "' index");
+                                    }
                                     else
+                                    {
                                         subLog.AddMessage("Index '" + libraryItemKind.ToString() + "' loaded (" + count.ToString() + " items added)");
+                                    }
                                 }
+                            }
+                        }
 
                         if (!subLog.HasErrorsOrExceptions())
                             library.Assembly = assembly;
@@ -135,21 +144,20 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                     //else
                     //    subLog.AddMessage("Could not find '" + dataSourceKind.ToString() + "' assembly");
 
-                    if (log != null)
-                        log.AddSubLog(subLog, (p => p.HasErrorsOrExceptionsOrWarnings()));
+                    log?.AddSubLog(subLog, p => p.HasErrorsOrExceptionsOrWarnings());
 
                     if (assembly != null) break;
                 }
 
                 if (assembly == null)
-                    if (log != null)
-                        log.AddError("Could not load library '" + 
-                            (!String.IsNullOrEmpty(libraryDefinition.FileName) ? libraryDefinition.FileName : libraryDefinition.Name) + "'");
+                {
+                    log?.AddError("Could not load library '" +
+                           (!String.IsNullOrEmpty(libraryDefinition.FileName) ? libraryDefinition.FileName : libraryDefinition.Name) + "'");
+                }
             }
             catch (Exception exception)
             {
-                if (log != null)
-                    log.AddException(exception);
+                log?.AddException(exception);
             }
 
             return (library.Assembly == null ? null : library);
@@ -174,6 +182,5 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             log = new Log();
             return null;
         }
-
     }
 }

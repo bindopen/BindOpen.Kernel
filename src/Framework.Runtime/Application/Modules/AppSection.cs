@@ -140,7 +140,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
 //                    ((aAPPLICATIONMODULESECTIONRow.IsISINDEXEDNull())||(aAPPLICATIONMODULESECTIONRow.ISINDEXED));
 
 //                if ((module!=null) &&
-//                    ((!Directory.Exists(visitor.ApplicationManager.GetPath(SphereApplicationManager.ApplicationPathKind.AppFolder) + "\\" + this.CompleteName.Replace("$", "\\").ToLower())) &
+//                    ((!Directory.Exists(visitor.AppService.GetPath(SphereAppService.ApplicationPathKind.AppFolder) + "\\" + this.CompleteName.Replace("$", "\\").ToLower())) &
 //                    (remoteExecutionUri!=null)))
 //                {
 //                    String aUrlFolder = this._CompleteName;

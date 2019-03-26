@@ -6,7 +6,7 @@
     <members>
         <member name="T:BindOpen.Framework.Databases.Data.Business.Conditions.BusinessQueryCondition">
             <summary>
-            This class represents a business condition using a business query.
+            This class represents a condition using a business query.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Databases.Data.Business.Conditions.BusinessQueryCondition.Query">
@@ -549,6 +549,16 @@
             Only value.
             </summary>
         </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.CompleteNameAsAlias">
+            <summary>
+            Complete name as alias.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.OnlyNameAsAlias">
+            <summary>
+            Only name as alias.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder">
             <summary>
             This class represents a builder of database query.
@@ -748,14 +758,14 @@
             </summary>
             <param name="condition"></param>
             <param name="value1"></param>
-            <param name="valu2"></param>
+            <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Not(System.String)">
             <summary>
             Evaluates the script word $SQLNOT.
             </summary>
-            <param name="parameters">The parameters to consider.</param>
+            <param name="value1">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Or(System.Object[])">

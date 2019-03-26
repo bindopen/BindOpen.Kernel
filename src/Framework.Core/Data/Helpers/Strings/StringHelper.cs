@@ -29,12 +29,12 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <summary>
         /// The pattern empty value.
         /// </summary>
-        public static String __PatternEmptyValue = @"{{*}}";
+        public static String __PatternEmptyValue = "{{*}}";
 
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static String __NoneString = @"<!--NONE-->";
+        public static String __NoneString = "<!--NONE-->";
 
         /// <summary>
         /// The string that is returned when the instance is not found.

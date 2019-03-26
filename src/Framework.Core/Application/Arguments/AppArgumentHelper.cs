@@ -34,8 +34,8 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the log of argument building.</returns>
         public static OptionSet UpdateOptions(
-            this String[] arguments,
-            OptionSpecificationSet optionSpecificationSet,
+            this string[] arguments,
+            OptionSpecSet optionSpecificationSet,
             Boolean allowMissingItems = false,
             Log log = null)
         {
@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                     {
                         ScalarElement argument = null;
 
-                        OptionSpecification argumentSpecification = null;
+                        OptionSpec argumentSpecification = null;
 
                         int aliasIndex = -2;
                         if (optionSpecificationSet != null)
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                         {
                             if (argumentSpecification.ValueType == DataValueType.Any)
                                 argumentSpecification.ValueType = DataValueType.Text;
-                            argument = (argumentSpecification.Clone() as DataElementSpecification).NewElement() as ScalarElement;
+                            argument = (argumentSpecification.Clone() as DataElementSpecification)?.NewElement() as ScalarElement;
 
                             argument.Specification = argumentSpecification;
                             if (argumentSpecification.ItemRequirementLevel.IsPossible())
@@ -117,11 +117,11 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static Log Check(this DataElementSet optionSet, OptionSpecificationSet optionSpecificationSet, Boolean allowMissingItems = false)
+        public static Log Check(this DataElementSet optionSet, OptionSpecSet optionSpecificationSet, Boolean allowMissingItems = false)
         {
             Log log = new Log();
 
-            if (optionSet != null && optionSpecificationSet !=null)
+            if (optionSet?.Elements != null && optionSpecificationSet !=null)
             {
                 if (!allowMissingItems)
                 {

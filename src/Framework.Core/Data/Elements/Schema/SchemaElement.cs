@@ -1,14 +1,14 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Business.Entities;
+using BindOpen.Framework.Core.Data.Common;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
     /// <summary>
-    /// This class represents a data schema element.
+    /// This class represents a schema element.
     /// </summary>
     [Serializable()]
     [XmlType("SchemaElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
@@ -16,20 +16,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
     [XmlInclude(typeof(SchemaZoneElement))]
     public class SchemaElement : DataElement
     {
-
         //------------------------------------------
         // VARIABLES
         //-----------------------------------------
 
         #region Variables
 
-        private SchemaZoneElement _ParentZone = null;
-        private String _ImageFileName = null;
+        private SchemaZoneElement _parentZone = null;
+        private String _imageFileName = null;
 
-        private BusinessEntity _BusinessEntity = null;
+        private BusinessEntity _businessEntity = null;
 
         #endregion
-
 
         //------------------------------------------
         // PROPERTIES
@@ -43,11 +41,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         [XmlIgnore()]
         public SchemaZoneElement ParentZone
         {
-            get { return this._ParentZone; }
-            set 
-            { 
-                this._ParentZone = value;
-                this.RaizePropertyChanged("ParentZone");
+            get { return this._parentZone; }
+            set
+            {
+                this._parentZone = value;
+                this.RaizePropertyChanged(nameof(ParentZone));
             }
         }
 
@@ -57,11 +55,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         [XmlElement("imageFileName")]
         public String ImageFileName
         {
-            get { return this._ImageFileName; }
-            set 
-            { 
-                this._ImageFileName = value;
-                this.RaizePropertyChanged("ImageFileName");
+            get { return this._imageFileName; }
+            set
+            {
+                this._imageFileName = value;
+                this.RaizePropertyChanged(nameof(ImageFileName));
             }
         }
 
@@ -81,12 +79,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         [XmlIgnore()]
         public BusinessEntity BusinessEntity
         {
-            get { return this._BusinessEntity; }
+            get { return this._businessEntity; }
             set
             {
-                this._BusinessEntity = value;
-                this.BusinessEntityUniqueName = (this._BusinessEntity != null ? this._BusinessEntity.Id : null);
-                this.RaizePropertyChanged("BusinessEntity");
+                this._businessEntity = value;
+                this.BusinessEntityUniqueName = _businessEntity?.Id;
+                this.RaizePropertyChanged(nameof(BusinessEntity));
             }
         }
 
@@ -101,7 +99,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         }
 
         #endregion
-
 
         //------------------------------------------
         // CONSTRUCTORS
@@ -136,7 +133,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
         #endregion
 
-
         // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
@@ -151,7 +147,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         public Boolean IsDescendantOf(
             SchemaZoneElement parentZoneElement)
         {
-            SchemaElement currentSchemaZoneElement = this._ParentZone;
+            SchemaElement currentSchemaZoneElement = this._parentZone;
             while (currentSchemaZoneElement != null)
             {
                 if (currentSchemaZoneElement == parentZoneElement)
@@ -355,7 +351,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
         #endregion
 
-
         // -------------------------------------------------------------
         // PROTECTION
         // -------------------------------------------------------------
@@ -402,7 +397,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
         #endregion
 
-
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
         // --------------------------------------------------
@@ -411,7 +405,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -439,7 +432,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
                 parentZoneElement = this.ParentZone;
 
             SchemaZoneElement aSchemaElement = this.MemberwiseClone() as SchemaZoneElement;
-            aSchemaElement.BusinessEntity = this._BusinessEntity;
+            aSchemaElement.BusinessEntity = this._businessEntity;
             aSchemaElement.ParentZone = parentZoneElement;
             if (parentZoneElement != null)
                 parentZoneElement.SubElements.Add(aSchemaElement);
@@ -448,7 +441,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         }
 
         #endregion
-
 
         // ------------------------------------------
         // INOTIFY IMPLEMENTATION
@@ -472,6 +464,5 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         }
 
         #endregion
-
     }
 }

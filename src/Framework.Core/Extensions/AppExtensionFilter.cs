@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Libraries;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Extensions.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -110,7 +110,7 @@ namespace BindOpen.Framework.Core.Extensions
         {
             this._Name = libraryName;
             this._FileName = libraryFileName;
-            this._SourceKinds = sourceKinds ?? new List<DataSourceKind>() { DataSourceKind.Memory };
+            this._SourceKinds = sourceKinds ?? new List<DataSourceKind>() { DataSourceKind.Memory, DataSourceKind.Repository };
             this._FolderPath = libraryFolderPath;
         }
 

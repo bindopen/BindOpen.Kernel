@@ -9,7 +9,7 @@
             This class represents the application argument parser.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Core.Application.Options.OptionSpecificationSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
+        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Core.Application.Options.OptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
             Retrieves the arguments from the specified argument string values.
             </summary>
@@ -19,7 +19,7 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the log of argument building.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Options.OptionSpecificationSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Options.OptionSpecSet,System.Boolean)">
             <summary>
             Checks this instance.
             </summary>
@@ -651,6 +651,55 @@
             Very high.
             </summary>
         </member>
+        <member name="T:BindOpen.Framework.Core.Application.Options.OptionNameKind">
+            <summary>
+            This enumeration lists all the possible option name kinds.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.OnlyName">
+            <summary>
+            Only name.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.NameWithValue">
+            <summary>
+            Name with value.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.NameThenValue">
+            <summary>
+            Name then value.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.OnlyValue">
+            <summary>
+            Only value.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension">
+            <summary>
+            The extension of the option name kind.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension.HasName(BindOpen.Framework.Core.Application.Options.OptionNameKind)">
+            <summary>
+            Indicates whether the specified kind has name.
+            </summary>
+            <param name="kind">The kind of the option name.</param>
+            <returns>Returns true or false.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension.HasValue(BindOpen.Framework.Core.Application.Options.OptionNameKind)">
+            <summary>
+            Indicates whether the specified kind has value.
+            </summary>
+            <param name="kind">The kind of the option name.</param>
+            <returns>Returns true or false.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Application.Options.OptionSet">
             <summary>
             This class represents a option set.
@@ -687,207 +736,216 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpecification">
+        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpec">
             <summary>
             This class represents an option specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="valueRequirementLevel">The requirement level of the value to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
             <param name="dataValueType">The value type to consider.</param>
-            <param name="valueRequirementLevel">The requirement level of the value to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="valueRequirementLevel">The requirement level of the value to add.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="requirementLevel">The requirement level of the entry to add.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
             <param name="dataValueType">The value type to consider.</param>
-            <param name="valueRequirementLevel">The requirement level of the value to consider.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to consider.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="requirementLevel">The requirement level of the entry to consider.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.#ctor(System.String,System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
-            Instantiates a new instance of the OptionSpecification class.
+            Instantiates a new instance of the OptionSpec class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="valueRequirementLevel">The requirement level of the value to consider.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to consider.</param>
             <param name="type">The type to consider.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="requirementLevel">The requirement level of the option to consider.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.IsArgumentMarching(System.String,System.Int32@)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.IsArgumentMarching(System.String,System.Int32@)">
             <summary>
             Indicates whether the specified argument matches with this instance.
             </summary>
-            <param name="argumentString">The argument to consider.</param>
+            <param name="argumentstring">The argument to consider.</param>
             <param name="aliasIndex">The alias index to consider. -2 not found. -1 Name matches. otherwise the index of matched alias.</param>
             <returns>Returns True if the specified matches this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecification.IsArgumentMarching(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.IsArgumentMarching(System.String)">
             <summary>
             Indicates whether the specified argument matches with this instance.
             </summary>
-            <param name="argumentString">The argument to consider.</param>
+            <param name="argumentstring">The argument to consider.</param>
             <returns>Returns True if the specified matches this instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet">
+        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpecSet">
             <summary>
             This class represents a option specification set.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.#ctor">
+        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Name">
             <summary>
-            Instantiates a new instance of the OptionSpecificationSet class.
+            The name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.#ctor(BindOpen.Framework.Core.Application.Options.OptionSpecification[])">
+        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Index">
             <summary>
-            Instantiates a new instance of the OptionSpecificationSet class.
+            The index of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Condition">
+            <summary>
+            The condition of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.SubSets">
+            <summary>
+            The sub sets of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor">
+            <summary>
+            Instantiates a new instance of the OptionSpecSet class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor(BindOpen.Framework.Core.Application.Options.OptionSpec[])">
+            <summary>
+            Instantiates a new instance of the OptionSpecSet class.
             </summary>
             <param name="optionSpecifications">The option specifications to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.GetHelpText(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor(BindOpen.Framework.Core.Data.Business.Conditions.Condition,BindOpen.Framework.Core.Application.Options.OptionSpec[])">
+            <summary>
+            Instantiates a new instance of the OptionSpecSet class.
+            </summary>
+            <param name="condition">The condition to consider.</param>
+            <param name="optionSpecifications">The option specifications to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.GetHelpText(System.String)">
             <summary>
             Gets the help text.
             </summary>
             <param name="uiCulture">The UI culture to consider.</param>
             <returns>Returns the help text.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.ClearOptions">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.ClearOptions">
             <summary>
             Clears the options.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Application.Options.OptionSpecSet)">
             <summary>
-            Adds a new option that does not allow value.
+            Adds the specified set of option specifications.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="subSet">The sub set to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Application.Options.OptionSpec[])">
             <summary>
-            Adds a new option that does not allow value.
+            Adds a new set of option specifications.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="dataValueType">The data value type to consider.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="optionSpecifications">The option specifications to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,System.Type,System.String[])">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Data.Business.Conditions.Condition,BindOpen.Framework.Core.Application.Options.OptionSpec[])">
             <summary>
-            Adds a new option that does not allow value.
+            Instantiates a new instance of the OptionSpecSet class.
             </summary>
-            <param name="name">Name of the statement entry to add.</param>
+            <param name="condition">The condition to consider.</param>
+            <param name="optionSpecifications">The option specifications to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="dataValueType">The value type to consider.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="requirementLevel">The requirement level of the entry to add.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="dataValueType">The value type to consider.</param>
+            <param name="requirementLevel">The requirement level of the entry to consider.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
             <param name="type">The type to consider.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
+            <param name="requirementLevel">The requirement level of the option to consider.</param>
+            <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="dataValueType">The data value type to consider.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="type">The type to consider.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="dataValueType">The data value type to consider.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.AddOption(System.String,System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option.
-            </summary>
-            <param name="name">Name of the statement entry to add.</param>
-            <param name="type">The type to consider.</param>
-            <param name="itemRequirementLevel">The requirement level of the item to add.</param>
-            <param name="optionRequirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the statement entry to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.RemoveOption(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.RemoveOption(System.String)">
             <summary>
             Deletes the specified option.
             </summary>
             <param name="name">Name of the statement entry to remove.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.HasOption(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.HasOption(System.String)">
             <summary>
             Indicates whether this instance has the specified option.
             </summary>
             <param name="name">Name of the option to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecificationSet.GetItem(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.GetItem(System.String)">
             <summary>
             Returns the item with the specified name.
             </summary>
-            <param name="uniqueName">The name of the item to return.</param>
+            <param name="key">The name of the alias of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Scopes.AppScope">
@@ -1033,68 +1091,75 @@
             Log of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Cases.BusinessCase">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase">
             <summary>
             This class represents a business case.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Cases.BusinessCase.BusinessCondition">
+        <member name="P:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase.BusinessCondition">
             <summary>
             Business condition of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Cases.BusinessCase.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase.#ctor">
             <summary>
             Instantiates a new instance of the BusinessCase class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition">
             <summary>
-            This class represents an advanced business condition.
+            This class represents an advanced condition.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.AdvancedBusinessConditonKind">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind">
             <summary>
-            This enumeration lists the possible view advanced business condition kinds.
+            This enumeration lists the possible view advanced condition kinds.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.AdvancedBusinessConditonKind.And">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind.And">
             <summary>
             And.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.AdvancedBusinessConditonKind.Or">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind.Or">
             <summary>
             Or.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.BusinessConditions">
-            <summary>
-            Business conditions of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.Kind">
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.#ctor">
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.Conditions">
+            <summary>
+            Conditions of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor">
             <summary>
             Instantiates a new instance of the AdvancedBusinessConditon class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.#ctor(System.Collections.Generic.List{BindOpen.Framework.Core.Data.Conditions.BusinessCondition})">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor(BindOpen.Framework.Core.Data.Business.Conditions.Condition[])">
             <summary>
             Instantiates a new instance of the AdvancedBusinessConditon class.
             </summary>
-            <param name="businessConditions">The business conditions to consider.</param>
+            <param name="conditions">The conditions to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor(System.String,BindOpen.Framework.Core.Data.Business.Conditions.Condition[])">
+            <summary>
+            Instantiates a new instance of the AdvancedBusinessConditon class.
+            </summary>
+            <param name="trueValue">The true value to consider.</param>
+            <param name="conditions">The conditions to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.Clone">
             <summary>
             Clones this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.AdvancedBusinessCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -1102,28 +1167,76 @@
             <param name="scriptVariableSet">The script variable set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Conditions.BusinessCondition">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition">
             <summary>
-            This class represents a business condition.
+            This class represents an basic condition.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Conditions.BusinessCondition.TrueValue">
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.Argument1">
             <summary>
-            Value that expresses that the condition is satisfied.
+            The arugment 1 of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessCondition.#ctor">
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.Operator">
+            <summary>
+            The operator of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.Argument2">
+            <summary>
+            The arugment 2 of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.#ctor">
+            <summary>
+            Instantiates a new instance of the BasicBusinessCondition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the BasicBusinessCondition class.
+            </summary>
+            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.#ctor(System.String,BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator,System.String)">
+            <summary>
+            Instantiates a new instance of the BasicBusinessCondition class.
+            </summary>
+            <param name="arg1">The argument 1 to consider.</param>
+            <param name="ope">The operator to consider.</param>
+            <param name="arg2">The argument 2 to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.BasicCondition.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator,System.String)">
+            <summary>
+            Instantiates a new instance of the BasicBusinessCondition class.
+            </summary>
+            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
+            <param name="arg1">The argument 1 to consider.</param>
+            <param name="ope">The operator to consider.</param>
+            <param name="arg2">The argument 2 to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.Condition">
+            <summary>
+            This class represents a condition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.Condition.TrueValue">
+            <summary>
+            The value that expresses that the condition is satisfied.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.Condition.#ctor">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessCondition.#ctor(System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.Condition.#ctor(System.String)">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.Condition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -1131,120 +1244,157 @@
             <param name="scriptVariableSet">The script variable set used to evaluate.</param>
             <returns>True if the business script value is the true value.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator">
             <summary>
-            This class represents a business condition.
+            This enumeration lists all the possible operators of conditions.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition.Expression">
-            <summary>
-            Expression script representing the condition.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition.#ctor">
-            <summary>
-            Instantiates a new instance of the BusinessScriptCondition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition.#ctor(System.String,BindOpen.Framework.Core.Data.Expression.DataExpression)">
-            <summary>
-            Instantiates a new instance of the BusinessScriptCondition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition.Clone">
-            <summary>
-            Clones this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Conditions.BusinessScriptCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
-            <summary>
-            Evaluate this instance.
-            </summary>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="scriptVariableSet">The script variable set used to evaluate.</param>
-            <returns>True if the business script value is the true value.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Entities.BusinessEntity">
-            <summary>
-            This class represents the business entity.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Entities.BusinessEntity.Detail">
-            <summary>
-            The detail of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Entities.BusinessEntity.ImageFileName">
-            <summary>
-            The image file name of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Entities.BusinessEntity.#ctor">
-            <summary>
-            Instantiates a new instance of the BusinessEntity class.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic">
-            <summary>
-            This enumeration represents the possible basic business entity unique names.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.None">
-            <summary>
-            None.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Any">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Unknown">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.Exist">
+            <summary>
+            Exist.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.EqualTo">
+            <summary>
+            EqualTo.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.LesserThan">
+            <summary>
+            LesserThan.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.GreaterThan">
+            <summary>
+            GreaterThan.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.ConditionOperator.DifferentFrom">
+            <summary>
+            DifferentFrom.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition">
+            <summary>
+            This class represents a script condition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition.Expression">
+            <summary>
+            Expression script representing the condition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition.#ctor">
+            <summary>
+            Instantiates a new instance of the BusinessScriptCondition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition.#ctor(System.String,BindOpen.Framework.Core.Data.Expression.DataExpression)">
+            <summary>
+            Instantiates a new instance of the BusinessScriptCondition class.
+            </summary>
+            <param name="trueValue">The true value to consider.</param>
+            <param name="expression">The expression to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.ScriptCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Evaluate this instance.
+            </summary>
+            <param name="scriptInterpreter">Script interpreter.</param>
+            <param name="scriptVariableSet">The script variable set used to evaluate.</param>
+            <returns>True if the business script value is the true value.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntity">
+            <summary>
+            This class represents the business entity.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntity.Detail">
+            <summary>
+            The detail of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntity.ImageFileName">
+            <summary>
+            The image file name of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntity.#ctor">
+            <summary>
+            Instantiates a new instance of the BusinessEntity class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic">
+            <summary>
+            This enumeration represents the possible basic business entity unique names.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Unknown">
             <summary>
             Unknown.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Custom">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Custom">
             <summary>
             Custom.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Picture">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Picture">
             <summary>
             Picture.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Video">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Video">
             <summary>
             Video.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Message">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Message">
             <summary>
             Message.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.News">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.News">
             <summary>
             News.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.RssNews">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.RssNews">
             <summary>
             RSS News.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.Resource">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.Resource">
             <summary>
             Resource.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.SocialNetwork">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.SocialNetwork">
             <summary>
             SocialNetwork.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Entities.BusinessEntityUniqueName_Basic.DataSchema">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Entities.BusinessEntityUniqueName_Basic.DataSchema">
             <summary>
             Data schema.
             </summary>
@@ -3652,7 +3802,7 @@
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement">
             <summary>
-            This class represents a data schema element.
+            This class represents a schema element.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.ParentZone">
@@ -5535,6 +5685,12 @@
             </summary>
             <param name="oldKey">The old name of the global value.</param>
             <param name="newKey">The new name of the global value.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.op_Implicit(System.String)~BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem">
+            <summary>
+            Converts from string.
+            </summary>
+            <param name="st">The string to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.Create(System.String)">
             <summary>
@@ -13606,6 +13762,11 @@
             <param name="versioningFormat">The versioning format to consider.</param>
             <param name="historicVersion">The historic version to consider.</param>
             <returns>The URL of the setup file of the new update. Null if there is no new update.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IOptionSpecItem">
+            <summary>
+            This interface defines the option specification item.
+            </summary>
         </member>
         <member name="T:cor_base_wdl.application.entities.EntityUniqueName_Basic">
             <summary>

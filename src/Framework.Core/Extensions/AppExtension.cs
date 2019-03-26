@@ -657,18 +657,26 @@ namespace BindOpen.Framework.Core.Extensions
             List<Library> loadedLibraries = new List<Library>();
 
             if (extensionConfiguration != null)
+            {
                 foreach (AppExtensionFilter extensionFilter in extensionConfiguration.GetFilters())
                 {
+                    string defaultFolderPath = string.IsNullOrEmpty(extensionFilter.FolderPath) ?
+                        extensionConfiguration.DefaultFolderPath : extensionFilter.FolderPath;
+
                     Library library = this._appDomain.LoadLibrary(
                             extensionFilter.ToDefinition(),
                             log,
                             null,
-                            extensionFilter.SourceKinds, extensionFilter.FolderPath);
+                            extensionFilter.SourceKinds,
+                            defaultFolderPath);
 
-                    if (library != null && !log.HasErrorsOrExceptions())
-                        if (!this._Libraries.Any(p => p.Definition!=null && p.Definition.Id.KeyEquals(library.Definition?.Id)))
-                            loadedLibraries.Add(library);
+                    if (library != null && !log.HasErrorsOrExceptions()
+                        && !this._Libraries.Any(p => p.Definition?.Id.KeyEquals(library.Definition?.Id) == true))
+                    {
+                        loadedLibraries.Add(library);
+                    }
                 }
+            }
 
             this._Libraries.AddRange(loadedLibraries);
 

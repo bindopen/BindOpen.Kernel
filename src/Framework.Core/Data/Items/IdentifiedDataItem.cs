@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Instantiates a new instance of the IdentifiedDataItem class.
         /// </summary>
         /// <param name="id">The ID to consider.</param>
-        public IdentifiedDataItem(String id = null) : base()
+        public IdentifiedDataItem(string id = null) : base()
         {
             this.Id = id?.Length == 0 ? IdentifiedDataItem.NewGuid() : id;
         }

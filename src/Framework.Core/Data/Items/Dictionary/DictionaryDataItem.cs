@@ -379,6 +379,15 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
 
         #region Accessors
 
+            /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
+        public static implicit operator DictionaryDataItem(string st)
+        {
+            return new DictionaryDataItem(st);
+        }
+
         /// <summary>
         /// Creates a new instance of the DictionaryDataItem class.
         /// </summary>

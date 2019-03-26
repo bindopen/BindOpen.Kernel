@@ -1,6 +1,5 @@
-﻿namespace BindOpen.Framework.Core.Data.Entities
+﻿namespace BindOpen.Framework.Core.Data.Business.Entities
 {
-
     // --------------------------------------------------
     // ENUMERATIONS
     // --------------------------------------------------
@@ -16,46 +15,57 @@
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Unknown.
         /// </summary>
         Unknown,
+
         /// <summary>
         /// Custom.
         /// </summary>
         Custom,       
+
         /// <summary>
         /// Picture.
         /// </summary>
         Picture,
+
         /// <summary>
         /// Video.
         /// </summary>
         Video,
+
         /// <summary>
         /// Message.
         /// </summary>
         Message,
+
         /// <summary>
         /// News.
         /// </summary>
         News,
+
         /// <summary>
         /// RSS News.
         /// </summary>
         RssNews,
+
         /// <summary>
         /// Resource.
         /// </summary>
         Resource,
+
         /// <summary>
         /// SocialNetwork.
         /// </summary>
         SocialNetwork,
+
         /// <summary>
         /// Data schema.
         /// </summary>
@@ -63,5 +73,4 @@
     }
 
     #endregion
-
 }
