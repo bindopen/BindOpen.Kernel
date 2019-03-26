@@ -5,10 +5,10 @@ using BindOpen.Framework.Core.Data.Specification;
 
 namespace BindOpen.Framework.Core.Extensions.Attributes
 {
-    [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
     /// <summary>
     /// This class represents a data element attribute.
     /// </summary>
+    [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
     public class DataElementAttribute : ExtensionItemAttribute
     {
         // --------------------------------------------------

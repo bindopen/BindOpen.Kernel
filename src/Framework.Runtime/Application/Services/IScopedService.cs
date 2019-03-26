@@ -3,14 +3,13 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Runtime.Application.Services;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts
+namespace BindOpen.Framework.Runtime.Application.Services
 {
     /// <summary>
-    /// This interface defines a scoped service host.
+    /// This interface defines a scoped service.
     /// </summary>
-    public interface IScopedHost
+    public interface IScopedService
     {
         /// <summary>
         /// The application extension.
