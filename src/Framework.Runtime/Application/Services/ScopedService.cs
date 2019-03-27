@@ -120,7 +120,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Initializes information.
         /// </summary>
         /// <returns>Returns the log of the task.</returns>
-        protected Log Initialize()
+        protected virtual Log Initialize()
         {
             return this.Initialize<RuntimeAppScope>();
         }
