@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    public interface IConnection
+    public interface BdoAppHost
     {
         // Open / Close -----------------------------
 

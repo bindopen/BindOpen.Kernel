@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
     /// </summary>
     [XmlType("Connector", Namespace = "http://www.w3.org/2001/bdo.xsd")]
     [XmlRoot(ElementName = "connector", Namespace = "http://www.w3.org/2001/bdo.xsd", IsNullable = false)]
-    public abstract class Connector : ConnectorConfiguration, IConnection, ITAppExtensionRuntimeItem<ConnectorDefinition>
+    public abstract class Connector : ConnectorConfiguration, BdoAppHost, ITAppExtensionRuntimeItem<ConnectorDefinition>
     {
          // -----------------------------------------------
         // PROPERTIES

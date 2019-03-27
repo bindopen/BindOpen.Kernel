@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Core.Application.Services
     /// <summary>
     /// This class represents a data context service extension.
     /// </summary>
-    public static class DataServiceExtension
+    public static class BdoDataServiceExtension
     {
         /// <summary>
         /// Executes the specified function.
@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Core.Application.Services
         /// <param name="function"></param>
         /// <returns></returns>
         public static Log Execute<Q>(this Q service, Action<Q> function)
-            where Q : IDataService
+            where Q : IBdoDataService
         {
             Log log = new Log();
 

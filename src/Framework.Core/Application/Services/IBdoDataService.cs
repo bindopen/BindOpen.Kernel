@@ -3,13 +3,13 @@
 namespace BindOpen.Framework.Core.Application.Services
 {
     /// <summary>
-    /// This interfaces represents a data service.
+    /// This interfaces represents a BindOpen data service.
     /// </summary>
-    public interface IDataService
+    public interface IBdoDataService
     {
         /// <summary>
         /// The connection of the service.
         /// </summary>
-        IConnection Connection { get; }
+        BdoAppHost Connection { get; }
     }
 }
