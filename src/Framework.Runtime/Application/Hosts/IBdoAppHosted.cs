@@ -10,6 +10,6 @@
         /// <summary>
         /// The application host.
         /// </summary>
-        BdoAppHost Host { get; set; }
+        IBdoAppHost Host { get; set; }
     }
 }
