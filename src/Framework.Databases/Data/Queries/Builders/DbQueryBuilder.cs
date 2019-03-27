@@ -19,6 +19,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         #region Variables
 
         private readonly DatabaseConnectorKind _databaseConnectorKind = DatabaseConnectorKind.None;
+
+        /// <summary>
+        /// The application scope of this instance.
+        /// </summary>
         protected readonly IAppScope _appScope = null;
 
         #endregion
@@ -33,8 +37,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Instantiates a new instance of the DbQueryBuilder class.
         /// </summary>
         /// <param name="databaseKind">The kind of database to consider.</param>
-        /// <param name="scriptInterpreter">The script interpreter to consider.</param>
-        /// <param name="dataSourceManager">The data module manager to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
         public DbQueryBuilder(
             DatabaseConnectorKind databaseKind,
             IAppScope appScope = null)

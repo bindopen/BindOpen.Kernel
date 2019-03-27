@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <summary>
         /// Sets the connector of this instance.
         /// </summary>
-        /// <param name="value">The database connector to consider.</param>
+        /// <param name="connector">The database connector to consider.</param>
         protected override void SetConnector(Connector connector)
         {
             base.SetConnector(connector);
@@ -113,7 +113,6 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// Executes a database data query putting the result into a data reader.
         /// </summary>
         /// <param name="query">The data query to execute.</param>
-        /// <param name="dataReader">The output data reader.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>

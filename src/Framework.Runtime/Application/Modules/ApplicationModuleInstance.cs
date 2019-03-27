@@ -184,12 +184,11 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// Initializes a new instance of ApplicationModule class.
         /// </summary>
-        /// <param name="aParentApplicationModule">The parent of the visitor application module.</param>
-        /// <param name="moduleName">Name of the instance.</param>
-        /// <param name="url">URL of the instance.</param>
+        /// <param name="module">Module to consider.</param>
+        /// <param name="uri">URI to consider.</param>
         public ApplicationModuleInstance(
             AppModule module,
-            String uri)
+            string uri)
         {
             this._Module= module;
             this._Uri = uri;

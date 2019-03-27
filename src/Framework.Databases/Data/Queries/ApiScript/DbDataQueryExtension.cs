@@ -234,7 +234,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <summary>
         /// Sorts the specified query considering the specified query script.
         /// </summary>
-        /// <param name="dbQuery">The database query to consider.</param>
+        /// <param name="query">The database query to consider.</param>
         /// <param name="sortQuery">The sort query text to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The definition to consider.</param>
@@ -294,7 +294,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <summary>
         /// Builds the following query: Get the server instances.
         /// </summary>
-        /// <param name="dbQuery">The database query to consider.</param>
+        /// <param name="query">The database query to consider.</param>
         /// <param name="pageSize">The page size to consider.</param>
         /// <param name="pageToken">The page token text to consider.</param>
         /// <param name="log">The log to consider.</param>

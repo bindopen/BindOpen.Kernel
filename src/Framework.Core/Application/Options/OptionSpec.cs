@@ -69,6 +69,21 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Instantiates a new instance of the OptionSpec class.
         /// </summary>
         /// <param name="requirementLevel">The requirement level of the entry to add.</param>
+        /// <param name="aliases">Aliases of the option to add.</param>
+        public OptionSpec(
+            RequirementLevel requirementLevel,
+            params string[] aliases) : this(
+                DataValueType.Text,
+                requirementLevel,
+                aliases.Any(p => p?.Contains(StringHelper.__PatternEmptyValue) == true) ? OptionNameKind.NameWithValue : OptionNameKind.OnlyName,
+                aliases)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the OptionSpec class.
+        /// </summary>
+        /// <param name="requirementLevel">The requirement level of the entry to add.</param>
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(

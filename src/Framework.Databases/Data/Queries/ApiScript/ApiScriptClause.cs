@@ -41,7 +41,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="fieldAlias">The field alias to consider.</param>
         /// <param name="field">The field to consider.</param>
         /// <param name="operators">The operators to consider.</param>
-        /// <param name="subScriptElements">The sub script elements to consider.</param>
         public ApiScriptClause(
             string fieldAlias,
             DbField field,
@@ -57,7 +56,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// </summary>
         /// <param name="fieldAlias">The field alias to consider.</param>
         /// <param name="field">The field to consider.</param>
-        /// <param name="operator">The operator to consider.</param>
+        /// <param name="aOperator">The operator to consider.</param>
         /// <param name="valueFilteringDefinition">The value filter definition to consider.</param>
         public ApiScriptClause(
             string fieldAlias,

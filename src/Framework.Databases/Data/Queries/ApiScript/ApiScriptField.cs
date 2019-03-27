@@ -38,8 +38,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// </summary>
         /// <param name="fieldAlias">The field alias to consider.</param>
         /// <param name="field">The field to consider.</param>
-        /// <param name="operators">The operators to consider.</param>
-        /// <param name="subScriptElements">The sub script elements to consider.</param>
         public ApiScriptField(
             string fieldAlias,
             DbField field)

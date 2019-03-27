@@ -64,7 +64,7 @@
             <summary>
             Sets the connector of this instance.
             </summary>
-            <param name="value">The database connector to consider.</param>
+            <param name="connector">The database connector to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.GetIDbConnection">
             <summary>
@@ -86,7 +86,6 @@
             Executes a database data query putting the result into a data reader.
             </summary>
             <param name="query">The data query to execute.</param>
-            <param name="dataReader">The output data reader.</param>
             <param name="scriptVariableSet">The interpretation variables to consider.</param>
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
@@ -185,7 +184,6 @@
             <summary>
             Executes a database data query that does not return anything.
             </summary>
-            <param name="queryBuilder">The data query builder to use.</param>
             <param name="queryText">The text to execute.</param>
             <param name="scriptVariableSet">The interpretation variables to consider.</param>
             <param name="log">The log to consider.</param>
@@ -321,7 +319,6 @@
             <param name="fieldAlias">The field alias to consider.</param>
             <param name="field">The field to consider.</param>
             <param name="operators">The operators to consider.</param>
-            <param name="subScriptElements">The sub script elements to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.#ctor(System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField,BindOpen.Framework.Core.Data.Common.DataOperator,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition)">
             <summary>
@@ -329,7 +326,7 @@
             </summary>
             <param name="fieldAlias">The field alias to consider.</param>
             <param name="field">The field to consider.</param>
-            <param name="operator">The operator to consider.</param>
+            <param name="aOperator">The operator to consider.</param>
             <param name="valueFilteringDefinition">The value filter definition to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField">
@@ -358,8 +355,6 @@
             </summary>
             <param name="fieldAlias">The field alias to consider.</param>
             <param name="field">The field to consider.</param>
-            <param name="operators">The operators to consider.</param>
-            <param name="subScriptElements">The sub script elements to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition">
             <summary>
@@ -415,6 +410,7 @@
             Executes the specified function.
             </summary>
             <typeparam name="Q"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="connection">The database connection to use.</param>
             <param name="log">The log to consider.</param>
             <returns></returns>
@@ -448,7 +444,7 @@
             <summary>
             Sorts the specified query considering the specified query script.
             </summary>
-            <param name="dbQuery">The database query to consider.</param>
+            <param name="query">The database query to consider.</param>
             <param name="sortQuery">The sort query text to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="definition">The definition to consider.</param>
@@ -458,7 +454,7 @@
             <summary>
             Builds the following query: Get the server instances.
             </summary>
-            <param name="dbQuery">The database query to consider.</param>
+            <param name="query">The database query to consider.</param>
             <param name="pageSize">The page size to consider.</param>
             <param name="pageToken">The page token text to consider.</param>
             <param name="log">The log to consider.</param>
@@ -588,13 +584,17 @@
             This class represents a builder of database query.
             </summary>
         </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder._appScope">
+            <summary>
+            The application scope of this instance.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.#ctor(BindOpen.Framework.Databases.Extensions.Runtime.Connectors.DatabaseConnectorKind,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Instantiates a new instance of the DbQueryBuilder class.
             </summary>
             <param name="databaseKind">The kind of database to consider.</param>
-            <param name="scriptInterpreter">The script interpreter to consider.</param>
-            <param name="dataSourceManager">The data module manager to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetDatabaseName(System.String)">
             <summary>

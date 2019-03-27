@@ -84,7 +84,6 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <param name="name">The name to consider.</param>
         /// <param name="module">The application module of the instance.</param>
         /// <param name="parent">The parent section of the instance.</param>
-        /// <param name="visitor">The visitor of the instance.</param>
         public AppSection(
             String name,
             AppModule module = null,
@@ -178,7 +177,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// Adds the specified section.
         /// </summary>
-        /// <param name="sections">The section to add.</param>
+        /// <param name="section">The section to add.</param>
         /// <returns>Returns the specified section.</returns>
         public void AddSection(AppSection section)
         {

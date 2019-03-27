@@ -68,6 +68,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// Executes the specified function.
         /// </summary>
         /// <typeparam name="Q"></typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="connection">The database connection to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns></returns>

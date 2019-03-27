@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Schema;
-using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -11,7 +10,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
-using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
@@ -25,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class AppHost : ScopedService, IAppHost
+    public class AppHost : AppService, IAppHost
     {
         // ------------------------------------------
         // VARIABLES
@@ -34,27 +32,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Variables
 
         private AppHostOptions _options = new AppHostOptions();
-
-        // General ----------------------
-
-        /// <summary>
-        /// Indicates whether this instance is loaded.
-        /// </summary>
-        /// <remarks>The value can be assigned.</remarks>
-        protected Boolean _isLoadCompleted = false;
-
-        // Extensions ----------------------
-
-        /// <summary>
-        /// This delegate is called when the application is successfully initialized.
-        /// </summary>
-        /// <param name="sender">The application host</param>
-        public delegate void OnLoadCompletedEventHandler(object sender);
-
-        /// <summary>
-        /// This event is triggered when the application is successfully initialized.
-        /// </summary>
-        public event OnLoadCompletedEventHandler OnLoadCompleted;
 
         #endregion
 
@@ -79,48 +56,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         public DataElementSet UserSettingsSet { get; set; } = new DataElementSet();
 
-        // Execution ----------------------
-
-        /// <summary>
-        /// The current execution state of this instance.
-        /// </summary>
-        public ProcessExecutionState CurrentExecutionState
-        {
-            get => Log?.Execution != null ? Log.Execution.State : ProcessExecutionState.None;
-            set { if (Log?.Execution != null) Log.Execution.State = value; }
-        }
-
-        /// <summary>
-        /// The current execution status of this instance.
-        /// </summary>
-        public ProcessExecutionStatus CurrentExecutionStatus
-        {
-            get => Log?.Execution != null ? Log.Execution.Status : ProcessExecutionStatus.None;
-            set { if (Log?.Execution != null) Log.Execution.Status = value; }
-        }
-
-        // Loading information ----------------------
-
-        /// <summary>
-        /// Application domain pool of this instance.
-        /// </summary>
-        public AppDomainPool AppDomainPool { get; set; } = null;
-
-        // Tracking ----------------------
-
-        /// <summary>
-        /// Log of this instance.
-        /// </summary>
-        public Log Log { get; }
-
-        /// <summary>
-        /// Indicates whether the platform information is loaded.
-        /// </summary>
-        public Boolean IsLoadCompleted
-        {
-            get { return this._isLoadCompleted; }
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -134,12 +69,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         public AppHost() : base()
         {
-            // we initiate the log of this instance
-            this.Log = new Log(_ => false)
-            {
-                Id = this.Id
-            };
-
             // we initiate the options
             this.Options.SetAppFolder(Directory.GetCurrentDirectory());
 
@@ -147,9 +76,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 new AppExtensionConfiguration(
                     new AppExtensionFilter("BindOpen.Framework.Runtime"),
                     new AppExtensionFilter("BindOpen.Framework.Standard")));
-
-            // we instantiate the loaded extension handler and the application script interperter
-            this.AppDomainPool = new AppDomainPool();
         }
 
         #endregion
@@ -169,47 +95,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         {
             setupOptions?.Invoke(this.Options);
 
-            return this;
-        }
-
-        /// <summary>
-        /// Starts the application.
-        /// </summary>
-        /// <returns>Returns true if this instance is started.</returns>
-        public IAppHost Start(Log log = null)
-        {
-            log = log ?? new Log();
-
-            if (this.CurrentExecutionState != ProcessExecutionState.Pending)
-            {
-                // we start the application instance
-                log.AddMessage("Starting application instance...");
-                log.Start();
-
-                // we initialize this instance
-                log.AddMessage("Initializing application...");
-                log.Append(this.Initialize());
-
-                if (!this.IsLoadCompleted)
-                    this.CurrentExecutionStatus = ProcessExecutionStatus.Stopped_Error;
-                else
-                    log.AddMessage("Application instance started");
-
-                log.Sanitize();
-
-                this.Log.Append(log);
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Indicates the application ends.
-        /// </summary>
-        /// <param name="executionStatus">The execution status to consider.</param>
-        public IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
-        {
-            this.Log.End(executionStatus);
             return this;
         }
 
@@ -334,6 +219,32 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #endregion
 
         // ------------------------------------------
+        // PROCESSING
+        // ------------------------------------------
+
+        #region Processing
+
+        /// <summary>
+        /// Starts the application.
+        /// </summary>
+        /// <returns>Returns true if this instance is started.</returns>
+        public new virtual IAppHost Start(Log log = null)
+        {
+            return base.Start(log) as AppHost;
+        }
+
+        /// <summary>
+        /// Indicates the application ends.
+        /// </summary>
+        /// <param name="executionStatus">The execution status to consider.</param>
+        public new virtual IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        {
+            return base.End(executionStatus) as AppHost;
+        }
+
+        #endregion
+
+        // ------------------------------------------
         // LOAD MANAGEMENT
         // ------------------------------------------
 
@@ -346,9 +257,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the log of the task.</returns>
         protected override Log Initialize<T>()
         {
-            this._appScope = new T();
-            this._appScope.SetAppDomain(AppDomain.CurrentDomain);
-
             // we initialize logging
             if (this.Options?.IsDefaultLoggerUsed == true)
             {
@@ -358,9 +266,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             }
             this.Log.AddLoggers(this.Options?.Loggers);
 
-            // we initialize the application scope
-            this.AppScope.DataContext.AddSystemItem("appHost", this);
-            this.AppScope.DataSourceService = new DataSourceService();
+            // we initialize as scoped service
+            base.Initialize<T>();
 
             Log log = new Log();
 
@@ -486,15 +393,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             String filePath, Log log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null)
         {
             return AppSettings.Load<AppSettings>(filePath, log, appScope, xmlSchemaSet);
-        }
-
-        /// <summary>
-        /// Fires the 'LoadComplete' event.
-        /// </summary>
-        public virtual void LoadComplete()
-        {
-            if (this.OnLoadCompleted != null)
-                OnLoadCompleted(this);
         }
 
         #endregion
