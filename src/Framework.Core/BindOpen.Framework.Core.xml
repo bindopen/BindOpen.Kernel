@@ -5786,6 +5786,12 @@
             </summary>
             <param name="st">The string to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.op_Implicit(BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem)~System.String">
+            <summary>
+            Converts to string.
+            </summary>
+            <param name="item">The dictionary data item to consider.</param>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.Create(System.String)">
             <summary>
             Creates a new instance of the DictionaryDataItem class.
@@ -11160,6 +11166,18 @@
             <param name="date">The date of this instance.</param>
             <param name="id">The ID of this instance.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.op_Implicit(System.String)~BindOpen.Framework.Core.System.Diagnostics.Events.Event">
+            <summary>
+            Converts from string.
+            </summary>
+            <param name="st">The string to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.op_Implicit(BindOpen.Framework.Core.System.Diagnostics.Events.Event)~System.String">
+            <summary>
+            Converts to string.
+            </summary>
+            <param name="aEvent">The event to consider.</param>
+        </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
             Updates information for storage.
@@ -11321,6 +11339,12 @@
             The event with the specified ID.
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Log.Item(System.Int32)">
+            <summary>
+            The event with the specified ID.
+            </summary>
+            <param name="index"></param>
         </member>
         <member name="P:BindOpen.Framework.Core.System.Diagnostics.Log.Events">
             <summary>

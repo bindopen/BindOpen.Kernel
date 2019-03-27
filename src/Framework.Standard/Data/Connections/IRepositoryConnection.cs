@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    interface IRepositoryConnection : BdoAppHost
+    interface IRepositoryConnection : IConnection
     {
 
         // Pull ---------------------------------------

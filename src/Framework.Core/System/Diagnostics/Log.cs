@@ -129,13 +129,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="id"></param>
         [XmlIgnore()]
-        public Event this[String id]
-        {
-            get
-            {
-                return (id == null || this.Events == null ? null : this.Events.FirstOrDefault(p => p.Id.KeyEquals(id)));
-            }
-        }
+        public Event this[String id] => id == null ? null : Events?.Find(p => p.Id.KeyEquals(id));
+
+        /// <summary>
+        /// The event with the specified ID.
+        /// </summary>
+        /// <param name="index"></param>
+        [XmlIgnore()]
+        public Event this[int index] => Events?.Cast<object>().ToArray().GetObjectAtIndex(index) as Event;
 
         /// <summary>
         /// Events of this instance.

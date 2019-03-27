@@ -10,6 +10,6 @@ namespace BindOpen.Framework.Core.Application.Services
         /// <summary>
         /// The connection of the service.
         /// </summary>
-        BdoAppHost Connection { get; }
+        IConnection Connection { get; }
     }
 }

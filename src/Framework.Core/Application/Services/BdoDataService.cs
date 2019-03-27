@@ -11,12 +11,12 @@ namespace BindOpen.Framework.Core.Application.Services
         /// <summary>
         /// The connection of this instance.
         /// </summary>
-        protected BdoAppHost _connection = null;
+        protected IConnection _connection = null;
 
         /// <summary>
         /// The connection of this instance.
         /// </summary>
-        public BdoAppHost Connection
+        public IConnection Connection
         {
             get { return this._connection; }
         }
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.Application.Services
         /// Initializes a new instance of the DataService class.
         /// </summary>
         /// <param name="connection">The connection to consider.</param>
-        public BdoDataService(BdoAppHost connection)
+        public BdoDataService(IConnection connection)
         {
             this._connection = connection;
         }

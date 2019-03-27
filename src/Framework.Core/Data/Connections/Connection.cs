@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// </summary>
     [XmlType("Connection", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "connection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public abstract class Connection : DataItem, BdoAppHost
+    public abstract class Connection : DataItem, IConnection
     {
         // ------------------------------------------
         // VARIABLES

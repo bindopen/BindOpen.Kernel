@@ -59,8 +59,9 @@ namespace BindOpen.TestConsole
                     .DefineSettings<TestAppSettings>()
                     .SetExtensions(
                         new AppExtensionConfiguration()
-                            .AddExtension("BindOpen.Framework.Databases")
-                            .AddExtension("BindOpen.Framework.Databases.MSSqlServer"))
+                            //.AddExtension("BindOpen.Framework.Databases")
+                            //.AddExtension("BindOpen.Framework.Databases.MSSqlServer")
+                    )
                     .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
                     .AddDefaultLogger()
                     .SetLoggers(
@@ -69,13 +70,19 @@ namespace BindOpen.TestConsole
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
                 .Start() as BdoAppHost;
 
+            Log log = new Log();
+            log.AddMessage("test1");
+            string st1 = log[0];
+
+            var st = Program._AppHost.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
+
+
             Console.WriteLine(Program._AppHost.GetKnownPath(ApplicationPathKind.SettingsFile));
 
             String script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
             string resultScript = Program._AppHost.ScriptInterpreter.Interprete(
                     script, null, Program._AppHost.Log);
 
-            var st = Program._AppHost.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
 
             //var dbQuery = Queries_Tenants.InsertOrganization("tenantA");
                 //.Filter(

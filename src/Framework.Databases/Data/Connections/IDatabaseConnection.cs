@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    public interface IDatabaseConnection : BdoAppHost
+    public interface IDatabaseConnection : IConnection
     {
         // Execution non query  ---------------------------------------
 
