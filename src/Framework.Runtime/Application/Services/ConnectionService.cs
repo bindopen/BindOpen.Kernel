@@ -19,6 +19,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// </summary>
     public class ConnectionService : DataItem, IConnectionService
     {
+        /// <summary>
+        /// The application scope of this instance.
+        /// </summary>
         protected readonly IRuntimeAppScope _appScope = null;
 
         // ------------------------------------------

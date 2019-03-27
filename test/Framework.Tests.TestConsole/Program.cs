@@ -67,14 +67,13 @@ namespace BindOpen.TestConsole
                         LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
                 )
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-                .Start();
+                .Start() as AppHost;
 
             Console.WriteLine(Program._AppHost.GetKnownPath(ApplicationPathKind.SettingsFile));
 
             String script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
             string resultScript = Program._AppHost.ScriptInterpreter.Interprete(
                     script, null, Program._AppHost.Log);
-
 
             var st = Program._AppHost.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
 

@@ -186,6 +186,19 @@ namespace BindOpen.Framework.Core.Application.Options
         /// <summary>
         /// Adds a new option specification.
         /// </summary>
+        /// <param name="requirementLevel">The requirement level of the entry to add.</param>
+        /// <param name="aliases">Aliases of the option to add.</param>
+        public OptionSpecSet AddOption(
+            RequirementLevel requirementLevel,
+            params string[] aliases)
+        {
+            this.Add(new OptionSpec(requirementLevel, aliases));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a new option specification.
+        /// </summary>
         /// <param name="dataValueType">The value type to consider.</param>
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>

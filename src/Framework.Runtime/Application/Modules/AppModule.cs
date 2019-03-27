@@ -224,7 +224,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// Adds the specified section.
         /// </summary>
-        /// <param name="sections">The section to add.</param>
+        /// <param name="section">The section to add.</param>
         /// <returns>Returns the specified section.</returns>
         public void AddSection(AppSection section)
         {

@@ -12,6 +12,7 @@ namespace BindOpen.Framework.Core.Application.Services
         /// Executes the specified function.
         /// </summary>
         /// <typeparam name="Q"></typeparam>
+        /// <param name="service"></param>
         /// <param name="function"></param>
         /// <returns></returns>
         public static Log Execute<Q>(this Q service, Action<Q> function)

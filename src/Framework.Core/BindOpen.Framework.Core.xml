@@ -767,6 +767,13 @@
             <param name="nameKind">The name kind to consider.</param>
             <param name="aliases">Aliases of the option to add.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+            <summary>
+            Instantiates a new instance of the OptionSpec class.
+            </summary>
+            <param name="requirementLevel">The requirement level of the entry to add.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
         <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
             <summary>
             Instantiates a new instance of the OptionSpec class.
@@ -893,6 +900,13 @@
             Adds a new option specification.
             </summary>
             <param name="nameKind">The name kind to consider.</param>
+            <param name="aliases">Aliases of the option to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
+            <summary>
+            Adds a new option specification.
+            </summary>
+            <param name="requirementLevel">The requirement level of the entry to add.</param>
             <param name="aliases">Aliases of the option to add.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
@@ -1042,9 +1056,83 @@
             <param name="isDataSourceServiceChecked">Indicates whether the data module manager is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.IAppScope">
+            <summary>
+            This interface defines an application scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.AppExtension">
+            <summary>
+            The application extension.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.DataContext">
+            <summary>
+            The data context.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.DataSourceService">
+            <summary>
+            The data source service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.ScriptInterpreter">
+            <summary>
+            The script interpreter.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.CreateItem``1(System.String,BindOpen.Framework.Core.Extensions.Configuration.TAppExtensionItemConfiguration{``0},System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a new instance of extension item.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="definitionName"></param>
+            <param name="configuration"></param>
+            <param name="name"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.CreateViewer(BindOpen.Framework.Core.Extensions.Common.AppExtensionItemKind,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Creates a new instance of viewer.
+            </summary>
+            <param name="libraryItemKind"></param>
+            <param name="definitionName"></param>
+            <param name="viewerKey"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.SetAppDomain(System.AppDomain)">
+            <summary>
+            Sets the application domain of this instance.
+            </summary>
+            <param name="appDomain">The application domain to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this instance.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="specificationAreas"></param>
+            <param name="updateModes"></param>
+            <param name="appScope"></param>
+            <param name="scriptVariableSet"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Application.Services.DataService">
             <summary>
             This class represents a data service.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Services.DataService._connection">
+            <summary>
+            The connection of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Services.DataService.Connection">
+            <summary>
+            The connection of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Services.DataService.#ctor">
@@ -1068,12 +1156,18 @@
             Executes the specified function.
             </summary>
             <typeparam name="Q"></typeparam>
+            <param name="service"></param>
             <param name="function"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Services.IDataService">
             <summary>
             This interfaces represents a data service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Services.IDataService.Connection">
+            <summary>
+            The connection of the service.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Services.WebRequestResult">
@@ -4961,7 +5055,7 @@
             </summary>
             <param name="st">The string to consider.</param>
             <param name="charNumber">The number of characters to consider.</param>
-            <param name="dotAdded">Indicates whether dots are added.</param>
+            <param name="addedString">Indicates whether dots are added.</param>
             <returns>Returns the specified string shorten.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Helpers.Strings.StringHelper.GetStringBetween(System.String,System.Char)">
@@ -8050,6 +8144,11 @@
             </summary>
             <returns>Gets the library definition from this instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Attributes.DataElementAttribute">
+            <summary>
+            This class represents a data element attribute.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Attributes.DataElementAttribute.GroupId">
             <summary>
             ID of the group of this instance.
@@ -8128,6 +8227,11 @@
         <member name="M:BindOpen.Framework.Core.Extensions.Attributes.DetailPropertyAttribute.#ctor">
             <summary>
             Instantiates a new instance of the DetailPropertyAttribute class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Attributes.ExtensionItemAttribute">
+            <summary>
+            This class represents an indexed data item attribute.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Attributes.ExtensionItemAttribute.Name">
@@ -12116,7 +12220,6 @@
             <summary>
             Logs the specified event.
             </summary>
-            <param name="log">The log to consider.</param>
             <param name="logEvent">The log event to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.Log,System.String,System.Object)">
@@ -12262,7 +12365,7 @@
             <summary>
             Logs the specified record.
             </summary>
-            <param name="log">The log to consider.</param>
+            <param name="logEvent">The log event to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.Log,System.String,System.Object)">
             <summary>
@@ -12629,7 +12732,6 @@
             <summary>
             Logs the specified event.
             </summary>
-            <param name="log">The log to consider.</param>
             <param name="logEvent">The log event to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.Logger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.Log,System.String,System.Object)">
@@ -12764,7 +12866,6 @@
             </summary>
             <typeparam name="T">The logger class to consider.</typeparam>
             <param name="name">The name to consider.</param>
-            <param name="logFormat">The format to consider.</param>
             <param name="mode">The mode to consider.</param>
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>

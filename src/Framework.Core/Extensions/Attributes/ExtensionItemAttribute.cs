@@ -2,10 +2,10 @@
 
 namespace BindOpen.Framework.Core.Extensions.Attributes
 {
-    [AttributeUsageAttribute(AttributeTargets.All, AllowMultiple = false)]
     /// <summary>
     /// This class represents an indexed data item attribute.
     /// </summary>
+    [AttributeUsageAttribute(AttributeTargets.All, AllowMultiple = false)]
     public class ExtensionItemAttribute : Attribute
     {
         // ------------------------------------------
