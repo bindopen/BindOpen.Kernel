@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class AppHost : AppService, IAppHost
+    public class BdoAppHost : BdoAppService, IBdoAppHost
     {
         // ------------------------------------------
         // VARIABLES
@@ -65,9 +65,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AppService class.
+        /// Instantiates a new instance of the BdoAppHost class.
         /// </summary>
-        public AppHost() : base()
+        public BdoAppHost() : base()
         {
             // we initiate the options
             this.Options.SetAppFolder(Directory.GetCurrentDirectory());
@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        public IAppHost Configure(Action<IAppHostOptions> setupOptions)
+        public IBdoAppHost Configure(Action<IAppHostOptions> setupOptions)
         {
             setupOptions?.Invoke(this.Options);
 
@@ -228,18 +228,18 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public new virtual IAppHost Start(Log log = null)
+        public new virtual IBdoAppHost Start(Log log = null)
         {
-            return base.Start(log) as AppHost;
+            return base.Start(log) as BdoAppHost;
         }
 
         /// <summary>
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public new virtual IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public new virtual IBdoAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
-            return base.End(executionStatus) as AppHost;
+            return base.End(executionStatus) as BdoAppHost;
         }
 
         #endregion
@@ -360,7 +360,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 }
 
                 // if at this end, neither exceptions nor errors occured then
-                if ((this.GetType() == typeof(AppHost)) && (!log.HasErrorsOrExceptions()))
+                if ((this.GetType() == typeof(BdoAppHost)) && (!log.HasErrorsOrExceptions()))
                 {
                     // we indicate that the configuration has been well loaded
                     log.AddMessage("Application configuration loaded");
@@ -375,7 +375,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             }
 
             this._isLoadCompleted = !log.HasErrorsOrExceptions();
-            if (this.GetType() == typeof(AppHost))
+            if (this.GetType() == typeof(BdoAppHost))
                 this.LoadComplete();
 
             return log;

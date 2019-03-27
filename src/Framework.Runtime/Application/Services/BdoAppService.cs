@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class AppService : ScopedService, IAppService
+    public class BdoAppService : ScopedService, IBdoAppService
     {
         // ------------------------------------------
         // VARIABLES
@@ -100,9 +100,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AppService class.
+        /// Instantiates a new instance of the BdoAppService class.
         /// </summary>
-        public AppService() : base()
+        public BdoAppService() : base()
         {
             // we initiate the log of this instance
             this.Log = new Log(_ => false)
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public virtual IAppService Start(Log log = null)
+        public virtual IBdoAppService Start(Log log = null)
         {
             log = log ?? new Log();
 
@@ -157,7 +157,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public virtual IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public virtual IBdoAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
             this.Log.End(executionStatus);
             return this;
@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             this.AppScope.DataContext.AddSystemItem("appHost", this);
             this.AppScope.DataSourceService = new DataSourceService();
 
-            if (this.GetType() == typeof(AppService))
+            if (this.GetType() == typeof(BdoAppService))
                 this._isLoadCompleted = true;
 
             return new Log();

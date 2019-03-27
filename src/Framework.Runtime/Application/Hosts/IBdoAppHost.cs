@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// The interface defines the application host.
     /// </summary>
-    public interface IAppHost : IAppService
+    public interface IBdoAppHost : IBdoAppService
     {
         // Execution ---------------------------------
 
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        IAppHost Configure(Action<IAppHostOptions> setupOptions);
+        IBdoAppHost Configure(Action<IAppHostOptions> setupOptions);
 
         /// <summary>
         /// The application settings.
@@ -44,14 +44,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        new IAppHost Start(Log log = null);
+        new IBdoAppHost Start(Log log = null);
 
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the application host to consider.</returns>
-        new IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+        new IBdoAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
 
         // Settings ----------------------------------
 

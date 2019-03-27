@@ -16,7 +16,7 @@ namespace BindOpen.TestConsole
     /// <remarks>This allows </remarks>
     internal static class Program
     {
-        public static IAppHost _AppHost = null;
+        public static IBdoAppHost _AppHost = null;
 
         private static void Main(string[] args)
         {
@@ -52,7 +52,7 @@ namespace BindOpen.TestConsole
             //field.Name = "test";
             //field.Alias = "alias";
 
-            Program._AppHost = new AppHost()
+            Program._AppHost = new BdoAppHost()
                 .Configure(options=>
                     options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                     .SetModule(new AppModule("app.test"))
@@ -67,7 +67,7 @@ namespace BindOpen.TestConsole
                         LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
                 )
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-                .Start() as AppHost;
+                .Start() as BdoAppHost;
 
             Console.WriteLine(Program._AppHost.GetKnownPath(ApplicationPathKind.SettingsFile));
 

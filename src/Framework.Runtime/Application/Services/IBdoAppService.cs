@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// The interface defines the application service.
     /// </summary>
-    public interface IAppService : IScopedService
+    public interface IBdoAppService : IScopedService
     {
         // Execution ---------------------------------
 
@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// This event is triggered when the application is successfully initialized.
         /// </summary>
-        event AppHost.OnLoadCompletedEventHandler OnLoadCompleted;
+        event BdoAppHost.OnLoadCompletedEventHandler OnLoadCompleted;
 
         // Process -----------------------------------
 
@@ -56,13 +56,13 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        IAppService Start(Log log = null);
+        IBdoAppService Start(Log log = null);
 
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the application host to consider.</returns>
-        IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+        IBdoAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }
 }

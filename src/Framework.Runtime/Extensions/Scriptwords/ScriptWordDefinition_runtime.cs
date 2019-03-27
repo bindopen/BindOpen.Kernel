@@ -35,8 +35,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            AppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            BdoAppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
             if (appHostService == null)
                 return "<!--Application manager missing-->";
 
@@ -59,8 +59,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IAppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            IBdoAppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
             if (appHostService == null)
                 return "<!--Application manager missing-->";
 
@@ -83,8 +83,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            AppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            BdoAppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
             if (appHostService == null)
                 return "<!--Application manager missing-->";
 
@@ -107,8 +107,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null || appScope.DataContext == null)
                 return "<!--Application scope missing-->";
-            AppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as AppHost;
+            BdoAppHost appHostService =
+                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
             if (appHostService == null)
                 return "<!--Application manager missing-->";
 
