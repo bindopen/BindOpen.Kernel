@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Logs the specified record.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
+        /// <param name="logEvent">The log event to consider.</param>
         public override Boolean WriteEvent(
             LogEvent logEvent)
         {

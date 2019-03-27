@@ -8,8 +8,14 @@ namespace BindOpen.Framework.Core.Application.Services
     /// </summary>
     public class DataService : DataItem, IDataService
     {
+        /// <summary>
+        /// The connection of this instance.
+        /// </summary>
         protected IConnection _connection = null;
 
+        /// <summary>
+        /// The connection of this instance.
+        /// </summary>
         public IConnection Connection
         {
             get { return this._connection; }

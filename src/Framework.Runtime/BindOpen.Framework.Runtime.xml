@@ -32,23 +32,6 @@
             This class represents an application host.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.AppHost._isLoadCompleted">
-            <summary>
-            Indicates whether this instance is loaded.
-            </summary>
-            <remarks>The value can be assigned.</remarks>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.AppHost.OnLoadCompletedEventHandler">
-            <summary>
-            This delegate is called when the application is successfully initialized.
-            </summary>
-            <param name="sender">The application host</param>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Hosts.AppHost.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Options">
             <summary>
             The options of this instance.
@@ -64,31 +47,6 @@
             The set of user settings of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.CurrentExecutionState">
-            <summary>
-            The current execution state of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.CurrentExecutionStatus">
-            <summary>
-            The current execution status of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.AppDomainPool">
-            <summary>
-            Application domain pool of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Log">
-            <summary>
-            Log of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.IsLoadCompleted">
-            <summary>
-            Indicates whether the platform information is loaded.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.#ctor">
             <summary>
             Instantiates a new instance of the AppService class.
@@ -100,18 +58,6 @@
             </summary>
             <param name="setupOptions">The action to setup the application host.</param>
             <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
-            <summary>
-            Starts the application.
-            </summary>
-            <returns>Returns true if this instance is started.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Indicates the application ends.
-            </summary>
-            <param name="executionStatus">The execution status to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.SaveSettings">
             <summary>
@@ -132,6 +78,18 @@
             <param name="pathKind">The kind of paths.</param>
             <returns>The path of the application temporary folder.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Initialize``1">
             <summary>
             Initializes information.
@@ -148,11 +106,6 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
             <returns>Returns the loading log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost._ApplicationInstanceName">
             <summary>
@@ -267,32 +220,12 @@
             The application settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.AppDomainPool">
-            <summary>
-            The application domain pool.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Log">
-            <summary>
-            The log.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
             <summary>
             Get the specified known path.
             </summary>
             <param name="pathKind">The kind of known path.</param>
             <returns>Returns the specified path.</returns>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.CurrentExecutionState">
-            <summary>
-            The state of the current execution.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.CurrentExecutionStatus">
-            <summary>
-            The status of the current execution.
-            </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
@@ -307,21 +240,6 @@
             </summary>
             <param name="executionStatus">The execution status to apply.</param>
             <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.IsLoadCompleted">
-            <summary>
-            Indicates whether the load is completed.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.UserSettingsSet">
             <summary>
@@ -868,9 +786,8 @@
             <summary>
             Initializes a new instance of ApplicationModule class.
             </summary>
-            <param name="aParentApplicationModule">The parent of the visitor application module.</param>
-            <param name="moduleName">Name of the instance.</param>
-            <param name="url">URL of the instance.</param>
+            <param name="module">Module to consider.</param>
+            <param name="uri">URI to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
@@ -1022,7 +939,7 @@
             <summary>
             Adds the specified section.
             </summary>
-            <param name="sections">The section to add.</param>
+            <param name="section">The section to add.</param>
             <returns>Returns the specified section.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.AddSections(BindOpen.Framework.Runtime.Application.Modules.AppSection[])">
@@ -1091,13 +1008,12 @@
             <param name="name">The name to consider.</param>
             <param name="module">The application module of the instance.</param>
             <param name="parent">The parent section of the instance.</param>
-            <param name="visitor">The visitor of the instance.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.AddSection(BindOpen.Framework.Runtime.Application.Modules.AppSection)">
             <summary>
             Adds the specified section.
             </summary>
-            <param name="sections">The section to add.</param>
+            <param name="section">The section to add.</param>
             <returns>Returns the specified section.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppSection.AddSections(BindOpen.Framework.Runtime.Application.Modules.AppSection[])">
@@ -1798,9 +1714,90 @@
             <param name="aPassword">The password to consider.</param>
             <param name="aTokenValue">The token value to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService">
+            <summary>
+            This class represents an application host.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._isLoadCompleted">
+            <summary>
+            Indicates whether this instance is loaded.
+            </summary>
+            <remarks>The value can be assigned.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompletedEventHandler">
+            <summary>
+            This delegate is called when the application is successfully initialized.
+            </summary>
+            <param name="sender">The application host</param>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionState">
+            <summary>
+            The current execution state of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionStatus">
+            <summary>
+            The current execution status of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.AppDomainPool">
+            <summary>
+            Application domain pool of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Log">
+            <summary>
+            Log of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.IsLoadCompleted">
+            <summary>
+            Indicates whether the platform information is loaded.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor">
+            <summary>
+            Instantiates a new instance of the AppService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.ConnectionService">
             <summary>
             This class represents a connection service.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ConnectionService._appScope">
+            <summary>
+            The application scope of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.#ctor(BindOpen.Framework.Core.Application.Scopes.IRuntimeAppScope)">
@@ -1863,6 +1860,124 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IAppService">
+            <summary>
+            The interface defines the application service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.AppDomainPool">
+            <summary>
+            The application domain pool.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Log">
+            <summary>
+            The log.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.IsLoadCompleted">
+            <summary>
+            Indicates whether the load is completed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.IAppService.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionState">
+            <summary>
+            The state of the current execution.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionStatus">
+            <summary>
+            The status of the current execution.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.Start(BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Starts the process.
+            </summary>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the application host to consider.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Ends the process specifying the status.
+            </summary>
+            <param name="executionStatus">The execution status to apply.</param>
+            <returns>Returns the application host to consider.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IConnectionService">
+            <summary>
+            This interface defines the connection service.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Close(BindOpen.Framework.Core.Data.Connections.Connection)">
+            <summary>
+            Closes the connection.
+            </summary>
+            <param name="connector"></param>
+            <returns>The log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Configuration.Connectors.ConnectorConfiguration,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration"></param>
+            <param name="log"></param>
+            <returns>The log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(BindOpen.Framework.Core.Data.Items.Source.DataSource,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataSource"></param>
+            <param name="connectorDefinitionUniqueName"></param>
+            <param name="log"></param>
+            <returns>The log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(BindOpen.Framework.Core.Application.Datasources.DataSourceService,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataSourceManager"></param>
+            <param name="dataSourceName"></param>
+            <param name="connectorDefinitionUniqueName"></param>
+            <param name="log"></param>
+            <returns>The log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Opens the connection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataSourceName"></param>
+            <param name="connectorDefinitionUniqueName"></param>
+            <param name="log"></param>
+            <returns>The log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Update``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+            <summary>
+            Updates this service.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="specificationAreas"></param>
+            <param name="updateModes"></param>
+            <param name="appScope"></param>
+            <param name="scriptVariableSet"></param>
+            <returns>The log of the operation.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.IScopedService">
             <summary>

@@ -199,7 +199,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Logs the specified event.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
         /// <param name="logEvent">The log event to consider.</param>
         public virtual Boolean WriteEvent(
             LogEvent logEvent)

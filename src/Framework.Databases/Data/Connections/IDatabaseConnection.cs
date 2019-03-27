@@ -19,7 +19,6 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <summary>
         /// Executes a database data query that does not return anything.
         /// </summary>
-        /// <param name="queryBuilder">The data query builder to use.</param>
         /// <param name="queryText">The text to execute.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="log">The log to consider.</param>

@@ -20,7 +20,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <typeparam name="T">The logger class to consider.</typeparam>
         /// <param name="name">The name to consider.</param>
-        /// <param name="logFormat">The format to consider.</param>
         /// <param name="mode">The mode to consider.</param>
         /// <param name="outputKind">The output kind to consider.</param>
         /// <param name="isVerbose">Indicates whether .</param>
