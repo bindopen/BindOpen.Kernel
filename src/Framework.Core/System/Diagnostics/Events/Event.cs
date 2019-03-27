@@ -189,9 +189,35 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             if (exception != null)
             {
                 this.SetTitleText(exception.Message);
-                this.SetDescriptionText (exception.ToString());
+                this.SetDescriptionText(exception.ToString());
                 this.LongDescription = new DictionaryDataItem(exception.ToString());
             }
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // CONVERTERS
+        // ------------------------------------------
+
+        #region Converters
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
+        public static implicit operator Event(string st)
+        {
+            return new LogEvent(EventKind.Message, st);
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <param name="aEvent">The event to consider.</param>
+        public static implicit operator string(Event aEvent)
+        {
+            return aEvent?.GetTitleText();
         }
 
         #endregion
@@ -218,7 +244,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 

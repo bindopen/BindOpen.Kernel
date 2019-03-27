@@ -23,8 +23,8 @@ namespace BindOpen.TestConsole.Settings
         /// The resources folder path of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name= "resources.folderPath")]
-        public String ResourcesFolderPath
+        [DetailProperty(Name= "test.folderPath")]
+        public String TestFolderPath
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
