@@ -1120,38 +1120,38 @@
             <param name="scriptVariableSet"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.DataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.BdoDataService">
             <summary>
-            This class represents a data service.
+            This class represents a BindOpen data service.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Application.Services.DataService._connection">
-            <summary>
-            The connection of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.DataService.Connection">
+        <member name="F:BindOpen.Framework.Core.Application.Services.BdoDataService._connection">
             <summary>
             The connection of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.DataService.#ctor">
+        <member name="P:BindOpen.Framework.Core.Application.Services.BdoDataService.Connection">
+            <summary>
+            The connection of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Services.BdoDataService.#ctor">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.DataService.#ctor(BindOpen.Framework.Core.Data.Connections.IConnection)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.BdoDataService.#ctor(BindOpen.Framework.Core.Data.Connections.BdoAppHost)">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
             <param name="connection">The connection to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.DataServiceExtension">
+        <member name="T:BindOpen.Framework.Core.Application.Services.BdoDataServiceExtension">
             <summary>
             This class represents a data context service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.DataServiceExtension.Execute``1(``0,System.Action{``0})">
+        <member name="M:BindOpen.Framework.Core.Application.Services.BdoDataServiceExtension.Execute``1(``0,System.Action{``0})">
             <summary>
             Executes the specified function.
             </summary>
@@ -1160,12 +1160,12 @@
             <param name="function"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.IDataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.IBdoDataService">
             <summary>
-            This interfaces represents a data service.
+            This interfaces represents a BindOpen data service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.IDataService.Connection">
+        <member name="P:BindOpen.Framework.Core.Application.Services.IBdoDataService.Connection">
             <summary>
             The connection of the service.
             </summary>
@@ -2079,22 +2079,22 @@
             Indicates whether the instance is connected.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Connections.IConnection">
+        <member name="T:BindOpen.Framework.Core.Data.Connections.BdoAppHost">
             <summary>
             This interfaces represents a connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.Open">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.Open">
             <summary>
             Opens a connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.Close">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.Close">
             <summary>
             Closes the existing connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.IsConnected">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.IsConnected">
             <summary>
             Indicates whether the instance is connected.
             </summary>
