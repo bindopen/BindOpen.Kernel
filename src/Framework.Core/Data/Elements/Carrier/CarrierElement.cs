@@ -55,9 +55,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new CarrierElementSpecification Specification
+        public new CarrierElementSpec Specification
         {
-            get { return base.Specification as CarrierElementSpecification; }
+            get { return base.Specification as CarrierElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -90,12 +90,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
             String name,
             String id,
             String aCarrierUniqueName,
-            CarrierElementSpecification aSpecification,
+            CarrierElementSpec aSpecification,
             params CarrierConfiguration[] items)
             : base(name, "CarrierElement_", id)
         {
             this.ValueType = DataValueType.CarrierConfiguration;
-            //this.Specification = new CarrierElementSpecification();
+            //this.Specification = new CarrierElementSpec();
 
             this.SetItem(items);
             if (!String.IsNullOrEmpty(aCarrierUniqueName))
@@ -153,9 +153,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new CarrierElementSpecification();
+            return new CarrierElementSpec();
         }
 
         #endregion
@@ -175,7 +175,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public override void SetItem(
             Object item,
-            AppScope appScope = null)
+            IAppScope appScope = null)
         {
             base.SetItem(item);
             
@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         {
             if (appScope == null 
                 || appScope.AppExtension== null 
-                || !(this.Specification is CarrierElementSpecification))
+                || !(this.Specification is CarrierElementSpec))
                 return null;
 
             return appScope.AppExtension.CreateConfiguration<CarrierDefinition>(this.DefinitionUniqueName, null, log);

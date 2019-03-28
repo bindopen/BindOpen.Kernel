@@ -14,9 +14,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
     /// This class represents a document element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("DocumentElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DocumentElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DocumentElementSpecification : DataElementSpecification
+    public class DocumentElementSpec : DataElementSpec
     {
 
         // --------------------------------------------------
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <summary>
         /// Initializes a new document element specification.
         /// </summary>
-        public DocumentElementSpecification(): base()
+        public DocumentElementSpec(): base()
         {
         }
 
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public DocumentElementSpecification(
+        public DocumentElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
@@ -147,10 +147,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            DocumentElementSpecification aDocumentElementSpecification = base.Clone() as DocumentElementSpecification;
-            //entityElementSpecification.EntityUniqueNameFilter = this.EntityUniqueNameFilter.Clone() as DataValueFilter;
-            //entityElementSpecification.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
-            return aDocumentElementSpecification;
+            DocumentElementSpec aDocumentElementSpec = base.Clone() as DocumentElementSpec;
+            //entityElementSpec.EntityUniqueNameFilter = this.EntityUniqueNameFilter.Clone() as DataValueFilter;
+            //entityElementSpec.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
+            return aDocumentElementSpec;
         }
 
         #endregion

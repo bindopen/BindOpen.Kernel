@@ -15,25 +15,28 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Input.
         /// </summary>
         Input,
+
         /// <summary>
         /// Output.
         /// </summary>
         Output,
+
         /// <summary>
         /// Scalar output.
         /// </summary>
         ScalarOutput,
+
         /// <summary>
         /// Non-scalar output.
         /// </summary>
         NonScalarOutput
 
     };
-
 
     // --------------------------------------------------
     // EXTENSION
@@ -72,5 +75,4 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
    }
 
     #endregion
-
 }

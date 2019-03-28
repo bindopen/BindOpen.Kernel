@@ -206,7 +206,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <returns>Returns the log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public virtual Log Update(
-            DataElementSpecification referenceSpecification = null,
+            DataElementSpec referenceSpecification = null,
             List<String> specificationAreas = null)
         {
             return new Log();

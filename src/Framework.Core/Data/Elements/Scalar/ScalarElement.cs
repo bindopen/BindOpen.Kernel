@@ -90,9 +90,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new ScalarElementSpecification Specification
+        public new ScalarElementSpec Specification
         {
-            get { return base.Specification as ScalarElementSpecification; }
+            get { return base.Specification as ScalarElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -168,7 +168,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
             String name,
             String id,
             DataValueType valueType,
-            ScalarElementSpecification specification,
+            ScalarElementSpec specification,
             params Object[] items)
             : base(name, "scalarElement_", id)
         {
@@ -197,9 +197,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new ScalarElementSpecification();
+            return new ScalarElementSpec();
         }
 
         #endregion

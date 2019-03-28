@@ -4,13 +4,13 @@
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/elements/DataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/carrier/CarrierElementSpecification.xsd" />
+  <xs:include schemaLocation="../../../data/elements/carrier/CarrierElementSpec.xsd" />
 
   <xs:complexType name="CarrierElement">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:DataElement">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:CarrierElementSpecification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:CarrierElementSpec" />
         </xs:sequence>
         <xs:attribute name="definition" type="xs:string" use="required" />
       </xs:extension>

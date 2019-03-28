@@ -4,7 +4,7 @@
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/elements/DataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/object/ObjectElementSpecification.xsd" />
+  <xs:include schemaLocation="../../../data/elements/object/ObjectElementSpec.xsd" />
 
   <xs:complexType name="ObjectElement">
     <xs:complexContent mixed="false">
@@ -13,7 +13,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="class" type="xs:string" />
           <!--<xs:element minOccurs="0" maxOccurs="1" name="formatUniqueName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="dataSchema.reference" type="bdo:DataHandler" />-->
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:ObjectElementSpecification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:ObjectElementSpec" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

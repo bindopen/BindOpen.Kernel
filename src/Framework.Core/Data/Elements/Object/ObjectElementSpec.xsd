@@ -3,14 +3,14 @@
   xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/elements/DataElementSpecification.xsd" />
+  <xs:include schemaLocation="../../../data/elements/DataElementSpec.xsd" />
   <xs:include schemaLocation="../../../data/specification/filters/DataValueFilter.xsd" />
   <xs:include schemaLocation="../../../data/common/RequirementLevel.xsd" />
   <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
 
-  <xs:complexType name="ObjectElementSpecification">
+  <xs:complexType name="ObjectElementSpec">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataElementSpecification">
+      <xs:extension base="bdo:DataElementSpec">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="class.filter" type="bdo:DataValueFilter" />
           <!--<xs:element minOccurs="0" maxOccurs="1" name="formatUniqueNameFilter" type="bdo:DataValueFilter" />

@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         #region Variables
 
         private DataSourceKind _DataSourceKind = DataSourceKind.None;
-        private DataElementSpecificationSet _PathSpecification = new DataElementSpecificationSet();
+        private DataElementSpecSet _PathSpecification = new DataElementSpecSet();
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// The set of element specifications of this instance.
         /// </summary>
         [XmlElement("path.specification")]
-        public DataElementSpecificationSet PathSpecification
+        public DataElementSpecSet PathSpecification
         {
             get { return this._PathSpecification; }
             set { this._PathSpecification = value; }

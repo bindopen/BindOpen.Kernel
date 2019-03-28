@@ -315,7 +315,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                             this.Options.Settings.AppScope = this._appScope;
                         }
                         this.Options?.Settings?.Update(appSettings);
-                        this.Options?.Settings?.Update(new DataElementSpecificationSet(
+                        this.Options?.Settings?.Update(new DataElementSpecSet(
                             this.Options?.SettingsSpecificationSet?.Items?
                                 .Where(p =>
                                     p.SpecificationLevels.Has(SpecificationLevel.Definition)
@@ -338,7 +338,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         //DataElementSet settingsSet = DataItem.Load<DataElementSet>(
                         //    this.GetPath(ApplicationPathKind.SettingsFile), log, null, null, false);
-                        //settingsSet?.Update(new DataElementSpecificationSet(
+                        //settingsSet?.Update(new DataElementSpecSet(
                         //        this.SettingsSpecificationSet.Items
                         //                .Where(p => p.SpecificationLevels.Has(SpecificationLevel.Runtime)).ToArray()),
                         //        null,

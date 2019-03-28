@@ -4,7 +4,7 @@
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/elements/DataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/schema/SchemaElementSpecification.xsd" />
+  <xs:include schemaLocation="../../../data/elements/schema/SchemaElementSpec.xsd" />
 
   <xs:complexType name="SchemaElement">
     <xs:complexContent mixed="false">
@@ -12,7 +12,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="imageFileName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="businessEntityUniqueName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:SchemaElementSpecification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:SchemaElementSpec" />
       </xs:sequence>
       </xs:extension>
     </xs:complexContent>

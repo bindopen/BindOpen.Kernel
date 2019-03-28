@@ -92,9 +92,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new SchemaElementSpecification Specification
+        public new SchemaElementSpec Specification
         {
-            get { return base.Specification as SchemaElementSpecification; }
+            get { return base.Specification as SchemaElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
             : base(name, "schemaElement_")
         {
             this.ValueType = DataValueType.Schema;
-            this.Specification = new SchemaElementSpecification();
+            this.Specification = new SchemaElementSpec();
 
             foreach (Object aItem in items)
                 this.AddItem(aItem);
@@ -163,9 +163,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new SchemaElementSpecification();
+            return new SchemaElementSpec();
         }
 
         // Schema elements

@@ -1,17 +1,15 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using System;
+﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.References
 {
-
     /// <summary>
     /// This class represents an item reference.
     /// </summary>
     public class TItemReference<T> : TBaseItemReference<T> where T: DataItem
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -24,10 +22,7 @@ namespace BindOpen.Framework.Core.Data.References
         [XmlElement("item")]
         public T ObjectItem
         {
-            get
-            {
-                return this.Item;
-            }
+            get => this.Item;
             set
             {
                 this.Item = value;
@@ -38,16 +33,9 @@ namespace BindOpen.Framework.Core.Data.References
         /// Specification of the ObjectItem property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ObjectItemSpecified
-        {
-            get
-            {
-                return !this.ReferenceSpecified && this.Item !=null;
-            }
-        }
+        public Boolean ObjectItemSpecified => !ReferenceSpecified && Item != null;
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -81,7 +69,5 @@ namespace BindOpen.Framework.Core.Data.References
         }
 
         #endregion
-
     }
-
 }

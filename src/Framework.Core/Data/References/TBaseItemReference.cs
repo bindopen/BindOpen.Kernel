@@ -8,25 +8,11 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.References
 {
-
     /// <summary>
     /// This class represents a base item reference.
     /// </summary>
     public abstract class TBaseItemReference<T> : DataItem where T : DataItem
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variabes
-
-        private DataReference _Reference;
-        private T _Item;
-
-        #endregion
-
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -37,17 +23,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// The reference of this instance.
         /// </summary>
         [XmlElement("reference")]
-        public DataReference Reference
-        {
-            get
-            {
-                return this._Reference;
-            }
-            set
-            {
-                this._Reference = value;
-            }
-        }
+        public DataReference Reference { get; set; }
 
         /// <summary>
         /// Specification of the Reference property of this instance.
@@ -57,7 +33,7 @@ namespace BindOpen.Framework.Core.Data.References
         {
             get
             {
-                return this._Reference !=null;
+                return this.Reference !=null;
             }
         }
 
@@ -65,20 +41,9 @@ namespace BindOpen.Framework.Core.Data.References
         /// The item of this instance.
         /// </summary>
         [XmlIgnore()]
-        public T Item
-        {
-            get
-            {
-                return this._Item;
-            }
-            set
-            {
-                this._Item = value;
-            }
-        }
+        public T Item { get; set; }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -89,7 +54,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// <summary>
         /// Creates a new instance of the TBaseItemReference class.
         /// </summary>
-        public TBaseItemReference()
+        protected TBaseItemReference()
         {
         }
 
@@ -97,22 +62,21 @@ namespace BindOpen.Framework.Core.Data.References
         /// Creates a new instance of the TBaseItemReference class.
         /// </summary>
         /// <param name="item">The item to consider.</param>
-        public TBaseItemReference(T item)
+        protected TBaseItemReference(T item)
         {
-            this._Item = item;
+            this.Item = item;
         }
 
         /// <summary>
         /// Creates a new instance of the TBaseItemReference class.
         /// </summary>
         /// <param name="reference">The reference to consider.</param>
-        public TBaseItemReference(DataReference reference)
+        protected TBaseItemReference(DataReference reference)
         {
-            this._Reference = reference;
+            this.Reference = reference;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // MUTATORS
@@ -131,12 +95,11 @@ namespace BindOpen.Framework.Core.Data.References
             ScriptVariableSet scriptVariableSet = null)
         {
             Log log = new Log();
-            this._Item = this._Reference == null ? this._Item : this._Reference.Get(appScope, scriptVariableSet, log) as T;
+            this.Item = this.Reference == null ? this.Item : this.Reference.Get(appScope, scriptVariableSet, log) as T;
             return log;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -153,14 +116,13 @@ namespace BindOpen.Framework.Core.Data.References
         public override Object Clone()
         {
             TBaseItemReference<T> referencableItem = base.Clone() as TBaseItemReference<T>;
-            referencableItem.Item = this._Item.Clone() as T;
-            referencableItem.Reference = this._Reference.Clone() as DataReference;
+            referencableItem.Item = this.Item.Clone() as T;
+            referencableItem.Reference = this.Reference.Clone() as DataReference;
 
             return referencableItem;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // SERIALIZATION
@@ -176,10 +138,8 @@ namespace BindOpen.Framework.Core.Data.References
         {
             base.UpdateStorageInfo(log);
 
-            if (this._Item != null)
-                this._Item.UpdateStorageInfo(log);
-            if (this._Reference != null)
-                this._Reference.UpdateStorageInfo(log);
+            this.Item?.UpdateStorageInfo(log);
+            this.Reference?.UpdateStorageInfo(log);
         }
 
         /// <summary>
@@ -191,14 +151,10 @@ namespace BindOpen.Framework.Core.Data.References
         {
             base.UpdateRuntimeInfo(appScope, log);
 
-            if (this._Item != null)
-                this._Item.UpdateRuntimeInfo(appScope, log);
-            if (this._Reference != null)
-                this._Reference.UpdateRuntimeInfo(appScope, log);
+            this.Item?.UpdateRuntimeInfo(appScope, log);
+            this.Reference?.UpdateRuntimeInfo(appScope, log);
         }
 
         #endregion
-
     }
-
 }

@@ -26,15 +26,15 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// This class represents a data element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("DataElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DataElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    [XmlInclude(typeof(CarrierElementSpecification))]
-    [XmlInclude(typeof(DocumentElementSpecification))]
-    [XmlInclude(typeof(EntityElementSpecification))]
-    [XmlInclude(typeof(ScalarElementSpecification))]
-    [XmlInclude(typeof(SchemaElementSpecification))]
-    [XmlInclude(typeof(SourceElementSpecification))]
-    public abstract class DataElementSpecification : DataSpecification
+    [XmlInclude(typeof(CarrierElementSpec))]
+    [XmlInclude(typeof(DocumentElementSpec))]
+    [XmlInclude(typeof(EntityElementSpec))]
+    [XmlInclude(typeof(ScalarElementSpec))]
+    [XmlInclude(typeof(SchemaElementSpec))]
+    [XmlInclude(typeof(SourceElementSpec))]
+    public abstract class DataElementSpec : DataSpecification
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         #region Constants
 
         /// <summary>
-        /// Names of the attribute areas of the DataElementSpecification class.
+        /// Names of the attribute areas of the DataElementSpec class.
         /// </summary>
         public static List<String> __Arenames = new List<String>()
         {
@@ -64,34 +64,29 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         // General ------------------------------------------
 
-        private String _GroupId = null;
-        private List<String> _Aliases = null;
-        private DataValueType _ValueType = DataValueType.Any;
-        private Boolean _IsAllocatable = false;
-        private List<DataAreaSpecification> _AreaSpecifications = null;
+        private String _groupId = null;
+        private List<String> _aliases = null;
+        private List<DataAreaSpecification> _areaSpecifications = null;
 
         // Items ------------------------------
 
-        private List<DataItemizationMode> _AvailableItemizationModes = null;
-        private int _MinimumItemNumber = 1;
-        private int _MaximumItemNumber = -1;
+        private List<DataItemizationMode> _availableItemizationModes = null;
+        private List<Object> _defaultItems = null;
+        private List<String> _defaultStringItems = null;
 
-        private List<Object> _DefaultItems = null;
-        private List<String> _DefaultStringItems = null;
-
-        private List<SpecificationLevel> _ItemSpecificationLevels = null;
+        private List<SpecificationLevel> _itemSpecificationLevels = null;
 
         // Constraints ------------------------
 
-        private DataConstraintStatement _ConstraintStatement = null;
+        private DataConstraintStatement _constraintStatement = null;
 
         // Properties ---------------------------------------
 
-        private DataElementSpecificationSet _DetailSpecification = null;
+        private DataElementSpecSet _detailSpecification = null;
 
         // Design -----------------------------
 
-        private DataElementDesignStatement _DesignStatement = null;
+        private DataElementDesignStatement _designStatement = null;
 
         #endregion
 
@@ -109,31 +104,21 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlElement("groupId")]
         public String GroupId
         {
-            get { return this._GroupId ?? ""; }
-            set { this._GroupId = value; }
+            get => _groupId ?? "";
+            set { _groupId = value; }
         }
 
         /// <summary>
         /// Specification of the GroupId property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean GroupIdSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this._GroupId);
-            }
-        }
+        public Boolean GroupIdSpecified => !string.IsNullOrEmpty(_groupId);
 
         /// <summary>
         /// The value type of this instance.
         /// </summary>
         [XmlIgnore()]
-        public DataValueType ValueType
-        {
-            get { return this._ValueType; }
-            set { this._ValueType = value; }
-        }
+        public DataValueType ValueType { get; set; } = DataValueType.Any;
 
         /// <summary>
         /// The aliases of the entry.
@@ -142,14 +127,10 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlArrayItem("alias")]
         public List<String> Aliases
         {
-            get
-            {
-                if (this._Aliases == null) this._Aliases = new List<string>();
-                return this._Aliases;
-            }
+            get => _aliases ?? (_aliases = new List<string>());
             set
             {
-                this._Aliases = value;
+                _aliases = value;
             }
         }
 
@@ -157,13 +138,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the Aliases property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean AliasesSpecified
-        {
-            get
-            {
-                return this._Aliases != null && this._Aliases.Count > 1;
-            }
-        }
+        public Boolean AliasesSpecified => _aliases?.Count > 1;
 
         /// <summary>
         /// The area specifications of this instance.
@@ -171,14 +146,10 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlElement("areaSpecifications")]
         public List<DataAreaSpecification> AreaSpecifications
         {
-            get
-            {
-                 if (this._AreaSpecifications ==null) this._AreaSpecifications = new List<DataAreaSpecification>();
-                return this._AreaSpecifications;
-            }
+            get => _areaSpecifications ?? (_areaSpecifications = new List<DataAreaSpecification>());
             set
             {
-                this._AreaSpecifications = value;
+                _areaSpecifications = value;
             }
         }
 
@@ -186,41 +157,34 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the AreaSpecifications property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean AreaSpecificationsSpecified
-        {
-            get
-            {
-                return this._AreaSpecifications != null && this._AreaSpecifications.Count > 1;
-            }
-        }
+        public Boolean AreaSpecificationsSpecified => _areaSpecifications?.Count > 1;
 
         /// <summary>
         /// Indicates whether the instance can be allocated.
         /// </summary>
         [XmlElement("isAllocatable")]
         [DefaultValue(false)]
-        public Boolean IsAllocatable
-        {
-            get
-            {
-                return this._IsAllocatable;
-            }
-            set { this._IsAllocatable = value; }
-        }
+        public Boolean IsAllocatable { get; set; } = false;
 
         /// <summary>
         /// Specification of the IsAllocatable property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IsAllocatableSpecified
-        {
-            get
-            {
-                return this.IsAllocatable;
-            }
-        }
+        public Boolean IsAllocatableSpecified => IsAllocatable;
 
         // Items ---------------------------------
+
+        /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        [XmlAttribute("script")]
+        public string ItemScript { get; set; } = null;
+
+        /// <summary>
+        /// Specification of the ItemScript property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public Boolean ItemScriptSpecified => !string.IsNullOrEmpty(ItemScript);
 
         /// <summary>
         /// The available itemization modes of this instance.
@@ -229,16 +193,13 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlArrayItem("add.mode")]
         public List<DataItemizationMode> AvailableItemizationModes
         {
-            get {
-                if (this._AvailableItemizationModes == null) this._AvailableItemizationModes = new List<DataItemizationMode>();
-                return this._AvailableItemizationModes;
-            }
+            get => _availableItemizationModes ?? (_availableItemizationModes = new List<DataItemizationMode>());
             set
             {
-                if ((value == null) || (value.Count==0) || (value.Contains(DataItemizationMode.Any)))
-                    this._AvailableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Any };
-                else 
-                    this._AvailableItemizationModes = value;
+                if ((value == null) || (value.Count == 0) || (value.Contains(DataItemizationMode.Any)))
+                    _availableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Any };
+                else
+                    _availableItemizationModes = value;
             }
         }
 
@@ -246,13 +207,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the AvailableItemizationModes property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean AvailableItemizationModesSpecified
-        {
-            get
-            {
-                return this._AvailableItemizationModes !=null && this._AvailableItemizationModes.Count>0;
-            }
-        }
+        public Boolean AvailableItemizationModesSpecified => _availableItemizationModes?.Count > 0;
 
         /// <summary>
         /// Default string items of this instance.
@@ -261,24 +216,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlArrayItem("item")]
         public List<String> DefaultStringItems
         {
-            get {
-                 if (this._DefaultStringItems ==null) this._DefaultStringItems = new List<string>();
-                return this._DefaultStringItems;
-            }
-            set { this._DefaultStringItems = value; }
+            get => _defaultStringItems ?? (_defaultStringItems = new List<string>());
+            set { _defaultStringItems = value; }
         }
 
         /// <summary>
         /// Specification of the DefaultStringItems property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DefaultStringItemsSpecified
-        {
-            get
-            {
-                return this._DefaultStringItems !=null && this._DefaultStringItems.Count>0;
-            }
-        }
+        public Boolean DefaultStringItemsSpecified => _defaultStringItems?.Count > 0;
 
         /// <summary>
         /// Default items of this instance.
@@ -286,11 +232,8 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlIgnore()]
         public List<Object> DefaultItems
         {
-            get {
-                if (this._DefaultItems == null) this._DefaultItems = new List<object>();
-                return this._DefaultItems;
-            }
-            set { this._DefaultItems = value; }
+            get => _defaultItems ?? (_defaultItems = new List<object>());
+            set { _defaultItems = value; }
         }
 
         /// <summary>
@@ -298,34 +241,20 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         [XmlElement("minimumItemNumber")]
         [DefaultValue(1)]
-        public int MinimumItemNumber
-        {
-            get { return this._MinimumItemNumber; }
-            set { this._MinimumItemNumber = value; }
-        }
+        public int MinimumItemNumber { get; set; } = 1;
 
         /// <summary>
         /// Maximum item number of this instance.
         /// </summary>
         [XmlElement("maximumItemNumber")]
         [DefaultValue(-1)]
-        public int MaximumItemNumber
-        {
-            get { return this._MaximumItemNumber; }
-            set { this._MaximumItemNumber = value; }
-        }
+        public int MaximumItemNumber { get; set; } = -1;
 
         /// <summary>
         /// Indicates whether the value of this instance is a list.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IsValueList
-        {
-            get
-            {
-                return (this._MaximumItemNumber == -1) | (this._MaximumItemNumber > 1);
-            }
-        }
+        public Boolean IsValueList => (MaximumItemNumber == -1) || (MaximumItemNumber > 1);
 
         /// <summary>
         /// The item requirement level of this instance.
@@ -335,16 +264,22 @@ namespace BindOpen.Framework.Core.Data.Elements
         {
             get
             {
-                RequirementLevel aItemRequirementLevel = RequirementLevel.None;
-                if (this._MaximumItemNumber == 0)
-                    aItemRequirementLevel = RequirementLevel.Forbidden;
-                else if (this._MinimumItemNumber > 0)
-                    aItemRequirementLevel = RequirementLevel.Required;
-                else if (this._MinimumItemNumber <= 0)
-                    aItemRequirementLevel = RequirementLevel.Optional;
+                if (MaximumItemNumber == 0)
+                {
+                    return RequirementLevel.Forbidden;
+                }
+                else if (MinimumItemNumber > 0)
+                {
+                    return RequirementLevel.Required;
+                }
+                else if (MinimumItemNumber <= 0)
+                {
+                    return RequirementLevel.Optional;
+                }
                 else
-                    aItemRequirementLevel = RequirementLevel.None;
-                return aItemRequirementLevel;
+                {
+                    return RequirementLevel.None;
+                }
             }
         }
 
@@ -355,25 +290,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlArrayItem("itemSpecificationLevel")]
         public List<SpecificationLevel> ItemSpecificationLevels
         {
-            get
-            {
-                if (this._ItemSpecificationLevels ==null) this._ItemSpecificationLevels  = new List<SpecificationLevel>();
-                return this._ItemSpecificationLevels;
-            }
-            set { this._ItemSpecificationLevels = value; }
+            get => _itemSpecificationLevels ?? (_itemSpecificationLevels = new List<SpecificationLevel>());
+            set { _itemSpecificationLevels = value; }
         }
 
         /// <summary>
         /// Specification of the SpecificationLevels property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ItemSpecificationLevelsSpecified
-        {
-            get
-            {
-                return this._ItemSpecificationLevels != null && this._ItemSpecificationLevels.Count > 0 && !this._ItemSpecificationLevels.Contains(SpecificationLevel.All);
-            }
-        }
+        public Boolean ItemSpecificationLevelsSpecified => _itemSpecificationLevels?.Count > 0 && !_itemSpecificationLevels.Contains(SpecificationLevel.All);
 
         // Constraints ---------------------------
 
@@ -383,24 +308,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlElement("constraint.statement")]
         public DataConstraintStatement ConstraintStatement
         {
-            get {
-                if (this._ConstraintStatement == null) this._ConstraintStatement = new DataConstraintStatement();
-                return this._ConstraintStatement;
-            }
-            set { this._ConstraintStatement = value; }
+            get => _constraintStatement ?? (_constraintStatement = new DataConstraintStatement());
+            set { _constraintStatement = value; }
         }
 
         /// <summary>
         /// Specification of the ConstraintStatement property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ConstraintStatementSpecified
-        {
-            get
-            {
-                return this._ConstraintStatement!=null && this._ConstraintStatement.Count >0;
-            }
-        }
+        public Boolean ConstraintStatementSpecified => _constraintStatement?.Count > 0;
 
         // Detail ---------------------------------
 
@@ -408,27 +324,17 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Detail specification of this instance.
         /// </summary>
         [XmlElement("detail.specification")]
-        public DataElementSpecificationSet DetailSpecification
+        public DataElementSpecSet DetailSpecification
         {
-            get
-            {
-                if (this._DetailSpecification == null) this._DetailSpecification = new DataElementSpecificationSet();
-                return this._DetailSpecification;
-            }
-            set { this._DetailSpecification = value; }
+            get => _detailSpecification ?? (_detailSpecification = new DataElementSpecSet());
+            set { _detailSpecification = value; }
         }
 
         /// <summary>
         /// Specification of the DetailSpecification property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DetailSpecificationSpecified
-        {
-            get
-            {
-                return this._DetailSpecification != null && this._DetailSpecification.Count > 0;
-            }
-        }
+        public Boolean DetailSpecificationSpecified => _detailSpecification?.Count > 0;
 
         // Design ----------------------------------
 
@@ -438,25 +344,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlElement("design.statement")]
         public DataElementDesignStatement DesignStatement
         {
-            get
-            {
-                if (this._DesignStatement == null) this._DesignStatement = new DataElementDesignStatement();
-                return this._DesignStatement;
-            }
-            set { this._DesignStatement = value; }
+            get => _designStatement ?? (_designStatement = new DataElementDesignStatement());
+            set { _designStatement = value; }
         }
 
         /// <summary>
         /// Specification of the DesignStatement property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DesignStatementSpecified
-        {
-            get
-            {
-                return this._DesignStatement!=null;
-            }
-        }
+        public Boolean DesignStatementSpecified => _designStatement != null;
 
         #endregion
 
@@ -467,23 +363,23 @@ namespace BindOpen.Framework.Core.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the DataElementSpecification class.
+        /// Initializes a new instance of the DataElementSpec class.
         /// </summary>
-        protected DataElementSpecification() : this(AccessibilityLevel.Public)
+        protected DataElementSpec() : this(AccessibilityLevel.Public)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the DataElementSpecification class.
+        /// Initializes a new instance of the DataElementSpec class.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        protected DataElementSpecification(
+        protected DataElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null) : base(accessibilityLevel, specificationLevels)
         {
             // we update the area specifications
-            this.Repair();
+            Repair();
         }
 
         #endregion
@@ -502,9 +398,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns True if the default item has well been Added.</returns>
         public Boolean AddDefaultItem(Object aItem)
         {
-            if (!this.ConstraintStatement.CheckItem(aItem, null, false).HasErrorsOrExceptions())
+            if (!ConstraintStatement.CheckItem(aItem, null, false).HasErrorsOrExceptions())
             {
-                this.DefaultItems.Add(aItem);
+                DefaultItems.Add(aItem);
                 return true;
             }
 
@@ -519,8 +415,8 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns True if the default item has well been set.</returns>
         public Boolean SetDefaultItem(Object aItem)
         {
-            this.DefaultItems.Clear();
-            return this.AddDefaultItem(aItem);
+            DefaultItems.Clear();
+            return AddDefaultItem(aItem);
         }
 
         /// <summary>
@@ -533,10 +429,14 @@ namespace BindOpen.Framework.Core.Data.Elements
         {
             Boolean aHasBeenSet = true;
 
-            this.DefaultItems.Clear();
+            DefaultItems.Clear();
             if ((aHasBeenSet = (defaultItems==null || defaultItems.Count==0)) == true)
-                foreach(Object aItem in defaultItems)
-                    aHasBeenSet &= this.AddDefaultItem(aItem);
+            {
+                foreach (Object aItem in defaultItems)
+                {
+                    aHasBeenSet &= AddDefaultItem(aItem);
+                }
+            }
 
             return aHasBeenSet;
         }
@@ -548,6 +448,23 @@ namespace BindOpen.Framework.Core.Data.Elements
         // --------------------------------------------------
 
         #region Accessors
+
+        /// <summary>
+        /// Gets the item object of this instance.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <returns>Returns the item object.</returns>
+        public Object GetItemObject(
+            IAppScope appScope = null,
+            ScriptVariableSet scriptVariableSet = null,
+            Log log = null)
+        {
+            return !IsValueList ? this.DefaultItems.FirstOrDefault() : this.DefaultItems;
+        }
+
+        // Elements -----------------------------------------
 
         /// <summary>
         /// Creates a new data element respecting this instance.
@@ -567,7 +484,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns the area specification.</returns>
         public DataAreaSpecification GetAreaSpecification(String areaName)
         {
-            DataAreaSpecification areaSpecification = this._AreaSpecifications.FirstOrDefault(p=>p.AreaName.KeyEquals(areaName));
+            DataAreaSpecification areaSpecification = _areaSpecifications.FirstOrDefault(p=>p.AreaName.KeyEquals(areaName));
 
             return (areaSpecification !=null ? areaSpecification : new DataAreaSpecification() { AreaName=areaName });
         }
@@ -606,9 +523,9 @@ namespace BindOpen.Framework.Core.Data.Elements
             Log log = new Log();
             if (item != null)
             {
-                if (this._ConstraintStatement != null)
+                if (_constraintStatement != null)
                 {
-                    log = this._ConstraintStatement.CheckItem(item, dataElement, true, appScope, scriptVariableSet);
+                    log = _constraintStatement.CheckItem(item, dataElement, true, appScope, scriptVariableSet);
                 }
             }
 
@@ -639,7 +556,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             if (specificationAreas.Contains(DataAreaKind.Any.ToString()) || specificationAreas.Contains("element"))
             {
-                if (!this._AvailableItemizationModes.Contains(DataItemizationMode.Any) && !this._AvailableItemizationModes.Contains(dataElement.ItemizationMode))
+                if (!_availableItemizationModes.Contains(DataItemizationMode.Any) && !_availableItemizationModes.Contains(dataElement.ItemizationMode))
                 {
                     log.AddError(
                         title: "Itemization mode not available",
@@ -657,7 +574,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                                    description: "This element has no item reference where as it is in reference itemization mode.");
                             }
 
-                            switch (this.GetAreaSpecification("item").RequirementLevel)
+                            switch (GetAreaSpecification("item").RequirementLevel)
                             {
                                 case RequirementLevel.OptionalExclusively:
                                     if ((String.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
@@ -685,7 +602,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                                     title: "Item script missing in element",
                                     description: "The element has no item script where as it is in script itemization mode.");
 
-                            switch (this.GetAreaSpecification("item").RequirementLevel)
+                            switch (GetAreaSpecification("item").RequirementLevel)
                             {
                                 case RequirementLevel.OptionalExclusively:
                                     if ((String.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
@@ -708,12 +625,12 @@ namespace BindOpen.Framework.Core.Data.Elements
                             }
                             break;
                         case DataItemizationMode.Valued:
-                            if ((!this.IsValueList) && (dataElement.Items.Count > 1))
+                            if ((!IsValueList) && (dataElement.Items.Count > 1))
                                 log.AddWarning(
                                     title: "More than one item found in element",
                                     description: "The element has more than one item where as it is in single itemization mode.");
 
-                            switch (this.GetAreaSpecification("item").RequirementLevel)
+                            switch (GetAreaSpecification("item").RequirementLevel)
                             {
                                 case RequirementLevel.OptionalExclusively:
                                     if ((String.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
@@ -741,21 +658,21 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             if (specificationAreas.Contains(DataAreaKind.Any.ToString()) || specificationAreas.Contains(DataAreaKind.Items.ToString()))
             {
-                if (this.IsValueList)
+                if (IsValueList)
                 {
-                    if (this._MinimumItemNumber > dataElement.Items.Count)
+                    if (MinimumItemNumber > dataElement.Items.Count)
                         log.AddError(
                             title: "Not enough items in element",
-                            description: "The element has " + dataElement.Items.Count + " items where as the minimum was specified at " + this._MinimumItemNumber + ".");
+                            description: "The element has " + dataElement.Items.Count + " items where as the minimum was specified at " + MinimumItemNumber + ".");
 
-                    if (this._MaximumItemNumber > -1 && this._MaximumItemNumber < dataElement.Items.Count)
+                    if (MaximumItemNumber > -1 && MaximumItemNumber < dataElement.Items.Count)
                         log.AddError(
                             title: "Too many items in element",
-                            description: "The element has " + dataElement.Items.Count + " items where as the maximum was specified at " + this._MaximumItemNumber + ".");
+                            description: "The element has " + dataElement.Items.Count + " items where as the maximum was specified at " + MaximumItemNumber + ".");
                 }
 
                 foreach (Object aItem in dataElement.Items)
-                    log.AddEvents(this.CheckItem(aItem, dataElement, appScope, scriptVariableSet));
+                    log.AddEvents(CheckItem(aItem, dataElement, appScope, scriptVariableSet));
             }
 
             return log;
@@ -787,19 +704,19 @@ namespace BindOpen.Framework.Core.Data.Elements
         {
             Log log = new Log();
 
-            if (this._MinimumItemNumber < 0) this._MinimumItemNumber = 0;
-            if (this._MaximumItemNumber < 0) this._MaximumItemNumber = -1;
-            if (this._MaximumItemNumber > -1 && this._MaximumItemNumber < this._MinimumItemNumber) this._MaximumItemNumber = this._MinimumItemNumber;
+            if (MinimumItemNumber < 0) MinimumItemNumber = 0;
+            if (MaximumItemNumber < 0) MaximumItemNumber = -1;
+            if (MaximumItemNumber > -1 && MaximumItemNumber < MinimumItemNumber) MaximumItemNumber = MinimumItemNumber;
 
             // we update the area specifications
-            this._AreaSpecifications.RemoveAll(p =>
-                !CarrierElementSpecification.__Arenames.Any(q => q.KeyEquals(p.AreaName)));
-            foreach (String arename in CarrierElementSpecification.__Arenames)
-                if (this._AreaSpecifications.Any(p => p.AreaName.KeyEquals(arename)))
-                    this._AreaSpecifications.Add(new DataAreaSpecification(arename));
+            _areaSpecifications.RemoveAll(p =>
+                !CarrierElementSpec.__Arenames.Any(q => q.KeyEquals(p.AreaName)));
+            foreach (String arename in CarrierElementSpec.__Arenames)
+                if (_areaSpecifications.Any(p => p.AreaName.KeyEquals(arename)))
+                    _areaSpecifications.Add(new DataAreaSpecification(arename));
 
-            if (this._AvailableItemizationModes == null || this._AvailableItemizationModes.Count == 0)
-                this._AvailableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Valued };
+            if (_availableItemizationModes == null || _availableItemizationModes.Count == 0)
+                _availableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Valued };
 
             return log;
         }
@@ -818,15 +735,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            DataElementSpecification dataElementSpecification = base.Clone() as DataElementSpecification;
+            DataElementSpec dataElementSpec = base.Clone() as DataElementSpec;
 
-            if (this._Aliases != null)
-                dataElementSpecification.Aliases = new List<String>(this._Aliases);
-            if (this.ConstraintStatement != null)
-                dataElementSpecification.ConstraintStatement = this.ConstraintStatement.Clone() as DataConstraintStatement;
-            if (this.DesignStatement != null)
-                dataElementSpecification.DesignStatement = this.DesignStatement.Clone() as DataElementDesignStatement;
-            return dataElementSpecification;
+            if (_aliases != null)
+                dataElementSpec.Aliases = new List<String>(_aliases);
+            if (ConstraintStatement != null)
+                dataElementSpec.ConstraintStatement = ConstraintStatement.Clone() as DataConstraintStatement;
+            if (DesignStatement != null)
+                dataElementSpec.DesignStatement = DesignStatement.Clone() as DataElementDesignStatement;
+            return dataElementSpec;
         }
 
         #endregion

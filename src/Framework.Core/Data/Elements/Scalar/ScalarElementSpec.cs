@@ -1,128 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Data.Specification.Filters;
+using BindOpen.Framework.Core.Data.Specification.Design;
+using BindOpen.Framework.Core.Extensions.Configuration.Routines;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Schema
+namespace BindOpen.Framework.Core.Data.Elements.Scalar
 {
 
     /// <summary>
-    /// This class represents a schema element specification.
+    /// This class represents a scalar element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("SchemaElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("ScalarElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class SchemaElementSpecification : DataElementSpecification
+    public class ScalarElementSpec : DataElementSpec
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        // Schema ----------------------------------
-
-        private DataValueFilter _SchemuniqueNameFilter = new DataValueFilter();
-        private RequirementLevel _SchemaRequirementLevel = RequirementLevel.None;
-        private List<SpecificationLevel> _SchemaSpecificationLevels = new List<SpecificationLevel>();
-
-        // Format ----------------------------------
-
-        private DataValueFilter _FormatUniqueNameFilter = new DataValueFilter();
-        private RequirementLevel _FormatRequirementLevel = RequirementLevel.Optional;
-        private List<SpecificationLevel> _FormatSpecificationLevels = new List<SpecificationLevel>();
-
-        #endregion
-
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
 
-        // Schema ----------------------------------
-    
         /// <summary>
-        /// The entity unique name filter of this instance.
+        /// The value type of this instance.
         /// </summary>
-        [XmlElement("entityUniqueNameFilter")]
-        public DataValueFilter SchemuniqueNameFilter
+        [XmlAttribute("valueType")]
+        public new DataValueType ValueType
         {
-            get { return this._SchemuniqueNameFilter; }
-            set { this._SchemuniqueNameFilter = value; }
+            get { return base.ValueType; }
+            set { base.ValueType = value; }
         }
 
         /// <summary>
-        /// Schema requirement level of this instance.
+        /// Specification of the ValueType property of this instance.
         /// </summary>
-        [XmlElement("entityRequirementLevel")]
-        public RequirementLevel SchemaRequirementLevel
+        [XmlIgnore()]
+        public Boolean ValueTypeSpecified
         {
             get
             {
-                return this._SchemaRequirementLevel;
+                return base.ValueType != DataValueType.Any;
             }
-            set { this._SchemaRequirementLevel = value; }
-        }
-
-        /// <summary>
-        /// The specification levels for entity specification of this instance.
-        /// </summary>
-        [XmlArray("entitySpecificationLevels")]
-        [XmlArrayItem("add.level")]
-        public List<SpecificationLevel> SchemaSpecificationLevels
-        {
-            get { return this._SchemaSpecificationLevels; }
-            set { this._SchemaSpecificationLevels = value; }
-        }
-
-        // Format ----------------------------------
-
-        /// <summary>
-        /// The format unique name filter of this instance.
-        /// </summary>
-        [XmlElement("formatUniqueNameFilter")]
-        public DataValueFilter FormatUniqueNameFilter
-        {
-            get { return this._FormatUniqueNameFilter; }
-            set { this._FormatUniqueNameFilter = value; }
-        }
-
-        /// <summary>
-        /// Format requirement level of this instance.
-        /// </summary>
-        [XmlElement("formatRequirementLevel")]
-        public RequirementLevel FormatRequirementLevel
-        {
-            get
-            {
-                return this._FormatRequirementLevel;
-            }
-            set { this._FormatRequirementLevel = value; }
-        }
-
-        /// <summary>
-        /// The specification levels for format specification of this instance.
-        /// </summary>
-        [XmlArray("formatSpecificationLevels")]
-        [XmlArrayItem("add.level")]
-        public List<SpecificationLevel> FormatSpecificationLevels
-        {
-            get { return this._FormatSpecificationLevels; }
-            set { this._FormatSpecificationLevels = value; }
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -131,26 +59,79 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         #region Constructors
 
         /// <summary>
-        /// Initializes a new schema element specification.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
-        public SchemaElementSpecification() : base(AccessibilityLevel.Public)
+        public ScalarElementSpec() : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new schema element specification.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public SchemaElementSpecification(
+        public ScalarElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }
 
-        #endregion
+        /// <summary>
+        /// Initializes a new instance of the ScalarElementSpec class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="dataValueType">The value type to consider.</param>
+        /// <param name="elementRequirementLevel">The element requirement level to consider.</param>
+        /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
+        /// <param name="specificationLevels">The specification levels of this instance.</param>
+        public ScalarElementSpec(
+            String name,
+            DataValueType dataValueType = DataValueType.Text,
+            RequirementLevel elementRequirementLevel = RequirementLevel.Required,
+            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
+            List<SpecificationLevel> specificationLevels = null)
+            : base(accessibilityLevel, specificationLevels)
+        {
+            this.Name = name;
+            this.ValueType = dataValueType;
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the ScalarElementSpec class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="type">The type to consider.</param>
+        /// <param name="elementRequirementLevel">The element requirement level to consider.</param>
+        /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
+        /// <param name="specificationLevels">The specification levels of this instance.</param>
+        public ScalarElementSpec(
+            String name,
+            Type type,
+            RequirementLevel elementRequirementLevel = RequirementLevel.Required,
+            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
+            List<SpecificationLevel> specificationLevels = null)
+            : base(accessibilityLevel, specificationLevels)
+        {
+            if (type != null)
+            {
+                DataElement dataElement = DataElement.Create(type.GetValueType(), name);
+
+                if ((dataElement != null) && (dataElement.Specification != null))
+                {
+                    dataElement.Specification.DesignStatement.ControlType = type.GetDefaultControlType();
+
+                    if (type.IsArray)
+                        dataElement.Specification.MaximumItemNumber = -1;
+                    else if (type.IsEnum)
+                        dataElement.Specification.ConstraintStatement.AddConstraint(
+                            null, "standard$" + BasicRoutineKind.ItemMustBeInList, new DataElementSet(
+                                DataElement.Create(type.GetFields().Select(p => p.Name).ToList().Cast<Object>(), DataValueType.Text)));
+                }
+            }
+        }
+
+        #endregion
 
         // --------------------------------------------------
         // ACCESSORS
@@ -166,11 +147,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <returns>Returns a new data element respecting this instance.</returns>
         public override DataElement NewElement(IAppScope appScope = null, DataElementSet detail = null)
         {
-            return new SchemaElement(this.Name)
-            {
-                Title = this.Title.Clone() as DictionaryDataItem,
-                Description = this.Description.Clone() as DictionaryDataItem,
-            };
+            return ScalarElement.Create(this.DefaultItems, this.ValueType, this.Name);
         }
 
         /// <summary>
@@ -189,7 +166,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
             return isCompatible;
         }
-
 
         /// <summary>
         /// Check the specified item.
@@ -227,7 +203,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
         #endregion
 
-
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
         // --------------------------------------------------
@@ -236,7 +211,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -250,16 +224,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            SchemaElementSpecification aSchemaElementSpecification = base.Clone() as SchemaElementSpecification;
-            if (this.SchemuniqueNameFilter != null)
-                aSchemaElementSpecification.SchemuniqueNameFilter = this.SchemuniqueNameFilter.Clone() as DataValueFilter;
-            if (this.FormatUniqueNameFilter != null)
-                aSchemaElementSpecification.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
-            return aSchemaElementSpecification;
+            ScalarElementSpec aScalarElementSpec = base.Clone() as ScalarElementSpec;
+            return aScalarElementSpec;
         }
 
         #endregion
-
     }
 
 }
