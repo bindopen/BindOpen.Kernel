@@ -2976,16 +2976,6 @@
             Specification of the ConstraintStatement property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DetailSpecification">
-            <summary>
-            Detail specification of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DetailSpecificationSpecified">
-            <summary>
-            Specification of the DetailSpecification property of this instance.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DesignStatement">
             <summary>
             Design statement of this instance.
@@ -9678,7 +9668,7 @@
             The data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definition.Carriers.CarrierDefinition.PathSpecification">
+        <member name="P:BindOpen.Framework.Core.Extensions.Definition.Carriers.CarrierDefinition.PathSpec">
             <summary>
             The set of element specifications of this instance.
             </summary>
@@ -9711,7 +9701,7 @@
             Data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definition.Connectors.ConnectorDefinition.DetailSpecification">
+        <member name="P:BindOpen.Framework.Core.Extensions.Definition.Connectors.ConnectorDefinition.DetailSpec">
             <summary>
             The data source element specification of this instance.
             </summary>
