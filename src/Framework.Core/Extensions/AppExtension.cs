@@ -191,6 +191,17 @@ namespace BindOpen.Framework.Core.Extensions
         }
 
         /// <summary>
+        /// Returns the item definitions of this instance.
+        /// </summary>
+        /// <param name="libraryNames">The names of libraries to consider.</param>
+        /// <returns>The script words of specified library names.</returns>
+        public List<string> GetItemDefinitionUniqueNames<T>(
+            List<String> libraryNames = null) where T : AppExtensionItemDefinition
+        {
+            return GetItemDefinitions<T>(libraryNames).Select(p=>p.ToKey()).ToList();
+        }
+
+        /// <summary>
         /// Returns the item definition with the specified unique name.
         /// </summary>
         /// <param name="uniqueName">The unique name of item to return.</param>

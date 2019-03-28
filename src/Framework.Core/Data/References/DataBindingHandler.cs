@@ -1,26 +1,24 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using System;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.References
 {
-
     /// <summary>
     /// This class represents a data binding handler.
     /// </summary>
     public static class DataBindingHandler
     {
-
         // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
 
         #region Accessors
-        
+
         /// <summary>
         /// Gets the items from the source of this instance and update the target items.
         /// </summary>
@@ -115,6 +113,5 @@ namespace BindOpen.Framework.Core.Data.References
         }
 
         #endregion
-
     }
 }

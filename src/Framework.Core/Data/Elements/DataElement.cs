@@ -21,6 +21,9 @@ using BindOpen.Framework.Core.Data.References;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Data.Specification.Design;
 using BindOpen.Framework.Core.Extensions.Configuration.Routines;
+using BindOpen.Framework.Core.Extensions.Definition.Carriers;
+using BindOpen.Framework.Core.Extensions.Definition.Connectors;
+using BindOpen.Framework.Core.Extensions.Definition.Entities;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Scripting;
@@ -50,7 +53,6 @@ namespace BindOpen.Framework.Core.Data.Elements
         private DataItemizationMode _itemizationMode = DataItemizationMode.Any;
 
         private DataReference _ItemReference = null;
-        private String _ItemScript = null;
 
         private List<Object> _Items = null;
         private XElement _ItemXElement = null;
@@ -87,7 +89,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public DataItemizationMode ItemizationMode
         {
             get { return (this._itemizationMode != DataItemizationMode.Any ? this._itemizationMode :
-                    (!String.IsNullOrEmpty(this._ItemScript) ? DataItemizationMode.Script :
+                    (!String.IsNullOrEmpty(this.ItemScript) ? DataItemizationMode.Script :
                     (this._ItemReference!=null ? DataItemizationMode.Referenced : DataItemizationMode.Valued))); }
             set { this._itemizationMode = value; }
         }
@@ -145,26 +147,13 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// The script of this instance.
         /// </summary>
         [XmlAttribute("script")]
-        public String ItemScript
-        {
-            get { return this._ItemScript; }
-            set
-            {
-                this._ItemScript = value;
-            }
-        }
+        public string ItemScript { get; set; } = null;
 
         /// <summary>
         /// Specification of the ItemScript property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ItemScriptSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this._ItemScript);
-            }
-        }
+        public Boolean ItemScriptSpecified => !string.IsNullOrEmpty(this.ItemScript);
 
         /// <summary>
         /// Items of this instance.
@@ -174,8 +163,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         {
             get
             {
-                if (this._Items == null) this._Items = new List<Object>();
-                return this._Items;
+                return this._Items ?? (this._Items = new List<Object>());
             }
             set
             {
@@ -421,20 +409,35 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="name">The name to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="specification">The specification to consider.</param>
         public static DataElement Create(
             DataValueType valueType,
-            String name = null)
+            string name = null,
+            IAppScope appScope = null,
+            DataElementSpecification specification = null)
         {
             DataElement dataElement = null;
+
             if (valueType.IsScalar())
-                dataElement = new ScalarElement(name, valueType);
+            {
+                dataElement = new ScalarElement(name, "", valueType, specification as ScalarElementSpecification);
+            }
             else
+            {
+                string definitionUniqueName = null;
                 switch (valueType)
                 {
                     case DataValueType.CarrierConfiguration:
-                        dataElement = new CarrierElement(name);
+                        definitionUniqueName = (specification as CarrierElementSpecification)?.DefinitionFilter.GetValues(
+                            appScope?.AppExtension.GetItemDefinitionUniqueNames<CarrierDefinition>()).FirstOrDefault();
+                        dataElement = new CarrierElement(
+                            name, "", definitionUniqueName,
+                            specification as CarrierElementSpecification);
                         break;
                     case DataValueType.DataSource:
+                        definitionUniqueName = (specification as SourceElementSpecification)?.ConnectorFilter.GetValues(
+                            appScope?.AppExtension.GetItemDefinitionUniqueNames<ConnectorDefinition>()).FirstOrDefault();
                         dataElement = new SourceElement(name, null);
                         break;
                     case DataValueType.Dictionary:
@@ -444,10 +447,13 @@ namespace BindOpen.Framework.Core.Data.Elements
                         dataElement = new DocumentElement(name, null as CarrierElement, null);
                         break;
                     case DataValueType.Entity:
-                        dataElement = new EntityElement(name);
+                        definitionUniqueName = (specification as EntityElementSpecification)?.EntityFilter.GetValues(
+                            appScope?.AppExtension.GetItemDefinitionUniqueNames<EntityDefinition>()).FirstOrDefault();
+                        dataElement = new EntityElement(name, "", definitionUniqueName, specification as EntityElementSpecification);
                         break;
                     case DataValueType.Object:
-                        dataElement = new ObjectElement(name);
+                        definitionUniqueName = (specification as ObjectElementSpecification)?.ClassFilter.GetValues().FirstOrDefault();
+                        dataElement = new ObjectElement(name, "", definitionUniqueName, specification as ObjectElementSpecification);
                         break;
                     case DataValueType.Schema:
                         dataElement = new SchemaElement(name);
@@ -459,6 +465,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                         //dataElement = new StringValuedElement(name, namePreffix);
                         break;
                 }
+            }
 
             return dataElement;
         }
@@ -468,24 +475,32 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="type">The value type to consider.</param>
         /// <param name="name">The name to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="specification">The specification to consider.</param>
         public static DataElement Create(
             Type type,
-            String name = null)
+            String name = null,
+            IAppScope appScope = null,
+            DataElementSpecification specification = null)
         {
             if (type == null) return null;
 
-            DataElement dataElement = DataElement.Create(type.GetValueType(), name);
+            DataElement dataElement = DataElement.Create(type.GetValueType(), name, appScope, specification);
 
-            if ((dataElement != null) && (dataElement.Specification != null))
+            if (dataElement?.Specification != null)
             {
                 dataElement.Specification.DesignStatement.ControlType = type.GetDefaultControlType();
 
                 if (type.IsArray)
+                {
                     dataElement.Specification.MaximumItemNumber = -1;
+                }
                 else if (type.IsEnum)
+                {
                     dataElement.Specification.ConstraintStatement.AddConstraint(
-                        null, "standard$" + BasicRoutineKind.ItemMustBeInList, new DataElementSet(
-                            DataElement.Create(type.GetFields().Select(p => p.Name).ToList().Cast<Object>(), DataValueType.Text)));
+                       null, "standard$" + BasicRoutineKind.ItemMustBeInList, new DataElementSet(
+                           DataElement.Create(type.GetFields().Select(p => p.Name).ToList().Cast<Object>(), DataValueType.Text)));
+                }
             }
 
             return dataElement;
@@ -508,7 +523,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns True .</returns>
         public Boolean NewSpecification()
         {
-            return ((this.Specification = this.CreateSpecification())!=null);
+            return (this.Specification = this.CreateSpecification())!=null;
         }
 
         // General ---------------------------
@@ -556,7 +571,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public virtual void SetItem(
             Object item,
-            AppScope appScope = null)
+            IAppScope appScope = null)
         {
             this.ClearItems();
             this.AddItem(item, appScope);
@@ -745,11 +760,11 @@ namespace BindOpen.Framework.Core.Data.Elements
                         log.AddError(title: "Application scope missing");
                     else if (appScope.ScriptInterpreter == null)
                         log.AddError(title: "Script interpreter missing");
-                    else if (String.IsNullOrEmpty(this._ItemScript))
+                    else if (String.IsNullOrEmpty(this.ItemScript))
                         log.AddWarning(title: "Script missing");
                     else
                     {
-                        object1 = appScope.ScriptInterpreter.Interprete(this._ItemScript, scriptVariableSet, log);
+                        object1 = appScope.ScriptInterpreter.Interprete(this.ItemScript, scriptVariableSet, log);
                         if (object1 != null)
                             if (object1.GetType().IsArray)
                                 items = object1 as List<Object>;
@@ -943,7 +958,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     (specificationAreas.Contains(DataAreaKind.Items.ToString())))
                     if (element != null)
                     {
-                        this._ItemScript = element.ItemScript;
+                        this.ItemScript = element.ItemScript;
 
                         this._Items = new List<object>();
                         foreach (Object currentItem in element.Items)

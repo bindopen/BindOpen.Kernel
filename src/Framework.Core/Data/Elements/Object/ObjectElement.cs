@@ -249,7 +249,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public override void SetItem(
             Object item,
-            AppScope appScope = null)
+            IAppScope appScope = null)
         {
             base.SetItem(item);
         }

@@ -198,32 +198,32 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <summary>
         /// Returns the entry of the specified kind with the specified unique name.
         /// </summary>
-        /// <param name="uniqueName">The unique name to consider.</param>
+        /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public DataElement GetEntryWithName(String uniqueName, params TaskEntryKind[] taskEntryKinds)
+        public DataElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
-            return this.GetEntries(taskEntryKinds).FirstOrDefault(p => p.KeyEquals(uniqueName));
+            return this.GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
         }
 
         /// <summary>
-        /// Gets the value of the specified entry.
+        /// Gets the item object of the specified entry.
         /// </summary>
         /// <param name="name">The name of the entry to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
-        public Object GetEntryValueWithName(
+        public Object GetEntryItemObjectWithName(
             String name,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
             Log log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            DataElement aEntry = this.GetEntryWithName(name, taskEntryKinds);
+            DataElement entry = this.GetEntryWithName(name, taskEntryKinds);
 
-            return (aEntry == null ? null : aEntry.GetItemObject(appScope, scriptVariableSet, log));
+            return entry?.GetItemObject(appScope, scriptVariableSet, log);
         }
 
         // General ---------------------------------------

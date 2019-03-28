@@ -1140,7 +1140,7 @@
             Initializes a new instance of the DataService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.BdoDataService.#ctor(BindOpen.Framework.Core.Data.Connections.BdoAppHost)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.BdoDataService.#ctor(BindOpen.Framework.Core.Data.Connections.IConnection)">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
@@ -2079,22 +2079,22 @@
             Indicates whether the instance is connected.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Connections.BdoAppHost">
+        <member name="T:BindOpen.Framework.Core.Data.Connections.IConnection">
             <summary>
             This interfaces represents a connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.Open">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.Open">
             <summary>
             Opens a connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.Close">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.Close">
             <summary>
             Closes the existing connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoAppHost.IsConnected">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.IConnection.IsConnected">
             <summary>
             Indicates whether the instance is connected.
             </summary>
@@ -2326,7 +2326,7 @@
             </summary>
             <returns>Returns the new specifcation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Sets the specified single item of this instance.
             </summary>
@@ -2578,19 +2578,23 @@
             <param name="dataValueType">The data value type to consider.</param>
             <param name="name">The name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(BindOpen.Framework.Core.Data.Common.DataValueType,System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(BindOpen.Framework.Core.Data.Common.DataValueType,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpecification)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="valueType">The value type to consider.</param>
             <param name="name">The name to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="specification">The specification to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(System.Type,System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(System.Type,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpecification)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="type">The value type to consider.</param>
             <param name="name">The name to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="specification">The specification to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.CreateSpecification">
             <summary>
@@ -2616,7 +2620,7 @@
             Clears items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Sets the specified single item of this instance.
             </summary>
@@ -2897,6 +2901,16 @@
             Specification of the IsAllocatable property of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemScript">
+            <summary>
+            The script of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemScriptSpecified">
+            <summary>
+            Specification of the ItemScript property of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AvailableItemizationModes">
             <summary>
             The available itemization modes of this instance.
@@ -3017,6 +3031,15 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
             <param name="defaultItems">The default items of this instance.</param>
             <returns>Returns True if the default items has well been set.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.GetItemObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+            <summary>
+            Gets the item object of this instance.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="log">The log to populate.</param>
+            <returns>Returns the item object.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
@@ -3277,7 +3300,7 @@
             </summary>
             <returns>Returns the new specifcation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Sets the specified single item of this instance.
             </summary>
@@ -3350,7 +3373,7 @@
             The entity filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.ClassFilterSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.EntityFilterSpecified">
             <summary>
             Specification of the ClassFilter property of this instance.
             </summary>
@@ -3542,7 +3565,7 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.AppScope)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.SetItem(System.Object,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Sets the specified single item of this instance.
             </summary>
@@ -7788,6 +7811,13 @@
             <param name="libraryNames">The names of libraries to consider.</param>
             <returns>The script words of specified library names.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.GetItemDefinitionUniqueNames``1(System.Collections.Generic.List{System.String})">
+            <summary>
+            Returns the item definitions of this instance.
+            </summary>
+            <param name="libraryNames">The names of libraries to consider.</param>
+            <returns>The script words of specified library names.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.GetItemDefinitionWithUniqueName``1(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Returns the item definition with the specified unique name.
@@ -9351,13 +9381,13 @@
             <summary>
             Returns the entry of the specified kind with the specified unique name.
             </summary>
-            <param name="uniqueName">The unique name to consider.</param>
+            <param name="key">The key to consider.</param>
             <param name="taskEntryKinds">The kind end entries to consider.</param>
             <returns>Returns the input with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.GetEntryValueWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.GetEntryItemObjectWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
             <summary>
-            Gets the value of the specified entry.
+            Gets the item object of the specified entry.
             </summary>
             <param name="name">The name of the entry to consider.</param>
             <param name="appScope">The application scope to consider.</param>
@@ -10058,6 +10088,31 @@
             <param name="name">The name to consider.</param>
             <param name="preffix">The preffix to consider.</param>
             <param name="id">The ID to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.GetEntries(BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
+            <summary>
+            Gets the specified entries.
+            </summary>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>True if this instance is configurable.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.GetEntryWithName(System.String,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
+            <summary>
+            Returns the entry of the specified kind with the specified unique name.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>Returns the input with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.GetEntryDefaultValueWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
+            <summary>
+            Gets the value of the specified entry.
+            </summary>
+            <param name="name">The name of the entry to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="log">The log to populate.</param>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.CustomCheck">
             <summary>

@@ -67,13 +67,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         /// Specification of the ClassFilter property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ClassFilterSpecified
+        public Boolean EntityFilterSpecified
         {
             get
             {
-                return this._EntityFilter != null && 
-                    (this._EntityFilter.AddedValues==null || this._EntityFilter.AddedValues.Count > 0) &&
-                    (this._EntityFilter.RemovedValues == null || this._EntityFilter.RemovedValues.Count > 0);
+                return this._EntityFilter != null
+                    && (this._EntityFilter.AddedValues == null || this._EntityFilter.AddedValues.Count > 0)
+                    && (this._EntityFilter.RemovedValues == null || this._EntityFilter.RemovedValues.Count > 0);
             }
         }
 
