@@ -85,9 +85,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new EntityElementSpecification Specification
+        public new EntityElementSpec Specification
         {
-            get { return base.Specification as EntityElementSpecification; }
+            get { return base.Specification as EntityElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -146,7 +146,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
             String name,
             String id,
             String entityUniqueName,
-            EntityElementSpecification aSpecification,
+            EntityElementSpec aSpecification,
             params DataItem[] items)
             : base(name, "EntityElement_", id)
         {
@@ -209,9 +209,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new EntityElementSpecification();
+            return new EntityElementSpec();
         }
 
         #endregion
@@ -245,7 +245,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         public override Object NewItem(IAppScope appScope = null, Log log = null)
         {
             if (this.Specification==null ||
-                (this.Specification is EntityElementSpecification) && (this.Specification as EntityElementSpecification).EntityFilter.IsValueAllowed(this._EntityUniqueName))
+                (this.Specification is EntityElementSpec) && (this.Specification as EntityElementSpec).EntityFilter.IsValueAllowed(this._EntityUniqueName))
 
                 if (appScope != null && appScope.AppExtension!=null)
                     return appScope.CreateItem<EntityDefinition>(this._EntityUniqueName, null, null, log);
@@ -340,7 +340,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
             Object object1 = null;
 
             if (stringValue != null)
-                if ((this.Specification == null || this.Specification is EntityElementSpecification)
+                if ((this.Specification == null || this.Specification is EntityElementSpec)
                     && (appScope != null && appScope.AppExtension!= null))
                     appScope.AppExtension.LoadDataItemInstance(AssemblyHelper.GetClassReference(this.EntityUniqueName), stringValue, out object1);
 

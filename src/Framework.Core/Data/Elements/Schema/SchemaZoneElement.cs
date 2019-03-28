@@ -90,7 +90,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
             params Object[] items)
             : base(name, "schemaZoneElement_")
         {
-            this.Specification = new SchemaElementSpecification();
+            this.Specification = new SchemaElementSpec();
 
             foreach (Object aItem in items)
                 this.AddItem(aItem);

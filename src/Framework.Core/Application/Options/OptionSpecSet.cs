@@ -95,11 +95,11 @@ namespace BindOpen.Framework.Core.Application.Options
         {
             String helpText = this.Description.GetContent(uiCulture);
 
-            foreach (DataElementSpecification aElementSpecification in this.Items)
+            foreach (DataElementSpec aElementSpec in this.Items)
             {
-                foreach (String aAlias in aElementSpecification.Aliases)
+                foreach (String aAlias in aElementSpec.Aliases)
                     helpText += (helpText?.Length == 0 ? "" : ", ") + aAlias;
-                helpText += ": " + aElementSpecification.Description.GetContent(uiCulture) + "\r\n";
+                helpText += ": " + aElementSpec.Description.GetContent(uiCulture) + "\r\n";
             }
 
             return helpText;

@@ -116,7 +116,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        public DataElementSpecificationSet SettingsSpecificationSet { get; set; } = new DataElementSpecificationSet();
+        public DataElementSpecSet SettingsSpecificationSet { get; set; } = new DataElementSpecSet();
 
         #endregion
 
@@ -232,9 +232,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions DefineSettings(DataElementSpecificationSet specificationSet)
+        public IAppHostOptions DefineSettings(DataElementSpecSet specificationSet)
         {
-            this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecificationSet();
+            this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
             return this;
         }
@@ -245,7 +245,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions DefineSettings<T>(DataElementSpecificationSet specificationSet = null) where T : AppSettings, new()
+        public IAppHostOptions DefineSettings<T>(DataElementSpecSet specificationSet = null) where T : AppSettings, new()
         {
             this.Settings = new T();
             this.DefineSettings(specificationSet);

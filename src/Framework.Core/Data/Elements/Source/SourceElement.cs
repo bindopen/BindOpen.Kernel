@@ -33,9 +33,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new SourceElementSpecification Specification
+        public new SourceElementSpec Specification
         {
-            get { return base.Specification as SourceElementSpecification; }
+            get { return base.Specification as SourceElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
             : base(name, "dataSourceElement_")
         {
             this.ValueType = DataValueType.DataSource;
-            //if (this.Specification = new SourceElementSpecification();
+            //if (this.Specification = new SourceElementSpec();
             //this.Specification.MaximumItemNumber = 1;
 
             this.AddItem(dataSource);
@@ -87,9 +87,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new SourceElementSpecification();
+            return new SourceElementSpec();
         }
 
         #endregion

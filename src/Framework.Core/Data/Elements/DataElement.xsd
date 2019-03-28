@@ -7,7 +7,7 @@
   <xs:include schemaLocation="../../data/items/DataItemizationMode.xsd" />
   <xs:include schemaLocation="../../data/references/DataReference.xsd" />
   <xs:include schemaLocation="../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../data/elements/DataElementSpecification.xsd" />
+  <xs:include schemaLocation="../../data/elements/DataElementSpec.xsd" />
   <xs:include schemaLocation="../../data/elements/sets/DataElementSet.xsd" />
   <xs:include schemaLocation="../../system/diagnostics/events/EventKind.xsd" />
 

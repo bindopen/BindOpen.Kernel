@@ -2289,7 +2289,7 @@
             Initializes a new carrier element.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification,BindOpen.Framework.Core.Extensions.Configuration.Carriers.CarrierConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec,BindOpen.Framework.Core.Extensions.Configuration.Carriers.CarrierConfiguration[])">
             <summary>
             Initializes a new carrier element.
             </summary>
@@ -2389,41 +2389,41 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec">
             <summary>
             This class represents a carrier element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.DefinitionFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.DefinitionFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.DefinitionFilterSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.DefinitionFilterSpecified">
             <summary>
             Specification of the DefinitionFilter property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.#ctor">
             <summary>
             Initializes a new carrier element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new carrier element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -2433,7 +2433,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -2443,7 +2443,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -2578,7 +2578,7 @@
             <param name="dataValueType">The data value type to consider.</param>
             <param name="name">The name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(BindOpen.Framework.Core.Data.Common.DataValueType,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpecification)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(BindOpen.Framework.Core.Data.Common.DataValueType,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpec)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
@@ -2587,7 +2587,7 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="specification">The specification to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(System.Type,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpecification)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Create(System.Type,System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.DataElementSpec)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
@@ -2608,7 +2608,7 @@
             </summary>
             <returns>Returns True .</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.IsCompatibleWith(BindOpen.Framework.Core.Data.Elements.DataElementSpecification)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.IsCompatibleWith(BindOpen.Framework.Core.Data.Elements.DataElementSpec)">
             <summary>
             Indicates whether this instance is compatible with the specified element.
             </summary>
@@ -2846,169 +2846,169 @@
             Element attributes.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.DataElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.DataElementSpec">
             <summary>
             This class represents a data element specification.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.__Arenames">
+        <member name="F:BindOpen.Framework.Core.Data.Elements.DataElementSpec.__Arenames">
             <summary>
-            Names of the attribute areas of the DataElementSpecification class.
+            Names of the attribute areas of the DataElementSpec class.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.GroupId">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GroupId">
             <summary>
             ID of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.GroupIdSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GroupIdSpecified">
             <summary>
             Specification of the GroupId property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ValueType">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.Aliases">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.Aliases">
             <summary>
             The aliases of the entry.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AliasesSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AliasesSpecified">
             <summary>
             Specification of the Aliases property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AreaSpecifications">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AreaSpecifications">
             <summary>
             The area specifications of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AreaSpecificationsSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AreaSpecificationsSpecified">
             <summary>
             Specification of the AreaSpecifications property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.IsAllocatable">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.IsAllocatable">
             <summary>
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.IsAllocatableSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.IsAllocatableSpecified">
             <summary>
             Specification of the IsAllocatable property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemScript">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ItemScript">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemScriptSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ItemScriptSpecified">
             <summary>
             Specification of the ItemScript property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AvailableItemizationModes">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AvailableItemizationModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AvailableItemizationModesSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AvailableItemizationModesSpecified">
             <summary>
             Specification of the AvailableItemizationModes property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DefaultStringItems">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DefaultStringItems">
             <summary>
             Default string items of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DefaultStringItemsSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DefaultStringItemsSpecified">
             <summary>
             Specification of the DefaultStringItems property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DefaultItems">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DefaultItems">
             <summary>
             Default items of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.MinimumItemNumber">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.MinimumItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.MaximumItemNumber">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.MaximumItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.IsValueList">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.IsValueList">
             <summary>
             Indicates whether the value of this instance is a list.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemRequirementLevel">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ItemRequirementLevel">
             <summary>
             The item requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemSpecificationLevels">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ItemSpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ItemSpecificationLevelsSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ItemSpecificationLevelsSpecified">
             <summary>
             Specification of the SpecificationLevels property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ConstraintStatement">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ConstraintStatement">
             <summary>
             Constraint statement of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.ConstraintStatementSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.ConstraintStatementSpecified">
             <summary>
             Specification of the ConstraintStatement property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DetailSpecification">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DetailSpecification">
             <summary>
             Detail specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DetailSpecificationSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DetailSpecificationSpecified">
             <summary>
             Specification of the DetailSpecification property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DesignStatement">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DesignStatement">
             <summary>
             Design statement of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.DesignStatementSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.DataElementSpec.DesignStatementSpecified">
             <summary>
             Specification of the DesignStatement property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.#ctor">
             <summary>
-            Initializes a new instance of the DataElementSpecification class.
+            Initializes a new instance of the DataElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
-            Initializes a new instance of the DataElementSpecification class.
+            Initializes a new instance of the DataElementSpec class.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.AddDefaultItem(System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.AddDefaultItem(System.Object)">
             <summary>
             Adds the specified default item of this instance.
             </summary>
@@ -3016,7 +3016,7 @@
             <param name="aItem">The default item of this instance.</param>
             <returns>Returns True if the default item has well been Added.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.SetDefaultItem(System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.SetDefaultItem(System.Object)">
             <summary>
             Sets the specified default item of this instance.
             </summary>
@@ -3024,7 +3024,7 @@
             <param name="aItem">The default item of this instance.</param>
             <returns>Returns True if the default item has well been set.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.SetDefaultItem(System.Collections.Generic.List{System.Object})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.SetDefaultItem(System.Collections.Generic.List{System.Object})">
             <summary>
             Sets the specified default items of this instance.
             </summary>
@@ -3032,7 +3032,7 @@
             <param name="defaultItems">The default items of this instance.</param>
             <returns>Returns True if the default items has well been set.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.GetItemObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GetItemObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
             Gets the item object of this instance.
             </summary>
@@ -3041,7 +3041,7 @@
             <param name="log">The log to populate.</param>
             <returns>Returns the item object.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -3049,21 +3049,21 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.GetAreaSpecification(System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GetAreaSpecification(System.String)">
             <summary>
             Gets the area specification with the specified area name.
             </summary>
             <param name="areaName">The data specification to consider.</param>
             <returns>Returns the area specification.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3073,7 +3073,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3083,7 +3083,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.Repair``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.Repair``1(``0,System.Collections.Generic.List{System.String},System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.UpdateMode},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -3094,7 +3094,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Log of the operation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -3193,31 +3193,31 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec">
             <summary>
             This class represents a document element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.#ctor">
             <summary>
             Initializes a new document element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new document element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3227,7 +3227,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3237,7 +3237,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -3263,7 +3263,7 @@
             Initializes a new entity element.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification,BindOpen.Framework.Core.Data.Items.DataItem[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec,BindOpen.Framework.Core.Data.Items.DataItem[])">
             <summary>
             Initializes a new data entity element.
             </summary>
@@ -3363,34 +3363,34 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec">
             <summary>
             This class represents an entity element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.EntityFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.EntityFilter">
             <summary>
             The entity filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.EntityFilterSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.EntityFilterSpecified">
             <summary>
             Specification of the ClassFilter property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.#ctor">
             <summary>
             Initializes a new entity element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new entity element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -3398,14 +3398,14 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3415,7 +3415,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3425,7 +3425,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Entity.EntityElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -3517,7 +3517,7 @@
             Initializes a new entity element.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification,BindOpen.Framework.Core.Data.Items.DataItem[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec,BindOpen.Framework.Core.Data.Items.DataItem[])">
             <summary>
             Initializes a new data entity element.
             </summary>
@@ -3628,34 +3628,34 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec">
             <summary>
             This class represents an object element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.ClassFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.ClassFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.ClassFilterSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.ClassFilterSpecified">
             <summary>
             Specification of the ClassFilter property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.#ctor">
             <summary>
             Initializes a new object element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new object element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -3663,14 +3663,14 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3680,7 +3680,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3690,7 +3690,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -3758,7 +3758,7 @@
             <param name="valueType">The value type to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElement.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElement.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec,System.Object[])">
             <summary>
             Initializes a new scalar element.
             </summary>
@@ -3829,36 +3829,36 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec">
             <summary>
             This class represents a scalar element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.ValueType">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.ValueTypeSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.ValueTypeSpecified">
             <summary>
             Specification of the ValueType property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor">
             <summary>
-            Initializes a new instance of the ScalarElementSpecification class.
+            Initializes a new instance of the ScalarElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
-            Initializes a new instance of the ScalarElementSpecification class.
+            Initializes a new instance of the ScalarElementSpec class.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
-            Initializes a new instance of the ScalarElementSpecification class.
+            Initializes a new instance of the ScalarElementSpec class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="dataValueType">The value type to consider.</param>
@@ -3866,9 +3866,9 @@
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.#ctor(System.String,System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(System.String,System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
-            Initializes a new instance of the ScalarElementSpecification class.
+            Initializes a new instance of the ScalarElementSpec class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="type">The type to consider.</param>
@@ -3876,7 +3876,7 @@
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -3884,14 +3884,14 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3901,7 +3901,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -3911,7 +3911,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -4086,54 +4086,54 @@
             </summary>
             <param name="propertyName">The name of the property that has changed.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec">
             <summary>
             This class represents a schema element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.SchemuniqueNameFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.SchemuniqueNameFilter">
             <summary>
             The entity unique name filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.SchemaRequirementLevel">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.SchemaRequirementLevel">
             <summary>
             Schema requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.SchemaSpecificationLevels">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.SchemaSpecificationLevels">
             <summary>
             The specification levels for entity specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.FormatUniqueNameFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.FormatUniqueNameFilter">
             <summary>
             The format unique name filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.FormatRequirementLevel">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.FormatRequirementLevel">
             <summary>
             Format requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.FormatSpecificationLevels">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.FormatSpecificationLevels">
             <summary>
             The specification levels for format specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.#ctor">
             <summary>
             Initializes a new schema element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new schema element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -4141,14 +4141,14 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -4158,7 +4158,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -4168,7 +4168,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -4487,46 +4487,46 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet">
             <summary>
             This class represents a set of data element specifications.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.Items">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.Items">
             <summary>
             Specifications of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.SpecificationsSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.SpecificationsSpecified">
             <summary>
             Specification of the Specifications property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.#ctor">
             <summary>
             Initializes a new set of data specifications.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.#ctor(BindOpen.Framework.Core.Data.Elements.DataElementSpecification[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.#ctor(BindOpen.Framework.Core.Data.Elements.DataElementSpec[])">
             <summary>
-            Instantiates a new instance of the DataElementSpecificationSet class.
+            Instantiates a new instance of the DataElementSpecSet class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.GetItem(System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.GetItem(System.String)">
             <summary>
             Returns the item with the specified name.
             </summary>
             <param name="name">The name of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.NewElementSet">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.NewElementSet">
             <summary>
             Creates a new element set from this instance.
             </summary>
             <returns>Returns the element set.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -4616,46 +4616,46 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec">
             <summary>
             This class represents a data source element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.DataSourceKind">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.DataSourceKind">
             <summary>
             The data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.ConnectorFilter">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.ConnectorFilter">
             <summary>
             The connector filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.ConnectorFilterSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.ConnectorFilterSpecified">
             <summary>
             Specification of the ClassFilter property of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.#ctor">
             <summary>
             Initializes a new data source element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Common.SpecificationLevel})">
             <summary>
             Initializes a new data source element specification.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.IsCompatibleWith(BindOpen.Framework.Core.Data.Items.DataItem)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -4665,7 +4665,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.DataElement,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet)">
             <summary>
             Check the specified item.
             </summary>
@@ -4675,7 +4675,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.NewElement(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Creates a new data element respecting this instance.
             </summary>
@@ -4683,7 +4683,7 @@
             <param name="detail">The detail to consider.</param>
             <returns>Returns a new data element respecting this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpecification.Clone">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.Clone">
             <summary>
             Clones this instance.
             </summary>
@@ -7446,7 +7446,7 @@
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Specification.DataSpecification.Update(BindOpen.Framework.Core.Data.Elements.DataElementSpecification,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Framework.Core.Data.Specification.DataSpecification.Update(BindOpen.Framework.Core.Data.Elements.DataElementSpec,System.Collections.Generic.List{System.String})">
             <summary>
             Update this instance with the specified collections.
             </summary>
@@ -9395,19 +9395,19 @@
             <param name="log">The log to populate.</param>
             <param name="taskEntryKinds">The kind end entries to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.IsCompatibleWith(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.IsCompatibleWith(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind)">
             <summary>
             Indicates whether this instance has compatible entries with the specified element collection.
             </summary>
-            <param name="dataElementSpecificationSet">The set of element specifications to consider.</param>
+            <param name="dataElementSpecSet">The set of element specifications to consider.</param>
             <param name="taskEntryKind">The task entry kind to consider.</param>
             <returns>True if this instance is compatible with the specified element collection.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.IsCompatibleWith(System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.DataElementSpecification},BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.IsCompatibleWith(System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.DataElementSpec},BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind)">
             <summary>
             Indicates whether this instance has compatible entries with the specified elements.
             </summary>
-            <param name="dataElementSpecifications">The data elements to consider.</param>
+            <param name="dataElementSpecs">The data elements to consider.</param>
             <param name="taskEntryKind">The kind end entry to consider.</param>
             <returns>True if this instance is compatible with the specified data elements.</returns>
         </member>

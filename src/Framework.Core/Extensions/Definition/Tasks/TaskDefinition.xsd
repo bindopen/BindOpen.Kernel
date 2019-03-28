@@ -4,7 +4,7 @@
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../extensions/definition/AppExtensionItemDefinition.xsd" />
-  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecificationSet.xsd" />
+  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecSet.xsd" />
 
   <xs:complexType name="TaskDefinition">
     <xs:complexContent mixed="false">
@@ -13,8 +13,8 @@
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="groupName" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="isExecutable" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="bdo:DataElementSpecificationSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="bdo:DataElementSpecificationSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="bdo:DataElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="bdo:DataElementSpecSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

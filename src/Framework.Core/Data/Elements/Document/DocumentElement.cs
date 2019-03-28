@@ -50,9 +50,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new DocumentElementSpecification Specification
+        public new DocumentElementSpec Specification
         {
-            get { return base.Specification as DocumentElementSpecification; }
+            get { return base.Specification as DocumentElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -143,9 +143,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new DocumentElementSpecification();
+            return new DocumentElementSpec();
         }
 
         #endregion

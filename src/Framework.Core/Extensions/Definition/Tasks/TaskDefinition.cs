@@ -31,8 +31,8 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
 
         #region Variables
 
-        private DataElementSpecificationSet _InputSpecification = null;
-        private DataElementSpecificationSet _OutputSpecification = null;
+        private DataElementSpecSet _InputSpecification = null;
+        private DataElementSpecSet _OutputSpecification = null;
 
         #endregion
 
@@ -77,11 +77,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <seealso cref="OutputSpecification"/>
         [XmlElement("input.specification")]
-        public DataElementSpecificationSet InputSpecification
+        public DataElementSpecSet InputSpecification
         {
             get
             {
-                if (this._InputSpecification == null) this._InputSpecification = new DataElementSpecificationSet();
+                if (this._InputSpecification == null) this._InputSpecification = new DataElementSpecSet();
                 return this._InputSpecification;
             }
             set
@@ -95,11 +95,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <seealso cref="InputSpecification"/>
         [XmlElement("output.specification")]
-        public DataElementSpecificationSet OutputSpecification
+        public DataElementSpecSet OutputSpecification
         {
             get
             {
-                if (this._OutputSpecification == null) this._OutputSpecification = new DataElementSpecificationSet();
+                if (this._OutputSpecification == null) this._OutputSpecification = new DataElementSpecSet();
                 return this._OutputSpecification;
             }
             set
@@ -150,12 +150,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<DataElementSpecification> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<DataElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            List<DataElementSpecification> dataElements = new List<DataElementSpecification>();
+            List<DataElementSpec> dataElements = new List<DataElementSpec>();
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
                 dataElements.AddRange(this._InputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
@@ -174,7 +174,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public DataElementSpecification GetEntryWithName(String key, params TaskEntryKind[] taskEntryKinds)
+        public DataElementSpec GetEntryWithName(String key, params TaskEntryKind[] taskEntryKinds)
         {
             return this.GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
         }
@@ -194,7 +194,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
             Log log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            DataElementSpecification entry = this.GetEntryWithName(name, taskEntryKinds);
+            DataElementSpec entry = this.GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetItemObject(appScope, scriptVariableSet, log);
         }
@@ -239,10 +239,10 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
 
                 this._InputSpecification.Repair(
                     taskDefinition.InputSpecification,
-                    DataElementSpecification.__Arenames.Excluding(DataAreaKind.Items.ToString()));
+                    DataElementSpec.__Arenames.Excluding(DataAreaKind.Items.ToString()));
                 this._OutputSpecification.Repair(
                     taskDefinition.OutputSpecification,
-                    DataElementSpecification.__Arenames.Excluding(DataAreaKind.Items.ToString()));
+                    DataElementSpec.__Arenames.Excluding(DataAreaKind.Items.ToString()));
             }
         }
 

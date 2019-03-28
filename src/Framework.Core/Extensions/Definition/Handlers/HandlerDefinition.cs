@@ -27,9 +27,9 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
 
         #region Variables
 
-        private DataElementSpecification _SourceSpecification = null;
-        private DataElementSpecificationSet _ParameterSpecification = new DataElementSpecificationSet();
-        private DataElementSpecification _TargetSpecification = null;
+        private DataElementSpec _SourceSpecification = null;
+        private DataElementSpecSet _ParameterSpecification = new DataElementSpecSet();
+        private DataElementSpec _TargetSpecification = null;
 
         private String _GetFunctionName = "Get";
         private String _PostFunctionName = "Post";
@@ -76,12 +76,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         /// <summary>
         /// The source specification of this instance.
         /// </summary>
-        [XmlElement("source-carrier.specification", typeof(CarrierElementSpecification))]
-        [XmlElement("source-document.specification", typeof(DocumentElementSpecification))]
-        [XmlElement("source-entity.specification", typeof(EntityElementSpecification))]
-        [XmlElement("source-scalar.specification", typeof(ScalarElementSpecification))]
-        [XmlElement("source-datasource.specification", typeof(SourceElementSpecification))]
-        public DataElementSpecification SourceSpecification
+        [XmlElement("source-carrier.specification", typeof(CarrierElementSpec))]
+        [XmlElement("source-document.specification", typeof(DocumentElementSpec))]
+        [XmlElement("source-entity.specification", typeof(EntityElementSpec))]
+        [XmlElement("source-scalar.specification", typeof(ScalarElementSpec))]
+        [XmlElement("source-datasource.specification", typeof(SourceElementSpec))]
+        public DataElementSpec SourceSpecification
         {
             get { return this._SourceSpecification; }
             set { this._SourceSpecification = value; }
@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         /// The parameter specification of this instance.
         /// </summary>
         [XmlElement("parameter.specification")]
-        public DataElementSpecificationSet ParameterSpecification
+        public DataElementSpecSet ParameterSpecification
         {
             get { return this._ParameterSpecification; }
             set { this._ParameterSpecification = value; }
@@ -100,12 +100,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         /// <summary>
         /// The target specification of this instance.
         /// </summary>
-        [XmlElement("target-carrier.specification", typeof(CarrierElementSpecification))]
-        [XmlElement("target-document.specification", typeof(DocumentElementSpecification))]
-        [XmlElement("target-entity.specification", typeof(EntityElementSpecification))]
-        [XmlElement("target-scalar.specification", typeof(ScalarElementSpecification))]
-        [XmlElement("target-datasource.specification", typeof(SourceElementSpecification))]
-        public DataElementSpecification TargetSpecification
+        [XmlElement("target-carrier.specification", typeof(CarrierElementSpec))]
+        [XmlElement("target-document.specification", typeof(DocumentElementSpec))]
+        [XmlElement("target-entity.specification", typeof(EntityElementSpec))]
+        [XmlElement("target-scalar.specification", typeof(ScalarElementSpec))]
+        [XmlElement("target-datasource.specification", typeof(SourceElementSpec))]
+        public DataElementSpec TargetSpecification
         {
             get { return this._TargetSpecification; }
             set { this._TargetSpecification = value; }

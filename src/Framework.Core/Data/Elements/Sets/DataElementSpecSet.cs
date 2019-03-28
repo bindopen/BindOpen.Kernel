@@ -15,9 +15,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
     /// This class represents a set of data element specifications.
     /// </summary>
     [Serializable()]
-    [XmlType("DataElementSpecificationSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataElementSpecificationSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataElementSpecificationSet : GenericDataItemSet<DataElementSpecification>
+    [XmlType("DataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    public class DataElementSpecSet : GenericDataItemSet<DataElementSpec>
     {
 
         // ------------------------------------------
@@ -29,13 +29,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <summary>
         /// Specifications of this instance.
         /// </summary>
-        [XmlElement("carrier", typeof(CarrierElementSpecification))]
-        [XmlElement("document", typeof(DocumentElementSpecification))]
-        [XmlElement("entity", typeof(EntityElementSpecification))]
-        [XmlElement("scalar", typeof(ScalarElementSpecification))]
-        [XmlElement("source", typeof(SourceElementSpecification))]
+        [XmlElement("carrier", typeof(CarrierElementSpec))]
+        [XmlElement("document", typeof(DocumentElementSpec))]
+        [XmlElement("entity", typeof(EntityElementSpec))]
+        [XmlElement("scalar", typeof(ScalarElementSpec))]
+        [XmlElement("source", typeof(SourceElementSpec))]
         [XmlElement("specification")]
-        public List<DataElementSpecification> Items
+        public List<DataElementSpec> Items
         {
             get { return this._Items; }
             set { this._Items = value; }
@@ -65,15 +65,15 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <summary>
         /// Initializes a new set of data specifications.
         /// </summary>
-        public DataElementSpecificationSet()
+        public DataElementSpecSet()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DataElementSpecificationSet class.
+        /// Instantiates a new instance of the DataElementSpecSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public DataElementSpecificationSet(params DataElementSpecification[] items) : base(items)
+        public DataElementSpecSet(params DataElementSpec[] items) : base(items)
         {
         }
 
@@ -91,9 +91,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public new DataElementSpecification GetItem(String name)
+        public new DataElementSpec GetItem(String name)
         {
-            return this.GetItem(name) as DataElementSpecification;
+            return this.GetItem(name) as DataElementSpec;
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public DataElementSet NewElementSet()
         {
             DataElementSet dataElementSet = new DataElementSet();
-            foreach (DataElementSpecification dataElementSpecification in this._Items)
-                dataElementSet.Add(dataElementSpecification.NewElement());
+            foreach (DataElementSpec dataElementSpec in this._Items)
+                dataElementSet.Add(dataElementSpec.NewElement());
 
             return dataElementSet;
         }

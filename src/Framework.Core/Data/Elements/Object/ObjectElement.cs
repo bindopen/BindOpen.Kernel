@@ -81,9 +81,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new ObjectElementSpecification Specification
+        public new ObjectElementSpec Specification
         {
-            get { return base.Specification as ObjectElementSpecification; }
+            get { return base.Specification as ObjectElementSpec; }
             set { base.Specification = value; }
         }
 
@@ -141,7 +141,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             String name,
             String id,
             String classFullName,
-            ObjectElementSpecification aSpecification,
+            ObjectElementSpec aSpecification,
             params DataItem[] items)
             : base(name, "ObjectElement_", id)
         {
@@ -203,9 +203,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpecification CreateSpecification()
+        public override DataElementSpec CreateSpecification()
         {
-            return new ObjectElementSpecification();
+            return new ObjectElementSpec();
         }
 
         #endregion
@@ -265,7 +265,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             Object object1 = null;
 
             if (this.Specification==null ||
-                (this.Specification is ObjectElementSpecification) && (this.Specification as ObjectElementSpecification).ClassFilter.IsValueAllowed(this._ClassFullName))
+                (this.Specification is ObjectElementSpec) && (this.Specification as ObjectElementSpec).ClassFilter.IsValueAllowed(this._ClassFullName))
 
                 if (appScope != null && appScope.AppExtension!=null)
                     log.Append(appScope.AppExtension.CreateInstance(AssemblyHelper.GetClassReference(this._ClassFullName), out object1));
@@ -364,7 +364,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             Object object1 = null;
 
             if (stringValue != null)
-                if ((this.Specification == null || this.Specification is ObjectElementSpecification)
+                if ((this.Specification == null || this.Specification is ObjectElementSpec)
                     && (appScope != null && appScope.AppExtension!= null))
                     appScope.AppExtension.LoadDataItemInstance(AssemblyHelper.GetClassReference(this.ClassFullName), stringValue, out object1);
 

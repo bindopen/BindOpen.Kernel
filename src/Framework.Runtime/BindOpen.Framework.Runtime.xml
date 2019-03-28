@@ -391,14 +391,14 @@
             <param name="settingsFilePath">The path of the settings file to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet)">
             <summary>
             Defines the specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet)">
             <summary>
             Defines the specified settings.
             </summary>
@@ -498,14 +498,14 @@
             <param name="settingsFilePath">The path of the settings file.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet)">
             <summary>
             Define the specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecificationSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.DataElementSpecSet)">
             <summary>
             Define the specified settings.
             </summary>

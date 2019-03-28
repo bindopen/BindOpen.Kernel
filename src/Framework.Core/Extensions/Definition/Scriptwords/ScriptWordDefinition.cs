@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
 
         private String _ReferenceUniqueName="";
         //private Boolean _IsDynamic = true;
-        private DataElementSpecificationSet _ParameterSpecification = null;
+        private DataElementSpecSet _ParameterSpecification = null;
         private ScriptItemKind _Kind = ScriptItemKind.None;
         private String _RuntimeFunctionName = "";
 
@@ -106,10 +106,10 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// Parameter specification of this instance.
         /// </summary>
         [XmlElement("parameter.specification")]
-        public DataElementSpecificationSet ParameterSpecification
+        public DataElementSpecSet ParameterSpecification
         {
             get {
-                if (this._ParameterSpecification == null) this._ParameterSpecification = new DataElementSpecificationSet();
+                if (this._ParameterSpecification == null) this._ParameterSpecification = new DataElementSpecSet();
                 return this._ParameterSpecification;
             }
             set {
@@ -297,7 +297,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
                         parameterString +=
                             "<span style='color: blue;'>&lt;" + this.RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + this.MinParameterNumber.ToString() + ";Max: " + this.MaxParameterNumber.ToString() + ">";
                     else
-                        foreach (DataElementSpecification elementSpecification in this.ParameterSpecification.Items)
+                        foreach (DataElementSpec elementSpecification in this.ParameterSpecification.Items)
                             parameterString += (parameterString == String.Empty ? "" : ",") +
                                 "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
                     st += this.Name + "(" + parameterString + ")";

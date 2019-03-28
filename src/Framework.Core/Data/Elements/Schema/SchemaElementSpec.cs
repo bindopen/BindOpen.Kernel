@@ -5,20 +5,21 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Specification.Filters;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements._Object
+namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
 
     /// <summary>
-    /// This class represents an object element specification.
+    /// This class represents a schema element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("ObjectElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("SchemaElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ObjectElementSpecification : DataElementSpecification
+    public class SchemaElementSpec : DataElementSpec
     {
 
         // --------------------------------------------------
@@ -27,17 +28,17 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #region Variables
 
-        // Entity ----------------------------------
+        // Schema ----------------------------------
 
-        private DataValueFilter _ClassFilter = null;
-        //private RequirementLevel _EntityRequirementLevel = RequirementLevel.None;
-        //private List<SpecificationLevel> _EntitySpecificationLevels = new List<SpecificationLevel>();
+        private DataValueFilter _SchemuniqueNameFilter = new DataValueFilter();
+        private RequirementLevel _SchemaRequirementLevel = RequirementLevel.None;
+        private List<SpecificationLevel> _SchemaSpecificationLevels = new List<SpecificationLevel>();
 
-        //// Format ----------------------------------
+        // Format ----------------------------------
 
-        //private DataValueFilter _FormatUniqueNameFilter = new DataValueFilter();
-        //private RequirementLevel _FormatRequirementLevel = RequirementLevel.Optional;
-        //private List<SpecificationLevel> _FormatSpecificationLevels = new List<SpecificationLevel>();
+        private DataValueFilter _FormatUniqueNameFilter = new DataValueFilter();
+        private RequirementLevel _FormatRequirementLevel = RequirementLevel.Optional;
+        private List<SpecificationLevel> _FormatSpecificationLevels = new List<SpecificationLevel>();
 
         #endregion
 
@@ -48,94 +49,77 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #region Properties
 
-        // Entity ----------------------------------
+        // Schema ----------------------------------
     
         /// <summary>
-        /// The class filter of this instance.
+        /// The entity unique name filter of this instance.
         /// </summary>
-        [XmlElement("class.filter")]
-        public DataValueFilter ClassFilter
+        [XmlElement("entityUniqueNameFilter")]
+        public DataValueFilter SchemuniqueNameFilter
         {
-            get {
-                //if (this._ClassFilter == null) this._ClassFilter = new DataValueFilter();
-                return this._ClassFilter;
-            }
-            set { this._ClassFilter = value; }
+            get { return this._SchemuniqueNameFilter; }
+            set { this._SchemuniqueNameFilter = value; }
         }
 
         /// <summary>
-        /// Specification of the ClassFilter property of this instance.
+        /// Schema requirement level of this instance.
         /// </summary>
-        [XmlIgnore()]
-        public Boolean ClassFilterSpecified
+        [XmlElement("entityRequirementLevel")]
+        public RequirementLevel SchemaRequirementLevel
         {
             get
             {
-                return this._ClassFilter != null && 
-                    (this._ClassFilter.AddedValues==null || this._ClassFilter.AddedValues.Count > 0) &&
-                    (this._ClassFilter.RemovedValues == null || this._ClassFilter.RemovedValues.Count > 0);
+                return this._SchemaRequirementLevel;
             }
+            set { this._SchemaRequirementLevel = value; }
         }
 
-        ///// <summary>
-        ///// Entity requirement level of this instance.
-        ///// </summary>
-        //[XmlElement("entityRequirementLevel")]
-        //public RequirementLevel EntityRequirementLevel
-        //{
-        //    get
-        //    {
-        //        return this._EntityRequirementLevel;
-        //    }
-        //    set { this._EntityRequirementLevel = value; }
-        //}
+        /// <summary>
+        /// The specification levels for entity specification of this instance.
+        /// </summary>
+        [XmlArray("entitySpecificationLevels")]
+        [XmlArrayItem("add.level")]
+        public List<SpecificationLevel> SchemaSpecificationLevels
+        {
+            get { return this._SchemaSpecificationLevels; }
+            set { this._SchemaSpecificationLevels = value; }
+        }
 
-        ///// <summary>
-        ///// The specification levels for entity specification of this instance.
-        ///// </summary>
-        //[XmlArray("entitySpecificationLevels")]
-        //[XmlArrayItem("add.level")]
-        //public List<SpecificationLevel> EntitySpecificationLevels
-        //{
-        //    get { return this._EntitySpecificationLevels; }
-        //    set { this._EntitySpecificationLevels = value; }
-        //}
+        // Format ----------------------------------
 
-        //// Format ----------------------------------
+        /// <summary>
+        /// The format unique name filter of this instance.
+        /// </summary>
+        [XmlElement("formatUniqueNameFilter")]
+        public DataValueFilter FormatUniqueNameFilter
+        {
+            get { return this._FormatUniqueNameFilter; }
+            set { this._FormatUniqueNameFilter = value; }
+        }
 
-        ///// <summary>
-        ///// The format unique name filter of this instance.
-        ///// </summary>
-        //[XmlElement("formatUniqueNameFilter")]
-        //public DataValueFilter FormatUniqueNameFilter
-        //{
-        //    get { return this._FormatUniqueNameFilter; }
-        //    set { this._FormatUniqueNameFilter = value; }
-        //}
+        /// <summary>
+        /// Format requirement level of this instance.
+        /// </summary>
+        [XmlElement("formatRequirementLevel")]
+        public RequirementLevel FormatRequirementLevel
+        {
+            get
+            {
+                return this._FormatRequirementLevel;
+            }
+            set { this._FormatRequirementLevel = value; }
+        }
 
-        ///// <summary>
-        ///// Format requirement level of this instance.
-        ///// </summary>
-        //[XmlElement("formatRequirementLevel")]
-        //public RequirementLevel FormatRequirementLevel
-        //{
-        //    get
-        //    {
-        //        return this._FormatRequirementLevel;
-        //    }
-        //    set { this._FormatRequirementLevel = value; }
-        //}
-
-        ///// <summary>
-        ///// The specification levels for format specification of this instance.
-        ///// </summary>
-        //[XmlArray("formatSpecificationLevels")]
-        //[XmlArrayItem("add.level")]
-        //public List<SpecificationLevel> FormatSpecificationLevels
-        //{
-        //    get { return this._FormatSpecificationLevels; }
-        //    set { this._FormatSpecificationLevels = value; }
-        //}
+        /// <summary>
+        /// The specification levels for format specification of this instance.
+        /// </summary>
+        [XmlArray("formatSpecificationLevels")]
+        [XmlArrayItem("add.level")]
+        public List<SpecificationLevel> FormatSpecificationLevels
+        {
+            get { return this._FormatSpecificationLevels; }
+            set { this._FormatSpecificationLevels = value; }
+        }
 
         #endregion
 
@@ -147,18 +131,18 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         #region Constructors
 
         /// <summary>
-        /// Initializes a new object element specification.
+        /// Initializes a new schema element specification.
         /// </summary>
-        public ObjectElementSpecification() : base()
+        public SchemaElementSpec() : base(AccessibilityLevel.Public)
         {
         }
 
         /// <summary>
-        /// Initializes a new object element specification.
+        /// Initializes a new schema element specification.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public ObjectElementSpecification(
+        public SchemaElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
@@ -182,7 +166,11 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <returns>Returns a new data element respecting this instance.</returns>
         public override DataElement NewElement(IAppScope appScope = null, DataElementSet detail = null)
         {
-            return new ObjectElement(this.Name);
+            return new SchemaElement(this.Name)
+            {
+                Title = this.Title.Clone() as DictionaryDataItem,
+                Description = this.Description.Clone() as DictionaryDataItem,
+            };
         }
 
         /// <summary>
@@ -234,10 +222,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {
-            // we check that the entity unique name is available
-            // we check that the format unique name is available
-            // we check that the schema unique name is available
-
             return new Log();
         }
 
@@ -266,12 +250,12 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            ObjectElementSpecification specification = base.Clone() as ObjectElementSpecification;
-            if (this.ClassFilter != null)
-                specification.ClassFilter = this.ClassFilter.Clone() as DataValueFilter;
-            //if (this.FormatUniqueNameFilter != null)
-            //    entityElementSpecification.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
-            return specification;
+            SchemaElementSpec aSchemaElementSpec = base.Clone() as SchemaElementSpec;
+            if (this.SchemuniqueNameFilter != null)
+                aSchemaElementSpec.SchemuniqueNameFilter = this.SchemuniqueNameFilter.Clone() as DataValueFilter;
+            if (this.FormatUniqueNameFilter != null)
+                aSchemaElementSpec.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
+            return aSchemaElementSpec;
         }
 
         #endregion

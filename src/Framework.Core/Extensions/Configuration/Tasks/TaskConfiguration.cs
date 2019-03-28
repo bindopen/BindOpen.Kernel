@@ -231,22 +231,22 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <summary>
         /// Indicates whether this instance has compatible entries with the specified element collection.
         /// </summary>
-        /// <param name="dataElementSpecificationSet">The set of element specifications to consider.</param>
+        /// <param name="dataElementSpecSet">The set of element specifications to consider.</param>
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element collection.</returns>
         public Boolean IsCompatibleWith(
-            DataElementSpecificationSet dataElementSpecificationSet,
+            DataElementSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
-            if (dataElementSpecificationSet == null)
+            if (dataElementSpecSet == null)
                 return true;
             else
                 foreach (DataElement endPoint in this.GetEntries(taskEntryKind))
                 {
-                    DataElementSpecification dataElementSpecification = dataElementSpecificationSet[endPoint.Key()];
-                    if (dataElementSpecification != null)
+                    DataElementSpec dataElementSpec = dataElementSpecSet[endPoint.Key()];
+                    if (dataElementSpec != null)
                     {
-                        Boolean isCompatible = endPoint.IsCompatibleWith(dataElementSpecification);
+                        Boolean isCompatible = endPoint.IsCompatibleWith(dataElementSpec);
                         if (!isCompatible) return false;
                     }
                 }
@@ -257,18 +257,18 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <summary>
         /// Indicates whether this instance has compatible entries with the specified elements.
         /// </summary>
-        /// <param name="dataElementSpecifications">The data elements to consider.</param>
+        /// <param name="dataElementSpecs">The data elements to consider.</param>
         /// <param name="taskEntryKind">The kind end entry to consider.</param>
         /// <returns>True if this instance is compatible with the specified data elements.</returns>
         public Boolean IsCompatibleWith(
-            List<DataElementSpecification> dataElementSpecifications,
+            List<DataElementSpec> dataElementSpecs,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
-            if (dataElementSpecifications == null)
+            if (dataElementSpecs == null)
                 return true;
 
             return this.IsCompatibleWith(
-                new DataElementSpecificationSet(dataElementSpecifications.ToArray()),
+                new DataElementSpecSet(dataElementSpecs.ToArray()),
                 taskEntryKind);
         }
 

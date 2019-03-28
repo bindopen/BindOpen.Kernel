@@ -10,9 +10,9 @@
   <xs:include schemaLocation="../../data/common/Arrays.xsd" />
   <xs:include schemaLocation="../../data/specification/constraints/DataConstraintStatement.xsd" />
   <xs:include schemaLocation="../../data/specification/design/DataElementDesignStatement.xsd" />
-  <xs:include schemaLocation="../../data/elements/sets/DataElementSpecificationSet.xsd" />
+  <xs:include schemaLocation="../../data/elements/sets/DataElementSpecSet.xsd" />
 
-  <xs:complexType name="DataElementSpecification" abstract="true">
+  <xs:complexType name="DataElementSpec" abstract="true">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:DataSpecification">
         <xs:sequence>
@@ -40,7 +40,7 @@
 
           <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="bdo:DataConstraintStatement" />
           <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="bdo:DataElementDesignStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="bdo:DataElementSpecificationSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="bdo:DataElementSpecSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

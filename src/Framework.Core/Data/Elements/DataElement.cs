@@ -59,7 +59,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         // Specification ------------------------------------
 
-        private DataElementSpecification _Specification = null;
+        private DataElementSpec _Specification = null;
 
         // Properties ---------------------------------------
 
@@ -224,7 +224,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of this instance.
         /// </summary>
         [XmlIgnore()]
-        public DataElementSpecification Specification
+        public DataElementSpec Specification
         {
             get {
                 //if (this._Specification == null) this.NewSpecification();
@@ -415,13 +415,13 @@ namespace BindOpen.Framework.Core.Data.Elements
             DataValueType valueType,
             string name = null,
             IAppScope appScope = null,
-            DataElementSpecification specification = null)
+            DataElementSpec specification = null)
         {
             DataElement dataElement = null;
 
             if (valueType.IsScalar())
             {
-                dataElement = new ScalarElement(name, "", valueType, specification as ScalarElementSpecification);
+                dataElement = new ScalarElement(name, "", valueType, specification as ScalarElementSpec);
             }
             else
             {
@@ -429,14 +429,14 @@ namespace BindOpen.Framework.Core.Data.Elements
                 switch (valueType)
                 {
                     case DataValueType.CarrierConfiguration:
-                        definitionUniqueName = (specification as CarrierElementSpecification)?.DefinitionFilter.GetValues(
+                        definitionUniqueName = (specification as CarrierElementSpec)?.DefinitionFilter.GetValues(
                             appScope?.AppExtension.GetItemDefinitionUniqueNames<CarrierDefinition>()).FirstOrDefault();
                         dataElement = new CarrierElement(
                             name, "", definitionUniqueName,
-                            specification as CarrierElementSpecification);
+                            specification as CarrierElementSpec);
                         break;
                     case DataValueType.DataSource:
-                        definitionUniqueName = (specification as SourceElementSpecification)?.ConnectorFilter.GetValues(
+                        definitionUniqueName = (specification as SourceElementSpec)?.ConnectorFilter.GetValues(
                             appScope?.AppExtension.GetItemDefinitionUniqueNames<ConnectorDefinition>()).FirstOrDefault();
                         dataElement = new SourceElement(name, null);
                         break;
@@ -447,13 +447,13 @@ namespace BindOpen.Framework.Core.Data.Elements
                         dataElement = new DocumentElement(name, null as CarrierElement, null);
                         break;
                     case DataValueType.Entity:
-                        definitionUniqueName = (specification as EntityElementSpecification)?.EntityFilter.GetValues(
+                        definitionUniqueName = (specification as EntityElementSpec)?.EntityFilter.GetValues(
                             appScope?.AppExtension.GetItemDefinitionUniqueNames<EntityDefinition>()).FirstOrDefault();
-                        dataElement = new EntityElement(name, "", definitionUniqueName, specification as EntityElementSpecification);
+                        dataElement = new EntityElement(name, "", definitionUniqueName, specification as EntityElementSpec);
                         break;
                     case DataValueType.Object:
-                        definitionUniqueName = (specification as ObjectElementSpecification)?.ClassFilter.GetValues().FirstOrDefault();
-                        dataElement = new ObjectElement(name, "", definitionUniqueName, specification as ObjectElementSpecification);
+                        definitionUniqueName = (specification as ObjectElementSpec)?.ClassFilter.GetValues().FirstOrDefault();
+                        dataElement = new ObjectElement(name, "", definitionUniqueName, specification as ObjectElementSpec);
                         break;
                     case DataValueType.Schema:
                         dataElement = new SchemaElement(name);
@@ -481,7 +481,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             Type type,
             String name = null,
             IAppScope appScope = null,
-            DataElementSpecification specification = null)
+            DataElementSpec specification = null)
         {
             if (type == null) return null;
 
@@ -512,7 +512,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public virtual DataElementSpecification CreateSpecification()
+        public virtual DataElementSpec CreateSpecification()
         {
             return null;
         }
@@ -533,7 +533,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="specification">The data element specification to consider.</param>
         /// <returns>True if this instance is compatible with the specified data elements.</returns>
-        public Boolean IsCompatibleWith(DataElementSpecification specification)
+        public Boolean IsCompatibleWith(DataElementSpec specification)
         {
             if (specification == null)
                 return true;
@@ -1108,7 +1108,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             if (this._ItemReference != null)
                 cloneDataElement.ItemReference = this._ItemReference.Clone() as DataReference;
             if (this._Specification != null)
-                cloneDataElement.Specification = this._Specification.Clone() as DataElementSpecification;
+                cloneDataElement.Specification = this._Specification.Clone() as DataElementSpec;
 
             if (this._PropertyDetail != null)
                 if (elementSpecificationAreas.Contains(DataAreaKind.Any.ToString()) || elementSpecificationAreas.Contains(DataAreaKind.Properties.ToString()))

@@ -18,9 +18,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
     /// This class represents a scalar element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("ScalarElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("ScalarElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScalarElementSpecification : DataElementSpecification
+    public class ScalarElementSpec : DataElementSpec
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -59,18 +59,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElementSpecification class.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
-        public ScalarElementSpecification() : base()
+        public ScalarElementSpec() : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElementSpecification class.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public ScalarElementSpecification(
+        public ScalarElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
@@ -78,14 +78,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElementSpecification class.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="dataValueType">The value type to consider.</param>
         /// <param name="elementRequirementLevel">The element requirement level to consider.</param>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public ScalarElementSpecification(
+        public ScalarElementSpec(
             String name,
             DataValueType dataValueType = DataValueType.Text,
             RequirementLevel elementRequirementLevel = RequirementLevel.Required,
@@ -98,14 +98,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElementSpecification class.
+        /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="type">The type to consider.</param>
         /// <param name="elementRequirementLevel">The element requirement level to consider.</param>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public ScalarElementSpecification(
+        public ScalarElementSpec(
             String name,
             Type type,
             RequirementLevel elementRequirementLevel = RequirementLevel.Required,
@@ -224,8 +224,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            ScalarElementSpecification aScalarElementSpecification = base.Clone() as ScalarElementSpecification;
-            return aScalarElementSpecification;
+            ScalarElementSpec aScalarElementSpec = base.Clone() as ScalarElementSpec;
+            return aScalarElementSpec;
         }
 
         #endregion

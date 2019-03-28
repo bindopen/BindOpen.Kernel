@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Application.Options
     /// </summary>
     [XmlType("OptionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot("optionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class OptionSpec : ScalarElementSpecification
+    public class OptionSpec : ScalarElementSpec
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS

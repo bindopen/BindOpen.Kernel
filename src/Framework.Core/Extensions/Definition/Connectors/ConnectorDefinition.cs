@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
         /// The data source element specification of this instance.
         /// </summary>
         [XmlElement("detail.specification")]
-        public DataElementSpecificationSet DetailSpecification { get; set; } = new DataElementSpecificationSet();
+        public DataElementSpecSet DetailSpecification { get; set; } = new DataElementSpecSet();
 
         #endregion
 

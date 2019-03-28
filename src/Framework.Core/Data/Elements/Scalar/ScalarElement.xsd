@@ -5,13 +5,13 @@
 
   <xs:include schemaLocation="../../../data/common/DataValueType.xsd" />
   <xs:include schemaLocation="../../../data/elements/DataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/scalar/ScalarElementSpecification.xsd" />
+  <xs:include schemaLocation="../../../data/elements/scalar/ScalarElementSpec.xsd" />
 
   <xs:complexType name="ScalarElement">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:DataElement" >
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:ScalarElementSpecification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:ScalarElementSpec" />
         </xs:sequence>
         <xs:attribute use="optional" name="valueType" type="bdo:DataValueType" />
         <xs:attribute use="optional" name="value" type="xs:string" />

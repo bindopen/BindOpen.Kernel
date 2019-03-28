@@ -58,7 +58,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        DataElementSpecificationSet SettingsSpecificationSet { get; set; }
+        DataElementSpecSet SettingsSpecificationSet { get; set; }
 
         // Set -------------------------------------------
 
@@ -96,7 +96,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions DefineSettings(DataElementSpecificationSet specificationSet);
+        IAppHostOptions DefineSettings(DataElementSpecSet specificationSet);
 
         /// <summary>
         /// Define the specified settings.
@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The application settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions DefineSettings<T>(DataElementSpecificationSet specificationSet = null) where T : AppSettings, new();
+        IAppHostOptions DefineSettings<T>(DataElementSpecSet specificationSet = null) where T : AppSettings, new();
 
         /// <summary>
         /// Set the extensions.

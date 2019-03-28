@@ -141,7 +141,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
             //    return false;
             if (scriptWordDefinition.ParameterSpecification.Items != null)
             {
-                foreach (DataElementSpecification parameterSpecification in scriptWordDefinition.ParameterSpecification.Items)
+                foreach (DataElementSpec parameterSpecification in scriptWordDefinition.ParameterSpecification.Items)
                 {
                     ScalarElement scriptWordParameter = scriptWord.ParameterDetail[parameterIndex] as ScalarElement;
 

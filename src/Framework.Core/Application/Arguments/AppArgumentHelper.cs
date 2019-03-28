@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                         {
                             if (argumentSpecification.ValueType == DataValueType.Any)
                                 argumentSpecification.ValueType = DataValueType.Text;
-                            argument = (argumentSpecification.Clone() as DataElementSpecification)?.NewElement() as ScalarElement;
+                            argument = (argumentSpecification.Clone() as DataElementSpec)?.NewElement() as ScalarElement;
 
                             argument.Specification = argumentSpecification;
                             if (argumentSpecification.ItemRequirementLevel.IsPossible())

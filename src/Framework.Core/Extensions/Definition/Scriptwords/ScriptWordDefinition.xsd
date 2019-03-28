@@ -5,7 +5,7 @@
 
   <xs:include schemaLocation="../../../extensions/definition/AppExtensionItemDefinition.xsd" />
   <xs:include schemaLocation="../../../system/script/ScriptItemKind.xsd" />
-  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecificationSet.xsd" />
+  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecSet.xsd" />
   <xs:include schemaLocation="../../../data/common/DataValueType.xsd" />
   <xs:include schemaLocation="../../../data/items/dictionary/DictionaryDataItem.xsd" />
 
@@ -16,7 +16,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="kind" type="bdo:ScriptItemKind" />
           <xs:element minOccurs="0" maxOccurs="1" name="functionName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="bdo:DataElementSpecificationSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="bdo:DataElementSpecSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="returnValueType" type="bdo:DataValueType" />
           <xs:element minOccurs="0" maxOccurs="1" name="isRepeatedParameters" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterValueType" type="bdo:DataValueType" />

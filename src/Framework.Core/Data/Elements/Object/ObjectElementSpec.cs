@@ -9,16 +9,16 @@ using BindOpen.Framework.Core.Data.Specification.Filters;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Entity
+namespace BindOpen.Framework.Core.Data.Elements._Object
 {
 
     /// <summary>
-    /// This class represents an entity element specification.
+    /// This class represents an object element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("EntityElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("ObjectElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class EntityElementSpecification : DataElementSpecification
+    public class ObjectElementSpec : DataElementSpec
     {
 
         // --------------------------------------------------
@@ -29,7 +29,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
 
         // Entity ----------------------------------
 
-        private DataValueFilter _EntityFilter = null;
+        private DataValueFilter _ClassFilter = null;
         //private RequirementLevel _EntityRequirementLevel = RequirementLevel.None;
         //private List<SpecificationLevel> _EntitySpecificationLevels = new List<SpecificationLevel>();
 
@@ -49,31 +49,31 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         #region Properties
 
         // Entity ----------------------------------
-
+    
         /// <summary>
-        /// The entity filter of this instance.
+        /// The class filter of this instance.
         /// </summary>
-        [XmlElement("entity.filter")]
-        public DataValueFilter EntityFilter
+        [XmlElement("class.filter")]
+        public DataValueFilter ClassFilter
         {
             get {
-                //if (this._EntityFilter == null) this._EntityFilter = new DataValueFilter();
-                return this._EntityFilter;
+                //if (this._ClassFilter == null) this._ClassFilter = new DataValueFilter();
+                return this._ClassFilter;
             }
-            set { this._EntityFilter = value; }
+            set { this._ClassFilter = value; }
         }
 
         /// <summary>
         /// Specification of the ClassFilter property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean EntityFilterSpecified
+        public Boolean ClassFilterSpecified
         {
             get
             {
-                return this._EntityFilter != null
-                    && (this._EntityFilter.AddedValues == null || this._EntityFilter.AddedValues.Count > 0)
-                    && (this._EntityFilter.RemovedValues == null || this._EntityFilter.RemovedValues.Count > 0);
+                return this._ClassFilter != null && 
+                    (this._ClassFilter.AddedValues==null || this._ClassFilter.AddedValues.Count > 0) &&
+                    (this._ClassFilter.RemovedValues == null || this._ClassFilter.RemovedValues.Count > 0);
             }
         }
 
@@ -147,18 +147,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         #region Constructors
 
         /// <summary>
-        /// Initializes a new entity element specification.
+        /// Initializes a new object element specification.
         /// </summary>
-        public EntityElementSpecification() : base()
+        public ObjectElementSpec() : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new entity element specification.
+        /// Initializes a new object element specification.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public EntityElementSpecification(
+        public ObjectElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
@@ -182,7 +182,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         /// <returns>Returns a new data element respecting this instance.</returns>
         public override DataElement NewElement(IAppScope appScope = null, DataElementSet detail = null)
         {
-            return new EntityElement(this.Name);
+            return new ObjectElement(this.Name);
         }
 
         /// <summary>
@@ -266,11 +266,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Entity
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            EntityElementSpecification specification = base.Clone() as EntityElementSpecification;
-            if (this.EntityFilter != null)
-                specification.EntityFilter = this.EntityFilter.Clone() as DataValueFilter;
+            ObjectElementSpec specification = base.Clone() as ObjectElementSpec;
+            if (this.ClassFilter != null)
+                specification.ClassFilter = this.ClassFilter.Clone() as DataValueFilter;
             //if (this.FormatUniqueNameFilter != null)
-            //    entityElementSpecification.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
+            //    entityElementSpec.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
             return specification;
         }
 

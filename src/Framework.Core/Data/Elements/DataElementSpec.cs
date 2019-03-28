@@ -26,15 +26,15 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// This class represents a data element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("DataElementSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DataElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    [XmlInclude(typeof(CarrierElementSpecification))]
-    [XmlInclude(typeof(DocumentElementSpecification))]
-    [XmlInclude(typeof(EntityElementSpecification))]
-    [XmlInclude(typeof(ScalarElementSpecification))]
-    [XmlInclude(typeof(SchemaElementSpecification))]
-    [XmlInclude(typeof(SourceElementSpecification))]
-    public abstract class DataElementSpecification : DataSpecification
+    [XmlInclude(typeof(CarrierElementSpec))]
+    [XmlInclude(typeof(DocumentElementSpec))]
+    [XmlInclude(typeof(EntityElementSpec))]
+    [XmlInclude(typeof(ScalarElementSpec))]
+    [XmlInclude(typeof(SchemaElementSpec))]
+    [XmlInclude(typeof(SourceElementSpec))]
+    public abstract class DataElementSpec : DataSpecification
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         #region Constants
 
         /// <summary>
-        /// Names of the attribute areas of the DataElementSpecification class.
+        /// Names of the attribute areas of the DataElementSpec class.
         /// </summary>
         public static List<String> __Arenames = new List<String>()
         {
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         // Properties ---------------------------------------
 
-        private DataElementSpecificationSet _detailSpecification = null;
+        private DataElementSpecSet _detailSpecification = null;
 
         // Design -----------------------------
 
@@ -324,9 +324,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Detail specification of this instance.
         /// </summary>
         [XmlElement("detail.specification")]
-        public DataElementSpecificationSet DetailSpecification
+        public DataElementSpecSet DetailSpecification
         {
-            get => _detailSpecification ?? (_detailSpecification = new DataElementSpecificationSet());
+            get => _detailSpecification ?? (_detailSpecification = new DataElementSpecSet());
             set { _detailSpecification = value; }
         }
 
@@ -363,18 +363,18 @@ namespace BindOpen.Framework.Core.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the DataElementSpecification class.
+        /// Initializes a new instance of the DataElementSpec class.
         /// </summary>
-        protected DataElementSpecification() : this(AccessibilityLevel.Public)
+        protected DataElementSpec() : this(AccessibilityLevel.Public)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the DataElementSpecification class.
+        /// Initializes a new instance of the DataElementSpec class.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        protected DataElementSpecification(
+        protected DataElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
             List<SpecificationLevel> specificationLevels = null) : base(accessibilityLevel, specificationLevels)
         {
@@ -710,8 +710,8 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             // we update the area specifications
             _areaSpecifications.RemoveAll(p =>
-                !CarrierElementSpecification.__Arenames.Any(q => q.KeyEquals(p.AreaName)));
-            foreach (String arename in CarrierElementSpecification.__Arenames)
+                !CarrierElementSpec.__Arenames.Any(q => q.KeyEquals(p.AreaName)));
+            foreach (String arename in CarrierElementSpec.__Arenames)
                 if (_areaSpecifications.Any(p => p.AreaName.KeyEquals(arename)))
                     _areaSpecifications.Add(new DataAreaSpecification(arename));
 
@@ -735,15 +735,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns a cloned instance.</returns>
         public override Object Clone()
         {
-            DataElementSpecification dataElementSpecification = base.Clone() as DataElementSpecification;
+            DataElementSpec dataElementSpec = base.Clone() as DataElementSpec;
 
             if (_aliases != null)
-                dataElementSpecification.Aliases = new List<String>(_aliases);
+                dataElementSpec.Aliases = new List<String>(_aliases);
             if (ConstraintStatement != null)
-                dataElementSpecification.ConstraintStatement = ConstraintStatement.Clone() as DataConstraintStatement;
+                dataElementSpec.ConstraintStatement = ConstraintStatement.Clone() as DataConstraintStatement;
             if (DesignStatement != null)
-                dataElementSpecification.DesignStatement = DesignStatement.Clone() as DataElementDesignStatement;
-            return dataElementSpecification;
+                dataElementSpec.DesignStatement = DesignStatement.Clone() as DataElementDesignStatement;
+            return dataElementSpec;
         }
 
         #endregion
