@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
 
             if (definition!=null)
             {
-                (this._Detail ?? (this._Detail = new DataElementSet())).Repair(this.Definition != null ? this.Definition.DetailSpecification : null);
+                (this._Detail ?? (this._Detail = new DataElementSet())).Repair(this.Definition != null ? this.Definition.DetailSpec : null);
                 this._Detail.Update<DataElementSet>();
             }
         }

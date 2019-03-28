@@ -318,24 +318,6 @@ namespace BindOpen.Framework.Core.Data.Elements
         [XmlIgnore()]
         public Boolean ConstraintStatementSpecified => _constraintStatement?.Count > 0;
 
-        // Detail ---------------------------------
-
-        /// <summary>
-        /// Detail specification of this instance.
-        /// </summary>
-        [XmlElement("detail.specification")]
-        public DataElementSpecSet DetailSpecification
-        {
-            get => _detailSpecification ?? (_detailSpecification = new DataElementSpecSet());
-            set { _detailSpecification = value; }
-        }
-
-        /// <summary>
-        /// Specification of the DetailSpecification property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public Boolean DetailSpecificationSpecified => _detailSpecification?.Count > 0;
-
         // Design ----------------------------------
 
         /// <summary>

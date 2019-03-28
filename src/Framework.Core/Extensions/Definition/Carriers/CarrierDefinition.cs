@@ -14,7 +14,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
     [XmlRoot(ElementName = "carrier.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class CarrierDefinition : AppExtensionItemDefinition
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -22,7 +21,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         #region Variables
 
         private DataSourceKind _DataSourceKind = DataSourceKind.None;
-        private DataElementSpecSet _PathSpecification = new DataElementSpecSet();
 
         #endregion
 
@@ -57,12 +55,8 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// The set of element specifications of this instance.
         /// </summary>
         [XmlElement("path.specification")]
-        public DataElementSpecSet PathSpecification
-        {
-            get { return this._PathSpecification; }
-            set { this._PathSpecification = value; }
-        }
-        
+        public DataElementSpecSet PathSpec { get; set; } = new DataElementSpecSet();
+
         #endregion
 
 
