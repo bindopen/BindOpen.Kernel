@@ -228,7 +228,7 @@ namespace BindOpen.Framework.Core.Data.References
             log = (log ?? new Log());
 
             if (!log.Append(appScope.Check(true, true)).HasErrorsOrExceptions())
-                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueName<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
+                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
                     log.AddError(title: "Data handler definition '" + this.DataHandlerUniqueName + "' not found");
                 else if (this._HandlerDefinition.RuntimeFunction_Get == null)
                     log.AddError(title: "Get function missing in handler definition '" + this.DataHandlerUniqueName + "'");
@@ -266,7 +266,7 @@ namespace BindOpen.Framework.Core.Data.References
 
             if (!log.Append(appScope.Check(true, true)).HasErrorsOrExceptions())
             {
-                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueName<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
+                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
                     log.AddError(title: "Data reference definition not found");
                 else if (this._HandlerDefinition.RuntimeFunction_Post == null)
                     log.AddError(title: "Post function missing in handler definition");

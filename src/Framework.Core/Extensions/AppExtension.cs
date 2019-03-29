@@ -204,19 +204,21 @@ namespace BindOpen.Framework.Core.Extensions
         /// <summary>
         /// Returns the item definition with the specified unique name.
         /// </summary>
-        /// <param name="uniqueName">The unique name of item to return.</param>
+        /// <param name="uniqueId">The unique ID of item to return.</param>
         /// <param name="libraryNames">The names of libraries to consider.</param>
         /// <returns>The item with the specified unique name.</returns>
-        public T GetItemDefinitionWithUniqueName<T>(
-            String uniqueName,
+        public T GetItemDefinitionWithUniqueId<T>(
+            String uniqueId,
             List<String> libraryNames = null) where T : AppExtensionItemDefinition
         {
-            T aItemDefinition = null;
+            T itemDefinition = null;
             foreach (Library library in this.GetLibraries(libraryNames))
-                if ((aItemDefinition = library.GetItemDefinitionWithUniqueName<T>(uniqueName)) != null)
+            {
+                if ((itemDefinition = library.GetItemDefinitionWithUniqueId<T>(uniqueId)) != null)
                     break;
+            }
 
-            return aItemDefinition;
+            return itemDefinition;
         }
 
         // Script word definitions ---------------------------
@@ -336,49 +338,49 @@ namespace BindOpen.Framework.Core.Extensions
             switch (extensionItemKind)
             {
                 case AppExtensionItemKind.Carrier:
-                    CarrierDefinition carrierDefinition = this.GetItemDefinitionWithUniqueName<CarrierDefinition>(uniqueName);
+                    CarrierDefinition carrierDefinition = this.GetItemDefinitionWithUniqueId<CarrierDefinition>(uniqueName);
                     if (carrierDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(carrierDefinition.ItemClass);
                     extensionItemDefinition = carrierDefinition;
                     break;
                 case AppExtensionItemKind.Task:
-                    TaskDefinition taskDefinition = this.GetItemDefinitionWithUniqueName<TaskDefinition>(uniqueName);
+                    TaskDefinition taskDefinition = this.GetItemDefinitionWithUniqueId<TaskDefinition>(uniqueName);
                     if (taskDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(taskDefinition.ItemClass);
                     extensionItemDefinition = taskDefinition;
                     break;
                 case AppExtensionItemKind.Connector:
-                    ConnectorDefinition dataConnectorDefinition = this.GetItemDefinitionWithUniqueName<ConnectorDefinition>(uniqueName);
+                    ConnectorDefinition dataConnectorDefinition = this.GetItemDefinitionWithUniqueId<ConnectorDefinition>(uniqueName);
                     if (dataConnectorDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(dataConnectorDefinition.ItemClass);
                     extensionItemDefinition = dataConnectorDefinition;
                     break;
                 case AppExtensionItemKind.Entity:
-                    EntityDefinition dataEntityDefinition = this.GetItemDefinitionWithUniqueName<EntityDefinition>(uniqueName);
+                    EntityDefinition dataEntityDefinition = this.GetItemDefinitionWithUniqueId<EntityDefinition>(uniqueName);
                     if (dataEntityDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(dataEntityDefinition.ItemClass);
                     extensionItemDefinition = dataEntityDefinition;
                     break;
                 case AppExtensionItemKind.Format:
-                    FormatDefinition dataFormatDefinition = this.GetItemDefinitionWithUniqueName<FormatDefinition>(uniqueName);
+                    FormatDefinition dataFormatDefinition = this.GetItemDefinitionWithUniqueId<FormatDefinition>(uniqueName);
                     if (dataFormatDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(dataFormatDefinition.ItemClass);
                     extensionItemDefinition = dataFormatDefinition;
                     break;
                 case AppExtensionItemKind.Handler:
-                    HandlerDefinition dataHandlerDefinition = this.GetItemDefinitionWithUniqueName<HandlerDefinition>(uniqueName);
+                    HandlerDefinition dataHandlerDefinition = this.GetItemDefinitionWithUniqueId<HandlerDefinition>(uniqueName);
                     if (dataHandlerDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(dataHandlerDefinition.CallingClass);
                     extensionItemDefinition = dataHandlerDefinition;
                     break;
                 case AppExtensionItemKind.RoutineConfiguration:
-                    RoutineDefinition routineDefinition = this.GetItemDefinitionWithUniqueName<RoutineDefinition>(uniqueName);
+                    RoutineDefinition routineDefinition = this.GetItemDefinitionWithUniqueId<RoutineDefinition>(uniqueName);
                     if (routineDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(routineDefinition.ItemClass);
                     extensionItemDefinition = routineDefinition;
                     break;
                 case AppExtensionItemKind.ScriptWord:
-                    ScriptWordDefinition scriptWordDefinition = this.GetItemDefinitionWithUniqueName<ScriptWordDefinition>(uniqueName);
+                    ScriptWordDefinition scriptWordDefinition = this.GetItemDefinitionWithUniqueId<ScriptWordDefinition>(uniqueName);
                     if (scriptWordDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(scriptWordDefinition.CallingClass);
                     extensionItemDefinition = scriptWordDefinition;
@@ -417,13 +419,13 @@ namespace BindOpen.Framework.Core.Extensions
             switch (extensionItemKind)
             {
                 case AppExtensionItemKind.Entity:
-                    EntityDefinition entityDefinition = this.GetItemDefinitionWithUniqueName<EntityDefinition>(uniqueName);
+                    EntityDefinition entityDefinition = this.GetItemDefinitionWithUniqueId<EntityDefinition>(uniqueName);
                     if (entityDefinition != null)
                         assemblyReference = AssemblyHelper.GetClassReference(
                             DataElementSet.Create(entityDefinition.ViewerClass).GetElementItem(viewerKey) as String);
                     break;
                 case AppExtensionItemKind.Format:
-                    FormatDefinition informationFormat = this.GetItemDefinitionWithUniqueName<FormatDefinition>(uniqueName);
+                    FormatDefinition informationFormat = this.GetItemDefinitionWithUniqueId<FormatDefinition>(uniqueName);
                     if (informationFormat != null)
                         assemblyReference = AssemblyHelper.GetClassReference(
                             DataElementSet.Create(informationFormat.ViewerClass).GetElementItem(viewerKey) as String);
@@ -438,50 +440,50 @@ namespace BindOpen.Framework.Core.Extensions
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="definitionName">The unique name of the definition to consider.</param>
+        /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         /// <param name="xmlString">The XML string to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="parameters">The object parameters to consider.</param>
         public TAppExtensionItemConfiguration<T> CreateConfiguration<T>(
-            String definitionName,
+            String definitionUniqueId,
             String xmlString = null,
             Log log = null,
             params Object[] parameters) where T : AppExtensionItemDefinition
         {
             AppExtensionItemKind extensionItemKind = typeof(T).GetExtensionItemKind();
 
-            T definition = this.GetItemDefinitionWithUniqueName<T>(definitionName);
+            T definition = this.GetItemDefinitionWithUniqueId<T>(definitionUniqueId);
 
             TAppExtensionItemConfiguration<T> configuration = null;
 
             if (definition == null)
             {
                 if (log != null)
-                    log.AddError("Could not retrieve the extension item '" + definitionName + "' of kind '" + extensionItemKind.ToString() + "'");
+                    log.AddError("Could not retrieve the extension item '" + definitionUniqueId + "' of kind '" + extensionItemKind.ToString() + "'");
             }
             else if (xmlString == null)
                 switch (extensionItemKind)
                 {
                     case AppExtensionItemKind.Carrier:
-                        configuration = new CarrierConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new CarrierConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Task:
-                        configuration = new TaskConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new TaskConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Connector:
-                        configuration = new ConnectorConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new ConnectorConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Entity:
-                        configuration = new EntityConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new EntityConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Format:
-                        configuration = new FormatConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new FormatConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Metrics:
-                        configuration = new MetricsConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new MetricsConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.RoutineConfiguration:
-                        configuration = new RoutineConfiguration(null, definitionName) as TAppExtensionItemConfiguration<T>;
+                        configuration = new RoutineConfiguration(null, definitionUniqueId) as TAppExtensionItemConfiguration<T>;
                         break;
                 }
             else
@@ -512,7 +514,7 @@ namespace BindOpen.Framework.Core.Extensions
 
             if (configuration!=null)
             {
-                configuration.DefinitionUniqueId = definitionName;
+                configuration.DefinitionUniqueId = definitionUniqueId;
                 configuration.SetDefinition(definition);
             }
 

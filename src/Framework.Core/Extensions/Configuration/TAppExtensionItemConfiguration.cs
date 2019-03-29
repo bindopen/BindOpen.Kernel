@@ -184,7 +184,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
             if (appExtension != null)
             {
                 definitionName = (definitionName ?? this._definitionUniqueId);
-                definition = appExtension.GetItemDefinitionWithUniqueName<T>(definitionName) as T;
+                definition = appExtension.GetItemDefinitionWithUniqueId<T>(definitionName) as T;
                 if (definition != null)
                 {
                     this._definitionUniqueId = definition.Key();

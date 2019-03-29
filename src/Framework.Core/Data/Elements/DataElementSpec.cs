@@ -80,10 +80,6 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         private DataConstraintStatement _constraintStatement = null;
 
-        // Properties ---------------------------------------
-
-        private DataElementSpecSet _detailSpecification = null;
-
         // Design -----------------------------
 
         private DataElementDesignStatement _designStatement = null;

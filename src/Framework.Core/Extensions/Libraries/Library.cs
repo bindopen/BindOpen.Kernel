@@ -855,7 +855,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
         /// </summary>
         /// <param name="uniqueName">The unique name of item to return.</param>
         /// <returns>The item with the specified unique name.</returns>
-        public T GetItemDefinitionWithUniqueName<T>(String uniqueName) where T : AppExtensionItemDefinition
+        public T GetItemDefinitionWithUniqueId<T>(String uniqueName) where T : AppExtensionItemDefinition
         {
             T aItemDefinition = null;
 
@@ -970,7 +970,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                     ScriptWordDefinition referenceScriptWordDefinition = this.GetScriptWordDefinitionWithUniqueName(currentScriptWordDefinition.ReferenceUniqueName);
                     if (referenceScriptWordDefinition == null)
                     {
-                        referenceScriptWordDefinition = appExtension.GetItemDefinitionWithUniqueName<ScriptWordDefinition>(
+                        referenceScriptWordDefinition = appExtension.GetItemDefinitionWithUniqueId<ScriptWordDefinition>(
                            currentScriptWordDefinition.ReferenceUniqueName,
                            appExtension.GetLibraryNames().Excluding(this.Name));
                     }

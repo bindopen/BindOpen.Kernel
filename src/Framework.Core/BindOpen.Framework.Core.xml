@@ -7816,11 +7816,11 @@
             <param name="libraryNames">The names of libraries to consider.</param>
             <returns>The script words of specified library names.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.GetItemDefinitionWithUniqueName``1(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.GetItemDefinitionWithUniqueId``1(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Returns the item definition with the specified unique name.
             </summary>
-            <param name="uniqueName">The unique name of item to return.</param>
+            <param name="uniqueId">The unique ID of item to return.</param>
             <param name="libraryNames">The names of libraries to consider.</param>
             <returns>The item with the specified unique name.</returns>
         </member>
@@ -7877,7 +7877,7 @@
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="definitionName">The unique name of the definition to consider.</param>
+            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
             <param name="xmlString">The XML string to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="parameters">The object parameters to consider.</param>
@@ -10482,7 +10482,7 @@
             </summary>
             <returns>The item words of specified library names.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.GetItemDefinitionWithUniqueName``1(System.String)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.GetItemDefinitionWithUniqueId``1(System.String)">
             <summary>
             Returns the item definition with the specified unique name.
             </summary>
@@ -11911,11 +11911,10 @@
             </summary>
             <returns>True if this instance has child log. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.BuildTree(BindOpen.Framework.Core.System.Diagnostics.Log)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.BuildTree">
             <summary>
-            Builds the tree of the specified log.
+            Builds the tree of this instance.
             </summary>
-            <param name="log"></param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.SetFilePath(System.String,System.Boolean,System.String)">
             <summary>

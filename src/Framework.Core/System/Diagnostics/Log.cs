@@ -1263,19 +1263,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         }
 
         /// <summary>
-        /// Builds the tree of the specified log.
+        /// Builds the tree of this instance.
         /// </summary>
-        /// <param name="log"></param>
-        private static void BuildTree(Log log)
+        private void BuildTree()
         {
-            if (log != null)
-                foreach (LogEvent aEvent in log.Events)
+                foreach (LogEvent aEvent in this.Events)
                 {
-                    aEvent.Parent = log;
+                    aEvent.Parent = this;
                     if (aEvent.Log != null)
                     {
-                        aEvent.Log.Parent = log;
-                        Log.BuildTree(aEvent.Log);
+                        aEvent.Log.Parent = this;
+                        aEvent.Log.BuildTree();
                     }
                 }
         }
@@ -1384,8 +1382,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool mustFileExist = true) where T : Logger, new()
         {
             Log log = (new T()).LoadLog(filePath, loadLog, appScope, mustFileExist);
-            if (log != null)
-                Log.BuildTree(log);
+            log?.BuildTree();
             return log;
         }
 
@@ -1404,8 +1401,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Log loadLog = null) where T : Logger, new()
         {
             Log log = (new T()).LoadLogFromString(xmlString, loadLog, appScope);
-            if (log != null)
-                Log.BuildTree(log);
+            log?.BuildTree();
             return log;
         }
 
