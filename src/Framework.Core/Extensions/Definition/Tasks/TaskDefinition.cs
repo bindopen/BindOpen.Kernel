@@ -187,7 +187,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
-        public Object GetEntryDefaultValueWithName(
+        public Object GetEntryDefaultItemWithName(
             String name,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
@@ -196,7 +196,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         {
             DataElementSpec entry = this.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.GetItemObject(appScope, scriptVariableSet, log);
+            return entry?.GetDefaultItemObject(appScope, scriptVariableSet, log);
         }
 
         #endregion
