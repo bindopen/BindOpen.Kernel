@@ -277,6 +277,14 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Adds the specified elements into the specified group.
+            </summary>
+            <param name="groupId">The ID of the group.</param>
+            <param name="items">The items to add.</param>
+            <returns>Returns this instance.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.Set(System.Object,System.String)">
             <summary>
             Sets the specified value.
@@ -3022,7 +3030,7 @@
             <param name="defaultItems">The default items of this instance.</param>
             <returns>Returns True if the default items has well been set.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GetItemObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.GetDefaultItemObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
             Gets the item object of this instance.
             </summary>
@@ -9123,6 +9131,11 @@
             </summary>
             <typeparam name="T">The definition class of this instance.</typeparam>
         </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Configuration.TAppExtensionItemConfiguration`1._definition">
+            <summary>
+            The definition of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Configuration.TAppExtensionItemConfiguration`1.DefinitionUniqueId">
             <summary>
             Definition unique ID of this instance.
@@ -9158,7 +9171,7 @@
             Instantiates a new instance of the TAppExtensionItemConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
-            <param name="definitionName">The definition name to consider.</param>
+            <param name="definitionUniqueId">The definition unique ID to consider.</param>
             <param name="definition">The definition to consider.</param>
             <param name="namePreffix">The name preffix to consider.</param>
         </member>
@@ -10094,7 +10107,7 @@
             <param name="taskEntryKinds">The kind end entries to consider.</param>
             <returns>Returns the input with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.GetEntryDefaultValueWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition.GetEntryDefaultItemWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskEntryKind[])">
             <summary>
             Gets the value of the specified entry.
             </summary>

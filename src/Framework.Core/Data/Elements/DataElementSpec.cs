@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// ID of the group of this instance.
         /// </summary>
         [XmlElement("groupId")]
-        public String GroupId
+        public string GroupId
         {
             get => _groupId ?? "";
             set { _groupId = value; }
@@ -438,7 +438,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the item object.</returns>
-        public Object GetItemObject(
+        public Object GetDefaultItemObject(
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
             Log log = null)

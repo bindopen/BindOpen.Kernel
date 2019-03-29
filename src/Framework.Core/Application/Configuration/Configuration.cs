@@ -110,6 +110,25 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Mutators
 
         /// <summary>
+        /// Adds the specified elements into the specified group.
+        /// </summary>
+        /// <param name="groupId">The ID of the group.</param>
+        /// <param name="items">The items to add.</param>
+        /// <returns>Returns this instance.</returns>
+        public Configuration AddGroup(string groupId, params DataElement[] items)
+        {
+            foreach(DataElement element in items)
+            {
+                if (element.Specification == null)
+                    element.NewSpecification();
+                element.Specification.GroupId = groupId;
+                Add(element);
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Sets the specified value.
         /// </summary>
         /// <param name="value">The value to set.</param>
