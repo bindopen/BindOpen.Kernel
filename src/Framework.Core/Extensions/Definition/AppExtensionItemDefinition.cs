@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public override String Key()
+        public override string Key()
         {
             return this.UniqueId;
         }

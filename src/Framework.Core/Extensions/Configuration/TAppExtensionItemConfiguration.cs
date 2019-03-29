@@ -7,7 +7,6 @@ using BindOpen.Framework.Core.Extensions.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration
 {
-
     /// <summary>
     /// This class represents an application extension item configuration.
     /// </summary>
@@ -22,7 +21,11 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         #region Variables
 
         private String _definitionUniqueId = "";
-        private T _definition = null;
+
+        /// <summary>
+        /// The definition of this instance.
+        /// </summary>
+        protected T _definition = null;
 
         #endregion
 
@@ -105,19 +108,19 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Instantiates a new instance of the TAppExtensionItemConfiguration class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
         /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
         protected TAppExtensionItemConfiguration(
             String name,
-            String definitionName,
+            String definitionUniqueId,
             T definition,
             String namePreffix = null)
             : base(name, namePreffix)
         {
-            if (definitionName == null && definition != null)
-                definitionName = definition.Name;
-            this._definitionUniqueId = definitionName;
+            if (definitionUniqueId == null && definition != null)
+                definitionUniqueId = definition.Key();
+            this._definitionUniqueId = definitionUniqueId;
             this.SetDefinition(this._definition);
         }
 
@@ -138,7 +141,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         }
 
         #endregion
-
+        
         // ------------------------------------------
         // MUTATORS
         // ------------------------------------------
@@ -159,10 +162,10 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// <param name="isDefinitionChecked">Indicates whether the definition must be checked.</param>
         public virtual void SetDefinition(T definition=null, Boolean isDefinitionChecked = true)
         {
-            if (!isDefinitionChecked || (definition?.Name.KeyEquals(this.DefinitionUniqueId) == true))
+            if (!isDefinitionChecked || (definition?.KeyEquals(this.DefinitionUniqueId) == true))
             {
                 this._definition = definition;
-                this._definitionUniqueId = definition?.Name;
+                this._definitionUniqueId = definition?.Key();
             }
             else
             {
@@ -184,7 +187,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
                 definition = appExtension.GetItemDefinitionWithUniqueName<T>(definitionName) as T;
                 if (definition != null)
                 {
-                    this._definitionUniqueId = definition.Name;
+                    this._definitionUniqueId = definition.Key();
                     this.SetDefinition(definition);
                 }
             }

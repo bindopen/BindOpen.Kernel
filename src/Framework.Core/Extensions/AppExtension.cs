@@ -198,7 +198,7 @@ namespace BindOpen.Framework.Core.Extensions
         public List<string> GetItemDefinitionUniqueNames<T>(
             List<String> libraryNames = null) where T : AppExtensionItemDefinition
         {
-            return GetItemDefinitions<T>(libraryNames).Select(p=>p.ToKey()).ToList();
+            return GetItemDefinitions<T>(libraryNames).Select(p=>p.Key()).ToList();
         }
 
         /// <summary>
