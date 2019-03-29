@@ -42,7 +42,5 @@ namespace BindOpen.Framework.Core.Extensions.Runtime
 
         #endregion
     }
-
-
 }
 

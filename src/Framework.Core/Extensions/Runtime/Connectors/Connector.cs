@@ -16,7 +16,6 @@ using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
 {
-
     /// <summary>
     /// This class represents a connector.
     /// </summary>
@@ -214,6 +213,5 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
         }
 
         #endregion
-
     }
 }

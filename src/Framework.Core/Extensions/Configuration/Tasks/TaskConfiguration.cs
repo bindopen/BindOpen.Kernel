@@ -151,14 +151,16 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
         /// <param name="inputDetail">The input detail to consider.</param>
         public TaskConfiguration(
             String name,
             String definitionName=null,
+            TaskDefinition definition = null,
             String namePreffix = "task_",
             DataElementSet inputDetail = null)
-            : base(name, definitionName, null, namePreffix)
+            : base(name, definitionName, definition, namePreffix)
         {
         }
 

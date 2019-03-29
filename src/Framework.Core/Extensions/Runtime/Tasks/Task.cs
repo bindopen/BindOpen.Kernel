@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
             TaskConfiguration configuration = null,
             String namePreffix = "task_",
             IAppScope appScope = null)
-            : base(name, definitionName, namePreffix)
+            : base(name, definitionName, null, namePreffix)
         {
             this.AppScope = appScope;
             this.SetConfiguration(configuration);
@@ -85,16 +85,17 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
         /// Sets the specififed configuration.
         /// </summary>
         /// <param name="configuration">The configuration to consider.</param>
-        public void SetConfiguration(TAppExtensionItemConfiguration<TaskDefinition> configuration)
+        public virtual void SetConfiguration(TAppExtensionItemConfiguration<TaskDefinition> configuration)
         {
-            if (configuration == null
-                || (this.AppScope != null && configuration.KeyEquals(this.DefinitionUniqueId)))
+            if (this.AppScope != null && configuration?.KeyEquals(this.DefinitionUniqueId) == true)
             {
                 configuration = this.AppScope.AppExtension.CreateConfiguration<TaskDefinition>(this.DefinitionUniqueId) as TaskConfiguration;
             }
 
             if (configuration != null)
+            {
                 this.Update(configuration);
+            }
         }
 
         /// <summary>
@@ -217,13 +218,11 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
         /// <param name="scriptVariableSet">The script variable set to use for execution.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
-        public virtual void Execute(
+        public abstract void Execute(
             Log log,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null, 
-            RuntimeMode runtimeMode = RuntimeMode.Normal)
-        {
-        }
+            ScriptVariableSet scriptVariableSet = null,
+            RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         /// <summary>
         /// Executes this instance.
