@@ -62,7 +62,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// </summary>
         /// <param name="kind">The kidn of command to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        protected Command(CommandKind kind, String name = null) : base(name,null, "command_")
+        protected Command(CommandKind kind, String name = null) : base(name,null, null, "command_")
         {
             this.Kind = kind;
         }

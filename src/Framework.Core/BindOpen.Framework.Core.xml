@@ -277,14 +277,6 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.DataElement[])">
-            <summary>
-            Adds the specified elements into the specified group.
-            </summary>
-            <param name="groupId">The ID of the group.</param>
-            <param name="items">The items to add.</param>
-            <returns>Returns this instance.</returns>
-        </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.Set(System.Object,System.String)">
             <summary>
             Sets the specified value.
@@ -422,6 +414,14 @@
             <param name="filePath">The file path to consider.</param>
             <param name="appScope">The application scope to consider.</param>
             <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Adds the specified elements into the specified group.
+            </summary>
+            <param name="groupId">The ID of the group.</param>
+            <param name="items">The items to add.</param>
+            <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.SaveXml(System.String,BindOpen.Framework.Core.System.Diagnostics.Log)">
             <summary>
@@ -9364,12 +9364,13 @@
             Instantiates a new instance of the TaskConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.#ctor(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Configuration.Tasks.TaskConfiguration.#ctor(System.String,System.String,BindOpen.Framework.Core.Extensions.Definition.Tasks.TaskDefinition,System.String,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet)">
             <summary>
             Instantiates a new instance of the TaskConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="definitionName">The definition name to consider.</param>
+            <param name="definition">The definition to consider.</param>
             <param name="namePreffix">The name preffix to consider.</param>
             <param name="inputDetail">The input detail to consider.</param>
         </member>
