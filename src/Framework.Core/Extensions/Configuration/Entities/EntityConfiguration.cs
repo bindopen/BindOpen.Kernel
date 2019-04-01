@@ -1,32 +1,19 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+﻿using System;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Schema;
 using BindOpen.Framework.Core.Extensions.Definition.Entities;
-using System;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration.Entities
 {
-
     /// <summary>
     /// This class represents an entity configuration.
     /// </summary>
     [Serializable()]
     [XmlType("EntityConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "entity", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class EntityConfiguration : TAppExtensionTitledItemConfiguration<EntityDefinition>
+    public class EntityConfiguration : TAppExtensionTitledItemConfiguration<IEntityDefinition>, IEntityConfiguration
     {
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private DataElementSet _Detail = null;
-        private DataSchema _Schema = null;
-
-        #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -38,36 +25,15 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Entities
         /// The detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public DataElementSet Detail
-        {
-            get
-            {
-                return this._Detail;
-            }
-            set
-            {
-                this._Detail = value;
-            }
-        }
+        public IDataElementSet Detail { get; set; } = null;
 
         /// <summary>
         /// The schema of this instance. 
         /// </summary>
         [XmlIgnore()]
-        public DataSchema Schema
-        {
-            get
-            {
-                return this._Schema;
-            }
-            set
-            {
-                this._Schema = value;
-            }
-        }
+        public IDataSchema Schema { get; set; } = null;
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -84,24 +50,41 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Entities
         }
 
         /// <summary>
-        /// This instantiates a new instance of the EntityConfiguration class.
+        /// Instantiates a new instance of the EntityConfiguration class.
         /// </summary>
-        /// <param name="name">The name of this instance.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
-        /// <param name="detail">The path detail to consider.</param>
-        public EntityConfiguration(
-            String name,
-            String definitionName = null,
-            String namePreffix = "entity_",
+        /// <param name="detail">The detail to consider.</param>
+        protected EntityConfiguration(
+            string name,
+            IEntityDefinition definition = default,
+            string namePreffix = "entity_",
             DataElementSet detail = null)
-            : base(name, definitionName, null, namePreffix)
+            : this(name, definition?.Key(), namePreffix, detail)
         {
-            this._Detail = detail;
+            _definition = definition;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the EntityConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="detail">The detail to consider.</param>
+        protected EntityConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix = "entity_",
+            IDataElementSet detail = null)
+            : base(name, definitionUniqueId, namePreffix)
+        {
+            DefinitionUniqueId = definitionUniqueId;
+            Detail = detail;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CLONING
@@ -113,17 +96,15 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Entities
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             EntityConfiguration dataEntityItem = base.Clone() as EntityConfiguration;
-            if (this._Schema != null)
-                dataEntityItem.Schema = this._Schema.Clone() as DataSchema;
+            if (this.Schema != null)
+                dataEntityItem.Schema = this.Schema.Clone() as DataSchema;
 
             return dataEntityItem;
         }
 
         #endregion
-
-
     }
 }

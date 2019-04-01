@@ -1213,17 +1213,17 @@
             This class represents an advanced condition.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind">
+        <member name="T:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedConditionKind">
             <summary>
             This enumeration lists the possible view advanced condition kinds.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind.And">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedConditionKind.And">
             <summary>
             And.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedBusinessConditonKind.Or">
+        <member name="F:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.AdvancedConditionKind.Or">
             <summary>
             Or.
             </summary>
@@ -1240,18 +1240,18 @@
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor">
             <summary>
-            Instantiates a new instance of the AdvancedBusinessConditon class.
+            Instantiates a new instance of the AdvancedCondition class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor(BindOpen.Framework.Core.Data.Business.Conditions.Condition[])">
             <summary>
-            Instantiates a new instance of the AdvancedBusinessConditon class.
+            Instantiates a new instance of the AdvancedCondition class.
             </summary>
             <param name="conditions">The conditions to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Business.Conditions.AdvancedCondition.#ctor(System.String,BindOpen.Framework.Core.Data.Business.Conditions.Condition[])">
             <summary>
-            Instantiates a new instance of the AdvancedBusinessConditon class.
+            Instantiates a new instance of the AdvancedCondition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
             <param name="conditions">The conditions to consider.</param>
@@ -2675,14 +2675,14 @@
             <summary>
             Updates the value value1 with the value value2.
             </summary>
-            <param name="aItem">The item to consider.</param>
+            <param name="item">The item to consider.</param>
             <param name="aNewItem">The new item.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.RemoveItem(System.Object)">
             <summary>
             Removes the specified item.
             </summary>
-            <param name="aItem">The item </param>
+            <param name="item">The item </param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.GetDefaultControlType">
             <summary>
@@ -2744,7 +2744,7 @@
             <summary>
             Check the specified item.
             </summary>
-            <param name="aItem">The item to consider.</param>
+            <param name="item">The item to consider.</param>
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>The log of check log.</returns>
@@ -3011,7 +3011,7 @@
             Adds the specified default item of this instance.
             </summary>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-            <param name="aItem">The default item of this instance.</param>
+            <param name="item">The default item of this instance.</param>
             <returns>Returns True if the default item has well been Added.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.SetDefaultItem(System.Object)">
@@ -3019,7 +3019,7 @@
             Sets the specified default item of this instance.
             </summary>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-            <param name="aItem">The default item of this instance.</param>
+            <param name="item">The default item of this instance.</param>
             <returns>Returns True if the default item has well been set.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.SetDefaultItem(System.Collections.Generic.List{System.Object})">
@@ -6969,7 +6969,7 @@
             <summary>
             Posts the items to the source of this instance.
             </summary>
-            <param name="aItem">The item to consider.</param>
+            <param name="item">The item to consider.</param>
             <param name="aSourceElement">The source element to consider.</param>
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
@@ -7473,29 +7473,29 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Specification.Design.DataElementDesignStatement">
+        <member name="T:BindOpen.Framework.Core.Data.Specification.Design.DataDesignStatement">
             <summary>
             This class represents a data element design statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataElementDesignStatement.ControlWidth">
+        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataDesignStatement.ControlWidth">
             <summary>
             Control with of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataElementDesignStatement.ControlWidthSpecified">
+        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataDesignStatement.ControlWidthSpecified">
             <summary>
             Specification of the ControlWidth property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataElementDesignStatement.ControlType">
+        <member name="P:BindOpen.Framework.Core.Data.Specification.Design.DataDesignStatement.ControlType">
             <summary>
             Control type of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Specification.Design.DataElementDesignStatement.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Specification.Design.DataDesignStatement.#ctor">
             <summary>
-            Initializes a new instance of the DataElementDesignStatement class.
+            Initializes a new instance of the DataDesignStatement class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Specification.Design.DesignControlType">
@@ -8160,7 +8160,7 @@
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtensionFilter.#ctor">
             <summary>
-            Instantiates a new instance of the AppExtensionFilterItem class.
+            Instantiates a new instance of the AppExtensionFilter class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtensionFilter.#ctor(System.String,System.String,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Items.Source.DataSourceKind},System.String)">
@@ -10196,24 +10196,24 @@
             Instantiates a new instance of the ConnectorIndexAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.CarrierConfigurationIndex">
+        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.CarrierIndex">
             <summary>
             This class represents a carrier index.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.CarrierConfigurationIndex.#ctor">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.CarrierIndex.#ctor">
             <summary>
-            Instantiates a new instance of the CarrierConfigurationIndex class.
+            Instantiates a new instance of the CarrierIndex class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.DataHandlerIndex">
+        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.HandlerIndex">
             <summary>
             This class represents a handler index.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.DataHandlerIndex.#ctor">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.HandlerIndex.#ctor">
             <summary>
-            Instantiates a new instance of the DataHandlerIndex class.
+            Instantiates a new instance of the HandlerIndex class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Indexes.EntityIndex">
@@ -10280,14 +10280,14 @@
             Instantiates a new instance of the MetricsIndex class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.RoutineConfigurationIndex">
+        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.RoutineIndex">
             <summary>
             This class represents an routine index.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.RoutineConfigurationIndex.#ctor">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.RoutineIndex.#ctor">
             <summary>
-            Instantiates a new instance of the RoutineConfigurationIndex class.
+            Instantiates a new instance of the RoutineIndex class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Indexes.ScriptWordIndex">
@@ -10932,7 +10932,7 @@
             </summary>
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
-            <param name="aItem">The item to use.</param>
+            <param name="item">The item to use.</param>
             <param name="dataElement">The element to use.</param>
             <param name="objects">The objects to use.</param>
             <returns>The log of check log.</returns>

@@ -23,7 +23,7 @@ namespace BindOpen.TestConsole
             //// we test argument handling
             //TestArguments.Test();
 
-            //Log log = new Log();
+            //ILog log = new Log();
             //log.Execution = new ProcessExecution() {
             //    State= ProcessExecutionState.Ended,
             //    Status= ProcessExecutionStatus.Processing,
@@ -70,7 +70,7 @@ namespace BindOpen.TestConsole
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
                 .Start() as BdoAppHost;
 
-            Log log = new Log();
+            ILog log = new Log();
             log.AddMessage("test1");
             string st1 = log[0];
 

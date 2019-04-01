@@ -12,7 +12,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
 {
-
     /// <summary>
     /// This class represents a data source element.
     /// </summary>
@@ -20,9 +19,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
     [Serializable()]
     [XmlType("SourceElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "dataSource", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class SourceElement : DataElement
+    public class SourceElement : DataElement, ISourceElement
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -40,7 +38,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -62,7 +59,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="dataSource">The data source to consider.</param>
         public SourceElement(
             String name = null,
-            DataSource dataSource = null)
+            IDataSource dataSource = null)
             : base(name, "dataSourceElement_")
         {
             this.ValueType = DataValueType.DataSource;
@@ -73,27 +70,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         }
 
         #endregion
-
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
-        {
-            return new SourceElementSpec();
-        }
-
-        #endregion
-
 
         // --------------------------------------------------
         // ITEMS
@@ -107,7 +83,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
           /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
+        public override object NewItem(IAppScope appScope = null, ILog log = null)
         {
             return null;
         }
@@ -120,11 +96,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
+        public override object GetItem(
             Object indexItem = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             if ((indexItem == null) || (indexItem is int))
             {
@@ -133,7 +109,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
             else if (indexItem is string)
             {
                 return this.GetItems(appScope, scriptVariableSet, log)
-                   .Any(p => p is DataSource && string.Equals((p as DataSource)?.Key() ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
+                   .Any(p => p is IDataSource && string.Equals((p as IDataSource)?.Key() ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
             }
 
             return null;
@@ -145,9 +121,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="indexItem">The index item to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p.KeyEquals(indexItem));
 
             return false;
@@ -157,7 +133,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
             return string.Join("|", this.Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
         }
@@ -170,9 +146,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="object1">The object value to convert.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result string.</returns>
-        public override String GetStringFromObject(
+        public override string GetStringFromObject(
             Object object1,
-            Log log = null)
+            ILog log = null)
         {
             String stringValue = "";
 
@@ -195,10 +171,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result object.</returns>
-        public override Object GetObjectFromString(
-            String stringValue,
+        public override object GetObjectFromString(
+            string stringValue,
             IAppScope appScope = null,
-            Log log = null)
+            ILog log = null)
         {
             Object object1 = null;
 
@@ -211,7 +187,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
 
         #endregion
 
-
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
         // --------------------------------------------------
@@ -220,7 +195,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -232,14 +206,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             SourceElement dataSourceElement = this.MemberwiseClone() as SourceElement;
             return dataSourceElement;
         }
 
         #endregion
-
     }
-
 }

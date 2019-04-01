@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="dataTable">The data table to serialize.</param>
         /// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         /// <returns>The Xml string serializing the specified data table.</returns>
-        public static String ToXml(this DataTable dataTable, Boolean isFiltered = false)
+        public static String ToXml(this DataTable dataTable, bool isFiltered = false)
         {
             String resultString = "";
             IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="nodeName">The name of the node to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, Boolean isFiltered = false)
+        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, bool isFiltered = false)
         //{
         //    int count = 0;
         //    return ObjectNotationHelper_Xml.ToXml(oleDbDataReader, nodeName, out count, isFiltered);
@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="count">The number of items to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, out int count, Boolean isFiltered = false)
+        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, out int count, bool isFiltered = false)
         //{
         //    String resultString = "";
         //    IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -127,7 +127,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         //    // we go through the data table rows
         //    if (oleDbDataReader != null)
         //    {
-        //        List<String> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
+        //        List<string> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
         //        while (oleDbDataReader.Read())
         //        {
         //            resultString += "<item>";
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         public static void FromXml(
             this DataSet dataSet,
             String xmlString,
-            List<String> tableNames,
+            List<string> tableNames,
             bool isAppend = false)
         {
             if ((xmlString == null) | (dataSet == null))
@@ -238,7 +238,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             bool isAppend = false)
         {
             if (dataSet != null)
-                dataSet.FromXml(xmlString, new List<String>() { tableName }, isAppend);
+                dataSet.FromXml(xmlString, new List<string>() { tableName }, isAppend);
         }
 
         /// <summary>

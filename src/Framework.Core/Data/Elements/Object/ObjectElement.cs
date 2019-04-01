@@ -14,7 +14,7 @@ using BindOpen.Framework.Core.System.Scripting;
 namespace BindOpen.Framework.Core.Data.Elements._Object
 {
     /// <summary>
-    /// This class represents a entity element that is an element whose items are entities.
+    /// This class represents a object element that is an element whose items are entities.
     /// </summary>
     [Serializable()]
     [XmlType("ObjectElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
@@ -22,58 +22,18 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
     public class ObjectElement : DataElement
     {
         // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private String _ClassFullName = "";
-        //private String _FormatUniqueName = "";
-        //private DataHandler _DataSchemreference = null;
-
-        #endregion
-
-        // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
 
-        // Object -----------------------------
+        // object -----------------------------
 
         /// <summary>
         /// The class full name of this instance.
         /// </summary>
         [XmlAttribute("class")]
-        public String ClassFullName
-        {
-            get { return this._ClassFullName; }
-            set { this._ClassFullName = value; }
-        }
-
-        //// Format -----------------------------
-
-        ///// <summary>
-        ///// The format unique name of this instance.
-        ///// </summary>
-        //[XmlElement("formatUniqueName")]
-        //public String FormatUniqueName
-        //{
-        //    get { return this._FormatUniqueName; }
-        //    set { this._FormatUniqueName = value; }
-        //}
-
-        //// Data schema ------------------------
-
-        ///// <summary>
-        ///// The data schema reference of this instance.
-        ///// </summary>
-        //[XmlElement("dataSchema.reference")]
-        //public DataHandler DataSchemreference
-        //{
-        //    get { return this._DataSchemreference; }
-        //    set { this._DataSchemreference = value; }
-        //}
+        public string ClassFullName { get; set; } = "";
 
         // Specifcation -----------------------
 
@@ -86,32 +46,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             get { return base.Specification as ObjectElementSpec; }
             set { base.Specification = value; }
         }
-
-        // Items -----------------------
-
-        ///// <summary>
-        ///// The item object of this instance.
-        ///// </summary>
-        //[XmlAnyElement("object.item")]
-        //public XElement ItemObject
-        //{
-        //    get {
-        //        return XElement.Parse("<item>" + base.StringItem + "</item>");
-        //    }
-        //    set { base.StringItem = (value == null ? null : value.ToString()); }
-        //}
-
-        ///// <summary>
-        ///// Specification of the ItemObject property of this instance.
-        ///// </summary>
-        //[XmlIgnore()]
-        //public Boolean ItemObjectSpecified
-        //{
-        //    get
-        //    {
-        //        return base.StringItems !=null && base.StringItems.Count == 1;
-        //    }
-        //}
 
         #endregion
 
@@ -138,19 +72,19 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="aSpecification">The specification to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            String id,
-            String classFullName,
-            ObjectElementSpec aSpecification,
-            params DataItem[] items)
+            string name,
+            string id,
+            string classFullName,
+            IObjectElementSpec aSpecification,
+            params IDataItem[] items)
             : base(name, "ObjectElement_", id)
         {
             this.ValueType = DataValueType.Object;
             this.Specification = aSpecification;
-            
+
             this.SetItem(items);
-            if (!String.IsNullOrEmpty(classFullName))
-                this._ClassFullName = classFullName;
+            if (!string.IsNullOrEmpty(classFullName))
+                this.ClassFullName = classFullName;
         }
 
         /// <summary>
@@ -160,9 +94,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="classFullName">The entity unique name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            String classFullName,
-            params DataItem[] items)
+            string name,
+            string classFullName,
+            params IDataItem[] items)
             : this(name, null, classFullName, null, items)
         {
         }
@@ -173,8 +107,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            params DataItem[] items)
+            string name,
+            params IDataItem[] items)
             : this(name, null, null, null, items)
         {
         }
@@ -184,7 +118,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            params DataItem[] items)
+            params IDataItem[] items)
             : this(null, null, null, null, items)
         {
         }
@@ -225,13 +159,13 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override Boolean AddItem(
-            Object item,
+        public override bool AddItem(
+            object item,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            Boolean boolean = base.AddItem(item, appScope, scriptVariableSet, log);
+            bool boolean = base.AddItem(item, appScope, scriptVariableSet, log);
             if (this[0] is DataItem)
             {
                 Assembly assembly = this[0].GetType().Assembly;
@@ -248,7 +182,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="appScope">The application scope to consider.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public override void SetItem(
-            Object item,
+            object item,
             IAppScope appScope = null)
         {
             base.SetItem(item);
@@ -260,15 +194,15 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
           /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
+        public override object NewItem(IAppScope appScope = null, ILog log = null)
         {
-            Object object1 = null;
+            object object1 = null;
 
             if (this.Specification==null ||
-                (this.Specification is ObjectElementSpec) && (this.Specification as ObjectElementSpec).ClassFilter.IsValueAllowed(this._ClassFullName))
+                (this.Specification is ObjectElementSpec) && (this.Specification as ObjectElementSpec).ClassFilter.IsValueAllowed(this.ClassFullName))
 
                 if (appScope != null && appScope.AppExtension!=null)
-                    log.Append(appScope.AppExtension.CreateInstance(AssemblyHelper.GetClassReference(this._ClassFullName), out object1));
+                    log.Append(appScope.AppExtension.CreateInstance(AssemblyHelper.GetClassReference(this.ClassFullName), out object1));
 
             return object1;
         }
@@ -281,17 +215,17 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
-            Object indexItem = null,
+        public override object GetItem(
+            object indexItem = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             if ((indexItem == null) || (indexItem is int))
             {
                 return base.GetItem(indexItem, appScope, scriptVariableSet, log);
             }
-            else if (indexItem is String)
+            else if (indexItem is string)
             {
                 return this.GetItems(appScope, scriptVariableSet, log)
                    .Any(p => p is NamedDataItem && string.Equals((p as NamedDataItem)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
@@ -306,9 +240,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="indexItem">The index item to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p.KeyEquals(indexItem));
 
             return false;
@@ -318,9 +252,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Join("|", this.Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
+            return string.Join("|", this.Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
         }
 
         // Conversion ---------------------------
@@ -331,11 +265,11 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="object1">The object value to convert.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result string.</returns>
-        public override String GetStringFromObject(
-            Object object1,
-            Log log = null)
+        public override string GetStringFromObject(
+            object object1,
+            ILog log = null)
         {
-            String stringValue = "";
+            string stringValue = "";
 
             if (object1 is DataItem)
             {
@@ -343,7 +277,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
                 if (item != null)
                     stringValue = item.ToXml();
                 else if (log != null)
-                    log.AddError(title: "Object expected", description: "The specified object is not an entity.");
+                    log.AddError(title: "object expected", description: "The specified object is not an entity.");
             }
 
             return stringValue;
@@ -356,12 +290,12 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result object.</returns>
-        public override Object GetObjectFromString(
-            String stringValue,
+        public override object GetObjectFromString(
+            string stringValue,
             IAppScope appScope = null,
-            Log log = null)
+            ILog log = null)
         {
-            Object object1 = null;
+            object object1 = null;
 
             if (stringValue != null)
                 if ((this.Specification == null || this.Specification is ObjectElementSpec)
@@ -373,7 +307,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #endregion
 
-
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
         // --------------------------------------------------
@@ -382,7 +315,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -394,7 +326,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ObjectElement aObjectElement = this.MemberwiseClone() as ObjectElement;
             //if (this.DataSchemreference != null)
@@ -404,7 +336,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         }
 
         #endregion
-
     }
 
 }

@@ -7,15 +7,13 @@ using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
 
 namespace BindOpen.Framework.Core.Application.Datasources
 {
-
     /// <summary>
     /// This class represents a data source service.
     /// </summary>
     /// <remarks>The data source service stores sources by data sources.</remarks>
     [Serializable()]
-    public class DataSourceService : DataItem
+    public class DataSourceService : DataItem, IDataSourceService
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -25,10 +23,9 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// <summary>
         /// The data sources of this instance.
         /// </summary>
-        protected DataItemSet<DataSource> _DataSourceSet = null;
+        protected DataItemSet<IDataSource> _dataSourceSet = null;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -37,15 +34,14 @@ namespace BindOpen.Framework.Core.Application.Datasources
         #region Properties
 
         /// <summary>
-        /// The data sources of this instance. 
+        /// The data source set of this instance. 
         /// </summary>
-        public DataItemSet<DataSource> DataSourceSet
+        public DataItemSet<IDataSource> DataSourceSet
         {
-            get { return this._DataSourceSet ?? new DataItemSet<DataSource>(); }
+            get { return _dataSourceSet ?? new DataItemSet<IDataSource>(); }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -64,14 +60,15 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// Instantiates a new instance of the DataSourceService class.
         /// </summary>
         /// <param name="dataSources">The data sources to consider.</param>
-        public DataSourceService(params DataSource[] dataSources)
+        public DataSourceService(params IDataSource[] dataSources)
         {
             if (dataSources != null)
-                this._DataSourceSet = new DataItemSet<DataSource>(dataSources);
+            {
+                _dataSourceSet = new DataItemSet<IDataSource>(dataSources);
+            }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // MUTATORS
@@ -85,40 +82,38 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// Adds the specified data source.
         /// </summary>
         /// <param name="source">The data source to add.</param>
-        public void AddSource(DataSource source)
+        public void AddSource(IDataSource source)
         {
-            if (source == null)
-                return;
+            if (source == null) return;
 
-            if (this._DataSourceSet == null)
-                this._DataSourceSet = new DataItemSet<DataSource>();
-
-            this._DataSourceSet.Add(source);
+            (_dataSourceSet ?? (_dataSourceSet = new DataItemSet<IDataSource>())).Add(source);
         }
 
         /// <summary>
         /// Adds the specified module instances.
         /// </summary>
         /// <param name="sources">The data sources to add.</param>
-        public void AddSource(params DataSource[] sources)
+        public void AddSource(params IDataSource[] sources)
         {
             if (sources != null)
-                foreach (DataSource source in sources)
-                    this.AddSource(source);
+            {
+                foreach (IDataSource source in sources)
+                {
+                    AddSource(source);
+                }
+            }
         }
 
         /// <summary>
         /// Remove the specified data sources.
         /// </summary>
         /// <param name="sourceNames">Names of the data source to remove.</param>
-        public void RemoveSource(params String[] sourceNames)
+        public void RemoveSource(params string[] sourceNames)
         {
-            if (this._DataSourceSet != null)
-                this._DataSourceSet.Remove(sourceNames);
+            _dataSourceSet?.Remove(sourceNames);
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
@@ -131,8 +126,7 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         public void Clear()
         {
-            if (this._DataSourceSet != null)
-                this._DataSourceSet.ClearItems();
+            _dataSourceSet?.ClearItems();
         }
 
         // Sources -----------------------------------------------
@@ -142,12 +136,12 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public DataSource GetSource(String sourceName)
+        public IDataSource GetSource(String sourceName)
         {
-            DataSource dataSource = null;
-            if (this._DataSourceSet != null)
+            IDataSource dataSource = null;
+            if (_dataSourceSet != null)
             {
-                dataSource = this._DataSourceSet.GetItem(sourceName);
+                dataSource = _dataSourceSet.GetItem(sourceName);
             }
 
             return dataSource;
@@ -158,9 +152,9 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public Boolean HasSource(String sourceName)
+        public bool HasSource(String sourceName)
         {
-            return this._DataSourceSet != null && this._DataSourceSet.HasItem(sourceName);
+            return _dataSourceSet?.HasItem(sourceName) == true;
         }
 
         /// <summary>
@@ -168,9 +162,9 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The module name corresponding to the specified data module name.</returns>
-        public String GetModuleName(String sourceName)
+        public string GetModuleName(String sourceName)
         {
-            DataSource source = this.GetSource(sourceName);
+            IDataSource source = GetSource(sourceName);
 
             return source != null ? source.ModuleName : StringHelper.__NoneString;
         }
@@ -180,9 +174,9 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The instance name corresponding to the specified data module name.</returns>
-        public String GetInstanceName(String sourceName)
+        public string GetInstanceName(String sourceName)
         {
-            DataSource source = this.GetSource(sourceName);
+            IDataSource source = GetSource(sourceName);
 
             return source != null ? source.InstanceName : StringHelper.__NoneString;
         }
@@ -192,9 +186,9 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The instance name corresponding to the specified data module name.</returns>
-        public String GetInstanceOtherwiseModuleName(String sourceName)
+        public string GetInstanceOtherwiseModuleName(String sourceName)
         {
-            DataSource source = this.GetSource(sourceName);
+            IDataSource source = GetSource(sourceName);
 
             string name = (source == null ?
                 StringHelper.__NoneString :
@@ -213,7 +207,7 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// <returns>The specified connector.</returns>
         public ConnectorConfiguration GetConnectorConfiguration(String sourceName, String connectorDefinitionUniqueName)
         {
-            DataSource dataSource = this.GetSource(sourceName);
+            IDataSource dataSource = GetSource(sourceName);
 
             return dataSource?.GetConfiguration(connectorDefinitionUniqueName);
         }
@@ -224,11 +218,11 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueName">The unique name of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public Boolean HasConnectorConfiguration(String sourceName, String connectorDefinitionUniqueName)
+        public bool HasConnectorConfiguration(String sourceName, String connectorDefinitionUniqueName)
         {
-            DataSource dataSource = this.GetSource(sourceName);
+            IDataSource dataSource = GetSource(sourceName);
 
-            return dataSource != null && dataSource.HasConfiguration(connectorDefinitionUniqueName);
+            return dataSource?.HasConfiguration(connectorDefinitionUniqueName) == true;
         }
 
         /// <summary>
@@ -237,17 +231,16 @@ namespace BindOpen.Framework.Core.Application.Datasources
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <param name="connectorDefinitionUniqueName">The connector unique name to consider.</param>
         /// <returns>The connection string corresponding to the specified data module name.</returns>
-        public String GetStringConnection(
+        public string GetStringConnection(
             String sourceName,
             String connectorDefinitionUniqueName)
         {
-            ConnectorConfiguration configuration = this.GetConnectorConfiguration(sourceName, connectorDefinitionUniqueName);
+            ConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueName);
 
             return configuration != null ? configuration.ConnectionString : StringHelper.__NoneString;
         }
 
         #endregion
-
     }
 
 }

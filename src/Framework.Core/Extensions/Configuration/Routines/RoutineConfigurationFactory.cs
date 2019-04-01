@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Routines
         /// <param name="routineUniqueName">The unique name of connection to create.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The created connector.</returns>
-        public static RoutineConfiguration CreateConfiguration(AppScope appScope, String routineUniqueName, Log log = null)
+        public static RoutineConfiguration CreateConfiguration(AppScope appScope, String routineUniqueName, ILog log = null)
         {
             log = (log ?? new Log());
 
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Routines
             String routineUniqueName,
             DataElementSet parameterDetail = null,
             DataItemSet<Command> aCommandSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = (log ?? new Log());
 
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Routines
         public static RoutineConfiguration CreateConfiguration(
             AppScope appScope,
             String routineUniqueName,
-            RoutineConfiguration referenceRoutineConfiguration, Log log = null)
+            RoutineConfiguration referenceRoutineConfiguration, ILog log = null)
         {
             log = (log ?? new Log());
 

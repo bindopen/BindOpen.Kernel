@@ -108,7 +108,7 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Opens this instance.
         /// </summary>
-        public virtual Log Open()
+        public virtual ILog Open()
         {
             return this._Connector?.Open() ?? new Log();
         }
@@ -116,7 +116,7 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public virtual Log Close()
+        public virtual ILog Close()
         {
             return this._Connector?.Close() ?? new Log();
         }
@@ -124,7 +124,7 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Indicates whether the instance is connected.
         /// </summary>
-        public virtual Boolean IsConnected()
+        public virtual bool IsConnected()
         {
             return this._Connector?.IsConnected() ?? false;
         }

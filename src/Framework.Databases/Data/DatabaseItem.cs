@@ -18,7 +18,7 @@ namespace dkm_core_wdl.data.Carriers.database
         /// <summary>
         /// Name of this instance.
         /// </summary>
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Date of creation of this instance.

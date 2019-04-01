@@ -24,13 +24,13 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Title of this instance.
         /// </summary>
         [XmlElement("title")]
-        public DictionaryDataItem Title { get; set; } = null;
+        public IDictionaryDataItem Title { get; set; } = null;
 
         /// <summary>
         /// Specification of the Title property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean TitleSpecified => this.Title != null && (this.Title.AvailableKeysSpecified || this.Title.ValuesSpecified || this.Title.SingleValueSpecified);
+        public bool TitleSpecified => this.Title != null && (this.Title.AvailableKeysSpecified || this.Title.ValuesSpecified || this.Title.SingleValueSpecified);
 
         #endregion
 
@@ -53,9 +53,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="name">The name of this instance.</param>
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
-        public TitledDataItem(String name,
-            String namePreffix = "",
-            String id = null)
+        public TitledDataItem(string name,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
         }
@@ -68,10 +68,10 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
         public TitledDataItem(
-            String name,
-            String title,
-            String namePreffix = "",
-            String id = null)
+            string name,
+            string title,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
             if (title != null)
@@ -105,7 +105,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddTitleText(String text)
+        public void AddTitleText(string text)
         {
             this.AddTitleText("*", text);
         }
@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddTitleText(String key, String text)
+        public void AddTitleText(string key, string text)
         {
             (this.Title ?? (this.Title = new DictionaryDataItem())).AddValue(key, text);
         }
@@ -124,7 +124,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetTitleText(String text)
+        public void SetTitleText(string text)
         {
             this.SetTitleText("*", text);
         }
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetTitleText(String key = "*", String text = "*")
+        public void SetTitleText(string key = "*", string text = "*")
         {
             (this.Title ?? (this.Title = new DictionaryDataItem())).SetValue(key, text);
         }
@@ -152,14 +152,20 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public virtual String GetTitleText(String variantName = "*", String defaultVariantName = "*")
+        public virtual string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
             if (this.Title == null) return "";
-            String label = this.Title.GetContent(variantName);
-            if (String.IsNullOrEmpty(label))
+
+            string label = this.Title.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
+            {
                 label = this.Title.GetContent(defaultVariantName);
-            if (String.IsNullOrEmpty(label))
+            }
+            if (string.IsNullOrEmpty(label))
+            {
                 label = this.Name;
+            }
+
             return label ?? "";
         }
 
@@ -167,13 +173,13 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
-            TitledDataItem describedDataItem = base.Clone() as TitledDataItem;
+            TitledDataItem item = base.Clone() as TitledDataItem;
             if (this.Title != null)
-                describedDataItem.Title = this.Title.Clone() as DictionaryDataItem;
+                item.Title = this.Title.Clone() as DictionaryDataItem;
 
-            return describedDataItem;
+            return item;
         }
 
         #endregion
@@ -188,7 +194,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
             this.Title?.UpdateStorageInfo(log);
@@ -199,7 +205,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 

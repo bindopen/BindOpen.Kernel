@@ -33,7 +33,7 @@
         //    String aBasicMessageSubjectLabel,
         //    String aBasicMessageBodyLabel,
         //    Boolean aBasicMessageIsBodyHtml,
-        //    List<String> simpleMessageAttachedFiles,
+        //    List<string> simpleMessageAttachedFiles,
         //    DataElementSet aBasicMessageDetail)
         //{
         //    BasicDbDataQuery aDbQuery = new BasicDbDataQuery()
@@ -88,7 +88,7 @@
         //            {
         //                Name="ATTACHMENTFILEPATHS",
         //                ValueType= DataValueType.Text,
-        //                Value=new DataExpression(String.Join(",",simpleMessageAttachedFiles))
+        //                Value=new DataExpression(string.Join(",",simpleMessageAttachedFiles))
         //            }
         //        }
         //    };

@@ -5,26 +5,23 @@ using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Definition
 {
-
     /// <summary>
     /// This class represents the group of application extension items.
     /// </summary>
     [Serializable()]
     [XmlType("AppExtensionItemGroup", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "extension.item.group", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class AppExtensionItemGroup : DescribedDataItem
+    public class AppExtensionItemGroup : DescribedDataItem, IAppExtensionItemGroup
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
-        private List<AppExtensionItemGroup> _SubGroups;
+        private List<IAppExtensionItemGroup> _SubGroups;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -37,17 +34,16 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         /// </summary>
         [XmlArray("subGroups")]
         [XmlArrayItem("subGroup")]
-        public List<AppExtensionItemGroup> SubGroups
+        public List<IAppExtensionItemGroup> SubGroups
         {
             get
             {
-                if (this._SubGroups == null) this._SubGroups = new List<AppExtensionItemGroup>();
+                if (this._SubGroups == null) this._SubGroups = new List<IAppExtensionItemGroup>();
                 return this._SubGroups;
             }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -64,7 +60,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition
 
         #endregion
 
-
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
@@ -76,11 +71,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         /// </summary>
         /// <param name="name">The name of the sub group to return.</param>
         /// <returns>Returns the sub group with the specified name.</returns>
-        public AppExtensionItemGroup GetGroupWithName(String name)
+        public IAppExtensionItemGroup GetGroupWithName(string name)
         {
             if (name == null)
                 return null;
-            foreach (AppExtensionItemGroup group in this._SubGroups)
+            foreach (IAppExtensionItemGroup group in this._SubGroups)
             {
                 if (group.Name?.Equals(name, StringComparison.OrdinalIgnoreCase) == true)
                 {
@@ -92,7 +87,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         }
 
         #endregion
-
     }
 
 }

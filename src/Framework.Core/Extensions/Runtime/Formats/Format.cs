@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Formats
         ///// </summary>
         ///// <param name="name">Name of the settings to consider.</param>
         ///// <returns>The string value of the specified settings.</returns>
-        //public String GetStringValue(String name)
+        //public string GetStringValue(String name)
   //      {
   //          String stringValue="";
 
@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Formats
   //      /// </summary>
   //      /// <param name="name">Name of the settings to consider.</param>
   //      /// <returns>The object value of the specified settings.</returns>
-  //      public Object GetObjectValue(String name)
+  //      public object GetObjectValue(String name)
   //      {
   //          Object object1 = "";
 
@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Formats
         ///// Sets the specified value.
         ///// </summary>
         ///// <param name="value">The value to set.</param>
-        //public void Set(Object value)
+        //public void Set(object value)
         //{
         //    StackFrame caller = new StackFrame(1);
 

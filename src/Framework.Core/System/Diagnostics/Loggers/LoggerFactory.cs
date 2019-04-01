@@ -33,14 +33,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String name,
             LoggerMode mode,
             DataSourceKind outputKind,
-            Boolean isVerbose = false,
+            bool isVerbose = false,
             String uiCulture = null,
             String folderPath = null,
             String fileName = null,
             Predicate<LogEvent> eventFinder = null,
-            int expirationDayNumber = -1) where T : Logger, new()
+            int expirationDayNumber = -1) where T : ILogger, new()
         {
-            name = (String.IsNullOrEmpty(name) ? Logger.__DefaultName : name);
+            name = (string.IsNullOrEmpty(name) ? Logger.__DefaultName : name);
 
             Logger logger = new T()
             {

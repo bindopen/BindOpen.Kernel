@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
             String name,
             String definitionName,
             String connectionString = null,
-            Log log = null)
+            ILog log = null)
         {
             log = (log ?? new Log());
 
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
             String name,
             String definitionName,
             DynamicObject dynamicObject,
-            Log log = null)
+            ILog log = null)
         {
             return ConnectorConfigurationFactory.Create(appScope, name, definitionName, DataElementSet.Create(dynamicObject), log);
         }
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
             String name,
             String definitionName,
             DataElementSet detail = null,
-            Log log = null)
+            ILog log = null)
         {
             log = (log ?? new Log());
 
@@ -85,6 +85,22 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Sets the definition of this instance.
+        /// </summary>
+        /// <param name="definition">The definition to consider.</param>
+        /// <param name="isDefinitionChecked">Indicates whether the definition must be checked.</param>
+        public override void SetDefinition(IConnectorDefinition definition = null, bool isDefinitionChecked = true)
+        {
+            base.SetDefinition(definition, isDefinitionChecked);
+
+            if (definition != null)
+            {
+                (this._detail ?? (this._detail = new DataElementSet())).Repair(this.Definition != null ? this.Definition.DetailSpec : null);
+                this._detail.Update<DataElementSet>();
+            }
         }
     }
 }

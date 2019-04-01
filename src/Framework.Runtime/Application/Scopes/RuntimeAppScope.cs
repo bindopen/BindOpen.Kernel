@@ -1,5 +1,4 @@
 ﻿using System;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 
 namespace BindOpen.Framework.Core.Application.Scopes
@@ -65,11 +64,10 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// Sets the specified application domain.
         /// </summary>
         /// <param name="appDomain">The application domain to instance.</param>
-        public override void SetAppDomain(AppDomain appDomain)
+        public override void Initialize(AppDomain appDomain = null)
         {
-            base.SetAppDomain(appDomain);
-            if (appDomain != null)
-                this.ConnectionService = new ConnectionService(this);
+            base.Initialize(appDomain);
+            this.ConnectionService = new ConnectionService(this);
         }
 
         #endregion

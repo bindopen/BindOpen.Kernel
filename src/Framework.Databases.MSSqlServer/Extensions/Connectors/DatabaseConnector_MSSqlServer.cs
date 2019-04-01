@@ -89,9 +89,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// Opens an OleDb connection with the specified connection string.
         /// </summary>
         /// <returns>The log of the connection task.</returns>
-        public override Log Open()
+        public override ILog Open()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (!log.Append(this.Check<DatabaseConnector_MSSqlServer>(), p => p.HasErrorsOrExceptions()).HasErrorsOrExceptions())
             {
@@ -120,9 +120,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// Closes the current OleDb connection.
         /// </summary>
         /// <returns>The log of the connection-closing task.</returns>
-        public override Log Close()
+        public override ILog Close()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             try
             {
@@ -157,7 +157,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         public override void ExecuteNonQuery(
             String queryText,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -205,7 +205,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             String queryText,
             ref SqlDataReader dataReader,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -249,7 +249,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             String queryText,
             ref DataSet dataSet,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -287,7 +287,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// <returns>The log of the task.</returns>
         public override void GetIdentity(
             ref long id,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -324,7 +324,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         public override void UpdateDataTable(
             String queryText,
             DataTable dataTable,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -361,8 +361,8 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         public override void UpdateDataSet(
             String queryText,
             DataSet dataSet,
-            List<String> tableNames,
-            Log log = null)
+            List<string> tableNames,
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -397,18 +397,18 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// <param name="tableName">The name of the table.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The columns of the table with the specified name.</returns>
-        public List<String> GetTableColumns(
+        public List<string> GetTableColumns(
             String dataModuleName,
             String ownerName,
             String tableName,
-            Log log = null)
+            ILog log = null)
         {
             DataTable dataTable = this.GetTableColumnsDataTable(
                 dataModuleName,
                 ownerName,
                 tableName);
 
-            List<String> strings = new List<String>();
+            List<string> strings = new List<string>();
             if (dataTable != null)
             {
                 // we sort the columns by index
@@ -433,7 +433,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             string dataModuleName,
             string ownerName,
             string tableName,
-            Log log = null)
+            ILog log = null)
         {
             DataTable dataTable = null;
             try
@@ -441,7 +441,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 // Get the DataTable with all the info
                 dataTable = this._Connection.GetSchema();
                 //.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
-    //                new Object[] { dataModuleName, ownerName, tableName, null });
+    //                new object[] { dataModuleName, ownerName, tableName, null });
             }
             finally
             {
@@ -456,14 +456,14 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// <param name="ownerName">The owner of the table.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The tables of the table with the specified name.</returns>
-        public List<String> GetTables(
+        public List<string> GetTables(
             String dataModuleName,
             String ownerName,
-            Log log = null)
+            ILog log = null)
         {
             DataTable dataTable = this.GetTableDataTable(dataModuleName, ownerName);
 
-            List<String> strings = new List<String>();
+            List<string> strings = new List<string>();
             if (dataTable != null)
             {
                 foreach (DataRow currentDataRow in dataTable.Rows)
@@ -482,7 +482,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         public DataTable GetTableDataTable(
             String dataModuleName,
             String ownerName,
-            Log log = null)
+            ILog log = null)
         {
             DataTable dataTable = null;
             try
@@ -490,7 +490,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 // Get the DataTable with all the info
                 dataTable = this._Connection.GetSchema();
                 //.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
-    //                new Object[] { dataModuleName, ownerName, null, null });
+    //                new object[] { dataModuleName, ownerName, null, null });
             }
             finally
             {
@@ -511,7 +511,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             string dataModuleName,
             string ownerName,
             string tableName,
-            Log log = null)
+            ILog log = null)
         {
             DataTable dataTable = null;
             try
@@ -519,7 +519,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 // Get the DataTable with all the info
                 dataTable = this._Connection.GetSchema();
                 //dataTable = this._OleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys,
-    //                new Object[] { dataModuleName, ownerName, tableName });
+    //                new object[] { dataModuleName, ownerName, tableName });
             }
             finally
             {

@@ -16,10 +16,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_TextCount(params Object[] parameters)
+        public override string GetSqlText_TextCount(params object[] parameters)
         {
             string text = "count(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {
@@ -38,10 +38,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Sum(params Object[] parameters)
+        public override string GetSqlText_Sum(params object[] parameters)
         {
             string text = "sum(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {
@@ -60,10 +60,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Average(params Object[] parameters)
+        public override string GetSqlText_Average(params object[] parameters)
         {
             string text = "avg(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {
@@ -82,10 +82,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_In(params Object[] parameters)
+        public override string GetSqlText_In(params object[] parameters)
         {
             string text = "[";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {

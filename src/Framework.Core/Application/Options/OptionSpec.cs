@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Application.Options
     /// </summary>
     [XmlType("OptionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot("optionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class OptionSpec : ScalarElementSpec
+    public class OptionSpec : ScalarElementSpec, IOptionSpec
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -148,7 +148,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// <param name="argumentstring">The argument to consider.</param>
         /// <param name="aliasIndex">The alias index to consider. -2 not found. -1 Name matches. otherwise the index of matched alias.</param>
         /// <returns>Returns True if the specified matches this instance.</returns>
-        public Boolean IsArgumentMarching(string argumentstring, out int aliasIndex)
+        public bool IsArgumentMarching(string argumentstring, out int aliasIndex)
         {
             aliasIndex = -2;
             if (argumentstring != null)
@@ -178,13 +178,13 @@ namespace BindOpen.Framework.Core.Application.Options
         /// </summary>
         /// <param name="argumentstring">The argument to consider.</param>
         /// <returns>Returns True if the specified matches this instance.</returns>
-        public Boolean IsArgumentMarching(string argumentstring)
+        public bool IsArgumentMarching(string argumentstring)
         {
             int i = -2;
             return this.IsArgumentMarching(argumentstring, out i);
         }
 
-        private Boolean IsNameMatching(string name1, string name2)
+        private bool IsNameMatching(string name1, string name2)
         {
             if ((name1 == null) || (name2 == null))
                 return false;

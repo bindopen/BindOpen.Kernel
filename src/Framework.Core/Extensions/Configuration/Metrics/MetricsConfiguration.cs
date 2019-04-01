@@ -6,27 +6,14 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration.Metrics
 {
-
     /// <summary>
     /// This class represents a metrics configuration.
     /// </summary>
     [Serializable()]
     [XmlType("MetricsConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "metrics", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class MetricsConfiguration : TAppExtensionTitledItemConfiguration<MetricsDefinition>
+    public class MetricsConfiguration : TAppExtensionTitledItemConfiguration<IMetricsDefinition>, IMetricsConfiguration
     {
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private String _ValueScript = "";
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -37,14 +24,9 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Metrics
         /// Value script of this instance.
         /// </summary>
         [XmlElement("valueScript")]
-        public String ValueScript
-        {
-            get { return this._ValueScript; }
-            set { this._ValueScript = value; }
-        }
+        public string ValueScript { get; set; } = "";
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -56,27 +38,41 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Metrics
         /// Instantiates a new instance of the MetricsConfiguration class.
         /// </summary>
         public MetricsConfiguration()
-             : this(null)
+            : base(null)
         {
         }
 
         /// <summary>
-        /// This instantiates a new instance of the MetricsConfiguration class.
+        /// Instantiates a new instance of the MetricsConfiguration class.
         /// </summary>
-        /// <param name="name">The name of this instance.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
-        public MetricsConfiguration(
-            String name,
-            String definitionName = null,
-            String namePreffix = "metrics_")
-            : base(name, definitionName, null, namePreffix)
+        protected MetricsConfiguration(
+            string name,
+            IMetricsDefinition definition = default,
+            string namePreffix = "metrics_")
+            : this(name, definition?.Key(), namePreffix)
         {
+            _definition = definition;
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the MetricsConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        protected MetricsConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix = "metrics_")
+            : base(name, definitionUniqueId, namePreffix)
+        {
+            DefinitionUniqueId = definitionUniqueId;
+        }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -90,21 +86,18 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Metrics
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public virtual int? GetValue(ScriptInterpreter scriptInterpreter, ScriptVariableSet scriptVariableSet = null)
+        public virtual int? GetValue(IScriptInterpreter scriptInterpreter, IScriptVariableSet scriptVariableSet = null)
         {
-            String stringValue = 
-                (scriptInterpreter==null ? null :
-                scriptInterpreter.Interprete(new DataExpression(this.ValueScript, DataExpressionKind.Script), scriptVariableSet));
+            string stringValue = scriptInterpreter?.Interprete(ValueScript.CreateScript(), scriptVariableSet);
             int? value = null;
-            int aIntValue = -1;
-            if (int.TryParse(stringValue ?? "", out aIntValue))
-                value = new int?(aIntValue);
+            int intValue = -1;
+            if (int.TryParse(stringValue ?? "", out intValue))
+                value = new int?(intValue);
 
             return value;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -116,13 +109,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Metrics
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             MetricsConfiguration dataMetrics = base.Clone() as MetricsConfiguration;
             return dataMetrics;
         }
 
         #endregion
-
     }
 }

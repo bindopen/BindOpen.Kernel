@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Application.Scopes;
@@ -63,7 +62,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// The name of this instance.
         /// </summary>
-        public String ModuleName
+        public string ModuleName
         {
             get { return this._Module?.Name; }
         }
@@ -73,7 +72,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// The URI of this instance.
         /// </summary>
-        public String Uri
+        public string Uri
         {
             get { return this._Uri; }
         }
@@ -81,7 +80,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// The URI of this instance.
         /// </summary>
-        public String AbsoluteUri
+        public string AbsoluteUri
         {
             get { return this._AbsoluteUri; }
         }
@@ -89,7 +88,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// The application execution path of this instance.
         /// </summary>
-        public String ApplicationExecutionPath
+        public string ApplicationExecutionPath
         {
             get { return this._ApplicationExecutionPath; }
         }
@@ -577,14 +576,14 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is ApplicationModuleInstance)
             {
@@ -613,11 +612,11 @@ namespace BindOpen.Framework.Runtime.Application.Modules
                 completeName = completeName.Substring(completeName.IndexOf('$') + 1);
             else
                 completeName = "";
-            String[] names = completeName.Split(new char[] { '$' });
+            string[] names = completeName.Split(new char[] { '$' });
 
             AppSection moduleSection = null;
             foreach (String name in names)
-                if (!String.IsNullOrEmpty(name))
+                if (!string.IsNullOrEmpty(name))
                 {
                     if (moduleSection == null)
                         moduleSection = this.GetSectionWithName(name);

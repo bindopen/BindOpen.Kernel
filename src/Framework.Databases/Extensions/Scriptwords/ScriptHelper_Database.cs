@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlNumberFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
 
             // we build the user filter condition string
@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         public static String GetSqlNumberAndFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlAnd(" + ScriptHelper_Database.GetSqlNumberFilterString(sqlDbFieldString, values) + ")";
         }
@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         public static String GetSqlNumberOrFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlOr(" + ScriptHelper_Database.GetSqlNumberFilterString(sqlDbFieldString, values) + ")";
         }
@@ -117,7 +117,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlTextFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
 
             // we build the user filter condition string
@@ -164,7 +164,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         public static String GetSqlTextAndFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlAnd(" + ScriptHelper_Database.GetSqlTextFilterString(sqlDbFieldString, values) + ")";
         }
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         public static String GetSqlTextOrFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlOr(" + ScriptHelper_Database.GetSqlTextFilterString(sqlDbFieldString, values) + ")";
         }

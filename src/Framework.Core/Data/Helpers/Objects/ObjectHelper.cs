@@ -20,11 +20,11 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns>Returns the key representing the specified object.</returns>
-        public static String ToKey(this Object object1)
+        public static String ToKey(this object object1)
         {
             if (object1 == null)
                 return String.Empty;
-            else if (object1 is String x)
+            else if (object1 is string x)
                 return x;
             else if (object1 is IdentifiedDataItem identifiedDataItem)
                 return (identifiedDataItem).Key() ?? String.Empty;
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="object1">The object to consider.</param>
         /// <param name="object2">The object to compare with.</param>
         /// <returns>Returns True if the keys of the considered objects equal.</returns>
-        public static Boolean KeyEquals(this Object object1, Object object2)
+        public static bool KeyEquals(this object object1, object object2)
         {
             return object1 == null || object2 == null ? false : string.Compare(object1.ToKey(), object2.ToKey(), StringComparison.OrdinalIgnoreCase) == 0;
         }
@@ -50,7 +50,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns></returns>
-        public static String ToNotNullString(this Object object1)
+        public static String ToNotNullString(this object object1)
         {
             return (object1 == null ? "" : object1.ToString());
         }
@@ -62,7 +62,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="valueType">The value type to consider.</param>
         /// <returns>The result string.</returns>
         public static String GetString(
-            this Object object1,
+            this object object1,
             DataValueType valueType = DataValueType.Any)
         {
             String stringValue = "";
@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="objects">The objects to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the normalized string.</returns>
-        public static string GetStringAtIndex(this Object[] objects, int index)
+        public static string GetStringAtIndex(this object[] objects, int index)
         {
             return (objects != null && objects.Length > index && objects[index] != null ? objects[index].ToString() : "");
         }
@@ -113,9 +113,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="objects">The objects to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the normalized string.</returns>
-        public static Object GetObjectAtIndex(this Object[] objects, int index)
+        public static object GetObjectAtIndex(this object[] objects, int index)
         {
-            return (objects.Length > index && objects[index] != null ? objects[index] : null);
+            return objects.Length > index && objects[index] != null ? objects[index] : null;
         }
 
         /// <summary>
@@ -124,10 +124,12 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="object1">The object to serialize.</param>
         /// <param name="updateObject">The update object to consider.</param>
         /// <returns>The Xml string serializing the specified object.</returns>
-        public static void Update(this Object object1, Object updateObject)
+        public static void Update(this object object1, object updateObject)
         {
             if ((object1 != null) && (updateObject != null))
+            {
                 foreach (PropertyInfo updatePropertyInfo in updateObject.GetType().GetProperties())
+                {
                     try
                     {
                         PropertyInfo propertyInfo = object1.GetType().GetProperty(updatePropertyInfo.Name);
@@ -142,6 +144,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                     catch
                     {
                     }
+                }
+            }
         }
 
         /// <summary>
@@ -151,9 +155,10 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="elementSet">The element set to consider.</param>
         /// <typeparam name="T">The data element attribute to consider.</typeparam>
         /// <returns>The Xml string serializing the specified object.</returns>
-        public static void UpdateFromElementSet<T>(this Object object1, DataElementSet elementSet) where T : DataElementAttribute
+        public static void UpdateFromElementSet<T>(this object object1, IDataElementSet elementSet) where T : DataElementAttribute
         {
             if (object1 != null && elementSet != null)
+            {
                 foreach (PropertyInfo propertyInfo in object1.GetType().GetProperties())
                 {
                     DataElementAttribute attribute = propertyInfo.GetCustomAttribute(typeof(T)) as DetailPropertyAttribute;
@@ -161,26 +166,26 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                     if (attribute != null)
                     {
                         String name = attribute.Name;
-                        if (String.IsNullOrEmpty(name))
+                        if (string.IsNullOrEmpty(name))
                             name = propertyInfo.Name;
                         try
                         {
                             var value = elementSet.GetElementItemObject(name);
-                            if (propertyInfo.PropertyType.IsEnum && value!=null)
+                            if (propertyInfo.PropertyType.IsEnum && value != null)
                             {
                                 if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                    value = Enum.Parse(propertyInfo.PropertyType, value as String);
+                                    value = Enum.Parse(propertyInfo.PropertyType, value as string);
                             }
 
                             propertyInfo.SetValue(object1, value);
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             String st = ex.ToString();
                         }
                     }
                 }
-
+            }
         }
 
         /// <summary>
@@ -190,20 +195,22 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="object1">The object to serialize.</param>
         /// <typeparam name="T">The data element attribute to consider.</typeparam>
         /// <returns>The Xml string serializing the specified object.</returns>
-        public static void UpdateFromObject<T>(this DataElementSet elementSet, Object object1) where T : DataElementAttribute
+        public static void UpdateFromObject<T>(this DataElementSet elementSet, object object1) where T : DataElementAttribute
         {
             if (elementSet != null && object1 != null)
+            {
                 foreach (PropertyInfo propertyInfo in object1.GetType().GetProperties())
                 {
                     DetailPropertyAttribute attribute = propertyInfo.GetCustomAttribute(typeof(DetailPropertyAttribute)) as DetailPropertyAttribute;
                     if (attribute != null)
                     {
                         String name = attribute.Name;
-                        if (String.IsNullOrEmpty(name))
+                        if (string.IsNullOrEmpty(name))
                             name = propertyInfo.Name;
                         elementSet.AddElement(name, propertyInfo.GetValue(object1), propertyInfo.PropertyType.GetValueType());
                     }
                 }
+            }
         }
 
         /// <summary>
@@ -212,7 +219,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="objects">The objects to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the normalized string.</returns>
-        public static Object GetObjectAtIndex(this List<Object> objects, int index)
+        public static object GetObjectAtIndex(this List<object> objects, int index)
         {
             return (objects != null && objects.Count > index && objects[index] != null ? objects[index] : null);
         }

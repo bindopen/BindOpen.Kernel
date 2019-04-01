@@ -24,7 +24,7 @@ namespace BindOpen.TestConsole.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name= "test.folderPath")]
-        public String TestFolderPath
+        public string TestFolderPath
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -60,7 +60,7 @@ namespace BindOpen.TestConsole.Settings
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        public TestAppSettings(IAppScope appScope, params String[] usingFilePaths)
+        public TestAppSettings(IAppScope appScope, params string[] usingFilePaths)
             : base(appScope, usingFilePaths)
         {
         }

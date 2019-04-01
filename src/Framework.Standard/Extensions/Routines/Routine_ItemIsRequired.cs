@@ -62,10 +62,10 @@ namespace BindOpen.Framework.Standard.Extensions.Routines
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
             Object item = null,
-            DataElement dataElement = null,
-            params Object[] objects)
+            IDataElement dataElement = null,
+            params object[] objects)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (dataElement == null)
                 log.AddError("Element missing");

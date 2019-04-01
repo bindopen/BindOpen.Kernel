@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// ID of domain.
         /// </summary>
         [XmlElement("domainId")]
-        public String DomainId
+        public string DomainId
         {
             get;
             set;
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         {
             get
             {
-                return !String.IsNullOrEmpty(this.DomainId);
+                return !string.IsNullOrEmpty(this.DomainId);
             }
         }
 
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Login.
         /// </summary>
         [XmlElement("login")]
-        public String Login
+        public string Login
         {
             get;
             set;
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         {
             get
             {
-                return !String.IsNullOrEmpty(this.Login);
+                return !string.IsNullOrEmpty(this.Login);
             }
         }
 
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Password.
         /// </summary>
         [XmlElement("password")]
-        public String Password
+        public string Password
         {
             get;
             set;
@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         {
             get
             {
-                return !String.IsNullOrEmpty(this.Password);
+                return !string.IsNullOrEmpty(this.Password);
             }
         }
 
@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Token value.
         /// </summary>
         [XmlElement("tokenValue")]
-        public String TokenValue
+        public string TokenValue
         {
             get;
             set;
@@ -100,7 +100,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         {
             get
             {
-                return !String.IsNullOrEmpty(this.TokenValue);
+                return !string.IsNullOrEmpty(this.TokenValue);
             }
         }
 

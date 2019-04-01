@@ -8,7 +8,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
-
     /// <summary>
     /// This class represents a command.
     /// </summary>
@@ -76,24 +75,6 @@ namespace BindOpen.Framework.Core.Application.Commands
         #region Execution
 
         /// <summary>
-        /// Executes this instance.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="runtimeMode">The runtime mode to consider.</param>
-        /// <returns>The log of execution log.</returns>
-        public void Execute(
-            Log log,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            RuntimeMode runtimeMode = RuntimeMode.Normal)
-        {
-            log = (log ?? new Log());
-            log.Append(this.ExecuteWithResult(out string resultString, appScope, scriptVariableSet, runtimeMode));
-        }
-
-        /// <summary>
         /// Executes this instance with result.
         /// </summary>
         /// <param name="resultString">The result to get.</param>
@@ -101,17 +82,12 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
-        public virtual Log ExecuteWithResult(
-            out String resultString,
+        public abstract ILog ExecuteWithResult(
+            out string resultString,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            RuntimeMode runtimeMode = RuntimeMode.Normal)
-        {
-            resultString = "";
-            return new Log();
-        }
+            IScriptVariableSet scriptVariableSet = null,
+            RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         #endregion
-
     }
 }

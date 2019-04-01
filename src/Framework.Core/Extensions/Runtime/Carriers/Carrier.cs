@@ -11,7 +11,6 @@ using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Configuration;
 using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
 using BindOpen.Framework.Core.Extensions.Definition.Carriers;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
 {
@@ -46,7 +45,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
         /// <summary>
         /// Relative path of this instance.
         /// </summary>
-        public String RelativePath
+        public string RelativePath
         {
             get
             {
@@ -130,10 +129,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
         {
             String absolutePath = (path ?? this.Path);
 
-            if (!String.IsNullOrEmpty(relativePath))
+            if (!string.IsNullOrEmpty(relativePath))
                 this._relativePath = relativePath;
 
-            if ((!String.IsNullOrEmpty(this._relativePath)) && (!String.IsNullOrEmpty(absolutePath)))
+            if ((!string.IsNullOrEmpty(this._relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
             {
                 String aRelativeFolder = this._relativePath.ToLower();
                 absolutePath = absolutePath.ToLower();
@@ -150,7 +149,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] String propertyName = null)
         {
             if (propertyName != null)
             {
@@ -223,7 +222,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
                 this.AppScope);
 
                 if (attribute is DetailPropertyAttribute)
-                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue); ;
+                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue); ;
             }
 
             return default(T);
@@ -241,7 +240,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             //this.Detail = DataElementSet.Create<DetailPropertyAttribute>(this);
 
@@ -253,7 +252,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Carriers
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 

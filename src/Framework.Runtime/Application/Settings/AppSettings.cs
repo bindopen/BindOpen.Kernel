@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlArray("dataSources")]
         [XmlArrayItem("add")]
-        public List<DataSource> DataSources { get; set; } = new List<DataSource>();
+        public List<IDataSource> DataSources { get; set; } = new List<IDataSource>();
 
         // Settings ----------------------------------------------
 
@@ -60,7 +60,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="applicationInstanceId")]
-        public String ApplicationInstanceId
+        public string ApplicationInstanceId
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="defaultUICultureName")]
-        public String DefaultUICultureName
+        public string DefaultUICultureName
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="defaultTheme")]
-        public String DefaultTheme
+        public string DefaultTheme
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <example>toto.com, titi.com...</example>
         [XmlIgnore()]
         [DetailProperty(Name="cookieDomain")]
-        public String CookieDomain
+        public string CookieDomain
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -131,7 +131,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="serverInstanceName")]
-        public String ServerInstanceName
+        public string ServerInstanceName
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -142,7 +142,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="applicationInstanceName")]
-        public String ApplicationInstanceName
+        public string ApplicationInstanceName
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -168,7 +168,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "extensions.folderPath")]
-        public String ExtensionsFolderPath
+        public string ExtensionsFolderPath
         {
             get { return this.Get<String>().GetEndedString(@"\").ToPath(); }
             set { this.Set(value); }
@@ -179,7 +179,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="log.folderPath")]
-        public String LogFolderPath
+        public string LogFolderPath
         {
             get { return this.Get<String>().GetEndedString(@"\").ToPath(); }
             set { this.Set(value); }
@@ -190,7 +190,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="runtime.folderPath")]
-        public String RuntimeFolderPath
+        public string RuntimeFolderPath
         {
             get { return this.Get<String>().GetEndedString(@"\").ToPath(); }
             set { this.Set(value); }
@@ -226,7 +226,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        public AppSettings(IAppScope appScope, params String[] usingFilePaths)
+        public AppSettings(IAppScope appScope, params string[] usingFilePaths)
             : base(appScope, usingFilePaths)
         {
         }
@@ -254,9 +254,9 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         public void Clear()
         {
             this.Elements.Clear();
-            this.DataSources = new List<DataSource>();
+            this.DataSources = new List<IDataSource>();
             this.Credentials = new List<ApplicationCredential>();
-            this.UsingFilePaths = new List<String>();
+            this.UsingFilePaths = new List<string>();
             this.UsingConfiguration = new Core.Application.Configuration.Configuration();
         }
 
@@ -272,14 +272,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
 
             foreach (ApplicationCredential applicationCredential in this.Credentials)
                 applicationCredential.UpdateStorageInfo(log);
 
-            foreach (DataSource dataSource in this.DataSources)
+            foreach (IDataSource dataSource in this.DataSources)
                 dataSource.UpdateStorageInfo(log);
         }
 
@@ -288,14 +288,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 
             foreach (ApplicationCredential applicationCredential in this.Credentials)
                 applicationCredential.UpdateRuntimeInfo(appScope, log);
 
-            foreach (DataSource dataSource in this.DataSources)
+            foreach (IDataSource dataSource in this.DataSources)
                 dataSource.UpdateRuntimeInfo(appScope, log);
         }
 
@@ -318,14 +318,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is AppSettings)
             {
@@ -349,9 +349,9 @@ namespace BindOpen.Framework.Runtime.Application.Settings
 
                 if (referenceItem.DataSources != null)
                 {
-                    this.DataSources = new List<DataSource>();
-                    foreach (DataSource dataSource in referenceItem.DataSources)
-                        this.DataSources.Add(dataSource.Clone() as DataSource);
+                    this.DataSources = new List<IDataSource>();
+                    foreach (IDataSource dataSource in referenceItem.DataSources)
+                        this.DataSources.Add(dataSource.Clone() as IDataSource);
                 }
             }
 

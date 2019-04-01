@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using System.Collections;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Common;
-using System;
-using System.Collections;
 
 namespace BindOpen.Framework.Core.System.Scripting
 {
@@ -11,19 +11,17 @@ namespace BindOpen.Framework.Core.System.Scripting
     /// This class represents a script variable box that allows to store interpretation variables.
     /// </summary>
     /// <remarks>Interpreation variables are variables that cannot be evaluated directly though definitions. Example current objects.</remarks>
-    public class ScriptVariableSet : DataItem
+    public class ScriptVariableSet : DataItem, IScriptVariableSet
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
-        private Hashtable _Variables = new Hashtable();
+        private Dictionary<string, object> _variables = new Dictionary<string, object>();
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -40,7 +38,6 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         #endregion
 
-
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
@@ -52,10 +49,10 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="variableName">The name of the variable to consider.</param>
         /// <returns>Returns the value of the specified variable.</returns>
-        public Object GetValue(String variableName)
+        public object GetValue(string variableName)
         {
-            String key = variableName.ToKey();
-            return (this._Variables.ContainsKey(key) ? this._Variables[key] : null);
+            string key = variableName.ToKey();
+            return this._variables.ContainsKey(key) ? this._variables[key] : null;
         }
 
         /// <summary>
@@ -63,13 +60,12 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="variableName">The name of the variable to consider.</param>
         /// <returns>Returns True if this instance has the specified variable.</returns>
-        public Boolean Has(String variableName)
+        public bool Has(string variableName)
         {
-            return (variableName!=null) && (this._Variables.ContainsKey(variableName.ToKey()));
+            return (variableName!=null) && (this._variables.ContainsKey(variableName.ToKey()));
         }
 
         #endregion
-
 
         // ------------------------------------------
         // MUTATORS
@@ -80,26 +76,30 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <summary>
         /// Adds the specified named data item.
         /// </summary>
-        /// <param name="storedDataItem">The named data item to consider.</param>
+        /// <param name="item">The item to consider.</param>
         /// <returns>Returns true if the specified item has been added.</returns>
-        public Boolean SetValue(StoredDataItem storedDataItem)
+        public bool SetValue(StoredDataItem item)
         {
-            DictionaryEntry aAddedEntry = new DictionaryEntry();
-            if (storedDataItem!=null)
-                switch (storedDataItem.GetType().GetExtensionItemKind())
+            DictionaryEntry entry = new DictionaryEntry();
+            if (item!=null)
+            {
+                switch (item.GetType().GetExtensionItemKind())
                 {
                     case AppExtensionItemKind.Task:
-                        aAddedEntry = this.SetValue("currentTask", storedDataItem);
+                        entry = this.SetValue("currentTask", item);
+                        break;
+                    default:
                         break;
                 }
+            }
 
-            if (storedDataItem is DataElement)
-                aAddedEntry = this.SetValue("currentElement", storedDataItem);
+            if (item is DataElement)
+                entry = this.SetValue("currentElement", item);
 
-            if (storedDataItem is DataItem)
-                aAddedEntry = this.SetValue("currentItem", storedDataItem);
+            if (item is DataItem)
+                entry = this.SetValue("currentItem", item);
 
-            return aAddedEntry.Key != null;
+            return entry.Key != null;
         }
 
         /// <summary>
@@ -107,17 +107,16 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public DictionaryEntry SetValue(String name, Object value)
+        public DictionaryEntry SetValue(string name, object value)
         {
             if (this.Has(name))
-                this._Variables.Remove(name.ToKey());
+                this._variables.Remove(name.ToKey());
             
-            this._Variables.Add(name.ToKey(), value);
+            this._variables.Add(name.ToKey(), value);
             return new DictionaryEntry(name.ToKey(), value);
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CLONING
@@ -129,14 +128,13 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ScriptVariableSet scriptVariableSet = base.Clone() as ScriptVariableSet;
-            scriptVariableSet._Variables = this._Variables;
+            scriptVariableSet._variables = this._variables;
             return scriptVariableSet;
         }
 
         #endregion
-    
     }
 }

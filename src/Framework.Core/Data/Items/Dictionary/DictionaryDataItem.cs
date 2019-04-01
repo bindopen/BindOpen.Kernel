@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
     [Serializable()]
     [XmlType("DictionaryDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "item", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DictionaryDataItem : DataItem
+    public class DictionaryDataItem : DataItem, IDictionaryDataItem
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -32,8 +32,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
 
         #region Constants
 
-        private String[] __UICultureNames = new String[]
-            { "de", "du", "en", "es", "fr", "it", "po" };
+        private readonly string[] __UICultureNames = new string[] { "de", "du", "en", "es", "fr", "it", "po" };
 
         #endregion
 
@@ -44,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         #region Variables
 
         private List<DataKeyValue> _values = new List<DataKeyValue>();
-        private List<String> _availableKeys = new List<String>();
+        private List<string> _availableKeys = new List<string>();
 
         #endregion
 
@@ -58,13 +57,13 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// The single '*' value to consider.
         /// </summary>
         [XmlText()]
-        public String SingleValue
+        public string SingleValue
         {
             get {
-                return this.GetContent();
+                return GetContent();
             }
             set {
-                this.SetValue(value);
+                SetValue(value);
             }
         }
 
@@ -72,11 +71,11 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Specification of the SingleValue property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean SingleValueSpecified
+        public bool SingleValueSpecified
         {
             get
             {
-                return _values != null && this._values.Count ==1 && this._values[0].Key=="*" && !this.AvailableKeysSpecified ;
+                return _values != null && _values.Count ==1 && _values[0].Key=="*" && !AvailableKeysSpecified ;
             }
         }
 
@@ -84,13 +83,13 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Available keys of this instance.
         /// </summary>
         [XmlIgnore()]
-        public virtual List<String> AvailableKeys
+        public virtual List<string> AvailableKeys
         {
-            get { return this._availableKeys; }
+            get { return _availableKeys; }
             set
             {
-                this._availableKeys = value.Select(p=> p.ToLower()).ToList();
-                this.Update<DictionaryDataItem>();
+                _availableKeys = value.Select(p=> p.ToLower()).ToList();
+                Update<DictionaryDataItem>();
             }
         }
 
@@ -98,7 +97,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Specification of the AvailableKeys property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean AvailableKeysSpecified
+        public bool AvailableKeysSpecified
         {
             get
             {
@@ -114,10 +113,10 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public virtual List<DataKeyValue> Values
         {
-            get { return this._values; }
+            get { return _values; }
             set {
-                this._values=new List<DataKeyValue>(value);
-                this.Update<DictionaryDataItem>();
+                _values=new List<DataKeyValue>(value);
+                Update<DictionaryDataItem>();
             }
         }
 
@@ -125,11 +124,11 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Specification of the Values property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ValuesSpecified
+        public bool ValuesSpecified
         {
             get
             {
-                return _values != null && this._values.Count > 0 && !this.SingleValueSpecified;
+                return _values != null && _values.Count > 0 && !SingleValueSpecified;
             }
         }
 
@@ -139,10 +138,10 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the specified text.</returns>
         [XmlIgnore()]
-        public String this[String key]
+        public string this[string key]
         {
-            get { return this.GetContent(key); }
-            set { this.AddValue(key, value); }
+            get { return GetContent(key); }
+            set { AddValue(key, value); }
         }
 
         /// <summary>
@@ -151,9 +150,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="key">The key to consider.</param>
         /// <param name="defaultKey">The default key to consider.</param>
         /// <returns>Returns the specified text.</returns>
-        public String this[String key, String defaultKey]
+        public string this[string key, string defaultKey]
         {
-            get { return this.GetContent(key, defaultKey); }
+            get { return GetContent(key, defaultKey); }
         }
 
         #endregion
@@ -176,9 +175,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// specifying the text for the default key.
         /// </summary>
         /// <param name="text">The text to consider</param>
-        public DictionaryDataItem(String text)
+        public DictionaryDataItem(string text)
         {
-            this.AddValue("*", text);
+            AddValue("*", text);
         }
 
         /// <summary>
@@ -188,8 +187,12 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public DictionaryDataItem(params DataKeyValue[] values)
         {
             foreach(DataKeyValue value in values)
-                if (value!=null)
-                this.AddValue(value.Key, value.Content);
+            {
+                if (value != null)
+                {
+                    AddValue(value.Key, value.Content);
+                }
+            }
         }
 
         /// <summary>
@@ -198,9 +201,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="key">The variant name to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public DictionaryDataItem(String key, String text)
+        public DictionaryDataItem(string key, string text)
         {
-            this.AddValue(key, text);
+            AddValue(key, text);
         }
 
         /// <summary>
@@ -212,11 +215,11 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         {
             if (dataRow != null)
             {
-                foreach (String stringObject in this.__UICultureNames)
+                foreach (string stringObject in __UICultureNames)
                 {
                     if ((!dataRow.IsNull(stringObject)) || (dataRow[stringObject] != DBNull.Value))
                     {
-                        this.AddValue(stringObject.ToLower(), dataRow[stringObject.ToUpper()].ToString());
+                        AddValue(stringObject.ToLower(), dataRow[stringObject.ToUpper()].ToString());
                     }
                 }
             }
@@ -227,19 +230,19 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// from an object.
         /// </summary>
         /// <param name="object1">The object to consider.</param>
-        public DictionaryDataItem(Object object1)
+        public DictionaryDataItem(object object1)
         {
             if (object1 != null)
             {
-                foreach (String stringObject in this.__UICultureNames)
+                foreach (string stringObject in __UICultureNames)
                 {
                     try
                     {
                         PropertyInfo propertyInfo = object1.GetType().GetProperty(stringObject);
                         if (propertyInfo != null)
                         {
-                            String value = (String)propertyInfo.GetValue(object1, null);
-                            this.AddValue(stringObject.ToLower(), value);
+                            string value = (string)propertyInfo.GetValue(object1, null);
+                            AddValue(stringObject.ToLower(), value);
                         }
                     }
                     catch
@@ -266,17 +269,17 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public void AddValue(DataKeyValue dataKeyValue)
         {
             if (dataKeyValue != null)
-                this.AddValue(dataKeyValue.Key, dataKeyValue.Content);
+                AddValue(dataKeyValue.Key, dataKeyValue.Content);
         }
-        
+
         /// <summary>
         /// Adds a new value to this instance with the specified key and text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public DataKeyValue AddValue(String text)
+        public DataKeyValue AddValue(string text)
         {
-            return this.AddValue("*", text);
+            return AddValue("*", text);
         }
 
         /// <summary>
@@ -285,15 +288,15 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public DataKeyValue AddValue(String key, String text)
+        public DataKeyValue AddValue(string key, string text)
         {
-            if (String.IsNullOrEmpty(key) || String.IsNullOrEmpty(text)) return null;
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return null;
 
-            this.RemoveValue(key);
+            RemoveValue(key);
 
             DataKeyValue dataKeyValue = null;
-            if (this._availableKeys==null || this._availableKeys.Count == 0 || this.AvailableKeys.Contains(key.ToLower()))
-                this._values.Add(dataKeyValue = new DataKeyValue(key, text));
+            if (_availableKeys==null || _availableKeys.Count == 0 || AvailableKeys.Contains(key.ToLower()))
+                _values.Add(dataKeyValue = new DataKeyValue(key, text));
 
             return dataKeyValue;
         }
@@ -302,9 +305,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Sets the text of the default value.
         /// </summary>
         /// <param name="text">The text of the value to add.</param>
-        public void SetValue(String text)
+        public void SetValue(string text)
         {
-            this.SetValue("*", text);
+            SetValue("*", text);
         }
 
         /// <summary>
@@ -312,10 +315,10 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="key">The key of the value to add.</param>
         /// <param name="text">The text of the value to add.</param>
-        public void SetValue(String key, String text)
+        public void SetValue(string key, string text)
         {
-            this.Clear();
-            this.AddValue(text);
+            Clear();
+            AddValue(text);
         }
 
         /// <summary>
@@ -323,7 +326,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         public void Clear()
         {
-            this._values= new List<DataKeyValue>();
+            _values= new List<DataKeyValue>();
         }
 
         // Remove -------------------------------
@@ -332,11 +335,11 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Removes the value with the specified key.
         /// </summary>
         /// <param name="key">The key to consider.</param>
-        public void RemoveValue(String key)
+        public void RemoveValue(string key)
         {
             if (key == null) return;
 
-            this.Values.RemoveAll(p => key.KeyEquals(p));
+            Values.RemoveAll(p => key.KeyEquals(p));
         }
 
         /// <summary>
@@ -346,16 +349,16 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public void RemoveValue(DataKeyValue dataKeyValue)
         {
             if (dataKeyValue == null) return;
-            this.Values.RemoveAll(p => dataKeyValue.KeyEquals(p));
+            Values.RemoveAll(p => dataKeyValue.KeyEquals(p));
         }
 
         /// <summary>
         /// Removes the values of this instance whose keys are not in the specified list.
         /// </summary>
         /// <param name="keys">The keys to consider.</param>
-        public void RemoveValues(List<String> keys)
+        public void RemoveValues(List<string> keys)
         {
-            this.Values.RemoveAll(p => keys == null || keys.Contains(p.Key));
+            Values.RemoveAll(p => keys?.Contains(p.Key) != false);
         }
 
         // Keys -------------------------------
@@ -365,9 +368,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="oldKey">The old name of the global value.</param>
         /// <param name="newKey">The new name of the global value.</param>
-        public void UpdateKey(String oldKey, String newKey)
+        public void UpdateKey(string oldKey, string newKey)
         {
-            DataKeyValue dataKeyValue = this.GetValue(oldKey);
+            DataKeyValue dataKeyValue = GetValue(oldKey);
             if (dataKeyValue != null) dataKeyValue.Key = newKey;
         }
 
@@ -404,20 +407,20 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <returns>The collection.</returns>
         public static DictionaryDataItem Create(string stringObject)
         {
-            DictionaryDataItem dictionaryDataItem = new DictionaryDataItem();
+            DictionaryDataItem item = new DictionaryDataItem();
             if (stringObject != null)
-                dictionaryDataItem.Values = stringObject.GetKeyValues();
+                item.Values = stringObject.GetKeyValues();
 
-            return dictionaryDataItem;
+            return item;
         }
 
         // Values -------------------------------
 
-        private DataKeyValue GetValue(String key)
+        private DataKeyValue GetValue(string key)
         {
             if (key == null) return null;
 
-            return this._values.FirstOrDefault(p => p.KeyEquals(key));
+            return _values.FirstOrDefault(p => p.KeyEquals(key));
         }
 
         // Keys -------------------------------
@@ -435,9 +438,9 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Gets the distinct keys of this instance.
         /// </summary>
         /// <returns>Returns the distinct keys of this instance.</returns>
-        public List<String> GetDistinctKeys()
+        public List<string> GetDistinctKeys()
         {
-            return this.Values.Select(p => p.Key).Distinct().ToList();
+            return Values.Select(p => p.Key).Distinct().ToList();
         }
 
         /// <summary>
@@ -445,11 +448,11 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns True if this instance has a value for the specified key.</returns>
-        public Boolean HasKey(String key)
+        public bool HasKey(string key)
         {
             if (key == null) return false;
 
-            return this._values.Any(p => p.Key.KeyEquals(key));
+            return _values.Any(p => p.Key.KeyEquals(key));
         }
 
         // Text -------------------------------
@@ -461,13 +464,13 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="alternateKey">The alternate key to used if the key is not found.</param>
         /// <returns>Returns the text corresponding to the specified user interface language ID.
         /// Returns empty if there is none.</returns>
-        public String GetContent(String key = "*", String alternateKey=null)
+        public string GetContent(string key = "*", string alternateKey=null)
         {
-            DataKeyValue dataKeyValue = this.GetValue(key);
+            DataKeyValue dataKeyValue = GetValue(key);
             if (dataKeyValue != null)
                 return dataKeyValue.Content;
             else if (alternateKey != null)
-                return this.GetContent(alternateKey);
+                return GetContent(alternateKey);
             return "";
         }
 
@@ -489,15 +492,15 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            if (this._availableKeys != null && this._availableKeys.Count > 0)
-                this._values.RemoveAll(p => p.Key == null || !this._availableKeys.Contains(p.Key.ToLower()));
+            if (_availableKeys?.Count > 0)
+                _values.RemoveAll(p => p.Key == null || !_availableKeys.Contains(p.Key.ToLower()));
 
             return new Log();
         }
@@ -516,13 +519,13 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="nodeName">Name of the text node.</param>
         /// <param name="indent">Tabulation indent to include in the text.</param>
         /// <returns></returns>
-        public String GetTextNode(String nodeName, String indent)
+        public string GetTextNode(string nodeName, string indent)
         {
-            String st = "";
+            string st = "";
 
             st += indent  + nodeName + "\n";
-            st += "\t" + indent + nodeName + ":values" + "\n";
-            foreach (DataKeyValue value in this.Values)
+            st += "\t" + indent + nodeName + ":values\n";
+            foreach (DataKeyValue value in Values)
                 st += value.GetTextNode(nodeName + ":values", "\t\t" + indent);
             return st;
         }
@@ -539,14 +542,14 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
-            DictionaryDataItem dictionaryDataItem = base.Clone() as DictionaryDataItem;
-            dictionaryDataItem._availableKeys = new List<String>(this._availableKeys);
-            dictionaryDataItem._values = new List<DataKeyValue>();
-            foreach (DataKeyValue dataKeyValue in this._values)
-                dictionaryDataItem.AddValue(dataKeyValue.Clone());
-            return dictionaryDataItem;
+            DictionaryDataItem item = base.Clone() as DictionaryDataItem;
+            item._availableKeys = new List<string>(_availableKeys);
+            item._values = new List<DataKeyValue>();
+            foreach (DataKeyValue dataKeyValue in _values)
+                item.AddValue(dataKeyValue.Clone() as DataKeyValue);
+            return item;
         }
 
         #endregion

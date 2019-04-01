@@ -103,16 +103,16 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
-        public override Log Check<T>(
+        public override ILog Check<T>(
             Boolean isExistenceChecked = true,
-            T item = null,
-            List<String> specificationAreas = null,
+            T item = default,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {
             Log log = base.Check<T>(isExistenceChecked);
 
-            if (String.IsNullOrEmpty(this.Path))
+            if (string.IsNullOrEmpty(this.Path))
                 log.AddError("File path missing");
 
             return log;

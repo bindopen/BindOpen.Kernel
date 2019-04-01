@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -17,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
     [Serializable()]
     [XmlType("DataSource", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "dataSource", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataSource : NamedDataItem
+    public class DataSource : NamedDataItem, IDataSource
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -35,31 +33,31 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Specification of the Kind property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean KindSpecified => Kind != DataSourceKind.Any;
+        public bool KindSpecified => Kind != DataSourceKind.Any;
 
         /// <summary>
         /// The module name of this instance.
         /// </summary>
         [XmlAttribute("moduleName")]
-        public String ModuleName { get; set; } = null;
+        public string ModuleName { get; set; } = null;
 
         /// <summary>
         /// Specification of the ModuleName property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ModuleNameSpecified => !string.IsNullOrEmpty(ModuleName);
+        public bool ModuleNameSpecified => !string.IsNullOrEmpty(ModuleName);
 
         /// <summary>
         /// The instance name of this instance.
         /// </summary>
         [XmlAttribute("instanceName")]
-        public String InstanceName { get; set; } = null;
+        public string InstanceName { get; set; } = null;
 
         /// <summary>
         /// Specification of the InstanceName property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean InstanceNameSpecified => !string.IsNullOrEmpty(InstanceName);
+        public bool InstanceNameSpecified => !string.IsNullOrEmpty(InstanceName);
 
         /// <summary>
         /// The connectors for this instance.
@@ -95,12 +93,12 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <param name="kind">The kind of the data source to consider.</param>
         /// <param name="configurations">The configurations to consider.</param>
         public DataSource(
-            String name,
+            string name,
             DataSourceKind kind,
             params ConnectorConfiguration[] configurations) : base(name, "dataSource_")
         {
-            this.Kind = kind;
-            this.Configurations = configurations?.ToList();
+            Kind = kind;
+            Configurations = configurations?.ToList();
         }
 
         #endregion
@@ -118,76 +116,16 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         public void AddConfiguration(ConnectorConfiguration connector)
         {
             if (connector != null)
-                this.Configurations.Add(connector);
-        }
-
-        /// <summary>
-        /// Adds the specified new connector.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name of connector to create.</param>
-        /// <param name="definitionName">The unique name of connector to create.</param>
-        /// <param name="connectionString">The connection string of this instance.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>The created connector.</returns>
-        public void AddConfiguration(
-            IAppScope appScope,
-            String name,
-            String definitionName,
-            String connectionString = null,
-            Log log = null)
-        {
-            if (appScope != null)
-                this.AddConfiguration(ConnectorConfigurationFactory.Create(appScope, name, definitionName, connectionString, log));
-        }
-
-        /// <summary>
-        /// Adds the specified new connector.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name of connector to create.</param>
-        /// <param name="definitionName">The unique name of connection to create.</param>
-        /// <param name="detail">The detail to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>The created connector.</returns>
-        public void AddConfiguration(
-            IAppScope appScope,
-            String name,
-            String definitionName,
-            DataElementSet detail = null,
-            Log log = null)
-        {
-            if (appScope != null)
-                this.AddConfiguration(ConnectorConfigurationFactory.Create(appScope, name, definitionName, detail, log));
-        }
-
-        /// <summary>
-        /// Adds the specified new connector.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name of connector to create.</param>
-        /// <param name="definitionName">The unique name of connection to create.</param>
-        /// <param name="dynamicObject">The object parameters to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>The created connector.</returns>
-        public void AddConfiguration(
-            IAppScope appScope,
-            String name,
-            String definitionName,
-            DynamicObject dynamicObject,
-            Log log = null)
-        {
-            if (appScope != null)
-                this.AddConfiguration(ConnectorConfigurationFactory.Create(appScope, name, definitionName, dynamicObject, log));
+                Configurations.Add(connector);
         }
 
         /// <summary>
         /// Removes the specified connector configuration.
         /// </summary>
         /// <param name="definitionName">The unique name of the connector definition to consider.</param>
-        public void RemoveConfiguration(String definitionName)
+        public void RemoveConfiguration(string definitionName)
         {
-                this.Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
+                Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
         }
 
         #endregion
@@ -205,9 +143,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="definitionName">The unique name of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public ConnectorConfiguration GetConfiguration(String definitionName)
+        public ConnectorConfiguration GetConfiguration(string definitionName)
         {
-            return this.Configurations?.Find(p => definitionName ==null || p.DefinitionUniqueId.KeyEquals(definitionName));
+            return Configurations?.Find(p => definitionName ==null || p.DefinitionUniqueId.KeyEquals(definitionName));
         }
 
         /// <summary>
@@ -215,9 +153,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="definitionName">The unique name of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public Boolean HasConfiguration(String definitionName)
+        public bool HasConfiguration(string definitionName)
         {
-            return this.Configurations!=null && this.Configurations.Any(p => p.DefinitionUniqueId.KeyEquals(definitionName));
+            return Configurations?.Any(p => p.DefinitionUniqueId.KeyEquals(definitionName)) == true;
         }
 
         #endregion
@@ -232,12 +170,12 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
-            DataSource dataSource = base.Clone() as DataSource;
+            IDataSource dataSource = base.Clone() as IDataSource;
 
-            if (this.Configurations != null)
-                dataSource.Configurations = this.Configurations?.Select(p => p.Clone() as ConnectorConfiguration).ToList();
+            if (Configurations != null)
+                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorConfiguration).ToList();
 
             return dataSource;
         }
@@ -254,13 +192,17 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
 
-            if (this.Configurations != null)
-                foreach(ConnectorConfiguration connector in this.Configurations)
+            if (Configurations != null)
+            {
+                foreach (ConnectorConfiguration connector in Configurations)
+                {
                     connector.UpdateStorageInfo(log);
+                }
+            }
         }
 
         /// <summary>
@@ -268,13 +210,13 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 
-            if (this.Configurations != null)
+            if (Configurations != null)
             {
-                foreach (ConnectorConfiguration connector in this.Configurations)
+                foreach (ConnectorConfiguration connector in Configurations)
                 {
                     connector.UpdateRuntimeInfo(appScope, log);
                 }

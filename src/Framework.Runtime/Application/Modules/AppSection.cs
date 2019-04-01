@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Sets;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Sets;
 
 namespace BindOpen.Framework.Runtime.Application.Modules
 {
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         [Bindable(false)]
         [DefaultValue("")]
         [XmlElement("iconFileName")]
-        public String IconFileName { get; set; } = null;
+        public string IconFileName { get; set; } = null;
 
         /// <summary>
         /// File name of the thumb icon of this instance.
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         [Bindable(false)]
         [DefaultValue("")]
         [XmlElement("thumbIconFileName")]
-        public String ThumbIconFileName { get; set; } = null;
+        public string ThumbIconFileName { get; set; } = null;
 
         /// <summary>
         /// Rank of this instance.
@@ -212,7 +212,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public override String Key()
+        public override string Key()
         {
             return (this.Parent == null ? this.Module?.Name + "$" : this.Parent.Name + "$" + this.Name).ToUpper();
         }

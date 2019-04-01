@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             return "\"" + value1 + "\"";
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String textValue = parameters.GetStringAtIndex(0);
             String aFormatText = parameters.GetStringAtIndex(1);
@@ -93,7 +93,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String aCondition = parameters.GetStringAtIndex(0);
 
@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             return (!string.Equals(value1, "%TRUE()", StringComparison.OrdinalIgnoreCase) ? "%True()" : "%False()");
@@ -133,7 +133,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             Boolean b = false;
             foreach (String st in parameters)
@@ -153,7 +153,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             Boolean b = true;
             foreach (String st in parameters)
@@ -173,7 +173,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             Boolean b = true;
             foreach (String st in parameters)
@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -213,7 +213,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -233,7 +233,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return DateTime.Now.ToString();
         }
@@ -251,7 +251,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String aFormat = parameters.GetStringAtIndex(0);
 
@@ -279,7 +279,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             DateTime dateTime = System.DateTime.Now;
 
@@ -304,7 +304,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String year = parameters.GetStringAtIndex(0);
             String month = parameters.GetStringAtIndex(1);
@@ -343,7 +343,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return parameters.GetStringAtIndex(0);
         }
@@ -360,7 +360,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = parameters.GetStringAtIndex(0);
 
@@ -397,7 +397,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return "\"\"";
         }
@@ -414,7 +414,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return "\t";
         }
@@ -431,7 +431,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return "\n";
         }
@@ -448,7 +448,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return "%LITERAL_CARRETPOS()";
         }
@@ -465,7 +465,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
         }
@@ -482,7 +482,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");
         }

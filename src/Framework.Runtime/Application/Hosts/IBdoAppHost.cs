@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        new IBdoAppHost Start(Log log = null);
+        new IBdoAppHost Start(ILog log = null);
 
         /// <summary>
         /// Ends the process specifying the status.

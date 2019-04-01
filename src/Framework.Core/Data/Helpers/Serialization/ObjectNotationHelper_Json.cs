@@ -59,7 +59,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             /// <param name="dataTable">The data table to serialize.</param>
             /// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
             /// <returns>The Json string serializing the specified data table.</returns>
-            public static String ToJson(this DataTable dataTable, Boolean isFiltered = false)
+            public static String ToJson(this DataTable dataTable, bool isFiltered = false)
         {
             String resultString = "";
             IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="count">The number of items to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, out int count, Boolean isFiltered = false)
+        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, out int count, bool isFiltered = false)
         //{
         //    String resultString = "";
         //    IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -111,7 +111,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         //    // we go through the data table rows
         //    if (oleDbDataReader != null)
         //    {
-        //        List<String> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
+        //        List<string> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
         //        int j = 0;
         //        while (oleDbDataReader.Read())
         //        {
@@ -145,7 +145,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="nodeName">The name of the node to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, Boolean isFiltered = false)
+        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, bool isFiltered = false)
         //{
         //    int count = 0;
         //    return ObjectNotationHelper_Json.ToJson(oleDbDataReader, nodeName, out count, isFiltered);
@@ -304,7 +304,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         public static void FromJson(
             this DataSet dataSet,
             String jsonString,
-            List<String> tableNames,
+            List<string> tableNames,
             bool isAppend = false)
         {
             foreach (String tableName in tableNames)

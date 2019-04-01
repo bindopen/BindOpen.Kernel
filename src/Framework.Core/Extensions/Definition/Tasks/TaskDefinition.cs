@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
     [Serializable()]
     [XmlType("TaskDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "task.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class TaskDefinition : AppExtensionItemDefinition
+    public class TaskDefinition : AppExtensionItemDefinition, ITaskDefinition
     {
         // ------------------------------------------
         // VARIABLES
@@ -31,8 +31,8 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
 
         #region Variables
 
-        private DataElementSpecSet _InputSpecification = null;
-        private DataElementSpecSet _OutputSpecification = null;
+        private IDataElementSpecSet _inputSpecification = null;
+        private IDataElementSpecSet _outputSpecification = null;
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// Item class of this instance.
         /// </summary>
         [XmlElement("itemClass")]
-        public String ItemClass
+        public string ItemClass
         {
             get;
             set;
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// Name of the group of this instance.
         /// </summary>
         [XmlElement("groupName")]
-        public String GroupName
+        public string GroupName
         {
             get;
             set;
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// Indicates whether this instance is executable.
         /// </summary>
         [XmlElement("isExecutable")]
-        public Boolean IsExecutable
+        public bool IsExecutable
         {
             get;
             set;
@@ -77,16 +77,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <seealso cref="OutputSpecification"/>
         [XmlElement("input.specification")]
-        public DataElementSpecSet InputSpecification
+        public IDataElementSpecSet InputSpecification
         {
-            get
-            {
-                if (this._InputSpecification == null) this._InputSpecification = new DataElementSpecSet();
-                return this._InputSpecification;
-            }
+            get => this._inputSpecification ?? (this._inputSpecification = new DataElementSpecSet());
             set
             {
-                this._InputSpecification = value;
+                this._inputSpecification = value;
             }
         }
 
@@ -95,16 +91,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <seealso cref="InputSpecification"/>
         [XmlElement("output.specification")]
-        public DataElementSpecSet OutputSpecification
+        public IDataElementSpecSet OutputSpecification
         {
-            get
-            {
-                if (this._OutputSpecification == null) this._OutputSpecification = new DataElementSpecSet();
-                return this._OutputSpecification;
-            }
+            get => this._outputSpecification ?? (this._outputSpecification = new DataElementSpecSet());
             set
             {
-                this._OutputSpecification = value;
+                this._outputSpecification = value;
             }
         }
 
@@ -150,20 +142,21 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<DataElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IDataElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            List<DataElementSpec> dataElements = new List<DataElementSpec>();
+            List<IDataElementSpec> dataElements = new List<IDataElementSpec>();
+
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
-                dataElements.AddRange(this._InputSpecification.Items);
+                dataElements.AddRange(this._inputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
-                dataElements.AddRange(this._OutputSpecification.Items);
+                dataElements.AddRange(this._outputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(this._outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(this._outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
 
             return dataElements;
         }
@@ -174,7 +167,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public DataElementSpec GetEntryWithName(String key, params TaskEntryKind[] taskEntryKinds)
+        public IDataElementSpec GetEntryWithName(String key, params TaskEntryKind[] taskEntryKinds)
         {
             return this.GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
         }
@@ -187,14 +180,14 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
-        public Object GetEntryDefaultItemWithName(
-            String name,
+        public object GetEntryDefaultItemWithName(
+            string name,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            DataElementSpec entry = this.GetEntryWithName(name, taskEntryKinds);
+            IDataElementSpec entry = this.GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetDefaultItemObject(appScope, scriptVariableSet, log);
         }
@@ -211,7 +204,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// Checks this instance in a custom way.
         /// </summary>
         /// <returns>Returns the check log.</returns>
-        public virtual Log CustomCheck()
+        public virtual ILog CustomCheck()
         {
             return new Log();
         }
@@ -220,11 +213,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
         /// Repairs this instance basing on the specified definition task.
         /// </summary>
         /// <param name="taskDefinition">The definition task to consider.</param>
-        public void Repair(TaskDefinition taskDefinition)
+        public void Repair(ITaskDefinition taskDefinition)
         {
             if (taskDefinition != null)
             {
-                if (!String.IsNullOrEmpty(taskDefinition.Key()))
+                if (!string.IsNullOrEmpty(taskDefinition.Key()))
                 {
                     if (this.UniqueId == null || this.KeyEquals(taskDefinition))
                     {
@@ -237,12 +230,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Tasks
                 if (taskDefinition.Description != null)
                     this.Description = taskDefinition.Description.Clone() as DictionaryDataItem;
 
-                this._InputSpecification.Repair(
+                this._inputSpecification.Repair(
                     taskDefinition.InputSpecification,
-                    DataElementSpec.__Arenames.Excluding(DataAreaKind.Items.ToString()));
-                this._OutputSpecification.Repair(
+                    DataElementSpec.__Arenames.ToList().Excluding(new[] { nameof(DataAreaKind.Items) }).ToArray());
+                this._outputSpecification.Repair(
                     taskDefinition.OutputSpecification,
-                    DataElementSpec.__Arenames.Excluding(DataAreaKind.Items.ToString()));
+                    DataElementSpec.__Arenames.ToList().Excluding(new [] { nameof(DataAreaKind.Items) }).ToArray());
             }
         }
 

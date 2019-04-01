@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Routines
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] String propertyName = null)
         {
             if (propertyName != null)
             {
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Routines
                     this.AppScope);
 
                 if (attribute is DetailPropertyAttribute)
-                    return (this.ParameterDetail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue);
+                    return (this.ParameterDetail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue);
             }
 
             return default(T);
@@ -196,21 +196,21 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Routines
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="aItem">The item to use.</param>
+        /// <param name="item">The item to use.</param>
         /// <param name="dataElement">The element to use.</param>
         /// <param name="objects">The objects to use.</param>
         /// <returns>The log of check log.</returns>
-        public Log Execute(
+        public ILog Execute(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object aItem = null,
-            DataElement dataElement = null,
-            params Object[] objects)
+            IDataElement dataElement = null,
+            params object[] objects)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             log.AddEvents(appScope.Check(
-                isAppExtensionChecked: !String.IsNullOrEmpty(this.DefinitionUniqueId),
+                isAppExtensionChecked: !string.IsNullOrEmpty(this.DefinitionUniqueId),
                 isScriptInterpreterChecked: this.CommandSet.Items.Any(p => p.Kind == CommandKind.Script)));
             //,
             //    isConnectionManagerChecked: (dataElement!=null)&& (dataElement.ItemReference!=null)&& (dataElement.ItemReference.GetDataSourceKind() != DataSourceKind.None )));
@@ -252,12 +252,12 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Routines
         /// <param name="dataElement">The element to use.</param>
         /// <param name="objects">The objects to use.</param>
         /// <returns>The log of check log.</returns>
-        protected virtual Log CustomExecute(
+        protected virtual ILog CustomExecute(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
-            DataElement dataElement = null,
-            params Object[] objects)
+            IDataElement dataElement = null,
+            params object[] objects)
         {
             return new Log();
         }

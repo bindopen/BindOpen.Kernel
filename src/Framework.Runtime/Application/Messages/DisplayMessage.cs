@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         /// Link URI of this instance.
         /// </summary>
         [XmlElement("linkUri")]
-        public String LinkUri
+        public string LinkUri
         {
             set;
             get;
@@ -164,7 +164,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override Object Clone()
+        public override object Clone()
         {
             DisplayMessage aDisplayMessage = base.Clone() as DisplayMessage;
             aDisplayMessage.DisplayCondition = this.DisplayCondition.Clone() as ScriptCondition;

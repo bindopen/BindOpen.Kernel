@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -12,26 +10,23 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
 {
-
     /// <summary>
     /// This class represents a connector configuration.
     /// </summary>
     [XmlType("ConnectorConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "connector", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConnectorConfiguration : TAppExtensionTitledItemConfiguration<ConnectorDefinition>
+    public class ConnectorConfiguration : TAppExtensionTitledItemConfiguration<IConnectorDefinition>, IConnectorConfiguration
     {
-
         // -----------------------------------------------
         // VARIABLES
         // -----------------------------------------------
 
         #region Variables
 
-        private DataElementSet _Detail = null;
-        private String _ConnectionString = null;
+        private IDataElementSet _detail = null;
+        private string _connectionString = null;
 
         #endregion
-
 
         // -----------------------------------------------
         // PROPERTIES
@@ -43,25 +38,19 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// The data source kind of this instance.
         /// </summary>
         [XmlIgnore()]
-        public DataSourceKind DataSourceKind
-        {
-            get { return (this.Definition == null ? DataSourceKind.None : this.Definition.DataSourceKind); }
-        }
+        public DataSourceKind DataSourceKind => Definition?.DataSourceKind ?? DataSourceKind.None;
 
         /// <summary>
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public DataElementSet Detail
+        public IDataElementSet Detail
         {
-            get { return this._Detail; }
+            get => _detail;
             set
             {
-                this._Detail = value;
-                this._Detail.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
-                {
-                    this.UpdateConnectionString();
-                };
+                _detail = value;
+                _detail.PropertyChanged += (object sender, PropertyChangedEventArgs e) => UpdateConnectionString();
             }
         }
 
@@ -69,41 +58,28 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// Specification of the Detail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DetailSpecified
-        {
-            get
-            {
-                return this._Detail != null && (this._Detail.ElementsSpecified || this._Detail.DescriptionSpecified);
-            }
-        }
+        public bool DetailSpecified => _detail != null && (_detail.ElementsSpecified || _detail.DescriptionSpecified);
 
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
         [XmlElement("connectionString")]
-        public String ConnectionString
+        public string ConnectionString
         {
-            get { return this._ConnectionString; }
+            get => _connectionString;
             set
             {
-                this._ConnectionString = (value ?? "").Replace("\n","").Trim();
+                _connectionString = (value ?? "").Replace("\n", "").Trim();
             }
         }
 
         /// <summary>
-        /// Specification of the ConnectionString property of this instance.
+        /// Specification of the Connectionstring property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ConnectionStringSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this._ConnectionString);
-            }
-        }
+        public bool ConnectionStringSpecified => !string.IsNullOrEmpty(_connectionString);
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -114,30 +90,52 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// <summary>
         /// Instantiates a new instance of the ConnectorConfiguration class.
         /// </summary>
-        public ConnectorConfiguration() : this(null)
+        public ConnectorConfiguration()
+            : base(null)
         {
         }
 
         /// <summary>
-        /// This instantiates a new instance of the ConnectorConfiguration class.
+        /// Instantiates a new instance of the ConnectorConfiguration class.
         /// </summary>
-        /// <param name="name">The name of this instance.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
         /// <param name="connectionString">The connection string of this instance.</param>
-        /// <param name="detail">The path detail to consider.</param>
-        public ConnectorConfiguration(
-            String name,
-            String definitionName = null,
-            String connectionString = null,
-            DataElementSet detail = null)
-            : base(name, definitionName, null, "connector_")
+        /// <param name="detail">The detail to consider.</param>
+        protected ConnectorConfiguration(
+            string name,
+            IConnectorDefinition definition = default,
+            string namePreffix = "connector_",
+            string connectionString = null,
+            IDataElementSet detail = null)
+            : this(name, definition?.Key(), namePreffix, connectionString, detail)
         {
-            this._ConnectionString = connectionString;
-            this._Detail = detail;
+            _definition = definition;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the ConnectorConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="connectionString">The connection string of this instance.</param>
+        /// <param name="detail">The detail to consider.</param>
+        protected ConnectorConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix = "connector_",
+            string connectionString = null,
+            IDataElementSet detail = null)
+            : base(name, definitionUniqueId, namePreffix)
+        {
+            DefinitionUniqueId = definitionUniqueId;
+            _connectionString = connectionString;
+            _detail = detail;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
@@ -149,13 +147,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// Gets the detail of this instance and instantiates it if it is null.
         /// </summary>
         /// <returns>Returns the detail of this instance.</returns>
-        public DataElementSet NewDetail()
+        public IDataElementSet NewDetail()
         {
-            return this._Detail = this._Detail ?? new DataElementSet();
+            return _detail = _detail ?? new DataElementSet();
         }
 
         #endregion
-
 
         // ------------------------------------------
         // MUTATORS
@@ -168,30 +165,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>
         /// <returns>Returns a clone of this instance.</returns>
-        public virtual void UpdateConnectionString(String connectionString= null)
+        public virtual void UpdateConnectionString(string connectionString= null)
         {
             if (connectionString != null)
-                this._ConnectionString = connectionString;
-        }
-
-        /// <summary>
-        /// Sets the definition of this instance.
-        /// </summary>
-        /// <param name="definition">The definition to consider.</param>
-        /// <param name="isDefinitionChecked">Indicates whether the definition must be checked.</param>
-        public override void SetDefinition(ConnectorDefinition definition = null, Boolean isDefinitionChecked = true)
-        {
-            base.SetDefinition(definition, isDefinitionChecked);
-
-            if (definition!=null)
-            {
-                (this._Detail ?? (this._Detail = new DataElementSet())).Repair(this.Definition != null ? this.Definition.DetailSpec : null);
-                this._Detail.Update<DataElementSet>();
-            }
+                _connectionString = connectionString;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CLONING
@@ -203,17 +183,16 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// Clones this instance.
         /// </summary>
         /// <returns>A cloned connector of this instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ConnectorConfiguration dataConnector = base.Clone() as ConnectorConfiguration;
-            if (this._Detail != null)
-                dataConnector.Detail = this._Detail.Clone() as DataElementSet;
+            if (_detail != null)
+                dataConnector.Detail = _detail.Clone() as DataElementSet;
 
             return dataConnector;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
@@ -231,23 +210,23 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is ConnectorConfiguration)
             {
                 ConnectorConfiguration connectorConfiguration = item as ConnectorConfiguration;
-                this._ConnectionString = connectorConfiguration.ConnectionString;
+                _connectionString = connectorConfiguration.ConnectionString;
                 if (connectorConfiguration.Detail != null)
                 {
-                    if (this.Detail == null) this.Detail = new DataElementSet();
-                    this.Detail.Update(connectorConfiguration.Detail, specificationAreas, updateModes, appScope, scriptVariableSet);
+                    if (Detail == null) Detail = new DataElementSet();
+                    Detail.Update(connectorConfiguration.Detail, specificationAreas, updateModes, appScope, scriptVariableSet);
                 }
             }
             return log;
@@ -262,23 +241,23 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
-        public override Log Check<T>(
-            Boolean isExistenceChecked = true,
-            T item = null,
-            List<String> specificationAreas = null,
+        public override ILog Check<T>(
+            bool isExistenceChecked = true,
+            T item = default,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is ConnectorConfiguration)
             {
                 ConnectorConfiguration connectorConfiguration = item as ConnectorConfiguration;
-                this._ConnectionString = connectorConfiguration.ConnectionString;
+                _connectionString = connectorConfiguration.ConnectionString;
                 if (connectorConfiguration.Detail != null)
                 {
-                    if (this.Detail == null) this.Detail = new DataElementSet();
-                    this.Detail.Check(isExistenceChecked, connectorConfiguration.Detail, specificationAreas, appScope, scriptVariableSet);
+                    if (Detail == null) Detail = new DataElementSet();
+                    Detail.Check(isExistenceChecked, connectorConfiguration.Detail, specificationAreas, appScope, scriptVariableSet);
                 }
             }
             return log;
@@ -293,29 +272,28 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Connectors
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
-        public override Log Repair<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Repair<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is ConnectorConfiguration)
             {
                 ConnectorConfiguration connectorConfiguration = item as ConnectorConfiguration;
-                this._ConnectionString = connectorConfiguration.ConnectionString;
+                _connectionString = connectorConfiguration.ConnectionString;
                 if (connectorConfiguration.Detail != null)
                 {
-                    if (this.Detail == null) this.Detail = new DataElementSet();
-                    this.Detail.Repair(connectorConfiguration.Detail, specificationAreas, updateModes, appScope, scriptVariableSet);
+                    if (Detail == null) Detail = new DataElementSet();
+                    Detail.Repair(connectorConfiguration.Detail, specificationAreas, updateModes, appScope, scriptVariableSet);
                 }
             }
             return log;
         }
 
         #endregion
-
     }
 }

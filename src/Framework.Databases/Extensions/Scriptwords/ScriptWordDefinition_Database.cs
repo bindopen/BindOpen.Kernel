@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -60,7 +60,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -116,7 +116,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -147,7 +147,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -174,7 +174,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String condition = parameters.GetStringAtIndex(0);
             String value1 = parameters.GetStringAtIndex(1);
@@ -205,7 +205,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -234,7 +234,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -261,7 +261,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -288,7 +288,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -316,7 +316,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -344,7 +344,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -372,7 +372,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -402,7 +402,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -432,7 +432,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -462,7 +462,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -492,7 +492,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -521,7 +521,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -550,7 +550,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -577,7 +577,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -605,7 +605,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -634,7 +634,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -659,7 +659,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -686,7 +686,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -698,7 +698,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
                 value1 = ScriptParsingHelper.GetValueFromText(value1);
 
                 String instanceName = appScope?.DataSourceService?.GetInstanceName(value1);
-                if (String.IsNullOrEmpty(instanceName) || instanceName == StringHelper.__NoneString)
+                if (string.IsNullOrEmpty(instanceName) || instanceName == StringHelper.__NoneString)
                     instanceName = value1;
 
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
@@ -719,7 +719,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -749,7 +749,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -777,7 +777,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -807,7 +807,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -834,7 +834,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
@@ -860,7 +860,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -891,7 +891,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             String text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)

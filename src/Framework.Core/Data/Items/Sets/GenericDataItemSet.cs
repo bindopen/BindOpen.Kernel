@@ -21,8 +21,8 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [Serializable()]
     [XmlRoot(ElementName = "item.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public abstract class GenericDataItemSet<T> : DataItem, INotifyPropertyChanged
-        where T: StoredDataItem
+    public abstract class GenericDataItemSet<T> : DataItem, IGenericDataItemSet<T>
+        where T: IStoredDataItem
     {
         // ------------------------------------------
         // VARIABLES
@@ -30,12 +30,10 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
         #region Variables
 
-        private DictionaryDataItem _Description = null;
-
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        protected List<T> _Items = null;
+        protected List<T> _items = null;
 
         #endregion
 
@@ -49,27 +47,13 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Description of this instance.
         /// </summary>
         [XmlElement("description")]
-        public DictionaryDataItem Description
-        {
-            get {
-                return this._Description;
-            }
-            set {
-                this._Description = value;
-            }
-        }
+        public IDictionaryDataItem Description { get; set; } = null;
 
         /// <summary>
         /// Specification of the Description property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DescriptionSpecified
-        {
-            get
-            {
-                return this._Description != null && (this._Description.AvailableKeysSpecified || this._Description.ValuesSpecified || this._Description.SingleValueSpecified);
-            }
-        }
+        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
 
         /// <summary>
         /// Returns the number of items.
@@ -79,7 +63,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         {
             get
             {
-                return this._Items == null ? 0 :this._Items.Count;
+                return _items == null ? 0 :_items.Count;
             }
         }
 
@@ -88,12 +72,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// </summary>
         [XmlIgnore()]
         public T this[int index]
-        {
-            get
-            {
-                return (this._Items!=null && index >= 0 && index < this._Items.Count ? this._Items[index] : null);
-            }
-        }
+            => _items != null && index >= 0 && index < _items.Count ? _items[index] : default(T);
 
         /// <summary>
         /// Returns the element with the specified key.
@@ -103,7 +82,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         {
             get
             {
-                return this.GetItem(key);
+                return GetItem(key);
             }
         }
 
@@ -126,19 +105,19 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Instantiates a new instance of the GenericDataItemSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        /// <param name="description">The description to consider.</param>
-        protected GenericDataItemSet(DictionaryDataItem description, params T[] items)
+        protected GenericDataItemSet(params T[] items) : this(null, items)
         {
-            this._Items = items?.ToList();
-            this._Description = description;
         }
 
         /// <summary>
         /// Instantiates a new instance of the GenericDataItemSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        protected GenericDataItemSet(params T[] items) : this(null, items)
+        /// <param name="description">The description to consider.</param>
+        protected GenericDataItemSet(IDictionaryDataItem description, params T[] items)
         {
+            _items = items?.ToList();
+            Description = description;
         }
 
         #endregion
@@ -154,32 +133,32 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// </summary>
         public void ClearItems()
         {
-            this._Items = null;
+            _items = null;
         }
 
         /// <summary>
         /// Adds a new item.
         /// </summary>
-        /// <param name="storedDataItem">The new item to add.</param>
+        /// <param name="item">The new item to add.</param>
         /// <param name="referenceCollection">The reference collection to consider.</param>
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public virtual void Add(
-            T storedDataItem,
+            T item,
             GenericDataItemSet<T> referenceCollection = null)
         {
-            if ((storedDataItem == null) || (storedDataItem.Key() == null))
+            if ((item == null) || (item.Key() == null))
                 return;
-            if (this._Items == null)
-                this._Items = new List<T>();
+            if (_items == null)
+                _items = new List<T>();
             else
-                this._Items.RemoveAll(p => p.KeyEquals(storedDataItem));
+                _items.RemoveAll(p => p.KeyEquals(item));
 
             if (referenceCollection == null)
-                this._Items.Add(storedDataItem);
-            else if (referenceCollection.HasItem(storedDataItem.Key()))
-                this._Items.Add(storedDataItem);
+                _items.Add(item);
+            else if (referenceCollection.HasItem(item.Key()))
+                _items.Add(item);
         }
 
         /// <summary>
@@ -198,7 +177,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
             {
                 foreach (T dataItem in items)
                 {
-                    this.Add(dataItem);
+                    Add(dataItem);
                 }
             }
         }
@@ -214,17 +193,17 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
             params T[] items)
         {
             if (items != null)
-                this.Add(items.ToList());
+                Add(items.ToList());
         }
 
         /// <summary>
         /// Removes the item with the specified name.
         /// </summary>
         /// <param name="keys">The keys of the item to remove.</param>
-        public virtual void Remove(params String[] keys)
+        public virtual void Remove(params string[] keys)
         {
-            if (keys == null || this._Items == null) return;
-            this._Items.RemoveAll(p => keys.Any(q=> p.KeyEquals(q)));
+            if (keys == null || _items == null) return;
+            _items.RemoveAll(p => keys.Any(q=> p.KeyEquals(q)));
         }
 
         #endregion
@@ -239,9 +218,9 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Returns true if this instance has any item.
         /// </summary>
         /// <returns>Returns true if this instance has any item.</returns>
-        public Boolean HasItems()
+        public bool HasItems()
         {
-            return _Items?.Count > 0;
+            return _items?.Count > 0;
         }
 
         /// <summary>
@@ -249,10 +228,10 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// </summary>
         /// <param name="key">The key of the item to check.</param>
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
-        public Boolean HasItem(string key)
+        public bool HasItem(string key)
         {
             if (key == null) return false;
-            return _Items?.Any(p => p.KeyEquals(key)) == true;
+            return _items?.Any(p => p.KeyEquals(key)) == true;
         }
 
         /// <summary>
@@ -262,20 +241,20 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <returns>Returns the item with the specified name.</returns>
         public virtual T GetItem(string key)
         {
-            if (key == null || this._Items == null) return null;
-            return this._Items.Find(p => p.KeyEquals(key));
+            if (key == null || _items == null) return default(T);
+            return _items.Find(p => p.KeyEquals(key));
         }
 
         /// <summary>
         /// Gets the common keys with the specified set of elements.
         /// </summary>
-        /// <param name="dataItemSet">The set of elements to consider.</param>
+        /// <param name="itemSet">The set of items to consider.</param>
         /// <returns>The names of the common object items with the specified set of elements.</returns>
-        public virtual List<string> GetCommonItemKeys(GenericDataItemSet<T> dataItemSet)
+        public virtual List<string> GetCommonItemKeys(GenericDataItemSet<T> itemSet)
         {
             List<string> keys = new List<string>();
-            if (dataItemSet != null && this._Items != null)
-                keys = this._Items.Where(p => this.HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
+            if (itemSet != null && _items != null)
+                keys = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
 
             return keys;
         }
@@ -298,41 +277,41 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T1>(
-            T1 item = null,
-            List<string> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T1>(
+            T1 item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (specificationAreas == null)
-                specificationAreas = new List<string>() { DataAreaKind.Any.ToString() };
+                specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
             if (updateModes == null)
-                updateModes = new List<UpdateMode>() { UpdateMode.Full };
+                updateModes = new[] { UpdateMode.Full };
 
             if (item is GenericDataItemSet<T>)
             {
                 GenericDataItemSet<T> referenceItem = item as GenericDataItemSet<T>;
 
                 // we repair this instance if needed
-                this.Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateMode.Incremental_UpdateCommonItems));
+                Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateMode.Incremental_UpdateCommonItems));
 
                 // we update the common element values
 
-                if ((specificationAreas.Contains(DataAreaKind.Any.ToString())) || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                 {
-                    if (this._Items != null)
+                    if (_items != null)
                     {
-                        foreach (T currentSubItem in this._Items)
+                        foreach (T subItem in _items)
                         {
-                            if (currentSubItem != null)
+                            if (subItem != null)
                             {
-                                T referenceSubItem = referenceItem.GetItem(currentSubItem.Key());
+                                T referenceSubItem = referenceItem.GetItem(subItem.Key());
                                 if (referenceSubItem != null)
-                                    currentSubItem.Update(referenceSubItem, new List<string>() { nameof(DataAreaKind.Items) });
+                                    subItem.Update(referenceSubItem, new [] { nameof(DataAreaKind.Items) });
                             }
                         }
                     }
@@ -351,17 +330,17 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
-        public override Log Check<T1>(
-            Boolean isExistenceChecked = true,
-            T1 item = null,
-            List<string> specificationAreas = null,
+        public override ILog Check<T1>(
+            bool isExistenceChecked = true,
+            T1 item = default,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (specificationAreas == null)
-                specificationAreas = new List<string>() { DataAreaKind.Any.ToString() };
+                specificationAreas = new [] { nameof(DataAreaKind.Any) };
 
             if (item is GenericDataItemSet<T>)
             {
@@ -369,11 +348,11 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 // we check that all the elements in this instance are in the specified item
 
-                if (this._Items != null)
+                if (_items != null)
                 {
-                    foreach (T currentSubItem in this._Items)
+                    foreach (T currentSubItem in _items)
                     {
-                        if (!referenceItem._Items.Any(p => p.KeyEquals(currentSubItem)))
+                        if (!referenceItem._items.Any(p => p.KeyEquals(currentSubItem)))
                         {
                             log.AddError("").ResultCode = "additionalItem:" + currentSubItem.Key();
                         }
@@ -382,9 +361,9 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 // we check that all the elements in specified collections are in this instance
 
-                foreach (T referenceSubItem in referenceItem._Items)
+                foreach (T referenceSubItem in referenceItem._items)
                 {
-                    T currentSubItem = this._Items.FirstOrDefault(p => p.KeyEquals(referenceSubItem));
+                    T currentSubItem = _items.Find(p => p.KeyEquals(referenceSubItem));
 
                     if (currentSubItem == null)
                         log.AddError("").ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
@@ -405,20 +384,20 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
-        public override Log Repair<T1>(
-            T1 item = null,
-            List<string> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Repair<T1>(
+            T1 item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             Log log = null;
 
             if (specificationAreas == null)
-                specificationAreas = new List<string>() { DataAreaKind.Any.ToString() };
+                specificationAreas = new [] { nameof(DataAreaKind.Any) };
 
             if (updateModes == null)
-                updateModes = new List<UpdateMode>() { UpdateMode.Full };
+                updateModes = new[] { UpdateMode.Full };
 
             if (item is GenericDataItemSet<T>)
             {
@@ -426,22 +405,23 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 // we check that all the elements in this instance are in the specified item
 
-                if (updateModes.Has(UpdateMode.Incremental_RemoveItemsMissingInSource) || updateModes.Has(UpdateMode.Incremental_UpdateCommonItems))
+                if (updateModes.Has(UpdateMode.Incremental_RemoveItemsMissingInSource)
+                    || updateModes.Has(UpdateMode.Incremental_UpdateCommonItems))
                 {
                     int i = 0;
 
-                    if (this._Items != null)
+                    if (_items != null)
                     {
-                        while (i < this._Items.Count)
+                        while (i < _items.Count)
                         {
-                            T currentSubItem = this._Items[i];
+                            T currentSubItem = _items[i];
 
-                            T referenceSubItem = referenceItem._Items.FirstOrDefault(p => p.KeyEquals(currentSubItem));
+                            T referenceSubItem = referenceItem._items.Find(p => p.KeyEquals(currentSubItem));
                             if (referenceSubItem == null)
                             {
                                 if (updateModes.Has(UpdateMode.Incremental_RemoveItemsMissingInSource))
                                 {
-                                    this._Items.RemoveAt(i);
+                                    _items.RemoveAt(i);
                                     i--;
                                 }
                             }
@@ -459,14 +439,14 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 if (updateModes.Has(UpdateMode.Incremental_AddItemsMissingInTarget))
                 {
-                    if (referenceItem._Items != null)
+                    if (referenceItem._items != null)
                     {
-                        foreach (T referenceSubItem in referenceItem._Items)
+                        foreach (T referenceSubItem in referenceItem._items)
                         {
-                            T currentSubItem = this._Items?.FirstOrDefault(p => p.KeyEquals(referenceSubItem));
+                            T currentSubItem = _items.Find(p => p.KeyEquals(referenceSubItem));
 
                             if (currentSubItem == null)
-                                this.Add(referenceSubItem.Clone() as T);
+                                Add((T)referenceSubItem.Clone());
                         }
                     }
                 }
@@ -487,11 +467,11 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
-            if (this._Items != null)
+            if (_items != null)
             {
-                foreach (T item in this._Items)
+                foreach (T item in _items)
                 {
                     item.UpdateStorageInfo(log);
                 }
@@ -503,10 +483,10 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
-            if (this._Items != null)
-                foreach (T item in this._Items)
+            if (_items != null)
+                foreach (T item in _items)
                 {
                     item.UpdateRuntimeInfo(appScope, log);
                 }
@@ -524,12 +504,12 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             GenericDataItemSet<T> dataItemSet = base.Clone() as GenericDataItemSet<T>;
-            if (this._Description != null)
-                dataItemSet.Description = this._Description.Clone() as DictionaryDataItem;
-            dataItemSet._Items = this._Items?.Select(p => p.Clone() as T).ToList();
+            if (Description != null)
+                dataItemSet.Description = Description.Clone() as DictionaryDataItem;
+            dataItemSet._items = _items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;
         }
@@ -553,7 +533,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="name">The name of the property that has changed.</param>
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler aHandler = this.PropertyChanged;
+            PropertyChangedEventHandler aHandler = PropertyChanged;
             if (aHandler != null) aHandler(this, new PropertyChangedEventArgs(name));
         }
 

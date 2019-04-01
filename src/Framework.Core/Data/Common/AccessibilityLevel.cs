@@ -76,5 +76,4 @@ namespace BindOpen.Framework.Core.Data.Common
     }
 
     #endregion
-
 }

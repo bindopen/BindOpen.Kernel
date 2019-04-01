@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     [XmlType("Event", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     [XmlInclude(typeof(ConditionalEvent))]
-    public class Event : DescribedDataItem
+    public class Event : DescribedDataItem, IEvent
     {
         // ------------------------------------------
         // PROPERTIES
@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Creation date of this instance.
         /// </summary>
         [XmlAttribute("date")]
-        public String Date
+        public string Date
         {
             get { return base.CreationDate; }
             set
@@ -50,74 +50,47 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Specification of the Date property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DateSpecified
-        {
-            get
-            {
-                return base.CreationDateSpecified;
-            }
-        }
+        public bool DateSpecified => base.CreationDateSpecified;
 
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
         [XmlIgnore()]
-        public new String CreationDate
+        public new string CreationDate
         {
-            get { return base.CreationDate; }
-            set
-            {
-                base.CreationDate = value;
-            }
+            get => base.CreationDate;
+            set => base.CreationDate = value;
         }
 
         /// <summary>
         /// Specification of the CreationDate property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public new Boolean CreationDateSpecified
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public new bool CreationDateSpecified => false;
 
         /// <summary>
         /// Long description of this instance.
         /// </summary>
         [XmlElement("longDescription")]
-        public DictionaryDataItem LongDescription { get; set; } = null;
+        public IDictionaryDataItem LongDescription { get; set; } = null;
 
         /// <summary>
         /// Specification of the LongDescription property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LongDescriptionSpecified
-        {
-            get
-            {
-                return this.LongDescription != null && (this.LongDescription.AvailableKeysSpecified || this.LongDescription.ValuesSpecified || this.LongDescription.SingleValueSpecified);
-            }
-        }
+        public bool LongDescriptionSpecified => this.LongDescription != null && (this.LongDescription.AvailableKeysSpecified || this.LongDescription.ValuesSpecified || this.LongDescription.SingleValueSpecified);
 
         /// <summary>
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public DataElementSet Detail { get; set; } = null;
+        public IDataElementSet Detail { get; set; } = null;
 
         /// <summary>
         /// Specification of the Detail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DetailSpecified
-        {
-            get
-            {
-                return this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
-            }
-        }
+        public bool DetailSpecified => this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
 
         /// <summary>
         /// Criticality of this instance.
@@ -152,19 +125,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="id">The ID of this instance.</param>
         public Event(
             EventKind kind,
-            String title = null,
+            string title = null,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
+            string description = null,
             DateTime? date = null,
-            String id = null) : this()
+            string id = null) : this()
         {
             this.Id = (id ?? this.Id);
             this.CreationDate = (date ?? DateTime.Now).ToString(StringHelper.__DateFormat);
 
             this.Kind = kind;
             this.Criticality = criticality;
-            this.Title = String.IsNullOrEmpty(title) ? null : new DictionaryDataItem(title);
-            this.Description = String.IsNullOrEmpty(description) ? null : new DictionaryDataItem(description);
+            this.Title = string.IsNullOrEmpty(title) ? null : new DictionaryDataItem(title);
+            this.Description = string.IsNullOrEmpty(description) ? null : new DictionaryDataItem(description);
         }
 
         /// <summary>
@@ -178,7 +151,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             Exception exception,
             EventCriticality criticality = EventCriticality.None,
             DateTime? date = null,
-            String id = null) : this()
+            string id = null) : this()
         {
             this.Id = (id ?? this.Id);
             this.CreationDate = (date ?? global::System.DateTime.Now).GetString();
@@ -189,7 +162,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             if (exception != null)
             {
                 this.SetTitleText(exception.Message);
-                this.SetDescriptionText(exception.ToString());
+                this.SetDescription(exception.ToString());
                 this.LongDescription = new DictionaryDataItem(exception.ToString());
             }
         }
@@ -232,7 +205,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
 
@@ -244,7 +217,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 

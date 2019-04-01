@@ -13,13 +13,11 @@ using BindOpen.Framework.Core.Data.Items.Dictionary;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Strings
 {
-
     /// <summary>
     /// This structure represents a string helper.
     /// </summary>
     public static class StringHelper
     {
-
         // ------------------------------------------
         // CONSTANTS
         // ------------------------------------------
@@ -29,25 +27,24 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <summary>
         /// The pattern empty value.
         /// </summary>
-        public static String __PatternEmptyValue = "{{*}}";
+        public static string __PatternEmptyValue = "{{*}}";
 
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static String __NoneString = "<!--NONE-->";
+        public static string __NoneString = "<!--NONE-->";
 
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static String __DateFormat = "s";
+        public static string __DateFormat = "s";
 
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static String __TimeFormat = "HH:mm:ss.fff";
+        public static string __TimeFormat = "HH:mm:ss.fff";
 
         #endregion
-
 
         // --------------------------------------------------
         // METHODS
@@ -85,7 +82,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// </summary>
         /// <param name="charNumber">The character number to consider.</param>
         /// <returns>Returns the generated password.</returns>
-        public static String GeneratePassword(int charNumber)
+        public static string GeneratePassword(int charNumber)
         {
             return Guid.NewGuid().ToString().ToLower()
                 .Replace("-", "").Replace("l", "").Replace("1", "").Replace("o", "").Replace("0", "")
@@ -102,7 +99,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         {
             int count = 0;
             int index = 0;
-            if (!String.IsNullOrEmpty(st))
+            if (!string.IsNullOrEmpty(st))
             {
                 if (st[0] == character) count++;
                 while (
@@ -137,48 +134,26 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <summary>
         /// Returns the string value of the specified settings.
         /// </summary>
-        /// <param name="stringValue">String value to consider.</param>
+        /// <param name="stringValue">string value to consider.</param>
         /// <param name="limitSize">Limit string size to consider.</param>
         /// <returns>The string value of the specified settings.</returns>
-        public static Boolean CheckNameFormat(this String stringValue, int limitSize)
+        public static bool CheckNameFormat(this string stringValue, int limitSize)
         {
-            Boolean aBoolean = true;
+            bool aBool = true;
 
             // Valid special characters (which are configurable) are ?_!.*
-            String aRegEx = @"^[a-zA-Z0-9_]{0," + limitSize.ToString() + "}$";
+            string aRegEx = "^[a-zA-Z0-9_]{0," + limitSize.ToString() + "}$";
             try
             {
                 if (!Regex.IsMatch(stringValue, aRegEx))
-                    aBoolean = false;
+                    aBool = false;
             }
             catch
             {
             }
 
-            return aBoolean;
+            return aBool;
         }
-
-        ///// <summary>
-        ///// Returns the index of the next specified char in the specified string from the specified index.
-        ///// </summary>
-        ///// <param name="st">The string to consider.</param>
-        ///// <param name="aChar">The char to consider.</param>
-        ///// <param name="indexDeb">The start index to consider.</param>
-        ///// <returns>Reutrns the index of the next specified char.</returns>
-        //public static int GetIndexOfNextString(String st, String aChar, int indexDeb)
-        //{
-        //    if (indexDeb > st.Length-1)
-        //        return -1;
-
-        //    int aSimpleCharIndex = st.IndexOf(aChar, indexDeb);
-        //    if (aSimpleCharIndex == -1)
-        //        return st.Length;
-        //    else
-        //        if ((aSimpleCharIndex < st.Length - 1) && (st.Substring(aSimpleCharIndex + 1, 1) == aChar))
-        //            return StringHelper.GetIndexOfNextString(st, aChar, aSimpleCharIndex + 2);
-        //        else
-        //            return aSimpleCharIndex;
-        //}
 
         /// <summary>
         /// Gets the string shorten to the specified characters.
@@ -187,9 +162,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="charNumber">The number of characters to consider.</param>
         /// <param name="addedString">Indicates whether dots are added.</param>
         /// <returns>Returns the specified string shorten.</returns>
-        public static String GetShortString(this String st, int charNumber, String addedString = "...")
+        public static string GetShortString(this string st, int charNumber, string addedString = "...")
         {
-            String shortString = "";
+            string shortString = "";
             if (st != null)
                 shortString = (st.Length > charNumber ? st.GetSubstring(0, charNumber - 4) + addedString : st);
             return shortString;
@@ -201,16 +176,16 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="character">The character to consider.</param>
         /// <returns>Returns the sub string.</returns>
-        public static String GetStringBetween(this String st, Char character)
+        public static string GetStringBetween(this string st, Char character)
         {
-            String aSubString = "";
+            string subString = "";
             int index1 = st.IndexOf(character);
             int index2 = (index1 == -1 ? -1 : st.IndexOf(character, index1 + 1));
 
             if ((index1 > -1) & (index2 > -1))
-                aSubString = st.Substring(index1 + 1, index2 - index1 - 1);
+                subString = st.Substring(index1 + 1, index2 - index1 - 1);
 
-            return aSubString;
+            return subString;
         }
 
         /// <summary>
@@ -219,7 +194,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="st">The string to hash.</param>
         /// <param name="hashName">The name of the algorithm to consider.</param>
         /// <returns></returns>
-        public static String HashString(this string st, string hashName)
+        public static string HashString(this string st, string hashName)
         {
             HashAlgorithm aHashAlgorithm = HashAlgorithm.Create(hashName);
             if (aHashAlgorithm == null)
@@ -235,7 +210,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <returns></returns>
-        public static String ToPath(this string st)
+        public static string ToPath(this string st)
         {
             return st?.Replace('\\', Path.DirectorySeparatorChar);
         }
@@ -247,7 +222,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="startIndex">The start index to consider.</param>
         /// <param name="endIndex">The end index to consider.</param>
         /// <returns>The formated path.</returns>
-        public static String GetSubstring(this String st, int startIndex, int endIndex=-1)
+        public static string GetSubstring(this string st, int startIndex, int endIndex=-1)
         {
             if (st == null) return null;
 
@@ -278,12 +253,12 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="startingString">The starting string to consider.</param>
         /// <param name="containingString">The string con</param>
         /// <returns>The formated path.</returns>
-        public static String GetStartedString(this String st, String startingString, String containingString = null)
+        public static string GetStartedString(this string st, string startingString, string containingString = null)
         {
-            return (String.IsNullOrEmpty(st) ? "" :
-                ((containingString == null || st.Contains(containingString)) &&
-                (startingString != null && st.StartsWith(startingString)) ?
-                st : startingString + st));
+            return string.IsNullOrEmpty(st) ? "" :
+                ((containingString == null || st.Contains(containingString))
+                && (startingString != null && st.StartsWith(startingString)) ?
+                st : startingString + st);
         }
 
         /// <summary>
@@ -292,9 +267,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="endingString">The ending string to consider.</param>
         /// <returns>The formated path.</returns>
-        public static String GetEndedString(this String st, String endingString)
+        public static string GetEndedString(this string st, string endingString)
         {
-            return (String.IsNullOrEmpty(st) ? "" : (st.EndsWith(endingString) ? st : st + endingString));
+            return (string.IsNullOrEmpty(st) ? "" : (st.EndsWith(endingString) ? st : st + endingString));
         }
 
         /// <summary>
@@ -306,14 +281,14 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="wholeReplaceString">The whole replacement string to consider.</param>
         /// <example>The string should be formated this way: {0} {1} or { .. {0} .. } { .. {1} .. } and so on.</example>
         /// <returns>The formated string.</returns>
-        public static String GetFormatString(this String st, int index, String replaceString, String wholeReplaceString = null)
+        public static string GetFormatString(this string st, int index, string replaceString, string wholeReplaceString = null)
         {
-            String indexString = "{" + index.ToString() + "}";
+            string indexString = "{" + index.ToString() + "}";
             int indexStringIndex = st.IndexOf(indexString);
             if (indexStringIndex > -1)
             {
-                String stringToReplace = indexString;
-                String newString = "";
+                string stringToReplace = indexString;
+                string newString = "";
 
                 int startIndex = StringHelper.GetIndexOfLastString(st, "{", indexStringIndex - 1);
                 if (startIndex > -1)
@@ -322,13 +297,13 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                     if (aEndIndex > -1)
                         stringToReplace = st.Substring(startIndex, aEndIndex - startIndex + 1);
 
-                    if (wholeReplaceString == null)
-                        newString = stringToReplace.Substring(1, stringToReplace.Length - 2).Replace(indexString, replaceString);
-                    else
-                        newString = wholeReplaceString;
+                    newString = wholeReplaceString ?? stringToReplace.Substring(1, stringToReplace.Length - 2).Replace(indexString, replaceString)
+;
                 }
                 else
+                {
                     newString = replaceString;
+                }
 
                 st = st.Replace(stringToReplace, newString);
             }
@@ -343,7 +318,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stv">The string to search.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
-        public static void GetIndexOfLastString(this String st, String stv, ref int startIndex)
+        public static void GetIndexOfLastString(this string st, string stv, ref int startIndex)
         {
             startIndex = StringHelper.GetIndexOfLastString(st, stv, startIndex);
         }
@@ -355,17 +330,17 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             /// <param name="stv">The string to search.</param>
             /// <param name="startIndex">The start index to consider.</param>
             /// <returns>The formated string.</returns>
-            public static int GetIndexOfLastString(this String st, String stv, int startIndex)
+            public static int GetIndexOfLastString(this string st, string stv, int startIndex)
         {
             int index = startIndex;
-            Boolean b = false;
-            while ((index >= 0) & !b)
+            bool b = false;
+            while ((index >= 0) && !b)
             {
-                if ((st.Substring(index, 1) == "\"") & (stv != "\""))
+                if ((st.Substring(index, 1) == "\"") && (stv != "\""))
                     index = GetIndexOfLastString(st, "\"", index - 1) - 1;
-                else if ((st.Substring(index, 1) == ")") & (stv == "("))
+                else if ((st.Substring(index, 1) == ")") && (stv == "("))
                     index = GetIndexOfLastString(st, "(", index - 1) - 1;
-                else if ((st.Substring(index, 1) == "}") & (stv == "{"))
+                else if ((st.Substring(index, 1) == "}") && (stv == "{"))
                     index = GetIndexOfLastString(st, "{", index - 1) - 1;
                 else if (st.Substring(index, 1) == stv)
                     b = true;
@@ -382,7 +357,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stv">The string to search.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
-        public static void GetIndexOfNextString(this String st, String stv, ref int startIndex)
+        public static void GetIndexOfNextString(this string st, string stv, ref int startIndex)
         {
             startIndex = StringHelper.GetIndexOfNextString(st, stv, startIndex);
         }
@@ -395,26 +370,26 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="startIndex">The start index to consider.</param>
         /// <param name="stringComparison">The string comparison to consider.</param>
         /// <returns>The formated string.</returns>
-        public static int GetIndexOfNextString(this String st, String stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
+        public static int GetIndexOfNextString(this string st, string stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
         {
             if (st == null || stv == null)
                 return -1;
 
             int index = startIndex;
-            Boolean b = false;
+            bool b = false;
             int st_l = st.Length;
             int stv_l = stv.Length;
-            while ((index < st_l) & index > -1 & !b)
+            while ((index < st_l) && index > -1 && !b)
             {
-                if ((st.Substring(index, 1) == "\"") & (stv != "\""))
+                if ((st.Substring(index, 1) == "\"") && (stv != "\""))
                     index = GetIndexOfNextString(st, "\"", index + 1) + 1;
-                else if ((st.Substring(index, 1) == "'") & (stv == "'"))
+                else if ((st.Substring(index, 1) == "'") && (stv == "'"))
                     index = GetIndexOfNextString(st, "'", index + 1) + 1;
-                else if ((st.Substring(index, 1) == "(") & (stv == ")"))
+                else if ((st.Substring(index, 1) == "(") && (stv == ")"))
                     index = GetIndexOfNextString(st, ")", index + 1) + 1;
-                else if ((st.GetSubstring(index, index + 1) == "{{") & (stv == "}}"))
+                else if ((st.GetSubstring(index, index + 1) == "{{") && (stv == "}}"))
                     index = GetIndexOfNextString(st, "}}", index + 1) + 2;
-                else if ((st.Substring(index, 1) == "{") & (stv == "}"))
+                else if ((st.Substring(index, 1) == "{") && (stv == "}"))
                     index = GetIndexOfNextString(st, "}", index + 1) + 1;
                 else if ((index <= st_l - stv_l) && (string.Equals(st.Substring(index, stv_l), stv, stringComparison)))
                     b = true;
@@ -429,9 +404,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// </summary>
         /// <param name="date">The date to consider.</param>
         /// <returns>Returns the date string of this instance.</returns>
-        public static String GetString(this DateTime? date)
+        public static string GetString(this DateTime? date)
         {
-            return (date == null ? null : date.Value.ToString(StringHelper.__DateFormat));
+            return date?.ToString(StringHelper.__DateFormat);
         }
 
         /// <summary>
@@ -462,7 +437,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="strings">The objects to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the normalized string.</returns>
-        public static string GetStringAtIndex(this List<String> strings, int index)
+        public static string GetStringAtIndex(this List<string> strings, int index)
         {
             return strings != null && strings.Count > index && strings[index] != null ? strings[index] : "";
         }
@@ -475,7 +450,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="charString">The string value to consider.</param>
         /// <returns>Returns the concatenated string.</returns>
         /// <remarks>If the leading char is null then the two strings are always concatenated.</remarks>
-        public static String Concatenate(this String st1, String st2, String charString = null)
+        public static string Concatenate(this string st1, string st2, string charString = null)
         {
             st1 = (st1 ?? "");
             st2 = (st2 ?? "");
@@ -491,7 +466,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="excludingStringItems">The string items to exclude.</param>
         /// <returns>Returns the excluded string items.</returns>
-        public static List<String> Excluding(this List<String> stringItems, params String[] excludingStringItems)
+        public static List<string> Excluding(this List<string> stringItems, params string[] excludingStringItems)
         {
             return StringHelper.Excluding(stringItems, excludingStringItems.ToList());
         }
@@ -502,17 +477,19 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="excludingStringItems">The string items to exclude.</param>
         /// <returns>Returns the excluded string items.</returns>
-        public static List<String> Excluding(this List<String> stringItems, List<String> excludingStringItems)
+        public static List<string> Excluding(this List<string> stringItems, List<string> excludingStringItems)
         {
             if (stringItems == null)
             {
-                return new List<String>();
+                return new List<string>();
             }
             else if (excludingStringItems == null)
+            {
                 return stringItems;
+            }
             else
             {
-                List<String> stringItems1 = new List<String>(stringItems).Select(p => p.ToKey()).ToList();
+                List<string> stringItems1 = new List<string>(stringItems).Select(p => p.ToKey()).ToList();
                 stringItems1.RemoveAll(p => excludingStringItems.Contains(p.ToKey()));
                 return stringItems1;
             }
@@ -524,7 +501,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="addingStringItems">The string items to add.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<String> Adding(this List<String> stringItems, params String[] addingStringItems)
+        public static List<string> Adding(this List<string> stringItems, params string[] addingStringItems)
         {
             return StringHelper.Adding(stringItems, addingStringItems.ToList());
         }
@@ -535,17 +512,17 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="addingStringItems">The string items to add.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<String> Adding(this List<String> stringItems, List<String> addingStringItems)
+        public static List<string> Adding(this List<string> stringItems, List<string> addingStringItems)
         {
             if (stringItems == null)
             {
-                return new List<String>();
+                return new List<string>();
             }
             else if (addingStringItems == null)
                 return stringItems;
             else
             {
-                new List<String>(stringItems).AddRange(addingStringItems);
+                new List<string>(stringItems).AddRange(addingStringItems);
                 return stringItems;
             }
         }
@@ -555,10 +532,10 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<DataKeyValue> GetKeyValues(this String st)
+        public static List<DataKeyValue> GetKeyValues(this string st)
         {
             List<DataKeyValue> dataKeyValues = new List<DataKeyValue>();
-            foreach (String subString in st.Split('|'))
+            foreach (string subString in st.Split('|'))
             {
                 if (subString.Contains("="))
                 {
@@ -598,7 +575,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             return st;
         }
 
-        // String conversions --------------------------
+        // string conversions --------------------------
 
         /// <summary>
         /// Gets the object from the specified string.
@@ -607,7 +584,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static Object ToObject(this String st, DataValueType valueType = DataValueType.Any, String textFormat = null)
+        public static Object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
         {
             if (valueType == DataValueType.Any)
                 valueType = st.GetValueType();
@@ -615,13 +592,13 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             switch (valueType)
             {
                 case DataValueType.Date:
-                    if (String.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
+                    if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
                     DateTime dateTime = new DateTime();
                     if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         return null;
                     return new DateTime?(dateTime);
                 case DataValueType.Time:
-                    if (String.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__TimeFormat;
+                    if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__TimeFormat;
                     TimeSpan aTimeSpan = new TimeSpan();
                     if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out aTimeSpan))
                         return null;
@@ -651,7 +628,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static DateTime? ToDateTime(this String st, String textFormat = null)
+        public static DateTime? ToDateTime(this string st, string textFormat = null)
         {
             return st.ToObject(DataValueType.Date, textFormat) as DateTime?;
         }
@@ -663,7 +640,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="defaultEnum">The default enumeration to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static T ToEnum<T>(this String st, T defaultEnum = default(T)) where T : struct, IConvertible
+        public static T ToEnum<T>(this string st, T defaultEnum = default(T)) where T : struct, IConvertible
         {
             T aEnum = defaultEnum;
             if ((st != null) && (!Enum.TryParse<T>(st, true, out aEnum)))
@@ -678,8 +655,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="charLists">The lists of chars to consider.</param>
         /// <returns>A random password with the specified length.</returns>
         public static string GetRandomString(
-            String pattern = "{{char1,8}}",
-            params String[] charLists)
+            string pattern = "{{char1,8}}",
+            params string[] charLists)
         {
             if (charLists==null)
             {
@@ -687,13 +664,13 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                    { "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-" };
             }
 
-            String st = "";
+            string st = "";
             Random rd = new Random();
 
-            String currentMatch = pattern;
+            string currentMatch = pattern;
             int currentCharListIndex = 0;
             int currentLength = 8;
-            String currentCharList;
+            string currentCharList;
             if (currentCharListIndex < 0 && currentCharListIndex < charLists.Length)
                 st += currentMatch;
             else
@@ -707,6 +684,5 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         }
 
         #endregion
-
     }
 }

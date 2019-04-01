@@ -35,27 +35,27 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Name of this instance.
         /// </summary>
-        public String Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
+        public string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
 
         /// <summary>
         /// Name of the data module of this instance.
         /// </summary>
-        public String DataModule { get; set; }
+        public string DataModule { get; set; }
 
         /// <summary>
         /// Name of the data table of this instance.
         /// </summary>
-        public String DataTable { get; set; }
+        public string DataTable { get; set; }
 
         /// <summary>
         /// Name of the data table alias of this instance.
         /// </summary>
-        public String DataTableAlias { get; set; }
+        public string DataTableAlias { get; set; }
 
         /// <summary>
         /// Schema of this instance.
         /// </summary>
-        public String Schema { get; set; }
+        public string Schema { get; set; }
 
         /// <summary>
         /// The kind of this instance.

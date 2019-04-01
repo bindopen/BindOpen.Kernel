@@ -18,14 +18,13 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.References
 {
-
     /// <summary>
     /// This class represents a data reference.
     /// </summary>
     [Serializable()]
     [XmlType("DataReference", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "data.reference", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataReference : DataItem
+    public class DataReference : DataItem, IDataReference
     {
         // ------------------------------------------
         // VARIABLES
@@ -33,7 +32,7 @@ namespace BindOpen.Framework.Core.Data.References
 
         #region Variables
 
-        private HandlerDefinition _HandlerDefinition = null;
+        private HandlerDefinition _handlerDefinition = null;
 
         #endregion
 
@@ -47,38 +46,38 @@ namespace BindOpen.Framework.Core.Data.References
         /// The dtaa handler unique name of this instance.
         /// </summary>
         [XmlAttribute("handler")]
-        public String DataHandlerUniqueName { get; set; } = null;
+        public string DataHandlerUniqueName { get; set; } = null;
 
         /// <summary>
         /// Source element of this instance.
         /// </summary>
         [XmlElement("carrier", typeof(CarrierElement))]
         [XmlElement("source", typeof(SourceElement))]
-        public DataElement SourceElement { get; set; } = null;
+        public IDataElement SourceElement { get; set; } = null;
 
         /// <summary>
         /// The path detail of this instance.
         /// </summary>
         [XmlElement("path")]
-        public DataElementSet PathDetail { get; set; } = new DataElementSet();
+        public IDataElementSet PathDetail { get; set; } = new DataElementSet();
 
         /// <summary>
         /// Specification of the PathDetail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean PathDetailSpecified => PathDetail != null && (this.PathDetail.ElementsSpecified || this.PathDetail.DescriptionSpecified);
+        public bool PathDetailSpecified => PathDetail != null && (PathDetail.ElementsSpecified || PathDetail.DescriptionSpecified);
 
         /// <summary>
         /// Source item of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Object Source => this.SourceElement?.FirstItem;
+        public object Source => SourceElement?.FirstItem;
 
         /// <summary>
         /// Target item of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Object TargetItem { get; set; } = null;
+        public object TargetItem { get; set; } = null;
 
         #endregion
 
@@ -102,11 +101,14 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="dataHandlerUniqueName">The handler unique name to consider.</param>
         /// <param name="sourceElement">The source element to consider.</param>
         /// <param name="dynamicObject">The dynamic object of this instance.</param>
-        public DataReference(String dataHandlerUniqueName, DataElement sourceElement, DynamicObject dynamicObject) : this()
+        public DataReference(
+            string dataHandlerUniqueName,
+            IDataElement sourceElement,
+            DynamicObject dynamicObject) : this()
         {
-            this.DataHandlerUniqueName = dataHandlerUniqueName;
-            this.SourceElement = sourceElement;
-            this.PathDetail.Update(DataElementSet.Create(dynamicObject));
+            DataHandlerUniqueName = dataHandlerUniqueName;
+            SourceElement = sourceElement;
+            PathDetail.Update(DataElementSet.Create(dynamicObject));
         }
 
         /// <summary>
@@ -115,37 +117,14 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="dataHandlerUniqueName">The handler unique name to consider.</param>
         /// <param name="sourceElement">The source element to consider.</param>
         /// <param name="pathDetail">The path detail to consider.</param>
-        public DataReference(String dataHandlerUniqueName, DataElement sourceElement = null, DataElementSet pathDetail = null) : this()
+        public DataReference(
+            string dataHandlerUniqueName,
+            IDataElement sourceElement = null,
+            IDataElementSet pathDetail = null) : this()
         {
-            this.DataHandlerUniqueName = dataHandlerUniqueName;
-            this.SourceElement = sourceElement;
-            this.PathDetail = pathDetail;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataReference class.
-        /// </summary>
-        /// <param name="dataHandlerUniqueName">The handler unique name to consider.</param>
-        /// <param name="sourceItem">The source item to consider.</param>
-        /// <param name="dynamicObject">The dynamic object of this instance.</param>
-        public DataReference(String dataHandlerUniqueName, DataItem sourceItem, DynamicObject dynamicObject) : this()
-        {
-            this.DataHandlerUniqueName = dataHandlerUniqueName;
-            this.SourceElement = DataElement.Create(sourceItem);
-            this.PathDetail.Update(DataElementSet.Create(dynamicObject));
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataReference class.
-        /// </summary>
-        /// <param name="dataHandlerUniqueName">The handler unique name to consider.</param>
-        /// <param name="sourceItem">The source item to consider.</param>
-        /// <param name="pathDetail">The path detail to consider.</param>
-        public DataReference(String dataHandlerUniqueName, DataItem sourceItem = null, DataElementSet pathDetail = null) : this()
-        {
-            this.DataHandlerUniqueName = dataHandlerUniqueName;
-            this.SourceElement = DataElement.Create(sourceItem);
-            this.PathDetail = pathDetail;
+            DataHandlerUniqueName = dataHandlerUniqueName;
+            SourceElement = sourceElement;
+            PathDetail = pathDetail;
         }
 
         #endregion
@@ -162,7 +141,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// Gets the primary source of this instance.
         /// </summary>
         /// <returns>Returns the initial source of this instance.</returns>
-        public StoredDataItem GetPrimarySource() => SourceElement != null ? this.GetPrimarySource() : this.SourceElement;
+        public IStoredDataItem GetPrimarySource() => SourceElement != null ? GetPrimarySource() : SourceElement;
 
         /// <summary>
         /// Gets the value type of the primary source of this instance.
@@ -170,7 +149,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// <returns>Returns the value type of the primary source of this instance.</returns>
         public DataValueType GetPrimarySourceValueType()
         {
-            StoredDataItem storedDataItem = GetPrimarySource();
+            IStoredDataItem storedDataItem = GetPrimarySource();
             if (storedDataItem != null)
                 return storedDataItem.GetValueType();
 
@@ -181,9 +160,9 @@ namespace BindOpen.Framework.Core.Data.References
         /// Gets the initial data source of this instance.
         /// </summary>
         /// <returns>Returns the initial data source of this instance.</returns>
-        public DataSource GetDataSource()
+        public IDataSource GetDataSource()
         {
-            return (this.SourceElement != null ? this.GetPrimarySource() : this.SourceElement) as DataSource;
+            return (SourceElement != null ? GetPrimarySource() : SourceElement) as IDataSource;
         }
 
         /// <summary>
@@ -192,22 +171,12 @@ namespace BindOpen.Framework.Core.Data.References
         /// <returns>Returns the initial data source kind of this instance.</returns>
         public DataSourceKind GetDataSourceKind()
         {
-            DataSource dataSource = this.GetDataSource();
+            IDataSource dataSource = GetDataSource();
             if (dataSource != null)
                 return dataSource.Kind;
 
             return DataSourceKind.None;
         }
-
-        //private DataHandler GetHandler(AppScope appScope)
-        //{
-        //    if (this._DataHandler != null)
-        //        return this._DataHandler;
-        //    else if ((appScope != null) && (appScope.AppExtension != null))
-        //        return appScope.AppExtension.CreateItemInstance(AppExtensionItemKind.Handler, this._DataHandlerUniqueName) as DataHandler;
-
-        //    return null;
-        //}
 
         // Items ------------------------------------
 
@@ -218,30 +187,34 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the retrieved items.</returns>
-        public Object Get(
+        public object Get(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             Object item = null;
 
             log = (log ?? new Log());
 
             if (!log.Append(appScope.Check(true, true)).HasErrorsOrExceptions())
-                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
-                    log.AddError(title: "Data handler definition '" + this.DataHandlerUniqueName + "' not found");
-                else if (this._HandlerDefinition.RuntimeFunction_Get == null)
-                    log.AddError(title: "Get function missing in handler definition '" + this.DataHandlerUniqueName + "'");
+            {
+                if ((_handlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(DataHandlerUniqueName)) == null)
+                {
+                    log.AddError(title: "Data handler definition '" + DataHandlerUniqueName + "' not found");
+                }
+                else if (_handlerDefinition.RuntimeFunction_Get == null)
+                    log.AddError(title: "Get function missing in handler definition '" + DataHandlerUniqueName + "'");
                 else
                 {
-                    log.AddEvents(this.Check<DataReference>());
+                    log.AddEvents(Check<DataReference>());
 
                     if (!log.HasErrorsOrExceptions())
                     {
-                        item = this.TargetItem = this._HandlerDefinition.RuntimeFunction_Get(
-                           this.SourceElement, this.PathDetail, appScope, scriptVariableSet, log).GetObjectAtIndex(0);
+                        item = TargetItem = _handlerDefinition.RuntimeFunction_Get(
+                           SourceElement, PathDetail, appScope, scriptVariableSet, log).GetObjectAtIndex(0);
                     }
                 }
+            }
 
             return item;
         }
@@ -254,33 +227,37 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the posted items.</returns>
-        public List<Object> Post(
-            List<Object> items,
+        public List<object> Post(
+            List<object> items,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            List<Object> dataItems = new List<Object>();
+            List<object> dataItems = new List<object>();
 
             log = (log ?? new Log());
 
             if (!log.Append(appScope.Check(true, true)).HasErrorsOrExceptions())
             {
-                if ((this._HandlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(this.DataHandlerUniqueName)) == null)
+                if ((_handlerDefinition = appScope.AppExtension.GetItemDefinitionWithUniqueId<HandlerDefinition>(DataHandlerUniqueName)) == null)
+                {
                     log.AddError(title: "Data reference definition not found");
-                else if (this._HandlerDefinition.RuntimeFunction_Post == null)
+                }
+                else if (_handlerDefinition.RuntimeFunction_Post == null)
+                {
                     log.AddError(title: "Post function missing in handler definition");
+                }
                 else if (items != null)
                 {
-                    log.AddEvents(this.Check<DataReference>());
+                    log.AddEvents(Check<DataReference>());
 
-                    DataElement sourceElement = null;
+                    IDataElement sourceElement = null;
                     if (!log.HasErrorsOrExceptions())
                     {
-                        foreach (Object aItem in items)
+                        foreach (object item in items)
                         {
-                            dataItems.AddRange(this._HandlerDefinition.RuntimeFunction_Post(
-                                aItem, ref sourceElement, appScope, scriptVariableSet, log));
+                            dataItems.AddRange(_handlerDefinition.RuntimeFunction_Post(
+                                item, ref sourceElement, appScope, scriptVariableSet, log));
                         }
                     }
                 }
@@ -288,15 +265,6 @@ namespace BindOpen.Framework.Core.Data.References
 
             return dataItems;
         }
-
-        #endregion
-
-        // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
-        // --------------------------------------------------
-
-        #region Check_Update_Repair
-
 
         #endregion
 
@@ -310,14 +278,14 @@ namespace BindOpen.Framework.Core.Data.References
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             DataReference dataReference = base.Clone() as DataReference;
-            if (this.SourceElement != null)
-                dataReference.SourceElement = this.SourceElement.Clone() as DataElement;
-            if (this.PathDetail != null)
-                dataReference.PathDetail = this.PathDetail.Clone() as DataElementSet;
-            dataReference.TargetItem = this.TargetItem;
+            if (SourceElement != null)
+                dataReference.SourceElement = SourceElement.Clone() as DataElement;
+            if (PathDetail != null)
+                dataReference.PathDetail = PathDetail.Clone() as DataElementSet;
+            dataReference.TargetItem = TargetItem;
             return dataReference;
         }
 
@@ -333,13 +301,17 @@ namespace BindOpen.Framework.Core.Data.References
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
-            if (this.PathDetail != null)
-                foreach (DataElement dataElement in this.PathDetail.Elements)
+            if (PathDetail != null)
+            {
+                foreach (DataElement dataElement in PathDetail.Elements)
+                {
                     dataElement.UpdateStorageInfo(log);
-            if (this.SourceElement != null)
-                this.SourceElement.UpdateStorageInfo(log);
+                }
+            }
+
+            SourceElement?.UpdateStorageInfo(log);
         }
 
         /// <summary>
@@ -347,15 +319,22 @@ namespace BindOpen.Framework.Core.Data.References
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
         {
             log = (log ?? new Log());
 
-            if (this.PathDetail != null)
-                foreach (DataElement dataElement in this.PathDetail.Elements)
+            if (PathDetail != null)
+            {
+                foreach (DataElement dataElement in PathDetail.Elements)
+                {
                     dataElement.UpdateRuntimeInfo(appScope, log);
-            if (this.SourceElement != null)
-                this.SourceElement.UpdateRuntimeInfo(appScope, log);
+                }
+            }
+
+            if (SourceElement != null)
+            {
+                SourceElement.UpdateRuntimeInfo(appScope, log);
+            }
         }
 
         #endregion

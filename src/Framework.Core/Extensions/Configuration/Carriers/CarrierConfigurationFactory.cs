@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Carriers
             String path,
             DataElementSet detail,
             String relativePath,
-            Log log = null)
+            ILog log = null)
         {
             if (!log.Append(appScope.Check()).HasErrorsOrExceptions())
                 return appScope.AppExtension.CreateConfiguration<CarrierDefinition>(
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Carriers
             AppScope appScope,
             String name, String carrierUniqueName,
             String path, DynamicObject pathDynamicObject, String relativePath,
-            Log log = null)
+            ILog log = null)
         {
             return CarrierConfigurationFactory.CreateConfiguration(
                 appScope, name, carrierUniqueName, path, DataElementSet.Create(pathDynamicObject), relativePath, log);

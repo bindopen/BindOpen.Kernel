@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Complex;
@@ -16,19 +13,17 @@ using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Sets;
-using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Sets
 {
-
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
     [Serializable()]
     [XmlRoot(ElementName = "element.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataElementSet : GenericDataItemSet<DataElement>
+    public class DataElementSet : GenericDataItemSet<IDataElement>, IDataElementSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -46,35 +41,23 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlElement("meta", typeof(MetaDataElement))]
         [XmlElement("scalar", typeof(ScalarElement))]
         [XmlElement("source", typeof(SourceElement))]
-        public List<DataElement> Elements
+        public List<IDataElement> Elements
         {
-            get { return this._Items; }
-            set { this._Items = value; }
+            get { return _items; }
+            set { _items = value; }
         }
 
         /// <summary>
         /// Specification of the Elements property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ElementsSpecified
-        {
-            get
-            {
-                return this._Items != null && this._Items.Count > 0;
-            }
-        }
+        public bool ElementsSpecified => _items?.Count > 0;
 
         /// <summary>
         /// Returns the element with the specified key.
         /// </summary>
         [XmlIgnore()]
-        public new DataElement this[String key]
-        {
-            get
-            {
-                return this.GetItem(key);
-            }
-        }
+        public new IDataElement this[string key] => GetItem(key);
 
         #endregion
 
@@ -85,26 +68,28 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
+        /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
         public DataElementSet()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
+        /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
-        /// <param name="description">The description to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public DataElementSet(DictionaryDataItem description, params DataElement[] items) : base(description, items)
+        public DataElementSet(params IDataElement[] items) : base(items)
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
+        /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
+        /// <param name="description">The description to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public DataElementSet(params DataElement[] items) : base(items)
+        public DataElementSet(
+            IDictionaryDataItem description,
+            params IDataElement[] items) : base(description, items)
         {
         }
 
@@ -119,82 +104,29 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <summary>
         /// Adds a new element.
         /// </summary>
-        /// <param name="dataElement">The new element to add.</param>
+        /// <param name="element">The new element to add.</param>
         /// <param name="referenceElementSet">The reference set of elements to consider.</param>
         /// <returns>Returns the new element that has been added. Returns null if the element has not been added.</returns>
         /// <remarks>The new element must have a name.</remarks>
-        public DataElement AddElement(
-            DataElement dataElement,
-            DataElementSet referenceElementSet = null)
+        public IDataElement AddElement(
+            IDataElement element,
+            IDataElementSet referenceElementSet = null)
         {
-            if ((dataElement == null) || (dataElement.Name == null))
+            if ((element == null) || (element.Name == null))
                 return null;
 
-            if (this._Items == null)
-                this._Items = new List<DataElement>();
-            this.Elements.RemoveAll(p => p.KeyEquals(dataElement));
+            if (_items == null)
+                _items = new List<IDataElement>();
+            Elements.RemoveAll(p => p.KeyEquals(element));
 
-            if (referenceElementSet?.HasItem(dataElement.Key()) != false)
+            if (referenceElementSet?.HasItem(element.Key()) != false)
             {
-                this.OnPropertyChanged("Elements");
-                this.Elements.Add(dataElement);
-                return dataElement;
+                OnPropertyChanged("Elements");
+                Elements.Add(element);
+                return element;
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Adds the specified element.
-        /// </summary>
-        /// <param name="elementUniqueName">The key of the element to add.</param>
-        /// <param name="item">The item of the element to add.</param>
-        /// <param name="valueType">The value type of the element to add.</param>
-        /// <param name="referenceElementSet">The reference set of elements to consider.</param>
-        /// <returns>Returns the new element that has been added.
-        /// Returns null if the new element is null or else its name is null.</returns>
-        /// <remarks>The new element must have a name.</remarks>
-        public DataElement AddElement(
-            String elementUniqueName,
-            Object item,
-            DataValueType valueType = DataValueType.Any,
-            DataElementSet referenceElementSet = null)
-        {
-            return this.AddElement(elementUniqueName, new List<Object> { item }, valueType, referenceElementSet);
-        }
-
-        /// <summary>
-        /// Adds the specified element.
-        /// </summary>
-        /// <param name="elementUniqueName">The key of the element to add.</param>
-        /// <param name="items">The items of the element to add.</param>
-        /// <param name="valueType">The value type of the element to add.</param>
-        /// <param name="referenceElementSet">The reference set of elements to consider.</param>
-        /// <returns>Returns the new element that has been added.
-        /// Returns null if the new element is null or else its name is null.</returns>
-        /// <remarks>The new element must have a name.</remarks>
-        public DataElement AddElement(
-            String elementUniqueName,
-            List<Object> items,
-            DataValueType valueType = DataValueType.Any,
-            DataElementSet referenceElementSet = null)
-        {
-            DataElement dataElement = null;
-            if (referenceElementSet == null)
-            {
-                this.AddElement(dataElement = DataElement.Create(items, valueType, elementUniqueName));
-            }
-            else
-            {
-                DataElement referenceDataElement = referenceElementSet.GetItem(elementUniqueName);
-                if (referenceDataElement is DataElement)
-                {
-                    dataElement = referenceDataElement.Clone() as DataElement;
-                    dataElement.SetItems(items);
-                }
-            }
-
-            return dataElement;
         }
 
         // Remove an element.
@@ -202,12 +134,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Removes the element with the specified name.
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
-        public void RemoveElement(String key)
+        public void RemoveElement(string key)
         {
-            if (key == null || this.Elements == null) return;
+            if (key == null || Elements == null) return;
 
-            if (this.Elements.RemoveAll(p => p.KeyEquals(key)) > 0)
-                this.OnPropertyChanged("Elements");
+            if (Elements.RemoveAll(p => p.KeyEquals(key)) > 0)
+                OnPropertyChanged("Elements");
         }
 
         // Element items ------------------------
@@ -221,16 +153,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Indicates whether the item has been set.</returns>
-        public virtual Boolean AddElementItem(
-            String elementName,
-            Object item = null,
+        public virtual bool AddElementItem(
+            string elementName,
+            object item = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            DataElement dataElement = this.GetItem(elementName);
-            if (dataElement != null)
-                return dataElement.AddItem(item, appScope, scriptVariableSet, log);
+            IDataElement element = GetItem(elementName);
+            if (element != null)
+                return element.AddItem(item, appScope, scriptVariableSet, log);
 
             return false;
         }
@@ -244,16 +176,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<Object> AddElementItems(
-            String elementName,
-            List<Object> items = null,
+        public virtual List<object> AddElementItems(
+            string elementName,
+            List<object> items = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            DataElement dataElement = this.GetItem(elementName);
-            dataElement?.AddItems(items, appScope, scriptVariableSet, log);
-            return new List<Object>();
+            IDataElement element = GetItem(elementName);
+            element?.AddItems(items, appScope, scriptVariableSet, log);
+            return new List<object>();
         }
 
         #endregion
@@ -264,97 +196,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
 
         #region Accessors
 
-        // Creations --------------------------------
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="detail">The detail table.</param>
-        public static DataElementSet Create(String[][] detail)
-        {
-            DataElementSet dataElementSet = new DataElementSet();
-            if (detail != null)
-            {
-                foreach (String[] strings in detail)
-                {
-                    dataElementSet.AddElement(strings[0], strings[1], DataValueType.Text);
-                }
-            }
-
-            return dataElementSet;
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="stringObject">The string to consider.</param>
-        /// <returns>The collection.</returns>
-        public static DataElementSet Create(string stringObject)
-        {
-            DataElementSet dataElementSet = new DataElementSet();
-            if (stringObject != null)
-            {
-                foreach (String aSubString in stringObject.Split('|'))
-                    if (aSubString.IndexOf("=") > 0)
-                    {
-                        int i = aSubString.IndexOf("=");
-                        dataElementSet.AddElement(
-                            new ScalarElement(
-                                aSubString.Substring(0, i),
-                                DataValueType.Text,
-                                aSubString.Substring(i + 1)));
-                    }
-            }
-            return dataElementSet;
-        }
-
-        /// <summary>
-        /// Creates a data element set from a dynamic object.
-        /// </summary>
-        /// <param name="dynamicObject">The objet to consider.</param>
-        public static DataElementSet Create(DynamicObject dynamicObject)
-        {
-            DataElementSet dataElementSet = new DataElementSet();
-            if (dynamicObject != null)
-                foreach (PropertyInfo updatePropertyInfo in dynamicObject.GetType().GetProperties())
-                    //if (updatePropertyInfo.PropertyType.GetValueType().IsScalar())
-                    {
-                        String propertyName = updatePropertyInfo.Name;
-                        Object propertyValue = updatePropertyInfo.GetValue(dynamicObject);
-
-                        dataElementSet.AddElement(DataElement.Create(propertyValue, DataValueType.Any, propertyName));
-                    }
-
-            return dataElementSet;
-        }
-
-        /// <summary>
-        /// Creates a data element set from a dynamic object.
-        /// </summary>
-        /// <param name="aObject">The objet to consider.</param>
-        public static DataElementSet Create<T>(Object aObject) where T : DataElementAttribute
-        {
-            DataElementSet dataElementSet = new DataElementSet();
-            if (aObject != null)
-                foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
-                //if (updatePropertyInfo.PropertyType.GetValueType().IsScalar())
-                {
-                    DataElementAttribute attribute = propertyInfo.GetCustomAttribute(typeof(T)) as DetailPropertyAttribute;
-
-                    if (attribute != null)
-                    {
-                        String name = attribute.Name;
-
-                        String propertyName = propertyInfo.Name;
-                        Object propertyValue = propertyInfo.GetValue(aObject);
-
-                        dataElementSet.AddElement(DataElement.Create(propertyValue, DataValueType.Any, propertyName));
-                    }
-                }
-
-            return dataElementSet;
-        }
-
         // Elements -----------------------------
 
         /// <summary>
@@ -362,7 +203,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="key">The key of the element to check.</param>
         /// <returns>Returns true if the instance has an element with the specified name.</returns>
-        public new Boolean HasItem(String key)
+        public new bool HasItem(string key)
         {
             return Elements?.Any(p => p.KeyEquals(key)) == true;
         }
@@ -372,9 +213,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="key">The key of the element to return.</param>
         /// <returns>Returns the element with the specified key.</returns>
-        public override DataElement GetItem(String key)
+        public override IDataElement GetItem(string key)
         {
-            return this.Elements?.FirstOrDefault(p =>
+            return Elements?.FirstOrDefault(p =>
                 p.KeyEquals(key)
                 || (p.Specification != null && p.Specification.Aliases != null
                     && p.Specification.Aliases.Any(q => q.KeyEquals(key))));
@@ -383,23 +224,23 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <summary>
         /// Gets the common keys with the specified set of elements.
         /// </summary>
-        /// <param name="dataElementSet">The collection to consider.</param>
+        /// <param name="elementSet">The collection to consider.</param>
         /// <returns>The names of the common object elements with the specified set of elements.</returns>
-        public List<String> GetCommonItemKeys(DataElementSet dataElementSet)
+        public List<string> GetCommonItemKeys(IDataElementSet elementSet)
         {
-            List<String> fieldNames = new List<String>();
-            if (dataElementSet == null)
+            List<string> fieldNames = new List<string>();
+            if (elementSet == null)
                 return fieldNames;
 
             // To repair
 
-            if (dataElementSet.Elements != null)
+            if (elementSet.Elements != null)
             {
-                foreach (DataElement currentDataItem in dataElementSet.Elements)
+                foreach (IDataElement currentDataItem in elementSet.Elements)
                 {
-                    fieldNames = this._Items.Where(p => this.HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
+                    fieldNames = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
 
-                    if (this.HasItem(currentDataItem.Key()))
+                    if (HasItem(currentDataItem.Key()))
                     {
                         fieldNames.Add(currentDataItem.Name);
                     }
@@ -414,21 +255,21 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="groupId">The ID of the item group.</param>
         /// <returns>Returns items with the specified group ID.</returns>
-        public List<DataElement> GetItemsWithGroupId(string groupId)
+        public List<IDataElement> GetElementsWithGroupId(string groupId)
         {
-            return this.Elements?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList();
+            return Elements?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList();
         }
 
         /// <summary>
         /// Returns the item with the specified name and group ID.
         /// </summary>
-        /// <param name="key">The key of the item to return.</param>
+        /// <param name="name">The name of the item to return.</param>
         /// <param name="groupId">The ID of the group of the item to return.</param>
         /// <returns>Returns the item with the specified name and group ID.</returns>
-        public DataElement GetItem(string key, string groupId)
+        public IDataElement GetElement(string name, string groupId)
         {
             return Elements?.FirstOrDefault(p =>
-                p.KeyEquals(key)
+                p.Name.KeyEquals(name)
                 && (p.Specification?.GroupId.KeyEquals(groupId) != false));
         }
 
@@ -438,10 +279,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Gets all the element groups IDs.
         /// </summary>
         /// <returns>Returns all the element group IDs.</returns>
-        public List<String> GetGroupIds()
+        public List<string> GetGroupIds()
         {
-            if (this.Elements == null) return new List<String>();
-            return this.Elements.Select(p => p.Specification?.GroupId).Distinct().ToList();
+            if (Elements == null) return new List<string>();
+            return Elements.Select(p => p.Specification?.GroupId).Distinct().ToList();
         }
 
         // Element items ------------------------
@@ -455,16 +296,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual Object GetElementItem(
-            String elementName = null,
-            Object indexItem = null,
+        public virtual object GetElementItem(
+            string elementName = null,
+            object indexItem = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            DataElement dataElement = (elementName != null ? this.GetItem(elementName) : this.Elements[0]);
-            if (dataElement != null)
-                return dataElement.GetItem(indexItem, appScope, scriptVariableSet);
+            IDataElement element = (elementName != null ? GetItem(elementName) : Elements[0]);
+            if (element != null)
+                return element.GetItem(indexItem, appScope, scriptVariableSet);
             return null;
         }
 
@@ -476,16 +317,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<Object> GetElementItems(
-            String elementName,
+        public virtual List<object> GetElementItems(
+            string elementName,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            DataElement dataElement = this.GetItem(elementName);
-            if (dataElement != null)
-                return dataElement.GetItems(appScope, scriptVariableSet);
-            return new List<Object>();
+            IDataElement element = GetItem(elementName);
+            if (element != null)
+                return element.GetItems(appScope, scriptVariableSet);
+            return new List<object>();
         }
 
         /// <summary>
@@ -496,16 +337,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual Object GetElementItemObject(
-            String elementName,
+        public virtual object GetElementItemObject(
+            string elementName,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            DataElement dataElement = (elementName != null ? this.GetItem(elementName) :
-                (this.Elements.Count > 0 ? this.Elements[0] : null));
-            if (dataElement != null)
-                return dataElement.GetItemObject(appScope, scriptVariableSet, log);
+            IDataElement element = (elementName != null ? GetItem(elementName) :
+                (Elements.Count > 0 ? Elements[0] : null));
+            if (element != null)
+                return element.GetItemObject(appScope, scriptVariableSet, log);
 
             return null;
         }
@@ -517,14 +358,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<Object> GetElementItemObjects(
+        public virtual List<object> GetElementItemObjects(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            if (this.Elements == null) return new List<Object>();
+            if (Elements == null) return new List<object>();
 
-            return this.Elements.Select(p => p.GetItemObject()).ToList();
+            return Elements.Select(p => p.GetItemObject()).ToList();
         }
 
         // General ------------------------------
@@ -539,9 +380,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             List<int> availableIndexes = new List<int>();
             for (int i = 1; i <= maxIndex; i++)
                 availableIndexes.Add(i);
-            if (this.Elements != null)
+            if (Elements != null)
             {
-                int[] indexes = this.Elements.Select(q => q.Index).ToArray();
+                int[] indexes = Elements.Select(q => q.Index).ToArray();
                 availableIndexes.RemoveAll(p => indexes.Contains(p));
             }
 
@@ -556,21 +397,25 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>Returns the specified label.</returns>
-        public String GetTitleLabel(
-            String key,
-            String variantName = "*",
-            String defaultVariantName = "*",
-            String[] parameters = null)
+        public string GetTitleLabel(
+            string key,
+            string variantName = "*",
+            string defaultVariantName = "*",
+            string[] parameters = null)
         {
-            String label = "";
+            string label = "";
 
-            DataElement dataElement = this.GetItem(key);
-            if (dataElement != null)
+            IDataElement element = GetItem(key);
+            if (element != null)
             {
-                label = dataElement.GetTitleText(variantName, defaultVariantName);
+                label = element.GetTitleText(variantName, defaultVariantName);
                 if (parameters != null)
+                {
                     for (int k = 0; k < parameters.Length; k++)
+                    {
                         label = label.Replace("{" + k + "}", parameters[k]);
+                    }
+                }
             }
 
             return label;
@@ -584,36 +429,29 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>Returns the specified label.</returns>
-        public String GetDescriptionLabel(
-            String key,
-            String variantName = "*",
-            String defaultVariantName = "*",
-            String[] parameters = null)
+        public string GetDescriptionLabel(
+            string key,
+            string variantName = "*",
+            string defaultVariantName = "*",
+            string[] parameters = null)
         {
-            String label = "";
+            string label = "";
 
-            DataElement dataElement = this.GetItem(key);
-            if (dataElement != null)
+            IDataElement element = GetItem(key);
+            if (element != null)
             {
-                label = dataElement.GetDescriptionText(variantName, defaultVariantName);
+                label = element.GetDescription(variantName, defaultVariantName);
                 if (parameters != null)
+                {
                     for (int k = 0; k < parameters.Length; k++)
+                    {
                         label = label.Replace("{" + k + "}", parameters[k]);
+                    }
+                }
             }
 
             return label;
         }
-
-        ///// <summary>
-        ///// Gets the event kind of the element with the specified name.
-        ///// </summary>
-        ///// <param name="key">The name of the element to return.</param>
-        ///// <returns>Returns the criticity of the element with the specified name.</returns>
-        //public EventKind GetElementEventKind(String key)
-        //{
-        //    DataElement dataElement = this.GetItemWithName(key);
-        //    return (dataElement == null ? EventKind.None : dataElement.EventKind);
-        //}
 
         #endregion
 
@@ -629,16 +467,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="nodeName">Name of the text node.</param>
         /// <param name="indent">Tabulation indent to include in the text.</param>
         /// <returns></returns>
-        public String GetTextNode(
-            String nodeName,
-            String indent)
+        public string GetTextNode(
+            string nodeName,
+            string indent)
         {
-            String st = "";
+            string st = "";
 
             st += indent + nodeName + "\n";
             st += "\t" + indent + nodeName + ":elements" + "\n";
-            if (this.Elements != null)
-                foreach (DataElement dataItem in this.Elements)
+            if (Elements != null)
+                foreach (IDataElement dataItem in Elements)
                     st += dataItem.GetTextNode(nodeName + ":elements:element", "\t\t" + indent);
             return st;
         }
@@ -656,27 +494,32 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="groupId">ID of the group to consider. Null if all.</param>
         /// <returns>Returns the sorted list of data elements.</returns>
-        public List<DataElement> Sort(String groupId = null)
+        public List<IDataElement> Sort(string groupId = null)
         {
-            List<DataElement> sortedDataItems = new List<DataElement>();
+            List<IDataElement> sortedDataItems = new List<IDataElement>();
 
-            if (this.Elements != null)
-                foreach (DataElement currentDataElement in this.Elements)
-                    if ((groupId == null) ||
-                        (currentDataElement.Specification != null && currentDataElement.Specification.GroupId == groupId))
+            if (Elements != null)
+            {
+                foreach (IDataElement currentElement in Elements)
+                {
+                    if ((groupId == null)
+                       || (currentElement.Specification != null && currentElement.Specification.GroupId == groupId))
                     {
                         int currentIndex = 0;
-                        foreach (DataElement currentSortedDataElement in this.Elements)
+                        foreach (IDataElement sortedDataElement in Elements)
                         {
-                            if (currentDataElement.Index < currentSortedDataElement.Index)
+                            if (currentElement.Index < sortedDataElement.Index)
                                 break;
-                            currentIndex += 1;
+                            currentIndex++;
                         }
-                        if (currentIndex > this.Elements.Count - 1)
-                            sortedDataItems.Add(currentDataElement);
+                        if (currentIndex > Elements.Count - 1)
+                            sortedDataItems.Add(currentElement);
                         else
-                            sortedDataItems.Insert(currentIndex, currentDataElement);
+                            sortedDataItems.Insert(currentIndex, currentElement);
                     }
+                }
+            }
+
             return sortedDataItems;
         }
 
@@ -701,14 +544,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
-            DataElementSet dataElementSet = this.MemberwiseClone() as DataElementSet;
-            if (this.Description != null)
-                dataElementSet.Description = this.Description.Clone() as DictionaryDataItem;
-            dataElementSet._Items = this.Elements?.Select(p => p.Clone() as DataElement).ToList();
+            DataElementSet elementSet = MemberwiseClone() as DataElementSet;
+            if (Description != null)
+                elementSet.Description = Description.Clone() as DictionaryDataItem;
+            elementSet._items = Elements?.Select(p => p.Clone() as IDataElement).ToList();
 
-            return dataElementSet;
+            return elementSet;
         }
 
         #endregion

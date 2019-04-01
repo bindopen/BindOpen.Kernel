@@ -13,8 +13,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
     [Serializable()]
     [XmlType("TAppExtensionItemIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class TAppExtensionItemIndex<T> : StoredDataItem
-        where T : AppExtensionItemDefinition
+    public class TAppExtensionItemIndex<T> : StoredDataItem, ITAppExtensionItemIndex<T> where T : IAppExtensionItemDefinition
     {
         // ------------------------------------------
         // VARIABLES
@@ -22,7 +21,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
 
         #region Variables
 
-        private List<AppExtensionItemGroup> _groups;
+        private List<IAppExtensionItemGroup> _groups;
 
         #endregion
 
@@ -36,13 +35,13 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
         /// ID of the library of this instance.
         /// </summary>
         [XmlAttribute("libraryId")]
-        public String LibraryId { get; set; } = "";
+        public string LibraryId { get; set; } = "";
 
         /// <summary>
         /// Name of the library of this instance.
         /// </summary>
         [XmlAttribute("library")]
-        public String LibraryName { get; set; } = "";
+        public string LibraryName { get; set; } = "";
 
         /// <summary>
         /// Definitions of this instance.
@@ -56,7 +55,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
         /// </summary>
         [XmlArray("groups")]
         [XmlArrayItem("group")]
-        public List<AppExtensionItemGroup> Groups => _groups ?? (_groups = new List<AppExtensionItemGroup>());
+        public List<IAppExtensionItemGroup> Groups => _groups ?? (_groups = new List<IAppExtensionItemGroup>());
 
         #endregion
 

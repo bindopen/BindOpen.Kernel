@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Core.Application.Contacts
         /// Email of this instance.
         /// </summary>
         [XmlElement("email")]
-        public String Email
+        public string Email
         {
             get { return this._Email; }
             set { this._Email = value; }
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Core.Application.Contacts
         /// Sms phone of this instance.
         /// </summary>
         [XmlElement("smsPhone")]
-        public String SmsPhone
+        public string SmsPhone
         {
             get { return this._SmsPhone; }
             set { this._SmsPhone = value; }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Application.Contacts
         /// Vocal phone of this instance.
         /// </summary>
         [XmlElement("vocalPhone")]
-        public String VocalPhone
+        public string VocalPhone
         {
             get { return this._VocalPhone; }
             set { this._VocalPhone = value; }
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.Application.Contacts
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned object.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             return base.Clone() as Contact;
         }

@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
     [Serializable()]
     [XmlType("ScriptBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "script.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScriptCondition : Condition
+    public class ScriptCondition : Condition, IScriptCondition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// Expression script representing the condition.
         /// </summary>
         [XmlElement("expression")]
-        public DataExpression Expression { get; set; } = null;
+        public IDataExpression Expression { get; set; } = null;
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
         /// <param name="expression">The expression to consider.</param>
-        public ScriptCondition(string trueValue, DataExpression expression) : base(trueValue)
+        public ScriptCondition(bool trueValue, IDataExpression expression) : base(trueValue)
         {
             this.Expression = expression;
         }
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override Object Clone()
+        public override object Clone()
         {
             ScriptCondition condition = new ScriptCondition
             {
@@ -85,14 +85,17 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <param name="scriptInterpreter">Script interpreter.</param>
         /// <param name="scriptVariableSet">The script variable set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
-        public override Boolean Evaluate(
-            ScriptInterpreter scriptInterpreter,
-            ScriptVariableSet scriptVariableSet)
+        public override bool Evaluate(
+            IScriptInterpreter scriptInterpreter,
+            IScriptVariableSet scriptVariableSet)
         {
             if (this.Expression == null)
                 return false;
 
-            return (scriptInterpreter.Interprete(this.Expression, scriptVariableSet) ?? "").ToUpper().Trim() == this.TrueValue.ToUpper().Trim();
+            string st = scriptInterpreter.Interprete(this.Expression, scriptVariableSet);
+            return TrueValue ?
+                string.Compare(st, "%true()", StringComparison.OrdinalIgnoreCase) == 0 :
+                string.Compare(st, "%false()", StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         #endregion

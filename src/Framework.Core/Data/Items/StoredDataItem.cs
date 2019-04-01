@@ -28,37 +28,37 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Creation date of this instance.
         /// </summary>
         [XmlElement("creationDate")]
-        public String CreationDate { get; set; } = null;
+        public string CreationDate { get; set; } = null;
 
         /// <summary>
         /// Specification of the CreationDate property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean CreationDateSpecified => !string.IsNullOrEmpty(CreationDate);
+        public bool CreationDateSpecified => !string.IsNullOrEmpty(CreationDate);
 
         /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         [XmlElement("lastModificationDate")]
-        public String LastModificationDate { get; set; } = null;
+        public string LastModificationDate { get; set; } = null;
 
         /// <summary>
         /// Specification of the LastModificationDate property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
+        public bool LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
 
         /// <summary>
         /// Indicates whether this instance is locked.
         /// </summary>
         [XmlElement("isLocked")]
-        public Boolean IsLocked { get; set; } = false;
+        public bool IsLocked { get; set; } = false;
 
         /// <summary>
         /// Specification of the IsLocked property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IsLockedSpecified => IsLocked;
+        public bool IsLockedSpecified => IsLocked;
 
         #endregion
 
@@ -108,7 +108,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Locks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Lock(Boolean isRecursive = true)
+        public virtual void Lock(bool isRecursive = true)
         {
             this.IsLocked = true;
         }
@@ -117,7 +117,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Unlocks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Unlock(Boolean isRecursive = true)
+        public virtual void Unlock(bool isRecursive = true)
         {
             this.IsLocked = false;
         }
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             StoredDataItem item = base.Clone() as StoredDataItem;
             if (this.CreationDate != null)

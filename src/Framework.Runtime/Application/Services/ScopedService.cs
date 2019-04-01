@@ -120,7 +120,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Initializes information.
         /// </summary>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual Log Initialize()
+        protected virtual ILog Initialize()
         {
             return this.Initialize<RuntimeAppScope>();
         }
@@ -130,7 +130,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <typeparam name="T">The runtime application scope to consider.</typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual Log Initialize<T>() where T : RuntimeAppScope, new()
+        protected virtual ILog Initialize<T>() where T : RuntimeAppScope, new()
         {
             return new Log();
         }

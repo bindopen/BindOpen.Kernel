@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
+        public ILog BuildQuery(
             DbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             out String queryString)
@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// into the specified string MS Sql Server query.
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
-        protected virtual Log Build(
+        protected virtual ILog Build(
             BasicDbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             out String queryString)
@@ -111,7 +111,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
+        public ILog BuildQuery(
             BasicDbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             out String queryString)
@@ -119,7 +119,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
             queryString = "";
 
             // we instantiate the logger and the script interpreter
-            Log log = new Log();
+            ILog log = new Log();
 
             // we check that the data query exists
             if (query == null)
@@ -159,7 +159,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected virtual Log Build(
+        protected virtual ILog Build(
             AdvancedDbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             out String queryString)
@@ -176,13 +176,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
+        public ILog BuildQuery(
             AdvancedDbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             out String queryString)
         {
             queryString = "";
-            Log log = new Log();
+            ILog log = new Log();
 
             // we check that the data query exists
             if (query == null)

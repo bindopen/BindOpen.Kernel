@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="object1">The object1 to save.</param>
         /// <param name="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static String ToXml(this Object object1, Log log = null)
+        public static String ToXml(this Object object1, ILog log = null)
         {
             if (object1==null) return "";
 
@@ -63,15 +63,15 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static Boolean SaveXml(this Object object1, String filePath, Log log = null)
+        public static bool SaveXml(this Object object1, String filePath, ILog log = null)
         {
             if (object1==null) return false;
 
-            Boolean isWasSaved = false;
+            bool isWasSaved = false;
             StreamWriter streamWriter = null;
             try
             {
-                if (!String.IsNullOrEmpty(filePath))
+                if (!string.IsNullOrEmpty(filePath))
                 {
                     // we create the folder if it does not exist
                     if (!Directory.Exists(Path.GetDirectoryName(filePath)))
@@ -115,9 +115,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T Load<T>(
             String filePath,
-            Log log = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            Boolean mustFileExist = true) where T : DataItem
+            bool mustFileExist = true) where T : DataItem
         {
             T dataItem = null;
             log = (log?? new Log());
@@ -175,7 +175,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadFromString<T>(
             String xmlString,
-            Log log,
+            ILog log,
             XmlSchemaSet xmlSchemaSet = null) where T : DataItem
         {
             T dataItem = null;
@@ -232,7 +232,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         public static XmlSchemaSet LoadXmlSchemaSet(
             XmlSchemaSet xmlSchemaSet,
             Assembly assembly,
-            List<String> xsdResources)
+            List<string> xsdResources)
         {
             if (xmlSchemaSet==null)
                 xmlSchemaSet = new XmlSchemaSet();

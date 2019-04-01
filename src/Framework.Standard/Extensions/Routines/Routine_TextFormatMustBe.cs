@@ -61,17 +61,17 @@ namespace BindOpen.Framework.Standard.Extensions.Routines
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
             Object item = null,
-            DataElement dataElement = null,
-            params Object[] objects)
+            IDataElement dataElement = null,
+            params object[] objects)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item!=null && this.ParameterDetail!=null)
             {
-                String aFormat = (this.ParameterDetail.GetElementItem() as String ?? "");
-                String aString = ((item as String) ?? "");
+                String aFormat = (this.ParameterDetail.GetElementItem() as string ?? "");
+                String aString = ((item as string) ?? "");
 
-                if (!String.IsNullOrEmpty(aFormat))
+                if (!string.IsNullOrEmpty(aFormat))
                 {
                     if (!String.Format(aString, aFormat).KeyEquals(aString))
                     {

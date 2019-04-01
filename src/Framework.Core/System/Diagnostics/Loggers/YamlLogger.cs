@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String folderPath,
             String fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
-            Boolean isVerbose = false,
+            bool isVerbose = false,
             String uiCulture = null,
             Predicate<LogEvent> eventFinder = null,
             int expirationDayNumber = -1)
@@ -80,9 +80,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
-        public override String ToString(
+        public override string ToString(
             Log log,
-            List<String> attributeNames = null)
+            List<string> attributeNames = null)
         {
             if (log == null) return "";
 
@@ -108,13 +108,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                         String attributeNameKey = attributeName.ToLower();
 
                         if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Id))
-                            && !String.IsNullOrEmpty(log.Id))
+                            && !string.IsNullOrEmpty(log.Id))
                         {
                             st += indent + " id: " + log.Name + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Name))
-                            && !String.IsNullOrEmpty(log.Name))
+                            && !string.IsNullOrEmpty(log.Name))
                         {
                             st += indent + " name: " + log.Name + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
@@ -128,7 +128,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                         if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Description))
                                             && (log.Description != null))
                         {
-                            st += indent + " description: " + log.GetDescriptionText(this.UICulture) + Environment.NewLine;
+                            st += indent + " description: " + log.GetDescription(this.UICulture) + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
                         if ((attributeNameKey.StartsWith(LogAttribute.__Detail + ".")) && (log.Detail != null))
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                 if (element.Items.Count > 1)
                 {
                     st += indent + " values:" + Environment.NewLine;
-                    foreach (Object item in element.Items)
+                    foreach (object item in element.Items)
                         if (item != null)
                             st += indent + "  - " + item.GetString(element.ValueType) + Environment.NewLine;
                 }
@@ -181,9 +181,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         ///// <param name="logEvent">The log event to consider.</param>
         ///// <param name="attributeNames">The attribute names to consider.</param>
         ///// <returns>The string representing to the specified event.</returns>
-        //public override String ToString(
+        //public override string ToString(
         //    LogEvent logEvent,
-        //    params String[] attributeNames)
+        //    params string[] attributeNames)
         //{
         //    if (log == null) return "";
 

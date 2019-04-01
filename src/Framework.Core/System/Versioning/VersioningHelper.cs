@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// <returns>The version element at the specified level.</returns>
         public static int GetVersionElement(String version, int level)
         {
-            if (String.IsNullOrEmpty(version)) return -1;
+            if (string.IsNullOrEmpty(version)) return -1;
             int[] versionElements = version.Split('.').Select(p => { int i = -1; if (int.TryParse(p, out i)) return i; else return -1; }).ToArray();
             if (level >= versionElements.Length)
                 return 0;
@@ -81,7 +81,7 @@ namespace BindOpen.Framework.Core.System.Versioning
                     version += (version == String.Empty ? "" : ".") + numbers[i].ToString();
 
                     // if the rest of digits are all 0, we stop
-                    Boolean isTheRestZero = true;
+                    bool isTheRestZero = true;
                     for (int j = i + 1; j < numbers.Length; j++)
                         isTheRestZero &= (numbers[j] == 0);
 
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// </summary>
         /// <param name="numbers">The version section numbers to consider.</param>
         /// <returns></returns>
-        public static String GetVersion(params String[] numbers)
+        public static String GetVersion(params string[] numbers)
         {
             return VersioningHelper.GetVersion(numbers.Select(p=> { int i; if (!int.TryParse(p, out i)) return 0; return i; }).ToArray());
         }
@@ -149,11 +149,11 @@ namespace BindOpen.Framework.Core.System.Versioning
             String historicVersion = null)
         {
             String newVersion = "";
-            if (String.IsNullOrEmpty(historicVersion))
+            if (string.IsNullOrEmpty(historicVersion))
                 historicVersion = currentVersion;
 
             int index = -1;
-            String[] versionParts_Format = versioningFormat.Split('.');
+            string[] versionParts_Format = versioningFormat.Split('.');
             for (int i = 0; i < versionParts_Format.Length; i++)
                 if (versionParts_Format[i] == "*")
                 {

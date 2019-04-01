@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_CurrentDate(object[] parameters)
+        public override string GetSqlText_CurrentDate(object[] parameters)
         {
             return "getdate()";
         }

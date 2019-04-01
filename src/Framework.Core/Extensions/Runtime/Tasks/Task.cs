@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] String propertyName = null)
         {
             if (propertyName != null)
             {
@@ -192,11 +192,11 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
                     this.AppScope);
 
                 if (attribute is TaskInputAttribute)
-                    return (this.InputDetail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue);
+                    return (this.InputDetail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue);
                 else if (attribute is TaskOutputAttribute)
-                    return (this.OutputDetail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue);
+                    return (this.OutputDetail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue);
                 else if (attribute is DetailPropertyAttribute)
-                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue);
+                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue);
             }
 
             return default(T);
@@ -221,7 +221,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
         public abstract void Execute(
             Log log,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         /// <summary>
@@ -231,12 +231,12 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Tasks
         /// <param name="scriptVariableSet">The script variable set to use for execution.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
-        public Log Execute(
+        public ILog Execute(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal)
         {
-            Log log = new Log();
+            ILog log = new Log();
             this.Execute(log, appScope, scriptVariableSet, runtimeMode);
 
             return log;

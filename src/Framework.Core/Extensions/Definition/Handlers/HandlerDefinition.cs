@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using System;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
 using BindOpen.Framework.Core.Data.Elements.Entity;
@@ -6,37 +8,17 @@ using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Extensions.Runtime.Handlers;
-using System;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
 {
-
     /// <summary>
     /// This class represents a handler definition.
     /// </summary>
     [Serializable()]
     [XmlType("HandlerDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "dataHandler.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class HandlerDefinition : AppExtensionItemDefinition
+    public class HandlerDefinition : AppExtensionItemDefinition, IHandlerDefinition
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private DataElementSpec _SourceSpecification = null;
-        private DataElementSpecSet _ParameterSpecification = new DataElementSpecSet();
-        private DataElementSpec _TargetSpecification = null;
-
-        private String _GetFunctionName = "Get";
-        private String _PostFunctionName = "Post";
-
-        #endregion
-
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -47,7 +29,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         /// The calling class of this instance.
         /// </summary>
         [XmlElement("callingClass")]
-        public String CallingClass
+        public string CallingClass
         {
             get;
             set;
@@ -57,21 +39,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         /// Name of the GET function.
         /// </summary>
         [XmlElement("getFunctionName")]
-        public String GetFunctionName
-        {
-            get { return this._GetFunctionName; }
-            set { this._GetFunctionName = value; }
-        }
+        public string GetFunctionName { get; set; } = "Get";
 
         /// <summary>
         /// Name of the POST function.
         /// </summary>
         [XmlElement("postFunctionName")]
-        public String PostFunctionName
-        {
-            get { return this._PostFunctionName; }
-            set { this._PostFunctionName = value; }
-        }
+        public string PostFunctionName { get; set; } = "Post";
 
         /// <summary>
         /// The source specification of this instance.
@@ -81,21 +55,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         [XmlElement("source-entity.specification", typeof(EntityElementSpec))]
         [XmlElement("source-scalar.specification", typeof(ScalarElementSpec))]
         [XmlElement("source-datasource.specification", typeof(SourceElementSpec))]
-        public DataElementSpec SourceSpecification
-        {
-            get { return this._SourceSpecification; }
-            set { this._SourceSpecification = value; }
-        }
+        public IDataElementSpec SourceSpecification { get; set; } = null;
 
         /// <summary>
         /// The parameter specification of this instance.
         /// </summary>
         [XmlElement("parameter.specification")]
-        public DataElementSpecSet ParameterSpecification
-        {
-            get { return this._ParameterSpecification; }
-            set { this._ParameterSpecification = value; }
-        }
+        public IDataElementSpecSet ParameterSpecification { get; set; } = new DataElementSpecSet();
 
         /// <summary>
         /// The target specification of this instance.
@@ -105,11 +71,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         [XmlElement("target-entity.specification", typeof(EntityElementSpec))]
         [XmlElement("target-scalar.specification", typeof(ScalarElementSpec))]
         [XmlElement("target-datasource.specification", typeof(SourceElementSpec))]
-        public DataElementSpec TargetSpecification
-        {
-            get { return this._TargetSpecification; }
-            set { this._TargetSpecification = value; }
-        }
+        public IDataElementSpec TargetSpecification { get; set; } = null;
 
         /// <summary>
         /// Runtime GET function of this instance.
@@ -125,7 +87,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
 
         #endregion
 
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -140,7 +101,5 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Handlers
         }
 
         #endregion
-        
     }
-
 }

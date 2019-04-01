@@ -1,18 +1,16 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements.Schema;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Documents;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Data.Items.Strings;
 using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
 using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
-
     /// <summary>
     /// This enumeration represents the possible data value types.
     /// </summary>
@@ -24,70 +22,87 @@ namespace BindOpen.Framework.Core.Data.Common
         /// Undefined.
         /// </summary>
         Any,
+
         /// <summary>
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Boolean.
         /// </summary>
         Boolean,
+
         /// <summary>
         /// Data carrier.
         /// </summary>
         CarrierConfiguration,
+
         /// <summary>
         /// Data source.
         /// </summary>
         DataSource,
+
         /// <summary>
         /// Date.
         /// </summary>
         Date,
+
         /// <summary>
         /// Dictionary.
         /// </summary>
         Dictionary,
+
         /// <summary>
         /// Document.
         /// </summary>
         Document,
+
         /// <summary>
         /// Entity.
         /// </summary>
         Entity,
+
         /// <summary>
         /// Integer.
         /// </summary>
         Integer,
+
         /// <summary>
         /// Long.
         /// </summary>
         Long,
+
         /// <summary>
         /// Number value.
         /// </summary>
         Number,
+
         /// <summary>
         /// Object.
         /// </summary>
         Object,
+
         /// <summary>
         /// Schema.
         /// </summary>
         Schema,
+
         /// <summary>
         /// Schema zone.
         /// </summary>
         SchemaZone,
+
         /// <summary>
         /// Schema.
         /// </summary>
         StringValued,
+
         /// <summary>
         /// Text.
         /// </summary>
         Text,
+
         /// <summary>
         /// Time.
         /// </summary>
@@ -106,13 +121,12 @@ namespace BindOpen.Framework.Core.Data.Common
     /// </summary>
     public static class DataValueTypeExtension
     {
-
         /// <summary>
         /// Indicates whether the specified value type corresponds to a scalar.
         /// </summary>
         /// <param name="valueType">The object to consider.</param>
         /// <returns>The result object.</returns>
-        public static Boolean IsScalar(this DataValueType valueType)
+        public static bool IsScalar(this DataValueType valueType)
         {
             switch (valueType)
             {
@@ -133,7 +147,7 @@ namespace BindOpen.Framework.Core.Data.Common
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns>The result object.</returns>
-        public static Boolean IsScalar(this Object object1)
+        public static bool IsScalar(this Object object1)
         {
             return object1.GetValueType().IsScalar();
         }
@@ -152,7 +166,7 @@ namespace BindOpen.Framework.Core.Data.Common
                 case DataValueType.CarrierConfiguration:
                     return typeof(CarrierConfiguration);
                 case DataValueType.DataSource:
-                    return typeof(DataSource);
+                    return typeof(IDataSource);
                 case DataValueType.Date:
                     return typeof(DateTime);
                 case DataValueType.Dictionary:
@@ -165,8 +179,6 @@ namespace BindOpen.Framework.Core.Data.Common
                     return typeof(float);
                 case DataValueType.Schema:
                     return typeof(String);
-                case DataValueType.StringValued:
-                    return typeof(StringValuedDataItem);
                 case DataValueType.Text:
                     return typeof(String);
                 case DataValueType.Time:
@@ -208,14 +220,12 @@ namespace BindOpen.Framework.Core.Data.Common
                 return DataValueType.Document;
             else if (type.IsSubclassOf(typeof(CarrierConfiguration)))
                 return DataValueType.CarrierConfiguration;
-            else if (type.IsSubclassOf(typeof(DataSource)))
+            else if (type.IsSubclassOf(typeof(IDataSource)))
                 return DataValueType.DataSource;
             else if (type == typeof(SchemaElement))
                 return DataValueType.Schema;
             else if (type == typeof(SchemaZoneElement))
                 return DataValueType.SchemaZone;
-            else if (type == typeof(StringValuedDataItem))
-                return DataValueType.StringValued;
             else if  (type.IsSubclassOf(typeof(EntityConfiguration)))
                 return DataValueType.Entity;
             else if (type.IsSubclassOf(typeof(DataItem)))
@@ -239,10 +249,10 @@ namespace BindOpen.Framework.Core.Data.Common
         /// </summary>
         /// <param name="objects">The objects to consider.</param>
         /// <returns>The result object.</returns>
-        public static DataValueType GetValueType(this List<Object> objects)
+        public static DataValueType GetValueType(this List<object> objects)
         {
             DataValueType dataValueType = DataValueType.Any;
-            foreach (Object object1 in objects)
+            foreach (object object1 in objects)
             {
                 DataValueType currentDataValueType = DataValueTypeExtension.GetValueType(object1);
                 if ((dataValueType != DataValueType.Any) && (currentDataValueType != dataValueType))
@@ -256,5 +266,4 @@ namespace BindOpen.Framework.Core.Data.Common
     }
 
     #endregion
-
 }

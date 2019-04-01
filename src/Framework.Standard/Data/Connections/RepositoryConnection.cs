@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String remoteFileUri,
             String localPathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(remoteFileUri, localPathUri, canOverwrite, log);
@@ -106,7 +106,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String remoteFilter,
             String localPathUri,
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             if (this.Connector != null)
@@ -121,10 +121,10 @@ namespace BindOpen.Framework.Standard.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
         public virtual void Pull(
-            List<String> remoteFileUris,
+            List<string> remoteFileUris,
             String localPathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(remoteFileUris, localPathUri, canOverwrite, log);
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String localFileUri,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Push(localFileUri, remotePathUri, canOverwrite, log);
@@ -163,7 +163,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String localFilter,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             if (this.Connector != null)
@@ -178,10 +178,10 @@ namespace BindOpen.Framework.Standard.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
         public virtual void Push(
-            List<String> localFileUris,
+            List<string> localFileUris,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(localFileUris, remotePathUri, canOverwrite, log);
@@ -203,7 +203,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String folderUri,
             String filter,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             List<RepositoryItem> repositoryItems = new List<RepositoryItem>();
@@ -228,7 +228,7 @@ namespace BindOpen.Framework.Standard.Data.Connections
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             if (this.Connector != null)

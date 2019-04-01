@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="provider")]
-        public String Provider
+        public string Provider
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -50,7 +50,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="serverAddress")]
-        public String ServerAddress
+        public string ServerAddress
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="initialCatalog")]
-        public String InitialCatalog
+        public string InitialCatalog
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="integratedSecurity")]
-        public String IntegratedSecurity
+        public string IntegratedSecurity
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -83,7 +83,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="userName")]
-        public String UserName
+        public string UserName
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name="password")]
-        public String Password
+        public string Password
         {
             get { return this.Get<String>(); }
             set { this.Set(value); }
@@ -158,7 +158,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
-        public String GetSqlText(
+        public string GetSqlText(
             DbDataQuery query,
             ScriptVariableSet scriptVariableSet,
             Log log)
@@ -273,7 +273,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         public virtual void ExecuteNonQuery(
             String queryText,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -291,7 +291,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
             String queryText,
             ref DbDataReader dataReader,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -309,7 +309,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
             String queryText,
             ref DataSet dataSet,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -322,7 +322,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         /// <param name="log">The log to consider.</param>
         public virtual void GetIdentity(
             ref long id,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -336,7 +336,7 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         public virtual void UpdateDataTable(
             String queryText,
             DataTable dataTable,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -351,8 +351,8 @@ namespace BindOpen.Framework.Databases.Extensions.Runtime.Connectors
         public virtual void UpdateDataSet(
             String queryText,
             DataSet dataSet,
-            List<String> tableNames,
-            Log log = null)
+            List<string> tableNames,
+            ILog log = null)
         {
         }
 

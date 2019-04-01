@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     [Serializable()]
     [XmlType("LogEvent", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "logEvent", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class LogEvent : Event
+    public class LogEvent : Event, ILogEvent
     {
         // ------------------------------------------
         // STRUCTURES
@@ -79,13 +79,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the ResultCode property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ResultCodeSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.ResultCode);
-            }
-        }
+        public bool ResultCodeSpecified => !string.IsNullOrEmpty(ResultCode);
 
         /// <summary>
         /// Source of this instance.
@@ -97,13 +91,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the Source property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean SourceSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.Source);
-            }
-        }
+        public bool SourceSpecified => !string.IsNullOrEmpty(Source);
 
         /// <summary>
         /// Stack traces of this instance.
@@ -116,13 +104,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the stack traces of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean StackTracesSpecified
-        {
-            get
-            {
-                return StackTraces != null && this.StackTraces.Count > 0;
-            }
-        }
+        public bool StackTracesSpecified => StackTraces != null && StackTraces.Count > 0;
 
         // Tree ----------------------------------
 
@@ -130,34 +112,25 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// The log of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Log Log { get; set; } = null;
+        public ILog Log { get; set; } = null;
 
         /// <summary>
         /// Parent of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Log Parent { get; set; } = null;
+        public ILog Parent { get; set; } = null;
 
         /// <summary>
         /// Root of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Log Root
-        {
-            get { return this.Log?.Root; }
-        }
+        public ILog Root => Log?.Root;
 
         /// <summary>
         /// Specification of the Task property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public int Level
-        {
-            get
-            {
-                return this.Parent == null ? 0 : this.Parent.Level + 1;
-            }
-        }
+        public int Level => Parent == null ? 0 : Parent.Level + 1;
 
         #endregion
 
@@ -195,8 +168,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             DateTime? date = null,
             string id = null) : base(kind, title, criticality, description, date, id)
         {
-            this.Source = source;
-            this.ResultCode = resultCode;
+            Source = source;
+            ResultCode = resultCode;
         }
 
         /// <summary>
@@ -216,8 +189,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             DateTime? date = null,
             string id = null) : base(exception, criticality, date, id)
         {
-            this.Source = source;
-            this.ResultCode = resultCode;
+            Source = source;
+            ResultCode = resultCode;
         }
 
         /// <summary>
@@ -228,12 +201,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             if (event1 != null)
             {
-                this.Criticality = event1.Criticality;
-                this.Description = event1.Description?.Clone() as DictionaryDataItem;
-                this.Detail = event1.Detail?.Clone() as DataElementSet;
-                this.Kind = event1.Kind;
-                this.LongDescription = event1.LongDescription?.Clone() as DictionaryDataItem;
-                this.Title = event1.Title?.Clone() as DictionaryDataItem;
+                Criticality = event1.Criticality;
+                Description = event1.Description?.Clone() as DictionaryDataItem;
+                Detail = event1.Detail?.Clone() as DataElementSet;
+                Kind = event1.Kind;
+                LongDescription = event1.LongDescription?.Clone() as DictionaryDataItem;
+                Title = event1.Title?.Clone() as DictionaryDataItem;
             }
         }
 
@@ -252,16 +225,20 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="kinds">The kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public EventKind GetMaxEventKind(
-            Boolean isRecursive = true,
+            bool isRecursive = true,
             params EventKind[] kinds)
         {
             EventKind eventKind = EventKind.None;
 
-            if (this.Log != null)
-                eventKind = this.Log.GetMaxEventKind(isRecursive, kinds);
+            if (Log != null)
+            {
+                eventKind = Log.GetMaxEventKind(isRecursive, kinds);
+            }
 
             if (eventKind == EventKind.None)
-                eventKind = this.Kind;
+            {
+                eventKind = Kind;
+            }
 
             return eventKind;
         }
@@ -278,10 +255,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
-            this.Log?.UpdateStorageInfo(log);
+            Log?.UpdateStorageInfo(log);
         }
 
         /// <summary>
@@ -289,11 +266,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 
-            this.Log?.UpdateRuntimeInfo(appScope, log);
+            Log?.UpdateRuntimeInfo(appScope, log);
         }
 
         #endregion

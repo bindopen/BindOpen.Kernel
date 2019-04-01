@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <returns></returns>
         public static string ConvertToXtensionScript(
             this string searchQuery,
-            Log log = null,
+            ILog log = null,
             ApiScriptFilteringDefinition definition = null,
             int i = 0)
         {
@@ -206,7 +206,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         public static AdvancedDbDataQuery Filter(
             this AdvancedDbDataQuery dbQuery,
             string filterQuery,
-            Log log = null,
+            ILog log = null,
             ApiScriptFilteringDefinition definition = null)
         {
             log = log ?? new Log();
@@ -242,7 +242,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         public static AdvancedDbDataQuery Sort(
             this AdvancedDbDataQuery query,
             string sortQuery,
-            Log log = null,
+            ILog log = null,
             ApiScriptSortingDefinition definition = null)
         {
             log = log ?? new Log();
@@ -304,7 +304,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             this AdvancedDbDataQuery query,
             int? pageSize,
             string pageToken,
-            Log log = null,
+            ILog log = null,
             ApiScriptSortingDefinition clauseStatement = null)
         {
             log = log ?? new Log();

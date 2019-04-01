@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Specification of the DefinitionFilter property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DefinitionFilterSpecified
+        public bool DefinitionFilterSpecified
         {
             get
             {
@@ -106,9 +106,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override Boolean IsCompatibleWith(DataItem item)
+        public override bool IsCompatibleWith(DataItem item)
         {
-            Boolean isCompatible = base.IsCompatibleWith(item);
+            bool isCompatible = base.IsCompatibleWith(item);
 
             if (isCompatible)
             {
@@ -126,11 +126,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckItem(
-            Object item,
-            DataElement dataElement = null,
+        public override ILog CheckItem(
+            object item,
+            IDataElement dataElement = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -143,11 +143,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckElement(
-            DataElement dataElement,
-            List<String> specificationAreas = null,
+        public override ILog CheckElement(
+            IDataElement dataElement,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -175,7 +175,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             CarrierElementSpec dataCarrierElementSpec = base.Clone() as CarrierElementSpec;
             if (this.DefinitionFilter!= null)

@@ -9,7 +9,7 @@ namespace BindOpen.Framework.UnitTest.System.Diagnostics
         [Test, Order(1)]
         public void TestEvents()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             int itemsNumber = 180;
             for (int i = 0; i < itemsNumber; i++)

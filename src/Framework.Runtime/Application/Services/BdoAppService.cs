@@ -81,7 +81,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Log of this instance.
         /// </summary>
-        public Log Log { get; }
+        public ILog Log { get; }
 
         /// <summary>
         /// Indicates whether the platform information is loaded.
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public virtual IBdoAppService Start(Log log = null)
+        public virtual IBdoAppService Start(ILog log = null)
         {
             log = log ?? new Log();
 
@@ -179,7 +179,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         protected override Log Initialize<T>()
         {
             this._appScope = new T();
-            this._appScope.SetAppDomain(AppDomain.CurrentDomain);
+            this._appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope
             this.AppScope.DataContext.AddSystemItem("appHost", this);

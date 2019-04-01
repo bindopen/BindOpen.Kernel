@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
-using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Configuration;
-using BindOpen.Framework.Core.Extensions.Definition;
-using BindOpen.Framework.Core.Extensions.Runtime;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -22,7 +17,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// The application extension.
         /// </summary>
-        AppExtension AppExtension { get; set; }
+        IAppExtension AppExtension { get; set; }
 
         /// <summary>
         /// The data context.
@@ -40,31 +35,10 @@ namespace BindOpen.Framework.Core.Application.Scopes
         ScriptInterpreter ScriptInterpreter { get; set; }
 
         /// <summary>
-        /// Creates a new instance of extension item.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="definitionName"></param>
-        /// <param name="configuration"></param>
-        /// <param name="name"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        ITAppExtensionRuntimeItem<T> CreateItem<T>(string definitionName, TAppExtensionItemConfiguration<T> configuration, string name = null, Log log = null) where T : AppExtensionItemDefinition;
-
-        /// <summary>
-        /// Creates a new instance of viewer.
-        /// </summary>
-        /// <param name="libraryItemKind"></param>
-        /// <param name="definitionName"></param>
-        /// <param name="viewerKey"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object CreateViewer(AppExtensionItemKind libraryItemKind, string definitionName, string viewerKey, Log log = null);
-
-        /// <summary>
         /// Sets the application domain of this instance.
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
-        void SetAppDomain(AppDomain appDomain);
+        void Initialize(AppDomain appDomain=null);
 
         /// <summary>
         /// Updates this instance.
@@ -76,6 +50,6 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="appScope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <returns></returns>
-        Log Update<T>(T item = null, List<string> specificationAreas = null, List<UpdateMode> updateModes = null, IAppScope appScope = null, ScriptVariableSet scriptVariableSet = null) where T : DataItem;
+        ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateMode[] updateModes = null, IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null) where T : IDataItem;
     }
 }

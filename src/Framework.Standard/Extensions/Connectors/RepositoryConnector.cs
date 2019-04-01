@@ -68,7 +68,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String remoteFileUri,
             String localPathUri,            
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String remoteFilter,
             String localPathUri,            
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             log = log ?? new Log();
@@ -109,10 +109,10 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
         public virtual void Pull(
-            List<String> remoteFileUris,
+            List<string> remoteFileUris,
             String localPathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -133,7 +133,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String localFileUri,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -151,7 +151,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String localFilter,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             log = log ?? new Log();
@@ -174,10 +174,10 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
         public virtual void Push(
-            List<String> localFileUris,
+            List<string> localFileUris,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -201,7 +201,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String folderUri,
             String filter,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             return new List<RepositoryItem>();
@@ -221,7 +221,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
         }

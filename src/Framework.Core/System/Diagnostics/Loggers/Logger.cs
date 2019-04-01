@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
         private String _FileName = null;
         private String _FolderPath = null;
-        private Log _Log = null;
+        private ILog _Log = null;
 
         #endregion
 
@@ -49,11 +49,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// File path of this instance.
         /// </summary>
-        public String Filepath
+        public string Filepath
         {
             get
             {
-                return (!string.IsNullOrEmpty(this._FolderPath) & !String.IsNullOrEmpty(this._FileName) ?
+                return (!string.IsNullOrEmpty(this._FolderPath) & !string.IsNullOrEmpty(this._FileName) ?
                     this.FolderPath + this._FileName : "").ToPath();
             }
         }
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Folder path of this instance.
         /// </summary>
-        public String FolderPath
+        public string FolderPath
         {
             get
             {
@@ -87,17 +87,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Indicates whether this instance is verbose.
         /// </summary>
-        public Boolean IsVerbose { get; set; } = false;
+        public bool IsVerbose { get; set; } = false;
 
         /// <summary>
         /// The UI culture of this instance.
         /// </summary>
-        public String UICulture { get; set; } = null;
+        public string UICulture { get; set; } = null;
 
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        public Log Log
+        public ILog Log
         {
             get
             {
@@ -108,7 +108,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Function that filters event.
         /// </summary>
-        public Predicate<LogEvent> EventFinder
+        public Predicate<ILogEvent> EventFinder
         {
             get;
             set;
@@ -148,11 +148,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             LogFormat logFormat,
             LoggerMode mode,
             DataSourceKind outputKind,
-            Boolean isVerbose =false,
+            bool isVerbose =false,
             String uiCulture= null,
             String folderPath = null,
             String fileName = null,
-            Predicate<LogEvent> eventFinder = null,
+            Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1) : this()
         {
             this.Name = name;
@@ -179,8 +179,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public virtual Boolean WriteLog(
-            Log log)
+        public virtual bool WriteLog(
+            ILog log)
         {
             return false;
         }
@@ -190,8 +190,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
-        public virtual Boolean WriteTask(
-            Log log, TaskConfiguration task)
+        public virtual bool WriteTask(
+            ILog log, ITaskConfiguration task)
         {
             return false;
         }
@@ -200,8 +200,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified event.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        public virtual Boolean WriteEvent(
-            LogEvent logEvent)
+        public virtual bool WriteEvent(
+            ILogEvent logEvent)
         {
             return false;
         }
@@ -212,8 +212,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="elementValue">The element value to consider.</param>
-        public virtual Boolean WriteDetailElement(
-            Log log,
+        public virtual bool WriteDetailElement(
+            ILog log,
             String elementName,
             Object elementValue)
         {
@@ -225,9 +225,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="childLog">The child log to log.</param>
-        public virtual Boolean WriteChildLog(
-            Log log,
-            Log childLog)
+        public virtual bool WriteChildLog(
+            ILog log,
+            ILog childLog)
         {
             return false;
         }
@@ -239,7 +239,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="text">The text to write.</param>
         /// <returns>Returns true whether the text has been written.</returns>
-        public Boolean Write(String text)
+        public bool Write(String text)
         {
             switch(this.OutputKind)
             {
@@ -257,11 +257,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="text">The text to write.</param>
         /// <returns>Returns true whether the text has been written.</returns>
-        private Boolean WriteToConsole(String text)
+        private bool WriteToConsole(String text)
         {
-            Boolean isLogged = false;
+            bool isLogged = false;
 
-            if (!String.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text))
             {
                 Console.Write(text);
                 isLogged = true;
@@ -275,11 +275,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="text">The text to write.</param>
         /// <returns>Returns true whether the text has been written.</returns>
-        private Boolean WriteToFile(String text)
+        private bool WriteToFile(String text)
         {
-            Boolean isLogged = false;
+            bool isLogged = false;
 
-            if ((!String.IsNullOrEmpty(this.Filepath)) && (!String.IsNullOrEmpty(text)))
+            if ((!string.IsNullOrEmpty(this.Filepath)) && (!string.IsNullOrEmpty(text)))
             {
                 try
                 {
@@ -311,11 +311,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Indicates whether this instance requires all the event history to be maintained.
         /// </summary>
         /// <returns>Returns True if this instance requires all the event history.</returns>
-        public virtual Boolean IsHistoryRequired()
+        public virtual bool IsHistoryRequired()
         {
             return false;
         }
-        
+
         #endregion
 
         // ------------------------------------------------------
@@ -328,7 +328,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Sets the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public void SetLog(Log log)
+        public void SetLog(ILog log)
         {
             this._Log = log;
         }
@@ -342,7 +342,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         {
             if (expirationDayNumber>-1 && Directory.Exists(this._FolderPath))
             {
-                String[] files = Directory.GetFiles(this._FolderPath);
+                string[] files = Directory.GetFiles(this._FolderPath);
 
                 String logFilePath = this.Filepath;
 
@@ -372,7 +372,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="fileName">The name of the file to consider.</param>
         public void SetFileName(String fileName)
         {
-            this._FileName = (String.IsNullOrEmpty(fileName) ? "log_{{currentTimeStamp}}.log" : fileName)
+            this._FileName = (string.IsNullOrEmpty(fileName) ? "log_{{currentTimeStamp}}.log" : fileName)
                 .Replace("{{currentTimeStamp}}", Guid.NewGuid().ToString(), false);
         }
 
@@ -382,14 +382,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="newFolderPath">The new folder path to consider.</param>
         /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
         /// <param name="newFileName">The new file name to consider.</param>
-        public void SetFilePath(String newFolderPath, Boolean isFileToBeMoved, String newFileName = null)
+        public void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null)
         {
-            if (String.IsNullOrEmpty(newFolderPath)) return;
+            if (string.IsNullOrEmpty(newFolderPath)) return;
 
             String oldFilePath = this.Filepath;
-            newFileName = (String.IsNullOrEmpty(newFileName) ? (oldFilePath==null ? null : Path.GetFileName(oldFilePath)) : newFileName);
+            newFileName = (string.IsNullOrEmpty(newFileName) ? (oldFilePath==null ? null : Path.GetFileName(oldFilePath)) : newFileName);
 
-            if (isFileToBeMoved && File.Exists(oldFilePath) && !String.IsNullOrEmpty(oldFilePath))
+            if (isFileToBeMoved && File.Exists(oldFilePath) && !string.IsNullOrEmpty(oldFilePath))
             {
                 // we move the old file to the new folder
                 String newFilePath = newFolderPath.ToLower().GetEndedString(@"\").ToPath() + newFileName;
@@ -427,11 +427,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
           /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
-        public virtual Log LoadLog(
+        public virtual ILog LoadLog(
             String filePath,
-            Log loadLog = null,
+            ILog loadLog = null,
             IAppScope appScope = null,
-            Boolean mustFileExist = true)
+            bool mustFileExist = true)
         {
             return new Log();
         }
@@ -443,10 +443,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="loadLog">The output log of the load task.</param>
           /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
-        public virtual Log LoadLogFromString(
+        public virtual ILog LoadLogFromString(
             String xmlString,
-            Log loadLog = null,
-            AppScope appScope = null)
+            ILog loadLog = null,
+            IAppScope appScope = null)
         {
             return new Log();
         }
@@ -460,7 +460,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public virtual Boolean Save(Log log, String logFilePath, Boolean isAppended = false)
+        public virtual bool Save(ILog log, String logFilePath, bool isAppended = false)
         {
             return false;
         }
@@ -470,7 +470,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public Boolean Save(Boolean isAppended = false)
+        public bool Save(bool isAppended = false)
         {
             return this.Save(this._Log, this.Filepath, isAppended);
         }
@@ -482,8 +482,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
         public virtual String ToString(
-            Log log,
-            List<String> attributeNames = null)
+            ILog log,
+            List<string> attributeNames = null)
         {
             return "";
         }
@@ -495,8 +495,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified event.</returns>
         public virtual String ToString(
-            LogEvent logEvent,
-            List<String> attributeNames = null)
+            ILogEvent logEvent,
+            List<string> attributeNames = null)
         {
             return "";
         }

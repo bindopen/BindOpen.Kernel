@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] String propertyName = null)
         {
             if (propertyName != null)
             {
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
                     this.AppScope);
 
                 if (attribute is DetailPropertyAttribute)
-                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as String)?.ToEnum<T>(defaultValue) ?? default(T); ;
+                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as string)?.ToEnum<T>(defaultValue) ?? default(T); ;
             }
 
             return default(T);
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        public virtual Log Open()
+        public virtual ILog Open()
         {
             return new Log();
         }
@@ -199,7 +199,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        public virtual Log Close()
+        public virtual ILog Close()
         {
             return new Log();
         }
@@ -207,7 +207,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Connectors
         /// <summary>
         /// Indicates whether the instance is connected.
         /// </summary>
-        public virtual Boolean IsConnected()
+        public virtual bool IsConnected()
         {
             return false;
         }

@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace BindOpen.Framework.Core.Data.Items
+﻿namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This interface represents an identified data item.
     /// </summary>
-    public interface IIdentifiedDataItem
+    public interface IIdentifiedDataItem : IDataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -16,12 +14,10 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// ID of this instance.
         /// </summary>
-        String Id
-        {
-            get;
-            set;
-        }
+        string Id { get; set; }
 
-        #endregion       
+        #endregion
+
+        string Key();
     }
 }

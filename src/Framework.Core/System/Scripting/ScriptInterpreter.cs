@@ -10,6 +10,7 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes;
+using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 
@@ -19,8 +20,7 @@ namespace BindOpen.Framework.Core.System.Scripting
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
     /// using script dictionnaries and data context, providing a log for the interpretation task.
     /// </summary>
-    [Serializable()]
-    public class ScriptInterpreter : DataItem
+    public class ScriptInterpreter : DataItem, IScriptInterpreter
     {
         // ------------------------------------------
         // VARIABLES
@@ -28,11 +28,9 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         #region Variables
 
-        private AppScope _AppScope = null;
-        private ScriptWordIndex _Index = new ScriptWordIndex();
+        private IAppScope _appScope = null;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -43,10 +41,9 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <summary>
         /// The index of this instance.
         /// </summary>
-        public ScriptWordIndex Index { get { return this._Index; } set { this._Index = value; } }
+        public IScriptWordIndex Index { get; set; } = new ScriptWordIndex();
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -66,13 +63,12 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="appScope">The application scope used to interprete.</param>
         public ScriptInterpreter(
-            AppScope appScope)
+            IAppScope appScope)
         {
-            this._AppScope = appScope;
+            _appScope = appScope;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // MUTATORS
@@ -84,15 +80,15 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// Loads the specified libraries.
         /// </summary>
         /// <param name="libraryNames">The names of libraries to load.</param>
-        public void LoadDefinitions(List<String> libraryNames = null)
+        public void LoadDefinitions(string[] libraryNames = null)
         {
-            if ((this._Index != null) && (this._AppScope.AppExtension != null))
-                this._Index.Definitions =
-                    this._AppScope.AppExtension.GetItemDefinitions<ScriptWordDefinition>(libraryNames);
+            if ((Index != null) && (_appScope.AppExtension != null))
+            {
+                Index.Definitions = _appScope.AppExtension.GetItemDefinitions<IScriptWordDefinition>(libraryNames);
+            }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // EVALUATION
@@ -110,15 +106,15 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
-        public Object Evaluate(
-            DataExpression dataExpression,
+        public object Evaluate(
+            IDataExpression dataExpression,
             out string resultScript,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             resultScript = "";
             if (dataExpression != null)
-                return this.EvaluateScript(dataExpression.Text, dataExpression.Kind, out resultScript, scriptVariableSet, log);
+                return EvaluateScript(dataExpression.Text, dataExpression.Kind, out resultScript, scriptVariableSet, log);
             return null;
         }
 
@@ -129,13 +125,13 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
-        public Object Evaluate(
-            DataExpression dataExpression,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+        public object Evaluate(
+            IDataExpression dataExpression,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             string resultScript = "";
-            return this.Evaluate(dataExpression, out resultScript, scriptVariableSet, log);
+            return Evaluate(dataExpression, out resultScript, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -147,14 +143,14 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
-        public Object Evaluate(
+        public object Evaluate(
             string script,
             out string resultScript,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             resultScript = "";
-            return this.EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
+            return EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -165,13 +161,12 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
-        public Object Evaluate(
+        public object Evaluate(
             string script,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            string resultScript = "";
-            return this.EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
+            return EvaluateScript(script, DataExpressionKind.Script, out string resultScript, scriptVariableSet, log);
         }
 
         // Interpretation ------------------------------------
@@ -185,12 +180,11 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
-            DataExpression dataExpression,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IDataExpression dataExpression,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            string resultScript = "";
-            this.Evaluate(dataExpression, out resultScript, scriptVariableSet, log);
+            Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -204,11 +198,11 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
             string script,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             string resultScript = "";
-            this.EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
+            EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -222,12 +216,12 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
-        private Object EvaluateScript(
+        private object EvaluateScript(
             string script,
             DataExpressionKind dataExpressionKind,
             out string resultScript,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             Object item = null;
 
@@ -249,7 +243,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                             if ((scriptWordBeginIndex > -1) && (index > -1))
                             {
                                 string stringValue;
-                                this.EvaluateScript(script, DataExpressionKind.Script, out stringValue, scriptVariableSet, log);
+                                EvaluateScript(script, DataExpressionKind.Script, out stringValue, scriptVariableSet, log);
 
                                 resultScript = resultScript.Replace(
                                     resultScript.GetSubstring(scriptWordBeginIndex, index + 1), stringValue);
@@ -259,14 +253,14 @@ namespace BindOpen.Framework.Core.System.Scripting
                     }
                     break;
                 case DataExpressionKind.Script:
-                    Log subLog = new Log();
+                    ILog subLog = new Log();
 
                     // we parse the text to interpretate
                     index = 0;
                     scriptWordBeginIndex = index;
 
                     // we get the next function or variable
-                    item = this.Interprete(
+                    item = Interprete(
                         script, out resultScript, ref index, 0, scriptVariableSet, false, subLog);
 
                     if (log != null)
@@ -290,7 +284,6 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         #endregion
 
-
         // ------------------------------------------
         // INTERPRETATION
         // ------------------------------------------
@@ -298,14 +291,14 @@ namespace BindOpen.Framework.Core.System.Scripting
         #region Interpretation
 
         // Returns the standard-interpretated text
-        private Object Interprete(
+        private object Interprete(
             string script,
             out string resultScript,
             ref int index,
             int offsetIndex,
-            ScriptVariableSet scriptVariableSet = null,
-            Boolean isSimulationModeOn = false,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            bool isSimulationModeOn = false,
+            ILog log = null)
         {
             Object evaluatedValue = resultScript = script;
             if (resultScript == null)
@@ -322,7 +315,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     int scriptWordBeginIndex = index;
 
                     // we get the next function or variable
-                    ScriptWord scriptWord = this.FindNextScriptWord(
+                    IScriptWord scriptWord = FindNextScriptWord(
                         ref resultScript,
                         null,
                         ref index,
@@ -336,12 +329,12 @@ namespace BindOpen.Framework.Core.System.Scripting
                     {
                         // we replace the script word by its value
                         string evaluatedString = "";
-                        evaluatedValue = scriptWord.Item = this.EvaluateWord(
+                        evaluatedValue = scriptWord.Item = EvaluateWord(
                             scriptWord, index + offsetIndex, scriptVariableSet, isSimulationModeOn, log);
                         if (evaluatedValue != null)
                             evaluatedString = evaluatedValue.ToString();
                         //we retrieve the index of the root script word
-                        ScriptWord rootScSriptWord = scriptWord.Root();
+                        IScriptWord rootScSriptWord = scriptWord.Root();
                         if (rootScSriptWord != null)
                         {
                             scriptWordBeginIndex = resultScript.IndexOf(
@@ -382,20 +375,20 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="isSimulationModeOn">Indicates whether the simulation mode is on.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public ScriptWord FindNextScriptWord(
+        public IScriptWord FindNextScriptWord(
             ref string script,
-            ScriptWord parentScriptWord,
+            IScriptWord parentScriptWord,
             ref int index,
             int offsetIndex,
-            ScriptVariableSet scriptVariableSet = null,
-            Boolean isSimulationModeOn = false,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            bool isSimulationModeOn = false,
+            ILog log = null)
         {
             if (parentScriptWord != null && parentScriptWord.Definition == null)
             {
                 if (log != null)
                 {
-                    LogEvent logEvent = log.AddError(
+                    ILogEvent logEvent = log.AddError(
                     title: "Syntax error: Function named '" + parentScriptWord.Name + "' not defined. Position " + (index + offsetIndex),
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
                     logEvent.Detail = new DataElementSet();
@@ -404,7 +397,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 return null;
             }
 
-            ScriptWord scriptWord = null;
+            IScriptWord scriptWord = null;
 
             // we retrieve the type of the next script word
             ScriptItemKind scriptItemKind = ScriptItemKind.None;
@@ -451,7 +444,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     {
                         if (log != null)
                         {
-                            LogEvent logEvent = log.AddError(
+                            ILogEvent logEvent = log.AddError(
                                 title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
                             logEvent.Detail = new DataElementSet();
@@ -476,7 +469,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         {
                             if (log != null)
                             {
-                                Event logEvent = log.AddError(
+                                IEvent logEvent = log.AddError(
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR");
                                 logEvent.Detail = new DataElementSet();
@@ -494,7 +487,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                                 string parameterText = "";
 
                                 int aSubIndex = 0;
-                                parameterValue = this.Interprete(
+                                parameterValue = Interprete(
                                     scriptWordParameterValue,
                                     out parameterText,
                                     ref aSubIndex,
@@ -512,7 +505,7 @@ namespace BindOpen.Framework.Core.System.Scripting
 
                                 index = nextIndex;
 
-                                DataElement dataElement = DataElement.Create(
+                                IDataElement dataElement = DataElement.Create(
                                     (parameterValue == null ? DataValueType.Text : parameterValue.GetValueType()),
                                     "Parameter" + scriptWordParameterCount.ToString());
                                 if (dataElement != null)
@@ -540,7 +533,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     {
                         if (log != null)
                         {
-                            LogEvent logEvent = log.AddError(
+                            ILogEvent logEvent = log.AddError(
                                 title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
                             logEvent.Detail = new DataElementSet();
@@ -563,13 +556,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptWord.Kind = scriptItemKind;
 
                     // we try to find the corresponding defined function
-                    List<ScriptWordDefinition> scriptWordDefinitions =
-                        this._Index.GetDefinitionsWithExactName(scriptWord.Name, parentScriptWord?.Definition);
+                    List<IScriptWordDefinition> scriptWordDefinitions =
+                        Index.GetDefinitionsWithExactName(scriptWord.Name, parentScriptWord?.Definition);
                     if (scriptWordDefinitions.Count == 0)
                     {
                         if (log != null)
                         {
-                            Event logEvent = log.AddError(
+                            ILogEvent logEvent = log.AddError(
                                 title: "Function named '" + scriptWord.Name + "' not defined",
                                 description: "Syntax error: Function named '" + scriptWord.Name + "' not defined" +
                                     (parentScriptWord == null ? "" : " for parent function '" + parentScriptWord.Name + "'") +
@@ -582,10 +575,10 @@ namespace BindOpen.Framework.Core.System.Scripting
                     }
                     else
                     {
-                        ScriptWordDefinition scriptWordDefinition = null;
-                        foreach (ScriptWordDefinition currentScriptWordDefinition in scriptWordDefinitions)
+                        IScriptWordDefinition scriptWordDefinition = null;
+                        foreach (IScriptWordDefinition currentScriptWordDefinition in scriptWordDefinitions)
                         {
-                            if (this._Index.IsWordMatching(scriptWord, currentScriptWordDefinition))
+                            if (Index.IsWordMatching(scriptWord, currentScriptWordDefinition))
                             {
                                 scriptWordDefinition = currentScriptWordDefinition;
                                 break;
@@ -597,7 +590,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         {
                             if (log != null)
                             {
-                                Event logEvent = log.AddError(
+                                ILogEvent logEvent = log.AddError(
                                     title: "Invalid arguments: Function called '" + scriptWord.Name + "' has invalid parameters. Either the number of parameters does not match or their value types. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_INVALIDARGUMENT"
                                     );
@@ -613,7 +606,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                             {
                                 if (log != null)
                                 {
-                                    Event logEvent = log.AddError(
+                                    ILogEvent logEvent = log.AddError(
                                         title: "Invalid definition: Method not defined for function called '" + scriptWord.Name + "'. Position " + (index + offsetIndex),
                                         resultCode: "SCRIPT_DEFINITION");
                                     logEvent.Detail = new DataElementSet();
@@ -621,18 +614,18 @@ namespace BindOpen.Framework.Core.System.Scripting
                                 }
                                 return null;
                             }
-                            scriptWord.SetDefinition(scriptWordDefinition, false);
+                            scriptWord.SetDefinition(scriptWordDefinition);
                             scriptWord.Parent = parentScriptWord;
 
                             // if the script word is a variable then we retrieve the sub script word
                             if (script.GetSubstring(nextIndex + 1, nextIndex + 1) == ".")
                             {
                                 // we evaluate the variable value
-                                scriptWord.Item = this.EvaluateWord(
+                                scriptWord.Item = EvaluateWord(
                                     scriptWord, index, scriptVariableSet, isSimulationModeOn, log);
 
                                 nextIndex++;
-                                scriptWord = this.FindNextScriptWord(
+                                scriptWord = FindNextScriptWord(
                                     ref script,
                                     scriptWord,
                                     ref nextIndex,
@@ -657,13 +650,13 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         // Returns the result of the script word scriptWord with the specified parameter values
         private string EvaluateWord(
-            ScriptWord scriptWord,
+            IScriptWord scriptWord,
             int offsetIndex,
-            ScriptVariableSet scriptVariableSet = null,
-            Boolean isSimulationModeOn = false,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            bool isSimulationModeOn = false,
+            ILog log = null)
         {
-            if (this._AppScope == null) return null;
+            if (_appScope == null) return null;
             if ((scriptWord == null) || (scriptWord.Definition == null)) return null;
 
             string resultString = "<Evaluation_Error />";
@@ -677,13 +670,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
                         new object[0] : scriptWord.ParameterDetail.GetElementItemObjects().ToArray());
-                    resultString = scriptWord.Definition.RuntimeFunction(this._AppScope, scriptVariableSet, scriptWord, parameters);
+                    resultString = scriptWord.Definition.RuntimeFunction(_appScope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
                 {
                     if (log != null)
                     {
-                        LogEvent logEvent = log.AddError(
+                        ILogEvent logEvent = log.AddError(
                             "Raised the following exception: " + ex.ToString(),
                             EventCriticality.High,
                             "",

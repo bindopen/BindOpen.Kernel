@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.System.Processing
     [Serializable()]
     [XmlType("ProcessExecution", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "processExecution", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ProcessExecution : DataItem
+    public class ProcessExecution : DataItem, IProcessExecution
     {
         // ------------------------------------------
         // VARIABLES
@@ -54,13 +54,13 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public DataElementSet Detail { get; set; } = new DataElementSet();
+        public IDataElementSet Detail { get; set; } = new DataElementSet();
 
         /// <summary>
         /// Specification of the PropertyDetail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DetailSpecified
+        public bool DetailSpecified
         {
             get
             {
@@ -74,17 +74,17 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Location of this instance.
         /// </summary>
         [XmlElement("location")]
-        public String Location { get; set; } = "";
+        public string Location { get; set; } = "";
 
         /// <summary>
         /// Specification of the Location of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LocationSpecified
+        public bool LocationSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this.Location);
+                return !string.IsNullOrEmpty(this.Location);
             }
         }
 
@@ -167,7 +167,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Custom status of this instance.
         /// </summary>
         [XmlElement("customStatus")]
-        public String CustomStatus
+        public string CustomStatus
         {
             get { return this._CustomStatus; }
             set
@@ -181,11 +181,11 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Specification of the CustomStatus of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean CustomStatusSpecified
+        public bool CustomStatusSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this._CustomStatus);
+                return !string.IsNullOrEmpty(this._CustomStatus);
             }
         }
 
@@ -195,7 +195,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Start date of this instance.
         /// </summary>
         [XmlElement("startDate")]
-        public String StartDate
+        public string StartDate
         {
             get { return this._StartDate; }
             set
@@ -209,11 +209,11 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Specification of the StartDate of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean StartDateSpecified
+        public bool StartDateSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this._StartDate);
+                return !string.IsNullOrEmpty(this._StartDate);
             }
         }
 
@@ -221,7 +221,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Re-start date of this instance.
         /// </summary>
         [XmlElement("restartDate")]
-        public String RestartDate
+        public string RestartDate
         {
             get { return this._RestartDate; }
             set
@@ -235,11 +235,11 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Specification of the RestartDate of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean RestartDateSpecified
+        public bool RestartDateSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this._RestartDate);
+                return !string.IsNullOrEmpty(this._RestartDate);
             }
         }
 
@@ -247,7 +247,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// End date of this instance.
         /// </summary>
         [XmlElement("endDate")]
-        public String EndDate
+        public string EndDate
         {
             get { return this._EndDate; }
             set
@@ -261,11 +261,11 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Specification of the EndDate of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean EndDateSpecified
+        public bool EndDateSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this.EndDate);
+                return !string.IsNullOrEmpty(this.EndDate);
             }
         }
 
@@ -273,7 +273,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// End date of this instance.
         /// </summary>
         [XmlElement("duration")]
-        public String Duration
+        public string Duration
         {
             get
             {
@@ -298,11 +298,11 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Specification of the Duration of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DurationSpecified
+        public bool DurationSpecified
         {
             get
             {
-                return !String.IsNullOrEmpty(this._Duration);
+                return !string.IsNullOrEmpty(this._Duration);
             }
         }
 
@@ -544,7 +544,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// </summary>
         /// <param name="name">The name of the attribute to set.</param>
         /// <param name="value">The value of the attribute to set.</param>
-        public void AddDetail(String name, Object value)
+        public void AddDetail(string name, object value)
         {
             this.Detail.AddElement(name, (value ?? "").ToString(), DataValueType.Text);
             if (this._Log != null)

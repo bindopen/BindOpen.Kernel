@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.Application.Services
         /// Value of this instance.
         /// </summary>
         [DataMember]
-        public String Value
+        public string Value
         {
             get { return this._Value; }
             set { this._Value = value; }
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Core.Application.Services
         /// Log of this instance.
         /// </summary>
         [DataMember]
-        public String Log
+        public string Log
         {
             get { return this._Log; }
             set { this._Log = value; }

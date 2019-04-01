@@ -7,14 +7,13 @@ using BindOpen.Framework.Core.Extensions.Definition.Formats;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Entities
 {
-
     /// <summary>
     /// This class represents the entity definition.
     /// </summary>
     [Serializable()]
     [XmlType("EntityDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "entity.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class EntityDefinition : AppExtensionItemDefinition
+    public class EntityDefinition : AppExtensionItemDefinition, IEntityDefinition
     {
         // --------------------------------------------------
         // VARIABLES
@@ -22,9 +21,9 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
 
         #region Variables
 
-        private List<FormatDefinition> _FormatDefinitions = new List<FormatDefinition>();
+        private List<IFormatDefinition> _formatDefinitions = new List<IFormatDefinition>();
 
-        private List<DataSchema> _PossibleMetaSchemas = new List<DataSchema>();
+        private List<IDataSchema> _possibleMetaSchemas = new List<IDataSchema>();
 
         #endregion
 
@@ -38,7 +37,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// Item class of this instance.
         /// </summary>
         [XmlElement("itemClass")]
-        public String ItemClass
+        public string ItemClass
         {
             get;
             set;
@@ -55,7 +54,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         /// <remarks>Class names using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
         [XmlElement("viewerClass")]
-        public String ViewerClass
+        public string ViewerClass
         {
             get;
             set;
@@ -66,11 +65,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         [XmlArray("formats")]
         [XmlArrayItem("format")]
-        public List<FormatDefinition> FormatDefinitions
+        public List<IFormatDefinition> FormatDefinitions
         {
             get
             {
-                return this._FormatDefinitions ?? (this._FormatDefinitions = new List<FormatDefinition>());
+                return this._formatDefinitions ?? (this._formatDefinitions = new List<IFormatDefinition>());
             }
         }
 
@@ -79,11 +78,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         [XmlArray("schemas")]
         [XmlArrayItem("schema")]
-        public List<DataSchema> PossibleMetaSchemas
+        public List<IDataSchema> PossibleMetaSchemas
         {
             get
             {
-                return this._PossibleMetaSchemas ?? (this._PossibleMetaSchemas = new List<DataSchema>());
+                return this._possibleMetaSchemas ?? (this._possibleMetaSchemas = new List<IDataSchema>());
             }
         }
 
@@ -117,7 +116,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         /// <param name="uniqueName">Unique name of the application module.</param>
         /// <returns>The current visitor application module.</returns>
-        public FormatDefinition GetFormatWithUniqueName(String uniqueName)
+        public IFormatDefinition GetFormatWithUniqueName(String uniqueName)
         {
             if (uniqueName == null) return null;
 
@@ -129,7 +128,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         /// <param name="name">Name of the application module.</param>
         /// <returns>The current visitor application module.</returns>
-        public FormatDefinition GetFormatWithName(String name)
+        public IFormatDefinition GetFormatWithName(String name)
         {
             if (name == null) return null;
 
@@ -141,7 +140,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         /// </summary>
         /// <param ID="id">Id of the application module.</param>
         /// <returns>The current visitor application module.</returns>
-        public FormatDefinition GetFormatWithId(String id)
+        public IFormatDefinition GetFormatWithId(String id)
         {
             if (id == null) return null;
 

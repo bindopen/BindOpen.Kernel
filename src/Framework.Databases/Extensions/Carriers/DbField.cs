@@ -301,7 +301,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         {
             this.ValueType = valueType;
             if (value != null)
-                this.Value = new DataExpression(value.GetString(valueType), DataExpressionKind.Literal);
+                this.Value = value.GetString(valueType).CreateLiteral()
         }
 
         /// <summary>

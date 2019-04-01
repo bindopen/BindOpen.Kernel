@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
     [Serializable()]
     [XmlType("ConnectorDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "connector.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConnectorDefinition : AppExtensionItemDefinition
+    public class ConnectorDefinition : AppExtensionItemDefinition, IConnectorDefinition
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
         /// Item class of this instance.
         /// </summary>
         [XmlElement("itemClass")]
-        public String ItemClass
+        public string ItemClass
         {
             get;
             set;
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
         /// The data source element specification of this instance.
         /// </summary>
         [XmlElement("detail.specification")]
-        public DataElementSpecSet DetailSpec { get; set; } = new DataElementSpecSet();
+        public IDataElementSpecSet DetailSpec { get; set; } = new DataElementSpecSet();
 
         #endregion
 

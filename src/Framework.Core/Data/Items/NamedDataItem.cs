@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         [XmlAttribute("name")]
         [DefaultValue("")]
-        public String Name { get; set; } = "";
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// Specification of the Name property of this instance.
@@ -55,9 +55,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="id">The ID to consider.</param>
         /// <param name="creationDate">The creation date of this instance.</param>
         public NamedDataItem(
-            String name,
-            String namePreffix = "",
-            String id = null,
+            string name,
+            string namePreffix = "",
+            string id = null,
             DateTime? creationDate = null) : base(id, creationDate)
         {
             this.NamePreffix = namePreffix;
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public override String Key()
+        public override string Key()
         {
             return this.Name;
         }
@@ -83,7 +83,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns a new Guid.
         /// </summary>
-        public static String GetClonedName(String name, String namePreffix = null)
+        public static string GetClonedName(string name, string namePreffix = null)
         {
             return string.IsNullOrEmpty(name) ?
                 (namePreffix != null ? namePreffix + "_" : "") + DateTime.Now.Ticks.ToString() :
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             NamedDataItem item = base.Clone() as NamedDataItem;
             item.Name =NamedDataItem.GetClonedName(this.Name, this.NamePreffix);

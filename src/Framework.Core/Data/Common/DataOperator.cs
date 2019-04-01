@@ -3,12 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
-    // --------------------------------------------------
-    // ENUMERATIONS
-    // --------------------------------------------------
-
-    #region Enumerations
-
     /// <summary>
     /// This enumeration represents the possible data operators.
     /// </summary>
@@ -76,6 +70,4 @@ namespace BindOpen.Framework.Core.Data.Common
         /// </summary>
         GreaterOrEqual
     }
-
-    #endregion
 }

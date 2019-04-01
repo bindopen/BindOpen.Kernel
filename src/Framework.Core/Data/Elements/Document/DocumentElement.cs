@@ -12,16 +12,14 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Document
 {
-
     /// <summary>
     /// This class represents a document element that is an element whose items are documents.
     /// </summary>
     [Serializable()]
     [XmlType("DocumentElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "document", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DocumentElement : DataElement
+    public class DocumentElement : DataElement, IDocumentElement
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -57,7 +55,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -130,7 +127,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
         #endregion
 
-
         // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
@@ -150,7 +146,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
         #endregion
 
-
         // --------------------------------------------------
         // ITEMS
         // --------------------------------------------------
@@ -163,7 +158,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
           /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
+        public override object NewItem(IAppScope appScope = null, ILog log = null)
         {
             return null;
         }
@@ -176,17 +171,17 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
+        public override object GetItem(
             Object indexItem = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             if ((indexItem == null) || (indexItem is int))
             {
                 return base.GetItem(indexItem, appScope, scriptVariableSet, log);
             }
-            else if (indexItem is String)
+            else if (indexItem is string)
             {
                 return this.GetItems(appScope, scriptVariableSet, log)
                     .Any(p => p is Items.Documents.Document && string.Equals((p as Items.Documents.Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
@@ -201,16 +196,15 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="indexItem">The scalar item or the entity name to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p is Items.Documents.Document && string.Equals((p as Items.Documents.Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
 
             return false;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
@@ -220,7 +214,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -232,7 +225,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             Items.Documents.Document aDocument = this.MemberwiseClone() as Items.Documents.Document;
             return aDocument;
@@ -241,5 +234,4 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         #endregion
 
     }
-
 }

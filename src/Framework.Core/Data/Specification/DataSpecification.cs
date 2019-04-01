@@ -1,38 +1,32 @@
-﻿using BindOpen.Framework.Core.Data.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Specification
 {
-
     /// <summary>
     /// This abstract class represents a data specification.
     /// </summary>
     [Serializable()]
     [XmlType("DataSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public abstract class DataSpecification : IndexedDataItem
+    public abstract class DataSpecification : IndexedDataItem, IDataSpecification
     {
-
         // --------------------------------------------------
         // VARIABLES
         // --------------------------------------------------
 
         #region Variables
 
-        private RequirementLevel _RequirementLevel = RequirementLevel.None;
-        private String _RequirementScript = null;
-        private Common.InheritanceLevel _InheritanceLevel = Common.InheritanceLevel.None;
-        private List<SpecificationLevel> _SpecificationLevels = null;
-        private AccessibilityLevel _AccessibilityLevel = AccessibilityLevel.Public;
+        private List<SpecificationLevel> _specificationLevels = null;
 
         #endregion
-
 
         // --------------------------------------------------
         // PROPERTIES
@@ -45,53 +39,26 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         [XmlAttribute("requirementLevel")]
         [DefaultValue(RequirementLevel.None)]
-        public RequirementLevel RequirementLevel
-        {
-            get
-            {
-                return this._RequirementLevel;
-            }
-            set { this._RequirementLevel = value; }
-        }
+        public RequirementLevel RequirementLevel { get; set; } = RequirementLevel.None;
 
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
         [XmlElement("requirementScript")]
-        public String RequirementScript
-        {
-            get
-            {
-                return this._RequirementScript;
-            }
-            set { this._RequirementScript = value; }
-        }
+        public string RequirementScript { get; set; } = null;
 
         /// <summary>
         /// Specification of the RequirementScript property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean RequirementScriptSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.RequirementScript);
-            }
-        }
+        public bool RequirementScriptSpecified => !string.IsNullOrEmpty(RequirementScript);
 
         /// <summary>
         /// The level of inheritance of this instance.
         /// </summary>
         [XmlElement("inheritanceLevel")]
         [DefaultValue(Common.InheritanceLevel.None)]
-        public Common.InheritanceLevel InheritanceLevel
-        {
-            get
-            {
-                return this._InheritanceLevel;
-            }
-            set { this._InheritanceLevel = value; }
-        }
+        public Common.InheritanceLevel InheritanceLevel { get; set; } = Common.InheritanceLevel.None;
 
         /// <summary>
         /// Levels of specification of this instance.
@@ -100,42 +67,24 @@ namespace BindOpen.Framework.Core.Data.Specification
         [XmlArrayItem("specificationLevel")]
         public List<SpecificationLevel> SpecificationLevels
         {
-            get
-            {
-                if (this._SpecificationLevels == null) this._SpecificationLevels = new List<SpecificationLevel>();
-                return this._SpecificationLevels;
-            }
-            set { this._SpecificationLevels = value; }
+            get => _specificationLevels ?? (_specificationLevels = new List<SpecificationLevel>());
+            set { _specificationLevels = value; }
         }
 
         /// <summary>
         /// Specification of the SpecificationLevels property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean SpecificationLevelsSpecified
-        {
-            get
-            {
-                return this._SpecificationLevels != null && this._SpecificationLevels.Count > 0 && !this._SpecificationLevels.Contains(SpecificationLevel.All);
-            }
-        }
+        public bool SpecificationLevelsSpecified => _specificationLevels?.Count > 0 && !_specificationLevels.Contains(SpecificationLevel.All);
 
         /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
         [XmlElement("accessibilityLevel")]
         [DefaultValue(Common.AccessibilityLevel.Public)]
-        public AccessibilityLevel AccessibilityLevel
-        {
-            get
-            {
-                return this._AccessibilityLevel;
-            }
-            set { this._AccessibilityLevel = value; }
-        }
+        public AccessibilityLevel AccessibilityLevel { get; set; } = AccessibilityLevel.Public;
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -144,27 +93,26 @@ namespace BindOpen.Framework.Core.Data.Specification
         #region Constructors
 
         /// <summary>
-        /// Initializes a new data specification.
+        /// Initializes a new insance of the DataSpecification class.
         /// </summary>
-        public DataSpecification()
+        protected DataSpecification()
         {
         }
 
         /// <summary>
-        /// Initializes a new data element specification.
+        /// Initializes a new insance of the DataSpecification class.
         /// </summary>
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
-        public DataSpecification(
+        protected DataSpecification(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            List<SpecificationLevel> specificationLevels = null)
+            SpecificationLevel[] specificationLevels = null)
         {
-            this._AccessibilityLevel = accessibilityLevel;
-            this._SpecificationLevels = (specificationLevels ?? new List<SpecificationLevel>() { SpecificationLevel.All }); 
+            AccessibilityLevel = accessibilityLevel;
+            _specificationLevels = specificationLevels?.ToList() ?? new List<SpecificationLevel>() { SpecificationLevel.All };
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -177,21 +125,15 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public virtual Boolean IsCompatibleWith(DataItem item)
+        public virtual bool IsCompatibleWith(IDataItem item)
         {
             if (item == null)
                 return true;
-
-            //private RequirementLevel _RequirementLevel = RequirementLevel..None;
-            //private InheritanceLevel _InheritanceLevel = InheritanceLevel.None;
-            //private List<SpecificationLevel> _SpecificationLevels = new List<SpecificationLevel>();
-            //private AccessibilityLevel _AccessibilityLevel = AccessibilityLevel.Public;
 
             return true;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
@@ -205,9 +147,9 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public virtual Log Update(
-            DataElementSpec referenceSpecification = null,
-            List<String> specificationAreas = null)
+        public virtual ILog Update(
+            IDataElementSpec referenceSpecification = null,
+            string[] specificationAreas = null)
         {
             return new Log();
         }
@@ -217,10 +159,10 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification">The reference specification to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
-        public virtual Log Check(
-            DataSpecification referenceSpecification = null)
+        public virtual ILog Check(
+            IDataSpecification referenceSpecification = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (referenceSpecification == null)
                 return log;
@@ -234,16 +176,15 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification">The reference specification to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
-        public virtual Log Repair(
-            DataSpecification referenceSpecification = null)
+        public virtual ILog Repair(
+            IDataSpecification referenceSpecification = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             return log;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -255,14 +196,12 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
-            DataSpecification dataSpecification = this.MemberwiseClone() as DataSpecification;
-            return dataSpecification;
+            DataSpecification specification = MemberwiseClone() as DataSpecification;
+            return specification;
         }
 
         #endregion
-
     }
-
 }

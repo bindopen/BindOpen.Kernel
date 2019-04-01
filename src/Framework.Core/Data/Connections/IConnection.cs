@@ -1,6 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Connections
 {
@@ -24,6 +22,6 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Indicates whether the instance is connected.
         /// </summary>
-        Boolean IsConnected();
+        bool IsConnected();
     }
 }

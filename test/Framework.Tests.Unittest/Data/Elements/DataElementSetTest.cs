@@ -37,7 +37,7 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
         [Test]
         public void TestUpdateCheckRepair()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             // test update
             //log = this._ElementSetB.Update(this._ElementSetA);

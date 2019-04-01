@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -11,7 +10,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements._Object
 {
-
     /// <summary>
     /// This class represents an object element specification.
     /// </summary>
@@ -20,28 +18,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class ObjectElementSpec : DataElementSpec
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        // Entity ----------------------------------
-
-        private DataValueFilter _ClassFilter = null;
-        //private RequirementLevel _EntityRequirementLevel = RequirementLevel.None;
-        //private List<SpecificationLevel> _EntitySpecificationLevels = new List<SpecificationLevel>();
-
-        //// Format ----------------------------------
-
-        //private DataValueFilter _FormatUniqueNameFilter = new DataValueFilter();
-        //private RequirementLevel _FormatRequirementLevel = RequirementLevel.Optional;
-        //private List<SpecificationLevel> _FormatSpecificationLevels = new List<SpecificationLevel>();
-
-        #endregion
-
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -49,96 +25,22 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         #region Properties
 
         // Entity ----------------------------------
-    
+
         /// <summary>
         /// The class filter of this instance.
         /// </summary>
         [XmlElement("class.filter")]
-        public DataValueFilter ClassFilter
-        {
-            get {
-                //if (this._ClassFilter == null) this._ClassFilter = new DataValueFilter();
-                return this._ClassFilter;
-            }
-            set { this._ClassFilter = value; }
-        }
+        public IDataValueFilter ClassFilter { get; set; } = null;
 
         /// <summary>
         /// Specification of the ClassFilter property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ClassFilterSpecified
-        {
-            get
-            {
-                return this._ClassFilter != null && 
-                    (this._ClassFilter.AddedValues==null || this._ClassFilter.AddedValues.Count > 0) &&
-                    (this._ClassFilter.RemovedValues == null || this._ClassFilter.RemovedValues.Count > 0);
-            }
-        }
-
-        ///// <summary>
-        ///// Entity requirement level of this instance.
-        ///// </summary>
-        //[XmlElement("entityRequirementLevel")]
-        //public RequirementLevel EntityRequirementLevel
-        //{
-        //    get
-        //    {
-        //        return this._EntityRequirementLevel;
-        //    }
-        //    set { this._EntityRequirementLevel = value; }
-        //}
-
-        ///// <summary>
-        ///// The specification levels for entity specification of this instance.
-        ///// </summary>
-        //[XmlArray("entitySpecificationLevels")]
-        //[XmlArrayItem("add.level")]
-        //public List<SpecificationLevel> EntitySpecificationLevels
-        //{
-        //    get { return this._EntitySpecificationLevels; }
-        //    set { this._EntitySpecificationLevels = value; }
-        //}
-
-        //// Format ----------------------------------
-
-        ///// <summary>
-        ///// The format unique name filter of this instance.
-        ///// </summary>
-        //[XmlElement("formatUniqueNameFilter")]
-        //public DataValueFilter FormatUniqueNameFilter
-        //{
-        //    get { return this._FormatUniqueNameFilter; }
-        //    set { this._FormatUniqueNameFilter = value; }
-        //}
-
-        ///// <summary>
-        ///// Format requirement level of this instance.
-        ///// </summary>
-        //[XmlElement("formatRequirementLevel")]
-        //public RequirementLevel FormatRequirementLevel
-        //{
-        //    get
-        //    {
-        //        return this._FormatRequirementLevel;
-        //    }
-        //    set { this._FormatRequirementLevel = value; }
-        //}
-
-        ///// <summary>
-        ///// The specification levels for format specification of this instance.
-        ///// </summary>
-        //[XmlArray("formatSpecificationLevels")]
-        //[XmlArrayItem("add.level")]
-        //public List<SpecificationLevel> FormatSpecificationLevels
-        //{
-        //    get { return this._FormatSpecificationLevels; }
-        //    set { this._FormatSpecificationLevels = value; }
-        //}
+        public bool ClassFilterSpecified => ClassFilter != null
+                    && (ClassFilter.AddedValues == null || ClassFilter.AddedValues.Count > 0) &&
+                    (ClassFilter.RemovedValues == null || ClassFilter.RemovedValues.Count > 0);
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -160,13 +62,12 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public ObjectElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            List<SpecificationLevel> specificationLevels = null)
+            SpecificationLevel[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -180,9 +81,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="detail">The detail to consider.</param>
         /// <returns>Returns a new data element respecting this instance.</returns>
-        public override DataElement NewElement(IAppScope appScope = null, DataElementSet detail = null)
+        public override DataElement NewElement(IAppScope appScope = null, IDataElementSet detail = null)
         {
-            return new ObjectElement(this.Name);
+            return new ObjectElement(Name);
         }
 
         /// <summary>
@@ -190,9 +91,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override Boolean IsCompatibleWith(DataItem item)
+        public override bool IsCompatibleWith(IDataItem item)
         {
-            Boolean isCompatible = base.IsCompatibleWith(item);
+            bool isCompatible = base.IsCompatibleWith(item);
 
             if (isCompatible)
             {
@@ -211,11 +112,11 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckItem(
-            Object item,
-            DataElement dataElement = null,
+        public override ILog CheckItem(
+            object item,
+            IDataElement dataElement = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -228,11 +129,11 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckElement(
-            DataElement dataElement,
-            List<String> specificationAreas = null,
+        public override ILog CheckElement(
+            IDataElement dataElement,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             // we check that the entity unique name is available
             // we check that the format unique name is available
@@ -243,7 +144,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #endregion
 
-
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
         // --------------------------------------------------
@@ -252,7 +152,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -264,18 +163,16 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ObjectElementSpec specification = base.Clone() as ObjectElementSpec;
-            if (this.ClassFilter != null)
-                specification.ClassFilter = this.ClassFilter.Clone() as DataValueFilter;
-            //if (this.FormatUniqueNameFilter != null)
-            //    entityElementSpec.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
+            if (ClassFilter != null)
+                specification.ClassFilter = ClassFilter.Clone() as DataValueFilter;
+            //if (FormatUniqueNameFilter != null)
+            //    entityElementSpec.FormatUniqueNameFilter = FormatUniqueNameFilter.Clone() as DataValueFilter;
             return specification;
         }
 
         #endregion
-
     }
-
 }

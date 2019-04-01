@@ -11,8 +11,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [Serializable()]
     [XmlRoot(ElementName = "item.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataItemSet<T> : GenericDataItemSet<T>
-        where T : StoredDataItem
+    public class DataItemSet<T> : GenericDataItemSet<T>, IDataItemSet<T> where T : IStoredDataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -26,14 +25,11 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         [XmlElement("item")]
         public List<T> Items
         {
-            get
-            {
-                return this._Items ?? (this._Items = new List<T>());
-            }
+            get => _items ?? (_items = new List<T>());
             set
             {
-                this._Items = value;
-                this.OnPropertyChanged("Items");
+                _items = value;
+                OnPropertyChanged("Items");
             }
         }
 
@@ -41,16 +37,10 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Specification of the Items property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ItemsSpecified
-        {
-            get
-            {
-                return _Items != null && this._Items.Count > 0;
-            }
-        }
+        public bool ItemsSpecified => _items?.Count > 0;
 
         #endregion
-    
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -69,7 +59,9 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// </summary>
         /// <param name="items">The items to consider.</param>
         /// <param name="description">The description to consider.</param>
-        public DataItemSet(DictionaryDataItem description, params T[] items) : base(description, items)
+        public DataItemSet(
+            DictionaryDataItem description,
+            params T[] items) : base(description, items)
         {
         }
 
@@ -82,6 +74,5 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         }
 
         #endregion
-
     }
 }

@@ -38,7 +38,7 @@ namespace BindOpen.Framework.UnitTest.Setup
                 {
                     appScope = new RuntimeAppScope(AppDomain.CurrentDomain);
                     Log log = appScope.AppExtension.LoadLibrary(
-                        new List<String>() {
+                        new List<string>() {
                             "BindOpen.Framework.Standard",
                             "BindOpen.Framework.Databases",
                             "BindOpen.Framework.Databases.MSSqlServer"
@@ -63,7 +63,7 @@ namespace BindOpen.Framework.UnitTest.Setup
                 {
                     dataSourceManager = new DataSourceService();
                     dataSourceManager = new DataSourceService(
-                        new DataSource("prd@ptf_central_db", DataSourceKind.Database,
+                        new IDataSource("prd@ptf_central_db", DataSourceKind.Database,
                             new ConnectorConfiguration(
                                 null,
                                 DatabaseConnectorKind.MSSqlServer.GetUniqueName(),

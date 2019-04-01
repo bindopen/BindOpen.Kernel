@@ -17,13 +17,13 @@ using BindOpen.Framework.Core.System.Scripting;
 namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
 {
     /// <summary>
-    /// This class represents an task.
+    /// This class represents a task configuration.
     /// </summary>
     [Serializable()]
     [XmlType("TaskConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "task", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     [XmlInclude(typeof(Command))]
-    public class TaskConfiguration : TAppExtensionTitledItemConfiguration<TaskDefinition>
+    public class TaskConfiguration : TAppExtensionTitledItemConfiguration<ITaskDefinition>, ITaskConfiguration
     {
         // ------------------------------------------
         // VARIABLES
@@ -33,8 +33,8 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
 
         // Entries --------------------------------
 
-        private DataElementSet _InputDetail = new DataElementSet();
-        private DataElementSet _OutputDetail = new DataElementSet();
+        private IDataElementSet _inputDetail = new DataElementSet();
+        private IDataElementSet _outputDetail = new DataElementSet();
 
         #endregion
 
@@ -50,19 +50,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public DataElementSet Detail { get; set; } = new DataElementSet();
+        public IDataElementSet Detail { get; set; } = new DataElementSet();
 
         /// <summary>
         /// Specification of the DetailSpecified property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DetailSpecified
-        {
-            get
-            {
-                return this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
-            }
-        }
+        public bool DetailSpecified => this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
 
         /// <summary>
         /// Maximum index of this instance.
@@ -78,15 +72,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// </summary>
         /// <seealso cref="OutputDetail"/>
         [XmlElement("inputs")]
-        public DataElementSet InputDetail
+        public IDataElementSet InputDetail
         {
-            get
-            {
-                return this._InputDetail ?? (this._InputDetail = new DataElementSet());
-            }
+            get => this._inputDetail ?? (this._inputDetail = new DataElementSet());
             set
             {
-                this._InputDetail = value;
+                this._inputDetail = value;
             }
         }
 
@@ -94,28 +85,19 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Specification of the InputSpecified property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean InputDetailSpecified
-        {
-            get
-            {
-                return this._InputDetail != null && (this._InputDetail.ElementsSpecified || this._InputDetail.DescriptionSpecified);
-            }
-        }
+        public bool InputDetailSpecified => this._inputDetail != null && (this._inputDetail.ElementsSpecified || this._inputDetail.DescriptionSpecified);
 
         /// <summary>
         /// Output detail of this instance.
         /// </summary>
         /// <seealso cref="InputDetail"/>
         [XmlElement("outputs")]
-        public DataElementSet OutputDetail
+        public IDataElementSet OutputDetail
         {
-            get
-            {
-                return this._OutputDetail ?? (this._OutputDetail = new DataElementSet());
-            }
+            get => this._outputDetail ?? (this._outputDetail = new DataElementSet());
             set
             {
-                this._OutputDetail = value;
+                this._outputDetail = value;
             }
         }
 
@@ -123,13 +105,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Specification of the OutputSpecified property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean OutputDetailSpecified
-        {
-            get
-            {
-                return this._OutputDetail != null && (this._OutputDetail.ElementsSpecified || this._OutputDetail.DescriptionSpecified);
-            }
-        }
+        public bool OutputDetailSpecified => this._outputDetail != null && (this._outputDetail.ElementsSpecified || this._outputDetail.DescriptionSpecified);
 
         #endregion
 
@@ -142,7 +118,8 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <summary>
         /// Instantiates a new instance of the TaskConfiguration class.
         /// </summary>
-        public TaskConfiguration() : this(null)
+        public TaskConfiguration()
+            : base(null)
         {
         }
 
@@ -150,18 +127,35 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Instantiates a new instance of the TaskConfiguration class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
         /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
         /// <param name="inputDetail">The input detail to consider.</param>
-        public TaskConfiguration(
-            String name,
-            String definitionName=null,
-            TaskDefinition definition = null,
-            String namePreffix = "task_",
-            DataElementSet inputDetail = null)
-            : base(name, definitionName, definition, namePreffix)
+        protected TaskConfiguration(
+            string name,
+            ITaskDefinition definition = default,
+            string namePreffix = "task_",
+            IDataElementSet inputDetail = null)
+            : this(name, definition?.Key(), namePreffix, inputDetail)
         {
+            _definition = definition;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the TaskConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="inputDetail">The input detail to consider.</param>
+        protected TaskConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix = "task_",
+            IDataElementSet inputDetail = null)
+            : base(name, definitionUniqueId, namePreffix)
+        {
+            DefinitionUniqueId = definitionUniqueId;
+            _inputDetail = inputDetail;
         }
 
         #endregion
@@ -179,20 +173,20 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<DataElement> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IDataElement> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length==0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            List<DataElement> dataElements = new List<DataElement>();
+            List<IDataElement> dataElements = new List<IDataElement>();
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
-                dataElements.AddRange(this._InputDetail.Elements);
+                dataElements.AddRange(this._inputDetail.Elements);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
-                dataElements.AddRange(this._OutputDetail.Elements);
+                dataElements.AddRange(this._outputDetail.Elements);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._OutputDetail.Elements.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(this._outputDetail.Elements.Where(p => p.ValueType.IsScalar()));
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._OutputDetail.Elements.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(this._outputDetail.Elements.Where(p => p.ValueType.IsScalar()));
 
             return dataElements;
         }
@@ -203,7 +197,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public DataElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
+        public IDataElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
             return this.GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
         }
@@ -216,14 +210,14 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
-        public Object GetEntryItemObjectWithName(
-            String name,
+        public object GetEntryItemObjectWithName(
+            string name,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            DataElement entry = this.GetEntryWithName(name, taskEntryKinds);
+            IDataElement entry = this.GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetItemObject(appScope, scriptVariableSet, log);
         }
@@ -236,19 +230,21 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="dataElementSpecSet">The set of element specifications to consider.</param>
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element collection.</returns>
-        public Boolean IsCompatibleWith(
-            DataElementSpecSet dataElementSpecSet,
+        public bool IsCompatibleWith(
+            IDataElementSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
             if (dataElementSpecSet == null)
+            {
                 return true;
+            }
             else
-                foreach (DataElement endPoint in this.GetEntries(taskEntryKind))
+                foreach (IDataElement endPoint in this.GetEntries(taskEntryKind))
                 {
-                    DataElementSpec dataElementSpec = dataElementSpecSet[endPoint.Key()];
+                    IDataElementSpec dataElementSpec = dataElementSpecSet[endPoint.Key()];
                     if (dataElementSpec != null)
                     {
-                        Boolean isCompatible = endPoint.IsCompatibleWith(dataElementSpec);
+                        bool isCompatible = endPoint.IsCompatibleWith(dataElementSpec);
                         if (!isCompatible) return false;
                     }
                 }
@@ -257,30 +253,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         }
 
         /// <summary>
-        /// Indicates whether this instance has compatible entries with the specified elements.
-        /// </summary>
-        /// <param name="dataElementSpecs">The data elements to consider.</param>
-        /// <param name="taskEntryKind">The kind end entry to consider.</param>
-        /// <returns>True if this instance is compatible with the specified data elements.</returns>
-        public Boolean IsCompatibleWith(
-            List<DataElementSpec> dataElementSpecs,
-            TaskEntryKind taskEntryKind = TaskEntryKind.Any)
-        {
-            if (dataElementSpecs == null)
-                return true;
-
-            return this.IsCompatibleWith(
-                new DataElementSpecSet(dataElementSpecs.ToArray()),
-                taskEntryKind);
-        }
-
-        /// <summary>
         /// Indicates whether this instance is configurable.
         /// </summary>
         /// <returns>True if this instance is configurable.</returns>
-        public Boolean IsConfigurable(SpecificationLevel specificationLevel = SpecificationLevel.Runtime)
+        public bool IsConfigurable(SpecificationLevel specificationLevel = SpecificationLevel.Runtime)
         {
-            List<DataElement> dataElements = new List<DataElement>();
+            List<IDataElement> dataElements = new List<IDataElement>();
             dataElements.AddRange(this.GetEntries(TaskEntryKind.Input));
             dataElements.AddRange(this.GetEntries(TaskEntryKind.ScalarOutput));
 
@@ -288,8 +266,8 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
                 return false;
             else
                 foreach (DataElement dataElement in dataElements)
-                    if ((dataElement.Specification != null) &&
-                        (!dataElement.Specification.GetAreaSpecification("item").SpecificationLevels.Has(specificationLevel)))
+                    if ((dataElement.Specification != null)
+                        && (!dataElement.Specification.GetAreaSpecification("item").SpecificationLevels.Has(specificationLevel)))
                         return false;
 
             return true;
@@ -311,13 +289,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the update task.</returns>
-        private Log UpdateProperty(
-            DataElement dataElement,
+        private ILog UpdateProperty(
+            IDataElement dataElement,
             TaskEntryKind taskEntryKind,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (dataElement != null)
                 try
@@ -347,11 +325,11 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the update task.</returns>
-        protected Log UpdateInputPropertiesFromInputDetail(
+        protected ILog UpdateInputPropertiesFromInputDetail(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             foreach (DataElement dataElement in this.GetEntries(TaskEntryKind.Input))
                 log.AddEvents(this.UpdateProperty(dataElement, TaskEntryKind.Input));
@@ -365,11 +343,11 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the update task.</returns>
-        protected Log UpdateNonScalarOutputPropertiesFromOutputDetail(
+        protected ILog UpdateNonScalarOutputPropertiesFromOutputDetail(
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             foreach (DataElement dataElement in this.GetEntries(TaskEntryKind.NonScalarOutput))
                 log.AddEvents(this.UpdateProperty(dataElement, TaskEntryKind.NonScalarOutput));
@@ -381,12 +359,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Updates output detail from the output properties.
         /// </summary>
         /// <returns>The log of the update task.</returns>
-        protected Log UpdateOutputDetailFromOutputProperties()
+        protected ILog UpdateOutputDetailFromOutputProperties()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             Type aType = this.GetType();
-            foreach (DataElement dataElement in this.OutputDetail.Elements)
+            foreach (IDataElement dataElement in this.OutputDetail.Elements)
             {
                 PropertyInfo aInputProperty = aType.GetProperty(dataElement.Name);
                 if (aInputProperty != null)
@@ -411,28 +389,28 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Updates the relative paths of this instance.
         /// </summary>
         /// <param name="relativePath">The relative path to consider.</param>
-        public void UpdateAbsolutePaths(String relativePath)
+        public void UpdateAbsolutePaths(string relativePath)
         {
-            //foreach (DataElement currentDataElement in this._Inputs)
-            //    if (currentDataElement.CarrierKind == DocumentKind.RepositoryFile)
+            //foreach (DataElement currentElement in this._Inputs)
+            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
             //    {
-            //        RepositoryFile aRepositoryFile = (RepositoryFile)currentDataElement.GetValue();
+            //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
             //        {
             //            aRepositoryFile.Path = RepositoryFile.GetAbsolutePath(aRepositoryFile.Path, relativePath);
             //            aRepositoryFile.Paths = RepositoryFile.GetAbsolutePath(aRepositoryFile.Paths, relativePath);
-            //            currentDataElement.SetValue(aRepositoryFile);
+            //            currentElement.SetValue(aRepositoryFile);
             //        }
             //    }
-            //foreach (DataElement currentDataElement in this._Outputs)
-            //    if (currentDataElement.CarrierKind == DocumentKind.RepositoryFile)
+            //foreach (DataElement currentElement in this._Outputs)
+            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
             //    {
-            //        RepositoryFile aRepositoryFile = (RepositoryFile)currentDataElement.GetValue();
+            //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
             //        {
             //            aRepositoryFile.Path = RepositoryFile.GetAbsolutePath(aRepositoryFile.Path, relativePath);
             //            aRepositoryFile.Paths = RepositoryFile.GetAbsolutePath(aRepositoryFile.Paths, relativePath);
-            //            currentDataElement.SetValue(aRepositoryFile);
+            //            currentElement.SetValue(aRepositoryFile);
             //        }
             //    }
         }
@@ -449,15 +427,15 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             TaskConfiguration task = base.Clone() as TaskConfiguration;
             if (this.Detail != null)
                 task.Detail = this.Detail.Clone() as DataElementSet;
-            if (this._InputDetail != null)
-                task.InputDetail = this._InputDetail.Clone() as DataElementSet;
-            if (this._OutputDetail != null)
-                task.OutputDetail = this._OutputDetail.Clone() as DataElementSet;
+            if (this._inputDetail != null)
+                task.InputDetail = this._inputDetail.Clone() as DataElementSet;
+            if (this._outputDetail != null)
+                task.OutputDetail = this._outputDetail.Clone() as DataElementSet;
 
             return task;
         }
@@ -474,14 +452,14 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
 
             this.Detail?.UpdateStorageInfo(log);
 
-            this._InputDetail?.UpdateStorageInfo(log);
-            this._OutputDetail?.UpdateStorageInfo(log);
+            this._inputDetail?.UpdateStorageInfo(log);
+            this._outputDetail?.UpdateStorageInfo(log);
         }
 
         /// <summary>
@@ -489,13 +467,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
 
             this.Detail?.UpdateRuntimeInfo(appScope, log);
-            this._InputDetail?.UpdateRuntimeInfo(appScope, log);
-            this._OutputDetail?.UpdateRuntimeInfo(appScope, log);
+            this._inputDetail?.UpdateRuntimeInfo(appScope, log);
+            this._outputDetail?.UpdateRuntimeInfo(appScope, log);
         }
 
         #endregion
@@ -516,14 +494,14 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is TaskDefinition)
             {
@@ -546,12 +524,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
-        public override Log Check<T>(
-            Boolean isExistenceChecked = true,
-            T item = null,
-            List<String> specificationAreas = null,
+        public override ILog Check<T>(
+            bool isExistenceChecked = true,
+            T item = default,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return base.Check(isExistenceChecked, item, specificationAreas, appScope, scriptVariableSet);
         }
@@ -565,14 +543,14 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Tasks
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
-        public override Log Repair<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Repair<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is TaskDefinition)
             {

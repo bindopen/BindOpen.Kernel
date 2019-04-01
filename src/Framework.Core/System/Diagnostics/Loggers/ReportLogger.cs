@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String folderPath,
             String fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
-            Boolean isVerbose = false,
+            bool isVerbose = false,
             String uiCulture = null,
             Predicate<LogEvent> eventFinder = null,
             int expirationDayNumber = -1) : 
@@ -68,7 +68,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
-        public override Boolean WriteTask(
+        public override bool WriteTask(
             Log log, TaskConfiguration task)
         {
             return false;
@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified record.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        public override Boolean WriteEvent(
+        public override bool WriteEvent(
             LogEvent logEvent)
         {
             if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
@@ -93,7 +93,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="elementValue">The element value to consider.</param>
-        public override Boolean WriteDetailElement(
+        public override bool WriteDetailElement(
             Log log,
             String elementName,
             Object elementValue)
@@ -106,7 +106,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="childLog">The child log to log.</param>
-        public override Boolean WriteChildLog(
+        public override bool WriteChildLog(
             Log log,
             Log childLog)
         {
@@ -131,14 +131,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public override Boolean Save(Log log, String logFilePath, Boolean isAppended = false)
+        public override bool Save(Log log, String logFilePath, bool isAppended = false)
         {
             if (log == null) return false;
 
             log.UpdateStorageInfo();
 
             StreamWriter streamWriter = null;
-            Boolean isWasSaved = false;
+            bool isWasSaved = false;
             try
             {
                 // we create the folder if it does not exist
@@ -186,11 +186,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                         {
                             line += aFieldDelimiterValue;
 
-                            DataElement currentDataElement = null;
+                            DataElement currentElement = null;
                             if ((logEvent.Detail != null) &&
-                                ((currentDataElement = logEvent.Detail[dataElement.Name]) != null))
+                                ((currentElement = logEvent.Detail[dataElement.Name]) != null))
                             {
-                                line += textDelimiterValue + currentDataElement.ToString() + textDelimiterValue;
+                                line += textDelimiterValue + currentElement.ToString() + textDelimiterValue;
                             }
                         }
                     }

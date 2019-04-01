@@ -23,14 +23,14 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the target objects.</returns>
-        public static List<Object> Get(
+        public static List<object> Get(
             DataElement sourceElement = null,
             DataElementSet pathDetail = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
-            List<Object> objects = new List<Object>();
+            List<object> objects = new List<object>();
 
             log = (log ?? new Log());
 
@@ -59,14 +59,14 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the source object.</returns>
-        public static List<Object> Post(
+        public static List<object> Post(
             Object targetObject,
             ref DataElement sourceDataElement,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
-            List<Object> objects = new List<Object>();
+            List<object> objects = new List<object>();
 
             return objects;
         }

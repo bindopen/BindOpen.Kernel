@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
             ScriptWord scriptWord,
-            params Object[] parameters)
+            params object[] parameters)
         {
             if (appScope == null || appScope.DataContext == null)
                 return "<!--Application scope missing-->";

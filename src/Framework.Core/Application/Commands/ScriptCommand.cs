@@ -7,14 +7,13 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
-
     /// <summary>
     /// This class represents the script command.
     /// </summary>
     [Serializable()]
     [XmlType("ScriptCommand", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "command", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScriptCommand : Command
+    public class ScriptCommand : Command, IScriptCommand
     {
         // ------------------------------------------
         // VARIABLES
@@ -22,10 +21,10 @@ namespace BindOpen.Framework.Core.Application.Commands
 
         #region Variables
 
-        private String _Script = null;
+        private string _script = null;
 
         #endregion
-        
+
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -36,10 +35,10 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// The script of this instance.
         /// </summary>
         [XmlElement("script")]
-        public String Script
+        public string Script
         {
-            get { return this._Script ?? ""; }
-            set { this._Script = value; }
+            get { return this._script ?? ""; }
+            set { this._script = value; }
         }
 
         #endregion
@@ -63,10 +62,10 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="script">The script to consider.</param>
         /// <param name="name">The name of this instance.</param>
         public ScriptCommand(
-            String script, String name = null)
+            string script, string name = null)
             : base(CommandKind.Script, name)
         {
-            this._Script = script;
+            this._script = script;
         }
 
         #endregion
@@ -85,10 +84,10 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
-        public override Log ExecuteWithResult(
-            out String resultString,
+        public override ILog ExecuteWithResult(
+            out string resultString,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal)
         {
             resultString = "";
@@ -96,7 +95,7 @@ namespace BindOpen.Framework.Core.Application.Commands
             Log log = appScope.Check(false, true);
             if (!log.HasErrorsOrExceptions())
             {
-                if (String.IsNullOrEmpty(this._Script))
+                if (string.IsNullOrEmpty(this._script))
                 {
                     log.AddWarning(
                         title: "Script missing",
@@ -104,7 +103,7 @@ namespace BindOpen.Framework.Core.Application.Commands
                 }
                 else
                 {
-                    appScope.ScriptInterpreter.Evaluate(this._Script, out resultString, scriptVariableSet, log);
+                    appScope.ScriptInterpreter.Evaluate(this._script, out resultString, scriptVariableSet, log);
                 }
             }
 
@@ -123,7 +122,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             return base.Clone() as ScriptCommand;
         }

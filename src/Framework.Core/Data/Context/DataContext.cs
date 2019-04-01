@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <summary>
         /// ID of this instance.
         /// </summary>
-        public String Id { get; set; }
+        public string Id { get; set; }
 
         #endregion
 
@@ -157,11 +157,11 @@ namespace BindOpen.Framework.Core.Data.Context
         ///// </summary>
         ///// <param name="appExtension">The application extension to add.</param>
         ///// <param name="libraryNames">The names of the library to add.</param>
-        //public Log LoadExtensions(
+        //public ILog LoadExtensions(
         //    AppExtension appExtension,
-        //    List<String> libraryNames = null)
+        //    List<string> libraryNames = null)
         //{
-        //    Log log = new Log();
+        //    ILog log = new Log();
 
         //    this._Extensions = new Dictionary<string, object>();
 
@@ -212,7 +212,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="persistenceLevel">Persistence level of the item to add.</param>
         public void AddItem(
             String name,
-            Object item,
+            object item,
             String contextSectionName = null,
             PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
         {
@@ -250,7 +250,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddSingletonItem(
             String name,
-            Object item,
+            object item,
             String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
@@ -267,7 +267,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddScopedItem(
             String name,
-            Object item,
+            object item,
             String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
@@ -284,7 +284,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddTransientItem(
             String name,
-            Object item,
+            object item,
             String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
@@ -330,7 +330,7 @@ namespace BindOpen.Framework.Core.Data.Context
             if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Singleton))
             {
                 var items = this._singletonItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
@@ -340,7 +340,7 @@ namespace BindOpen.Framework.Core.Data.Context
             if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Scoped))
             {
                 var items = this._scopedItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
@@ -350,7 +350,7 @@ namespace BindOpen.Framework.Core.Data.Context
             if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Transient))
             {
                 var items = this._transientItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
@@ -407,7 +407,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetSystemItem(String name)
+        public object GetSystemItem(String name)
         {
             return this.GetSingletonItem(name, "#system");
         }
@@ -418,7 +418,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetSingletonItem(String name, String contextSectionName = null)
+        public object GetSingletonItem(String name, String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name,contextSectionName);
             return this._singletonItems.ContainsKey(itemName) ? this._singletonItems[itemName] : null;
@@ -430,7 +430,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetScopedItem(String name, String contextSectionName = null)
+        public object GetScopedItem(String name, String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
             return (_scopedItems.ContainsKey(itemName) ? this._scopedItems[itemName] : null);
@@ -442,7 +442,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetTransientItem(String name, String contextSectionName = null)
+        public object GetTransientItem(String name, String contextSectionName = null)
         {
             String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
             return this._transientItems.ContainsKey(itemName) ? this._transientItems[itemName] : null;
@@ -455,7 +455,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">The persistence level to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetItem(String name,
+        public object GetItem(String name,
             String contextSectionName = null,
             PersistenceLevel persistenceLevel = PersistenceLevel.Any)
         {
@@ -494,10 +494,10 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         /// <param name="filePath">Path of the file to save.</param>
         /// <returns>true if the file has been well saved. false otherwise.</returns>
-        public Boolean Save(String filePath)
+        public bool Save(String filePath)
         {
             Stream fileStream = null;
-            Boolean isSaved = false;
+            bool isSaved = false;
 
             try
             {

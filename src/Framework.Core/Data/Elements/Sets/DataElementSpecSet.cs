@@ -1,25 +1,23 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Carrier;
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
 using BindOpen.Framework.Core.Data.Elements.Entity;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Items.Sets;
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements.Sets
 {
-
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
     [Serializable()]
     [XmlType("DataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataElementSpecSet : GenericDataItemSet<DataElementSpec>
+    public class DataElementSpecSet : GenericDataItemSet<IDataElementSpec>, IDataElementSpecSet
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -35,26 +33,25 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlElement("scalar", typeof(ScalarElementSpec))]
         [XmlElement("source", typeof(SourceElementSpec))]
         [XmlElement("specification")]
-        public List<DataElementSpec> Items
+        public List<IDataElementSpec> Items
         {
-            get { return this._Items; }
-            set { this._Items = value; }
+            get { return _items; }
+            set { _items = value; }
         }
 
         /// <summary>
         /// Specification of the Specifications property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean SpecificationsSpecified
+        public bool SpecificationsSpecified
         {
             get
             {
-                return this._Items != null && this._Items.Count > 0;
+                return _items?.Count > 0;
             }
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -73,12 +70,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Instantiates a new instance of the DataElementSpecSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public DataElementSpecSet(params DataElementSpec[] items) : base(items)
+        public DataElementSpecSet(params IDataElementSpec[] items) : base(items)
         {
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -91,35 +87,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public new DataElementSpec GetItem(String name)
+        public new IDataElementSpec GetItem(String name)
         {
-            return this.GetItem(name) as DataElementSpec;
-        }
-
-        /// <summary>
-        /// Creates a new element set from this instance.
-        /// </summary>
-        /// <returns>Returns the element set.</returns>
-        public DataElementSet NewElementSet()
-        {
-            DataElementSet dataElementSet = new DataElementSet();
-            foreach (DataElementSpec dataElementSpec in this._Items)
-                dataElementSet.Add(dataElementSpec.NewElement());
-
-            return dataElementSet;
+            return GetItem(name) as IDataElementSpec;
         }
 
         #endregion
-
-
-        // --------------------------------------------------
-        // UPDATE, CHECK, REPAIR
-        // --------------------------------------------------
-
-        #region Update_Check_Repair
-
-        #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -131,13 +104,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             return base.Clone();
         }
 
         #endregion
-
     }
 
 }

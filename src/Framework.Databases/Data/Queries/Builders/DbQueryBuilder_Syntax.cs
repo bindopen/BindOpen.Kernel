@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_List(params Object[] parameters)
+        public virtual String GetSqlText_List(params object[] parameters)
         {
             return "";
         }

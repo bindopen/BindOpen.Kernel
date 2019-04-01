@@ -36,8 +36,8 @@ namespace BindOpen.Framework.Core.Application.Arguments
         public static OptionSet UpdateOptions(
             this string[] arguments,
             OptionSpecSet optionSpecificationSet,
-            Boolean allowMissingItems = false,
-            Log log = null)
+            bool allowMissingItems = false,
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -105,7 +105,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                 }
             }
 
-            log.Append(AppArgumentHelper.Check(optionSet, optionSpecificationSet));
+            log.Append(optionSet.Check(optionSpecificationSet));
 
             return optionSet;
         }
@@ -117,33 +117,33 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static Log Check(this DataElementSet optionSet, OptionSpecSet optionSpecificationSet, Boolean allowMissingItems = false)
+        public static ILog Check(this DataElementSet optionSet, OptionSpecSet optionSpecificationSet, bool allowMissingItems = false)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (optionSet?.Elements != null && optionSpecificationSet !=null)
             {
                 if (!allowMissingItems)
                 {
-                    foreach (DataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevel.Required))
+                    foreach (IDataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevel.Required))
                     {
                         if (!optionSet.HasItem(optionSpecification.Name))
                             log.AddError("Option '" + optionSpecification.Name + "' missing");
                     }
                 }
 
-                foreach (ScalarElement option in optionSet.Elements)
+                foreach (IScalarElement option in optionSet.Elements)
                 {
                     if (option?.Specification != null)
                     {
                         switch (option.Specification.ItemRequirementLevel)
                         {
                             case RequirementLevel.Required:
-                                if (String.IsNullOrEmpty(option.FirstItem as String))
+                                if (string.IsNullOrEmpty(option.FirstItem as string))
                                     log.AddError("Option '" + option.Name + "' requires value");
                                 break;
                             case RequirementLevel.Forbidden:
-                                if (!String.IsNullOrEmpty(option.FirstItem as String))
+                                if (!string.IsNullOrEmpty(option.FirstItem as string))
                                     log.AddError("Option '" + option.Name + "' does not allow value");
                                 break;
                         }

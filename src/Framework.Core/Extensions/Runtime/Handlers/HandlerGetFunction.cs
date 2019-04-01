@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -8,7 +7,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Handlers
 {
-
     /// <summary>
     /// This delegate represents a handler GET function.
     /// </summary>
@@ -18,11 +16,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Handlers
     /// <param name="scriptVariableSet">The script variable set to consider.</param>
     /// <param name="alog">The log to consider.</param>
     /// <returns>Returns the target objects.</returns>
-    public delegate List<Object> HandlerGetFunction(
-            DataElement sourceElement = null,
-            DataElementSet pathDetail = null,
+    public delegate List<object> HandlerGetFunction(
+            IDataElement sourceElement = null,
+            IDataElementSet pathDetail = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log alog = null);
-
+            IScriptVariableSet scriptVariableSet = null,
+            ILog alog = null);
 }

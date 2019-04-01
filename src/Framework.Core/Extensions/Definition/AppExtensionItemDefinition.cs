@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition
     [Serializable()]
     [XmlType("AppExtensionItemDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "extension.item.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public abstract class AppExtensionItemDefinition : IndexedDataItem, IUnique
+    public abstract class AppExtensionItemDefinition : IndexedDataItem, IUnique, IAppExtensionItemDefinition
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         {
             get
             {
-                return !String.IsNullOrEmpty(this.ImageUrl);
+                return !string.IsNullOrEmpty(this.ImageUrl);
             }
         }
 

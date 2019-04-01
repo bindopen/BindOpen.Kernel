@@ -81,7 +81,7 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override Object Clone()
+        public override object Clone()
         {
             BusinessQueryCondition aBusinessQueryCondition = new BusinessQueryCondition();
             aBusinessQueryCondition.Query = this.Query.Clone() as DbDataQuery;

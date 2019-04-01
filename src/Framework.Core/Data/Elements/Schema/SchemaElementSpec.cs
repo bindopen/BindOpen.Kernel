@@ -164,7 +164,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="detail">The detail to consider.</param>
         /// <returns>Returns a new data element respecting this instance.</returns>
-        public override DataElement NewElement(IAppScope appScope = null, DataElementSet detail = null)
+        public override DataElement NewElement(IAppScope appScope = null, IDataElementSet detail = null)
         {
             return new SchemaElement(this.Name)
             {
@@ -178,9 +178,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override Boolean IsCompatibleWith(DataItem item)
+        public override bool IsCompatibleWith(DataItem item)
         {
-            Boolean isCompatible = base.IsCompatibleWith(item);
+            bool isCompatible = base.IsCompatibleWith(item);
 
             if (isCompatible)
             {
@@ -199,11 +199,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckItem(
-            Object item,
-            DataElement dataElement = null,
+        public override ILog CheckItem(
+            object item,
+            IDataElement dataElement = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -216,11 +216,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckElement(
-            DataElement dataElement,
-            List<String> specificationAreas = null,
+        public override ILog CheckElement(
+            IDataElement dataElement,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -248,7 +248,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             SchemaElementSpec aSchemaElementSpec = base.Clone() as SchemaElementSpec;
             if (this.SchemuniqueNameFilter != null)

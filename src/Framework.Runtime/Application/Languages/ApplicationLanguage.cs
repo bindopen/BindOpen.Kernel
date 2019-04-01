@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Languages
@@ -19,7 +18,7 @@ namespace BindOpen.Framework.Runtime.Application.Languages
         /// The UI culture of this instance.
         /// </summary>
         [XmlElement("uiCultureName")]
-        public String UICultureName
+        public string UICultureName
         {
             get;
             set;
@@ -29,7 +28,7 @@ namespace BindOpen.Framework.Runtime.Application.Languages
         /// The culture name of this instance.
         /// </summary>
         [XmlElement("cultureName")]
-        public String CultureName
+        public string CultureName
         {
             get;
             set;

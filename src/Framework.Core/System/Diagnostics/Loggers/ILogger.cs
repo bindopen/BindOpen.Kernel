@@ -46,22 +46,22 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Indicates whether this instance is verbose.
         /// </summary>
-        Boolean IsVerbose { get; set; }
+        bool IsVerbose { get; set; }
 
         /// <summary>
         /// The UI culture of this instance.
         /// </summary>
-        String UICulture { get; set; }
+        string UICulture { get; set; }
 
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        Log Log { get; }
+        ILog Log { get; }
 
         /// <summary>
         /// Function that filters event.
         /// </summary>
-        Predicate<LogEvent> EventFinder { get; set; }
+        Predicate<ILogEvent> EventFinder { get; set; }
 
         #endregion
 
@@ -75,21 +75,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        Boolean WriteLog(Log log);
+        bool WriteLog(ILog log);
 
         /// <summary>
         /// Logs the specified task.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
-        Boolean WriteTask(
-            Log log, TaskConfiguration task);
+        bool WriteTask(
+            ILog log, ITaskConfiguration task);
 
         /// <summary>
         /// Logs the specified event.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        Boolean WriteEvent(LogEvent logEvent);
+        bool WriteEvent(ILogEvent logEvent);
 
         /// <summary>
         /// Logs the specified element.
@@ -97,19 +97,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="elementValue">The element value to consider.</param>
-        Boolean WriteDetailElement(
-            Log log,
-            String elementName,
-            Object elementValue);
+        bool WriteDetailElement(
+            ILog log,
+            string elementName,
+            object elementValue);
 
         /// <summary>
         /// Logs the specified child log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="childLog">The child log to log.</param>
-        Boolean WriteChildLog(
-            Log log,
-            Log childLog);
+        bool WriteChildLog(
+            ILog log,
+            ILog childLog);
 
         // Write to output data sources
 
@@ -118,7 +118,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="text">The text to write.</param>
         /// <returns>Returns true whether the text has been written.</returns>
-        Boolean Write(String text);
+        bool Write(string text);
 
         #endregion
 
@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Indicates whether this instance requires all the event history to be maintained.
         /// </summary>
         /// <returns>Returns True if this instance requires all the event history.</returns>
-        Boolean IsHistoryRequired();
+        bool IsHistoryRequired();
 
         #endregion
 
@@ -146,7 +146,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Sets the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        void SetLog(Log log);
+        void SetLog(ILog log);
 
         /// <summary>
         /// Delete the logs older than the specified day number.
@@ -167,7 +167,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="newFolderPath">The new folder path to consider.</param>
         /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
         /// <param name="newFileName">The new file name to consider.</param>
-        void SetFilePath(String newFolderPath, Boolean isFileToBeMoved, String newFileName = null);
+        void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null);
 
         #endregion
 
@@ -187,11 +187,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
-        Log LoadLog(
+        ILog LoadLog(
             String filePath,
-            Log loadLog = null,
+            ILog loadLog = null,
             IAppScope appScope = null,
-            Boolean mustFileExist = true);
+            bool mustFileExist = true);
 
         /// <summary>
         /// Instantiates a new instance of Log class from a xml string.
@@ -200,10 +200,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="loadLog">The output log of the load task.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
-        Log LoadLogFromString(
+        ILog LoadLogFromString(
             String xmlString,
-            Log loadLog = null,
-            AppScope appScope = null);
+            ILog loadLog = null,
+            IAppScope appScope = null);
 
         // Serialization ---------------------------------
 
@@ -214,14 +214,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        Boolean Save(Log log, String logFilePath, Boolean isAppended = false);
+        bool Save(ILog log, String logFilePath, bool isAppended = false);
 
         /// <summary>
         /// Saves this instance in the specified log file.
         /// </summary>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        Boolean Save(Boolean isAppended = false);
+        bool Save(bool isAppended = false);
 
         /// <summary>
         /// Gets the string representing to the specified log.
@@ -230,8 +230,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
         String ToString(
-            Log log,
-            List<String> attributeNames = null);
+            ILog log,
+            List<string> attributeNames = null);
 
         /// <summary>
         /// Gets the string representing to the specified event.
@@ -240,8 +240,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified event.</returns>
         String ToString(
-            LogEvent logEvent,
-            List<String> attributeNames = null);
+            ILogEvent logEvent,
+            List<string> attributeNames = null);
 
         #endregion
     }

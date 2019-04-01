@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// <summary>
         /// The item class of this instance.
         /// </summary>
-        public String ItemClass { get; set; } = null;
+        public string ItemClass { get; set; } = null;
 
         /// <summary>
         /// The data source kind of this instance.

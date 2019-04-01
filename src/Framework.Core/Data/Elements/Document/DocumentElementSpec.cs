@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -9,34 +8,14 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Document
 {
-
     /// <summary>
     /// This class represents a document element specification.
     /// </summary>
     [Serializable()]
     [XmlType("DocumentElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DocumentElementSpec : DataElementSpec
+    public class DocumentElementSpec : DataElementSpec, IDocumentElementSpec
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        #endregion
-
-
-        // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
-
-        #region Properties
-
-        #endregion
-
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -57,13 +36,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public DocumentElementSpec(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            List<SpecificationLevel> specificationLevels = null)
+            SpecificationLevel[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -76,13 +54,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override Boolean IsCompatibleWith(DataItem item)
+        public override bool IsCompatibleWith(IDataItem item)
         {
-            Boolean isCompatible = base.IsCompatibleWith(item);
+            bool isCompatible = base.IsCompatibleWith(item);
 
             if (isCompatible)
             {
-
             }
 
             return isCompatible;
@@ -96,11 +73,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckItem(
-            Object item,
-            DataElement dataElement = null,
+        public override ILog CheckItem(
+            object item,
+            IDataElement dataElement = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
@@ -113,17 +90,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
-        public override Log CheckElement(
-            DataElement dataElement,
-            List<String> specificationAreas = null,
+        public override ILog CheckElement(
+            IIDataElement dataElement,
+            string[] specificationAreas = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             return new Log();
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // UPDATE, CHECK, REPAIR
@@ -133,7 +109,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -145,16 +120,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             DocumentElementSpec aDocumentElementSpec = base.Clone() as DocumentElementSpec;
-            //entityElementSpec.EntityUniqueNameFilter = this.EntityUniqueNameFilter.Clone() as DataValueFilter;
-            //entityElementSpec.FormatUniqueNameFilter = this.FormatUniqueNameFilter.Clone() as DataValueFilter;
             return aDocumentElementSpec;
         }
 
         #endregion
-
     }
-
 }

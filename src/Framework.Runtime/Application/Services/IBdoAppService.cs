@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        IBdoAppService Start(Log log = null);
+        IBdoAppService Start(ILog log = null);
 
         /// <summary>
         /// Ends the process specifying the status.

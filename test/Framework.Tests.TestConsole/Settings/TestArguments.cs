@@ -33,9 +33,9 @@ namespace BindOpen.TestConsole.Settings
                 )
             );
 
-        public static Log Test()
+        public static ILog Test()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             string[] arguments = { "export", "activities", "*" ,".", "--exclude", "\"dd\"", "--design", "--config" };
 

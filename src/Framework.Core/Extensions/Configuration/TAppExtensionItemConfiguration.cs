@@ -1,6 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Common;
 using BindOpen.Framework.Core.Extensions.Definition;
@@ -11,8 +9,8 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
     /// This class represents an application extension item configuration.
     /// </summary>
     /// <typeparam name="T">The definition class of this instance.</typeparam>
-    public abstract class TAppExtensionItemConfiguration<T> : NamedDataItem
-        where T : AppExtensionItemDefinition
+    public abstract class TAppExtensionItemConfiguration<T> : NamedDataItem, ITAppExtensionItemConfiguration<T>
+        where T : IAppExtensionItemDefinition
     {
         // -----------------------------------------------
         // VARIABLES
@@ -20,12 +18,10 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
 
         #region Variables
 
-        private String _definitionUniqueId = "";
-
         /// <summary>
         /// The definition of this instance.
         /// </summary>
-        protected T _definition = null;
+        protected T _definition = default;
 
         #endregion
 
@@ -39,28 +35,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Definition unique ID of this instance.
         /// </summary>
         [XmlAttribute("definition")]
-        public String DefinitionUniqueId
-        {
-            get { return this._definitionUniqueId; }
-            set
-            {
-                this._definitionUniqueId = value;
-                // we reset the definition if needed
-                this.SetDefinition();
-            }
-        }
+        public string DefinitionUniqueId { get; set; }
 
         /// <summary>
         /// Specification of the DefinitionUniqueName property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DefinitionUniqueIdSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.DefinitionUniqueId);
-            }
-        }
+        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         /// <summary>
         /// The definition of this instance.
@@ -68,26 +49,20 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         [XmlIgnore()]
         public T Definition
         {
-            get { return this._definition; }
+            get { return _definition; }
         }
 
         /// <summary>
         /// The group of this instance.
         /// </summary>
         [XmlElement("group")]
-        public String Group { get; set; } = "";
+        public string Group { get; set; } = "";
 
         /// <summary>
         /// Specification of the Group property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean GroupSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.Group);
-            }
-        }
+        public bool GroupSpecified => !string.IsNullOrEmpty(Group);
 
         #endregion
 
@@ -108,20 +83,30 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Instantiates a new instance of the TAppExtensionItemConfiguration class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
         protected TAppExtensionItemConfiguration(
-            String name,
-            String definitionUniqueId,
-            T definition,
-            String namePreffix = null)
+            string name,
+            T definition = default,
+            string namePreffix = null)
+            : this(name, definition?.Key(), namePreffix)
+        {
+            _definition = definition;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the TAppExtensionItemConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        protected TAppExtensionItemConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix)
             : base(name, namePreffix)
         {
-            if (definitionUniqueId == null && definition != null)
-                definitionUniqueId = definition.Key();
-            this._definitionUniqueId = definitionUniqueId;
-            this.SetDefinition(this._definition);
+            DefinitionUniqueId = definitionUniqueId;
         }
 
         #endregion
@@ -141,7 +126,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         }
 
         #endregion
-        
+
         // ------------------------------------------
         // MUTATORS
         // ------------------------------------------
@@ -149,48 +134,12 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         #region Mutators
 
         /// <summary>
-        /// Initializes the definition of this instance.
+        /// Sets the specified definition.
         /// </summary>
-        public virtual void InitializeDefinition()
+        /// <param name="definition"></param>
+        public void SetDefinition(T definition)
         {
-        }
-
-        /// <summary>
-        /// Sets the definition of this instance.
-        /// </summary>
-        /// <param name="definition">The definition to consider.</param>
-        /// <param name="isDefinitionChecked">Indicates whether the definition must be checked.</param>
-        public virtual void SetDefinition(T definition=null, Boolean isDefinitionChecked = true)
-        {
-            if (!isDefinitionChecked || (definition?.KeyEquals(this.DefinitionUniqueId) == true))
-            {
-                this._definition = definition;
-                this._definitionUniqueId = definition?.Key();
-            }
-            else
-            {
-                this._definition = null;
-            }
-        }
-
-        /// <summary>
-        /// Sets the specififed definition.
-        /// </summary>
-        /// <param name="appExtension">The application extension to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
-        public void SetDefinition(AppExtension appExtension, String definitionName = null)
-        {
-            T definition = null;
-            if (appExtension != null)
-            {
-                definitionName = (definitionName ?? this._definitionUniqueId);
-                definition = appExtension.GetItemDefinitionWithUniqueId<T>(definitionName) as T;
-                if (definition != null)
-                {
-                    this._definitionUniqueId = definition.Key();
-                    this.SetDefinition(definition);
-                }
-            }
+            this._definition = definition;
         }
 
         #endregion
@@ -205,16 +154,14 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             TAppExtensionItemConfiguration<T> appExtensionItem = base.Clone() as TAppExtensionItemConfiguration<T>;
-            appExtensionItem.SetDefinition(this.Definition);
+            appExtensionItem._definition=  Definition;
 
             return appExtensionItem;
         }
 
         #endregion
     }
-
-
 }

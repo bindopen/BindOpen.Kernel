@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// </summary>
         [DefaultValue("")]
         [XmlElement("iconFileName")]
-        public String IconFileName { get; set; }
+        public string IconFileName { get; set; }
 
         /// <summary>
         /// Rank of this instance.
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// </summary>
         [DefaultValue("")]
         [XmlElement("thumbIconFileName")]
-        public String ThumbIconFileName { get; set; }
+        public string ThumbIconFileName { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is visible.
@@ -133,7 +133,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// </summary>
         [XmlIgnore()]
         [DefaultValue("")]
-        public String DefaultUICulture
+        public string DefaultUICulture
         {
             get { return this._DefaultUICultureName; }
             set { this._DefaultUICultureName = value; }
@@ -259,14 +259,14 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (item is AppModule)
             {

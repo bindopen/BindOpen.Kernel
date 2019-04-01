@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
     //[XmlInclude(typeof(BusinessQueryCondition))]
     [XmlInclude(typeof(ScriptCondition))]
     [XmlInclude(typeof(AdvancedCondition))]
-    public abstract class Condition : DataItem
+    public abstract class Condition : DataItem, ICondition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// The value that expresses that the condition is satisfied.
         /// </summary>
         [XmlElement("trueValue")]
-        public String TrueValue { get; set; } = "";
+        public bool TrueValue { get; set; } = true;
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <summary>
         /// Instantiates a new instance of the BusinessCondition class.
         /// </summary>
-        protected Condition() : this(null)
+        protected Condition() : base()
         {
         }
 
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// Instantiates a new instance of the BusinessCondition class.
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
-        protected Condition(String trueValue) : base()
+        protected Condition(bool trueValue) : base()
         {
             this.TrueValue= trueValue;
         }
@@ -66,12 +66,9 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <param name="scriptInterpreter">Script interpreter.</param>
         /// <param name="scriptVariableSet">The script variable set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
-        public virtual Boolean Evaluate(
-            ScriptInterpreter scriptInterpreter,
-            ScriptVariableSet scriptVariableSet)
-        {
-            return false;
-        }
+        public abstract bool Evaluate(
+            IScriptInterpreter scriptInterpreter,
+            IScriptVariableSet scriptVariableSet);
 
         #endregion
     }

@@ -53,7 +53,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         [Test, Order(2)]
         public void TestSaveCarrier()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (this._Field == null)
                 this.TestCreateCarrier();
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         [Test, Order(3)]
         public void TestLoadCarrier()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             DbField field = DbField.Load<DbField>(this._FilePath, log, SetupVariables.AppScope);
             this.Test(field);

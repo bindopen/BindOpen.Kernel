@@ -21,13 +21,13 @@ namespace BindOpen.Framework.Core.Data.Items
         /// ID of this instance.
         /// </summary>
         [XmlAttribute("id")]
-        public String Id { get; set; } = null;
+        public string Id { get; set; } = null;
 
         /// <summary>
         /// Specification of the ID of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IdSpecified => !string.IsNullOrEmpty(this.Id);
+        public bool IdSpecified => !string.IsNullOrEmpty(this.Id);
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             IdentifiedDataItem item = base.Clone() as IdentifiedDataItem;
             if (this.Id != null)

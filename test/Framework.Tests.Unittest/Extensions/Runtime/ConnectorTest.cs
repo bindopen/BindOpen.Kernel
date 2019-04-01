@@ -29,7 +29,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         [Test, Order(2)]
         public void TestInterpreteDatabaseScript()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             string resultScript = "";
 
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         [Test, Order(3)]
         public void TestCreateOpenCloseConnection()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             using (DatabaseConnection connection =
                 SetupVariables.AppScope.ConnectionService.Open<DatabaseConnection>("bdd1", null, log))

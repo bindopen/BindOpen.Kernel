@@ -15,13 +15,8 @@ namespace BindOpen.Framework.Core.Application.Commands
     [Serializable()]
     [XmlType("ReferenceCommand", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "command", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ReferenceCommand : Command
+    public class ReferenceCommand : Command, IReferenceCommand
     {
-
-        #region Variables
-
-        #endregion
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -32,7 +27,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// The task set of this instance.
         /// </summary>
         [XmlElement("reference")]
-        public DataReference Reference { get; set; } = new DataReference();
+        public IDataReference Reference { get; set; } = new DataReference();
 
         #endregion
 
@@ -77,10 +72,10 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
-        public override Log ExecuteWithResult(
-            out String resultString,
+        public override ILog ExecuteWithResult(
+            out string resultString,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal)
         {
             resultString = "";
@@ -114,7 +109,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ReferenceCommand aReferenceCommand = base.Clone() as ReferenceCommand;
             if (this.Reference!=null)

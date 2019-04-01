@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         public void SaveSettings()
         {
             String filePath = this.GetKnownPath(ApplicationPathKind.SettingsFolder) + "appsettings.xml";
-            if ((this.UserSettingsSet != null) && (!String.IsNullOrEmpty(filePath)))
+            if ((this.UserSettingsSet != null) && (!string.IsNullOrEmpty(filePath)))
                 this.UserSettingsSet.SaveXml(filePath);
         }
 
@@ -152,17 +152,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     break;
                 case ApplicationPathKind.ExtensionsFolder:
                     path = this.Options?.Settings?.ExtensionsFolderPath;
-                    if (String.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(path))
                         path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"extensions\";
                     break;
                 case ApplicationPathKind.LibraryFolder:
                     path = this.Options?.LibraryFolderPath;
-                    if (String.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(path))
                         path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"lib\";
                     break;
                 case ApplicationPathKind.LogFolder:
                     path = this.Options?.Settings?.LogFolderPath;
-                    if (String.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(path))
                         path = this.GetKnownPath(ApplicationPathKind.DefaultLogFolder);
                     break;
                 case ApplicationPathKind.RoamingFolder:
@@ -170,12 +170,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     break;
                 case ApplicationPathKind.RuntimeFolder:
                     path = this.Options?.RuntimeFolderPath;
-                    if (String.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(path))
                         path = this.Options?.Settings?.RuntimeFolderPath;
                     break;
                 case ApplicationPathKind.SettingsFile:
                     path = this.Options?.SettingsFilePath;
-                    if (String.IsNullOrEmpty(path))
+                    if (string.IsNullOrEmpty(path))
                         path = this.GetDefaultSettingsFilePath();
                     break;
                 case ApplicationPathKind.SettingsFolder:
@@ -189,7 +189,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     break;
             }
 
-            return (String.IsNullOrEmpty(path) ? StringHelper.__NoneString : path).ToPath();
+            return (string.IsNullOrEmpty(path) ? StringHelper.__NoneString : path).ToPath();
         }
 
         private string GetDefaultSettingsFilePath()
@@ -228,7 +228,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public new virtual IBdoAppHost Start(Log log = null)
+        public new virtual IBdoAppHost Start(ILog log = null)
         {
             return base.Start(log) as BdoAppHost;
         }
@@ -269,7 +269,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             // we initialize as scoped service
             base.Initialize<T>();
 
-            Log log = new Log();
+            ILog log = new Log();
 
             // we load extensions
             log.AddMessage("Loading extensions...");
@@ -323,7 +323,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                             null,
                             new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
 
-                        if (this.Options?.Settings!=null && String.IsNullOrEmpty(this.Options.Settings.ApplicationInstanceName))
+                        if (this.Options?.Settings!=null && string.IsNullOrEmpty(this.Options.Settings.ApplicationInstanceName))
                         {
                             this.Options.Settings.ApplicationInstanceName = _ApplicationInstanceName;
                         }
@@ -348,7 +348,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         this.DataSourceService.Clear();
                         if (this.AppExtension != null)
                         {
-                            foreach (DataSource dataSource in this.Options?.Settings?.DataSources)
+                            foreach (IDataSource dataSource in this.Options?.Settings?.DataSources)
                             {
                                 this.DataSourceService.AddSource(dataSource);
                             }

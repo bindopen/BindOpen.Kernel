@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Specification of the Index property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IndexSpecified => Index >= 0;
+        public bool IndexSpecified => Index >= 0;
 
         #endregion
 
@@ -50,9 +50,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="name">The name of this instance.</param>
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
-        public IndexedDataItem(String name,
-            String namePreffix = "",
-            String id = null)
+        public IndexedDataItem(string name,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
         }

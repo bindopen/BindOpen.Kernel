@@ -2,7 +2,7 @@
 
 <routines.index library="standard"
   xmlns="http://meltingsoft.com/bindopen/xsd"
-  xmlns:SchemaLocation="bdo:RoutineConfigurationIndex RoutineConfigurationIndex.xsd">
+  xmlns:SchemaLocation="bdo:RoutineIndex RoutineIndex.xsd">
   
   <creationDate>2011-07-07</creationDate>
   <lastModificationDate>2016-10-15</lastModificationDate>

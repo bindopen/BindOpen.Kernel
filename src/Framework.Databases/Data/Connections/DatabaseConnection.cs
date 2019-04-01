@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteNonQuery(
             String queryText,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             this.Connector?.ExecuteNonQuery(queryText, scriptVariableSet, log);
         }
@@ -119,7 +119,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             DbDataQuery query,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -146,7 +146,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             String queryText,
             ref DbDataReader dataReader,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             if (this.Connector != null)
             {
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             DbDataQuery query,
             ref DbDataReader dataReader,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             String queryText,
             ref DataSet dataSet,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             this.Connector?.ExecuteQuery(queryText, ref dataSet, scriptVariableSet, log);
         }
@@ -210,7 +210,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             DbDataQuery query,
             ref DataSet dataSet,
             ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -232,7 +232,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         public void GetIdentity(
             ref long id,
-            Log log = null)
+            ILog log = null)
         {
             this.Connector?.GetIdentity(ref id, log);
         }
@@ -247,7 +247,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataTable(
             String queryText,
             DataTable dataTable,
-            Log log = null)
+            ILog log = null)
         {
             this.Connector?.UpdateDataTable(queryText, dataTable, log);
         }
@@ -262,7 +262,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataTable(
             DbDataQuery query,
             DataTable dataTable,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -286,8 +286,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataSet(
             String queryText,
             DataSet dataSet,
-            List<String> tableNames,
-            Log log = null)
+            List<string> tableNames,
+            ILog log = null)
         {
             this.Connector?.UpdateDataSet(queryText, dataSet, tableNames, log);
         }
@@ -303,8 +303,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataSet(
             DbDataQuery query,
             DataSet dataSet,
-            List<String> tableNames,
-            Log log = null)
+            List<string> tableNames,
+            ILog log = null)
         {
             log = log ?? new Log();
 

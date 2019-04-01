@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Application.Datasources;
+﻿using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
@@ -32,7 +31,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="configuration"></param>
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
-        T Open<T>(ConnectorConfiguration configuration, Log log = null) where T : Connection, new();
+        T Open<T>(ConnectorConfiguration configuration, ILog log = null) where T : Connection, new();
 
         /// <summary>
         /// Opens the connection.
@@ -42,7 +41,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="connectorDefinitionUniqueName"></param>
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
-        T Open<T>(DataSource dataSource, string connectorDefinitionUniqueName, Log log = null) where T : Connection, new();
+        T Open<T>(IDataSource dataSource, string connectorDefinitionUniqueName, ILog log = null) where T : Connection, new();
 
         /// <summary>
         /// Opens the connection.
@@ -53,7 +52,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="connectorDefinitionUniqueName"></param>
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
-        T Open<T>(DataSourceService dataSourceManager, string dataSourceName, string connectorDefinitionUniqueName, Log log = null) where T : Connection, new();
+        T Open<T>(DataSourceService dataSourceManager, string dataSourceName, string connectorDefinitionUniqueName, ILog log = null) where T : Connection, new();
 
         /// <summary>
         /// Opens the connection.
@@ -63,7 +62,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="connectorDefinitionUniqueName"></param>
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
-        T Open<T>(string dataSourceName, string connectorDefinitionUniqueName, Log log = null) where T : Connection, new();
+        T Open<T>(string dataSourceName, string connectorDefinitionUniqueName, ILog log = null) where T : Connection, new();
 
         /// <summary>
         /// Updates this service.
@@ -75,6 +74,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="appScope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <returns>The log of the operation.</returns>
-        Log Update<T>(T item = null, List<string> specificationAreas = null, List<UpdateMode> updateModes = null, IAppScope appScope = null, ScriptVariableSet scriptVariableSet = null) where T : DataItem;
+        Log Update<T>(T item = default, string[] specificationAreas = null, UpdateMode[] updateModes = null, IAppScope appScope = null, ScriptVariableSet scriptVariableSet = null) where T : DataItem;
     }
 }

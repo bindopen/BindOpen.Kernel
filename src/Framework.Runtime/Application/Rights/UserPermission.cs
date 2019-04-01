@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// Action name of this instance.
         /// </summary>
         [XmlAttribute("action")]
-        public String ActionName
+        public string ActionName
         {
             set
             {
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// The value of this instance.
         /// </summary>
         [XmlAttribute("value")]
-        public String ValueScript
+        public string ValueScript
         {
             set
             {

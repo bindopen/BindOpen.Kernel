@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 {
                     aNextIndex = index + 1;
 
-                    Boolean aHasSeveralParameters = false;
+                    bool aHasSeveralParameters = false;
 
                     while ((aNextIndex < aAlignedScript.Length) &&
                         (aAlignedScript.Substring(aNextIndex, 1) != ")"))

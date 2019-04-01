@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// </summary>
     [XmlType("Configuration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot("configuration", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class Configuration : DataElementSet
+    public class Configuration : DataElementSet, IConfiguration
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Current file path of this instance.
         /// </summary>
         [XmlIgnore()]
-        public String CurrentFilePath
+        public string CurrentFilePath
         {
             get;
             set;
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Creation date of this instance.
         /// </summary>
         [XmlElement("creationDate")]
-        public String CreationDate
+        public string CreationDate
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Last modification date of this instance.
         /// </summary>
         [XmlElement("lastModificationDate")]
-        public String LastModificationDate
+        public string LastModificationDate
         {
             get;
             set;
@@ -85,7 +85,8 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public Configuration(IAppScope appScope, params DataElement[] items) : this(null, appScope, items)
+        public Configuration(IAppScope appScope, params IDataElement[] items)
+            : this(null, appScope, items)
         {
         }
 
@@ -95,10 +96,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public Configuration(string filePath, IAppScope appScope, params DataElement[] items) : base(items)
+        public Configuration(string filePath, IAppScope appScope, params IDataElement[] items)
+            : base(items)
         {
-            this.CurrentFilePath = filePath;
-            this.AppScope = appScope;
+            CurrentFilePath = filePath;
+            AppScope = appScope;
         }
 
         #endregion
@@ -114,20 +116,22 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] string propertyName = null)
         {
             if (propertyName != null)
             {
                 DataElementAttribute attribute = null;
-                PropertyInfo propertyInfo = this.GetPropertyInfo(
-                    this.GetType(),
+                PropertyInfo propertyInfo = GetPropertyInfo(
+                    GetType(),
                     propertyName,
                     new Type[] { typeof(DetailPropertyAttribute) },
                     ref attribute,
-                    this.AppScope);
+                    AppScope);
 
                 if (attribute is DetailPropertyAttribute)
-                    this.AddElement(attribute.Name, value, propertyInfo.PropertyType.GetValueType());
+                {
+                    AddElement(attribute.Name, value, propertyInfo.PropertyType.GetValueType());
+                }
             }
         }
 
@@ -144,28 +148,28 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public T Get<T>([CallerMemberName] String propertyName = null)
+        public T Get<T>([CallerMemberName] string propertyName = null)
         {
             if (propertyName!=null)
             {
-                DataElement element = this.GetItem(propertyName);
+                IDataElement element = GetItem(propertyName);
                 if (element!=null)
                 {
-                    return (T)this.GetElementItemObject(propertyName, this.AppScope);
+                    return (T)GetElementItemObject(propertyName, AppScope);
                 }
                 else
                 {
                     DataElementAttribute attribute = null;
-                    PropertyInfo propertyInfo = this.GetPropertyInfo(
-                        this.GetType(),
+                    PropertyInfo propertyInfo = GetPropertyInfo(
+                        GetType(),
                         propertyName,
                         new Type[] { typeof(DetailPropertyAttribute) },
                         ref attribute,
-                        this.AppScope);
+                        AppScope);
 
                     if (attribute is DetailPropertyAttribute)
                     {
-                        Object value = this.GetElementItemObject(attribute.Name, this.AppScope);
+                        Object value = GetElementItemObject(attribute.Name, AppScope);
                         if (value is T t)
                             return t;
                     }
@@ -181,31 +185,31 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">The calling property name to consider.</param>
         /// <param name="defaultValue">The default value to consider.</param>
-        public T Get<T>(T defaultValue, [CallerMemberName] String propertyName = null) where T : struct, IConvertible
+        public T Get<T>(T defaultValue, [CallerMemberName] string propertyName = null) where T : struct, IConvertible
         {
             if (propertyName != null)
             {
-                DataElement element = this.GetItem(propertyName);
+                IDataElement element = GetItem(propertyName);
                 if (element != null)
                 {
-                    return (T)this.GetElementItemObject(propertyName, this.AppScope);
+                    return (T)GetElementItemObject(propertyName, AppScope);
                 }
                 else
                 {
                     DataElementAttribute attribute = null;
-                    PropertyInfo propertyInfo = this.GetPropertyInfo(
-                        this.GetType(),
+                    PropertyInfo propertyInfo = GetPropertyInfo(
+                        GetType(),
                         propertyName,
                         new Type[] { typeof(DetailPropertyAttribute) },
                         ref attribute,
-                        this.AppScope);
+                        AppScope);
 
                     if (attribute is DetailPropertyAttribute)
-                        return (this.GetElementItemObject(attribute.Name, this.AppScope) as String)?.ToEnum<T>(defaultValue) ?? default(T); ;
+                        return (GetElementItemObject(attribute.Name, AppScope) as string)?.ToEnum<T>(defaultValue) ?? default(T); ;
                 }
             }
 
-            return default(T);
+            return default;
         }
 
         #endregion
@@ -220,10 +224,8 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
-            //this.UpdateFromObject<DetailPropertyAttribute>(this);
-
             base.UpdateStorageInfo(log);
         }
 
@@ -232,11 +234,9 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, log);
-
-            //this.UpdateFromElementSet<DetailPropertyAttribute>(this);
         }
 
         #endregion
@@ -253,11 +253,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="log">The output log.</param>
         /// <returns>True if this instance has been</returns>
-        public override Boolean SaveXml(String filePath, Log log = null)
+        public override bool SaveXml(string filePath, ILog log = null)
         {
             if (base.SaveXml(filePath, log))
             {
-                this.CurrentFilePath = filePath;
+                CurrentFilePath = filePath;
                 return true;
             }
 
@@ -274,11 +274,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The Xml operation project defined in the Xml file.</returns>
         public new static T Load<T>(
-            String filePath,
+            string filePath,
             Log log,
             IAppScope appScope = null,
             XmlSchemaSet xmlSchemaSet = null,
-            Boolean mustFileExist = true) where T : Configuration, new()
+            bool mustFileExist = true) where T : Configuration, new()
         {
             T configuration = DataItem.Load<T>(filePath, log, appScope, xmlSchemaSet, mustFileExist) as T;
             if (configuration != null)

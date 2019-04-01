@@ -12,19 +12,8 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
     [Serializable()]
     [XmlType("CarrierDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "carrier.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class CarrierDefinition : AppExtensionItemDefinition
+    public class CarrierDefinition : AppExtensionItemDefinition, ICarrierDefinition
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private DataSourceKind _DataSourceKind = DataSourceKind.None;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -35,7 +24,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// The item class of this instance.
         /// </summary>
         [XmlElement("itemClass")]
-        public String ItemClass
+        public string ItemClass
         {
             get;
             set;
@@ -45,20 +34,15 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// The data source kind of this instance.
         /// </summary>
         [XmlElement("dataSourceKind")]
-        public DataSourceKind DataSourceKind
-        {
-            get { return this._DataSourceKind; }
-            set { this._DataSourceKind = value; }
-        }
+        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.None;
 
         /// <summary>
         /// The set of element specifications of this instance.
         /// </summary>
         [XmlElement("path.specification")]
-        public DataElementSpecSet PathSpec { get; set; } = new DataElementSpecSet();
+        public IDataElementSpecSet PathSpec { get; set; } = new DataElementSpecSet();
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -75,7 +59,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
 
         #endregion
 
-
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
@@ -88,13 +71,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public override String GetText(LogFormat logFormat= LogFormat.Xml, String uiCulture = "*")
+        public override string GetText(LogFormat logFormat= LogFormat.Xml, string uiCulture = "*")
         {
-            String st = "";
+            string st = "";
             switch(logFormat)
             {
                 case LogFormat.Xml:
-                    st += "<span style='color: blue;' >" + this.Key() + "</span> (" + this._DataSourceKind.ToString() + ")<br>";
+                    st += "<span style='color: blue;' >" + this.Key() + "</span> (" + this.DataSourceKind.ToString() + ")<br>";
                     st += "<br>";
                     st += "Modified: " + this.LastModificationDate + "<br>";
                     st += "<br>";
@@ -105,7 +88,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
                     st += "<strong>Path</strong>";
                     st += "<br>";
                     //foreach (DataElement dataElement in this._PathStatement.Elements)
-                    //    parameterString += (parameterString == String.Empty ? "" : ",") +
+                    //    parameterstring += (parameterstring == String.Empty ? "" : ",") +
                     //        "<span style='color: blue;'>&lt;" + dataElement.ValueType.ToString() + "&gt;</span> " + dataElement.Name + ",";
                     break;
             }
@@ -114,6 +97,5 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Carriers
         }
 
         #endregion
-    
     }
 }

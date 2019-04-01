@@ -10,14 +10,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     [Serializable()]
     [XmlType("ConditionalEvent", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConditionalEvent : Event
+    public class ConditionalEvent : Event, IConditionalEvent
     {
-
-        #region Variables
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -28,10 +22,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Condition script of this instance.
         /// </summary>
         [XmlElement("conditionScript")]
-        public String ConditionScript { get; set; } = "";
+        public string ConditionScript { get; set; } = "";
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -88,6 +81,5 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         }
 
         #endregion
-        
     }
 }

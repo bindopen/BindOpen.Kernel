@@ -5,7 +5,7 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This interface represents an indexed data item.
     /// </summary>
-    public interface IStoredDataItem
+    public interface IStoredDataItem : IIdentifiedDataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Indicates whether this instance is locked.
         /// </summary>
-        Boolean IsLocked
+        bool IsLocked
         {
             get;
             set;

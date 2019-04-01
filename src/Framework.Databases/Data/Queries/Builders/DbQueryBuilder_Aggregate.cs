@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_TextCount(params Object[] parameters)
+        public virtual String GetSqlText_TextCount(params object[] parameters)
         {
             return "";
         }
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Sum(params Object[] parameters)
+        public virtual String GetSqlText_Sum(params object[] parameters)
         {
             return "";
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Average(params Object[] parameters)
+        public virtual String GetSqlText_Average(params object[] parameters)
         {
             return "";
         }
@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_In(params Object[] parameters)
+        public virtual String GetSqlText_In(params object[] parameters)
         {
             return "";
         }

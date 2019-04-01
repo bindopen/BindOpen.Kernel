@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Entities
         /// </summary>
         /// <param name="value">The value to set.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        public void Set(object value, [CallerMemberName] String propertyName = null)
         {
             if (propertyName != null)
             {
@@ -169,7 +169,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Entities
                     this.AppScope);
 
                 if (attribute is DetailPropertyAttribute)
-                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as String).ToEnum<T>(defaultValue); ;
+                    return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue); ;
             }
 
             return default(T);

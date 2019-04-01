@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// Entity unique name of this instance.
         /// </summary>
         [XmlIgnore()]
-        public String EntityUniqueName
+        public string EntityUniqueName
         {
             get
             {
@@ -76,7 +76,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// Entity kind of this instance.
         /// </summary>
         [XmlElement("entityKind")]
-        public String EntityKind
+        public string EntityKind
         {
             set;
             get;
@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// Entity name of this instance.
         /// </summary>
         [XmlElement("entityName")]
-        public String EntityName
+        public string EntityName
         {
             set;
             get;

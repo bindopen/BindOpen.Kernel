@@ -1,22 +1,17 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Formats;
-using System;
-using System.IO;
-using System.Xml;
-using System.Xml.Linq;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Extensions.Definition.Formats;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration.Formats
 {
-
     /// <summary>
     /// This class represents an format.
     /// </summary>
     [Serializable()]
     [XmlType("FormatConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "format", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class FormatConfiguration : TAppExtensionTitledItemConfiguration<FormatDefinition>
+    public class FormatConfiguration : TAppExtensionTitledItemConfiguration<IFormatDefinition>, IFormatConfiguration
     {
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -32,99 +27,36 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Formats
         }
 
         /// <summary>
-        /// This instantiates a new instance of the FormatConfiguration class.
+        /// Instantiates a new instance of the FormatConfiguration class.
         /// </summary>
-        /// <param name="name">The name of this instance.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
-        public FormatConfiguration(
-            String name,
-            String definitionName = null,
-            String namePreffix = "format_")
-            : base(name, definitionName, null, namePreffix)
+        protected FormatConfiguration(
+            string name,
+            IFormatDefinition definition = default,
+            string namePreffix = "format_")
+            : this(name, definition?.Key(), namePreffix)
         {
+            _definition = definition;
         }
-
-        #endregion
-
-
-        //// --------------------------------------------------
-        //// ACCESSORS
-        //// --------------------------------------------------
-
-        //#region Accessors
-
-        ///// <summary>
-        ///// Returns the string value of the specified settings.
-        ///// </summary>
-        ///// <param name="name">Name of the settings to consider.</param>
-        ///// <returns>The string value of the specified settings.</returns>
-        //public String GetStringValue(String name)
-  //      {
-  //          String stringValue="";
-
-  //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-  //          if (aInputProperty != null)
-  //          {
-  //              Object object1Value = aInputProperty.GetValue(this, null);
-  //              if (object1Value != null)
-  //                  stringValue = object1Value.ToString();
-  //          }
-
-  //          return stringValue;
-  //      }
-
-  //      /// <summary>
-  //      /// Returns the object value of the specified settings.
-  //      /// </summary>
-  //      /// <param name="name">Name of the settings to consider.</param>
-  //      /// <returns>The object value of the specified settings.</returns>
-  //      public Object GetObjectValue(String name)
-  //      {
-  //          Object object1 = "";
-
-  //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-  //          if (aInputProperty != null)
-  //              object1 = aInputProperty.GetValue(this, null);
-
-  //          return object1;
-  //      }
-
-  //      #endregion
-
-
-        // ------------------------------------------
-        // LOAD
-        // ------------------------------------------
-
-        #region Load
 
         /// <summary>
-        /// Instantiates a new instance of SettingsDefinition class from a xml string.
+        /// Instantiates a new instance of the FormatConfiguration class.
         /// </summary>
-        /// <param name="xmlString">The Xml string to load.</param>
-        public static FormatConfiguration LoadFromXmlString(String xmlString)
+        /// <param name="name">The name to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        protected FormatConfiguration(
+            string name,
+            string definitionUniqueId,
+            string namePreffix = "format_")
+            : base(name, definitionUniqueId, namePreffix)
         {
-            FormatConfiguration settingsDefinition = null;
-            try
-            {
-                // we parse the xml string
-                XDocument xDocument = XDocument.Parse(xmlString);
-
-                // then we load
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(FormatConfiguration));
-                StringReader aStringReader = new StringReader(xmlString);
-                settingsDefinition = (FormatConfiguration)xmlSerializer.Deserialize(XmlReader.Create(aStringReader));
-            }
-            catch
-            {
-            }
-
-            return settingsDefinition;
+            DefinitionUniqueId = definitionUniqueId;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -136,7 +68,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Formats
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             FormatConfiguration dataFormat = base.Clone() as FormatConfiguration;
 
@@ -144,7 +76,5 @@ namespace BindOpen.Framework.Core.Extensions.Configuration.Formats
         }
 
         #endregion
-
     }
-
 }

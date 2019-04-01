@@ -1,17 +1,15 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Configuration
 {
-
     /// <summary>
     /// This class represents an application extension titled item configuration.
     /// </summary>
     /// <typeparam name="T">The definition class of this instance.</typeparam>
-    public abstract class TAppExtensionTitledItemConfiguration<T> : TAppExtensionItemConfiguration<T>
-        where T : AppExtensionItemDefinition
+    public abstract class TAppExtensionTitledItemConfiguration<T> : TAppExtensionItemConfiguration<T>, ITAppExtensionTitledItemConfiguration<T>
+        where T : IAppExtensionItemDefinition
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -25,37 +23,25 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Title of this instance.
         /// </summary>
         [XmlElement("title")]
-        public DictionaryDataItem Title { get; set; } = null;
+        public IDictionaryDataItem Title { get; set; } = null;
 
         /// <summary>
         /// Specification of the Title property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean TitleSpecified
-        {
-            get
-            {
-                return this.Title != null && (this.Title.AvailableKeysSpecified || this.Title.ValuesSpecified || this.Title.SingleValueSpecified);
-            }
-        }
+        public bool TitleSpecified => this.Title != null && (this.Title.AvailableKeysSpecified || this.Title.ValuesSpecified || this.Title.SingleValueSpecified);
 
         /// <summary>
         /// Description of this instance.
         /// </summary>
         [XmlElement("description")]
-        public DictionaryDataItem Description { get; set; } = null;
+        public IDictionaryDataItem Description { get; set; } = null;
 
         /// <summary>
         /// Specification of the Description property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DescriptionSpecified
-        {
-            get
-            {
-                return this.Description != null && (this.Description.AvailableKeysSpecified || this.Description.ValuesSpecified || this.Description.SingleValueSpecified);
-            }
-        }
+        public bool DescriptionSpecified => this.Description != null && (this.Description.AvailableKeysSpecified || this.Description.ValuesSpecified || this.Description.SingleValueSpecified);
 
         #endregion
 
@@ -68,24 +54,36 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// <summary>
         /// Instantiates a new instance of the TAppExtensionTitledItemConfiguration class.
         /// </summary>
-        public TAppExtensionTitledItemConfiguration()
+        protected TAppExtensionTitledItemConfiguration()
             : base()
         {
         }
 
         /// <summary>
-        /// Creates a new instance of the TAppExtensionTitledItemConfiguration class.
+        /// Instantiates a new instance of the TAppExtensionTitledItemConfiguration class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
-        /// <param name="definition">The definition to consider.</param>
         /// <param name="namePreffix">The name preffix to consider.</param>
-        public TAppExtensionTitledItemConfiguration(
-            String name,
-            String definitionName = null,
-            T definition = null,
-            String namePreffix = null)
-            : base(name, definitionName, definition, namePreffix)
+        /// <param name="definition">The definition to consider.</param>
+        protected TAppExtensionTitledItemConfiguration(
+            string name,
+            string namePreffix = null,
+            T definition = default)
+            : base(name, definition, namePreffix)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the TAppExtensionTitledItemConfiguration class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="namePreffix">The name preffix to consider.</param>
+        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
+        protected TAppExtensionTitledItemConfiguration(
+            string name,
+            string namePreffix,
+            string definitionUniqueId)
+            : base(name, namePreffix, definitionUniqueId)
         {
         }
 
@@ -103,7 +101,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddTitleText(String text)
+        public void AddTitleText(string text)
         {
             this.AddTitleText("*", text);
         }
@@ -113,7 +111,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddTitleText(String key, String text)
+        public void AddTitleText(string key, string text)
         {
             if (this.Title == null) this.Title = new DictionaryDataItem();
             this.Title.AddValue(key, text);
@@ -123,7 +121,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetTitleText(String text)
+        public void SetTitleText(string text)
         {
             this.SetTitleText("*", text);
         }
@@ -133,7 +131,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetTitleText(String key = "*", String text = "*")
+        public void SetTitleText(string key = "*", string text = "*")
         {
             if (this.Title == null) this.Title = new DictionaryDataItem();
             this.Title.SetValue(key, text);
@@ -145,7 +143,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddDescriptionText(String text)
+        public void AddDescriptionText(string text)
         {
             this.AddDescriptionText("*", text);
         }
@@ -155,7 +153,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddDescriptionText(String key, String text)
+        public void AddDescriptionText(string key, string text)
         {
             if (this.Description == null) this.Description = new DictionaryDataItem();
             this.Description.AddValue(key, text);
@@ -165,7 +163,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetDescriptionText(String text)
+        public void SetDescriptionText(string text)
         {
             this.SetDescriptionText("*", text);
         }
@@ -175,10 +173,9 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetDescriptionText(String key = "*", String text = "*")
+        public void SetDescriptionText(string key = "*", string text = "*")
         {
-            if (this.Description == null) this.Description = new DictionaryDataItem();
-            this.Description.SetValue(key, text);
+            (this.Description ?? (this.Description = new DictionaryDataItem())).SetValue(key, text);
         }
 
         #endregion
@@ -194,15 +191,15 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public String GetTitleText(String variantName = "*", String defaultVariantName = "*")
+        public string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
             if (this.Title == null) return "";
-            String label = this.Title.GetContent(variantName);
-            if (String.IsNullOrEmpty(label))
+            string label = this.Title.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
                 label = this.Title.GetContent(defaultVariantName);
-            if (String.IsNullOrEmpty(label))
+            if (string.IsNullOrEmpty(label))
                 label = this.Name;
-            return (label ?? "");
+            return label ?? "";
         }
 
         /// <summary>
@@ -210,13 +207,13 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public String GetDescriptionText(String variantName = "*", String defaultVariantName = "*")
+        public string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
         {
             if (this.Description == null) return "";
-            String label = this.Description.GetContent(variantName);
-            if (String.IsNullOrEmpty(label))
+            string label = this.Description.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
                 label = this.Description.GetContent(defaultVariantName);
-            return (label ?? "");
+            return label ?? "";
         }
 
         #endregion
@@ -231,7 +228,7 @@ namespace BindOpen.Framework.Core.Extensions.Configuration
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             TAppExtensionTitledItemConfiguration<T> appExtensionItem = base.Clone() as TAppExtensionTitledItemConfiguration<T>;
             if (this.Title != null)

@@ -65,7 +65,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
         ///// Gets the type of the specified proxy object.
         ///// </summary>
         ///// <param name="aProxyObject">The proxy object to consider.</param>
-        //public static Object GetRealObject(Object aProxyObject)
+        //public static Object GetRealObject(object aProxyObject)
         //{
         //    if (RemotingServices.IsTransparentProxy(aProxyObject))
         //        return RemotingServices.GetRealProxy(aProxyObject);
@@ -122,7 +122,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// </summary>
         /// <param name="appDomainId">The ID of the application domain to consider.</param>
         /// <param name="ownerId">The ID of the owner.</param>
-        public Boolean Deallocate(String appDomainId, String ownerId = null)
+        public bool Deallocate(String appDomainId, String ownerId = null)
         {
             if (appDomainId == null)
                 return false;
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="filePath">Path of the file to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, Log log = null)
+        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, ILog log = null)
         {
             Assembly assembly = null;
 
@@ -227,11 +227,11 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="assemblyName">The assembly name to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssembly(AppDomain appDomain, String assemblyName, Log log = null)
+        public static Assembly LoadAssembly(AppDomain appDomain, String assemblyName, ILog log = null)
         {
             Assembly assembly = null;
 
-            if ((appDomain != null) && (!String.IsNullOrEmpty(assemblyName)))
+            if ((appDomain != null) && (!string.IsNullOrEmpty(assemblyName)))
             {
                 assembly = Array.Find(appDomain.GetAssemblies(), p => p.GetName().Name.KeyEquals(assemblyName));
                 if (assembly == null)

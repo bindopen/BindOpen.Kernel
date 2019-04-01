@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Core.Data.Business.Entities
         /// The image file name of this instance.
         /// </summary>
         [XmlElement("imageFileName")]
-        public String ImageFileName
+        public string ImageFileName
         {
             get { return this._ImageFileName; }
             set { this._ImageFileName = value; }

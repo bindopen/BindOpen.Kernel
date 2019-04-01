@@ -15,10 +15,10 @@ namespace BindOpen.Framework.Core.Application.Services
         /// <param name="service"></param>
         /// <param name="function"></param>
         /// <returns></returns>
-        public static Log Execute<Q>(this Q service, Action<Q> function)
+        public static ILog Execute<Q>(this Q service, Action<Q> function)
             where Q : IBdoDataService
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             try
             {

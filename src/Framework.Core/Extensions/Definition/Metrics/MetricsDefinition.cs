@@ -3,16 +3,14 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
 {
-
     /// <summary>
     /// This class represents a metrics definition.
     /// </summary>
     [Serializable()]
     [XmlType("MetricsDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "metrics.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class MetricsDefinition : AppExtensionItemDefinition
+    public class MetricsDefinition : AppExtensionItemDefinition, IMetricsDefinition
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -23,7 +21,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
         /// Item class of this instance.
         /// </summary>
         [XmlElement("itemClass")]
-        public String ItemClass
+        public string ItemClass
         {
             get;
             set;
@@ -33,14 +31,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
         /// Unit code of this instance.
         /// </summary>
         [XmlElement("unitCode")]
-        public String UnitCode
+        public string UnitCode
         {
             get;
             set;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -56,6 +53,5 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
         }
 
         #endregion
-
     }
 }

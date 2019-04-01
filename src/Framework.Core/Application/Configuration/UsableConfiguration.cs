@@ -17,16 +17,8 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// </summary>
     [XmlType("UsableConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot("usableConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class UsableConfiguration : Configuration
+    public class UsableConfiguration : Configuration, IUsableConfiguration
     {
-        // -------------------------------------------------------
-        // VARIABLES
-        // -------------------------------------------------------
-
-        #region Variables
-
-        #endregion
-
         // -------------------------------------------------------
         // PROPERTIES
         // -------------------------------------------------------
@@ -38,13 +30,13 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         [XmlArray("usingFilePaths")]
         [XmlArrayItem("add")]
-        public List<String> UsingFilePaths { get; set; } = new List<String>();
+        public List<string> UsingFilePaths { get; set; } = new List<string>();
 
         /// <summary>
         /// Specification of the UsingFilePaths property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean UsingFilePathsSpecified
+        public bool UsingFilePathsSpecified
         {
             get
             {
@@ -102,7 +94,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        public UsableConfiguration(IAppScope appScope, params String[] usingFilePaths)
+        public UsableConfiguration(IAppScope appScope, params string[] usingFilePaths)
             : base(appScope)
         {
             this.UsingFilePaths = usingFilePaths?.ToList();
@@ -114,7 +106,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        public UsableConfiguration(string filePath, IAppScope appScope, params String[] usingFilePaths)
+        public UsableConfiguration(string filePath, IAppScope appScope, params string[] usingFilePaths)
             : base(filePath, appScope)
         {
             this.UsingFilePaths = usingFilePaths?.ToList();
@@ -147,7 +139,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="items">The items to add.</param>
         /// <returns>Returns this instance.</returns>
-        public Configuration AddGroup(string groupId, params DataElement[] items)
+        public Configuration AddGroup(string groupId, params IDataElement[] items)
         {
             foreach (DataElement element in items)
             {
@@ -172,7 +164,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="log">The output log.</param>
         /// <returns>True if this instance has been</returns>
-        public override Boolean SaveXml(String filePath, Log log = null)
+        public override bool SaveXml(String filePath, ILog log = null)
         {
             return (base.SaveXml(filePath, log));
         }
@@ -192,7 +184,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
             Log log,
             IAppScope appScope,
             XmlSchemaSet xmlSchemaSet = null,
-            Boolean mustFileExist = true) where T : UsableConfiguration, new()
+            bool mustFileExist = true) where T : UsableConfiguration, new()
         {
             T unionConfiguration = new T
             {

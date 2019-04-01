@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -59,7 +58,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         public T Open<T>(
             String dataSourceName,
             String connectorDefinitionUniqueName,
-            Log log = null) where T : Connection, new()
+            ILog log = null) where T : Connection, new()
         {
             return this.Open<T>(null, dataSourceName, connectorDefinitionUniqueName, log) as T;
         }
@@ -76,7 +75,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             DataSourceService dataSourceManager,
             String dataSourceName,
             String connectorDefinitionUniqueName,
-            Log log = null) where T : Connection, new()
+            ILog log = null) where T : Connection, new()
         {
             if (log == null) log = new Log();
 
@@ -103,18 +102,18 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            DataSource dataSource, String connectorDefinitionUniqueName,
-            Log log = null) where T : Connection, new()
+            IDataSource dataSource, String connectorDefinitionUniqueName,
+            ILog log = null) where T : Connection, new()
         {
             if (log == null) log = new Log();
 
             if (dataSource == null)
                 log.AddError("Data source missing");
-            //else if (String.IsNullOrEmpty(connectorDefinitionUniqueName))
+            //else if (string.IsNullOrEmpty(connectorDefinitionUniqueName))
             //    log.AddError("Connection definition missing");
-            else if (!String.IsNullOrEmpty(connectorDefinitionUniqueName) && dataSource.HasConfiguration(connectorDefinitionUniqueName))
+            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName) && dataSource.HasConfiguration(connectorDefinitionUniqueName))
                 log.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
-            else if (!String.IsNullOrEmpty(connectorDefinitionUniqueName))
+            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName))
                 return this.Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueName), log) as T;
             else if (dataSource.Configurations.Count>0)
                 return this.Open<T>(dataSource.Configurations[0], log);
@@ -128,7 +127,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="configuration">The connector configuration to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        public T Open<T>(ConnectorConfiguration configuration, Log log = null) where T : Connection, new()
+        public T Open<T>(ConnectorConfiguration configuration, ILog log = null) where T : Connection, new()
         {
             Log subLog = new Log();
 
@@ -173,9 +172,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
         /// <returns>Returns the log of execution.</returns>
-        public Log Close(Connection connector)
+        public ILog Close(Connection connector)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (connector == null)
             {
@@ -207,10 +206,10 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null,
             IAppScope appScope = null,
             ScriptVariableSet scriptVariableSet = null)
         {

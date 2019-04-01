@@ -17,34 +17,19 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
     [Serializable()]
     [XmlType("ScriptWordDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "scriptWord.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScriptWordDefinition : AppExtensionItemDefinition
+    public class ScriptWordDefinition : AppExtensionItemDefinition, IScriptWordDefinition
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
-        private String _ReferenceUniqueName="";
-        //private Boolean _IsDynamic = true;
-        private DataElementSpecSet _ParameterSpecification = null;
-        private ScriptItemKind _Kind = ScriptItemKind.None;
-        private String _RuntimeFunctionName = "";
+        private IDataElementSpecSet _parameterSpecification = null;
 
-        private DataValueType _ReturnValueType = DataValueType.Text;
-
-        private Boolean _IsRepeatedParameters = false;
-        private int _MaxRepeatedParameterNumber = -1;
-        private int _MinRepeatedParameterNumber = -1;
-        private String _RepeatedParameterName;
-        private DataValueType _RepeatedParameterValueType;
-        private DictionaryDataItem _RepeatedParameterDescription;
-
-        private List<ScriptWordDefinition> _Children = null;
+        private List<IScriptWordDefinition> _children = null;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -56,7 +41,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// The calling class of this instance.
         /// </summary>
         [XmlElement("callingClass")]
-        public String CallingClass
+        public string CallingClass
         {
             get;
             set;
@@ -66,54 +51,37 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// Kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public ScriptItemKind Kind
-        {
-            get { return this._Kind; }
-            set { this._Kind = value; }
-        }
+        public ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
 
         /// <summary>
         /// Name of the runtime function.
         /// </summary>
         [XmlElement("functionName")]
-        public String RuntimeFunctionName
-        {
-            get { return this._RuntimeFunctionName; }
-            set { this._RuntimeFunctionName = value; }
-        }
+        public string RuntimeFunctionName { get; set; } = "";
 
         /// <summary>
         /// Reference unique name of this instance.
         /// </summary>
         [XmlAttribute("referenceUniqueName")]
-        public String ReferenceUniqueName
-        {
-            get { return this._ReferenceUniqueName; }
-            set { this._ReferenceUniqueName = value; }
-        }
+        public string ReferenceUniqueName { get; set; } = "";
 
         /// <summary>
         /// The return value type of this instance.
         /// </summary>
         [XmlElement("returnValueType")]
-        public DataValueType ReturnValueType
-        {
-            get { return this._ReturnValueType; }
-            set { this._ReturnValueType = value; }
-        }
+        public DataValueType ReturnValueType { get; set; } = DataValueType.Text;
 
         /// <summary>
         /// Parameter specification of this instance.
         /// </summary>
         [XmlElement("parameter.specification")]
-        public DataElementSpecSet ParameterSpecification
+        public IDataElementSpecSet ParameterSpecification
         {
             get {
-                if (this._ParameterSpecification == null) this._ParameterSpecification = new DataElementSpecSet();
-                return this._ParameterSpecification;
+                return this._parameterSpecification ?? (this._parameterSpecification = new DataElementSpecSet());
             }
             set {
-                this._ParameterSpecification = value;
+                this._parameterSpecification = value;
             }
         }
 
@@ -124,11 +92,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <seealso cref="RepeatedParameterValueType"/>
         /// <seealso cref="RepeatedParameterName"/>
         [XmlElement("isRepeatedParameters")]
-        public Boolean IsRepeatedParameters
-        {
-            get { return this._IsRepeatedParameters; }
-            set { this._IsRepeatedParameters = value; }
-        }
+        public bool IsRepeatedParameters { get; set; } = false;
 
         /// <summary>
         /// Value type of parameters of this instance when parameters are repeated.
@@ -136,11 +100,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <seealso cref="IsRepeatedParameters"/>
         /// <seealso cref="RepeatedParameterName"/>
         [XmlElement("repeatedParameterValueType")]
-        public DataValueType RepeatedParameterValueType
-        {
-            get { return this._RepeatedParameterValueType; }
-            set { this._RepeatedParameterValueType = value; }
-        }
+        public DataValueType RepeatedParameterValueType { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.
@@ -148,11 +108,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <seealso cref="IsRepeatedParameters"/>
         /// <seealso cref="RepeatedParameterName"/>
         [XmlElement("repeatedParameterDescription")]
-        public DictionaryDataItem RepeatedParameterDescription
-        {
-            get { return this._RepeatedParameterDescription; }
-            set { this._RepeatedParameterDescription = value; }
-        }
+        public IDictionaryDataItem RepeatedParameterDescription { get; set; }
 
         /// <summary>
         /// Name of parameters of this instance when parameters are repeated.
@@ -160,45 +116,32 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <seealso cref="IsRepeatedParameters"/>
         /// <seealso cref="RepeatedParameterValueType"/>
         [XmlElement("repeatedParameterName")]
-        public String RepeatedParameterName
-        {
-            get { return this._RepeatedParameterName; }
-            set { this._RepeatedParameterName = value; }
-        }
+        public string RepeatedParameterName { get; set; }
 
         /// <summary>
         /// Maximum number of parameters of this instance.
         /// </summary>
         [XmlElement("maxParameterNumber")]
-        public int MaxParameterNumber
-        {
-            get { return this._MaxRepeatedParameterNumber; }
-            set { this._MaxRepeatedParameterNumber = value; }
-        }
+        public int MaxParameterNumber { get; set; } = -1;
 
         /// <summary>
         /// Minimum number of parameters of this instance.
         /// </summary>
         [XmlElement("minParameterNumber")]
-        public int MinParameterNumber
-        {
-            get { return this._MinRepeatedParameterNumber; }
-            set { this._MinRepeatedParameterNumber = value; }
-        }
+        public int MinParameterNumber { get; set; } = -1;
 
         /// <summary>
         /// The definitions of the sub words of this instance.
         /// </summary>
         [XmlArray("children")]
         [XmlArrayItem("add.definition")]
-        public List<ScriptWordDefinition> Children
+        public List<IScriptWordDefinition> Children
         {
             get {
-                if (this._Children == null) this._Children = new List<ScriptWordDefinition>();
-                return this._Children;
+                return this._children ?? (this._children = new List<IScriptWordDefinition>());
             }
             set {
-                this._Children = value;
+                this._children = value;
             }
         }
 
@@ -206,10 +149,9 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// Calling function of this instance.
         /// </summary>
         [XmlIgnore()]
-        public ScriptWordFunction RuntimeFunction;
+        public ScriptWordFunction RuntimeFunction { get; set; }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -226,7 +168,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
 
         #endregion
 
-
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
@@ -236,10 +177,10 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <summary>
         /// Returns the default runtime function name.
         /// </summary>
-        public String GetDefaultRuntimeFunctionName()
+        public string GetDefaultRuntimeFunctionName()
         {
             String functionName = "";
-            switch (this._Kind)
+            switch (this.Kind)
             {
                 case ScriptItemKind.Function:
                     functionName += "Fun_";
@@ -258,13 +199,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public String GetRepeatedParameterDescriptionText(String variantName = "*", String defaultVariantName = "*")
+        public string GetRepeatedParameterDescriptionText(String variantName = "*", String defaultVariantName = "*")
         {
-            if (this._RepeatedParameterDescription == null) return "";
-            String label = this._RepeatedParameterDescription.GetContent(variantName);
-            if (String.IsNullOrEmpty(label))
-                label = this._RepeatedParameterDescription.GetContent(defaultVariantName);
-            if (String.IsNullOrEmpty(label))
+            if (this.RepeatedParameterDescription == null) return "";
+            String label = this.RepeatedParameterDescription.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
+                label = this.RepeatedParameterDescription.GetContent(defaultVariantName);
+            if (string.IsNullOrEmpty(label))
                 label = this.Name;
             return label ?? "";
         }
@@ -275,13 +216,13 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public override String GetText(LogFormat logFormat= LogFormat.Xml, String uiCulture = "*")
+        public override string GetText(LogFormat logFormat= LogFormat.Xml, String uiCulture = "*")
         {
             String st = "";
             switch(logFormat)
             {
                 case LogFormat.Xml:
-                    st += "<span style='color: blue;' >" + this.Name + "</span> (" + this._Kind.ToString() + ")<br>";
+                    st += "<span style='color: blue;' >" + this.Name + "</span> (" + this.Kind.ToString() + ")<br>";
                     st += "<br>";
                     st += "Modified: " + this.LastModificationDate + "<br>";
                     st += "<br>";
@@ -309,6 +250,5 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Scriptwords
         }
 
         #endregion
-    
     }
 }

@@ -122,13 +122,13 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                     defaultSchema,
                                     defaultDataTable);
 
-                                if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias && !String.IsNullOrEmpty(field.Alias))
+                                if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias && !string.IsNullOrEmpty(field.Alias))
                                     queryString += " as [" + field.Alias + "]";
                             }
                         }
                         break;
                     case DbDataFieldViewMode.OnlyName:
-                        if (!String.IsNullOrEmpty(field.Alias))
+                        if (!string.IsNullOrEmpty(field.Alias))
                         {
                             queryString += "[" + field.Alias + "]";
                         }
@@ -253,11 +253,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
             string queryString = "";
 
-            if ((viewMode == DbDataFieldViewMode.CompleteName) && (!String.IsNullOrEmpty(tableAlias)))
+            if ((viewMode == DbDataFieldViewMode.CompleteName) && (!string.IsNullOrEmpty(tableAlias)))
             {
                 queryString += "[" + tableAlias + "]";
             }
-            else if (!String.IsNullOrEmpty(tableName))
+            else if (!string.IsNullOrEmpty(tableName))
             {
                 if ((viewMode == DbDataFieldViewMode.CompleteName) || (viewMode == DbDataFieldViewMode.CompleteNameAsAlias))
                 {
@@ -366,7 +366,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             ScriptVariableSet scriptVariableSet,
             out String queryString)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             int index = 0;
 
@@ -622,7 +622,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             ScriptVariableSet scriptVariableSet,
             out String queryString)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             int index = 0;
             queryString = "";

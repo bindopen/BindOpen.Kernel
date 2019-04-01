@@ -12,17 +12,14 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Scalar
 {
-
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.
     /// </summary>
-
     [Serializable()]
     [XmlType("ScalarElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "scalar", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScalarElement : DataElement
+    public class ScalarElement : DataElement, IScalarElement
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -33,11 +30,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// The value of this instance.
         /// </summary>
         [XmlAttribute("value")]
-        public String Value
+        public string Value
         {
             get
             {
-                if (this.ItemXElement != null){
+                if (this.ItemXElement != null)
+                {
                     XElement element = this.ItemXElement.Elements().FirstOrDefault();
                     if (element != null)
                         return element.Value;
@@ -45,23 +43,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
                 return null;
             }
-            set
-            {
-                this.SetItem(value);
-            }
+            set => this.SetItem(value);
         }
 
         /// <summary>
         /// Specification of the Value property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ValueSpecified
-        {
-            get
-            {
-                return base.Items != null && base.Items.Count == 1;
-            }
-        }
+        public bool ValueSpecified => base.Items?.Count == 1;
 
         /// <summary>
         /// The value type of this instance.
@@ -78,26 +67,19 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// Specification of the ValueType property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean ValueTypeSpecified
-        {
-            get
-            {
-                return base.ValueType != DataValueType.Text;
-            }
-        }
+        public bool ValueTypeSpecified => base.ValueType != DataValueType.Text;
 
         /// <summary>
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new ScalarElementSpec Specification
+        public new IScalarElementSpec Specification
         {
-            get { return base.Specification as ScalarElementSpec; }
+            get => base.Specification as IScalarElementSpec;
             set { base.Specification = value; }
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -137,7 +119,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="items">The items to consider.</param>
         public ScalarElement(
             DataValueType valueType,
-            params Object[] items)
+            params object[] items)
             : this(null, null, valueType, null, items)
         {
         }
@@ -149,9 +131,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ScalarElement(
-            String name,
+            string name,
             DataValueType valueType,
-            params Object[] items)
+            params object[] items)
             : this(name, null, valueType, null, items)
         {
         }
@@ -165,25 +147,21 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="specification">The specification to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ScalarElement(
-            String name,
-            String id,
+            string name,
+            string id,
             DataValueType valueType,
-            ScalarElementSpec specification,
-            params Object[] items)
+            IScalarElementSpec specification,
+            params object[] items)
             : base(name, "scalarElement_", id)
         {
             this.ValueType = valueType;
             this.Specification = specification;
 
-            foreach (Object aItem in items)
-                this.AddItem(aItem);
-
-            //if (this.Specification != null)
-            //    this.Specification.MaximumItemNumber = (items.Length == 1 ? 1 : -1);
+            foreach (object item in items)
+                this.AddItem(item);
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // ACCESSORS
@@ -204,7 +182,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
         #endregion
 
-
         // --------------------------------------------------
         // ITEMS
         // --------------------------------------------------
@@ -217,7 +194,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
           /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
+        public override object NewItem(IAppScope appScope = null, ILog log = null)
         {
             switch (this.ValueType)
             {
@@ -246,17 +223,17 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
+        public override object GetItem(
             Object indexItem = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             if ((indexItem == null) || (indexItem is int))
                 return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            else if (indexItem is String)
+            else if (indexItem is string)
             {
-                Object item = this.GetObjectFromString(indexItem as String);
+                Object item = this.GetObjectFromString(indexItem as string);
                 return this.Items.First(p => p.KeyEquals(item));
             }
 
@@ -269,7 +246,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="indexItem">The item to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
             //String aStringItem = this.GetStringFromObject(indexItem);
             return this.Items.Any(p => p == indexItem);
@@ -279,9 +256,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Join("|", this.Items.Select(p => p == null ? "" : p.ToString()).ToArray());
+            return string.Join("|", this.Items.Select(p => p == null ? "" : p.ToString()).ToArray());
         }
 
         // Conversion ---------------------------
@@ -292,9 +269,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="object1">The object value to convert.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result string.</returns>
-        public override String GetStringFromObject(
+        public override string GetStringFromObject(
             Object object1,
-            Log log = null)
+            ILog log = null)
         {
             String stringValue = "";
 
@@ -311,16 +288,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>The result object.</returns>
-        public override Object GetObjectFromString(
+        public override object GetObjectFromString(
             String stringValue,
             IAppScope appScope = null,
-            Log log = null)
+            ILog log = null)
         {
             Object object1 = null;
 
             String format = null;
             if (this.Specification != null && this.Specification.ConstraintStatement != null)
-                format = this.Specification.ConstraintStatement.GetConstraintParameterValue("Format") as String;
+                format = this.Specification.ConstraintStatement.GetConstraintParameterValue("Format") as string;
             if (stringValue != null)
                 object1 = stringValue.ToObject(this.ValueType, format);
 
@@ -328,7 +305,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
@@ -338,7 +314,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -350,14 +325,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ScalarElement scalarElement = this.MemberwiseClone() as ScalarElement;
             return scalarElement;
         }
 
         #endregion
-
     }
-
 }

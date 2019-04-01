@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
     [Serializable()]
     [XmlType("DataKeyValue", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "add.value", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataKeyValue : MarshalByRefObject
+    public class DataKeyValue : MarshalByRefObject, IDataKeyValue
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -25,14 +25,14 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         [DataMember(Name = "key")]
         [XmlAttribute("key")]
         [DefaultValue("*")]
-        public String Key { get; set; } = "en";
+        public string Key { get; set; } = "en";
 
         /// <summary>
         /// Content of this instance.
         /// </summary>
         [DataMember(Name = "content")]
         [XmlText]
-        public String Content { get; set; } = "";
+        public string Content { get; set; } = "";
 
         #endregion
 
@@ -55,10 +55,10 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="key">Key of this instance.</param>
         /// <param name="aContent">Content of this instance.</param>
-        public DataKeyValue(String key, String aContent = null)
+        public DataKeyValue(string key, string aContent = null)
         {
-            this.Key = key;
-            this.Content = aContent;
+            Key = key;
+            Content = aContent;
         }
 
         #endregion
@@ -81,10 +81,10 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         #endregion
 
         // --------------------------------------------------
-        // EXPORTING
+        // ACCESSORS
         // --------------------------------------------------
 
-        #region Exporting
+        #region Accessors
 
         /// <summary>
         /// Returns a text node representing this instance.
@@ -92,35 +92,65 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="nodeName">Name of the text node.</param>
         /// <param name="indent">Tabulation indent to include in the text.</param>
         /// <returns></returns>
-        public String GetTextNode(String nodeName, String indent)
+        public string GetTextNode(string nodeName, string indent)
         {
-            String st = "";
+            string st = "";
 
             st += indent + nodeName + ":globalValue\n";
-            st += "\t" + indent + nodeName + ":globalValue:key=\"" + this.Key + "\"\n";
-            st += "\t" + indent + nodeName + ":globalValue:value=\"" + this.Content + "\"\n";
+            st += "\t" + indent + nodeName + ":globalValue:key=\"" + Key + "\"\n";
+            st += "\t" + indent + nodeName + ":globalValue:value=\"" + Content + "\"\n";
             return st;
         }
-
-        #endregion
-
-        // --------------------------------------------------
-        // CLONING
-        // --------------------------------------------------
-
-        #region Cloning
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public DataKeyValue Clone()
+        public virtual Object Clone()
         {
-            return new DataKeyValue()
+            return this.MemberwiseClone() as DataItem;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IDisposable IMPLEMENTATION
+        // --------------------------------------------------
+
+        #region IDisposable Implementation
+
+        /// <summary>
+        /// Indicates whether this instance is disposed.
+        /// </summary>
+        private bool IsDisposed = false;
+
+        /// <summary>
+        /// Disposes this instance.
+        /// </summary>
+        public virtual void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Disposes specifying whether this instance is disposing.
+        /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (this.IsDisposed)
+                return;
+
+            if (isDisposing)
             {
-                Key = this.Key,
-                Content = this.Content
-            };
+                // Free any other managed objects here.
+                //
+            }
+
+            // Free any unmanaged objects here.
+            //
+            this.IsDisposed = true;
         }
 
         #endregion

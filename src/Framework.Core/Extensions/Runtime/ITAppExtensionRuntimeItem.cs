@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Extensions.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime
 {
-
     /// <summary>
     /// This class represents an application extension runtime item.
     /// </summary>

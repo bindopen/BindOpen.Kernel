@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.Application.Options
     /// </summary>
     [XmlType("OptionSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot("optionSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class OptionSet : DataElementSet
+    public class OptionSet : DataElementSet, IOptionSet
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Indicates whether this instance has the specified option.
         /// </summary>
         /// <param name="name">Name of the option to consider.</param>
-        public Boolean HasOption(String name)
+        public bool HasOption(String name)
         {
             return this.HasItem(name);
         }
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Gets the value of the specified option.
         /// </summary>
         /// <param name="name">Name of the option to consider.</param>
-        public Object GetOptionValue(String name)
+        public object GetOptionValue(String name)
         {
             return this.GetElementItemObject(name);
         }
@@ -58,9 +58,9 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Gets the string value of the specified option.
         /// </summary>
         /// <param name="name">Name of the option to consider.</param>
-        public String GetOptionStringValue(String name)
+        public string GetOptionStringValue(String name)
         {
-            return (this.GetElementItemObject(name) as String ?? "");
+            return (this.GetElementItemObject(name) as string ?? "");
         }
 
         #endregion
@@ -77,14 +77,14 @@ namespace BindOpen.Framework.Core.Application.Options
         /// <param name="stringValue">The string value to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        public Log Update(
+        public ILog Update(
             String stringValue,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
-            if (!String.IsNullOrEmpty(stringValue))
+            if (!string.IsNullOrEmpty(stringValue))
                 foreach (String optionString in stringValue.Split(';'))
                     if (optionString.Contains("="))
                     {

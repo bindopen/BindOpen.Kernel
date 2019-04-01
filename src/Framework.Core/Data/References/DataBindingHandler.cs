@@ -28,19 +28,19 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the retrieved items.</returns>
-        public static List<Object> Get(
+        public static List<object> Get(
             DataElement aSourceElement,
             DataElementSet parameterDetail = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             log= (log ?? new Log());
 
             //this.SetDefinition((appScope== null ? null : appScope.AppExtension));
             //log.AddEvents(this.Check());
 
-            List<Object> dataItems = new List<Object>();
+            List<object> dataItems = new List<object>();
             //parameterDetail = (parameterDetail ?? new DataElementSet());
 
             //if (!log.HasErrorsOrExceptions())
@@ -65,17 +65,17 @@ namespace BindOpen.Framework.Core.Data.References
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the posted items.</returns>
-        public static List<Object> Post(
-            List<Object> items,
+        public static List<object> Post(
+            List<object> items,
             ref DataElement aSourceElement,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             //this.SetDefinition((appScope == null ? null : appScope.AppExtension));
             //log.AddEvents(this.Check());
 
-            List<Object> dataItems = new List<Object>();
+            List<object> dataItems = new List<object>();
 
             //if (!log.HasErrorsOrExceptions())
             //    if (this.Definition == null)
@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Core.Data.References
             //    else if ((items == null) || (items.Count == 0))
             //        log.AddWarning(title: "Target items missing");
             //    else
-            //        foreach (Object object1 in items)
+            //        foreach (object object1 in items)
             //            dataItems.AddRange(this.Definition.RuntimeFunction_Post(object1, ref aSourceElement, appScope, scriptVariableSet, log));
 
             return dataItems;
@@ -96,20 +96,20 @@ namespace BindOpen.Framework.Core.Data.References
         /// <summary>
         /// Posts the items to the source of this instance.
         /// </summary>
-        /// <param name="aItem">The item to consider.</param>
+        /// <param name="item">The item to consider.</param>
         /// <param name="aSourceElement">The source element to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the posted items.</returns>
-        public static List<Object> Post(
+        public static List<object> Post(
             Object aItem,
             DataElement aSourceElement,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            return DataBindingHandler.Post(new List<Object>() { aItem }, aSourceElement, appScope, scriptVariableSet, log);
+            return DataBindingHandler.Post(new List<object>() { aItem }, aSourceElement, appScope, scriptVariableSet, log);
         }
 
         #endregion

@@ -6,14 +6,13 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Business.Conditions
 {
-
     /// <summary>
     /// This class represents an advanced condition.
     /// </summary>
     [Serializable()]
     [XmlType("AdvancedBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "advanced.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class AdvancedCondition : Condition
+    public class AdvancedCondition : Condition, IAdvancedCondition
     {
         // --------------------------------------------------
         // ENUMERATIONS
@@ -24,7 +23,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <summary>
         /// This enumeration lists the possible view advanced condition kinds.
         /// </summary>
-        public enum AdvancedBusinessConditonKind
+        public enum AdvancedConditionKind
         {
             /// <summary>
             /// And.
@@ -49,14 +48,14 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// Kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public AdvancedBusinessConditonKind Kind { get; set; } = AdvancedBusinessConditonKind.And;
+        public AdvancedConditionKind Kind { get; set; } = AdvancedConditionKind.And;
 
         /// <summary>
         /// Conditions of this instance.
         /// </summary>
         [XmlArray("conditions")]
         [XmlArrayItem("condition")]
-        public List<Condition> Conditions { get; set; } = new List<Condition>();
+        public List<ICondition> Conditions { get; set; } = new List<ICondition>();
 
         #endregion
 
@@ -67,27 +66,27 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedBusinessConditon class.
+        /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
         public AdvancedCondition()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedBusinessConditon class.
+        /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
         /// <param name="conditions">The conditions to consider.</param>
-        public AdvancedCondition(params Condition[] conditions)
+        public AdvancedCondition(params ICondition[] conditions)
         {
             this.Conditions = conditions?.ToList();
         }
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedBusinessConditon class.
+        /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
         /// <param name="conditions">The conditions to consider.</param>
-        public AdvancedCondition(string trueValue, params Condition[] conditions)
+        public AdvancedCondition(bool trueValue, params ICondition[] conditions)
         {
             this.TrueValue = trueValue;
             this.Conditions = conditions?.ToList();
@@ -104,7 +103,7 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override Object Clone()
+        public override object Clone()
         {
             AdvancedCondition aAdvancedBusinessCondition = new AdvancedCondition();
             aAdvancedBusinessCondition.Conditions.AddRange(this.Conditions.Select(p => p.Clone() as Condition));
@@ -126,22 +125,27 @@ namespace BindOpen.Framework.Core.Data.Business.Conditions
         /// <param name="scriptInterpreter">Script interpreter.</param>
         /// <param name="scriptVariableSet">The script variable set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
-        public override Boolean Evaluate(
-            ScriptInterpreter scriptInterpreter,
-            ScriptVariableSet scriptVariableSet)
+        public override bool Evaluate(
+            IScriptInterpreter scriptInterpreter,
+            IScriptVariableSet scriptVariableSet)
         {
-            Boolean isAllConditionSatisfied = true;
+            bool isAllConditionSatisfied = true;
             foreach (Condition condition in this.Conditions)
+            {
                 switch (this.Kind)
                 {
-                    case AdvancedBusinessConditonKind.And:
+                    case AdvancedConditionKind.And:
                         isAllConditionSatisfied &= condition.Evaluate(scriptInterpreter, scriptVariableSet);
                         break;
-                    case AdvancedBusinessConditonKind.Or:
+                    case AdvancedConditionKind.Or:
                         isAllConditionSatisfied |= condition.Evaluate(scriptInterpreter, scriptVariableSet);
                         break;
+                    default:
+                        break;
                 }
-            return isAllConditionSatisfied;
+            }
+
+            return isAllConditionSatisfied == TrueValue;
         }
 
         #endregion
