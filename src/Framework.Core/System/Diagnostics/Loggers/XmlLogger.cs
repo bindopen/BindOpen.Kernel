@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Handlers;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -68,7 +67,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         public override bool WriteTask(
-            ILog log, ITaskConfiguration task)
+            ILog log, ITaskDto task)
         {
             return this.Save(log.Root, this.Filepath);
         }
@@ -144,16 +143,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         public override ILog LoadLog(
             String filePath,
             ILog loadLog = null,
-            IAppScope appScope = null,
             bool mustFileExist = true)
         {
-            Log log = DataItem.Load<Log>(filePath, loadLog, appScope, null, mustFileExist);
+            Log log = DataItemHandler.Load<Log>(filePath, loadLog, null, mustFileExist);
             //if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
             return log;
         }
@@ -163,15 +160,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
         public override ILog LoadLogFromString(
             String xmlString,
-            ILog loadLog = null,
-            IAppScope appScope = null)
+            ILog loadLog = null)
         {
             Log log = XmlHelper.LoadFromString<Log>(xmlString, loadLog, null);
-            if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
+            log?.UpdateRuntimeInfo(loadLog);
 
             return log;
         }

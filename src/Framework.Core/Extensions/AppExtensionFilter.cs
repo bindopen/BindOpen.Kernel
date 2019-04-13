@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Definition.Libraries;
+using BindOpen.Framework.Core.Extensions;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -78,28 +78,6 @@ namespace BindOpen.Framework.Core.Extensions
             FileName = libraryFileName;
             SourceKinds = sourceKinds?.ToList() ?? new List<DataSourceKind>() { DataSourceKind.Memory, DataSourceKind.Repository };
             FolderPath = libraryFolderPath;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Gets the library definition from this instance.
-        /// </summary>
-        /// <returns>Gets the library definition from this instance.</returns>
-        public ILibraryDefinition ToDefinition()
-        {
-            return new LibraryDefinition()
-            {
-                Name = Name,
-                AssemblyName = Name,
-                FileName = FileName,
-            };
         }
 
         #endregion

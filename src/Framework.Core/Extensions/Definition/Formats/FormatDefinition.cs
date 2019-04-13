@@ -1,55 +1,45 @@
 ﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Formats
 {
     /// <summary>
-    /// This class represents the format definition.
+    /// This class represents a format definition.
     /// </summary>
-    [Serializable()]
-    [XmlType("FormatDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "format.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class FormatDefinition : AppExtensionItemDefinition, IFormatDefinition
+    public class FormatDefinition : DataItem, IFormatDefinition
     {
-        // --------------------------------------------------
+        // ------------------------------------------
         // PROPERTIES
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Properties
 
         /// <summary>
-        /// Item class of this instance.
+        /// The library of this instance.
         /// </summary>
-        [XmlElement("itemClass")]
-        public string ItemClass
-        {
-            get;
-            set;
-        }
+        public ILibrary Library { get; }
 
         /// <summary>
-        /// Viewer class of this instance.
+        /// The item of this instance.
         /// </summary>
-        /// <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
-        [XmlElement("viewerClass")]
-        public string ViewerClass
-        {
-            get;
-            set;
-        }
+        public IFormatDefinitionDto Dto { get; }
 
         /// <summary>
-        /// Data source kind of this instance.
+        /// The unique ID of this instance.
         /// </summary>
-        [XmlElement("dataSourceKind")]
-        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.Memory;
+        public string UniqueId { get => Library?.Id + "$" + Dto?.Name; set { } }
+
+        /// <summary>
+        /// The runtime type of this instance.
+        /// </summary>
+        public Type RuntimeType { get; set; }
 
         #endregion
 
-        // --------------------------------------------------
+        // ------------------------------------------
         // CONSTRUCTORS
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Constructors
 
@@ -58,6 +48,34 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Formats
         /// </summary>
         public FormatDefinition()
         {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the FormatDefinition class.
+        /// </summary>
+        /// <param name="library">The library to consider.</param>
+        /// <param name="dto">The DTO item to consider.</param>
+        public FormatDefinition(ILibrary library, IFormatDefinitionDto dto)
+        {
+            Library = library;
+            Dto = dto;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Returns the key of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public string Key()
+        {
+            return UniqueId;
         }
 
         #endregion

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Reflection;
-using System.Xml.Schema;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -29,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Instantiates a new instance of the DataItem class.
         /// </summary>
-        public DataItem()
+        protected DataItem()
         {
         }
 
@@ -56,40 +52,6 @@ namespace BindOpen.Framework.Core.Data.Items
         public override object InitializeLifetimeService()
         {
             return null;
-        }
-
-        /// <summary>
-        /// Sets the specified value.
-        /// </summary>
-        /// <param name="objectType">The object type to consider.</param>
-        /// <param name="propertyName">The property name to consider.</param>
-        /// <param name="attributeTypes"></param>
-        /// <param name="attribute">The attribute to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        protected PropertyInfo GetPropertyInfo(
-            Type objectType,
-            string propertyName,
-            Type[] attributeTypes,
-            ref DataElementAttribute attribute,
-            IAppScope appScope = null)
-        {
-            PropertyInfo propertyInfo = null;
-
-            if (objectType != null && propertyName != null)
-            {
-                propertyInfo = objectType.GetProperty(propertyName);
-                if (propertyInfo != null)
-                {
-                    foreach (Type attributeType in attributeTypes)
-                    {
-                        attribute = propertyInfo.GetCustomAttribute(attributeType) as DataElementAttribute;
-                        if (attribute != null)
-                            break;
-                    }
-                }
-            }
-
-            return propertyInfo;
         }
 
         #endregion
@@ -128,55 +90,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public virtual void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
+        public virtual void UpdateRuntimeInfo(ILog log = null)
         {
-        }
-
-        /// <summary>
-        /// Gets the xml string of this instance.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>The Xml string of this instance.</returns>
-        public string ToXml(ILog log = null)
-        {
-            this.UpdateStorageInfo();
-            return XmlHelper.ToXml(this, log);
-        }
-
-        /// <summary>
-        /// Saves this instance to the specified file path.
-        /// </summary>
-        /// <param name="filePath">The path of the file to save.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public virtual bool SaveXml(string filePath, ILog log = null)
-        {
-            this.UpdateStorageInfo(log);
-            return XmlHelper.SaveXml(this, filePath, log);
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of ILog class from a xml file.
-        /// </summary>
-        /// <param name="filePath">The path of the Xml file to load.</param>
-        /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
-        /// <returns>The load log.</returns>
-        public static T Load<T>(
-            string filePath,
-            ILog loadLog = null,
-            IAppScope appScope = null,
-            XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : DataItem, new()
-        {
-            T dataItem = XmlHelper.Load<T>(filePath, loadLog, xmlSchemaSet, mustFileExist);
-            dataItem?.UpdateRuntimeInfo(appScope, loadLog);
-
-            return dataItem;
         }
 
         #endregion
@@ -193,16 +109,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public virtual ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null) where T : IDataItem
+            UpdateMode[] updateModes = null) where T : IDataItem
         {
             return new Log();
         }
@@ -212,17 +124,13 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public ILog Update(
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
-            return this.Update<DataItem>(null,specificationAreas, updateModes, appScope, scriptVariableSet);
+            return this.Update<DataItem>(null,specificationAreas, updateModes);
         }
 
         /// <summary>
@@ -232,15 +140,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
         public virtual ILog Check<T>(
             bool isExistenceChecked = true,
             T item = default,
-            string[] specificationAreas = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null) where T : IDataItem
+            string[] specificationAreas = null) where T : IDataItem
         {
             return new Log();
         }
@@ -250,16 +154,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
         public virtual ILog Check(
             bool isExistenceChecked = true,
-            string[] specificationAreas = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            string[] specificationAreas = null)
         {
-            return this.Check<DataItem>(isExistenceChecked, null, specificationAreas,appScope, scriptVariableSet);
+            return this.Check<DataItem>(isExistenceChecked, null, specificationAreas);
         }
 
         /// <summary>
@@ -268,15 +168,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the operation.</returns>
         public virtual ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null) where T : IDataItem
+            UpdateMode[] updateModes = null) where T : IDataItem
         {
             return new Log();
         }
@@ -286,16 +182,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of the operation.</returns>
         public ILog Repair(
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
-            return this.Repair<DataItem>(null, specificationAreas, updateModes, appScope, scriptVariableSet);
+            return this.Repair<DataItem>(null, specificationAreas, updateModes);
         }
 
         #endregion

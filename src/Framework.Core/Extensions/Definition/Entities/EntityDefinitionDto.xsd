@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
+  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../extensions/definition/AppExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="EntityKind.xsd" />
+  <xs:include schemaLocation="../../../extensions/definition/formats/FormatDefinitionDto.xsd" />
+  <xs:include schemaLocation="../../../data/items/schema/DataSchema.xsd" />
+
+  <xs:complexType name="EntityDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:AppExtensionItemDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="kind" type="bdo:EntityKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="viewerClass" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="formats" type="bdo:ArrayOfFormatDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="schemas" type="bdo:ArrayOfDataSchema1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="bdo:DataElementSpecSet" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfFormatDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="format" nillable="true" type="bdo:FormatDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataSchema1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="schema" nillable="true" type="bdo:DataSchema" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

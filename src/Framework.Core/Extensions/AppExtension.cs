@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Definition;
 using BindOpen.Framework.Core.Extensions.Definition.Libraries;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Runtime.Libraries;
+using BindOpen.Framework.Core.Extensions.Items.Libraries;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -114,7 +116,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="names">The names of the libraries to consider.</param>
         /// <returns>Returns the library definitions of this instance.</returns>
-        public List<ILibraryDefinition> GetLibraryDefinitions(string[] names = null)
+        public List<ILibraryDefinitionDto> GetLibraryDefinitions(string[] names = null)
         {
             return GetLibraries(names).Select(p => p.Definition).Where(p => p != null).ToList();
         }
@@ -124,7 +126,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="name">The name of the library to consider.</param>
         /// <returns>The library with the specified name.</returns>
-        public ILibraryDefinition GetLibraryDefinition(string name)
+        public ILibraryDefinitionDto GetLibraryDefinition(string name)
         {
             ILibrary library = GetLibrary(name);
             return library?.Definition;
@@ -178,43 +180,89 @@ namespace BindOpen.Framework.Core.Extensions
             return itemDefinition;
         }
 
-        // Script word definitions ---------------------------
+        //// Assemblies -------------------------
 
-        /// <summary>
-        /// Returns the possible parent definitions of the specified script word definition.
-        /// </summary>
-        /// <param name="definitionName">The definition name to consider.</param>
-        /// <param name="libraryNames">The names of libraries to consider.</param>
-        /// <returns>The parent definitions of the specified script word definition.</returns>
-        public List<IScriptWordDefinition> GetParentScriptWordDefinitions(
-            string definitionName,
-            string[] libraryNames = null)
-        {
-            return GetParentScriptWordDefinitions(definitionName, null, libraryNames).Distinct().ToList();
-        }
+        ///// <summary>
+        ///// Gets the extension item class reference of the specified object.
+        ///// </summary>
+        ///// <param name="extensionItemKind">The extension item kind to consider.</param>
+        ///// <param name="uniqueId">The unique ID of the extension item defintion to consider.</param>
+        ///// <param name="extensionItemDefinition">The corresponding library item definition.</param>
+        //public AssemblyHelper.ClassReference GetItemClassReference(
+        //    AppExtensionItemKind extensionItemKind,
+        //    string uniqueId,
+        //    out AppExtensionItemDefinitionDto extensionItemDefinition)
+        //{
+        //    AssemblyHelper.ClassReference assemblyReference = new AssemblyHelper.ClassReference();
+        //    extensionItemDefinition = null;
 
-        private List<IScriptWordDefinition> GetParentScriptWordDefinitions(
-            string definitionName,
-            IScriptWordDefinition parentFeachDefinition,
-            string[] libraryNames = null)
-        {
-            List<IScriptWordDefinition> parentDefinitions = new List<IScriptWordDefinition>();
+        //    switch (extensionItemKind)
+        //    {
+        //        case AppExtensionItemKind.Carrier:
+        //            CarrierDefinition carrierDefinition = GetItemDefinitionWithUniqueId<CarrierDefinition>(uniqueId);
+        //            if (carrierDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(carrierDefinition.ItemClass);
+        //            extensionItemDefinition = carrierDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Task:
+        //            TaskDefinitionDto taskDefinition = GetItemDefinitionWithUniqueId<TaskDefinitionDto>(uniqueId);
+        //            if (taskDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(taskDefinition.ItemClass);
+        //            extensionItemDefinition = taskDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Connector:
+        //            ConnectorDefinitionDto dataConnectorDefinition = GetItemDefinitionWithUniqueId<ConnectorDefinitionDto>(uniqueId);
+        //            if (dataConnectorDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(dataConnectorDefinition.ItemClass);
+        //            extensionItemDefinition = dataConnectorDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Entity:
+        //            EntityDefinitionDto dataEntityDefinition = GetItemDefinitionWithUniqueId<EntityDefinitionDto>(uniqueId);
+        //            if (dataEntityDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(dataEntityDefinition.ItemClass);
+        //            extensionItemDefinition = dataEntityDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Format:
+        //            FormatDefinitionDto dataFormatDefinition = GetItemDefinitionWithUniqueId<FormatDefinitionDto>(uniqueId);
+        //            if (dataFormatDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(dataFormatDefinition.ItemClass);
+        //            extensionItemDefinition = dataFormatDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Handler:
+        //            HandlerDefinitionDto dataHandlerDefinition = GetItemDefinitionWithUniqueId<HandlerDefinitionDto>(uniqueId);
+        //            if (dataHandlerDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(dataHandlerDefinition.CallingClass);
+        //            extensionItemDefinition = dataHandlerDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Routine:
+        //            RoutineDefinitionDto routineDefinition = GetItemDefinitionWithUniqueId<RoutineDefinitionDto>(uniqueId);
+        //            if (routineDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(routineDefinition.ItemClass);
+        //            extensionItemDefinition = routineDefinition;
+        //            break;
+        //        case AppExtensionItemKind.Scriptword:
+        //            ScriptwordDefinitionDto scriptWordDefinition = GetItemDefinitionWithUniqueId<ScriptwordDefinitionDto>(uniqueId);
+        //            if (scriptWordDefinition != null)
+        //                assemblyReference = AssemblyHelper.GetClassReference(scriptWordDefinition.CallingClass);
+        //            extensionItemDefinition = scriptWordDefinition;
+        //            break;
+        //    }
 
-            if (definitionName != null)
-            {
-                List<IScriptWordDefinition> definitions = 
-                    (parentFeachDefinition == null ?  GetItemDefinitions<IScriptWordDefinition>(libraryNames) : parentFeachDefinition.Children);
-                foreach (IScriptWordDefinition currentScriptWordDefinition in definitions)
-                {
-                    if (currentScriptWordDefinition.KeyEquals(definitionName) && parentFeachDefinition != null)
-                        parentDefinitions.Add(parentFeachDefinition);
+        //    return assemblyReference;
+        //}
 
-                    parentDefinitions.AddRange(GetParentScriptWordDefinitions(definitionName, currentScriptWordDefinition, libraryNames));
-                }
-            }
-
-            return parentDefinitions;
-        }
+        ///// <summary>
+        ///// Gets the extension item class reference of the specified object.
+        ///// </summary>
+        ///// <param name="extensionItemKind">The extension item kind to consider.</param>
+        ///// <param name="uniqueId">The unique ID of the extension item defintion to consider.</param>
+        //protected AssemblyHelper.ClassReference GetItemClassReference(
+        //    AppExtensionItemKind extensionItemKind,
+        //    string uniqueId)
+        //{
+        //    AppExtensionItemDefinitionDto extensionItemDefinition = null;
+        //    return GetItemClassReference(extensionItemKind, uniqueId, out extensionItemDefinition);
+        //}
 
         #endregion
 
@@ -236,6 +284,131 @@ namespace BindOpen.Framework.Core.Extensions
                 if (!_libraries.Any(p => p.KeyEquals(library.Name)))
                     _libraries.Add(library);
             }
+        }
+
+        /// <summary>
+        /// Adds the specified libraries.
+        /// </summary>
+        /// <param name="libraries">The dynamic libraries to consider.</param>
+        public void AddLibraries(ILibrary[] libraries)
+        {
+            foreach(ILibrary library in libraries)
+            {
+                AddLibrary(library);
+            }
+        }
+
+        // From config -------------------------------
+
+        /// <summary>
+        /// Adds the specified libraries.
+        /// </summary>
+        /// <param name="config">The application extension configuration to consider.</param>
+        /// <param name="folderPath">The folder path to consider.</param>
+        /// <returns>Reurns the opeartion log.</returns>
+        public ILog AddLibraries(
+            IAppExtensionConfiguration config,
+            string folderPath = null)
+        {
+            ILog log = new Log();
+
+            if (config != null)
+            {
+                foreach (IAppExtensionFilter extensionFilter in config.GetFilters())
+                {
+                    string defaultFolderPath = string.IsNullOrEmpty(extensionFilter.FolderPath) ?
+                        config.DefaultFolderPath : extensionFilter.FolderPath;
+                    if (string.IsNullOrEmpty(defaultFolderPath))
+                        defaultFolderPath = folderPath;
+
+                    ILibrary library = LibraryLoader.Load(AppDomain, extensionFilter, log);
+
+                    if (library != null && !log.HasErrorsOrExceptions()
+                        && !_libraries.Any(p => p.Definition?.KeyEquals(library.Definition) == true))
+                    {
+                        AddLibrary(library);
+                    }
+                }
+            }
+
+            return log;
+        }
+
+        // From file -------------------------------
+
+        /// <summary>
+        /// Adds the specifed libraries in the specified way.
+        /// </summary>
+        /// <param name="filePaths">The file paths to consider.</param>
+        /// <param name="folderPath">The folder path to consider.</param>
+        /// <returns>The log of the load task.</returns>
+        /// <remarks>If null then we load the existing library names.</remarks>
+        public virtual ILog AddLibrariesFromFile(
+            string filePaths,
+            string folderPath)
+        {
+            ILog log = new Log();
+
+            Log subLog = null;
+
+            folderPath = folderPath.GetEndedString(@"\").ToPath();
+
+            if (string.IsNullOrEmpty(filePaths))
+            {
+                log.AddError("Assembly file path missing");
+            }
+            else
+            {
+                foreach (string subFilePath in filePaths.Split('|'))
+                {
+                    string completeSubFilePath = (folderPath + subFilePath).ToPath();
+
+                    List<string> completeSubFilePaths = new List<string>();
+                    if (completeSubFilePath.Contains('*'))
+                    {
+                        try
+                        {
+                            completeSubFilePaths = Directory.GetFiles(
+                                Path.GetDirectoryName(completeSubFilePath),
+                                Path.GetFileName(completeSubFilePath)).ToList();
+                        }
+                        catch
+                        {
+                            log.AddError("Could not find the assembly file path '" + completeSubFilePath + "'");
+                        }
+                    }
+                    else
+                    {
+                        completeSubFilePaths = new List<string>() { completeSubFilePath };
+                    }
+
+                    foreach (string filePath in completeSubFilePaths)
+                    {
+                        subLog = new Log();
+
+                        ILibrary library = LibraryLoader.Load(
+                            AppDomain,
+                            new AppExtensionFilter(
+                                null,
+                                Path.GetFileName(filePath),
+                                new[] { DataSourceKind.Repository },
+                                Path.GetDirectoryName(filePath)),
+                            subLog);
+
+                        log.AddSubLog(subLog, p => p.HasErrorsOrExceptionsOrWarnings(), title: "Loading assembly '" + filePath + "'");
+
+                        if (library != null && !log.HasErrorsOrExceptions())
+                        {
+                            if (!_libraries.Any(p => p.Definition?.Id.KeyEquals(library.Definition.Id) == true))
+                            {
+                                AddLibrary(library);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return log;
         }
 
         /// <summary>

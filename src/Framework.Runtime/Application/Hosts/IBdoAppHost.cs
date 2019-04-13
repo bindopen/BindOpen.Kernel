@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The application settings.
         /// </summary>
-        AppSettings Settings { get; }
+        IBdoAppSettings Settings { get; }
 
         /// <summary>
         /// Get the specified known path.
@@ -58,14 +58,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The set of user settings.
         /// </summary>
-        DataElementSet UserSettingsSet { get; set; }
+        IDataElementSet UserSettingsSet { get; set; }
 
         /// <summary>
         /// Gets the specified credential.
         /// </summary>
         /// <param name="name">The name of the credential to consider.</param>
         /// <returns>Returns the specified credential.</returns>
-        ApplicationCredential GetCredential(string name);
+        IApplicationCredential GetCredential(string name);
 
         /// <summary>
         /// Loads the settings.
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider.</param>
         /// <returns>Returns the application settings.</returns>
-        AppSettings LoadSettings(string filePath, Log log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null);
+        IBdoAppSettings LoadSettings(string filePath, ILog log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null);
 
         /// <summary>
         /// Saves settings.

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Specification.Filters;
 
 namespace BindOpen.Framework.Core.Data.Specification.Filters
 {

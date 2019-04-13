@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -99,7 +100,7 @@ namespace BindOpen.Framework.Core.Data.Items
             NamedDataItem item = base.Clone() as NamedDataItem;
             item.Name =NamedDataItem.GetClonedName(this.Name, this.NamePreffix);
             if (this.CreationDate != null)
-                item.CreationDate = DateTime.Now.GetString();
+                item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;
             return item;
         }

@@ -1,10 +1,16 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Datasources;
+using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
+using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Application.Scopes
@@ -28,17 +34,17 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// The script interpreter of this instance.
         /// </summary>
-        public ScriptInterpreter ScriptInterpreter { get; set; } = null;
+        public IScriptInterpreter ScriptInterpreter { get; set; } = null;
 
         /// <summary>
         /// The data context of this instance.
         /// </summary>
-        public DataContext DataContext { get; set; } = null;
+        public IDataContext DataContext { get; set; } = null;
 
         /// <summary>
         /// The data source service of this instance.
         /// </summary>
-        public DataSourceService DataSourceService { get; set; } = null;
+        public IDataSourceService DataSourceService { get; set; } = null;
 
         #endregion
 
@@ -106,16 +112,12 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
             this.AppExtension?.Initialize();
             //if (this._DataContext != null)

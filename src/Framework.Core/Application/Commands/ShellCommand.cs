@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Commands.Interfaces;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
@@ -29,7 +31,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         public string FileName { get; set; } = "";
 
         /// <summary>
-        /// The argument String of this instance.
+        /// The argument string of this instance.
         /// </summary>
         [XmlElement("argumentString")]
         public string ArgumentString { get; set; } = "";
@@ -59,19 +61,19 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// Instantiates a new instance of the ShellCommand class.
         /// </summary>
         /// <param name="fileName">The file name to consider.</param>
-        /// <param name="aArgumentString">The argument string to consider.</param>
-        /// <param name="aWorkingDirectory">The working directory to consider.</param>
+        /// <param name="argumentString">The argument string to consider.</param>
+        /// <param name="workingDirectory">The working directory to consider.</param>
         /// <param name="name">The name of this instance.</param>
         public ShellCommand(
-            String fileName,
-            String aArgumentString = null,
-            String aWorkingDirectory = null,
-            String name = null)
+            string fileName,
+            string argumentString = null,
+            string workingDirectory = null,
+            string name = null)
             : base(CommandKind.Shell, name)
         {
             this.FileName = fileName;
-            this.ArgumentString = aArgumentString;
-            this.WorkingDirectory = aWorkingDirectory;
+            this.ArgumentString = argumentString;
+            this.WorkingDirectory = workingDirectory;
         }
 
         #endregion
@@ -91,14 +93,15 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
         public override ILog ExecuteWithResult(
-            out String resultString,
+            out string resultString,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal)
         {
             resultString = "";
 
-            Log log = appScope.Check(true);
+            ILog log = appScope.Check(true);
+
             if (string.IsNullOrEmpty(this.FileName))
             {
                 log.AddWarning(
@@ -110,7 +113,6 @@ namespace BindOpen.Framework.Core.Application.Commands
                 try
                 {
                     Process process = new Process();
-                    //aProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.RedirectStandardOutput = true;
                     process.StartInfo.FileName = this.FileName;
@@ -147,6 +149,5 @@ namespace BindOpen.Framework.Core.Application.Commands
         }
 
         #endregion
-
     }
 }

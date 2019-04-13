@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -191,7 +190,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         public virtual bool WriteTask(
-            ILog log, ITaskConfiguration task)
+            ILog log, ITaskDto task)
         {
             return false;
         }
@@ -424,13 +423,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-          /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         public virtual ILog LoadLog(
             String filePath,
             ILog loadLog = null,
-            IAppScope appScope = null,
             bool mustFileExist = true)
         {
             return new Log();
@@ -441,12 +438,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-          /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
         public virtual ILog LoadLogFromString(
             String xmlString,
-            ILog loadLog = null,
-            IAppScope appScope = null)
+            ILog loadLog = null)
         {
             return new Log();
         }

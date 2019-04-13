@@ -1,59 +1,44 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+﻿using System;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
-using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Framework.Standard.Extensions.Connectors
 {
-
     /// <summary>
     /// This class represents a repository connector.
     /// </summary>
     public class RepositoryConnector : Connector
     {
-
         // -----------------------------------------------
         // CONSTRUCTORS
         // -----------------------------------------------
 
         #region Constructors
 
+        /// <summary>
+        /// Instantiates a new instance of the RepositoryConnector class.
+        /// </summary>
+        protected RepositoryConnector() : base()
+        {
+        }
 
         /// <summary>
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
-        public RepositoryConnector() : base()
-        {
-        }
-
-        /// <summary>
-        /// This instantiates a new instance of the RepositoryConnector class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        public RepositoryConnector(
-            String name,
-            String definitionName,
-            ConnectorConfiguration configuration,
-            AppScope appScope = null)
-            : base(name, definitionName, configuration, appScope)
+        /// <param name="dto">The DTO item of this instance.</param>
+        protected RepositoryConnector(IConnectorDto dto)
         {
         }
 
         #endregion
-
 
         // -----------------------------------------------
         // FILE MANAGEMENT
         // -----------------------------------------------
 
         #region File_Management
-
 
         // Pull ---------------------------------------
 
@@ -98,7 +83,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 log,
                 CarrierKind_standard.File);
             foreach (RepositoryItem file in files)
-                this.Pull(file.Path, localPathUri, canOverwrite, log);
+                this.Pull(file.Dto?.Path, localPathUri, canOverwrite, log);
         }
 
         /// <summary>
@@ -163,7 +148,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 log,
                 CarrierKind_standard.File);
             foreach (RepositoryItem file in files)
-                this.Pull(file.Path, remotePathUri, canOverwrite, log);
+                this.Pull(file.Dto?.Path, remotePathUri, canOverwrite, log);
         }
 
         /// <summary>
@@ -227,6 +212,5 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         }
 
         #endregion
-
     }
 }

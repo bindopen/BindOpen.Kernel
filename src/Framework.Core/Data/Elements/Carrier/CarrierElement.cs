@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Carrier;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.Extensions.Definition.Carriers;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
 
 namespace BindOpen.Framework.Core.Data.Elements.Carrier
 {
@@ -27,10 +25,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         #region Properties
 
         /// <summary>
-        /// The definition name of this instance.
+        /// The definition unique ID of this instance.
         /// </summary>
         [XmlElement("definition")]
-        public string DefinitionUniqueName { get; set; } = "";
+        public string DefinitionUniqueId { get; set; } = "";
 
         // --------------------------------------------------
 
@@ -53,70 +51,23 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         #region Constructors
 
         /// <summary>
-        /// Initializes a new carrier element.
+        /// Initializes a new instance of the CarrierElement class.
         /// </summary>
-        public CarrierElement()
-            : base(null, "carrierElement_")
+        public CarrierElement() : this(null, null)
         {
         }
 
         /// <summary>
-        /// Initializes a new carrier element.
+        /// Initializes a new instance of the CarrierElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="carrierUniqueName ">The carrier unique name to consider.</param>
-        /// <param name="aSpecification">The specification to consider.</param>
-        /// <param name="items">The items to consider.</param>
         public CarrierElement(
-            String name,
-            String id,
-            String carrierUniqueName,
-            CarrierElementSpec aSpecification,
-            params CarrierConfiguration[] items)
-            : base(name, "CarrierElement_", id)
+            string name = null,
+            string id = null)
+            : base(name, "carrier_", id)
         {
-            this.ValueType = DataValueType.CarrierConfiguration;
-
-            this.SetItem(items);
-            if (!string.IsNullOrEmpty(carrierUniqueName))
-                this.DefinitionUniqueName = carrierUniqueName;
-        }
-
-        /// <summary>
-        /// Initializes a new carrier element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="carrierUniqueName ">The carrier unique name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public CarrierElement(
-            String name,
-            String carrierUniqueName,
-            params CarrierConfiguration[] items)
-            : this(name, null, carrierUniqueName, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new carrier element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public CarrierElement(
-            String name,
-            params CarrierConfiguration[] items)
-            : this(name, null, null, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new carrier element.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public CarrierElement(
-            params CarrierConfiguration[] items)
-            : this(null, null, null, null, items)
-        {
+            ValueType = DataValueType.Carrier;
         }
 
         #endregion
@@ -127,63 +78,31 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
 
         #region Items
 
+        // Specification ---------------------
+
+        /// <summary>
+        /// Creates a new specification.
+        /// </summary>
+        /// <returns>Returns the new specifcation.</returns>
+        public override IDataElementSpec NewSpecification()
+        {
+            return Specification = new CarrierElementSpec();
+        }
+
+        // Items ----------------------------
+
         /// <summary>
         /// Sets the specified single item of this instance.
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public override void SetItem(
-            object item,
-            IAppScope appScope = null)
+            object item)
         {
             base.SetItem(item);
-            
-            if (this[0] is CarrierConfiguration)
-                this.DefinitionUniqueName = (this[0] as CarrierConfiguration).DefinitionUniqueId;
-        }
 
-        /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override object NewItem(IAppScope appScope = null, ILog log = null)
-        {
-            if (appScope == null 
-                || appScope.AppExtension== null 
-                || !(this.Specification is CarrierElementSpec))
-                return null;
-
-            return appScope.AppExtension.CreateConfiguration<CarrierDefinition>(this.DefinitionUniqueName, null, log);
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override object GetItem(
-            Object indexItem = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            if ((indexItem == null) || (indexItem is int))
-            {
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            }
-            else if (indexItem is string)
-            {
-                return this.GetItems(appScope, scriptVariableSet, log)
-                   .Any(p => p is CarrierConfiguration && string.Equals((p as CarrierConfiguration)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-            }
-
-            return null;
+            if (this[0] is CarrierDto)
+                DefinitionUniqueId = (this[0] as CarrierDto)?.DefinitionUniqueId;
         }
 
         /// <summary>
@@ -195,7 +114,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
             if (indexItem is string)
-                return this.Items.Any(p => p.KeyEquals(indexItem));
+                return Items.Any(p => p.KeyEquals(indexItem));
 
             return false;
         }
@@ -206,54 +125,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", this.Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
-        }
-
-        // Conversion ---------------------------
-
-        /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
-        /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public override string GetStringFromObject(
-            object object1,
-            ILog log = null)
-        {
-            string stringValue = "";
-
-            if (object1 is CarrierConfiguration)
-            {
-                CarrierConfiguration dataCarrier = object1 as CarrierConfiguration;
-                if (dataCarrier != null)
-                    stringValue = dataCarrier.ToXml();
-                else if (log!=null)
-                    log.AddError(title: "Entity expected", description: "The specified object is not an entity.");
-            }
-
-            return stringValue;
-        }
-
-        /// <summary>
-        /// Returns the object value from a based on this instance's specification.
-        /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public override object GetObjectFromString(
-            string stringValue,
-            IAppScope appScope = null,
-            ILog log = null)
-        {
-            Object object1 = null;
-
-            if (stringValue != null)
-                if (this.Specification != null && appScope!= null && appScope.AppExtension != null)
-                    object1 = appScope.AppExtension.CreateConfiguration<CarrierDefinition>(this.DefinitionUniqueName, stringValue, log);
-
-            return object1;
+            return string.Join("|", Items.Select(p => (p as EntityDto)?.Key() ?? "").ToArray());
         }
 
         #endregion
@@ -279,7 +151,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            CarrierElement dataCarrierElement = this.MemberwiseClone() as CarrierElement;
+            CarrierElement dataCarrierElement = MemberwiseClone() as CarrierElement;
             return dataCarrierElement;
         }
 

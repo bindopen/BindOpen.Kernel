@@ -1,7 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Schema;
-using BindOpen.Framework.Core.Data.References;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements.Schema;
+using BindOpen.Framework.Core.Data.Items.Schema;
+using BindOpen.Framework.Core.Data.References;
 
 namespace BindOpen.Framework.Core.Data.Items.Schema
 {
@@ -29,7 +30,7 @@ namespace BindOpen.Framework.Core.Data.Items.Schema
         /// The meta schema reference of this instance. 
         /// </summary>
         [XmlElement("metaSchema.reference")]
-        public DataReference MetaSchemreference { get; set; } = null;
+        public DataReferenceDto MetaSchemreference { get; set; } = null;
 
         #endregion
 
@@ -50,9 +51,9 @@ namespace BindOpen.Framework.Core.Data.Items.Schema
         /// Initializes a new instance of the DataSchema class.
         /// </summary>
         /// <param name="name">The name of this instance.</param>
-        public DataSchema(String name) : base(name, "schema_")
+        public DataSchema(string name) : base(name, "schema_")
         {
-            SetTitleText("My schema");
+            SetTitle("My schema");
         }
 
         #endregion

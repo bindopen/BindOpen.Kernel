@@ -7,12 +7,12 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Dictionary
 {
@@ -184,7 +184,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param name="values">The values to consider.</param>
-        public DictionaryDataItem(params DataKeyValue[] values)
+        public DictionaryDataItem(params IDataKeyValue[] values)
         {
             foreach(DataKeyValue value in values)
             {
@@ -266,7 +266,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Adds a new value to this instance.
         /// </summary>
         /// <param name="dataKeyValue">The value to add.</param>
-        public void AddValue(DataKeyValue dataKeyValue)
+        public void AddValue(IDataKeyValue dataKeyValue)
         {
             if (dataKeyValue != null)
                 AddValue(dataKeyValue.Key, dataKeyValue.Content);
@@ -277,7 +277,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// </summary>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public DataKeyValue AddValue(string text)
+        public IDataKeyValue AddValue(string text)
         {
             return AddValue("*", text);
         }
@@ -288,7 +288,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public DataKeyValue AddValue(string key, string text)
+        public IDataKeyValue AddValue(string key, string text)
         {
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return null;
 
@@ -346,7 +346,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// Removes the specified value.
         /// </summary>
         /// <param name="dataKeyValue">The value to remove.</param>
-        public void RemoveValue(DataKeyValue dataKeyValue)
+        public void RemoveValue(IDataKeyValue dataKeyValue)
         {
             if (dataKeyValue == null) return;
             Values.RemoveAll(p => dataKeyValue.KeyEquals(p));
@@ -420,7 +420,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         {
             if (key == null) return null;
 
-            return _values.FirstOrDefault(p => p.KeyEquals(key));
+            return _values.Find(p => p.KeyEquals(key));
         }
 
         // Keys -------------------------------
@@ -495,9 +495,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
             if (_availableKeys?.Count > 0)
                 _values.RemoveAll(p => p.Key == null || !_availableKeys.Contains(p.Key.ToLower()));

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Processing
 {

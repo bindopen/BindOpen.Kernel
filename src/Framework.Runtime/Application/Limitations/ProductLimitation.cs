@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Runtime.Application.Limitations
         }
 
         /// <summary>
-        /// The business metrics unique name of this instance.
+        /// The business metrics unique ID of this instance.
         /// </summary>
         [XmlElement("businessMetricsUniqueName")]
         public string MetricsConfigurationUniqueName

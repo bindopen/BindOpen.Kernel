@@ -14,7 +14,7 @@ namespace BindOpen.Framework.UnitTest._First
         public void Setup()
         {
             // Setup variables for the first time
-            AppExtension appExtension = SetupVariables.AppScope.AppExtension;
+            IAppExtension appExtension = SetupVariables.AppScope.AppExtension;
         }
 
         [Test]

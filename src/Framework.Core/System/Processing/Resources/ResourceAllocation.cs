@@ -58,7 +58,7 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
             String aAllocatedResourceId,
             String aOwnerId=null)
         {
-            this.CreationDate = DateTime.Now.GetString();
+            this.CreationDate = ObjectHelper.ToString(DateTime.Now);
             this.AllocatedResourceId = aAllocatedResourceId;
             this.OwnerId = aOwnerId;
         }

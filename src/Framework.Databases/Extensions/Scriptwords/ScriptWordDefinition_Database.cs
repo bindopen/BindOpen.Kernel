@@ -2,7 +2,8 @@
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Runtime.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries.Builders;
 
@@ -11,7 +12,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
     /// <summary>
     /// This class represents a 'Database' script word definition.
     /// </summary>
-    public static class ScriptWordDefinition_Database
+    [ScriptwordDefinition()]
+    public static class ScriptwordDefinition_Database
     {
         // ------------------------------------------
         // FUNCTIONS
@@ -29,10 +31,11 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
+        [Scriptword(Name="sqlCount")]
         public static String Fun_SqlCount(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -58,8 +61,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlSum(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -85,8 +88,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlAverage(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -114,8 +117,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlGetCurrentDate(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -145,8 +148,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlTrue(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -172,8 +175,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlIf(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String condition = parameters.GetStringAtIndex(0);
@@ -203,8 +206,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlNot(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -232,8 +235,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlOr(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -259,8 +262,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlAnd(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -286,8 +289,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlXor(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -314,8 +317,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlEq(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -342,8 +345,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlDiff(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -370,8 +373,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlGt(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -400,8 +403,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlGte(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -430,8 +433,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlLt(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -460,8 +463,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlLte(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -490,8 +493,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlIsNull(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -519,8 +522,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlConvertToText(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -548,8 +551,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlText(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -575,8 +578,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlLike(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -603,8 +606,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlReplace(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -632,8 +635,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlConcatenate(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -657,8 +660,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlNull(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -684,8 +687,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlDatabase(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -717,8 +720,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlDatabase_SqlSchema(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -747,8 +750,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlDatabase_SqlTable(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -775,8 +778,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlDatabase_SqlTable_SqlField(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -805,8 +808,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlNewGuid(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -832,8 +835,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlRandom(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";
@@ -858,8 +861,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlIn(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -889,8 +892,8 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         public static String Fun_SqlList(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
             params object[] parameters)
         {
             String text = "";

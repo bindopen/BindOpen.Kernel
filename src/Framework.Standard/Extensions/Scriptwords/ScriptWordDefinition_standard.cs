@@ -3,7 +3,7 @@ using System.Collections;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Standard.Extensions.Scriptwords
@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
     /// <summary>
     /// This class represents a 'Standard' script definition.
     /// </summary>
-    public static class ScriptWordDefinition_standard
+    public static class ScriptwordDefinition_standard
     {
 
         // ------------------------------------------
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_IsEmpty(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_Text(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_FormatText(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String textValue = parameters.GetStringAtIndex(0);
@@ -92,7 +92,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_If(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String aCondition = parameters.GetStringAtIndex(0);
@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_Not(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_Or(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             Boolean b = false;
@@ -152,7 +152,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_And(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             Boolean b = true;
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_Xor(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             Boolean b = true;
@@ -192,7 +192,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_IsEqual(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -212,7 +212,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_IsDifferent(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
@@ -232,7 +232,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_GetCurrentDateTime(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return DateTime.Now.ToString();
@@ -250,7 +250,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_DateTime_Format(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String aFormat = parameters.GetStringAtIndex(0);
@@ -278,7 +278,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_DateTime_TimeStamp(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             DateTime dateTime = System.DateTime.Now;
@@ -303,7 +303,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_DateTime_Add(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String year = parameters.GetStringAtIndex(0);
@@ -342,7 +342,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_DataModule(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return parameters.GetStringAtIndex(0);
@@ -359,7 +359,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Fun_DataModule_Name(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             String text = parameters.GetStringAtIndex(0);
@@ -396,7 +396,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_GetEmpty(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return "\"\"";
@@ -413,7 +413,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_Literal_Tab(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return "\t";
@@ -430,7 +430,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_Literal_Cr(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return "\n";
@@ -447,7 +447,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_Literal_CarretPos(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return "%LITERAL_CARRETPOS()";
@@ -464,7 +464,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_RoamingFolderPath(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
@@ -481,7 +481,7 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         public static String Var_MyDocumentsFolderPath(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");

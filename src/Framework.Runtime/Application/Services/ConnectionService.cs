@@ -1,15 +1,13 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Services.Data.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
-using BindOpen.Framework.Core.Extensions.Definition.Connectors;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -52,73 +50,73 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Creates a connector.
         /// </summary>
         /// <param name="dataSourceName">The data source name to consider.</param>
-        /// <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+        /// <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            String dataSourceName,
-            String connectorDefinitionUniqueName,
-            ILog log = null) where T : Connection, new()
+            string dataSourceName,
+            string connectorDefinitionUniqueId,
+            ILog log = null) where T : IConnection, new()
         {
-            return this.Open<T>(null, dataSourceName, connectorDefinitionUniqueName, log) as T;
+            return this.Open<T>(null, dataSourceName, connectorDefinitionUniqueId, log);
         }
 
         /// <summary>
         /// Creates a connector.
         /// </summary>
-        /// <param name="dataSourceManager">The source manager to consider.</param>
+        /// <param name="dataSourceService">The source service to consider.</param>
         /// <param name="dataSourceName">The data source name to consider.</param>
-        /// <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+        /// <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            DataSourceService dataSourceManager,
-            String dataSourceName,
-            String connectorDefinitionUniqueName,
-            ILog log = null) where T : Connection, new()
+            IDataSourceService dataSourceService,
+            string dataSourceName,
+            string connectorDefinitionUniqueId,
+            ILog log = null) where T : IConnection, new()
         {
             if (log == null) log = new Log();
 
             this.Update<ConnectionService>();
 
-            if (dataSourceManager == null)
-                dataSourceManager = this._appScope?.DataSourceService;
+            if (dataSourceService == null)
+                dataSourceService = this._appScope?.DataSourceService;
 
-            if (dataSourceManager == null)
+            if (dataSourceService == null)
                 log.AddError("Source manager missing");
-            else if (!dataSourceManager.HasSource(dataSourceName))
+            else if (!dataSourceService.HasSource(dataSourceName))
                 log.AddError("Data source '" + dataSourceName + "' missing in manager");
             else
-                return this.Open<T>(dataSourceManager.GetSource(dataSourceName), connectorDefinitionUniqueName, log) as T;
+                return this.Open<T>(dataSourceService.GetSource(dataSourceName), connectorDefinitionUniqueId, log);
 
-            return null;
+            return default;
         }
 
         /// <summary>
         /// Creates a connector.
         /// </summary>
         /// <param name="dataSource">The data source to consider.</param>
-        /// <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+        /// <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            IDataSource dataSource, String connectorDefinitionUniqueName,
-            ILog log = null) where T : Connection, new()
+            IDataSource dataSource, String connectorDefinitionUniqueId,
+            ILog log = null) where T : IConnection, new()
         {
             if (log == null) log = new Log();
 
             if (dataSource == null)
                 log.AddError("Data source missing");
-            //else if (string.IsNullOrEmpty(connectorDefinitionUniqueName))
+            //else if (string.IsNullOrEmpty(connectorDefinitionUniqueId))
             //    log.AddError("Connection definition missing");
-            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName) && dataSource.HasConfiguration(connectorDefinitionUniqueName))
+            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId) && dataSource.HasConfiguration(connectorDefinitionUniqueId))
                 log.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
-            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName))
-                return this.Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueName), log) as T;
+            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
+                return this.Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueId), log);
             else if (dataSource.Configurations.Count>0)
                 return this.Open<T>(dataSource.Configurations[0], log);
 
-            return null;
+            return default;
         }
 
         /// <summary>
@@ -127,13 +125,13 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="configuration">The connector configuration to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        public T Open<T>(ConnectorConfiguration configuration, ILog log = null) where T : Connection, new()
+        public T Open<T>(IConnectorDto configuration, ILog log = null) where T : IConnection, new()
         {
-            Log subLog = new Log();
+            ILog subLog = new Log();
 
             this.Update<ConnectionService>();
 
-            T connection = null;
+            T connection = default;
             if (configuration == null)
             {
                 subLog.AddError("Connection missing");
@@ -144,15 +142,12 @@ namespace BindOpen.Framework.Runtime.Application.Services
             }
             else if (!subLog.Append(this._appScope.Check(true)).HasErrorsOrExceptions())
             {
-                connection = new T()
-                {
-                    Connector = this._appScope.CreateItem<ConnectorDefinition>(
-                            null, configuration, null, subLog) as Connector
-                };
+                connection = new T();
+                connection.SetConnector(this._appScope.CreateConnector(configuration, subLog));
 
                 if (connection.Connector == null)
                 {
-                    connection = null;
+                    connection = default;
                 }
                 else
                 {
@@ -172,7 +167,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
         /// <returns>Returns the log of execution.</returns>
-        public ILog Close(Connection connector)
+        public ILog Close(IConnection connector)
         {
             ILog log = new Log();
 
@@ -202,16 +197,12 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
             return new Log();
         }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Entity;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Items.Sets;
 
@@ -16,7 +18,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
     [Serializable()]
     [XmlType("DataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataElementSpecSet : GenericDataItemSet<IDataElementSpec>, IDataElementSpecSet
+    public class DataElementSpecSet : DataItemSet<DataElementSpec>, IDataElementSpecSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -29,11 +31,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         [XmlElement("carrier", typeof(CarrierElementSpec))]
         [XmlElement("document", typeof(DocumentElementSpec))]
-        [XmlElement("entity", typeof(EntityElementSpec))]
+        [XmlElement("object", typeof(ObjectElementSpec))]
         [XmlElement("scalar", typeof(ScalarElementSpec))]
         [XmlElement("source", typeof(SourceElementSpec))]
         [XmlElement("specification")]
-        public List<IDataElementSpec> Items
+        public List<DataElementSpec> Items
         {
             get { return _items; }
             set { _items = value; }
@@ -70,7 +72,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Instantiates a new instance of the DataElementSpecSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public DataElementSpecSet(params IDataElementSpec[] items) : base(items)
+        public DataElementSpecSet(params DataElementSpec[] items) : base(items)
         {
         }
 

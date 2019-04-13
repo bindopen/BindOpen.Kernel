@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Indexes;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 
@@ -29,6 +31,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         #region Variables
 
         private IAppScope _appScope = null;
+        private IScriptwordIndex _index = new ScriptwordIndex();
 
         #endregion
 
@@ -41,7 +44,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <summary>
         /// The index of this instance.
         /// </summary>
-        public IScriptWordIndex Index { get; set; } = new ScriptWordIndex();
+        public IScriptwordIndex Index { get { return _index; } }
 
         #endregion
 
@@ -69,7 +72,6 @@ namespace BindOpen.Framework.Core.System.Scripting
         }
 
         #endregion
-
         // ------------------------------------------
         // MUTATORS
         // ------------------------------------------
@@ -82,9 +84,9 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="libraryNames">The names of libraries to load.</param>
         public void LoadDefinitions(string[] libraryNames = null)
         {
-            if ((Index != null) && (_appScope.AppExtension != null))
+            if ((_index != null) && (_appScope.AppExtension != null))
             {
-                Index.Definitions = _appScope.AppExtension.GetItemDefinitions<IScriptWordDefinition>(libraryNames);
+                _index.SetDefinitions(_appScope.AppExtension.GetItemDefinitions<IScriptwordDefinition>(libraryNames));
             }
         }
 
@@ -315,7 +317,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     int scriptWordBeginIndex = index;
 
                     // we get the next function or variable
-                    IScriptWord scriptWord = FindNextScriptWord(
+                    IScriptword scriptWord = FindNextScriptword(
                         ref resultScript,
                         null,
                         ref index,
@@ -334,7 +336,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         if (evaluatedValue != null)
                             evaluatedString = evaluatedValue.ToString();
                         //we retrieve the index of the root script word
-                        IScriptWord rootScSriptWord = scriptWord.Root();
+                        IScriptword rootScSriptWord = scriptWord.Root();
                         if (rootScSriptWord != null)
                         {
                             scriptWordBeginIndex = resultScript.IndexOf(
@@ -368,36 +370,36 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// Finds the next script words at the specified index.
         /// </summary>
         /// <param name="script">The script to consider.</param>
-        /// <param name="parentScriptWord">The parent script word to consider.</param>
+        /// <param name="parentScriptword">The parent script word to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <param name="offsetIndex">The offset index to consider.</param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="isSimulationModeOn">Indicates whether the simulation mode is on.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public IScriptWord FindNextScriptWord(
+        public IScriptword FindNextScriptword(
             ref string script,
-            IScriptWord parentScriptWord,
+            IScriptword parentScriptword,
             ref int index,
             int offsetIndex,
             IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             ILog log = null)
         {
-            if (parentScriptWord != null && parentScriptWord.Definition == null)
+            if (parentScriptword != null && parentScriptword.Definition == null)
             {
                 if (log != null)
                 {
                     ILogEvent logEvent = log.AddError(
-                    title: "Syntax error: Function named '" + parentScriptWord.Name + "' not defined. Position " + (index + offsetIndex),
+                    title: "Syntax error: Function named '" + parentScriptword.Name + "' not defined. Position " + (index + offsetIndex),
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
                     logEvent.Detail = new DataElementSet();
-                    logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                    logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                 }
                 return null;
             }
 
-            IScriptWord scriptWord = null;
+            IScriptword scriptWord = null;
 
             // we retrieve the type of the next script word
             ScriptItemKind scriptItemKind = ScriptItemKind.None;
@@ -412,7 +414,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 scriptItemKind = ScriptItemKind.None;
             }
             // else if the next word is a variable
-            else if (parentScriptWord != null && script.GetSubstring(index, index) == ".")
+            else if (parentScriptword != null && script.GetSubstring(index, index) == ".")
             {
                 index++;
                 scriptItemKind = ScriptItemKind.Function;
@@ -448,13 +450,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                                 title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
                             logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
 
                     // we instantiate the script word
-                    scriptWord = new ScriptWord
+                    scriptWord = new Scriptword
                     {
                         Name = script.GetSubstring(index, nextIndex - 1).Trim()
                     };
@@ -473,7 +475,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR");
                                 logEvent.Detail = new DataElementSet();
-                                logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                                logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                             }
                             return null;
                         }
@@ -496,7 +498,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                                     isSimulationModeOn,
                                     log);
                                 parameterText = parameterText.Trim();
-                                //script = script.Replace(script.Substring(index + 1, nextIndex - index - 1), aEvaluatedScriptWordParameterValue);
+                                //script = script.Replace(script.Substring(index + 1, nextIndex - index - 1), aEvaluatedScriptwordParameterValue);
 
                                 script = script.Remove(index + 1, nextIndex - index - 1);
                                 script = script.Insert(index + 1, parameterText);
@@ -505,9 +507,9 @@ namespace BindOpen.Framework.Core.System.Scripting
 
                                 index = nextIndex;
 
-                                IDataElement dataElement = DataElement.Create(
-                                    (parameterValue == null ? DataValueType.Text : parameterValue.GetValueType()),
-                                    "Parameter" + scriptWordParameterCount.ToString());
+                                IDataElement dataElement = ElementFactory.CreateScalar(
+                                    "Parameter" + scriptWordParameterCount.ToString(),
+                                    parameterValue == null ? DataValueType.Text : parameterValue.GetValueType());
                                 if (dataElement != null)
                                 {
                                     if (dataElement.Specification != null)
@@ -537,13 +539,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                                 title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
                             logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
 
                     // we instantiate the script word
-                    scriptWord = new ScriptWord
+                    scriptWord = new Scriptword
                     {
                         // we retrieve the function name
                         Name = script.GetSubstring(index, nextIndex - 1).Trim()
@@ -556,8 +558,9 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptWord.Kind = scriptItemKind;
 
                     // we try to find the corresponding defined function
-                    List<IScriptWordDefinition> scriptWordDefinitions =
-                        Index.GetDefinitionsWithExactName(scriptWord.Name, parentScriptWord?.Definition);
+                    List<IScriptwordDefinition> scriptWordDefinitions =
+                        Index.GetDefinitionsWithExactName(scriptWord.Name, parentScriptword?.Definition);
+
                     if (scriptWordDefinitions.Count == 0)
                     {
                         if (log != null)
@@ -565,22 +568,22 @@ namespace BindOpen.Framework.Core.System.Scripting
                             ILogEvent logEvent = log.AddError(
                                 title: "Function named '" + scriptWord.Name + "' not defined",
                                 description: "Syntax error: Function named '" + scriptWord.Name + "' not defined" +
-                                    (parentScriptWord == null ? "" : " for parent function '" + parentScriptWord.Name + "'") +
+                                    (parentScriptword == null ? "" : " for parent function '" + parentScriptword.Name + "'") +
                                     ". Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_NOTEXISTINGWORD");
                             logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
                     else
                     {
-                        IScriptWordDefinition scriptWordDefinition = null;
-                        foreach (IScriptWordDefinition currentScriptWordDefinition in scriptWordDefinitions)
+                        IScriptwordDefinition scriptWordDefinition = null;
+                        foreach (IScriptwordDefinition currentScriptwordDefinition in scriptWordDefinitions)
                         {
-                            if (Index.IsWordMatching(scriptWord, currentScriptWordDefinition))
+                            if (IsWordMatching(scriptWord, currentScriptwordDefinition))
                             {
-                                scriptWordDefinition = currentScriptWordDefinition;
+                                scriptWordDefinition = currentScriptwordDefinition;
                                 break;
                             }
                         }
@@ -595,14 +598,14 @@ namespace BindOpen.Framework.Core.System.Scripting
                                     resultCode: "SCRIPT_INVALIDARGUMENT"
                                     );
                                 logEvent.Detail = new DataElementSet();
-                                logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                                logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                             }
                             return null;
                         }
                         else
                         {
                             // else we affect the correct method name and is unlimited properties
-                            if (scriptWordDefinition.RuntimeFunctionName == null)
+                            if (scriptWordDefinition.RuntimeFunction == null)
                             {
                                 if (log != null)
                                 {
@@ -610,12 +613,12 @@ namespace BindOpen.Framework.Core.System.Scripting
                                         title: "Invalid definition: Method not defined for function called '" + scriptWord.Name + "'. Position " + (index + offsetIndex),
                                         resultCode: "SCRIPT_DEFINITION");
                                     logEvent.Detail = new DataElementSet();
-                                    logEvent.Detail.AddElement("Position", (index + offsetIndex).ToString());
+                                    logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                                 }
                                 return null;
                             }
                             scriptWord.SetDefinition(scriptWordDefinition);
-                            scriptWord.Parent = parentScriptWord;
+                            scriptWord.Parent = parentScriptword;
 
                             // if the script word is a variable then we retrieve the sub script word
                             if (script.GetSubstring(nextIndex + 1, nextIndex + 1) == ".")
@@ -625,7 +628,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                                     scriptWord, index, scriptVariableSet, isSimulationModeOn, log);
 
                                 nextIndex++;
-                                scriptWord = FindNextScriptWord(
+                                scriptWord = FindNextScriptword(
                                     ref script,
                                     scriptWord,
                                     ref nextIndex,
@@ -650,7 +653,7 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         // Returns the result of the script word scriptWord with the specified parameter values
         private string EvaluateWord(
-            IScriptWord scriptWord,
+            IScriptword scriptWord,
             int offsetIndex,
             IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
@@ -669,7 +672,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        new object[0] : scriptWord.ParameterDetail.GetElementItemObjects().ToArray());
+                        new object[0] : scriptWord.ParameterDetail.Elements.Select(p=>p.GetObject()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_appScope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
@@ -681,17 +684,82 @@ namespace BindOpen.Framework.Core.System.Scripting
                             EventCriticality.High,
                             "",
                             "Evaluation Error: Error when tempting to evaluate function " +
-                            "(Name='" + scriptWord.Name + "';BusinessLibraryName='" + scriptWord.Definition.LibraryName + "')" +
+                            "(Name='" + scriptWord.Name + "';BusinessLibraryName='" + scriptWord.Definition.Dto?.LibraryName + "')" +
                             ". Position " + (offsetIndex) + ".",
                             "SCRIPT_EVALUATION"
                             );
                         logEvent.Detail = new DataElementSet();
-                        logEvent.Detail.AddElement("Position", offsetIndex.ToString());
+                        logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", offsetIndex.ToString()));
                     }
                 }
             }
 
             return resultString;
+        }
+
+        /// <summary>
+        /// Determines whether the specified script word corresponds to the specified definition.
+        /// </summary>
+        /// <param name="scriptWord">The script word to consider.</param>
+        /// <param name="scriptWordDefinition">The script word definition to consider.</param>
+        /// <returns></returns>
+        public bool IsWordMatching(IScriptword scriptWord, IScriptwordDefinition scriptWordDefinition)
+        {
+            if (scriptWordDefinition == null || scriptWordDefinition.Dto == null) return false;
+
+            var definitionDto = scriptWordDefinition.Dto;
+
+            // we check the number of parameters
+            if ((!definitionDto.IsRepeatedParameters) && ((scriptWord.ParameterDetail == null) && (definitionDto.ParameterSpecification != null) |
+                (definitionDto.ParameterSpecification == null) && (scriptWord.ParameterDetail != null)))
+            {
+                return false;
+            }
+
+            if ((scriptWord.ParameterDetail == null) && ((!definitionDto.IsRepeatedParameters) || (definitionDto.ParameterSpecification == null)))
+                return true;
+            if ((!definitionDto.IsRepeatedParameters) && (scriptWord.ParameterDetail.Count != definitionDto.ParameterSpecification.Count))
+                return false;
+
+            if ((!definitionDto.IsRepeatedParameters) && ((definitionDto.MaxParameterNumber != -1) && (scriptWord.ParameterDetail.Count > definitionDto.MaxParameterNumber)))
+                return false;
+            if ((!definitionDto.IsRepeatedParameters) && ((definitionDto.MinParameterNumber != -1) && (scriptWord.ParameterDetail.Count < definitionDto.MinParameterNumber)))
+                return false;
+
+            // we search the defined script word parameters
+
+            int parameterIndex = 0;
+            //if ((definitionDto.IsRepeatedParameters) & (definitionDto.RepeatedParameterValueType != scriptWord.Definition.RepeatedParameterValueType))
+            //    return false;
+            if (definitionDto.ParameterSpecification.Items != null)
+            {
+                foreach (IDataElementSpec parameterSpecification in definitionDto.ParameterSpecification.Items)
+                {
+                    IScalarElement parameter = scriptWord.ParameterDetail[parameterIndex] as IScalarElement;
+
+                    // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
+                    if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueType.Text))
+                        || ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueType.Text)))
+                    {
+                        String parameterValue = (parameter.GetObject() ?? "").ToString().Trim();
+
+                        if (parameterValue.Length < 2)
+                            return false;
+                        if ((!parameterValue.StartsWith("'")) || (!parameterValue.EndsWith("'")))
+                            return false;
+                    }
+                    else
+                    {
+                        if ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueType.Any))
+                        {
+                            return !parameterSpecification.CheckItem(parameter.GetObject(), parameter).HasErrorsOrExceptions();
+                        }
+                    }
+                    parameterIndex++;
+                }
+            }
+
+            return true;
         }
 
         #endregion

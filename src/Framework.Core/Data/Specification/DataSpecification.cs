@@ -6,6 +6,9 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Specification;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Specification
@@ -166,7 +169,6 @@ namespace BindOpen.Framework.Core.Data.Specification
 
             if (referenceSpecification == null)
                 return log;
-
 
             return log;
         }

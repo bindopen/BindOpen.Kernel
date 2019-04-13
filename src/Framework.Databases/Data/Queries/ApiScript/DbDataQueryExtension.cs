@@ -203,8 +203,8 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static AdvancedDbDataQuery Filter(
-            this AdvancedDbDataQuery dbQuery,
+        public static IAdvancedDbDataQuery Filter(
+            this IAdvancedDbDataQuery dbQuery,
             string filterQuery,
             ILog log = null,
             ApiScriptFilteringDefinition definition = null)
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                     }
                     else
                     {
-                        dbQuery.WhereClause = new DataExpression(scriptText);
+                        dbQuery.WhereClause = scriptText.CreateScript();
                     }
                 }
             }
@@ -239,8 +239,8 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The definition to consider.</param>
         /// <returns>The built query.</returns>
-        public static AdvancedDbDataQuery Sort(
-            this AdvancedDbDataQuery query,
+        public static IAdvancedDbDataQuery Sort(
+            this IAdvancedDbDataQuery query,
             string sortQuery,
             ILog log = null,
             ApiScriptSortingDefinition definition = null)
@@ -249,10 +249,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
 
             if (query != null && !string.IsNullOrEmpty(sortQuery))
             {
-                query.OrderByStatements = new List<DbDataQueryOrderByStatement>();
+                query.OrderByStatements = new List<IDbDataQueryOrderByStatement>();
                 foreach (string fieldItem in sortQuery.Split(','))
                 {
-                    DbDataQueryOrderByStatement statement = new DbDataQueryOrderByStatement();
+                    IDbDataQueryOrderByStatement statement = new DbDataQueryOrderByStatement();
                     var fieldItemParams = fieldItem?.Trim().Split(' ');
                     if (fieldItemParams.Length > 0)
                     {
@@ -300,8 +300,8 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="clauseStatement">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static AdvancedDbDataQuery Paginate(
-            this AdvancedDbDataQuery query,
+        public static IAdvancedDbDataQuery Paginate(
+            this IAdvancedDbDataQuery query,
             int? pageSize,
             string pageToken,
             ILog log = null,

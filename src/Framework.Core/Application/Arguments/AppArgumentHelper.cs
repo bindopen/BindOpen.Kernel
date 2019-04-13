@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Arguments
@@ -33,7 +34,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the log of argument building.</returns>
-        public static OptionSet UpdateOptions(
+        public static IOptionSet UpdateOptions(
             this string[] arguments,
             OptionSpecSet optionSpecificationSet,
             bool allowMissingItems = false,
@@ -41,18 +42,18 @@ namespace BindOpen.Framework.Core.Application.Arguments
         {
             log = log ?? new Log();
 
-            OptionSet optionSet = new OptionSet();
+            IOptionSet optionSet = new OptionSet();
 
             int index = 0;
             if (arguments != null)
             {
                 while (index < arguments.Length)
                 {
-                    String currentArgumentString = arguments[index];
+                    string currentArgumentString = arguments[index];
 
                     if (currentArgumentString != null)
                     {
-                        ScalarElement argument = null;
+                        IScalarElement argument = null;
 
                         OptionSpec argumentSpecification = null;
 
@@ -65,7 +66,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
 
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
                         {
-                            argument = new ScalarElement(currentArgumentString, DataValueType.Text);
+                            argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
                             argument.SetItem(arguments.GetStringAtIndex(index));
                             optionSet.AddElement(argument);
                         }
@@ -73,7 +74,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                         {
                             if (argumentSpecification.ValueType == DataValueType.Any)
                                 argumentSpecification.ValueType = DataValueType.Text;
-                            argument = (argumentSpecification.Clone() as DataElementSpec)?.NewElement() as ScalarElement;
+                            argument = ElementFactory.CreateScalar(argumentSpecification.Name, null, argumentSpecification.ValueType, argumentSpecification);
 
                             argument.Specification = argumentSpecification;
                             if (argumentSpecification.ItemRequirementLevel.IsPossible())
@@ -117,7 +118,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static ILog Check(this DataElementSet optionSet, OptionSpecSet optionSpecificationSet, bool allowMissingItems = false)
+        public static ILog Check(this IDataElementSet optionSet, IOptionSpecSet optionSpecificationSet, bool allowMissingItems = false)
         {
             ILog log = new Log();
 
@@ -139,11 +140,11 @@ namespace BindOpen.Framework.Core.Application.Arguments
                         switch (option.Specification.ItemRequirementLevel)
                         {
                             case RequirementLevel.Required:
-                                if (string.IsNullOrEmpty(option.FirstItem as string))
+                                if (string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' requires value");
                                 break;
                             case RequirementLevel.Forbidden:
-                                if (!string.IsNullOrEmpty(option.FirstItem as string))
+                                if (!string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' does not allow value");
                                 break;
                         }

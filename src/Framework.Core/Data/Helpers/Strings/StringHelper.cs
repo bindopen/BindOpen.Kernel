@@ -683,6 +683,20 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             return st;
         }
 
+        /// <summary>
+        /// Returns the current time stamp.
+        /// </summary>
+        /// <returns>The current time stamp</returns>
+        public static String GetCurrentTimeStamp()
+        {
+            return DateTime.Now.Year +
+                (DateTime.Now.Month < 10 ? "0" + DateTime.Now.Month.ToString() : DateTime.Now.Month.ToString()) +
+                (DateTime.Now.Day < 10 ? "0" + DateTime.Now.Day.ToString() : DateTime.Now.Day.ToString()) +
+                (DateTime.Now.Hour < 10 ? "0" + DateTime.Now.Hour.ToString() : DateTime.Now.Hour.ToString()) +
+                (DateTime.Now.Minute < 10 ? "0" + DateTime.Now.Minute.ToString() : DateTime.Now.Minute.ToString()) +
+                (DateTime.Now.Second < 10 ? "0" + DateTime.Now.Second.ToString() : DateTime.Now.Second.ToString());
+        }
+
         #endregion
     }
 }

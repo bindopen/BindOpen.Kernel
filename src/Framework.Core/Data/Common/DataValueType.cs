@@ -6,8 +6,7 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Documents;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
@@ -36,7 +35,7 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <summary>
         /// Data carrier.
         /// </summary>
-        CarrierConfiguration,
+        Carrier,
 
         /// <summary>
         /// Data source.
@@ -57,11 +56,6 @@ namespace BindOpen.Framework.Core.Data.Common
         /// Document.
         /// </summary>
         Document,
-
-        /// <summary>
-        /// Entity.
-        /// </summary>
-        Entity,
 
         /// <summary>
         /// Integer.
@@ -163,10 +157,10 @@ namespace BindOpen.Framework.Core.Data.Common
             {
                 case DataValueType.Boolean:
                     return typeof(Boolean);
-                case DataValueType.CarrierConfiguration:
-                    return typeof(CarrierConfiguration);
+                case DataValueType.Carrier:
+                    return typeof(CarrierDto);
                 case DataValueType.DataSource:
-                    return typeof(IDataSource);
+                    return typeof(DataSource);
                 case DataValueType.Date:
                     return typeof(DateTime);
                 case DataValueType.Dictionary:
@@ -218,16 +212,14 @@ namespace BindOpen.Framework.Core.Data.Common
                 return DataValueType.Dictionary;
             else if (type.IsSubclassOf(typeof(Document)))
                 return DataValueType.Document;
-            else if (type.IsSubclassOf(typeof(CarrierConfiguration)))
-                return DataValueType.CarrierConfiguration;
-            else if (type.IsSubclassOf(typeof(IDataSource)))
+            else if (type.IsSubclassOf(typeof(CarrierDto)))
+                return DataValueType.Carrier;
+            else if (type.IsSubclassOf(typeof(DataSource)))
                 return DataValueType.DataSource;
             else if (type == typeof(SchemaElement))
                 return DataValueType.Schema;
             else if (type == typeof(SchemaZoneElement))
                 return DataValueType.SchemaZone;
-            else if  (type.IsSubclassOf(typeof(EntityConfiguration)))
-                return DataValueType.Entity;
             else if (type.IsSubclassOf(typeof(DataItem)))
                 return DataValueType.Object;
             else

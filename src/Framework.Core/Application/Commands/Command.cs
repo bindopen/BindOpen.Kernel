@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Interfaces;
 using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
@@ -50,18 +51,14 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <summary>
         /// Instantiates a new instance of the Command class.
         /// </summary>
-        /// <param name="kind">The kind of command to consider.</param>
-        protected Command(CommandKind kind)
-            : this(kind, null)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Command class.
-        /// </summary>
         /// <param name="kind">The kidn of command to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        protected Command(CommandKind kind, String name = null) : base(name,null, null, "command_")
+        /// <param name="items">The items to consider.</param>
+        protected Command(
+            CommandKind kind,
+            string name = null,
+            params IDataElement[] items)
+            : base(name, items)
         {
             this.Kind = kind;
         }

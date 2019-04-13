@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
 
 namespace BindOpen.Framework.Core.Data.Items.Dictionary
 {

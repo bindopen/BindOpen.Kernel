@@ -7,7 +7,7 @@ using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
 using BindOpen.Framework.Databases.Data.Queries.Builders;
 using BindOpen.Framework.Databases.Extensions.Carriers;
-using BindOpen.Framework.Databases.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Databases.Extensions.Connectors;
 
 namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 {
@@ -42,9 +42,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
         private string GetFieldSqlText(
             DbField field,
-            Log log,
+            ILog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null,
             string defaultDataTable = null)
@@ -62,7 +62,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     case DbDataFieldViewMode.CompleteNameAsAlias:
                         if (field.IsAll)
                         {
-                            string tableName = this.GetTableSqlText(
+                            string tableName = GetTableSqlText(
                                 field.DataModule,
                                 field.Schema,
                                 field.DataTable,
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         {
                             if ((viewMode != DbDataFieldViewMode.CompleteNameOrValue) || (field.Value == null))
                             {
-                                string tableName = this.GetTableSqlText(
+                                string tableName = GetTableSqlText(
                                     field.DataModule,
                                     field.Schema,
                                     field.DataTable ?? defaultDataTable,
@@ -100,7 +100,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                     queryString += tableName + ".";
                                 }
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field,
                                     log,
                                     viewMode == DbDataFieldViewMode.CompleteNameAsAlias ?
@@ -113,7 +113,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             }
                             else
                             {
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field,
                                     log,
                                     DbDataFieldViewMode.OnlyValue,
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         }
                         else if (field.IsNameAsScript)
                         {
-                            String name = this._appScope?.ScriptInterpreter.Interprete(DataExpression.CreateScript(field.Name), scriptVariableSet, log) ?? "";
+                            String name = _appScope?.ScriptInterpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "[" + name + "]";
                         }
                         else
@@ -145,7 +145,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     case DbDataFieldViewMode.OnlyNameAsAlias:
                         if (field.IsNameAsScript)
                         {
-                            String name = this._appScope?.ScriptInterpreter.Interprete(DataExpression.CreateScript(field.Name), scriptVariableSet, log) ?? "";
+                            String name = _appScope?.ScriptInterpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "[" + name + "]";
                         }
                         else
@@ -157,15 +157,15 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
-                        String value = this._appScope?.ScriptInterpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
+                        String value = _appScope?.ScriptInterpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
 
                         if (field.Query !=null)
                         {
                             String subQueryText = "";
                             if (field.Query is BasicDbDataQuery)
-                                this.Build(field.Query as BasicDbDataQuery, scriptVariableSet, out subQueryText);
+                                Build(field.Query as BasicDbDataQuery, scriptVariableSet, out subQueryText);
                             else if (field.Query is AdvancedDbDataQuery)
-                                this.Build(field.Query as AdvancedDbDataQuery, scriptVariableSet, out subQueryText);
+                                Build(field.Query as AdvancedDbDataQuery, scriptVariableSet, out subQueryText);
 
                             queryString += "(" + subQueryText + ")";
                         }
@@ -182,7 +182,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         }
                         break;
                     case DbDataFieldViewMode.NameEqualsValue:
-                        queryString += this.GetFieldSqlText(
+                        queryString += GetFieldSqlText(
                             field,
                             log,
                             DbDataFieldViewMode.CompleteName,
@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                         queryString += "=";
 
-                        queryString += this.GetFieldSqlText(
+                        queryString += GetFieldSqlText(
                             field,
                             log,
                             DbDataFieldViewMode.OnlyValue,
@@ -213,9 +213,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
         private string GetTableSqlText(
             DbTable table,
-            Log log,
+            ILog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null)
         {
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
             if (table != null)
             {
-                return this.GetTableSqlText(
+                return GetTableSqlText(
                    table.DataModule,
                    table.Schema,
                    table.Name,
@@ -243,9 +243,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             string tableSchema,
             string tableName,
             string tableAlias,
-            Log log,
+            ILog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null)
         {
@@ -266,7 +266,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                     if (!string.IsNullOrEmpty(tableDataModule))
                     {
-                        string databaseName = this.GetDatabaseName(tableDataModule);
+                        string databaseName = GetDatabaseName(tableDataModule);
                         if (databaseName?.Length > 0)
                             queryString += "[" + databaseName + "].";
                     }
@@ -293,9 +293,9 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         }
 
         private string GetJointureSqlText(
-            DbDataQueryFromStatement queryFrom,
-            ScriptVariableSet scriptVariableSet,
-            Log log)
+            IDbDataQueryFromStatement queryFrom,
+            IScriptVariableSet scriptVariableSet,
+            ILog log)
         {
             log = log ?? new Log();
 
@@ -325,16 +325,16 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             break;
                         }
                 }
-                queryString += this.GetTableSqlText(queryJointure.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
+                queryString += GetTableSqlText(queryJointure.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
 
                 if (queryJointure.Kind != DbDataQueryJointureKind.None)
                 {
                     queryString += " on ";
-                    String expression = this._appScope?.ScriptInterpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
+                    String expression = _appScope?.ScriptInterpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
                     queryString += expression;
                 }
             }
-            if (queryFrom.UnionStatement?.DataQuery != null)
+            if (queryFrom.UnionStatement?.Query != null)
             {
                 switch (queryFrom.UnionStatement.Type)
                 {
@@ -346,7 +346,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 }
                 String subQuery = String.Empty;
                 log.AddEvents(
-                    this.BuildQuery(queryFrom.UnionStatement.DataQuery, scriptVariableSet, out subQuery));
+                    BuildQuery(queryFrom.UnionStatement.Query, scriptVariableSet, out subQuery));
                 queryString += "(" + subQuery + ")";
             }
 
@@ -361,10 +361,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected override Log Build(
-            BasicDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        protected override ILog Build(
+            IBasicDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             ILog log = new Log();
 
@@ -391,7 +391,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet,
                                     query.DataModule, query.Schema
                                 );
@@ -406,7 +406,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         queryString += " from ";
                         if ((query.FromClauses == null) | (query.FromClauses.Count == 0))
                         {
-                            queryString += this.GetTableSqlText(
+                            queryString += GetTableSqlText(
                                 query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                                 log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
                                 query.DataModule, query.Schema);
@@ -419,7 +419,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetJointureSqlText(queryFrom, scriptVariableSet, log);
+                                queryString += GetJointureSqlText(queryFrom, scriptVariableSet, log);
 
                                 index++;
                             }
@@ -432,7 +432,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             {
                                 if (index > 0)
                                     queryString += " and ";
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.NameEqualsValue, scriptVariableSet,
                                     query.DataModule, query.Schema, query.DataTable
                                 );
@@ -454,7 +454,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 }
                                 else
                                 {
-                                    queryString += this.GetFieldSqlText(
+                                    queryString += GetFieldSqlText(
                                         queryOrderByStatement.Field,
                                         log,
                                         DbDataFieldViewMode.OnlyName,
@@ -479,7 +479,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 case DbDataQueryKind.Update:
                     {
                         queryString = "update ";
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet, query.Schema, query.DataTable);
                         queryString += " set ";
@@ -489,7 +489,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += this.GetFieldSqlText(
+                            queryString += GetFieldSqlText(
                                 field, log, DbDataFieldViewMode.NameEqualsValue,
                                 scriptVariableSet, query.DataModule);
 
@@ -504,7 +504,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetJointureSqlText(queryFrom, scriptVariableSet, log);
+                                queryString += GetJointureSqlText(queryFrom, scriptVariableSet, log);
 
                                 index++;
                             }
@@ -518,7 +518,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += " and ";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.NameEqualsValue,
                                     scriptVariableSet
                                 );
@@ -532,7 +532,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 case DbDataQueryKind.Delete:
                     {
                         queryString = "delete from ";
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
                             query.DataModule, query.Schema);
@@ -545,7 +545,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += " and ";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.NameEqualsValue,
                                     scriptVariableSet
                                 );
@@ -559,7 +559,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 case DbDataQueryKind.Insert:
                     {
                         queryString = "insert into ";
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet, query.DataModule, query.Schema);
                         queryString += " (";
@@ -569,7 +569,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += this.GetFieldSqlText(
+                            queryString += GetFieldSqlText(
                                 field, log, DbDataFieldViewMode.CompleteNameAsAlias,
                                 scriptVariableSet, query.DataModule, query.Schema);
 
@@ -584,7 +584,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.OnlyValue,
                                     scriptVariableSet);
 
@@ -617,10 +617,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected override Log Build(
-            AdvancedDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        protected override ILog Build(
+            IAdvancedDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             ILog log = new Log();
 
@@ -646,7 +646,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet, query.DataModule, query.Schema
                                 );
 
@@ -665,7 +665,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += this.GetJointureSqlText(queryFrom, scriptVariableSet, log);
+                            queryString += GetJointureSqlText(queryFrom, scriptVariableSet, log);
 
                             index++;
                         }
@@ -674,7 +674,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null && query.WhereClause.Text != null)
                         {
                             queryString += " where ";
-                            String expression = this._appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.GroupByClause != null)
@@ -686,7 +686,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ", ";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet,
                                     query.DataModule, query.Schema, query.DataTable
                                 );
@@ -697,7 +697,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.HavingClause != null)
                         {
                             queryString += " having ";
-                            String expression = this._appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.OrderByStatements.Count > 0)
@@ -714,7 +714,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 }
                                 else
                                 {
-                                    queryString += this.GetFieldSqlText(
+                                    queryString += GetFieldSqlText(
                                         queryOrderByStatement.Field,
                                         log,
                                         DbDataFieldViewMode.OnlyName,
@@ -739,7 +739,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 case DbDataQueryKind.Update:
                     {
                         queryString = "update ";
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
                             query.DataModule, query.Schema);
@@ -750,7 +750,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += this.GetFieldSqlText(
+                            queryString += GetFieldSqlText(
                                 field, log, DbDataFieldViewMode.NameEqualsValue,
                                 scriptVariableSet);
 
@@ -765,7 +765,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetJointureSqlText(queryFrom, scriptVariableSet, log);
+                                queryString += GetJointureSqlText(queryFrom, scriptVariableSet, log);
 
                                 index++;
                             }
@@ -773,7 +773,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            String expression = this._appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }
@@ -783,7 +783,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     {
                         queryString = "delete from ";
 
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
                             query.DataModule, query.Schema);
@@ -791,7 +791,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            string expression = this._appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            string expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }
@@ -800,7 +800,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 case DbDataQueryKind.Insert:
                     {
                         queryString = "insert into ";
-                        queryString += this.GetTableSqlText(
+                        queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
                             log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
                             query.DataModule, query.Schema);
@@ -811,7 +811,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += this.GetFieldSqlText(
+                            queryString += GetFieldSqlText(
                                 field, log, DbDataFieldViewMode.OnlyName,
                                 scriptVariableSet, query.DataModule, query.Schema);
 
@@ -826,7 +826,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += this.GetFieldSqlText(
+                                queryString += GetFieldSqlText(
                                     field, log, DbDataFieldViewMode.OnlyValue,
                                     scriptVariableSet, query.DataModule, query.Schema);
 

@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public virtual String Key()
+        public virtual string Key()
         {
             return this.Id;
         }
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         public static String NewGuid()
         {
-            return global::System.Guid.NewGuid().ToString();
+            return Guid.NewGuid().ToString();
         }
 
         /// <summary>

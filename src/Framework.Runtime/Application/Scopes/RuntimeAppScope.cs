@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// Instantiates a new instance of the RuntimeAppScope class.
         /// </summary>
-        public RuntimeAppScope()
+        public RuntimeAppScope() : this(AppDomain.CurrentDomain)
         {
         }
 
@@ -40,16 +40,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="appDomain">The application domain to consider.</param>
         public RuntimeAppScope(AppDomain appDomain) : base(appDomain)
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the RuntimeAppScope class.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        public RuntimeAppScope(IRuntimeAppScope appScope) : base(appScope)
-        {
-            if (appScope != null)
-                this.ConnectionService = new ConnectionService(this);
+            this.ConnectionService = new ConnectionService(this);
         }
 
         #endregion

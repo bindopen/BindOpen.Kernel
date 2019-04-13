@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Commands.Interfaces;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
@@ -60,6 +62,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// Instantiates a new instance of the ScriptCommand class.
         /// </summary>
         /// <param name="script">The script to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="name">The name of this instance.</param>
         public ScriptCommand(
             string script, string name = null)
@@ -92,7 +95,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         {
             resultString = "";
 
-            Log log = appScope.Check(false, true);
+            ILog log = appScope.Check(false);
             if (!log.HasErrorsOrExceptions())
             {
                 if (string.IsNullOrEmpty(this._script))

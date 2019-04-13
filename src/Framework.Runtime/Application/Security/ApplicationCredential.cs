@@ -5,11 +5,10 @@ using BindOpen.Framework.Core.Data.Items;
 namespace BindOpen.Framework.Runtime.Application.Security
 {
     /// <summary>
-    /// This structure corresponds to a credential.
+    /// This class represents an application credential.
     /// </summary>
-    public class ApplicationCredential : NamedDataItem
+    public class ApplicationCredential : NamedDataItem, IApplicationCredential
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -30,13 +29,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the DomainId property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DomainIdSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.DomainId);
-            }
-        }
+        public bool DomainIdSpecified => !string.IsNullOrEmpty(DomainId);
 
         /// <summary>
         /// Login.
@@ -52,13 +45,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the Login property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LoginSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.Login);
-            }
-        }
+        public bool LoginSpecified => !string.IsNullOrEmpty(Login);
 
         /// <summary>
         /// Password.
@@ -74,13 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the Password property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean PasswordSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.Password);
-            }
-        }
+        public bool PasswordSpecified => !string.IsNullOrEmpty(Password);
 
         /// <summary>
         /// Token value.
@@ -96,13 +77,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the TokenValue property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean TokenValueSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.TokenValue);
-            }
-        }
+        public bool TokenValueSpecified => !string.IsNullOrEmpty(TokenValue);
 
         #endregion
 
@@ -135,11 +110,11 @@ namespace BindOpen.Framework.Runtime.Application.Security
             , String aTokenValue = null) : base(name, "credential_")
         {
             if (name!=null)
-                this.Name = name;
-            this.DomainId = aDomainId;
-            this.Login = login;
-            this.Password = aPassword;
-            this.TokenValue = aTokenValue;
+                Name = name;
+            DomainId = aDomainId;
+            Login = login;
+            Password = aPassword;
+            TokenValue = aTokenValue;
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// <summary>
         /// Script word.
         /// </summary>
-        ScriptWord,
+        Scriptword,
 
         /// <summary>
         /// Task.
@@ -53,6 +53,6 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// <summary>
         /// Data format.
         /// </summary>
-        FormatConfiguration
+        FormatDto
     }
 }

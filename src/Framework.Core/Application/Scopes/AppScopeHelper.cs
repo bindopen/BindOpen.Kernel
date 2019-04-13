@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Scopes
 {

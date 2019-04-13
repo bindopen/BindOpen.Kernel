@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         #region Properties
 
         /// <summary>
-        /// Entity unique name of this instance.
+        /// Entity unique ID of this instance.
         /// </summary>
         [XmlIgnore()]
         public string EntityUniqueName

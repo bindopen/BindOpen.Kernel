@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Scripting
@@ -531,14 +531,14 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// True if only the child script words similar to the child script word present in the script
         /// must be returned.</param>
         /// <returns>Returns the possible child script word definitions.</returns>
-        public static List<IScriptWordDefinition> GetWordDefinitions(
+        public static List<IScriptwordDefinition> GetWordDefinitions(
             IScriptInterpreter scriptInterpreter,
             string script,
             int index,
             bool isSuggest,
             IScriptVariableSet scriptVariableSet = null)
         {
-            if (scriptInterpreter == null) return new List<IScriptWordDefinition>();
+            if (scriptInterpreter == null) return new List<IScriptwordDefinition>();
 
             // first we retrieve the script block at the index index
             string stringBlock = ScriptParsingHelper.GetScriptBlock(script, index);
@@ -550,7 +550,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 stringBlockToParse = stringBlockToParse.Substring(0, stringBlockToParse.IndexOf("." + ScriptParsingHelper.Symbol_Fun));
             ILog log = new Log();
             int aTempIndex = 0;
-            IScriptWord rootScriptWord = scriptInterpreter.FindNextScriptWord(
+            IScriptword rootScriptword = scriptInterpreter.FindNextScriptword(
                 ref stringBlockToParse,
                 null,
                 ref aTempIndex,
@@ -560,23 +560,23 @@ namespace BindOpen.Framework.Core.System.Scripting
                 log);
 
             // if it is not null
-            if (rootScriptWord != null)
+            if (rootScriptword != null)
             {
                 // we retrieve the last child script word
-                IScriptWord lastChildScriptWord = rootScriptWord.Last();
+                IScriptword lastChildScriptword = rootScriptword.Last();
                 if (!isSuggest)
                 {
-                    return lastChildScriptWord.Definition == null ?
-                            new List<IScriptWordDefinition>() :
-                            lastChildScriptWord.Definition.Children;
+                    return lastChildScriptword.Definition == null ?
+                            new List<IScriptwordDefinition>() :
+                            new List<IScriptwordDefinition>(lastChildScriptword.Definition.Children);
                 }
                 else
                 {
-                    string currentScriptWordString = stringBlock.Contains(".")
+                    string currentScriptwordString = stringBlock.Contains(".")
                         ? stringBlock.Substring(stringBlock.IndexOf(".") + 1, stringBlock.Length - stringBlock.IndexOf(".") - 1)
                             .Replace(ScriptParsingHelper.Symbol_Fun, "")
                         : stringBlock;
-                    return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(currentScriptWordString, lastChildScriptWord.Definition);
+                    return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(currentScriptwordString, lastChildScriptword.Definition);
                 }
             }
             if (!isSuggest)

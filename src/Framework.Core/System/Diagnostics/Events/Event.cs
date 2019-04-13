@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
+using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {
@@ -72,7 +73,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Long description of this instance.
         /// </summary>
         [XmlElement("longDescription")]
-        public IDictionaryDataItem LongDescription { get; set; } = null;
+        public DictionaryDataItem LongDescription { get; set; } = null;
 
         /// <summary>
         /// Specification of the LongDescription property of this instance.
@@ -84,7 +85,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public IDataElementSet Detail { get; set; } = null;
+        public DataElementSet Detail { get; set; } = null;
 
         /// <summary>
         /// Specification of the Detail property of this instance.
@@ -154,14 +155,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             string id = null) : this()
         {
             this.Id = (id ?? this.Id);
-            this.CreationDate = (date ?? global::System.DateTime.Now).GetString();
+            this.CreationDate = ObjectHelper.ToString((date ?? global::System.DateTime.Now));
 
             this.Kind = EventKind.Exception;
             this.Criticality = criticality;
 
             if (exception != null)
             {
-                this.SetTitleText(exception.Message);
+                this.SetTitle(exception.Message);
                 this.SetDescription(exception.ToString());
                 this.LongDescription = new DictionaryDataItem(exception.ToString());
             }
@@ -190,7 +191,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="aEvent">The event to consider.</param>
         public static implicit operator string(Event aEvent)
         {
-            return aEvent?.GetTitleText();
+            return aEvent?.GetTitle();
         }
 
         #endregion
@@ -215,13 +216,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(log);
 
-            this.Detail.UpdateRuntimeInfo(appScope, log);
+            this.Detail.UpdateRuntimeInfo(log);
         }
 
         #endregion

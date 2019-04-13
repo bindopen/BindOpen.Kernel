@@ -14,12 +14,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The settings.
         /// </summary>
-        AppSettings Settings { get; set; }
+        IBdoAppSettings Settings { get; set; }
 
         /// <summary>
         /// The application module.
         /// </summary>
-        AppModule ApplicationModule { get; }
+        IAppModule ApplicationModule { get; }
 
         /// <summary>
         /// Indicates whether the default logger is used.
@@ -29,12 +29,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The loggers.
         /// </summary>
-        Logger[] Loggers { get; }
+        ILogger[] Loggers { get; }
 
         /// <summary>
         /// The extension configuration.
         /// </summary>
-        AppExtensionConfiguration ExtensionConfiguration { get; }
+        IAppExtensionConfiguration ExtensionConfiguration { get; }
 
         // Paths ----------------------
 
@@ -42,6 +42,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// The application folder path.
         /// </summary>
         string AppFolderPath { get; }
+
+        /// <summary>
+        /// The library folder path.
+        /// </summary>
+        string LibraryFolderPath { get; }
 
         /// <summary>
         /// The application configuration file path.
@@ -58,7 +63,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        DataElementSpecSet SettingsSpecificationSet { get; set; }
+        IDataElementSpecSet SettingsSpecificationSet { get; set; }
 
         // Set -------------------------------------------
 
@@ -89,14 +94,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The application settings class to consider.</typeparam>
         /// <param name="settingsFilePath">The path of the settings file.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetSettingsFile<T>(string settingsFilePath = null) where T : AppSettings, new();
+        IAppHostOptions SetSettingsFile<T>(string settingsFilePath = null) where T : IBdoAppSettings, new();
 
         /// <summary>
         /// Define the specified settings.
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions DefineSettings(DataElementSpecSet specificationSet);
+        IAppHostOptions DefineSettings(IDataElementSpecSet specificationSet);
 
         /// <summary>
         /// Define the specified settings.
@@ -104,14 +109,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The application settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions DefineSettings<T>(DataElementSpecSet specificationSet = null) where T : AppSettings, new();
+        IAppHostOptions DefineSettings<T>(IDataElementSpecSet specificationSet = null) where T : IBdoAppSettings, new();
 
         /// <summary>
         /// Set the extensions.
         /// </summary>
         /// <param name="extensionConfiguration">The extension configuration.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetExtensions(AppExtensionConfiguration extensionConfiguration);
+        IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration);
 
         /// <summary>
         /// Adds the default logger.
@@ -124,13 +129,13 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetLoggers(params Logger[] loggers);
+        IAppHostOptions SetLoggers(params ILogger[] loggers);
 
         /// <summary>
         /// Set the module.
         /// </summary>
         /// <param name="module">The module.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetModule(AppModule module);
+        IAppHostOptions SetModule(IAppModule module);
     }
 }

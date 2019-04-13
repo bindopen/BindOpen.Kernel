@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Runtime.Application.Languages
     /// <summary>
     /// This class represents a application languages.
     /// </summary>
-    public class ApplicationLanguage : DescribedDataItem
+    public class ApplicationLanguage : DescribedDataItem, IApplicationLanguage
     {
         // ------------------------------------------
         // PROPERTIES

@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
             bool isDataContextChecked = false,
             bool isDataSourceServiceChecked = false)
         {
-            Log log = AppScopeHelper.Check(
+            ILog log = AppScopeHelper.Check(
                 appScope,
                 isAppExtensionChecked,
                 isScriptInterpreterChecked,

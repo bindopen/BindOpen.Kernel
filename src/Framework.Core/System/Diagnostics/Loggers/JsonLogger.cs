@@ -4,9 +4,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -70,7 +69,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         public override bool WriteTask(
-            ILog log, ITaskConfiguration task)
+            ILog log, ITaskDto task)
         {
             return this.Save(log.Root, this.Filepath);
         }
@@ -96,7 +95,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="elementValue">The element value to consider.</param>
         public override bool WriteDetailElement(
             ILog log,
-            String elementName,
+            string elementName,
             Object elementValue)
         {
             return false;
@@ -129,13 +128,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         public override ILog LoadLog(
             String filePath,
             ILog loadLog = null,
-            IAppScope appScope = null,
             bool mustFileExist = true)
         {
             Log log = null;
@@ -153,10 +150,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             }
             finally
             {
-                if (streamReader != null)
-                    streamReader.Close();
+                streamReader?.Close();
             }
-            if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
+            log?.UpdateRuntimeInfo(loadLog);
 
             return log;
         }
@@ -166,16 +162,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-          /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
         public override ILog LoadLogFromString(
             String xmlString,
-            ILog loadLog = null,
-            IAppScope appScope = null)
+            ILog loadLog = null)
         {
             Log log = null;
 
-            Log aChildLoadLog = new Log();
+            Log childLoadLog = new Log();
 
             try
             {
@@ -186,9 +180,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             }
             catch (Exception ex)
             {
-                aChildLoadLog.AddException(ex);
+                childLoadLog.AddException(ex);
             }
-            if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
+            if (log != null) log.UpdateRuntimeInfo(loadLog);
 
             return log;
         }

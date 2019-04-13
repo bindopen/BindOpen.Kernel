@@ -12,22 +12,22 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Gets the BdO string corresponding to the specified data field.
         /// </summary>
-        /// <param name="dbFieldConfiguration">The database date field to consider.</param>
+        /// <param name="field">The database date field to consider.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlDataFieldString(
-            DbField dbFieldConfiguration)
+            DbField field)
         {
             String userFilterString = "";
-            if (dbFieldConfiguration.DataModule != null)
-                userFilterString += "$SqlDatabase(\"" + dbFieldConfiguration.DataModule + "\").";
-            if (dbFieldConfiguration.DataTableAlias != null)
-                userFilterString += "$SqlTable(\"" + dbFieldConfiguration.DataTable + "\").";
-            else if (dbFieldConfiguration.DataTable != null)
-                userFilterString += "$SqlTable(\"" + dbFieldConfiguration.DataTable + "\").";
-            if (dbFieldConfiguration.Alias != null)
-                userFilterString += "$SqlField(\"" + dbFieldConfiguration.Alias + "\")";
-            else if (dbFieldConfiguration.Name != null)
-                userFilterString += "$SqlField(\"" + dbFieldConfiguration.Name + "\")";
+            if (field.DataModule != null)
+                userFilterString += "$SqlDatabase(\"" + field.DataModule + "\").";
+            if (field.DataTableAlias != null)
+                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
+            else if (field.DataTable != null)
+                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
+            if (field.Alias != null)
+                userFilterString += "$SqlField(\"" + field.Alias + "\")";
+            else if (field.Name != null)
+                userFilterString += "$SqlField(\"" + field.Name + "\")";
             return userFilterString;
         }
 

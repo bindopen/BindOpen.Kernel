@@ -1,25 +1,11 @@
 ﻿
 namespace BindOpen.Framework.Databases.Data.Queries
 {
-
     /// <summary>
     /// This class represents a union statement of a database data query.
     /// </summary>
-    public class DbDataQueryUnionStatement
+    public class DbDataQueryUnionStatement : IDbDataQueryUnionStatement
     {
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private DbDataQueryUnionKind _Type;
-        private AdvancedDbDataQuery _DataQuery;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -29,23 +15,14 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Type of this instance.
         /// </summary>
-        public DbDataQueryUnionKind Type
-        {
-            get { return this._Type; }
-            set { this._Type = value; }
-        }
+        public DbDataQueryUnionKind Type { get; set; }
 
         /// <summary>
         /// Data query of this instance.
         /// </summary>
-        public AdvancedDbDataQuery DataQuery
-        {
-            get { return this._DataQuery; }
-            set { this._DataQuery = value; }
-        }
+        public IAdvancedDbDataQuery Query { get; set; }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -61,6 +38,5 @@ namespace BindOpen.Framework.Databases.Data.Queries
         }
 
         #endregion
-
     }
 }

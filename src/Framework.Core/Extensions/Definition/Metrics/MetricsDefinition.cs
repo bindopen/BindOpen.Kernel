@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
 {
     /// <summary>
-    /// This class represents a metrics definition.
+    /// This class represents a connector definition.
     /// </summary>
-    [Serializable()]
-    [XmlType("MetricsDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "metrics.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class MetricsDefinition : AppExtensionItemDefinition, IMetricsDefinition
+    public class MetricsDefinition : DataItem, IMetricsDefinition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -18,24 +16,24 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
         #region Properties
 
         /// <summary>
-        /// Item class of this instance.
+        /// The item of this instance.
         /// </summary>
-        [XmlElement("itemClass")]
-        public string ItemClass
-        {
-            get;
-            set;
-        }
+        public IMetricsDefinitionDto Dto { get; }
 
         /// <summary>
-        /// Unit code of this instance.
+        /// The unique ID of this instance.
         /// </summary>
-        [XmlElement("unitCode")]
-        public string UnitCode
-        {
-            get;
-            set;
-        }
+        public string UniqueId { get => Library?.Id + "$" + Dto?.Name; set { } }
+
+        /// <summary>
+        /// The runtime type of this instance.
+        /// </summary>
+        public Type RuntimeType { get; set; }
+
+        /// <summary>
+        /// The library of this instance.
+        /// </summary>
+        public ILibrary Library { get; }
 
         #endregion
 
@@ -46,10 +44,38 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Metrics
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the MetricsDefinition class. 
+        /// Instantiates a new instance of the MetricsDefinition class.
         /// </summary>
         public MetricsDefinition()
         {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the MetricsDefinition class.
+        /// </summary>
+        /// <param name="library">The library to consider.</param>
+        /// <param name="dto">The DTO item to consider.</param>
+        public MetricsDefinition(ILibrary library, IMetricsDefinitionDto dto)
+        {
+            Library = library;
+            Dto = dto;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Returns the key of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public string Key()
+        {
+            return UniqueId;
         }
 
         #endregion

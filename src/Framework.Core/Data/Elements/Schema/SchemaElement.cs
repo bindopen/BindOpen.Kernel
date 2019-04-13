@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Business.Entities;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Entities;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         private SchemaZoneElement _parentZone = null;
         private String _imageFileName = null;
 
-        private BusinessEntity _businessEntity = null;
+        private Entity _entity = null;
 
         #endregion
 
@@ -64,27 +64,27 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         }
 
         /// <summary>
-        /// The business entity unique name of this instance.
+        /// The business entity unique ID of this instance.
         /// </summary>
-        [XmlElement("businessEntityUniqueName")]
-        public string BusinessEntityUniqueName
+        [XmlElement("entityUniqueName")]
+        public string EntityUniqueName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// The business entity of this instance.
+        /// The entity of this instance.
         /// </summary>
         [XmlIgnore()]
-        public BusinessEntity BusinessEntity
+        public Entity Entity
         {
-            get { return this._businessEntity; }
+            get { return this._entity; }
             set
             {
-                this._businessEntity = value;
-                this.BusinessEntityUniqueName = _businessEntity?.Id;
-                this.RaizePropertyChanged(nameof(BusinessEntity));
+                this._entity = value;
+                this.EntityUniqueName = _entity?.Id;
+                this.RaizePropertyChanged(nameof(Entity));
             }
         }
 
@@ -160,12 +160,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         // Specification ---------------------
 
         /// <summary>
-        /// Gets a new specification.
+        /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
+        public override IDataElementSpec NewSpecification()
         {
-            return new SchemaElementSpec();
+            return (Specification = new SchemaElementSpec());
         }
 
         // Schema elements
@@ -432,7 +432,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
                 parentZoneElement = this.ParentZone;
 
             SchemaZoneElement aSchemaElement = this.MemberwiseClone() as SchemaZoneElement;
-            aSchemaElement.BusinessEntity = this._businessEntity;
+            aSchemaElement.Entity = this._entity;
             aSchemaElement.ParentZone = parentZoneElement;
             if (parentZoneElement != null)
                 parentZoneElement.SubElements.Add(aSchemaElement);

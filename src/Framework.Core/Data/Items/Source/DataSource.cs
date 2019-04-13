@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Source
@@ -63,10 +62,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// The connectors for this instance.
         /// </summary>
         [XmlElement("configuration")]
-        public List<ConnectorConfiguration> Configurations { get; set; } = null;
+        public List<ConnectorDto> Configurations { get; set; } = null;
 
         /// <summary>
-        /// Specification of the ConnectorConfigurations property of this instance.
+        /// Specification of the ConnectorDtos property of this instance.
         /// </summary>
         [XmlIgnore()]
         public bool ConfigurationsSpecified => Configurations?.Count > 0;
@@ -95,10 +94,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         public DataSource(
             string name,
             DataSourceKind kind,
-            params ConnectorConfiguration[] configurations) : base(name, "dataSource_")
+            params IConnectorDto[] configurations) : base(name, "dataSource_")
         {
             Kind = kind;
-            Configurations = configurations?.ToList();
+            Configurations = configurations?.Select(p=>p as ConnectorDto).ToList();
         }
 
         #endregion
@@ -112,17 +111,17 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// Adds the specified connector configuration.
         /// </summary>
-        /// <param name="connector">The connector to add.</param>
-        public void AddConfiguration(ConnectorConfiguration connector)
+        /// <param name="config">The connector to add.</param>
+        public void AddConfiguration(IConnectorDto config)
         {
-            if (connector != null)
-                Configurations.Add(connector);
+            if (config != null)
+                Configurations.Add(config as ConnectorDto);
         }
 
         /// <summary>
         /// Removes the specified connector configuration.
         /// </summary>
-        /// <param name="definitionName">The unique name of the connector definition to consider.</param>
+        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         public void RemoveConfiguration(string definitionName)
         {
                 Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
@@ -141,9 +140,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// Gets the specified connector configuration.
         /// </summary>
-        /// <param name="definitionName">The unique name of the connector definition to consider.</param>
+        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public ConnectorConfiguration GetConfiguration(string definitionName)
+        public IConnectorDto GetConfiguration(string definitionName)
         {
             return Configurations?.Find(p => definitionName ==null || p.DefinitionUniqueId.KeyEquals(definitionName));
         }
@@ -151,7 +150,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// Indicates whether this instance has the specified connector configuration.
         /// </summary>
-        /// <param name="definitionName">The unique name of the connector definition to consider.</param>
+        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConfiguration(string definitionName)
         {
@@ -172,10 +171,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <returns>Returns a clone of this instance.</returns>
         public override object Clone()
         {
-            IDataSource dataSource = base.Clone() as IDataSource;
+            DataSource dataSource = base.Clone() as DataSource;
 
             if (Configurations != null)
-                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorConfiguration).ToList();
+                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorDto).ToList();
 
             return dataSource;
         }
@@ -198,7 +197,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 
             if (Configurations != null)
             {
-                foreach (ConnectorConfiguration connector in Configurations)
+                foreach (IConnectorDto connector in Configurations)
                 {
                     connector.UpdateStorageInfo(log);
                 }
@@ -208,17 +207,16 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(log);
 
             if (Configurations != null)
             {
-                foreach (ConnectorConfiguration connector in Configurations)
+                foreach (IConnectorDto connector in Configurations)
                 {
-                    connector.UpdateRuntimeInfo(appScope, log);
+                    connector.UpdateRuntimeInfo(log);
                 }
             }
         }

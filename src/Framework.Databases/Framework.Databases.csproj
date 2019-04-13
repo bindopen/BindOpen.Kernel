@@ -21,18 +21,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConfiguration.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConfiguration_Odbc.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConfiguration_OleDb.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConnectorFactory.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConnector_MSSqlServer.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseConnector_Odbc.cs" />
-    <Compile Remove="Extensions\Runtime\Connectors\DatabaseKind.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnector_MSSqlServer.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Extensions\Carriers\carriers.index" />
-    <None Remove="Extensions\Runtime\Connectors\connectors.index" />
+    <None Remove="Extensions\Connectors\connectors.index" />
     <None Remove="Extensions\Entities\entities.index" />
     <None Remove="Extensions\Handlers\handlers.index" />
     <None Remove="Extensions\Metrics\metrics.index" />

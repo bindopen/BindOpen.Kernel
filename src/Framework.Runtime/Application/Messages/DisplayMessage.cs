@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Business.Conditions;
+﻿using System;
+using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
-using System;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Application.Messages
 {
@@ -14,7 +14,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
     [Serializable()]
     public class DisplayMessage : StoredDataItem
     {
-
         // ------------------------------------------
         // ENUMERATIONS
         // ------------------------------------------
@@ -42,7 +41,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
 
         #endregion
 
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -52,7 +50,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         private DisplayMessageOption _DisplayOption = DisplayMessageOption.CanBeHidden;
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -138,7 +135,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
 
         #endregion
 
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -153,7 +149,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // MUTATORS
@@ -173,7 +168,5 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         }
         
         #endregion
-
-
     }
 }

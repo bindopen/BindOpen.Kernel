@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
 
@@ -20,28 +18,13 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the NFSConnectorLocal class.
+        /// Instantiates a new instance of the NFSConnector class.
         /// </summary>
         public NFSConnector() : base()
         {
         }
 
-        /// <summary>
-        /// This instantiates a new instance of the NFSConnectorLocal class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        public NFSConnector(
-            String name,
-            ConnectorConfiguration configuration,
-            AppScope appScope = null)
-            : base(name, "standard$nfs", configuration, appScope)
-        {
-        }
-
         #endregion
-
 
         // -----------------------------------------------
         // MANAGEMENT
@@ -93,7 +76,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             }
             catch (Exception exception)
             {
-                LogEvent logEvent = log.AddException(exception);
+                ILogEvent logEvent = log.AddException(exception);
             }
         }
 
@@ -149,7 +132,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             DateTime dateTime = DateTime.Now.AddSeconds(aSecondNumber);
             Boolean isFileAccessible = !System.IO.File.Exists(path);
 
-            while ((DateTime.Now <= dateTime) & (!isFileAccessible))
+            while ((DateTime.Now <= dateTime) && (!isFileAccessible))
             {
                 FileStream fileStream = null;
                 try
@@ -164,8 +147,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 }
                 finally
                 {
-                    if (fileStream != null)
-                        fileStream.Close();
+                    fileStream?.Close();
                 }
             }
 
@@ -190,7 +172,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         {
             log = log ?? new Log();
 
-            Boolean isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith(@"/")));
+            Boolean isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith("/")));
             System.Text.RegularExpressions.Regex aRegex = null;
 
             List<RepositoryItem> files = new List<RepositoryItem>();
@@ -225,16 +207,17 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
 
                         if (isFound)
                         {
-                            Carriers.RepositoryFile file = new Carriers.RepositoryFile()
-                            {
-                                Name = fileInfo.Name,
-                                Path = fileInfo.FullName,
-                                CreationDate = fileInfo.CreationTime.ToString(),
-                                LastAccessDate = fileInfo.LastAccessTime.ToString(),
-                                LastWriteDate = fileInfo.LastWriteTime.ToString(),
-                                Length = (ulong)fileInfo.Length,
-                                ParentPath = folderUri
-                            };
+                            Carriers.RepositoryFile file = AppExtensionItemFactory.CreateCarrier(
+                                new Carriers.RepositoryFile()
+                                {
+                                    Name = fileInfo.Name,
+                                    Path = fileInfo.FullName,
+                                    CreationDate = fileInfo.CreationTime.ToString(),
+                                    LastAccessDate = fileInfo.LastAccessTime.ToString(),
+                                    LastWriteDate = fileInfo.LastWriteTime.ToString(),
+                                    Length = (ulong)fileInfo.Length,
+                                    ParentPath = folderUri
+                                });
                             files.Add(file);
                         }
                     }
@@ -363,6 +346,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
 
             foreach (RepositoryItem item in this.GetFiles(
                 folderUri, filter, isRecursive, log, fileKind))
+            {
                 if (item.LastWriteDate != null)
                 {
                     DateTime lastWriteDateTime;
@@ -374,6 +358,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                         else if (item is RepositoryFile)
                             NFSConnector.DeleteFile(item.Path, log);
                 }
+            }
         }
 
         #endregion

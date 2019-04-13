@@ -13,9 +13,7 @@
       <xs:extension base="bdo:DataElementSpec">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="class.filter" type="bdo:DataValueFilter" />
-          <!--<xs:element minOccurs="0" maxOccurs="1" name="formatUniqueNameFilter" type="bdo:DataValueFilter" />
-          <xs:element minOccurs="1" maxOccurs="1" name="formatRequirementLevel" type="bdo:RequirementLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="formatSpecificationLevels" type="bdo:ArrayOfSpecificationLevel" />-->
+          <xs:element minOccurs="0" maxOccurs="1" name="entity.filter" type="bdo:DataValueFilter" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

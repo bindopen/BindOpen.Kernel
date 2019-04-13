@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public Boolean GetValue(ScriptInterpreter scriptInterpreter = null, ScriptVariableSet scriptVariableSet = null)
+        public Boolean GetValue(ScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
             String value = this.ValueScript;
 

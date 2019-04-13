@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The log.
         /// </summary>
-        Log Log { get; }
+        ILog Log { get; }
 
         // Load --------------------------------------
 

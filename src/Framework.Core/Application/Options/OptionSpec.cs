@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification.Constraints;
-using BindOpen.Framework.Core.Extensions.Configuration.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Routines;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
@@ -129,8 +129,8 @@ namespace BindOpen.Framework.Core.Application.Options
             {
                 this.ConstraintStatement = new DataConstraintStatement();
                 this.ConstraintStatement.AddConstraint(
-                    null, "standard$" + BasicRoutineKind.ItemMustBeInList, new DataElementSet(
-                        DataElement.Create(type.GetFields().Select(p => p.Name).ToList().Cast<Object>(), DataValueType.Text)));
+                    null, "standard$" + KnownRoutineKind.ItemMustBeInList, new DataElementSet(
+                        ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
             }
         }
 

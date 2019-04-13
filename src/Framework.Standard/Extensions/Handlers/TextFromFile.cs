@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using System;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Standard.Extensions.Carriers;
-using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Framework.Standard.Extensions.Handlers
 {
@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
             DataElement sourceElement = null,
             DataElementSet pathDetail = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             List<object> objects = new List<object>();
@@ -38,7 +38,7 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
                 log.AddError("Source element missing");
             else
             {
-                RepositoryFile file = sourceElement.FirstItem as RepositoryFile;
+                RepositoryFile file = sourceElement.Items[0] as RepositoryFile;
                 if (file == null)
                     log.AddError("Source file missing");
                 else
@@ -63,7 +63,7 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
             Object targetObject,
             ref DataElement sourceDataElement,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             List<object> objects = new List<object>();

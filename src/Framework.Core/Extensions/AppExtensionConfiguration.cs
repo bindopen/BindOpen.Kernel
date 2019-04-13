@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         [XmlArray("filters")]
         [XmlArrayItem("add")]
-        public List<AppExtensionFilter> Filters { get; set; } = new List<AppExtensionFilter>();
+        public List<IAppExtensionFilter> Filters { get; set; } = new List<IAppExtensionFilter>();
 
         /// <summary>
         /// The source kinds of this instance.
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="filters">The filters to consider.</param>
         public AppExtensionConfiguration(
-            params AppExtensionFilter[] filters) : this(null,null,filters)
+            params IAppExtensionFilter[] filters) : this(null,null,filters)
         {
         }
 
@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="filters">The filters to consider.</param>
         public AppExtensionConfiguration(
             DataSourceKind[] sourceKinds,
-            params AppExtensionFilter[] filters) : this(sourceKinds, null, filters)
+            params IAppExtensionFilter[] filters) : this(sourceKinds, null, filters)
         {
         }
 
@@ -89,8 +89,8 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="sourceKinds">The source kinds to consider.</param>
         public AppExtensionConfiguration(
             DataSourceKind[] sourceKinds,
-            String defaultFolderPath,
-            params AppExtensionFilter[] filters) : base()
+            string defaultFolderPath,
+            params IAppExtensionFilter[] filters) : base()
         {
             Filters = filters?.ToList();
             DefaultSourceKinds = sourceKinds?.ToList();
@@ -109,7 +109,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// Adds the specified fileter.
         /// </summary>
         /// <param name="filter">The filter to consider.</param>
-        public AppExtensionConfiguration AddFilter(AppExtensionFilter filter)
+        public IAppExtensionConfiguration AddFilter(IAppExtensionFilter filter)
         {
             if (Filters != null)
             {
@@ -133,11 +133,11 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="libraryFileName">The library file name to consider.</param>
         /// <param name="sourceKinds">The source kinds to consider.</param>
         /// <param name="libraryFolderPath">The librayr folder path to consider.</param>
-        public AppExtensionConfiguration Add(
-            String libraryName = null
-            , String libraryFileName = null
+        public IAppExtensionConfiguration AddFilter(
+            string libraryName = null
+            , string libraryFileName = null
             , DataSourceKind[] sourceKinds = null
-            , String libraryFolderPath = null)
+            , string libraryFolderPath = null)
         {
             return AddFilter(
                 new AppExtensionFilter(libraryName, libraryFileName, sourceKinds, libraryFolderPath));
@@ -147,11 +147,11 @@ namespace BindOpen.Framework.Core.Extensions
         /// Instantiates a new instance of the AppExtensionConfiguration class.
         /// </summary>
         /// <param name="configuration">The configuration to consider.</param>
-        public void Merge(AppExtensionConfiguration configuration)
+        public void Merge(IAppExtensionConfiguration configuration)
         {
             if (configuration != null)
             {
-                foreach (AppExtensionFilter filter in configuration.Filters)
+                foreach (IAppExtensionFilter filter in configuration.Filters)
                 {
                     AddFilter(filter);
                 }
@@ -170,10 +170,10 @@ namespace BindOpen.Framework.Core.Extensions
         /// Gets the filters of this instance
         /// </summary>
         /// <returns></returns>
-        public List<AppExtensionFilter> GetFilters()
+        public List<IAppExtensionFilter> GetFilters()
         {
-            List<AppExtensionFilter> extensionFilters = new List<AppExtensionFilter>();
-            foreach (AppExtensionFilter filter in Filters)
+            List<IAppExtensionFilter> extensionFilters = new List<IAppExtensionFilter>();
+            foreach (IAppExtensionFilter filter in Filters)
             {
                 extensionFilters.Add(
                    new AppExtensionFilter(
@@ -200,16 +200,12 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
             if (Filters != null)
                 Filters = Filters.GroupBy(p => new { p.Name, p.FileName }).Select(p => p.First()).ToList();
@@ -219,5 +215,4 @@ namespace BindOpen.Framework.Core.Extensions
 
         #endregion
     }
-
 }

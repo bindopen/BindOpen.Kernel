@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Document;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements.Document
 {
@@ -70,14 +71,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// </summary>
         /// <param name="item">The item to consider.</param>
         /// <param name="dataElement">The element to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
         public override ILog CheckItem(
             object item,
-            IDataElement dataElement = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            IDataElement dataElement = null)
         {
             return new Log();
         }
@@ -87,26 +84,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// </summary>
         /// <param name="dataElement">The element to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
         public override ILog CheckElement(
-            IIDataElement dataElement,
-            string[] specificationAreas = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            IDataElement dataElement,
+            string[] specificationAreas = null)
         {
             return new Log();
         }
-
-        #endregion
-
-        // --------------------------------------------------
-        // UPDATE, CHECK, REPAIR
-        // --------------------------------------------------
-
-        #region Update_Check_Repair
-
 
         #endregion
 

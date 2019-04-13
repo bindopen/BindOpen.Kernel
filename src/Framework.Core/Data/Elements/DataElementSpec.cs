@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Entity;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Schema;
 using BindOpen.Framework.Core.Data.Elements.Source;
@@ -16,8 +16,9 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Data.Specification.Constraints;
 using BindOpen.Framework.Core.Data.Specification.Design;
+using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -29,7 +30,7 @@ namespace BindOpen.Framework.Core.Data.Elements
     [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElementSpec))]
     [XmlInclude(typeof(DocumentElementSpec))]
-    [XmlInclude(typeof(EntityElementSpec))]
+    [XmlInclude(typeof(ObjectElementSpec))]
     [XmlInclude(typeof(ScalarElementSpec))]
     [XmlInclude(typeof(SchemaElementSpec))]
     [XmlInclude(typeof(SourceElementSpec))]
@@ -65,7 +66,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         private string _groupId = null;
         private List<string> _aliases = null;
-        private List<IDataAreaSpecification> _areaSpecifications = null;
+        private List<DataAreaSpecification> _areaSpecifications = null;
 
         // Items ------------------------------
 
@@ -77,11 +78,11 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         // Constraints ------------------------
 
-        private IDataConstraintStatement _constraintStatement = null;
+        private DataConstraintStatement _constraintStatement = null;
 
         // Design -----------------------------
 
-        private IDataDesignStatement _designStatement = null;
+        private DataDesignStatement _designStatement = null;
 
         #endregion
 
@@ -139,9 +140,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// The area specifications of this instance.
         /// </summary>
         [XmlElement("areaSpecifications")]
-        public List<IDataAreaSpecification> AreaSpecifications
+        public List<DataAreaSpecification> AreaSpecifications
         {
-            get => _areaSpecifications ?? (_areaSpecifications = new List<IDataAreaSpecification>());
+            get => _areaSpecifications ?? (_areaSpecifications = new List<DataAreaSpecification>());
             set
             {
                 _areaSpecifications = value;
@@ -301,7 +302,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Constraint statement of this instance.
         /// </summary>
         [XmlElement("constraint.statement")]
-        public IDataConstraintStatement ConstraintStatement
+        public DataConstraintStatement ConstraintStatement
         {
             get => _constraintStatement ?? (_constraintStatement = new DataConstraintStatement());
             set { _constraintStatement = value; }
@@ -319,7 +320,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Design statement of this instance.
         /// </summary>
         [XmlElement("design.statement")]
-        public IDataDesignStatement DesignStatement
+        public DataDesignStatement DesignStatement
         {
             get => _designStatement ?? (_designStatement = new DataDesignStatement());
             set { _designStatement = value; }
@@ -424,13 +425,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Gets the item object of this instance.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the item object.</returns>
         public object GetDefaultItemObject(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             return !IsValueList ? this.DefaultItems.FirstOrDefault() : this.DefaultItems;
@@ -450,22 +447,6 @@ namespace BindOpen.Framework.Core.Data.Elements
             return areaSpecification ?? new DataAreaSpecification() { AreaName = areaName };
         }
 
-        /// <summary>
-        /// Indicates whether this instance is compatible with the specified data item.
-        /// </summary>
-        /// <param name="item">The data item to consider.</param>
-        /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override bool IsCompatibleWith(IDataItem item)
-        {
-            bool isCompatible = base.IsCompatibleWith(item);
-
-            if (isCompatible)
-            {
-            }
-
-            return isCompatible;
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -480,15 +461,11 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         public override ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
             ILog log = new Log();
 
@@ -505,6 +482,178 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             if (_availableItemizationModes == null || _availableItemizationModes.Count == 0)
                 _availableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Valued };
+
+            return log;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // CHECKING
+        // --------------------------------------------------
+
+        #region Checking
+
+        /// <summary>
+        /// Check the specified item.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <param name="dataElement">The element to consider.</param>
+        /// <returns>The log of check log.</returns>
+        public virtual ILog CheckItem(
+            object item,
+            IDataElement dataElement = null)
+        {
+            ILog log = new Log();
+            if (item != null)
+            {
+                if (_constraintStatement != null)
+                {
+                    log = _constraintStatement.CheckItem(item, dataElement, true);
+                }
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Check the specified item.
+        /// </summary>
+        /// <param name="dataElement">The element to consider.</param>
+        /// <param name="specificationAreas">The specification areas to consider.</param>
+        /// <returns>The log of check log.</returns>
+        public virtual ILog CheckElement(
+            IDataElement dataElement,
+            string[] specificationAreas = null)
+        {
+            ILog log = new Log();
+
+            if (dataElement == null)
+                return log;
+
+            if (specificationAreas == null)
+                specificationAreas = new[] { nameof(DataAreaKind.Any) };
+
+            if (specificationAreas.Contains(nameof(DataAreaKind.Any)) || specificationAreas.Contains("element"))
+            {
+                if (!_availableItemizationModes.Contains(DataItemizationMode.Any) && !_availableItemizationModes.Contains(dataElement.ItemizationMode))
+                {
+                    log.AddError(
+                        title: "Itemization mode not available",
+                        description: "The itemization mode of this element is not available.");
+                }
+                else
+                {
+                    switch (dataElement.ItemizationMode)
+                    {
+                        case DataItemizationMode.Referenced:
+                            if (dataElement.ItemReference == null)
+                            {
+                                log.AddWarning(
+                                   title: "Item reference missing in element",
+                                   description: "This element has no item reference where as it is in reference itemization mode.");
+                            }
+
+                            switch (GetAreaSpecification("item").RequirementLevel)
+                            {
+                                case RequirementLevel.OptionalExclusively:
+                                    if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
+                                        log.AddError(
+                                            title: "Item script and items forbidden with reference",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Forbidden:
+                                    if (dataElement.ItemReference != null)
+                                        log.AddWarning(
+                                            title: "Item reference forbidden",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Required:
+                                    if (dataElement.ItemReference == null)
+                                        log.AddError(
+                                            title: "Item reference required",
+                                            description: "The element requires a item reference.");
+                                    break;
+                            }
+                            break;
+                        case DataItemizationMode.Script:
+                            if (string.IsNullOrEmpty(dataElement.ItemScript))
+                                log.AddWarning(
+                                    title: "Item script missing in element",
+                                    description: "The element has no item script where as it is in script itemization mode.");
+
+                            switch (GetAreaSpecification("item").RequirementLevel)
+                            {
+                                case RequirementLevel.OptionalExclusively:
+                                    if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
+                                        log.AddError(
+                                            title: "Item script and items forbidden forbidden with reference",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Forbidden:
+                                    if (dataElement.ItemReference != null)
+                                        log.AddWarning(
+                                            title: "Item reference forbidden",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Required:
+                                    if (dataElement.ItemReference == null)
+                                        log.AddError(
+                                            title: "Item reference required",
+                                            description: "The element requires a item reference.");
+                                    break;
+                            }
+                            break;
+                        case DataItemizationMode.Valued:
+                            if ((!IsValueList) && (dataElement.Items.Count > 1))
+                                log.AddWarning(
+                                    title: "More than one item found in element",
+                                    description: "The element has more than one item where as it is in single itemization mode.");
+
+                            switch (GetAreaSpecification("item").RequirementLevel)
+                            {
+                                case RequirementLevel.OptionalExclusively:
+                                    if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
+                                        log.AddError(
+                                            title: "Item script and items forbidden forbidden with reference",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Forbidden:
+                                    if (dataElement.ItemReference != null)
+                                        log.AddWarning(
+                                            title: "Item specification allows reference forbidden",
+                                            description: "No item reference.");
+                                    break;
+                                case RequirementLevel.Required:
+                                    if ((dataElement.Items == null) || (dataElement.Items.Count == 0))
+                                        log.AddError(
+                                            title: "Items required",
+                                            description: "The element requires items.");
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            }
+
+            if (specificationAreas.Contains(nameof(DataAreaKind.Any)) || specificationAreas.Contains(nameof(DataAreaKind.Items)))
+            {
+                if (IsValueList)
+                {
+                    if (MinimumItemNumber > dataElement.Items.Count)
+                        log.AddError(
+                            title: "Not enough items in element",
+                            description: "The element has " + dataElement.Items.Count + " items where as the minimum was specified at " + MinimumItemNumber + ".");
+
+                    if (MaximumItemNumber > -1 && MaximumItemNumber < dataElement.Items.Count)
+                        log.AddError(
+                            title: "Too many items in element",
+                            description: "The element has " + dataElement.Items.Count + " items where as the maximum was specified at " + MaximumItemNumber + ".");
+                }
+
+                foreach (object item in dataElement.Items)
+                    log.AddEvents(CheckItem(item, dataElement));
+            }
 
             return log;
         }

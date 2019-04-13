@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using NUnit.Framework;
 
@@ -10,9 +11,9 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
         [Test]
         public void TestCreateScalarElements()
         {
-            ScalarElement element10 = new ScalarElement("text1", DataValueType.Text, "item1", "item2", "item3");
-            ScalarElement element11 = new ScalarElement("integer1", DataValueType.Integer, 1,2,3);
-            ScalarElement element12 = new ScalarElement("float1", DataValueType.Number, 1.1, 1.2, 1.3);
+            IScalarElement element10 = ElementFactory.CreateScalar("text1", DataValueType.Text, "item1", "item2", "item3");
+            IScalarElement element11 = ElementFactory.CreateScalar("integer1", DataValueType.Integer, 1,2,3);
+            IScalarElement element12 = ElementFactory.CreateScalar("float1", DataValueType.Number, 1.1, 1.2, 1.3);
 
             // check insertion
 

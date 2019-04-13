@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Objects
 {
@@ -60,12 +67,16 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object value to convert.</param>
         /// <param name="valueType">The value type to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The result string.</returns>
-        public static String GetString(
+        public static string ToString(
             this object object1,
-            DataValueType valueType = DataValueType.Any)
+            DataValueType valueType = DataValueType.Any,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null)
         {
-            String stringValue = "";
+            string stringValue = "";
             if (valueType == DataValueType.Any)
                 valueType = object1.GetValueType();
 
@@ -87,8 +98,11 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                         if (object1 is TimeSpan timeSpan)
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
                         break;
+                    case DataValueType.Text:
+                        stringValue = object1 as string;
+                        break;
                     default:
-                        stringValue = object1.ToString();
+                        stringValue = XmlHelper.ToXml(object1);
                         break;
                 }
             }
@@ -170,7 +184,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                             name = propertyInfo.Name;
                         try
                         {
-                            var value = elementSet.GetElementItemObject(name);
+                            var value = elementSet.GetElementObject(name);
                             if (propertyInfo.PropertyType.IsEnum && value != null)
                             {
                                 if (Enum.IsDefined(propertyInfo.PropertyType, value))
@@ -207,7 +221,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                         String name = attribute.Name;
                         if (string.IsNullOrEmpty(name))
                             name = propertyInfo.Name;
-                        elementSet.AddElement(name, propertyInfo.GetValue(object1), propertyInfo.PropertyType.GetValueType());
+                        elementSet.AddElement(
+                            ElementFactory.CreateScalar(
+                                name, propertyInfo.PropertyType.GetValueType(), propertyInfo.GetValue(object1)));
                     }
                 }
             }
@@ -237,5 +253,75 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                     action(item);
         }
 
+        /// <summary>
+        /// Gets information of the specified property.
+        /// </summary>
+        /// <param name="objectType">The object type to consider.</param>
+        /// <param name="propertyName">The property name to consider.</param>
+        /// <param name="attributeTypes"></param>
+        /// <param name="attribute">The attribute to return.</param>
+        public static PropertyInfo GetPropertyInfo(
+            this Type objectType,
+            string propertyName,
+            Type[] attributeTypes,
+            out DataElementAttribute attribute)
+        {
+            attribute = null;
+            PropertyInfo propertyInfo = null;
+
+            if (objectType != null && propertyName != null)
+            {
+                propertyInfo = objectType.GetProperty(propertyName);
+                if (propertyInfo != null)
+                {
+                    foreach (Type attributeType in attributeTypes)
+                    {
+                        if (propertyInfo.GetCustomAttribute(attributeType) is DataElementAttribute elementAttribute)
+                        {
+                            attribute = elementAttribute;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return propertyInfo;
+        }
+
+        /// <summary>
+        /// Sets information of the specified property.
+        /// </summary>
+        /// <param name="aObject">The object to update.</param>
+        /// <param name="elementSet">The set of elements to return.</param>
+        /// <param name="attributeType">The type of attribute to update.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        public static ILog MapProperties(
+            this Object aObject,
+            IDataElementSet elementSet,
+            Type attributeType = null,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null)
+        {
+            if(attributeType==null) attributeType = typeof(DetailPropertyAttribute);
+
+            ILog log = new Log();
+            if (aObject == null || elementSet.Elements == null) return null;
+
+            foreach(PropertyInfo property in aObject.GetType().GetProperties().Where(p=>p.GetCustomAttribute(attributeType) != null))
+            {
+                Attribute attribute = property.GetCustomAttribute(attributeType);
+                if (attribute is DataElementAttribute elementAttribute)
+                {
+                    IDataElement element = elementSet[elementAttribute.Name];
+                    if (element!=null)
+                    {
+                        property.SetValue(aObject, element.GetObject(appScope, scriptVariableSet, log));
+                    }
+                }
+            }
+
+            return log;
+        }
     }
 }

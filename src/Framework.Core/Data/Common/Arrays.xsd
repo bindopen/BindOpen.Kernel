@@ -8,7 +8,7 @@
   <xs:include schemaLocation="../items/dictionary/DataKeyValue.xsd" />
   <xs:include schemaLocation="../specification/DataAreaSpecification.xsd" />
   <xs:include schemaLocation="../../application/commands/Command.xsd" />
-  <xs:include schemaLocation="../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="../../extensions/configuration/connectors/ConnectorDto.xsd" />
   <xs:include schemaLocation="../items/source/DataSource.xsd" />
 
   <xs:complexType name="ArrayOfString">

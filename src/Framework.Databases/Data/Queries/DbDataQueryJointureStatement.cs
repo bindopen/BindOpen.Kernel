@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents the Jointure statement of a database data query.
     /// </summary>
-    public class DbDataQueryJointureStatement
+    public class DbDataQueryJointureStatement : IDbDataQueryJointureStatement
     {
         // ------------------------------------------
         // PROPERTIES
@@ -70,7 +70,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         {
             this.Kind = kind;
             this.Table = table;
-            this.Condition = new DataExpression(query);
+            this.Condition = query.CreateScript();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
 
                 query += ")";
 
-                this.Condition = new DataExpression(query);
+                this.Condition = query.CreateScript();
             }
         }
 

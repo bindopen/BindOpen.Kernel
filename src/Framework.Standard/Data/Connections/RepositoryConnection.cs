@@ -8,7 +8,6 @@ using BindOpen.Framework.Standard.Extensions.Connectors;
 
 namespace BindOpen.Framework.Standard.Data.Connections
 {
-
     /// <summary>
     /// This class represents a repository connection.
     /// </summary>
@@ -16,7 +15,6 @@ namespace BindOpen.Framework.Standard.Data.Connections
     [XmlRoot(ElementName = "repositoryConnection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class RepositoryConnection : Connection, IRepositoryConnection
     {
-
         // -----------------------------------------------
         // PROPERTIES
         // -----------------------------------------------
@@ -35,12 +33,11 @@ namespace BindOpen.Framework.Standard.Data.Connections
             }
             set
             {
-                base.Connector = value;
+                SetConnector(value);
             }
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -65,7 +62,6 @@ namespace BindOpen.Framework.Standard.Data.Connections
         }
 
         #endregion
-
 
         // -----------------------------------------------
         // FILE MANAGEMENT
@@ -236,7 +232,5 @@ namespace BindOpen.Framework.Standard.Data.Connections
         }
 
         #endregion
-
-
     }
 }

@@ -15,18 +15,22 @@ namespace BindOpen.Framework.Core.Application.Entities
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// System.
         /// </summary>
         System,
+
         /// <summary>
         /// Platform.
         /// </summary>
         Platform,
+
         /// <summary>
         /// Platform module.
         /// </summary>
         PlatformModule,
+
         /// <summary>
         /// Business.
         /// </summary>

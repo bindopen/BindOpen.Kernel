@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Application.Datasources;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Services.Data.Datasources;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The application extension of this instance.
         /// </summary>
-        public AppExtension AppExtension
+        public IAppExtension AppExtension
         {
             get { return this._appScope?.AppExtension; }
         }
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The data context of this instance.
         /// </summary>
-        public DataContext DataContext
+        public IDataContext DataContext
         {
             get { return this._appScope?.DataContext; }
         }
@@ -63,7 +63,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Script interpreter of this instance.
         /// </summary>
-        public ScriptInterpreter ScriptInterpreter
+        public IScriptInterpreter ScriptInterpreter
         {
             get { return this._appScope?.ScriptInterpreter; }
         }
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Data source service of this instance.
         /// </summary>
-        public DataSourceService DataSourceService
+        public IDataSourceService DataSourceService
         {
             get { return this._appScope?.DataSourceService; }
         }
@@ -130,7 +130,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <typeparam name="T">The runtime application scope to consider.</typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual ILog Initialize<T>() where T : RuntimeAppScope, new()
+        protected virtual ILog Initialize<T>() where T : IRuntimeAppScope, new()
         {
             return new Log();
         }

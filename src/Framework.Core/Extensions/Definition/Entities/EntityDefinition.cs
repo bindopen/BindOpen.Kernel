@@ -1,96 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Schema;
-using BindOpen.Framework.Core.Extensions.Definition.Formats;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Entities
 {
     /// <summary>
-    /// This class represents the entity definition.
+    /// This class represents a entity definition.
     /// </summary>
-    [Serializable()]
-    [XmlType("EntityDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "entity.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class EntityDefinition : AppExtensionItemDefinition, IEntityDefinition
+    public class EntityDefinition : DataItem, IEntityDefinition
     {
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private List<IFormatDefinition> _formatDefinitions = new List<IFormatDefinition>();
-
-        private List<IDataSchema> _possibleMetaSchemas = new List<IDataSchema>();
-
-        #endregion
-
-        // --------------------------------------------------
+        // ------------------------------------------
         // PROPERTIES
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Properties
 
         /// <summary>
-        /// Item class of this instance.
+        /// The library of this instance.
         /// </summary>
-        [XmlElement("itemClass")]
-        public string ItemClass
-        {
-            get;
-            set;
-        }
+        public ILibrary Library { get; }
 
         /// <summary>
-        /// The kind of this instance. 
+        /// The item of this instance.
         /// </summary>
-        [XmlElement("kind")]
-        public EntityKind Kind { get; set; } = EntityKind.Any;
+        public IEntityDefinitionDto Dto { get; }
 
         /// <summary>
-        /// Viewer class of this instance.
+        /// The unique ID of this instance.
         /// </summary>
-        /// <remarks>Class names using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
-        [XmlElement("viewerClass")]
-        public string ViewerClass
-        {
-            get;
-            set;
-        }
+        public string UniqueId { get => Library?.Id + "$" + Dto?.Name; set { } }
 
         /// <summary>
-        /// Formats of this instance.
+        /// The runtime type of this instance.
         /// </summary>
-        [XmlArray("formats")]
-        [XmlArrayItem("format")]
-        public List<IFormatDefinition> FormatDefinitions
-        {
-            get
-            {
-                return this._formatDefinitions ?? (this._formatDefinitions = new List<IFormatDefinition>());
-            }
-        }
-
-        /// <summary>
-        /// The possible meta schemas of this instance.
-        /// </summary>
-        [XmlArray("schemas")]
-        [XmlArrayItem("schema")]
-        public List<IDataSchema> PossibleMetaSchemas
-        {
-            get
-            {
-                return this._possibleMetaSchemas ?? (this._possibleMetaSchemas = new List<IDataSchema>());
-            }
-        }
+        public Type RuntimeType { get; set; }
 
         #endregion
 
-        // --------------------------------------------------
+        // ------------------------------------------
         // CONSTRUCTORS
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Constructors
 
@@ -101,50 +50,32 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Entities
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the EntityDefinition class.
+        /// </summary>
+        /// <param name="library">The library to consider.</param>
+        /// <param name="dto">The DTO item to consider.</param>
+        public EntityDefinition(ILibrary library, IEntityDefinitionDto dto)
+        {
+            Library = library;
+            Dto = dto;
+        }
+
         #endregion
 
-        // --------------------------------------------------
+        // ------------------------------------------
         // ACCESSORS
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Accessors
 
-        // Formats ----------------------------
-
         /// <summary>
-        /// Gets the format with the specified unique name.
+        /// Returns the key of this instance.
         /// </summary>
-        /// <param name="uniqueName">Unique name of the application module.</param>
-        /// <returns>The current visitor application module.</returns>
-        public IFormatDefinition GetFormatWithUniqueName(String uniqueName)
+        /// <returns></returns>
+        public string Key()
         {
-            if (uniqueName == null) return null;
-
-            return this.FormatDefinitions.Find(p => p.KeyEquals(uniqueName));
-        }
-
-        /// <summary>
-        /// Gets the format with the specified name.
-        /// </summary>
-        /// <param name="name">Name of the application module.</param>
-        /// <returns>The current visitor application module.</returns>
-        public IFormatDefinition GetFormatWithName(String name)
-        {
-            if (name == null) return null;
-
-            return this.FormatDefinitions.Find(p => p.KeyEquals(name));
-        }
-
-        /// <summary>
-        /// Gets the format with the specified ID.
-        /// </summary>
-        /// <param ID="id">Id of the application module.</param>
-        /// <returns>The current visitor application module.</returns>
-        public IFormatDefinition GetFormatWithId(String id)
-        {
-            if (id == null) return null;
-
-            return this.FormatDefinitions.Find(p => p.Id.KeyEquals(id));
+            return UniqueId;
         }
 
         #endregion

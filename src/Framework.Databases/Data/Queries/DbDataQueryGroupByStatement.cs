@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents the GroupBy statement of a database data query.
     /// </summary>
-    public class DbDataQueryGroupByStatement
+    public class DbDataQueryGroupByStatement : IDbDataQueryGroupByStatement
     {
         // ------------------------------------------
         // VARIABLES

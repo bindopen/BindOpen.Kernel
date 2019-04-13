@@ -1,14 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Xml.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Scalar
 {
@@ -27,22 +21,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         #region Properties
 
         /// <summary>
+        /// Specification of the ItemXElement property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ItemsSpecified => base.Items?.Count > 1;
+
+        /// <summary>
         /// The value of this instance.
         /// </summary>
         [XmlAttribute("value")]
-        public string Value
+        public object Value
         {
-            get
-            {
-                if (this.ItemXElement != null)
-                {
-                    XElement element = this.ItemXElement.Elements().FirstOrDefault();
-                    if (element != null)
-                        return element.Value;
-                }
-
-                return null;
-            }
+            get => this.Items.FirstOrDefault();
             set => this.SetItem(value);
         }
 
@@ -73,9 +63,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// The specification of this instance.
         /// </summary>
         [XmlElement("specification")]
-        public new IScalarElementSpec Specification
+        public new ScalarElementSpec Specification
         {
-            get => base.Specification as IScalarElementSpec;
+            get => base.Specification as ScalarElementSpec;
             set { base.Specification = value; }
         }
 
@@ -88,96 +78,22 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         #region Constructors
 
         /// <summary>
-        /// Initializes a new scalar element.
+        /// Initializes a new instance of the ScalarElement class.
         /// </summary>
-        public ScalarElement() : base()
+        public ScalarElement() : this(null, null)
         {
         }
 
         /// <summary>
-        /// Initializes a new scalar element.
-        /// </summary>
-        /// <param name="dataValueType">The value type to consider.</param>
-        public ScalarElement(DataValueType dataValueType)
-            : this(null, dataValueType)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new scalar element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        public ScalarElement(String name)
-            : this(name, DataValueType.Any)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new scalar element.
-        /// </summary>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public ScalarElement(
-            DataValueType valueType,
-            params object[] items)
-            : this(null, null, valueType, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new scalar element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public ScalarElement(
-            string name,
-            DataValueType valueType,
-            params object[] items)
-            : this(name, null, valueType, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new scalar element.
+        /// Initializes a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        /// <param name="items">The items to consider.</param>
         public ScalarElement(
-            string name,
-            string id,
-            DataValueType valueType,
-            IScalarElementSpec specification,
-            params object[] items)
-            : base(name, "scalarElement_", id)
+            string name = null,
+            string id = null)
+            : base(name, "scalar_", id)
         {
-            this.ValueType = valueType;
-            this.Specification = specification;
-
-            foreach (object item in items)
-                this.AddItem(item);
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
-        {
-            return new ScalarElementSpec();
         }
 
         #endregion
@@ -188,57 +104,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 
         #region Items
 
-        /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override object NewItem(IAppScope appScope = null, ILog log = null)
-        {
-            switch (this.ValueType)
-            {
-                case DataValueType.Boolean:
-                    return false;
-                case DataValueType.Date:
-                    return DateTime.Now;
-                case DataValueType.Integer:
-                case DataValueType.Number:
-                case DataValueType.Long:
-                    return -1;
-                case DataValueType.Text:
-                    return "";
-                case DataValueType.Time:
-                    return new TimeSpan();
-            };
-
-            return null;
-        }
+        // Specification ---------------------
 
         /// <summary>
-        /// Returns the specified item of this instance.
+        /// Gets a new specification.
         /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override object GetItem(
-            Object indexItem = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+        /// <returns>Returns the new specifcation.</returns>
+        public override IDataElementSpec NewSpecification()
         {
-            if ((indexItem == null) || (indexItem is int))
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            else if (indexItem is string)
-            {
-                Object item = this.GetObjectFromString(indexItem as string);
-                return this.Items.First(p => p.KeyEquals(item));
-            }
-
-            return null;
+            return this.Specification = new ScalarElementSpec();
         }
+
+        // Items ----------------------------
 
         /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
@@ -259,49 +136,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         public override string ToString()
         {
             return string.Join("|", this.Items.Select(p => p == null ? "" : p.ToString()).ToArray());
-        }
-
-        // Conversion ---------------------------
-
-        /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
-        /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public override string GetStringFromObject(
-            Object object1,
-            ILog log = null)
-        {
-            String stringValue = "";
-
-            if (object1 != null)
-                stringValue = object1.GetString(this.ValueType);
-
-            return stringValue;
-        }
-
-        /// <summary>
-        /// Returns the object value from a based on this instance's specification.
-        /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public override object GetObjectFromString(
-            String stringValue,
-            IAppScope appScope = null,
-            ILog log = null)
-        {
-            Object object1 = null;
-
-            String format = null;
-            if (this.Specification != null && this.Specification.ConstraintStatement != null)
-                format = this.Specification.ConstraintStatement.GetConstraintParameterValue("Format") as string;
-            if (stringValue != null)
-                object1 = stringValue.ToObject(this.ValueType, format);
-
-            return object1;
         }
 
         #endregion

@@ -7,6 +7,7 @@ using System.Reflection;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing.Resources;
 
 namespace BindOpen.Framework.Core.System.Assemblies

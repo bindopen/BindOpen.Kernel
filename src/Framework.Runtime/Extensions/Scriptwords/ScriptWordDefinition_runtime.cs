@@ -1,6 +1,6 @@
 ﻿using System;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Hosts;
 
@@ -10,9 +10,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
     /// <summary>
     /// This class represents a 'Runtime' script word definition.
     /// </summary>
-    public static class ScriptWordDefinition_runtime
+    public static class ScriptwordDefinition_runtime
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -30,7 +29,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         public static String Var_ApplicationFolderPath(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
@@ -54,7 +53,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         public static String Var_RoamingFolderPath(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
@@ -78,7 +77,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         public static String Var_ApplicationModuleName(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
@@ -102,7 +101,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         public static String Var_ApplicationInstanceName(
             IAppScope appScope,
             ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
+            Scriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null || appScope.DataContext == null)
@@ -116,6 +115,5 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         }
 
         #endregion
-
     }
 }

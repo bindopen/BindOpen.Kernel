@@ -10,6 +10,7 @@
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library provides standard classes.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Standard</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

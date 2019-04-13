@@ -2,7 +2,7 @@
 using System.IO;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
@@ -13,7 +13,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
     /// <remarks>The output format is YAML.</remarks>
     public class ReportLogger : Logger
     {
-
         // ------------------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------------------
@@ -41,14 +40,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public ReportLogger(
-            String name,
+            string name,
             LoggerMode mode,
-            String folderPath,
-            String fileName = null,
+            string folderPath,
+            string fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
             bool isVerbose = false,
-            String uiCulture = null,
-            Predicate<LogEvent> eventFinder = null,
+            string uiCulture = null,
+            Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1) : 
             base(name, LogFormat.Report, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
@@ -69,7 +68,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         public override bool WriteTask(
-            Log log, TaskConfiguration task)
+            ILog log, ITaskDto task)
         {
             return false;
         }
@@ -79,9 +78,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
         public override bool WriteEvent(
-            LogEvent logEvent)
+            ILogEvent logEvent)
         {
-            if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
+            if (EventFinder == null || EventFinder.Invoke(logEvent))
                 return false;
             else
                 return false;
@@ -94,9 +93,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="elementValue">The element value to consider.</param>
         public override bool WriteDetailElement(
-            Log log,
-            String elementName,
-            Object elementValue)
+            ILog log,
+            string elementName,
+            object elementValue)
         {
             return false;
         }
@@ -107,8 +106,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="childLog">The child log to log.</param>
         public override bool WriteChildLog(
-            Log log,
-            Log childLog)
+            ILog log,
+            ILog childLog)
         {
             return false;
         }
@@ -131,7 +130,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public override bool Save(Log log, String logFilePath, bool isAppended = false)
+        public override bool Save(ILog log, String logFilePath, bool isAppended = false)
         {
             if (log == null) return false;
 
@@ -171,24 +170,23 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                 }
 
                 // we add results
-                foreach (LogEvent logEvent in log.Events)
+                foreach (ILogEvent logEvent in log.Events)
                 {
                     line = "";
                     line += textDelimiterValue + (logEvent.Kind == EventKind.Error ? "E" : "W").Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
                     line += aFieldDelimiterValue;
-                    if (logEvent is LogEvent)
-                        line += textDelimiterValue + (logEvent as LogEvent).ResultCode.ToString().Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
+                    line += textDelimiterValue + logEvent.ResultCode.ToString().Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
 
                     // we retrieve the report attributes
                     if (log.Detail != null)
                     {
-                        foreach (DataElement dataElement in log.Detail.Elements)
+                        foreach (IDataElement dataElement in log.Detail.Elements)
                         {
                             line += aFieldDelimiterValue;
 
-                            DataElement currentElement = null;
-                            if ((logEvent.Detail != null) &&
-                                ((currentElement = logEvent.Detail[dataElement.Name]) != null))
+                            IDataElement currentElement = null;
+                            if ((logEvent.Detail != null)
+                                && ((currentElement = logEvent.Detail[dataElement.Name]) != null))
                             {
                                 line += textDelimiterValue + currentElement.ToString() + textDelimiterValue;
                             }

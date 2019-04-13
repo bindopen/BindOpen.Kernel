@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
@@ -51,16 +51,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// <param name="name">Name of the option to consider.</param>
         public object GetOptionValue(String name)
         {
-            return this.GetElementItemObject(name);
-        }
-
-        /// <summary>
-        /// Gets the string value of the specified option.
-        /// </summary>
-        /// <param name="name">Name of the option to consider.</param>
-        public string GetOptionStringValue(String name)
-        {
-            return (this.GetElementItemObject(name) as string ?? "");
+            return this.GetElementObject(name);
         }
 
         #endregion
@@ -75,24 +66,24 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Updates this instance with the specified string value.
         /// </summary>
         /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         public ILog Update(
-            String stringValue,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            string stringValue)
         {
             ILog log = new Log();
 
             if (!string.IsNullOrEmpty(stringValue))
+            {
                 foreach (String optionString in stringValue.Split(';'))
+                {
                     if (optionString.Contains("="))
                     {
                         int index = optionString.IndexOf("=");
                         String optionName = optionString.Substring(0, index);
                         String optionValue = optionString.Substring(index + 1);
-                        this.AddElementItem(optionName, optionValue, appScope, scriptVariableSet, log);
+                        this.AddElementItem(optionName, optionValue, log);
                     }
+                }
+            }
 
             return log;
         }

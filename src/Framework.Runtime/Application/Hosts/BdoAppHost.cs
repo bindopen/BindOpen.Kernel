@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Schema;
@@ -7,11 +6,14 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.Data.Items.Handlers;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Hosts.Options;
 using BindOpen.Framework.Runtime.Application.Security;
@@ -31,7 +33,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
         #region Variables
 
-        private AppHostOptions _options = new AppHostOptions();
+        private IAppHostOptions _options = new AppHostOptions();
 
         #endregion
 
@@ -44,17 +46,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The options of this instance.
         /// </summary>
-        public AppHostOptions Options => _options;
+        public IAppHostOptions Options => _options;
 
         /// <summary>
         /// The settings of this instance.
         /// </summary>
-        public AppSettings Settings => Options?.Settings;
+        public IBdoAppSettings Settings => Options?.Settings;
 
         /// <summary>
-        /// The set of user settings of this instance.
+        /// The set of user settings of this intance.
         /// </summary>
-        public DataElementSet UserSettingsSet { get; set; } = new DataElementSet();
+        public IDataElementSet UserSettingsSet { get; set; } = new DataElementSet();
 
         #endregion
 
@@ -70,9 +72,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         public BdoAppHost() : base()
         {
             // we initiate the options
-            this.Options.SetAppFolder(Directory.GetCurrentDirectory());
+            Options.SetAppFolder(Directory.GetCurrentDirectory());
 
-            this.Options.SetExtensions(
+            Options.SetExtensions(
                 new AppExtensionConfiguration(
                     new AppExtensionFilter("BindOpen.Framework.Runtime"),
                     new AppExtensionFilter("BindOpen.Framework.Standard")));
@@ -93,7 +95,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the application host.</returns>
         public IBdoAppHost Configure(Action<IAppHostOptions> setupOptions)
         {
-            setupOptions?.Invoke(this.Options);
+            setupOptions?.Invoke(Options);
 
             return this;
         }
@@ -103,9 +105,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         public void SaveSettings()
         {
-            String filePath = this.GetKnownPath(ApplicationPathKind.SettingsFolder) + "appsettings.xml";
-            if ((this.UserSettingsSet != null) && (!string.IsNullOrEmpty(filePath)))
-                this.UserSettingsSet.SaveXml(filePath);
+            String filePath = GetKnownPath(ApplicationPathKind.SettingsFolder) + "appsettings.xml";
+            if ((UserSettingsSet != null) && (!string.IsNullOrEmpty(filePath)))
+                UserSettingsSet.SaveXml(filePath);
         }
 
         #endregion
@@ -123,13 +125,13 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns></returns>
-        public ApplicationCredential GetCredential(String name)
+        public IApplicationCredential GetCredential(string name)
         {
-            ApplicationCredential credential = new ApplicationCredential
+            IApplicationCredential credential = new ApplicationCredential
             {
                 Name = "[unkwnon]"
             };
-            return this.Options?.Settings?.Credentials.Find(p => p.KeyEquals(name));
+            return (Options?.Settings as BdoAppSettings).Credentials.Find(p => p.KeyEquals(name));
         }
 
         // Paths --------------------------------------
@@ -145,47 +147,47 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             switch (pathKind)
             {
                 case ApplicationPathKind.AppFolder:
-                    path = this.Options?.AppFolderPath;
+                    path = Options?.AppFolderPath;
                     break;
                 case ApplicationPathKind.DefaultLogFolder:
-                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"logs\";
+                    path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"logs\";
                     break;
                 case ApplicationPathKind.ExtensionsFolder:
-                    path = this.Options?.Settings?.ExtensionsFolderPath;
+                    path = Options?.Settings?.ExtensionsFolderPath;
                     if (string.IsNullOrEmpty(path))
-                        path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"extensions\";
+                        path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"extensions\";
                     break;
                 case ApplicationPathKind.LibraryFolder:
-                    path = this.Options?.LibraryFolderPath;
+                    path = Options?.LibraryFolderPath;
                     if (string.IsNullOrEmpty(path))
-                        path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"lib\";
+                        path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"lib\";
                     break;
                 case ApplicationPathKind.LogFolder:
-                    path = this.Options?.Settings?.LogFolderPath;
+                    path = Options?.Settings?.LogFolderPath;
                     if (string.IsNullOrEmpty(path))
-                        path = this.GetKnownPath(ApplicationPathKind.DefaultLogFolder);
+                        path = GetKnownPath(ApplicationPathKind.DefaultLogFolder);
                     break;
                 case ApplicationPathKind.RoamingFolder:
                     path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
                     break;
                 case ApplicationPathKind.RuntimeFolder:
-                    path = this.Options?.RuntimeFolderPath;
+                    path = Options?.RuntimeFolderPath;
                     if (string.IsNullOrEmpty(path))
-                        path = this.Options?.Settings?.RuntimeFolderPath;
+                        path = Options?.Settings?.RuntimeFolderPath;
                     break;
                 case ApplicationPathKind.SettingsFile:
-                    path = this.Options?.SettingsFilePath;
+                    path = Options?.SettingsFilePath;
                     if (string.IsNullOrEmpty(path))
-                        path = this.GetDefaultSettingsFilePath();
+                        path = GetDefaultSettingsFilePath();
                     break;
                 case ApplicationPathKind.SettingsFolder:
-                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"settings\";
+                    path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"settings\";
                     break;
                 case ApplicationPathKind.TemporaryFolder:
-                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"temp\";
+                    path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"temp\";
                     break;
                 case ApplicationPathKind.UsersFolder:
-                    path = this.GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"users\";
+                    path = GetKnownPath(ApplicationPathKind.RuntimeFolder) + @"users\";
                     break;
             }
 
@@ -195,20 +197,20 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         private string GetDefaultSettingsFilePath()
         {
             // by default, settings file is {{runtime folder}}\settings\appsettings.xml
-            string defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.RuntimeFolderPath) ? null : this.Options?.RuntimeFolderPath + @"settings\".ToPath() + AppHostOptions._DEFAULTSETTINGSFILENAME;
+            string defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + @"settings\".ToPath() + AppHostOptions.__DefaultSettingsFileName;
 
             if (!File.Exists(defaultSettingsFilePath))
             {
                 // by default, settings file is {{runtime folder}}\appsettings.xml
-                defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.RuntimeFolderPath) ? null : this.Options?.RuntimeFolderPath + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + AppHostOptions.__DefaultSettingsFileName;
                 if (!File.Exists(defaultSettingsFilePath))
                 {
                     // then {{application folder}}\app_data\appsettings.xml
-                    defaultSettingsFilePath = string.IsNullOrEmpty(this.Options?.AppFolderPath) ? null : this.Options?.AppFolderPath + @"app_data\".ToPath() + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                    defaultSettingsFilePath = string.IsNullOrEmpty(Options?.AppFolderPath) ? null : Options?.AppFolderPath + @"app_data\".ToPath() + AppHostOptions.__DefaultSettingsFileName;
                     if (!File.Exists(defaultSettingsFilePath))
                     {
                         // then {{application folder}}\appsettings.xml
-                        defaultSettingsFilePath = this.Options?.AppFolderPath + AppHostOptions._DEFAULTSETTINGSFILENAME;
+                        defaultSettingsFilePath = Options?.AppFolderPath + AppHostOptions.__DefaultSettingsFileName;
                     }
                 }
             }
@@ -255,16 +257,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected override Log Initialize<T>()
+        protected override ILog Initialize<T>()
         {
             // we initialize logging
-            if (this.Options?.IsDefaultLoggerUsed == true)
+            if (Options?.IsDefaultLoggerUsed == true)
             {
-                this.Log.AddLoggers(LoggerFactory.Create<SnapLogger>(
+                Log.AddLoggers(LoggerFactory.Create<SnapLogger>(
                     Logger.__DefaultName, LoggerMode.Auto, DataSourceKind.Repository, false, null,
-                    this.GetKnownPath(ApplicationPathKind.DefaultLogFolder), "log_" + this.Id + ".txt"));
+                    GetKnownPath(ApplicationPathKind.DefaultLogFolder), "log_" + Id + ".txt"));
             }
-            this.Log.AddLoggers(this.Options?.Loggers);
+            Log.AddLoggers(Options?.Loggers);
 
             // we initialize as scoped service
             base.Initialize<T>();
@@ -275,15 +277,15 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             log.AddMessage("Loading extensions...");
 
             // we load the extensions
-            this.AppScope.AppExtension.Clear();
-            if (string.IsNullOrEmpty(this.Options?.ExtensionConfiguration.DefaultFolderPath))
+            AppScope.AppExtension.Clear();
+            if (string.IsNullOrEmpty(Options?.ExtensionConfiguration.DefaultFolderPath))
             {
-                this.Options.ExtensionConfiguration.DefaultFolderPath = this.GetKnownPath( ApplicationPathKind.LibraryFolder);
+                Options.ExtensionConfiguration.DefaultFolderPath = GetKnownPath( ApplicationPathKind.LibraryFolder);
             }
             log.Append(
-                this.AppScope.AppExtension.LoadLibrary(this.Options?.ExtensionConfiguration),
+                AppScope.AppExtension.AddLibraries(Options?.ExtensionConfiguration),
                 p => p.HasErrorsOrExceptionsOrWarnings());
-            this.AppScope.Update<RuntimeAppScope>();
+            AppScope.Update<RuntimeAppScope>();
 
             try
             {
@@ -295,12 +297,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     // we load the application settings
                     log.AddMessage("Loading application settings...");
 
-                    String settingsFilePath = this.GetKnownPath(ApplicationPathKind.SettingsFile);
+                    String settingsFilePath = GetKnownPath(ApplicationPathKind.SettingsFile);
 
                     if (string.IsNullOrEmpty(settingsFilePath))
-                        settingsFilePath = this.GetDefaultSettingsFilePath();
+                        settingsFilePath = GetDefaultSettingsFilePath();
 
-                    AppSettings appSettings = this.LoadSettings(settingsFilePath, log, this._appScope);
+                    IBdoAppSettings appSettings = LoadSettings(settingsFilePath, log, _appScope);
 
                     if (log.HasErrorsOrExceptions())
                     {
@@ -310,47 +312,43 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     {
                         log.AddMessage("Application settings loaded");
 
-                        if (this.Options?.Settings!=null)
-                        {
-                            this.Options.Settings.AppScope = this._appScope;
-                        }
-                        this.Options?.Settings?.Update(appSettings);
-                        this.Options?.Settings?.Update(new DataElementSpecSet(
-                            this.Options?.SettingsSpecificationSet?.Items?
+                        Options?.Settings?.Update(appSettings);
+                        Options?.Settings?.Update(new DataElementSpecSet(
+                            Options?.SettingsSpecificationSet?.Items?
                                 .Where(p =>
-                                    p.SpecificationLevels.Has(SpecificationLevel.Definition)
-                                    || p.SpecificationLevels.Has(SpecificationLevel.Configuration)).ToArray()),
+                                    p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Definition) == true
+                                    || p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Configuration) == true).ToArray()),
                             null,
-                            new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
+                            new [] { UpdateMode.Incremental_UpdateCommonItems });
 
-                        if (this.Options?.Settings!=null && string.IsNullOrEmpty(this.Options.Settings.ApplicationInstanceName))
+                        if (Options?.Settings!=null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
-                            this.Options.Settings.ApplicationInstanceName = _ApplicationInstanceName;
+                            Options.Settings.ApplicationInstanceName = _ApplicationInstanceName;
                         }
 
                         // we update the log folder path
 
-                        this.Log.SetFilePath(this.GetKnownPath(ApplicationPathKind.LogFolder), true);
+                        Log.SetFilePath(GetKnownPath(ApplicationPathKind.LogFolder), true);
 
                         //// we load configuration
 
                         //log.AddMessage("Loading configuration...");
 
                         //DataElementSet settingsSet = DataItem.Load<DataElementSet>(
-                        //    this.GetPath(ApplicationPathKind.SettingsFile), log, null, null, false);
+                        //    GetPath(ApplicationPathKind.SettingsFile), log, null, null, false);
                         //settingsSet?.Update(new DataElementSpecSet(
-                        //        this.SettingsSpecificationSet.Items
+                        //        SettingsSpecificationSet.Items
                         //                .Where(p => p.SpecificationLevels.Has(SpecificationLevel.Runtime)).ToArray()),
                         //        null,
                         //        new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
 
                         // we build the data module manager
-                        this.DataSourceService.Clear();
-                        if (this.AppExtension != null)
+                        DataSourceService.Clear();
+                        if (AppExtension != null)
                         {
-                            foreach (IDataSource dataSource in this.Options?.Settings?.DataSources)
+                            foreach (IDataSource dataSource in Options?.Settings?.DataSources)
                             {
-                                this.DataSourceService.AddSource(dataSource);
+                                DataSourceService.AddSource(dataSource);
                             }
                         }
 
@@ -360,7 +358,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 }
 
                 // if at this end, neither exceptions nor errors occured then
-                if ((this.GetType() == typeof(BdoAppHost)) && (!log.HasErrorsOrExceptions()))
+                if ((GetType() == typeof(BdoAppHost)) && (!log.HasErrorsOrExceptions()))
                 {
                     // we indicate that the configuration has been well loaded
                     log.AddMessage("Application configuration loaded");
@@ -374,9 +372,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
             }
 
-            this._isLoadCompleted = !log.HasErrorsOrExceptions();
-            if (this.GetType() == typeof(BdoAppHost))
-                this.LoadComplete();
+            _isLoadCompleted = !log.HasErrorsOrExceptions();
+            if (GetType() == typeof(BdoAppHost))
+                LoadComplete();
 
             return log;
         }
@@ -389,10 +387,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
-        public virtual AppSettings LoadSettings(
-            String filePath, Log log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null)
+        public virtual IBdoAppSettings LoadSettings(
+            string filePath, ILog log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null)
         {
-            return AppSettings.Load<AppSettings>(filePath, log, appScope, xmlSchemaSet);
+            return DataItemHandler.Load<BdoAppSettings>(filePath, log, xmlSchemaSet);
         }
 
         #endregion
@@ -407,7 +405,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Gets the name of the application instance.
         /// </summary>
         /// <returns>Returns the name of the application instance.</returns>
-        public static String _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
+        public static string _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
 
         #endregion
     }

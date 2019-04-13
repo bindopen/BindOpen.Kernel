@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -9,12 +10,11 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
     [TestFixture]
     public class DataElementSetTest
     {
-
-        private ScalarElement _Element10 = null;
-        private ScalarElement _Element11 = null;
-        private ScalarElement _Element12 = null;
-        //private DataElementSet _ElementSetA = null;
-        //private DataElementSet _ElementSetB = null;
+        private IScalarElement _element10 = null;
+        private IScalarElement _element11 = null;
+        private IScalarElement _element12 = null;
+        //private DataElementSet _elementSetA = null;
+        //private DataElementSet _elementSetB = null;
 
         [SetUp]
         public void Setup()
@@ -24,12 +24,12 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
         [Test]
         public void TestCreateDataElementSet()
         {
-            this._Element10 = new ScalarElement("text1", DataValueType.Text, "item1", "item2", "item3");
-            this._Element11 = new ScalarElement("integer1", DataValueType.Integer, 1, 2, 3);
-            this._Element12 = new ScalarElement("float1", DataValueType.Number, 1.1, 1.2, 1.3);
+            this._element10 = ElementFactory.CreateScalar("text1", DataValueType.Text, "item1", "item2", "item3");
+            this._element11 = ElementFactory.CreateScalar("integer1", DataValueType.Integer, 1, 2, 3);
+            this._element12 = ElementFactory.CreateScalar("float1", DataValueType.Number, 1.1, 1.2, 1.3);
 
-            //this._ElementSetA = new DataElementSet(this._Element10, this._Element11, this._Element12);
-            //this._ElementSetB = new DataElementSet(this._Element10, this._Element11);
+            //this._elementSetA = new DataElementSet(this._element10, this._element11, this._element12);
+            //this._elementSetB = new DataElementSet(this._element10, this._element11);
 
             //Assert.That(log.Errors.Count == itemsNumber, "Bad insertion of errors ({0} expected; {1} found)", itemsNumber, log.Errors.Count);
         }
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
             ILog log = new Log();
 
             // test update
-            //log = this._ElementSetB.Update(this._ElementSetA);
+            //log = this._elementSetB.Update(this._elementSetA);
 
             //Assert.That(log.Errors.Count == itemsNumber, "Bad insertion of errors ({0} expected; {1} found)", itemsNumber, log.Errors.Count);
             //Assert.That(log.Exceptions.Count == itemsNumber, "Bad insertion of exceptions ({0} expected; {1} found)", itemsNumber, log.Exceptions.Count);

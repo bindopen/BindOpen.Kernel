@@ -11,9 +11,7 @@
       <xs:extension base="bdo:DataElement">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="class" type="xs:string" />
-          <!--<xs:element minOccurs="0" maxOccurs="1" name="formatUniqueName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="dataSchema.reference" type="bdo:DataHandler" />-->
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:ObjectElementSpec" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definition" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

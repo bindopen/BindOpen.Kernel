@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                 if (dataValueType == DataValueType.Text)
                     resultString += "<![CDATA[" + object1.ToString() + "]]>";
                 else
-                    resultString += object1.GetString();
+                    resultString += ObjectHelper.ToString(object1);
             }
             resultString += "</" + objectName + ">";
             return resultString;
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         if (dataRow[dataColumn.ColumnName] == DBNull.Value)
                             resultString += "%NULL()";
                         else
-                            resultString += dataRow[dataColumn.ColumnName].GetString();
+                            resultString += ObjectHelper.ToString(dataRow[dataColumn.ColumnName]);
 
                         resultString += "</" + dataColumn.ColumnName.ToUpper() + ">";
                     }

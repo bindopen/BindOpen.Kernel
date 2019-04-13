@@ -3,7 +3,7 @@
 namespace BindOpen.Framework.Core.Extensions.Attributes
 {
     /// <summary>
-    /// This class represents a output detail property attribute.
+    /// This class represents a output property attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class TaskOutputAttribute : DataElementAttribute
@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the OutputAttribute class.
+        /// Instantiates a new instance of the TaskOutputAttribute class.
         /// </summary>
         public TaskOutputAttribute() : base()
         {

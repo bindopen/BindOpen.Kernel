@@ -5,7 +5,7 @@
 
   <xs:include schemaLocation="../../data/items/DescribedDataItem.xsd" />
   <xs:include schemaLocation="../../system/processing/ProcessExecution.xsd" />
-  <xs:include schemaLocation="../../extensions/configuration/tasks/TaskConfiguration.xsd" />
+  <xs:include schemaLocation="../../extensions/configuration/tasks/TaskDto.xsd" />
   <xs:include schemaLocation="../../data/elements/sets/DataElementSet.xsd" />
   <xs:include schemaLocation="../../system/diagnostics/events/Event.xsd" />
   <xs:include schemaLocation="LogEvent.xsd" />
@@ -15,7 +15,7 @@
       <xs:extension base="bdo:DescribedDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="execution" type="bdo:ProcessExecution" />
-          <xs:element minOccurs="0" maxOccurs="1" name="task" type="bdo:TaskConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="task" type="bdo:TaskDto" />
           <xs:element minOccurs="0" maxOccurs="1" name="detail" type="bdo:DataElementSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="parent" type="bdo:Log" />
           <xs:element minOccurs="0" maxOccurs="1" name="children" type="bdo:ArrayOfLog_Log" />

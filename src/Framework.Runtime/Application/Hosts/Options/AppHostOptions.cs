@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The default settings file name
         /// </summary>
-        public static readonly string _DEFAULTSETTINGSFILENAME = "appsettings.xml";
+        public static readonly string __DefaultSettingsFileName = "appsettings.xml";
 
         /// <summary>
         /// Maximum number of minutes : authentication 
@@ -38,11 +38,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
 
         #region Variables
 
-        private AppModule _applicationModule = null;
+        private IAppModule _applicationModule = null;
 
-        private Logger[] _loggers = null;
+        private ILogger[] _loggers = null;
 
-        private AppExtensionConfiguration _appExtensionConfiguration = null;
+        private IAppExtensionConfiguration _appExtensionConfiguration = null;
 
         private bool _isDefaultLoggerUsed = false;
 
@@ -67,12 +67,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The settings.
         /// </summary>
-        public AppSettings Settings { get; set; }
+        public IBdoAppSettings Settings { get; set; }
 
         /// <summary>
         /// The application module.
         /// </summary>
-        public AppModule ApplicationModule => _applicationModule;
+        public IAppModule ApplicationModule => _applicationModule;
 
         // Paths
 
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The runtime folder path.
         /// </summary>
-        public Logger[] Loggers { get; }
+        public ILogger[] Loggers { get; }
 
         /// <summary>
         /// Indicates whether the default logger is used.
@@ -109,14 +109,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <summary>
         /// The extension configuration.
         /// </summary>
-        public AppExtensionConfiguration ExtensionConfiguration => _appExtensionConfiguration;
+        public IAppExtensionConfiguration ExtensionConfiguration => _appExtensionConfiguration;
 
         // Settings
 
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        public DataElementSpecSet SettingsSpecificationSet { get; set; } = new DataElementSpecSet();
+        public IDataElementSpecSet SettingsSpecificationSet { get; set; } = new DataElementSpecSet();
 
         #endregion
 
@@ -180,7 +180,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="module"></param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetModule(AppModule module)
+        public IAppHostOptions SetModule(IAppModule module)
         {
             this._applicationModule = module;
             return this;
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="extensionConfiguration"></param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetExtensions(AppExtensionConfiguration extensionConfiguration)
+        public IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration)
         {
             if (extensionConfiguration != null)
             {
@@ -210,7 +210,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="settingsFilePath">The path of the settings file to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetSettingsFile<T>(string settingsFilePath = null) where T : AppSettings, new()
+        public IAppHostOptions SetSettingsFile<T>(string settingsFilePath = null) where T : IBdoAppSettings, new()
         {
             this.DefineSettings<T>();
 
@@ -218,7 +218,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
             {
                 if (settingsFilePath.StartsWith(@"\") || settingsFilePath.EndsWith(@"\") || settingsFilePath.EndsWith(@"\.."))
                 {
-                    settingsFilePath = settingsFilePath.GetEndedString(@"\") + _DEFAULTSETTINGSFILENAME;
+                    settingsFilePath = settingsFilePath.GetEndedString(@"\") + __DefaultSettingsFileName;
                 }
 
                 this._settingsFilePath = settingsFilePath.ToPath();
@@ -232,7 +232,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions DefineSettings(DataElementSpecSet specificationSet)
+        public IAppHostOptions DefineSettings(IDataElementSpecSet specificationSet)
         {
             this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
@@ -245,7 +245,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions DefineSettings<T>(DataElementSpecSet specificationSet = null) where T : AppSettings, new()
+        public IAppHostOptions DefineSettings<T>(IDataElementSpecSet specificationSet = null) where T : IBdoAppSettings, new()
         {
             this.Settings = new T();
             this.DefineSettings(specificationSet);
@@ -258,7 +258,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts.Options
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetLoggers(params Logger[] loggers)
+        public IAppHostOptions SetLoggers(params ILogger[] loggers)
         {
             this._loggers = loggers;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -22,7 +23,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Name preffix of this instance.
         /// </summary>
         [XmlIgnore()]
-        protected String NamePreffix { get; set; } = "Object_";
+        protected string NamePreffix { get; set; } = "Object_";
 
         /// <summary>
         /// Creation date of this instance.
@@ -81,10 +82,10 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="id">The ID to consider.</param>
         /// <param name="creationDate">The creation date of this instance.</param>
         public StoredDataItem(
-            String id = null,
+            string id = null,
             DateTime? creationDate = null) : base(id)
         {
-            this.CreationDate = creationDate?.GetString();
+            CreationDate = creationDate?.ToString();
         }
 
         #endregion
@@ -101,7 +102,7 @@ namespace BindOpen.Framework.Core.Data.Items
         public virtual void DeclareUpdate()
         {
             // we update the modification date
-            this.LastModificationDate = DateTime.Now.GetString();
+            LastModificationDate = ObjectHelper.ToString(DateTime.Now);
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
         public virtual void Lock(bool isRecursive = true)
         {
-            this.IsLocked = true;
+            IsLocked = true;
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
         public virtual void Unlock(bool isRecursive = true)
         {
-            this.IsLocked = false;
+            IsLocked = false;
         }
 
         #endregion
@@ -137,8 +138,8 @@ namespace BindOpen.Framework.Core.Data.Items
         public override object Clone()
         {
             StoredDataItem item = base.Clone() as StoredDataItem;
-            if (this.CreationDate != null)
-                item.CreationDate = DateTime.Now.GetString();
+            if (CreationDate != null)
+                item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;
             return item;
         }

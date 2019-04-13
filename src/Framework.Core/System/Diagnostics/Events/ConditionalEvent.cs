@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {

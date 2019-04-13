@@ -11,7 +11,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:DataElementSpec">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="carrier.filter" type="bdo:DataValueFilter" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definition.filter" type="bdo:DataValueFilter" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Specification;
 
 namespace BindOpen.Framework.Core.Data.Specification
 {
@@ -43,7 +44,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// Initializes a new instance of the DataAreaSpecification class.
         /// </summary>
         /// <param name="arename">The name of the area to consider.</param>
-        public DataAreaSpecification(String arename)
+        public DataAreaSpecification(string arename)
         {
             this.AreaName = arename;
         }

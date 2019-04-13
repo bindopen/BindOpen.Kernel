@@ -69,7 +69,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <summary>
         /// Entity editor.
         /// </summary>
-        EntityEditor,
+        ObjectEditor,
         /// <summary>
         /// Progress bar.
         /// </summary>
@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <summary>
         /// Data carrier editor.
         /// </summary>
-        CarrierConfigurationEditor,
+        CarrierDtoEditor,
         /// <summary>
         /// Data source editor.
         /// </summary>
@@ -140,8 +140,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
             {
                 case DataValueType.Boolean:
                     return DesignControlType.CheckBox;
-                case DataValueType.CarrierConfiguration:
-                    return DesignControlType.CarrierConfigurationEditor;
+                case DataValueType.Carrier:
+                    return DesignControlType.CarrierDtoEditor;
                 case DataValueType.DataSource:
                     return DesignControlType.DataSourceEditor;
                 case DataValueType.Date:
@@ -150,8 +150,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
                     return DesignControlType.DictionaryEditor;
                 case DataValueType.Document:
                     return DesignControlType.DocumentEditor;
-                case DataValueType.Entity:
-                    return DesignControlType.EntityEditor;
+                case DataValueType.Object:
+                    return DesignControlType.ObjectEditor;
                 case DataValueType.Integer:
                 case DataValueType.Number:
                 case DataValueType.Text:

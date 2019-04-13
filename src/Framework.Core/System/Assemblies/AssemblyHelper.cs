@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Assemblies
@@ -102,16 +101,56 @@ namespace BindOpen.Framework.Core.System.Assemblies
 
         // Instances --------------------------------
 
+        ///// <summary>
+        ///// Creates the instance of the specified extension object instance type.
+        ///// </summary>
+        ///// <param name="appDomain">The application domain to consider.</param>
+        ///// <param name="classReference">The class reference to consider.</param>
+        ///// <param name="object1">The object to consider.</param>
+        ///// <param name="attributes">The attributes to consider.</param>
+        //public static ILog CreateInstance(
+        //    this AppDomain appDomain,
+        //    AssemblyHelper.ClassReference classReference,
+        //    out Object object1,
+        //    params object[] attributes)
+        //{
+        //    ILog log = new Log();
+        //    object1 = null;
+
+        //    if (appDomain != null)
+        //    {
+        //        try
+        //        {
+        //            if (!string.IsNullOrEmpty(classReference.AssemblyName))
+        //            {
+        //                Assembly assembly = appDomain?.GetAsssembly(classReference.AssemblyName);
+        //                if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
+        //                {
+        //                    object1 = assembly.CreateInstance(
+        //                       classReference.ClassName,
+        //                       true, BindingFlags.CreateInstance, null, attributes, null, null);
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            log.AddException(ex);
+        //        }
+        //    }
+
+        //    return log;
+        //}
+
         /// <summary>
         /// Creates the instance of the specified extension object instance type.
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
-        /// <param name="classReference">The class reference to consider.</param>
+        /// <param name="type">The type to consider.</param>
         /// <param name="object1">The object to consider.</param>
         /// <param name="attributes">The attributes to consider.</param>
         public static ILog CreateInstance(
             this AppDomain appDomain,
-            AssemblyHelper.ClassReference classReference,
+            Type type,
             out Object object1,
             params object[] attributes)
         {
@@ -122,14 +161,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(classReference.AssemblyName))
-                    {
-                        Assembly assembly = appDomain?.GetAsssembly(classReference.AssemblyName);
-                        if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
-                            object1 = assembly.CreateInstance(
-                                classReference.ClassName,
-                                true, BindingFlags.CreateInstance, null, attributes, null, null);
-                    }
+                    object1 = Activator.CreateInstance(type);
                 }
                 catch (Exception ex)
                 {
@@ -140,73 +172,73 @@ namespace BindOpen.Framework.Core.System.Assemblies
             return log;
         }
 
-        /// <summary>
-        /// Loads the specified instance of the specified class from the specified Xml string.
-        /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
-        /// <param name="classReference">The class reference to consider.</param>
-        /// <param name="xmlstring">The XML string to consider.</param>
-        /// <param name="object1">The object to consider.</param>
-        public static ILog LoadDataItemInstance(
-            this AppDomain appDomain,
-            AssemblyHelper.ClassReference classReference,
-            string xmlstring,
-            out Object object1)
-        {
-            ILog log = new Log();
-            object1 = null;
+        ///// <summary>
+        ///// Loads the specified instance of the specified class from the specified Xml string.
+        ///// </summary>
+        ///// <param name="appDomain">The application domain to consider.</param>
+        ///// <param name="classReference">The class reference to consider.</param>
+        ///// <param name="xmlstring">The XML string to consider.</param>
+        ///// <param name="object1">The object to consider.</param>
+        //public static ILog LoadDataItemInstance(
+        //    this AppDomain appDomain,
+        //    AssemblyHelper.ClassReference classReference,
+        //    string xmlstring,
+        //    out Object object1)
+        //{
+        //    ILog log = new Log();
+        //    object1 = null;
 
-            if (appDomain != null)
-            {
-                try
-                {
-                    if (!string.IsNullOrEmpty(classReference.AssemblyName))
-                    {
-                        Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
-                        if (assembly != null)
-                        {
-                            Type type = assembly.GetType(classReference.ClassName);
-                            if (type != null)
-                            {
-                                MethodInfo methodInfo = typeof(XmlHelper).GetMethod("LoadFromstring", BindingFlags.Public | BindingFlags.Static);
-                                if (methodInfo != null)
-                                {
-                                    MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(
-                                        new Type[] { type });
+        //    if (appDomain != null)
+        //    {
+        //        try
+        //        {
+        //            if (!string.IsNullOrEmpty(classReference.AssemblyName))
+        //            {
+        //                Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
+        //                if (assembly != null)
+        //                {
+        //                    Type type = assembly.GetType(classReference.ClassName);
+        //                    if (type != null)
+        //                    {
+        //                        MethodInfo methodInfo = typeof(XmlHelper).GetMethod("LoadFromstring", BindingFlags.Public | BindingFlags.Static);
+        //                        if (methodInfo != null)
+        //                        {
+        //                            MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(
+        //                                new Type[] { type });
 
-                                    object[] objects = new Object[3] { xmlstring, log, null };
-                                    object1 = genericMethodInfo.Invoke(null, objects);
-                                }
-                                else
-                                    log.AddError(
-                                        title: "'LoadFromXmlstring' function not found in the specified class",
-                                        description: "Could not find the static function called 'LoadFromXmlstring' in the specified type ('" + classReference.ClassName + "').");
-                            }
-                            else
-                            {
-                                log.AddError(
-                                   title: "Specified type not found",
-                                   description: "Could not retrieve the specified type ('" + classReference.ClassName + "') in the specified assembly ('" + assembly.FullName + "').");
-                            }
-                        }
-                        else
-                        {
-                            log.AddError("Could not retrieve the specified assembly ('" + assembly.FullName + "')");
-                        }
-                    }
-                    else
-                    {
-                        log.AddError("Assembly name '" + classReference.AssemblyName + "' missing");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.AddException(ex);
-                }
-            }
+        //                            object[] objects = new Object[3] { xmlstring, log, null };
+        //                            object1 = genericMethodInfo.Invoke(null, objects);
+        //                        }
+        //                        else
+        //                            log.AddError(
+        //                                title: "'LoadFromXmlstring' function not found in the specified class",
+        //                                description: "Could not find the static function called 'LoadFromXmlstring' in the specified type ('" + classReference.ClassName + "').");
+        //                    }
+        //                    else
+        //                    {
+        //                        log.AddError(
+        //                           title: "Specified type not found",
+        //                           description: "Could not retrieve the specified type ('" + classReference.ClassName + "') in the specified assembly ('" + assembly.FullName + "').");
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    log.AddError("Could not retrieve the specified assembly ('" + assembly.FullName + "')");
+        //                }
+        //            }
+        //            else
+        //            {
+        //                log.AddError("Assembly name '" + classReference.AssemblyName + "' missing");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            log.AddException(ex);
+        //        }
+        //    }
 
-            return log;
-        }
+        //    return log;
+        //}
 
         /// <summary>
         /// Gets the specified type from the specified assembly reference.
@@ -234,6 +266,30 @@ namespace BindOpen.Framework.Core.System.Assemblies
             }
 
             return type;
+        }
+
+        /// <summary>
+        /// Gets the class name of the specified complete name.
+        /// </summary>
+        /// <param name="completeName">The complete name to consider.</param>
+        /// <returns>Returns the cloned metrics definition.</returns>
+        public static string GetClassName(string completeName)
+        {
+            string className = completeName;
+
+            if (completeName != null)
+            {
+                if (completeName.Contains("."))
+                {
+                    className = className.Substring(
+                       completeName.IndexOf('.') + 1);
+                }
+
+                if (completeName.Contains(","))
+                    className = className.Substring(0, className.IndexOf(','));
+            }
+
+            return className ?? "";
         }
 
         #endregion

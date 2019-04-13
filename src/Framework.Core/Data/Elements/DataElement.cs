@@ -3,21 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Complex;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Entity;
+using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Schema;
+using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Data.References;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Data.Specification.Design;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Scripting;
@@ -33,7 +37,7 @@ namespace BindOpen.Framework.Core.Data.Elements
     [XmlInclude(typeof(CarrierElement))]
     [XmlInclude(typeof(SourceElement))]
     [XmlInclude(typeof(DocumentElement))]
-    [XmlInclude(typeof(EntityElement))]
+    [XmlInclude(typeof(ObjectElement))]
     [XmlInclude(typeof(MetaDataElement))]
     [XmlInclude(typeof(ScalarElement))]
     public abstract class DataElement : IndexedDataItem, IDataElement
@@ -50,7 +54,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         // Properties ---------------------------------------
 
-        private IDataElementSet _propertyDetail = null;
+        private DataElementSet _propertyDetail = null;
         private EventKind? _eventKind = null;
 
         #endregion
@@ -91,7 +95,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Item reference of this instance.
         /// </summary>
         [XmlElement("itemReference")]
-        public IDataReference ItemReference { get; set; } = null;
+        public DataReferenceDto ItemReference { get; set; } = null;
 
         /// <summary>
         /// Specification of the ItemReference property of this instance.
@@ -114,7 +118,12 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Items of this instance.
         /// </summary>
-        [XmlIgnore()]
+        [XmlArray("items")]
+        [XmlArrayItem("carrier", typeof(CarrierDto))]
+        [XmlArrayItem("document", typeof(Items.Documents.Document))]
+        [XmlArrayItem("entity", typeof(EntityDto))]
+        [XmlArrayItem("source", typeof(DataSource))]
+        [XmlArrayItem("schema", typeof(DataSchema))]
         public List<object> Items
         {
             get => _items ?? (_items = new List<object>());
@@ -122,34 +131,37 @@ namespace BindOpen.Framework.Core.Data.Elements
         }
 
         /// <summary>
-        /// Items of this instance.
+        /// Specification of the Items property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public object FirstItem
-        {
-            get
-            {
-                return Items.Count > 0 ? Items[0] : null;
-            }
-            set
-            {
-                _items = new List<object>() { value };
-            }
-        }
+        public bool ItemsSpecified => !ValueType.IsScalar() || _items?.Count > 1;
 
-        // Serialization -------------------------------
+        ///// <summary>
+        ///// Items of this instance.
+        ///// </summary>
+        //[XmlIgnore()]
+        //public object FirstItem
+        //{
+        //    get => Items.Count > 0 ? Items[0] : null;
+        //    set
+        //    {
+        //        _items = new List<object>() { value };
+        //    }
+        //}
 
-        /// <summary>
-        /// The item Xml element object of this instance.
-        /// </summary>
-        [XmlAnyElement]
-        public XElement ItemXElement { get; set; } = null;
+        //// Serialization -------------------------------
 
-        /// <summary>
-        /// Specification of the ItemXElement property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemXElementSpecified => !ValueType.IsScalar() || _items?.Count > 1;
+        ///// <summary>
+        ///// The item Xml element object of this instance.
+        ///// </summary>
+        //[XmlAnyElement]
+        //public XElement ItemXElement { get; set; } = null;
+
+        ///// <summary>
+        ///// Specification of the ItemXElement property of this instance.
+        ///// </summary>
+        //[XmlIgnore()]
+        //public bool ItemXElementSpecified => !ValueType.IsScalar() || _items?.Count > 1;
 
         // Specification -------------------------------
 
@@ -157,7 +169,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of this instance.
         /// </summary>
         [XmlIgnore()]
-        public IDataElementSpec Specification { get; set; } = null;
+        public DataElementSpec Specification { get; set; } = null;
 
         /// <summary>
         /// Specification of the Specification property of this instance.
@@ -169,19 +181,13 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Returns the element with the specified indexed.
         /// </summary>
         [XmlIgnore()]
-        public object this[int index]
-        {
-            get
-            {
-                return index >= 0 && index < _items.Count ? _items[index] : null;
-            }
-        }
+        public object this[int index] => index >= 0 && index < _items.Count ? _items[index] : null;
 
         /// <summary>
         /// Returns the element with the specified unique name.
         /// </summary>
         [XmlIgnore()]
-        public object this[string name] => GetItem(name);
+        public object this[string name] => _items.FirstOrDefault(p=>p.KeyEquals(name));
 
         // Properties -------------------------------
 
@@ -189,7 +195,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Property detail of this instance.
         /// </summary>
         [XmlElement("propertyDetail")]
-        public IDataElementSet PropertyDetail
+        public DataElementSet PropertyDetail
         {
             get => _propertyDetail ?? (_propertyDetail = new DataElementSet());
             set { _propertyDetail = value; }
@@ -254,6 +260,61 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         #region Items
 
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual object GetObject(
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
+        {
+            object object1 = null;
+
+            switch (ItemizationMode)
+            {
+                case DataItemizationMode.Valued:
+                    return _items.Count == 0 ? null : (_items.Count==1? _items[0] : _items);
+                case DataItemizationMode.Referenced:
+                    if (appScope == null)
+                        log.AddError(title: "Application scope missing");
+                    else if (appScope.ScriptInterpreter == null)
+                        log.AddError(title: "Script interpreter missing");
+                    else if (ItemReference == null)
+                        log.AddWarning(title: "Reference missing");
+                    else
+                    {
+                        DataReference reference = new DataReference(ItemReference);
+
+                        return reference.Get(appScope, scriptVariableSet, log);
+                    }
+                    break;
+                case DataItemizationMode.Script:
+                    if (appScope == null)
+                        log.AddError(title: "Application scope missing");
+                    else if (appScope.ScriptInterpreter == null)
+                        log.AddError(title: "Script interpreter missing");
+                    else if (string.IsNullOrEmpty(ItemScript))
+                        log.AddWarning(title: "Script missing");
+                    else
+                    {
+                        object1 = appScope.ScriptInterpreter.Interprete(ItemScript, scriptVariableSet, log);
+                        if (object1 != null)
+                            if (object1.GetType().IsArray)
+                                return object1 as List<object>;
+                            else
+                                return new List<object>() { object1 };
+                    }
+                    break;
+            }
+
+            return null;
+        }
+
         // Mutators ---------------------------
 
         // Clear
@@ -266,20 +327,26 @@ namespace BindOpen.Framework.Core.Data.Elements
             _items = new List<object>();
         }
 
+        // New
+
+        /// <summary>
+        /// Creates a new specification of this instance.
+        /// </summary>
+        /// <returns>Returns True .</returns>
+        public abstract IDataElementSpec NewSpecification();
+
         // Set
 
         /// <summary>
         /// Sets the specified single item of this instance.
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public virtual void SetItem(
-            object item,
-            IAppScope appScope = null)
+            object item)
         {
             ClearItems();
-            AddItem(item, appScope);
+            AddItem(item);
         }
 
         /// <summary>
@@ -287,7 +354,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public void SetItems(List<object> items)
+        public void SetItems(object[] items)
         {
             ClearItems();
             AddItems(items);
@@ -299,15 +366,11 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Adds a new single item of this instance.
         /// </summary>
         /// <param name="item">The string item of this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
         public virtual bool AddItem(
             object item,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             bool isAdded = false;
@@ -316,21 +379,16 @@ namespace BindOpen.Framework.Core.Data.Elements
             {
                 if ((item.GetType().IsArray || item is IList) && item is IEnumerable)
                 {
-                    foreach (object aSubItem in (item as IEnumerable))
-                        AddItem(aSubItem);
+                    foreach (object subItem in (item as IEnumerable))
+                        AddItem(subItem);
                 }
-                else if (Specification == null ||
-                    (Specification.MaximumItemNumber == -1)
+                else if (Specification == null
+                    || (Specification.MaximumItemNumber == -1)
                     || (_items.Count < Specification.MaximumItemNumber))
                 {
                     if (Specification == null
                         && (ValueType == DataValueType.Any || item.GetValueType() == ValueType))
                     {
-                        if (item?.GetType().IsEnum == true)
-                            item = item.ToString();
-                        else if (item is string && ValueType != DataValueType.Any && ValueType != DataValueType.Text)
-                            item = GetObjectFromString(item as string, appScope, log);
-
                         (_items ?? (_items = new List<object>())).Add(item);
                         isAdded = true;
                     }
@@ -344,21 +402,17 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Adds items to this instance.
         /// </summary>
         /// <param name="items">The items of this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         public void AddItems(
-            List<object> items,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
+            object[] items,
             ILog log = null)
         {
             if (items != null)
             {
                 foreach (object item in items)
                 {
-                    AddItem(item, appScope, scriptVariableSet, log);
+                    AddItem(item, log);
                 }
             }
         }
@@ -415,124 +469,6 @@ namespace BindOpen.Framework.Core.Data.Elements
         }
 
         /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public abstract object NewItem(IAppScope appScope = null, ILog log = null);
-
-        /// <summary>
-        /// Creates a new specification of this instance.
-        /// </summary>
-        /// <returns>Returns True .</returns>
-        public abstract bool NewSpecification();
-
-        /// <summary>
-        /// Gets the items of this instance.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<object> GetItems(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            log= (log?? new Log());
-
-            object object1 = null;
-            List<object> items = new List<object>();
-            switch(ItemizationMode)
-            {
-                case DataItemizationMode.Valued:
-                    items = _items;
-                    break;
-                case DataItemizationMode.Referenced:
-                    if (appScope == null)
-                        log.AddError(title: "Application scope missing");
-                    else if (appScope.ScriptInterpreter == null)
-                        log.AddError(title: "Script interpreter missing");
-                    else if (ItemReference == null)
-                        log.AddWarning(title: "Reference missing");
-                    else
-                        SetItem(ItemReference.Get(appScope, scriptVariableSet, log));
-                    break;
-                case DataItemizationMode.Script:
-                    if (appScope == null)
-                        log.AddError(title: "Application scope missing");
-                    else if (appScope.ScriptInterpreter == null)
-                        log.AddError(title: "Script interpreter missing");
-                    else if (string.IsNullOrEmpty(ItemScript))
-                        log.AddWarning(title: "Script missing");
-                    else
-                    {
-                        object1 = appScope.ScriptInterpreter.Interprete(ItemScript, scriptVariableSet, log);
-                        if (object1 != null)
-                            if (object1.GetType().IsArray)
-                                items = object1 as List<object>;
-                            else
-                                items = new List<object>() { object1 };
-                    }
-                    break;
-            }
-
-            return items;
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public virtual object GetItem(
-            object indexItem = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            List<object> objects = GetItems(appScope, scriptVariableSet, log);
-
-            if (objects == null)
-            {
-                return null;
-            }
-            else if (indexItem == null)
-            {
-                return objects.Count > 0 ? objects[0] : null;
-            }
-            else if (indexItem is int)
-            {
-                int index = (indexItem as int?).Value;
-                return objects.Count > index ? objects[objects.Count - 1] : objects[index - 1];
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the item object of this instance.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the item object.</returns>
-        public object GetItemObject(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            if (Specification?.IsValueList != true)
-                return GetItem(null, appScope, scriptVariableSet, log);
-            else
-                return GetItems(appScope, scriptVariableSet, log);
-        }
-
-        /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
         /// </summary>
         /// <param name="indexItem">The index item to consider.</param>
@@ -552,36 +488,6 @@ namespace BindOpen.Framework.Core.Data.Elements
             return "";
         }
 
-        // Conversion ---------------------------
-
-        /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
-        /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public virtual string GetStringFromObject(
-            object object1,
-            ILog log = null)
-        {
-            return "";
-        }
-
-        /// <summary>
-        /// Returns the object value from a based on this instance's specification.
-        /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public virtual object GetObjectFromString(
-            string stringValue,
-            IAppScope appScope = null,
-            ILog log = null)
-        {
-            return null;
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -596,38 +502,32 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>ILog of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
-            IILog log = new Log();
+            ILog log = new Log();
 
-            if (item is DataElement)
+            if (item is IDataElement element)
             {
-                DataElement element = item as DataElement;
-
                 if (specificationAreas == null)
-                    specificationAreas = new [] { nameof(DataAreaKind.Any) };
+                    specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
-                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
-                    (specificationAreas.Contains(nameof(DataAreaKind.Constraints))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
+                    || (specificationAreas.Contains(nameof(DataAreaKind.Constraints))))
                 {
                 }
 
-                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
-                    (specificationAreas.Contains(nameof(DataAreaKind.Design))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
+                    || (specificationAreas.Contains(nameof(DataAreaKind.Design))))
                 {
                 }
 
-                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
-                    (specificationAreas.Contains(nameof(DataElementAreaKind.Element))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
+                    || (specificationAreas.Contains(nameof(DataElementAreaKind.Element))))
                 {
                     Name = element.Name;
                     Title = element.Title;
@@ -635,8 +535,8 @@ namespace BindOpen.Framework.Core.Data.Elements
                     Index = element.Index;
                 }
 
-                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
-                    (specificationAreas.Contains(nameof(DataAreaKind.Items))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
+                    || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                 {
                     if (element != null)
                     {
@@ -648,13 +548,11 @@ namespace BindOpen.Framework.Core.Data.Elements
                     }
                 }
 
-                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
-                    (specificationAreas.Contains(nameof(DataAreaKind.Properties))))
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
+                    || (specificationAreas.Contains(nameof(DataAreaKind.Properties))))
                 {
                 }
             }
-            else
-                _items = GetItems(appScope, scriptVariableSet, log);
 
             return log;
         }
@@ -665,19 +563,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the check log.</returns>
         public override ILog Check<T>(
             bool isExistenceChecked = true,
             T item = default,
-            string[] specificationAreas = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            string[] specificationAreas = null)
         {
-            IILog log = new Log();
+            ILog log = new Log();
 
-            if (item is DataElement)
+            if (item is IDataElement element)
             {
                 if (specificationAreas == null)
                     specificationAreas = new [] { nameof(DataAreaKind.Any) };
@@ -696,9 +590,9 @@ namespace BindOpen.Framework.Core.Data.Elements
                     (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                     if (Specification != null)
                     {
-                        foreach (object item in Items)
+                        foreach (object subItem in element.Items)
                         {
-                            log.AddEvents(Specification.ConstraintStatement.CheckItem(aItem, this, true, appScope));
+                            log.AddEvents(Specification.ConstraintStatement.CheckItem(subItem, this, true));
                         }
                     }
 
@@ -717,19 +611,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>ILog of the operation.</returns>
         public override ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            UpdateMode[] updateModes = null)
         {
-            IILog log = new Log();
+            ILog log = new Log();
 
-            if (item is DataElement)
+            if (item is IDataElement)
             {
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
                     || (specificationAreas.Contains(nameof(DataAreaKind.Constraints))))
@@ -793,9 +683,9 @@ namespace BindOpen.Framework.Core.Data.Elements
             DataElement cloneDataElement = base.Clone() as DataElement;
 
             if (ItemReference != null)
-                cloneDataElement.ItemReference = ItemReference.Clone() as IDataReference;
+                cloneDataElement.ItemReference = ItemReference.Clone() as DataReferenceDto;
             if (Specification != null)
-                cloneDataElement.Specification = Specification.Clone() as IDataElementSpec;
+                cloneDataElement.Specification = Specification.Clone() as DataElementSpec;
 
             if (_propertyDetail != null)
                 if (elementSpecificationAreas.Contains(nameof(DataAreaKind.Any)) || elementSpecificationAreas.Contains(nameof(DataAreaKind.Properties)))
@@ -823,87 +713,86 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             ItemReference?.UpdateStorageInfo(log);
 
-            // we serialize items
+            //// we serialize items
 
-            const string root = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
-            const string xsd = " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"";
-            const string xsi = " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"";
-            const string xmlns = " xmlns=\"http://www.w3.org/2001/bdo.xsd\"";
+            //const string root = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
+            //const string xsd = " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"";
+            //const string xsi = " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"";
+            //const string xmlns = " xmlns=\"http://www.w3.org/2001/bdo.xsd\"";
 
-            if (Items?.Count > 0)
-            {
-                string st = "";
-                if (ValueType.IsScalar())
-                {
-                    st = "<values>";
-                    foreach (object item in Items)
-                        st += "<add>" + (GetStringFromObject(item, log) ?? "") + "</add>";
-                    st += "</values>";
-                }
-                else
-                {
-                    st = "<objects>";
-                    foreach (object item in Items)
-                        st += (GetStringFromObject(item, log) ?? "").Replace(root, "").Replace(xsd, "").Replace(xsi, "").Replace(xmlns, "");//.Replace(xmlnsEmpty,"");
-                    st += "</objects>";
-                }
+            //if (Items?.Count > 0)
+            //{
+            //    string st = "";
+            //    if (ValueType.IsScalar())
+            //    {
+            //        st = "<values>";
+            //        foreach (object item in Items)
+            //            st += "<add>" + (item.ToString(ValueType, log, appScope, scriptVariableSet) ?? "") + "</add>";
+            //        st += "</values>";
+            //    }
+            //    else
+            //    {
+            //        st = "<objects>";
+            //        foreach (object item in Items)
+            //            st += (item.ToString(ValueType, log, appScope, scriptVariableSet) ?? "").Replace(root, "").Replace(xsd, "").Replace(xsi, "").Replace(xmlns, "");//.Replace(xmlnsEmpty,"");
+            //        st += "</objects>";
+            //    }
 
-                ItemXElement = XElement.Parse(st, LoadOptions.SetBaseUri);
-                //XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
-                if (ItemXElement != null)
-                    ItemXElement.Name = ItemXElement.Name.LocalName;
-            }
+            //    ItemXElement = XElement.Parse(st, LoadOptions.SetBaseUri);
+            //    //XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
+            //    if (ItemXElement != null)
+            //        ItemXElement.Name = ItemXElement.Name.LocalName;
+            //}
         }
 
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-                _propertyDetail?.UpdateRuntimeInfo(appScope, log);
+            _propertyDetail?.UpdateRuntimeInfo(log);
 
-                ItemReference?.UpdateRuntimeInfo(appScope, log);
+            ItemReference?.UpdateRuntimeInfo(log);
 
-            if (ItemXElement != null)
-            {
-                Items = new List<object>();
-                foreach (XElement subXElement in ItemXElement.Elements())
-                {
-                    subXElement.Add(
-                        new XAttribute(XNamespace.Xmlns + "xsd", "http://www.w3.org/2001/XMLSchema")
-                        , new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-                    XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
-                    subXElement.Name = aXNamespace + subXElement.Name.LocalName;
+            //if (ItemXElement != null)
+            //{
+            //    Items = new List<object>();
+            //    foreach (XElement subXElement in ItemXElement.Elements())
+            //    {
+            //        subXElement.Add(
+            //            new XAttribute(XNamespace.Xmlns + "xsd", "http://www.w3.org/2001/XMLSchema")
+            //            , new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+            //        XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
+            //        subXElement.Name = aXNamespace + subXElement.Name.LocalName;
 
-                    string xElementString =
-                        "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + subXElement.ToString().Replace(" xmlns=\"\"", "");
+            //        string xElementString =
+            //            "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + subXElement.ToString().Replace(" xmlns=\"\"", "");
 
-                    AddItem(GetObjectFromString(xElementString, appScope, log));
-                }
-            }
-            else if (Items != null)
-            {
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    object item = Items[i];
-                    DataValueType itemValueType = DataValueType.Any;
-                    if (item != null && (itemValueType = item.GetValueType()) != ValueType)
-                    {
-                        if ((ValueType != DataValueType.Any)
-                           && (itemValueType == DataValueType.Text || ValueType == DataValueType.Text))
-                        {
-                            if (itemValueType == DataValueType.Text)
-                                item = GetObjectFromString(item as string, appScope, log);
-                            else
-                                item = item.ToString();
-                            Items.RemoveAt(i);
-                            Items.Insert(i, item);
-                        }
-                    }
-                }
-            }
+            //        AddItem(GetObjectFromString(xElementString, log));
+            //    }
+            //}
+            //else if (Items != null)
+            //{
+            //    for (int i = 0; i < Items.Count; i++)
+            //    {
+            //        object item = Items[i];
+            //        DataValueType itemValueType = DataValueType.Any;
+            //        if (item != null && (itemValueType = item.GetValueType()) != ValueType)
+            //        {
+            //            if ((ValueType != DataValueType.Any)
+            //               && (itemValueType == DataValueType.Text || ValueType == DataValueType.Text))
+            //            {
+            //                if (itemValueType == DataValueType.Text)
+            //                    item = GetObjectFromString(item as string, log);
+            //                else
+            //                    item = item.ToString();
+            //                Items.RemoveAt(i);
+            //                Items.Insert(i, item);
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>

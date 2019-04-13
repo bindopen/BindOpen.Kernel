@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Expression;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using BindOpen.Framework.UnitTest.Setup;
 using NUnit.Framework;
@@ -8,21 +10,21 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
     [TestFixture, Order(11)]
     public class CarrierTest
     {
-        DbField _Field = null;
-        string _FilePath = SetupVariables.WorkingFolder + @"carrier.xml";
+        DbField _field = null;
+        string _filePath = SetupVariables.WorkingFolder + @"carrier.xml";
 
-        string _FieldAlias = "alias";
-        string _FieldDataModule = "dataModule";
-        string _FieldDataTable = "dataTable";
-        string _FieldDataTableAlias = "dataTableAlias";
-        bool _FieldIsAll = true;
-        bool _FieldIsForeignKey = true;
-        bool _FieldIsKey = true;
-        bool _FieldIsNameAsScript = true;
-        bool _FieldIsReadonly = true;
-        int _FieldSize = 50;
-        string _FieldValueText = "=$bidule()";
-        Core.Data.Common.DataValueType _FieldValueType = Core.Data.Common.DataValueType.Boolean;
+        string _fieldAlias = "alias";
+        string _fieldDataModule = "dataModule";
+        string _fieldDataTable = "dataTable";
+        string _fieldDataTableAlias = "dataTableAlias";
+        bool _fieldIsAll = true;
+        bool _fieldIsForeignKey = true;
+        bool _fieldIsKey = true;
+        bool _fieldIsNameAsScript = true;
+        bool _fieldIsReadonly = true;
+        int _fieldSize = 50;
+        string _fieldValueText = "=$bidule()";
+        DataValueType _fieldValueType = DataValueType.Boolean;
 
         [SetUp]
         public void Setup()
@@ -32,22 +34,22 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         [Test, Order(1)]
         public void TestCreateCarrier()
         {
-            this._Field = new DbField();
-            this._Field.Name = "test";
-            this._Field.Alias = this._FieldAlias;
-            this._Field.DataModule = this._FieldDataModule;
-            this._Field.DataTable = this._FieldDataTable;
-            this._Field.DataTableAlias = this._FieldDataTableAlias;
-            this._Field.IsAll = this._FieldIsAll;
-            this._Field.IsForeignKey = this._FieldIsForeignKey;
-            this._Field.IsKey = this._FieldIsKey;
-            this._Field.IsNameAsScript = this._FieldIsNameAsScript;
-            this._Field.IsReadonly = this._FieldIsReadonly;
-            this._Field.Size = this._FieldSize;
-            this._Field.Value = new Core.Data.Expression.DataExpression(this._FieldValueText);
-            this._Field.ValueType = this._FieldValueType;
+            _field = new DbField();
+            _field.Name = "test";
+            _field.Alias = _fieldAlias;
+            _field.DataModule = _fieldDataModule;
+            _field.DataTable = _fieldDataTable;
+            _field.DataTableAlias = _fieldDataTableAlias;
+            _field.IsAll = _fieldIsAll;
+            _field.IsForeignKey = _fieldIsForeignKey;
+            _field.IsKey = _fieldIsKey;
+            _field.IsNameAsScript = _fieldIsNameAsScript;
+            _field.IsReadonly = _fieldIsReadonly;
+            _field.Size = _fieldSize;
+            _field.Value = _fieldValueText.CreateScript();
+            _field.ValueType = _fieldValueType;
 
-            this.Test(this._Field);
+            Test(_field);
         }
 
         [Test, Order(2)]
@@ -55,10 +57,10 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         {
             ILog log = new Log();
 
-            if (this._Field == null)
-                this.TestCreateCarrier();
+            if (_field == null)
+                TestCreateCarrier();
 
-            this._Field.SaveXml(this._FilePath, log);
+            _field.SaveXml(_filePath, log);
         }
 
         [Test, Order(3)]
@@ -66,8 +68,8 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
         {
             ILog log = new Log();
 
-            DbField field = DbField.Load<DbField>(this._FilePath, log, SetupVariables.AppScope);
-            this.Test(field);
+            DbField field = DbField.Load<DbField>(_filePath, log, SetupVariables.AppScope);
+            Test(field);
         }
 
         private void Test(DbField field)
@@ -75,17 +77,17 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
             Assert.That(field != null, "Field missing");
             if (field != null)
             {
-                Assert.That(field.Alias == this._FieldAlias, "Bad field alias");
-                Assert.That(field.DataModule == this._FieldDataModule, "Bad field data module");
-                Assert.That(field.DataTable == this._FieldDataTable, "Bad field data table");
-                Assert.That(field.DataTableAlias == this._FieldDataTableAlias, "Bad field data table alias");
-                Assert.That(field.IsForeignKey == this._FieldIsForeignKey, "Bad field foreign key indicator");
-                Assert.That(field.IsKey == this._FieldIsKey, "Bad field key indicator");
-                Assert.That(field.IsNameAsScript == this._FieldIsNameAsScript, "Bad field name-as-script indicator");
-                Assert.That(field.IsReadonly == this._FieldIsReadonly, "Bad field read-only indicator");
-                Assert.That(field.Size == this._FieldSize, "Bad field size");
-                Assert.That(field.Value?.Text == this._FieldValueText, "Bad field value");
-                Assert.That(field.ValueType == this._FieldValueType, "Bad field value type");
+                Assert.That(field.Alias == _fieldAlias, "Bad field alias");
+                Assert.That(field.DataModule == _fieldDataModule, "Bad field data module");
+                Assert.That(field.DataTable == _fieldDataTable, "Bad field data table");
+                Assert.That(field.DataTableAlias == _fieldDataTableAlias, "Bad field data table alias");
+                Assert.That(field.IsForeignKey == _fieldIsForeignKey, "Bad field foreign key indicator");
+                Assert.That(field.IsKey == _fieldIsKey, "Bad field key indicator");
+                Assert.That(field.IsNameAsScript == _fieldIsNameAsScript, "Bad field name-as-script indicator");
+                Assert.That(field.IsReadonly == _fieldIsReadonly, "Bad field read-only indicator");
+                Assert.That(field.Size == _fieldSize, "Bad field size");
+                Assert.That(field.Value?.Text == _fieldValueText, "Bad field value");
+                Assert.That(field.ValueType == _fieldValueType, "Bad field value type");
             }
         }
 

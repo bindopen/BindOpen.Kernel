@@ -4,9 +4,10 @@ using BindOpen.Framework.Core.Application.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Databases.Extensions.Connectors;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.Setup
@@ -37,12 +38,11 @@ namespace BindOpen.Framework.UnitTest.Setup
                 if (appScope == null)
                 {
                     appScope = new RuntimeAppScope(AppDomain.CurrentDomain);
-                    Log log = appScope.AppExtension.LoadLibrary(
-                        new List<string>() {
-                            "BindOpen.Framework.Standard",
-                            "BindOpen.Framework.Databases",
-                            "BindOpen.Framework.Databases.MSSqlServer"
-                        });
+                    ILog log = appScope.AppExtension.AddLibraries(
+                        new AppExtensionConfiguration(
+                            new AppExtensionFilter("BindOpen.Framework.Standard"),
+                            new AppExtensionFilter("BindOpen.Framework.Databases"),
+                            new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer")));
                     appScope.DataSourceService = SetupVariables.DataSourceService;
                     appScope.Update<RuntimeAppScope>();
                     SetupVariables._AppScope = appScope;
@@ -58,22 +58,22 @@ namespace BindOpen.Framework.UnitTest.Setup
         {
             get
             {
-                DataSourceService dataSourceManager = SetupVariables._DataSourceService;
-                if (dataSourceManager == null)
+                DataSourceService dataSourceService = SetupVariables._DataSourceService;
+                if (dataSourceService == null)
                 {
-                    dataSourceManager = new DataSourceService();
-                    dataSourceManager = new DataSourceService(
-                        new IDataSource("prd@ptf_central_db", DataSourceKind.Database,
+                    dataSourceService = new DataSourceService();
+                    dataSourceService = new DataSourceService(
+                        new DataSource("prd@ptf_central_db", DataSourceKind.Database,
                             new ConnectorConfiguration(
                                 null,
                                 DatabaseConnectorKind.MSSqlServer.GetUniqueName(),
                                 @"<Enter.Connection.String.Here>")
                         )
                     );
-                    SetupVariables._DataSourceService = dataSourceManager;
+                    SetupVariables._DataSourceService = dataSourceService;
                 }
 
-                return dataSourceManager;
+                return dataSourceService;
             }
         }
 

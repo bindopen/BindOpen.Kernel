@@ -5,9 +5,8 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Complex;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Entity;
+using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
@@ -23,7 +22,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
     /// </summary>
     [Serializable()]
     [XmlRoot(ElementName = "element.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataElementSet : GenericDataItemSet<IDataElement>, IDataElementSet
+    public class DataElementSet : DataItemSet<DataElement>, IDataElementSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -36,12 +35,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         [XmlElement("carrier", typeof(CarrierElement))]
         [XmlElement("document", typeof(DocumentElement))]
-        [XmlElement("entity", typeof(EntityElement))]
         [XmlElement("object", typeof(ObjectElement))]
         [XmlElement("meta", typeof(MetaDataElement))]
         [XmlElement("scalar", typeof(ScalarElement))]
         [XmlElement("source", typeof(SourceElement))]
-        public List<IDataElement> Elements
+        public List<DataElement> Elements
         {
             get { return _items; }
             set { _items = value; }
@@ -57,7 +55,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Returns the element with the specified key.
         /// </summary>
         [XmlIgnore()]
-        public new IDataElement this[string key] => GetItem(key);
+        public new DataElement this[string key] => GetItem(key) as DataElement;
 
         #endregion
 
@@ -78,7 +76,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public DataElementSet(params IDataElement[] items) : base(items)
+        public DataElementSet(params IDataElement[] items) : this(null, items)
         {
         }
 
@@ -89,7 +87,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="items">The items to consider.</param>
         public DataElementSet(
             IDictionaryDataItem description,
-            params IDataElement[] items) : base(description, items)
+            params IDataElement[] items) : base(description, items.Cast<DataElement>().ToArray())
         {
         }
 
@@ -116,13 +114,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
                 return null;
 
             if (_items == null)
-                _items = new List<IDataElement>();
+                _items = new List<DataElement>();
             Elements.RemoveAll(p => p.KeyEquals(element));
 
             if (referenceElementSet?.HasItem(element.Key()) != false)
             {
                 OnPropertyChanged("Elements");
-                Elements.Add(element);
+                Elements.Add(element as DataElement);
                 return element;
             }
 
@@ -149,20 +147,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="item">The item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Indicates whether the item has been set.</returns>
         public virtual bool AddElementItem(
             string elementName,
             object item = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             IDataElement element = GetItem(elementName);
             if (element != null)
-                return element.AddItem(item, appScope, scriptVariableSet, log);
+                return element.AddItem(item, log);
 
             return false;
         }
@@ -172,19 +166,15 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual List<object> AddElementItems(
             string elementName,
-            List<object> items = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
+            object[] items = null,
             ILog log = null)
         {
             IDataElement element = GetItem(elementName);
-            element?.AddItems(items, appScope, scriptVariableSet, log);
+            element?.AddItems(items, log);
             return new List<object>();
         }
 
@@ -206,19 +196,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public new bool HasItem(string key)
         {
             return Elements?.Any(p => p.KeyEquals(key)) == true;
-        }
-
-        /// <summary>
-        /// Returns the item with the specified key.
-        /// </summary>
-        /// <param name="key">The key of the element to return.</param>
-        /// <returns>Returns the element with the specified key.</returns>
-        public override IDataElement GetItem(string key)
-        {
-            return Elements?.FirstOrDefault(p =>
-                p.KeyEquals(key)
-                || (p.Specification != null && p.Specification.Aliases != null
-                    && p.Specification.Aliases.Any(q => q.KeyEquals(key))));
         }
 
         /// <summary>
@@ -257,7 +234,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <returns>Returns items with the specified group ID.</returns>
         public List<IDataElement> GetElementsWithGroupId(string groupId)
         {
-            return Elements?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList();
+            return Elements?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList<IDataElement>();
         }
 
         /// <summary>
@@ -288,84 +265,24 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         // Element items ------------------------
 
         /// <summary>
-        /// Returns the item of this instance.
+        /// Returns the item object of this instance.
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
-        /// <param name="indexItem">The index item to consider.</param>
+        /// <param name="log">The log to populate.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetElementItem(
+        public virtual object GetElementObject(
             string elementName = null,
-            object indexItem = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             IDataElement element = (elementName != null ? GetItem(elementName) : Elements[0]);
             if (element != null)
-                return element.GetItem(indexItem, appScope, scriptVariableSet);
-            return null;
-        }
-
-        /// <summary>
-        /// Returns the items of this instance.
-        /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public virtual List<object> GetElementItems(
-            string elementName,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            IDataElement element = GetItem(elementName);
-            if (element != null)
-                return element.GetItems(appScope, scriptVariableSet);
-            return new List<object>();
-        }
-
-        /// <summary>
-        /// Returns the element item object of the specified element of this instance.
-        /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetElementItemObject(
-            string elementName,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            IDataElement element = (elementName != null ? GetItem(elementName) :
-                (Elements.Count > 0 ? Elements[0] : null));
-            if (element != null)
-                return element.GetItemObject(appScope, scriptVariableSet, log);
+                return element.GetObject(appScope, scriptVariableSet, log);
 
             return null;
-        }
-
-        /// <summary>
-        /// Returns the item objects of all the elements of this instance.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public virtual List<object> GetElementItemObjects(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            if (Elements == null) return new List<object>();
-
-            return Elements.Select(p => p.GetItemObject()).ToList();
         }
 
         // General ------------------------------
@@ -408,7 +325,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             IDataElement element = GetItem(key);
             if (element != null)
             {
-                label = element.GetTitleText(variantName, defaultVariantName);
+                label = element.GetTitle(variantName, defaultVariantName);
                 if (parameters != null)
                 {
                     for (int k = 0; k < parameters.Length; k++)
@@ -549,7 +466,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             DataElementSet elementSet = MemberwiseClone() as DataElementSet;
             if (Description != null)
                 elementSet.Description = Description.Clone() as DictionaryDataItem;
-            elementSet._items = Elements?.Select(p => p.Clone() as IDataElement).ToList();
+            elementSet._items = Elements?.Select(p => p.Clone() as DataElement).ToList();
 
             return elementSet;
         }

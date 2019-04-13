@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Commands.Interfaces;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.References;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.Data.References.Interfaces;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
@@ -27,7 +30,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// The task set of this instance.
         /// </summary>
         [XmlElement("reference")]
-        public IDataReference Reference { get; set; } = new DataReference();
+        public DataReferenceConfiguration Reference { get; set; } = new DataReferenceConfiguration();
 
         #endregion
 
@@ -45,15 +48,16 @@ namespace BindOpen.Framework.Core.Application.Commands
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ReferenceCommand class.
+        /// Instantiates a new instance of the Command class.
         /// </summary>
         /// <param name="reference">The reference to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public ReferenceCommand(
-            DataReference reference, String name = null)
+        protected ReferenceCommand(
+            IDataReferenceConfiguration reference,
+            string name = null)
             : base(CommandKind.Reference, name)
         {
-            this.Reference = reference;
+            this.Reference = reference as DataReferenceConfiguration;
         }
 
         #endregion
@@ -80,7 +84,8 @@ namespace BindOpen.Framework.Core.Application.Commands
         {
             resultString = "";
 
-            Log log = appScope.Check(true);
+            ILog log = appScope.Check(true);
+
             if (this.Reference==null)
             {
                 log.AddWarning(
@@ -89,7 +94,7 @@ namespace BindOpen.Framework.Core.Application.Commands
             }
             else if (!log.HasErrorsOrExceptions()&& this.Reference != null)
             {
-                scriptVariableSet.SetValue("currentItem", this.Reference.SourceElement.GetItem());
+                scriptVariableSet.SetValue("currentItem", this.Reference.SourceElement.GetObject());
                 scriptVariableSet.SetValue("currentElement", this.Reference.SourceElement);
                 resultString = this.Reference.Get(appScope, scriptVariableSet, log)?.ToString();
             }
@@ -113,7 +118,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         {
             ReferenceCommand aReferenceCommand = base.Clone() as ReferenceCommand;
             if (this.Reference!=null)
-                aReferenceCommand.Reference = this.Reference.Clone() as DataReference;
+                aReferenceCommand.Reference = this.Reference.Clone() as DataReferenceConfiguration;
             return aReferenceCommand;
         }
 

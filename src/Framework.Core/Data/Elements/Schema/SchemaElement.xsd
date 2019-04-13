@@ -11,7 +11,7 @@
       <xs:extension base="bdo:DataElement">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="imageFileName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="businessEntityUniqueName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="entityUniqueName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:SchemaElementSpec" />
       </xs:sequence>
       </xs:extension>

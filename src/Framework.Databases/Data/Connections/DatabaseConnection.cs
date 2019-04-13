@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
-using BindOpen.Framework.Databases.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Databases.Extensions.Connectors;
 
 namespace BindOpen.Framework.Databases.Data.Connections
 {
@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// Sets the connector of this instance.
         /// </summary>
         /// <param name="connector">The database connector to consider.</param>
-        protected override void SetConnector(Connector connector)
+        public override void SetConnector(IConnector connector)
         {
             base.SetConnector(connector);
         }
@@ -102,8 +102,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteNonQuery(
-            String queryText,
-            ScriptVariableSet scriptVariableSet = null,
+            string queryText,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             this.Connector?.ExecuteNonQuery(queryText, scriptVariableSet, log);
@@ -117,8 +117,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            DbDataQuery query,
-            ScriptVariableSet scriptVariableSet = null,
+            IDbDataQuery query,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             log = log ?? new Log();
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             if (query != null)
             {
                 // retrieve all the alias platform users
-                String queryText = this.Connector?.GetSqlText(query, scriptVariableSet, log);
+                string queryText = this.Connector?.GetSqlText(query, scriptVariableSet, log);
                 if (!log.HasErrorsOrExceptions())
                     this.ExecuteNonQuery(queryText, scriptVariableSet, log);
             }
@@ -143,9 +143,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            String queryText,
+            string queryText,
             ref DbDataReader dataReader,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             if (this.Connector != null)
@@ -165,7 +165,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             DbDataQuery query,
             ref DbDataReader dataReader,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             log = log ?? new Log();
@@ -173,7 +173,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             if (query != null)
             {
                 // retrieve all the alias platform users
-                String queryText = this.Connector?.GetSqlText(query, scriptVariableSet, log);
+                string queryText = this.Connector?.GetSqlText(query, scriptVariableSet, log);
                 if (!log.HasErrorsOrExceptions())
                     this.ExecuteQuery(queryText, ref dataReader, scriptVariableSet, log);
             }
@@ -190,9 +190,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            String queryText,
+            string queryText,
             ref DataSet dataSet,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             this.Connector?.ExecuteQuery(queryText, ref dataSet, scriptVariableSet, log);
@@ -207,9 +207,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            DbDataQuery query,
+            IDbDataQuery query,
             ref DataSet dataSet,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
             log = log ?? new Log();
@@ -245,7 +245,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataTable(
-            String queryText,
+            string queryText,
             DataTable dataTable,
             ILog log = null)
         {
@@ -260,7 +260,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataTable(
-            DbDataQuery query,
+            IDbDataQuery query,
             DataTable dataTable,
             ILog log = null)
         {
@@ -284,7 +284,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataSet(
-            String queryText,
+            string queryText,
             DataSet dataSet,
             List<string> tableNames,
             ILog log = null)
@@ -301,7 +301,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataSet(
-            DbDataQuery query,
+            IDbDataQuery query,
             DataSet dataSet,
             List<string> tableNames,
             ILog log = null)

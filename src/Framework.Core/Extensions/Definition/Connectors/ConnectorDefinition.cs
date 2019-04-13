@@ -1,52 +1,45 @@
 ﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
 {
-
     /// <summary>
     /// This class represents a connector definition.
     /// </summary>
-    [Serializable()]
-    [XmlType("ConnectorDefinition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "connector.definition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConnectorDefinition : AppExtensionItemDefinition, IConnectorDefinition
+    public class ConnectorDefinition : DataItem, IConnectorDefinition
     {
-        // --------------------------------------------------
+        // ------------------------------------------
         // PROPERTIES
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Properties
 
         /// <summary>
-        /// Item class of this instance.
+        /// The library of this instance.
         /// </summary>
-        [XmlElement("itemClass")]
-        public string ItemClass
-        {
-            get;
-            set;
-        }
+        public ILibrary Library { get; }
 
         /// <summary>
-        /// Data source kind of this instance.
+        /// The item of this instance.
         /// </summary>
-        [XmlElement("dataSourceKind")]
-        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.None;
+        public IConnectorDefinitionDto Dto { get; }
 
         /// <summary>
-        /// The data source element specification of this instance.
+        /// The unique ID of this instance.
         /// </summary>
-        [XmlElement("detail.specification")]
-        public IDataElementSpecSet DetailSpec { get; set; } = new DataElementSpecSet();
+        public string UniqueId { get => Library?.Id + "$" + Dto?.Name; set { } }
+
+        /// <summary>
+        /// The runtime type of this instance.
+        /// </summary>
+        public Type RuntimeType { get; set; }
 
         #endregion
 
-        // --------------------------------------------------
+        // ------------------------------------------
         // CONSTRUCTORS
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Constructors
 
@@ -57,7 +50,34 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Connectors
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the ConnectorDefinition class.
+        /// </summary>
+        /// <param name="library">The library to consider.</param>
+        /// <param name="dto">The DTO item to consider.</param>
+        public ConnectorDefinition(ILibrary library, IConnectorDefinitionDto dto)
+        {
+            Library = library;
+            Dto = dto;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Returns the key of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public string Key()
+        {
+            return UniqueId;
+        }
+
         #endregion
     }
-
 }

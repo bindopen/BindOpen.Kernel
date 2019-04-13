@@ -2,7 +2,7 @@
 
 <scriptWords.index library="databases"
   xmlns="http://meltingsoft.com/bindopen/xsd"
-  xmlns:SchemaLocation="bdo:ScriptWordIndex ScriptWordIndex.xsd">
+  xmlns:SchemaLocation="bdo:ScriptwordIndex ScriptwordIndex.xsd">
 
   <creationDate>2010-08-05</creationDate>
   <lastModificationDate>2016-08-19</lastModificationDate>
@@ -457,6 +457,6 @@
 
   </definitions>
   
-  <definitionClass>.Scriptwords.ScriptWordDefinition_Database</definitionClass>
+  <definitionClass>.Scriptwords.ScriptwordDefinition_Database</definitionClass>
 
 </scriptWords.index>

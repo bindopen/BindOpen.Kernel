@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Definition
 {
@@ -19,7 +20,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition
 
         #region Variables
 
-        private List<IAppExtensionItemGroup> _SubGroups;
+        private List<AppExtensionItemGroup> _SubGroups;
 
         #endregion
 
@@ -34,11 +35,11 @@ namespace BindOpen.Framework.Core.Extensions.Definition
         /// </summary>
         [XmlArray("subGroups")]
         [XmlArrayItem("subGroup")]
-        public List<IAppExtensionItemGroup> SubGroups
+        public List<AppExtensionItemGroup> SubGroups
         {
             get
             {
-                if (this._SubGroups == null) this._SubGroups = new List<IAppExtensionItemGroup>();
+                if (this._SubGroups == null) this._SubGroups = new List<AppExtensionItemGroup>();
                 return this._SubGroups;
             }
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Business.Conditions;
+using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Business.Cases

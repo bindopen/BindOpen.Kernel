@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Settings\TestArguments.cs" />
     <Compile Remove="Settings\TestTask.cs" />
   </ItemGroup>
 
@@ -42,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Databases\Framework.Databases.csproj" />
     <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
     <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>

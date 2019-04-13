@@ -5,12 +5,15 @@ using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Processing;
 
 namespace BindOpen.Framework.Core.System.Processing
 {
@@ -28,19 +31,19 @@ namespace BindOpen.Framework.Core.System.Processing
 
         #region Variables
 
-        private readonly Log _Log = null;
+        private readonly ILog _log = null;
 
-        private ProcessExecutionStatus _Status = ProcessExecutionStatus.None;
-        private ProcessExecutionState _State = ProcessExecutionState.None;
-        private String _CustomStatus = null;
-        private float _ProgressIndex = 0;
-        private float _ProgressMax = 100;
+        private ProcessExecutionStatus _status = ProcessExecutionStatus.None;
+        private ProcessExecutionState _state = ProcessExecutionState.None;
+        private String _customStatus = null;
+        private float _progressIndex = 0;
+        private float _progressMax = 100;
 
-        private String _StartDate = null;
-        private String _RestartDate = null;
-        private String _EndDate = null;
-        private String _Duration = null;
-        private int _ResultLevel = 0;   // Estimated by the programmer. Over a certain number the result could be considered as satisfying.
+        private String _startDate = null;
+        private String _restartDate = null;
+        private String _endDate = null;
+        private String _duration = null;
+        private int _resultLevel = 0;   // Estimated by the programmer. Over a certain number the result could be considered as satisfying.
 
         #endregion
 
@@ -54,7 +57,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public IDataElementSet Detail { get; set; } = new DataElementSet();
+        public DataElementSet Detail { get; set; } = new DataElementSet();
 
         /// <summary>
         /// Specification of the PropertyDetail property of this instance.
@@ -64,7 +67,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
+                return Detail != null && (Detail.ElementsSpecified || Detail.DescriptionSpecified);
             }
         }
 
@@ -84,7 +87,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this.Location);
+                return !string.IsNullOrEmpty(Location);
             }
         }
 
@@ -98,11 +101,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [DefaultValue(0)]
         public float ProgressIndex
         {
-            get { return this._ProgressIndex; }
+            get { return _progressIndex; }
             set
             {
-                this._ProgressIndex = value;
-                this._Log?.WriteLog("execution.progressIndex", this._ProgressIndex, LoggerMode.Auto);
+                _progressIndex = value;
+                _log?.WriteLog("execution.progressIndex", _progressIndex, LoggerMode.Auto);
             }
         }
 
@@ -114,11 +117,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [DefaultValue(100)]
         public float ProgressMax
         {
-            get { return this._ProgressMax; }
+            get { return _progressMax; }
             set
             {
-                this._ProgressMax = value;
-                this._Log?.WriteLog("execution.progressMax", this._ProgressMax, LoggerMode.Auto);
+                _progressMax = value;
+                _log?.WriteLog("execution.progressMax", _progressMax, LoggerMode.Auto);
             }
         }
 
@@ -131,15 +134,15 @@ namespace BindOpen.Framework.Core.System.Processing
         [DefaultValue(ProcessExecutionStatus.None)]
         public ProcessExecutionStatus Status
         {
-            get { return this._Status; }
+            get { return _status; }
             set
             {
-                this._Status = value;
-                ProcessExecutionState aProcessExecutionState = this._State;
-                if (this._State != (aProcessExecutionState = ProcessExecution.GetState(this._Status)))
-                    this._State = aProcessExecutionState;
+                _status = value;
+                ProcessExecutionState aProcessExecutionState = _state;
+                if (_state != (aProcessExecutionState = ProcessExecution.GetState(_status)))
+                    _state = aProcessExecutionState;
 
-                this._Log?.WriteLog("execution.status", this._Status, LoggerMode.Auto);
+                _log?.WriteLog("execution.status", _status, LoggerMode.Auto);
             }
         }
 
@@ -150,16 +153,16 @@ namespace BindOpen.Framework.Core.System.Processing
         [DefaultValue(ProcessExecutionState.None)]
         public ProcessExecutionState State
         {
-            get { return this._State; }
+            get { return _state; }
             set
             {
-                this._State = value;
+                _state = value;
 
-                ProcessExecutionStatus aProcessExecutionStatus = this._Status;
-                if (!ProcessExecution.GetStatuses(this._State).Contains(this._Status))
-                    this._Status = ProcessExecution.GetDefaultStatus(this._State);
+                ProcessExecutionStatus aProcessExecutionStatus = _status;
+                if (!ProcessExecution.GetStatuses(_state).Contains(_status))
+                    _status = ProcessExecution.GetDefaultStatus(_state);
 
-                this._Log?.WriteLog("execution.state", this._State, LoggerMode.Auto);
+                _log?.WriteLog("execution.state", _state, LoggerMode.Auto);
             }
         }
 
@@ -169,11 +172,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [XmlElement("customStatus")]
         public string CustomStatus
         {
-            get { return this._CustomStatus; }
+            get { return _customStatus; }
             set
             {
-                this._CustomStatus = value;
-                this._Log?.WriteLog("execution.customStatus", this._CustomStatus, LoggerMode.Auto);
+                _customStatus = value;
+                _log?.WriteLog("execution.customStatus", _customStatus, LoggerMode.Auto);
             }
         }
 
@@ -185,7 +188,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this._CustomStatus);
+                return !string.IsNullOrEmpty(_customStatus);
             }
         }
 
@@ -197,11 +200,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [XmlElement("startDate")]
         public string StartDate
         {
-            get { return this._StartDate; }
+            get { return _startDate; }
             set
             {
-                this._StartDate = value;
-                this._Log?.WriteLog("execution.startDate", this._StartDate, LoggerMode.Auto);
+                _startDate = value;
+                _log?.WriteLog("execution.startDate", _startDate, LoggerMode.Auto);
             }
         }
 
@@ -213,7 +216,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this._StartDate);
+                return !string.IsNullOrEmpty(_startDate);
             }
         }
 
@@ -223,11 +226,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [XmlElement("restartDate")]
         public string RestartDate
         {
-            get { return this._RestartDate; }
+            get { return _restartDate; }
             set
             {
-                this._RestartDate = value;
-                this._Log?.WriteLog("execution.restartDate", this._RestartDate, LoggerMode.Auto);
+                _restartDate = value;
+                _log?.WriteLog("execution.restartDate", _restartDate, LoggerMode.Auto);
             }
         }
 
@@ -239,7 +242,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this._RestartDate);
+                return !string.IsNullOrEmpty(_restartDate);
             }
         }
 
@@ -249,11 +252,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [XmlElement("endDate")]
         public string EndDate
         {
-            get { return this._EndDate; }
+            get { return _endDate; }
             set
             {
-                this._EndDate = value;
-                this._Log?.WriteLog("execution.endDate", this._EndDate, LoggerMode.Auto);
+                _endDate = value;
+                _log?.WriteLog("execution.endDate", _endDate, LoggerMode.Auto);
             }
         }
 
@@ -265,7 +268,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this.EndDate);
+                return !string.IsNullOrEmpty(EndDate);
             }
         }
 
@@ -277,9 +280,9 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                if (DateTime.TryParseExact(this._StartDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionStartDate))
+                if (DateTime.TryParseExact(_startDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionStartDate))
                 {
-                    if (DateTime.TryParseExact(this._EndDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionEndDate))
+                    if (DateTime.TryParseExact(_endDate, StringHelper.__DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aExecutionEndDate))
                     {
                         return aExecutionEndDate.Subtract(aExecutionStartDate).ToString();
                     }
@@ -289,8 +292,8 @@ namespace BindOpen.Framework.Core.System.Processing
             }
             set
             {
-                this._Duration = value;
-                this._Log?.WriteLog("execution.duration", this._Duration, LoggerMode.Auto);
+                _duration = value;
+                _log?.WriteLog("execution.duration", _duration, LoggerMode.Auto);
             }
         }
 
@@ -302,7 +305,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return !string.IsNullOrEmpty(this._Duration);
+                return !string.IsNullOrEmpty(_duration);
             }
         }
 
@@ -316,11 +319,11 @@ namespace BindOpen.Framework.Core.System.Processing
         [DefaultValue(0)]
         public int ResultLevel
         {
-            get { return this._ResultLevel; }
+            get { return _resultLevel; }
             set
             {
-                this._ResultLevel = value;
-                this._Log?.WriteLog("execution.resultLevel", this._ResultLevel, LoggerMode.Auto);
+                _resultLevel = value;
+                _log?.WriteLog("execution.resultLevel", _resultLevel, LoggerMode.Auto);
             }
         }
 
@@ -342,13 +345,12 @@ namespace BindOpen.Framework.Core.System.Processing
         /// <summary>
         /// Instantiates a new instance of the LogEventExecution class.
         /// </summary>
-        public ProcessExecution(Log log) : this()
+        public ProcessExecution(ILog log) : this()
         {
-            this._Log = log;
+            _log = log;
         }
 
         #endregion
-
 
         // ------------------------------------------
         // ACCESSORS
@@ -463,15 +465,14 @@ namespace BindOpen.Framework.Core.System.Processing
         /// </summary>
         public void Start()
         {
-            this._StartDate = DateTime.Now.GetString();
-            this._RestartDate = "";
-            this._EndDate = "";
-            this._State = ProcessExecutionState.Pending;
-            this._Status = ProcessExecutionStatus.Processing;
-            this._ProgressIndex = 0;
+            _startDate = ObjectHelper.ToString(DateTime.Now);
+            _restartDate = "";
+            _endDate = "";
+            _state = ProcessExecutionState.Pending;
+            _status = ProcessExecutionStatus.Processing;
+            _progressIndex = 0;
 
-            if (this._Log!=null)
-                this._Log.AddEvent(EventKind.Checkpoint, "Task started");
+            _log?.AddEvent(EventKind.Checkpoint, "Task started");
         }
 
         /// <summary>
@@ -482,31 +483,33 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             if (!ProcessExecution.GetStatuses(ProcessExecutionState.Ended).Contains(status)) return;
 
-            this._EndDate = DateTime.Now.GetString();
-            this._State = ProcessExecutionState.Ended;
-            this._Status = status;
+            _endDate = ObjectHelper.ToString(DateTime.Now);
+            _state = ProcessExecutionState.Ended;
+            _status = status;
 
-            if (this._Log != null)
-                switch(status)
+            if (_log != null)
+            {
+                switch (status)
                 {
                     case ProcessExecutionStatus.Completed:
-                        this._ProgressIndex = this._ProgressMax;
-                        this._Log.AddEvent(EventKind.Checkpoint, "Task completed");
+                        _progressIndex = _progressMax;
+                        _log.AddEvent(EventKind.Checkpoint, "Task completed");
                         break;
                     case ProcessExecutionStatus.NothingDone:
-                        this._ProgressIndex = this._ProgressMax;
-                        this._Log.AddEvent(EventKind.Checkpoint, "Task completed with nothing done");
+                        _progressIndex = _progressMax;
+                        _log.AddEvent(EventKind.Checkpoint, "Task completed with nothing done");
                         break;
                     case ProcessExecutionStatus.Stopped_Exception:
-                        this._Log.AddEvent(EventKind.Checkpoint, "Task stopped by exception");
+                        _log.AddEvent(EventKind.Checkpoint, "Task stopped by exception");
                         break;
                     case ProcessExecutionStatus.Stopped_User:
-                        this._Log.AddEvent(EventKind.Checkpoint, "Task stopped by user");
+                        _log.AddEvent(EventKind.Checkpoint, "Task stopped by user");
                         break;
                     default:
-                        this._Log.AddEvent(EventKind.Checkpoint, "Task stopped");
+                        _log.AddEvent(EventKind.Checkpoint, "Task stopped");
                         break;
                 }
+            }
         }
 
         /// <summary>
@@ -514,14 +517,13 @@ namespace BindOpen.Framework.Core.System.Processing
         /// </summary>
         public void Restart()
         {
-            this._RestartDate = DateTime.Now.GetString();
-            this._EndDate = "";
-            this._State = ProcessExecutionState.Pending;
-            this._Status = ProcessExecutionStatus.Processing;
-            this._ProgressIndex = 0;
+            _restartDate = ObjectHelper.ToString(DateTime.Now);
+            _endDate = "";
+            _state = ProcessExecutionState.Pending;
+            _status = ProcessExecutionStatus.Processing;
+            _progressIndex = 0;
 
-            if (this._Log != null)
-                this._Log.AddEvent(EventKind.Checkpoint, "Task re-started");
+            _log?.AddEvent(EventKind.Checkpoint, "Task re-started");
         }
 
         /// <summary>
@@ -529,14 +531,13 @@ namespace BindOpen.Framework.Core.System.Processing
         /// </summary>
         public void Resume()
         {
-            this._RestartDate = DateTime.Now.GetString();
-            this._EndDate = "";
-            this._State = ProcessExecutionState.Pending;
-            this._Status = ProcessExecutionStatus.Processing;
-            this._ProgressIndex = 0;
+            _restartDate = ObjectHelper.ToString(DateTime.Now);
+            _endDate = "";
+            _state = ProcessExecutionState.Pending;
+            _status = ProcessExecutionStatus.Processing;
+            _progressIndex = 0;
 
-            if (this._Log != null)
-                this._Log.AddEvent(EventKind.Checkpoint, "Task resume");
+            _log?.AddEvent(EventKind.Checkpoint, "Task resume");
         }
 
         /// <summary>
@@ -546,9 +547,8 @@ namespace BindOpen.Framework.Core.System.Processing
         /// <param name="value">The value of the attribute to set.</param>
         public void AddDetail(string name, object value)
         {
-            this.Detail.AddElement(name, (value ?? "").ToString(), DataValueType.Text);
-            if (this._Log != null)
-                this._Log.WriteLog(name, value, LoggerMode.Auto);
+            Detail.AddElement(ElementFactory.CreateScalar(name, DataValueType.Text, (value ?? "").ToString()));
+            _log?.WriteLog(name, value, LoggerMode.Auto);
         }
 
         #endregion

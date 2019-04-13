@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
 
         // Execution ----------------------------------
 
-        private ITaskConfiguration _task = null;
+        private TaskDto _task = null;
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Execution of this instance.
         /// </summary>
         [XmlElement("execution")]
-        public IProcessExecution Execution { get; set; } = null;
+        public ProcessExecution Execution { get; set; } = null;
 
         /// <summary>
         /// Specification of the Execution property of this instance.
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Logged by this instance. By default, a new task is initialized when this instance is initialized.
         /// </summary>
         [XmlElement("task")]
-        public ITaskConfiguration Task
+        public TaskDto Task
         {
             get => _task;
             set => WriteLog(_task = value, LoggerMode.Auto);
@@ -89,7 +89,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
-        public IDataElementSet Detail { get; set; } = null;
+        public DataElementSet Detail { get; set; } = null;
 
         /// <summary>
         /// Specification of the Detail property of this instance.
@@ -104,14 +104,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="id"></param>
         [XmlIgnore()]
-        public IEvent this[string id] => id == null ? null : Events?.Find(p => p.Id.KeyEquals(id));
+        public LogEvent this[string id] => id == null ? null : Events?.Find(p => p.Id.KeyEquals(id));
 
         /// <summary>
         /// The event with the specified ID.
         /// </summary>
         /// <param name="index"></param>
         [XmlIgnore()]
-        public IEvent this[int index] => Events?.Cast<object>().ToArray().GetObjectAtIndex(index) as Event;
+        public LogEvent this[int index] => Events?.Cast<object>().ToArray().GetObjectAtIndex(index) as LogEvent;
 
         /// <summary>
         /// Events of this instance.
@@ -124,7 +124,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="SubLogs"/>
         [XmlArray("events")]
         [XmlArrayItem("event")]
-        public List<ILogEvent> Events { get; set; } = null;
+        public List<LogEvent> Events { get; set; } = null;
 
         /// <summary>
         /// Specification of the Events property of this instance.
@@ -142,7 +142,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Errors => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Error).ToList();
+        public List<ILogEvent> Errors => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Error).ToList<ILogEvent>();
 
         /// <summary>
         /// Warnings of this instance.
@@ -154,7 +154,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Warnings => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Warning).ToList();
+        public List<ILogEvent> Warnings => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Warning).ToList<ILogEvent>();
 
         /// <summary>
         /// Messages of this instance.
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Messages => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Message).ToList();
+        public List<ILogEvent> Messages => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Message).ToList<ILogEvent>();
 
         /// <summary>
         /// Exceptions of this instance.
@@ -178,7 +178,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Exceptions => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Exception).ToList();
+        public List<ILogEvent> Exceptions => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Exception).ToList<ILogEvent>();
 
         /// <summary>
         /// Checkpoints of this instance.
@@ -190,7 +190,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Events"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Checkpoints => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Checkpoint).ToList();
+        public List<ILogEvent> Checkpoints => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Checkpoint).ToList<ILogEvent>();
 
         /// <summary>
         /// Logs of this instance.
@@ -202,7 +202,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Events"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILog> SubLogs => Events == null ? new List<ILog>() : Events.Where(p => p.Log != null).Select(p => p.Log).ToList();
+        public List<ILog> SubLogs => Events == null ? new List<ILog>() : Events.Where(p => p.Log != null).Select(p => p.Log as Log).ToList<ILog>();
 
         // Tree ----------------------------------
 
@@ -211,12 +211,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         [XmlIgnore()]
         public ILog Parent { get; set; } = null;
-
-        /// <summary>
-        /// Parent of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public ILogEvent Event { get; set; } = null;
 
         /// <summary>
         /// Root of this instance.
@@ -287,12 +281,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public Log(
-            ITaskConfiguration task,
+            ITaskDto task,
             Predicate<ILogEvent> eventFinder = null,
             params ILogger[] loggers)
             : this(eventFinder, loggers)
         {
-            _task = task;
+            _task = task as TaskDto;
         }
 
         /// <summary>
@@ -303,14 +297,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         public Log(
             ILog parentLog,
-            ITaskConfiguration task = null,
+            ITaskDto task = null,
             Predicate<ILogEvent> eventFinder = null)
             : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : new Logger[0]))
         {
-            _task = task;
+            _task = task as TaskDto;
             if (parentLog != null)
             {
-                Parent = parentLog;
+                Parent = parentLog as Log;
             }
         }
 
@@ -350,7 +344,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="task">The task to log.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(ITaskConfiguration task, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(ITaskDto task, LoggerMode mode = LoggerMode.Auto)
         {
             foreach (ILogger logger in Loggers)
             {
@@ -442,14 +436,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                             childLog.Parent = this;
                             childLog.Loggers = Loggers;
                             logEvent.Log = childLog;
-                            childLog.Event = logEvent;
+                            //childLog.Event = logEvent;
                         }
 
-                        if (Event != null && (Event.Kind == EventKind.None || Event.Kind == EventKind.Any))
-                            Event.Kind = Event.Kind.Max(logEvent.Kind);
+                        //if (Event != null && (Event.Kind == EventKind.None || Event.Kind == EventKind.Any))
+                        //    Event.Kind = Event.Kind.Max(logEvent.Kind);
 
-                        if (Events == null) Events = new List<ILogEvent>();
-                        Events.Add(logEvent);
+                        (Events ?? (Events = new List<LogEvent>())).Add(logEvent as LogEvent);
 
                         isAdded = true;
                     }
@@ -710,12 +703,16 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             List<ILogEvent> logEvents = new List<ILogEvent>();
 
-            if ((log != null) && (log.Events != null) && (logFinder == null || logFinder.Invoke(log)))
+            if ((log?.Events != null) && (logFinder?.Invoke(log) != false))
             {
-                logEvents = log.Events.Where(p => kinds.Count() == 0 || kinds.Contains(p.Kind)).ToList();
+                logEvents = log.Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<ILogEvent>();
                 if (logEvents != null)
-                    foreach (LogEvent currentEvent in logEvents)
+                {
+                    foreach (ILogEvent currentEvent in logEvents)
+                    {
                         AddEvent(currentEvent);
+                    }
+                }
             }
 
             return logEvents;
@@ -943,12 +940,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override string GetTitleText(string variantName = "*", string defaultVariantName = "*")
+        public override string GetTitle(string variantName = "*", string defaultVariantName = "*")
         {
             if (Title == null && Task != null)
-                return Task.GetTitleText(variantName, defaultVariantName);
+                return Task.GetTitle(variantName, defaultVariantName);
             else
-                return base.GetTitleText(variantName, defaultVariantName);
+                return base.GetTitle(variantName, defaultVariantName);
         }
 
         /// <summary>
@@ -959,7 +956,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public override string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
             if (Description == null && Task != null)
-                return Task.GetDescriptionText(variantName, defaultVariantName);
+                return Task.GetDescription(variantName, defaultVariantName);
             else
                 return base.GetDescription(variantName, defaultVariantName);
         }
@@ -972,17 +969,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="id">The ID of the event to return.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <returns>The event of this instance with the specified ID.</returns>
-        public IEvent GetEventWithId(string id, bool isRecursive = false)
+        public ILogEvent GetEventWithId(string id, bool isRecursive = false)
         {
             if (id == null || Events == null) return null;
 
-            IEvent logEvent = Events.Find(p => p.Id.KeyEquals(id));
+            ILogEvent logEvent = Events.Find(p => p.Id.KeyEquals(id));
             if (isRecursive)
+            {
                 foreach (Log childLog in SubLogs)
                 {
                     logEvent = childLog.GetEventWithId(id, true);
                     if (logEvent != null) return logEvent;
                 }
+            }
 
             return logEvent;
         }
@@ -999,11 +998,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             if (Events == null) return new List<ILogEvent>();
 
-            List<ILogEvent> events = Events.GetEvents(kinds);
+            List<ILogEvent> events = Events.ToList<ILogEvent>().GetEvents(kinds);
 
             if (isRecursive)
+            {
                 foreach (Log childLog in SubLogs)
+                {
                     events.AddRange(childLog.GetEvents(isRecursive, kinds));
+                }
+            }
 
             return events;
         }
@@ -1056,7 +1059,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             if (Events == null) return false;
 
-            bool aHasEvents = Events.Has(kinds);
+            bool aHasEvents = Events.ToList<ILogEvent>().Has(kinds);
 
             if (!aHasEvents && isRecursive)
                 foreach (Log childLog in SubLogs)
@@ -1254,32 +1257,35 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             base.UpdateStorageInfo(log);
 
-            if (Detail != null)
-                Detail.UpdateStorageInfo(log);
-            if (Execution != null)
-                Execution.UpdateStorageInfo(log);
+            Detail?.UpdateStorageInfo(log);
+            Execution?.UpdateStorageInfo(log);
+
             if (Events != null)
+            {
                 foreach (Event currentEvent in Events)
+                {
                     currentEvent.UpdateStorageInfo(log);
+                }
+            }
         }
 
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(log);
 
-            Detail?.UpdateRuntimeInfo(appScope, log);
+            Detail?.UpdateRuntimeInfo(log);
 
-            Execution?.UpdateRuntimeInfo(appScope, log);
+            Execution?.UpdateRuntimeInfo(log);
+
             if (Events != null)
             {
                 foreach (Event currentEvent in Events)
                 {
-                    currentEvent.UpdateRuntimeInfo(appScope, log);
+                    currentEvent.UpdateRuntimeInfo(log);
                 }
             }
         }
@@ -1290,19 +1296,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Instantiates a new instance of Log class from a xml file.
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
         /// <param name="loadLog">The output log of the load task.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         public static ILog Load<T>(
             string filePath,
-            IAppScope appScope,
             bool isCheckXml,
             ILog loadLog,
             bool mustFileExist = true) where T : ILogger, new()
         {
-            ILog log = (new T()).LoadLog(filePath, loadLog, appScope, mustFileExist);
+            ILog log = (new T()).LoadLog(filePath, loadLog, mustFileExist);
             log?.BuildTree();
             return log;
         }
@@ -1311,17 +1315,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Instantiates a new instance of Log class from a xml string.
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
         /// <param name="loadLog">The output log of the load task.</param>
         /// <returns>The log defined in the Xml file.</returns>
         public static ILog LoadFromString<T>(
             string xmlString,
-            IAppScope appScope,
             bool isCheckXml,
             ILog loadLog = null) where T : ILogger, new()
         {
-            ILog log = (new T()).LoadLogFromString(xmlString, loadLog, appScope);
+            ILog log = (new T()).LoadLogFromString(xmlString, loadLog);
             log?.BuildTree();
             return log;
         }

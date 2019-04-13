@@ -1,5 +1,5 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Datasources;
+using BindOpen.Framework.Core.Application.Services.Data.Datasources;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
         #region Variables
 
-        private AppHostOptions _options = new AppHostOptions();
+        private IAppHostOptions _options = new AppHostOptions();
 
         // General ----------------------
 
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Indicates whether this instance is loaded.
         /// </summary>
         /// <remarks>The value can be assigned.</remarks>
-        protected Boolean _isLoadCompleted = false;
+        protected bool _isLoadCompleted = false;
 
         // Extensions ----------------------
 
@@ -79,14 +79,14 @@ namespace BindOpen.Framework.Runtime.Application.Services
         // Tracking ----------------------
 
         /// <summary>
-        /// Log of this instance.
+        /// ILog of this instance.
         /// </summary>
         public ILog Log { get; }
 
         /// <summary>
         /// Indicates whether the platform information is loaded.
         /// </summary>
-        public Boolean IsLoadCompleted
+        public bool IsLoadCompleted
         {
             get { return this._isLoadCompleted; }
         }
@@ -176,7 +176,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected override Log Initialize<T>()
+        protected override ILog Initialize<T>()
         {
             this._appScope = new T();
             this._appScope.Initialize(AppDomain.CurrentDomain);

@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents an advanced database data query.
     /// </summary>
-    public class AdvancedDbDataQuery : DbDataQuery
+    public class AdvancedDbDataQuery : DbDataQuery, IAdvancedDbDataQuery
     {
         // ------------------------------------------
         // VARIABLES
@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
 
         #region Variables
 
-        private List<DbDataQueryFromStatement> _FromClause= new List<DbDataQueryFromStatement>();
+        private List<IDbDataQueryFromStatement> _FromClause= new List<IDbDataQueryFromStatement>();
 
         #endregion
 
@@ -43,35 +43,35 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// From clause of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<DbDataQueryFromStatement> FromClauses
+        public List<IDbDataQueryFromStatement> FromClauses
         {
             get { return this._FromClause; }
-            set { this._FromClause = new List<DbDataQueryFromStatement>(value); }
+            set { this._FromClause = new List<IDbDataQueryFromStatement>(value); }
         }
 
         /// <summary>
         /// Where clause of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public DataExpression WhereClause { get; set; }
+        public IDataExpression WhereClause { get; set; }
 
         /// <summary>
         /// Group by statement of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public DbDataQueryGroupByStatement GroupByClause { get; set; }
+        public IDbDataQueryGroupByStatement GroupByClause { get; set; }
 
         /// <summary>
         /// Having statement of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public DbDataQueryHavingStatement HavingClause { get; set; }
+        public IDbDataQueryHavingStatement HavingClause { get; set; }
 
         /// <summary>
         /// Order statements of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<DbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<DbDataQueryOrderByStatement>();
+        public List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbDataQueryOrderByStatement>();
 
         #endregion
 

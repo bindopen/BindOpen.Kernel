@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items.Documents;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.Extensions.Configuration.Formats;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Formats;
+using BindOpen.Framework.Core.Extensions.Items.Formats;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Documents
@@ -27,13 +32,13 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// Container of this instance. 
         /// </summary>
         [XmlElement("container")]
-        public ICarrierConfiguration Container { get; set; } = null;
+        public CarrierDto Container { get; set; } = null;
 
         /// <summary>
         /// Content of this instance. 
         /// </summary>
         [XmlElement("content")]
-        public IEntityConfiguration Content { get; set; } = null;
+        public EntityDto Content { get; set; } = null;
 
         #endregion
 
@@ -54,7 +59,7 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// This instantiates a new instance of the DataSource class.
         /// </summary>
         /// <param name="name">The name of this instance.</param>
-        public Document(String name = null)
+        public Document(string name = null)
             : this(null, null, name)
         {
         }
@@ -62,12 +67,14 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <summary>
         /// This instantiates a new instance of the DataSource class.
         /// </summary>
-        /// <param name="aContainer">The container to consider.</param>
-        /// <param name="aContent">The content to consider.</param>
+        /// <param name="container">The container to consider.</param>
+        /// <param name="content">The content to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public Document(ICarrierConfiguration aContainer, IEntityConfiguration aContent, String name = null)
+        public Document(ICarrierDto container, IEntityDto content, string name = null)
             : base(name, "document_")
         {
+            Container = container as CarrierDto;
+            Content = content as EntityDto;
         }
 
         #endregion
@@ -86,7 +93,7 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <param name="documentDataItem">The document item to consider.</param>
         /// <param name="relativePath">The relative path to consider.</param>
         /// <returns>The log of the schema update.</returns>
-        public virtual ILog Update(IDocument documentDataItem, String relativePath = "")
+        public virtual ILog Update(IDocument documentDataItem, string relativePath = "")
         {
             return new Log();
         }
@@ -98,11 +105,11 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// </summary>
         /// <param name="dataSource">The data source to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public virtual IFormatConfiguration DetectFormat(
+        public virtual IFormatDto DetectFormat(
             IDataSource dataSource,
             ref ILog log)
         {
-            return new FormatConfiguration();
+            return new FormatDto();
         }
 
         #endregion
@@ -121,9 +128,9 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         {
             Document dataEntityItem = base.Clone() as Document;
             if (this.Container != null)
-                dataEntityItem.Container = this.Container.Clone() as CarrierConfiguration;
+                dataEntityItem.Container = this.Container.Clone() as CarrierDto;
             if (this.Content != null)
-                dataEntityItem.Content = this.Content.Clone() as EntityConfiguration;
+                dataEntityItem.Content = this.Content.Clone() as EntityDto;
 
             return dataEntityItem;
         }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the stack traces of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool StackTracesSpecified => StackTraces != null && StackTraces.Count > 0;
+        public bool StackTracesSpecified => StackTraces?.Count > 0;
 
         // Tree ----------------------------------
 
@@ -264,13 +264,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(log);
 
-            Log?.UpdateRuntimeInfo(appScope, log);
+            Log?.UpdateRuntimeInfo(log);
         }
 
         #endregion

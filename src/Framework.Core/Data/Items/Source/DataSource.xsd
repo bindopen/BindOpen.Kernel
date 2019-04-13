@@ -7,13 +7,13 @@
   <xs:include schemaLocation="DataSourceKind.xsd" />
   <xs:include schemaLocation="../../../data/elements/sets/DataElementSet.xsd" />
   <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="../../../extensions/configuration/connectors/ConnectorDto.xsd" />
 
   <xs:complexType name="DataSource">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:NamedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="bdo:ConnectorConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="bdo:ConnectorDto" />
         </xs:sequence>
         <xs:attribute name="kind" type="bdo:DataSourceKind" use="required" />
         <xs:attribute name="moduleName" type="xs:string" use="optional" />

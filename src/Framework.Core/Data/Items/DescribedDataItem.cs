@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Description of this instance.
         /// </summary>
         [XmlElement("description")]
-        public IDictionaryDataItem Description { get; set; } = null;
+        public DictionaryDataItem Description { get; set; } = null;
 
         /// <summary>
         /// Specification of the Description property of this instance.
@@ -53,9 +53,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="name">The name of this instance.</param>
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
-        public DescribedDataItem(String name,
-            String namePreffix = "",
-            String id = null)
+        public DescribedDataItem(string name,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
         }
@@ -69,11 +69,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
         public DescribedDataItem(
-            String name,
-            String title,
-            String description,
-            String namePreffix = "",
-            String id = null)
+            string name,
+            string title,
+            string description,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
             if (title != null)
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates this instance with the base object.
         /// </summary>
         /// <param name="updateBaseObject">The update base object to consider.</param>
-        public void Update(DescribedDataItem updateBaseObject)
+        public void Update(IDescribedDataItem updateBaseObject)
         {
             if (updateBaseObject != null)
             {
@@ -111,7 +111,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddDescription(String text)
+        public void AddDescription(string text)
         {
             this.AddDescription("*", text);
         }
@@ -121,7 +121,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddDescription(String key, String text)
+        public void AddDescription(string key, string text)
         {
             (this.Description ?? (this.Description = new DictionaryDataItem())).AddValue(key, text);
         }
@@ -130,7 +130,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetDescription(String text)
+        public void SetDescription(string text)
         {
             this.SetDescription("*", text);
         }
@@ -140,7 +140,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetDescription(String key = "*", String text = "*")
+        public void SetDescription(string key = "*", string text = "*")
         {
             (this.Description ?? (this.Description = new DictionaryDataItem())).SetValue(key, text);
         }
@@ -158,10 +158,10 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public virtual String GetDescription(String variantName = "*", String defaultVariantName = "*")
+        public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
             if (this.Description == null) return "";
-            String label = this.Description.GetContent(variantName);
+            string label = this.Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = this.Description.GetContent(defaultVariantName);
             return label ?? "";
@@ -201,12 +201,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, ILog log = null)
+        public override void UpdateRuntimeInfo(ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
-            this.Description?.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(log);
+            this.Description?.UpdateRuntimeInfo(log);
         }
 
         #endregion

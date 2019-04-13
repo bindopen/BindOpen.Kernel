@@ -26,7 +26,7 @@
       <xs:enumeration value="DictionaryEditor" />
       <xs:enumeration value="DatabaseTableEditor" />
       <xs:enumeration value="EmailEditor" />
-      <xs:enumeration value="CarrierConfigurationEditor" />
+      <xs:enumeration value="CarrierDtoEditor" />
       <xs:enumeration value="Custom" />
     </xs:restriction>
   </xs:simpleType>

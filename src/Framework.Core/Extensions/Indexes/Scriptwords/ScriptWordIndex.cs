@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
@@ -14,25 +10,8 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
     /// <summary>
     /// This class represents a script word index.
     /// </summary>
-    [Serializable()]
-    [XmlType("ScriptWordIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "scriptWords.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScriptWordIndex : TAppExtensionItemIndex<IScriptWordDefinition>, IScriptWordIndex
+    public class ScriptwordIndex : TAppExtensionItemIndex<IScriptwordDefinition>, IScriptwordIndex
     {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The definition class of this instance.
-        /// </summary>
-        [XmlElement("definitionClass")]
-        public string DefinitionClass { get; set; } = "";
-
-        #endregion
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -40,19 +19,61 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ScriptWordIndex class.
+        /// Instantiates a new instance of the ScriptwordIndex class.
         /// </summary>
-        public ScriptWordIndex()
+        public ScriptwordIndex() : base()
+        {
+            Id = IdentifiedDataItem.NewGuid();
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the ScriptwordIndex class.
+        /// </summary>
+        /// <param name="dto">The DTO item of this instance.</param>
+        public ScriptwordIndex(IScriptwordIndexDto dto)
         {
         }
 
         #endregion
 
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
+        // Script word definitions ---------------------------
 
-        #region Accessors
+        /// <summary>
+        /// Returns the possible parent definitions of the specified script word definition.
+        /// </summary>
+        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="libraryNames">The names of libraries to consider.</param>
+        /// <returns>The parent definitions of the specified script word definition.</returns>
+        public List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            string[] libraryNames = null)
+        {
+            return GetParentScriptwordDefinitions(definitionName, null, libraryNames).Distinct().ToList();
+        }
+
+        private List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            IScriptwordDefinition parentFeachDefinition,
+            string[] libraryNames = null)
+        {
+            List<IScriptwordDefinition> parentDefinitions = new List<IScriptwordDefinition>();
+
+            if (definitionName != null)
+            {
+                List<IScriptwordDefinition> definitions =
+                    (parentFeachDefinition == null ? Definitions :
+                    new List<IScriptwordDefinition>(parentFeachDefinition.Children));
+                foreach (IScriptwordDefinition currentScriptwordDefinition in definitions)
+                {
+                    if (currentScriptwordDefinition.KeyEquals(definitionName) && parentFeachDefinition != null)
+                        parentDefinitions.Add(parentFeachDefinition);
+
+                    parentDefinitions.AddRange(GetParentScriptwordDefinitions(definitionName, currentScriptwordDefinition, libraryNames));
+                }
+            }
+
+            return parentDefinitions;
+        }
 
         /// <summary>
         /// Returns the word definitions with the specified name.
@@ -60,22 +81,22 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         /// <param name="name">The name of the script words to return.</param>
         /// <param name="parentDefinition">The parent definition.</param>
         /// <returns>The script words with the specified name.</returns>
-        public List<IScriptWordDefinition> GetDefinitionsWithExactName(
+        public List<IScriptwordDefinition> GetDefinitionsWithExactName(
             string name,
-            IScriptWordDefinition parentDefinition = null)
+            IScriptwordDefinition parentDefinition = null)
         {
-            List<IScriptWordDefinition> matchingDefinitions = new List<IScriptWordDefinition>();
+            List<IScriptwordDefinition> matchingDefinitions = new List<IScriptwordDefinition>();
 
             if (name != null)
             {
-                List<IScriptWordDefinition> poolScriptWordDefinitions = null;
+                List<IScriptwordDefinition> poolScriptwordDefinitions = null;
                 if (parentDefinition == null)
-                    poolScriptWordDefinitions = this.Definitions;
+                    poolScriptwordDefinitions = Definitions;
                 else if (parentDefinition.Children != null)
-                    poolScriptWordDefinitions = parentDefinition.Children;
+                    poolScriptwordDefinitions = new List<IScriptwordDefinition>(parentDefinition.Children);
 
-                if (poolScriptWordDefinitions != null)
-                    matchingDefinitions = poolScriptWordDefinitions.Where(p => p.Name.KeyEquals(name)).ToList();
+                if (poolScriptwordDefinitions != null)
+                    matchingDefinitions = poolScriptwordDefinitions.Where(p => p?.Dto?.Name.KeyEquals(name) == true).ToList();
             }
 
             return matchingDefinitions;
@@ -87,90 +108,25 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         /// <param name="name">The name of the script words to return.</param>
         /// <param name="parentDefinition">The parent definition.</param>
         /// <returns>The script words with the specified name.</returns>
-        public List<IScriptWordDefinition> GetDefinitionsWithApproximativeName(
+        public List<IScriptwordDefinition> GetDefinitionsWithApproximativeName(
             string name,
-            IScriptWordDefinition parentDefinition = null)
+            IScriptwordDefinition parentDefinition = null)
         {
-            List<IScriptWordDefinition> matchingDefinitions = new List<IScriptWordDefinition>();
+            List<IScriptwordDefinition> matchingDefinitions = new List<IScriptwordDefinition>();
             if (name == null)
                 return matchingDefinitions;
 
-            List<IScriptWordDefinition> poolScriptWordDefinitions = null;
+            List<IScriptwordDefinition> poolScriptwordDefinitions = null;
             if (parentDefinition == null)
-                poolScriptWordDefinitions = this.Definitions;
+                poolScriptwordDefinitions = Definitions;
             else if (parentDefinition.Children != null)
-                poolScriptWordDefinitions = parentDefinition.Children;
+                poolScriptwordDefinitions = new List<IScriptwordDefinition>(parentDefinition.Children);
 
-            if (poolScriptWordDefinitions != null)
-                matchingDefinitions = poolScriptWordDefinitions.Where(p => p.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) > 0).ToList();
+            if (poolScriptwordDefinitions != null)
+                matchingDefinitions = poolScriptwordDefinitions.Where(p => p?.Dto?.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) > 0).ToList();
 
             return matchingDefinitions;
         }
 
-        /// <summary>
-        /// Determines whether the specified script word corresponds to the specified definition.
-        /// </summary>
-        /// <param name="scriptWord">The script word to consider.</param>
-        /// <param name="scriptWordDefinition">The script word definition to consider.</param>
-        /// <returns></returns>
-        public bool IsWordMatching(IScriptWord scriptWord, IScriptWordDefinition scriptWordDefinition)
-        {
-            if (scriptWordDefinition == null) return false;
-
-            // we check the number of parameters
-            if ((!scriptWordDefinition.IsRepeatedParameters) && ((scriptWord.ParameterDetail == null) && (scriptWordDefinition.ParameterSpecification != null) |
-                (scriptWordDefinition.ParameterSpecification == null) && (scriptWord.ParameterDetail != null)))
-            {
-                return false;
-            }
-
-            if ((scriptWord.ParameterDetail == null) && ((!scriptWordDefinition.IsRepeatedParameters) || (scriptWordDefinition.ParameterSpecification == null)))
-                return true;
-            if ((!scriptWordDefinition.IsRepeatedParameters) && (scriptWord.ParameterDetail.Count != scriptWordDefinition.ParameterSpecification.Count))
-                return false;
-
-            if ((!scriptWordDefinition.IsRepeatedParameters) && ((scriptWordDefinition.MaxParameterNumber != -1) && (scriptWord.ParameterDetail.Count > scriptWordDefinition.MaxParameterNumber)))
-                return false;
-            if ((!scriptWordDefinition.IsRepeatedParameters) && ((scriptWordDefinition.MinParameterNumber != -1) && (scriptWord.ParameterDetail.Count < scriptWordDefinition.MinParameterNumber)))
-                return false;
-
-            // we search the defined script word parameters
-
-            int parameterIndex = 0;
-            //if ((scriptWordDefinition.IsRepeatedParameters) & (scriptWordDefinition.RepeatedParameterValueType != scriptWord.Definition.RepeatedParameterValueType))
-            //    return false;
-            if (scriptWordDefinition.ParameterSpecification.Items != null)
-            {
-                foreach (IDataElementSpec parameterSpecification in scriptWordDefinition.ParameterSpecification.Items)
-                {
-                    IScalarElement scriptWordParameter = scriptWord.ParameterDetail[parameterIndex] as IScalarElement;
-
-                    // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
-                    if (((scriptWordDefinition.IsRepeatedParameters) && (scriptWordDefinition.RepeatedParameterValueType == DataValueType.Text))
-                        || ((!scriptWordDefinition.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueType.Text)))
-                    {
-                        String parameterValue = (scriptWordParameter.GetItem() ?? "").ToString().Trim();
-
-                        if (parameterValue.Length < 2)
-                            return false;
-                        if ((!parameterValue.StartsWith("'")) || (!parameterValue.EndsWith("'")))
-                            return false;
-                    }
-                    else
-                    {
-                        if ((!scriptWordDefinition.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueType.Any))
-                        {
-                            return (!parameterSpecification.CheckItem(scriptWordParameter.GetItem()).HasErrorsOrExceptions()) &&
-                               (!scriptWordParameter.CheckItem().HasErrorsOrExceptions());
-                        }
-                    }
-                    parameterIndex++;
-                }
-            }
-
-            return true;
-        }
-
-        #endregion
     }
 }

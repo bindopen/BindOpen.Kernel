@@ -4,6 +4,7 @@ using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -52,14 +53,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public YamlLogger(
-            String name,
+            string name,
             LoggerMode mode,
-            String folderPath,
-            String fileName = null,
+            string folderPath,
+            string fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
             bool isVerbose = false,
-            String uiCulture = null,
-            Predicate<LogEvent> eventFinder = null,
+            string uiCulture = null,
+            Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
             : base(name, LogFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
@@ -81,7 +82,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
         public override string ToString(
-            Log log,
+            ILog log,
             List<string> attributeNames = null)
         {
             if (log == null) return "";
@@ -107,34 +108,34 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                     {
                         String attributeNameKey = attributeName.ToLower();
 
-                        if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Id))
+                        if (((attributeNameKey == "*") || (attributeNameKey == LogEntries.__Id))
                             && !string.IsNullOrEmpty(log.Id))
                         {
                             st += indent + " id: " + log.Name + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
-                        if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Name))
+                        if (((attributeNameKey == "*") || (attributeNameKey == LogEntries.__Name))
                             && !string.IsNullOrEmpty(log.Name))
                         {
                             st += indent + " name: " + log.Name + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
-                        if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Title))
+                        if (((attributeNameKey == "*") || (attributeNameKey == LogEntries.__Title))
                                         && (log.Title != null))
                         {
-                            st += indent + " title: " + log.GetTitleText(this.UICulture) + Environment.NewLine;
+                            st += indent + " title: " + log.GetTitle(this.UICulture) + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
-                        if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Description))
+                        if (((attributeNameKey == "*") || (attributeNameKey == LogEntries.__Description))
                                             && (log.Description != null))
                         {
                             st += indent + " description: " + log.GetDescription(this.UICulture) + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
-                        if ((attributeNameKey.StartsWith(LogAttribute.__Detail + ".")) && (log.Detail != null))
+                        if ((attributeNameKey.StartsWith(LogEntries.__Detail + ".")) && (log.Detail != null))
                         {
                             st += indent + " detail: " + Environment.NewLine;
-                            String detailName = attributeNameKey.GetSubstring(LogAttribute.__Detail.Length + 1);
+                            String detailName = attributeNameKey.GetSubstring(LogEntries.__Detail.Length + 1);
                             if (detailName == "*")
                                 foreach (DataElement element in log.Detail.Elements)
                                 {
@@ -143,7 +144,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                                 }
                         }
 
-                        if (((attributeNameKey == "*") || (attributeNameKey == LogAttribute.__Events))
+                        if (((attributeNameKey == "*") || (attributeNameKey == LogEntries.__Events))
                                 && (log.Events != null))
                             foreach (LogEvent logEvent in log.Events)
                                 st += this.ToString(logEvent, attributeNames);
@@ -162,13 +163,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             {
                 st += indent + element.Key() + ":" + Environment.NewLine;
                 if (element.Items.Count==1)
-                    st += indent + " value: " + element.Items[0]?.GetString(element.ValueType) + Environment.NewLine;
+                    st += indent + " value: " + element.Items[0]?.ToString(element.ValueType) + Environment.NewLine;
                 if (element.Items.Count > 1)
                 {
                     st += indent + " values:" + Environment.NewLine;
                     foreach (object item in element.Items)
                         if (item != null)
-                            st += indent + "  - " + item.GetString(element.ValueType) + Environment.NewLine;
+                            st += indent + "  - " + item.ToString(element.ValueType) + Environment.NewLine;
                 }
             }
 

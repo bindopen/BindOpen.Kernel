@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Document;
+using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Complex
+namespace BindOpen.Framework.Core.Data.Elements.Meta
 {
     /// <summary>
     /// This class represents a meta data element that is a data element whose items are data elements.
@@ -17,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Complex
     [XmlType("MetaDataElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "meta", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     [XmlInclude(typeof(DocumentElement))]
-    public abstract class MetaDataElement : DataElement, IMetaDataElement
+    public class MetaDataElement : DataElement, IMetaDataElement
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -28,8 +26,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Complex
         /// <summary>
         /// Initializes a new meta data element.
         /// </summary>
-        public MetaDataElement()
-            : this(null)
+        public MetaDataElement() : this(null)
         {
         }
 
@@ -52,39 +49,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Complex
         #region Items
 
         /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override object NewItem(IAppScope appScope = null, ILog log = null)
-        {
-            return null;
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override object GetItem(
-            object indexItem = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
-        {
-            if ((indexItem == null) || (indexItem is int))
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            else if (indexItem is string)
-                return this.Items.Any(p => p is DataElement && string.Equals((p as DataElement)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-
-            return null;
-        }
-
-        /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
         /// </summary>
         /// <param name="indexItem">The index item to consider.</param>
@@ -99,6 +63,15 @@ namespace BindOpen.Framework.Core.Data.Elements.Complex
         }
 
         /// <summary>
+        /// Creates a new specification of this instance.
+        /// </summary>
+        /// <returns>Returns True .</returns>
+        public override IDataElementSpec NewSpecification()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
@@ -106,55 +79,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Complex
         {
             return string.Join("|", this.Items.Select(p => !(p is DataElement) ? "" : (p as DataElement).Name.ToString()).ToArray());
         }
-
-        // Conversion -----------------------------------
-
-        /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
-        /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public override string GetStringFromObject(
-            object object1,
-            ILog log = null)
-        {
-            string stringValue = "";
-
-            if (object1 is DataElement)
-                stringValue = (object1 as DataElement).ToString();
-
-            return stringValue;
-        }
-
-        /// <summary>
-        /// Returns the object value from a based on this instance's specification.
-        /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public override object GetObjectFromString(
-            string stringValue,
-            IAppScope appScope = null,
-            ILog log = null)
-        {
-            object object1 = null;
-
-            if (stringValue != null)
-                object1 = XmlHelper.LoadFromString<DataElement>(stringValue, log);
-
-            return object1;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
-        // --------------------------------------------------
-
-        #region Check_Update_Repair
-
 
         #endregion
     }

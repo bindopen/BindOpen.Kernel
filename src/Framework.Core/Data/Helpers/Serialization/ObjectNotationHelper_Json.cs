@@ -46,9 +46,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                 DataValueType dataValueType = object1.GetValueType();
                 if ((dataValueType == DataValueType.Date) ||
                     (dataValueType == DataValueType.Text))
-                    resultString += ObjectNotationHelper_Json.GetTextValue(object1.GetString());
+                    resultString += ObjectNotationHelper_Json.GetTextValue(ObjectHelper.ToString(object1));
                 else
-                    resultString += object1.GetString();
+                    resultString += ObjectHelper.ToString(object1);
             }
             return resultString;
         }
