@@ -4,7 +4,7 @@ using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// The interface defines the base BDO application host options.

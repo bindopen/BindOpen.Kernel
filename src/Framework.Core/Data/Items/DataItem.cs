@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public virtual void UpdateRuntimeInfo(ILog log = null)
+        public virtual void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
@@ -11,6 +12,7 @@ using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -1272,19 +1274,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            Detail?.UpdateRuntimeInfo(log);
+            Detail?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            Execution?.UpdateRuntimeInfo(log);
+            Execution?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
             if (Events != null)
             {
                 foreach (Event currentEvent in Events)
                 {
-                    currentEvent?.UpdateRuntimeInfo(log);
+                    currentEvent?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                 }
             }
         }

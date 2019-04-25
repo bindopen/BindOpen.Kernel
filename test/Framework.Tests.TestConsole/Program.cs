@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
+using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Labs.Platform.Data.Resolvers;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.TestConsole.Settings;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace BindOpen.TestConsole
 {
@@ -27,28 +32,29 @@ namespace BindOpen.TestConsole
             //// we test argument handling
             //TestArguments.Test();
 
-            //ILog log = new Log();
-            //log.Execution = new ProcessExecution() {
-            //    State= ProcessExecutionState.Ended,
-            //    Status= ProcessExecutionStatus.Processing,
-            //    ProgressIndex=0
-            //};
-            //log.AddError("test1", resultCode: "user.events");
+            ILog log = new Log();
+            log.Execution = new ProcessExecution()
+            {
+                State = ProcessExecutionState.Ended,
+                Status = ProcessExecutionStatus.Processing,
+                ProgressIndex = 0
+            };
+            log.AddError("test1", resultCode: "user.events");
             //log.Events.RemoveAll(p =>
             //    p.Kind != BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Error
             //    || p?.ResultCode?.StartsWith("user.") == false);
-            //string st = JsonConvert.SerializeObject(
-            //    log,
-            //    Formatting.Indented,
-            //    new JsonSerializerSettings()
-            //    {
-            //        ContractResolver = new XmlContractResolver(),
-            //        Converters = new List<JsonConverter> {
-            //        new StringEnumConverter { CamelCaseText = true },
-            //        new JavaScriptDateTimeConverter()
-            //    },
-            //    NullValueHandling = NullValueHandling.Ignore
-            //});
+            string st = JsonConvert.SerializeObject(
+                log,
+                Formatting.Indented,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = new XmlContractResolver(),
+                    Converters = new List<JsonConverter> {
+                    new StringEnumConverter { CamelCaseText = true },
+                    new JavaScriptDateTimeConverter()
+                },
+                    NullValueHandling = NullValueHandling.Ignore
+                });
 
             //var model = AppDomain.CurrentDomain.GetAssemblies().SelectMany(p => p.GetTypes()).Where(p => p.FullName.Contains("Queries_"));
 
@@ -74,19 +80,20 @@ namespace BindOpen.TestConsole
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
                 .Start();
 
+            //string script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
+            //string resultScript = Program._AppHost.ScriptInterpreter.Interprete(script, null, Program._AppHost.Log);
+
+            string path1 = Program._AppHost.GetSettings<TestAppSettings>().TestFolderPath;
+
+            string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
+
             //ILog log = new Log();
             //log.AddMessage("test1");
             //string st1 = log[0];
 
             //var st = Program._AppHost.Settings.Get<String>("test.folderPath").GetEndedString(@"\");
 
-
             //Console.WriteLine(Program._AppHost.GetKnownPath(ApplicationPathKind.SettingsFile));
-
-            //String script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
-            //string resultScript = Program._AppHost.ScriptInterpreter.Interprete(
-            //        script, null, Program._AppHost.Log);
-
 
             //var dbQuery = Queries_Tenants.InsertOrganization("tenantA");
             //.Filter(
@@ -179,9 +186,6 @@ namespace BindOpen.TestConsole
             //    new Event(EventKind.Error),
             //    new Event(EventKind.Exception))).SaveXml(@"c:\workarea\temp\test.xml", Program._AppManager.Log);
 
-            string path1 = Program._AppHost.Settings.TestFolderPath;
-
-            string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
 
             //var value = Program._AppManager.Configuration?.LogsFolderPath;
 

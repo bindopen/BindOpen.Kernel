@@ -48,7 +48,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
             if (_connector == null || !File.Exists(_filePath))
                 TestSaveConnector();
 
-            ConnectorConfiguration configuration = XmlHelper.Load<ConnectorConfiguration>(_filePath, log);
+            ConnectorConfiguration configuration = XmlHelper.Load<ConnectorConfiguration>(_filePath, null,null, log);
             DatabaseConnector_MSSqlServer connector = SetupVariables.AppScope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + log.ToXml());

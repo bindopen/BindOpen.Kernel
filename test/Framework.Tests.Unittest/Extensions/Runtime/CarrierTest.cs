@@ -74,7 +74,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
             if (_field == null || !File.Exists(_filePath))
                 TestSaveCarrier();
 
-            CarrierConfiguration configuration = XmlHelper.Load<CarrierConfiguration>(_filePath, log);
+            CarrierConfiguration configuration = XmlHelper.Load<CarrierConfiguration>(_filePath, null, null, log);
             DbField field = SetupVariables.AppScope.CreateCarrier<DbField>(configuration, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Carrier loading failed. Result was '" + log.ToXml());

@@ -2,7 +2,7 @@
 using BindOpen.Framework.NetCore.Services;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Hosts.Options;
+using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
 
 namespace Microsoft.Extensions.DependencyInjection

@@ -6,7 +6,7 @@ using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// The interface defines the application host options.

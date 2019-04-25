@@ -64,7 +64,7 @@ namespace BindOpen.Framework.UnitTest.System.Diagnostics
                 TestSaveEvents();
 
             Log log = new Log();
-            _log = XmlHelper.Load<Log>(_filePath, log);
+            _log = XmlHelper.Load<Log>(_filePath, null, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + log.ToXml());
 

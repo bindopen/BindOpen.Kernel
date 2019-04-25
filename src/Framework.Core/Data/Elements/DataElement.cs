@@ -334,8 +334,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                         object1 = appScope.ScriptInterpreter.Interprete(ItemScript, scriptVariableSet, log);
                         if (object1 != null)
                         {
-                            return object1.GetType().IsArray ? object1 as List<object> :
-                               new List<object>() { object1 };
+                            return object1.GetType().IsArray ? object1 as List<object> : object1;
                         }
                     }
                     break;
@@ -747,11 +746,11 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            _propertyDetail?.UpdateRuntimeInfo(log);
+            _propertyDetail?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            ItemReference?.UpdateRuntimeInfo(log);
+            ItemReference?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
         /// <summary>

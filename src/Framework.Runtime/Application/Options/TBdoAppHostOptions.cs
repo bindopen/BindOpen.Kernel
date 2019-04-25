@@ -9,7 +9,7 @@ using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This class represents an application host options.

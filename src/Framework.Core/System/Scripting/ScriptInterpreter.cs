@@ -10,7 +10,6 @@ using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
@@ -673,7 +672,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        new object[0] : scriptWord.ParameterDetail.Elements.Select(p=>p.GetObject()).ToArray());
+                        new object[0] : scriptWord.ParameterDetail?.Elements?.Select(p=>p.GetObject()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_appScope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)

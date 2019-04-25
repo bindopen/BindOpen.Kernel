@@ -9,7 +9,7 @@
             This static class extends .Net core dependency injection namespace.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions{``0}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``0}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>
@@ -17,7 +17,7 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions{``1}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``1}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>

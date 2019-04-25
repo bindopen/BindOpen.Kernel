@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
@@ -10,6 +11,7 @@ using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.References
 {
@@ -215,7 +217,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             log = (log ?? new Log());
 
@@ -223,11 +225,11 @@ namespace BindOpen.Framework.Core.Data.References
             {
                 foreach (DataElement dataElement in PathDetail.Elements)
                 {
-                    dataElement.UpdateRuntimeInfo(log);
+                    dataElement.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                 }
             }
 
-            SourceElement?.UpdateRuntimeInfo(log);
+            SourceElement?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
         #endregion

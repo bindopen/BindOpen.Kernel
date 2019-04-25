@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.UnitTest;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.Data.Elements
@@ -79,7 +78,7 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
             if (_scalarElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null,log);
 
             TestCreateElementSet();
         }

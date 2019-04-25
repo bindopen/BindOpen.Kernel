@@ -4,8 +4,9 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts.Options;
+using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
@@ -24,6 +25,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// The application settings.
         /// </summary>
         ITBdoAppSettings<Q> Settings { get; }
+
+        /// <summary>
+        /// The application settings.
+        /// </summary>
+        T GetSettings<T>() where T : TBdoAppSettings<Q>;
 
         /// <summary>
         /// Configures the application host.
@@ -72,8 +78,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the application settings.</returns>
         ITBdoAppSettings<Q> LoadSettings(
             string filePath,
-            ILog log,
             IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null);
 
         /// <summary>

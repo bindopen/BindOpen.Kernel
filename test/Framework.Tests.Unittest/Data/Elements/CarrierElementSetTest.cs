@@ -7,7 +7,6 @@ using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
-using BindOpen.Framework.UnitTest;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.Data.Elements
@@ -100,7 +99,7 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
             if (_carrierElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + log.ToXml());
         }

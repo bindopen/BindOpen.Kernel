@@ -8,6 +8,7 @@ using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.Extensions.Items.Formats;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Factories
 {
@@ -83,6 +84,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         public static ITAppExtensionItemConfiguration<T> LoadConfiguration<T>(
             this IAppScope appScope,
             string xmlstring,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null) where T : IAppExtensionItemDefinition
         {
             AppExtensionItemKind extensionItemKind = typeof(T).GetExtensionItemKind();
@@ -92,16 +94,16 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
             switch (extensionItemKind)
             {
                 case AppExtensionItemKind.Carrier:
-                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
+                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Connector:
-                    configuration = XmlHelper.LoadFromString<ConnectorConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
+                    configuration = XmlHelper.LoadFromString<ConnectorConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Entity:
-                    configuration = XmlHelper.LoadFromString<EntityConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
+                    configuration = XmlHelper.LoadFromString<EntityConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Format:
-                    configuration = XmlHelper.LoadFromString<FormatConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
+                    configuration = XmlHelper.LoadFromString<FormatConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 //case AppExtensionItemKind.Metrics:
                 //    configuration = XmlHelper.LoadFromString<MetricsDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
@@ -110,7 +112,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
                 //    configuration = XmlHelper.LoadFromString<RoutineConfiguration>(xmlstring, log) as ITAppExtensionItemDto<T>;
                 //    break;
                 case AppExtensionItemKind.Task:
-                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
+                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
             }
 

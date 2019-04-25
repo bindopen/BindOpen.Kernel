@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Runtime.Application.Hosts.Options;
+﻿using BindOpen.Framework.Runtime.Application.Options;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {

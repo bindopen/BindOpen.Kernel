@@ -146,10 +146,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <returns>The load log.</returns>
         public override ILog LoadLog(
             String filePath,
+
             ILog loadLog = null,
             bool mustFileExist = true)
         {
-            Log log = XmlHelper.Load<Log>(filePath, loadLog, null, mustFileExist);
+            Log log = XmlHelper.Load<Log>(filePath, null, null, loadLog, null, mustFileExist);
             //if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
             return log;
         }
@@ -164,8 +165,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String xmlString,
             ILog loadLog = null)
         {
-            Log log = XmlHelper.LoadFromString<Log>(xmlString, loadLog, null);
-            log?.UpdateRuntimeInfo(loadLog);
+            Log log = XmlHelper.LoadFromString<Log>(xmlString, null, null, loadLog, null);
+            log?.UpdateRuntimeInfo(null, null, loadLog);
 
             return log;
         }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
@@ -7,6 +8,7 @@ using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
@@ -209,7 +211,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             if (Configuration!=null)
             {
@@ -220,8 +222,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
                        Configuration.Name;
                 }
 
-                Configuration.UpdateRuntimeInfo(log);
-                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration);
+                Configuration.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration, appScope, scriptVariableSet);
             }
         }
 

@@ -14,8 +14,9 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
 using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts.Options;
+using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
@@ -293,7 +294,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     if (string.IsNullOrEmpty(settingsFilePath))
                         settingsFilePath = GetDefaultSettingsFilePath();
 
-                    ITBdoAppSettings<Q> appSettings = LoadSettings(settingsFilePath, log, _appScope);
+                    ITBdoAppSettings<Q> appSettings = LoadSettings(settingsFilePath, _appScope, null, log);
 
                     if (log.HasErrorsOrExceptions())
                     {
@@ -303,14 +304,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     {
                         log.AddMessage("Application settings loaded");
 
+                        Options?.Settings?.SetAppScope(_appScope);
                         Options?.Settings?.Configuration?.Update(appSettings?.Configuration);
-                        Options?.Settings?.Configuration?.Update(new DataElementSpecSet(
-                            Options?.SettingsSpecificationSet?.Items?
-                                .Where(p =>
-                                    p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Definition) == true
-                                    || p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Configuration) == true).ToArray()),
-                            null,
-                            new [] { UpdateMode.Incremental_UpdateCommonItems });
+                        Options?.Settings?.Configuration?.Update(
+                            new DataElementSpecSet(
+                                Options?.SettingsSpecificationSet?.Items?
+                                    .Where(p =>
+                                        p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Definition) == true
+                                        || p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Configuration) == true).ToArray()),
+                                null,
+                                new [] { UpdateMode.Incremental_UpdateCommonItems });
+                        Options?.Settings?.UpdateRuntimeInfo(_appScope, null, log);
 
                         if (Options?.Settings!=null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
@@ -379,10 +383,19 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
         public virtual ITBdoAppSettings<Q> LoadSettings(
-            string filePath, ILog log, IAppScope appScope = null, XmlSchemaSet xmlSchemaSet = null)
+            string filePath,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
+            XmlSchemaSet xmlSchemaSet = null)
         {
-            Q appConfiguration = XmlHelper.Load<Q>(filePath, log, xmlSchemaSet);
+            Q appConfiguration = XmlHelper.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet);
             return new TBdoAppSettings<Q>(appScope, appConfiguration);
+        }
+
+        public T GetSettings<T>() where T : TBdoAppSettings<Q>
+        {
+            return Settings as T;
         }
 
         #endregion

@@ -7,9 +7,11 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Serialization
 {
@@ -130,6 +132,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T Load<T>(
             String filePath,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
             ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true) where T : DataItem
@@ -165,7 +169,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         streamReader = new StreamReader(filePath);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(streamReader)) as T;
 
-                        dataItem?.UpdateRuntimeInfo(log);
+                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                     }
                 }
                 catch (Exception ex)
@@ -192,7 +196,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadFromString<T>(
             String xmlString,
-            ILog log,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : DataItem
         {
             T dataItem = null;
@@ -224,6 +230,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                         StringReader stringReader = new StringReader(xmlString);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(stringReader)) as T;
+
+                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                     }
                 }
                 catch (Exception ex)

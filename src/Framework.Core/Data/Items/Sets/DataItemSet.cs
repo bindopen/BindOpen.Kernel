@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Items.Sets
 {
@@ -491,13 +493,13 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             if (_items != null)
             {
                 foreach (T item in _items)
                 {
-                    item.UpdateRuntimeInfo(log);
+                    item.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                 }
             }
         }

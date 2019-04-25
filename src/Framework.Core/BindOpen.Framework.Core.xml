@@ -100,7 +100,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -2015,7 +2015,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -2334,7 +2334,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -3084,7 +3084,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -3223,7 +3223,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElement.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -3888,7 +3888,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElement.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -4776,7 +4776,7 @@
             <param name="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.Load``1(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Loads a data item from the specified file path.
             </summary>
@@ -4787,7 +4787,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.LoadFromString``1(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.LoadFromString``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the data item from the specified file path.
             </summary>
@@ -5156,7 +5156,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -5351,7 +5351,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DescribedDataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DescribedDataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -6160,7 +6160,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -6341,7 +6341,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Source.DataSource.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.Source.DataSource.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -6560,7 +6560,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.TitledDataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.TitledDataItem.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -6720,7 +6720,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.References.DataReferenceDto.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Data.References.DataReferenceDto.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -8754,7 +8754,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -8823,7 +8823,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -8893,7 +8893,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -8963,7 +8963,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -9040,7 +9040,7 @@
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemDtoFactory.LoadConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemDtoFactory.LoadConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -9702,7 +9702,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -10309,7 +10309,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -11001,7 +11001,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -11184,7 +11184,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>

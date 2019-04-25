@@ -6,6 +6,7 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.System;
@@ -179,13 +180,22 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             if (Configuration != null)
             {
-                Configuration.UpdateRuntimeInfo(log);
-                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration);
+                Configuration.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration, appScope, scriptVariableSet);
             }
+        }
+
+        /// <summary>
+        /// Sets the specified application scope.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        public void SetAppScope(IRuntimeAppScope appScope)
+        {
+            _appScope = appScope;
         }
 
         #endregion

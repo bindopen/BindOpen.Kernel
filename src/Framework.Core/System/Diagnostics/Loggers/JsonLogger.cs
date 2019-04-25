@@ -152,7 +152,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             {
                 streamReader?.Close();
             }
-            log?.UpdateRuntimeInfo(loadLog);
+            log?.UpdateRuntimeInfo(null, null, loadLog);
 
             return log;
         }
@@ -182,7 +182,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             {
                 childLoadLog.AddException(ex);
             }
-            if (log != null) log.UpdateRuntimeInfo(loadLog);
+            log?.UpdateRuntimeInfo(null, null, loadLog);
 
             return log;
         }
@@ -228,11 +228,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             }
             finally
             {
-                if (memoryStream != null)
-                    memoryStream.Close();
+                memoryStream?.Close();
 
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
             }
 
             return isWasSaved;

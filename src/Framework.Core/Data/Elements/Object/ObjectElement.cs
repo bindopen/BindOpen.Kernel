@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -12,6 +13,7 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements._Object
 {
@@ -266,9 +268,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
             foreach(DataElementSet elementSet in Objects)
             {
@@ -276,8 +278,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
                 if (!log.HasErrorsOrExceptions() && (item is DataItem dataItem))
                 {
-                    elementSet.UpdateRuntimeInfo(log);
-                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet);
+                    elementSet.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, appScope, scriptVariableSet);
                 }
 
                 AddItem(item);
@@ -285,7 +287,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -308,5 +309,4 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #endregion
     }
-
 }

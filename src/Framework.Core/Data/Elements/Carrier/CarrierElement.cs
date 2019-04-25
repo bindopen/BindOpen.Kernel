@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Carrier
 {
@@ -193,13 +195,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
             SetItems(Carriers?.Select(p=>
                 {
-                    p.UpdateRuntimeInfo(log);
+                    p.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                     return p;
                 }).ToArray());
         }

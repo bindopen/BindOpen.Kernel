@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Security;
 
 namespace BindOpen.Framework.Runtime.Application.Configuration
@@ -87,15 +89,15 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
             foreach (ApplicationCredential applicationCredential in this.Credentials)
-                applicationCredential.UpdateRuntimeInfo(log);
+                applicationCredential.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
             foreach (DataSource dataSource in this.DataSources)
-                dataSource.UpdateRuntimeInfo(log);
+                dataSource.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
         #endregion

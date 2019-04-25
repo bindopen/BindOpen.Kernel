@@ -1,6 +1,8 @@
 ﻿using System;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -14,7 +16,7 @@ namespace BindOpen.Framework.Core.Data.Items
         ILog Update(string[] specificationAreas = null, UpdateMode[] updateModes = null);
         ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateMode[] updateModes = null) where T : IDataItem;
 
-        void UpdateRuntimeInfo(ILog log = null);
+        void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null);
         void UpdateStorageInfo(ILog log = null);
     }
 }

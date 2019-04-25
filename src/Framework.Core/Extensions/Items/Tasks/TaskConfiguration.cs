@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -9,6 +10,7 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Common;
 using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Tasks
 {
@@ -194,11 +196,11 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(ILog log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            _outputDetail?.UpdateRuntimeInfo(log);
+            _outputDetail?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
         #endregion

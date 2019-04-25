@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts.Options;
+using BindOpen.Framework.Runtime.Application.Options;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
