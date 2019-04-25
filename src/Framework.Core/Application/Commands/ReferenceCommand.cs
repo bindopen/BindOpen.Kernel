@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Commands.Interfaces;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.References;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.Data.References.Interfaces;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
@@ -15,13 +18,8 @@ namespace BindOpen.Framework.Core.Application.Commands
     [Serializable()]
     [XmlType("ReferenceCommand", Namespace = "http://meltingsoft.com/bindopen/xsd")]
     [XmlRoot(ElementName = "command", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ReferenceCommand : Command
+    public class ReferenceCommand : Command, IReferenceCommand
     {
-
-        #region Variables
-
-        #endregion
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -32,7 +30,7 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// The task set of this instance.
         /// </summary>
         [XmlElement("reference")]
-        public DataReference Reference { get; set; } = new DataReference();
+        public DataReferenceConfiguration Reference { get; set; } = new DataReferenceConfiguration();
 
         #endregion
 
@@ -50,15 +48,16 @@ namespace BindOpen.Framework.Core.Application.Commands
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ReferenceCommand class.
+        /// Instantiates a new instance of the Command class.
         /// </summary>
         /// <param name="reference">The reference to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public ReferenceCommand(
-            DataReference reference, String name = null)
+        protected ReferenceCommand(
+            IDataReferenceConfiguration reference,
+            string name = null)
             : base(CommandKind.Reference, name)
         {
-            this.Reference = reference;
+            this.Reference = reference as DataReferenceConfiguration;
         }
 
         #endregion
@@ -77,15 +76,16 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
-        public override Log ExecuteWithResult(
-            out String resultString,
+        public override ILog ExecuteWithResult(
+            out string resultString,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal)
         {
             resultString = "";
 
-            Log log = appScope.Check(true);
+            ILog log = appScope.Check(true);
+
             if (this.Reference==null)
             {
                 log.AddWarning(
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.Application.Commands
             }
             else if (!log.HasErrorsOrExceptions()&& this.Reference != null)
             {
-                scriptVariableSet.SetValue("currentItem", this.Reference.SourceElement.GetItem());
+                scriptVariableSet.SetValue("currentItem", this.Reference.SourceElement.GetObject());
                 scriptVariableSet.SetValue("currentElement", this.Reference.SourceElement);
                 resultString = this.Reference.Get(appScope, scriptVariableSet, log)?.ToString();
             }
@@ -114,11 +114,11 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ReferenceCommand aReferenceCommand = base.Clone() as ReferenceCommand;
             if (this.Reference!=null)
-                aReferenceCommand.Reference = this.Reference.Clone() as DataReference;
+                aReferenceCommand.Reference = this.Reference.Clone() as DataReferenceConfiguration;
             return aReferenceCommand;
         }
 

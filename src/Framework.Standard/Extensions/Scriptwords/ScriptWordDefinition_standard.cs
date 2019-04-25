@@ -3,18 +3,18 @@ using System.Collections;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Standard.Extensions.Scriptwords
 {
-
     /// <summary>
     /// This class represents a 'Standard' script definition.
     /// </summary>
-    public static class ScriptWordDefinition_standard
+    [ScriptwordDefinition()]
+    public static class ScriptwordDefinition_standard
     {
-
         // ------------------------------------------
         // FUNCTIONS
         // ------------------------------------------
@@ -29,11 +29,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_IsEmpty(
+        [Scriptword]
+        public static string Fun_IsEmpty(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
 
@@ -51,11 +52,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_Text(
+        [Scriptword]
+        public static string Fun_Text(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             return "\"" + value1 + "\"";
@@ -69,11 +71,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_FormatText(
+        [Scriptword]
+        public static string Fun_FormatText(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String textValue = parameters.GetStringAtIndex(0);
             String aFormatText = parameters.GetStringAtIndex(1);
@@ -89,11 +92,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_If(
+        [Scriptword]
+        public static string Fun_If(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String aCondition = parameters.GetStringAtIndex(0);
 
@@ -111,11 +115,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_Not(
+        [Scriptword]
+        public static string Fun_Not(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             return (!string.Equals(value1, "%TRUE()", StringComparison.OrdinalIgnoreCase) ? "%True()" : "%False()");
@@ -129,11 +134,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_Or(
+        [Scriptword]
+        public static string Fun_Or(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             Boolean b = false;
             foreach (String st in parameters)
@@ -149,15 +155,16 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_And(
+        [Scriptword]
+        public static string Fun_And(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             Boolean b = true;
             foreach (String st in parameters)
-                b = (b & (string.Equals(st, "%TRUE()", StringComparison.OrdinalIgnoreCase)));
+                b &= (string.Equals(st, "%TRUE()", StringComparison.OrdinalIgnoreCase));
             return (b ? "%TRUE()" : "%FALSE()");
         }
 
@@ -169,11 +176,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_Xor(
+        [Scriptword]
+        public static string Fun_Xor(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             Boolean b = true;
             foreach (String st in parameters)
@@ -189,11 +197,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_IsEqual(
+        [Scriptword]
+        public static string Fun_IsEqual(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -209,11 +218,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_IsDifferent(
+        [Scriptword]
+        public static string Fun_IsDifferent(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
@@ -229,11 +239,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_GetCurrentDateTime(
+        [Scriptword]
+        public static string Fun_GetCurrentDateTime(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return DateTime.Now.ToString();
         }
@@ -247,11 +258,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_DateTime_Format(
+        [Scriptword]
+        public static string Fun_DateTime_Format(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String aFormat = parameters.GetStringAtIndex(0);
 
@@ -275,11 +287,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_DateTime_TimeStamp(
+        [Scriptword]
+        public static string Fun_DateTime_TimeStamp(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             DateTime dateTime = System.DateTime.Now;
 
@@ -300,11 +313,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_DateTime_Add(
+        [Scriptword]
+        public static string Fun_DateTime_Add(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String year = parameters.GetStringAtIndex(0);
             String month = parameters.GetStringAtIndex(1);
@@ -339,11 +353,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_DataModule(
+        [Scriptword]
+        public static string Fun_DataModule(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return parameters.GetStringAtIndex(0);
         }
@@ -356,11 +371,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Fun_DataModule_Name(
+        [Scriptword]
+        public static string Fun_DataModule_Name(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             String text = parameters.GetStringAtIndex(0);
 
@@ -393,11 +409,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_GetEmpty(
+        [Scriptword]
+        public static string Var_GetEmpty(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return "\"\"";
         }
@@ -410,11 +427,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_Literal_Tab(
+        [Scriptword]
+        public static string Var_Literal_Tab(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return "\t";
         }
@@ -427,11 +445,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_Literal_Cr(
+        [Scriptword]
+        public static string Var_Literal_Cr(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return "\n";
         }
@@ -444,11 +463,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_Literal_CarretPos(
+        [Scriptword]
+        public static string Var_Literal_CarretPos(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return "%LITERAL_CARRETPOS()";
         }
@@ -461,11 +481,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_RoamingFolderPath(
+        [Scriptword(Name= "application.data.folderpath")]
+        public static string Var_RoamingFolderPath(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
         }
@@ -478,11 +499,12 @@ namespace BindOpen.Framework.Standard.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_MyDocumentsFolderPath(
+        [Scriptword(Name = "mydocuments.folderpath")]
+        public static string Var_MyDocumentsFolderPath(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");
         }

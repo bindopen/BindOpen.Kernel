@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Equal(string value1, string value2)
+        public override string GetSqlText_Equal(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_NotEqual(string value1, string value2)
+        public override string GetSqlText_NotEqual(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Greater(string value1, string value2)
+        public override string GetSqlText_Greater(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_GreaterOrEqual(string value1, string value2)
+        public override string GetSqlText_GreaterOrEqual(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Less(string value1, string value2)
+        public override string GetSqlText_Less(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -96,7 +96,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_LessOrEqual(string value1, string value2)
+        public override string GetSqlText_LessOrEqual(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
@@ -111,7 +111,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="value1"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_IsNull(string value1)
+        public override string GetSqlText_IsNull(string value1)
         {
             return "(" + value1 + " IS NULL)";
         }

@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -14,66 +18,63 @@ using BindOpen.Framework.Core.System.Scripting;
 namespace BindOpen.Framework.Core.Data.Elements._Object
 {
     /// <summary>
-    /// This class represents a entity element that is an element whose items are entities.
+    /// This class represents a object element that is an element whose items are entities.
     /// </summary>
     [Serializable()]
-    [XmlType("ObjectElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "object", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ObjectElement : DataElement
+    [XmlType("ObjectElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "object", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class ObjectElement : DataElement, IObjectElement
     {
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private String _ClassFullName = "";
-        //private String _FormatUniqueName = "";
-        //private DataHandler _DataSchemreference = null;
-
-        #endregion
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
 
-        // Object -----------------------------
-
         /// <summary>
         /// The class full name of this instance.
         /// </summary>
         [XmlAttribute("class")]
-        public String ClassFullName
+        public string ClassFullName { get; set; } = "";
+
+        /// <summary>
+        /// Specification of the ClassFullName property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ClassFullNameSpecified => !string.IsNullOrEmpty(ClassFullName);
+
+        /// <summary>
+        /// The definition unique ID of this instance.
+        /// </summary>
+        [XmlAttribute("definition")]
+        public string DefinitionUniqueId { get; set; } = "";
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Objects of this instance.
+        /// </summary>
+        [XmlArray("items")]
+        [XmlArrayItem("add")]
+        public List<DataElementSet> Objects
         {
-            get { return this._ClassFullName; }
-            set { this._ClassFullName = value; }
+            get;
+            set;
         }
 
-        //// Format -----------------------------
+        /// <summary>
+        /// Specification of the Objects property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ObjectsSpecified => Items.Count > 0;
 
-        ///// <summary>
-        ///// The format unique name of this instance.
-        ///// </summary>
-        //[XmlElement("formatUniqueName")]
-        //public String FormatUniqueName
-        //{
-        //    get { return this._FormatUniqueName; }
-        //    set { this._FormatUniqueName = value; }
-        //}
+        // --------------------------------------------------
 
-        //// Data schema ------------------------
-
-        ///// <summary>
-        ///// The data schema reference of this instance.
-        ///// </summary>
-        //[XmlElement("dataSchema.reference")]
-        //public DataHandler DataSchemreference
-        //{
-        //    get { return this._DataSchemreference; }
-        //    set { this._DataSchemreference = value; }
-        //}
+        /// <summary>
+        /// Specification of the DefinitionUniqueId property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         // Specifcation -----------------------
 
@@ -86,32 +87,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
             get { return base.Specification as ObjectElementSpec; }
             set { base.Specification = value; }
         }
-
-        // Items -----------------------
-
-        ///// <summary>
-        ///// The item object of this instance.
-        ///// </summary>
-        //[XmlAnyElement("object.item")]
-        //public XElement ItemObject
-        //{
-        //    get {
-        //        return XElement.Parse("<item>" + base.StringItem + "</item>");
-        //    }
-        //    set { base.StringItem = (value == null ? null : value.ToString()); }
-        //}
-
-        ///// <summary>
-        ///// Specification of the ItemObject property of this instance.
-        ///// </summary>
-        //[XmlIgnore()]
-        //public Boolean ItemObjectSpecified
-        //{
-        //    get
-        //    {
-        //        return base.StringItems !=null && base.StringItems.Count == 1;
-        //    }
-        //}
 
         #endregion
 
@@ -135,22 +110,22 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
         /// <param name="classFullName">The class full name to consider.</param>
-        /// <param name="aSpecification">The specification to consider.</param>
+        /// <param name="specification">The specification to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            String id,
-            String classFullName,
-            ObjectElementSpec aSpecification,
-            params DataItem[] items)
+            string name,
+            string id,
+            string classFullName,
+            IObjectElementSpec specification,
+            params IDataItem[] items)
             : base(name, "ObjectElement_", id)
         {
             this.ValueType = DataValueType.Object;
-            this.Specification = aSpecification;
-            
+            this.Specification = specification as ObjectElementSpec;
+
             this.SetItem(items);
-            if (!String.IsNullOrEmpty(classFullName))
-                this._ClassFullName = classFullName;
+            if (!string.IsNullOrEmpty(classFullName))
+                this.ClassFullName = classFullName;
         }
 
         /// <summary>
@@ -160,9 +135,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="classFullName">The entity unique name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            String classFullName,
-            params DataItem[] items)
+            string name,
+            string classFullName,
+            params IDataItem[] items)
             : this(name, null, classFullName, null, items)
         {
         }
@@ -173,8 +148,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            String name,
-            params DataItem[] items)
+            string name,
+            params IDataItem[] items)
             : this(name, null, null, null, items)
         {
         }
@@ -184,28 +159,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public ObjectElement(
-            params DataItem[] items)
+            params IDataItem[] items)
             : this(null, null, null, null, items)
         {
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
-        {
-            return new ObjectElementSpec();
         }
 
         #endregion
@@ -216,22 +172,31 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
         #region Items
 
+        // Specification ---------------------
+
+        /// <summary>
+        /// Creates a new specification.
+        /// </summary>
+        /// <returns>Returns the new specifcation.</returns>
+        public override IDataElementSpec NewSpecification()
+        {
+            return Specification = new ObjectElementSpec();
+        }
+
+        // Items ----------------------------
+
         /// <summary>
         /// Adds a new single item of this instance.
         /// </summary>
         /// <param name="item">The string item of this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override Boolean AddItem(
-            Object item,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+        public override bool AddItem(
+            object item,
+            ILog log = null)
         {
-            Boolean boolean = base.AddItem(item, appScope, scriptVariableSet, log);
+            bool boolean = base.AddItem(item, log);
             if (this[0] is DataItem)
             {
                 Assembly assembly = this[0].GetType().Assembly;
@@ -245,59 +210,11 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Sets the specified single item of this instance.
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public override void SetItem(
-            Object item,
-            IAppScope appScope = null)
+            object item)
         {
             base.SetItem(item);
-        }
-
-        /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
-        {
-            Object object1 = null;
-
-            if (this.Specification==null ||
-                (this.Specification is ObjectElementSpec) && (this.Specification as ObjectElementSpec).ClassFilter.IsValueAllowed(this._ClassFullName))
-
-                if (appScope != null && appScope.AppExtension!=null)
-                    log.Append(appScope.AppExtension.CreateInstance(AssemblyHelper.GetClassReference(this._ClassFullName), out object1));
-
-            return object1;
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
-            Object indexItem = null,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
-        {
-            if ((indexItem == null) || (indexItem is int))
-            {
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            }
-            else if (indexItem is String)
-            {
-                return this.GetItems(appScope, scriptVariableSet, log)
-                   .Any(p => p is NamedDataItem && string.Equals((p as NamedDataItem)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-            }
-
-            return null;
         }
 
         /// <summary>
@@ -306,9 +223,9 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="indexItem">The index item to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p.KeyEquals(indexItem));
 
             return false;
@@ -318,71 +235,58 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Join("|", this.Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
+            return string.Join("|", this.Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
         }
 
-        // Conversion ---------------------------
+        #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
 
         /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
+        /// Updates information for storage.
         /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public override String GetStringFromObject(
-            Object object1,
-            Log log = null)
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
         {
-            String stringValue = "";
+            base.UpdateStorageInfo(log);
 
-            if (object1 is DataItem)
+            Objects = Items?.Select(p =>
             {
-                DataItem item = object1 as DataItem;
-                if (item != null)
-                    stringValue = item.ToXml();
-                else if (log != null)
-                    log.AddError(title: "Object expected", description: "The specified object is not an entity.");
-            }
-
-            return stringValue;
+                DataElementSet elementSet = ElementFactory.CreateSet<DataElementSet>(p);
+                elementSet?.UpdateStorageInfo(log);
+                return elementSet;
+            }).ToList();
         }
 
         /// <summary>
-        /// Returns the object value from a based on this instance's specification.
+        /// Updates information for runtime.
         /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public override Object GetObjectFromString(
-            String stringValue,
-            IAppScope appScope = null,
-            Log log = null)
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            Object object1 = null;
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            if (stringValue != null)
-                if ((this.Specification == null || this.Specification is ObjectElementSpec)
-                    && (appScope != null && appScope.AppExtension!= null))
-                    appScope.AppExtension.LoadDataItemInstance(AssemblyHelper.GetClassReference(this.ClassFullName), stringValue, out object1);
+            foreach(DataElementSet elementSet in Objects)
+            {
+                log.Append(AssemblyHelper.CreateInstance(ClassFullName, out object item));
 
-            return object1;
+                if (!log.HasErrorsOrExceptions() && (item is DataItem dataItem))
+                {
+                    elementSet.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, appScope, scriptVariableSet);
+                }
+
+                AddItem(item);
+            }
         }
 
         #endregion
-
-
-        // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
-        // --------------------------------------------------
-
-        #region Check_Update_Repair
-
-
-        #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -394,7 +298,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             ObjectElement aObjectElement = this.MemberwiseClone() as ObjectElement;
             //if (this.DataSchemreference != null)
@@ -404,7 +308,5 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         }
 
         #endregion
-
     }
-
 }

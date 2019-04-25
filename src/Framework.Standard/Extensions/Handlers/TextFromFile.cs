@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using System;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Standard.Extensions.Carriers;
-using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Framework.Standard.Extensions.Handlers
 {
@@ -23,14 +23,14 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the target objects.</returns>
-        public static List<Object> Get(
+        public static List<object> Get(
             DataElement sourceElement = null,
             DataElementSet pathDetail = null,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            List<Object> objects = new List<Object>();
+            List<object> objects = new List<object>();
 
             log = (log ?? new Log());
 
@@ -38,7 +38,7 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
                 log.AddError("Source element missing");
             else
             {
-                RepositoryFile file = sourceElement.FirstItem as RepositoryFile;
+                RepositoryFile file = sourceElement.Items[0] as RepositoryFile;
                 if (file == null)
                     log.AddError("Source file missing");
                 else
@@ -59,14 +59,14 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the source object.</returns>
-        public static List<Object> Post(
+        public static List<object> Post(
             Object targetObject,
             ref DataElement sourceDataElement,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
-            List<Object> objects = new List<Object>();
+            List<object> objects = new List<object>();
 
             return objects;
         }

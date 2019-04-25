@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
@@ -8,7 +7,6 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Databases.Data.Connections
 {
-
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
@@ -24,9 +22,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         void ExecuteNonQuery(
-            String queryText,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null);
+            string queryText,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null);
 
         // Execution query data reader  ---------------------------------------
 
@@ -39,10 +37,10 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         void ExecuteQuery(
-            String queryText,
+            string queryText,
             ref DbDataReader dataReader,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null);
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null);
 
         // Execution query dataset  ---------------------------------------
 
@@ -55,10 +53,10 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         void ExecuteQuery(
-            String queryText,
+            string queryText,
             ref DataSet dataSet,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null);
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null);
 
         // Table ---------------------------------------
 
@@ -69,7 +67,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         void GetIdentity(
             ref long id,
-            Log log = null);
+            ILog log = null);
 
         /// <summary>
         /// Executes the specified data query and updates the specified data table.
@@ -79,9 +77,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         void UpdateDataTable(
-            String queryText,
+            string queryText,
             DataTable dataTable,
-            Log log = null);
+            ILog log = null);
 
         /// <summary>
         /// Executes the specified data query and updates the specified data table.
@@ -92,9 +90,9 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         void UpdateDataSet(
-            String queryText,
+            string queryText,
             DataSet dataSet,
-            List<String> tableNames,
-            Log log = null);
+            List<string> tableNames,
+            ILog log = null);
     }
 }

@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// This enumeration lists the possible event criticalities.
     /// </summary>
     [Serializable()]
-    [XmlType("EventCriticality", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("EventCriticality", Namespace = "https://bindopen.org/xsd")]
     public enum EventCriticality
     {
         /// <summary>

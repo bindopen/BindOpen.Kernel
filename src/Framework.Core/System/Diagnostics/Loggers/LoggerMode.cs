@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// This enumeration lists log modes.
     /// </summary>
     [Serializable()]
-    [XmlType("LoggerMode", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("LoggerMode", Namespace = "https://bindopen.org/xsd")]
     public enum LoggerMode
     {
         /// <summary>

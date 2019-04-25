@@ -1,4 +1,7 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using System.IO;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.UnitTest;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.System.Diagnostics
@@ -6,29 +9,67 @@ namespace BindOpen.Framework.UnitTest.System.Diagnostics
     [TestFixture, Order(21)]
     public class LogTest
     {
-        [Test, Order(1)]
-        public void TestEvents()
+        private readonly string _filePath = SetupVariables.WorkingFolder + "log.xml";
+
+        private const int _itemsNumber = 180;
+
+        private ILog _log = null;
+
+        public void CreateEvents()
         {
-            Log log = new Log();
+            _log = new Log();
 
-            int itemsNumber = 180;
-            for (int i = 0; i < itemsNumber; i++)
-                log.AddError("Error" + i);
-            for (int i = 0; i < itemsNumber; i++)
-                log.AddException("Exception" + i);
-            for (int i = 0; i < itemsNumber; i++)
-                log.AddMessage("Message" + i);
-            for (int i = 0; i < itemsNumber; i++)
-                log.AddWarning("Warning" + i);
-            for (int i = 0; i < itemsNumber; i++)
-                log.AddSubLog(new Log());
-            log.SaveXml(@"G:\temp\log.xml");
-
-            //Assert.That(log.Errors.Count == itemsNumber, "Bad insertion of errors ({0} expected; {1} found)", itemsNumber, log.Errors.Count);
-            //Assert.That(log.Exceptions.Count == itemsNumber, "Bad insertion of exceptions ({0} expected; {1} found)", itemsNumber, log.Exceptions.Count);
-            //Assert.That(log.Messages.Count == itemsNumber, "Bad insertion of messages ({0} expected; {1} found)", itemsNumber, log.Messages.Count);
-            //Assert.That(log.Warnings.Count == itemsNumber, "Bad insertion of warnings ({0} expected; {1} found)", itemsNumber, log.Warnings.Count);
-            //Assert.That(log.SubLogs.Count == itemsNumber, "Bad insertion of sub logs ({0} expected; {1} found)", itemsNumber, log.SubLogs.Count);
+            for (int i = 0; i < _itemsNumber; i++)
+                _log.AddError("Error" + i);
+            for (int i = 0; i < _itemsNumber; i++)
+                _log.AddException("Exception" + i);
+            for (int i = 0; i < _itemsNumber; i++)
+                _log.AddMessage("Message" + i);
+            for (int i = 0; i < _itemsNumber; i++)
+                _log.AddWarning("Warning" + i);
+            for (int i = 0; i < _itemsNumber; i++)
+                _log.AddSubLog(new Log());
         }
+
+        [Test, Order(1)]
+        public void TestCreateEvents()
+        {
+            if (_log == null)
+            {
+                CreateEvents();
+            }
+
+            Assert.That(_log.Errors.Count == _itemsNumber, "Bad insertion of errors ({0} expected; {1} found)", _itemsNumber, _log.Errors.Count);
+            Assert.That(_log.Exceptions.Count == _itemsNumber, "Bad insertion of exceptions ({0} expected; {1} found)", _itemsNumber, _log.Exceptions.Count);
+            Assert.That(_log.Messages.Count == _itemsNumber, "Bad insertion of messages ({0} expected; {1} found)", _itemsNumber, _log.Messages.Count);
+            Assert.That(_log.Warnings.Count == _itemsNumber, "Bad insertion of warnings ({0} expected; {1} found)", _itemsNumber, _log.Warnings.Count);
+            Assert.That(_log.SubLogs.Count == _itemsNumber, "Bad insertion of sub logs ({0} expected; {1} found)", _itemsNumber, _log.SubLogs.Count);
+        }
+
+        [Test, Order(2)]
+        public void TestSaveEvents()
+        {
+            if (_log==null)
+            {
+                CreateEvents();
+            }
+
+            _log?.SaveXml(_filePath);
+        }
+
+        [Test, Order(3)]
+        public void TestLoadEvents()
+        {
+            if (!File.Exists(_filePath))
+                TestSaveEvents();
+
+            Log log = new Log();
+            _log = XmlHelper.Load<Log>(_filePath, null, null, log);
+
+            Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + log.ToXml());
+
+            TestCreateEvents();
+        }
+
     }
 }

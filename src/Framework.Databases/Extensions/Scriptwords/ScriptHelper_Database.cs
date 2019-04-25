@@ -12,22 +12,22 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Gets the BdO string corresponding to the specified data field.
         /// </summary>
-        /// <param name="dbFieldConfiguration">The database date field to consider.</param>
+        /// <param name="field">The database date field to consider.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlDataFieldString(
-            DbField dbFieldConfiguration)
+            DbField field)
         {
             String userFilterString = "";
-            if (dbFieldConfiguration.DataModule != null)
-                userFilterString += "$SqlDatabase(\"" + dbFieldConfiguration.DataModule + "\").";
-            if (dbFieldConfiguration.DataTableAlias != null)
-                userFilterString += "$SqlTable(\"" + dbFieldConfiguration.DataTable + "\").";
-            else if (dbFieldConfiguration.DataTable != null)
-                userFilterString += "$SqlTable(\"" + dbFieldConfiguration.DataTable + "\").";
-            if (dbFieldConfiguration.Alias != null)
-                userFilterString += "$SqlField(\"" + dbFieldConfiguration.Alias + "\")";
-            else if (dbFieldConfiguration.Name != null)
-                userFilterString += "$SqlField(\"" + dbFieldConfiguration.Name + "\")";
+            if (field.DataModule != null)
+                userFilterString += "$SqlDatabase(\"" + field.DataModule + "\").";
+            if (field.DataTableAlias != null)
+                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
+            else if (field.DataTable != null)
+                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
+            if (field.Alias != null)
+                userFilterString += "$SqlField(\"" + field.Alias + "\")";
+            else if (field.Name != null)
+                userFilterString += "$SqlField(\"" + field.Name + "\")";
             return userFilterString;
         }
 
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlNumberFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
 
             // we build the user filter condition string
@@ -89,9 +89,9 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlNumberAndFilterString(
+        public static string GetSqlNumberAndFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlAnd(" + ScriptHelper_Database.GetSqlNumberFilterString(sqlDbFieldString, values) + ")";
         }
@@ -102,9 +102,9 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlNumberOrFilterString(
+        public static string GetSqlNumberOrFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlOr(" + ScriptHelper_Database.GetSqlNumberFilterString(sqlDbFieldString, values) + ")";
         }
@@ -117,7 +117,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <returns>The string that allows to filter users and workgroup users.</returns>
         private static String GetSqlTextFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
 
             // we build the user filter condition string
@@ -162,9 +162,9 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlTextAndFilterString(
+        public static string GetSqlTextAndFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlAnd(" + ScriptHelper_Database.GetSqlTextFilterString(sqlDbFieldString, values) + ")";
         }
@@ -175,9 +175,9 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlTextOrFilterString(
+        public static string GetSqlTextOrFilterString(
             String sqlDbFieldString,
-            List<String> values)
+            List<string> values)
         {
             return "$SqlOr(" + ScriptHelper_Database.GetSqlTextFilterString(sqlDbFieldString, values) + ")";
         }

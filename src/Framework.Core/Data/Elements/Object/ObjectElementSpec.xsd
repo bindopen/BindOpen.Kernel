@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
-  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/elements/DataElementSpec.xsd" />
   <xs:include schemaLocation="../../../data/specification/filters/DataValueFilter.xsd" />
@@ -13,9 +13,7 @@
       <xs:extension base="bdo:DataElementSpec">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="class.filter" type="bdo:DataValueFilter" />
-          <!--<xs:element minOccurs="0" maxOccurs="1" name="formatUniqueNameFilter" type="bdo:DataValueFilter" />
-          <xs:element minOccurs="1" maxOccurs="1" name="formatRequirementLevel" type="bdo:RequirementLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="formatSpecificationLevels" type="bdo:ArrayOfSpecificationLevel" />-->
+          <xs:element minOccurs="0" maxOccurs="1" name="entity.filter" type="bdo:DataValueFilter" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

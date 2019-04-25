@@ -1,18 +1,17 @@
-﻿using System;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Hosts;
 
 namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
 {
-
     /// <summary>
     /// This class represents a 'Runtime' script word definition.
     /// </summary>
-    public static class ScriptWordDefinition_runtime
+    [ScriptwordDefinition]
+    public static class ScriptwordDefinition_runtime
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
@@ -27,20 +26,20 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_ApplicationFolderPath(
+        [Scriptword]
+        public static string Var_ApplicationFolderPath(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            BdoAppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
-            if (appHostService == null)
+            IBaseBdoAppHost appHost = appScope.DataContext.GetSystemItem("appHost") as IBaseBdoAppHost;
+            if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHostService.GetKnownPath(ApplicationPathKind.AppFolder);
+            return appHost.GetKnownPath(ApplicationPathKind.AppFolder);
         }
 
         /// <summary>
@@ -51,20 +50,20 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_RoamingFolderPath(
+        [Scriptword]
+        public static string Var_RoamingFolderPath(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IBdoAppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
-            if (appHostService == null)
+            IBaseBdoAppHost appHost = appScope.DataContext.GetSystemItem("appHost") as IBaseBdoAppHost;
+            if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHostService.GetKnownPath(ApplicationPathKind.RoamingFolder);
+            return appHost.GetKnownPath(ApplicationPathKind.RoamingFolder);
         }
 
         /// <summary>
@@ -75,20 +74,20 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_ApplicationModuleName(
+        [Scriptword]
+        public static string Var_ApplicationModuleName(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            BdoAppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
-            if (appHostService == null)
+            IBaseBdoAppHost appHost = appScope.DataContext.GetSystemItem("appHost") as IBaseBdoAppHost;
+            if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHostService?.Options.ApplicationModule?.Name ?? "";
+            return appHost?.BaseOptions.ApplicationModule?.Name ?? "";
         }
 
         /// <summary>
@@ -99,23 +98,22 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public static String Var_ApplicationInstanceName(
+        [Scriptword]
+        public static string Var_ApplicationInstanceName(
             IAppScope appScope,
-            ScriptVariableSet scriptVariableSet,
-            ScriptWord scriptWord,
-            params Object[] parameters)
+            IScriptVariableSet scriptVariableSet,
+            IScriptword scriptWord,
+            params object[] parameters)
         {
             if (appScope == null || appScope.DataContext == null)
                 return "<!--Application scope missing-->";
-            BdoAppHost appHostService =
-                appScope.DataContext.GetSystemItem("appHost") as BdoAppHost;
-            if (appHostService == null)
+            IBaseBdoAppHost appHost = appScope.DataContext.GetSystemItem("appHost") as IBaseBdoAppHost;
+            if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHostService?.Options.Settings?.ApplicationInstanceName ?? "";
+            return appHost?.BaseOptions.BaseSettings?.ApplicationInstanceName ?? "";
         }
 
         #endregion
-
     }
 }

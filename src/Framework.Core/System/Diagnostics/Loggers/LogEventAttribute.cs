@@ -12,31 +12,31 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The ID of the log.
         /// </summary>
-        public static String __Id = "id";
+        public static string __Id = "id";
         /// <summary>
         /// The name of the log.
         /// </summary>
-        public static String __Name = "name";
+        public static string __Name = "name";
         /// <summary>
         /// The title of the log.
         /// </summary>
-        public static String __Title = "title";
+        public static string __Title = "title";
         /// <summary>
         /// The description of the log.
         /// </summary>
-        public static String __Description = "description";
+        public static string __Description = "description";
         /// <summary>
         /// The detail of the log.
         /// </summary>
-        public static String __ResultCode = "resultCode";
+        public static string __ResultCode = "resultCode";
         /// <summary>
         /// The ID of the task of the log.
         /// </summary>
-        public static String __Source = "source";
+        public static string __Source = "source";
         /// <summary>
         /// The name of the task of the log.
         /// </summary>
-        public static String __StackTrace = "stackTrace";
+        public static string __StackTrace = "stackTrace";
     };
 
 }

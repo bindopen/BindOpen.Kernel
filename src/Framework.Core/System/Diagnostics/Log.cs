@@ -8,10 +8,11 @@ using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -19,9 +20,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// This class represents a logger of tasks.
     /// </summary>
     [Serializable()]
-    [XmlType("Log", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "log", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class Log : DescribedDataItem
+    [XmlType("Log", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "log", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class Log : DescribedDataItem, ILog
     {
         // ------------------------------------------
         // VARIABLES
@@ -53,13 +54,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the Execution property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool ExecutionSpecified
-        {
-            get
-            {
-                return this.Execution != null;
-            }
-        }
+        public bool ExecutionSpecified => Execution != null;
 
         // Task ----------------------------------
 
@@ -69,34 +64,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         [XmlElement("task")]
         public TaskConfiguration Task
         {
-            get
-            {
-                //if (this._Task == null) this._Task = new Task();
-                return this._task;
-            }
-            set
-            {
-                this.WriteLog(this._task = value, LoggerMode.Auto);
-            }
+            get => _task;
+            set => WriteLog(_task = value, LoggerMode.Auto);
         }
 
         /// <summary>
         /// Specification of the Task property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool TaskSpecified
-        {
-            get
-            {
-                return this._task != null;
-            }
-        }
+        public bool TaskSpecified => _task != null;
 
         /// <summary>
         /// Function that filters event.
         /// </summary>
         [XmlIgnore()]
-        public Predicate<LogEvent> SubLogEventPredicate
+        public Predicate<ILogEvent> SubLogEventPredicate
         {
             get;
             set;
@@ -114,13 +96,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the Detail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool DetailSpecified
-        {
-            get
-            {
-                return Detail != null && this.Detail.Elements.Count > 0;
-            }
-        }
+        public bool DetailSpecified => Detail?.Elements.Count > 0;
 
         // Events ----------------------------------
 
@@ -129,14 +105,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="id"></param>
         [XmlIgnore()]
-        public Event this[String id] => id == null ? null : Events?.Find(p => p.Id.KeyEquals(id));
+        public LogEvent this[string id] => id == null ? null : Events?.Find(p => p.Id.KeyEquals(id));
 
         /// <summary>
         /// The event with the specified ID.
         /// </summary>
         /// <param name="index"></param>
         [XmlIgnore()]
-        public Event this[int index] => Events?.Cast<object>().ToArray().GetObjectAtIndex(index) as Event;
+        public LogEvent this[int index] => Events?.Cast<object>().ToArray().GetObjectAtIndex(index) as LogEvent;
 
         /// <summary>
         /// Events of this instance.
@@ -155,13 +131,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Specification of the Events property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool EventsSpecified
-        {
-            get
-            {
-                return Events != null && this.Events.Count > 0;
-            }
-        }
+        public bool EventsSpecified => Events?.Count > 0;
 
         /// <summary>
         /// Errors of this instance.
@@ -173,13 +143,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<LogEvent> Errors
-        {
-            get
-            {
-                return this.Events == null ? new List<LogEvent>() : this.Events.Where(p => p.Kind == EventKind.Error).ToList();
-            }
-        }
+        public List<ILogEvent> Errors => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Error).ToList<ILogEvent>();
 
         /// <summary>
         /// Warnings of this instance.
@@ -191,13 +155,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<LogEvent> Warnings
-        {
-            get
-            {
-                return this.Events == null ? new List<LogEvent>() : this.Events.Where(p => p.Kind == EventKind.Warning).ToList();
-            }
-        }
+        public List<ILogEvent> Warnings => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Warning).ToList<ILogEvent>();
 
         /// <summary>
         /// Messages of this instance.
@@ -209,13 +167,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<LogEvent> Messages
-        {
-            get
-            {
-                return this.Events == null ? new List<LogEvent>() : this.Events.Where(p => p.Kind == EventKind.Message).ToList();
-            }
-        }
+        public List<ILogEvent> Messages => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Message).ToList<ILogEvent>();
 
         /// <summary>
         /// Exceptions of this instance.
@@ -227,13 +179,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<LogEvent> Exceptions
-        {
-            get
-            {
-                return this.Events == null ? new List<LogEvent>() : this.Events.Where(p => p.Kind == EventKind.Exception).ToList();
-            }
-        }
+        public List<ILogEvent> Exceptions => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Exception).ToList<ILogEvent>();
 
         /// <summary>
         /// Checkpoints of this instance.
@@ -245,13 +191,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Events"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<LogEvent> Checkpoints
-        {
-            get
-            {
-                return this.Events == null ? new List<LogEvent>() : this.Events.Where(p => p.Kind == EventKind.Checkpoint).ToList();
-            }
-        }
+        public List<ILogEvent> Checkpoints => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Checkpoint).ToList<ILogEvent>();
 
         /// <summary>
         /// Logs of this instance.
@@ -263,13 +203,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Events"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<Log> SubLogs
-        {
-            get
-            {
-                return this.Events == null ? new List<Log>() : this.Events.Where(p => p.Log != null).Select(p => p.Log).ToList();
-            }
-        }
+        public List<ILog> SubLogs => Events == null ? new List<ILog>() : Events.Where(p => p.Log != null).Select(p => p.Log as Log).ToList<ILog>();
 
         // Tree ----------------------------------
 
@@ -277,34 +211,22 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Parent of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Log Parent { get; set; } = null;
-
-        /// <summary>
-        /// Parent of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public LogEvent Event { get; set; } = null;
+        public ILog Parent { get; set; } = null;
 
         /// <summary>
         /// Root of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Log Root
+        public ILog Root
         {
-            get { return this.GetRoot(); }
+            get { return GetRoot(); }
         }
 
         /// <summary>
         /// Specification of the Task property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public int Level
-        {
-            get
-            {
-                return this.Parent == null ? 0 : this.Parent.Level + 1;
-            }
-        }
+        public int Level => Parent == null ? 0 : Parent.Level + 1;
 
         // Logger ----------------------------------
 
@@ -312,7 +234,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Loggers of this instance.
         /// </summary>
         [XmlIgnore()]
-        public List<Logger> Loggers { get; set; } = null;
+        public List<ILogger> Loggers { get; set; } = null;
 
         #endregion
 
@@ -334,7 +256,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         public Log(
-            params Logger[] loggers) : this(null, loggers)
+            params ILogger[] loggers) : this(null, loggers)
         {
         }
 
@@ -344,12 +266,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public Log(
-            Predicate<LogEvent> eventFinder = null,
-            params Logger[] loggers) : this()
+            Predicate<ILogEvent> eventFinder = null,
+            params ILogger[] loggers) : this()
         {
-            this.SubLogEventPredicate = eventFinder;
-            this.Loggers = loggers.Where(p => p != null).ToList();
-            foreach (Logger logger in this.Loggers)
+            SubLogEventPredicate = eventFinder;
+            Loggers = loggers.Where(p => p != null).ToList();
+            foreach (ILogger logger in Loggers)
                 logger.SetLog(this);
         }
 
@@ -360,12 +282,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public Log(
-            TaskConfiguration task,
-            Predicate<LogEvent> eventFinder = null,
-            params Logger[] loggers)
+            ITaskConfiguration task,
+            Predicate<ILogEvent> eventFinder = null,
+            params ILogger[] loggers)
             : this(eventFinder, loggers)
         {
-            this._task = task;
+            _task = task as TaskConfiguration;
         }
 
         /// <summary>
@@ -375,14 +297,16 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFinder">The function that filters event.</param>
         public Log(
-            Log parentLog,
-            TaskConfiguration task = null,
-            Predicate<LogEvent> eventFinder = null)
+            ILog parentLog,
+            ITaskConfiguration task = null,
+            Predicate<ILogEvent> eventFinder = null)
             : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : new Logger[0]))
         {
-            this._task = task;
+            _task = task as TaskConfiguration;
             if (parentLog != null)
-                this.Parent = parentLog;
+            {
+                Parent = parentLog as Log;
+            }
         }
 
         #endregion
@@ -399,18 +323,18 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Adds the specified loggers.
         /// </summary>
         /// <param name="loggers">The loggers to add.</param>
-        public void AddLoggers(params Logger[] loggers)
+        public void AddLoggers(params ILogger[] loggers)
         {
             if (loggers != null)
             {
-                if (this.Loggers == null)
-                    this.Loggers = new List<Logger>();
+                if (Loggers == null)
+                    Loggers = new List<ILogger>();
 
-                foreach (Logger logger in loggers)
+                foreach (ILogger logger in loggers)
                 {
                     if (logger != null)
                     {
-                        this.Loggers.Add(logger);
+                        Loggers.Add(logger);
                     }
                 }
             }
@@ -421,9 +345,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="task">The task to log.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(TaskConfiguration task, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(ITaskConfiguration task, LoggerMode mode = LoggerMode.Auto)
         {
-            foreach (Logger logger in this.Loggers)
+            foreach (ILogger logger in Loggers)
             {
                 if ((logger.Mode != LoggerMode.Off && mode == LoggerMode.Any) || (logger.Mode == mode))
                 {
@@ -437,11 +361,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="logEvent">The event to log.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(LogEvent logEvent, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(ILogEvent logEvent, LoggerMode mode = LoggerMode.Auto)
         {
-            if (this.Loggers != null)
+            if (Loggers != null)
             {
-                foreach (Logger logger in this.Loggers)
+                foreach (ILogger logger in Loggers)
                 {
                     if ((logger.Mode != LoggerMode.Off && mode == LoggerMode.Any) || (logger.Mode == mode))
                     {
@@ -457,9 +381,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="elementName">The element name to log.</param>
         /// <param name="elementValue">The element value to log.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(String elementName, Object elementValue, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(string elementName, object elementValue, LoggerMode mode = LoggerMode.Auto)
         {
-            foreach (Logger logger in this.Loggers)
+            foreach (ILogger logger in Loggers)
             {
                 if ((logger.Mode != LoggerMode.Off && mode == LoggerMode.Any) || (logger.Mode == mode))
                 {
@@ -473,9 +397,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="childLog">The child log to consider.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(Log childLog, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(ILog childLog, LoggerMode mode = LoggerMode.Auto)
         {
-            foreach (Logger logger in this.Loggers)
+            foreach (ILogger logger in Loggers)
             {
                 if ((logger.Mode != LoggerMode.Off && mode == LoggerMode.Any) || (logger.Mode == mode))
                 {
@@ -486,17 +410,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
 
         // Events ------------------------------------
 
-        //     /// <summary>
-        //     /// Adds a new log event.
-        //     /// </summary>
-        //     /// <param name="logEvent">The log event to add.</param>
-        //     public void AddEvent(LogEvent logEvent)
-        //     {
-        //if (this._Events != null)
-        //    this._Events.Add(logEvent);
-        //this.WriteLog(logEvent, LoggerMode.Auto);
-        //     }
-
         /// <summary>
         /// Adds a new log event.
         /// </summary>
@@ -504,9 +417,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         public bool AddEvent(
-            LogEvent logEvent,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILogEvent logEvent,
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
             bool isAdded = false;
             if (logEvent != null)
@@ -514,7 +427,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                 if (logFinder == null || (childLog != null && logFinder.Invoke(childLog)))
                 {
                     if (Loggers?.Any(q => q.IsHistoryRequired()) != false
-                        || (SubLogEventPredicate == null || this.SubLogEventPredicate.Invoke(logEvent)))
+                        || (SubLogEventPredicate == null || SubLogEventPredicate.Invoke(logEvent)))
                     {
                         if (childLog != null)
                         {
@@ -522,22 +435,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                             if (logEvent.Description == null && childLog.Description != null) logEvent.Description = childLog.Description.Clone() as DictionaryDataItem;
                             if (logEvent.Kind == EventKind.Any) logEvent.Kind = childLog.GetMaxEventKind();
                             childLog.Parent = this;
-                            childLog.Loggers = this.Loggers;
+                            childLog.Loggers = Loggers;
                             logEvent.Log = childLog;
-                            childLog.Event = logEvent;
+                            //childLog.Event = logEvent;
                         }
 
-                        if (this.Event != null && (this.Event.Kind == EventKind.None || this.Event.Kind == EventKind.Any))
-                            this.Event.Kind = this.Event.Kind.Max(logEvent.Kind);
+                        //if (Event != null && (Event.Kind == EventKind.None || Event.Kind == EventKind.Any))
+                        //    Event.Kind = Event.Kind.Max(logEvent.Kind);
 
-                        if (this.Events == null) this.Events = new List<LogEvent>();
-                        this.Events.Add(logEvent);
+                        (Events ?? (Events = new List<LogEvent>())).Add(logEvent as LogEvent);
 
                         isAdded = true;
                     }
 
                     logEvent.Parent = this;
-                    this.WriteLog(logEvent, LoggerMode.Auto);
+                    WriteLog(logEvent, LoggerMode.Auto);
                 }
             }
 
@@ -549,29 +461,29 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="kind">The kind of this instance.</param>
         /// <param name="title">The title of this instance.</param>
-        /// <param name="description">The description of this instance.</param>
         /// <param name="criticality">The criticality of this instance.</param>
+        /// <param name="description">The description of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
         /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddEvent(
+        public ILogEvent AddEvent(
             EventKind kind,
-            String title,
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String source = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
             LogEvent logEvent;
-            this.AddEvent(
+            AddEvent(
                 logEvent = new LogEvent(
                     kind,
-                    title,
+                    title ?? childLog?.Title,
                     criticality,
                     description,
                     resultCode,
@@ -594,17 +506,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddWarning(
-            String title,
+        public ILogEvent AddWarning(
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String aSource = null,
+            string description = null,
+            string resultCode = null,
+            string aSource = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 EventKind.Warning,
                 title,
                 criticality,
@@ -625,17 +537,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddError(
-            String title,
+        public ILogEvent AddError(
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String aSource = null,
+            string description = null,
+            string resultCode = null,
+            string aSource = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 EventKind.Error,
                 title,
                 criticality,
@@ -656,17 +568,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddCheckpoint(
-            String title,
+        public ILogEvent AddCheckpoint(
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String source = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 EventKind.Checkpoint,
                 title,
                 criticality,
@@ -687,17 +599,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddMessage(
-            String title,
+        public ILogEvent AddMessage(
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String source = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 EventKind.Message,
                 title,
                 criticality,
@@ -718,17 +630,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddException(
-            String title,
+        public ILogEvent AddException(
+            string title,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String source = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 EventKind.Exception,
                 title,
                 criticality,
@@ -747,16 +659,16 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="source">The ExtensionDataContext to consider.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public LogEvent AddException(
+        public ILogEvent AddException(
             Exception exception,
             EventCriticality criticality = EventCriticality.None,
-            String resultCode = null,
-            String source = null,
-            Log childLog = null,
-            Predicate<Log> logFinder = null)
+            string resultCode = null,
+            string source = null,
+            ILog childLog = null,
+            Predicate<ILog> logFinder = null)
         {
             LogEvent logEvent = null;
-            this.AddEvent(
+            AddEvent(
                 logEvent = new LogEvent(
                     exception,
                     criticality,
@@ -771,11 +683,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="log">The log whose task results must be added.</param>
         /// <param name="kinds">The event kinds to add.</param>
         /// <returns>Returns the added events.</returns>
-        public List<LogEvent> AddEvents(
-            Log log,
+        public List<ILogEvent> AddEvents(
+            ILog log,
             params EventKind[] kinds)
         {
-            return this.AddEvents(log, null, kinds);
+            return AddEvents(log, null, kinds);
         }
 
         /// <summary>
@@ -785,19 +697,23 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         /// <param name="kinds">The event kinds to add.</param>
         /// <returns>Returns the added events.</returns>
-        public List<LogEvent> AddEvents(
-            Log log,
-            Predicate<Log> logFinder = null,
+        public List<ILogEvent> AddEvents(
+            ILog log,
+            Predicate<ILog> logFinder = null,
             params EventKind[] kinds)
         {
-            List<LogEvent> logEvents = new List<LogEvent>();
+            List<ILogEvent> logEvents = new List<ILogEvent>();
 
-            if ((log != null) && (log.Events != null) && (logFinder == null || logFinder.Invoke(log)))
+            if ((log?.Events != null) && (logFinder?.Invoke(log) != false))
             {
-                logEvents = log.Events.Where(p => kinds.Count() == 0 || kinds.Contains(p.Kind)).ToList();
+                logEvents = log.Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<ILogEvent>();
                 if (logEvents != null)
-                    foreach (LogEvent currentEvent in logEvents)
-                        this.AddEvent(currentEvent);
+                {
+                    foreach (ILogEvent currentEvent in logEvents)
+                    {
+                        AddEvent(currentEvent);
+                    }
+                }
             }
 
             return logEvents;
@@ -809,10 +725,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="log">The log whose task results must be added.</param>
         /// <returns>Returns the added events.</returns>
         /// <remarks>This function equals to AddEventsexcept except that it does not allow to filter with log event kinds.</remarks>
-        public List<LogEvent> Append(
-            Log log)
+        public List<ILogEvent> Append(
+            ILog log)
         {
-            return this.AddEvents(log);
+            return AddEvents(log);
         }
 
         /// <summary>
@@ -822,11 +738,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         /// <returns>Returns the added events.</returns>
         /// <remarks>This function equals to AddEventsexcept except that it does not allow to filter with log event kinds.</remarks>
-        public List<LogEvent> Append(
-            Log log,
-            Predicate<Log> logFinder = null)
+        public List<ILogEvent> Append(
+            ILog log,
+            Predicate<ILog> logFinder = null)
         {
-            return this.AddEvents(log);
+            return AddEvents(log);
         }
 
         /// <summary>
@@ -838,12 +754,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool isRecursive = true,
             params EventKind[] kinds)
         {
-            if (this.Events != null)
-                this.Events.RemoveAll(p => kinds.Contains(p.Kind));
+            Events?.RemoveAll(p => kinds.Contains(p.Kind));
 
             if (isRecursive)
-                foreach (Log childLog in this.SubLogs)
-                    this.ClearEvents(isRecursive, kinds);
+            {
+                foreach (Log childLog in SubLogs)
+                {
+                    ClearEvents(isRecursive, kinds);
+                }
+            }
         }
 
         /// <summary>
@@ -852,8 +771,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public void Sanitize()
         {
             // we clear the task check points if there is no special results in load task
-            if (!this.HasErrorsOrExceptionsOrWarnings())
-                this.ClearEvents(true, EventKind.Checkpoint);
+            if (!HasErrorsOrExceptionsOrWarnings())
+                ClearEvents(true, EventKind.Checkpoint);
         }
 
         // Sub logs ------------------------------------
@@ -868,26 +787,26 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="description">The description of this instance.</param>
         /// <param name="criticality">The criticality of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="aSource">The ExtensionDataContext of this instance.</param>
+        /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date to consider.</param>
-        public LogEvent AddSubLog(
-            Log childLog,
-            Predicate<Log> logFinder = null,
+        public ILogEvent AddSubLog(
+            ILog childLog,
+            Predicate<ILog> logFinder = null,
             EventKind eventKind = EventKind.Any,
-            String title = null,
+            string title = null,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String aSource = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null)
         {
-            return this.AddEvent(
+            return AddEvent(
                 eventKind,
                 title,
                 criticality,
                 description,
                 resultCode,
-                aSource,
+                source,
                 date,
                 childLog,
                 logFinder);
@@ -902,26 +821,26 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="description">The description of this instance.</param>
         /// <param name="criticality">The criticality of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="aSource">The ExtensionDataContext of this instance.</param>
+        /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date to consider.</param>
-        public Log AddSubLog(
-            Predicate<Log> filterFinder = null,
+        public ILog AddSubLog(
+            Predicate<ILog> filterFinder = null,
             EventKind eventKind = EventKind.Any,
-            String title = null,
+            string title = null,
             EventCriticality criticality = EventCriticality.None,
-            String description = null,
-            String resultCode = null,
-            String aSource = null,
+            string description = null,
+            string resultCode = null,
+            string source = null,
             DateTime? date = null)
         {
             Log childLog = new Log();
-            this.AddEvent(
+            AddEvent(
                 eventKind,
                 title,
                 criticality,
                 description,
                 resultCode,
-                aSource,
+                source,
                 date,
                 childLog,
                 filterFinder);
@@ -932,13 +851,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         ///// Adds a new child log.
         ///// </summary>
         ///// <returns>The added child log.</returns>
-        //public Log AddLog(Task task)
+        //public ILog AddLog(Task task)
         //{
         //    Log childLog = null;
-        //    this.AddSubLog(childLog = new Log(task)
+        //    AddSubLog(childLog = new Log(task)
         //    {
         //        Parent = this,
-        //        Loggers= new List<Logger>(this._Loggers)
+        //        Loggers= new List<ILogger>(_Loggers)
         //    });
         //    return childLog;
         //}
@@ -948,9 +867,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="childLog">The child log to remove.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
-        public bool RemoveSubLog(Log childLog, bool isRecursive = true)
+        public bool RemoveSubLog(ILog childLog, bool isRecursive = true)
         {
-            return (childLog == null ? false : this.RemoveSubLog(childLog.Id, isRecursive));
+            return childLog == null ? false : RemoveSubLog(childLog.Id, isRecursive);
         }
 
         /// <summary>
@@ -958,11 +877,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="id">The ID to consider.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
-        public bool RemoveSubLog(String id, bool isRecursive = true)
+        public bool RemoveSubLog(string id, bool isRecursive = true)
         {
             bool isRemoved = false;
-            if ((id != null) && (this.Events != null) && (this.Events.RemoveAll(p => p.Log != null && id.KeyEquals(id)) == 0))
-                foreach (Log subLog in this.SubLogs)
+            if ((id != null) && (Events != null) && (Events.RemoveAll(p => p.Log != null && id.KeyEquals(id)) == 0))
+                foreach (Log subLog in SubLogs)
                 {
                     if (subLog.RemoveSubLog(id, isRecursive))
                     {
@@ -981,12 +900,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="name">The name of the logger to consider.</param>
         /// <returns>Returns the logger with the specified name.</returns>
-        public Logger GetLogger(String name = null)
+        public ILogger GetLogger(string name = null)
         {
             if (name == null)
-                return (this.Loggers.Count > 0 ? this.Loggers[0] : null);
+                return Loggers.Count > 0 ? Loggers[0] : null;
             else
-                return this.Loggers.Find(p => p.KeyEquals(name));
+                return Loggers.Find(p => p.KeyEquals(name));
         }
 
         /// <summary>
@@ -994,9 +913,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="format">The name of the format to consider.</param>
         /// <returns>Returns the logger with the specified format.</returns>
-        public Logger GetLogger(LogFormat format)
+        public ILogger GetLogger(LogFormat format)
         {
-            return this.Loggers.Find(p => p.Format == format);
+            return Loggers.Find(p => p.Format == format);
         }
 
         /// <summary>
@@ -1004,9 +923,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="formats">The log formats to consider.</param>
         /// <returns>The loggers with the specified formats.</returns>
-        public List<Logger> GetLoggers(params LogFormat[] formats)
+        public List<ILogger> GetLoggers(params LogFormat[] formats)
         {
-            return this.Loggers.Where(p => formats.Contains(p.Format)).ToList();
+            return Loggers.Where(p => formats.Contains(p.Format)).ToList();
         }
 
         #endregion
@@ -1022,12 +941,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override String GetTitleText(String variantName = "*", String defaultVariantName = "*")
+        public override string GetTitle(string variantName = "*", string defaultVariantName = "*")
         {
-            if (this.Title == null && this.Task != null)
-                return this.Task.GetTitleText(variantName, defaultVariantName);
+            if (Title == null && Task != null)
+                return Task.GetTitle(variantName, defaultVariantName);
             else
-                return base.GetTitleText(variantName, defaultVariantName);
+                return base.GetTitle(variantName, defaultVariantName);
         }
 
         /// <summary>
@@ -1035,12 +954,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override String GetDescriptionText(String variantName = "*", String defaultVariantName = "*")
+        public override string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
-            if (this.Description == null && this.Task != null)
-                return this.Task.GetDescriptionText(variantName, defaultVariantName);
+            if (Description == null && Task != null)
+                return Task.GetDescription(variantName, defaultVariantName);
             else
-                return base.GetDescriptionText(variantName, defaultVariantName);
+                return base.GetDescription(variantName, defaultVariantName);
         }
 
         // Events --------------------------------
@@ -1051,17 +970,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="id">The ID of the event to return.</param>
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <returns>The event of this instance with the specified ID.</returns>
-        public Event GetEventWithId(String id, bool isRecursive = false)
+        public ILogEvent GetEventWithId(string id, bool isRecursive = false)
         {
-            if (id == null || this.Events == null) return null;
+            if (id == null || Events == null) return null;
 
-            Event logEvent = this.Events.First(p => p.Id.KeyEquals(id));
+            ILogEvent logEvent = Events.Find(p => p.Id.KeyEquals(id));
             if (isRecursive)
-                foreach (Log childLog in this.SubLogs)
+            {
+                foreach (Log childLog in SubLogs)
                 {
                     logEvent = childLog.GetEventWithId(id, true);
                     if (logEvent != null) return logEvent;
                 }
+            }
 
             return logEvent;
         }
@@ -1072,17 +993,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <param name="kinds">The kinds to consider.</param>
         /// <returns>Returns the specified events of this instance.</returns>
-        public List<LogEvent> GetEvents(
+        public List<ILogEvent> GetEvents(
             bool isRecursive = false,
             params EventKind[] kinds)
         {
-            if (this.Events == null) return new List<LogEvent>();
+            if (Events == null) return new List<ILogEvent>();
 
-            List<LogEvent> events = this.Events.GetEvents(kinds);
+            List<ILogEvent> events = Events.ToList<ILogEvent>().GetEvents(kinds);
 
             if (isRecursive)
-                foreach (Log childLog in this.SubLogs)
+            {
+                foreach (Log childLog in SubLogs)
+                {
                     events.AddRange(childLog.GetEvents(isRecursive, kinds));
+                }
+            }
 
             return events;
         }
@@ -1097,13 +1022,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool isRecursive = false,
             params EventKind[] kinds)
         {
-            if (this.Events == null) return 0;
+            if (Events == null) return 0;
 
-            int i = this.Events.Count(p => kinds.Contains(p.Kind));
+            int i = Events.Count(p => kinds.Contains(p.Kind));
 
             if (isRecursive)
-                foreach (Log childLog in this.SubLogs)
-                    i += this.GetEventCount(isRecursive, kinds);
+                foreach (ILog childLog in SubLogs)
+                    i += GetEventCount(isRecursive, kinds);
 
             return i;
         }
@@ -1118,7 +1043,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool isRecursive = true,
             params EventKind[] kinds)
         {
-            return this.GetEvents(isRecursive, kinds).Select(p => p.Kind).ToList().Max();
+            return GetEvents(isRecursive, kinds).Select(p => p.Kind).ToList().Max();
         }
 
         // Has events -----------------------------------
@@ -1133,12 +1058,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool isRecursive = true,
             params EventKind[] kinds)
         {
-            if (this.Events == null) return false;
+            if (Events == null) return false;
 
-            bool aHasEvents = this.Events.Has(kinds);
+            bool aHasEvents = Events.ToList<ILogEvent>().Has(kinds);
 
             if (!aHasEvents && isRecursive)
-                foreach (Log childLog in this.SubLogs)
+                foreach (Log childLog in SubLogs)
                     if (aHasEvents = childLog.HasEvent(isRecursive, kinds))
                         return true;
 
@@ -1153,7 +1078,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public bool HasEvent(
             params EventKind[] kinds)
         {
-            return this.HasEvent(false, kinds);
+            return HasEvent(false, kinds);
         }
 
         /// <summary>
@@ -1166,7 +1091,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             bool isRecursive = true,
             params EventKind[] kinds)
         {
-            return this.HasEvent(isRecursive, EventKind.Warning);
+            return HasEvent(isRecursive, EventKind.Warning);
         }
 
         /// <summary>
@@ -1176,7 +1101,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrors(bool isRecursive = true)
         {
-            return this.HasEvent(isRecursive, EventKind.Error);
+            return HasEvent(isRecursive, EventKind.Error);
         }
 
         /// <summary>
@@ -1186,7 +1111,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasExceptions(bool isRecursive = true)
         {
-            return this.HasEvent(isRecursive, EventKind.Exception);
+            return HasEvent(isRecursive, EventKind.Exception);
         }
 
         /// <summary>
@@ -1196,7 +1121,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasMessages(bool isRecursive = true)
         {
-            return this.HasEvent(isRecursive, EventKind.Message);
+            return HasEvent(isRecursive, EventKind.Message);
         }
 
         /// <summary>
@@ -1206,7 +1131,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrorsOrExceptions(bool isRecursive = true)
         {
-            return this.HasEvent(isRecursive, EventKind.Error, EventKind.Exception);
+            return HasEvent(isRecursive, EventKind.Error, EventKind.Exception);
         }
 
         /// <summary>
@@ -1216,7 +1141,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrorsOrExceptionsOrWarnings(bool isRecursive = true)
         {
-            return this.HasEvent(isRecursive, EventKind.Warning, EventKind.Error, EventKind.Exception);
+            return HasEvent(isRecursive, EventKind.Warning, EventKind.Error, EventKind.Exception);
         }
 
         // Tree --------------------------------
@@ -1225,9 +1150,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Returns the log root.
         /// </summary>
         /// <returns>The log root.</returns>
-        private Log GetRoot()
+        public ILog GetRoot()
         {
-            return (this.Parent == null ? this : this.Parent.GetRoot());
+            return Parent == null ? this : Parent.GetRoot();
         }
 
         /// <summary>
@@ -1236,14 +1161,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="id">The ID of the log to return.</param>
         /// <param name="isRecursive">Indicates whether the search must be recursive.</param>
         /// <returns>The child with the specified ID.</returns>
-        public Log GetSubLogWithId(String id, bool isRecursive = false)
+        public ILog GetSubLogWithId(string id, bool isRecursive = false)
         {
-            if (this.Id.Equals(id, StringComparison.OrdinalIgnoreCase))
+            if (Id.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return this;
-            Log log = null;
+            ILog log = null;
             if (isRecursive)
             {
-                foreach (Log currentChildLog in this.SubLogs)
+                foreach (Log currentChildLog in SubLogs)
                 {
                     log = currentChildLog.GetSubLogWithId(id);
                     if (log != null) return log;
@@ -1259,23 +1184,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has child log. False otherwise.</returns>
         public bool HasSubLog()
         {
-            return this.SubLogs.Count > 0;
+            return SubLogs.Count > 0;
         }
 
         /// <summary>
-        /// Builds the tree of the specified log.
+        /// Builds the tree of this instance.
         /// </summary>
-        /// <param name="log"></param>
-        private static void BuildTree(Log log)
+        public void BuildTree()
         {
-            if (log != null)
-                foreach (LogEvent aEvent in log.Events)
+                foreach (ILogEvent aEvent in Events)
                 {
-                    aEvent.Parent = log;
+                    aEvent.Parent = this;
                     if (aEvent.Log != null)
                     {
-                        aEvent.Log.Parent = log;
-                        Log.BuildTree(aEvent.Log);
+                        aEvent.Log.Parent = this;
+                        aEvent.Log.BuildTree();
                     }
                 }
         }
@@ -1294,9 +1217,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="newFolderPath">The new folder path to consider.</param>
         /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
         /// <param name="newFileName">The new file name to consider.</param>
-        public void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null)
+        public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null)
         {
-            foreach (Logger logger in this.Loggers)
+            foreach (ILogger logger in Loggers)
                 logger.SetFilePath(newFolderPath, isFileToBeMoved, newFileName);
         }
 
@@ -1305,8 +1228,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         public void Start()
         {
-            this.Execution = this.Execution ?? new ProcessExecution();
-            this.Execution.Start();
+            Execution = Execution ?? new ProcessExecution();
+            Execution.Start();
         }
 
         /// <summary>
@@ -1315,8 +1238,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="status">The new status to consider.</param>
         public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
         {
-            this.Execution = this.Execution ?? new ProcessExecution();
-            this.Execution.End(status);
+            Execution = Execution ?? new ProcessExecution();
+            Execution.End(status);
         }
 
         #endregion
@@ -1331,36 +1254,39 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
 
-            if (this.Detail != null)
-                this.Detail.UpdateStorageInfo(log);
-            if (this.Execution != null)
-                this.Execution.UpdateStorageInfo(log);
-            if (this.Events != null)
-                foreach (Event currentEvent in this.Events)
+            Detail?.UpdateStorageInfo(log);
+            Execution?.UpdateStorageInfo(log);
+
+            if (Events != null)
+            {
+                foreach (Event currentEvent in Events)
+                {
                     currentEvent.UpdateStorageInfo(log);
+                }
+            }
         }
 
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            this.Detail?.UpdateRuntimeInfo(appScope, log);
+            Detail?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            this.Execution?.UpdateRuntimeInfo(appScope, log);
-            if (this.Events != null)
+            Execution?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+
+            if (Events != null)
             {
-                foreach (Event currentEvent in this.Events)
+                foreach (Event currentEvent in Events)
                 {
-                    currentEvent.UpdateRuntimeInfo(appScope, log);
+                    currentEvent?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                 }
             }
         }
@@ -1371,21 +1297,18 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Instantiates a new instance of Log class from a xml file.
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
         /// <param name="loadLog">The output log of the load task.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
-        public static Log Load<T>(
-            String filePath,
-            AppScope appScope,
+        public static ILog Load<T>(
+            string filePath,
             bool isCheckXml,
-            Log loadLog,
-            bool mustFileExist = true) where T : Logger, new()
+            ILog loadLog,
+            bool mustFileExist = true) where T : ILogger, new()
         {
-            Log log = (new T()).LoadLog(filePath, loadLog, appScope, mustFileExist);
-            if (log != null)
-                Log.BuildTree(log);
+            ILog log = (new T()).LoadLog(filePath, loadLog, mustFileExist);
+            log?.BuildTree();
             return log;
         }
 
@@ -1393,19 +1316,16 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Instantiates a new instance of Log class from a xml string.
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
         /// <param name="loadLog">The output log of the load task.</param>
         /// <returns>The log defined in the Xml file.</returns>
-        public static Log LoadFromString<T>(
-            String xmlString,
-            AppScope appScope,
+        public static ILog LoadFromString<T>(
+            string xmlString,
             bool isCheckXml,
-            Log loadLog = null) where T : Logger, new()
+            ILog loadLog = null) where T : ILogger, new()
         {
-            Log log = (new T()).LoadLogFromString(xmlString, loadLog, appScope);
-            if (log != null)
-                Log.BuildTree(log);
+            ILog log = (new T()).LoadLogFromString(xmlString, loadLog);
+            log?.BuildTree();
             return log;
         }
 
@@ -1419,10 +1339,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             bool abool = true;
 
-            if (this.Loggers.Count == 0)
+            if (Loggers.Count == 0)
                 return false;
             else
-                foreach (Logger logger in this.Loggers)
+                foreach (Logger logger in Loggers)
                     abool &= logger.Save(this, logger.Filepath);
 
             return abool;
@@ -1433,8 +1353,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <returns>Returns the saving log.</returns>
-        public bool Save<T>(String logFilePath)
-            where T : Logger, new()
+        public bool Save<T>(string logFilePath)
+            where T : ILogger, new()
         {
             return (new T()).Save(this, logFilePath);
         }
@@ -1443,8 +1363,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Gets the xml string of this instance.
         /// </summary>
         /// <returns>The Xml string of this instance.</returns>
-        public String ToString<T>()
-             where T : Logger, new()
+        public string ToString<T>()
+             where T : ILogger, new()
         {
             return (new T()).ToString(this);
         }

@@ -2,22 +2,22 @@
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification.Constraints;
-using BindOpen.Framework.Core.Extensions.Configuration.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Routines;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
     /// <summary>
     /// This class represents an option specification.
     /// </summary>
-    [XmlType("OptionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("optionSpec", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class OptionSpec : ScalarElementSpec
+    [XmlType("OptionSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("optionSpec", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class OptionSpec : ScalarElementSpec, IOptionSpec
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -129,8 +129,8 @@ namespace BindOpen.Framework.Core.Application.Options
             {
                 this.ConstraintStatement = new DataConstraintStatement();
                 this.ConstraintStatement.AddConstraint(
-                    null, "standard$" + BasicRoutineKind.ItemMustBeInList, new DataElementSet(
-                        DataElement.Create(type.GetFields().Select(p => p.Name).ToList().Cast<Object>(), DataValueType.Text)));
+                    null, "standard$" + KnownRoutineKind.ItemMustBeInList, new DataElementSet(
+                        ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
             }
         }
 
@@ -148,7 +148,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// <param name="argumentstring">The argument to consider.</param>
         /// <param name="aliasIndex">The alias index to consider. -2 not found. -1 Name matches. otherwise the index of matched alias.</param>
         /// <returns>Returns True if the specified matches this instance.</returns>
-        public Boolean IsArgumentMarching(string argumentstring, out int aliasIndex)
+        public bool IsArgumentMarching(string argumentstring, out int aliasIndex)
         {
             aliasIndex = -2;
             if (argumentstring != null)
@@ -178,13 +178,13 @@ namespace BindOpen.Framework.Core.Application.Options
         /// </summary>
         /// <param name="argumentstring">The argument to consider.</param>
         /// <returns>Returns True if the specified matches this instance.</returns>
-        public Boolean IsArgumentMarching(string argumentstring)
+        public bool IsArgumentMarching(string argumentstring)
         {
             int i = -2;
             return this.IsArgumentMarching(argumentstring, out i);
         }
 
-        private Boolean IsNameMatching(string name1, string name2)
+        private bool IsNameMatching(string name1, string name2)
         {
             if ((name1 == null) || (name2 == null))
                 return false;

@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.Extensions.Configuration.Formats;
-using BindOpen.Framework.Core.Extensions.Configuration.Metrics;
-using BindOpen.Framework.Core.Extensions.Configuration.Routines;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
-using BindOpen.Framework.Core.Extensions.Definition;
-using BindOpen.Framework.Core.Extensions.Definition.Carriers;
-using BindOpen.Framework.Core.Extensions.Definition.Connectors;
-using BindOpen.Framework.Core.Extensions.Definition.Entities;
-using BindOpen.Framework.Core.Extensions.Definition.Formats;
-using BindOpen.Framework.Core.Extensions.Definition.Handlers;
-using BindOpen.Framework.Core.Extensions.Definition.Metrics;
-using BindOpen.Framework.Core.Extensions.Definition.Routines;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Definition.Tasks;
+using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
+using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
+using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.Extensions.Definitions.Formats;
+using BindOpen.Framework.Core.Extensions.Definitions.Handlers;
+using BindOpen.Framework.Core.Extensions.Definitions.Routines;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Formats;
+using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
 namespace BindOpen.Framework.Core.Extensions.Common
 {
@@ -25,7 +23,7 @@ namespace BindOpen.Framework.Core.Extensions.Common
     /// This enumeration represents the possible kinds of library items.
     /// </summary>
     [Serializable()]
-    [XmlType("AppExtensionItemKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("AppExtensionItemKind", Namespace = "https://bindopen.org/xsd")]
     public enum AppExtensionItemKind
     {
         /// <summary>
@@ -81,12 +79,12 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// <summary>
         /// RoutineConfiguration.
         /// </summary>
-        RoutineConfiguration,
+        Routine,
 
         /// <summary>
         /// Script word.
         /// </summary>
-        ScriptWord,
+        Scriptword,
     }
 
 
@@ -106,30 +104,9 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// Gets the extension item kind corresponding to the specified object.
         /// </summary>
         /// <param name="appExtensionItemDefinition">The application extension item to consider.</param>
-        public static AppExtensionItemKind GetExtensionItemKind(this AppExtensionItemDefinition appExtensionItemDefinition)
+        public static AppExtensionItemKind GetExtensionItemKind(this IAppExtensionItemDefinitionDto appExtensionItemDefinition)
         {
-            AppExtensionItemKind libraryObjectKind = AppExtensionItemKind.None;
-
-            if (appExtensionItemDefinition is CarrierDefinition)
-                return AppExtensionItemKind.Carrier;
-            else if (appExtensionItemDefinition is ConnectorDefinition)
-                return AppExtensionItemKind.Connector;
-            else if (appExtensionItemDefinition is EntityDefinition)
-                return AppExtensionItemKind.Entity;
-            else if (appExtensionItemDefinition is FormatDefinition)
-                return AppExtensionItemKind.Format;
-            else if (appExtensionItemDefinition is HandlerDefinition)
-                return AppExtensionItemKind.Handler;
-            else if (appExtensionItemDefinition is MetricsDefinition)
-                return AppExtensionItemKind.Metrics;
-            else if (appExtensionItemDefinition is RoutineDefinition)
-                return AppExtensionItemKind.RoutineConfiguration;
-            else if (appExtensionItemDefinition is ScriptWordDefinition)
-                return AppExtensionItemKind.ScriptWord;
-            else if (appExtensionItemDefinition is TaskDefinition)
-                return AppExtensionItemKind.Task;
-
-            return libraryObjectKind;
+            return (appExtensionItemDefinition?.GetType()).GetExtensionItemKind();
         }
 
         /// <summary>
@@ -138,28 +115,63 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// <param name="type">The type to consider.</param>
         public static AppExtensionItemKind GetExtensionItemKind(this Type type)
         {
-            AppExtensionItemKind libraryObjectKind = AppExtensionItemKind.None;
-
-            if ((type == typeof(TaskDefinition)) || type == typeof(TaskConfiguration) || (type.IsSubclassOf(typeof(TaskConfiguration))))
+            if ((typeof(ITaskDefinition).IsAssignableFrom(type))
+                || (typeof(ITaskDefinitionDto).IsAssignableFrom(type))
+                || (typeof(ITaskConfiguration).IsAssignableFrom(type))
+                || (typeof(ITask).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Task;
-            else if ((type == typeof(CarrierDefinition)) || type == typeof(CarrierConfiguration) || (type.IsSubclassOf(typeof(CarrierConfiguration))))
+            }
+            else if ((typeof(ICarrierDefinition).IsAssignableFrom(type))
+                || (typeof(ICarrierDefinitionDto).IsAssignableFrom(type))
+                || (typeof(ICarrierConfiguration).IsAssignableFrom(type))
+                || (typeof(ICarrier).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Carrier;
-            else if ((type == typeof(ConnectorDefinition)) || type == typeof(ConnectorConfiguration) || (type.IsSubclassOf(typeof(ConnectorConfiguration))))
+            }
+            else if ((typeof(IConnectorDefinition).IsAssignableFrom(type))
+                || (typeof(IConnectorDefinitionDto).IsAssignableFrom(type))
+                || (typeof(IConnectorConfiguration).IsAssignableFrom(type))
+                || (typeof(IConnector).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Connector;
-            else if ((type == typeof(RoutineDefinition)) || type == typeof(RoutineConfiguration) || (type.IsSubclassOf(typeof(RoutineConfiguration))))
-                return AppExtensionItemKind.RoutineConfiguration;
-            else if ((type == typeof(EntityDefinition)) || type == typeof(EntityConfiguration) || (type.IsSubclassOf(typeof(EntityConfiguration))))
+            }
+            else if ((typeof(IRoutineDefinition).IsAssignableFrom(type))
+                || (typeof(IRoutineDefinitionDto).IsAssignableFrom(type))
+                || (typeof(IRoutineConfiguration).IsAssignableFrom(type))
+                || (typeof(IRoutine).IsAssignableFrom(type)))
+            {
+                return AppExtensionItemKind.Routine;
+            }
+            else if ((typeof(IEntityDefinition).IsAssignableFrom(type))
+                || (typeof(IEntityDefinitionDto).IsAssignableFrom(type))
+                || (typeof(IEntityConfiguration).IsAssignableFrom(type))
+                || (typeof(IEntity).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Entity;
-            else if ((type == typeof(FormatDefinition)) || type == typeof(FormatConfiguration) || (type.IsSubclassOf(typeof(FormatConfiguration))))
+            }
+            else if ((typeof(IFormatDefinition).IsAssignableFrom(type))
+                || (typeof(IFormatDefinitionDto).IsAssignableFrom(type))
+                || (typeof(IFormatConfiguration).IsAssignableFrom(type))
+                || (typeof(IFormat).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Format;
-            else if ((type == typeof(MetricsDefinition)) || type == typeof(MetricsConfiguration) || (type.IsSubclassOf(typeof(MetricsConfiguration))))
-                return AppExtensionItemKind.Metrics;
-            else if (type == typeof(HandlerDefinition))
+            }
+            //else if ((type == typeof(MetricsDefinitionDto)) || type == typeof(MetricsConfiguration) || (type.IsSubclassOf(typeof(MetricsConfiguration))))
+            //    return AppExtensionItemKind.Metrics;
+            else if ((typeof(IHandlerDefinition).IsAssignableFrom(type))
+                || (typeof(IHandlerDefinitionDto).IsAssignableFrom(type)))
+            {
                 return AppExtensionItemKind.Handler;
-            else if ((type == typeof(ScriptWordDefinition)) || type == typeof(ScriptWord) || (type.IsSubclassOf(typeof(ScriptWord))))
-                return AppExtensionItemKind.ScriptWord;
+            }
+            else if ((typeof(IScriptwordDefinition).IsAssignableFrom(type))
+                || (typeof(IScriptwordDefinitionDto).IsAssignableFrom(type))
+                || (typeof(IScriptword).IsAssignableFrom(type)))
+            {
+                return AppExtensionItemKind.Scriptword;
+            }
 
-            return libraryObjectKind;
+            return AppExtensionItemKind.None;
         }
     }
 

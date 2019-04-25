@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumerates the possible levels of accesibility.
     /// </summary>
     [Serializable()]
-    [XmlType("AccessibilityLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("AccessibilityLevel", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum AccessibilityLevel
     {
@@ -76,5 +76,4 @@ namespace BindOpen.Framework.Core.Data.Common
     }
 
     #endregion
-
 }

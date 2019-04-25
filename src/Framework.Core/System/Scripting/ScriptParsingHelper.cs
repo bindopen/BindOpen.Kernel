@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Configuration.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Scripting
@@ -20,17 +20,17 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <summary>
         /// The leading character of the variable.
         /// </summary>
-        public static readonly String Symbol_Var = "$(";
+        public static readonly string Symbol_Var = "$(";
 
         /// <summary>
         /// The leading character of the function.
         /// </summary>
-        public static readonly String Symbol_Fun ="$";
+        public static readonly string Symbol_Fun ="$";
 
         /// <summary>
         /// The syntax items of this class.
         /// </summary>
-        public static readonly String[] SyntaxItems = { "-", ">", "(", ")", "," };
+        public static readonly string[] SyntaxItems = { "-", ">", "(", ")", "," };
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="text">The text from which the string value is retrieved.</param>
         /// <returns>The string value from a text</returns>
-        public static String GetValueFromText(this String text)
+        public static string GetValueFromText(this string text)
         {
             if (text == "''")
             {
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 text = text.Replace("''", "'");
                 if (text.Length > 1)
                 {
-                    if ((text.Substring(0, 1) == "'") & (text.Substring(text.Length - 1, 1) == "'"))
+                    if ((text.Substring(0, 1) == "'") && (text.Substring(text.Length - 1, 1) == "'"))
                         text = text.Substring(1, text.Length - 2);
                 }
             }
@@ -71,22 +71,22 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="parameterName">Name of the parameter to consider.</param>
         /// <param name="isMatchCase">Indicates whether the search is case sensitive.</param>
         /// <returns>The value of the specified parameter.</returns>
-        public static String GetParameterValue(this String stringValue, String parameterName, Boolean isMatchCase =false)
+        public static string GetParameterValue(this string stringValue, string parameterName, bool isMatchCase =false)
         {
-            int aStartIndex = -1;
-            int aEndIndex = -1;
+            int startIndex = -1;
+            int endIndex = -1;
             if (isMatchCase)
             {
-                aStartIndex = stringValue.IndexOf(parameterName + "='") + (parameterName + "='").Length;
-                aEndIndex = ScriptParsingHelper.GetIndexOfNextString(stringValue, "'", aStartIndex + 1);
+                startIndex = stringValue.IndexOf(parameterName + "='") + (parameterName + "='").Length;
+                endIndex = ScriptParsingHelper.GetIndexOfNextString(stringValue, "'", startIndex + 1);
             }
             else
             {
-                aStartIndex = stringValue.ToUpper().IndexOf(parameterName.ToUpper() + "='") + (parameterName + "='").Length;
-                aEndIndex = ScriptParsingHelper.GetIndexOfNextString(stringValue, "'", aStartIndex + 1);
+                startIndex = stringValue.ToUpper().IndexOf(parameterName.ToUpper() + "='") + (parameterName + "='").Length;
+                endIndex = ScriptParsingHelper.GetIndexOfNextString(stringValue, "'", startIndex + 1);
             }
 
-            return stringValue.Substring(aStartIndex, aEndIndex - aStartIndex+1);
+            return stringValue.Substring(startIndex, endIndex - startIndex+1);
         }
 
         #endregion
@@ -104,22 +104,22 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="stv">The string to look for.</param>
         /// <param name="indexDeb">The start index.</param>
         /// <returns>The position of the next stv into st from index position.</returns>
-        public static int GetIndexOfNextString(String st, String stv, int indexDeb)
+        public static int GetIndexOfNextString(string st, string stv, int indexDeb)
         {
             int index = indexDeb;
-            Boolean b = false;
-            while ((index < st.Length) & !b)
+            bool b = false;
+            while ((index < st.Length) && !b)
             {
-                if ((st.Substring(index, 1) == "'") & (stv != "'"))
+                if ((st.Substring(index, 1) == "'") && (stv != "'"))
                     index = ScriptParsingHelper.GetIndexOfNextString(st, "'", index + 1) + 1;
-                else if ((st.Substring(index, 1) == "(") & (stv != "("))
+                else if ((st.Substring(index, 1) == "(") && (stv != "("))
                     index = ScriptParsingHelper.GetIndexOfNextString(st, ")", index + 1) + 1;
                 else if (st.Substring(index, 1) == stv)
                     b = true;
-                else if ((st.Substring(index, 1) == ")") & (stv == ","))
+                else if ((st.Substring(index, 1) == ")") && (stv == ","))
                     b = true;
                 else
-                    index += 1;
+                    index++;
             }
             return index;
         }
@@ -131,22 +131,22 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="stv">The string to look for.</param>
         /// <param name="indexDeb">The start index.</param>
         /// <returns>The position of the next stv into st from index position.</returns>
-        public static int GetIndexOfLastString(String st, String stv, int indexDeb)
+        public static int GetIndexOfLastString(string st, string stv, int indexDeb)
         {
             int index = indexDeb;
-            Boolean b = false;
-            while ((index >= 0) & !b)
+            bool b = false;
+            while ((index >= 0) && !b)
             {
-                if ((st.Substring(index, 1) == "'") & (stv != "'"))
+                if ((st.Substring(index, 1) == "'") && (stv != "'"))
                     index = GetIndexOfLastString(st, "'", index - 1) - 1;
-                else if ((st.Substring(index, 1) == ")") & (stv != ")"))
+                else if ((st.Substring(index, 1) == ")") && (stv != ")"))
                     index = GetIndexOfLastString(st, "(", index - 1) - 1;
                 else if (st.Substring(index, 1) == stv)
                     b = true;
-                else if ((st.Substring(index, 1) == ")") & (stv == ","))
+                else if ((st.Substring(index, 1) == ")") && (stv == ","))
                     b = true;
                 else
-                    index -= 1;
+                    index--;
             }
             return index;
         }
@@ -164,73 +164,81 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="script">The script to analyse.</param>
         /// <returns>The items that are in the specified script.</returns>
-        public static List<ScriptItem> FindScriptItems(String script)
+        public static List<ScriptItem> FindScriptItems(string script)
         {
             List<ScriptItem> scriptItems = new List<ScriptItem>();
             ScriptItem scriptItem = null;
 
             int index = 0;
-            int aLastNoneIndex = index;
+            int lastNoneIndex = index;
 
             while (index < script.Length)
             {
-                int aNextIndex = -1;
+                int nextIndex = -1;
 
-                String currentChar = script.Substring(index, 1);
+                string currentChar = script.Substring(index, 1);
 
                 // if the current char is double quote
                 if (currentChar == "'")
                 {
-                    String scriptItemName = "";
+                    string scriptItemName = "";
 
                     // if something between the last none index and the current then
-                    if (aLastNoneIndex != index)
+                    if (lastNoneIndex != index)
                     {
                         // we declare this something as a none-kind script item
-                        scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                        scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                         if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                        {
                             scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                        }
                         else
+                        {
                             scriptItems.Add(new ScriptItem(
-                                ScriptItemKind.None,
-                                scriptItemName,
-                                index));
+                               ScriptItemKind.None,
+                               scriptItemName,
+                               index));
+                        }
                     }
 
                     // then we look for the next double quote
-                    aNextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "'", index + 1);
-                    scriptItemName = script.Substring(index, aNextIndex - index + 1);
+                    nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "'", index + 1);
+                    scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = ScriptParsingHelper.FindScriptItem(scriptItemName, index);
                     if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == scriptItem.Kind))
                         scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                     else
                         scriptItems.Add(scriptItem);
-                    index = aNextIndex + 1;
-                    aLastNoneIndex = index;
+                    index = nextIndex + 1;
+                    lastNoneIndex = index;
                 }
                 // else if it is a "$" (start of variable item)
                 else if (currentChar == ScriptParsingHelper.Symbol_Fun)
                 {
-                    String scriptItemName = "";
+                    string scriptItemName = "";
 
                     // then we look for the next "(" (end of variable item)
-                    aNextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
-                    scriptItemName = script.Substring(index, aNextIndex - index + 1);
+                    nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
+                    scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = ScriptParsingHelper.FindScriptItem(scriptItemName, index);
                     if (scriptItem.Kind == ScriptItemKind.Variable)
                     {
                         // if something between the last none index and the current then
-                        if (aLastNoneIndex != index)
+                        if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                            }
                             else
+                            {
                                 scriptItems.Add(new ScriptItem(
-                                ScriptItemKind.None,
-                                scriptItemName,
-                                index));
+                               ScriptItemKind.None,
+                               scriptItemName,
+                               index));
+                            }
                         }
 
                         // we record the script item
@@ -238,29 +246,33 @@ namespace BindOpen.Framework.Core.System.Scripting
                             scriptItems[scriptItems.Count - 1].Name += scriptItem.Name;
                         else
                             scriptItems.Add(scriptItem);
-                        index = aNextIndex;
-                        aLastNoneIndex = index;
+                        index = nextIndex;
+                        lastNoneIndex = index;
                     }
                     // if it is a literal script word then
                     else if (scriptItem.Kind == ScriptItemKind.Literal)
                     {
                         // we insert "()" in the item name and we update the index
                         scriptItem.Name += "()";
-                        aNextIndex += 2;
+                        nextIndex += 2;
 
                         // if something between the last none index and the current then
-                        if (aLastNoneIndex != index)
+                        if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                            }
                             else
+                            {
                                 scriptItems.Add(
-                                    new ScriptItem(
-                                        ScriptItemKind.None,
-                                        scriptItemName,
-                                        index));
+                                   new ScriptItem(
+                                       ScriptItemKind.None,
+                                       scriptItemName,
+                                       index));
+                            }
                         }
 
                         // we record the script item
@@ -269,36 +281,42 @@ namespace BindOpen.Framework.Core.System.Scripting
                         else
                             scriptItems.Add(scriptItem);
 
-                        index = aNextIndex;
-                        aLastNoneIndex = index;
+                        index = nextIndex;
+                        lastNoneIndex = index;
                     }
                     else
+                    {
                         index += 1;
+                    }
                 }
                 // else if it is a "#" (start of function item)
                 else if (currentChar == "#")
                 {
-                    String scriptItemName = "";
+                    string scriptItemName = "";
 
                     // then we look for the next "(" (end of variable item)
-                    aNextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
-                    scriptItemName = script.Substring(index, aNextIndex - index + 1);
+                    nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
+                    scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = ScriptParsingHelper.FindScriptItem(scriptItemName, index);
                     if (scriptItem.Kind == ScriptItemKind.Function)
                     {
                         // if something between the last none index and the current then
-                        if (aLastNoneIndex != index)
+                        if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                            }
                             else
+                            {
                                 scriptItems.Add(
-                                    new ScriptItem(
-                                        ScriptItemKind.None,
-                                        scriptItemName,
-                                        index));
+                                   new ScriptItem(
+                                       ScriptItemKind.None,
+                                       scriptItemName,
+                                       index));
+                            }
                         }
 
                         // we record the script item
@@ -306,11 +324,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                             scriptItems[scriptItems.Count - 1].Name += scriptItem.Name;
                         else
                             scriptItems.Add(scriptItem);
-                        index = aNextIndex;
-                        aLastNoneIndex = index;
+                        index = nextIndex;
+                        lastNoneIndex = index;
                     }
                     else
-                        index += 1;
+                    {
+                        index++;
+                    }
                 }
                 // else
                 else
@@ -321,21 +341,25 @@ namespace BindOpen.Framework.Core.System.Scripting
                     // if it is a syntax item
                     if (scriptItem.Kind == ScriptItemKind.Syntax)
                     {
-                        String scriptItemName = "";
+                        string scriptItemName = "";
 
                         // if something between the last none index and the current then
-                        if (aLastNoneIndex != index)
+                        if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                            }
                             else
+                            {
                                 scriptItems.Add(
-                                    new ScriptItem(
-                                        ScriptItemKind.None,
-                                        scriptItemName,
-                                        index));
+                                   new ScriptItem(
+                                       ScriptItemKind.None,
+                                       scriptItemName,
+                                       index));
+                            }
                         }
 
                         scriptItem = ScriptParsingHelper.FindScriptItem(currentChar, index);
@@ -345,34 +369,40 @@ namespace BindOpen.Framework.Core.System.Scripting
                             scriptItems.Add(scriptItem);
 
                         index += scriptItem.Name.Length;
-                        aLastNoneIndex = index;
+                        lastNoneIndex = index;
                     }
                     else
+                    {
                         // in any remaning case, we increment the index
-                        index += 1;
+                        index++;
+                    }
                 }
             }
 
             // if something between the last none index and the current then
-            if (aLastNoneIndex != index)
+            if (lastNoneIndex != index)
             {
                 // we declare this something as a none-kind script item
-                String scriptItemName = script.Substring(aLastNoneIndex, index - aLastNoneIndex);
+                string scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
                 if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                {
                     scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                }
                 else
+                {
                     scriptItems.Add(
-                        new ScriptItem(
-                            ScriptItemKind.None,
-                            scriptItemName,
-                            index));
+                       new ScriptItem(
+                           ScriptItemKind.None,
+                           scriptItemName,
+                           index));
+                }
             }
 
             return scriptItems;
         }
 
         // Returns the script item with the specified name from the specified index.
-        private static ScriptItem FindScriptItem(String name, int index)
+        private static ScriptItem FindScriptItem(string name, int index)
         {
             name = name.Trim();
 
@@ -393,10 +423,10 @@ namespace BindOpen.Framework.Core.System.Scripting
             else if ((name.Length >= 2) && ((name.Substring(0,1) == ScriptParsingHelper.Symbol_Fun) & (name[name.Length - 1] == '(')))
             {
                 // we check that the name has only letters, numbers and underscore
-                Boolean isGood = false;
+                bool isGood = false;
                 foreach (char aChar in name.Substring(1, name.Length - 2))
                 {
-                    isGood = char.IsLetter(aChar) | char.IsNumber(aChar) | (aChar == '_');
+                    isGood = char.IsLetter(aChar) || char.IsNumber(aChar) || (aChar == '_');
                     if (!isGood)
                         break;
                 }
@@ -412,13 +442,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                 }
             }
             // else if it is a function
-            else if ((name.Length >= 2) && ((name[0] == '#') & (name[name.Length - 1] == '(')))
+            else if ((name.Length >= 2) && ((name[0] == '#') && (name[name.Length - 1] == '(')))
             {
                 // we check that the name has only letters, numbers and underscore
-                Boolean isGood = false;
+                bool isGood = false;
                 foreach (char aChar in name.Substring(1, name.Length - 2))
                 {
-                    isGood = char.IsLetter(aChar) | char.IsNumber(aChar) | (aChar == '_');
+                    isGood = char.IsLetter(aChar) || char.IsNumber(aChar) || (aChar == '_');
                     if (!isGood)
                         break;
                 }
@@ -430,7 +460,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 }
             }
             // else if it is a syntax item
-            else if ((new List<String>(ScriptParsingHelper.SyntaxItems)).Contains(name))
+            else if ((new List<string>(ScriptParsingHelper.SyntaxItems)).Contains(name))
             {
                 scriptItem.Index = index;
                 scriptItem.Kind = ScriptItemKind.Syntax;
@@ -453,29 +483,31 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="script">The script to analyse.</param>
         /// <param name="index">The index position to begin analyse.</param>
         /// <returns></returns>
-        public static String GetScriptBlock(String script, int index = 0)
+        public static string GetScriptBlock(string script, int index = 0)
         {
-            int aPrevSpaceIndex = -1;
-            int aPrevVarIndex = -1;
-            int aPrevFunIndex = -1;
-            int aLastIndex = index;
-            Boolean isEndFound = false;
+            int prevSpaceIndex = -1;
+            int prevVarIndex = -1;
+            int prevFunIndex = -1;
+            int lastIndex = index;
+            bool isEndFound = false;
 
             while (!isEndFound)
             {
-                aPrevSpaceIndex = ScriptParsingHelper.GetIndexOfLastString(script, " ", aLastIndex);
-                aPrevVarIndex = ScriptParsingHelper.GetIndexOfLastString(script, ScriptParsingHelper.Symbol_Fun, aLastIndex);
-                aPrevFunIndex = (aLastIndex == index ? ScriptParsingHelper.GetIndexOfLastString(script, "#", aLastIndex) : -1);
-                aLastIndex = Math.Max(Math.Max(Math.Max(aPrevSpaceIndex, aPrevVarIndex), aPrevFunIndex), 0);
-                if ((aLastIndex >= ("." + ScriptParsingHelper.Symbol_Fun).Length) && (script.Substring(aLastIndex - 3, (")." + ScriptParsingHelper.Symbol_Fun).Length) == ")." + ScriptParsingHelper.Symbol_Fun))
+                prevSpaceIndex = ScriptParsingHelper.GetIndexOfLastString(script, " ", lastIndex);
+                prevVarIndex = ScriptParsingHelper.GetIndexOfLastString(script, ScriptParsingHelper.Symbol_Fun, lastIndex);
+                prevFunIndex = (lastIndex == index ? ScriptParsingHelper.GetIndexOfLastString(script, "#", lastIndex) : -1);
+                lastIndex = Math.Max(Math.Max(Math.Max(prevSpaceIndex, prevVarIndex), prevFunIndex), 0);
+                if ((lastIndex >= ("." + ScriptParsingHelper.Symbol_Fun).Length) && (script.Substring(lastIndex - 3, (")." + ScriptParsingHelper.Symbol_Fun).Length) == ")." + ScriptParsingHelper.Symbol_Fun))
                 {
                     isEndFound = false;
-                    aLastIndex -= 1;
+                    lastIndex--;
                 }
                 else
+                {
                     isEndFound = true;
+                }
             }
-            String aLeftStringBlock = script.Substring(aLastIndex, index - aLastIndex + 1);
+            string aLeftStringBlock = script.Substring(lastIndex, index - lastIndex + 1);
 
             return aLeftStringBlock.Trim();
         }
@@ -499,27 +531,27 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// True if only the child script words similar to the child script word present in the script
         /// must be returned.</param>
         /// <returns>Returns the possible child script word definitions.</returns>
-        public static List<ScriptWordDefinition> GetWordDefinitions(
-            ScriptInterpreter scriptInterpreter,
-            String script,
+        public static List<IScriptwordDefinition> GetWordDefinitions(
+            IScriptInterpreter scriptInterpreter,
+            string script,
             int index,
-            Boolean isSuggest,
-            ScriptVariableSet scriptVariableSet = null)
+            bool isSuggest,
+            IScriptVariableSet scriptVariableSet = null)
         {
-            if (scriptInterpreter == null) return new List<ScriptWordDefinition>();
+            if (scriptInterpreter == null) return new List<IScriptwordDefinition>();
 
             // first we retrieve the script block at the index index
-            String aStringBlock = ScriptParsingHelper.GetScriptBlock(script, index);
+            string stringBlock = ScriptParsingHelper.GetScriptBlock(script, index);
 
             // we retrieve the root script word
 
-            String aStringBlockToParse = aStringBlock;
-            if (aStringBlockToParse.Contains("." + ScriptParsingHelper.Symbol_Fun))
-                aStringBlockToParse = aStringBlockToParse.Substring(0, aStringBlockToParse.IndexOf("." + ScriptParsingHelper.Symbol_Fun));
-            Log log = new Log();
+            string stringBlockToParse = stringBlock;
+            if (stringBlockToParse.Contains("." + ScriptParsingHelper.Symbol_Fun))
+                stringBlockToParse = stringBlockToParse.Substring(0, stringBlockToParse.IndexOf("." + ScriptParsingHelper.Symbol_Fun));
+            ILog log = new Log();
             int aTempIndex = 0;
-            ScriptWord aRootScriptWord = scriptInterpreter.FindNextScriptWord(
-                ref aStringBlockToParse,
+            IScriptword rootScriptword = scriptInterpreter.FindNextScriptword(
+                ref stringBlockToParse,
                 null,
                 ref aTempIndex,
                 0,
@@ -528,31 +560,29 @@ namespace BindOpen.Framework.Core.System.Scripting
                 log);
 
             // if it is not null
-            if (aRootScriptWord != null)
+            if (rootScriptword != null)
             {
                 // we retrieve the last child script word
-                ScriptWord lastChildScriptWord = aRootScriptWord.Last();
+                IScriptword lastChildScriptword = rootScriptword.Last();
                 if (!isSuggest)
                 {
-                    return (lastChildScriptWord.Definition == null ?
-                            new List<ScriptWordDefinition>() :
-                            lastChildScriptWord.Definition.Children);
+                    return lastChildScriptword.Definition == null ?
+                            new List<IScriptwordDefinition>() :
+                            new List<IScriptwordDefinition>(lastChildScriptword.Definition.Children);
                 }
                 else
                 {
-                    String currentScriptWordString = "";
-                    if (aStringBlock.Contains("."))
-                        currentScriptWordString = aStringBlock.Substring(aStringBlock.IndexOf(".") + 1, aStringBlock.Length - aStringBlock.IndexOf(".") - 1)
-                            .Replace(ScriptParsingHelper.Symbol_Fun, "");
-                    else
-                        currentScriptWordString = aStringBlock;
-                    return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(currentScriptWordString, lastChildScriptWord.Definition);
+                    string currentScriptwordString = stringBlock.Contains(".")
+                        ? stringBlock.Substring(stringBlock.IndexOf(".") + 1, stringBlock.Length - stringBlock.IndexOf(".") - 1)
+                            .Replace(ScriptParsingHelper.Symbol_Fun, "")
+                        : stringBlock;
+                    return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(currentScriptwordString, lastChildScriptword.Definition);
                 }
             }
             if (!isSuggest)
                 return scriptInterpreter.Index.Definitions;
             else
-                return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(aStringBlock);
+                return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(stringBlock);
         }
 
         #endregion

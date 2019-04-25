@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// Evaluates the script word $SQLNEWGUID.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_NewGuid()
+        public override string GetSqlText_NewGuid()
         {
             return "newid()";
         }
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// Evaluates the script word $SQLRANDOM.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Random()
+        public override string GetSqlText_Random()
         {
             return "newid()";
        }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {
@@ -8,16 +9,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// This class represents a conditional event.
     /// </summary>
     [Serializable()]
-    [XmlType("ConditionalEvent", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConditionalEvent : Event
+    [XmlType("ConditionalEvent", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class ConditionalEvent : Event, IConditionalEvent
     {
-
-        #region Variables
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -28,10 +23,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Condition script of this instance.
         /// </summary>
         [XmlElement("conditionScript")]
-        public String ConditionScript { get; set; } = "";
+        public string ConditionScript { get; set; } = "";
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -88,6 +82,5 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         }
 
         #endregion
-        
     }
 }

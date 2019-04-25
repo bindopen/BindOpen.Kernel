@@ -2,23 +2,11 @@
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
-
     /// <summary>
     /// This class represents the Having statement of a database data query.
     /// </summary>
-    public class DbDataQueryHavingStatement
+    public class DbDataQueryHavingStatement : IDbDataQueryHavingStatement
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private DataExpression _DataExpression;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -28,11 +16,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// The data expression of this instance.
         /// </summary>
-        public DataExpression DataExpression
-        {
-            get { return this._DataExpression; }
-            set { this._DataExpression = value; }
-        }
+        public IDataExpression DataExpression { get; set; }
 
         #endregion
 
@@ -50,6 +34,5 @@ namespace BindOpen.Framework.Databases.Data.Queries
         }
 
         #endregion
-
     }
 }

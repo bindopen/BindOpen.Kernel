@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Scopes
@@ -17,14 +18,14 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
         /// <param name="isDataSourceServiceChecked">Indicates whether the data module manager is chekced.</param>
         /// <returns>The log of check log.</returns>
-        public static Log Check(
+        public static ILog Check(
             this IAppScope appScope,
-            Boolean isAppExtensionChecked = false,
-            Boolean isScriptInterpreterChecked = false,
-            Boolean isDataContextChecked = false,
-            Boolean isDataSourceServiceChecked = false)
+            bool isAppExtensionChecked = false,
+            bool isScriptInterpreterChecked = false,
+            bool isDataContextChecked = false,
+            bool isDataSourceServiceChecked = false)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (appScope == null)
             {

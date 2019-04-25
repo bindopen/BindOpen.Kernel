@@ -10,6 +10,7 @@
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles runtime.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Runtime</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,6 +25,10 @@
     <Compile Remove="Data\**" />
     <EmbeddedResource Remove="Data\**" />
     <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Settings\IBdoAppSettings.cs" />
   </ItemGroup>
 
   <ItemGroup>

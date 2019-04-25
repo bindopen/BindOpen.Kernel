@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
-
     // --------------------------------------------------
     // ENUMERATIONS
     // --------------------------------------------------
@@ -16,7 +14,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible levels of specification.
     /// </summary>
     [Serializable()]
-    [XmlType("SpecificationLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("SpecificationLevel", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum SpecificationLevel
     {
@@ -53,7 +51,6 @@ namespace BindOpen.Framework.Core.Data.Common
 
     #endregion
 
-
     // --------------------------------------------------
     // EXTENSION
     // --------------------------------------------------
@@ -72,8 +69,8 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="specificationLevels">The specified specification level list to consider.</param>
         /// <param name="specificationLevel">The specified specification level to consider.</param>
         /// <returns></returns>
-        public static Boolean Has(
-            this List<SpecificationLevel> specificationLevels,
+        public static bool Has(
+            this SpecificationLevel[] specificationLevels,
             SpecificationLevel specificationLevel)
         {
             return (specificationLevels.Aggregate((current, value) => current | value) & specificationLevel) == specificationLevel;
@@ -85,13 +82,13 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="specificationLevels">The specification levels to consider.</param>
         /// <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
         /// <returns></returns>
-        public static List<SpecificationLevel> Excluding(
-            this List<SpecificationLevel> specificationLevels,
+        public static SpecificationLevel[] Excluding(
+            this SpecificationLevel[] specificationLevels,
             params SpecificationLevel[] excludingSpecificationLevels)
         {
             SpecificationLevel specificationLevel = specificationLevels.Aggregate((current, value) => current | value) & ~excludingSpecificationLevels.Aggregate((current, value) => current | value);
 
-            return Enum.GetValues(typeof(SpecificationLevel)).Cast<SpecificationLevel>().Where(p=>(p & specificationLevel) == p).ToList();
+            return Enum.GetValues(typeof(SpecificationLevel)).Cast<SpecificationLevel>().Where(p=>(p & specificationLevel) == p).ToArray();
         }
 
         /// <summary>
@@ -100,15 +97,13 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="specificationLevel">The specification level to consider.</param>
         /// <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
         /// <returns></returns>
-        public static List<SpecificationLevel> Excluding(
+        public static SpecificationLevel[] Excluding(
             this SpecificationLevel specificationLevel,
             params SpecificationLevel[] excludingSpecificationLevels)
         {
-            return (new List<SpecificationLevel>() { specificationLevel }).Excluding(excludingSpecificationLevels);
+            return (new [] { specificationLevel }).Excluding(excludingSpecificationLevels);
         }
-
     }
 
     #endregion
-
 }

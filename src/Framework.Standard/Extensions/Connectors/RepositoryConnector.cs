@@ -1,59 +1,44 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+﻿using System;
+using System.Collections.Generic;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
-using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Framework.Standard.Extensions.Connectors
 {
-
     /// <summary>
     /// This class represents a repository connector.
     /// </summary>
-    public class RepositoryConnector : Connector
+    public abstract class RepositoryConnector : Connector
     {
-
         // -----------------------------------------------
         // CONSTRUCTORS
         // -----------------------------------------------
 
         #region Constructors
 
+        /// <summary>
+        /// Instantiates a new instance of the RepositoryConnector class.
+        /// </summary>
+        protected RepositoryConnector() : base()
+        {
+        }
 
         /// <summary>
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
-        public RepositoryConnector() : base()
-        {
-        }
-
-        /// <summary>
-        /// This instantiates a new instance of the RepositoryConnector class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="definitionName">The definition name to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        public RepositoryConnector(
-            String name,
-            String definitionName,
-            ConnectorConfiguration configuration,
-            AppScope appScope = null)
-            : base(name, definitionName, configuration, appScope)
+        /// <param name="dto">The DTO item of this instance.</param>
+        protected RepositoryConnector(IConnectorConfiguration dto) : base(dto)
         {
         }
 
         #endregion
-
 
         // -----------------------------------------------
         // FILE MANAGEMENT
         // -----------------------------------------------
 
         #region File_Management
-
 
         // Pull ---------------------------------------
 
@@ -68,7 +53,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String remoteFileUri,
             String localPathUri,            
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -86,7 +71,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String remoteFilter,
             String localPathUri,            
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             log = log ?? new Log();
@@ -109,10 +94,10 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
         public virtual void Pull(
-            List<String> remoteFileUris,
+            List<string> remoteFileUris,
             String localPathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -133,7 +118,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String localFileUri,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
         }
 
@@ -151,7 +136,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String localFilter,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null,
+            ILog log = null,
             Boolean isRecursive = false)
         {
             log = log ?? new Log();
@@ -174,10 +159,10 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
         public virtual void Push(
-            List<String> localFileUris,
+            List<string> localFileUris,
             String remotePathUri,
             Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -201,7 +186,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String folderUri,
             String filter,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             return new List<RepositoryItem>();
@@ -221,12 +206,11 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
         }
 
         #endregion
-
     }
 }

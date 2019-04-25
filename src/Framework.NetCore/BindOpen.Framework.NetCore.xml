@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Framework.NetCore</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions">
+            <summary>
+            This static class extends .Net core dependency injection namespace.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``0}})">
+            <summary>
+            Adds a BindOpen application hosting serivce.
+            </summary>
+            <param name="services">The collection of services to populate.</param>
+            <param name="setupAction">The setup action to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``1}})">
+            <summary>
+            Adds a BindOpen application hosting serivce.
+            </summary>
+            <typeparam name="THost">The class of application host to consider.</typeparam>
+            <param name="services">The collection of services to populate.</param>
+            <param name="setupAction">The setup action to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds a BindOpen application service.
+            </summary>
+            <typeparam name="TAppService">The class of application service to consider.</typeparam>
+            <param name="services">The collection of services to populate.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.NetCore.Services.BdoHostedService`2">
+            <summary>
+            This service represents a BindOpen application service that can be hosted in generic .Net core host.
+            </summary>
+            <typeparam name="T">The class of the BindOpen application service to consider.</typeparam>
+        </member>
+        <member name="P:BindOpen.Framework.NetCore.Services.BdoHostedService`2.Host">
+            <summary>
+            The BindOpen application host of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.#ctor(BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost{`1})">
+            <summary>
+            Creates a new instance of the BdoHostedService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Starts this instance.
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Ends this instance.
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.Dispose">
+            <summary>
+            Disposes this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.NetCore.Services.IBdoHostedService">
+            <summary>
+            This interface defines a BindOpen application service that can be hosted in generic .Net core host.
+            </summary>
+        </member>
+    </members>
+</doc>

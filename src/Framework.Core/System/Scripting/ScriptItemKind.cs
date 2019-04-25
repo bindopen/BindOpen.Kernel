@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="scriptItemKind">The kind to consider.</param>
         /// <returns>Returns true if the specified element is a script word kind.</returns>
-        public static Boolean IsFunctionOrVariable(this ScriptItemKind scriptItemKind)
+        public static bool IsFunctionOrVariable(this ScriptItemKind scriptItemKind)
         {
             return (scriptItemKind == ScriptItemKind.Function) | (scriptItemKind == ScriptItemKind.Variable);
         }

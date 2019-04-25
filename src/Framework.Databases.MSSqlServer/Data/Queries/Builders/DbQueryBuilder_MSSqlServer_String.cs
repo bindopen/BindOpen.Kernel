@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="value1"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Text(string value1)
+        public override string GetSqlText_Text(string value1)
         {
             return "'" + ScriptParsingHelper.GetValueFromText(value1).Replace("'", "''") + "'";
         }
@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Like(string value1, string value2)
+        public override string GetSqlText_Like(string value1, string value2)
         {
             return "(" + value1 + " LIKE " + value2 + ")";
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value2"></param>
         /// <param name="value3"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Replace(string value1, string value2, string value3)
+        public override string GetSqlText_Replace(string value1, string value2, string value3)
         {
             return "replace(" + value1 + ", " + value2 + ", " + value3 + ")";
         }
@@ -49,10 +49,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Concatenate(object[] parameters)
+        public override string GetSqlText_Concatenate(object[] parameters)
         {
             string text = "";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {

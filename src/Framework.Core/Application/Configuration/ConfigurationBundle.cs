@@ -6,8 +6,8 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// <summary>
     /// This class represents a configuration.
     /// </summary>
-    [XmlType("ConfigurationBundle", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("config.bundle", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ConfigurationBundle", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("config.bundle", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ConfigurationBundle : DictionaryDataItem
     {
         // -------------------------------------------------------------

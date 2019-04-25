@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -16,8 +16,8 @@ namespace BindOpen.Framework.Core.Extensions
     /// This class represents the extension configuration.
     /// </summary>
     [Serializable()]
-    [XmlType("AppExtensionConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    public class AppExtensionConfiguration : DataItem
+    [XmlType("AppExtensionConfiguration", Namespace = "https://bindopen.org/xsd")]
+    public class AppExtensionConfiguration : DataItem, IAppExtensionConfiguration
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         [XmlArray("filters")]
         [XmlArrayItem("add")]
-        public List<AppExtensionFilter> Filters { get; set; } = new List<AppExtensionFilter>();
+        public List<IAppExtensionFilter> Filters { get; set; } = new List<IAppExtensionFilter>();
 
         /// <summary>
         /// The source kinds of this instance.
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// The path of the folder of this instance.
         /// </summary>
         [XmlElement("defaultFolderPath")]
-        public String DefaultFolderPath { get; set; } = null;
+        public string DefaultFolderPath { get; set; } = null;
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="filters">The filters to consider.</param>
         public AppExtensionConfiguration(
-            params AppExtensionFilter[] filters) : this(null,null,filters)
+            params IAppExtensionFilter[] filters) : this(null,null,filters)
         {
         }
 
@@ -76,8 +76,8 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="sourceKinds">The source kinds to consider.</param>
         /// <param name="filters">The filters to consider.</param>
         public AppExtensionConfiguration(
-            List<DataSourceKind> sourceKinds,
-            params AppExtensionFilter[] filters) : this(sourceKinds, null, filters)
+            DataSourceKind[] sourceKinds,
+            params IAppExtensionFilter[] filters) : this(sourceKinds, null, filters)
         {
         }
 
@@ -85,37 +85,16 @@ namespace BindOpen.Framework.Core.Extensions
         /// Instantiates a new instance of the AppExtensionConfiguration class.
         /// </summary>
         /// <param name="filters">The filters to consider.</param>
+        /// <param name="defaultFolderPath">The librayr folder path to consider.</param>
         /// <param name="sourceKinds">The source kinds to consider.</param>
-        /// <param name="libraryFolderPath">The librayr folder path to consider.</param>
-        public AppExtensionConfiguration(            
-            List<DataSourceKind> sourceKinds,
-            String libraryFolderPath,
-            params AppExtensionFilter[] filters) : this()
-        {
-            this.Filters = filters?.ToList();
-            this.DefaultSourceKinds = sourceKinds;
-            this.DefaultFolderPath = libraryFolderPath;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the AppExtensionConfiguration class.
-        /// </summary>
-        /// <param name="defaultSourceKinds">The source kinds to consider.</param>
-        /// <param name="defaultLibraryFolderPath">The librayr folder path to consider.</param>
         public AppExtensionConfiguration(
-            List<DataSourceKind> defaultSourceKinds = null,
-            String defaultLibraryFolderPath = null) : this()
+            DataSourceKind[] sourceKinds,
+            string defaultFolderPath,
+            params IAppExtensionFilter[] filters) : base()
         {
-            //if ((libraryNames != null) || (libraryFileNames != null))
-            //{
-            //    this._Filters = new List<AppExtensionFilter>();
-            //    if (libraryNames != null)
-            //        this._Filters.AddRange(libraryNames.Select(p => new AppExtensionFilter(p)).ToList());
-            //    if (libraryFileNames != null)
-            //        this._Filters.AddRange(libraryFileNames.Select(p => new AppExtensionFilter(null, p)).ToList());
-            //}
-            this.DefaultSourceKinds = defaultSourceKinds;
-            this.DefaultFolderPath = defaultLibraryFolderPath;
+            Filters = filters?.ToList();
+            DefaultSourceKinds = sourceKinds?.ToList();
+            DefaultFolderPath = defaultFolderPath;
         }
 
         #endregion
@@ -130,17 +109,17 @@ namespace BindOpen.Framework.Core.Extensions
         /// Adds the specified fileter.
         /// </summary>
         /// <param name="filter">The filter to consider.</param>
-        public AppExtensionConfiguration AddExtensionFilter(AppExtensionFilter filter)
+        public IAppExtensionConfiguration AddFilter(IAppExtensionFilter filter)
         {
-            if (this.Filters != null)
+            if (Filters != null)
             {
                 if (filter != null)
                 {
                     if (filter.Name != null)
-                        this.Filters.RemoveAll(p => p.Name.KeyEquals(filter.Name));
+                        Filters.RemoveAll(p => p.Name.KeyEquals(filter.Name));
                     if (filter.FileName != null)
-                        this.Filters.RemoveAll(p => p.FileName.KeyEquals(filter.FileName));
-                    this.Filters.Add(filter);
+                        Filters.RemoveAll(p => p.FileName.KeyEquals(filter.FileName));
+                    Filters.Add(filter);
                 }
             }
 
@@ -154,26 +133,27 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="libraryFileName">The library file name to consider.</param>
         /// <param name="sourceKinds">The source kinds to consider.</param>
         /// <param name="libraryFolderPath">The librayr folder path to consider.</param>
-        public AppExtensionConfiguration AddExtension(
-            String libraryName = null
-            , String libraryFileName = null
-            , List<DataSourceKind> sourceKinds = null
-            , String libraryFolderPath = null)
+        public IAppExtensionConfiguration AddFilter(
+            string libraryName = null
+            , string libraryFileName = null
+            , DataSourceKind[] sourceKinds = null
+            , string libraryFolderPath = null)
         {
-            return this.AddExtensionFilter(new AppExtensionFilter(libraryName, libraryFileName, sourceKinds, libraryFolderPath));
+            return AddFilter(
+                new AppExtensionFilter(libraryName, libraryFileName, sourceKinds, libraryFolderPath));
         }
 
         /// <summary>
         /// Instantiates a new instance of the AppExtensionConfiguration class.
         /// </summary>
         /// <param name="configuration">The configuration to consider.</param>
-        public void Merge(AppExtensionConfiguration configuration)
+        public void Merge(IAppExtensionConfiguration configuration)
         {
             if (configuration != null)
             {
-                foreach (AppExtensionFilter filter in configuration.Filters)
+                foreach (IAppExtensionFilter filter in configuration.Filters)
                 {
-                    this.AddExtensionFilter(filter);
+                    AddFilter(filter);
                 }
             }
         }
@@ -190,17 +170,17 @@ namespace BindOpen.Framework.Core.Extensions
         /// Gets the filters of this instance
         /// </summary>
         /// <returns></returns>
-        public List<AppExtensionFilter> GetFilters()
+        public List<IAppExtensionFilter> GetFilters()
         {
-            List<AppExtensionFilter> extensionFilters = new List<AppExtensionFilter>();
-            foreach (AppExtensionFilter filter in this.Filters)
+            List<IAppExtensionFilter> extensionFilters = new List<IAppExtensionFilter>();
+            foreach (IAppExtensionFilter filter in Filters)
             {
                 extensionFilters.Add(
                    new AppExtensionFilter(
                        filter.Name,
                        filter.FileName,
-                       filter.SourceKinds ?? this.DefaultSourceKinds,
-                       filter.FolderPath ?? this.DefaultFolderPath));
+                       (filter.SourceKinds ?? DefaultSourceKinds).ToArray(),
+                       filter.FolderPath ?? DefaultFolderPath));
             }
 
             return extensionFilters;
@@ -220,24 +200,19 @@ namespace BindOpen.Framework.Core.Extensions
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override Log Update<T>(
-            T item = null,
-            List<String> specificationAreas = null,
-            List<UpdateMode> updateModes = null,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+        public override ILog Update<T>(
+            T item = default,
+            string[] specificationAreas = null,
+            UpdateMode[] updateModes = null)
         {
-            if (this.Filters != null)
-                this.Filters = this.Filters.GroupBy(p => new { p.Name, p.FileName }).Select(p => p.First()).ToList();
+            if (Filters != null)
+                Filters = Filters.GroupBy(p => new { p.Name, p.FileName }).Select(p => p.First()).ToList();
 
             return new Log();
         }
 
         #endregion
     }
-
 }

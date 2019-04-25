@@ -1,31 +1,18 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Specification;
 
 namespace BindOpen.Framework.Core.Data.Specification
 {
-
     /// <summary>
     /// This class represents a data area specification.
     /// </summary>
     [Serializable()]
-    [XmlType("DataAreaSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "areaSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataAreaSpecification : DataSpecification
+    [XmlType("DataAreaSpecification", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "areaSpecification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class DataAreaSpecification : DataSpecification, IDataAreaSpecification
     {
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private String _Arename = "";
-
-        #endregion
-
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -36,17 +23,9 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// The name of the area of this instance.
         /// </summary>
         [XmlAttribute("area")]
-        public String AreaName
-        {
-            get
-            {
-                return this._Arename;
-            }
-            set { this._Arename = value; }
-        }
+        public string AreaName { get; set; } = "";
 
         #endregion
-
 
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -65,7 +44,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// Initializes a new instance of the DataAreaSpecification class.
         /// </summary>
         /// <param name="arename">The name of the area to consider.</param>
-        public DataAreaSpecification(String arename)
+        public DataAreaSpecification(string arename)
         {
             this.AreaName = arename;
         }
@@ -77,12 +56,11 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public DataAreaSpecification(
             AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            List<SpecificationLevel> specificationLevels = null) : base(accessibilityLevel,specificationLevels)
+            SpecificationLevel[] specificationLevels = null) : base(accessibilityLevel, specificationLevels)
         {
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -94,14 +72,12 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             DataAreaSpecification dataAreaSpecification = this.MemberwiseClone() as DataAreaSpecification;
             return dataAreaSpecification;
         }
 
         #endregion
-
     }
-
 }

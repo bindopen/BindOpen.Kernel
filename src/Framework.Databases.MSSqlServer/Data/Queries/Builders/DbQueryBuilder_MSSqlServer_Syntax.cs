@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// Evaluates the script word $SQLNULL.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Null()
+        public override string GetSqlText_Null()
         {
             return "NULL";
         }
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// Evaluates the script word $SQLTRUE.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_True()
+        public override string GetSqlText_True()
         {
             return "1";
         }
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="name"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Database(string name)
+        public override string GetSqlText_Database(string name)
         {
             return "[" + name + "]";
         }
@@ -44,11 +44,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Schema(
+        public override string GetSqlText_Schema(
             string name,
             string location = null)
         {
-            return (!String.IsNullOrEmpty(location) ? location + "." : "") +
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
                 "[" + name + "]";
         }
 
@@ -58,11 +58,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Table(
+        public override string GetSqlText_Table(
             string name,
             string location = null)
         {
-            return (!String.IsNullOrEmpty(location) ? location + "." : "") +
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
                 "[" + name + "]";
         }
 
@@ -72,11 +72,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Field(
+        public override string GetSqlText_Field(
             string name,
             string location = null)
         {
-            return (!String.IsNullOrEmpty(location) ? location + "." : "") +
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
                 "[" + name + "]";
         }
 
@@ -85,7 +85,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_List(params Object[] parameters)
+        public override string GetSqlText_List(params object[] parameters)
         {
             return "";
         }

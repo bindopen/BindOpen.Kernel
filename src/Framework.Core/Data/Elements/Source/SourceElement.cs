@@ -1,33 +1,76 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.Extensions.Definition.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
 {
-
     /// <summary>
     /// This class represents a data source element.
     /// </summary>
     /// <remarks>A data source element can only have one item maximum.</remarks>
     [Serializable()]
-    [XmlType("SourceElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class SourceElement : DataElement
+    [XmlType("SourceElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class SourceElement : DataElement, ISourceElement
     {
+        /// <summary>
+        /// Returns the element with the specified indexed.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration this[int index] => base[index] as ConnectorConfiguration;
+
+        /// <summary>
+        /// Returns the element with the specified unique name.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration this[string name] => base[name] as ConnectorConfiguration;
 
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The definition unique ID of this instance.
+        /// </summary>
+        [XmlAttribute("definition")]
+        public string DefinitionUniqueId { get; set; } = "";
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Returns the first item.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration First => this[0];
+
+        /// <summary>
+        /// Connectors of this instance.
+        /// </summary>
+        [XmlArray("items")]
+        [XmlArrayItem("add")]
+        public List<ConnectorConfiguration> Connectors
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Specification of the Connectors property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ConnectorsSpecified => Items.Count > 0;
+
+        // --------------------------------------------------
 
         /// <summary>
         /// The specification of this instance.
@@ -41,7 +84,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
 
         #endregion
 
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -49,51 +91,26 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         #region Constructors
 
         /// <summary>
-        /// Initializes a new data source element.
+        /// Initializes a new instance of the SourceElement class.
         /// </summary>
-        public SourceElement() : this(null)
+        public SourceElement() : this(null, null)
         {
         }
 
         /// <summary>
-        /// Initializes a new data source element.
+        /// Initializes a new instance of the SourceElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="dataSource">The data source to consider.</param>
+        /// <param name="id">The ID to consider.</param>
         public SourceElement(
-            String name = null,
-            DataSource dataSource = null)
-            : base(name, "dataSourceElement_")
+            string name = null,
+            string id = null)
+            : base(name, "source_", id)
         {
-            this.ValueType = DataValueType.DataSource;
-            //if (this.Specification = new SourceElementSpec();
-            //this.Specification.MaximumItemNumber = 1;
-
-            this.AddItem(dataSource);
+            ValueType = DataValueType.DataSource;
         }
 
         #endregion
-
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
-        {
-            return new SourceElementSpec();
-        }
-
-        #endregion
-
 
         // --------------------------------------------------
         // ITEMS
@@ -101,43 +118,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
 
         #region Items
 
-        /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
-        {
-            return null;
-        }
+        // Specification ---------------------
 
         /// <summary>
-        /// Returns the specified item of this instance.
+        /// Creates a new specification.
         /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
-            Object indexItem = null,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+        /// <returns>Returns the new specifcation.</returns>
+        public override IDataElementSpec NewSpecification()
         {
-            if ((indexItem == null) || (indexItem is int))
-            {
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            }
-            else if (indexItem is string)
-            {
-                return this.GetItems(appScope, scriptVariableSet, log)
-                   .Any(p => p is DataSource && string.Equals((p as DataSource)?.Key() ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-            }
-
-            return null;
+            return Specification = new SourceElementSpec();
         }
+
+        // Items ----------------------------
 
         /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
@@ -145,9 +137,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="indexItem">The index item to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p.KeyEquals(indexItem));
 
             return false;
@@ -157,70 +149,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
-        public override String ToString()
+        public override string ToString()
         {
             return string.Join("|", this.Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
         }
 
-        // Conversion ---------------------------
-
-        /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
-        /// </summary>
-        /// <param name="object1">The object value to convert.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result string.</returns>
-        public override String GetStringFromObject(
-            Object object1,
-            Log log = null)
-        {
-            String stringValue = "";
-
-            if (object1 is EntityConfiguration)
-            {
-                EntityConfiguration dataEntityItem = object1 as EntityConfiguration;
-                if (dataEntityItem != null)
-                    stringValue = dataEntityItem.ToXml();
-                else if (log != null)
-                    log.AddError(title: "Entity expected", description: "The specified object is not an entity.");
-            }
-
-            return stringValue;
-        }
-
-        /// <summary>
-        /// Returns the object value from a based on this instance's specification.
-        /// </summary>
-        /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>The result object.</returns>
-        public override Object GetObjectFromString(
-            String stringValue,
-            IAppScope appScope = null,
-            Log log = null)
-        {
-            Object object1 = null;
-
-            if (stringValue != null)
-                if (this.Specification != null && appScope != null && appScope.AppExtension != null)
-                    object1 = appScope.AppExtension.CreateConfiguration<ConnectorDefinition>(null, stringValue, log);
-
-            return object1;
-        }
-
         #endregion
-
-
-        // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
-        // --------------------------------------------------
-
-        #region Check_Update_Repair
-
-
-        #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -232,7 +166,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             SourceElement dataSourceElement = this.MemberwiseClone() as SourceElement;
             return dataSourceElement;
@@ -240,6 +174,43 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
 
         #endregion
 
-    }
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
 
-}
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Connectors = Items?.Select(p =>
+            {
+                ConnectorConfiguration configuration = p as ConnectorConfiguration;
+                configuration?.UpdateStorageInfo(log);
+                return configuration;
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        {
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+
+            SetItems(Connectors?.Select(p =>
+            {
+                p.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                return p;
+            }).ToArray());
+        }
+
+        #endregion
+    }
+    }

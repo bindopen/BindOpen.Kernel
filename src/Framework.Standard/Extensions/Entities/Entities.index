@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <entities.index library="standard"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:EntityIndex EntityIndex.xsd">
   
   <creationDate>2011-07-07</creationDate>

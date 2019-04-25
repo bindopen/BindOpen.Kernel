@@ -1,12 +1,13 @@
 ﻿using System;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Core.System.Scripting
 {
     /// <summary>
     /// This class represents a script item.
     /// </summary>
-    public class ScriptItem : DataItem, INamedDataItem
+    public class ScriptItem : DataItem, INamed
     {
         // ------------------------------------------
         // PROPERTIES

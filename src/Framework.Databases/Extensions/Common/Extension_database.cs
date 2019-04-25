@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
 
 namespace BindOpen.Framework.Databases.Extensions.Common
 {
@@ -20,7 +19,7 @@ namespace BindOpen.Framework.Databases.Extensions.Common
         /// </summary>
         /// <param name="uniqueName">The unique name to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName_database(this String uniqueName)
+        public static string GetUniqueName_database(this string uniqueName)
         {
             return uniqueName.GetStartedString("database.") +"$client";
         }

@@ -5,11 +5,10 @@ using BindOpen.Framework.Core.Data.Items;
 namespace BindOpen.Framework.Runtime.Application.Security
 {
     /// <summary>
-    /// This structure corresponds to a credential.
+    /// This class represents an application credential.
     /// </summary>
-    public class ApplicationCredential : NamedDataItem
+    public class ApplicationCredential : NamedDataItem, IApplicationCredential
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -20,7 +19,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// ID of domain.
         /// </summary>
         [XmlElement("domainId")]
-        public String DomainId
+        public string DomainId
         {
             get;
             set;
@@ -30,19 +29,13 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the DomainId property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DomainIdSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.DomainId);
-            }
-        }
+        public bool DomainIdSpecified => !string.IsNullOrEmpty(DomainId);
 
         /// <summary>
         /// Login.
         /// </summary>
         [XmlElement("login")]
-        public String Login
+        public string Login
         {
             get;
             set;
@@ -52,19 +45,13 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the Login property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LoginSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.Login);
-            }
-        }
+        public bool LoginSpecified => !string.IsNullOrEmpty(Login);
 
         /// <summary>
         /// Password.
         /// </summary>
         [XmlElement("password")]
-        public String Password
+        public string Password
         {
             get;
             set;
@@ -74,19 +61,13 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the Password property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean PasswordSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.Password);
-            }
-        }
+        public bool PasswordSpecified => !string.IsNullOrEmpty(Password);
 
         /// <summary>
         /// Token value.
         /// </summary>
         [XmlElement("tokenValue")]
-        public String TokenValue
+        public string TokenValue
         {
             get;
             set;
@@ -96,13 +77,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
         /// Specification of the TokenValue property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean TokenValueSpecified
-        {
-            get
-            {
-                return !String.IsNullOrEmpty(this.TokenValue);
-            }
-        }
+        public bool TokenValueSpecified => !string.IsNullOrEmpty(TokenValue);
 
         #endregion
 
@@ -135,11 +110,11 @@ namespace BindOpen.Framework.Runtime.Application.Security
             , String aTokenValue = null) : base(name, "credential_")
         {
             if (name!=null)
-                this.Name = name;
-            this.DomainId = aDomainId;
-            this.Login = login;
-            this.Password = aPassword;
-            this.TokenValue = aTokenValue;
+                Name = name;
+            DomainId = aDomainId;
+            Login = login;
+            Password = aPassword;
+            TokenValue = aTokenValue;
         }
 
         #endregion

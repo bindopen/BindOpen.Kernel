@@ -1,6 +1,6 @@
 ﻿
-using BindOpen.Framework.Core.Data.Common;
 using System;
+using BindOpen.Framework.Core.Data.Common;
 
 namespace BindOpen.Framework.Core.Data.Specification.Design
 {
@@ -69,7 +69,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <summary>
         /// Entity editor.
         /// </summary>
-        EntityEditor,
+        ObjectEditor,
         /// <summary>
         /// Progress bar.
         /// </summary>
@@ -140,7 +140,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
             {
                 case DataValueType.Boolean:
                     return DesignControlType.CheckBox;
-                case DataValueType.CarrierConfiguration:
+                case DataValueType.Carrier:
                     return DesignControlType.CarrierConfigurationEditor;
                 case DataValueType.DataSource:
                     return DesignControlType.DataSourceEditor;
@@ -150,8 +150,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
                     return DesignControlType.DictionaryEditor;
                 case DataValueType.Document:
                     return DesignControlType.DocumentEditor;
-                case DataValueType.Entity:
-                    return DesignControlType.EntityEditor;
+                case DataValueType.Object:
+                    return DesignControlType.ObjectEditor;
                 case DataValueType.Integer:
                 case DataValueType.Number:
                 case DataValueType.Text:
@@ -172,9 +172,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <param name="aType">The type to consider.</param>
         /// <returns>The result object.</returns>
         public static DesignControlType GetDefaultControlType(this Type aType)
-        {            
+        {
             return (aType== null ? DesignControlType.None : 
-                (aType.IsArray ? DesignControlType.ListEditor : aType.GetDefaultControlType()));
+                (aType.IsArray ? DesignControlType.ListEditor : aType.GetValueType().GetDefaultControlType()));
         }
 
     }

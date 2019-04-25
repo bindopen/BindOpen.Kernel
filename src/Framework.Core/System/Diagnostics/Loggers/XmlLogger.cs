@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -46,9 +44,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String folderPath,
             String fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
-            Boolean isVerbose = false,
+            bool isVerbose = false,
             String uiCulture = null,
-            Predicate<LogEvent> eventFinder = null,
+            Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
             : base(name, LogFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
@@ -67,8 +65,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
-        public override Boolean WriteTask(
-            Log log, TaskConfiguration task)
+        public override bool WriteTask(
+            ILog log, ITaskConfiguration task)
         {
             return this.Save(log.Root, this.Filepath);
         }
@@ -77,8 +75,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified record.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        public override Boolean WriteEvent(
-            LogEvent logEvent)
+        public override bool WriteEvent(
+            ILogEvent logEvent)
         {
             if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
                 return this.Save(logEvent?.Root, this.Filepath);
@@ -92,8 +90,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="elementValue">The element value to consider.</param>
-        public override Boolean WriteDetailElement(
-            Log log,
+        public override bool WriteDetailElement(
+            ILog log,
             String elementName,
             Object elementValue)
         {
@@ -105,9 +103,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="childLog">The child log to log.</param>
-        public override Boolean WriteChildLog(
-            Log log,
-            Log childLog)
+        public override bool WriteChildLog(
+            ILog log,
+            ILog childLog)
         {
             return false;
         }
@@ -124,7 +122,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Indicates whether this instance requires all the event history to be maintained.
         /// </summary>
         /// <returns>Returns True if this instance requires all the event history.</returns>
-        public override Boolean IsHistoryRequired()
+        public override bool IsHistoryRequired()
         {
             return true;
         }
@@ -144,16 +142,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
-        public override Log LoadLog(
+        public override ILog LoadLog(
             String filePath,
-            Log loadLog = null,
-            IAppScope appScope = null,
-            Boolean mustFileExist = true)
+
+            ILog loadLog = null,
+            bool mustFileExist = true)
         {
-            Log log = DataItem.Load<Log>(filePath, loadLog, appScope, null, mustFileExist);
+            Log log = XmlHelper.Load<Log>(filePath, null, null, loadLog, null, mustFileExist);
             //if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
             return log;
         }
@@ -163,15 +160,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="xmlString">The Xml string to load.</param>
         /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <returns>The log defined in the Xml file.</returns>
-        public override Log LoadLogFromString(
+        public override ILog LoadLogFromString(
             String xmlString,
-            Log loadLog = null,
-            AppScope appScope = null)
+            ILog loadLog = null)
         {
-            Log log = XmlHelper.LoadFromString<Log>(xmlString, loadLog, null);
-            if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
+            Log log = XmlHelper.LoadFromString<Log>(xmlString, null, null, loadLog, null);
+            log?.UpdateRuntimeInfo(null, null, loadLog);
 
             return log;
         }
@@ -185,7 +180,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public override Boolean Save(Log log, String logFilePath, Boolean isAppended = false)
+        public override bool Save(ILog log, String logFilePath, bool isAppended = false)
         {
             return log.SaveXml(logFilePath);
         }
@@ -196,9 +191,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
-        public override String ToString(
-            Log log,
-            List<String> attributeNames = null)
+        public override string ToString(
+            ILog log,
+            List<string> attributeNames = null)
         {
             return this.ToString();
         }

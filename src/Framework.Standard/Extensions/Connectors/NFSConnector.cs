@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Extensions.Configuration.Connectors;
+using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
 
@@ -11,6 +10,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
     /// <summary>
     /// This class represents a file NFS connector.
     /// </summary>
+    [Connector(Name = "standard$nfsConnector")]
     public class NFSConnector : RepositoryConnector
     {
         // ------------------------------------------
@@ -20,28 +20,13 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the NFSConnectorLocal class.
+        /// Instantiates a new instance of the NFSConnector class.
         /// </summary>
         public NFSConnector() : base()
         {
         }
 
-        /// <summary>
-        /// This instantiates a new instance of the NFSConnectorLocal class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        public NFSConnector(
-            String name,
-            ConnectorConfiguration configuration,
-            AppScope appScope = null)
-            : base(name, "standard$nfs", configuration, appScope)
-        {
-        }
-
         #endregion
-
 
         // -----------------------------------------------
         // MANAGEMENT
@@ -54,7 +39,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        public override Log Open()
+        public override ILog Open()
         {
             return base.Open();
         }
@@ -62,7 +47,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        public override Log Close()
+        public override ILog Close()
         {
             return base.Close();
         }
@@ -80,7 +65,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
            String remoteFileUri,
            String localPathUri,
            Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -93,7 +78,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             }
             catch (Exception exception)
             {
-                LogEvent logEvent = log.AddException(exception);
+                ILogEvent logEvent = log.AddException(exception);
             }
         }
 
@@ -110,7 +95,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
            String localFileUri,
            String remotePathUri,
            Boolean canOverwrite,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -139,17 +124,17 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         public static Boolean WaitForFile(
             String path,
             int aSecondNumber = 4,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
                 return false;
 
             DateTime dateTime = DateTime.Now.AddSeconds(aSecondNumber);
             Boolean isFileAccessible = !System.IO.File.Exists(path);
 
-            while ((DateTime.Now <= dateTime) & (!isFileAccessible))
+            while ((DateTime.Now <= dateTime) && (!isFileAccessible))
             {
                 FileStream fileStream = null;
                 try
@@ -164,8 +149,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 }
                 finally
                 {
-                    if (fileStream != null)
-                        fileStream.Close();
+                    fileStream?.Close();
                 }
             }
 
@@ -185,12 +169,12 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
            String folderUri,
            String filter,
            Boolean isRecursive,
-           Log log = null,
+           ILog log = null,
            CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             log = log ?? new Log();
 
-            Boolean isRegularExpression = ((!String.IsNullOrEmpty(filter)) && (filter.StartsWith(@"/")));
+            Boolean isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith("/")));
             System.Text.RegularExpressions.Regex aRegex = null;
 
             List<RepositoryItem> files = new List<RepositoryItem>();
@@ -226,15 +210,15 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                         if (isFound)
                         {
                             Carriers.RepositoryFile file = new Carriers.RepositoryFile()
-                            {
-                                Name = fileInfo.Name,
-                                Path = fileInfo.FullName,
-                                CreationDate = fileInfo.CreationTime.ToString(),
-                                LastAccessDate = fileInfo.LastAccessTime.ToString(),
-                                LastWriteDate = fileInfo.LastWriteTime.ToString(),
-                                Length = (ulong)fileInfo.Length,
-                                ParentPath = folderUri
-                            };
+                                {
+                                    Name = fileInfo.Name,
+                                    Path = fileInfo.FullName,
+                                    CreationDate = fileInfo.CreationTime.ToString(),
+                                    LastAccessDate = fileInfo.LastAccessTime.ToString(),
+                                    LastWriteDate = fileInfo.LastWriteTime.ToString(),
+                                    Length = (ulong)fileInfo.Length,
+                                    ParentPath = folderUri
+                                };
                             files.Add(file);
                         }
                     }
@@ -295,7 +279,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         public static void DeleteFile(
             String localFileUri,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -322,7 +306,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         public static void DeleteFolder(
             String localfolderUri,
-            Log log = null)
+            ILog log = null)
         {
             log = log ?? new Log();
 
@@ -356,13 +340,14 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            Log log = null,
+            ILog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             log = log ?? new Log();
 
             foreach (RepositoryItem item in this.GetFiles(
                 folderUri, filter, isRecursive, log, fileKind))
+            {
                 if (item.LastWriteDate != null)
                 {
                     DateTime lastWriteDateTime;
@@ -374,6 +359,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                         else if (item is RepositoryFile)
                             NFSConnector.DeleteFile(item.Path, log);
                 }
+            }
         }
 
         #endregion
