@@ -12,8 +12,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// </summary>
     /// <remarks>The data item has only an ID, a creation and a last-modification dates.</remarks>
     [Serializable()]
-    [XmlType("DataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("dataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("dataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class DataItem : MarshalByRefObject, IDataItem
     {
         // ------------------------------------------

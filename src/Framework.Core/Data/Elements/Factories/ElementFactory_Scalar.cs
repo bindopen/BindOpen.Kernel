@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
 
 namespace BindOpen.Framework.Core.Data.Elements.Factories
 {
@@ -48,7 +47,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             string name,
             params object[] items)
         {
-            return CreateScalar(name, null, DataValueType.Any, null, items);
+            return CreateScalar(name, null as string, DataValueType.Any, null, items);
         }
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             DataValueType valueType,
             params object[] items)
         {
-            return CreateScalar(name, null, valueType, null, items);
+            return CreateScalar(name, null as string, valueType, null, items);
         }
 
         /// <summary>
@@ -80,6 +79,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             IScalarElementSpec specification,
             params object[] items)
         {
+            if (valueType == DataValueType.Any)
+            {
+                valueType = items.GetValueType();
+            }
+
             ScalarElement element = new ScalarElement(name, id) {
                 ValueType = valueType,
                 Specification = specification as ScalarElementSpec

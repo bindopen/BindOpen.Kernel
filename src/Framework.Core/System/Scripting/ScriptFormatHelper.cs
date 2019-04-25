@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="script">The script to format.</param>
         /// <param name="aTabulationNumber">The number of tabulations.</param>
         /// <returns>Returns the formated script.</returns>
-        public static String Format(String script, int aTabulationNumber=0)
+        public static string Format(String script, int aTabulationNumber=0)
         {
             String aAlignedScript = (aTabulationNumber== 0 ?
                 ScriptFormatHelper.Format(ScriptFormatHelper.CleanScript(script), 0).Trim() :
@@ -145,7 +145,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="script">The script to literalize.</param>
         /// <returns>The specified script literalized.</returns>
-        public static String LiteralizeScript(String script)
+        public static string LiteralizeScript(String script)
         {
             // we convert the \n and \t into script functions
             script = script.Replace("\n", "$LITERAL_CR()");
@@ -158,7 +158,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// </summary>
         /// <param name="script">The script to deliteralize.</param>
         /// <returns>The specified script deliteralized.</returns>
-        public static String DeliteralizeScript(String script)
+        public static string DeliteralizeScript(String script)
         {
             // we convert the literal script functions to \n and \t
             script = script.Replace("$LITERAL_CR()", "\n");

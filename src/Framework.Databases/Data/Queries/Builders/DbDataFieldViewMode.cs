@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
     /// This enumerates the possible modes of data field.
     /// </summary>
     [Serializable()]
-    [XmlType("DbDataFieldViewMode", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DbDataFieldViewMode", Namespace = "https://bindopen.org/xsd")]
     public enum DbDataFieldViewMode
     {
         /// <summary>

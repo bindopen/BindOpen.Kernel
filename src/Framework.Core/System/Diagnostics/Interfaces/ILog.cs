@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         List<LogEvent> Events { get; set; }
         ProcessExecution Execution { get; set; }
         int Level { get; }
-        TaskDto Task { get; set; }
+        TaskConfiguration Task { get; set; }
 
         List<ILogEvent> Checkpoints { get; }
         List<ILogEvent> Errors { get; }
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         ILog Root { get; }
 
         ILogEvent AddCheckpoint(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
-        ILogEvent AddError(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string aSource = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
+        ILogEvent AddError(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
         ILogEvent AddEvent(EventKind kind, string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
         bool AddEvent(ILogEvent logEvent, ILog childLog = null, Predicate<ILog> logFinder = null);
         List<ILogEvent> AddEvents(ILog log, Predicate<ILog> logFinder = null, params EventKind[] kinds);
@@ -41,9 +41,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         ILogEvent AddException(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
         void AddLoggers(params ILogger[] loggers);
         ILogEvent AddMessage(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
-        ILog AddSubLog(Predicate<ILog> filterFinder = null, EventKind eventKind = EventKind.Any, string title = null, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string aSource = null, DateTime? date = null);
-        ILogEvent AddSubLog(ILog childLog, Predicate<ILog> logFinder = null, EventKind eventKind = EventKind.Any, string title = null, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string aSource = null, DateTime? date = null);
-        ILogEvent AddWarning(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string aSource = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
+        ILog AddSubLog(Predicate<ILog> filterFinder = null, EventKind eventKind = EventKind.Any, string title = null, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
+        ILogEvent AddSubLog(ILog childLog, Predicate<ILog> logFinder = null, EventKind eventKind = EventKind.Any, string title = null, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
+        ILogEvent AddWarning(string title, EventCriticality criticality = EventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, ILog childLog = null, Predicate<ILog> logFinder = null);
         List<ILogEvent> Append(ILog log);
         List<ILogEvent> Append(ILog log, Predicate<ILog> logFinder = null);
         void ClearEvents(bool isRecursive = true, params EventKind[] kinds);
@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         void WriteLog(ILog childLog, LoggerMode mode = LoggerMode.Auto);
         void WriteLog(ILogEvent logEvent, LoggerMode mode = LoggerMode.Auto);
         void WriteLog(string elementName, object elementValue, LoggerMode mode = LoggerMode.Auto);
-        void WriteLog(ITaskDto task, LoggerMode mode = LoggerMode.Auto);
+        void WriteLog(ITaskConfiguration task, LoggerMode mode = LoggerMode.Auto);
         void BuildTree();
         ILog GetRoot();
     }

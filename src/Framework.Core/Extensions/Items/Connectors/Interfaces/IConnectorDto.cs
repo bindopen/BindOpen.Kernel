@@ -1,9 +1,8 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Connectors;
+﻿using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Connectors
 {
-    public interface IConnectorDto : ITAppExtensionTitledItemDto<IConnectorDefinition>
+    public interface IConnectorConfiguration : ITAppExtensionTitledItemConfiguration<IConnectorDefinition>
     {
-        string ConnectionString { get; set; }
     }
 }

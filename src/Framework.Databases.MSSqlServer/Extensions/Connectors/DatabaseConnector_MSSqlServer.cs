@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
     /// <summary>
     /// This class represents a OleDb database connector.
     /// </summary>
-    [Connector(Name="msSqlServer")]
+    [Connector(Name= "database.mssqlserver$msSqlServer")]
     public class DatabaseConnector_MSSqlServer : DatabaseConnector
     {
         // ------------------------------------------
@@ -45,11 +45,12 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         }
 
         /// <summary>
-        /// This instantiates a new instance of the DatabaseConnector_MSSqlServer class.
+        /// Instantiates a new instance of the DatabaseConnector_MSSqlServer class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        public DatabaseConnector_MSSqlServer(string name)
-            : base(name)
+        /// <param name="name">The name of this instance.</param>
+        /// <param name="connectionString">The connection string to consider.</param>
+        public DatabaseConnector_MSSqlServer(
+            string name, string connectionString = null) : base(name, connectionString)
         {
         }
 

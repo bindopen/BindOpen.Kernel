@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Standard.Extensions.Carriers;
 
@@ -9,6 +10,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
     /// <summary>
     /// This class represents a file NFS connector.
     /// </summary>
+    [Connector(Name = "standard$nfsConnector")]
     public class NFSConnector : RepositoryConnector
     {
         // ------------------------------------------
@@ -207,8 +209,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
 
                         if (isFound)
                         {
-                            Carriers.RepositoryFile file = AppExtensionItemFactory.CreateCarrier(
-                                new Carriers.RepositoryFile()
+                            Carriers.RepositoryFile file = new Carriers.RepositoryFile()
                                 {
                                     Name = fileInfo.Name,
                                     Path = fileInfo.FullName,
@@ -217,7 +218,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                                     LastWriteDate = fileInfo.LastWriteTime.ToString(),
                                     Length = (ulong)fileInfo.Length,
                                     ParentPath = folderUri
-                                });
+                                };
                             files.Add(file);
                         }
                     }

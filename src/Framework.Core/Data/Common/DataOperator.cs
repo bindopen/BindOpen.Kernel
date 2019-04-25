@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible data operators.
     /// </summary>
     [Serializable()]
-    [XmlType("DataOperator", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DataOperator", Namespace = "https://bindopen.org/xsd")]
     public enum DataOperator
     {
         /// <summary>

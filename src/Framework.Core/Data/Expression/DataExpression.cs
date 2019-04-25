@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Attributes;
 
 namespace BindOpen.Framework.Core.Data.Expression
 {
@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Expression
     /// This class represents a data expression that can contain a literal and script texts.
     /// </summary>
     [Serializable()]
-    [XmlType("DataExpression", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataExpression", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataExpression", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataExpression", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataExpression : DataItem, IDataExpression
     {
         // ------------------------------------------
@@ -23,12 +23,14 @@ namespace BindOpen.Framework.Core.Data.Expression
         /// The value of this instance.
         /// </summary>
         [XmlElement("value")]
+        [DetailPropertyAttribute]
         public string Text { get; set; }
 
         /// <summary>
         /// The kind of this instance.
         /// </summary>
         [XmlElement("kind")]
+        [DetailPropertyAttribute]
         public DataExpressionKind Kind { get; set; } = DataExpressionKind.Auto;
 
         #endregion

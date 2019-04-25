@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items.Handlers;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 
@@ -67,7 +66,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         public override bool WriteTask(
-            ILog log, ITaskDto task)
+            ILog log, ITaskConfiguration task)
         {
             return this.Save(log.Root, this.Filepath);
         }
@@ -150,7 +149,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             ILog loadLog = null,
             bool mustFileExist = true)
         {
-            Log log = DataItemHandler.Load<Log>(filePath, loadLog, null, mustFileExist);
+            Log log = XmlHelper.Load<Log>(filePath, loadLog, null, mustFileExist);
             //if (log != null) log.UpdateRuntimeInfo(appScope, loadLog);
             return log;
         }

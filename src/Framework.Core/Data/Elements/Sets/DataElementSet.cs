@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
     /// This class represents a data element set.
     /// </summary>
     [Serializable()]
-    [XmlRoot(ElementName = "element.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "element.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSet : DataItemSet<DataElement>, IDataElementSet
     {
         // ------------------------------------------
@@ -283,6 +283,23 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
                 return element.GetObject(appScope, scriptVariableSet, log);
 
             return null;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="elementName">The element name to consider.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual T GetElementObject<T>(
+            string elementName = null,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null) where T : class
+        {
+            return GetElementObject(elementName,appScope,scriptVariableSet, log) as T;
         }
 
         // General ------------------------------

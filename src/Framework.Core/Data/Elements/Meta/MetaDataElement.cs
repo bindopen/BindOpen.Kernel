@@ -12,8 +12,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Meta
     /// This class represents a meta data element that is a data element whose items are data elements.
     /// </summary>
     [Serializable()]
-    [XmlType("MetaDataElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "meta", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("MetaDataElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "meta", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(DocumentElement))]
     public class MetaDataElement : DataElement, IMetaDataElement
     {

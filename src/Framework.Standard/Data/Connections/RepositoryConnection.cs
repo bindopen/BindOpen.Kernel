@@ -11,8 +11,8 @@ namespace BindOpen.Framework.Standard.Data.Connections
     /// <summary>
     /// This class represents a repository connection.
     /// </summary>
-    [XmlType("RepositoryConnection", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "repositoryConnection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("RepositoryConnection", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "repositoryConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class RepositoryConnection : Connection, IRepositoryConnection
     {
         // -----------------------------------------------

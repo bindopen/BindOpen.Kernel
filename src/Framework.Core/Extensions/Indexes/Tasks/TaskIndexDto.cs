@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Tasks;
+using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Tasks
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Tasks
     /// This class represents a task index.
     /// </summary>
     [Serializable()]
-    [XmlType("TaskIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "tasks.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class TaskIndexDto : TAppExtensionItemIndexDto<ITaskDefinitionDto>
+    [XmlType("TaskIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "tasks.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class TaskIndexDto : TAppExtensionItemIndexDto<TaskDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

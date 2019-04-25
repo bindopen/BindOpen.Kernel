@@ -1,5 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition;
+﻿using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Configuration;
+using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Definitions;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {
@@ -9,7 +12,10 @@ namespace BindOpen.Framework.Core.Extensions.Items
     public abstract class TAppExtensionItem<T> : IdentifiedDataItem, ITAppExtensionItem<T>
         where T : IAppExtensionItemDefinition
     {
-        private ITAppExtensionItemDto<T> _dto;
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        protected ITAppExtensionItemConfiguration<T> _configuration;
         private T _definition;
 
         // -----------------------------------------------
@@ -19,14 +25,17 @@ namespace BindOpen.Framework.Core.Extensions.Items
         #region Properties
 
         /// <summary>
-        /// The DTO item of this instance.
+        /// The name of this instance.
         /// </summary>
-        public ITAppExtensionItemDto<T> Dto => _dto;
+        [XmlAttribute("name")]
+        public string Name { get; set; }
 
         /// <summary>
-        /// The ID of this instance.
+        /// The configuration of this instance.
         /// </summary>
-        public string Id { get; set; }
+        public new ITAppExtensionItemConfiguration<T> Configuration => _configuration;
+
+        IConfiguration IAppExtensionItem.Configuration => _configuration as IConfiguration;
 
         /// <summary>
         /// The definition of this instance.
@@ -53,13 +62,22 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// Instantiates a new instance of the TAppExtensionItem class.
         /// </summary>
         /// <param name="dto">The DTO item to consider.</param>
-        protected TAppExtensionItem(ITAppExtensionItemDto<T> dto = default) : this()
+        protected TAppExtensionItem(ITAppExtensionItemConfiguration<T> dto = default) : this()
         {
-            _dto = dto;
+            _configuration = dto;
         }
 
         #endregion
 
+        /// <summary>
+        /// Returns a data element representing this instance.
+        /// </summary>
+        /// <param name="name">The name of the element to create.</param>
+        /// <returns>Retuns the data element that represents this instace.</returns>
+        public virtual IDataElement AsElement(string name)
+        {
+            return null;
+        }
 
         /// <summary>
         /// Sets the specified definition of this instance.

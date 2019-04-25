@@ -7,7 +7,7 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
-using BindOpen.Framework.Core.Extensions.Runtime.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Databases.Data.Queries;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
@@ -16,10 +16,10 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     /// This class represents a database data field.
     /// </summary>
     [Serializable()]
-    [XmlType("DbField", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dbField", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DbField", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dbField", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [Carrier(
-        Name = "dbField",
+        Name = "databases$dbField",
         DataSourceKind = DataSourceKind.Database,
         Description = "Database field.",
         CreationDate = "2016-09-14"
@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "value")]
-        public IDataExpression Value { get; set; }
+        public DataExpression Value { get; set; }
 
         /// <summary>
         /// Value of this instance.
@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "query")]
-        public IDbDataQuery Query { get; set; }
+        public DbDataQuery Query { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a key.
@@ -150,7 +150,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="value">The value to consider.</param>
         public DbField(
             string name,
-            IDataExpression value,
+            DataExpression value,
             DataValueType valueType = DataValueType.None)
             : base(name, "field_")
         {
@@ -168,7 +168,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbField(
             string name,
             string tableName,
-            IDataExpression value,
+            DataExpression value,
             DataValueType valueType = DataValueType.None)
             : this(name, value, valueType)
         {
@@ -189,7 +189,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             string tableName,
             string schema,
             string dataModule,
-            IDataExpression value,
+            DataExpression value,
             DataValueType valueType = DataValueType.None)
             : this(name, tableName, value, valueType)
         {
@@ -213,7 +213,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         {
             ValueType = valueType;
             if (value != null)
-                Value = value.GetString(valueType).CreateLiteral();
+                Value = value.ToString(valueType).CreateLiteral();
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="query">The query to consider.</param>
         public DbField(
             string name,
-            IDbDataQuery query)
+            DbDataQuery query)
             : base(name, "field_")
         {
             ValueType = DataValueType.None;
@@ -280,7 +280,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbField(
             string name,
             string tableName,
-            IDbDataQuery query)
+            DbDataQuery query)
             : this(name, query)
         {
             DataTable = tableName;
@@ -299,7 +299,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             string tableName,
             string schema,
             string dataModule,
-            IDbDataQuery query)
+            DbDataQuery query)
             : this(name, tableName, query)
         {
             Schema = schema;
@@ -338,7 +338,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// Sets the expression value of this instance.
         /// </summary>
         /// <param name="expression">Data expression value of the instance.</param>
-        public void SetValue(IDataExpression expression)
+        public void SetValue(DataExpression expression)
         {
             Value = expression;
         }

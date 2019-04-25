@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible update modes.
     /// </summary>
     [Serializable()]
-    [XmlType("UpdateMode", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("UpdateMode", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum UpdateMode
     {

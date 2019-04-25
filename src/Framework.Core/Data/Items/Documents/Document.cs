@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Documents;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.Extensions.Items.Formats;
-using BindOpen.Framework.Core.Extensions.Items.Formats;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Documents
@@ -18,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
     /// This class represents a document item.
     /// </summary>
     [Serializable()]
-    [XmlType("Document", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Document", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Document : NamedDataItem, IDocument
     {
         // ------------------------------------------
@@ -32,13 +27,13 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// Container of this instance. 
         /// </summary>
         [XmlElement("container")]
-        public CarrierDto Container { get; set; } = null;
+        public CarrierConfiguration Container { get; set; } = null;
 
         /// <summary>
         /// Content of this instance. 
         /// </summary>
         [XmlElement("content")]
-        public EntityDto Content { get; set; } = null;
+        public EntityConfiguration Content { get; set; } = null;
 
         #endregion
 
@@ -70,11 +65,11 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <param name="container">The container to consider.</param>
         /// <param name="content">The content to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public Document(ICarrierDto container, IEntityDto content, string name = null)
+        public Document(ICarrierConfiguration container, IEntityConfiguration content, string name = null)
             : base(name, "document_")
         {
-            Container = container as CarrierDto;
-            Content = content as EntityDto;
+            Container = container as CarrierConfiguration;
+            Content = content as EntityConfiguration;
         }
 
         #endregion
@@ -105,11 +100,11 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// </summary>
         /// <param name="dataSource">The data source to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public virtual IFormatDto DetectFormat(
+        public virtual IFormatConfiguration DetectFormat(
             IDataSource dataSource,
             ref ILog log)
         {
-            return new FormatDto();
+            return new FormatConfiguration();
         }
 
         #endregion
@@ -128,9 +123,9 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         {
             Document dataEntityItem = base.Clone() as Document;
             if (this.Container != null)
-                dataEntityItem.Container = this.Container.Clone() as CarrierDto;
+                dataEntityItem.Container = this.Container.Clone() as CarrierConfiguration;
             if (this.Content != null)
-                dataEntityItem.Content = this.Content.Clone() as EntityDto;
+                dataEntityItem.Content = this.Content.Clone() as EntityConfiguration;
 
             return dataEntityItem;
         }

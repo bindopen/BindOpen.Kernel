@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Items.Schema
     /// This class represents a data schema.
     /// </summary>
     [Serializable()]
-    [XmlType("DataSchema", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("schema", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataSchema", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataSchema : DescribedDataItem, IDataSchema
     {
         //------------------------------------------

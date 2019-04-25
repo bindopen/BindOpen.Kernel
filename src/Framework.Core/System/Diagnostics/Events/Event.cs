@@ -7,8 +7,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {
@@ -16,8 +14,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// This class represents an event.
     /// </summary>
     [Serializable()]
-    [XmlType("Event", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Event", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(ConditionalEvent))]
     public class Event : DescribedDataItem, IEvent
     {
@@ -221,7 +219,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         {
             base.UpdateRuntimeInfo(log);
 
-            this.Detail.UpdateRuntimeInfo(log);
+            Detail?.UpdateRuntimeInfo(log);
         }
 
         #endregion

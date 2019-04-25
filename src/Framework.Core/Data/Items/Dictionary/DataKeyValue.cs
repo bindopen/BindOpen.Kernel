@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
     /// This class represents a data key value.
     /// </summary>
     [Serializable()]
-    [XmlType("DataKeyValue", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "add.value", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataKeyValue", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "add.value", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataKeyValue : MarshalByRefObject, IDataKeyValue
     {
         // --------------------------------------------------

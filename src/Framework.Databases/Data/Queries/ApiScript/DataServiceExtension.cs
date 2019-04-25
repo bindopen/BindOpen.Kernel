@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
-using BindOpen.Framework.Core.Application.Services;
+using BindOpen.Framework.Core.Application.Services.Data;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;

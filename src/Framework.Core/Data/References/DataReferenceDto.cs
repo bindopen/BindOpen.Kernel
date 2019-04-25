@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
@@ -18,8 +17,8 @@ namespace BindOpen.Framework.Core.Data.References
     /// This class represents a data reference configuration.
     /// </summary>
     [Serializable()]
-    [XmlType("DataReference", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "data.reference", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataReference", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "data.reference", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataReferenceDto : DataItem, IDataReferenceDto
     {
         // ------------------------------------------
@@ -90,11 +89,11 @@ namespace BindOpen.Framework.Core.Data.References
         public DataReferenceDto(
             string dataHandlerUniqueName,
             IDataElement sourceElement,
-            DynamicObject dynamicObject) : this()
+            object dynamicObject) : this()
         {
             DataHandlerUniqueName = dataHandlerUniqueName;
             SourceElement = sourceElement as DataElement;
-            PathDetail.Update(ElementFactory.Create(dynamicObject));
+            PathDetail.Update(ElementFactory.CreateSet<DataElementSet>(dynamicObject));
         }
 
         /// <summary>

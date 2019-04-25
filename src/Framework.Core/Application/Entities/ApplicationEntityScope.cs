@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.Application.Entities
     /// This enumeration represents the possible application entity scopes.
     /// </summary>
     [Serializable()]
-    [XmlType("ApplicationEntityScope", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("ApplicationEntityScope", Namespace = "https://bindopen.org/xsd")]
     public enum ApplicationEntityScope
     {
         /// <summary>

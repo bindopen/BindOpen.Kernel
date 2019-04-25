@@ -21,8 +21,8 @@ namespace BindOpen.Framework.Core.System.Processing
     /// This class represents the process execution.
     /// </summary>
     [Serializable()]
-    [XmlType("ProcessExecution", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "processExecution", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ProcessExecution", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "processExecution", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ProcessExecution : DataItem, IProcessExecution
     {
         // ------------------------------------------

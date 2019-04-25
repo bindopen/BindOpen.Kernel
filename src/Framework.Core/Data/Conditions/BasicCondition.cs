@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
     /// This class represents an basic condition.
     /// </summary>
     [Serializable()]
-    [XmlType("BasicBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "basic.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("BasicBusinessCondition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "basic.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BasicCondition : Condition, IBasicCondition
     {
         // ------------------------------------------

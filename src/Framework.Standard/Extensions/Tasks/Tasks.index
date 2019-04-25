@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <tasks.index library="standard"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:TaskIndex TaskIndex.xsd">
   
   <creationDate>2011-07-07</creationDate>

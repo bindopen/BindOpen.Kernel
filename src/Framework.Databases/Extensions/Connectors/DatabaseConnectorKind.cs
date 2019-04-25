@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// </summary>
         /// <param name="connectorKind_database">The connector kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this DatabaseConnectorKind connectorKind_database)
+        public static string GetUniqueName(this DatabaseConnectorKind connectorKind_database)
         {
             return connectorKind_database.ToString().ToLower().GetUniqueName_database();
         }

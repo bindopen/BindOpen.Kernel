@@ -8,8 +8,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents indexed data item.
     /// </summary>
     [Serializable()]
-    [XmlType("IndexedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("indexedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("IndexedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("indexedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IndexedDataItem : DescribedDataItem, IIndexedDataItem
     {
         // ------------------------------------------

@@ -17,12 +17,12 @@
         None,
 
         /// <summary>
-        /// RoutineDto that checks that item is not empty.
+        /// RoutineConfiguration that checks that item is not empty.
         /// </summary>
         ItemMustNotBeEmpty,
 
         /// <summary>
-        /// RoutineDto that checks that item is in list.
+        /// RoutineConfiguration that checks that item is in list.
         /// </summary>
         ItemMustBeInList
     }

@@ -83,7 +83,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
         bool WriteTask(
-            ILog log, ITaskDto task);
+            ILog log, ITaskConfiguration task);
 
         /// <summary>
         /// Logs the specified event.

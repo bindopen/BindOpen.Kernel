@@ -1,5 +1,6 @@
 ﻿using System;
 using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Attributes
 {
@@ -14,6 +15,8 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         // --------------------------------------------------
 
         #region Properties
+
+        ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
 
         /// <summary>
         /// The sets of parameters of this instance.

@@ -11,8 +11,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
     /// This class represents a schema element.
     /// </summary>
     [Serializable()]
-    [XmlType("SchemaElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("schema", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SchemaElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(SchemaZoneElement))]
     public class SchemaElement : DataElement
     {

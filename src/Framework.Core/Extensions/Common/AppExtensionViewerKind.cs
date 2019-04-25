@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Extensions.Common
     /// This enumeration represents the possible kinds of library item viewers.
     /// </summary>
     [Serializable()]
-    [XmlType("AppExtensionViewerKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("AppExtensionViewerKind", Namespace = "https://bindopen.org/xsd")]
     public enum AppExtensionViewerKind
     {
         /// <summary>
@@ -53,6 +53,6 @@ namespace BindOpen.Framework.Core.Extensions.Common
         /// <summary>
         /// Data format.
         /// </summary>
-        FormatDto
+        FormatConfiguration
     }
 }

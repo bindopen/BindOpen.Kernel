@@ -8,8 +8,8 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// <summary>
     /// This class represents a connector.
     /// </summary>
-    [XmlType("Connection", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "connection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Connection", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "connection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class Connection : DataItem, IConnection
     {
         // ------------------------------------------

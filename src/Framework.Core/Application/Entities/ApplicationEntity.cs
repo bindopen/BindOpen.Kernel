@@ -8,8 +8,8 @@ namespace BindOpen.Framework.Core.Application.Entities
     /// This class represents an application entity.
     /// </summary>
     [Serializable()]
-    [XmlType("ApplicationEntity", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "applicationEntity", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ApplicationEntity", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "applicationEntity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ApplicationEntity : Entity
     {
         // ------------------------------------------

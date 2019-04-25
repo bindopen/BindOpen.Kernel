@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Business.Contacts
     /// This class represents a contact.
     /// </summary>
     [Serializable()]
-    [XmlType("Contact", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "contact", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Contact", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "contact", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Contact : StoredDataItem
     {
         // ------------------------------------------

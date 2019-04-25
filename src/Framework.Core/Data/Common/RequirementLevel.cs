@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
     [Serializable()]
-    [XmlType("RequirementLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("RequirementLevel", Namespace = "https://bindopen.org/xsd")]
     public enum RequirementLevel
     {
         /// <summary>

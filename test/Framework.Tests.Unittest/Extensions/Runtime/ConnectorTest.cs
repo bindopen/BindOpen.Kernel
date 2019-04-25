@@ -1,58 +1,81 @@
-﻿using System.Xml.Linq;
+﻿using System.IO;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Connections;
-using BindOpen.Framework.Databases.Extensions.Scriptwords;
-using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
-using BindOpen.Framework.UnitTest.Setup;
+using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
+using BindOpen.Framework.UnitTest;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.Extensions.Runtime
 {
-    [TestFixture, Order(12)]
+    [TestFixture, Order(11)]
     public class ConnectorTest
     {
-        private readonly string _script = "$sqlTable('MYTABLE').sqlField('MYFIELD') ='abc'";
-        private readonly string _interpretedScript = "[MYTABLE].[MYFIELD]='abc'";
+        private Connector _connector = null;
+        private readonly string _filePath = SetupVariables.WorkingFolder + "Connector.xml";
+
+        private readonly string _connectionString = "<connectionString>";
 
         [SetUp]
         public void Setup()
         {
+            _connector = new DatabaseConnector_MSSqlServer("test", _connectionString);
         }
 
         [Test, Order(1)]
-        public void TestEmpty()
+        public void TestCreateConnector()
         {
-            XElement element = new XElement("name");
+            Test(_connector);
         }
 
         [Test, Order(2)]
-        public void TestInterpreteDatabaseScript()
+        public void TestSaveConnector()
         {
             ILog log = new Log();
 
-            string resultScript = "";
+            _connector.SaveXml(_filePath, log);
 
-            using (ScriptVariableSet scriptVariableSet = new ScriptVariableSet())
-            {
-                scriptVariableSet.SetValue(ScriptVariableKey_Database.DbBuilder,
-                    new DbQueryBuilder_MSSqlServer(SetupVariables.AppScope));
-                resultScript = SetupVariables.AppScope.ScriptInterpreter.Interprete(this._script, scriptVariableSet, log);
-            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed. Result was '" + log.ToXml());
+        }
 
-            Assert.That(this._interpretedScript.ToLower() == resultScript?.ToLower(), "Bad script interpretation. Result was '" + log.ToXml());
+        [Test, Order(3)]
+        public void TestLoadConnector()
+        {
+            ILog log = new Log();
+
+            if (_connector == null || !File.Exists(_filePath))
+                TestSaveConnector();
+
+            ConnectorConfiguration configuration = XmlHelper.Load<ConnectorConfiguration>(_filePath, log);
+            DatabaseConnector_MSSqlServer connector = SetupVariables.AppScope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration, null, log);
+
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + log.ToXml());
+
+            Test(connector);
         }
 
         [Test, Order(3)]
         public void TestCreateOpenCloseConnection()
         {
-            ILog log = new Log();
+            Log log = new Log();
 
             using (DatabaseConnection connection =
                 SetupVariables.AppScope.ConnectionService.Open<DatabaseConnection>("bdd1", null, log))
             {
-                connection?.ExecuteNonQuery(this._script, null, log);
             }
         }
+
+        private void Test(Connector connector)
+        {
+            Assert.That(connector != null, "Field missing");
+            if (connector != null)
+            {
+                Assert.That(connector.ConnectionString == _connectionString, "Bad connector connection string");
+            }
+        }
+
     }
+
 }

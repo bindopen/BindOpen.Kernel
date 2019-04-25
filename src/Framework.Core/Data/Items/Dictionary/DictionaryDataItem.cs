@@ -22,8 +22,8 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="DataKeyValue"/>
     [Serializable()]
-    [XmlType("DictionaryDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "item", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DictionaryDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "item", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DictionaryDataItem : DataItem, IDictionaryDataItem
     {
         // --------------------------------------------------

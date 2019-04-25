@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="dataTable">The data table to serialize.</param>
         /// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         /// <returns>The Xml string serializing the specified data table.</returns>
-        public static String ToXml(this DataTable dataTable, bool isFiltered = false)
+        public static string ToXml(this DataTable dataTable, bool isFiltered = false)
         {
             String resultString = "";
             IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="nodeName">The name of the node to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, bool isFiltered = false)
+        //public static string ToXml(this OleDbDataReader oleDbDataReader, String nodeName, bool isFiltered = false)
         //{
         //    int count = 0;
         //    return ObjectNotationHelper_Xml.ToXml(oleDbDataReader, nodeName, out count, isFiltered);
@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="count">The number of items to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToXml(this OleDbDataReader oleDbDataReader, String nodeName, out int count, bool isFiltered = false)
+        //public static string ToXml(this OleDbDataReader oleDbDataReader, String nodeName, out int count, bool isFiltered = false)
         //{
         //    String resultString = "";
         //    IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -247,7 +247,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="xmlString">The xml string to parse.</param>
         /// <param name="nodeName">Name of the node.</param>
         /// <returns>The value of the specified Xml node in the specified xml string.</returns>
-        public static String GetXmlNodeValue(
+        public static string GetXmlNodeValue(
             this String xmlString,
             String nodeName)
         {

@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Extensions.Definition.Tasks;
+using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
     /// </summary>
     public abstract class Task : TAppExtensionItem<ITaskDefinition>, ITask
     {
-        new public ITaskDto Dto { get; }
+        new public ITaskConfiguration Configuration { get => base.Configuration as ITaskConfiguration; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Instantiates a new instance of the Task class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected Task(ITaskDto dto)
+        protected Task(ITaskConfiguration dto)
         {
         }
 
@@ -60,7 +60,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
             ILog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IDataElement entry = Dto?.GetEntryWithName(name, taskEntryKinds);
+            IDataElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetObject(appScope, scriptVariableSet, log);
         }
@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
             IDataElementSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
-            if (Dto == null) return false;
+            if (Configuration == null) return false;
 
             if (dataElementSpecSet == null)
             {
@@ -85,7 +85,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
             }
             else
             {
-                foreach (IDataElement entry in Dto.GetEntries(taskEntryKind))
+                foreach (IDataElement entry in Configuration.GetEntries(taskEntryKind))
                 {
                     IDataElementSpec dataElementSpec = dataElementSpecSet[entry.Key()];
                     if (dataElementSpec != null)
@@ -106,8 +106,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         public bool IsConfigurable(SpecificationLevel specificationLevel = SpecificationLevel.Runtime)
         {
             List<IDataElement> elements = new List<IDataElement>();
-            elements.AddRange(Dto?.GetEntries(TaskEntryKind.Input));
-            elements.AddRange(Dto?.GetEntries(TaskEntryKind.ScalarOutput));
+            elements.AddRange(Configuration?.GetEntries(TaskEntryKind.Input));
+            elements.AddRange(Configuration?.GetEntries(TaskEntryKind.ScalarOutput));
 
             if (elements.Count == 0)
             {

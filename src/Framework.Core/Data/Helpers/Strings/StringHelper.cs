@@ -606,9 +606,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                 case DataValueType.Boolean:
                     return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
                 case DataValueType.Number:
-                    float afloat = new float();
-                    float.TryParse(st, out afloat);
-                    return new float?(afloat);
+                    double aDouble = new double();
+                    double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble);
+                    return new double?(aDouble);
                 case DataValueType.Integer:
                     int aInt = new int();
                     int.TryParse(st, out aInt);
@@ -617,6 +617,10 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                     long aLong = new long();
                     long.TryParse(st, out aLong);
                     return new long?(aLong);
+                case DataValueType.ULong:
+                    ulong aULong = new ulong();
+                    ulong.TryParse(st, out aULong);
+                    return new ulong?(aULong);
                 default:
                     return st;
             }
@@ -687,7 +691,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// Returns the current time stamp.
         /// </summary>
         /// <returns>The current time stamp</returns>
-        public static String GetCurrentTimeStamp()
+        public static string GetCurrentTimeStamp()
         {
             return DateTime.Now.Year +
                 (DateTime.Now.Month < 10 ? "0" + DateTime.Now.Month.ToString() : DateTime.Now.Month.ToString()) +

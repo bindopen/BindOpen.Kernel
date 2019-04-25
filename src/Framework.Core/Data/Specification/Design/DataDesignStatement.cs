@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
     /// This class represents a data design statement.
     /// </summary>
     [Serializable()]
-    [XmlType("DataDesignStatement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "design.statement", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataDesignStatement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "design.statement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataDesignStatement : DataItem, IDataDesignStatement
     {
         // --------------------------------------------------

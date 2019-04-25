@@ -13,13 +13,13 @@ namespace BindOpen.Framework.Core.Application.Services.Data.Datasources
         void AddSource(IDataSource source);
         void AddSource(params IDataSource[] sources);
         void Clear();
-        IConnectorDto GetConnectorDto(string sourceName, string connectorDefinitionUniqueId);
+        IConnectorConfiguration GetConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId);
         string GetInstanceName(string sourceName);
         string GetInstanceOtherwiseModuleName(string sourceName);
         string GetModuleName(string sourceName);
         IDataSource GetSource(string sourceName);
         string GetStringConnection(string sourceName, string connectorDefinitionUniqueId);
-        bool HasConnectorDto(string sourceName, string connectorDefinitionUniqueId);
+        bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId);
         bool HasSource(string sourceName);
         void RemoveSource(params string[] sourceNames);
     }

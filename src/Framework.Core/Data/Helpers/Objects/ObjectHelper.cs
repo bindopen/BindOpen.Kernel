@@ -4,13 +4,13 @@ using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
+using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -27,16 +27,16 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns>Returns the key representing the specified object.</returns>
-        public static String ToKey(this object object1)
+        public static string ToKey(this object object1)
         {
             if (object1 == null)
-                return String.Empty;
+                return string.Empty;
             else if (object1 is string x)
                 return x;
-            else if (object1 is IdentifiedDataItem identifiedDataItem)
-                return (identifiedDataItem).Key() ?? String.Empty;
-            else if (object1 is DataKeyValue dataKeyValue)
-                return (dataKeyValue).Key ?? String.Empty;
+            else if (object1 is IReferenced referenced)
+                return referenced.Key() ?? string.Empty;
+            else if (object1 is IDataKeyValue dataKeyValue)
+                return (dataKeyValue).Key ?? string.Empty;
             else
                 return object1.ToString();
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns></returns>
-        public static String ToNotNullString(this object object1)
+        public static string ToNotNullString(this object object1)
         {
             return (object1 == null ? "" : object1.ToString());
         }
@@ -67,14 +67,10 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object value to convert.</param>
         /// <param name="valueType">The value type to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The result string.</returns>
         public static string ToString(
             this object object1,
-            DataValueType valueType = DataValueType.Any,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            DataValueType valueType = DataValueType.Any)
         {
             string stringValue = "";
             if (valueType == DataValueType.Any)
@@ -99,10 +95,15 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
                         break;
                     case DataValueType.Text:
-                        stringValue = object1 as string;
+                        stringValue = object1?.ToString();
+                        break;
+                    case DataValueType.ULong:
+                    case DataValueType.Long:
+                    case DataValueType.Integer:
+                        stringValue = object1.ToString();
                         break;
                     default:
-                        stringValue = XmlHelper.ToXml(object1);
+                        stringValue = object1.ToXml();
                         break;
                 }
             }
@@ -118,7 +119,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <returns>Returns the normalized string.</returns>
         public static string GetStringAtIndex(this object[] objects, int index)
         {
-            return (objects != null && objects.Length > index && objects[index] != null ? objects[index].ToString() : "");
+            return objects != null && objects.Length > index && objects[index] != null ? objects[index].ToString() : "";
         }
 
         /// <summary>
@@ -163,73 +164,6 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         }
 
         /// <summary>
-        /// Gets the result of the serialization of the specified object.
-        /// </summary>
-        /// <param name="object1">The object to serialize.</param>
-        /// <param name="elementSet">The element set to consider.</param>
-        /// <typeparam name="T">The data element attribute to consider.</typeparam>
-        /// <returns>The Xml string serializing the specified object.</returns>
-        public static void UpdateFromElementSet<T>(this object object1, IDataElementSet elementSet) where T : DataElementAttribute
-        {
-            if (object1 != null && elementSet != null)
-            {
-                foreach (PropertyInfo propertyInfo in object1.GetType().GetProperties())
-                {
-                    DataElementAttribute attribute = propertyInfo.GetCustomAttribute(typeof(T)) as DetailPropertyAttribute;
-
-                    if (attribute != null)
-                    {
-                        String name = attribute.Name;
-                        if (string.IsNullOrEmpty(name))
-                            name = propertyInfo.Name;
-                        try
-                        {
-                            var value = elementSet.GetElementObject(name);
-                            if (propertyInfo.PropertyType.IsEnum && value != null)
-                            {
-                                if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                    value = Enum.Parse(propertyInfo.PropertyType, value as string);
-                            }
-
-                            propertyInfo.SetValue(object1, value);
-                        }
-                        catch (Exception ex)
-                        {
-                            String st = ex.ToString();
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the result of the serialization of the specified object.
-        /// </summary>
-        /// <param name="elementSet">The element set to consider.</param>
-        /// <param name="object1">The object to serialize.</param>
-        /// <typeparam name="T">The data element attribute to consider.</typeparam>
-        /// <returns>The Xml string serializing the specified object.</returns>
-        public static void UpdateFromObject<T>(this DataElementSet elementSet, object object1) where T : DataElementAttribute
-        {
-            if (elementSet != null && object1 != null)
-            {
-                foreach (PropertyInfo propertyInfo in object1.GetType().GetProperties())
-                {
-                    DetailPropertyAttribute attribute = propertyInfo.GetCustomAttribute(typeof(DetailPropertyAttribute)) as DetailPropertyAttribute;
-                    if (attribute != null)
-                    {
-                        String name = attribute.Name;
-                        if (string.IsNullOrEmpty(name))
-                            name = propertyInfo.Name;
-                        elementSet.AddElement(
-                            ElementFactory.CreateScalar(
-                                name, propertyInfo.PropertyType.GetValueType(), propertyInfo.GetValue(object1)));
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets the object at the specified index from the specified index.
         /// </summary>
         /// <param name="objects">The objects to consider.</param>
@@ -250,7 +184,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         {
             if (item != null)
                 using (item)
+                {
                     action(item);
+                }
         }
 
         /// <summary>
@@ -293,30 +229,74 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="aObject">The object to update.</param>
         /// <param name="elementSet">The set of elements to return.</param>
-        /// <param name="attributeType">The type of attribute to update.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        public static ILog MapProperties(
+        public static ILog UpdateFromElementSet<T>(
             this Object aObject,
             IDataElementSet elementSet,
-            Type attributeType = null,
             IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
-            if(attributeType==null) attributeType = typeof(DetailPropertyAttribute);
-
             ILog log = new Log();
             if (aObject == null || elementSet.Elements == null) return null;
 
-            foreach(PropertyInfo property in aObject.GetType().GetProperties().Where(p=>p.GetCustomAttribute(attributeType) != null))
+            foreach(PropertyInfo propertyInfo in aObject.GetType().GetProperties().Where(p=>p.GetCustomAttribute(typeof(T)) != null))
             {
-                Attribute attribute = property.GetCustomAttribute(attributeType);
+                Attribute attribute = propertyInfo.GetCustomAttribute(typeof(T));
                 if (attribute is DataElementAttribute elementAttribute)
                 {
-                    IDataElement element = elementSet[elementAttribute.Name];
-                    if (element!=null)
+                    string name = elementAttribute.Name;
+                    if (string.IsNullOrEmpty(name))
+                        name = propertyInfo.Name;
+
+                    try
                     {
-                        property.SetValue(aObject, element.GetObject(appScope, scriptVariableSet, log));
+                        var value = elementSet.GetElementObject(name, appScope, scriptVariableSet, log);
+                        if (propertyInfo.PropertyType.IsEnum && value != null)
+                        {
+                            if (Enum.IsDefined(propertyInfo.PropertyType, value))
+                                value = Enum.Parse(propertyInfo.PropertyType, value as string);
+                        }
+
+                        propertyInfo.SetValue(aObject, value);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.AddException(ex);
+                    }
+                }
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Gets the result of the serialization of the specified object.
+        /// </summary>
+        /// <param name="elementSet">The element set to consider.</param>
+        /// <param name="object1">The object to serialize.</param>
+        /// <typeparam name="T">The data element attribute to consider.</typeparam>
+        /// <returns>The Xml string serializing the specified object.</returns>
+        public static ILog UpdateFromObject<T>(
+            this IDataElementSet elementSet,
+            object object1) where T : DataElementAttribute
+        {
+            ILog log = new Log();
+
+            if (elementSet != null && object1 != null)
+            {
+                foreach (PropertyInfo propertyInfo in object1.GetType().GetProperties())
+                {
+                    if (propertyInfo.GetCustomAttribute(typeof(DetailPropertyAttribute)) is DetailPropertyAttribute attribute)
+                    {
+                        string name = attribute.Name;
+
+                        if (string.IsNullOrEmpty(name))
+                            name = propertyInfo.Name;
+
+                        elementSet.AddElement(
+                            ElementFactory.Create(
+                                name, propertyInfo.PropertyType.GetValueType(), null, propertyInfo.GetValue(object1)));
                     }
                 }
             }

@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// <param name="items">The items to consider.</param>
         public static CarrierElement CreateCarrier(
             string name,
-            params ICarrierDto[] items)
+            params ICarrierConfiguration[] items)
         {
             return CreateCarrier(name, null, null, null, items);
         }
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static CarrierElement CreateCarrier(
-            params ICarrierDto[] items)
+            params ICarrierConfiguration[] items)
         {
             return CreateCarrier(null, null, null, null, items);
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         public static CarrierElement CreateCarrier(
             string name,
             string definitionUniqueId,
-            params ICarrierDto[] items)
+            params ICarrierConfiguration[] items)
         {
             return CreateCarrier(name, null, definitionUniqueId, null, items);
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             string id,
             string definitionUniqueId,
             ICarrierElementSpec specification,
-            params ICarrierDto[] items)
+            params ICarrierConfiguration[] items)
         {
             CarrierElement element = new CarrierElement(name, id)
             {

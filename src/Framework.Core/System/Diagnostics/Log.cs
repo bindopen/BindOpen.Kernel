@@ -8,7 +8,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
@@ -19,8 +18,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// This class represents a logger of tasks.
     /// </summary>
     [Serializable()]
-    [XmlType("Log", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "log", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Log", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "log", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Log : DescribedDataItem, ILog
     {
         // ------------------------------------------
@@ -31,7 +30,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
 
         // Execution ----------------------------------
 
-        private TaskDto _task = null;
+        private TaskConfiguration _task = null;
 
         #endregion
 
@@ -61,7 +60,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Logged by this instance. By default, a new task is initialized when this instance is initialized.
         /// </summary>
         [XmlElement("task")]
-        public TaskDto Task
+        public TaskConfiguration Task
         {
             get => _task;
             set => WriteLog(_task = value, LoggerMode.Auto);
@@ -281,12 +280,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public Log(
-            ITaskDto task,
+            ITaskConfiguration task,
             Predicate<ILogEvent> eventFinder = null,
             params ILogger[] loggers)
             : this(eventFinder, loggers)
         {
-            _task = task as TaskDto;
+            _task = task as TaskConfiguration;
         }
 
         /// <summary>
@@ -297,11 +296,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="eventFinder">The function that filters event.</param>
         public Log(
             ILog parentLog,
-            ITaskDto task = null,
+            ITaskConfiguration task = null,
             Predicate<ILogEvent> eventFinder = null)
             : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : new Logger[0]))
         {
-            _task = task as TaskDto;
+            _task = task as TaskConfiguration;
             if (parentLog != null)
             {
                 Parent = parentLog as Log;
@@ -344,7 +343,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="task">The task to log.</param>
         /// <param name="mode">The mode to log.</param>
-        public void WriteLog(ITaskDto task, LoggerMode mode = LoggerMode.Auto)
+        public void WriteLog(ITaskConfiguration task, LoggerMode mode = LoggerMode.Auto)
         {
             foreach (ILogger logger in Loggers)
             {
@@ -482,7 +481,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             AddEvent(
                 logEvent = new LogEvent(
                     kind,
-                    title,
+                    title ?? childLog?.Title,
                     criticality,
                     description,
                     resultCode,
@@ -786,7 +785,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="description">The description of this instance.</param>
         /// <param name="criticality">The criticality of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="aSource">The ExtensionDataContext of this instance.</param>
+        /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date to consider.</param>
         public ILogEvent AddSubLog(
             ILog childLog,
@@ -796,7 +795,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             EventCriticality criticality = EventCriticality.None,
             string description = null,
             string resultCode = null,
-            string aSource = null,
+            string source = null,
             DateTime? date = null)
         {
             return AddEvent(
@@ -805,7 +804,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                 criticality,
                 description,
                 resultCode,
-                aSource,
+                source,
                 date,
                 childLog,
                 logFinder);
@@ -820,7 +819,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="description">The description of this instance.</param>
         /// <param name="criticality">The criticality of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="aSource">The ExtensionDataContext of this instance.</param>
+        /// <param name="source">The ExtensionDataContext of this instance.</param>
         /// <param name="date">The date to consider.</param>
         public ILog AddSubLog(
             Predicate<ILog> filterFinder = null,
@@ -829,7 +828,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             EventCriticality criticality = EventCriticality.None,
             string description = null,
             string resultCode = null,
-            string aSource = null,
+            string source = null,
             DateTime? date = null)
         {
             Log childLog = new Log();
@@ -839,7 +838,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                 criticality,
                 description,
                 resultCode,
-                aSource,
+                source,
                 date,
                 childLog,
                 filterFinder);
@@ -1285,7 +1284,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             {
                 foreach (Event currentEvent in Events)
                 {
-                    currentEvent.UpdateRuntimeInfo(log);
+                    currentEvent?.UpdateRuntimeInfo(log);
                 }
             }
         }

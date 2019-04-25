@@ -1,7 +1,7 @@
 ﻿using System;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Definition.Routines;
+using BindOpen.Framework.Core.Extensions.Definitions.Routines;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 

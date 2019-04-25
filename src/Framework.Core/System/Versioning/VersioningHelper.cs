@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// <param name="version">The new version to consider.</param>
         /// <param name="level">The level to consider.</param>
         /// <returns></returns>
-        public static String GetVersion(String version, int level)
+        public static string GetVersion(String version, int level)
         {
             String newVersion = null;
             switch (level)
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// </summary>
         /// <param name="numbers">The version section numbers to consider.</param>
         /// <returns></returns>
-        public static String GetVersion(params int[] numbers)
+        public static string GetVersion(params int[] numbers)
         {
             string version = "";
             for (int i = 0; i < numbers.Length; i++)
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// </summary>
         /// <param name="numbers">The version section numbers to consider.</param>
         /// <returns></returns>
-        public static String GetVersion(params string[] numbers)
+        public static string GetVersion(params string[] numbers)
         {
             return VersioningHelper.GetVersion(numbers.Select(p=> { int i; if (!int.TryParse(p, out i)) return 0; return i; }).ToArray());
         }
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Core.System.Versioning
         /// <param name="versioningFormat">The versioning format to consider.</param>
         /// <param name="historicVersion">The historic version to consider.</param>
         /// <returns>The URL of the setup file of the new update. Null if there is no new update.</returns>
-        public static String GetIncrementedVersion(
+        public static string GetIncrementedVersion(
             String currentVersion,
             String versioningFormat,
             String historicVersion = null)

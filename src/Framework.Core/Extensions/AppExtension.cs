@@ -6,9 +6,9 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Definition;
-using BindOpen.Framework.Core.Extensions.Definition.Libraries;
-using BindOpen.Framework.Core.Extensions.Items.Libraries;
+using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Definitions.Libraries;
+using BindOpen.Framework.Core.Extensions.Libraries;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
@@ -316,18 +316,25 @@ namespace BindOpen.Framework.Core.Extensions
             {
                 foreach (IAppExtensionFilter extensionFilter in config.GetFilters())
                 {
+                    Log subLog = new Log();
+
                     string defaultFolderPath = string.IsNullOrEmpty(extensionFilter.FolderPath) ?
                         config.DefaultFolderPath : extensionFilter.FolderPath;
                     if (string.IsNullOrEmpty(defaultFolderPath))
                         defaultFolderPath = folderPath;
 
-                    ILibrary library = LibraryLoader.Load(AppDomain, extensionFilter, log);
+                    ILibrary library = LibraryLoader.Load(AppDomain, extensionFilter, subLog);
 
                     if (library != null && !log.HasErrorsOrExceptions()
                         && !_libraries.Any(p => p.Definition?.KeyEquals(library.Definition) == true))
                     {
                         AddLibrary(library);
                     }
+
+                    if (subLog.HasErrorsOrExceptionsOrWarnings())
+                        log.AddSubLog(subLog, title: "Loading library '" + (extensionFilter?.Name ?? "?") + "'");
+                    else
+                        log.AddMessage("Library '" + (extensionFilter?.Name ?? "?") + "' loaded");
                 }
             }
 

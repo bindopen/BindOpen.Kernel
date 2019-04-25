@@ -4,7 +4,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
 {
     public interface IScalarElement : IDataElement
     {
-        object Value { get; set; }
+        string Value { get; set; }
 
         DataValueType ValueType { get; set; }
 

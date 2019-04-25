@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Carriers;
+using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Carriers
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Carriers
     /// This class represents a carrier index.
     /// </summary>
     [Serializable()]
-    [XmlType("CarrierIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "carriers.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class CarrierIndexDto : TAppExtensionItemIndexDto<ICarrierDefinitionDto>
+    [XmlType("CarrierIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "carriers.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class CarrierIndexDto : TAppExtensionItemIndexDto<CarrierDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

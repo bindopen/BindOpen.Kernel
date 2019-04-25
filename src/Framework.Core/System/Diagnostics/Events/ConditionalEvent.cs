@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// This class represents a conditional event.
     /// </summary>
     [Serializable()]
-    [XmlType("ConditionalEvent", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ConditionalEvent", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ConditionalEvent : Event, IConditionalEvent
     {
         // ------------------------------------------

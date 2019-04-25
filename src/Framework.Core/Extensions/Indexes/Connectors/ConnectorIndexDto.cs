@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Connectors;
+using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Connectors
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Connectors
     /// This class represents a DTO connector index.
     /// </summary>
     [Serializable()]
-    [XmlType("ConnectorIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "connectors.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ConnectorIndexDto : TAppExtensionItemIndexDto<IConnectorDefinitionDto>
+    [XmlType("ConnectorIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "connectors.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class ConnectorIndexDto : TAppExtensionItemIndexDto<ConnectorDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -16,8 +16,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
     /// This class represents a set of data element specifications.
     /// </summary>
     [Serializable()]
-    [XmlType("DataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataElementSpecSet", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSpecSet : DataItemSet<DataElementSpec>, IDataElementSpecSet
     {
         // ------------------------------------------

@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Application.Options
     /// <summary>
     /// This class represents a option set.
     /// </summary>
-    [XmlType("OptionSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("optionSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("OptionSet", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("optionSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class OptionSet : DataElementSet, IOptionSet
     {
         // -------------------------------------------------------------

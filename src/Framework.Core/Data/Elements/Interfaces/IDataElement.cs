@@ -16,6 +16,7 @@ namespace BindOpen.Framework.Core.Data.Elements
     {
         object this[int index] { get; }
         object this[string name] { get; }
+        object First { get; }
 
         EventKind? EventKind { get; set; }
         bool EventKindSpecified { get; }

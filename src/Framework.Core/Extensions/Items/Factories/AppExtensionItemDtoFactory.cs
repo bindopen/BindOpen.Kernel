@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definition;
+using BindOpen.Framework.Core.Extensions.Definitions;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public static ITAppExtensionItemDto<T> CreateConfiguration<T>(
+        public static ITAppExtensionItemConfiguration<T> CreateConfiguration<T>(
             this IAppScope appScope,
             string definitionUniqueId,
             ILog log = null) where T : IAppExtensionItemDefinition
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
 
             T definition = appScope.AppExtension.GetItemDefinitionWithUniqueId<T>(definitionUniqueId);
 
-            ITAppExtensionItemDto<T> configuration = null;
+            ITAppExtensionItemConfiguration<T> configuration = null;
 
             if (definition == null)
             {
@@ -42,25 +42,25 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
                 switch (extensionItemKind)
                 {
                     case AppExtensionItemKind.Carrier:
-                        configuration = new CarrierDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                        configuration = new CarrierConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Connector:
-                        configuration = new ConnectorDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                        configuration = new ConnectorConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Entity:
-                        configuration = new EntityDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                        configuration = new EntityConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
                     case AppExtensionItemKind.Format:
-                        configuration = new FormatDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                        configuration = new FormatConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
                     //case AppExtensionItemKind.Metrics:
                     //    configuration = new MetricsDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
                     //    break;
                     //case AppExtensionItemKind.Routine:
-                    //    configuration = new RoutineDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                    //    configuration = new RoutineConfiguration(definitionUniqueId) as ITAppExtensionItemDto<T>;
                     //    break;
                     case AppExtensionItemKind.Task:
-                        configuration = new TaskDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
+                        configuration = new TaskConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
                 }
             }
@@ -80,37 +80,37 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlstring">The XML string to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public static ITAppExtensionItemDto<T> LoadConfiguration<T>(
+        public static ITAppExtensionItemConfiguration<T> LoadConfiguration<T>(
             this IAppScope appScope,
             string xmlstring,
             ILog log = null) where T : IAppExtensionItemDefinition
         {
             AppExtensionItemKind extensionItemKind = typeof(T).GetExtensionItemKind();
 
-            ITAppExtensionItemDto<T> configuration = default;
+            ITAppExtensionItemConfiguration<T> configuration = default;
 
             switch (extensionItemKind)
             {
                 case AppExtensionItemKind.Carrier:
-                    configuration = XmlHelper.LoadFromString<CarrierDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Connector:
-                    configuration = XmlHelper.LoadFromString<ConnectorDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                    configuration = XmlHelper.LoadFromString<ConnectorConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Entity:
-                    configuration = XmlHelper.LoadFromString<EntityDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                    configuration = XmlHelper.LoadFromString<EntityConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 case AppExtensionItemKind.Format:
-                    configuration = XmlHelper.LoadFromString<FormatDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                    configuration = XmlHelper.LoadFromString<FormatConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
                     break;
                 //case AppExtensionItemKind.Metrics:
                 //    configuration = XmlHelper.LoadFromString<MetricsDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
                 //    break;
                 //case AppExtensionItemKind.Routine:
-                //    configuration = XmlHelper.LoadFromString<RoutineDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                //    configuration = XmlHelper.LoadFromString<RoutineConfiguration>(xmlstring, log) as ITAppExtensionItemDto<T>;
                 //    break;
                 case AppExtensionItemKind.Task:
-                    configuration = XmlHelper.LoadFromString<CarrierDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
+                    configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, log) as ITAppExtensionItemConfiguration<T>;
                     break;
             }
 

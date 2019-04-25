@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements._Object
@@ -14,8 +19,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
     /// This class represents a object element that is an element whose items are entities.
     /// </summary>
     [Serializable()]
-    [XmlType("ObjectElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "object", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ObjectElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "object", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ObjectElement : DataElement, IObjectElement
     {
         // --------------------------------------------------
@@ -31,10 +36,43 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         public string ClassFullName { get; set; } = "";
 
         /// <summary>
+        /// Specification of the ClassFullName property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ClassFullNameSpecified => !string.IsNullOrEmpty(ClassFullName);
+
+        /// <summary>
         /// The definition unique ID of this instance.
         /// </summary>
         [XmlAttribute("definition")]
         public string DefinitionUniqueId { get; set; } = "";
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Objects of this instance.
+        /// </summary>
+        [XmlArray("items")]
+        [XmlArrayItem("add")]
+        public List<DataElementSet> Objects
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Specification of the Objects property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ObjectsSpecified => Items.Count > 0;
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Specification of the DefinitionUniqueId property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         // Specifcation -----------------------
 
@@ -203,13 +241,51 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         #endregion
 
         // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
+        // SERIALIZATION
         // --------------------------------------------------
 
-        #region Check_Update_Repair
+        #region Serialization
 
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Objects = Items?.Select(p =>
+            {
+                DataElementSet elementSet = ElementFactory.CreateSet<DataElementSet>(p);
+                elementSet?.UpdateStorageInfo(log);
+                return elementSet;
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(ILog log = null)
+        {
+            base.UpdateRuntimeInfo(log);
+
+            foreach(DataElementSet elementSet in Objects)
+            {
+                log.Append(AssemblyHelper.CreateInstance(ClassFullName, out object item));
+
+                if (!log.HasErrorsOrExceptions() && (item is DataItem dataItem))
+                {
+                    elementSet.UpdateRuntimeInfo(log);
+                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet);
+                }
+
+                AddItem(item);
+            }
+        }
 
         #endregion
+
 
         // --------------------------------------------------
         // CLONING

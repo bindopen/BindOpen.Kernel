@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [Serializable()]
-    [XmlRoot(ElementName = "item.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T>
         where T : IdentifiedDataItem
     {
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <summary>
         /// Items of this instance.
         /// </summary>
-        [XmlElement("item")]
+        [XmlIgnore()]
         public List<T> Items
         {
             get => _items ?? (_items = new List<T>());
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Returns the element with the specified key.
         /// </summary>
         [XmlIgnore()]
-        public T this[String key]
+        public T this[string key]
         {
             get
             {

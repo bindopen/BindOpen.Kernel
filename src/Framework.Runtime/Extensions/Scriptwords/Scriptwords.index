@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <scriptWords.index library="runtime"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:ScriptwordIndex ScriptwordIndex.xsd">
 
   <creationDate>2010-08-05</creationDate>

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
@@ -12,12 +12,11 @@ using BindOpen.Framework.Databases.Extensions.Connectors;
 
 namespace BindOpen.Framework.Databases.Data.Connections
 {
-
     /// <summary>
     /// This class represents a database connection.
     /// </summary>
-    [XmlType("DatabaseConnection", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "databaseConnection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DatabaseConnection", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "databaseConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DatabaseConnection : Connection, IDatabaseConnection
     {
         // -----------------------------------------------

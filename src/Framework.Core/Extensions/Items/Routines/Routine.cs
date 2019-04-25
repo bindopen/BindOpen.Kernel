@@ -1,7 +1,7 @@
 ﻿using System;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Definition.Routines;
+using BindOpen.Framework.Core.Extensions.Definitions.Routines;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Routines
     /// </summary>
     public abstract class Routine : TAppExtensionItem<IRoutineDefinition>, IRoutine
     {
-        new public IRoutineDto Dto { get; }
+        new public IRoutineConfiguration Configuration { get => base.Configuration as IRoutineConfiguration; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Routines
         /// Instantiates a new instance of the Routine class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected Routine(IRoutineDto dto)
+        protected Routine(IRoutineConfiguration dto)
         {
         }
 

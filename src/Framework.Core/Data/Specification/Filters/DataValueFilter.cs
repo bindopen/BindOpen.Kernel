@@ -13,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Filters
     /// This class specifies the data value filter.
     /// </summary>
     [Serializable()]
-    [XmlType("DataValueFilter", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "value.filter", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataValueFilter", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "value.filter", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataValueFilter : DataItem, IDataValueFilter
     {
         // ------------------------------------------

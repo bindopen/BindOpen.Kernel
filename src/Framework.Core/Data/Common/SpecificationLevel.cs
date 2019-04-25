@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible levels of specification.
     /// </summary>
     [Serializable()]
-    [XmlType("SpecificationLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("SpecificationLevel", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum SpecificationLevel
     {

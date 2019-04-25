@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <scriptWords.index library="databases"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:ScriptwordIndex ScriptwordIndex.xsd">
 
   <creationDate>2010-08-05</creationDate>
@@ -285,6 +285,36 @@
         <scalar name="value" valueType="Any" />
       </parameter.specification>
       <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLIN(value1, value2...) -->
+    <add.definition name="SQLIN">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2019-04-24</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL In function.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlIn</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLLIST(value1, value2...) -->
+    <add.definition name="SQLLIST">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2019-04-24</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL List function.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlList</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
     </add.definition>
 
     <!-- $SQLCOUNT(value1, value2...) -->

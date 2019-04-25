@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
     /// <summary>
     /// This class represents a repository folder.
     /// </summary>
-    [Carrier(Name="Folder")]
+    [Carrier(Name = "standard$folder")]
     public class RepositoryFolder : RepositoryItem
     {
         // ------------------------------------------
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// Instantiates a new instance of the RepositoryFolder class.
         /// </summary>
         /// <param name="path">The path of the instance.</param>
-        public RepositoryFolder(string path) : base(null, "folder_")
+        public RepositoryFolder(string path) : base()
         {
             this.Path = path;
         }

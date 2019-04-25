@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents a stored data item.
     /// </summary>
     [Serializable()]
-    [XmlType("StoredDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("storedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("StoredDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("storedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class StoredDataItem : IdentifiedDataItem, IStoredDataItem
     {
         // ------------------------------------------

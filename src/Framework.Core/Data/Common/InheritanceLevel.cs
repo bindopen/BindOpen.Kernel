@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible levels of inheritance.
     /// </summary>
     [Serializable()]
-    [XmlType("InheritanceLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("InheritanceLevel", Namespace = "https://bindopen.org/xsd")]
     public enum InheritanceLevel
     {
         /// <summary>

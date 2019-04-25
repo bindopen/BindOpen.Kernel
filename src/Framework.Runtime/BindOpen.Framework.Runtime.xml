@@ -4,6 +4,55 @@
         <name>BindOpen.Framework.Runtime</name>
     </assembly>
     <members>
+        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration">
+            <summary>
+            This class represents a DTO application configuration.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.Credentials">
+            <summary>
+            The credentials of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.DataSources">
+            <summary>
+            The data sources of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoAppConfiguration class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Instantiates a new instance of the BdoAppConfiguration class.
+            </summary>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Updates information for storage.
+            </summary>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Updates information for runtime.
+            </summary>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+            <summary>
+            Updates this instance.
+            </summary>
+            <typeparam name="T">The application configuration class to consider.</typeparam>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <param name="updateModes">The update modes to consider.</param>
+            <returns>Log of the operation.</returns>
+            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Encryption.EncryptionHelper">
             <summary>
             This class represents a encryption box.
@@ -117,143 +166,67 @@
             The users folder.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost">
-            <summary>
-            This class represents an application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.Options">
-            <summary>
-            The options of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.Settings">
-            <summary>
-            The settings of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.UserSettingsSet">
-            <summary>
-            The set of user settings of this intance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.#ctor">
-            <summary>
-            Instantiates a new instance of the BdoAppHost class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.Configure(System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.SaveSettings">
-            <summary>
-            Saves settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.GetCredential(System.String)">
-            <summary>
-            Get the credential with the specified name.
-            </summary>
-            <param name="name">Name</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
-            <summary>
-            Returns the path of the application temporary folder.
-            </summary>
-            <param name="pathKind">The kind of paths.</param>
-            <returns>The path of the application temporary folder.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the application.
-            </summary>
-            <returns>Returns true if this instance is started.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Indicates the application ends.
-            </summary>
-            <param name="executionStatus">The execution status to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.Initialize``1">
-            <summary>
-            Initializes information.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost.LoadSettings(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet)">
-            <summary>
-            Loads the application configuration of this instance.
-            </summary>
-            <param name="filePath">The file path to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <returns>Returns the loading log.</returns>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.BdoAppHost._ApplicationInstanceName">
-            <summary>
-            Gets the name of the application instance.
-            </summary>
-            <returns>Returns the name of the application instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost">
             <summary>
             The interface defines the application host.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.Configure(System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.Settings">
-            <summary>
-            The application settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
             <summary>
             Get the specified known path.
             </summary>
             <param name="pathKind">The kind of known path.</param>
             <returns>Returns the specified path.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost.BaseOptions">
+            <summary>
+            The base options.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1">
+            <summary>
+            The interface defines the application host.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.Settings">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions{`0}})">
+            <summary>
+            Configures the application host.
+            </summary>
+            <param name="setupOptions">The action to setup the application host.</param>
+            <returns>Returns the application host.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Starts the process.
             </summary>
             <param name="log">The log to consider.</param>
             <returns>Returns the application host to consider.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
             <summary>
             Ends the process specifying the status.
             </summary>
             <param name="executionStatus">The execution status to apply.</param>
             <returns>Returns the application host to consider.</returns>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.UserSettingsSet">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.UserSettingsSet">
             <summary>
             The set of user settings.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.GetCredential(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.GetCredential(System.String)">
             <summary>
             Gets the specified credential.
             </summary>
             <param name="name">The name of the credential to consider.</param>
             <returns>Returns the specified credential.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.LoadSettings(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.LoadSettings(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the settings.
             </summary>
@@ -263,239 +236,108 @@
             <param name="xmlSchemaSet">The XML schema set to consider.</param>
             <returns>Returns the application settings.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHost.SaveSettings">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost`1.SaveSettings">
             <summary>
             Saves settings.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHosted">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHosted`1">
             <summary>
-            The interface defines an application hosted item.
+            The interface defines a BDO application hosted item.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBdoAppHosted.Host">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHosted`1.Host">
             <summary>
             The application host.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions">
             <summary>
-            This class represents an application host configuration.
+            The interface defines the base BDO application host options.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.__DefaultSettingsFileName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.BaseSettings">
             <summary>
-            The default settings file name
+            The base settings.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions._AUTHENTICATIONTIMEOUT">
-            <summary>
-            Maximum number of minutes : authentication 
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.Settings">
-            <summary>
-            The settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.ApplicationModule">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.ApplicationModule">
             <summary>
             The application module.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.AppFolderPath">
-            <summary>
-            The application folder path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SettingsFilePath">
-            <summary>
-            The settings file path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.RuntimeFolderPath">
-            <summary>
-            The runtime folder path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.LibraryFolderPath">
-            <summary>
-            The library folder path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.Loggers">
-            <summary>
-            The runtime folder path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.IsDefaultLoggerUsed">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.IsDefaultLoggerUsed">
             <summary>
             Indicates whether the default logger is used.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.ExtensionConfiguration">
-            <summary>
-            The extension configuration.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SettingsSpecificationSet">
-            <summary>
-            The set of settings specifications of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.#ctor">
-            <summary>
-            Instantiates a new instance of the AppHostOptions class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetAppFolder(System.String)">
-            <summary>
-            Sets the specified application folder path.
-            </summary>
-            <param name="appFolderPath"></param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetRuntimeFolder(System.String)">
-            <summary>
-            Sets the runtime folder path.
-            </summary>
-            <param name="runtimeFolderPath"></param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetLibraryFolder(System.String)">
-            <summary>
-            Sets the library folder path.
-            </summary>
-            <param name="libraryFolderPath">The libarry folder path</param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
-            <summary>
-            Sets the specified module.
-            </summary>
-            <param name="module"></param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
-            <summary>
-            Sets the specified extension settings.
-            </summary>
-            <param name="extensionConfiguration"></param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetSettingsFile``1(System.String)">
-            <summary>
-            Sets the specified settings file.
-            </summary>
-            <typeparam name="T">The settings class to consider.</typeparam>
-            <param name="settingsFilePath">The path of the settings file to consider.</param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
-            <summary>
-            Defines the specified settings.
-            </summary>
-            <param name="specificationSet">The set of data element specifcations to consider.</param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
-            <summary>
-            Defines the specified settings.
-            </summary>
-            <typeparam name="T">The settings class to consider.</typeparam>
-            <param name="specificationSet">The set of data element specifcations to consider.</param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
-            <summary>
-            Sets the specified settings specification.
-            </summary>
-            <param name="loggers">The loggers to consider.</param>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.AppHostOptions.AddDefaultLogger">
-            <summary>
-            Adds the default logger.
-            </summary>
-            <returns>Returns this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions">
-            <summary>
-            The interface defines the application host configuration.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.Settings">
-            <summary>
-            The settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.ApplicationModule">
-            <summary>
-            The application module.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.IsDefaultLoggerUsed">
-            <summary>
-            Indicates whether the default logger is used.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.Loggers">
             <summary>
             The loggers.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.ExtensionConfiguration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.ExtensionConfiguration">
             <summary>
             The extension configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.AppFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.AppFolderPath">
             <summary>
             The application folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.LibraryFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.LibraryFolderPath">
             <summary>
             The library folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SettingsFilePath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.SettingsFilePath">
             <summary>
             The application configuration file path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.RuntimeFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.RuntimeFolderPath">
             <summary>
             The runtime application folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SettingsSpecificationSet">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.IBaseBdoAppHostOptions.SettingsSpecificationSet">
             <summary>
             The set of settings specifications of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetAppFolder(System.String)">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1">
+            <summary>
+            The interface defines the application host options.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.Settings">
+            <summary>
+            The settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetAppFolder(System.String)">
             <summary>
             Set the application folder.
             </summary>
             <param name="appFolderPath">The application folder path.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetRuntimeFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetRuntimeFolder(System.String)">
             <summary>
             Set the runtime folder.
             </summary>
             <param name="runtimeFolderPath">The runtime folder path.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetLibraryFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetLibraryFolder(System.String)">
             <summary>
             Set the library folder.
             </summary>
             <param name="libraryFolderPath">The library folder path.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetSettingsFile``1(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetSettingsFile``1(System.String)">
             <summary>
             Set the settings file.
             </summary>
@@ -503,14 +345,14 @@
             <param name="settingsFilePath">The path of the settings file.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Define the specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Define the specified settings.
             </summary>
@@ -518,32 +360,178 @@
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Set the extensions.
             </summary>
             <param name="extensionConfiguration">The extension configuration.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.AddDefaultLogger">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.AddDefaultLogger">
             <summary>
             Adds the default logger.
             </summary>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Set the specified loggers.
             </summary>
             <param name="loggers">The loggers to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.IAppHostOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions`1.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
             <summary>
             Set the module.
             </summary>
             <param name="module">The module.</param>
             <returns>Returns the application host option.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1">
+            <summary>
+            This class represents an application host options.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.__DefaultSettingsFileName">
+            <summary>
+            The default settings file name
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1._AUTHENTICATIONTIMEOUT">
+            <summary>
+            Maximum number of minutes : authentication 
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.Settings">
+            <summary>
+            The settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.BaseSettings">
+            <summary>
+            The base settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.ApplicationModule">
+            <summary>
+            The application module.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.AppFolderPath">
+            <summary>
+            The application folder path.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SettingsFilePath">
+            <summary>
+            The settings file path.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.RuntimeFolderPath">
+            <summary>
+            The runtime folder path.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.LibraryFolderPath">
+            <summary>
+            The library folder path.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.Loggers">
+            <summary>
+            The runtime folder path.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.IsDefaultLoggerUsed">
+            <summary>
+            Indicates whether the default logger is used.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.ExtensionConfiguration">
+            <summary>
+            The extension configuration.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SettingsSpecificationSet">
+            <summary>
+            The set of settings specifications of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.#ctor">
+            <summary>
+            Instantiates a new instance of the AppHostOptions class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetAppFolder(System.String)">
+            <summary>
+            Sets the specified application folder path.
+            </summary>
+            <param name="appFolderPath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetRuntimeFolder(System.String)">
+            <summary>
+            Sets the runtime folder path.
+            </summary>
+            <param name="runtimeFolderPath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetLibraryFolder(System.String)">
+            <summary>
+            Sets the library folder path.
+            </summary>
+            <param name="libraryFolderPath">The libarry folder path</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
+            <summary>
+            Sets the specified module.
+            </summary>
+            <param name="module"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+            <summary>
+            Sets the specified extension settings.
+            </summary>
+            <param name="extensionConfiguration"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetSettingsFile``1(System.String)">
+            <summary>
+            Sets the specified settings file.
+            </summary>
+            <typeparam name="T">The settings class to consider.</typeparam>
+            <param name="settingsFilePath">The path of the settings file to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+            <summary>
+            Defines the specified settings.
+            </summary>
+            <param name="specificationSet">The set of data element specifcations to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.DefineSettings``1(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+            <summary>
+            Defines the specified settings.
+            </summary>
+            <typeparam name="T">The settings class to consider.</typeparam>
+            <param name="specificationSet">The set of data element specifcations to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+            <summary>
+            Sets the specified settings specification.
+            </summary>
+            <param name="loggers">The loggers to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.Options.TBdoAppHostOptions`1.AddDefaultLogger">
+            <summary>
+            Adds the default logger.
+            </summary>
+            <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.SettingsKind">
             <summary>
@@ -559,6 +547,92 @@
             <summary>
             The runtime mode.
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1">
+            <summary>
+            This class represents an application host.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.Settings">
+            <summary>
+            The settings of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.BaseOptions">
+            <summary>
+            The base options of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.UserSettingsSet">
+            <summary>
+            The set of user settings of this intance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoAppHost class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Hosts.Options.ITBdoAppHostOptions{`0}})">
+            <summary>
+            Configures the application host.
+            </summary>
+            <param name="setupOptions">The action to setup the application host.</param>
+            <returns>Returns the application host.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.SaveSettings">
+            <summary>
+            Saves settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.GetCredential(System.String)">
+            <summary>
+            Get the credential with the specified name.
+            </summary>
+            <param name="name">Name</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
+            <summary>
+            Returns the path of the application temporary folder.
+            </summary>
+            <param name="pathKind">The kind of paths.</param>
+            <returns>The path of the application temporary folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1.LoadSettings(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            Loads the application configuration of this instance.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <returns>Returns the loading log.</returns>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TBdoAppHost`1._ApplicationInstanceName">
+            <summary>
+            Gets the name of the application instance.
+            </summary>
+            <returns>Returns the name of the application instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage">
             <summary>
@@ -1727,82 +1801,6 @@
             <param name="aPassword">The password to consider.</param>
             <param name="aTokenValue">The token value to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.BdoAppService">
-            <summary>
-            This class represents an application host.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Services.BdoAppService._isLoadCompleted">
-            <summary>
-            Indicates whether this instance is loaded.
-            </summary>
-            <remarks>The value can be assigned.</remarks>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.BdoAppService.OnLoadCompletedEventHandler">
-            <summary>
-            This delegate is called when the application is successfully initialized.
-            </summary>
-            <param name="sender">The application host</param>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.BdoAppService.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.BdoAppService.CurrentExecutionState">
-            <summary>
-            The current execution state of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.BdoAppService.CurrentExecutionStatus">
-            <summary>
-            The current execution status of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.BdoAppService.AppDomainPool">
-            <summary>
-            Application domain pool of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.BdoAppService.Log">
-            <summary>
-            ILog of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.BdoAppService.IsLoadCompleted">
-            <summary>
-            Indicates whether the platform information is loaded.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoAppService.#ctor">
-            <summary>
-            Instantiates a new instance of the BdoAppService class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoAppService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the application.
-            </summary>
-            <returns>Returns true if this instance is started.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoAppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Indicates the application ends.
-            </summary>
-            <param name="executionStatus">The execution status to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoAppService.Initialize``1">
-            <summary>
-            Initializes information.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoAppService.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.ConnectionService">
             <summary>
             This class represents a connection service.
@@ -1847,7 +1845,7 @@
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorDto,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
@@ -1872,60 +1870,6 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.IBdoAppService">
-            <summary>
-            The interface defines the application service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.AppDomainPool">
-            <summary>
-            The application domain pool.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.Log">
-            <summary>
-            The log.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.IsLoadCompleted">
-            <summary>
-            Indicates whether the load is completed.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.CurrentExecutionState">
-            <summary>
-            The state of the current execution.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.CurrentExecutionStatus">
-            <summary>
-            The status of the current execution.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the process.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBdoAppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Ends the process specifying the status.
-            </summary>
-            <param name="executionStatus">The execution status to apply.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.IConnectionService">
             <summary>
             This interface defines the connection service.
@@ -1938,7 +1882,7 @@
             <param name="connector"></param>
             <returns>The log of the operation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorDto,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Open``1(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Opens the connection.
             </summary>
@@ -2023,6 +1967,60 @@
             The script interpreter.
             </summary>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1">
+            <summary>
+            The interface defines the application service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.AppDomainPool">
+            <summary>
+            The application domain pool.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.Log">
+            <summary>
+            The log.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.IsLoadCompleted">
+            <summary>
+            Indicates whether the load is completed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.CurrentExecutionState">
+            <summary>
+            The state of the current execution.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.CurrentExecutionStatus">
+            <summary>
+            The status of the current execution.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the process.
+            </summary>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the application host to consider.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoAppService`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Ends the process specifying the status.
+            </summary>
+            <param name="executionStatus">The execution status to apply.</param>
+            <returns>Returns the application host to consider.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.ScopedService">
             <summary>
             This class represents a scoped service.
@@ -2087,127 +2085,183 @@
             <typeparam name="T">The runtime application scope to consider.</typeparam>
             <returns>Returns the log of the task.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1">
             <summary>
-            This class represents a DTO application settings.
+            This class represents an application host.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.Credentials">
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1._isLoadCompleted">
             <summary>
-            The credentials of this instance.
+            Indicates whether this instance is loaded.
+            </summary>
+            <remarks>The value can be assigned.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.OnLoadCompletedEventHandler">
+            <summary>
+            This delegate is called when the application is successfully initialized.
+            </summary>
+            <param name="sender">The application host</param>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.DataSources">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.CurrentExecutionState">
             <summary>
-            The data sources of this instance.
+            The current execution state of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ApplicationInstanceKind">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.CurrentExecutionStatus">
+            <summary>
+            The current execution status of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.AppDomainPool">
+            <summary>
+            Application domain pool of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.Log">
+            <summary>
+            ILog of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.IsLoadCompleted">
+            <summary>
+            Indicates whether the platform information is loaded.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoAppService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoAppService`1.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1">
+            <summary>
+            This class represents a BDO application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ApplicationInstanceKind">
             <summary>
             The application instance kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ApplicationInstanceId">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ApplicationInstanceId">
             <summary>
             Application instance ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.DefaultUICultureName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.DefaultUICultureName">
             <summary>
             Default current UI culture name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.DefaultTheme">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.DefaultTheme">
             <summary>
             Default theme of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.CookieDomain">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.CookieDomain">
             <summary>
             Cookie domain name of this instance.
             </summary>
             <example>toto.com, titi.com...</example>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.CurrentRuntimeMode">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.CurrentRuntimeMode">
             <summary>
             Runtime mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ExecutionLevel">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ExecutionLevel">
             <summary>
             Execution level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ServerInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ServerInstanceName">
             <summary>
             Name of the platform server instance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ApplicationInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ApplicationInstanceName">
             <summary>
             Name of the application instance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.IsUserTrackingEnabled">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.IsUserTrackingEnabled">
             <summary>
             Indicates whether user tracking is enabled.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.ExtensionsFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.ExtensionsFolderPath">
             <summary>
             The extensions folder path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.LogFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.LogFolderPath">
             <summary>
             The path of the log folder.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.RuntimeFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.RuntimeFolderPath">
             <summary>
             The path of the runtime folder.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.#ctor">
             <summary>
-            Instantiates a new instance of the AppSettingsDto class.
+            Instantiates a new instance of the BdoAppSettings class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
             <summary>
-            Instantiates a new instance of the AppSettingsDto class.
+            Instantiates a new instance of the BdoAppSettings class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for storage.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoAppSettings`1.UpdateRuntimeInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
             <param name="log">The log to update.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoAppSettings.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
-            <summary>
-            Updates this instance.
-            </summary>
-            <typeparam name="T">The application configuration class to consider.</typeparam>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
-            <returns>Log of the operation.</returns>
-            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime">
             <summary>
             This class represents a 'Runtime' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(application.folderPath).
             </summary>
@@ -2217,7 +2271,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_RoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_RoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(roaming.folderPath).
             </summary>
@@ -2227,7 +2281,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationModuleName).
             </summary>
@@ -2237,7 +2291,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.ScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationInstanceName).
             </summary>

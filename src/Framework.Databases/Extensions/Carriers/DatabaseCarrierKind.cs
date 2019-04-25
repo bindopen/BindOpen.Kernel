@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         /// <param name="aDatabaseCarrierKind">The carrier kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this DatabaseCarrierKind aDatabaseCarrierKind)
+        public static string GetUniqueName(this DatabaseCarrierKind aDatabaseCarrierKind)
         {
             return aDatabaseCarrierKind.ToString().ToLower().GetUniqueName_database();
         }

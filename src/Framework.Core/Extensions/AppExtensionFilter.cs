@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.Extensions
     /// This class represents the application extension filter.
     /// </summary>
     [Serializable()]
-    [XmlType("AppExtensionFilter", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("AppExtensionFilter", Namespace = "https://bindopen.org/xsd")]
     public class AppExtensionFilter : DataItem, IAppExtensionFilter
     {
         // --------------------------------------------------

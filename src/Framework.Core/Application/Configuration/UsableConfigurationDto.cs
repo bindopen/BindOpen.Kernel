@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// <summary>
     /// This class represents an usable configuration.
     /// </summary>
-    [XmlType("UsableConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("usableConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class UsableConfigurationDto : ConfigurationDto, IUsableConfigurationDto
+    [XmlType("UsableConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("usableConfiguration", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class UsableConfigurationDto : Configuration, IUsableConfigurationDto
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// The using configuration statement of this instance.
         /// </summary>
         [XmlIgnore()]
-        public IConfigurationDto UsingConfiguration
+        public IConfiguration UsingConfiguration
         {
             get;
             set;

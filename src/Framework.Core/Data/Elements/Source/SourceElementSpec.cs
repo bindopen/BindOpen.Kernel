@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
     /// This class represents a data source element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("SourceElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SourceElementSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElementSpec : DataElementSpec, ISourceElementSpec
     {
         // --------------------------------------------------

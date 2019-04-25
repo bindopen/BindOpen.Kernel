@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
@@ -9,19 +10,16 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Schema;
-using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Data.References;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Data.Specification.Design;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Scripting;
@@ -32,8 +30,8 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// This class represents a data element.
     /// </summary>
     [Serializable()]
-    [XmlType("DataElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "element", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElement))]
     [XmlInclude(typeof(SourceElement))]
     [XmlInclude(typeof(DocumentElement))]
@@ -70,8 +68,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// The value type of this instance.
         /// </summary>
+        [XmlAttribute("valueType")]
+        [DefaultValue(DataValueType.Text)]
+        public DataValueType ValueType { get; set; }
+
+        /// <summary>
+        /// Specification of the ValueType property of this instance.
+        /// </summary>
         [XmlIgnore()]
-        public DataValueType ValueType { get; set; } = DataValueType.Any;
+        public bool ValueTypeSpecified => ValueType != DataValueType.Text;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -118,12 +123,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Items of this instance.
         /// </summary>
-        [XmlArray("items")]
-        [XmlArrayItem("carrier", typeof(CarrierDto))]
-        [XmlArrayItem("document", typeof(Items.Documents.Document))]
-        [XmlArrayItem("entity", typeof(EntityDto))]
-        [XmlArrayItem("source", typeof(DataSource))]
-        [XmlArrayItem("schema", typeof(DataSchema))]
+        [XmlIgnore()]
         public List<object> Items
         {
             get => _items ?? (_items = new List<object>());
@@ -131,10 +131,22 @@ namespace BindOpen.Framework.Core.Data.Elements
         }
 
         /// <summary>
-        /// Specification of the Items property of this instance.
+        /// Converts from string.
         /// </summary>
-        [XmlIgnore()]
-        public bool ItemsSpecified => !ValueType.IsScalar() || _items?.Count > 1;
+        /// <param name="st">The string to consider.</param>
+        public static explicit operator DataElement(string st)
+        {
+            return ElementFactory.CreateScalar(DataValueType.Text, st);
+        }
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <param name="element">The element to consider.</param>
+        public static explicit operator string(DataElement element)
+        {
+            return element?.GetObject() as string;
+        }
 
         ///// <summary>
         ///// Items of this instance.
@@ -178,16 +190,22 @@ namespace BindOpen.Framework.Core.Data.Elements
         public bool SpecificationSpecified => Specification != null;
 
         /// <summary>
-        /// Returns the element with the specified indexed.
+        /// Returns the item with the specified indexed.
         /// </summary>
         [XmlIgnore()]
         public object this[int index] => index >= 0 && index < _items.Count ? _items[index] : null;
 
         /// <summary>
-        /// Returns the element with the specified unique name.
+        /// Returns the item with the specified unique name.
         /// </summary>
         [XmlIgnore()]
-        public object this[string name] => _items.FirstOrDefault(p=>p.KeyEquals(name));
+        public object this[string name] => _items.Find(p=>p.KeyEquals(name));
+
+        /// <summary>
+        /// Returns the first item.
+        /// </summary>
+        [XmlIgnore()]
+        public object First => this[0];
 
         // Properties -------------------------------
 
@@ -260,7 +278,6 @@ namespace BindOpen.Framework.Core.Data.Elements
 
         #region Items
 
-
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
@@ -281,11 +298,17 @@ namespace BindOpen.Framework.Core.Data.Elements
                     return _items.Count == 0 ? null : (_items.Count==1? _items[0] : _items);
                 case DataItemizationMode.Referenced:
                     if (appScope == null)
-                        log.AddError(title: "Application scope missing");
+                    {
+                        log?.AddError(title: "Application scope missing");
+                    }
                     else if (appScope.ScriptInterpreter == null)
-                        log.AddError(title: "Script interpreter missing");
+                    {
+                        log?.AddError(title: "Script interpreter missing");
+                    }
                     else if (ItemReference == null)
-                        log.AddWarning(title: "Reference missing");
+                    {
+                        log?.AddWarning(title: "Reference missing");
+                    }
                     else
                     {
                         DataReference reference = new DataReference(ItemReference);
@@ -295,19 +318,25 @@ namespace BindOpen.Framework.Core.Data.Elements
                     break;
                 case DataItemizationMode.Script:
                     if (appScope == null)
-                        log.AddError(title: "Application scope missing");
+                    {
+                        log?.AddError(title: "Application scope missing");
+                    }
                     else if (appScope.ScriptInterpreter == null)
-                        log.AddError(title: "Script interpreter missing");
+                    {
+                        log?.AddError(title: "Script interpreter missing");
+                    }
                     else if (string.IsNullOrEmpty(ItemScript))
-                        log.AddWarning(title: "Script missing");
+                    {
+                        log?.AddWarning(title: "Script missing");
+                    }
                     else
                     {
                         object1 = appScope.ScriptInterpreter.Interprete(ItemScript, scriptVariableSet, log);
                         if (object1 != null)
-                            if (object1.GetType().IsArray)
-                                return object1 as List<object>;
-                            else
-                                return new List<object>() { object1 };
+                        {
+                            return object1.GetType().IsArray ? object1 as List<object> :
+                               new List<object>() { object1 };
+                        }
                     }
                     break;
             }
@@ -387,7 +416,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     || (_items.Count < Specification.MaximumItemNumber))
                 {
                     if (Specification == null
-                        && (ValueType == DataValueType.Any || item.GetValueType() == ValueType))
+                        && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
                     {
                         (_items ?? (_items = new List<object>())).Add(item);
                         isAdded = true;
@@ -712,37 +741,6 @@ namespace BindOpen.Framework.Core.Data.Elements
             _propertyDetail?.UpdateStorageInfo(log);
 
             ItemReference?.UpdateStorageInfo(log);
-
-            //// we serialize items
-
-            //const string root = "<?xml version=\"1.0\" encoding=\"utf-16\"?>";
-            //const string xsd = " xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"";
-            //const string xsi = " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"";
-            //const string xmlns = " xmlns=\"http://www.w3.org/2001/bdo.xsd\"";
-
-            //if (Items?.Count > 0)
-            //{
-            //    string st = "";
-            //    if (ValueType.IsScalar())
-            //    {
-            //        st = "<values>";
-            //        foreach (object item in Items)
-            //            st += "<add>" + (item.ToString(ValueType, log, appScope, scriptVariableSet) ?? "") + "</add>";
-            //        st += "</values>";
-            //    }
-            //    else
-            //    {
-            //        st = "<objects>";
-            //        foreach (object item in Items)
-            //            st += (item.ToString(ValueType, log, appScope, scriptVariableSet) ?? "").Replace(root, "").Replace(xsd, "").Replace(xsi, "").Replace(xmlns, "");//.Replace(xmlnsEmpty,"");
-            //        st += "</objects>";
-            //    }
-
-            //    ItemXElement = XElement.Parse(st, LoadOptions.SetBaseUri);
-            //    //XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
-            //    if (ItemXElement != null)
-            //        ItemXElement.Name = ItemXElement.Name.LocalName;
-            //}
         }
 
         /// <summary>
@@ -754,45 +752,6 @@ namespace BindOpen.Framework.Core.Data.Elements
             _propertyDetail?.UpdateRuntimeInfo(log);
 
             ItemReference?.UpdateRuntimeInfo(log);
-
-            //if (ItemXElement != null)
-            //{
-            //    Items = new List<object>();
-            //    foreach (XElement subXElement in ItemXElement.Elements())
-            //    {
-            //        subXElement.Add(
-            //            new XAttribute(XNamespace.Xmlns + "xsd", "http://www.w3.org/2001/XMLSchema")
-            //            , new XAttribute(XNamespace.Xmlns + "xsi", "http://www.w3.org/2001/XMLSchema-instance"));
-            //        XNamespace aXNamespace = "http://meltingsoft.com/bindopen/xsd";
-            //        subXElement.Name = aXNamespace + subXElement.Name.LocalName;
-
-            //        string xElementString =
-            //            "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + subXElement.ToString().Replace(" xmlns=\"\"", "");
-
-            //        AddItem(GetObjectFromString(xElementString, log));
-            //    }
-            //}
-            //else if (Items != null)
-            //{
-            //    for (int i = 0; i < Items.Count; i++)
-            //    {
-            //        object item = Items[i];
-            //        DataValueType itemValueType = DataValueType.Any;
-            //        if (item != null && (itemValueType = item.GetValueType()) != ValueType)
-            //        {
-            //            if ((ValueType != DataValueType.Any)
-            //               && (itemValueType == DataValueType.Text || ValueType == DataValueType.Text))
-            //            {
-            //                if (itemValueType == DataValueType.Text)
-            //                    item = GetObjectFromString(item as string, log);
-            //                else
-            //                    item = item.ToString();
-            //                Items.RemoveAt(i);
-            //                Items.Insert(i, item);
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         /// <summary>

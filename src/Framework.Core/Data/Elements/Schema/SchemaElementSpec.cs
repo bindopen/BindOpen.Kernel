@@ -13,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
     /// This class represents a schema element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("SchemaElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SchemaElementSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SchemaElementSpec : DataElementSpec
     {
         // --------------------------------------------------

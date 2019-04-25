@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents described data item.
     /// </summary>
     [Serializable()]
-    [XmlType("DescribedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("describedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DescribedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("describedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DescribedDataItem : TitledDataItem, IDescribedDataItem
     {
         // ------------------------------------------
@@ -205,7 +205,7 @@ namespace BindOpen.Framework.Core.Data.Items
         public override void UpdateRuntimeInfo(ILog log = null)
         {
             base.UpdateRuntimeInfo(log);
-            this.Description?.UpdateRuntimeInfo(log);
+            Description?.UpdateRuntimeInfo(log);
         }
 
         #endregion

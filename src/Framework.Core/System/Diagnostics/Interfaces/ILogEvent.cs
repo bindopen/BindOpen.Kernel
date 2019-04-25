@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -8,6 +7,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     {
         int Level { get; }
         ILog Log { get; set; }
+        Log LogDto { get; set; }
         ILog Parent { get; set; }
         string ResultCode { get; set; }
         ILog Root { get; }

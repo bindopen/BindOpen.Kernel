@@ -1,12 +1,14 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Extensions.Definition.Metrics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Metrics
 {
     /// <summary>
     /// This class represents an task.
     /// </summary>
-    public abstract class Metrics : DataItem, IMetrics
+    public abstract class Metrics : TAppExtensionItem<IMetricsDefinition>, IMetrics
     {
+        new public IMetricsDto Dto { get; }
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -20,6 +22,14 @@ namespace BindOpen.Framework.Core.Extensions.Items.Metrics
         {
         }
 
-        #endregion
-   }
+        /// <summary>
+        /// Instantiates a new instance of the Metrics class.
+        /// </summary>
+        /// <param name="dto">The DTO item of this instance.</param>
+        protected Metrics(IMetricsDto dto)
+        {
+        }
+
+        #endregion 
+    }
 }

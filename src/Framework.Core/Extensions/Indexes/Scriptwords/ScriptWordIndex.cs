@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {
@@ -29,12 +29,23 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         /// <summary>
         /// Instantiates a new instance of the ScriptwordIndex class.
         /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        public ScriptwordIndex(IScriptwordIndexDto dto)
+        /// <param name="definitions">The definitions of this instance.</param>
+        public ScriptwordIndex(IScriptwordDefinition[] definitions) : base(definitions)
         {
         }
 
         #endregion
+
+        // Tree ---------------------------
+
+        /// <summary>
+        /// Sets the specified definitions of this instance.
+        /// </summary>
+        /// <param name="definitions">The definitions to consider.</param>
+        public override void SetDefinitions(List<IScriptwordDefinition> definitions)
+        {
+            Definitions = definitions;
+        }
 
         // Script word definitions ---------------------------
 
@@ -127,6 +138,5 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 
             return matchingDefinitions;
         }
-
     }
 }

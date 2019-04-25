@@ -12,8 +12,8 @@ namespace BindOpen.Framework.Core.Data.Items.Source
     /// This class represents a data source.
     /// </summary>
     [Serializable()]
-    [XmlType("DataSource", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataSource", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataSource : NamedDataItem, IDataSource
     {
         // -----------------------------------------------
@@ -62,10 +62,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// The connectors for this instance.
         /// </summary>
         [XmlElement("configuration")]
-        public List<ConnectorDto> Configurations { get; set; } = null;
+        public List<ConnectorConfiguration> Configurations { get; set; } = null;
 
         /// <summary>
-        /// Specification of the ConnectorDtos property of this instance.
+        /// Specification of the ConnectorConfigurations property of this instance.
         /// </summary>
         [XmlIgnore()]
         public bool ConfigurationsSpecified => Configurations?.Count > 0;
@@ -94,10 +94,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         public DataSource(
             string name,
             DataSourceKind kind,
-            params IConnectorDto[] configurations) : base(name, "dataSource_")
+            params IConnectorConfiguration[] configurations) : base(name, "dataSource_")
         {
             Kind = kind;
-            Configurations = configurations?.Select(p=>p as ConnectorDto).ToList();
+            Configurations = configurations?.Select(p=>p as ConnectorConfiguration).ToList();
         }
 
         #endregion
@@ -112,10 +112,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Adds the specified connector configuration.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public void AddConfiguration(IConnectorDto config)
+        public void AddConfiguration(IConnectorConfiguration config)
         {
             if (config != null)
-                Configurations.Add(config as ConnectorDto);
+                Configurations.Add(config as ConnectorConfiguration);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IConnectorDto GetConfiguration(string definitionName)
+        public IConnectorConfiguration GetConfiguration(string definitionName)
         {
             return Configurations?.Find(p => definitionName ==null || p.DefinitionUniqueId.KeyEquals(definitionName));
         }
@@ -174,7 +174,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
             DataSource dataSource = base.Clone() as DataSource;
 
             if (Configurations != null)
-                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorDto).ToList();
+                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorConfiguration).ToList();
 
             return dataSource;
         }
@@ -197,7 +197,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 
             if (Configurations != null)
             {
-                foreach (IConnectorDto connector in Configurations)
+                foreach (IConnectorConfiguration connector in Configurations)
                 {
                     connector.UpdateStorageInfo(log);
                 }
@@ -214,7 +214,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 
             if (Configurations != null)
             {
-                foreach (IConnectorDto connector in Configurations)
+                foreach (IConnectorConfiguration connector in Configurations)
                 {
                     connector.UpdateRuntimeInfo(log);
                 }

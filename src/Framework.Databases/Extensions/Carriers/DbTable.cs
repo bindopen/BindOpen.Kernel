@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
-using BindOpen.Framework.Core.Extensions.Runtime.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
 {
@@ -11,10 +11,10 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     /// This class represents a database data table.
     /// </summary>
     [Serializable()]
-    [XmlType("DbTable", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dbTable", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DbTable", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dbTable", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [Carrier(
-        Name = "dbTable",
+        Name = "databases$dbTable",
         DataSourceKind = DataSourceKind.Database,
         Description = "Database table.",
         CreationDate = "2016-09-14"
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbTable(
             string name,
             string schema)
-            : base(name, "table_")
+            : base(name)
         {
             this.Schema = schema;
         }

@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
@@ -127,10 +127,9 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// Instantiates a new instance of the DatabaseConnector class.
         /// </summary>
         /// <param name="name">The name of this instance.</param>
-        /// <param name="namePreffix">The preffix of the name of this instance.</param>
+        /// <param name="connectionString">The connection string to consider.</param>
         protected DatabaseConnector(
-            string name,
-            string namePreffix = null) : base(name, namePreffix)
+            string name, string connectionString = null) : base(name, connectionString)
         {
         }
 

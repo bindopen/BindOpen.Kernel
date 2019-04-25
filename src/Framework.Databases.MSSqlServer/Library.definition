@@ -2,7 +2,7 @@
 
 <!-- Database -->
 <library.definition id="dce3ca39-f0a9-4586-95c0-1a38a1c314b4"  name="database.mssqlserver"
-  xmlns="http://meltingsoft.com/bindopen/xsd" xmlns:SchemaLocation="bdo:LibraryDefinition LibraryDefinition.xsd" >
+  xmlns="https://bindopen.org/xsd" xmlns:SchemaLocation="bdo:LibraryDefinition LibraryDefinition.xsd" >
   <creationDate>2018-09-08</creationDate>
   <lastModificationDate>2018-09-08</lastModificationDate>
   <title>

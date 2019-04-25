@@ -1,6 +1,6 @@
 ﻿
-using BindOpen.Framework.Core.Data.Common;
 using System;
+using BindOpen.Framework.Core.Data.Common;
 
 namespace BindOpen.Framework.Core.Data.Specification.Design
 {
@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <summary>
         /// Data carrier editor.
         /// </summary>
-        CarrierDtoEditor,
+        CarrierConfigurationEditor,
         /// <summary>
         /// Data source editor.
         /// </summary>
@@ -141,7 +141,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
                 case DataValueType.Boolean:
                     return DesignControlType.CheckBox;
                 case DataValueType.Carrier:
-                    return DesignControlType.CarrierDtoEditor;
+                    return DesignControlType.CarrierConfigurationEditor;
                 case DataValueType.DataSource:
                     return DesignControlType.DataSourceEditor;
                 case DataValueType.Date:
@@ -172,9 +172,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <param name="aType">The type to consider.</param>
         /// <returns>The result object.</returns>
         public static DesignControlType GetDefaultControlType(this Type aType)
-        {            
+        {
             return (aType== null ? DesignControlType.None : 
-                (aType.IsArray ? DesignControlType.ListEditor : aType.GetDefaultControlType()));
+                (aType.IsArray ? DesignControlType.ListEditor : aType.GetValueType().GetDefaultControlType()));
         }
 
     }

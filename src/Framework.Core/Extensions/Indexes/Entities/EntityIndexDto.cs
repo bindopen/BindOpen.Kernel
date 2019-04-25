@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Entities;
+using BindOpen.Framework.Core.Extensions.Definitions.Entities;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Entities
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Entities
     /// This class represents a DTO entity index.
     /// </summary>
     [Serializable()]
-    [XmlType("EntityIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "entities.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class EntityIndexDto : TAppExtensionItemIndexDto<IEntityDefinitionDto>
+    [XmlType("EntityIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "entities.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class EntityIndexDto : TAppExtensionItemIndexDto<EntityDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

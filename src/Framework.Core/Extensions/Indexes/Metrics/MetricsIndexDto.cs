@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Metrics;
+using BindOpen.Framework.Core.Extensions.Definitions.Metrics;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Metrics
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Metrics
     /// This class represents a metrics index.
     /// </summary>
     [Serializable()]
-    [XmlType("MetricsIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "metrics.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class MetricsIndexDto : TAppExtensionItemIndexDto<IMetricsDefinitionDto>
+    [XmlType("MetricsIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "metrics.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class MetricsIndexDto : TAppExtensionItemIndexDto<MetricsDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

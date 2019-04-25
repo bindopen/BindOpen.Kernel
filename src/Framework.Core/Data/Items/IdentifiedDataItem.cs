@@ -7,8 +7,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents an identified data item.
     /// </summary>
     [Serializable()]
-    [XmlType("IdentifiedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("identifiedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("IdentifiedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("identifiedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IdentifiedDataItem : DataItem, IIdentifiedDataItem
     {
         // ------------------------------------------
@@ -65,7 +65,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns a new Guid.
         /// </summary>
-        public static String NewGuid()
+        public static string NewGuid()
         {
             return Guid.NewGuid().ToString();
         }

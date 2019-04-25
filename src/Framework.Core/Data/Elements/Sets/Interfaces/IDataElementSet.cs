@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -36,5 +35,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null);
+
+        T GetElementObject<T>(
+            string elementName = null,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null) where T : class;
     }
 }

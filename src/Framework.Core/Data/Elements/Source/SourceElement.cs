@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
 {
@@ -14,10 +15,22 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
     /// </summary>
     /// <remarks>A data source element can only have one item maximum.</remarks>
     [Serializable()]
-    [XmlType("SourceElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SourceElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement
     {
+        /// <summary>
+        /// Returns the element with the specified indexed.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration this[int index] => base[index] as ConnectorConfiguration;
+
+        /// <summary>
+        /// Returns the element with the specified unique name.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration this[string name] => base[name] as ConnectorConfiguration;
+
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -29,6 +42,33 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// </summary>
         [XmlAttribute("definition")]
         public string DefinitionUniqueId { get; set; } = "";
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Returns the first item.
+        /// </summary>
+        [XmlIgnore()]
+        public new IConnectorConfiguration First => this[0];
+
+        /// <summary>
+        /// Connectors of this instance.
+        /// </summary>
+        [XmlArray("items")]
+        [XmlArrayItem("add")]
+        public List<ConnectorConfiguration> Connectors
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Specification of the Connectors property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool ConnectorsSpecified => Items.Count > 0;
+
+        // --------------------------------------------------
 
         /// <summary>
         /// The specification of this instance.
@@ -109,7 +149,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", this.Items.Select(p => (p as EntityDto)?.Key() ?? "").ToArray());
+            return string.Join("|", this.Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
         }
 
         #endregion
@@ -131,5 +171,44 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         }
 
         #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Connectors = Items?.Select(p =>
+            {
+                ConnectorConfiguration configuration = p as ConnectorConfiguration;
+                configuration?.UpdateStorageInfo(log);
+                return configuration;
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(ILog log = null)
+        {
+            base.UpdateRuntimeInfo(log);
+
+            SetItems(Connectors?.Select(p =>
+            {
+                p.UpdateRuntimeInfo(log);
+                return p;
+            }).ToArray());
+        }
+
+        #endregion
     }
-}
+    }

@@ -1,4 +1,12 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Carriers;
+﻿using System.ComponentModel;
+using System.Linq;
+using BindOpen.Framework.Core.Data.Elements.Carrier;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Carriers;
+using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
@@ -13,7 +21,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 
         #region Variables
 
-        new public ICarrierDto Dto { get; }
+        public new ICarrierConfiguration Configuration { get => base.Configuration as ICarrierConfiguration; }
 
         private string _relativePath = null;
 
@@ -24,6 +32,58 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         // -----------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The name of this instance.
+        /// </summary>
+        public string Name { get; set; }
+
+        // Path --------------------------
+
+        /// <summary>
+        /// Path of this instance.
+        /// </summary>
+        [DetailProperty("path")]
+        public string Path { get; set; } = null;
+
+        /// <summary>
+        /// The parent path of this instance.
+        /// </summary>
+        [DetailProperty("parentPath")]
+        public string ParentPath { get; set; } = null;
+
+        // General --------------------------
+
+        /// <summary>
+        /// The creation date of this instance.
+        /// </summary>
+        [DetailProperty("creationDate")]
+        public string CreationDate { get; set; } = null;
+
+        /// <summary>
+        /// The information flag of this instance.
+        /// </summary>
+        [DetailProperty("flag")]
+        public string Flag { get; set; } = null;
+
+        /// <summary>
+        /// Indicates whether this instance is read only.
+        /// </summary>
+        [DetailProperty("isReadOnly")]
+        [DefaultValue(false)]
+        public bool IsReadonly { get; set; }
+
+        /// <summary>
+        /// The date of last access of this instance.
+        /// </summary>
+        [DetailProperty("lastAccessDate")]
+        public string LastAccessDate { get; set; } = null;
+
+        /// <summary>
+        /// The date of last write of this instance.
+        /// </summary>
+        [DetailProperty("lastWriteDate")]
+        public string LastWriteDate { get; set; } = null;
 
         /// <summary>
         /// The relative path of this instance.
@@ -59,11 +119,33 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// Instantiates a new instance of the Carrier class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected Carrier(ICarrierDto dto)
+        protected Carrier(ICarrierConfiguration dto): base(dto)
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the Connector class.
+        /// </summary>
+        /// <param name="path">The path to consider.</param>
+        /// <param name="relativePath">The path to consider.</param>
+        protected Carrier(string path, string relativePath = null) : base()
+        {
+            SetPath(path, relativePath);
+        }
+
         #endregion
+
+        /// <summary>
+        /// Returns a data element representing this instance.
+        /// </summary>
+        /// <param name="name">The name of the element to create.</param>
+        /// <param name="log">The log of the operation.</param>
+        /// <returns>Retuns the data element that represents this instace.</returns>
+        public ICarrierElement AsElement(string name =null, Log log = null)
+        {
+            UpdateStorageInfo(log);
+            return ElementFactory.CreateCarrier(name ?? Name, Configuration as ICarrierConfiguration);
+        }
 
         //// ------------------------------------------
         //// MUTATORS
@@ -79,23 +161,68 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
         public virtual void SetPath(string path = null, string relativePath = null)
         {
-            if (Dto == null) return;
-
-            string absolutePath = (path ?? Dto?.Path);
+            string absolutePath = (path ?? Path);
 
             if (!string.IsNullOrEmpty(relativePath))
                 this._relativePath = relativePath;
 
             if ((!string.IsNullOrEmpty(this._relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
             {
-                string aRelativeFolder = this._relativePath.ToLower();
+                string relativeFolder = this._relativePath.ToLower();
                 absolutePath = absolutePath.ToLower();
 
-                if (absolutePath.StartsWith(aRelativeFolder))
-                    absolutePath = absolutePath.Substring(aRelativeFolder.Length);
+                if (absolutePath.StartsWith(relativeFolder))
+                    absolutePath = absolutePath.Substring(relativeFolder.Length);
             }
 
-            Dto.Path = absolutePath;
+            Path = absolutePath;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
+        {
+            (Configuration ?? (_configuration = new CarrierConfiguration())).UpdateFromObject<DetailPropertyAttribute>(this);
+            if (string.IsNullOrEmpty(Configuration.DefinitionUniqueId)
+                && GetType().GetCustomAttributes(typeof(CarrierAttribute), false).FirstOrDefault() is CarrierAttribute attribute
+                && attribute.Name.IndexOf("$") > 0)
+
+            {
+                Configuration.DefinitionUniqueId = attribute.Name;
+            }
+            Configuration.UpdateStorageInfo(log);
+            if (string.IsNullOrEmpty(Configuration.Name))
+                Configuration.Name = Name;
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(ILog log = null)
+        {
+            if (Configuration!=null)
+            {
+                if (string.IsNullOrEmpty(Name))
+                {
+                    Name = Configuration.Name?.IndexOf("$") > 0 ?
+                       Configuration.Name.Substring(Configuration.Name.IndexOf("$") + 1) :
+                       Configuration.Name;
+                }
+
+                Configuration.UpdateRuntimeInfo(log);
+                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration);
+            }
         }
 
         #endregion

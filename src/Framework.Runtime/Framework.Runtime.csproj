@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\Settings\IBdoAppSettings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Extensions\Carriers\Carriers.index" />
     <None Remove="Extensions\Connectors\Connectors.index" />
     <None Remove="Extensions\Entities\Entities.index" />

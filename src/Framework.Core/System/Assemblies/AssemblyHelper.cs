@@ -66,38 +66,39 @@ namespace BindOpen.Framework.Core.System.Assemblies
 
         // Class references --------------------------------
 
-        /// <summary>
-        /// Dertermines the assembly reference from the specified complete class name.
-        /// </summary>
-        /// <param name="completeClassName">The complete class name to consider.</param>
-        /// <returns></returns>
-        public static ClassReference GetClassReference(string completeClassName)
-        {
-            if (completeClassName == null)
-                return new ClassReference();
+        ///// <summary>
+        ///// Dertermines the assembly reference from the specified complete class name.
+        ///// </summary>
+        ///// <param name="completeClassName">The complete class name to consider.</param>
+        ///// <param name="defaultAssemblyName">The default assembly name to consider.</param>
+        ///// <returns></returns>
+        //public static ClassReference GetClassReference(string completeClassName, string defaultAssemblyName=null)
+        //{
+        //    if (completeClassName == null)
+        //        return new ClassReference();
 
-            string[] subStrings = completeClassName.Split(',');
+        //    string[] subStrings = completeClassName.Split(',');
 
-            string className = completeClassName;
-            if (subStrings.Length > 0)
-                className = subStrings[0];
+        //    string className = completeClassName;
+        //    if (subStrings.Length > 0)
+        //        className = subStrings[0];
 
-            string assemblyName ="";
-            if (subStrings.Length > 1)
-                assemblyName = subStrings[1];
-            else if (completeClassName.Contains("."))
-                assemblyName = className.Substring(0, completeClassName.IndexOf(".") - 1);
-            else
-                assemblyName = "ici";
+        //    string assemblyName ="";
+        //    if (subStrings.Length > 1)
+        //        assemblyName = subStrings[1];
+        //    else if (!string.IsNullOrEmpty(defaultAssemblyName))
+        //        assemblyName = defaultAssemblyName;
+        //    else if (completeClassName.Contains("."))
+        //        assemblyName = className.Substring(0, completeClassName.IndexOf(".") - 1);
 
-            ClassReference assemblyReference = new ClassReference()
-            {
-                ClassName = className.Trim(),
-                AssemblyName = assemblyName.Trim()
-            };
+        //    ClassReference assemblyReference = new ClassReference()
+        //    {
+        //        ClassName = className.Trim(),
+        //        AssemblyName = assemblyName.Trim()
+        //    };
 
-            return assemblyReference;
-        }
+        //    return assemblyReference;
+        //}
 
         // Instances --------------------------------
 
@@ -144,12 +145,10 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <summary>
         /// Creates the instance of the specified extension object instance type.
         /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
         /// <param name="type">The type to consider.</param>
         /// <param name="object1">The object to consider.</param>
         /// <param name="attributes">The attributes to consider.</param>
         public static ILog CreateInstance(
-            this AppDomain appDomain,
             Type type,
             out Object object1,
             params object[] attributes)
@@ -157,16 +156,47 @@ namespace BindOpen.Framework.Core.System.Assemblies
             ILog log = new Log();
             object1 = null;
 
-            if (appDomain != null)
+            try
             {
-                try
+                object1 =  Activator.CreateInstance(type);
+            }
+            catch (Exception ex)
+            {
+                log.AddException(ex);
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Creates the instance of the specified extension object instance type.
+        /// </summary>
+        /// <param name="fullyQualifiedName">The type fully qualified name to consider.</param>
+        /// <param name="object1">The object to consider.</param>
+        /// <param name="attributes">The attributes to consider.</param>
+        public static ILog CreateInstance(
+            string fullyQualifiedName,
+            out Object object1,
+            params object[] attributes)
+        {
+            ILog log = new Log();
+            object1 = null;
+
+            try
+            {
+                Type type = Type.GetType(fullyQualifiedName);
+                if (type==null)
+                {
+                    log.AddError("Unknown type '" + fullyQualifiedName + "'");
+                }
+                else
                 {
                     object1 = Activator.CreateInstance(type);
                 }
-                catch (Exception ex)
-                {
-                    log.AddException(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                log.AddException(ex);
             }
 
             return log;
@@ -240,57 +270,57 @@ namespace BindOpen.Framework.Core.System.Assemblies
         //    return log;
         //}
 
-        /// <summary>
-        /// Gets the specified type from the specified assembly reference.
-        /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
-        /// <param name="classReference">The class reference to consider.</param>
-        private static Type GetTypeFromAssemblyReference(
-            this AppDomain appDomain,
-            AssemblyHelper.ClassReference classReference)
-        {
-            if (appDomain == null) return null;
+        ///// <summary>
+        ///// Gets the specified type from the specified assembly reference.
+        ///// </summary>
+        ///// <param name="appDomain">The application domain to consider.</param>
+        ///// <param name="classReference">The class reference to consider.</param>
+        //public static Type GetType(
+        //    this AppDomain appDomain,
+        //    AssemblyHelper.ClassReference classReference)
+        //{
+        //    if (appDomain == null) return null;
 
-            Type type = null;
-            try
-            {
-                if (!string.IsNullOrEmpty(classReference.AssemblyName))
-                {
-                    Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
-                    if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
-                        type = assembly.GetType(classReference.ClassName);
-                }
-            }
-            catch
-            {
-            }
+        //    Type type = null;
+        //    try
+        //    {
+        //        if (!string.IsNullOrEmpty(classReference.AssemblyName))
+        //        {
+        //            Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
+        //            if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
+        //                type = assembly.GetType(classReference.ClassName);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //    }
 
-            return type;
-        }
+        //    return type;
+        //}
 
-        /// <summary>
-        /// Gets the class name of the specified complete name.
-        /// </summary>
-        /// <param name="completeName">The complete name to consider.</param>
-        /// <returns>Returns the cloned metrics definition.</returns>
-        public static string GetClassName(string completeName)
-        {
-            string className = completeName;
+        ///// <summary>
+        ///// Gets the class name of the specified complete name.
+        ///// </summary>
+        ///// <param name="completeName">The complete name to consider.</param>
+        ///// <returns>Returns the cloned metrics definition.</returns>
+        //public static string GetClassName(string completeName)
+        //{
+        //    string className = completeName;
 
-            if (completeName != null)
-            {
-                if (completeName.Contains("."))
-                {
-                    className = className.Substring(
-                       completeName.IndexOf('.') + 1);
-                }
+        //    if (completeName != null)
+        //    {
+        //        if (completeName.Contains("."))
+        //        {
+        //            className = className.Substring(
+        //               completeName.IndexOf('.') + 1);
+        //        }
 
-                if (completeName.Contains(","))
-                    className = className.Substring(0, className.IndexOf(','));
-            }
+        //        if (completeName.Contains(","))
+        //            className = className.Substring(0, className.IndexOf(','));
+        //    }
 
-            return className ?? "";
-        }
+        //    return className ?? "";
+        //}
 
         #endregion
     }

@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// Instantiates a new instance of the RepositoryItem class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryItem(ICarrierDto dto) : base(dto)
+        protected RepositoryItem(ICarrierConfiguration dto) : base(dto)
         {
         }
 

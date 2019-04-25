@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Application.Configuration;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {
@@ -7,6 +8,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
     /// </summary>
     public interface IAppExtensionItem : IDataItem
     {
+        IConfiguration Configuration { get; }
     }
 }
 

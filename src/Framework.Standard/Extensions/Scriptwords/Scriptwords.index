@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <scriptWords.index library="standard"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:ScriptwordIndex ScriptwordIndex.xsd">
 
   <creationDate>2010-08-05</creationDate>
@@ -211,8 +211,8 @@
             <scalar name="second" valueType="Integer" />
           </parameter.specification>
           <children>
-            <!-- $(GETCURRENTDATETIME).ADD(year, month, day, hour, minute, second).FORMAT(format) -->
-            <add.definition referenceUniqueName="Standard:Fun_GetCurrentDateTime_Format" />
+            <!-- $(GETCURRENTDATETIME).ADD(year, month, day, hour, minute, second).FORMAT('format') -->
+            <add.definition referenceUniqueName="Standard$Format" />
           </children>                              
         </add.definition>
 
@@ -280,17 +280,6 @@
       </description>
       <kind>Variable</kind>
       <functionName>Var_Literal_Cr</functionName>
-    </add.definition>
-
-    <!-- $(LITERAL_CARRETPOS) -->
-    <add.definition name="LITERAL_CARRETPOS">
-      <creationDate>2010-08-05</creationDate>
-      <lastModificationDate>2011-06-05</lastModificationDate>
-      <description>
-        <add.value>Is used to locate the position of the carret in the script in a edition mode.</add.value>
-      </description>
-      <kind>Variable</kind>
-      <functionName>Var_Literal_CarretPos</functionName>
     </add.definition>
 
     <!-- $(LITERAL_CARRETPOS) -->

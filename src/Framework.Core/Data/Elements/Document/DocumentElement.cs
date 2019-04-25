@@ -13,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
     /// This class represents a document element that is an element whose items are documents.
     /// </summary>
     [Serializable()]
-    [XmlType("DocumentElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DocumentElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DocumentElement : DataElement, IDocumentElement
     {
         // --------------------------------------------------

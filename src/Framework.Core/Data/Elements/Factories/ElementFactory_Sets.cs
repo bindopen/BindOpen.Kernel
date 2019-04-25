@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Dynamic;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -18,7 +17,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
         /// <param name="detail">The detail table.</param>
-        public static DataElementSet Create(string[][] detail)
+        public static DataElementSet CreateSet(string[][] detail)
         {
             DataElementSet elementSet = new DataElementSet();
             if (detail != null)
@@ -37,7 +36,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// </summary>
         /// <param name="stringObject">The string to consider.</param>
         /// <returns>The collection.</returns>
-        public static DataElementSet Create(string stringObject)
+        public static DataElementSet CreateSet(string stringObject)
         {
             DataElementSet elementSet = new DataElementSet();
             if (stringObject != null)
@@ -59,20 +58,32 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         }
 
         /// <summary>
+        /// Creates a data element array from a dynamic object.
+        /// </summary>
+        /// <param name="aObject">The objet to consider.</param>
+        public static IDataElement[] CreateElementArray(object aObject)
+        {
+            return CreateSet<DataElementSet>(aObject)?.Elements?.ToArray();
+        }
+
+        /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>
-        /// <param name="dynamicObject">The objet to consider.</param>
-        public static DataElementSet Create(DynamicObject dynamicObject)
+        /// <param name="aObject">The objet to consider.</param>
+        public static T CreateSet<T>(object aObject) where T : DataElementSet, new()
         {
-            DataElementSet elementSet = new DataElementSet();
-            if (dynamicObject != null)
-                foreach (PropertyInfo updatePropertyInfo in dynamicObject.GetType().GetProperties())
-                    {
-                        string propertyName = updatePropertyInfo.Name;
-                        object propertyValue = updatePropertyInfo.GetValue(dynamicObject);
+            T elementSet = new T();
 
-                        elementSet.AddElement(CreateScalar(propertyName, DataValueType.Any, propertyValue));
-                    }
+            if (aObject != null)
+            {
+                foreach (PropertyInfo updatePropertyInfo in aObject.GetType().GetProperties())
+                {
+                    string propertyName = updatePropertyInfo.Name;
+                    object propertyValue = updatePropertyInfo.GetValue(aObject);
+
+                    elementSet.AddElement(CreateScalar(propertyName, DataValueType.Any, propertyValue));
+                }
+            }
 
             return elementSet;
         }
@@ -81,7 +92,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="aObject">The objet to consider.</param>
-        public static DataElementSet Create<T>(object aObject) where T : DataElementAttribute
+        public static DataElementSet CreateSetFromAttributes<T>(object aObject) where T : DataElementAttribute
         {
             DataElementSet elementSet = new DataElementSet();
             if (aObject != null)

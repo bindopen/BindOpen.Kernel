@@ -8,11 +8,11 @@ using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.Data.Specification.Constraints
 {
-    public interface IDataConstraintStatement : IDataItemSet<RoutineDto>
+    public interface IDataConstraintStatement : IDataItemSet<RoutineConfiguration>
     {
-        void AddConstraint(IRoutineDto routine);
+        void AddConstraint(IRoutineConfiguration routine);
 
-        IRoutineDto AddConstraint(
+        IRoutineConfiguration AddConstraint(
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             IDataItemSet<ConditionalEvent> outputEventSet = null);
 
         IDataElement AddConstraintParameter(string constraintName, string definitionUniqueId = null, string parameterName = null, DataValueType dataValueType = DataValueType.Any);
-        IRoutineDto GetConstraint(string name);
+        IRoutineConfiguration GetConstraint(string name);
         IDataElement GetConstraintParameter(string constraintName, string parameterName = null);
         object GetConstraintParameterValue(string constraintName, string parameterName = null);
         bool SetConstraintParameterValue(string constraintName, string definitionUniqueId = null, string parameterName = null, object value = null, DataValueType dataValueType = DataValueType.Any);

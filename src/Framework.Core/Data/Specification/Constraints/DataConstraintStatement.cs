@@ -16,9 +16,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
     /// This class represents the data constraint statement.
     /// </summary>
     [Serializable()]
-    [XmlType("DataConstraintStatement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "constraintStatement", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataConstraintStatement : DataItemSet<RoutineDto>, IDataConstraintStatement
+    [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class DataConstraintStatement : DataItemSet<RoutineConfiguration>, IDataConstraintStatement
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -46,9 +46,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// </summary>
         /// <param name="routine">The constraint to add.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public void AddConstraint(IRoutineDto routine)
+        public void AddConstraint(IRoutineConfiguration routine)
         {
-            if (routine != null) Add(routine as RoutineDto);
+            if (routine != null) Add(routine as RoutineConfiguration);
         }
 
         /// <summary>
@@ -60,15 +60,15 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="commandSet">The command set to consider.</param>
         /// <param name="outputEventSet">The output event set to consider.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public IRoutineDto AddConstraint(
+        public IRoutineConfiguration AddConstraint(
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
             //IDataItemSet<Command> commandSet = null,
             IDataItemSet<ConditionalEvent> outputEventSet = null)
         {
-            IRoutineDto routine = null; // new RoutineDto(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
-            Add(routine as RoutineDto);
+            IRoutineConfiguration routine = null; // new RoutineConfiguration(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
+            Add(routine as RoutineConfiguration);
 
             return routine;
         }
@@ -89,7 +89,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         {
             IDataElement dataElement = null;
 
-            IRoutineDto routine = GetConstraint(constraintName);
+            IRoutineConfiguration routine = GetConstraint(constraintName);
             if ((routine == null) || (!routine.DefinitionUniqueId.KeyEquals(definitionUniqueId)))
                 routine = AddConstraint(constraintName, definitionUniqueId);
 
@@ -128,7 +128,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         {
             IDataElement dataElement = null;
 
-            IRoutineDto routine = GetConstraint(constraintName);
+            IRoutineConfiguration routine = GetConstraint(constraintName);
             if (routine?.DefinitionUniqueId.KeyEquals(definitionUniqueId) != true)
                 routine = AddConstraint(constraintName, definitionUniqueId);
 
@@ -165,9 +165,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public IRoutineDto GetConstraint(string name)
+        public IRoutineConfiguration GetConstraint(string name)
         {
-            return GetItem(name) as RoutineDto;
+            return GetItem(name) as RoutineConfiguration;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             string constraintName,
             string parameterName = null)
         {
-            IRoutineDto routine = GetConstraint(constraintName);
+            IRoutineConfiguration routine = GetConstraint(constraintName);
             return routine?[parameterName];
         }
 
@@ -194,7 +194,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             string constraintName,
             string parameterName = null)
         {
-            IRoutineDto routine = GetConstraint(constraintName);
+            IRoutineConfiguration routine = GetConstraint(constraintName);
             return routine?.GetElementObject(parameterName);
         }
 
@@ -236,7 +236,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             //            log.AddEvents(routine_ForbiddenValues.Execute(appScope, scriptVariableSet, item, dataElement));
             //    }
             //    else
-            //        foreach (IRoutineDto config in Items)
+            //        foreach (IRoutineConfiguration config in Items)
             //        {
             //            Routine routine =
             //                appScope.CreateItem<RoutineDefinition>(null, config, null, log) as Routine;

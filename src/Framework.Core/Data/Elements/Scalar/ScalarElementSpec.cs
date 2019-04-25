@@ -13,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
     /// This class represents a scalar element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("ScalarElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("ScalarElementSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ScalarElementSpec : DataElementSpec, IScalarElementSpec
     {
         // --------------------------------------------------

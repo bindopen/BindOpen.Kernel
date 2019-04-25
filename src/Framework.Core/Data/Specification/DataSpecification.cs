@@ -17,8 +17,8 @@ namespace BindOpen.Framework.Core.Data.Specification
     /// This abstract class represents a data specification.
     /// </summary>
     [Serializable()]
-    [XmlType("DataSpecification", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DataSpecification", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class DataSpecification : IndexedDataItem, IDataSpecification
     {
         // --------------------------------------------------

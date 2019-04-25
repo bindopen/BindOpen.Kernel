@@ -3,6 +3,8 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
+using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.TestConsole.Settings;
@@ -15,7 +17,7 @@ namespace BindOpen.TestConsole
     /// <remarks>This allows </remarks>
     internal static class Program
     {
-        public static IBdoAppHost _AppHost = null;
+        public static ITBdoAppHost<BdoAppConfiguration> _AppHost = null;
 
         private static void Main(string[] args)
         {
@@ -54,7 +56,7 @@ namespace BindOpen.TestConsole
             //field.Name = "test";
             //field.Alias = "alias";
 
-            Program._AppHost = new BdoAppHost()
+            Program._AppHost = new TBdoAppHost<BdoAppConfiguration>()
                 .Configure(options =>
                     options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                     .SetModule(new AppModule("app.test"))
@@ -64,13 +66,13 @@ namespace BindOpen.TestConsole
                         .AddFilter("BindOpen.Framework.Databases")
                         .AddFilter("BindOpen.Framework.Databases.MSSqlServer")
                     )
-                    .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
+                    //.SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
                     .AddDefaultLogger()
                     .SetLoggers(
                         LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
                 )
                 //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-                .Start() as BdoAppHost;
+                .Start();
 
             //ILog log = new Log();
             //log.AddMessage("test1");
@@ -177,7 +179,9 @@ namespace BindOpen.TestConsole
             //    new Event(EventKind.Error),
             //    new Event(EventKind.Exception))).SaveXml(@"c:\workarea\temp\test.xml", Program._AppManager.Log);
 
-            //String path = Program._AppManager.Configuration.Get<String>("test.folderPath");
+            string path1 = Program._AppHost.Settings.TestFolderPath;
+
+            string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
 
             //var value = Program._AppManager.Configuration?.LogsFolderPath;
 

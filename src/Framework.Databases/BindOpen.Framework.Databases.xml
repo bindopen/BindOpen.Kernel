@@ -31,14 +31,6 @@
             Clones this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition.Evaluate(BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
-            <summary>
-            Evaluate this instance.
-            </summary>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="scriptVariableSet">The script variable set used to evaluate.</param>
-            <returns>True if the business script value is the true value.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection">
             <summary>
             This class represents a database connection.
@@ -60,7 +52,7 @@
             </summary>
             <param name="connector">The connector to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.SetConnector(BindOpen.Framework.Core.Extensions.Runtime.Connectors.IConnector)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
             <summary>
             Sets the connector of this instance.
             </summary>
@@ -393,7 +385,7 @@
             This class represents a data service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.BdoDataService,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.BdoDataService,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Retrieves the specified data.
             </summary>
@@ -1300,7 +1292,7 @@
             Instantiates a new instance of the DbField class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Core.Data.Expression.IDataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
@@ -1308,7 +1300,7 @@
             <param name="valueType">The value type to consider.</param>
             <param name="value">The value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Expression.IDataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
@@ -1317,7 +1309,7 @@
             <param name="valueType">The value type to consider.</param>
             <param name="value">The value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Core.Data.Expression.IDataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
@@ -1356,14 +1348,14 @@
             <param name="valueType">The value type to consider.</param>
             <param name="value">The value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="query">The query to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
@@ -1371,7 +1363,7 @@
             <param name="tableName">The data table to consider.</param>
             <param name="query">The query to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
             <summary>
             Instantiates a new instance of the DbField class.
             </summary>
@@ -1386,7 +1378,7 @@
             Get the name of this instance that is the alias if there is or the name otherwise.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetValue(BindOpen.Framework.Core.Data.Expression.IDataExpression)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetValue(BindOpen.Framework.Core.Data.Expression.DataExpression)">
             <summary>
             Sets the expression value of this instance.
             </summary>
@@ -1511,7 +1503,7 @@
             Instantiates a new instance of the DatabaseConnector class.
             </summary>
             <param name="name">The name of this instance.</param>
-            <param name="namePreffix">The preffix of the name of this instance.</param>
+            <param name="connectionString">The connection string to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetSqlText(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
@@ -1610,7 +1602,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetConnector(BindOpen.Framework.Core.Extensions.Runtime.Connectors.IConnector)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
             <summary>
             
             </summary>
@@ -1738,7 +1730,7 @@
             This class represents a 'Database' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlCount(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlCount(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCOUNT.
             </summary>
@@ -1748,7 +1740,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlSum(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlSum(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLSUM.
             </summary>
@@ -1758,7 +1750,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAverage(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAverage(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLAVG.
             </summary>
@@ -1768,7 +1760,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGetCurrentDate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGetCurrentDate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGETCURRENTDATE.
             </summary>
@@ -1778,7 +1770,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlTrue(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlTrue(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLTRUE.
             </summary>
@@ -1788,7 +1780,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIf(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIf(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLIF.
             </summary>
@@ -1798,7 +1790,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNot(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNot(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNOT.
             </summary>
@@ -1808,7 +1800,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlOr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlOr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLOR.
             </summary>
@@ -1818,7 +1810,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAnd(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAnd(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLAND.
             </summary>
@@ -1828,7 +1820,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlXor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlXor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLXOR.
             </summary>
@@ -1838,7 +1830,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlEq(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlEq(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLEQ.
             </summary>
@@ -1848,7 +1840,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDiff(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDiff(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLDIFF.
             </summary>
@@ -1858,7 +1850,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGT.
             </summary>
@@ -1868,7 +1860,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGTE.
             </summary>
@@ -1878,7 +1870,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLT.
             </summary>
@@ -1888,7 +1880,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLTE.
             </summary>
@@ -1898,7 +1890,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIsNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIsNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLISNULL.
             </summary>
@@ -1908,7 +1900,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConvertToText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConvertToText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCONVERTTOTEXT.
             </summary>
@@ -1918,7 +1910,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLTEXT.
             </summary>
@@ -1928,7 +1920,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLike(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLike(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLIKE.
             </summary>
@@ -1938,7 +1930,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlReplace(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlReplace(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLREPLACE.
             </summary>
@@ -1948,7 +1940,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConcatenate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConcatenate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCONCATENATE.
             </summary>
@@ -1958,7 +1950,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNULL.
             </summary>
@@ -1968,7 +1960,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word %SQLDATABASE.
             </summary>
@@ -1978,7 +1970,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlSchema(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlSchema(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word [%DATABASE->]%SCHEMA.
             </summary>
@@ -1988,7 +1980,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word [%DATABASE->]%TABLE.
             </summary>
@@ -1998,7 +1990,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable_SqlField(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable_SqlField(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
             </summary>
@@ -2008,7 +2000,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNewGuid(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNewGuid(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNEWGUID.
             </summary>
@@ -2018,7 +2010,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlRandom(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlRandom(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLRANDOM.
             </summary>
@@ -2028,7 +2020,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIn(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIn(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLIN.
             </summary>
@@ -2038,7 +2030,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlList(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlList(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLIST.
             </summary>

@@ -206,7 +206,7 @@ namespace BindOpen.Framework.Core.Application.Services.Data.Datasources
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IConnectorDto GetConnectorDto(
+        public IConnectorConfiguration GetConnectorConfiguration(
             string sourceName,
             string connectorDefinitionUniqueId)
         {
@@ -221,7 +221,7 @@ namespace BindOpen.Framework.Core.Application.Services.Data.Datasources
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConnectorDto(string sourceName, string connectorDefinitionUniqueId)
+        public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId)
         {
             IDataSource dataSource = GetSource(sourceName);
 
@@ -238,9 +238,9 @@ namespace BindOpen.Framework.Core.Application.Services.Data.Datasources
             string sourceName,
             string connectorDefinitionUniqueId)
         {
-            IConnectorDto configuration = GetConnectorDto(sourceName, connectorDefinitionUniqueId);
+            IConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
 
-            return configuration != null ? configuration.ConnectionString : StringHelper.__NoneString;
+            return configuration != null ? configuration["connectionString"]?.GetObject() as string : StringHelper.__NoneString;
         }
 
         #endregion

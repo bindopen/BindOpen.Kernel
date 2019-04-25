@@ -22,25 +22,26 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
+        /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static DataElementSpec Create(DataValueType valueType)
+        public static DataElementSpec Create(string name, DataValueType valueType)
         {
             if (valueType.IsScalar())
             {
-                return new ScalarElementSpec(null, valueType);
+                return new ScalarElementSpec(name, valueType);
             }
             else
             {
                 switch (valueType)
                 {
                     case DataValueType.Carrier:
-                        return new CarrierElementSpec();
+                        return new CarrierElementSpec() { Name = name };
                     case DataValueType.Document:
-                        return new DocumentElementSpec();
+                        return new DocumentElementSpec() { Name = name };
                     case DataValueType.Object:
-                        return new ObjectElementSpec();
+                        return new ObjectElementSpec() { Name = name };
                     case DataValueType.DataSource:
-                        return new SourceElementSpec();
+                        return new SourceElementSpec() { Name = name };
                 }
             }
 
@@ -50,12 +51,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
+        /// <param name="name">The name to consider.</param>
         /// <param name="type">The value type to consider.</param>
-        public static DataElementSpec Create(Type type)
+        public static DataElementSpec Create(string name, Type type)
         {
             if (type == null) return null;
 
-            DataElementSpec spec = Create(type.GetValueType());
+            DataElementSpec spec = Create(name, type.GetValueType());
 
             if (spec != null)
             {

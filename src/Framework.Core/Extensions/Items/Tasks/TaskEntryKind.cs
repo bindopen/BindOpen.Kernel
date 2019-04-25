@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
     /// This enumeration represents the possible task entry kinds.
     /// </summary>
     [Serializable()]
-    [XmlType("TaskEntryKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("TaskEntryKind", Namespace = "https://bindopen.org/xsd")]
     public enum TaskEntryKind
     {
         /// <summary>
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// </summary>
         /// <param name="taskEntryKind">The entry kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetTitle(this TaskEntryKind taskEntryKind)
+        public static string GetTitle(this TaskEntryKind taskEntryKind)
         {
             switch (taskEntryKind)
             {

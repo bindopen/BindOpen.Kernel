@@ -187,8 +187,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Factories
             return GetTypeFromAssemblyReference(assemblyReference);
         }
 
-        #endregion
-
         // ------------------------------------------
         // STATIC METHODS
         // ------------------------------------------

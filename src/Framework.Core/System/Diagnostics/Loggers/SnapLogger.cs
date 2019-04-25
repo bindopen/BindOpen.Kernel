@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
@@ -94,10 +93,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         {
             if (logEvent == null) return "";
 
-            String indent = new string('\t', (logEvent.Level <= 0 ? 0 : logEvent.Level - 1));
+            String indent = new string('\t', logEvent.Level <= 0 ? 0 : logEvent.Level - 1);
 
-            String st = logEvent.Date + indent + " - " + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture) + 
-                (logEvent.Description !=null ? " | " +  logEvent.GetDescription(UICulture) : "") + Environment.NewLine;
+            String st = logEvent.Date + indent + " - " + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture)
+                + (logEvent.Description !=null ? " | " +  logEvent.GetDescription(UICulture) : "") + Environment.NewLine;
 
             if ((logEvent is LogEvent) && ((logEvent as LogEvent)?.Log != null))
                 st += ToString((logEvent as LogEvent)?.Log);
@@ -119,6 +118,5 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         }
 
         #endregion
-
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition;
+using BindOpen.Framework.Core.Extensions.Definitions;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes
 {
@@ -11,9 +11,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
     /// </summary>
     /// <typeparam name="T">The class of this extension item definition.</typeparam>
     [Serializable()]
-    [XmlType("TAppExtensionItemIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class TAppExtensionItemIndexDto<T> : StoredDataItem, ITAppExtensionItemIndexDto<T> where T : IAppExtensionItemDefinitionDto
+    [XmlType("TAppExtensionItemIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class TAppExtensionItemIndexDto<T> : StoredDataItem, ITAppExtensionItemIndexDto<T> where T : AppExtensionItemDefinitionDto
     {
         // ------------------------------------------
         // VARIABLES
@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
 
         #region Variables
 
-        private List<IAppExtensionItemGroup> _groups;
+        private List<AppExtensionItemGroup> _groups;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
         /// </summary>
         [XmlArray("groups")]
         [XmlArrayItem("group")]
-        public List<IAppExtensionItemGroup> Groups => _groups ?? (_groups = new List<IAppExtensionItemGroup>());
+        public List<AppExtensionItemGroup> Groups => _groups ?? (_groups = new List<AppExtensionItemGroup>());
 
         #endregion
 

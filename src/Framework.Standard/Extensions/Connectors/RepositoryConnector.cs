@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
     /// <summary>
     /// This class represents a repository connector.
     /// </summary>
-    public class RepositoryConnector : Connector
+    public abstract class RepositoryConnector : Connector
     {
         // -----------------------------------------------
         // CONSTRUCTORS
@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryConnector(IConnectorDto dto)
+        protected RepositoryConnector(IConnectorConfiguration dto) : base(dto)
         {
         }
 
@@ -83,7 +83,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 log,
                 CarrierKind_standard.File);
             foreach (RepositoryItem file in files)
-                this.Pull(file.Dto?.Path, localPathUri, canOverwrite, log);
+                this.Pull(file.Path, localPathUri, canOverwrite, log);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
                 log,
                 CarrierKind_standard.File);
             foreach (RepositoryItem file in files)
-                this.Pull(file.Dto?.Path, remotePathUri, canOverwrite, log);
+                this.Pull(file.Path, remotePathUri, canOverwrite, log);
         }
 
         /// <summary>

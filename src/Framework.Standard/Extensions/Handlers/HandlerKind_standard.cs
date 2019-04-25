@@ -88,7 +88,7 @@ namespace BindOpen.Framework.Standard.Extensions.Handlers
         /// </summary>
         /// <param name="kind">The handler kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this HandlerKind_standard kind)
+        public static string GetUniqueName(this HandlerKind_standard kind)
         {
             return kind.ToString().ToLower().GetUniqueName_standard();
         }

@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
     /// This enumeration lists the possible log formats.
     /// </summary>
     [Serializable()]
-    [XmlType("LogFormat", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("LogFormat", Namespace = "https://bindopen.org/xsd")]
     public enum LogFormat
     {
         /// <summary>

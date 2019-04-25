@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Formats;
+﻿using BindOpen.Framework.Core.Extensions.Definitions.Formats;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Formats
 {
-    public interface IFormatDto : ITAppExtensionTitledItemDto<FormatDefinition>
+    public interface IFormatConfiguration : ITAppExtensionTitledItemConfiguration<FormatDefinition>
     {
     }
 }

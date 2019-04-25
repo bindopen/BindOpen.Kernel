@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Core.Extensions
     /// This class represents the extension configuration.
     /// </summary>
     [Serializable()]
-    [XmlType("AppExtensionConfiguration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("AppExtensionConfiguration", Namespace = "https://bindopen.org/xsd")]
     public class AppExtensionConfiguration : DataItem, IAppExtensionConfiguration
     {
         // --------------------------------------------------

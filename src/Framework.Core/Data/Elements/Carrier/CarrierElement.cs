@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements.Carrier
 {
@@ -14,10 +14,28 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
     /// This class represents a carrier element.
     /// </summary>
     [Serializable()]
-    [XmlType("CarrierElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "carrier", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("CarrierElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CarrierElement : DataElement, ICarrierElement
     {
+        /// <summary>
+        /// Returns the element with the specified indexed.
+        /// </summary>
+        [XmlIgnore()]
+        public new ICarrierConfiguration this[int index] => base[index] as CarrierConfiguration;
+
+        /// <summary>
+        /// Returns the element with the specified unique name.
+        /// </summary>
+        [XmlIgnore()]
+        public new ICarrierConfiguration this[string name] => base[name] as CarrierConfiguration;
+
+        /// <summary>
+        /// Returns the first item.
+        /// </summary>
+        [XmlIgnore()]
+        public new ICarrierConfiguration First => this[0];
+
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -29,6 +47,25 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// </summary>
         [XmlElement("definition")]
         public string DefinitionUniqueId { get; set; } = "";
+
+        // --------------------------------------------------
+
+        /// <summary>
+        /// Carriers of this instance.
+        /// </summary>
+        [XmlArray("items")]
+        [XmlArrayItem("add")]
+        public List<CarrierConfiguration> Carriers
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Specification of the Carriers property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool CarriersSpecified => Items.Count > 0;
 
         // --------------------------------------------------
 
@@ -101,8 +138,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         {
             base.SetItem(item);
 
-            if (this[0] is CarrierDto)
-                DefinitionUniqueId = (this[0] as CarrierDto)?.DefinitionUniqueId;
+            if (this[0] is CarrierConfiguration configuration && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
+                DefinitionUniqueId = configuration?.DefinitionUniqueId;
         }
 
         /// <summary>
@@ -125,17 +162,47 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => (p as EntityDto)?.Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
         }
 
         #endregion
 
         // --------------------------------------------------
-        // CHECK, UPDATE, REPAIR
+        // SERIALIZATION
         // --------------------------------------------------
 
-        #region Check_Update_Repair
+        #region Serialization
 
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(ILog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Carriers = Items?.Select(p =>
+                {
+                    CarrierConfiguration configuration = p as CarrierConfiguration;
+                    configuration?.UpdateStorageInfo(log);
+                    return configuration;
+                }).ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(ILog log = null)
+        {
+            base.UpdateRuntimeInfo(log);
+
+            SetItems(Carriers?.Select(p=>
+                {
+                    p.UpdateRuntimeInfo(log);
+                    return p;
+                }).ToArray());
+        }
 
         #endregion
 

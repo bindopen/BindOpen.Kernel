@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Standard.Extensions.Routines
         /// </summary>
         /// <param name="routineKind_standard">The routine kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this RoutineConfigurationKind_standard routineKind_standard)
+        public static string GetUniqueName(this RoutineConfigurationKind_standard routineKind_standard)
         {
             return routineKind_standard.ToString().ToLower().GetUniqueName_standard();
         }

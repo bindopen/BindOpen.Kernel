@@ -89,7 +89,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlNumberAndFilterString(
+        public static string GetSqlNumberAndFilterString(
             String sqlDbFieldString,
             List<string> values)
         {
@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlNumberOrFilterString(
+        public static string GetSqlNumberOrFilterString(
             String sqlDbFieldString,
             List<string> values)
         {
@@ -162,7 +162,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlTextAndFilterString(
+        public static string GetSqlTextAndFilterString(
             String sqlDbFieldString,
             List<string> values)
         {
@@ -175,7 +175,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
         /// <param name="values">Values used to filter.</param>
         /// <returns>The string that allows to filter users and workgroup users.</returns>
-        public static String GetSqlTextOrFilterString(
+        public static string GetSqlTextOrFilterString(
             String sqlDbFieldString,
             List<string> values)
         {

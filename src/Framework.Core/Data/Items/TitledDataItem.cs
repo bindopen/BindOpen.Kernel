@@ -10,8 +10,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents titled data item.
     /// </summary>
     [Serializable()]
-    [XmlType("TitledDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("titledDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("TitledDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("titledDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class TitledDataItem : NamedDataItem, ITitledDataItem
     {
         // ------------------------------------------

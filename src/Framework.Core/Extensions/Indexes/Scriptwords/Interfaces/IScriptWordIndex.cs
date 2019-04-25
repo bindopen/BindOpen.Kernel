@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {

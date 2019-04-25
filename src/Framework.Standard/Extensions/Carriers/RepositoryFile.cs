@@ -6,11 +6,10 @@ using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Standard.Extensions.Carriers
 {
-
     /// <summary>
     /// This class represents a repository file.
     /// </summary>
-    [Carrier(Name="File")]
+    [Carrier(Name="standard$file")]
     public class RepositoryFile : RepositoryItem
     {
         // ------------------------------------------
@@ -49,7 +48,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// Instantiates a new instance of the RepositoryFile class.
         /// </summary>
         /// <param name="path">The path of the instance.</param>
-        public RepositoryFile(string path) : this(null, null)
+        public RepositoryFile(string path) : base()
         {
             this.Path = path;
         }
@@ -59,7 +58,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// </summary>
         /// <param name="fileName">The file name of the instance.</param>
         /// <param name="folderPath">The folder path of the instance.</param>
-        public RepositoryFile(string fileName, string folderPath) : base(null, "file_")
+        public RepositoryFile(string fileName, string folderPath) : base()
         {
             this.SetPath(fileName, folderPath);
         }

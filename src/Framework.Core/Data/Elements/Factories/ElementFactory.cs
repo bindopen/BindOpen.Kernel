@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using System.Linq;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Data.Specification.Design;
-using BindOpen.Framework.Core.Extensions.Definition.Carriers;
-using BindOpen.Framework.Core.Extensions.Definition.Connectors;
-using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 
 namespace BindOpen.Framework.Core.Data.Elements.Factories
 {
@@ -29,18 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             string name,
             object[] items)
         {
-            if (items == null) return null;
-
-            DataValueType valueType = items.GetValueType();
-
-            IDataElement element = null;
-            if (valueType != DataValueType.Any)
-            {
-                element = Create(name, valueType);
-                element?.SetItems(items);
-            }
-
-            return element;
+            return Create(name, DataValueType.Any, null, null, items);
         }
 
         /// <summary>
@@ -52,7 +37,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             string name,
             object item)
         {
-            return Create(name, new[] { item });
+            return Create(name, DataValueType.Any, null, null, new[] { item });
         }
 
         /// <summary>
@@ -60,19 +45,24 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="specification">The specification to consider.</param>
+        /// <param name="items">The items to consider.</param>
         public static IDataElement Create(
             string name,
-            DataValueType valueType,
-            IAppScope appScope = null,
-            IDataElementSpec specification = null)
+            DataValueType valueType = DataValueType.Any,
+            IDataElementSpec specification = null,
+            params object[] items)
         {
             IDataElement element = null;
 
+            if (valueType == DataValueType.Any)
+            {
+                valueType = items.GetValueType();
+            }
+
             if (valueType.IsScalar())
             {
-                element = CreateScalar(name, null, valueType, specification);
+                element = CreateScalar(name, null as string, valueType, specification as IScalarElementSpec, items);
             }
             else
             {
@@ -80,13 +70,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
                 switch (valueType)
                 {
                     case DataValueType.Carrier:
-                        definitionUniqueId = (specification as ICarrierElementSpec)?.DefinitionFilter.GetValues(
-                            appScope?.AppExtension.GetItemDefinitionUniqueIds<ICarrierDefinition>()).FirstOrDefault();
+                        definitionUniqueId = ((items.Length>0 ? items[0] : null) as ICarrierConfiguration)?.DefinitionUniqueId;
                         element = CreateCarrier(name, null, definitionUniqueId, specification as ICarrierElementSpec);
                         break;
                     case DataValueType.DataSource:
-                        definitionUniqueId = (specification as ISourceElementSpec)?.DefinitionFilter.GetValues(
-                            appScope?.AppExtension.GetItemDefinitionUniqueIds<IConnectorDefinition>()).FirstOrDefault();
+                        definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IConnectorConfiguration)?.DefinitionUniqueId;
                         element = CreateSource(name, null, definitionUniqueId, specification as ISourceElementSpec);
                         break;
                     case DataValueType.Dictionary:
@@ -96,6 +84,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
                         break;
                     case DataValueType.Object:
                         string classFullName = (specification as IObjectElementSpec)?.ClassFilter.GetValues().FirstOrDefault();
+                        if (string.IsNullOrEmpty(classFullName) && items.Length > 0)
+                            classFullName = items[0]?.GetType().ToString();
                         element = CreateObject(name, null, classFullName, specification as IObjectElementSpec);
                         break;
                     case DataValueType.Schema:
@@ -105,47 +95,52 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
                     case DataValueType.StringValued:
                         break;
                 }
-            }
 
-            return element;
-        }
-
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param name="type">The value type to consider.</param>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        public static IDataElement Create(
-            string name,
-            Type type,
-            IAppScope appScope = null,
-            IDataElementSpec specification = null)
-        {
-            if (type == null) return null;
-
-            IDataElement element = Create(name, type.GetValueType(), appScope, specification);
-
-            if (element?.Specification != null)
-            {
-                element.Specification.DesignStatement.ControlType = type.GetDefaultControlType();
-
-                if (type.IsArray)
+                if (items!=null)
                 {
-                    element.Specification.MaximumItemNumber = -1;
-                }
-                else if (type.IsEnum)
-                {
-                    element.Specification.ConstraintStatement.AddConstraint(
-                       null,
-                       "standard$" + KnownRoutineKind.ItemMustBeInList,
-                       new DataElementSet(
-                           CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
+                    element?.SetItems(items);
                 }
             }
 
             return element;
         }
+
+        ///// <summary>
+        ///// Creates a data element of the specified kind.
+        ///// </summary>
+        ///// <param name="type">The value type to consider.</param>
+        ///// <param name="name">The name to consider.</param>
+        ///// <param name="appScope">The application scope to consider.</param>
+        ///// <param name="specification">The specification to consider.</param>
+        //public static IDataElement Create(
+        //    string name,
+        //    Type type,
+        //    IAppScope appScope = null,
+        //    IDataElementSpec specification = null)
+        //{
+        //    if (type == null) return null;
+
+        //    IDataElement element = Create(name, type.GetValueType(), appScope, specification);
+
+        //    if (element?.Specification != null)
+        //    {
+        //        element.Specification.DesignStatement.ControlType = type.GetDefaultControlType();
+
+        //        if (type.IsArray)
+        //        {
+        //            element.Specification.MaximumItemNumber = -1;
+        //        }
+        //        else if (type.IsEnum)
+        //        {
+        //            element.Specification.ConstraintStatement.AddConstraint(
+        //               null,
+        //               "standard$" + KnownRoutineKind.ItemMustBeInList,
+        //               new DataElementSet(
+        //                   CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
+        //        }
+        //    }
+
+        //    return element;
+        //}
     }
 }

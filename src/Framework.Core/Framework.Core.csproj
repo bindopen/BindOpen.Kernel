@@ -25,18 +25,21 @@
     <Compile Remove="Application\Commands\**" />
     <Compile Remove="Application\Configuration\Factories\**" />
     <Compile Remove="Data\Elements\Handlers\**" />
+    <Compile Remove="Data\Items\Handlers\**" />
     <Compile Remove="Data\Items\Strings\**" />
     <Compile Remove="Extensions\Indexes\Libraries\**" />
     <Compile Remove="Extensions\Items\Metrics\**" />
     <EmbeddedResource Remove="Application\Commands\**" />
     <EmbeddedResource Remove="Application\Configuration\Factories\**" />
     <EmbeddedResource Remove="Data\Elements\Handlers\**" />
+    <EmbeddedResource Remove="Data\Items\Handlers\**" />
     <EmbeddedResource Remove="Data\Items\Strings\**" />
     <EmbeddedResource Remove="Extensions\Indexes\Libraries\**" />
     <EmbeddedResource Remove="Extensions\Items\Metrics\**" />
     <None Remove="Application\Commands\**" />
     <None Remove="Application\Configuration\Factories\**" />
     <None Remove="Data\Elements\Handlers\**" />
+    <None Remove="Data\Items\Handlers\**" />
     <None Remove="Data\Items\Strings\**" />
     <None Remove="Extensions\Indexes\Libraries\**" />
     <None Remove="Extensions\Items\Metrics\**" />
@@ -44,7 +47,7 @@
 
   <ItemGroup>
     <Compile Remove="Extensions\Items\Factories\AppExtensionFactory.cs" />
-    <Compile Remove="Extensions\Items\Libraries\Archive.cs" />
+    <Compile Remove="Extensions\Libraries\Archive.cs" />
   </ItemGroup>
 
   <ItemGroup>

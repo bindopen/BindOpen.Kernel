@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 

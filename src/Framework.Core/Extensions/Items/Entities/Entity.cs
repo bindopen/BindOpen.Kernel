@@ -1,4 +1,8 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Entities;
+﻿using BindOpen.Framework.Core.Data.Elements._Object;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Entities
 {
@@ -7,7 +11,13 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
     /// </summary>
     public abstract class Entity : TAppExtensionItem<IEntityDefinition>, IEntity
     {
-        new public IEntityDto Dto { get; }
+        new public IEntityConfiguration Configuration { get => base.Configuration as IEntityConfiguration; }
+
+        /// <summary>
+        /// The name of this instance.
+        /// </summary>
+        [DetailProperty(Name = "name")]
+        public string Name { get; set; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -26,7 +36,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
         /// Instantiates a new instance of the Entity class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected Entity(IEntityDto dto)
+        protected Entity(IEntityConfiguration dto)
         {
         }
 
@@ -47,7 +57,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
         //    if (configuration == null
         //        || (AppScope != null && configuration.KeyEquals(this.DefinitionUniqueId)))
         //    {
-        //        configuration = this.AppScope.AppExtension.CreateConfiguration<EntityDefinition>(this.DefinitionUniqueId) as EntityDto;
+        //        configuration = this.AppScope.AppExtension.CreateConfiguration<EntityDefinition>(this.DefinitionUniqueId) as EntityConfiguration;
         //    }
 
         //    if (configuration != null)
@@ -86,6 +96,16 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
 
         //#region Accessors
 
+        /// <summary>
+        /// Returns a data element representing this instance.
+        /// </summary>
+        /// <param name="name">The name of the element to create.</param>
+        /// <param name="log">The log of the operation.</param>
+        /// <returns>Retuns the data element that represents this instace.</returns>
+        public IObjectElement AsElement(string name=null, Log log = null)
+        {
+            return ElementFactory.CreateObject(name ?? Name, base.Configuration as IEntityConfiguration);
+        }
         ///// <summary>
         ///// Gets the specified value.
         ///// </summary>

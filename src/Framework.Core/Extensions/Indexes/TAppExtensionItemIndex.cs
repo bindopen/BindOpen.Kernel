@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition;
+using BindOpen.Framework.Core.Extensions.Definitions;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes
 {
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
         /// <param name="definitions">The definitions to consider.</param>
         public TAppExtensionItemIndex(params T[] definitions)
         {
-            Definitions = definitions.ToList();
+            SetDefinitions(definitions.ToList());
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes
         /// Sets the specified definitions of this instance.
         /// </summary>
         /// <param name="definitions">The definitions to consider.</param>
-        public void SetDefinitions(List<T> definitions)
+        public virtual void SetDefinitions(List<T> definitions)
         {
             Definitions = definitions;
         }

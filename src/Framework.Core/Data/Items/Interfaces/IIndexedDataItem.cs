@@ -1,6 +1,8 @@
-﻿namespace BindOpen.Framework.Core.Data.Items
+﻿using BindOpen.Framework.Core.Data.Items.Dto;
+
+namespace BindOpen.Framework.Core.Data.Items
 {
-    public interface IIndexedDataItem : IDescribedDataItem
+    public interface IIndexedDataItem : IDescribedDataItem, IIndexed
     {
     }
 }

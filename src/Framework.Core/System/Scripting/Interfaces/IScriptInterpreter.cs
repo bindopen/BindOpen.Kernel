@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;

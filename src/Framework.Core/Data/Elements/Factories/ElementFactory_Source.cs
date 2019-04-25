@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// <param name="items">The items to consider.</param>
         public static SourceElement CreateSource(
             string name,
-            params IConnectorDto[] items)
+            params IConnectorConfiguration[] items)
         {
             return CreateSource(name, null, null, null, items);
         }
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static SourceElement CreateSource(
-            params IConnectorDto[] items)
+            params IConnectorConfiguration[] items)
         {
             return CreateSource(null, null, null, null, items);
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
         public static SourceElement CreateSource(
             string name,
             string definitionUniqueId,
-            params IConnectorDto[] items)
+            params IConnectorConfiguration[] items)
         {
             return CreateSource(name, null, definitionUniqueId, null, items);
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             string id,
             string definitionUniqueId,
             ISourceElementSpec specification,
-            params IConnectorDto[] items)
+            params IConnectorConfiguration[] items)
         {
             SourceElement element = new SourceElement(name, id)
             {

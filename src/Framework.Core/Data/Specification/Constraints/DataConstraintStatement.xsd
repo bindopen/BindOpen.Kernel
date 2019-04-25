@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
-  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/items/dictionary/DictionaryDataItem.xsd" />
-  <xs:include schemaLocation="../../../extensions/configuration/routines/RoutineDto.xsd" />
+  <xs:include schemaLocation="../../../extensions/configuration/routines/RoutineConfiguration.xsd" />
 
   <xs:complexType name="DataConstraintStatement">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataItemSetOfRoutineDto" />
+      <xs:extension base="bdo:DataItemSetOfRoutineConfiguration" />
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="DataItemSetOfRoutineDto">
+  <xs:complexType name="DataItemSetOfRoutineConfiguration">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
-      <xs:element minOccurs="0" maxOccurs="1" name="items" type="bdo:ArrayOfRoutineDto1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="items" type="bdo:ArrayOfRoutineConfiguration1" />
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="ArrayOfRoutineDto1">
+  <xs:complexType name="ArrayOfRoutineConfiguration1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:RoutineDto" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:RoutineConfiguration" />
     </xs:sequence>
   </xs:complexType>
 

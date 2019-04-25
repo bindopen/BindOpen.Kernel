@@ -8,10 +8,10 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
 {
     public interface IDocument
     {
-        CarrierDto Container { get; set; }
-        EntityDto Content { get; set; }
+        CarrierConfiguration Container { get; set; }
+        EntityConfiguration Content { get; set; }
 
-        IFormatDto DetectFormat(IDataSource dataSource, ref ILog log);
+        IFormatConfiguration DetectFormat(IDataSource dataSource, ref ILog log);
         ILog Update(IDocument documentDataItem, string relativePath = "");
     }
 }

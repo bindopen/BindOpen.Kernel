@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
-  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:simpleType name="DesignControlType">
     <xs:restriction base="xs:string">
@@ -26,7 +26,7 @@
       <xs:enumeration value="DictionaryEditor" />
       <xs:enumeration value="DatabaseTableEditor" />
       <xs:enumeration value="EmailEditor" />
-      <xs:enumeration value="CarrierDtoEditor" />
+      <xs:enumeration value="CarrierConfigurationEditor" />
       <xs:enumeration value="Custom" />
     </xs:restriction>
   </xs:simpleType>

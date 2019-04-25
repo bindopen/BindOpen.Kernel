@@ -5,7 +5,6 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -13,8 +12,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// This class represents a log event.
     /// </summary>
     [Serializable()]
-    [XmlType("LogEvent", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "logEvent", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("LogEvent", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "logEvent", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class LogEvent : Event, ILogEvent
     {
         // ------------------------------------------
@@ -27,7 +26,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// This structures defines the stack trace of a task result.
         /// </summary>
         [Serializable()]
-        [XmlType("LogEventStackTrace", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+        [XmlType("LogEventStackTrace", Namespace = "https://bindopen.org/xsd")]
         public struct LogEventStackTrace
         {
             /// <summary>
@@ -107,6 +106,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public bool StackTracesSpecified => StackTraces?.Count > 0;
 
         // Tree ----------------------------------
+
+        /// <summary>
+        /// The log of this instance.
+        /// </summary>
+        [XmlElement("log")]
+        public Log LogDto {
+            get => Log as Log;
+            set { Log = value; }
+        }
 
         /// <summary>
         /// The log of this instance.

@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Standard.Extensions.Carriers
         /// </summary>
         /// <param name="aCarrierKind_standard">The carrier unique name to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this CarrierKind_standard aCarrierKind_standard)
+        public static string GetUniqueName(this CarrierKind_standard aCarrierKind_standard)
         {
             return "standard$" + aCarrierKind_standard.ToString().ToLower();
         }

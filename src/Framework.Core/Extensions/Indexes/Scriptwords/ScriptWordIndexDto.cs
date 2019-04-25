@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Scriptwords;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {
@@ -8,9 +10,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
     /// This class represents a DTO script word index.
     /// </summary>
     [Serializable()]
-    [XmlType("ScriptwordIndexDto", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "scriptWords.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class ScriptwordIndexDto : TAppExtensionItemIndexDto<IScriptwordDefinitionDto>, IScriptwordIndexDto
+    [XmlType("ScriptwordIndexDto", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "scriptWords.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class ScriptwordIndexDto : TAppExtensionItemIndexDto<ScriptwordDefinitionDto>, IScriptwordIndexDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -37,6 +39,48 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         /// </summary>
         public ScriptwordIndexDto()
         {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Gets the specified definition.
+        /// </summary>
+        /// <param name="definitionName">The defintion name to consider.</param>
+        /// <param name="methodName">The name of the method to consider.</param>
+        /// <param name="parent">The parent to consider.</param>
+        /// <returns></returns>
+        public ScriptwordDefinitionDto GetDefinition(
+            string definitionName,
+            string methodName,
+            ScriptwordDefinitionDto parent = null)
+        {
+            List<ScriptwordDefinitionDto> definitionDtos = parent == null ? Definitions : parent.Children;
+
+            foreach (ScriptwordDefinitionDto childDefinitionDto in definitionDtos)
+            {
+                if ((!string.IsNullOrEmpty(definitionName) && childDefinitionDto.Name.KeyEquals(definitionName))
+                    || (string.IsNullOrEmpty(definitionName) && childDefinitionDto.RuntimeFunctionName.KeyEquals(methodName)))
+                {
+                    return childDefinitionDto;
+                }
+                else
+                {
+                    ScriptwordDefinitionDto definitionDto;
+                    if ((definitionDto = GetDefinition(definitionName, methodName, childDefinitionDto))!=null)
+                    {
+                        return definitionDto;
+                    }
+                }
+            }
+
+            return null;
         }
 
         #endregion

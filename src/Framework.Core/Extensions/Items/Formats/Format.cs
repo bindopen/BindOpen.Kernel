@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Formats;
+using BindOpen.Framework.Core.Extensions.Definitions.Formats;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Formats
 {
@@ -8,20 +8,30 @@ namespace BindOpen.Framework.Core.Extensions.Items.Formats
     /// This class represents an format.
     /// </summary>
     [Serializable()]
-    [XmlType("Format", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "format", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Format", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "format", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class Format : TAppExtensionItem<IFormatDefinition>, IFormat
     {
-        // --------------------------------------------------
+        new public IFormatConfiguration Configuration { get => base.Configuration as IFormatConfiguration; }
+
+        // ------------------------------------------
         // CONSTRUCTORS
-        // --------------------------------------------------
+        // ------------------------------------------
 
         #region Constructors
 
         /// <summary>
         /// Instantiates a new instance of the Format class.
         /// </summary>
-        public Format() : base()
+        protected Format() : base()
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the Format class.
+        /// </summary>
+        /// <param name="dto">The DTO item of this instance.</param>
+        protected Format(IFormatConfiguration dto)
         {
         }
 
@@ -39,35 +49,35 @@ namespace BindOpen.Framework.Core.Extensions.Items.Formats
         ///// <param name="name">Name of the settings to consider.</param>
         ///// <returns>The string value of the specified settings.</returns>
         //public string GetStringValue(String name)
-  //      {
-  //          String stringValue="";
+        //      {
+        //          String stringValue="";
 
-  //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-  //          if (aInputProperty != null)
-  //          {
-  //              Object object1Value = aInputProperty.GetValue(this, null);
-  //              if (object1Value != null)
-  //                  stringValue = object1Value.ToString();
-  //          }
+        //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+        //          if (aInputProperty != null)
+        //          {
+        //              Object object1Value = aInputProperty.GetValue(this, null);
+        //              if (object1Value != null)
+        //                  stringValue = object1Value.ToString();
+        //          }
 
-  //          return stringValue;
-  //      }
+        //          return stringValue;
+        //      }
 
-  //      /// <summary>
-  //      /// Returns the object value of the specified settings.
-  //      /// </summary>
-  //      /// <param name="name">Name of the settings to consider.</param>
-  //      /// <returns>The object value of the specified settings.</returns>
-  //      public object GetObjectValue(String name)
-  //      {
-  //          Object object1 = "";
+        //      /// <summary>
+        //      /// Returns the object value of the specified settings.
+        //      /// </summary>
+        //      /// <param name="name">Name of the settings to consider.</param>
+        //      /// <returns>The object value of the specified settings.</returns>
+        //      public object GetObjectValue(String name)
+        //      {
+        //          Object object1 = "";
 
-  //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-  //          if (aInputProperty != null)
-  //              object1 = aInputProperty.GetValue(this, null);
+        //          PropertyInfo aInputProperty = this.GetType().GetProperty(name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+        //          if (aInputProperty != null)
+        //              object1 = aInputProperty.GetValue(this, null);
 
-  //          return object1;
-  //      }
+        //          return object1;
+        //      }
 
         //#endregion
 

@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
     /// This class represents an advanced condition.
     /// </summary>
     [Serializable()]
-    [XmlType("AdvancedBusinessCondition", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "advanced.condition", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("AdvancedBusinessCondition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class AdvancedCondition : Condition, IAdvancedCondition
     {
         // --------------------------------------------------

@@ -13,8 +13,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
     /// This class represents a carrier element specification.
     /// </summary>
     [Serializable()]
-    [XmlType("CarrierElementSpec", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("CarrierElementSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CarrierElementSpec : DataElementSpec, ICarrierElementSpec
     {
         // --------------------------------------------------

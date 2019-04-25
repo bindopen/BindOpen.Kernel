@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [Serializable()]
-    [XmlRoot(ElementName = "item.set", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ObservableDataItemSet<T> : DataItemSet<T>, IDataItemSet<T>
         where T : IdentifiedDataItem
     {

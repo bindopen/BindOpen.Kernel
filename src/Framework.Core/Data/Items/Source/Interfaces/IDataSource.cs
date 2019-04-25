@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 {
     public interface IDataSource : INamedDataItem
     {
-        List<ConnectorDto> Configurations { get; set; }
+        List<ConnectorConfiguration> Configurations { get; set; }
 
         string InstanceName { get; set; }
 
@@ -15,10 +15,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 
         string ModuleName { get; set; }
 
-        IConnectorDto GetConfiguration(string definitionName);
+        IConnectorConfiguration GetConfiguration(string definitionName);
         bool HasConfiguration(string definitionName);
 
-        void AddConfiguration(IConnectorDto config);
+        void AddConfiguration(IConnectorConfiguration config);
 
         void RemoveConfiguration(string definitionName);
     }

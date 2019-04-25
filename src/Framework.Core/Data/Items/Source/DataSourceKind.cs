@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
     /// This enumeration represents the data source kinds.
     /// </summary>
     [Serializable()]
-    [XmlType("DataSourceKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DataSourceKind", Namespace = "https://bindopen.org/xsd")]
     public enum DataSourceKind
     {
         /// <summary>

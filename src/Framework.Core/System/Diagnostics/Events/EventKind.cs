@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// </summary>
     [Serializable()]
     [Flags()]
-    [XmlType("EventKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("EventKind", Namespace = "https://bindopen.org/xsd")]
     public enum EventKind
     {
         /// <summary>

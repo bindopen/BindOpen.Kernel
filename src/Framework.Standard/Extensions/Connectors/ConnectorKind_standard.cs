@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Standard.Extensions.Connectors
         /// </summary>
         /// <param name="connectorKind_standard">The connector kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName(this ConnectorKind_standard connectorKind_standard)
+        public static string GetUniqueName(this ConnectorKind_standard connectorKind_standard)
         {
             return connectorKind_standard.ToString().ToLower().GetUniqueName_standard();
         }

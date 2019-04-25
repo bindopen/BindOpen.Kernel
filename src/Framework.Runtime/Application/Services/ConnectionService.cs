@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="configuration">The connector configuration to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        public T Open<T>(IConnectorDto configuration, ILog log = null) where T : IConnection, new()
+        public T Open<T>(IConnectorConfiguration configuration, ILog log = null) where T : IConnection, new()
         {
             ILog subLog = new Log();
 
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             else if (!subLog.Append(this._appScope.Check(true)).HasErrorsOrExceptions())
             {
                 connection = new T();
-                connection.SetConnector(this._appScope.CreateConnector(configuration, subLog));
+                connection.SetConnector(this._appScope.CreateConnector(configuration, null, subLog));
 
                 if (connection.Connector == null)
                 {

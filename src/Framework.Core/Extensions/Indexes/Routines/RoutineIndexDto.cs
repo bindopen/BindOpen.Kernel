@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definition.Routines;
+using BindOpen.Framework.Core.Extensions.Definitions.Routines;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Routines
 {
@@ -8,9 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Routines
     /// This class represents an routine index.
     /// </summary>
     [Serializable()]
-    [XmlType("RoutineIndex", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "routines.index", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class RoutineIndexDto : TAppExtensionItemIndexDto<IRoutineDefinitionDto>
+    [XmlType("RoutineIndex", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "routines.index", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class RoutineIndexDto : TAppExtensionItemIndexDto<RoutineDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

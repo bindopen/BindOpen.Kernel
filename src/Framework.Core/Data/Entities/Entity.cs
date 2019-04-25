@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Entities
     /// This class represents the business entity.
     /// </summary>
     [Serializable()]
-    [XmlType("Entity", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "entity", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Entity", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Entity : DescribedDataItem
     {
         // ------------------------------------------
