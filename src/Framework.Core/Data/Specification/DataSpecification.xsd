@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
-  elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../data/items/IndexedDataItem.xsd" />
   <xs:include schemaLocation="../../data/common/RequirementLevel.xsd" />

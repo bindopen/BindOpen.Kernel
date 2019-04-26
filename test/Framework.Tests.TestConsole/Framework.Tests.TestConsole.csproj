@@ -33,11 +33,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Settings\TestArguments.cs" />
+    <Compile Remove="Settings\TestTask.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Framework.Core\Framework.Core.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Databases\Framework.Databases.csproj" />
     <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
     <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>

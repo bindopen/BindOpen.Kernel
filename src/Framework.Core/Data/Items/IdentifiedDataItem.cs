@@ -7,8 +7,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents an identified data item.
     /// </summary>
     [Serializable()]
-    [XmlType("IdentifiedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("identifiedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("IdentifiedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("identifiedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IdentifiedDataItem : DataItem, IIdentifiedDataItem
     {
         // ------------------------------------------
@@ -21,13 +21,13 @@ namespace BindOpen.Framework.Core.Data.Items
         /// ID of this instance.
         /// </summary>
         [XmlAttribute("id")]
-        public String Id { get; set; } = null;
+        public string Id { get; set; } = null;
 
         /// <summary>
         /// Specification of the ID of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IdSpecified => !string.IsNullOrEmpty(this.Id);
+        public bool IdSpecified => !string.IsNullOrEmpty(this.Id);
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public virtual String Key()
+        public virtual string Key()
         {
             return this.Id;
         }
@@ -65,16 +65,16 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Returns a new Guid.
         /// </summary>
-        public static String NewGuid()
+        public static string NewGuid()
         {
-            return global::System.Guid.NewGuid().ToString();
+            return Guid.NewGuid().ToString();
         }
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             IdentifiedDataItem item = base.Clone() as IdentifiedDataItem;
             if (this.Id != null)

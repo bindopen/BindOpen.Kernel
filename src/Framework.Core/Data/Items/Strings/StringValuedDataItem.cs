@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// <summary>
         /// Values of this instance.
         /// </summary>
-        protected List<String> _values = new List<String>();
+        protected List<string> _values = new List<string>();
 
         #endregion
 
@@ -47,11 +47,11 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// <remarks>Items must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         [XmlArray("values")]
         [XmlArrayItem("add.value")]
-        public List<String> Values
+        public List<string> Values
         {
             get
             {
-                return _values ?? (_values = new List<String>());
+                return _values ?? (_values = new List<string>());
             }
             set { this._values = value; }
         }
@@ -149,7 +149,7 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// </summary>
         public void ClearValues()
         {
-            this._values = new List<String>();
+            this._values = new List<string>();
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// <param name="value">The String single value of this instance.</param>
         public virtual void SetValue(String value)
         {
-            this._values = new List<String>
+            this._values = new List<string>
             {
                 value
             };
@@ -178,9 +178,9 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// Sets the list of values of this instance.
         /// </summary>
         /// <param name="values">The String values of this instance.</param>
-        public virtual void SetValues(List<String> values)
+        public virtual void SetValues(List<string> values)
         {
-            this._values = new List<String>();
+            this._values = new List<string>();
             foreach (String value in values)
                 this._values.Add(value);
         }

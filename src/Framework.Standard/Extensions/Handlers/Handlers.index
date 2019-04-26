@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <handlers.index library="standard"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
-  xmlns:SchemaLocation="bdo:DataHandlerIndex DataHandlerIndex.xsd">
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:HandlerIndex HandlerIndex.xsd">
 
   <creationDate>2014-07-12</creationDate>
   <lastModificationDate>2016-09-10</lastModificationDate>
@@ -10,8 +10,8 @@
   <definitions>
     <add.definition name="textFromFile">
       <callingClass>.Handlers.TextFromFile</callingClass>
-      <getFunctionName>Get</getFunctionName>
-      <postFunctionName>Post</postFunctionName>
+      <getFunction>Get</getFunction>
+      <postFunction>Post</postFunction>
       <source-dataSource.specification>
         <kind>Repository</kind>
       </source-dataSource.specification>
@@ -25,8 +25,8 @@
 
     <add.definition name="objectFromFile">
       <callingClass>.Handlers.ObjectFromFile</callingClass>
-      <getFunctionName>Get</getFunctionName>
-      <postFunctionName>Post</postFunctionName>
+      <getFunction>Get</getFunction>
+      <postFunction>Post</postFunction>
       <source-dataSource.specification>
         <kind>Repository</kind>
       </source-dataSource.specification>

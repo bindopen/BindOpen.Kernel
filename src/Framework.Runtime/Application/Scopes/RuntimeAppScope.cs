@@ -1,5 +1,4 @@
 ﻿using System;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 
 namespace BindOpen.Framework.Core.Application.Scopes
@@ -31,7 +30,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// Instantiates a new instance of the RuntimeAppScope class.
         /// </summary>
-        public RuntimeAppScope()
+        public RuntimeAppScope() : this(AppDomain.CurrentDomain)
         {
         }
 
@@ -41,16 +40,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="appDomain">The application domain to consider.</param>
         public RuntimeAppScope(AppDomain appDomain) : base(appDomain)
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the RuntimeAppScope class.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        public RuntimeAppScope(IRuntimeAppScope appScope) : base(appScope)
-        {
-            if (appScope != null)
-                this.ConnectionService = new ConnectionService(this);
+            this.ConnectionService = new ConnectionService(this);
         }
 
         #endregion
@@ -65,11 +55,10 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// Sets the specified application domain.
         /// </summary>
         /// <param name="appDomain">The application domain to instance.</param>
-        public override void SetAppDomain(AppDomain appDomain)
+        public override void Initialize(AppDomain appDomain = null)
         {
-            base.SetAppDomain(appDomain);
-            if (appDomain != null)
-                this.ConnectionService = new ConnectionService(this);
+            base.Initialize(appDomain);
+            this.ConnectionService = new ConnectionService(this);
         }
 
         #endregion

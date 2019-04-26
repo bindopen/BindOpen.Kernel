@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -7,8 +8,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents indexed data item.
     /// </summary>
     [Serializable()]
-    [XmlType("IndexedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("indexedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("IndexedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("indexedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IndexedDataItem : DescribedDataItem, IIndexedDataItem
     {
         // ------------------------------------------
@@ -27,7 +28,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Specification of the Index property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IndexSpecified => Index >= 0;
+        public bool IndexSpecified => Index >= 0;
 
         #endregion
 
@@ -50,9 +51,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="name">The name of this instance.</param>
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
-        public IndexedDataItem(String name,
-            String namePreffix = "",
-            String id = null)
+        public IndexedDataItem(string name,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
         }

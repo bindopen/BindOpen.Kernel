@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{C8B9BD16-2BDA-4842-9B67-1A15F00B6D7A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{C8B9BD16-2BDA-4842-9B67-1A15F00B6D7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8879AC0E-CD07-4FC9-B61B-743F1DB2F9A4}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Tests.Unittest", "test\Framework.Tests.Unittest\Framework.Tests.Unittest.csproj", "{2364BACA-D4AC-4333-8162-8A173AB2C776}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Tests.TestConsole", "test\Framework.Tests.TestConsole\Framework.Tests.TestConsole.csproj", "{14DF95FC-4377-450B-A14F-FB80386D8E14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.NetCore", "src\Framework.NetCore\Framework.NetCore.csproj", "{21AE937B-02C7-4989-99E2-17603D91407E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{EDB5A28D-7284-4EB4-880C-BC2E5197F10E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{14DF95FC-4377-450B-A14F-FB80386D8E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14DF95FC-4377-450B-A14F-FB80386D8E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14DF95FC-4377-450B-A14F-FB80386D8E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21AE937B-02C7-4989-99E2-17603D91407E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21AE937B-02C7-4989-99E2-17603D91407E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21AE937B-02C7-4989-99E2-17603D91407E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21AE937B-02C7-4989-99E2-17603D91407E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{1670A798-64E6-46B5-BC33-121F4CB81CA6} = {C8B9BD16-2BDA-4842-9B67-1A15F00B6D7A}
 		{2364BACA-D4AC-4333-8162-8A173AB2C776} = {8879AC0E-CD07-4FC9-B61B-743F1DB2F9A4}
 		{14DF95FC-4377-450B-A14F-FB80386D8E14} = {8879AC0E-CD07-4FC9-B61B-743F1DB2F9A4}
+		{21AE937B-02C7-4989-99E2-17603D91407E} = {EDB5A28D-7284-4EB4-880C-BC2E5197F10E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96B56BCB-1F4B-4319-991B-1BABA2FB5443}

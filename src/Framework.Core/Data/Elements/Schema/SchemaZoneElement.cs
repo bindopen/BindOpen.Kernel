@@ -12,8 +12,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
     /// This class represents a schema zone element.
     /// </summary>
     [Serializable()]
-    [XmlType("SchemaZoneElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("element", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SchemaZoneElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SchemaZoneElement : SchemaElement, INotifyPropertyChanged
     {
         //------------------------------------------
@@ -87,13 +87,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="items">The items to consider.</param>
         public SchemaZoneElement(
             String name,
-            params Object[] items)
+            params object[] items)
             : base(name, "schemaZoneElement_")
         {
             this.Specification = new SchemaElementSpec();
 
-            foreach (Object aItem in items)
-                this.AddItem(aItem);
+            foreach (object item in items)
+                this.AddItem(item);
         }
 
         #endregion
@@ -183,7 +183,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             return this.Clone(null);
         }
@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="parentZoneElement">The parent schema element group to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone(SchemaZoneElement parentZoneElement)
+        public override object Clone(SchemaZoneElement parentZoneElement)
         {
             if (parentZoneElement == null)
                 parentZoneElement = this.ParentZone;

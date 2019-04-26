@@ -2,7 +2,7 @@
 
 <libraries.index
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns="http://meltingsoft.com/bindopen/xsd">
+  xmlns="https://bindopen.org/xsd">
   <creationDate>2010-08-05</creationDate>
   <lastModificationDate>2016-10-23</lastModificationDate>
   <libraries>

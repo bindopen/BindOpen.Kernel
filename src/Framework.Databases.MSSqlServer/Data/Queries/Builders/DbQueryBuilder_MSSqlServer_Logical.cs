@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+﻿using BindOpen.Framework.Databases.Data.Queries.Builders;
 
 namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 {
@@ -17,7 +16,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_If(string condition, string value1, string value2)
+        public override string GetSqlText_If(string condition, string value1, string value2)
         {
             return "CASE WHEN (" + condition + ") THEN " + value1 + " ELSE " + value2 + " END";
         }
@@ -27,7 +26,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="value1">The value 1 to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Not(string value1)
+        public override string GetSqlText_Not(string value1)
         {
             return "NOT (" + value1 + ")";
         }
@@ -37,10 +36,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Or(object[] parameters)
+        public override string GetSqlText_Or(object[] parameters)
         {
             string text = "(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {
@@ -59,10 +58,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_And(object[] parameters)
+        public override string GetSqlText_And(object[] parameters)
         {
             string text = "(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {
@@ -81,10 +80,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_Xor(object[] parameters)
+        public override string GetSqlText_Xor(object[] parameters)
         {
             string text = "(";
-            foreach (Object object1 in parameters)
+            foreach (object object1 in parameters)
             {
                 if (object1 != null)
                 {

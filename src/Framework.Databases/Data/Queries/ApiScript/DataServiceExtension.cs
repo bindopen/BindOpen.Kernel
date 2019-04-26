@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
-using BindOpen.Framework.Core.Application.Services;
+using BindOpen.Framework.Core.Application.Services.Data;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             Log log,
             DbDataQuery query,
             Func<IDbConnection, string, T> function,
-            ScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             T result = default(T);
             log = log ?? new Log();
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             {
                 Fields =
                 {
-                    new DbField() { Value= new DataExpression("$sqlNewGuid()()") }
+                    new DbField() { Value= "$sqlNewGuid()()".CreateScript() }
                 }
             };
 

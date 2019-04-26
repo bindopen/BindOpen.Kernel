@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// </summary>
         /// <param name="value1"></param>
         /// <returns>The interpreted string value.</returns>
-        public override String GetSqlText_ConvertToText(string value1)
+        public override string GetSqlText_ConvertToText(string value1)
         {
             return "convert(varchar," + value1 + ")";
         }

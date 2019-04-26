@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This enumeration represents the data element itemization modes.
     /// </summary>
     [Serializable()]
-    [XmlType("DataItemizationMode", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("DataItemizationMode", Namespace = "https://bindopen.org/xsd")]
     public enum DataItemizationMode
     {
         /// <summary>

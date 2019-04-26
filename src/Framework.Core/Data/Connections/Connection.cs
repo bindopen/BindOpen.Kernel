@@ -1,7 +1,6 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Connections
@@ -9,8 +8,8 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// <summary>
     /// This class represents a connector.
     /// </summary>
-    [XmlType("Connection", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "connection", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("Connection", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "connection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class Connection : DataItem, IConnection
     {
         // ------------------------------------------
@@ -19,7 +18,7 @@ namespace BindOpen.Framework.Core.Data.Connections
 
         #region Variables
 
-        private Connector _Connector = null;
+        private IConnector _connector = null;
 
         #endregion
 
@@ -33,16 +32,9 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// The connector of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Connector Connector
+        public IConnector Connector
         {
-            get
-            {
-                return this._Connector;
-            }
-            set
-            {
-                this.SetConnector(value);
-            }
+            get => _connector;
         }
 
         #endregion
@@ -64,9 +56,9 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// Instantiates a new instance of the Connection class.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        protected Connection(Connector connector)
+        protected Connection(IConnector connector)
         {
-            this._Connector = connector;
+            _connector = connector;
         }
 
         #endregion
@@ -82,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// </summary>
         public override void Dispose()
         {
-            this.Close();
+            Close();
             base.Dispose();
         }
 
@@ -98,9 +90,9 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// Sets the connector of this instance.
         /// </summary>
         /// <param name="connector">The database connector to consider.</param>
-        protected virtual void SetConnector(Connector connector)
+        public virtual void SetConnector(IConnector connector)
         {
-            this._Connector = connector;
+            _connector = connector;
         }
 
         // Open / Close -----------------------------
@@ -108,25 +100,25 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Opens this instance.
         /// </summary>
-        public virtual Log Open()
+        public virtual ILog Open()
         {
-            return this._Connector?.Open() ?? new Log();
+            return _connector?.Open() ?? new Log();
         }
 
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public virtual Log Close()
+        public virtual ILog Close()
         {
-            return this._Connector?.Close() ?? new Log();
+            return _connector?.Close() ?? new Log();
         }
 
         /// <summary>
         /// Indicates whether the instance is connected.
         /// </summary>
-        public virtual Boolean IsConnected()
+        public virtual bool IsConnected()
         {
-            return this._Connector?.IsConnected() ?? false;
+            return _connector?.IsConnected() ?? false;
         }
 
         #endregion

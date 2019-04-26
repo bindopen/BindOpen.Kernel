@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Runtime.Application.Limitations
         /// The registration mode of this instance.
         /// </summary>
         [XmlElement("registrationMode")]
-        public String RegistrationMode
+        public string RegistrationMode
         {
             get
             {
@@ -52,10 +52,10 @@ namespace BindOpen.Framework.Runtime.Application.Limitations
         }
 
         /// <summary>
-        /// The business metrics unique name of this instance.
+        /// The business metrics unique ID of this instance.
         /// </summary>
         [XmlElement("businessMetricsUniqueName")]
-        public String MetricsConfigurationUniqueName
+        public string MetricsConfigurationUniqueName
         {
             get;
             set;
@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Runtime.Application.Limitations
         /// The extra purchase URL of this instance.
         /// </summary>
         [XmlElement("extraPurchaseUrl")]
-        public String ExtraPurchaseUrl
+        public string ExtraPurchaseUrl
         {
             get;
             set;

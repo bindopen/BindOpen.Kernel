@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../extensions/definition/AppExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="../../../data/items/source/DataSourceKind.xsd" />
+  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecSet.xsd" />
+
+  <xs:complexType name="CarrierDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:AppExtensionItemDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="dataSourceKind" type="bdo:DataSourceKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="bdo:DataElementSpecSet" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

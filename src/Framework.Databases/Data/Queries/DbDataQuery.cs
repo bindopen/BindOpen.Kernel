@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents a database data query.
     /// </summary>
-    public abstract class DbDataQuery : DataItem
+    public abstract class DbDataQuery : DataItem, IDbDataQuery
     {
         // ------------------------------------------
         // VARIABLES
@@ -30,32 +30,32 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Indicates whether the tracking is enabled for this instance.
         /// </summary>
-        public Boolean IsTrackingEnabled { get; set; } = false;
+        public bool IsTrackingEnabled { get; set; } = false;
 
         /// <summary>
         /// Name of this instance.
         /// </summary>
-        public String Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
+        public string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
 
         /// <summary>
         /// Name of the data module of this instance.
         /// </summary>
-        public String DataModule { get; set; }
+        public string DataModule { get; set; }
 
         /// <summary>
         /// Name of the data table of this instance.
         /// </summary>
-        public String DataTable { get; set; }
+        public string DataTable { get; set; }
 
         /// <summary>
         /// Name of the data table alias of this instance.
         /// </summary>
-        public String DataTableAlias { get; set; }
+        public string DataTableAlias { get; set; }
 
         /// <summary>
         /// Schema of this instance.
         /// </summary>
-        public String Schema { get; set; }
+        public string Schema { get; set; }
 
         /// <summary>
         /// The kind of this instance.
@@ -71,16 +71,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
             set { this._Fields = new List<DbField>(value); }
         }
 
-        ///// <summary>
-        ///// Exeuction condition of this instance.
-        ///// </summary>
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public DataExpression ExecutionCondition
-        //{
-        //    get { return this._ExecutionCondition; }
-        //    set { this._ExecutionCondition = value; }
-        //}
-
         #endregion
 
         // ------------------------------------------
@@ -92,7 +82,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the DbDataQuery class.
         /// </summary>
-        public DbDataQuery()
+        protected DbDataQuery()
         {
         }
 
@@ -109,12 +99,17 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="boundFieldName">Name of the bound data field.</param>
         /// <returns>The data field with the specified bound data field name.</returns>
-        public DbField GetFieldWithBoundFieldName(String boundFieldName)
+        public DbField GetFieldWithBoundFieldName(string boundFieldName)
         {
-            if ((boundFieldName!=null)&(this._Fields!=null))
-                foreach (DbField rField in this._Fields)
-                    if (rField.GetName().Equals(boundFieldName, StringComparison.OrdinalIgnoreCase))
-                        return rField;
+            if ((boundFieldName!=null)&&(this._Fields!=null))
+            {
+                foreach (DbField field in this._Fields)
+                {
+                    if (field.GetName().Equals(boundFieldName, StringComparison.OrdinalIgnoreCase))
+                        return field;
+                }
+            }
+
             return null;
         }
 
@@ -123,14 +118,14 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="name">Name of the field.</param>
         /// <returns>The data field with the specified data field name.</returns>
-        public DbField GetDataFieldWithName(String name)
+        public DbField GetDataFieldWithName(string name)
         {
-            foreach (DbField rField in this._Fields)
+            foreach (DbField field in this._Fields)
             {
-                if (rField.Alias.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return rField;
-                if (rField.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return rField;
+                if (field.Alias.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    return field;
+                if (field.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    return field;
             }
             return null;
         }
@@ -142,10 +137,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField rField in this._Fields)
+            foreach (DbField field in this._Fields)
             {
-                if ((rField.IsKey == true)|(rField.IsForeignKey == true))
-                    fields.Add(rField);
+                if ((field.IsKey)||(field.IsForeignKey))
+                    fields.Add(field);
             }
             return fields;
         }
@@ -157,10 +152,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetPrimaryKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField rField in this._Fields)
+            foreach (DbField field in this._Fields)
             {
-                if (rField.IsKey == true)
-                    fields.Add(rField);
+                if (field.IsKey)
+                    fields.Add(field);
             }
             return fields;
         }
@@ -172,10 +167,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetForeignKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField rField in this._Fields)
+            foreach (DbField field in this._Fields)
             {
-                if (rField.IsForeignKey == true)
-                    fields.Add(rField);
+                if (field.IsForeignKey)
+                    fields.Add(field);
             }
             return fields;
         }

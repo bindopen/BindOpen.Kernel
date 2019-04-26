@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Processing
 {
@@ -13,7 +14,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// </summary>
         /// <param name="events">The events to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
-        public static ProcessExecutionStatus GetStatus(this List<LogEvent> events)
+        public static ProcessExecutionStatus GetStatus(this List<ILogEvent> events)
         {
             if (events != null)
             {

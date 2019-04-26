@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -8,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents a stored data item.
     /// </summary>
     [Serializable()]
-    [XmlType("StoredDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("storedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("StoredDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("storedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class StoredDataItem : IdentifiedDataItem, IStoredDataItem
     {
         // ------------------------------------------
@@ -22,43 +23,43 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Name preffix of this instance.
         /// </summary>
         [XmlIgnore()]
-        protected String NamePreffix { get; set; } = "Object_";
+        protected string NamePreffix { get; set; } = "Object_";
 
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
         [XmlElement("creationDate")]
-        public String CreationDate { get; set; } = null;
+        public string CreationDate { get; set; } = null;
 
         /// <summary>
         /// Specification of the CreationDate property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean CreationDateSpecified => !string.IsNullOrEmpty(CreationDate);
+        public bool CreationDateSpecified => !string.IsNullOrEmpty(CreationDate);
 
         /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         [XmlElement("lastModificationDate")]
-        public String LastModificationDate { get; set; } = null;
+        public string LastModificationDate { get; set; } = null;
 
         /// <summary>
         /// Specification of the LastModificationDate property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
+        public bool LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
 
         /// <summary>
         /// Indicates whether this instance is locked.
         /// </summary>
         [XmlElement("isLocked")]
-        public Boolean IsLocked { get; set; } = false;
+        public bool IsLocked { get; set; } = false;
 
         /// <summary>
         /// Specification of the IsLocked property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean IsLockedSpecified => IsLocked;
+        public bool IsLockedSpecified => IsLocked;
 
         #endregion
 
@@ -81,10 +82,10 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="id">The ID to consider.</param>
         /// <param name="creationDate">The creation date of this instance.</param>
         public StoredDataItem(
-            String id = null,
+            string id = null,
             DateTime? creationDate = null) : base(id)
         {
-            this.CreationDate = creationDate?.GetString();
+            CreationDate = creationDate?.ToString();
         }
 
         #endregion
@@ -101,25 +102,25 @@ namespace BindOpen.Framework.Core.Data.Items
         public virtual void DeclareUpdate()
         {
             // we update the modification date
-            this.LastModificationDate = DateTime.Now.GetString();
+            LastModificationDate = ObjectHelper.ToString(DateTime.Now);
         }
 
         /// <summary>
         /// Locks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Lock(Boolean isRecursive = true)
+        public virtual void Lock(bool isRecursive = true)
         {
-            this.IsLocked = true;
+            IsLocked = true;
         }
 
         /// <summary>
         /// Unlocks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Unlock(Boolean isRecursive = true)
+        public virtual void Unlock(bool isRecursive = true)
         {
-            this.IsLocked = false;
+            IsLocked = false;
         }
 
         #endregion
@@ -134,11 +135,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             StoredDataItem item = base.Clone() as StoredDataItem;
-            if (this.CreationDate != null)
-                item.CreationDate = DateTime.Now.GetString();
+            if (CreationDate != null)
+                item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;
             return item;
         }

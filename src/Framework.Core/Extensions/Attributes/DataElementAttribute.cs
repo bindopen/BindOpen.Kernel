@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
     /// This class represents a data element attribute.
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
-    public class DataElementAttribute : ExtensionItemAttribute
+    public class DataElementAttribute : AppExtensionItemAttribute
     {
         // --------------------------------------------------
         // VARIABLES
@@ -37,12 +37,12 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// ID of the group of this instance.
         /// </summary>
-        public String GroupId { get; set; } = "";
+        public string GroupId { get; set; } = "";
 
         /// <summary>
         /// Specification of the GroupId property of this instance.
         /// </summary>
-        public Boolean GroupIdSpecified => !string.IsNullOrEmpty(this.GroupId);
+        public bool GroupIdSpecified => !string.IsNullOrEmpty(this.GroupId);
 
         /// <summary>
         /// The value type of this instance.
@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// The aliases of the entry.
         /// </summary>
-        public String[] Aliases
+        public string[] Aliases
         {
             get
             {
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// Indicates whether the instance can be allocated.
         /// </summary>
-        public Boolean IsAllocatable { get; set; } = false;
+        public bool IsAllocatable { get; set; } = false;
 
         // Items ---------------------------------
 
@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// Default string items of this instance.
         /// </summary>
-        public String[] DefaultStringItems
+        public string[] DefaultStringItems
         {
             get
             {
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// Indicates whether the value of this instance is a list.
         /// </summary>
-        public Boolean IsValueList
+        public bool IsValueList
         {
             get
             {

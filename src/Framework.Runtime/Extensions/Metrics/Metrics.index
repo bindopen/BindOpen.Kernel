@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <metrics.index library="runtime"
-  xmlns="http://meltingsoft.com/bindopen/xsd"
+  xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:MetricsIndex MetricsIndex.xsd">
   
   <creationDate>2011-07-07</creationDate>

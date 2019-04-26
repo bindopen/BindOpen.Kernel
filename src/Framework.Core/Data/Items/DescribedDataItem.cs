@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -10,8 +11,8 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents described data item.
     /// </summary>
     [Serializable()]
-    [XmlType("DescribedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("describedDataItem", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DescribedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("describedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DescribedDataItem : TitledDataItem, IDescribedDataItem
     {
         // ------------------------------------------
@@ -30,13 +31,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Specification of the Description property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Boolean DescriptionSpecified
-        {
-            get
-            {
-                return this.Description !=null && (this.Description.AvailableKeysSpecified || this.Description.ValuesSpecified || this.Description.SingleValueSpecified);
-            }
-        }
+        public bool DescriptionSpecified => this.Description != null && (this.Description.AvailableKeysSpecified || this.Description.ValuesSpecified || this.Description.SingleValueSpecified);
 
         #endregion
 
@@ -59,9 +54,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="name">The name of this instance.</param>
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
-        public DescribedDataItem(String name,
-            String namePreffix = "",
-            String id = null)
+        public DescribedDataItem(string name,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
         }
@@ -75,11 +70,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="namePreffix">The preffix of the name of this instance.</param>
         /// <param name="id">The ID to consider.</param>
         public DescribedDataItem(
-            String name,
-            String title,
-            String description,
-            String namePreffix = "",
-            String id = null)
+            string name,
+            string title,
+            string description,
+            string namePreffix = "",
+            string id = null)
             : base(name, namePreffix, id)
         {
             if (title != null)
@@ -100,7 +95,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates this instance with the base object.
         /// </summary>
         /// <param name="updateBaseObject">The update base object to consider.</param>
-        public void Update(DescribedDataItem updateBaseObject)
+        public void Update(IDescribedDataItem updateBaseObject)
         {
             if (updateBaseObject != null)
             {
@@ -117,9 +112,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddDescriptionText(String text)
+        public void AddDescription(string text)
         {
-            this.AddDescriptionText("*", text);
+            this.AddDescription("*", text);
         }
 
         /// <summary>
@@ -127,7 +122,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddDescriptionText(String key, String text)
+        public void AddDescription(string key, string text)
         {
             (this.Description ?? (this.Description = new DictionaryDataItem())).AddValue(key, text);
         }
@@ -136,9 +131,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetDescriptionText(String text)
+        public void SetDescription(string text)
         {
-            this.SetDescriptionText("*", text);
+            this.SetDescription("*", text);
         }
 
         /// <summary>
@@ -146,7 +141,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetDescriptionText(String key = "*", String text = "*")
+        public void SetDescription(string key = "*", string text = "*")
         {
             (this.Description ?? (this.Description = new DictionaryDataItem())).SetValue(key, text);
         }
@@ -164,11 +159,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public virtual String GetDescriptionText(String variantName = "*", String defaultVariantName = "*")
+        public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
             if (this.Description == null) return "";
-            String label = this.Description.GetContent(variantName);
-            if (String.IsNullOrEmpty(label))
+            string label = this.Description.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
                 label = this.Description.GetContent(defaultVariantName);
             return label ?? "";
         }
@@ -177,7 +172,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             DescribedDataItem item = base.Clone() as DescribedDataItem;
             if (this.Description != null)
@@ -198,7 +193,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
             base.UpdateStorageInfo(log);
             this.Description?.UpdateStorageInfo(log);
@@ -207,12 +202,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null,  Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
-            this.Description?.UpdateRuntimeInfo(appScope, log);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            Description?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
         #endregion

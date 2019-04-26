@@ -21,6 +21,14 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the DetailPropertyAttribute class.
+        /// </summary>
+        public DetailPropertyAttribute(string name) : base()
+        {
+            Name = name;
+        }
+
         #endregion
 
     }

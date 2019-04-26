@@ -11,7 +11,6 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
     [XmlRoot("item", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
     public class SingleStringValuedDataItem : DataItem
     {
-
         // -------------------------------------------------------------
         // PROPERTIES
         // -------------------------------------------------------------
@@ -22,14 +21,13 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// Value of this instance.
         /// </summary>      
         [XmlElement("value")]
-        public String Value
+        public string Value
         {
             get;
             set;
         }
 
         #endregion
-
 
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -50,10 +48,9 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// <param name="value">The value to consider.</param>
         public SingleStringValuedDataItem(string value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         #endregion
-
     }
 }

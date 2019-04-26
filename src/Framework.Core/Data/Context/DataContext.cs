@@ -4,16 +4,17 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Context;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Context
 {
-
     /// <summary>
     /// This class represents a data context. A data context contains all the data related to a user session.
     /// </summary>
     [Serializable()]
-    public class DataContext : MarshalByRefObject
+    public class DataContext : DataItem, IDataContext
     {
         // --------------------------------------------------
         // VARIABLES
@@ -21,10 +22,9 @@ namespace BindOpen.Framework.Core.Data.Context
 
         #region Variables
 
-        private readonly Dictionary<string, object> _singletonItems = new Dictionary<string, object>();
-        private readonly Dictionary<string, object> _scopedItems = new Dictionary<string, object>();
-        private readonly Dictionary<string, object> _transientItems = new Dictionary<string, object>();
-        //private Dictionary<string, object> _Extensions;
+        public Dictionary<string, object> _singletonItems = new Dictionary<string, object>();
+        public Dictionary<string, object> _scopedItems = new Dictionary<string, object>();
+        public Dictionary<string, object> _transientItems = new Dictionary<string, object>();
 
         #endregion
 
@@ -35,9 +35,24 @@ namespace BindOpen.Framework.Core.Data.Context
         #region Properties
 
         /// <summary>
+        /// Singletons.
+        /// </summary>
+        public Dictionary<string, object> SingletonItems { get => _singletonItems; }
+
+        /// <summary>
+        /// Scoped items.
+        /// </summary>
+        public Dictionary<string, object> ScopedItems { get => _scopedItems; }
+
+        /// <summary>
+        /// Transient items.
+        /// </summary>
+        public Dictionary<string, object> TransientItems { get => _transientItems; }
+
+        /// <summary>
         /// ID of this instance.
         /// </summary>
-        public String Id { get; set; }
+        public string Id { get; set; }
 
         #endregion
 
@@ -52,7 +67,6 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         public DataContext()
         {
-            //this._Extensions = new Dictionary<string, object>();
             this._scopedItems = new Dictionary<string, object>();
             this._singletonItems = new Dictionary<string, object>();
             this._transientItems = new Dictionary<string, object>();
@@ -81,19 +95,11 @@ namespace BindOpen.Framework.Core.Data.Context
         /// Merges this instance with the specified data context.
         /// </summary>
         /// <param name="dataContext">The data context to consider.</param>
-        public void Merge(DataContext dataContext)
+        public void Merge(IDataContext dataContext)
         {
             if (dataContext != null)
             {
-                //foreach (DictionaryEntry aDictionaryEntry in dataContext._Extensions)
-                //    if (!this._Extensions.Contains(aDictionaryEntry.Key))
-                //        this._Extensions.Add(aDictionaryEntry.Key, aDictionaryEntry.Value);
-
-                //foreach (DictionaryEntry aDictionaryEntry in dataContext._dataSets)
-                //    if (!this._dataSets.Contains(aDictionaryEntry.Key))
-                //        this._dataSets.Add(aDictionaryEntry.Key, aDictionaryEntry.Value);
-
-                foreach (KeyValuePair<string,object> entry in dataContext._singletonItems)
+                foreach (KeyValuePair<string,object> entry in dataContext.SingletonItems)
                 {
                     if (!this._singletonItems.ContainsKey(entry.Key))
                     {
@@ -101,7 +107,7 @@ namespace BindOpen.Framework.Core.Data.Context
                     }
                 }
 
-                foreach (KeyValuePair<string, object> entry in dataContext._scopedItems)
+                foreach (KeyValuePair<string, object> entry in dataContext.ScopedItems)
                 {
                     if (!this._scopedItems.ContainsKey(entry.Key))
                     {
@@ -109,7 +115,7 @@ namespace BindOpen.Framework.Core.Data.Context
                     }
                 }
 
-                foreach (KeyValuePair<string, object> entry in dataContext._transientItems)
+                foreach (KeyValuePair<string, object> entry in dataContext.TransientItems)
                 {
                     if (!this._transientItems.ContainsKey(entry.Key))
                     {
@@ -124,82 +130,10 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         public void Clear()
         {
-            //this._dataSets.Clear();
             this._singletonItems.Clear();
             this._scopedItems.Clear();
             this._transientItems.Clear();
         }
-
-        //// Extensions -------------------------
-
-        ///// <summary>
-        ///// Adds a new extension to this instance. An extension contains 
-        ///// a set of methods allowing to edit the dynamic data of a context
-        ///// at a business level.
-        ///// </summary>
-        ///// <param name="name">Name of the data context extension to add.</param>
-        ///// <param name="dataContextExtension">The data context extension to add.</param>
-        //public void AddExtension(
-        //    String name,
-        //    DataContextExtension dataContextExtension)
-        //{
-        //    name = name.ToUpper();
-        //    if (!this._Extensions.ContainsKey(name))
-        //    {
-        //        dataContextExtension.SetDataContext(this);
-        //        this._Extensions.Add(name, dataContextExtension);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Adds the extensions of the specified application extension.
-        ///// at a business level.
-        ///// </summary>
-        ///// <param name="appExtension">The application extension to add.</param>
-        ///// <param name="libraryNames">The names of the library to add.</param>
-        //public Log LoadExtensions(
-        //    AppExtension appExtension,
-        //    List<String> libraryNames = null)
-        //{
-        //    Log log = new Log();
-
-        //    this._Extensions = new Dictionary<string, object>();
-
-        //    if (appExtension!= null)
-        //        foreach(DataContextExtensionDefinition aExtensionDefinition in 
-        //            appExtension.GetItemDefinitions<DataContextExtensionDefinition>(libraryNames))
-        //        {
-        //            DataContextExtension dataContextExtension = appExtension.CreateItemInstance(
-        //                AppExtensionItemKind.ContextExtension, aExtensionDefinition.UniqueName,null, log) as DataContextExtension;
-        //            this.AddExtension(aExtensionDefinition.UniqueName, dataContextExtension);
-        //        }
-
-        //    return log;
-        //}
-
-        ///// <summary>
-        ///// Removes the data context extension with the specified name.
-        ///// </summary>
-        ///// <param name="name">Name of the data context extension to remove.</param>
-        //public void RemoveExtension(String name)
-        //{
-        //    if (this._Extensions.ContainsKey(name))
-        //        this._Extensions.Remove(name);
-        //}
-
-        // Data contexts ------------------------------------
-
-        ///// <summary>
-        ///// Adds a new dataset to this instance.
-        ///// </summary>
-        ///// <param name="name">Name of the dataset to add.</param>
-        ///// <param name="dataSet">Dataset to add.</param>
-        //public void AddDataSet(String name, DataSet dataSet)
-        //{
-        //    if (this._dataSets.Contains(name.ToUpper()))
-        //        this._dataSets.Remove(name.ToUpper());
-        //    this._dataSets.Add(name.ToUpper(), dataSet);
-        //}
 
         // Items ------------------------------------
 
@@ -207,13 +141,13 @@ namespace BindOpen.Framework.Core.Data.Context
         /// Adds a new item to this instance.
         /// </summary>
         /// <param name="name">Name of the item to add.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="item">Item to add.</param>
+        /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">Persistence level of the item to add.</param>
         public void AddItem(
-            String name,
-            Object item,
-            String contextSectionName = null,
+            string name,
+            object item,
+            string contextSectionName = null,
             PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
         {
             switch (persistenceLevel)
@@ -236,7 +170,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the item to add.</param>
         /// <param name="item">The item to consider.</param>
         public void AddSystemItem(
-            String name,
+            string name,
             Object item)
         {
             this.AddSingletonItem(name, item, "#system");
@@ -249,11 +183,11 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddSingletonItem(
-            String name,
-            Object item,
-            String contextSectionName = null)
+            string name,
+            object item,
+            string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
+            string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
             this._singletonItems.Remove(itemName);
             this._singletonItems.Add(itemName, item);
@@ -266,11 +200,11 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddScopedItem(
-            String name,
-            Object item,
-            String contextSectionName = null)
+            string name,
+            object item,
+            string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
+            string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
             this._scopedItems.Remove(itemName);
             this._scopedItems.Add(name, item);
@@ -283,11 +217,11 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         public void AddTransientItem(
-            String name,
-            Object item,
-            String contextSectionName = null)
+            string name,
+            object item,
+            string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
+            string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
             this._transientItems.Remove(itemName);
             this._transientItems.Add(itemName, item);
@@ -324,33 +258,33 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">The persistence level to consider.</param>
         public void RemoveItems(
-            String contextSectionName = null,
+            string contextSectionName = null,
             PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
         {
-            if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Singleton))
+            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Singleton))
             {
                 var items = this._singletonItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
                     this._singletonItems.Remove(key);
                 }
             }
-            if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Scoped))
+            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Scoped))
             {
                 var items = this._scopedItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
                     this._scopedItems.Remove(key);
                 }
             }
-            if ((persistenceLevel == PersistenceLevel.Any) | (persistenceLevel == PersistenceLevel.Transient))
+            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Transient))
             {
                 var items = this._transientItems.Keys.Where(p =>
-                    (String.IsNullOrEmpty(contextSectionName))
+                    (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
@@ -367,37 +301,9 @@ namespace BindOpen.Framework.Core.Data.Context
 
         #region Accessors
 
-        //// Extensions ------------------------------------
-
-        ///// <summary>
-        ///// Returns the extension with the specified name.
-        ///// </summary>
-        ///// <param name="name">Name of the data context extension of this instance to return.</param>
-        //public DataContextExtension GetExtension(String name)
-        //{
-        //    name = name.ToUpper();
-        //    if (this._Extensions.Contains(name))
-        //        return (DataContextExtension)this._Extensions[name];
-        //    return null;
-        //}
-
-        //// Datasets ------------------------------------
-
-        ///// <summary>
-        ///// Returns a specific dataset.
-        ///// </summary>
-        ///// <param name="name">The name of the dataset to return.</param>
-        ///// <returns>The dataset with the specified name.</returns>
-        //public DataSet GetDataSet(String name)
-        //{
-        //    if (this._dataSets.Contains(name.ToUpper()))
-        //        return (DataSet)this._dataSets[name.ToUpper()];
-        //    return null;
-        //}
-
         // Items ------------------------------------
 
-        private static String GetItemUniqueName(String name, String contextSectionName = null)
+        private static string GetItemUniqueName(string name, string contextSectionName = null)
         {
             return ((contextSectionName ?? "") + "$" + (name ?? "")).ToLower();
         }
@@ -407,7 +313,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetSystemItem(String name)
+        public object GetSystemItem(string name)
         {
             return this.GetSingletonItem(name, "#system");
         }
@@ -418,9 +324,9 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetSingletonItem(String name, String contextSectionName = null)
+        public object GetSingletonItem(string name, string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name,contextSectionName);
+            string itemName = DataContext.GetItemUniqueName(name,contextSectionName);
             return this._singletonItems.ContainsKey(itemName) ? this._singletonItems[itemName] : null;
         }
 
@@ -430,10 +336,10 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetScopedItem(String name, String contextSectionName = null)
+        public object GetScopedItem(string name, string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
-            return (_scopedItems.ContainsKey(itemName) ? this._scopedItems[itemName] : null);
+            string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
+            return _scopedItems.ContainsKey(itemName) ? this._scopedItems[itemName] : null;
         }
 
         /// <summary>
@@ -442,9 +348,9 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="name">Name of the dynamic item to return.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetTransientItem(String name, String contextSectionName = null)
+        public object GetTransientItem(string name, string contextSectionName = null)
         {
-            String itemName = DataContext.GetItemUniqueName(name, contextSectionName);
+            string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
             return this._transientItems.ContainsKey(itemName) ? this._transientItems[itemName] : null;
         }
 
@@ -455,8 +361,8 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">The persistence level to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
-        public Object GetItem(String name,
-            String contextSectionName = null,
+        public object GetItem(string name,
+            string contextSectionName = null,
             PersistenceLevel persistenceLevel = PersistenceLevel.Any)
         {
             if (persistenceLevel == PersistenceLevel.Any)
@@ -494,10 +400,10 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         /// <param name="filePath">Path of the file to save.</param>
         /// <returns>true if the file has been well saved. false otherwise.</returns>
-        public Boolean Save(String filePath)
+        public bool Save(string filePath)
         {
             Stream fileStream = null;
-            Boolean isSaved = false;
+            bool isSaved = false;
 
             try
             {
@@ -523,7 +429,7 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <param name="filePath">The path of the file to load.</param>
         /// <param name="log">The log that receives the log of this loading task.</param>
         /// <returns>Returns the data context loaded from the specified file.</returns>
-        public static DataContext Load(String filePath, ref Log log)
+        public static DataContext Load(string filePath, ref Log log)
         {
             DataContext dataContext = null;
             Stream fileStream = null;

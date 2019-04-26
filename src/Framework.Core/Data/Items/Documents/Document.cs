@@ -2,9 +2,9 @@
 using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.Extensions.Configuration.Formats;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Formats;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Documents
@@ -13,21 +13,10 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
     /// This class represents a document item.
     /// </summary>
     [Serializable()]
-    [XmlType("Document", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class Document : NamedDataItem
+    [XmlType("Document", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class Document : NamedDataItem, IDocument
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private CarrierConfiguration _Container = null;
-        private EntityConfiguration _Content = null;
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -38,33 +27,13 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// Container of this instance. 
         /// </summary>
         [XmlElement("container")]
-        public CarrierConfiguration Container
-        {
-            get
-            {
-                return this._Container;
-            }
-            set
-            {
-                this._Container = value;
-            }
-        }
+        public CarrierConfiguration Container { get; set; } = null;
 
         /// <summary>
         /// Content of this instance. 
         /// </summary>
         [XmlElement("content")]
-        public EntityConfiguration Content
-        {
-            get
-            {
-                return this._Content;
-            }
-            set
-            {
-                this._Content = value;
-            }
-        }
+        public EntityConfiguration Content { get; set; } = null;
 
         #endregion
 
@@ -85,7 +54,7 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// This instantiates a new instance of the DataSource class.
         /// </summary>
         /// <param name="name">The name of this instance.</param>
-        public Document(String name = null)
+        public Document(string name = null)
             : this(null, null, name)
         {
         }
@@ -93,12 +62,14 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <summary>
         /// This instantiates a new instance of the DataSource class.
         /// </summary>
-        /// <param name="aContainer">The container to consider.</param>
-        /// <param name="aContent">The content to consider.</param>
+        /// <param name="container">The container to consider.</param>
+        /// <param name="content">The content to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public Document(CarrierConfiguration aContainer, EntityConfiguration aContent, String name = null)
+        public Document(ICarrierConfiguration container, IEntityConfiguration content, string name = null)
             : base(name, "document_")
         {
+            Container = container as CarrierConfiguration;
+            Content = content as EntityConfiguration;
         }
 
         #endregion
@@ -114,14 +85,14 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <summary>
         /// Updates this instance with the specified document item.
         /// </summary>
-        /// <param name="aDocumentDataItem">The document item to consider.</param>
+        /// <param name="documentDataItem">The document item to consider.</param>
         /// <param name="relativePath">The relative path to consider.</param>
         /// <returns>The log of the schema update.</returns>
-        public virtual Log Update(Document aDocumentDataItem, String relativePath = "")
+        public virtual ILog Update(IDocument documentDataItem, string relativePath = "")
         {
             return new Log();
         }
-        
+
         // Detection -----------------------------------------
 
         /// <summary>
@@ -129,47 +100,14 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// </summary>
         /// <param name="dataSource">The data source to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public virtual FormatConfiguration DetectFormat(
-            DataSource dataSource,
-            ref Log log)
+        public virtual IFormatConfiguration DetectFormat(
+            IDataSource dataSource,
+            ref ILog log)
         {
             return new FormatConfiguration();
         }
 
         #endregion
-
-        //// ------------------------------------------
-        //// LOAD
-        //// ------------------------------------------
-
-        //#region Load
-
-        ///// <summary>
-        ///// Instantiates a new instance of EntityConfiguration class from a xml string considering the specified object type.
-        ///// </summary>
-        ///// <param name="xmlString">The Xml string to load.</param>
-        ///// <param name="object1Type">The object type to consider.</param>
-        //protected static DocumentDataItem LoadFromXmlString(String xmlString, Type object1Type)
-        //{
-        //    DocumentDataItem dataEntity = null;
-        //    try
-        //    {
-        //        // we parse the xml string
-        //        XDocument xDocument = XDocument.Parse(xmlString);
-
-        //        // then we load
-        //        XmlSerializer xmlSerializer = new XmlSerializer(object1Type);
-        //        StringReader aStringReader = new StringReader(xmlString);
-        //        dataEntity = (DocumentDataItem)xmlSerializer.Deserialize(XmlReader.Create(aStringReader));
-        //    }
-        //    catch
-        //    {
-        //    }
-
-        //    return dataEntity;
-        //}
-
-        //#endregion
 
         // ------------------------------------------
         // CLONING
@@ -181,7 +119,7 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             Document dataEntityItem = base.Clone() as Document;
             if (this.Container != null)

@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Entity;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Configuration.Entities;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.Data.Elements.Document;
+using BindOpen.Framework.Core.Data.Elements;
 
 namespace BindOpen.Framework.Core.Data.Elements.Document
 {
-
     /// <summary>
     /// This class represents a document element that is an element whose items are documents.
     /// </summary>
     [Serializable()]
-    [XmlType("DocumentElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DocumentElement : DataElement
+    [XmlType("DocumentElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class DocumentElement : DataElement, IDocumentElement
     {
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -34,16 +29,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         [XmlElement("container")]
         public CarrierElement ContainerElement
         {
-            get { return this.GetItem(0) as CarrierElement; }
+            get { return this.Items[0] as CarrierElement; }
         }
 
         /// <summary>
         /// The content of this instance.
         /// </summary>
         [XmlElement("content")]
-        public EntityElement ContentElement
+        public ObjectElement ContentElement
         {
-            get { return this.GetItem(1) as EntityElement; }
+            get { return this.Items[1] as ObjectElement; }
         }
 
         /// <summary>
@@ -58,7 +53,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
         #endregion
 
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -68,7 +62,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <summary>
         /// Initializes a new instance of the DocumentElement class.
         /// </summary>
-        public DocumentElement() : this(null, null as CarrierConfiguration)
+        public DocumentElement() : this(null, null)
         {
         }
 
@@ -76,80 +70,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Initializes a new instance of the DocumentElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="aContainerElement">The container element to consider.</param>
-        /// <param name="aContentElement">The content element to consider.</param>
+        /// <param name="id">The ID to consider.</param>
         public DocumentElement(
-            String name = null, 
-            CarrierElement aContainerElement = null,
-            EntityElement aContentElement = null)
-            : base(name, "documentElement_")
+            string name = null,
+            string id = null)
+            : base(name, "document_", id)
         {
-            this.ValueType = DataValueType.Document;
-            this.ClearItems();
-            this.AddItem(aContainerElement ?? new CarrierElement());
-            this.AddItem(aContentElement ?? new EntityElement());
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the DocumentElement class.
-        /// </summary>
-        /// <param name="aContainerElement">The container element to consider.</param>
-        /// <param name="aContentElement">The content element to consider.</param>
-        public DocumentElement(
-            CarrierElement aContainerElement = null,
-            EntityElement aContentElement = null)
-            : this(null, aContainerElement, aContentElement)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the DocumentElement class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="aContainerItem">The container item to consider.</param>
-        /// <param name="aContentItem">The content item to consider.</param>
-        public DocumentElement(
-            String name = null,
-            CarrierConfiguration aContainerItem = null,
-            EntityConfiguration aContentItem = null)
-            : this(name, new CarrierElement(aContainerItem), new EntityElement(aContentItem))
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the DocumentElement class.
-        /// </summary>
-        /// <param name="aContainerItem">The container item to consider.</param>
-        /// <param name="aContentItem">The content item to consider.</param>
-        public DocumentElement(
-            CarrierConfiguration aContainerItem = null,
-            EntityConfiguration aContentItem = null)
-            : this(null, aContainerItem, aContentItem)
-        {
+            ValueType = DataValueType.Document;
         }
 
         #endregion
-
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
-        {
-            return new DocumentElementSpec();
-        }
-
-        #endregion
-
 
         // --------------------------------------------------
         // ITEMS
@@ -157,43 +87,18 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
         #region Items
 
-        /// <summary>
-        /// Gets a new item of this instance.
-        /// </summary>
-          /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns a new object of this instance.</returns>
-        public override Object NewItem(IAppScope appScope = null, Log log = null)
-        {
-            return null;
-        }
+        // Specification ---------------------
 
         /// <summary>
-        /// Returns the specified item of this instance.
+        /// Creates a new specification.
         /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the specified item of this instance.</returns>
-        public override Object GetItem(
-            Object indexItem = null,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            Log log = null)
+        /// <returns>Returns the new specifcation.</returns>
+        public override IDataElementSpec NewSpecification()
         {
-            if ((indexItem == null) || (indexItem is int))
-            {
-                return base.GetItem(indexItem, appScope, scriptVariableSet, log);
-            }
-            else if (indexItem is String)
-            {
-                return this.GetItems(appScope, scriptVariableSet, log)
-                    .Any(p => p is Items.Documents.Document && string.Equals((p as Items.Documents.Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-            }
-
-            return null;
+            return Specification = new DocumentElementSpec();
         }
+
+        // Items ----------------------------
 
         /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
@@ -201,16 +106,15 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <param name="indexItem">The scalar item or the entity name to consider.</param>
         /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override Boolean HasItem(Object indexItem, Boolean isCaseSensitive = false)
+        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            if (indexItem is String)
+            if (indexItem is string)
                 return this.Items.Any(p => p is Items.Documents.Document && string.Equals((p as Items.Documents.Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
 
             return false;
         }
 
         #endregion
-
 
         // --------------------------------------------------
         // CHECK, UPDATE, REPAIR
@@ -220,7 +124,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
 
 
         #endregion
-
 
         // --------------------------------------------------
         // CLONING
@@ -232,7 +135,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             Items.Documents.Document aDocument = this.MemberwiseClone() as Items.Documents.Document;
             return aDocument;
@@ -241,5 +144,4 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         #endregion
 
     }
-
 }

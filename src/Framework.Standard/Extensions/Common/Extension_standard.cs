@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Standard.Extensions.Common
         /// </summary>
         /// <param name="uniqueName">The unique name to consider.</param>
         /// <returns>The result object.</returns>
-        public static String GetUniqueName_standard(this String uniqueName)
+        public static string GetUniqueName_standard(this String uniqueName)
         {
             return uniqueName.GetStartedString("standard$");
         }

@@ -1,31 +1,18 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using System;
+﻿using System;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Attributes;
 
 namespace BindOpen.Framework.Core.Data.Expression
 {
-
     /// <summary>
     /// This class represents a data expression that can contain a literal and script texts.
     /// </summary>
     [Serializable()]
-    [XmlType("DataExpression", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dataExpression", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class DataExpression : DataItem
+    [XmlType("DataExpression", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataExpression", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class DataExpression : DataItem, IDataExpression
     {
-   
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private String _Text = null;
-        private DataExpressionKind _Kind = DataExpressionKind.Auto;
-
-        #endregion
-
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -33,27 +20,20 @@ namespace BindOpen.Framework.Core.Data.Expression
         #region Properties
 
         /// <summary>
-        /// The text of this instance.
+        /// The value of this instance.
         /// </summary>
         [XmlElement("value")]
-        public virtual String Text
-        {
-            get { return this._Text; }
-            set { this._Text = value; }
-        }
+        [DetailPropertyAttribute]
+        public string Text { get; set; }
 
         /// <summary>
         /// The kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public DataExpressionKind Kind
-        {
-            get { return this._Kind; }
-            set { this._Kind = value; }
-        }
+        [DetailPropertyAttribute]
+        public DataExpressionKind Kind { get; set; } = DataExpressionKind.Auto;
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -68,47 +48,6 @@ namespace BindOpen.Framework.Core.Data.Expression
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of DataExpression class.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        /// <param name="kind">The data expresion kind to consider.</param>
-        public DataExpression(String text=null, DataExpressionKind kind = DataExpressionKind.Script)
-        {
-            this._Text = text;
-            this._Kind = kind;
-        }
-
         #endregion
-
-
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Creates a new script expression.
-        /// </summary>
-        /// <param name="text">The script text to consider.</param>
-        /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateScript(String text)
-        {
-            return new DataExpression(text, DataExpressionKind.Script);
-        }
-
-        /// <summary>
-        /// Creates a new literal expression.
-        /// </summary>
-        /// <param name="text">The literal text to consider.</param>
-        /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateLiteral(String text)
-        {
-            return new DataExpression(text, DataExpressionKind.Literal);
-        }
-
-        #endregion
-
     }
 }

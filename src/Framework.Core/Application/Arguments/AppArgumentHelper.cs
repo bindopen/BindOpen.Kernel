@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Arguments
@@ -33,26 +34,26 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the log of argument building.</returns>
-        public static OptionSet UpdateOptions(
+        public static IOptionSet UpdateOptions(
             this string[] arguments,
             OptionSpecSet optionSpecificationSet,
-            Boolean allowMissingItems = false,
-            Log log = null)
+            bool allowMissingItems = false,
+            ILog log = null)
         {
             log = log ?? new Log();
 
-            OptionSet optionSet = new OptionSet();
+            IOptionSet optionSet = new OptionSet();
 
             int index = 0;
             if (arguments != null)
             {
                 while (index < arguments.Length)
                 {
-                    String currentArgumentString = arguments[index];
+                    string currentArgumentString = arguments[index];
 
                     if (currentArgumentString != null)
                     {
-                        ScalarElement argument = null;
+                        IScalarElement argument = null;
 
                         OptionSpec argumentSpecification = null;
 
@@ -65,7 +66,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
 
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
                         {
-                            argument = new ScalarElement(currentArgumentString, DataValueType.Text);
+                            argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
                             argument.SetItem(arguments.GetStringAtIndex(index));
                             optionSet.AddElement(argument);
                         }
@@ -73,7 +74,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                         {
                             if (argumentSpecification.ValueType == DataValueType.Any)
                                 argumentSpecification.ValueType = DataValueType.Text;
-                            argument = (argumentSpecification.Clone() as DataElementSpec)?.NewElement() as ScalarElement;
+                            argument = ElementFactory.CreateScalar(argumentSpecification.Name, null, argumentSpecification.ValueType, argumentSpecification);
 
                             argument.Specification = argumentSpecification;
                             if (argumentSpecification.ItemRequirementLevel.IsPossible())
@@ -105,7 +106,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
                 }
             }
 
-            log.Append(AppArgumentHelper.Check(optionSet, optionSpecificationSet));
+            log.Append(optionSet.Check(optionSpecificationSet));
 
             return optionSet;
         }
@@ -117,33 +118,33 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static Log Check(this DataElementSet optionSet, OptionSpecSet optionSpecificationSet, Boolean allowMissingItems = false)
+        public static ILog Check(this IDataElementSet optionSet, IOptionSpecSet optionSpecificationSet, bool allowMissingItems = false)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             if (optionSet?.Elements != null && optionSpecificationSet !=null)
             {
                 if (!allowMissingItems)
                 {
-                    foreach (DataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevel.Required))
+                    foreach (IDataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevel.Required))
                     {
                         if (!optionSet.HasItem(optionSpecification.Name))
                             log.AddError("Option '" + optionSpecification.Name + "' missing");
                     }
                 }
 
-                foreach (ScalarElement option in optionSet.Elements)
+                foreach (IScalarElement option in optionSet.Elements)
                 {
                     if (option?.Specification != null)
                     {
                         switch (option.Specification.ItemRequirementLevel)
                         {
                             case RequirementLevel.Required:
-                                if (String.IsNullOrEmpty(option.FirstItem as String))
+                                if (string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' requires value");
                                 break;
                             case RequirementLevel.Forbidden:
-                                if (!String.IsNullOrEmpty(option.FirstItem as String))
+                                if (!string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' does not allow value");
                                 break;
                         }

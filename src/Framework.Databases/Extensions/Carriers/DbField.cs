@@ -1,15 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Configuration.Carriers;
-using BindOpen.Framework.Core.Extensions.Definition.Carriers;
-using BindOpen.Framework.Core.Extensions.Runtime.Carriers;
+using BindOpen.Framework.Core.Extensions.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Databases.Data.Queries;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
@@ -18,10 +16,10 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     /// This class represents a database data field.
     /// </summary>
     [Serializable()]
-    [XmlType("DbField", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "dbField", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("DbField", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dbField", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [Carrier(
-        Name = "dbField",
+        Name = "databases$dbField",
         DataSourceKind = DataSourceKind.Database,
         Description = "Database field.",
         CreationDate = "2016-09-14"
@@ -38,90 +36,58 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// Indicates wheteher this instance represents all the fields.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="isAll")]
-        public Boolean IsAll
-        {
-            get{ return this.Get<Boolean>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "isAll")]
+        public Boolean IsAll { get; set; }
 
         /// <summary>
         /// Data module of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="dataModule")]
-        public string DataModule
-        {
-            get { return this.Get<string>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "dataModule")]
+        public string DataModule { get; set; }
 
         /// <summary>
         /// Data module of this instance.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "schema")]
-        public string Schema
-        {
-            get { return this.Get<string>(); }
-            set { this.Set(value); }
-        }
+        public string Schema { get; set; }
 
         /// <summary>
         /// Data table of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="dataTable")]
-        public string DataTable
-        {
-            get { return this.Get<string>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "dataTable")]
+        public string DataTable { get; set; }
 
         /// <summary>
         /// Alias of the data table of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="dataTableAlias")]
-        public string DataTableAlias
-        {
-            get { return this.Get<string>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "dataTableAlias")]
+        public string DataTableAlias { get; set; }
 
         /// <summary>
         /// Alias of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="alias")]
-        public string Alias
-        {
-            get { return this.Get<string>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "alias")]
+        public string Alias { get; set; }
 
         /// <summary>
         /// Size of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="size")]
-        public int Size
-        {
-            get { return this.Get<int>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "size")]
+        public int Size { get; set; }
 
         /// <summary>
         /// Value of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
-        [DetailProperty(Name="value")]
-        public DataExpression Value
-        {
-            get { return this.Get<DataExpression>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "value")]
+        public DataExpression Value { get; set; }
 
         /// <summary>
         /// Value of this instance.
@@ -129,65 +95,35 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "query")]
-        public DbDataQuery Query
-        {
-            get { return this.Get<DbDataQuery>(); }
-            set { this.Set(value); }
-        }
+        public DbDataQuery Query { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a key.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="isKey")]
-        public Boolean IsKey
-        {
-            get { return this.Get<Boolean>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "isKey")]
+        public Boolean IsKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a foreign key.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="isForeignKey")]
-        public Boolean IsForeignKey
-        {
-            get { return this.Get<Boolean>(); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "isForeignKey")]
+        public Boolean IsForeignKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher the name of this instance can be defined by a script.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="isNameAsScript")]
-        public Boolean IsNameAsScript
-        {
-            get { return this.Get<Boolean>(); }
-            set { this.Set(value); }
-        }
-
-        ///// <summary>
-        ///// Indicates whether the value of this instance represents the current visitor's language.
-        ///// </summary>
-
-        //public Boolean IsGlobal
-        //{
-        //    get { return this._IsGlobal; }
-        //    set { this._IsGlobal = value; }
-        //}
+        [DetailProperty(Name = "isNameAsScript")]
+        public Boolean IsNameAsScript { get; set; }
 
         /// <summary>
         /// Type of value of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="valueType")]
-        public DataValueType ValueType
-        {
-            get { return this.Get<DataValueType>(DataValueType.None); }
-            set { this.Set(value); }
-        }
+        [DetailProperty(Name = "valueType")]
+        public DataValueType ValueType { get; set; }
 
         #endregion
 
@@ -204,22 +140,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="relativePath">The relative path to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        public DbField(
-            string name,
-            CarrierConfiguration configuration,
-            string relativePath = null,
-            AppScope appScope = null)
-            : base(name, "databases$dbField", configuration, "field_", relativePath, appScope)
-        {
-        }
-
         // Constructors with data expression -----
 
         /// <summary>
@@ -228,16 +148,14 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             DataExpression value,
-            DataValueType valueType = DataValueType.None,
-            AppScope appScope = null)
-            : base(name, "databases$dbField", null, "field_", null, appScope)
+            DataValueType valueType = DataValueType.None)
+            : base(name, "field_")
         {
-            this.ValueType = DataValueType.None;
-            this.Value = value;
+            ValueType = DataValueType.None;
+            Value = value;
         }
 
         /// <summary>
@@ -247,16 +165,14 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
             DataExpression value,
-            DataValueType valueType = DataValueType.None,
-            AppScope appScope = null)
-            : this(name, value, valueType, appScope)
+            DataValueType valueType = DataValueType.None)
+            : this(name, value, valueType)
         {
-            this.DataTable = tableName;
+            DataTable = tableName;
         }
 
         /// <summary>
@@ -268,19 +184,17 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
             string schema,
             string dataModule,
             DataExpression value,
-            DataValueType valueType = DataValueType.None,
-            AppScope appScope = null)
-            : this(name, tableName, value, valueType, appScope)
+            DataValueType valueType = DataValueType.None)
+            : this(name, tableName, value, valueType)
         {
-            this.Schema = schema;
-            this.DataModule = dataModule;
+            Schema = schema;
+            DataModule = dataModule;
         }
 
         // Constructors with object -----
@@ -291,17 +205,15 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             DataValueType valueType = DataValueType.Any,
-            object value = null,
-            AppScope appScope = null)
-            : base(name, "databases$dbField", null, "field_", null, appScope)
+            object value = null)
+            : base(name, "field_")
         {
-            this.ValueType = valueType;
+            ValueType = valueType;
             if (value != null)
-                this.Value = new DataExpression(value.GetString(valueType), DataExpressionKind.Literal);
+                Value = value.ToString(valueType).CreateLiteral();
         }
 
         /// <summary>
@@ -311,16 +223,14 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
             DataValueType valueType = DataValueType.Any,
-            object value = null,
-            AppScope appScope = null)
-            : this(name, valueType, value, appScope)
+            object value = null)
+            : this(name, valueType, value)
         {
-            this.DataTable = tableName;
+            DataTable = tableName;
         }
 
         /// <summary>
@@ -332,19 +242,17 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
             string schema,
             string dataModule,
             DataValueType valueType = DataValueType.Any,
-            object value = null,
-            AppScope appScope = null)
-            : this(name, tableName, valueType, value, appScope)
+            object value = null)
+            : this(name, tableName, valueType, value)
         {
-            this.Schema = schema;
-            this.DataModule = dataModule;
+            Schema = schema;
+            DataModule = dataModule;
         }
 
         // Constructors with data expression -----
@@ -354,15 +262,13 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
-            DbDataQuery query,
-            AppScope appScope = null)
-            : base(name, "databases$dbField", null, "field_", null, appScope)
+            DbDataQuery query)
+            : base(name, "field_")
         {
-            this.ValueType = DataValueType.None;
-            this.Query = query;
+            ValueType = DataValueType.None;
+            Query = query;
         }
 
         /// <summary>
@@ -371,15 +277,13 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
-            DbDataQuery query,
-            AppScope appScope = null)
-            : this(name, query, appScope)
+            DbDataQuery query)
+            : this(name, query)
         {
-            this.DataTable = tableName;
+            DataTable = tableName;
         }
 
         /// <summary>
@@ -390,18 +294,16 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         public DbField(
             string name,
             string tableName,
             string schema,
             string dataModule,
-            DbDataQuery query,
-            AppScope appScope = null)
-            : this(name, tableName, query, appScope)
+            DbDataQuery query)
+            : this(name, tableName, query)
         {
-            this.Schema = schema;
-            this.DataModule = dataModule;
+            Schema = schema;
+            DataModule = dataModule;
         }
 
         #endregion
@@ -417,11 +319,11 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         public string GetName()
         {
-            string alias = this.Alias;
+            string alias = Alias;
             if (!string.IsNullOrEmpty(alias))
                 return alias;
             else
-                return this.Name ?? "";
+                return Name ?? "";
         }
 
         #endregion
@@ -438,7 +340,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="expression">Data expression value of the instance.</param>
         public void SetValue(DataExpression expression)
         {
-            this.Value = expression;
+            Value = expression;
         }
 
         /// <summary>
@@ -447,7 +349,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="text">The literal value.</param>
         public void SetLiteralValue(string text)
         {
-            this.Value = new DataExpression(text, DataExpressionKind.Literal);
+            Value = text.CreateLiteral();
         }
 
         /// <summary>
@@ -456,7 +358,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="text">The script value.</param>
         public void SetScriptValue(string text)
         {
-            this.Value = new DataExpression(text, DataExpressionKind.Script);
+            Value = text.CreateScript();
         }
 
         #endregion

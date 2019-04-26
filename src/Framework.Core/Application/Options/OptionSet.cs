@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Options
 {
     /// <summary>
     /// This class represents a option set.
     /// </summary>
-    [XmlType("OptionSet", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("optionSet", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class OptionSet : DataElementSet
+    [XmlType("OptionSet", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("optionSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class OptionSet : DataElementSet, IOptionSet
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Indicates whether this instance has the specified option.
         /// </summary>
         /// <param name="name">Name of the option to consider.</param>
-        public Boolean HasOption(String name)
+        public bool HasOption(String name)
         {
             return this.HasItem(name);
         }
@@ -49,18 +49,9 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Gets the value of the specified option.
         /// </summary>
         /// <param name="name">Name of the option to consider.</param>
-        public Object GetOptionValue(String name)
+        public object GetOptionValue(String name)
         {
-            return this.GetElementItemObject(name);
-        }
-
-        /// <summary>
-        /// Gets the string value of the specified option.
-        /// </summary>
-        /// <param name="name">Name of the option to consider.</param>
-        public String GetOptionStringValue(String name)
-        {
-            return (this.GetElementItemObject(name) as String ?? "");
+            return this.GetElementObject(name);
         }
 
         #endregion
@@ -75,24 +66,24 @@ namespace BindOpen.Framework.Core.Application.Options
         /// Updates this instance with the specified string value.
         /// </summary>
         /// <param name="stringValue">The string value to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        public Log Update(
-            String stringValue,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null)
+        public ILog Update(
+            string stringValue)
         {
-            Log log = new Log();
+            ILog log = new Log();
 
-            if (!String.IsNullOrEmpty(stringValue))
+            if (!string.IsNullOrEmpty(stringValue))
+            {
                 foreach (String optionString in stringValue.Split(';'))
+                {
                     if (optionString.Contains("="))
                     {
                         int index = optionString.IndexOf("=");
                         String optionName = optionString.Substring(0, index);
                         String optionValue = optionString.Substring(index + 1);
-                        this.AddElementItem(optionName, optionValue, appScope, scriptVariableSet, log);
+                        this.AddElementItem(optionName, optionValue, log);
                     }
+                }
+            }
 
             return log;
         }

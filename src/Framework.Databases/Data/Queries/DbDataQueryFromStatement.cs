@@ -3,24 +3,21 @@ using System.ComponentModel;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
-
     /// <summary>
     /// This class represents the From statement of a database data query.
     /// </summary>
-    public class DbDataQueryFromStatement
+    public class DbDataQueryFromStatement : IDbDataQueryFromStatement
     {
-
         // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
         #region Variables
 
-        private DbDataQueryUnionStatement _UnionStatement;
-        private List<DbDataQueryJointureStatement> _JointureStatements = new List<DbDataQueryJointureStatement>();
+        private IDbDataQueryUnionStatement _unionStatement;
+        private List<IDbDataQueryJointureStatement> _jointureStatements = new List<IDbDataQueryJointureStatement>();
 
         #endregion
-
 
         // ------------------------------------------
         // PROPERTIES
@@ -31,20 +28,20 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Union statement.
         /// </summary>
-        public DbDataQueryUnionStatement UnionStatement
+        public IDbDataQueryUnionStatement UnionStatement
         {
-            get { return this._UnionStatement; }
-            set { this._UnionStatement = value; }
+            get { return this._unionStatement; }
+            set { this._unionStatement = value; }
         }
 
         /// <summary>
         /// List of jointure statements.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<DbDataQueryJointureStatement> JointureStatements
+        public List<IDbDataQueryJointureStatement> JointureStatements
         {
-            get { return this._JointureStatements; }
-            set { this._JointureStatements = new List<DbDataQueryJointureStatement>(value); }
+            get { return this._jointureStatements; }
+            set { this._jointureStatements = new List<IDbDataQueryJointureStatement>(value); }
         }
 
         #endregion
@@ -63,6 +60,5 @@ namespace BindOpen.Framework.Databases.Data.Queries
         }
 
         #endregion
-
     }
 }

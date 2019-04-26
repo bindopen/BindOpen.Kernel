@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Serialization
 {
@@ -30,7 +34,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="object1">The object1 to save.</param>
         /// <param name="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static String ToXml(this Object object1, Log log = null)
+        public static string ToXml(this Object object1, ILog log = null)
         {
             if (object1==null) return "";
 
@@ -38,19 +42,24 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             StringWriter streamWriter = null;
             try
             {
+                // if the object is a data item then we update the storage info
+                if (object1 is DataItem dataItem)
+                {
+                    dataItem?.UpdateStorageInfo(log);
+                }
+
                 XmlSerializer xmlSerializer = new XmlSerializer(object1.GetType());
                 streamWriter = new StringWriter();
                 xmlSerializer.Serialize(streamWriter, object1);
                 st = streamWriter.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                log.AddException(ex);
+                log?.AddException(ex);
             }
             finally
             {
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
             }
 
             return st;
@@ -63,40 +72,48 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static Boolean SaveXml(this Object object1, String filePath, Log log = null)
+        public static bool SaveXml(this Object object1, String filePath, ILog log = null)
         {
             if (object1==null) return false;
 
-            Boolean isWasSaved = false;
+            bool isWasSaved = false;
             StreamWriter streamWriter = null;
             try
             {
-                if (!String.IsNullOrEmpty(filePath))
+                if (!string.IsNullOrEmpty(filePath))
                 {
                     // we create the folder if it does not exist
                     if (!Directory.Exists(Path.GetDirectoryName(filePath)))
                         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
+                    // if the object is a data item then we update the storage info
+                    if (object1 is DataItem dataItem)
+                    {
+                        dataItem?.UpdateStorageInfo(log);
+                    }
+
+                    if (object1 is IAppExtensionItem appExtensionItem)
+                    {
+                        object1 = appExtensionItem.Configuration;
+                    }
+
                     // we save the xml file
                     XmlSerializer xmlSerializer = new XmlSerializer(object1.GetType());
-                    streamWriter = new StreamWriter(filePath, false, global::System.Text.Encoding.UTF8);
+                    streamWriter = new StreamWriter(filePath, false, Encoding.UTF8);
                     xmlSerializer.Serialize(streamWriter, object1);
+
                     isWasSaved = true;
                 }
             }
             catch(Exception exception)
             {
-                if (log != null)
-                {
-                    log.AddException(exception);
-                }
+                log?.AddException(exception);
 
                 isWasSaved = exception==null;
             }
             finally
             {
-                if (streamWriter != null)
-                    streamWriter.Close();
+                streamWriter?.Close();
             }
 
             return isWasSaved;
@@ -115,9 +132,11 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T Load<T>(
             String filePath,
-            Log log = null,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            Boolean mustFileExist = true) where T : DataItem
+            bool mustFileExist = true) where T : DataItem
         {
             T dataItem = null;
             log = (log?? new Log());
@@ -149,6 +168,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                         streamReader = new StreamReader(filePath);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(streamReader)) as T;
+
+                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                     }
                 }
                 catch (Exception ex)
@@ -175,7 +196,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadFromString<T>(
             String xmlString,
-            Log log,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : DataItem
         {
             T dataItem = null;
@@ -207,6 +230,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                         StringReader stringReader = new StringReader(xmlString);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(stringReader)) as T;
+
+                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                     }
                 }
                 catch (Exception ex)
@@ -232,7 +257,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         public static XmlSchemaSet LoadXmlSchemaSet(
             XmlSchemaSet xmlSchemaSet,
             Assembly assembly,
-            List<String> xsdResources)
+            List<string> xsdResources)
         {
             if (xmlSchemaSet==null)
                 xmlSchemaSet = new XmlSchemaSet();
@@ -240,7 +265,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             foreach (String currentXsdResource in xsdResources)
             {
                 stream = assembly.GetManifestResourceStream(currentXsdResource);
-                xmlSchemaSet.Add("http://meltingsoft.com/bindopen/xsd", XmlReader.Create(new StreamReader(stream)));
+                xmlSchemaSet.Add("https://bindopen.org/xsd", XmlReader.Create(new StreamReader(stream)));
             }
             return xmlSchemaSet;
         }

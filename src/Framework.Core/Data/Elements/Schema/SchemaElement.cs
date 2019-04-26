@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Business.Entities;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Entities;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
@@ -11,8 +11,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
     /// This class represents a schema element.
     /// </summary>
     [Serializable()]
-    [XmlType("SchemaElement", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("schema", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("SchemaElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(SchemaZoneElement))]
     public class SchemaElement : DataElement
     {
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         private SchemaZoneElement _parentZone = null;
         private String _imageFileName = null;
 
-        private BusinessEntity _businessEntity = null;
+        private Entity _entity = null;
 
         #endregion
 
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// The image file name of this instance.
         /// </summary>
         [XmlElement("imageFileName")]
-        public String ImageFileName
+        public string ImageFileName
         {
             get { return this._imageFileName; }
             set
@@ -64,27 +64,27 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         }
 
         /// <summary>
-        /// The business entity unique name of this instance.
+        /// The business entity unique ID of this instance.
         /// </summary>
-        [XmlElement("businessEntityUniqueName")]
-        public String BusinessEntityUniqueName
+        [XmlElement("entityUniqueName")]
+        public string EntityUniqueName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// The business entity of this instance.
+        /// The entity of this instance.
         /// </summary>
         [XmlIgnore()]
-        public BusinessEntity BusinessEntity
+        public Entity Entity
         {
-            get { return this._businessEntity; }
+            get { return this._entity; }
             set
             {
-                this._businessEntity = value;
-                this.BusinessEntityUniqueName = _businessEntity?.Id;
-                this.RaizePropertyChanged(nameof(BusinessEntity));
+                this._entity = value;
+                this.EntityUniqueName = _entity?.Id;
+                this.RaizePropertyChanged(nameof(Entity));
             }
         }
 
@@ -121,14 +121,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="items">The items to consider.</param>
         public SchemaElement(
             String name = null,
-            params Object[] items)
+            params object[] items)
             : base(name, "schemaElement_")
         {
             this.ValueType = DataValueType.Schema;
             this.Specification = new SchemaElementSpec();
 
-            foreach (Object aItem in items)
-                this.AddItem(aItem);
+            foreach (object item in items)
+                this.AddItem(item);
         }
 
         #endregion
@@ -144,7 +144,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="parentZoneElement">The parent schema element zone to consider.</param>
         /// <returns>True if this instance is a descendant of the specified parent schema element.</returns>
-        public Boolean IsDescendantOf(
+        public bool IsDescendantOf(
             SchemaZoneElement parentZoneElement)
         {
             SchemaElement currentSchemaZoneElement = this._parentZone;
@@ -160,12 +160,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         // Specification ---------------------
 
         /// <summary>
-        /// Gets a new specification.
+        /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec CreateSpecification()
+        public override IDataElementSpec NewSpecification()
         {
-            return new SchemaElementSpec();
+            return (Specification = new SchemaElementSpec());
         }
 
         // Schema elements
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="aElement">The schema element to consider.</param>
         /// <returns>True if the operation has succeded ; false otherwise.</returns>
-        public Boolean DeleteElement(SchemaElement aElement)
+        public bool DeleteElement(SchemaElement aElement)
         {
             if (aElement == null) return true;
 
@@ -264,7 +264,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="aElement">The schema element to consider.</param>
         /// <param name="parentZoneElement">The parent schema element zone to consider.</param>
-        public Boolean MoveElement(
+        public bool MoveElement(
             SchemaElement aElement,
             SchemaZoneElement parentZoneElement)
         {
@@ -362,7 +362,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="accessibilityLevel">The visibility to apply.</param>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub schema elements.</param>
-        public void ApplyVisibility(AccessibilityLevel accessibilityLevel, Boolean isRecursive = true)
+        public void ApplyVisibility(AccessibilityLevel accessibilityLevel, bool isRecursive = true)
         {
             if ((this is SchemaZoneElement)&&(isRecursive))
                 foreach (SchemaElement aElement in ((SchemaZoneElement)this).SubElements)
@@ -373,7 +373,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Locks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public override void Lock(Boolean isRecursive = true)
+        public override void Lock(bool isRecursive = true)
         {
             base.Lock(isRecursive);
 
@@ -386,7 +386,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Unlocks this instance.
         /// </summary>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public override void Unlock(Boolean isRecursive = true)
+        public override void Unlock(bool isRecursive = true)
         {
             base.Lock(isRecursive);
 
@@ -416,7 +416,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override Object Clone()
+        public override object Clone()
         {
             return this.Clone(null);
         }
@@ -432,7 +432,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
                 parentZoneElement = this.ParentZone;
 
             SchemaZoneElement aSchemaElement = this.MemberwiseClone() as SchemaZoneElement;
-            aSchemaElement.BusinessEntity = this._businessEntity;
+            aSchemaElement.Entity = this._entity;
             aSchemaElement.ParentZone = parentZoneElement;
             if (parentZoneElement != null)
                 parentZoneElement.SubElements.Add(aSchemaElement);

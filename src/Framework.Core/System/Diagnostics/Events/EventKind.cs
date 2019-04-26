@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// </summary>
     [Serializable()]
     [Flags()]
-    [XmlType("EventKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("EventKind", Namespace = "https://bindopen.org/xsd")]
     public enum EventKind
     {
         /// <summary>
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="eventKind1">The first event kind to consider.</param>
         /// <param name="eventKind2">The second event kind to consider.</param>
         /// <returns>True if the first event kind is greater than the second one.</returns>
-        public static Boolean IsGreaterThan(this EventKind eventKind1, EventKind eventKind2)
+        public static bool IsGreaterThan(this EventKind eventKind1, EventKind eventKind2)
         {
             return eventKind1 > eventKind2;
         }

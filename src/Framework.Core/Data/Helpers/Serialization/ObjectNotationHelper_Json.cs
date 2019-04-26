@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="object1">The object to serialize.</param>
         /// <param name="objectName">The name of the output tag to use.</param>
         /// <returns>The Json string serializing the specified object.</returns>
-        public static String ToJson(this object object1, String objectName)
+        public static string ToJson(this object object1, String objectName)
         {
             String resultString = "";
             IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -46,9 +46,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                 DataValueType dataValueType = object1.GetValueType();
                 if ((dataValueType == DataValueType.Date) ||
                     (dataValueType == DataValueType.Text))
-                    resultString += ObjectNotationHelper_Json.GetTextValue(object1.GetString());
+                    resultString += ObjectNotationHelper_Json.GetTextValue(ObjectHelper.ToString(object1));
                 else
-                    resultString += object1.GetString();
+                    resultString += ObjectHelper.ToString(object1);
             }
             return resultString;
         }
@@ -59,7 +59,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             /// <param name="dataTable">The data table to serialize.</param>
             /// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
             /// <returns>The Json string serializing the specified data table.</returns>
-            public static String ToJson(this DataTable dataTable, Boolean isFiltered = false)
+            public static string ToJson(this DataTable dataTable, bool isFiltered = false)
         {
             String resultString = "";
             IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="count">The number of items to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, out int count, Boolean isFiltered = false)
+        //public static string ToJson(this OleDbDataReader oleDbDataReader, String nodeName, out int count, bool isFiltered = false)
         //{
         //    String resultString = "";
         //    IFormatProvider cultureInfo = new CultureInfo("en-US", true);
@@ -111,7 +111,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         //    // we go through the data table rows
         //    if (oleDbDataReader != null)
         //    {
-        //        List<String> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
+        //        List<string> columnNames = Enumerable.Range(0, oleDbDataReader.FieldCount).Select(oleDbDataReader.GetName).ToList();
         //        int j = 0;
         //        while (oleDbDataReader.Read())
         //        {
@@ -145,7 +145,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         ///// <param name="nodeName">The name of the node to consider.</param>
         ///// <param name="isFiltered">Indicates whether only relevant information is put in the xml string.</param>
         ///// <returns>The Xml string serializing the specified data table.</returns>
-        //public static String ToJson(this OleDbDataReader oleDbDataReader, String nodeName, Boolean isFiltered = false)
+        //public static string ToJson(this OleDbDataReader oleDbDataReader, String nodeName, bool isFiltered = false)
         //{
         //    int count = 0;
         //    return ObjectNotationHelper_Json.ToJson(oleDbDataReader, nodeName, out count, isFiltered);
@@ -304,7 +304,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         public static void FromJson(
             this DataSet dataSet,
             String jsonString,
-            List<String> tableNames,
+            List<string> tableNames,
             bool isAppend = false)
         {
             foreach (String tableName in tableNames)
@@ -317,7 +317,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="jsonString">The xml string to parse.</param>
         /// <param name="nodeName">Name of the node.</param>
         /// <returns>The value of the specified Json node in the specified xml string.</returns>
-        public static String GetJsonNodeValue(
+        public static string GetJsonNodeValue(
             this String jsonString,
             String nodeName)
         {

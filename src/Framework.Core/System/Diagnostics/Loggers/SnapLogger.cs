@@ -9,7 +9,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
     /// </summary>
     public class SnapLogger : Logger
     {
-
         // ------------------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------------------
@@ -42,16 +41,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String folderPath,
             String fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
-            Boolean isVerbose = false,
+            bool isVerbose = false,
             String uiCulture = null,
-            Predicate<LogEvent> eventFinder = null,
+            Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
             : base(name, LogFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 
         #endregion
-
 
         // ------------------------------------------
         // SERIALIZATION / UNSERIALIZATION
@@ -65,16 +63,20 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
-        public override String ToString(
-            Log log,
-            List<String> attributeNames = null)
+        public override string ToString(
+            ILog log,
+            List<string> attributeNames = null)
         {
             if (log == null) return "";
 
             String st = "";
             if (log.Events != null)
-                foreach (LogEvent logEvent in log.Events)
-                    st += this.ToString(logEvent);
+            {
+                foreach (ILogEvent logEvent in log.Events)
+                {
+                    st += ToString(logEvent);
+                }
+            }
 
             return st;
         }
@@ -85,19 +87,19 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logEvent">The log event to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified event.</returns>
-        public override String ToString(
-            LogEvent logEvent,
-            List<String> attributeNames = null)
+        public override string ToString(
+            ILogEvent logEvent,
+            List<string> attributeNames = null)
         {
             if (logEvent == null) return "";
 
-            String indent = new string('\t', (logEvent.Level <= 0 ? 0 : logEvent.Level - 1));
+            String indent = new string('\t', logEvent.Level <= 0 ? 0 : logEvent.Level - 1);
 
-            String st = logEvent.Date + indent + " - " + logEvent.Kind.ToString() + ": " + logEvent.GetTitleText(this.UICulture) + 
-                (logEvent.Description !=null ? " | " +  logEvent.GetDescriptionText(this.UICulture) : "") + Environment.NewLine;
+            String st = logEvent.Date + indent + " - " + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture)
+                + (logEvent.Description !=null ? " | " +  logEvent.GetDescription(UICulture) : "") + Environment.NewLine;
 
-            if ((logEvent is LogEvent) && ((logEvent as LogEvent).Log != null))
-                st += this.ToString((logEvent as LogEvent).Log);
+            if ((logEvent is LogEvent) && ((logEvent as LogEvent)?.Log != null))
+                st += ToString((logEvent as LogEvent)?.Log);
 
             return st;
         }
@@ -106,16 +108,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified record.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        public override Boolean WriteEvent(
-            LogEvent logEvent)
+        public override bool WriteEvent(
+            ILogEvent logEvent)
         {
-            if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
-                return this.Write(this.ToString(logEvent));
+            if (EventFinder?.Invoke(logEvent) != false)
+                return Write(ToString(logEvent));
             else
                 return false;
         }
 
         #endregion
-
     }
 }

@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Runtime.Application.Navigation
     /// This enumerates the possible kinds of action.
     /// </summary>
     [Serializable()]
-    [XmlType("ActionKind", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("ActionKind", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum ActionKind
     {

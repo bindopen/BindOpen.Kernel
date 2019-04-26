@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// Action name of this instance.
         /// </summary>
         [XmlAttribute("action")]
-        public String ActionName
+        public string ActionName
         {
             set
             {
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// The value of this instance.
         /// </summary>
         [XmlAttribute("value")]
-        public String ValueScript
+        public string ValueScript
         {
             set
             {
@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public Boolean GetValue(ScriptInterpreter scriptInterpreter = null, ScriptVariableSet scriptVariableSet = null)
+        public Boolean GetValue(ScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
             String value = this.ValueScript;
 

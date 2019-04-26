@@ -4,17 +4,11 @@ using BindOpen.Framework.Databases.Extensions.Carriers;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
-
     /// <summary>
     /// This class represents an simple database data query.
     /// </summary>
-    public class BasicDbDataQuery : DbDataQuery
+    public class BasicDbDataQuery : DbDataQuery, IBasicDbDataQuery
     {
-
-#region Variables
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -42,12 +36,12 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// From clause of this instance.
         /// </summary>
-        public List<DbDataQueryFromStatement> FromClauses { get; set; } = new List<DbDataQueryFromStatement>();
+        public List<IDbDataQueryFromStatement> FromClauses { get; set; } = new List<IDbDataQueryFromStatement>();
 
         /// <summary>
         /// Order by statements of this instance.
         /// </summary>
-        public List<DbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<DbDataQueryOrderByStatement>();
+        public List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbDataQueryOrderByStatement>();
 
         #endregion
 

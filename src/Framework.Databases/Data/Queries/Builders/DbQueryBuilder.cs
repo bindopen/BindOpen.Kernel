@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Extensions.Runtime.Connectors;
+using BindOpen.Framework.Databases.Extensions.Connectors;
 using BindOpen.Framework.Databases.Extensions.Scriptwords;
 
 namespace BindOpen.Framework.Databases.Data.Queries.Builders
@@ -59,7 +59,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="dataModuleName">The data module name to consider.</param>
         /// <remarks>If not found, it returns the specified data module name.</remarks>
-        protected String GetDatabaseName(String dataModuleName)
+        protected string GetDatabaseName(string dataModuleName)
         {
             if (this._appScope?.DataSourceService == null)
                 return dataModuleName;
@@ -74,10 +74,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
-            DbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        public ILog BuildQuery(
+            IDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             queryString = "";
             if (query is BasicDbDataQuery basicDbDataQuery)
@@ -95,10 +95,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// into the specified string MS Sql Server query.
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
-        protected virtual Log Build(
-            BasicDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        protected virtual ILog Build(
+            IBasicDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             queryString = "";
             return new Log();
@@ -111,15 +111,15 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
-            BasicDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        public ILog BuildQuery(
+            IBasicDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             queryString = "";
 
             // we instantiate the logger and the script interpreter
-            Log log = new Log();
+            ILog log = new Log();
 
             // we check that the data query exists
             if (query == null)
@@ -159,10 +159,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected virtual Log Build(
-            AdvancedDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        protected virtual ILog Build(
+            IAdvancedDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             queryString = "";
             return new Log();
@@ -176,13 +176,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public Log BuildQuery(
-            AdvancedDbDataQuery query,
-            ScriptVariableSet scriptVariableSet,
-            out String queryString)
+        public ILog BuildQuery(
+            IAdvancedDbDataQuery query,
+            IScriptVariableSet scriptVariableSet,
+            out string queryString)
         {
             queryString = "";
-            Log log = new Log();
+            ILog log = new Log();
 
             // we check that the data query exists
             if (query == null)

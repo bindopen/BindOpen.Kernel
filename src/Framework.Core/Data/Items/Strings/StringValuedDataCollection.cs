@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Core.Data.Items.Strings
         /// </summary>
         /// <param name="name">The name of the item whose values are to be updated.</param>
         /// <param name="values">The new values of the item.</param>
-        public void SetItemValue(String name, List<String> values)
+        public void SetItemValue(String name, List<string> values)
         {
             StringValuedDataItem basicDataItem = this.GetItemWithName(name);
             if (basicDataItem != null)

@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
-
     // --------------------------------------------------
     // ENUMERATIONS
     // --------------------------------------------------
@@ -14,25 +13,29 @@ namespace BindOpen.Framework.Core.Data.Common
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
     [Serializable()]
-    [XmlType("RequirementLevel", Namespace = "http://meltingsoft.com/bindopen/xsd")]
+    [XmlType("RequirementLevel", Namespace = "https://bindopen.org/xsd")]
     public enum RequirementLevel
     {
         /// <summary>
         /// No special requirement.
         /// </summary>
         None,
+
         /// <summary>
         /// Forbidden.
         /// </summary>
         Forbidden,
+
         /// <summary>
         /// Optional.
         /// </summary>
         Optional,
+
         /// <summary>
         /// Exclusively optional i.e. if the data item is a group then only it can have value.
         /// </summary>
         OptionalExclusively,
+
         /// <summary>
         /// Required.
         /// </summary>
@@ -40,7 +43,6 @@ namespace BindOpen.Framework.Core.Data.Common
     }
 
     #endregion
-
 
     // --------------------------------------------------
     // EXTENSION
@@ -59,16 +61,14 @@ namespace BindOpen.Framework.Core.Data.Common
         /// </summary>
         /// <param name="requirementLevel">The requirement level to consider.</param>
         /// <returns>The result object.</returns>
-        public static Boolean IsPossible(this RequirementLevel requirementLevel)
+        public static bool IsPossible(this RequirementLevel requirementLevel)
         {
-            return ((requirementLevel == RequirementLevel.Optional) |
-                (requirementLevel == RequirementLevel.OptionalExclusively) |
-                (requirementLevel == RequirementLevel.Required));
+            return (requirementLevel == RequirementLevel.Optional)
+                || (requirementLevel == RequirementLevel.OptionalExclusively)
+                || (requirementLevel == RequirementLevel.Required);
         }
 
     }
 
     #endregion
-
-
 }

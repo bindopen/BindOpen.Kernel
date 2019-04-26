@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Business.Conditions;
+using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Business.Cases
@@ -9,8 +9,8 @@ namespace BindOpen.Framework.Core.Data.Business.Cases
     /// This class represents a business case.
     /// </summary>
     [Serializable()]
-    [XmlType("BusinessCase", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot(ElementName = "businessCase", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
+    [XmlType("BusinessCase", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "businessCase", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BusinessCase :DescribedDataItem
     {
         // ------------------------------------------

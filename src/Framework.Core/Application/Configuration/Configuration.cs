@@ -1,26 +1,22 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.ComponentModel;
+using System.Linq;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
     /// <summary>
     /// This class represents a configuration.
     /// </summary>
-    [XmlType("Configuration", Namespace = "http://meltingsoft.com/bindopen/xsd")]
-    [XmlRoot("configuration", Namespace = "http://meltingsoft.com/bindopen/xsd", IsNullable = false)]
-    public class Configuration : DataElementSet
+    [XmlType("Configuration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class Configuration : DataElementSet, IConfiguration
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -29,10 +25,29 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Properties
 
         /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [XmlAttribute("id")]
+        public string Id { get; set; } = null;
+
+        /// <summary>
+        /// Specification of the ID of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool IdSpecified => !string.IsNullOrEmpty(this.Id);
+
+        /// <summary>
+        /// Name of this instance.
+        /// </summary>
+        [XmlAttribute("name")]
+        [DefaultValue("")]
+        public string Name { get; set; } = "";
+
+        /// <summary>
         /// Current file path of this instance.
         /// </summary>
         [XmlIgnore()]
-        public String CurrentFilePath
+        public string CurrentFilePath
         {
             get;
             set;
@@ -42,7 +57,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Creation date of this instance.
         /// </summary>
         [XmlElement("creationDate")]
-        public String CreationDate
+        public string CreationDate
         {
             get;
             set;
@@ -52,18 +67,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Last modification date of this instance.
         /// </summary>
         [XmlElement("lastModificationDate")]
-        public String LastModificationDate
+        public string LastModificationDate
         {
             get;
             set;
         }
-
-        /// <summary>
-        /// The application scope of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public IAppScope AppScope { get; set; } = null;
-
         #endregion
 
         // -------------------------------------------------------------
@@ -75,17 +83,16 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
-        public Configuration()
-            : this(null)
+        public Configuration() : base()
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public Configuration(IAppScope appScope, params DataElement[] items) : this(null, appScope, items)
+        public Configuration(params IDataElement[] items)
+            : base(items)
         {
         }
 
@@ -93,12 +100,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public Configuration(string filePath, IAppScope appScope, params DataElement[] items) : base(items)
+        public Configuration(string filePath, params IDataElement[] items)
+            : base(items)
         {
-            this.CurrentFilePath = filePath;
-            this.AppScope = appScope;
+            CurrentFilePath = filePath;
         }
 
         #endregion
@@ -110,25 +116,26 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Mutators
 
         /// <summary>
-        /// Sets the specified value.
+        /// Adds the specified elements into the specified group.
         /// </summary>
-        /// <param name="value">The value to set.</param>
-        /// <param name="propertyName">The calling property name to consider.</param>
-        public void Set(Object value, [CallerMemberName] String propertyName = null)
+        /// <param name="groupId">The ID of the group.</param>
+        /// <param name="items">The items to add.</param>
+        /// <returns>Returns this instance.</returns>
+        public IConfiguration AddGroup(string groupId, params IDataElement[] items)
         {
-            if (propertyName != null)
+            if (items!=null)
             {
-                DataElementAttribute attribute = null;
-                PropertyInfo propertyInfo = this.GetPropertyInfo(
-                    this.GetType(),
-                    propertyName,
-                    new Type[] { typeof(DetailPropertyAttribute) },
-                    ref attribute,
-                    this.AppScope);
+                foreach (DataElement element in items.Cast<DataElement>())
+                {
+                    if (element.Specification == null)
+                        element.NewSpecification();
+                    element.Specification.GroupId = groupId;
 
-                if (attribute is DetailPropertyAttribute)
-                    this.AddElement(attribute.Name, value, propertyInfo.PropertyType.GetValueType());
+                    Add(element);
+                }
             }
+
+            return this;
         }
 
         #endregion
@@ -140,72 +147,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Accessors
 
         /// <summary>
-        /// Gets the specified value.
+        /// Returns the identifier key.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="propertyName">The calling property name to consider.</param>
-        public T Get<T>([CallerMemberName] String propertyName = null)
+        public virtual string Key()
         {
-            if (propertyName!=null)
-            {
-                DataElement element = this.GetItem(propertyName);
-                if (element!=null)
-                {
-                    return (T)this.GetElementItemObject(propertyName, this.AppScope);
-                }
-                else
-                {
-                    DataElementAttribute attribute = null;
-                    PropertyInfo propertyInfo = this.GetPropertyInfo(
-                        this.GetType(),
-                        propertyName,
-                        new Type[] { typeof(DetailPropertyAttribute) },
-                        ref attribute,
-                        this.AppScope);
-
-                    if (attribute is DetailPropertyAttribute)
-                    {
-                        Object value = this.GetElementItemObject(attribute.Name, this.AppScope);
-                        if (value is T t)
-                            return t;
-                    }
-                }
-            }
-
-            return default(T);
-        }
-
-        /// <summary>
-        /// Gets the specified value.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="propertyName">The calling property name to consider.</param>
-        /// <param name="defaultValue">The default value to consider.</param>
-        public T Get<T>(T defaultValue, [CallerMemberName] String propertyName = null) where T : struct, IConvertible
-        {
-            if (propertyName != null)
-            {
-                DataElement element = this.GetItem(propertyName);
-                if (element != null)
-                {
-                    return (T)this.GetElementItemObject(propertyName, this.AppScope);
-                }
-                else
-                {
-                    DataElementAttribute attribute = null;
-                    PropertyInfo propertyInfo = this.GetPropertyInfo(
-                        this.GetType(),
-                        propertyName,
-                        new Type[] { typeof(DetailPropertyAttribute) },
-                        ref attribute,
-                        this.AppScope);
-
-                    if (attribute is DetailPropertyAttribute)
-                        return (this.GetElementItemObject(attribute.Name, this.AppScope) as String)?.ToEnum<T>(defaultValue) ?? default(T); ;
-                }
-            }
-
-            return default(T);
+            return this.Id;
         }
 
         #endregion
@@ -220,32 +166,19 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(Log log = null)
+        public override void UpdateStorageInfo(ILog log = null)
         {
-            //this.UpdateFromObject<DetailPropertyAttribute>(this);
-
             base.UpdateStorageInfo(log);
         }
 
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, Log log = null)
+        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, log);
-
-            //this.UpdateFromElementSet<DetailPropertyAttribute>(this);
+            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
-
-        #endregion
-
-        // -------------------------------------------------------------
-        // LOADING / SAVING
-        // -------------------------------------------------------------
-
-        #region Loading_Saving
 
         /// <summary>
         /// Saves this instance.
@@ -253,41 +186,17 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="log">The output log.</param>
         /// <returns>True if this instance has been</returns>
-        public override Boolean SaveXml(String filePath, Log log = null)
+        public bool SaveXml(string filePath, ILog log = null)
         {
-            if (base.SaveXml(filePath, log))
+            UpdateStorageInfo(log);
+
+            if (XmlHelper.SaveXml(this, filePath, log))
             {
-                this.CurrentFilePath = filePath;
+                CurrentFilePath = filePath;
                 return true;
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of Configuration class from a xml file.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
-        /// <returns>The Xml operation project defined in the Xml file.</returns>
-        public new static T Load<T>(
-            String filePath,
-            Log log,
-            IAppScope appScope = null,
-            XmlSchemaSet xmlSchemaSet = null,
-            Boolean mustFileExist = true) where T : Configuration, new()
-        {
-            T configuration = DataItem.Load<T>(filePath, log, appScope, xmlSchemaSet, mustFileExist) as T;
-            if (configuration != null)
-            {
-                configuration.CurrentFilePath = filePath;
-                configuration.AppScope = appScope;
-            }
-
-            return configuration;
         }
 
         #endregion

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Scopes.Interfaces;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Interfaces;
 using BindOpen.Framework.Core.Extensions.Configuration.Tasks;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Core.System.Diagnostics.Interfaces;
+using BindOpen.Framework.Core.System.Scripting.Interfaces;
 
 namespace BindOpen.Framework.Core.Application.Commands
 {
-
     /// <summary>
     /// This class represents a command.
     /// </summary>
@@ -51,18 +51,14 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <summary>
         /// Instantiates a new instance of the Command class.
         /// </summary>
-        /// <param name="kind">The kind of command to consider.</param>
-        protected Command(CommandKind kind)
-            : this(kind, null)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Command class.
-        /// </summary>
         /// <param name="kind">The kidn of command to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        protected Command(CommandKind kind, String name = null) : base(name,null, null, "command_")
+        /// <param name="items">The items to consider.</param>
+        protected Command(
+            CommandKind kind,
+            string name = null,
+            params IDataElement[] items)
+            : base(name, items)
         {
             this.Kind = kind;
         }
@@ -76,24 +72,6 @@ namespace BindOpen.Framework.Core.Application.Commands
         #region Execution
 
         /// <summary>
-        /// Executes this instance.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <param name="runtimeMode">The runtime mode to consider.</param>
-        /// <returns>The log of execution log.</returns>
-        public void Execute(
-            Log log,
-            IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            RuntimeMode runtimeMode = RuntimeMode.Normal)
-        {
-            log = (log ?? new Log());
-            log.Append(this.ExecuteWithResult(out string resultString, appScope, scriptVariableSet, runtimeMode));
-        }
-
-        /// <summary>
         /// Executes this instance with result.
         /// </summary>
         /// <param name="resultString">The result to get.</param>
@@ -101,17 +79,12 @@ namespace BindOpen.Framework.Core.Application.Commands
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>The log of execution log.</returns>
-        public virtual Log ExecuteWithResult(
-            out String resultString,
+        public abstract ILog ExecuteWithResult(
+            out string resultString,
             IAppScope appScope = null,
-            ScriptVariableSet scriptVariableSet = null,
-            RuntimeMode runtimeMode = RuntimeMode.Normal)
-        {
-            resultString = "";
-            return new Log();
-        }
+            IScriptVariableSet scriptVariableSet = null,
+            RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         #endregion
-
     }
 }

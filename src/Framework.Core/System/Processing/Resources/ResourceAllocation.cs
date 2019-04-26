@@ -5,13 +5,11 @@ using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.System.Processing.Resources
 {
-
     /// <summary>
     /// This class represents an resource allocation.
     /// </summary>
     public class ResourceAllocation : StoredDataItem
     {
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -21,7 +19,7 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
         /// <summary>
         /// The allocated resource ID of this instance.
         /// </summary>
-        public String AllocatedResourceId
+        public string AllocatedResourceId
         {
             get;
             set;
@@ -30,7 +28,7 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
         /// <summary>
         /// The owner ID of this instance.
         /// </summary>
-        public String OwnerId
+        public string OwnerId
         {
             get;
             set;
@@ -38,7 +36,6 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
 
         #endregion
 
-     
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -61,12 +58,11 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
             String aAllocatedResourceId,
             String aOwnerId=null)
         {
-            this.CreationDate = DateTime.Now.GetString();
+            this.CreationDate = ObjectHelper.ToString(DateTime.Now);
             this.AllocatedResourceId = aAllocatedResourceId;
             this.OwnerId = aOwnerId;
         }
 
         #endregion
-
     }
 }
