@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Specification.Design;
 
 namespace BindOpen.Framework.Core.Data.Specification.Design
 {

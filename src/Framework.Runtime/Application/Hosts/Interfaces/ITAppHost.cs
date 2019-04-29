@@ -16,27 +16,27 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// The interface defines the application host.
     /// </summary>
-    public interface ITBdoAppHost<Q> : ITBdoAppService<Q>, IBaseBdoAppHost
-        where Q : BdoAppConfiguration, new()
+    public interface ITAppHost<Q> : ITAppService<Q>, IBaseBdoAppHost
+        where Q : AppConfiguration, new()
     {
         // Execution ---------------------------------
 
         /// <summary>
         /// The application settings.
         /// </summary>
-        ITBdoAppSettings<Q> Settings { get; }
+        ITAppSettings<Q> Settings { get; }
 
         /// <summary>
         /// The application settings.
         /// </summary>
-        T GetSettings<T>() where T : TBdoAppSettings<Q>;
+        T GetSettings<T>() where T : TAppSettings<Q>;
 
         /// <summary>
         /// Configures the application host.
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        ITBdoAppHost<Q> Configure(Action<ITBdoAppHostOptions<Q>> setupOptions);
+        ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions);
 
         // Process ----------------------------------
 
@@ -45,14 +45,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        new ITBdoAppHost<Q> Start(ILog log = null);
+        new ITAppHost<Q> Start(ILog log = null);
 
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the application host to consider.</returns>
-        new ITBdoAppHost<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+        new ITAppHost<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
 
         // Settings ----------------------------------
 
@@ -76,7 +76,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider.</param>
         /// <returns>Returns the application settings.</returns>
-        ITBdoAppSettings<Q> LoadSettings(
+        ITAppSettings<Q> LoadSettings(
             string filePath,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,

@@ -17,6 +17,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The base options.
         /// </summary>
-        IBaseBdoAppHostOptions BaseOptions { get; }
+        IBaseAppHostOptions BaseOptions { get; }
     }
 }

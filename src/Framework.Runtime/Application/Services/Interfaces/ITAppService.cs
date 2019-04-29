@@ -9,10 +9,10 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// The interface defines the application service.
     /// </summary>
-    public interface ITBdoAppService<Q> : IScopedService
-        where Q : BdoAppConfiguration, new()
+    public interface ITAppService<Q> : IScopedService
+        where Q : AppConfiguration, new()
     {
-        ITBdoAppHostOptions<Q> Options { get; }
+        ITAppHostOptions<Q> Options { get; }
 
         // Execution ---------------------------------
 
@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// This event is triggered when the application is successfully initialized.
         /// </summary>
-        event TBdoAppService<Q>.OnLoadCompletedEventHandler OnLoadCompleted;
+        event TAppService<Q>.OnLoadCompletedEventHandler OnLoadCompleted;
 
         // Process -----------------------------------
 
@@ -60,13 +60,13 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the application host to consider.</returns>
-        ITBdoAppService<Q> Start(ILog log = null);
+        ITAppService<Q> Start(ILog log = null);
 
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the application host to consider.</returns>
-        ITBdoAppService<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+        ITAppService<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }
 }

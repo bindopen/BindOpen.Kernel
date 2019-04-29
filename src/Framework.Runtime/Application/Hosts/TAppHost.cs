@@ -26,8 +26,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class TBdoAppHost<Q> : TBdoAppService<Q>, ITBdoAppHost<Q>
-        where Q : BdoAppConfiguration, new()
+    public class TAppHost<Q> : TAppService<Q>, ITAppHost<Q>
+        where Q : AppConfiguration, new()
     {
         // ------------------------------------------
         // PROPERTIES
@@ -38,12 +38,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The settings of this instance.
         /// </summary>
-        public ITBdoAppSettings<Q> Settings => Options?.Settings;
+        public ITAppSettings<Q> Settings => Options?.Settings;
 
         /// <summary>
         /// The base options of this instance.
         /// </summary>
-        public IBaseBdoAppHostOptions BaseOptions => Options?.Settings as IBaseBdoAppHostOptions;
+        public IBaseAppHostOptions BaseOptions => Options?.Settings as IBaseAppHostOptions;
 
         /// <summary>
         /// The set of user settings of this intance.
@@ -61,7 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoAppHost class.
         /// </summary>
-        public TBdoAppHost() : base()
+        public TAppHost() : base()
         {
             // we initiate the options
             Options.SetAppFolder(Directory.GetCurrentDirectory());
@@ -85,7 +85,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        public ITBdoAppHost<Q> Configure(Action<ITBdoAppHostOptions<Q>> setupOptions)
+        public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
         {
             setupOptions?.Invoke(Options);
 
@@ -123,7 +123,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 Name = "[unkwnon]"
             };
-            return (Options?.Settings as ITBdoAppSettings<Q>)?.Configuration?.Credentials.Find(p => p.KeyEquals(name));
+            return (Options?.Settings as ITAppSettings<Q>)?.Configuration?.Credentials.Find(p => p.KeyEquals(name));
         }
 
         // Paths --------------------------------------
@@ -189,20 +189,20 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         private string GetDefaultSettingsFilePath()
         {
             // by default, settings file is {{runtime folder}}\settings\appconfig.xml
-            string defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + @"settings\".ToPath() + TBdoAppHostOptions<Q>.__DefaultSettingsFileName;
+            string defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + @"settings\".ToPath() + TAppHostOptions<Q>.__DefaultSettingsFileName;
 
             if (!File.Exists(defaultSettingsFilePath))
             {
                 // by default, settings file is {{runtime folder}}\appconfig.xml
-                defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + TBdoAppHostOptions<Q>.__DefaultSettingsFileName;
+                defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + TAppHostOptions<Q>.__DefaultSettingsFileName;
                 if (!File.Exists(defaultSettingsFilePath))
                 {
                     // then {{application folder}}\app_data\appconfig.xml
-                    defaultSettingsFilePath = string.IsNullOrEmpty(Options?.AppFolderPath) ? null : Options?.AppFolderPath + @"app_data\".ToPath() + TBdoAppHostOptions<Q>.__DefaultSettingsFileName;
+                    defaultSettingsFilePath = string.IsNullOrEmpty(Options?.AppFolderPath) ? null : Options?.AppFolderPath + @"app_data\".ToPath() + TAppHostOptions<Q>.__DefaultSettingsFileName;
                     if (!File.Exists(defaultSettingsFilePath))
                     {
                         // then {{application folder}}\appconfig.xml
-                        defaultSettingsFilePath = Options?.AppFolderPath + TBdoAppHostOptions<Q>.__DefaultSettingsFileName;
+                        defaultSettingsFilePath = Options?.AppFolderPath + TAppHostOptions<Q>.__DefaultSettingsFileName;
                     }
                 }
             }
@@ -222,18 +222,18 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public new virtual ITBdoAppHost<Q> Start(ILog log = null)
+        public new virtual ITAppHost<Q> Start(ILog log = null)
         {
-            return base.Start(log) as TBdoAppHost<Q>;
+            return base.Start(log) as TAppHost<Q>;
         }
 
         /// <summary>
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public new virtual ITBdoAppHost<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public new virtual ITAppHost<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
-            return base.End(executionStatus) as TBdoAppHost<Q>;
+            return base.End(executionStatus) as TAppHost<Q>;
         }
 
         #endregion
@@ -294,7 +294,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     if (string.IsNullOrEmpty(settingsFilePath))
                         settingsFilePath = GetDefaultSettingsFilePath();
 
-                    ITBdoAppSettings<Q> appSettings = LoadSettings(settingsFilePath, _appScope, null, log);
+                    ITAppSettings<Q> appSettings = LoadSettings(settingsFilePath, _appScope, null, log);
 
                     if (log.HasErrorsOrExceptions())
                     {
@@ -318,7 +318,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         if (Options?.Settings!=null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
-                            Options.Settings.ApplicationInstanceName = _ApplicationInstanceName;
+                            Options.Settings.ApplicationInstanceName = AppConfiguration._ApplicationInstanceName;
                         }
 
                         // we update the log folder path
@@ -353,7 +353,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 }
 
                 // if at this end, neither exceptions nor errors occured then
-                if ((GetType() == typeof(TBdoAppHost<Q>)) && (!log.HasErrorsOrExceptions()))
+                if ((GetType() == typeof(TAppHost<Q>)) && (!log.HasErrorsOrExceptions()))
                 {
                     // we indicate that the configuration has been well loaded
                     log.AddMessage("Application configuration loaded");
@@ -368,7 +368,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             }
 
             _isLoadCompleted = !log.HasErrorsOrExceptions();
-            if (GetType() == typeof(TBdoAppHost<Q>))
+            if (GetType() == typeof(TAppHost<Q>))
                 LoadComplete();
 
             return log;
@@ -382,7 +382,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
-        public virtual ITBdoAppSettings<Q> LoadSettings(
+        public virtual ITAppSettings<Q> LoadSettings(
             string filePath,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
@@ -390,27 +390,13 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             XmlSchemaSet xmlSchemaSet = null)
         {
             Q appConfiguration = XmlHelper.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet);
-            return new TBdoAppSettings<Q>(appScope, appConfiguration);
+            return new TAppSettings<Q>(appScope, appConfiguration);
         }
 
-        public T GetSettings<T>() where T : TBdoAppSettings<Q>
+        public T GetSettings<T>() where T : TAppSettings<Q>
         {
             return Settings as T;
         }
-
-        #endregion
-
-        // ------------------------------------------
-        // MISCELLANEOUS
-        // ------------------------------------------
-
-        #region Miscellaneous
-
-        /// <summary>
-        /// Gets the name of the application instance.
-        /// </summary>
-        /// <returns>Returns the name of the application instance.</returns>
-        public static string _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
 
         #endregion
     }

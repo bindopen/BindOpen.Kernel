@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -13,9 +14,9 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
     /// <summary>
     /// This class represents a DTO application configuration.
     /// </summary>
-    [XmlType("BdoAppConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("AppConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("app.config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class BdoAppConfiguration : Core.Application.Configuration.Configuration, IBdoAppConfiguration
+    public class AppConfiguration : Core.Application.Configuration.Configuration, IAppConfiguration
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -46,18 +47,18 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAppConfiguration class.
+        /// Instantiates a new instance of the AppConfiguration class.
         /// </summary>
-        public BdoAppConfiguration()
+        public AppConfiguration()
             : base()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAppConfiguration class.
+        /// Instantiates a new instance of the AppConfiguration class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public BdoAppConfiguration(params IDataElement[] items)
+        public AppConfiguration(params IDataElement[] items)
             : base(items)
         {
         }
@@ -124,7 +125,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         {
             ILog log = new Log();
 
-            if (item is BdoAppConfiguration configuration)
+            if (item is AppConfiguration configuration)
             {
                 log.Append(base.Update(
                     configuration,
@@ -150,6 +151,20 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
 
             return log;
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // MISCELLANEOUS
+        // ------------------------------------------
+
+        #region Miscellaneous
+
+        /// <summary>
+        /// Gets the name of the application instance.
+        /// </summary>
+        /// <returns>Returns the name of the application instance.</returns>
+        public static string _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
 
         #endregion
     }

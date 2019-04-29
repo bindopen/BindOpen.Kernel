@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Application.Entities
     [Serializable()]
     [XmlType("ApplicationEntity", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "applicationEntity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class ApplicationEntity : Entity
+    public class ApplicationEntity : DataEntity
     {
         // ------------------------------------------
         // PROPERTIES

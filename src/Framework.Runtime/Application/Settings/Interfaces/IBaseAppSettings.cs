@@ -4,7 +4,7 @@ using BindOpen.Framework.Runtime.System;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
-    public interface IBaseBdoAppSettings
+    public interface IBaseAppSettings
     {
         string ApplicationInstanceId { get; set; }
 
