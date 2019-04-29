@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using BindOpen.Framework.Core.Application.Options;
-using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
@@ -8,7 +7,6 @@ using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Application.Arguments
@@ -36,7 +34,7 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <returns>Returns the log of argument building.</returns>
         public static IOptionSet UpdateOptions(
             this string[] arguments,
-            OptionSpecSet optionSpecificationSet,
+            IOptionSpecSet optionSpecificationSet,
             bool allowMissingItems = false,
             ILog log = null)
         {
@@ -118,7 +116,9 @@ namespace BindOpen.Framework.Core.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static ILog Check(this IDataElementSet optionSet, IOptionSpecSet optionSpecificationSet, bool allowMissingItems = false)
+        public static ILog Check(this IDataElementSet optionSet,
+            IOptionSpecSet optionSpecificationSet,
+            bool allowMissingItems = false)
         {
             ILog log = new Log();
 

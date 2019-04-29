@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Scripting

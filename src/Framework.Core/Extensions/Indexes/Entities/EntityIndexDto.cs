@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Entities
 {

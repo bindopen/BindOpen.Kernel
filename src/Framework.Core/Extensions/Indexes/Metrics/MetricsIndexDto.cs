@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definitions.Metrics;
+using BindOpen.Framework.Core.Extensions.Items.Metrics;
+using BindOpen.Framework.Core.Extensions.Items.Metrics.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Metrics
 {

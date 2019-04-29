@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers

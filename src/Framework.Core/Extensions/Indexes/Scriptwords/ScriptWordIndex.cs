@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {

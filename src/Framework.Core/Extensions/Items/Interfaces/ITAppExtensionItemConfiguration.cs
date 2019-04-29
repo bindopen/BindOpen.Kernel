@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {
