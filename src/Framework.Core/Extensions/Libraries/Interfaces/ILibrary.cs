@@ -2,16 +2,17 @@
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Definitions;
-using BindOpen.Framework.Core.Extensions.Definitions.Libraries;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Libraries.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {
     public interface ILibrary : INamedDataItem
     {
         Assembly Assembly { get; set; }
-        ILibraryDefinitionDto Definition { get; set; }
+        ILibraryDefinition Definition { get; set; }
         string DefinitionName { get; }
         DataSourceKind SourceKind { get; set; }
 

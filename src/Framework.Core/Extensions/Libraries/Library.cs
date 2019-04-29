@@ -8,16 +8,16 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions;
-using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
-using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
-using BindOpen.Framework.Core.Extensions.Definitions.Entities;
-using BindOpen.Framework.Core.Extensions.Definitions.Handlers;
-using BindOpen.Framework.Core.Extensions.Definitions.Libraries;
-using BindOpen.Framework.Core.Extensions.Definitions.Metrics;
-using BindOpen.Framework.Core.Extensions.Definitions.Routines;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
+using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Handlers.Definition;
+using BindOpen.Framework.Core.Extensions.Libraries.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Metrics.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Routines.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {
@@ -104,7 +104,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
         /// The definition of this instance.
         /// </summary>
         [XmlIgnore()]
-        public ILibraryDefinitionDto Definition { get; set; } = null;
+        public ILibraryDefinition Definition { get; set; } = null;
 
         // Assemblies -------------------------------
 
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
         /// Instantiates a new instance of Library class from a library instance.
         /// </summary>
         /// <param name="definition">Business library definition to consider.</param>
-        public Library(ILibraryDefinitionDto definition)
+        public Library(ILibraryDefinition definition)
         {
             Definition = definition;
         }

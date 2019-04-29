@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {

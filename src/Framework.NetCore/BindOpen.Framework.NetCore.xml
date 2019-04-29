@@ -9,7 +9,7 @@
             This static class extends .Net core dependency injection namespace.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``0}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``0}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>
@@ -17,7 +17,7 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoAppHostOptions{``1}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoAppHosting``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``1}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>
@@ -45,7 +45,7 @@
             The BindOpen application host of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.#ctor(BindOpen.Framework.Runtime.Application.Hosts.ITBdoAppHost{`1})">
+        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.#ctor(BindOpen.Framework.Runtime.Application.Hosts.ITAppHost{`1})">
             <summary>
             Creates a new instance of the BdoHostedService class.
             </summary>

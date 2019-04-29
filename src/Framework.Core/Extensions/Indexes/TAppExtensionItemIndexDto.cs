@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes
 {

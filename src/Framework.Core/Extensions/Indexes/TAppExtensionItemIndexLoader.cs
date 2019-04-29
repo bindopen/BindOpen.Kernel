@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Indexes.Carriers;
 using BindOpen.Framework.Core.Extensions.Indexes.Connectors;
 using BindOpen.Framework.Core.Extensions.Indexes.Entities;

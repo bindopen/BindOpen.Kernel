@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+﻿using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {

@@ -1,12 +1,12 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
-using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
-using BindOpen.Framework.Core.Extensions.Definitions.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;

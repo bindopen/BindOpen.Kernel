@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Entities

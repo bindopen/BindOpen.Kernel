@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions.Formats;
+using BindOpen.Framework.Core.Extensions.Items.Formats.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Formats
 {

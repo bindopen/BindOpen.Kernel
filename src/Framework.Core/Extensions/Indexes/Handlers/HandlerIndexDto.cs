@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definitions.Handlers;
+using BindOpen.Framework.Core.Extensions.Items.Handlers;
+using BindOpen.Framework.Core.Extensions.Items.Handlers.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Handlers
 {

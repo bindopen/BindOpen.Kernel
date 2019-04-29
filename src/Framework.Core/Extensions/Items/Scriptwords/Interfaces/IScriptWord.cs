@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords

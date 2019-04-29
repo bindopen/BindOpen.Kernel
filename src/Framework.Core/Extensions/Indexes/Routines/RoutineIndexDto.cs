@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definitions.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Items.Routines.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Routines
 {

@@ -51,7 +51,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Extensions\Items\Metrics\Definition\Interfaces\IMetricsDefinition.cs" />
+    <Compile Include="Extensions\Items\Metrics\Definition\Interfaces\IMetricsDefinitionDto.cs" />
+    <Compile Include="Extensions\Items\Metrics\Definition\MetricsDefinition.cs" />
+    <Compile Include="Extensions\Items\Metrics\Definition\MetricsDefinitionDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\Elements\Schema\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Extensions\Items\Metrics\Definition\MetricsDefinitionDto.xsd" />
   </ItemGroup>
 
 </Project>

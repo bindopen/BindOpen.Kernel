@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Items.Schema;
-using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Entities
 {

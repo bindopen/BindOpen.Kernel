@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definitions;
-using BindOpen.Framework.Core.Extensions.Definitions.Libraries;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Libraries;
+using BindOpen.Framework.Core.Extensions.Libraries.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
@@ -20,8 +20,8 @@ namespace BindOpen.Framework.Core.Extensions
         T GetItemDefinitionWithUniqueId<T>(string uniqueId, string[] libraryNames = null) where T : IAppExtensionItemDefinition;
         List<ILibrary> GetLibraries(string[] names = null);
         ILibrary GetLibrary(string name);
-        ILibraryDefinitionDto GetLibraryDefinition(string name);
-        List<ILibraryDefinitionDto> GetLibraryDefinitions(string[] names = null);
+        ILibraryDefinition GetLibraryDefinition(string name);
+        List<ILibraryDefinition> GetLibraryDefinitions(string[] names = null);
         List<string> GetLibraryNames();
 
         void Initialize();

@@ -6,8 +6,8 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Definitions;
-using BindOpen.Framework.Core.Extensions.Definitions.Libraries;
+using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Libraries.Definition;
 using BindOpen.Framework.Core.Extensions.Libraries;
 using BindOpen.Framework.Core.System.Diagnostics;
 
@@ -116,7 +116,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="names">The names of the libraries to consider.</param>
         /// <returns>Returns the library definitions of this instance.</returns>
-        public List<ILibraryDefinitionDto> GetLibraryDefinitions(string[] names = null)
+        public List<ILibraryDefinition> GetLibraryDefinitions(string[] names = null)
         {
             return GetLibraries(names).Select(p => p.Definition).Where(p => p != null).ToList();
         }
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         /// <param name="name">The name of the library to consider.</param>
         /// <returns>The library with the specified name.</returns>
-        public ILibraryDefinitionDto GetLibraryDefinition(string name)
+        public ILibraryDefinition GetLibraryDefinition(string name)
         {
             ILibrary library = GetLibrary(name);
             return library?.Definition;
