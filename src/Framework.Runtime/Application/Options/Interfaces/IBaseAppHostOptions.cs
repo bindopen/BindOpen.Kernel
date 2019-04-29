@@ -9,12 +9,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
     /// <summary>
     /// The interface defines the base BDO application host options.
     /// </summary>
-    public interface IBaseBdoAppHostOptions
+    public interface IBaseAppHostOptions
     {
         /// <summary>
         /// The base settings.
         /// </summary>
-        IBaseBdoAppSettings BaseSettings { get; }
+        IBaseAppSettings BaseSettings { get; }
 
         /// <summary>
         /// The application module.

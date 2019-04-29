@@ -4,8 +4,8 @@ using BindOpen.Framework.Runtime.Application.Configuration;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
-    public interface ITBdoAppSettings<Q> : ITSettings<Q>, IBaseBdoAppSettings
-        where Q : BdoAppConfiguration, new()
+    public interface ITAppSettings<Q> : ITSettings<Q>, IBaseAppSettings
+        where Q : AppConfiguration, new()
     {
         void SetAppScope(IRuntimeAppScope appScope);
     }

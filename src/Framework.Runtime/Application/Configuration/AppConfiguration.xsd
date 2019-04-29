@@ -4,8 +4,8 @@
   <xs:include schemaLocation="../security/ApplicationCredential.xsd" />
   <xs:include schemaLocation="../../../bdo.core/data/common/Arrays.xsd" />
   
-  <xs:element name="app.config" type="bdo:BdoAppConfiguration" />
-  <xs:complexType name="BdoAppConfiguration">
+  <xs:element name="app.config" type="bdo:AppConfiguration" />
+  <xs:complexType name="AppConfiguration">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:UsableConfiguration">
         <xs:sequence>

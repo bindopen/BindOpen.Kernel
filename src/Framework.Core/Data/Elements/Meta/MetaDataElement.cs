@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Meta
         /// Creates a new specification of this instance.
         /// </summary>
         /// <returns>Returns True .</returns>
-        public override IDataElementSpec NewSpecification()
+        public override DataElementSpec NewSpecification()
         {
             return null;
         }

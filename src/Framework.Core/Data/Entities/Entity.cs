@@ -6,12 +6,12 @@ using BindOpen.Framework.Core.Data.Items;
 namespace BindOpen.Framework.Core.Data.Entities
 {
     /// <summary>
-    /// This class represents the business entity.
+    /// This class represents the data entity.
     /// </summary>
     [Serializable()]
-    [XmlType("Entity", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("DataEntity", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class Entity : DescribedDataItem
+    public class DataEntity : DescribedDataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Core.Data.Entities
         /// <summary>
         /// Instantiates a new instance of the BusinessEntity class.
         /// </summary>
-        public Entity() : base()
+        public DataEntity() : base()
         {
         }
 

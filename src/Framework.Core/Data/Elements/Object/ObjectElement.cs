@@ -178,7 +178,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override IDataElementSpec NewSpecification()
+        public override DataElementSpec NewSpecification()
         {
             return Specification = new ObjectElementSpec();
         }

@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         void SetItems(object[] items);
         void SwitchItems(object value1, object value2);
         void UpdateItem(object item, object aNewItem);
-        IDataElementSpec NewSpecification();
+        DataElementSpec NewSpecification();
 
         object GetObject(
             IAppScope appScope = null,

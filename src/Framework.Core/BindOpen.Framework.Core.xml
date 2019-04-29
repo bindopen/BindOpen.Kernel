@@ -2196,6 +2196,15 @@
             <param name="namePreffix">The name preffix to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.GetObject``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Returns the item object of this instance.
+            </summary>
+            <param name="log">The log to populate.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the items of this instance.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.GetObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Returns the item object of this instance.
@@ -4464,22 +4473,22 @@
             Instantiates a new instance of the DataValueFilterStatement class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Entities.Entity">
+        <member name="T:BindOpen.Framework.Core.Data.Entities.DataEntity">
             <summary>
-            This class represents the business entity.
+            This class represents the data entity.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Entities.Entity.Detail">
+        <member name="P:BindOpen.Framework.Core.Data.Entities.DataEntity.Detail">
             <summary>
             The detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Entities.Entity.ImageFileName">
+        <member name="P:BindOpen.Framework.Core.Data.Entities.DataEntity.ImageFileName">
             <summary>
             The image file name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Entities.Entity.#ctor">
+        <member name="M:BindOpen.Framework.Core.Data.Entities.DataEntity.#ctor">
             <summary>
             Instantiates a new instance of the BusinessEntity class.
             </summary>
@@ -5705,71 +5714,6 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem">
-            <summary>
-            This class represents an identified data item.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Id">
-            <summary>
-            ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.IdSpecified">
-            <summary>
-            Specification of the ID of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.#ctor(System.String)">
-            <summary>
-            Instantiates a new instance of the IdentifiedDataItem class.
-            </summary>
-            <param name="id">The ID to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Key">
-            <summary>
-            Returns the identifier key.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.NewGuid">
-            <summary>
-            Returns a new Guid.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Clone">
-            <summary>
-            Clones this instance.
-            </summary>
-            <returns>Returns a cloned instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Items.IndexedDataItem">
-            <summary>
-            This class represents indexed data item.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IndexedDataItem.Index">
-            <summary>
-            The index of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IndexedDataItem.IndexSpecified">
-            <summary>
-            Specification of the Index property of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IndexedDataItem.#ctor">
-            <summary>
-            Instantiates a new instance of the IndexedDataItem class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IndexedDataItem.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Instantiates a new instance of the IndexedDataItem class considering the specified preffix name.
-            </summary>
-            <param name="name">The name of this instance.</param>
-            <param name="namePreffix">The preffix of the name of this instance.</param>
-            <param name="id">The ID to consider.</param>
-        </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IDescribed">
             <summary>
             This interface represents a described DTO.
@@ -5890,6 +5834,71 @@
             <summary>
             Unique name of this instance.
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem">
+            <summary>
+            This class represents an identified data item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Id">
+            <summary>
+            ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.IdSpecified">
+            <summary>
+            Specification of the ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the IdentifiedDataItem class.
+            </summary>
+            <param name="id">The ID to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Key">
+            <summary>
+            Returns the identifier key.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.NewGuid">
+            <summary>
+            Returns a new Guid.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns>Returns a cloned instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Items.IndexedDataItem">
+            <summary>
+            This class represents indexed data item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Items.IndexedDataItem.Index">
+            <summary>
+            The index of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Items.IndexedDataItem.IndexSpecified">
+            <summary>
+            Specification of the Index property of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IndexedDataItem.#ctor">
+            <summary>
+            Instantiates a new instance of the IndexedDataItem class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.IndexedDataItem.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the IndexedDataItem class considering the specified preffix name.
+            </summary>
+            <param name="name">The name of this instance.</param>
+            <param name="namePreffix">The preffix of the name of this instance.</param>
+            <param name="id">The ID to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.IDescribedDataItem">
             <summary>

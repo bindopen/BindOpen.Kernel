@@ -34,7 +34,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The provider of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="provider")]
         public string Provider
         {
@@ -45,7 +44,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The server address of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="serverAddress")]
         public string ServerAddress
         {
@@ -56,7 +54,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The initial catalog of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="initialCatalog")]
         public string InitialCatalog
         {
@@ -67,7 +64,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The integrated security of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="integratedSecurity")]
         public string IntegratedSecurity
         {
@@ -78,7 +74,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The user name of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="userName")]
         public string UserName
         {
@@ -89,7 +84,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The password of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name="password")]
         public string Password
         {
@@ -100,7 +94,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The database kind of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "databaseKind")]
         public DatabaseConnectorKind DatabaseConnectorKind
         {
