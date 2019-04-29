@@ -285,6 +285,21 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        public virtual object GetObject<T>(
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null) where T : class
+        {
+            return GetObject(appScope, scriptVariableSet, log) as T;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
         public virtual object GetObject(
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
@@ -361,7 +376,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Creates a new specification of this instance.
         /// </summary>
         /// <returns>Returns True .</returns>
-        public abstract IDataElementSpec NewSpecification();
+        public abstract DataElementSpec NewSpecification();
 
         // Set
 

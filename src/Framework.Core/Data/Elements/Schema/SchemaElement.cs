@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         private SchemaZoneElement _parentZone = null;
         private String _imageFileName = null;
 
-        private Entity _entity = null;
+        private DataEntity _entity = null;
 
         #endregion
 
@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// The entity of this instance.
         /// </summary>
         [XmlIgnore()]
-        public Entity Entity
+        public DataEntity Entity
         {
             get { return this._entity; }
             set
@@ -163,7 +163,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override IDataElementSpec NewSpecification()
+        public override DataElementSpec NewSpecification()
         {
             return (Specification = new SchemaElementSpec());
         }

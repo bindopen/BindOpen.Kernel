@@ -22,7 +22,7 @@ namespace BindOpen.TestConsole
     /// <remarks>This allows </remarks>
     internal static class Program
     {
-        public static ITBdoAppHost<BdoAppConfiguration> _AppHost = null;
+        public static ITAppHost<AppConfiguration> _AppHost = null;
 
         private static void Main(string[] args)
         {
@@ -62,7 +62,7 @@ namespace BindOpen.TestConsole
             //field.Name = "test";
             //field.Alias = "alias";
 
-            Program._AppHost = new TBdoAppHost<BdoAppConfiguration>()
+            Program._AppHost = new TAppHost<AppConfiguration>()
                 .Configure(options =>
                     options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                     .SetModule(new AppModule("app.test"))

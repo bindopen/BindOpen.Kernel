@@ -123,7 +123,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override IDataElementSpec NewSpecification()
+        public override DataElementSpec NewSpecification()
         {
             return Specification = new CarrierElementSpec();
         }

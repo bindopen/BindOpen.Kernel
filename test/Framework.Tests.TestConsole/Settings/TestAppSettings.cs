@@ -8,7 +8,7 @@ namespace BindOpen.TestConsole.Settings
     /// <summary>
     /// This class represents a test application settings.
     /// </summary>
-    public class TestAppSettings : TBdoAppSettings<BdoAppConfiguration>
+    public class TestAppSettings : TAppSettings<AppConfiguration>
     {
         // -------------------------------------------------------
         // PROPERTIES

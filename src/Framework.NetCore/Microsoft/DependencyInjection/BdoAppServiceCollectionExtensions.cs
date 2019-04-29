@@ -20,10 +20,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBdoAppHosting<Q>(
             this IServiceCollection services,
-            Action<ITBdoAppHostOptions<Q>> setupAction = null)
-            where Q : BdoAppConfiguration, new()
+            Action<ITAppHostOptions<Q>> setupAction = null)
+            where Q : AppConfiguration, new()
         {
-            return services.AddBdoAppHosting<TBdoAppHost<Q>, Q>(setupAction);
+            return services.AddBdoAppHosting<TAppHost<Q>, Q>(setupAction);
         }
 
         /// <summary>
@@ -33,14 +33,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBdoAppHosting<THost, Q>(this IServiceCollection services, Action<ITBdoAppHostOptions<Q>> setupAction = null)
-            where THost : TBdoAppHost<Q>
-            where Q : BdoAppConfiguration, new()
+        public static IServiceCollection AddBdoAppHosting<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
+            where THost : TAppHost<Q>
+            where Q : AppConfiguration, new()
         {
-            services.AddSingleton<ITBdoAppHost<Q>, THost>();
+            services.AddSingleton<ITAppHost<Q>, THost>();
 
             var sp = services.BuildServiceProvider();
-            THost host = sp.GetService<ITBdoAppHost<Q>>() as THost;
+            THost host = sp.GetService<ITAppHost<Q>>() as THost;
             host.Configure(setupAction);
             host.Start();
 
@@ -54,8 +54,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <returns></returns>
         public static IServiceCollection AddBdoAppService<TAppService, Q>(this IServiceCollection services)
-            where TAppService : TBdoAppService<Q>, ITBdoAppHosted<Q>, new()
-            where Q : BdoAppConfiguration, new()
+            where TAppService : TAppService<Q>, ITAppHosted<Q>, new()
+            where Q : AppConfiguration, new()
         {
             services.AddHostedService<BdoHostedService<TAppService, Q>>();
 

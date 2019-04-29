@@ -16,10 +16,8 @@ namespace BindOpen.Framework.Runtime.Application.Settings
     /// <summary>
     /// This class represents a BDO application settings.
     /// </summary>
-    [XmlType("BdoAppSettings", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("app.config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class TBdoAppSettings<Q> : TSettings<Q>, ITBdoAppSettings<Q>
-        where Q : BdoAppConfiguration, new()
+    public class TAppSettings<Q> : TSettings<Q>, ITAppSettings<Q>
+        where Q : AppConfiguration, new()
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -143,7 +141,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Instantiates a new instance of the BdoAppSettings class.
         /// </summary>
-        public TBdoAppSettings()
+        public TAppSettings()
             : base()
         {
         }
@@ -153,7 +151,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
-        public TBdoAppSettings(IAppScope appScope, Q configuration)
+        public TAppSettings(IAppScope appScope, Q configuration)
             : base(appScope, configuration)
         {
         }

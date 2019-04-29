@@ -11,8 +11,8 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class TBdoAppService<Q> : ScopedService, ITBdoAppService<Q>
-        where Q : BdoAppConfiguration, new()
+    public class TAppService<Q> : ScopedService, ITAppService<Q>
+        where Q : AppConfiguration, new()
     {
         // ------------------------------------------
         // VARIABLES
@@ -20,11 +20,11 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
         #region Variables
 
-        private ITBdoAppHostOptions<Q> _options = new TBdoAppHostOptions<Q>();
+        private ITAppHostOptions<Q> _options = new TAppHostOptions<Q>();
 
         // General ----------------------
 
-        public ITBdoAppHostOptions<Q> Options => _options;
+        public ITAppHostOptions<Q> Options => _options;
 
         /// <summary>
         /// Indicates whether this instance is loaded.
@@ -106,7 +106,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the BdoAppService class.
         /// </summary>
-        public TBdoAppService() : base()
+        public TAppService() : base()
         {
             // we initiate the log of this instance
             this.Log = new Log(_ => false)
@@ -130,7 +130,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public virtual ITBdoAppService<Q> Start(ILog log = null)
+        public virtual ITAppService<Q> Start(ILog log = null)
         {
             log = log ?? new Log();
 
@@ -161,7 +161,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public virtual ITBdoAppService<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public virtual ITAppService<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
             this.Log.End(executionStatus);
             return this;
@@ -189,7 +189,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             this.AppScope.DataContext.AddSystemItem("appHost", this);
             this.AppScope.DataSourceService = new DataSourceService();
 
-            if (this.GetType() == typeof(TBdoAppService<Q>))
+            if (this.GetType() == typeof(TAppService<Q>))
                 this._isLoadCompleted = true;
 
             return new Log();

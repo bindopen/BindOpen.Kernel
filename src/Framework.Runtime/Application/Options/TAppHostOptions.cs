@@ -14,8 +14,8 @@ namespace BindOpen.Framework.Runtime.Application.Options
     /// <summary>
     /// This class represents an application host options.
     /// </summary>
-    public class TBdoAppHostOptions<Q> : DataItem, ITBdoAppHostOptions<Q>
-        where Q : BdoAppConfiguration, new()
+    public class TAppHostOptions<Q> : DataItem, ITAppHostOptions<Q>
+        where Q : AppConfiguration, new()
     {
         // ------------------------------------------
         // CONSTANTS
@@ -70,12 +70,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The settings.
         /// </summary>
-        public ITBdoAppSettings<Q> Settings { get; set; }
+        public ITAppSettings<Q> Settings { get; set; }
 
         /// <summary>
         /// The base settings.
         /// </summary>
-        public IBaseBdoAppSettings BaseSettings => Settings as IBaseBdoAppSettings;
+        public IBaseAppSettings BaseSettings => Settings as IBaseAppSettings;
 
         /// <summary>
         /// The application module.
@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Instantiates a new instance of the AppHostOptions class.
         /// </summary>
-        public TBdoAppHostOptions()
+        public TAppHostOptions()
         {
         }
 
@@ -154,7 +154,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="appFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetAppFolder(string appFolderPath)
+        public ITAppHostOptions<Q> SetAppFolder(string appFolderPath)
         {
             this._appFolderPath = appFolderPath.GetEndedString(@"\").ToPath();
 
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="runtimeFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetRuntimeFolder(string runtimeFolderPath)
+        public ITAppHostOptions<Q> SetRuntimeFolder(string runtimeFolderPath)
         {
             this._runtimeFolderPath = runtimeFolderPath.GetEndedString(@"\").ToPath();
             return this;
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="libraryFolderPath">The libarry folder path</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetLibraryFolder(string libraryFolderPath)
+        public ITAppHostOptions<Q> SetLibraryFolder(string libraryFolderPath)
         {
             this._libraryFolderPath = libraryFolderPath.GetEndedString(@"\").ToPath();
             return this;
@@ -188,7 +188,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="module"></param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetModule(IAppModule module)
+        public ITAppHostOptions<Q> SetModule(IAppModule module)
         {
             this._applicationModule = module;
             return this;
@@ -199,7 +199,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="extensionConfiguration"></param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetExtensions(IAppExtensionConfiguration extensionConfiguration)
+        public ITAppHostOptions<Q> SetExtensions(IAppExtensionConfiguration extensionConfiguration)
         {
             if (extensionConfiguration != null)
             {
@@ -218,8 +218,8 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="settingsFilePath">The path of the settings file to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetSettingsFile<T>(string settingsFilePath = null)
-            where T : ITBdoAppSettings<Q>, new()
+        public ITAppHostOptions<Q> SetSettingsFile<T>(string settingsFilePath = null)
+            where T : ITAppSettings<Q>, new()
         {
             this.DefineSettings<T>();
 
@@ -241,7 +241,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> DefineSettings(IDataElementSpecSet specificationSet)
+        public ITAppHostOptions<Q> DefineSettings(IDataElementSpecSet specificationSet)
         {
             this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
@@ -254,8 +254,8 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> DefineSettings<T>(IDataElementSpecSet specificationSet = null)
-            where T : ITBdoAppSettings<Q>, new()
+        public ITAppHostOptions<Q> DefineSettings<T>(IDataElementSpecSet specificationSet = null)
+            where T : ITAppSettings<Q>, new()
         {
             this.Settings = new T();
             this.DefineSettings(specificationSet);
@@ -268,7 +268,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> SetLoggers(params ILogger[] loggers)
+        public ITAppHostOptions<Q> SetLoggers(params ILogger[] loggers)
         {
             this._loggers = loggers;
 
@@ -279,7 +279,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// Adds the default logger.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        public ITBdoAppHostOptions<Q> AddDefaultLogger()
+        public ITAppHostOptions<Q> AddDefaultLogger()
         {
             _isDefaultLoggerUsed = true;
 
