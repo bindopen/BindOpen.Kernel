@@ -9,7 +9,7 @@
             This class represents the application argument parser.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Core.Application.Options.OptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Core.Application.Options.IOptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Retrieves the arguments from the specified argument string values.
             </summary>
@@ -7348,7 +7348,7 @@
             This class represents an extension item kind extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Common.AppExtensionItemKindExtension.GetExtensionItemKind(BindOpen.Framework.Core.Extensions.Definitions.IAppExtensionItemDefinitionDto)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Common.AppExtensionItemKindExtension.GetExtensionItemKind(BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto)">
             <summary>
             Gets the extension item kind corresponding to the specified object.
             </summary>
@@ -7409,1040 +7409,6 @@
             <summary>
             Data format.
             </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto">
-            <summary>
-            This class represents the definition of application extension item.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.ImageUrl">
-            <summary>
-            Url of the image representing this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.ImageUrlSpecified">
-            <summary>
-            Specification of the ImageUrl property of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.LibraryName">
-            <summary>
-            Business library ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.IsEditable">
-            <summary>
-            Indicates whether this instance is editable.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.IsIndexed">
-            <summary>
-            Indicates whether this instance is indexed.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the AppExtensionItemDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Instantiates a new instance of the AppExtensionItemDefinition class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="preffix">The preffix to consider.</param>
-            <param name="id">The ID to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
-            <summary>
-            Returns a text summarizing this instance.
-            </summary>
-            <param name="logFormat">The log format to consider.</param>
-            <param name="uiCulture">The UI culture to consider.</param>
-            <returns>A text summarizing this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemGroup">
-            <summary>
-            This class represents the group of application extension items.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemGroup.SubGroups">
-            <summary>
-            Sub groups of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemGroup.#ctor">
-            <summary>
-            Instantiates a new instance of the AppExtensionItemGroup class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.AppExtensionItemGroup.GetGroupWithName(System.String)">
-            <summary>
-            Returns the group with the specified name.
-            </summary>
-            <param name="name">The name of the sub group to return.</param>
-            <returns>Returns the sub group with the specified name.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition">
-            <summary>
-            This class represents a carrier definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the CarrierDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Carriers.ICarrierDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the CarrierDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto">
-            <summary>
-            This class represents a DTO carrier definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto.ItemClass">
-            <summary>
-            The item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto.DataSourceKind">
-            <summary>
-            The data source kind of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto.DetailSpec">
-            <summary>
-            The set of element specifications of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the CarrierDefinitionDto class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Carriers.CarrierDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
-            <summary>
-            Returns a text summarizing this instance.
-            </summary>
-            <param name="logFormat">The log format to consider.</param>
-            <param name="uiCulture">The UI culture to consider.</param>
-            <returns>A text summarizing this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition">
-            <summary>
-            This class represents a connector definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the ConnectorDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Connectors.IConnectorDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the ConnectorDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinitionDto">
-            <summary>
-            This class represents a DTO connector definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinitionDto.ItemClass">
-            <summary>
-            Item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinitionDto.DataSourceKind">
-            <summary>
-            Data source kind of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinitionDto.DatasourceDetailSpec">
-            <summary>
-            The data source detail specification of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Connectors.ConnectorDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the ConnectorDefinition class.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition">
-            <summary>
-            This class represents a entity definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the EntityDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Entities.IEntityDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the EntityDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto">
-            <summary>
-            This class represents the entity definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.ItemClass">
-            <summary>
-            Item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.Kind">
-            <summary>
-            The kind of this instance. 
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.ViewerClass">
-            <summary>
-            Viewer class of this instance.
-            </summary>
-            <remarks>Class names using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.FormatDefinitions">
-            <summary>
-            Formats of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.PossibleMetaSchemas">
-            <summary>
-            The possible meta schemas of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.DetailSpec">
-            <summary>
-            The set of detail specifications of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the EntityDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.GetFormatWithUniqueName(System.String)">
-            <summary>
-            Gets the format with the specified unique name.
-            </summary>
-            <param name="uniqueName">Unique name of the application module.</param>
-            <returns>The current visitor application module.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.GetFormatWithName(System.String)">
-            <summary>
-            Gets the format with the specified name.
-            </summary>
-            <param name="name">Name of the application module.</param>
-            <returns>The current visitor application module.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityDefinitionDto.GetFormatWithId(System.String)">
-            <summary>
-            Gets the format with the specified ID.
-            </summary>
-            <param ID="id">Id of the application module.</param>
-            <returns>The current visitor application module.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind">
-            <summary>
-            This enumeration lists all the possible kinds of entities.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind.None">
-            <summary>
-            None.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind.Carrier">
-            <summary>
-            Data carrier.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind.Zone">
-            <summary>
-            Data zone.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Entities.EntityKind.SimpleItem">
-            <summary>
-            Simple item.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition">
-            <summary>
-            This class represents a format definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the FormatDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Formats.IFormatDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the FormatDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto">
-            <summary>
-            This class represents the format definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto.ItemClass">
-            <summary>
-            Item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto.ViewerClass">
-            <summary>
-            Viewer class of this instance.
-            </summary>
-            <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto.DataSourceKind">
-            <summary>
-            Data source kind of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Formats.FormatDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the FormatDefinition class.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition">
-            <summary>
-            This class represents a handler definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.RuntimeFunctionGet">
-            <summary>
-            Runtime GET function of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.RuntimeFunctionPost">
-            <summary>
-            Runtime POST function of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the HandlerDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Handlers.IHandlerDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the HandlerDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto">
-            <summary>
-            This class represents a handler definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.CallingClass">
-            <summary>
-            The calling class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.GetFunctionName">
-            <summary>
-            Name of the GET function.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.PostFunctionName">
-            <summary>
-            Name of the POST function.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.SourceSpecification">
-            <summary>
-            The source specification of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.ParameterSpecification">
-            <summary>
-            The parameter specification of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.TargetSpecification">
-            <summary>
-            The target specification of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Handlers.HandlerDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the HandlerDefinition class.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto">
-            <summary>
-            This class represents the definition of a library.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto._usingAssemblyFileNames">
-            <summary>
-            The names of the using assembly files of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.GroupName">
-            <summary>
-            Name of the group of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.AssemblyName">
-            <summary>
-            Name of the assembly where the library can be loaded.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.RootNamespace">
-            <summary>
-            Root name space of this intance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.FileName">
-            <summary>
-            File name of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.UsingAssemblyFileNames">
-            <summary>
-            Names of the using assembly files of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.ItemIndexFullNameDictionary">
-            <summary>
-            Dictionary full names of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of LibraryDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.GetClassNameWithoutAssembly(System.String)">
-            <summary>
-            Gets the root namespace.
-            </summary>
-            <param name="className">The class name to consider.</param>
-            <returns>Returns the root namspace.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.GetRootNamespace">
-            <summary>
-            Gets the root namespace.
-            </summary>
-            <returns>Returns the root namspace.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionDto.Initialize">
-            <summary>
-            Initializes this instance.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionLoader">
-            <summary>
-            This static class provides methods to load library definitions.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionLoader.__DefaultResourceFileName">
-            <summary>
-            The default resource file name for library definition.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Libraries.LibraryDefinitionLoader.LoadFrom(System.Reflection.Assembly,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Loads a definition from the specified assembly.
-            </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="resourceFullName">The full name of the resouce to consider.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The created library.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition">
-            <summary>
-            This class represents a connector definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the MetricsDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Metrics.IMetricsDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the MetricsDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinitionDto">
-            <summary>
-            This class represents a metrics definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinitionDto.ItemClass">
-            <summary>
-            Item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinitionDto.UnitCode">
-            <summary>
-            Unit code of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinitionDto.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Metrics.MetricsDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the MetricsDefinition class. 
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition">
-            <summary>
-            This class represents a routine definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the RoutineDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Routines.IRoutineDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the RoutineDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto">
-            <summary>
-            This class represents a routine definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto.ItemClass">
-            <summary>
-            The item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto.ParameterStatement">
-            <summary>
-            The parameter statement of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto.OutputResultCodes">
-            <summary>
-            The output result codes of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Routines.RoutineDefinitionDto.#ctor">
-            <summary>
-            Initializes a new instance of the RoutineDefinition class.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition">
-            <summary>
-            This class represents a carrier definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.RuntimeFunction">
-            <summary>
-            The runtime function of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.Parent">
-            <summary>
-            The parent of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.Children">
-            <summary>
-            The definitions of the sub words of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the ScriptwordDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinitionDto,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition)">
-            <summary>
-            Instantiates a new instance of the ScriptwordDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-            <param name="parent">The parent to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto">
-            <summary>
-            This class represents a script word definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.CallingClass">
-            <summary>
-            The calling class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.Kind">
-            <summary>
-            Kind of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RuntimeFunctionName">
-            <summary>
-            Name of the runtime function.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.ReferenceUniqueName">
-            <summary>
-            Reference unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.ReturnValueType">
-            <summary>
-            The return value type of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.ParameterSpecification">
-            <summary>
-            Parameter specification of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.IsRepeatedParameters">
-            <summary>
-            Indicates whether this instance has unlimited parameters. If true, parameters have 
-            the same value type.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterValueType"/>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterName"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterValueType">
-            <summary>
-            Value type of parameters of this instance when parameters are repeated.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterName"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterDescription">
-            <summary>
-            Description of parameters of this instance when parameters are repeated.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterName"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterName">
-            <summary>
-            Name of parameters of this instance when parameters are repeated.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RepeatedParameterValueType"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.MaxParameterNumber">
-            <summary>
-            Maximum number of parameters of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.MinParameterNumber">
-            <summary>
-            Minimum number of parameters of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.Children">
-            <summary>
-            The definitions of the sub words of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.RuntimeFunction">
-            <summary>
-            Calling function of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the ScriptwordDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.GetDefaultRuntimeFunctionName">
-            <summary>
-            Returns the default runtime function name.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.GetRepeatedParameterDescriptionText(System.String,System.String)">
-            <summary>
-            Returns the repeated parameter description text.
-            </summary>
-            <param name="variantName">The variant variant name to consider.</param>
-            <param name="defaultVariantName">The default variant name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
-            <summary>
-            Returns a text summarizing this instance.
-            </summary>
-            <param name="logFormat">The log format to consider.</param>
-            <param name="uiCulture">The UI culture to consider.</param>
-            <returns>A text summarizing this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition">
-            <summary>
-            This class represents a task definition.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.Dto">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.UniqueId">
-            <summary>
-            The unique ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.Library">
-            <summary>
-            The library of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.#ctor">
-            <summary>
-            Instantiates a new instance of the TaskDefinition class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Definitions.Tasks.ITaskDefinitionDto)">
-            <summary>
-            Instantiates a new instance of the TaskDefinition class.
-            </summary>
-            <param name="library">The library to consider.</param>
-            <param name="dto">The DTO item to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinition.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto">
-            <summary>
-            This class represents a task definition.
-            </summary>
-            <seealso cref="T:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.ItemClass">
-            <summary>
-            Item class of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.GroupName">
-            <summary>
-            Name of the group of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.IsExecutable">
-            <summary>
-            Indicates whether this instance is executable.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.MaximumIndex">
-            <summary>
-            Maximum index of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.InputSpecification">
-            <summary>
-            Input statement of this instance.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.OutputSpecification"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.OutputSpecification">
-            <summary>
-            Output statement of this instance.
-            </summary>
-            <seealso cref="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.InputSpecification"/>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.RuntimeType">
-            <summary>
-            The runtime type of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.#ctor">
-            <summary>
-            Instantiates a new instance of the TaskDefinition class. 
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Instantiates a new instance of the TaskDefinition class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="preffix">The preffix to consider.</param>
-            <param name="id">The ID to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.GetEntries(BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
-            <summary>
-            Gets the specified entries.
-            </summary>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
-            <returns>True if this instance is configurable.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.GetEntryWithName(System.String,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
-            <summary>
-            Returns the entry of the specified kind with the specified unique name.
-            </summary>
-            <param name="key">The key to consider.</param>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
-            <returns>Returns the input with the specified name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.GetEntryDefaultItemWithName(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
-            <summary>
-            Gets the value of the specified entry.
-            </summary>
-            <param name="name">The name of the entry to consider.</param>
-            <param name="log">The log to populate.</param>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.CustomCheck">
-            <summary>
-            Checks this instance in a custom way.
-            </summary>
-            <returns>Returns the check log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Definitions.Tasks.TaskDefinitionDto.Repair(BindOpen.Framework.Core.Extensions.Definitions.Tasks.ITaskDefinitionDto)">
-            <summary>
-            Repairs this instance basing on the specified definition task.
-            </summary>
-            <param name="taskDefinition">The definition task to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Indexes.Carriers.CarrierIndexDto">
             <summary>
@@ -8514,13 +7480,13 @@
             Instantiates a new instance of the ScriptwordIndex class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.#ctor(BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.#ctor(BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition[])">
             <summary>
             Instantiates a new instance of the ScriptwordIndex class.
             </summary>
             <param name="definitions">The definitions of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.SetDefinitions(System.Collections.Generic.List{BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition})">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.SetDefinitions(System.Collections.Generic.List{BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition})">
             <summary>
             Sets the specified definitions of this instance.
             </summary>
@@ -8534,7 +7500,7 @@
             <param name="libraryNames">The names of libraries to consider.</param>
             <returns>The parent definitions of the specified script word definition.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithExactName(System.String,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithExactName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
             <summary>
             Returns the word definitions with the specified name.
             </summary>
@@ -8542,7 +7508,7 @@
             <param name="parentDefinition">The parent definition.</param>
             <returns>The script words with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithApproximativeName(System.String,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithApproximativeName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
             <summary>
             Gets the word definitions approximatively with the specified name.
             </summary>
@@ -8565,7 +7531,7 @@
             Instantiates a new instance of the ScriptwordIndex class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndexDto.GetDefinition(System.String,System.String,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.ScriptwordDefinitionDto)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndexDto.GetDefinition(System.String,System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto)">
             <summary>
             Gets the specified definition.
             </summary>
@@ -8672,6 +7638,79 @@
             <summary>
             Instantiates a new instance of the TaskIndex class.
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto">
+            <summary>
+            This class represents the definition of application extension item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.ImageUrl">
+            <summary>
+            Url of the image representing this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.ImageUrlSpecified">
+            <summary>
+            Specification of the ImageUrl property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.LibraryName">
+            <summary>
+            Business library ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.IsEditable">
+            <summary>
+            Indicates whether this instance is editable.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.IsIndexed">
+            <summary>
+            Indicates whether this instance is indexed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the AppExtensionItemDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the AppExtensionItemDefinition class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="preffix">The preffix to consider.</param>
+            <param name="id">The ID to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+            <summary>
+            Returns a text summarizing this instance.
+            </summary>
+            <param name="logFormat">The log format to consider.</param>
+            <param name="uiCulture">The UI culture to consider.</param>
+            <returns>A text summarizing this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemGroup">
+            <summary>
+            This class represents the group of application extension items.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemGroup.SubGroups">
+            <summary>
+            Sub groups of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemGroup.#ctor">
+            <summary>
+            Instantiates a new instance of the AppExtensionItemGroup class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemGroup.GetGroupWithName(System.String)">
+            <summary>
+            Returns the group with the specified name.
+            </summary>
+            <param name="name">The name of the sub group to return.</param>
+            <returns>Returns the sub group with the specified name.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier">
             <summary>
@@ -8838,6 +7877,82 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition">
+            <summary>
+            This class represents a carrier definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the CarrierDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.ICarrierDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the CarrierDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto">
+            <summary>
+            This class represents a DTO carrier definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto.ItemClass">
+            <summary>
+            The item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto.DataSourceKind">
+            <summary>
+            The data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto.DetailSpec">
+            <summary>
+            The set of element specifications of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the CarrierDefinitionDto class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+            <summary>
+            Returns a text summarizing this instance.
+            </summary>
+            <param name="logFormat">The log format to consider.</param>
+            <param name="uiCulture">The UI culture to consider.</param>
+            <returns>A text summarizing this instance.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector">
             <summary>
             This class represents a connector.
@@ -8977,6 +8092,209 @@
             Updates information for runtime.
             </summary>
             <param name="log">The log to update.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition">
+            <summary>
+            This class represents a connector definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the ConnectorDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.IConnectorDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the ConnectorDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinitionDto">
+            <summary>
+            This class represents a DTO connector definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinitionDto.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinitionDto.DataSourceKind">
+            <summary>
+            Data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinitionDto.DatasourceDetailSpec">
+            <summary>
+            The data source detail specification of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the ConnectorDefinition class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition">
+            <summary>
+            This class represents a entity definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the EntityDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Entities.Definition.IEntityDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the EntityDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto">
+            <summary>
+            This class represents the entity definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.Kind">
+            <summary>
+            The kind of this instance. 
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.ViewerClass">
+            <summary>
+            Viewer class of this instance.
+            </summary>
+            <remarks>Class names using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.FormatDefinitions">
+            <summary>
+            Formats of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.PossibleMetaSchemas">
+            <summary>
+            The possible meta schemas of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.DetailSpec">
+            <summary>
+            The set of detail specifications of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the EntityDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.GetFormatWithUniqueName(System.String)">
+            <summary>
+            Gets the format with the specified unique name.
+            </summary>
+            <param name="uniqueName">Unique name of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.GetFormatWithName(System.String)">
+            <summary>
+            Gets the format with the specified name.
+            </summary>
+            <param name="name">Name of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinitionDto.GetFormatWithId(System.String)">
+            <summary>
+            Gets the format with the specified ID.
+            </summary>
+            <param ID="id">Id of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind">
+            <summary>
+            This enumeration lists all the possible kinds of entities.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind.Carrier">
+            <summary>
+            Data carrier.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind.Zone">
+            <summary>
+            Data zone.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityKind.SimpleItem">
+            <summary>
+            Simple item.
+            </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Entity">
             <summary>
@@ -9131,6 +8449,80 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the created task.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition">
+            <summary>
+            This class represents a format definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the FormatDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Formats.Definition.IFormatDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the FormatDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto">
+            <summary>
+            This class represents the format definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto.ViewerClass">
+            <summary>
+            Viewer class of this instance.
+            </summary>
+            <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto.DataSourceKind">
+            <summary>
+            Data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the FormatDefinition class.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Format">
             <summary>
             This class represents an format.
@@ -9170,6 +8562,94 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition">
+            <summary>
+            This class represents a handler definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.RuntimeFunctionGet">
+            <summary>
+            Runtime GET function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.RuntimeFunctionPost">
+            <summary>
+            Runtime POST function of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the HandlerDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.IHandlerDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the HandlerDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto">
+            <summary>
+            This class represents a handler definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.CallingClass">
+            <summary>
+            The calling class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.GetFunctionName">
+            <summary>
+            Name of the GET function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.PostFunctionName">
+            <summary>
+            Name of the POST function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.SourceSpecification">
+            <summary>
+            The source specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.ParameterSpecification">
+            <summary>
+            The parameter specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.TargetSpecification">
+            <summary>
+            The target specification of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the HandlerDefinition class.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.HandlerGetFunction">
             <summary>
             This delegate represents a handler GET function.
@@ -9200,6 +8680,79 @@
         <member name="T:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItem`1">
             <summary>
             This class represents an application extension runtime item.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition">
+            <summary>
+            This class represents a routine definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the RoutineDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Routines.Definition.IRoutineDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the RoutineDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto">
+            <summary>
+            This class represents a routine definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto.ItemClass">
+            <summary>
+            The item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto.ParameterStatement">
+            <summary>
+            The parameter statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto.OutputResultCodes">
+            <summary>
+            The output result codes of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinitionDto.#ctor">
+            <summary>
+            Initializes a new instance of the RoutineDefinition class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.KnownRoutineKind">
@@ -9295,6 +8848,169 @@
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition">
+            <summary>
+            This class represents a carrier definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.RuntimeFunction">
+            <summary>
+            The runtime function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Parent">
+            <summary>
+            The parent of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Children">
+            <summary>
+            The definitions of the sub words of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the ScriptwordDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinitionDto,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
+            <summary>
+            Instantiates a new instance of the ScriptwordDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+            <param name="parent">The parent to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto">
+            <summary>
+            This class represents a script word definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.CallingClass">
+            <summary>
+            The calling class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.Kind">
+            <summary>
+            Kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RuntimeFunctionName">
+            <summary>
+            Name of the runtime function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.ReferenceUniqueName">
+            <summary>
+            Reference unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.ReturnValueType">
+            <summary>
+            The return value type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.ParameterSpecification">
+            <summary>
+            Parameter specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.IsRepeatedParameters">
+            <summary>
+            Indicates whether this instance has unlimited parameters. If true, parameters have 
+            the same value type.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterValueType"/>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterName"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterValueType">
+            <summary>
+            Value type of parameters of this instance when parameters are repeated.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.IsRepeatedParameters"/>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterName"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterDescription">
+            <summary>
+            Description of parameters of this instance when parameters are repeated.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.IsRepeatedParameters"/>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterName"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterName">
+            <summary>
+            Name of parameters of this instance when parameters are repeated.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.IsRepeatedParameters"/>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RepeatedParameterValueType"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.MaxParameterNumber">
+            <summary>
+            Maximum number of parameters of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.MinParameterNumber">
+            <summary>
+            Minimum number of parameters of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.Children">
+            <summary>
+            The definitions of the sub words of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.RuntimeFunction">
+            <summary>
+            Calling function of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the ScriptwordDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.GetDefaultRuntimeFunctionName">
+            <summary>
+            Returns the default runtime function name.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.GetRepeatedParameterDescriptionText(System.String,System.String)">
+            <summary>
+            Returns the repeated parameter description text.
+            </summary>
+            <param name="variantName">The variant variant name to consider.</param>
+            <param name="defaultVariantName">The default variant name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+            <summary>
+            Returns a text summarizing this instance.
+            </summary>
+            <param name="logFormat">The log format to consider.</param>
+            <param name="uiCulture">The UI culture to consider.</param>
+            <returns>A text summarizing this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword">
             <summary>
@@ -9591,6 +9307,140 @@
             <param name="variantName">The variant variant name to consider.</param>
             <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition">
+            <summary>
+            This class represents a task definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the TaskDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.ITaskDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the TaskDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto">
+            <summary>
+            This class represents a task definition.
+            </summary>
+            <seealso cref="T:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.GroupName">
+            <summary>
+            Name of the group of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.IsExecutable">
+            <summary>
+            Indicates whether this instance is executable.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.MaximumIndex">
+            <summary>
+            Maximum index of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.InputSpecification">
+            <summary>
+            Input statement of this instance.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.OutputSpecification"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.OutputSpecification">
+            <summary>
+            Output statement of this instance.
+            </summary>
+            <seealso cref="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.InputSpecification"/>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the TaskDefinition class. 
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the TaskDefinition class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="preffix">The preffix to consider.</param>
+            <param name="id">The ID to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.GetEntries(BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            Gets the specified entries.
+            </summary>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>True if this instance is configurable.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.GetEntryWithName(System.String,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            Returns the entry of the specified kind with the specified unique name.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>Returns the input with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.GetEntryDefaultItemWithName(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            Gets the value of the specified entry.
+            </summary>
+            <param name="name">The name of the entry to consider.</param>
+            <param name="log">The log to populate.</param>
+            <param name="taskEntryKinds">The kind end entries to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.CustomCheck">
+            <summary>
+            Checks this instance in a custom way.
+            </summary>
+            <returns>Returns the check log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinitionDto.Repair(BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.ITaskDefinitionDto)">
+            <summary>
+            Repairs this instance basing on the specified definition task.
+            </summary>
+            <param name="taskDefinition">The definition task to consider.</param>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Task">
             <summary>
             This class represents an task.
@@ -9787,6 +9637,156 @@
             <param name="taskEntryKind">The entry kind to consider.</param>
             <returns>The result object.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition">
+            <summary>
+            This class represents a connector definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.Dto">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.UniqueId">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.Library">
+            <summary>
+            The library of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of the MetricsDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.#ctor(BindOpen.Framework.Core.Extensions.Libraries.ILibrary,BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.IMetricsDefinitionDto)">
+            <summary>
+            Instantiates a new instance of the MetricsDefinition class.
+            </summary>
+            <param name="library">The library to consider.</param>
+            <param name="dto">The DTO item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinitionDto">
+            <summary>
+            This class represents a metrics definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinitionDto.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinitionDto.UnitCode">
+            <summary>
+            Unit code of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinitionDto.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinitionDto.#ctor">
+            <summary>
+            Instantiates a new instance of the MetricsDefinition class. 
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition">
+            <summary>
+            This class represents the definition of a library.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition._usingAssemblyFileNames">
+            <summary>
+            The names of the using assembly files of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.GroupName">
+            <summary>
+            Name of the group of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.AssemblyName">
+            <summary>
+            Name of the assembly where the library can be loaded.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.RootNamespace">
+            <summary>
+            Root name space of this intance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.FileName">
+            <summary>
+            File name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.UsingAssemblyFileNames">
+            <summary>
+            Names of the using assembly files of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.ItemIndexFullNameDictionary">
+            <summary>
+            Dictionary full names of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of LibraryDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.GetClassNameWithoutAssembly(System.String)">
+            <summary>
+            Gets the root namespace.
+            </summary>
+            <param name="className">The class name to consider.</param>
+            <returns>Returns the root namspace.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.GetRootNamespace">
+            <summary>
+            Gets the root namespace.
+            </summary>
+            <returns>Returns the root namspace.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.Initialize">
+            <summary>
+            Initializes this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinitionLoader">
+            <summary>
+            This static class provides methods to load library definitions.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinitionLoader.__DefaultResourceFileName">
+            <summary>
+            The default resource file name for library definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinitionLoader.LoadFrom(System.Reflection.Assembly,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Loads a definition from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to consider.</param>
+            <param name="resourceFullName">The full name of the resouce to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The created library.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Libraries.LibraryIndexer">
             <summary>
             This static class provices methods to index library items.
@@ -9830,7 +9830,7 @@
             <param name="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.LibraryIndexer.Update(BindOpen.Framework.Core.Extensions.Definitions.IAppExtensionItemDefinitionDto,BindOpen.Framework.Core.Extensions.Attributes.AppExtensionItemAttribute)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.LibraryIndexer.Update(BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto,BindOpen.Framework.Core.Extensions.Attributes.AppExtensionItemAttribute)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
@@ -10002,7 +10002,7 @@
             Instantiates a new instance of Library class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.#ctor(BindOpen.Framework.Core.Extensions.Definitions.Libraries.ILibraryDefinitionDto)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.#ctor(BindOpen.Framework.Core.Extensions.Libraries.Definition.ILibraryDefinition)">
             <summary>
             Instantiates a new instance of Library class from a library instance.
             </summary>
@@ -10053,7 +10053,7 @@
             <param name="uniqueName">The unique ID of item to return.</param>
             <returns>The item with the specified unique name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.GetScriptwordDefinitionWithUniqueName(System.String,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Library.GetScriptwordDefinitionWithUniqueName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
             <summary>
             Returns the script word definition with the specified unique name.
             </summary>
@@ -12709,7 +12709,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.IsWordMatching(BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,BindOpen.Framework.Core.Extensions.Definitions.Scriptwords.IScriptwordDefinition)">
+        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.IsWordMatching(BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
             <summary>
             Determines whether the specified script word corresponds to the specified definition.
             </summary>

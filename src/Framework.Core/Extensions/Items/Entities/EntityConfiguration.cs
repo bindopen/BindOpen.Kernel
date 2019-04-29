@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Schema;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Definitions.Entities;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Entities
 {

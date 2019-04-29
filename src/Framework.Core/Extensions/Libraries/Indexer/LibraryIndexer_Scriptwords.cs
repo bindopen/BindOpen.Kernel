@@ -4,10 +4,11 @@ using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Definitions.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {

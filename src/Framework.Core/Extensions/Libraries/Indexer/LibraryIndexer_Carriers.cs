@@ -4,7 +4,7 @@ using System.Reflection;
 using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
-using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.Extensions.Indexes.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;

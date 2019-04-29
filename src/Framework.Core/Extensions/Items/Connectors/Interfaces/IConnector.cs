@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Connectors

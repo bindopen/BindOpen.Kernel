@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Definitions.Formats;
+﻿using BindOpen.Framework.Core.Extensions.Items.Formats.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Formats
 {

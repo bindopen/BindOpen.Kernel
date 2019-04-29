@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Definitions;
+using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes
 {

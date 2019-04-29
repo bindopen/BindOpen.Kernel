@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Definitions.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Connectors
 {

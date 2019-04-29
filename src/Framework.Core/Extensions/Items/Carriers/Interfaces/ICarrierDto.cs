@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Definitions.Carriers;
+﻿using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
