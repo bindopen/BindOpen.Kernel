@@ -99,7 +99,6 @@ namespace BindOpen.Framework.Core.Extensions.Common
     /// </summary>
     public static class AppExtensionItemKindExtension
     {
-
         /// <summary>
         /// Gets the extension item kind corresponding to the specified object.
         /// </summary>

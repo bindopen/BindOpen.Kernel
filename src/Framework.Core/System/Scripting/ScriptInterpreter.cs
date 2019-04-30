@@ -8,14 +8,13 @@ using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Expression;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.System.Scripting
 {
@@ -23,7 +22,7 @@ namespace BindOpen.Framework.Core.System.Scripting
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
     /// using script dictionnaries and data context, providing a log for the interpretation task.
     /// </summary>
-    public class ScriptInterpreter : DataItem, IScriptInterpreter
+    internal class ScriptInterpreter : DataItem, IScriptInterpreter
     {
         // ------------------------------------------
         // VARIABLES
@@ -32,20 +31,8 @@ namespace BindOpen.Framework.Core.System.Scripting
         #region Variables
 
         private IAppScope _appScope = null;
-        private IScriptwordIndex _index = new ScriptwordIndex();
 
-        #endregion
-
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The index of this instance.
-        /// </summary>
-        public IScriptwordIndex Index { get { return _index; } }
+        private List<IScriptwordDefinition> _definitions => _appScope?.AppExtension?.ScriptwordDefinitions;
 
         #endregion
 
@@ -70,25 +57,6 @@ namespace BindOpen.Framework.Core.System.Scripting
             IAppScope appScope)
         {
             _appScope = appScope;
-        }
-
-        #endregion
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// Loads the specified libraries.
-        /// </summary>
-        /// <param name="libraryNames">The names of libraries to load.</param>
-        public void LoadDefinitions(string[] libraryNames = null)
-        {
-            if ((_index != null) && (_appScope.AppExtension != null))
-            {
-                _index.SetDefinitions(_appScope.AppExtension.GetItemDefinitions<IScriptwordDefinition>(libraryNames));
-            }
         }
 
         #endregion
@@ -559,8 +527,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptWord.Kind = scriptItemKind;
 
                     // we try to find the corresponding defined function
-                    List<IScriptwordDefinition> scriptWordDefinitions =
-                        Index.GetDefinitionsWithExactName(scriptWord.Name, parentScriptword?.Definition);
+                    List<IScriptwordDefinition> scriptWordDefinitions = GetDefinitionsWithExactName(scriptWord.Name, parentScriptword?.Definition);
 
                     if (scriptWordDefinitions.Count == 0)
                     {
@@ -761,6 +728,60 @@ namespace BindOpen.Framework.Core.System.Scripting
             }
 
             return true;
+        }
+        public List<IScriptwordDefinition> GetDefinitions() => _definitions;
+
+        /// <summary>
+        /// Returns the word definitions with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the script words to return.</param>
+        /// <param name="parentDefinition">The parent definition.</param>
+        /// <returns>The script words with the specified name.</returns>
+        public List<IScriptwordDefinition> GetDefinitionsWithExactName(
+            string name,
+            IScriptwordDefinition parentDefinition = null)
+        {
+            List<IScriptwordDefinition> matchingDefinitions = new List<IScriptwordDefinition>();
+
+            if (name != null)
+            {
+                List<IScriptwordDefinition> poolScriptwordDefinitions = null;
+                if (parentDefinition == null)
+                    poolScriptwordDefinitions = _definitions;
+                else if (parentDefinition.Children != null)
+                    poolScriptwordDefinitions = new List<IScriptwordDefinition>(parentDefinition.Children);
+
+                if (poolScriptwordDefinitions != null)
+                    matchingDefinitions = poolScriptwordDefinitions.Where(p => p?.Dto?.Name.KeyEquals(name) == true).ToList();
+            }
+
+            return matchingDefinitions;
+        }
+
+        /// <summary>
+        /// Gets the word definitions approximatively with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the script words to return.</param>
+        /// <param name="parentDefinition">The parent definition.</param>
+        /// <returns>The script words with the specified name.</returns>
+        public List<IScriptwordDefinition> GetDefinitionsWithApproximativeName(
+            string name,
+            IScriptwordDefinition parentDefinition = null)
+        {
+            List<IScriptwordDefinition> matchingDefinitions = new List<IScriptwordDefinition>();
+            if (name == null)
+                return matchingDefinitions;
+
+            List<IScriptwordDefinition> poolScriptwordDefinitions = null;
+            if (parentDefinition == null)
+                poolScriptwordDefinitions = _definitions;
+            else if (parentDefinition.Children != null)
+                poolScriptwordDefinitions = new List<IScriptwordDefinition>(parentDefinition.Children);
+
+            if (poolScriptwordDefinitions != null)
+                matchingDefinitions = poolScriptwordDefinitions.Where(p => p?.Dto?.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) > 0).ToList();
+
+            return matchingDefinitions;
         }
 
         #endregion

@@ -322,6 +322,17 @@ namespace BindOpen.Framework.Core.System.Assemblies
         //    return className ?? "";
         //}
 
+
+        /// <summary>
+        /// Gets the root namespace.
+        /// </summary>
+        /// <param name="className">The class name to consider.</param>
+        /// <returns>Returns the root namspace.</returns>
+        public static string GetClassNameWithoutAssembly(this string className)
+        {
+            return className == null ? "" : (className.Contains(",") ? className.Substring(0, className.IndexOf(",")) : className);
+        }
+
         #endregion
     }
 }

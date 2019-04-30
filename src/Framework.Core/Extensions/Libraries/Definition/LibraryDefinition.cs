@@ -138,16 +138,6 @@ namespace BindOpen.Framework.Core.Extensions.Libraries.Definition
         /// <summary>
         /// Gets the root namespace.
         /// </summary>
-        /// <param name="className">The class name to consider.</param>
-        /// <returns>Returns the root namspace.</returns>
-        public static string GetClassNameWithoutAssembly(string className)
-        {
-            return className==null ? "" : (className.Contains(",") ? className.Substring(0, className.IndexOf(",")) : className);
-        }
-
-        /// <summary>
-        /// Gets the root namespace.
-        /// </summary>
         /// <returns>Returns the root namspace.</returns>
         public string GetRootNamespace()
         {

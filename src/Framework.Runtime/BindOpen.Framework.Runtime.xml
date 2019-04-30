@@ -1738,7 +1738,7 @@
             <param name="actionKind">The action kind to consider.</param>
             <param name="value">The boolean value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.GetValue(BindOpen.Framework.Core.System.Scripting.ScriptInterpreter,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.GetValue(BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Gets the value of this instance.
             </summary>

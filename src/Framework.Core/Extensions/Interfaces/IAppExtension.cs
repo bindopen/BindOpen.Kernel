@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.Extensions.Libraries;
 using BindOpen.Framework.Core.Extensions.Libraries.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -11,6 +12,8 @@ namespace BindOpen.Framework.Core.Extensions
     public interface IAppExtension : IDataItem
     {
         AppDomain AppDomain { get; }
+
+        List<IScriptwordDefinition> ScriptwordDefinitions { get; }
 
         void AddLibrary(ILibrary library);
         void AddLibraries(ILibrary[] libraries);
@@ -32,5 +35,9 @@ namespace BindOpen.Framework.Core.Extensions
         ILog AddLibrariesFromFile(
             string filePaths,
             string folderPath);
+
+        List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            string[] libraryNames = null);
     }
 }

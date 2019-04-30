@@ -136,16 +136,22 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public Boolean GetValue(ScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
+        public Boolean GetValue(IScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
-            String value = this.ValueScript;
+            String value = this.ValueScript?.Trim();
 
             if (value != null)
+            {
                 if (value.ToLower().Trim() == "%true()")
+                {
                     return true;
+                }
                 else if (value.ToLower().Trim() == "%false()")
+                {
                     return false;
-            
+                }
+            }
+
             if (scriptInterpreter!=null)
             {
                 scriptInterpreter.Evaluate(this.ValueScript, out value, scriptVariableSet);
