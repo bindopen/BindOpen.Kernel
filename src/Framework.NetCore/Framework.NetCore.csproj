@@ -4,8 +4,8 @@
     <AssemblyName>BindOpen.Framework.NetCore</AssemblyName>
     <Authors>Sumer Team</Authors>
     <Company>BindOpen</Company>
-    <Product>BindOpen.Framework.Labs</Product>
-    <PackageId>BindOpen.Framework.Labs.NetCore</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <PackageId>BindOpen.Framework.NetCore</PackageId>
     <RootNamespace>BindOpen.Framework.Labs.NetCore</RootNamespace>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that contains common BindOpen classes. This library includes classes that handles platform.</Description>

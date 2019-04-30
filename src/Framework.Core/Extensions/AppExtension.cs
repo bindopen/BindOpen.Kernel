@@ -7,8 +7,9 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items;
-using BindOpen.Framework.Core.Extensions.Libraries.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.Extensions.Libraries;
+using BindOpen.Framework.Core.Extensions.Libraries.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
@@ -29,6 +30,8 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         protected List<ILibrary> _libraries = new List<ILibrary>();
 
+        protected List<IScriptwordDefinition> _scriptwordDefinitions = new List<IScriptwordDefinition>();
+
         #endregion
 
         // ------------------------------------------
@@ -41,6 +44,11 @@ namespace BindOpen.Framework.Core.Extensions
         /// Application domain of this instance.
         /// </summary>
         public AppDomain AppDomain { get; } = null;
+
+        /// <summary>
+        /// Script word definitions of this instance.
+        /// </summary>
+        public List<IScriptwordDefinition> ScriptwordDefinitions => _scriptwordDefinitions;
 
         #endregion
 
@@ -178,6 +186,45 @@ namespace BindOpen.Framework.Core.Extensions
             }
 
             return itemDefinition;
+        }
+
+        // Script word definitions ---------------------------
+
+        /// <summary>
+        /// Returns the possible parent definitions of the specified script word definition.
+        /// </summary>
+        /// <param name="definitionName">The definition name to consider.</param>
+        /// <param name="libraryNames">The names of libraries to consider.</param>
+        /// <returns>The parent definitions of the specified script word definition.</returns>
+        public List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            string[] libraryNames = null)
+        {
+            return GetParentScriptwordDefinitions(definitionName, null, libraryNames).Distinct().ToList();
+        }
+
+        private List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            IScriptwordDefinition parentFeachDefinition,
+            string[] libraryNames = null)
+        {
+            List<IScriptwordDefinition> parentDefinitions = new List<IScriptwordDefinition>();
+
+            if (definitionName != null)
+            {
+                List<IScriptwordDefinition> definitions =
+                    (parentFeachDefinition == null ? _scriptwordDefinitions :
+                    new List<IScriptwordDefinition>(parentFeachDefinition.Children));
+                foreach (IScriptwordDefinition currentScriptwordDefinition in definitions)
+                {
+                    if (currentScriptwordDefinition.KeyEquals(definitionName) && parentFeachDefinition != null)
+                        parentDefinitions.Add(parentFeachDefinition);
+
+                    parentDefinitions.AddRange(GetParentScriptwordDefinitions(definitionName, currentScriptwordDefinition, libraryNames));
+                }
+            }
+
+            return parentDefinitions;
         }
 
         //// Assemblies -------------------------
@@ -441,6 +488,9 @@ namespace BindOpen.Framework.Core.Extensions
         {
             foreach (ILibrary library in _libraries)
                 library.Initialize(this);
+
+            // we update the script word definitions
+            _scriptwordDefinitions.AddRange(GetItemDefinitions<IScriptwordDefinition>());
         }
 
         #endregion

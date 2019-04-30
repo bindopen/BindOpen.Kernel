@@ -577,13 +577,13 @@ namespace BindOpen.Framework.Core.System.Scripting
                         ? stringBlock.Substring(stringBlock.IndexOf(".") + 1, stringBlock.Length - stringBlock.IndexOf(".") - 1)
                             .Replace(ScriptParsingHelper.Symbol_Fun, "")
                         : stringBlock;
-                    return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(currentScriptwordString, lastChildScriptword.Definition);
+                    return scriptInterpreter.GetDefinitionsWithApproximativeName(currentScriptwordString, lastChildScriptword.Definition);
                 }
             }
             if (!isSuggest)
-                return scriptInterpreter.Index.Definitions;
+                return scriptInterpreter.GetDefinitions();
             else
-                return scriptInterpreter.Index.GetDefinitionsWithApproximativeName(stringBlock);
+                return scriptInterpreter.GetDefinitionsWithApproximativeName(stringBlock);
         }
 
         #endregion
