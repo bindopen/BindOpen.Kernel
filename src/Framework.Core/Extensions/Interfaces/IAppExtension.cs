@@ -35,5 +35,9 @@ namespace BindOpen.Framework.Core.Extensions
         ILog AddLibrariesFromFile(
             string filePaths,
             string folderPath);
+
+        List<IScriptwordDefinition> GetParentScriptwordDefinitions(
+            string definitionName,
+            string[] libraryNames = null);
     }
 }
