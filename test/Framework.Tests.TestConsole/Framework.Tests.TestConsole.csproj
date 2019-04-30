@@ -4,10 +4,10 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>BindOpen.Framework.Labs.TestConsole</AssemblyName>
-    <Product>BindOpen.Framework.Labs</Product>
+    <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Authors>Sumer Team</Authors>
-    <PackageId>BindOpen.Framework.Labs.TestConsole</PackageId>
+    <PackageId>BindOpen.Framework.TestConsole</PackageId>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This project completes on-demand tests before they are implemented in the unit test project.</Description>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <RootNamespace>BindOpen.Framework.Labs.TestConsole</RootNamespace>
