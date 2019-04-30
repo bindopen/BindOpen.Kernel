@@ -6750,6 +6750,11 @@
             Application domain of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.AppExtension.ScriptwordDefinitions">
+            <summary>
+            Script word definitions of this instance.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.#ctor">
             <summary>
             Instantiates a new instance of the AppExtension class.
@@ -6816,6 +6821,14 @@
             <param name="uniqueId">The unique ID of item to return.</param>
             <param name="libraryNames">The names of libraries to consider.</param>
             <returns>The item with the specified unique name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.GetParentScriptwordDefinitions(System.String,System.String[])">
+            <summary>
+            Returns the possible parent definitions of the specified script word definition.
+            </summary>
+            <param name="definitionName">The definition name to consider.</param>
+            <param name="libraryNames">The names of libraries to consider.</param>
+            <returns>The parent definitions of the specified script word definition.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.AddLibrary(BindOpen.Framework.Core.Extensions.Libraries.ILibrary)">
             <summary>
@@ -7470,52 +7483,6 @@
             Instantiates a new instance of the RoutineIndex class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex">
-            <summary>
-            This class represents a script word index.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.#ctor">
-            <summary>
-            Instantiates a new instance of the ScriptwordIndex class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.#ctor(BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition[])">
-            <summary>
-            Instantiates a new instance of the ScriptwordIndex class.
-            </summary>
-            <param name="definitions">The definitions of this instance.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.SetDefinitions(System.Collections.Generic.List{BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition})">
-            <summary>
-            Sets the specified definitions of this instance.
-            </summary>
-            <param name="definitions">The definitions to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetParentScriptwordDefinitions(System.String,System.String[])">
-            <summary>
-            Returns the possible parent definitions of the specified script word definition.
-            </summary>
-            <param name="definitionName">The definition name to consider.</param>
-            <param name="libraryNames">The names of libraries to consider.</param>
-            <returns>The parent definitions of the specified script word definition.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithExactName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
-            <summary>
-            Returns the word definitions with the specified name.
-            </summary>
-            <param name="name">The name of the script words to return.</param>
-            <param name="parentDefinition">The parent definition.</param>
-            <returns>The script words with the specified name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndex.GetDefinitionsWithApproximativeName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
-            <summary>
-            Gets the word definitions approximatively with the specified name.
-            </summary>
-            <param name="name">The name of the script words to return.</param>
-            <param name="parentDefinition">The parent definition.</param>
-            <returns>The script words with the specified name.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Indexes.Scriptwords.ScriptwordIndexDto">
             <summary>
             This class represents a DTO script word index.
@@ -7539,39 +7506,6 @@
             <param name="methodName">The name of the method to consider.</param>
             <param name="parent">The parent to consider.</param>
             <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1">
-            <summary>
-            This class represents an application extension item index.
-            </summary>
-            <typeparam name="T">The class of this extension item definition.</typeparam>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1.Id">
-            <summary>
-            The ID of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1.Definitions">
-            <summary>
-            Definitions of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1.#ctor">
-            <summary>
-            Instantiates a new instance of the TAppExtensionItemIndex class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1.#ctor(`0[])">
-            <summary>
-            Instantiates a new instance of the TAppExtensionItemIndex class.
-            </summary>
-            <param name="definitions">The definitions to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndex`1.SetDefinitions(System.Collections.Generic.List{`0})">
-            <summary>
-            Sets the specified definitions of this instance.
-            </summary>
-            <param name="definitions">The definitions to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Indexes.TAppExtensionItemIndexDto`1">
             <summary>
@@ -9750,13 +9684,6 @@
             Instantiates a new instance of LibraryDefinition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.GetClassNameWithoutAssembly(System.String)">
-            <summary>
-            Gets the root namespace.
-            </summary>
-            <param name="className">The class name to consider.</param>
-            <returns>Returns the root namspace.</returns>
-        </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Libraries.Definition.LibraryDefinition.GetRootNamespace">
             <summary>
             Gets the root namespace.
@@ -10171,6 +10098,13 @@
             <param name="fullyQualifiedName">The type fully qualified name to consider.</param>
             <param name="object1">The object to consider.</param>
             <param name="attributes">The attributes to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Assemblies.AssemblyHelper.GetClassNameWithoutAssembly(System.String)">
+            <summary>
+            Gets the root namespace.
+            </summary>
+            <param name="className">The class name to consider.</param>
+            <returns>Returns the root namspace.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Assemblies.AssemblyResolver">
             <summary>
@@ -12602,11 +12536,6 @@
             using script dictionnaries and data context, providing a log for the interpretation task.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.Index">
-            <summary>
-            The index of this instance.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.#ctor">
             <summary>
             Instantiates a new instance of the ScriptInterpreter class.
@@ -12617,12 +12546,6 @@
             Instantiates a new instance of the ScriptInterpreter class.
             </summary>
             <param name="appScope">The application scope used to interprete.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.LoadDefinitions(System.String[])">
-            <summary>
-            Loads the specified libraries.
-            </summary>
-            <param name="libraryNames">The names of libraries to load.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.Evaluate(BindOpen.Framework.Core.Data.Expression.IDataExpression,System.String@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
@@ -12716,6 +12639,22 @@
             <param name="scriptWord">The script word to consider.</param>
             <param name="scriptWordDefinition">The script word definition to consider.</param>
             <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.GetDefinitionsWithExactName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
+            <summary>
+            Returns the word definitions with the specified name.
+            </summary>
+            <param name="name">The name of the script words to return.</param>
+            <param name="parentDefinition">The parent definition.</param>
+            <returns>The script words with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptInterpreter.GetDefinitionsWithApproximativeName(System.String,BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition)">
+            <summary>
+            Gets the word definitions approximatively with the specified name.
+            </summary>
+            <param name="name">The name of the script words to return.</param>
+            <param name="parentDefinition">The parent definition.</param>
+            <returns>The script words with the specified name.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Scripting.ScriptItem">
             <summary>

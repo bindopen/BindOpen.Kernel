@@ -46,6 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\Indexes\Interfaces\ITAppExtensionItemIndex.cs" />
+    <Compile Remove="Extensions\Indexes\Scriptwords\Interfaces\IScriptWordIndex.cs" />
+    <Compile Remove="Extensions\Indexes\Scriptwords\ScriptwordIndex.cs" />
+    <Compile Remove="Extensions\Indexes\TAppExtensionItemIndex.cs" />
     <Compile Remove="Extensions\Items\Factories\AppExtensionFactory.cs" />
     <Compile Remove="Extensions\Libraries\Archive.cs" />
   </ItemGroup>

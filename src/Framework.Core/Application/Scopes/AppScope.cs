@@ -61,11 +61,11 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="appDomain">The application domain to consider.</param>
         public AppScope(AppDomain appDomain)
         {
-            this.Initialize(appDomain);
+            Initialize(appDomain);
 
-            this.DataContext = new DataContext();
-            this.ScriptInterpreter = new ScriptInterpreter(this);
-            this.DataSourceService = new DataSourceService();
+            DataContext = new DataContext();
+            ScriptInterpreter = new ScriptInterpreter(this);
+            DataSourceService = new DataSourceService();
         }
 
         #endregion
@@ -84,12 +84,12 @@ namespace BindOpen.Framework.Core.Application.Scopes
         {
             if (appDomain != null)
             {
-                this.AppExtension = new AppExtension(appDomain);
+                AppExtension = new AppExtension(appDomain);
             }
 
-            this.DataContext = new DataContext();
-            this.DataSourceService = new DataSourceService();
-            this.ScriptInterpreter = new ScriptInterpreter(this);
+            DataContext = new DataContext();
+            DataSourceService = new DataSourceService();
+            ScriptInterpreter = new ScriptInterpreter(this);
         }
 
         #endregion
@@ -113,10 +113,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
             string[] specificationAreas = null,
             UpdateMode[] updateModes = null)
         {
-            this.AppExtension?.Initialize();
-            //if (this._DataContext != null)
-            //    this._DataContext.LoadExtensions(this._AppExtension);
-            this.ScriptInterpreter?.LoadDefinitions();
+            AppExtension?.Initialize();
 
             return new Log();
         }

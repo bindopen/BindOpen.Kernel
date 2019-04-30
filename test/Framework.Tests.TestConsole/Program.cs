@@ -19,7 +19,7 @@ namespace BindOpen.TestConsole
     /// <summary>
     /// This class represents the test console program.
     /// </summary>
-    /// <remarks>This allows </remarks>
+    /// <remarks>This class like the whole project is temporary. It allows to implement tests before inserting them in Unit test project.</remarks>
     internal static class Program
     {
         public static ITAppHost<AppConfiguration> _AppHost = null;
@@ -86,6 +86,10 @@ namespace BindOpen.TestConsole
             string path1 = Program._AppHost.GetSettings<TestAppSettings>().TestFolderPath;
 
             string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
+
+            string path3 = Program._AppHost.ScriptInterpreter.Interprete("$sqlField('myfield')");
+
+            string path4 = "";
 
             //ILog log = new Log();
             //log.AddMessage("test1");
