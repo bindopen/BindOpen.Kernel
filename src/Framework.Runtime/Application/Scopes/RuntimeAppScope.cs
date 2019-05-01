@@ -38,9 +38,11 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// Instantiates a new instance of the RuntimeAppScope class.
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
-        public RuntimeAppScope(AppDomain appDomain) : base(appDomain)
+        public RuntimeAppScope(
+            AppDomain appDomain,
+            IConnectionService connectionService = null) : base(appDomain)
         {
-            this.ConnectionService = new ConnectionService(this);
+            this.ConnectionService = connectionService ?? new ConnectionService(this);
         }
 
         #endregion

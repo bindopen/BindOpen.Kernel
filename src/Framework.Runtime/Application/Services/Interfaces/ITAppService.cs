@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// The interface defines the application service.
     /// </summary>
     public interface ITAppService<Q> : IScopedService
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         ITAppHostOptions<Q> Options { get; }
 

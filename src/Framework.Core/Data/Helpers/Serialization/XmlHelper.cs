@@ -136,9 +136,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : DataItem
+            bool mustFileExist = true) where T : class, IDataItem
         {
-            T dataItem = null;
+            T dataItem = default;
             log = (log?? new Log());
 
             StreamReader streamReader = null;

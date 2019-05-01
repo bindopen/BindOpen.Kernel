@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        public IAppScope AppScope
+        public IRuntimeAppScope AppScope
         {
             get { return this._appScope; }
         }

@@ -11,6 +11,7 @@
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This project completes on-demand tests before they are implemented in the unit test project.</Description>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <RootNamespace>BindOpen.Framework.Labs.TestConsole</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -45,6 +46,7 @@
     <ProjectReference Include="..\..\src\Framework.Core\Framework.Core.csproj" />
     <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\..\src\Framework.Databases\Framework.Databases.csproj" />
+    <ProjectReference Include="..\..\src\Framework.NetCore\Framework.NetCore.csproj" />
     <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
     <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>

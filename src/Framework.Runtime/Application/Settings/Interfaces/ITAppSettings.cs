@@ -5,7 +5,7 @@ using BindOpen.Framework.Runtime.Application.Configuration;
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
     public interface ITAppSettings<Q> : ITSettings<Q>, IBaseAppSettings
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         void SetAppScope(IRuntimeAppScope appScope);
     }

@@ -59,13 +59,17 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// Instantiates a new instance of the AppScope class.
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
-        public AppScope(AppDomain appDomain)
+        public AppScope(
+            AppDomain appDomain,
+            IDataContext dataContext = null,
+            IScriptInterpreter scriptInterpreter =null,
+            IDataSourceService dataSourceService = null) :  base()
         {
             Initialize(appDomain);
 
-            DataContext = new DataContext();
-            ScriptInterpreter = new ScriptInterpreter(this);
-            DataSourceService = new DataSourceService();
+            DataContext = dataContext ?? new DataContext();
+            ScriptInterpreter = scriptInterpreter ?? new ScriptInterpreter(this);
+            DataSourceService = dataSourceService ?? new DataSourceService();
         }
 
         #endregion

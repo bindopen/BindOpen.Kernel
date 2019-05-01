@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// The interface defines a BDO application hosted item.
     /// </summary>
     public interface ITAppHosted<Q>
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         // Execution ---------------------------------
 

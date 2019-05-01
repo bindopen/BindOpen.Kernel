@@ -13,6 +13,19 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class BdoAppServiceCollectionExtensions
     {
         /// <summary>
+        /// Adds a BindOpen default application hosting serivce.
+        /// </summary>
+        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="setupAction">The setup action to consider.</param>
+        /// <returns></returns>
+        public static IServiceCollection AddBdoDefaultAppHosting(
+            this IServiceCollection services,
+            Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
+        {
+            return services.AddBdoAppHosting<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+        }
+
+        /// <summary>
         /// Adds a BindOpen application hosting serivce.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
@@ -21,7 +34,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddBdoAppHosting<Q>(
             this IServiceCollection services,
             Action<ITAppHostOptions<Q>> setupAction = null)
-            where Q : AppConfiguration, new()
+            where Q : class, IAppConfiguration, new()
         {
             return services.AddBdoAppHosting<TAppHost<Q>, Q>(setupAction);
         }
@@ -35,14 +48,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBdoAppHosting<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
             where THost : TAppHost<Q>
-            where Q : AppConfiguration, new()
+            where Q : class, IAppConfiguration, new()
         {
-            services.AddSingleton<ITAppHost<Q>, THost>();
-
-            var sp = services.BuildServiceProvider();
-            THost host = sp.GetService<ITAppHost<Q>>() as THost;
-            host.Configure(setupAction);
-            host.Start();
+            services.AddSingleton<ITAppHost<Q>, THost>(sp => {
+                THost host = new TAppHost<Q>() as THost;
+                host.Configure(setupAction);
+                host.Start();
+                return host;
+            });
 
             return services;
         }
@@ -55,7 +68,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBdoAppService<TAppService, Q>(this IServiceCollection services)
             where TAppService : TAppService<Q>, ITAppHosted<Q>, new()
-            where Q : AppConfiguration, new()
+            where Q : IAppConfiguration, new()
         {
             services.AddHostedService<BdoHostedService<TAppService, Q>>();
 
