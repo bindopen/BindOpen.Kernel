@@ -622,7 +622,7 @@
             Instantiates a new instance of the AppScope class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain,BindOpen.Framework.Core.Data.Context.IDataContext,BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.Application.Services.Data.Datasources.IDataSourceService)">
             <summary>
             Instantiates a new instance of the AppScope class.
             </summary>

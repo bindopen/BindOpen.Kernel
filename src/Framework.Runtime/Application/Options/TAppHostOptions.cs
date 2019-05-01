@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
     /// This class represents an application host options.
     /// </summary>
     public class TAppHostOptions<Q> : DataItem, ITAppHostOptions<Q>
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         // ------------------------------------------
         // CONSTANTS

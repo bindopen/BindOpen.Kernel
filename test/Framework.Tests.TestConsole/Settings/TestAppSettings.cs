@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.TestConsole.Settings
+namespace BindOpen.Framework.Tests.TestConsole.Settings
 {
     /// <summary>
     /// This class represents a test application settings.

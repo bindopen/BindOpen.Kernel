@@ -12,7 +12,7 @@ namespace BindOpen.Framework.NetCore.Services
     /// <typeparam name="T">The class of the BindOpen application service to consider.</typeparam>
     public class BdoHostedService<T, Q> : IBdoHostedService
         where T : TAppService<Q>, ITAppHosted<Q>, new()
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         private ITAppHost<Q> _host;
         private T _bdoService;

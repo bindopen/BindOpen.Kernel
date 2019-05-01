@@ -1,4 +1,5 @@
 ﻿using System;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Application.Services.Data.Datasources;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -12,7 +13,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// This class represents an application host.
     /// </summary>
     public class TAppService<Q> : ScopedService, ITAppService<Q>
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         // ------------------------------------------
         // VARIABLES
@@ -21,10 +22,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         #region Variables
 
         private ITAppHostOptions<Q> _options = new TAppHostOptions<Q>();
-
-        // General ----------------------
-
-        public ITAppHostOptions<Q> Options => _options;
 
         /// <summary>
         /// Indicates whether this instance is loaded.
@@ -52,6 +49,10 @@ namespace BindOpen.Framework.Runtime.Application.Services
         // ------------------------------------------
 
         #region Properties
+
+        // General ----------------------
+
+        public ITAppHostOptions<Q> Options => _options;
 
         // Execution ----------------------
 
@@ -92,7 +93,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public bool IsLoadCompleted
         {
-            get { return this._isLoadCompleted; }
+            get { return _isLoadCompleted; }
         }
 
         #endregion
@@ -106,16 +107,27 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the BdoAppService class.
         /// </summary>
-        public TAppService() : base()
+        public TAppService() : this(null, null)
         {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoAppService class.
+        /// </summary>
+        public TAppService(
+            IRuntimeAppScope appScope,
+            ITAppHostOptions<Q> options) : base(appScope)
+        {
+            _options = options ?? new TAppHostOptions<Q>();
+
             // we initiate the log of this instance
-            this.Log = new Log(_ => false)
+            Log = new Log(_ => false)
             {
-                Id = this.Id
+                Id = Id
             };
 
             // we instantiate the loaded extension handler and the application script interperter
-            this.AppDomainPool = new AppDomainPool();
+            AppDomainPool = new AppDomainPool();
         }
 
         #endregion
@@ -134,7 +146,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         {
             log = log ?? new Log();
 
-            if (this.CurrentExecutionState != ProcessExecutionState.Pending)
+            if (CurrentExecutionState != ProcessExecutionState.Pending)
             {
                 // we start the application instance
                 log.AddMessage("Starting application instance...");
@@ -142,16 +154,16 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
                 // we initialize this instance
                 log.AddMessage("Initializing application...");
-                log.Append(this.Initialize());
+                log.Append(Initialize());
 
-                if (!this.IsLoadCompleted)
-                    this.CurrentExecutionStatus = ProcessExecutionStatus.Stopped_Error;
+                if (!IsLoadCompleted)
+                    CurrentExecutionStatus = ProcessExecutionStatus.Stopped_Error;
                 else
                     log.AddMessage("Application instance started");
 
                 log.Sanitize();
 
-                this.Log.Append(log);
+                Log.Append(log);
             }
 
             return this;
@@ -163,7 +175,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="executionStatus">The execution status to consider.</param>
         public virtual ITAppService<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
-            this.Log.End(executionStatus);
+            Log.End(executionStatus);
             return this;
         }
 
@@ -182,15 +194,15 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <returns>Returns the log of the task.</returns>
         protected override ILog Initialize<T>()
         {
-            this._appScope = new T();
-            this._appScope.Initialize(AppDomain.CurrentDomain);
+            _appScope = new T();
+            _appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope
-            this.AppScope.DataContext.AddSystemItem("appHost", this);
-            this.AppScope.DataSourceService = new DataSourceService();
+            AppScope.DataContext.AddSystemItem("appHost", this);
+            AppScope.DataSourceService = new DataSourceService();
 
-            if (this.GetType() == typeof(TAppService<Q>))
-                this._isLoadCompleted = true;
+            if (GetType() == typeof(TAppService<Q>))
+                _isLoadCompleted = true;
 
             return new Log();
         }
@@ -200,8 +212,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public virtual void LoadComplete()
         {
-            if (this.OnLoadCompleted != null)
-                OnLoadCompleted(this);
+            OnLoadCompleted?.Invoke(this);
         }
 
         #endregion
