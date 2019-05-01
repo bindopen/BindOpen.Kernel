@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
     /// This class represents a BDO application settings.
     /// </summary>
     public class TAppSettings<Q> : TSettings<Q>, ITAppSettings<Q>
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         // -------------------------------------------------------
         // PROPERTIES

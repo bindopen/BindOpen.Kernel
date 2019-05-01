@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// This class represents an application host.
     /// </summary>
     public class TAppHost<Q> : TAppService<Q>, ITAppHost<Q>
-        where Q : AppConfiguration, new()
+        where Q : class, IAppConfiguration, new()
     {
         // ------------------------------------------
         // PROPERTIES
@@ -61,7 +61,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoAppHost class.
         /// </summary>
-        public TAppHost() : base()
+        public TAppHost(
+            IRuntimeAppScope appScope = null,
+            ITAppHostOptions<Q> options = null,
+            IDataElementSet userSettingsSet = null) : base(appScope, options)
         {
             // we initiate the options
             Options.SetAppFolder(Directory.GetCurrentDirectory());
@@ -70,22 +73,24 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 new AppExtensionConfiguration(
                     new AppExtensionFilter("BindOpen.Framework.Runtime"),
                     new AppExtensionFilter("BindOpen.Framework.Standard")));
+
+            UserSettingsSet = userSettingsSet;
         }
 
-        #endregion
+            #endregion
 
-        // ------------------------------------------
-        // PROCESSING
-        // ------------------------------------------
+            // ------------------------------------------
+            // PROCESSING
+            // ------------------------------------------
 
-        #region Processing
+            #region Processing
 
-        /// <summary>
-        /// Configures the application host.
-        /// </summary>
-        /// <param name="setupOptions">The action to setup the application host.</param>
-        /// <returns>Returns the application host.</returns>
-        public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
+            /// <summary>
+            /// Configures the application host.
+            /// </summary>
+            /// <param name="setupOptions">The action to setup the application host.</param>
+            /// <returns>Returns the application host.</returns>
+            public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
         {
             setupOptions?.Invoke(Options);
 
@@ -287,6 +292,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     log.AddMessage("Extensions loaded");
 
                     // we load the application settings
+
                     log.AddMessage("Loading application settings...");
 
                     String settingsFilePath = GetKnownPath(ApplicationPathKind.SettingsFile);
@@ -305,7 +311,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         log.AddMessage("Application settings loaded");
 
                         Options?.Settings?.SetAppScope(_appScope);
-                        Options?.Settings?.Configuration?.Update(appSettings?.Configuration);
+                        Options?.Settings?.Configuration?.Update(appSettings.Configuration);
                         Options?.Settings?.Configuration?.Update(
                             new DataElementSpecSet(
                                 Options?.SettingsSpecificationSet?.Items?

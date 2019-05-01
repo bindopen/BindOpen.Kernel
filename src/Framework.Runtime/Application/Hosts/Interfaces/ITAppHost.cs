@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// The interface defines the application host.
     /// </summary>
     public interface ITAppHost<Q> : ITAppService<Q>, IBaseBdoAppHost
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         // Execution ---------------------------------
 
@@ -72,8 +72,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Loads the settings.
         /// </summary>
         /// <param name="filePath">The path of the file.</param>
-        /// <param name="log">The log of the option.</param>
         /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="log">The log of the option.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider.</param>
         /// <returns>Returns the application settings.</returns>
         ITAppSettings<Q> LoadSettings(

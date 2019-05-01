@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The application scope.
         /// </summary>
-        IAppScope AppScope { get; }
+        IRuntimeAppScope AppScope { get; }
 
         /// <summary>
         /// The connection service.

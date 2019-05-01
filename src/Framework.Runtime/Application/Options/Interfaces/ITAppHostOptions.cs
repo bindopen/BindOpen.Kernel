@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
     /// The interface defines the application host options.
     /// </summary>
     public interface ITAppHostOptions<Q> : IBaseAppHostOptions, IDataItem
-        where Q : AppConfiguration, new()
+        where Q : IAppConfiguration, new()
     {
         /// <summary>
         /// The settings.
