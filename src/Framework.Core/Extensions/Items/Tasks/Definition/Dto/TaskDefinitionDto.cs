@@ -10,10 +10,9 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Tasks.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto
 {
     /// <summary>
     /// This class represents a task definition.
@@ -105,11 +104,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks.Definition
                 this._outputSpecification = value;
             }
         }
-
-        /// <summary>
-        /// The runtime type of this instance.
-        /// </summary>
-        public Type RuntimeType { get; set; }
 
         #endregion
 

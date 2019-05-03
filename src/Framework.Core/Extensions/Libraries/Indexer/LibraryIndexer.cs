@@ -2,17 +2,15 @@
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Items;
-using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes;
 using BindOpen.Framework.Core.Extensions.Indexes.Carriers;
 using BindOpen.Framework.Core.Extensions.Indexes.Connectors;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {

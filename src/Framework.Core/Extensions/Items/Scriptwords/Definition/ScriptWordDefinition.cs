@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Libraries;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition

@@ -1,4 +1,5 @@
 ﻿using System;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition
 {

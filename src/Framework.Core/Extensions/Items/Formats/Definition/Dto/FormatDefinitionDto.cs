@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Source;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Connectors.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto
 {
     /// <summary>
-    /// This class represents a DTO connector definition.
+    /// This class represents the format definition.
     /// </summary>
     [Serializable()]
-    [XmlType("ConnectorDefinition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connector.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class ConnectorDefinitionDto : AppExtensionItemDefinitionDto, IConnectorDefinitionDto
+    [XmlType("FormatDefinition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "format.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class FormatDefinitionDto : AppExtensionItemDefinitionDto, IFormatDefinitionDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -30,16 +29,26 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors.Definition
         }
 
         /// <summary>
+        /// Viewer class of this instance.
+        /// </summary>
+        /// <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
+        [XmlElement("viewerClass")]
+        public string ViewerClass
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Data source kind of this instance.
         /// </summary>
         [XmlElement("dataSourceKind")]
-        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.None;
+        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.Memory;
 
         /// <summary>
-        /// The data source detail specification of this instance.
+        /// The runtime type of this instance.
         /// </summary>
-        [XmlElement("dataSource.specification")]
-        public DataElementSpecSet DatasourceDetailSpec { get; set; } = new DataElementSpecSet();
+        public Type RuntimeType { get; set; }
 
         #endregion
 
@@ -50,13 +59,12 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors.Definition
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ConnectorDefinition class.
+        /// Instantiates a new instance of the FormatDefinition class.
         /// </summary>
-        public ConnectorDefinitionDto()
+        public FormatDefinitionDto()
         {
         }
 
         #endregion
     }
-
 }

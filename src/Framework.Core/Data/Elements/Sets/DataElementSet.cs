@@ -57,6 +57,17 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlIgnore()]
         public new DataElement this[string key] => GetItem(key) as DataElement;
 
+        // Conversions -----------------------------
+
+        /// <summary>
+        /// Converts from data element array.
+        /// </summary>
+        /// <param name="elements">The elements to consider.</param>
+        public static implicit operator DataElementSet(DataElement[] elements)
+        {
+            return new DataElementSet(elements);
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -75,8 +86,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <summary>
         /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public DataElementSet(params IDataElement[] items) : this(null, items)
+        /// <param name="elements">The elements to consider.</param>
+        public DataElementSet(params IDataElement[] elements) : this(null, elements)
         {
         }
 
@@ -84,10 +95,10 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
         /// <param name="description">The description to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="elements">The elements to consider.</param>
         public DataElementSet(
             IDictionaryDataItem description,
-            params IDataElement[] items) : base(description, items.Cast<DataElement>().ToArray())
+            params IDataElement[] elements) : base(description, elements.Cast<DataElement>().ToArray())
         {
         }
 

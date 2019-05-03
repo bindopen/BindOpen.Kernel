@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
 
         #region Variables
 
-        private List<AppExtensionItemGroup> _SubGroups;
+        private List<AppExtensionItemGroup> _subGroups;
 
         #endregion
 
@@ -34,14 +34,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// </summary>
         [XmlArray("subGroups")]
         [XmlArrayItem("subGroup")]
-        public List<AppExtensionItemGroup> SubGroups
-        {
-            get
-            {
-                if (this._SubGroups == null) this._SubGroups = new List<AppExtensionItemGroup>();
-                return this._SubGroups;
-            }
-        }
+        public List<AppExtensionItemGroup> SubGroups => _subGroups ?? (_subGroups = new List<AppExtensionItemGroup>());
 
         #endregion
 
@@ -75,7 +68,8 @@ namespace BindOpen.Framework.Core.Extensions.Items
         {
             if (name == null)
                 return null;
-            foreach (IAppExtensionItemGroup group in this._SubGroups)
+
+            foreach (IAppExtensionItemGroup group in _subGroups)
             {
                 if (group.Name?.Equals(name, StringComparison.OrdinalIgnoreCase) == true)
                 {

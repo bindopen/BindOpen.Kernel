@@ -25,18 +25,6 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Properties
 
         /// <summary>
-        /// ID of this instance.
-        /// </summary>
-        [XmlAttribute("id")]
-        public string Id { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ID of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool IdSpecified => !string.IsNullOrEmpty(this.Id);
-
-        /// <summary>
         /// Name of this instance.
         /// </summary>
         [XmlAttribute("name")]
@@ -149,7 +137,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Returns the identifier key.
         /// </summary>
-        public virtual string Key()
+        public override string Key()
         {
             return this.Id;
         }

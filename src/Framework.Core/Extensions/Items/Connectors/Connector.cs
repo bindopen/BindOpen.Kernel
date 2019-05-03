@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
         /// <param name="name">The name of the element to create.</param>
         /// <param name="log">The log of the operation.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public ISourceElement AsElement(string name=null, Log log = null)
+        public ISourceElement AsElement(string name=null, ILog log = null)
         {
             return ElementFactory.CreateSource(name ?? Name, base.Configuration as IConnectorConfiguration);
         }

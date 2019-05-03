@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Routines;
 using BindOpen.Framework.Core.Extensions.Items.Routines.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Routines
 {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -10,7 +8,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords
     /// <summary>
     /// This class represents a script word.
     /// </summary>
-    [Serializable()]
     public class Scriptword : TAppExtensionItem<IScriptwordDefinition>, IScriptword
     {
         // ------------------------------------------
@@ -35,7 +32,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords
         /// <summary>
         /// Parameter detail of this instance.
         /// </summary>
-        [XmlElement("parameter.detail")]
         public IDataElementSet ParameterDetail { get; set; } = new DataElementSet();
 
         // Tree ----------------------------------

@@ -10,6 +10,7 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Common;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 

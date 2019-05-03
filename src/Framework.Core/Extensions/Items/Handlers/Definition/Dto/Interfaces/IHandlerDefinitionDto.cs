@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Handlers.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto
 {
     public interface IHandlerDefinitionDto : IAppExtensionItemDefinitionDto
     {

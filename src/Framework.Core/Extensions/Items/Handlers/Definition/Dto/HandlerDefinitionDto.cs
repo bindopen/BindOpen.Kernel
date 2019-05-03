@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Handlers.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto
 {
     /// <summary>
     /// This class represents a handler definition.
