@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
     public interface ICarrier : ITAppExtensionItem<ICarrierDefinition>
     {
-        ICarrierElement AsElement(string name = null, Log log = null);
+        ICarrierElement AsElement(string name = null, ILog log = null);
 
         string RelativePath { get; set; }
 

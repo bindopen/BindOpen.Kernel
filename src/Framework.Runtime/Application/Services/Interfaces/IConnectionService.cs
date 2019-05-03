@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Application.Services.Data.Datasources;
-using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
@@ -61,15 +60,5 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
         T Open<T>(string dataSourceName, string connectorDefinitionUniqueId, ILog log = null) where T : IConnection, new();
-
-        /// <summary>
-        /// Updates this service.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="item"></param>
-        /// <param name="specificationAreas"></param>
-        /// <param name="updateModes"></param>
-        /// <returns>The log of the operation.</returns>
-        ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateMode[] updateModes = null) where T : IDataItem;
     }
 }

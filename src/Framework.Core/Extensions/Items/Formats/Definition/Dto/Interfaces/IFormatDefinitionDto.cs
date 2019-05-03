@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Items.Source;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Formats.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto
 {
     public interface IFormatDefinitionDto : IAppExtensionItemDefinitionDto
     {

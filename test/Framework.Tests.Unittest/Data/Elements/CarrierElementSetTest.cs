@@ -101,7 +101,7 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
 
             var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + log.ToXml());
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + log.ToXml());
         }
     }
 }

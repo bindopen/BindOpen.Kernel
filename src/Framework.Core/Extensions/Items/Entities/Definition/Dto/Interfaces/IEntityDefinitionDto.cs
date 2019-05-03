@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Schema;
-using BindOpen.Framework.Core.Extensions.Items.Formats.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto
 {
     public interface IEntityDefinitionDto : IAppExtensionItemDefinitionDto
     {

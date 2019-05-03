@@ -1,4 +1,5 @@
 ﻿using System;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Tasks.Definition
 {

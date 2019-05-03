@@ -8,6 +8,7 @@ using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.Extensions.Indexes.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {

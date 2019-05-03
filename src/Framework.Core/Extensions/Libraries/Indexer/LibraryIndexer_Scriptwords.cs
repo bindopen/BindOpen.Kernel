@@ -9,6 +9,7 @@ using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {
@@ -69,7 +70,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
 
                         if (indexDto != null)
                         {
-                            ScriptwordDefinitionDto definitionDto = indexDto.GetDefinition(definitionName, methodInfo.Name);
+                            IScriptwordDefinitionDto definitionDto = indexDto.GetDefinition(definitionName, methodInfo.Name);
 
                             if (definitionDto == null)
                             {

@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Routines.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto
 {
     public interface IRoutineDefinitionDto : IAppExtensionItemDefinitionDto
     {

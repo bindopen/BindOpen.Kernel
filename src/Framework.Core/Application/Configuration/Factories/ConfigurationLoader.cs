@@ -1,16 +1,18 @@
 ﻿using System.IO;
 using System.Xml.Schema;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Application.Configuration.Serialization
+namespace BindOpen.Framework.Core.Application.Configuration
 {
     /// <summary>
     /// This static class provides methods to handle configurations.
     /// </summary>
-    public static class ConfigurationDtoLoader
+    public static class ConfigurationLoader
     {
         /// <summary>
         /// Instantiates a new instance of Configuration class from a xml file.
@@ -23,30 +25,44 @@ namespace BindOpen.Framework.Core.Application.Configuration.Serialization
         /// <returns>The Xml operation project defined in the Xml file.</returns>
         public new static T Load<T>(
             string filePath,
-            Log log,
             IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : ConfigurationDto, new()
+            bool mustFileExist = true) where T : Configuration, new()
         {
             T unionConfiguration = new T();
 
-            T topConfiguration = XmlHelper.Load<T>(filePath, log, xmlSchemaSet, mustFileExist) as T;
-            if (topConfiguration is UsableConfigurationDto topUsableConfiguration)
+            T topConfiguration = XmlHelper.Load<T>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) as T;
+            if (topConfiguration is UsableConfiguration topUsableConfiguration)
             {
+                unionConfiguration.Update(topConfiguration);
+
                 foreach (string usingFilePath in topUsableConfiguration.UsingFilePaths)
                 {
                     string completeUsingFilePath = (usingFilePath.Contains(":") ?
                         usingFilePath :
                         Path.GetDirectoryName(filePath).GetEndedString(@"\") + usingFilePath).ToPath();
-                    if (Load<T>(completeUsingFilePath, log, null, xmlSchemaSet, mustFileExist) is T usingConfiguration)
+                    if (Load<T>(completeUsingFilePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
                         unionConfiguration.Update(usingConfiguration);
                 }
             }
 
             unionConfiguration.CurrentFilePath = filePath;
-            unionConfiguration.Update(topConfiguration);
 
             return unionConfiguration;
+        }
+
+        /// <summary>
+        /// Adds the specified elements into the specified group.
+        /// </summary>
+        /// <param name="groupId">The ID of the group.</param>
+        /// <param name="items">The items to add.</param>
+        /// <returns>Returns this instance.</returns>
+        public static T AddGroup<T>(this T configuration, string groupId, params IDataElement[] items)
+            where T : Configuration
+        {
+            return configuration?.AddGroup(groupId, items) as T;
         }
     }
 }

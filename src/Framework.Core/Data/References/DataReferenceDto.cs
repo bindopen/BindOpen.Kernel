@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Data.References
         #region Properties
 
         /// <summary>
-        /// The dtaa handler unique ID of this instance.
+        /// The dtaa handler unique name of this instance.
         /// </summary>
         [XmlAttribute("handler")]
         public string DataHandlerUniqueName { get; set; } = null;
@@ -53,18 +53,6 @@ namespace BindOpen.Framework.Core.Data.References
         /// </summary>
         [XmlIgnore()]
         public bool PathDetailSpecified => PathDetail != null && (PathDetail.ElementsSpecified || PathDetail.DescriptionSpecified);
-
-        /// <summary>
-        /// Source item of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public object Source => SourceElement?.Items[0];
-
-        /// <summary>
-        /// Target item of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public object TargetItem { get; set; } = null;
 
         #endregion
 
@@ -179,13 +167,12 @@ namespace BindOpen.Framework.Core.Data.References
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            DataReferenceDto dataReference = base.Clone() as DataReferenceDto;
+            DataReferenceDto dto = base.Clone() as DataReferenceDto;
             if (SourceElement != null)
-                dataReference.SourceElement = SourceElement.Clone() as DataElement;
+                dto.SourceElement = SourceElement.Clone() as DataElement;
             if (PathDetail != null)
-                dataReference.PathDetail = PathDetail.Clone() as DataElementSet;
-            dataReference.TargetItem = TargetItem;
-            return dataReference;
+                dto.PathDetail = PathDetail.Clone() as DataElementSet;
+            return dto;
         }
 
         #endregion
@@ -217,7 +204,10 @@ namespace BindOpen.Framework.Core.Data.References
         /// Updates information for runtime.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
         {
             log = (log ?? new Log());
 

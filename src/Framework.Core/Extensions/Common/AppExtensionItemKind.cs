@@ -3,19 +3,27 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
 using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Formats;
 using BindOpen.Framework.Core.Extensions.Items.Formats.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Handlers.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Routines;
 using BindOpen.Framework.Core.Extensions.Items.Routines.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Common
 {

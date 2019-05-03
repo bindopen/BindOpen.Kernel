@@ -8,6 +8,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
 {
     public interface IEntity : ITAppExtensionItem<IEntityDefinition>, INamed
     {
-        IObjectElement AsElement(string name = null, Log log = null);
+        IObjectElement AsElement(string name = null, ILog log = null);
     }
 }

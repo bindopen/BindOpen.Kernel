@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition
 {

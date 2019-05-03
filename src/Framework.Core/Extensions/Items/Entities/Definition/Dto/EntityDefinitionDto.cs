@@ -4,9 +4,9 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Schema;
-using BindOpen.Framework.Core.Extensions.Items.Formats.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto
 {
     /// <summary>
     /// This class represents the entity definition.
@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the EntityDefinition class.
+        /// Instantiates a new instance of the EntityDefinitionDto class.
         /// </summary>
         public EntityDefinitionDto()
         {
