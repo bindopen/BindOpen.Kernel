@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AppExtensionItemDefinition class.
+        /// Instantiates a new instance of the AppExtensionItemDefinitionDto class.
         /// </summary>
         protected AppExtensionItemDefinitionDto()
             : this(null, "extension_", null)
@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         }
 
         /// <summary>
-        /// Instantiates a new instance of the AppExtensionItemDefinition class.
+        /// Instantiates a new instance of the AppExtensionItemDefinitionDto class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="preffix">The preffix to consider.</param>

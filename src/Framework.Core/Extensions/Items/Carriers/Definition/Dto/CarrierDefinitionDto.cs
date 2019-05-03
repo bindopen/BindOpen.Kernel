@@ -2,10 +2,9 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Carriers.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto
 {
     /// <summary>
     /// This class represents a DTO carrier definition.

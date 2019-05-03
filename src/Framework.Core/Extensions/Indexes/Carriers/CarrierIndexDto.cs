@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Carriers
 {

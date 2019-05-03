@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Runtime.Application.Modules
 {
@@ -17,6 +16,5 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         IAppSection AddSections(params AppSection[] sections);
         IAppSection GetSubSectionWithName(string name);
         IAppSection GetSubSectionWithUniqueName(string key);
-        string Key();
     }
 }

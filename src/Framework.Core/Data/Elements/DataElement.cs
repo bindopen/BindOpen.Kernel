@@ -148,33 +148,6 @@ namespace BindOpen.Framework.Core.Data.Elements
             return element?.GetObject() as string;
         }
 
-        ///// <summary>
-        ///// Items of this instance.
-        ///// </summary>
-        //[XmlIgnore()]
-        //public object FirstItem
-        //{
-        //    get => Items.Count > 0 ? Items[0] : null;
-        //    set
-        //    {
-        //        _items = new List<object>() { value };
-        //    }
-        //}
-
-        //// Serialization -------------------------------
-
-        ///// <summary>
-        ///// The item Xml element object of this instance.
-        ///// </summary>
-        //[XmlAnyElement]
-        //public XElement ItemXElement { get; set; } = null;
-
-        ///// <summary>
-        ///// Specification of the ItemXElement property of this instance.
-        ///// </summary>
-        //[XmlIgnore()]
-        //public bool ItemXElementSpecified => !ValueType.IsScalar() || _items?.Count > 1;
-
         // Specification -------------------------------
 
         /// <summary>
@@ -281,9 +254,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetObject<T>(
             IAppScope appScope = null,

@@ -1,5 +1,5 @@
 ﻿using System;
-using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers.Definition
 {

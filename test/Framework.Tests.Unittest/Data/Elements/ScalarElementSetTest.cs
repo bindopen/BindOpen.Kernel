@@ -18,11 +18,13 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
         [SetUp]
         public void Setup()
         {
-            _scalarElementSetA = new DataElementSet(
+            _scalarElementSetA = new []
+            {
                 ElementFactory.CreateScalar("float1", DataValueType.Number, 10),
                 ElementFactory.CreateScalar("text1", DataValueType.Text, "item1", "item2", "item3"),
                 ElementFactory.CreateScalar("integer1", DataValueType.Integer, 1, 2, 3),
-                ElementFactory.CreateScalar("float2", DataValueType.Number, 1.1, 1.2, 1.3));
+                ElementFactory.CreateScalar("float2", DataValueType.Number, 1.1, 1.2, 1.3)
+            };
         }
 
         [Test]
@@ -79,6 +81,8 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
                 TestSaveDataElementSet();
 
             var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null,log);
+
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + log.ToXml());
 
             TestCreateElementSet();
         }

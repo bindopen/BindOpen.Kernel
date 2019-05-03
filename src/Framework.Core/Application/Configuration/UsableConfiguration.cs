@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// </summary>
     [XmlType("UsableConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("usableConfiguration", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class UsableConfigurationDto : Configuration, IUsableConfigurationDto
+    public class UsableConfiguration : Configuration, IUsableConfigurationDto
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -58,8 +58,25 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Instantiates a new instance of the UsableConfiguration class.
         /// </summary>
-        public UsableConfigurationDto()
+        public UsableConfiguration()
             : base()
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
+        public UsableConfiguration(string filePath)
+            : base(filePath)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the UsableConfiguration class.
+        /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        public UsableConfiguration(string filePath, params IDataElement[] items) : this(filePath, null, items)
         {
         }
 
@@ -68,19 +85,11 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        public UsableConfigurationDto(string filePath, params string[] usingFilePaths)
-            : base(filePath)
+        /// <param name="items">The items to consider.</param>
+        public UsableConfiguration(string filePath, string[] usingFilePaths, params IDataElement[] items)
+            : base(filePath, items)
         {
             this.UsingFilePaths = usingFilePaths?.ToList();
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the UsableConfiguration class.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public UsableConfigurationDto(string filePath, params IDataElement[] items) : base(filePath, items)
-        {
         }
 
         #endregion

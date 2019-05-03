@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Tasks
 {

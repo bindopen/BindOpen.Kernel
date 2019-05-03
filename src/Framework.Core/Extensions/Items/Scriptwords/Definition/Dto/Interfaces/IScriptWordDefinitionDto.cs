@@ -5,7 +5,7 @@ using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
 {
     public interface IScriptwordDefinitionDto : IAppExtensionItemDefinitionDto
     {

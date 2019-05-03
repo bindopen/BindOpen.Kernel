@@ -55,10 +55,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Application\Configuration\Factories\ConfigurationLoader.cs" />
+    <Compile Include="Extensions\Items\Metrics\Definition\Dto\Interfaces\IMetricsDefinitionDto.cs" />
     <Compile Include="Extensions\Items\Metrics\Definition\Interfaces\IMetricsDefinition.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\Interfaces\IMetricsDefinitionDto.cs" />
     <Compile Include="Extensions\Items\Metrics\Definition\MetricsDefinition.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\MetricsDefinitionDto.cs" />
+    <Compile Include="Extensions\Items\Metrics\Definition\Dto\MetricsDefinitionDto.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,7 +67,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Extensions\Items\Metrics\Definition\MetricsDefinitionDto.xsd" />
+    <None Include="Extensions\Items\Metrics\Definition\Dto\MetricsDefinitionDto.xsd" />
   </ItemGroup>
 
 </Project>

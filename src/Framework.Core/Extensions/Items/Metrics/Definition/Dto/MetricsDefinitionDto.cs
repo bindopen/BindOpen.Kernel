@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Metrics.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto
 {
     /// <summary>
     /// This class represents a metrics definition.

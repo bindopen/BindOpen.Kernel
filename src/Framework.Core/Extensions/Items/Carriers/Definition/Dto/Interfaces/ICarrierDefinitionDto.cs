@@ -1,8 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Carriers.Definition
+namespace BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto
 {
     public interface ICarrierDefinitionDto : IAppExtensionItemDefinitionDto
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
 {
@@ -56,10 +57,10 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
         /// <param name="methodName">The name of the method to consider.</param>
         /// <param name="parent">The parent to consider.</param>
         /// <returns></returns>
-        public ScriptwordDefinitionDto GetDefinition(
+        public IScriptwordDefinitionDto GetDefinition(
             string definitionName,
             string methodName,
-            ScriptwordDefinitionDto parent = null)
+            IScriptwordDefinitionDto parent = null)
         {
             List<ScriptwordDefinitionDto> definitionDtos = parent == null ? Definitions : parent.Children;
 
@@ -72,7 +73,7 @@ namespace BindOpen.Framework.Core.Extensions.Indexes.Scriptwords
                 }
                 else
                 {
-                    ScriptwordDefinitionDto definitionDto;
+                    IScriptwordDefinitionDto definitionDto;
                     if ((definitionDto = GetDefinition(definitionName, methodName, childDefinitionDto))!=null)
                     {
                         return definitionDto;

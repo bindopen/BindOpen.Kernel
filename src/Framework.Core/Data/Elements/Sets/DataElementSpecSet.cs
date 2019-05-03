@@ -4,9 +4,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Items.Sets;
 
@@ -51,6 +49,17 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             {
                 return _items?.Count > 0;
             }
+        }
+
+        // Conversions -----------------------------
+
+        /// <summary>
+        /// Converts from data element specification array.
+        /// </summary>
+        /// <param name="elements">The elements to consider.</param>
+        public static implicit operator DataElementSpecSet(DataElementSpec[] elements)
+        {
+            return new DataElementSpecSet(elements);
         }
 
         #endregion

@@ -8,6 +8,7 @@ using BindOpen.Framework.Core.Extensions.Indexes.Connectors;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {

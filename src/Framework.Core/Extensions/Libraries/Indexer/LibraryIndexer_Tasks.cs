@@ -6,6 +6,7 @@ using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries

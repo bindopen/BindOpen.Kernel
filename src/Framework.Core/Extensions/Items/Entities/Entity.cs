@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Factories;
-using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
@@ -12,12 +11,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
     public abstract class Entity : TAppExtensionItem<IEntityDefinition>, IEntity
     {
         new public IEntityConfiguration Configuration { get => base.Configuration as IEntityConfiguration; }
-
-        /// <summary>
-        /// The name of this instance.
-        /// </summary>
-        [DetailProperty(Name = "name")]
-        public string Name { get; set; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -102,7 +95,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
         /// <param name="name">The name of the element to create.</param>
         /// <param name="log">The log of the operation.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public IObjectElement AsElement(string name=null, Log log = null)
+        public IObjectElement AsElement(string name=null, ILog log = null)
         {
             return ElementFactory.CreateObject(name ?? Name, base.Configuration as IEntityConfiguration);
         }

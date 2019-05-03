@@ -2,6 +2,7 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Metrics;
 using BindOpen.Framework.Core.Extensions.Items.Metrics.Definition;
+using BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto;
 
 namespace BindOpen.Framework.Core.Extensions.Indexes.Metrics
 {

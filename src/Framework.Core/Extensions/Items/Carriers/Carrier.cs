@@ -35,11 +35,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 
         #region Properties
 
-        /// <summary>
-        /// The name of this instance.
-        /// </summary>
-        public string Name { get; set; }
-
         // Path --------------------------
 
         /// <summary>
@@ -143,7 +138,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <param name="name">The name of the element to create.</param>
         /// <param name="log">The log of the operation.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public ICarrierElement AsElement(string name =null, Log log = null)
+        public ICarrierElement AsElement(string name =null, ILog log = null)
         {
             UpdateStorageInfo(log);
             return ElementFactory.CreateCarrier(name ?? Name, Configuration as ICarrierConfiguration);

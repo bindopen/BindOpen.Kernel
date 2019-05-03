@@ -1927,16 +1927,6 @@
             <param name="log"></param>
             <returns>The log of the operation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IConnectionService.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
-            <summary>
-            Updates this service.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="item"></param>
-            <param name="specificationAreas"></param>
-            <param name="updateModes"></param>
-            <returns>The log of the operation.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.IScopedService">
             <summary>
             This interface defines a scoped service.
