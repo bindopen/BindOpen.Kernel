@@ -1,5 +1,5 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
@@ -17,22 +17,22 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// The application extension.
         /// </summary>
-        IAppExtension AppExtension { get; set; }
+        IAppExtension Extension { get; set; }
 
         /// <summary>
         /// The data context.
         /// </summary>
-        IDataContext DataContext { get; set; }
+        IDataContext Context { get; set; }
 
         /// <summary>
         /// The data source service.
         /// </summary>
-        IDataSourceService DataSourceService { get; set; }
+        IDataSourceDepot DataSourceDepot { get; set; }
 
         /// <summary>
         /// The script interpreter.
         /// </summary>
-        IScriptInterpreter ScriptInterpreter { get; set; }
+        IScriptInterpreter Interpreter { get; set; }
 
         /// <summary>
         /// Sets the application domain of this instance.

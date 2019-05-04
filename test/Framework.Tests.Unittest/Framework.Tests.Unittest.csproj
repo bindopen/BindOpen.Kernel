@@ -26,11 +26,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
-    <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\References\" />
+    <Folder Include="run\" />
   </ItemGroup>
 
 </Project>

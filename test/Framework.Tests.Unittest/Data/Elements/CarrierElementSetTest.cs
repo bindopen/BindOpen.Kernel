@@ -6,7 +6,7 @@ using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Standard.Extensions.Carriers;
+using BindOpen.Framework.Runtime.Extensions.Carriers;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest.Data.Elements
@@ -29,19 +29,19 @@ namespace BindOpen.Framework.UnitTest.Data.Elements
             Log log = new Log();
 
             _carrierElement1 = ElementFactory.CreateCarrier(
-                "carrier1", "standard$file",
+                "carrier1", "runtime$file",
                 new CarrierConfiguration(
                     ElementFactory.CreateScalar("path", "file1.txt")));
 
             _carrierElement2 = ElementFactory.CreateCarrier(
-                "carrier2", "standard$file",
+                "carrier2", "runtime$file",
                 ElementFactory.CreateSet<CarrierConfiguration>(new { path = "file2.txt" }));
 
             _carrierElement3 = new RepositoryFile("file3.txt", "myfolder")?.AsElement();
 
-            _carrierElement4 = SetupVariables.AppScope.CreateCarrier(
+            _carrierElement4 = SetupVariables.AppHost.Scope.CreateCarrier(
                 new CarrierConfiguration(
-                    "standard$file",
+                    "runtime$file",
                     ElementFactory.CreateElementArray(new { path = "file4.txt" })),
                 "carrier4", log)?.AsElement();
 

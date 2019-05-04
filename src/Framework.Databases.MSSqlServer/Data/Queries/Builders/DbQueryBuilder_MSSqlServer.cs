@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         }
                         else if (field.IsNameAsScript)
                         {
-                            String name = _appScope?.ScriptInterpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            String name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "[" + name + "]";
                         }
                         else
@@ -145,7 +145,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     case DbDataFieldViewMode.OnlyNameAsAlias:
                         if (field.IsNameAsScript)
                         {
-                            String name = _appScope?.ScriptInterpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            String name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "[" + name + "]";
                         }
                         else
@@ -157,7 +157,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
-                        String value = _appScope?.ScriptInterpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
+                        String value = _appScope?.Interpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
 
                         if (field.Query !=null)
                         {
@@ -330,7 +330,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 if (queryJointure.Kind != DbDataQueryJointureKind.None)
                 {
                     queryString += " on ";
-                    String expression = _appScope?.ScriptInterpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
+                    String expression = _appScope?.Interpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
                     queryString += expression;
                 }
             }
@@ -674,7 +674,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null && query.WhereClause.Text != null)
                         {
                             queryString += " where ";
-                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.GroupByClause != null)
@@ -697,7 +697,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.HavingClause != null)
                         {
                             queryString += " having ";
-                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.OrderByStatements.Count > 0)
@@ -773,7 +773,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            String expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }
@@ -791,7 +791,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            string expression = _appScope?.ScriptInterpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            string expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }

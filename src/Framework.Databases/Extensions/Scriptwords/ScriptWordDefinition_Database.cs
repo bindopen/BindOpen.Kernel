@@ -765,7 +765,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             {
                 value1 = value1.GetValueFromText();
 
-                string instanceName = appScope?.DataSourceService?.GetInstanceName(value1);
+                string instanceName = appScope?.DataSourceDepot?.GetInstanceName(value1);
                 if (string.IsNullOrEmpty(instanceName) || instanceName == StringHelper.__NoneString)
                     instanceName = value1;
 

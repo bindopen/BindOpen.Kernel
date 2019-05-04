@@ -61,10 +61,10 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>If not found, it returns the specified data module name.</remarks>
         protected string GetDatabaseName(string dataModuleName)
         {
-            if (this._appScope?.DataSourceService == null)
+            if (this._appScope?.DataSourceDepot == null)
                 return dataModuleName;
             else
-                return this._appScope?.DataSourceService.GetInstanceOtherwiseModuleName(dataModuleName);
+                return this._appScope?.DataSourceDepot.GetInstanceOtherwiseModuleName(dataModuleName);
         }
 
         /// <summary>

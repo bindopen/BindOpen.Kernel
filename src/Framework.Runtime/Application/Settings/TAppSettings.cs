@@ -139,7 +139,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAppSettings class.
+        /// Instantiates a new instance of the TAppSettings class.
         /// </summary>
         public TAppSettings()
             : base()
@@ -147,7 +147,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAppSettings class.
+        /// Instantiates a new instance of the TAppSettings class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Sets the specified application scope.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public void SetAppScope(IRuntimeAppScope appScope)
+        public void SetAppScope(IAppHostScope appScope)
         {
             _appScope = appScope;
         }

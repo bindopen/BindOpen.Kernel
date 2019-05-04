@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Tests.TestConsole
 
             string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
 
-            string path3 = Program._AppHost.ScriptInterpreter.Interprete("$sqlField('myfield')");
+            string path3 = Program._AppHost.Interpreter.Interprete("$sqlField('myfield')");
 
             string path4 = "";
 

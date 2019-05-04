@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <param name="log"></param>
         /// <returns>The log of the operation.</returns>
-        T Open<T>(IDataSourceService dataSourceService, string dataSourceName, string connectorDefinitionUniqueId, ILog log = null) where T : IConnection, new();
+        T Open<T>(IDataSourceDepot dataSourceService, string dataSourceName, string connectorDefinitionUniqueId, ILog log = null) where T : IConnection, new();
 
         /// <summary>
         /// Opens the connection.

@@ -1,6 +1,6 @@
 ﻿using System;
+using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
@@ -52,6 +52,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
         // General ----------------------
 
+            /// <summary>
+            /// The options of this instance.
+            /// </summary>
         public ITAppHostOptions<Q> Options => _options;
 
         // Execution ----------------------
@@ -115,7 +118,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the BdoAppService class.
         /// </summary>
         public TAppService(
-            IRuntimeAppScope appScope,
+            IAppHostScope appScope,
             ITAppHostOptions<Q> options) : base(appScope)
         {
             _options = options ?? new TAppHostOptions<Q>();
@@ -198,8 +201,8 @@ namespace BindOpen.Framework.Runtime.Application.Services
             _appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope
-            AppScope.DataContext.AddSystemItem("appHost", this);
-            AppScope.DataSourceService = new DataSourceService();
+            _appScope.Context.AddSystemItem("appHost", this);
+            _appScope.DataSourceDepot = new DataSourceDepot();
 
             if (GetType() == typeof(TAppService<Q>))
                 _isLoadCompleted = true;

@@ -48,7 +48,6 @@
     <ProjectReference Include="..\..\src\Framework.Databases\Framework.Databases.csproj" />
     <ProjectReference Include="..\..\src\Framework.NetCore\Framework.NetCore.csproj" />
     <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
-    <ProjectReference Include="..\..\src\Framework.Standard\Framework.Standard.csproj" />
   </ItemGroup>
 
 </Project>

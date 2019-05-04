@@ -5,7 +5,6 @@ using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.Extensions.Libraries;
 using BindOpen.Framework.Core.Extensions.Libraries.Definition;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions
 {
@@ -28,13 +27,6 @@ namespace BindOpen.Framework.Core.Extensions
         List<string> GetLibraryNames();
 
         void Initialize();
-
-        ILog AddLibraries(
-            IAppExtensionConfiguration config,
-            string folderPath = null);
-        ILog AddLibrariesFromFile(
-            string filePaths,
-            string folderPath);
 
         List<IScriptwordDefinition> GetParentScriptwordDefinitions(
             string definitionName,
