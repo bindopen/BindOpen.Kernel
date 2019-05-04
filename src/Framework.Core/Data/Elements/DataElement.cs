@@ -289,7 +289,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     {
                         log?.AddError(title: "Application scope missing");
                     }
-                    else if (appScope.ScriptInterpreter == null)
+                    else if (appScope.Interpreter == null)
                     {
                         log?.AddError(title: "Script interpreter missing");
                     }
@@ -309,7 +309,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     {
                         log?.AddError(title: "Application scope missing");
                     }
-                    else if (appScope.ScriptInterpreter == null)
+                    else if (appScope.Interpreter == null)
                     {
                         log?.AddError(title: "Script interpreter missing");
                     }
@@ -319,7 +319,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     }
                     else
                     {
-                        object1 = appScope.ScriptInterpreter.Interprete(ItemScript, scriptVariableSet, log);
+                        object1 = appScope.Interpreter.Interprete(ItemScript, scriptVariableSet, log);
                         if (object1 != null)
                         {
                             return object1.GetType().IsArray ? object1 as List<object> : object1;

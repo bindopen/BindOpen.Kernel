@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The scope of this instance.
         /// </summary>
-        protected IRuntimeAppScope _appScope = null;
+        protected IAppHostScope _appScope = null;
 
         #endregion
 
@@ -37,43 +37,35 @@ namespace BindOpen.Framework.Runtime.Application.Services
         // Extensions ----------------------
 
         /// <summary>
-        /// The application scope of this instance.
-        /// </summary>
-        public IRuntimeAppScope AppScope
-        {
-            get { return this._appScope; }
-        }
-
-        /// <summary>
         /// The application extension of this instance.
         /// </summary>
-        public IAppExtension AppExtension
+        public IAppScope Scope
         {
-            get { return this._appScope?.AppExtension; }
+            get { return _appScope; }
         }
 
         /// <summary>
         /// The data context of this instance.
         /// </summary>
-        public IDataContext DataContext
+        public IDataContext Context
         {
-            get { return this._appScope?.DataContext; }
+            get { return _appScope?.Context; }
         }
 
         /// <summary>
         /// Script interpreter of this instance.
         /// </summary>
-        public IScriptInterpreter ScriptInterpreter
+        public IScriptInterpreter Interpreter
         {
-            get { return this._appScope?.ScriptInterpreter; }
+            get { return _appScope?.Interpreter; }
         }
 
         /// <summary>
         /// Data source service of this instance.
         /// </summary>
-        public IDataSourceService DataSourceService
+        public IDataSourceDepot DataSourceDepot
         {
-            get { return this._appScope?.DataSourceService; }
+            get { return _appScope?.DataSourceDepot; }
         }
 
         /// <summary>
@@ -81,7 +73,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public IConnectionService ConnectionService
         {
-            get { return this._appScope?.ConnectionService; }
+            get { return _appScope?.ConnectionService; }
         }
 
         #endregion
@@ -103,9 +95,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the ScopedService class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public ScopedService(IRuntimeAppScope appScope) : base("")
+        public ScopedService(IAppHostScope appScope) : base("")
         {
-            this._appScope = appScope;
+            _appScope = appScope;
         }
 
         #endregion
@@ -122,7 +114,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <returns>Returns the log of the task.</returns>
         protected virtual ILog Initialize()
         {
-            return this.Initialize<RuntimeAppScope>();
+            return Initialize<AppHostScope>();
         }
 
         /// <summary>
@@ -130,7 +122,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <typeparam name="T">The runtime application scope to consider.</typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected virtual ILog Initialize<T>() where T : IRuntimeAppScope, new()
+        protected virtual ILog Initialize<T>() where T : IAppHostScope, new()
         {
             return new Log();
         }

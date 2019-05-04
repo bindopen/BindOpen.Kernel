@@ -49,7 +49,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
                 TestSaveConnector();
 
             ConnectorConfiguration configuration = XmlHelper.Load<ConnectorConfiguration>(_filePath, null,null, log);
-            DatabaseConnector_MSSqlServer connector = SetupVariables.AppScope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration, null, log);
+            DatabaseConnector_MSSqlServer connector = SetupVariables.AppHost.Scope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + log.ToXml());
 
@@ -62,7 +62,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
             Log log = new Log();
 
             using (DatabaseConnection connection =
-                SetupVariables.AppScope.ConnectionService.Open<DatabaseConnection>("bdd1", null, log))
+                SetupVariables.AppHost.ConnectionService.Open<DatabaseConnection>("bdd1", null, log))
             {
             }
         }

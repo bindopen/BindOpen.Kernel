@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         {
             AppExtensionItemKind extensionItemKind = typeof(T).GetExtensionItemKind();
 
-            T definition = appScope.AppExtension.GetItemDefinitionWithUniqueId<T>(definitionUniqueId);
+            T definition = appScope.Extension.GetItemDefinitionWithUniqueId<T>(definitionUniqueId);
 
             ITAppExtensionItemConfiguration<T> configuration = null;
 

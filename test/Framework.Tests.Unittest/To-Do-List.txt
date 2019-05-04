@@ -1,0 +1,7 @@
+﻿Features to add and test:
+
+- Loading usable configuration.
+- Loading extension items: script word index loading, entities, tasks.
+- Handling tasks.
+- Handling references.
+- Handling application options (with sub sets).

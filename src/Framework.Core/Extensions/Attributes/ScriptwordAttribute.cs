@@ -38,6 +38,14 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the ScriptwordAttribute class.
+        /// </summary>
+        public ScriptwordAttribute(string name) : base()
+        {
+            Name = name;
+        }
+
         #endregion
     }
 }

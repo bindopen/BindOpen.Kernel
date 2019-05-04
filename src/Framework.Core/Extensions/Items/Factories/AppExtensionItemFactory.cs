@@ -1,8 +1,8 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
@@ -24,8 +24,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="name">The name to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <typeparam name="T">The carrier class to return.</typeparam>
@@ -40,16 +40,16 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
             return appScope.CreateCarrier(configuration, name, log, scriptVariableSet) as T;
         }
 
-            /// <summary>
-            /// Creates the instance of the specified definition.
-            /// </summary>
-            /// <param name="appScope">The application scope to consider.</param>
-            /// <param name="name">The name to consider.</param>
-            /// <param name="configuration">The configuration to consider.</param>
-            /// <param name="log">The log to consider.</param>
-            /// <param name="scriptVariableSet">The script variable set to use.</param>
-            /// <returns>Returns the created carrier.</returns>
-            public static Carrier CreateCarrier(
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <returns>Returns the created carrier.</returns>
+        public static Carrier CreateCarrier(
             this IAppScope appScope,
             ICarrierConfiguration configuration = null,
             string name = null,
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
                 {
                     // we get the carrier class reference
 
-                    ICarrierDefinition definition = appScope.AppExtension.GetItemDefinitionWithUniqueId<ICarrierDefinition>(configuration.DefinitionUniqueId);
+                    ICarrierDefinition definition = appScope.Extension.GetItemDefinitionWithUniqueId<ICarrierDefinition>(configuration.DefinitionUniqueId);
                     if (definition == null)
                     {
                         log?.AddError("Could not retrieve the extension carrier '" + configuration.DefinitionUniqueId + "' definition");
@@ -94,8 +94,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="name">The name to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <typeparam name="T">The carrier class to return.</typeparam>
@@ -114,8 +114,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="name">The name to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the created connector.</returns>
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
                 {
                     // we get the connector class reference
 
-                    IConnectorDefinition definition = appScope.AppExtension.GetItemDefinitionWithUniqueId<IConnectorDefinition>(configuration?.DefinitionUniqueId);
+                    IConnectorDefinition definition = appScope.Extension.GetItemDefinitionWithUniqueId<IConnectorDefinition>(configuration?.DefinitionUniqueId);
                     if (definition == null)
                     {
                         log?.AddError("Could not retrieve the extension connector '" + configuration.DefinitionUniqueId + "' definition");
@@ -164,8 +164,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="name">The name to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="name">The name to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <typeparam name="T">The carrier class to return.</typeparam>
@@ -204,7 +204,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Factories
                 {
                     // we get the task class reference
 
-                    ITaskDefinition definition = appScope.AppExtension.GetItemDefinitionWithUniqueId<ITaskDefinition>(configuration?.DefinitionUniqueId);
+                    ITaskDefinition definition = appScope.Extension.GetItemDefinitionWithUniqueId<ITaskDefinition>(configuration?.DefinitionUniqueId);
                     if (definition == null)
                     {
                         log?.AddError("Could not retrieve the extension task '" + configuration.DefinitionUniqueId + "' definition");

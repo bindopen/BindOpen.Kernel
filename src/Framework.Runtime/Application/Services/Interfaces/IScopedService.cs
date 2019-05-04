@@ -1,7 +1,6 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Context;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Runtime.Application.Services
@@ -12,14 +11,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
     public interface IScopedService
     {
         /// <summary>
-        /// The application extension.
-        /// </summary>
-        IAppExtension AppExtension { get; }
-
-        /// <summary>
         /// The application scope.
         /// </summary>
-        IRuntimeAppScope AppScope { get; }
+        IAppScope Scope { get; }
 
         /// <summary>
         /// The connection service.
@@ -29,16 +23,16 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The data context.
         /// </summary>
-        IDataContext DataContext { get; }
+        IDataContext Context { get; }
 
         /// <summary>
         /// The data source service.
         /// </summary>
-        IDataSourceService DataSourceService { get; }
+        IDataSourceDepot DataSourceDepot { get; }
 
         /// <summary>
         /// The script interpreter.
         /// </summary>
-        IScriptInterpreter ScriptInterpreter { get; }
+        IScriptInterpreter Interpreter { get; }
     }
 }

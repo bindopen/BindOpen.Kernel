@@ -1,83 +1,52 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Extensions.Connectors;
-using NUnit.Framework;
+using BindOpen.Framework.Runtime.Application.Configuration;
+using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Tests.TestConsole.Settings;
 
 namespace BindOpen.Framework.UnitTest
 {
     public static class SetupVariables
     {
-        static string _WorkingFolder = null;
-        static RuntimeAppScope _AppScope = null;
-        static DataSourceService _DataSourceService = null;
+        static string _workingFolder = null;
+        static TAppHost<AppConfiguration> _appHost = null;
 
         public static string WorkingFolder
         {
             get
             {
-                String workingFolder = SetupVariables._WorkingFolder;
+                String workingFolder = SetupVariables._workingFolder;
                 if (workingFolder == null)
-                    SetupVariables._WorkingFolder = workingFolder = (AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\") + @"temp\").ToPath();
+                    SetupVariables._workingFolder = workingFolder = (AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\") + @"temp\").ToPath();
 
                 return workingFolder;
             }
         }
 
-        public static RuntimeAppScope AppScope
+        public static TAppHost<AppConfiguration> AppHost
         {
             get
             {
-                RuntimeAppScope appScope = SetupVariables._AppScope;
-                if (appScope == null)
+                if (_appHost == null)
                 {
-                    appScope = new RuntimeAppScope(AppDomain.CurrentDomain);
-                    ILog log = appScope.AppExtension.AddLibraries(
-                        new AppExtensionConfiguration(
-                            new AppExtensionFilter("BindOpen.Framework.Standard"),
-                            new AppExtensionFilter("BindOpen.Framework.Databases"),
-                            new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer")));
-                    appScope.DataSourceService = SetupVariables.DataSourceService;
-                    appScope.Update<RuntimeAppScope>();
-                    SetupVariables._AppScope = appScope;
-
-                    string xml = log.ToXml();
-                    Assert.IsFalse(log.HasErrorsOrExceptions(), xml);
+                    _appHost = AppHostFactory.CreateBindOpenDefault(
+                        options => options
+                            .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
+                            .SetModule(new AppModule("app.test"))
+                            .DefineSettings<TestAppSettings>()
+                            .SetExtensions(
+                                new AppExtensionConfiguration()
+                                    .AddFilter("BindOpen.Framework.Databases")
+                                    .AddFilter("BindOpen.Framework.Databases.MSSqlServer"))
+                            .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\lib")
+                            .AddDefaultLogger());
                 }
 
-                return appScope;
+                return _appHost;
             }
         }
-
-        public static IDataSourceService DataSourceService
-        {
-            get
-            {
-                DataSourceService dataSourceService = SetupVariables._DataSourceService;
-                if (dataSourceService == null)
-                {
-                    dataSourceService = new DataSourceService();
-                    dataSourceService = new DataSourceService(
-                        new DataSource(
-                            "prd@ptf_central_db",
-                            DataSourceKind.Database,
-                            new ConnectorConfiguration(DatabaseConnectorKind.MSSqlServer.GetUniqueName())
-                                .WithConnectionString("<Enter.Connection.String.Here>")
-                        )
-                    );
-                    SetupVariables._DataSourceService = dataSourceService;
-                }
-
-                return dataSourceService;
-            }
-        }
-
     }
 
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        protected readonly IRuntimeAppScope _appScope = null;
+        protected readonly IAppHostScope _appScope = null;
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the ConnectionManager class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public ConnectionService(IRuntimeAppScope appScope)
+        public ConnectionService(IAppHostScope appScope)
         {
             this._appScope = appScope;
         }
@@ -70,7 +70,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            IDataSourceService dataSourceService,
+            IDataSourceDepot dataSourceService,
             string dataSourceName,
             string connectorDefinitionUniqueId,
             ILog log = null) where T : IConnection, new()
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             this.Update<ConnectionService>();
 
             if (dataSourceService == null)
-                dataSourceService = this._appScope?.DataSourceService;
+                dataSourceService = this._appScope?.DataSourceDepot;
 
             if (dataSourceService == null)
                 log.AddError("Source manager missing");

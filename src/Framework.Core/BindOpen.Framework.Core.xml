@@ -263,6 +263,115 @@
             <param name="items">The items to add.</param>
             <returns>Returns this instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot">
+            <summary>
+            This class represents a data source service.
+            </summary>
+            <remarks>The data source service stores sources by data sources.</remarks>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot._dataSourceSet">
+            <summary>
+            The data sources of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.DataSourceSet">
+            <summary>
+            The data source set of this instance. 
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.#ctor">
+            <summary>
+            Instantiates a new instance of the DataSourceDepot class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.#ctor(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
+            <summary>
+            Instantiates a new instance of the DataSourceDepot class.
+            </summary>
+            <param name="dataSources">The data sources to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource)">
+            <summary>
+            Adds the specified data source.
+            </summary>
+            <param name="source">The data source to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
+            <summary>
+            Adds the specified module instances.
+            </summary>
+            <param name="sources">The data sources to add.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.RemoveSource(System.String[])">
+            <summary>
+            Remove the specified data sources.
+            </summary>
+            <param name="sourceNames">Names of the data source to remove.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetSource(System.String)">
+            <summary>
+            Gets the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The data source with the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.HasSource(System.String)">
+            <summary>
+            Indicates whether this instance has the specified data module name.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The data source with the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetModuleName(System.String)">
+            <summary>
+            Returns the module name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The module name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetInstanceName(System.String)">
+            <summary>
+            Returns the instance name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The instance name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetInstanceOtherwiseModuleName(System.String)">
+            <summary>
+            Returns the instance name otherwise module name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The instance name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetConnectorConfiguration(System.String,System.String)">
+            <summary>
+            Gets the specified connector configuration.
+            </summary>
+            <param name="sourceName">The name of the data module to consider.</param>
+            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <returns>The specified connector.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.HasConnectorConfiguration(System.String,System.String)">
+            <summary>
+            Indicates whether this instance has the specified connector configuration.
+            </summary>
+            <param name="sourceName">The name of the data module to consider.</param>
+            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <returns>The data source with the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetStringConnection(System.String,System.String)">
+            <summary>
+            Returns the connection string corresponding to the specified configuration.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
+            <returns>The connection string corresponding to the specified data module name.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Application.Entities.ApplicationEntity">
             <summary>
             This class represents an application entity.
@@ -617,32 +726,27 @@
             This class represents an application scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.AppExtension">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.Extension">
             <summary>
             The application extension of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.ScriptInterpreter">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.Interpreter">
             <summary>
             The script interpreter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.DataContext">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.Context">
             <summary>
             The data context of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.DataSourceService">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppScope.DataSourceDepot">
             <summary>
             The data source service of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor">
-            <summary>
-            Instantiates a new instance of the AppScope class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain,BindOpen.Framework.Core.Data.Context.IDataContext,BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.Application.Services.Data.Datasources.IDataSourceService)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain,BindOpen.Framework.Core.Data.Context.IDataContext,BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.Application.Depots.Datasources.IDataSourceDepot)">
             <summary>
             Instantiates a new instance of the AppScope class.
             </summary>
@@ -677,30 +781,49 @@
             <param name="isAppExtensionChecked">Indicates whether the application extension is chekced.</param>
             <param name="isScriptInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
             <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
-            <param name="isDataSourceServiceChecked">Indicates whether the data module manager is chekced.</param>
+            <param name="isDataSourceDepotChecked">Indicates whether the data module manager is chekced.</param>
             <returns>The log of check log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScopeHelper.AppendLibraries(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration,System.String)">
+            <summary>
+            Adds the specified libraries.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="config">The application extension configuration to consider.</param>
+            <param name="folderPath">The folder path to consider.</param>
+            <returns>Reurns the opeartion log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScopeHelper.AppendFromFiles(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,System.String)">
+            <summary>
+            Adds the specifed libraries in the specified way.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="filePaths">The file paths to consider.</param>
+            <param name="folderPath">The folder path to consider.</param>
+            <returns>The log of the load task.</returns>
+            <remarks>If null then we load the existing library names.</remarks>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Scopes.IAppScope">
             <summary>
             This interface defines an application scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.AppExtension">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.Extension">
             <summary>
             The application extension.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.DataContext">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.Context">
             <summary>
             The data context.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.DataSourceService">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.DataSourceDepot">
             <summary>
             The data source service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.ScriptInterpreter">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppScope.Interpreter">
             <summary>
             The script interpreter.
             </summary>
@@ -721,147 +844,38 @@
             <param name="updateModes"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService">
-            <summary>
-            This class represents a data source service.
-            </summary>
-            <remarks>The data source service stores sources by data sources.</remarks>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService._dataSourceSet">
-            <summary>
-            The data sources of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.DataSourceSet">
-            <summary>
-            The data source set of this instance. 
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.#ctor">
-            <summary>
-            Instantiates a new instance of the DataSourceService class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.#ctor(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
-            <summary>
-            Instantiates a new instance of the DataSourceService class.
-            </summary>
-            <param name="dataSources">The data sources to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource)">
-            <summary>
-            Adds the specified data source.
-            </summary>
-            <param name="source">The data source to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
-            <summary>
-            Adds the specified module instances.
-            </summary>
-            <param name="sources">The data sources to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.RemoveSource(System.String[])">
-            <summary>
-            Remove the specified data sources.
-            </summary>
-            <param name="sourceNames">Names of the data source to remove.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.Clear">
-            <summary>
-            Clears this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetSource(System.String)">
-            <summary>
-            Gets the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.HasSource(System.String)">
-            <summary>
-            Indicates whether this instance has the specified data module name.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetModuleName(System.String)">
-            <summary>
-            Returns the module name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The module name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetInstanceName(System.String)">
-            <summary>
-            Returns the instance name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The instance name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetInstanceOtherwiseModuleName(System.String)">
-            <summary>
-            Returns the instance name otherwise module name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The instance name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetConnectorConfiguration(System.String,System.String)">
-            <summary>
-            Gets the specified connector configuration.
-            </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
-            <returns>The specified connector.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.HasConnectorConfiguration(System.String,System.String)">
-            <summary>
-            Indicates whether this instance has the specified connector configuration.
-            </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.Datasources.DataSourceService.GetStringConnection(System.String,System.String)">
-            <summary>
-            Returns the connection string corresponding to the specified configuration.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
-            <returns>The connection string corresponding to the specified data module name.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.BdoDataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.Data.DataService">
             <summary>
             This class represents a BindOpen data service.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Application.Services.Data.BdoDataService._connection">
+        <member name="F:BindOpen.Framework.Core.Application.Services.Data.DataService._connection">
             <summary>
             The connection of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.Connection">
+        <member name="P:BindOpen.Framework.Core.Application.Services.Data.DataService.Connection">
             <summary>
             The connection of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.#ctor">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.DataService.#ctor">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.#ctor(BindOpen.Framework.Core.Data.Connections.IConnection)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.DataService.#ctor(BindOpen.Framework.Core.Data.Connections.IConnection)">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
             <param name="connection">The connection to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.BdoDataServiceExtension">
+        <member name="T:BindOpen.Framework.Core.Application.Services.Data.DataServiceExtension">
             <summary>
             This class represents a data context service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataServiceExtension.Execute``1(``0,System.Action{``0})">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.DataServiceExtension.Execute``1(``0,System.Action{``0})">
             <summary>
             Executes the specified function.
             </summary>
@@ -870,12 +884,12 @@
             <param name="function"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.IBdoDataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.Data.IDataService">
             <summary>
-            This interfaces represents a BindOpen data service.
+            This interfaces represents a data service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.Data.IBdoDataService.Connection">
+        <member name="P:BindOpen.Framework.Core.Application.Services.Data.IDataService.Connection">
             <summary>
             The connection of the service.
             </summary>
@@ -6864,23 +6878,6 @@
             </summary>
             <param name="libraries">The dynamic libraries to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.AddLibraries(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration,System.String)">
-            <summary>
-            Adds the specified libraries.
-            </summary>
-            <param name="config">The application extension configuration to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <returns>Reurns the opeartion log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.AddLibrariesFromFile(System.String,System.String)">
-            <summary>
-            Adds the specifed libraries in the specified way.
-            </summary>
-            <param name="filePaths">The file paths to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <returns>The log of the load task.</returns>
-            <remarks>If null then we load the existing library names.</remarks>
-        </member>
         <member name="M:BindOpen.Framework.Core.Extensions.AppExtension.Clear">
             <summary>
             Clears this instance.
@@ -7254,6 +7251,11 @@
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Attributes.ScriptwordAttribute.#ctor">
+            <summary>
+            Instantiates a new instance of the ScriptwordAttribute class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Attributes.ScriptwordAttribute.#ctor(System.String)">
             <summary>
             Instantiates a new instance of the ScriptwordAttribute class.
             </summary>
@@ -8331,8 +8333,8 @@
             Creates the instance of the specified definition.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="name">The name to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+            <param name="name">The name to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <typeparam name="T">The carrier class to return.</typeparam>
@@ -8343,8 +8345,8 @@
             Creates the instance of the specified definition.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="name">The name to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+            <param name="name">The name to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the created carrier.</returns>
@@ -8354,8 +8356,8 @@
             Creates the instance of the specified definition.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="name">The name to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+            <param name="name">The name to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <typeparam name="T">The carrier class to return.</typeparam>
@@ -8366,8 +8368,8 @@
             Creates the instance of the specified definition.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="name">The name to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+            <param name="name">The name to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the created connector.</returns>
@@ -8377,8 +8379,8 @@
             Creates the instance of the specified definition.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="name">The name to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+            <param name="name">The name to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
             <typeparam name="T">The carrier class to return.</typeparam>
