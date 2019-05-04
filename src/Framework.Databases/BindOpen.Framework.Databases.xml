@@ -385,7 +385,7 @@
             This class represents a data service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.BdoDataService,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.DataService,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Retrieves the specified data.
             </summary>

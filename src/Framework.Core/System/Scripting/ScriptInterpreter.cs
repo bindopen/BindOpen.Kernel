@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         private IAppScope _appScope = null;
 
-        private List<IScriptwordDefinition> _definitions => _appScope?.AppExtension?.ScriptwordDefinitions;
+        private List<IScriptwordDefinition> _definitions => _appScope?.Extension?.ScriptwordDefinitions;
 
         #endregion
 

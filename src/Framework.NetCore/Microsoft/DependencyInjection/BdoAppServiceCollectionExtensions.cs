@@ -12,17 +12,19 @@ namespace Microsoft.Extensions.DependencyInjection
     /// </summary>
     public static class BdoAppServiceCollectionExtensions
     {
+        // BindOpen host --------------------------
+
         /// <summary>
         /// Adds a BindOpen default application hosting serivce.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBdoDefaultAppHosting(
+        public static IServiceCollection AddBindOpenDefault(
             this IServiceCollection services,
             Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
         {
-            return services.AddBdoAppHosting<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+            return services.AddBindOpen<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
         }
 
         /// <summary>
@@ -31,12 +33,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBdoAppHosting<Q>(
+        public static IServiceCollection AddBindOpen<Q>(
             this IServiceCollection services,
             Action<ITAppHostOptions<Q>> setupAction = null)
             where Q : class, IAppConfiguration, new()
         {
-            return services.AddBdoAppHosting<TAppHost<Q>, Q>(setupAction);
+            return services.AddBindOpen<TAppHost<Q>, Q>(setupAction);
         }
 
         /// <summary>
@@ -46,19 +48,16 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBdoAppHosting<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
+        public static IServiceCollection AddBindOpen<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
             where THost : TAppHost<Q>
             where Q : class, IAppConfiguration, new()
         {
-            services.AddSingleton<ITAppHost<Q>, THost>(sp => {
-                THost host = new TAppHost<Q>() as THost;
-                host.Configure(setupAction);
-                host.Start();
-                return host;
-            });
+            services.AddSingleton<ITAppHost<Q>, THost>(_ => AppHostFactory.CreateBindOpen<THost, Q>(setupAction));
 
             return services;
         }
+
+        // BindOpen services --------------------------
 
         /// <summary>
         /// Adds a BindOpen application service.
@@ -66,7 +65,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <typeparam name="TAppService">The class of application service to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBdoAppService<TAppService, Q>(this IServiceCollection services)
+        public static IServiceCollection AddBindOpenService<TAppService, Q>(this IServiceCollection services)
             where TAppService : TAppService<Q>, ITAppHosted<Q>, new()
             where Q : IAppConfiguration, new()
         {

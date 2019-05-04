@@ -62,7 +62,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Instantiates a new instance of the BdoAppHost class.
         /// </summary>
         public TAppHost(
-            IRuntimeAppScope appScope = null,
+            IAppHostScope appScope = null,
             ITAppHostOptions<Q> options = null,
             IDataElementSet userSettingsSet = null) : base(appScope, options)
         {
@@ -72,25 +72,25 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             Options.SetExtensions(
                 new AppExtensionConfiguration(
                     new AppExtensionFilter("BindOpen.Framework.Runtime"),
-                    new AppExtensionFilter("BindOpen.Framework.Standard")));
+                    new AppExtensionFilter("BindOpen.Framework.Runtime")));
 
             UserSettingsSet = userSettingsSet;
         }
 
-            #endregion
+        #endregion
 
-            // ------------------------------------------
-            // PROCESSING
-            // ------------------------------------------
+        // ------------------------------------------
+        // PROCESSING
+        // ------------------------------------------
 
-            #region Processing
+        #region Processing
 
-            /// <summary>
-            /// Configures the application host.
-            /// </summary>
-            /// <param name="setupOptions">The action to setup the application host.</param>
-            /// <returns>Returns the application host.</returns>
-            public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
+        /// <summary>
+        /// Configures the application host.
+        /// </summary>
+        /// <param name="setupOptions">The action to setup the application host.</param>
+        /// <returns>Returns the application host.</returns>
+        public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
         {
             setupOptions?.Invoke(Options);
 
@@ -274,15 +274,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             log.AddMessage("Loading extensions...");
 
             // we load the extensions
-            AppScope.AppExtension.Clear();
+            _appScope.Extension.Clear();
             if (string.IsNullOrEmpty(Options?.ExtensionConfiguration.DefaultFolderPath))
             {
-                Options.ExtensionConfiguration.DefaultFolderPath = GetKnownPath( ApplicationPathKind.LibraryFolder);
+                Options.ExtensionConfiguration.DefaultFolderPath = GetKnownPath(ApplicationPathKind.LibraryFolder);
             }
             log.Append(
-                AppScope.AppExtension.AddLibraries(Options?.ExtensionConfiguration),
+                _appScope.AppendLibraries(Options?.ExtensionConfiguration),
                 p => p.HasErrorsOrExceptionsOrWarnings());
-            AppScope.Update<RuntimeAppScope>();
+
+            _appScope.Update<AppHostScope>();
 
             try
             {
@@ -319,10 +320,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                                         p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Definition) == true
                                         || p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Configuration) == true).ToArray()),
                                 null,
-                                new [] { UpdateMode.Incremental_UpdateCommonItems });
+                                new[] { UpdateMode.Incremental_UpdateCommonItems });
                         Options?.Settings?.UpdateRuntimeInfo(_appScope, null, log);
 
-                        if (Options?.Settings!=null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
+                        if (Options?.Settings != null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
                             Options.Settings.ApplicationInstanceName = AppConfiguration._ApplicationInstanceName;
                         }
@@ -344,12 +345,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         //        new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
 
                         // we build the data module manager
-                        DataSourceService.Clear();
-                        if (AppExtension != null && Options?.Settings?.Configuration?.DataSources !=null)
+                        DataSourceDepot.Clear();
+                        if (_appScope?.Extension != null && Options?.Settings?.Configuration?.DataSources != null)
                         {
                             foreach (IDataSource dataSource in Options?.Settings?.Configuration?.DataSources)
                             {
-                                DataSourceService.AddSource(dataSource);
+                                DataSourceDepot.AddSource(dataSource);
                             }
                         }
 

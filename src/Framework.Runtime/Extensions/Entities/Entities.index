@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<entities.index library="runtime"
+<entities.index library="standard"
   xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:EntityIndex EntityIndex.xsd">
   

@@ -1,5 +1,5 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Services.Data.Datasources;
+using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
@@ -23,22 +23,22 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// The application extension of this instance.
         /// </summary>
-        public IAppExtension AppExtension { get; set; } = null;
+        public IAppExtension Extension { get; set; } = null;
 
         /// <summary>
         /// The script interpreter of this instance.
         /// </summary>
-        public IScriptInterpreter ScriptInterpreter { get; set; } = null;
+        public IScriptInterpreter Interpreter { get; set; } = null;
 
         /// <summary>
         /// The data context of this instance.
         /// </summary>
-        public IDataContext DataContext { get; set; } = null;
+        public IDataContext Context { get; set; } = null;
 
         /// <summary>
         /// The data source service of this instance.
         /// </summary>
-        public IDataSourceService DataSourceService { get; set; } = null;
+        public IDataSourceDepot DataSourceDepot { get; set; } = null;
 
         #endregion
 
@@ -51,25 +51,18 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <summary>
         /// Instantiates a new instance of the AppScope class.
         /// </summary>
-        public AppScope() : this(AppDomain.CurrentDomain)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the AppScope class.
-        /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
         public AppScope(
-            AppDomain appDomain,
+            AppDomain appDomain = null,
             IDataContext dataContext = null,
             IScriptInterpreter scriptInterpreter =null,
-            IDataSourceService dataSourceService = null) :  base()
+            IDataSourceDepot dataSourceService = null) :  base()
         {
-            Initialize(appDomain);
+            Initialize(appDomain ?? AppDomain.CurrentDomain);
 
-            DataContext = dataContext ?? new DataContext();
-            ScriptInterpreter = scriptInterpreter ?? new ScriptInterpreter(this);
-            DataSourceService = dataSourceService ?? new DataSourceService();
+            Context = dataContext ?? new DataContext();
+            Interpreter = scriptInterpreter ?? new ScriptInterpreter(this);
+            DataSourceDepot = dataSourceService ?? new DataSourceDepot();
         }
 
         #endregion
@@ -88,12 +81,12 @@ namespace BindOpen.Framework.Core.Application.Scopes
         {
             if (appDomain != null)
             {
-                AppExtension = new AppExtension(appDomain);
+                Extension = new AppExtension(appDomain);
             }
 
-            DataContext = new DataContext();
-            DataSourceService = new DataSourceService();
-            ScriptInterpreter = new ScriptInterpreter(this);
+            Context = new DataContext();
+            DataSourceDepot = new DataSourceDepot();
+            Interpreter = new ScriptInterpreter(this);
         }
 
         #endregion
@@ -117,7 +110,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
             string[] specificationAreas = null,
             UpdateMode[] updateModes = null)
         {
-            AppExtension?.Initialize();
+            Extension?.Initialize();
 
             return new Log();
         }

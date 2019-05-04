@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the specified data.</returns>
         public static T GetData<T>(
-            this BdoDataService dataService,
+            this DataService dataService,
             Log log,
             DbDataQuery query,
             Func<IDbConnection, string, T> function,
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="connection">The database connection to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns></returns>
-        public static T GetId<Q, T>(this DatabaseConnection connection, Log log) where Q : IBdoDataService
+        public static T GetId<Q, T>(this DatabaseConnection connection, Log log) where Q : IDataService
         {
             T value = default(T);
 

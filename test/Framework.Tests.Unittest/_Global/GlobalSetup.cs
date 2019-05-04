@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace BindOpen.Framework.UnitTest
 {
@@ -13,7 +12,7 @@ namespace BindOpen.Framework.UnitTest
         public void Setup()
         {
             // Setup variables for the first time
-            IAppExtension appExtension = SetupVariables.AppScope.AppExtension;
+            var host = SetupVariables.AppHost;
         }
     }
 }

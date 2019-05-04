@@ -7,6 +7,6 @@ namespace BindOpen.Framework.Runtime.Application.Settings
     public interface ITAppSettings<Q> : ITSettings<Q>, IBaseAppSettings
         where Q : IAppConfiguration, new()
     {
-        void SetAppScope(IRuntimeAppScope appScope);
+        void SetAppScope(IAppHostScope appScope);
     }
 }

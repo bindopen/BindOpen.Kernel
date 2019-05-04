@@ -29,9 +29,9 @@ namespace BindOpen.TestConsole
                .ConfigureServices((services) =>
                {
                    services
-                    .AddBdoDefaultAppHosting(
-                        (options) =>
-                            options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
+                    .AddBindOpenDefault(
+                        (options) => options
+                            .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                             .SetModule(new AppModule("app.test"))
                             .DefineSettings<TestAppSettings>()
                             .SetExtensions(
@@ -41,9 +41,9 @@ namespace BindOpen.TestConsole
                             .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
                             .AddDefaultLogger()
                             .SetLoggers(
-                                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console)))
-
-                    .AddBdoAppService<TestService, AppConfiguration>();
+                                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
+                    )
+                    .AddBindOpenService<TestService, AppConfiguration>();
                })
                .RunConsoleAsync().ConfigureAwait(false);
         }
