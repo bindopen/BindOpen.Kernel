@@ -3,7 +3,6 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -33,8 +32,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// <summary>
         /// Instantiates a new instance of the Task class.
         /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected Task(ITaskConfiguration dto)
+        /// <param name="config">The configuration of this instance.</param>
+        protected Task(ITaskConfiguration config) : base(config)
         {
         }
 

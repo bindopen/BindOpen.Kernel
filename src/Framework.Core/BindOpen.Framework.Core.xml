@@ -239,6 +239,14 @@
             <param name="usingFilePaths">The paths of the using files to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Adds the specified elements into the specified group.
+            </summary>
+            <param name="groupId">The ID of the group.</param>
+            <param name="items">The items to add.</param>
+            <returns>Returns this instance.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader">
             <summary>
             This static class provides methods to handle configurations.
@@ -772,6 +780,12 @@
             <summary>
             This class represents an application scope helper.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScopeHelper.CreateScope(System.AppDomain)">
+            <summary>
+            Creates a new scope.
+            </summary>
+            <returns>The log of check log.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScopeHelper.Check(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -7724,7 +7738,7 @@
             <summary>
             Instantiates a new instance of the Carrier class.
             </summary>
-            <param name="dto">The DTO item of this instance.</param>
+            <param name="config">The configuration of this instance.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier.#ctor(System.String,System.String)">
             <summary>
@@ -7925,7 +7939,7 @@
             <summary>
             Instantiates a new instance of the Connector class.
             </summary>
-            <param name="dto">The DTO item of this instance.</param>
+            <param name="config">The configuration of this instance.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.#ctor(System.String,System.String)">
             <summary>
@@ -8263,7 +8277,7 @@
             <summary>
             Instantiates a new instance of the Entity class.
             </summary>
-            <param name="dto">The DTO item of this instance.</param>
+            <param name="config">The configuration of this instance.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Entity.AsElement(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
@@ -8965,11 +8979,6 @@
             This class represents a script word.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword.Name">
-            <summary>
-            Name of this instance.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Scriptword.Kind">
             <summary>
             Kind of this instance.
@@ -9063,7 +9072,7 @@
             <summary>
             Instantiates a new instance of the TAppExtensionItem class.
             </summary>
-            <param name="dto">The DTO item to consider.</param>
+            <param name="config">The configuration to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.TAppExtensionItem`1.AsElement(System.String)">
             <summary>
@@ -9398,7 +9407,7 @@
             <summary>
             Instantiates a new instance of the Task class.
             </summary>
-            <param name="dto">The DTO item of this instance.</param>
+            <param name="config">The configuration of this instance.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Task.GetEntryObjectWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
             <summary>

@@ -115,8 +115,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <summary>
         /// Instantiates a new instance of the Carrier class.
         /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected Carrier(ICarrierConfiguration dto): base(dto)
+        /// <param name="config">The configuration of this instance.</param>
+        protected Carrier(ICarrierConfiguration config): base(config)
         {
         }
 

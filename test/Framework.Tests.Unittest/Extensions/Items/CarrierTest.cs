@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.Extensions.Runtime
+namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
 {
     [TestFixture, Order(11)]
     public class CarrierTest
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.UnitTest.Extensions.Runtime
                 TestSaveCarrier();
 
             CarrierConfiguration configuration = XmlHelper.Load<CarrierConfiguration>(_filePath, null, null, log);
-            DbField field = SetupVariables.AppHost.Scope.CreateCarrier<DbField>(configuration, null, log);
+            var field = SetupVariables.AppHost.Scope.CreateCarrier<DbField>(configuration, null, log);
 
             Assert.That(!log.HasErrorsOrExceptions(), "Carrier loading failed. Result was '" + log.ToXml());
 

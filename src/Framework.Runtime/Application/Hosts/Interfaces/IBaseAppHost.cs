@@ -3,9 +3,9 @@
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {
     /// <summary>
-    /// The interface defines the application host.
+    /// The interface defines the base application host.
     /// </summary>
-    public interface IBaseBdoAppHost
+    public interface IBaseAppHost
     {
         /// <summary>
         /// Get the specified known path.

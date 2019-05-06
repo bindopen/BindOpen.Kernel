@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {
@@ -61,10 +60,10 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// <summary>
         /// Instantiates a new instance of the TAppExtensionItem class.
         /// </summary>
-        /// <param name="dto">The DTO item to consider.</param>
-        protected TAppExtensionItem(ITAppExtensionItemConfiguration<T> dto = default) : this()
+        /// <param name="config">The configuration to consider.</param>
+        protected TAppExtensionItem(ITAppExtensionItemConfiguration<T> config = default) : this()
         {
-            _configuration = dto;
+            _configuration = config;
         }
 
         #endregion

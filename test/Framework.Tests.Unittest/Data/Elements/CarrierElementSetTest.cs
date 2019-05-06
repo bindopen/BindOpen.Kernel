@@ -9,7 +9,7 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.Data.Elements
+namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 {
     [TestFixture]
     public class CarrierElementSetTest

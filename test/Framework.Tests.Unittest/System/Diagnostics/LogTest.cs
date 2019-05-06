@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.UnitTest;
+using BindOpen.Framework.Tests.UnitTest;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.System.Diagnostics
+namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
 {
     [TestFixture, Order(21)]
     public class LogTest

@@ -5,10 +5,10 @@ using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Data.Connections;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
-using BindOpen.Framework.UnitTest;
+using BindOpen.Framework.Tests.UnitTest;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.Extensions.Runtime
+namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
 {
     [TestFixture, Order(11)]
     public class ConnectorTest

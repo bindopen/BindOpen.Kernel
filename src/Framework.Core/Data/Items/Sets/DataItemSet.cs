@@ -309,7 +309,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
             if (updateModes == null)
-                updateModes = new[] { UpdateMode.Full };
+                updateModes = new[] { UpdateMode.Incremental_AddItemsMissingInTarget };
 
             if (item is IDataItemSet<T>)
             {

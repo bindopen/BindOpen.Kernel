@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest
+namespace BindOpen.Framework.Tests.UnitTest
 {
     /// <summary>
     /// This class set the global settings up.
