@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
     /// <summary>
     /// This class represents an data entity item.
     /// </summary>
-    public abstract class Entity : TAppExtensionItem<IEntityDefinition>, IEntity
+    public abstract class Entity : TAppExtensionItem<EntityDefinition>, IEntity
     {
         new public IEntityConfiguration Configuration { get => base.Configuration as IEntityConfiguration; }
 
@@ -28,8 +28,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
         /// <summary>
         /// Instantiates a new instance of the Entity class.
         /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected Entity(IEntityConfiguration dto)
+        /// <param name="config">The configuration of this instance.</param>
+        protected Entity(IEntityConfiguration config) : base(config)
         {
         }
 

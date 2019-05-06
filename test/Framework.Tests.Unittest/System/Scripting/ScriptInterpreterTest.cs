@@ -5,7 +5,7 @@ using BindOpen.Framework.Databases.Extensions.Scriptwords;
 using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.System.Diagnostics
+namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
 {
     [TestFixture, Order(12)]
     public class ScriptInterpreterTest

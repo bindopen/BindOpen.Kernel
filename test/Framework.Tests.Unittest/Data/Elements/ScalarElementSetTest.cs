@@ -6,7 +6,7 @@ using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
 
-namespace BindOpen.Framework.UnitTest.Data.Elements
+namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 {
     [TestFixture]
     public class ScalarElementSetTest

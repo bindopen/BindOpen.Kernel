@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
@@ -16,15 +17,21 @@ namespace BindOpen.Framework.Core.Application.Scopes
     public static class AppScopeHelper
     {
         /// <summary>
-        /// Check the specified item.
+        /// Creates a new scope.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="isAppExtensionChecked">Indicates whether the application extension is chekced.</param>
-        /// <param name="isScriptInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
-        /// <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
-        /// <param name="isDataSourceDepotChecked">Indicates whether the data module manager is chekced.</param>
         /// <returns>The log of check log.</returns>
-        public static ILog Check(
+        public static IAppScope CreateScope(AppDomain appDomain = null) => new AppScope(appDomain);
+
+            /// <summary>
+            /// Check the specified item.
+            /// </summary>
+            /// <param name="appScope">The application scope to consider.</param>
+            /// <param name="isAppExtensionChecked">Indicates whether the application extension is chekced.</param>
+            /// <param name="isScriptInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
+            /// <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
+            /// <param name="isDataSourceDepotChecked">Indicates whether the data module manager is chekced.</param>
+            /// <returns>The log of check log.</returns>
+            public static ILog Check(
             this IAppScope appScope,
             bool isAppExtensionChecked = false,
             bool isScriptInterpreterChecked = false,

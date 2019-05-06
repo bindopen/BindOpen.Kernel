@@ -54,15 +54,15 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="appDomain">The application domain to consider.</param>
         public AppScope(
             AppDomain appDomain = null,
-            IDataContext dataContext = null,
-            IScriptInterpreter scriptInterpreter =null,
-            IDataSourceDepot dataSourceService = null) :  base()
+            IDataContext context = null,
+            IScriptInterpreter interpreter =null,
+            IDataSourceDepot dataSourceDepot = null) :  base()
         {
             Initialize(appDomain ?? AppDomain.CurrentDomain);
 
-            Context = dataContext ?? new DataContext();
-            Interpreter = scriptInterpreter ?? new ScriptInterpreter(this);
-            DataSourceDepot = dataSourceService ?? new DataSourceDepot();
+            Context = context ?? new DataContext();
+            Interpreter = interpreter ?? new ScriptInterpreter(this);
+            DataSourceDepot = dataSourceDepot ?? new DataSourceDepot();
         }
 
         #endregion

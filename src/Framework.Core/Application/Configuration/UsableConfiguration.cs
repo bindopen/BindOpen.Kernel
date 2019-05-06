@@ -93,5 +93,13 @@ namespace BindOpen.Framework.Core.Application.Configuration
         }
 
         #endregion
+
+        /// <summary>
+        /// Adds the specified elements into the specified group.
+        /// </summary>
+        /// <param name="groupId">The ID of the group.</param>
+        /// <param name="items">The items to add.</param>
+        /// <returns>Returns this instance.</returns>
+        public new UsableConfiguration AddGroup(string groupId, params IDataElement[] items) => base.AddGroup(groupId, items) as UsableConfiguration;
     }
 }

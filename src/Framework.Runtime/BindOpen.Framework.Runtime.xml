@@ -199,19 +199,19 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost">
             <summary>
-            The interface defines the application host.
+            The interface defines the base application host.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
             <summary>
             Get the specified known path.
             </summary>
             <param name="pathKind">The kind of known path.</param>
             <returns>Returns the specified path.</returns>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBaseBdoAppHost.BaseOptions">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost.BaseOptions">
             <summary>
             The base options.
             </summary>
@@ -3443,15 +3443,21 @@
             This class represents a runtime application scope helper.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScopeHelper.CreateHostScope(System.AppDomain)">
+            <summary>
+            Creates a new scope.
+            </summary>
+            <returns>The log of check log.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScopeHelper.Check(BindOpen.Framework.Core.Application.Scopes.AppHostScope,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Check the specified item.
             </summary>
             <param name="appScope">The application scope to consider.</param>
-            <param name="isAppExtensionChecked">Indicates whether the application extension is chekced.</param>
-            <param name="isScriptInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
-            <param name="isConnectionManagerChecked">Indicates whether the connection service is chekced.</param>
-            <param name="isDataContextChecked">Indicates whether the data context is chekced.</param>
+            <param name="isExtensionChecked">Indicates whether the application extension is chekced.</param>
+            <param name="isInterpreterChecked">Indicates whether the script interpreter is chekced.</param>
+            <param name="isConnectionServiceChecked">Indicates whether the connection service is chekced.</param>
+            <param name="isContextChecked">Indicates whether the data context is chekced.</param>
             <param name="isDataSourceDepotChecked">Indicates whether the data module manager is chekced.</param>
             <returns>The log of check log.</returns>
         </member>

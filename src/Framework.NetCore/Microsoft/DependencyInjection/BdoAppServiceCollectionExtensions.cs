@@ -20,11 +20,11 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenDefault(
+        public static IServiceCollection AddBindOpenDefaultHost(
             this IServiceCollection services,
             Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
         {
-            return services.AddBindOpen<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+            return services.AddBindOpenHost<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
         }
 
         /// <summary>
@@ -33,12 +33,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpen<Q>(
+        public static IServiceCollection AddBindOpenHost<Q>(
             this IServiceCollection services,
             Action<ITAppHostOptions<Q>> setupAction = null)
             where Q : class, IAppConfiguration, new()
         {
-            return services.AddBindOpen<TAppHost<Q>, Q>(setupAction);
+            return services.AddBindOpenHost<TAppHost<Q>, Q>(setupAction);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpen<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
+        public static IServiceCollection AddBindOpenHost<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
             where THost : TAppHost<Q>
             where Q : class, IAppConfiguration, new()
         {

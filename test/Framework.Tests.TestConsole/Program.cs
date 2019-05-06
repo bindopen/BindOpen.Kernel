@@ -29,7 +29,7 @@ namespace BindOpen.TestConsole
                .ConfigureServices((services) =>
                {
                    services
-                    .AddBindOpenDefault(
+                    .AddBindOpenDefaultHost(
                         (options) => options
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                             .SetModule(new AppModule("app.test"))

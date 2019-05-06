@@ -2,7 +2,7 @@
 
 namespace BindOpen.Framework.Core.Extensions.Items.Formats
 {
-    public interface IFormat : ITAppExtensionItem<IFormatDefinition>
+    public interface IFormat : ITAppExtensionItem<FormatDefinition>
     {
     }
 }

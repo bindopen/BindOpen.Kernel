@@ -4,9 +4,9 @@ using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Tests.TestConsole.Settings;
+using BindOpen.Framework.Tests.UnitTest.Settings;
 
-namespace BindOpen.Framework.UnitTest
+namespace BindOpen.Framework.Tests.UnitTest
 {
     public static class SetupVariables
     {

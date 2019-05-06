@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// The interface defines the application host.
     /// </summary>
-    public interface ITAppHost<Q> : ITAppService<Q>, IBaseBdoAppHost
+    public interface ITAppHost<Q> : ITAppService<Q>, IBaseAppHost
         where Q : IAppConfiguration, new()
     {
         // Execution ---------------------------------

@@ -711,8 +711,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         }
 
         #endregion
-
-
+        
         // --------------------------------------------------
         // SERIALIZATION
         // --------------------------------------------------

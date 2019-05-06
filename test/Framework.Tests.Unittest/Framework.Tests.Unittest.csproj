@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>BindOpen.Framework.Unittest</AssemblyName>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Tests.UnitTest</AssemblyName>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles database connections.</Description>
     <Authors>Sumer Team</Authors>
     <Company>BindOpen</Company>
     <Product>BindOpen.Framework</Product>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
-    <PackageId>BindOpen.Framework.Unittest</PackageId>
-    <RootNamespace>BindOpen.Framework.Unittest</RootNamespace>
+    <PackageId>BindOpen.Framework.Tests.UnitTest</PackageId>
+    <RootNamespace>BindOpen.Framework.Tests.UnitTest</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

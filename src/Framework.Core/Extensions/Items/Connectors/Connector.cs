@@ -47,8 +47,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
         /// <summary>
         /// Instantiates a new instance of the Connector class.
         /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected Connector(IConnectorConfiguration dto)
+        /// <param name="config">The configuration of this instance.</param>
+        protected Connector(IConnectorConfiguration config)
         {
         }
 

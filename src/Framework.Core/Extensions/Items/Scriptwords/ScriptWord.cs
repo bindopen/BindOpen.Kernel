@@ -17,11 +17,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords
         #region Properties
 
         /// <summary>
-        /// Name of this instance.
-        /// </summary>
-        public string Name { get; set; } = "";
-
-        /// <summary>
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>

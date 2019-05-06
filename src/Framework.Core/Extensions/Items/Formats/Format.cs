@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Formats
     [Serializable()]
     [XmlType("Format", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "format", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public abstract class Format : TAppExtensionItem<IFormatDefinition>, IFormat
+    public abstract class Format : TAppExtensionItem<FormatDefinition>, IFormat
     {
         new public IFormatConfiguration Configuration { get => base.Configuration as IFormatConfiguration; }
 
