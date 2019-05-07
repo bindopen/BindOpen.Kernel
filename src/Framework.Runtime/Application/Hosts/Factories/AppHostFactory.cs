@@ -42,10 +42,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns></returns>
         public static THost CreateBindOpenHost<THost, Q>(
             Action<ITAppHostOptions<Q>> setupAction = null)
-            where THost : TAppHost<Q>
+            where THost : TAppHost<Q>, new()
             where Q : class, IAppConfiguration, new()
         {
-            THost host = new TAppHost<Q>() as THost;
+            THost host = new THost();
             host.Configure(setupAction);
             host.Start();
             return host;

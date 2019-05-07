@@ -14,23 +14,24 @@ namespace BindOpen.Framework.NetCore.Services
         where T : TAppService<Q>, ITAppHosted<Q>, new()
         where Q : IAppConfiguration, new()
     {
-        private ITAppHost<Q> _host;
+        private IAppHost _host;
         private T _bdoService;
 
         /// <summary>
         /// The BindOpen application host of this instance.
         /// </summary>
-        public ITAppHost<Q> Host { get => _host; }
+        public IAppHost Host { get => _host; }
 
         /// <summary>
         /// Creates a new instance of the BdoHostedService class.
         /// </summary>
-        public BdoHostedService(ITAppHost<Q> host)
+        public BdoHostedService(IAppHost host)
         {
             _host = host;
+
             _bdoService = new T
             {
-                Host = Host
+                Host = host as ITAppHost<Q>
             };
         }
 

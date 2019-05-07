@@ -177,21 +177,21 @@
             This static class proposes application host creators.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenDefault(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration}})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenDefaultHost(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration}})">
             <summary>
             Adds a BindOpen default application hosting serivce.
             </summary>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpen``1(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``0}})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenHost``1(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``0}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpen``2(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``1}})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenHost``2(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``1}})">
             <summary>
             Adds a BindOpen application hosting serivce.
             </summary>
@@ -199,19 +199,19 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost">
+        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IAppHost">
             <summary>
             The interface defines the base application host.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
             <summary>
             Get the specified known path.
             </summary>
             <param name="pathKind">The kind of known path.</param>
             <returns>Returns the specified path.</returns>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IBaseAppHost.BaseOptions">
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.BaseOptions">
             <summary>
             The base options.
             </summary>
@@ -324,9 +324,14 @@
             The set of user settings of this intance.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.#ctor">
+            <summary>
+            Instantiates a new instance of the TAppHost class.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0},BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
             <summary>
-            Instantiates a new instance of the BdoAppHost class.
+            Instantiates a new instance of the TAppHost class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0}})">
@@ -1258,10 +1263,11 @@
             <param name="settingsFilePath">The path of the settings file.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
-            Define the specified settings.
+            Define the default specified settings.
             </summary>
+            <typeparam name="T">The application settings class to consider.</typeparam>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
@@ -1418,9 +1424,9 @@
             <param name="settingsFilePath">The path of the settings file to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
-            Defines the specified settings.
+            Defines the specified default settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns this instance.</returns>
@@ -1833,6 +1839,75 @@
             <param name="aPassword">The password to consider.</param>
             <param name="aTokenValue">The token value to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService">
+            <summary>
+            This class represents an application host.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._isLoadCompleted">
+            <summary>
+            Indicates whether this instance is loaded.
+            </summary>
+            <remarks>The value can be assigned.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompletedEventHandler">
+            <summary>
+            This delegate is called when the application is successfully initialized.
+            </summary>
+            <param name="sender">The application host</param>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionState">
+            <summary>
+            The current execution state of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionStatus">
+            <summary>
+            The current execution status of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.AppDomainPool">
+            <summary>
+            Application domain pool of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Log">
+            <summary>
+            ILog of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.IsLoadCompleted">
+            <summary>
+            Indicates whether the platform information is loaded.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor">
+            <summary>
+            Instantiates a new instance of the AppService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
+            <summary>
+            Instantiates a new instance of the AppService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.ConnectionService">
             <summary>
             This class represents a connection service.
@@ -1901,6 +1976,46 @@
             <param name="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IAppService">
+            <summary>
+            The interface defines the application service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.AppDomainPool">
+            <summary>
+            The application domain pool.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Log">
+            <summary>
+            The log.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.IsLoadCompleted">
+            <summary>
+            Indicates whether the load is completed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.LoadComplete">
+            <summary>
+            Fires the 'LoadComplete' event.
+            </summary>
+        </member>
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.IAppService.OnLoadCompleted">
+            <summary>
+            This event is triggered when the application is successfully initialized.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionState">
+            <summary>
+            The state of the current execution.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionStatus">
+            <summary>
+            The status of the current execution.
+            </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.IConnectionService">
             <summary>
@@ -1989,41 +2104,6 @@
             The interface defines the application service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.AppDomainPool">
-            <summary>
-            The application domain pool.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.Log">
-            <summary>
-            The log.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.IsLoadCompleted">
-            <summary>
-            Indicates whether the load is completed.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.CurrentExecutionState">
-            <summary>
-            The state of the current execution.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.CurrentExecutionStatus">
-            <summary>
-            The status of the current execution.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Starts the process.
@@ -2102,61 +2182,19 @@
             This class represents an application host.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Services.TAppService`1._isLoadCompleted">
-            <summary>
-            Indicates whether this instance is loaded.
-            </summary>
-            <remarks>The value can be assigned.</remarks>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.TAppService`1.OnLoadCompletedEventHandler">
-            <summary>
-            This delegate is called when the application is successfully initialized.
-            </summary>
-            <param name="sender">The application host</param>
-        </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.TAppService`1.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.Options">
             <summary>
             The options of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.CurrentExecutionState">
-            <summary>
-            The current execution state of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.CurrentExecutionStatus">
-            <summary>
-            The current execution status of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.AppDomainPool">
-            <summary>
-            Application domain pool of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.Log">
-            <summary>
-            ILog of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.IsLoadCompleted">
-            <summary>
-            Indicates whether the platform information is loaded.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.#ctor">
             <summary>
-            Instantiates a new instance of the BdoAppService class.
+            Instantiates a new instance of the TAppService class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0})">
             <summary>
-            Instantiates a new instance of the BdoAppService class.
+            Instantiates a new instance of the TAppService class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
@@ -2177,11 +2215,6 @@
             </summary>
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1">
             <summary>

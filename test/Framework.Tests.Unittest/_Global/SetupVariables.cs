@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Tests.UnitTest.Settings;
 
 namespace BindOpen.Framework.Tests.UnitTest
 {
@@ -29,22 +28,17 @@ namespace BindOpen.Framework.Tests.UnitTest
         {
             get
             {
-                if (_appHost == null)
-                {
-                    _appHost = AppHostFactory.CreateBindOpenDefaultHost(
+                return _appHost ?? (_appHost = AppHostFactory.CreateBindOpenDefaultHost(
                         options => options
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
                             .SetModule(new AppModule("app.test"))
-                            .DefineSettings<TestAppSettings>()
+                            .DefineDefaultSettings()
                             .SetExtensions(
                                 new AppExtensionConfiguration()
                                     .AddFilter("BindOpen.Framework.Databases")
                                     .AddFilter("BindOpen.Framework.Databases.MSSqlServer"))
                             .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\lib")
-                            .AddDefaultLogger());
-                }
-
-                return _appHost;
+                            .AddDefaultLogger()));
             }
         }
     }

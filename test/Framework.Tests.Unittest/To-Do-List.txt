@@ -2,6 +2,7 @@
 
 Features to add and test:
 
+- Defining settings and simplifying for application host (optionnally)
 - Loading extension items: script word index loading, entities, tasks.
 - Handling tasks.
 - Handling references.

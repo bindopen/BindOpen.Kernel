@@ -50,12 +50,20 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns the application host option.</returns>
         ITAppHostOptions<Q> SetSettingsFile<T>(string settingsFilePath = null) where T : ITAppSettings<Q>, new();
 
+        ///// <summary>
+        ///// Define the specified settings.
+        ///// </summary>
+        ///// <param name="specificationSet">The set of data element specifcations to consider.</param>
+        ///// <returns>Returns the application host option.</returns>
+        //ITAppHostOptions<Q> DefineUserSettings(IDataElementSpecSet specificationSet = null);
+
         /// <summary>
-        /// Define the specified settings.
+        /// Define the default specified settings.
         /// </summary>
+        /// <typeparam name="T">The application settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        ITAppHostOptions<Q> DefineSettings(IDataElementSpecSet specificationSet);
+        ITAppHostOptions<Q> DefineDefaultSettings(IDataElementSpecSet specificationSet = null);
 
         /// <summary>
         /// Define the specified settings.

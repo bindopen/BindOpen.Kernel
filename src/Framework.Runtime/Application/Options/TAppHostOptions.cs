@@ -236,13 +236,26 @@ namespace BindOpen.Framework.Runtime.Application.Options
             return this;
         }
 
+        ///// <summary>
+        ///// Defines the specified settings.
+        ///// </summary>
+        ///// <param name="specificationSet">The set of data element specifcations to consider.</param>
+        ///// <returns>Returns this instance.</returns>
+        //public ITAppHostOptions<Q> DefineSettings(IDataElementSpecSet specificationSet)
+        //{
+        //    this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
+
+        //    return this;
+        //}
+
         /// <summary>
-        /// Defines the specified settings.
+        /// Defines the specified default settings.
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITAppHostOptions<Q> DefineSettings(IDataElementSpecSet specificationSet)
+        public virtual ITAppHostOptions<Q> DefineDefaultSettings(IDataElementSpecSet specificationSet)
         {
+            this.Settings = new DefaultAppSettings() as ITAppSettings<Q>;
             this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
             return this;
@@ -258,7 +271,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             where T : ITAppSettings<Q>, new()
         {
             this.Settings = new T();
-            this.DefineSettings(specificationSet);
+            this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
             return this;
         }

@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IBaseAppHost appHost = appScope.Context.GetSystemItem("appHost") as IBaseAppHost;
+            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -63,7 +63,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null || appScope.Context == null)
                 return "<!--Application scope missing-->";
-            IBaseAppHost appHost = appScope.Context.GetSystemItem("appHost") as IBaseAppHost;
+            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -541,7 +541,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IBaseAppHost appHost = appScope.Context.GetSystemItem("appHost") as IBaseAppHost;
+            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -565,7 +565,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IBaseAppHost appHost = appScope.Context.GetSystemItem("appHost") as IBaseAppHost;
+            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
