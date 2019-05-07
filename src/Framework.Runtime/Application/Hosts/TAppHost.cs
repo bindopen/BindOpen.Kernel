@@ -59,9 +59,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAppHost class.
+        /// Instantiates a new instance of the TAppHost class.
         /// </summary>
-        public TAppHost(
+        public TAppHost() : this(null)
+        {
+        }
+
+            /// <summary>
+            /// Instantiates a new instance of the TAppHost class.
+            /// </summary>
+            public TAppHost(
             IAppHostScope appScope = null,
             ITAppHostOptions<Q> options = null,
             IDataElementSet userSettingsSet = null) : base(appScope, options)

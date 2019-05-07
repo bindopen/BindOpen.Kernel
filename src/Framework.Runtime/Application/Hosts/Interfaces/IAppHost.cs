@@ -1,11 +1,12 @@
 ﻿using BindOpen.Framework.Runtime.Application.Options;
+using BindOpen.Framework.Runtime.Application.Services;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {
     /// <summary>
     /// The interface defines the base application host.
     /// </summary>
-    public interface IBaseAppHost
+    public interface IAppHost :  IAppService
     {
         /// <summary>
         /// Get the specified known path.

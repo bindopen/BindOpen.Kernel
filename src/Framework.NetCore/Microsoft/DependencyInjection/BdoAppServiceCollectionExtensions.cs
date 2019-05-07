@@ -24,7 +24,9 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
         {
-            return services.AddBindOpenHost<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+            services.AddSingleton<IAppHost>(_ => AppHostFactory.CreateBindOpenDefaultHost(setupAction));
+
+            return services;
         }
 
         /// <summary>
@@ -38,7 +40,9 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<ITAppHostOptions<Q>> setupAction = null)
             where Q : class, IAppConfiguration, new()
         {
-            return services.AddBindOpenHost<TAppHost<Q>, Q>(setupAction);
+            services.AddSingleton<IAppHost>(_ => AppHostFactory.CreateBindOpenHost<Q>(setupAction));
+
+            return services;
         }
 
         /// <summary>
@@ -49,10 +53,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static IServiceCollection AddBindOpenHost<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
-            where THost : TAppHost<Q>
+            where THost : TAppHost<Q>, new()
             where Q : class, IAppConfiguration, new()
         {
-            services.AddSingleton<ITAppHost<Q>, THost>(_ => AppHostFactory.CreateBindOpenHost<THost, Q>(setupAction));
+            services.AddSingleton<IAppHost, THost>(_ => AppHostFactory.CreateBindOpenHost<THost, Q>(setupAction));
 
             return services;
         }
