@@ -16,10 +16,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static TAppHost<AppConfiguration> CreateBindOpenDefault(
+        public static TAppHost<AppConfiguration> CreateBindOpenDefaultHost(
             Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
         {
-            return CreateBindOpen<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+            return CreateBindOpenHost<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
         }
 
         /// <summary>
@@ -27,11 +27,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static TAppHost<Q> CreateBindOpen<Q>(
+        public static TAppHost<Q> CreateBindOpenHost<Q>(
             Action<ITAppHostOptions<Q>> setupAction = null)
             where Q : class, IAppConfiguration, new()
         {
-            return CreateBindOpen<TAppHost<Q>, Q>(setupAction);
+            return CreateBindOpenHost<TAppHost<Q>, Q>(setupAction);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <typeparam name="THost">The class of application host to consider.</typeparam>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static THost CreateBindOpen<THost, Q>(
+        public static THost CreateBindOpenHost<THost, Q>(
             Action<ITAppHostOptions<Q>> setupAction = null)
             where THost : TAppHost<Q>
             where Q : class, IAppConfiguration, new()

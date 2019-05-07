@@ -52,7 +52,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where THost : TAppHost<Q>
             where Q : class, IAppConfiguration, new()
         {
-            services.AddSingleton<ITAppHost<Q>, THost>(_ => AppHostFactory.CreateBindOpen<THost, Q>(setupAction));
+            services.AddSingleton<ITAppHost<Q>, THost>(_ => AppHostFactory.CreateBindOpenHost<THost, Q>(setupAction));
 
             return services;
         }
