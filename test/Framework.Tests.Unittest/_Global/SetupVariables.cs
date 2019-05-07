@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Tests.UnitTest
             {
                 if (_appHost == null)
                 {
-                    _appHost = AppHostFactory.CreateBindOpenDefault(
+                    _appHost = AppHostFactory.CreateBindOpenDefaultHost(
                         options => options
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
                             .SetModule(new AppModule("app.test"))
