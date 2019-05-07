@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Runtime.Application.Configuration;
+﻿using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 
@@ -33,8 +32,8 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the THostedAppService class.
         /// </summary>
         public THostedAppService(
-            IAppHostScope appScope,
-            ITAppHostOptions<Q> options) : base(appScope, options)
+            IAppHost host,
+            ITAppHostOptions<Q> options = null) : base(host?.Scope, options)
         {
         }
 

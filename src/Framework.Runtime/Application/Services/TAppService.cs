@@ -30,9 +30,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
         // General ----------------------
 
-            /// <summary>
-            /// The options of this instance.
-            /// </summary>
+        /// <summary>
+        /// The options of this instance.
+        /// </summary>
         public ITAppHostOptions<Q> Options => _options;
 
         #endregion
@@ -46,16 +46,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TAppService class.
         /// </summary>
-        public TAppService() : this(null, null)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the TAppService class.
-        /// </summary>
         public TAppService(
             IAppHostScope appScope,
-            ITAppHostOptions<Q> options) : base(appScope)
+            ITAppHostOptions<Q> options = null) : base(appScope)
         {
             _options = options ?? new TAppHostOptions<Q>();
         }
