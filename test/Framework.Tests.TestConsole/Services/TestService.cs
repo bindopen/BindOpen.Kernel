@@ -10,7 +10,6 @@ namespace BindOpen.Framework.Tests.TestConsole.Services
     {
         private TestAppSettings Settings { get => Host?.Settings as TestAppSettings; }
 
-
         public override ITAppService<AppConfiguration> Start(ILog log = null)
         {
             base.Start(log);

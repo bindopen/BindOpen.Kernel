@@ -36,6 +36,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Properties
 
         /// <summary>
+        /// The application settings.
+        /// </summary>
+        public new IAppHostScope Scope => base.Scope as IAppHostScope;
+
+        /// <summary>
         /// The settings of this instance.
         /// </summary>
         public ITAppSettings<Q> Settings => Options?.Settings;

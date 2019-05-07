@@ -98,13 +98,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the AppService class.
         /// </summary>
-        public AppService() : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the AppService class.
-        /// </summary>
         public AppService(
             IAppHostScope appScope) : base(appScope)
         {

@@ -204,6 +204,11 @@
             The interface defines the base application host.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Scope">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
             <summary>
             Get the specified known path.
@@ -307,6 +312,11 @@
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1">
             <summary>
             This class represents an application host.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Scope">
+            <summary>
+            The application settings.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Settings">
@@ -1886,11 +1896,6 @@
             Indicates whether the platform information is loaded.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor">
-            <summary>
-            Instantiates a new instance of the AppService class.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
             <summary>
             Instantiates a new instance of the AppService class.
@@ -2187,11 +2192,6 @@
             The options of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.#ctor">
-            <summary>
-            Instantiates a new instance of the TAppService class.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0})">
             <summary>
             Instantiates a new instance of the TAppService class.
@@ -2231,7 +2231,7 @@
             Instantiates a new instance of the THostedAppService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0})">
             <summary>
             Instantiates a new instance of the THostedAppService class.
             </summary>
