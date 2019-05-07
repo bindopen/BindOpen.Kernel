@@ -2216,6 +2216,26 @@
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the task.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1">
+            <summary>
+            This class represents an application host.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.Host">
+            <summary>
+            The host of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor">
+            <summary>
+            Instantiates a new instance of the THostedAppService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0})">
+            <summary>
+            Instantiates a new instance of the THostedAppService class.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1">
             <summary>
             This class represents a BDO application settings.
