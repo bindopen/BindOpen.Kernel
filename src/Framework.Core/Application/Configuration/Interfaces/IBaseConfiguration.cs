@@ -5,12 +5,12 @@ using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
-    public interface IConfiguration : IDataElementSet, INamed, IIdentifiedDataItem, ISavable
+    public interface IBaseConfiguration : IDataElementSet, INamed, IIdentifiedDataItem, ISavable
     {
         string CreationDate { get; set; }
         string CurrentFilePath { get; set; }
         string LastModificationDate { get; set; }
 
-        IConfiguration AddGroup(string groupId, params IDataElement[] items);
+        IBaseConfiguration AddGroup(string groupId, params IDataElement[] items);
     }
 }

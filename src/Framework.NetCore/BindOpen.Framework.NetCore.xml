@@ -9,7 +9,7 @@
             This static class extends .Net core dependency injection namespace.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultHost(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultHost(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Settings.DefaultAppSettings}})">
             <summary>
             Adds a BindOpen default application hosting serivce.
             </summary>
@@ -34,52 +34,52 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Core.Application.Settings.IBaseSettings})">
             <summary>
             Adds a BindOpen application service.
             </summary>
-            <typeparam name="TAppService">The class of application service to consider.</typeparam>
+            <typeparam name="T">The class of application service to consider.</typeparam>
             <param name="services">The collection of services to populate.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.NetCore.Services.BdoHostedService`2">
+        <member name="T:BindOpen.Framework.NetCore.Services.ITBdoHostedService`1">
+            <summary>
+            This interface defines a BindOpen application service that can be hosted in generic .Net core host.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.NetCore.Services.TBdoHostedService`1">
             <summary>
             This service represents a BindOpen application service that can be hosted in generic .Net core host.
             </summary>
             <typeparam name="T">The class of the BindOpen application service to consider.</typeparam>
         </member>
-        <member name="P:BindOpen.Framework.NetCore.Services.BdoHostedService`2.Host">
+        <member name="P:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.Host">
             <summary>
             The BindOpen application host of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost)">
+        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost,BindOpen.Framework.Runtime.Application.Options.ITAppServiceOptions{`0})">
             <summary>
             Creates a new instance of the BdoHostedService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.StartAsync(System.Threading.CancellationToken)">
+        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.StartAsync(System.Threading.CancellationToken)">
             <summary>
             Starts this instance.
             </summary>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.StopAsync(System.Threading.CancellationToken)">
+        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.StopAsync(System.Threading.CancellationToken)">
             <summary>
             Ends this instance.
             </summary>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.BdoHostedService`2.Dispose">
+        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.Dispose">
             <summary>
             Disposes this instance.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.NetCore.Services.IBdoHostedService">
-            <summary>
-            This interface defines a BindOpen application service that can be hosted in generic .Net core host.
             </summary>
         </member>
     </members>

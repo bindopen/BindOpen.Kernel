@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
     /// </summary>
     [XmlType("AppConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("app.config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class AppConfiguration : Core.Application.Configuration.Configuration, IAppConfiguration
+    public class AppConfiguration : Core.Application.Configuration.BaseConfiguration, IAppConfiguration
     {
         // -------------------------------------------------------
         // PROPERTIES

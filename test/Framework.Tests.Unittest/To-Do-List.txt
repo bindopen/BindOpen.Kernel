@@ -2,7 +2,8 @@
 
 Features to add and test:
 
-- Defining settings and simplifying for application host (optionnally)
+- Defining default settings and simplifying for application host (optionnally)
+	AddBindOpenService<TestService, AppConfiguration>()
 - Loading extension items: script word index loading, entities, tasks.
 - Handling tasks.
 - Handling references.

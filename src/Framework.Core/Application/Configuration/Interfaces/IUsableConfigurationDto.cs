@@ -2,7 +2,7 @@
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
-    public interface IUsableConfigurationDto : IConfiguration
+    public interface IUsableConfigurationDto : IBaseConfiguration
     {
         List<string> UsingFilePaths { get; set; }
     }

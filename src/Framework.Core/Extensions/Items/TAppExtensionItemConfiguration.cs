@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
     /// This class represents an application extension item configuration.
     /// </summary>
     public abstract class TAppExtensionItemConfiguration<T>
-        : Configuration, ITAppExtensionItemConfiguration<T>
+        : BaseConfiguration, ITAppExtensionItemConfiguration<T>
         where T : IAppExtensionItemDefinition
     {
         // -----------------------------------------------

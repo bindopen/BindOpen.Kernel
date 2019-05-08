@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Xml.Schema;
+using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
@@ -9,18 +11,25 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Application.Configuration
+namespace BindOpen.Framework.Core.Application.Settings
 {
     /// <summary>
     /// This class represents a configuration.
     /// </summary>
-    public class TSettings<T> : DataItem, ITSettings<T> where T : IConfiguration, new()
+    public abstract class BaseSettings : DataItem, IBaseSettings
     {
         /// <summary>
         /// The scope of this instance.
         /// </summary>
         protected IAppScope _appScope = null;
+
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        protected IBaseConfiguration _configuration = null;
 
         // -------------------------------------------------------
         // PROPERTIES
@@ -31,15 +40,12 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        public IAppScope AppScope
-        {
-            get => _appScope;
-        }
+        public IAppScope AppScope => _appScope;
 
         /// <summary>
         /// The item of this instance.
         /// </summary>
-        public T Configuration { get; }
+        public IBaseConfiguration Configuration => _configuration;
 
         #endregion
 
@@ -50,22 +56,21 @@ namespace BindOpen.Framework.Core.Application.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Configuration class.
+        /// Instantiates a new instance of the BaseSettings class.
         /// </summary>
-        public TSettings()
+        public BaseSettings()
         {
-            Configuration = new T();
         }
 
         /// <summary>
-        /// Instantiates a new instance of the Configuration class.
+        /// Instantiates a new instance of the BaseSettings class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
-        public TSettings(IAppScope appScope, T configuration)
+        public BaseSettings(IAppScope appScope, IBaseConfiguration configuration)
         {
             _appScope = appScope;
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         #endregion
@@ -202,5 +207,19 @@ namespace BindOpen.Framework.Core.Application.Configuration
         }
 
         #endregion
+
+        /// <summary>
+        /// Loads the application settings of this instance.
+        /// </summary>
+        /// <param name="filePath">The file path to consider.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+        /// <returns>Returns the loading log.</returns>
+        public virtual ILog Load(
+            string filePath,
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            XmlSchemaSet xmlSchemaSet = null)
+        => new Log();
     }
 }

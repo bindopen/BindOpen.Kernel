@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Settings;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
     /// This class represents a BDO application settings.
     /// </summary>
     public class TAppSettings<Q> : TSettings<Q>, ITAppSettings<Q>
-        where Q : IAppConfiguration, new()
+        where Q : class, IAppConfiguration, new()
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -129,6 +129,8 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         [XmlIgnore()]
         [DetailProperty(Name = "runtime.folderPath")]
         public string RuntimeFolderPath { get; set; }
+
+        public IAppConfiguration AppConfiguration => Configuration as IAppConfiguration;
 
         #endregion
 

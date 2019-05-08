@@ -5,7 +5,7 @@ using BindOpen.Framework.Core.Extensions.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Items
 {
-    public interface ITAppExtensionItemConfiguration<T> : IConfiguration, IReferenced
+    public interface ITAppExtensionItemConfiguration<T> : IBaseConfiguration, IReferenced
         where T : IAppExtensionItemDefinition
     {
         AppExtensionItemKind Kind { get; }

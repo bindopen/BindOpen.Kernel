@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// </summary>
     [XmlType("Configuration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class Configuration : DataElementSet, IConfiguration
+    public abstract class BaseConfiguration : DataElementSet, IBaseConfiguration
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
-        public Configuration() : base()
+        public BaseConfiguration() : base()
         {
         }
 
@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Instantiates a new instance of the Configuration class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public Configuration(params IDataElement[] items)
+        public BaseConfiguration(params IDataElement[] items)
             : base(items)
         {
         }
@@ -89,7 +89,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public Configuration(string filePath, params IDataElement[] items)
+        public BaseConfiguration(string filePath, params IDataElement[] items)
             : base(items)
         {
             CurrentFilePath = filePath;
@@ -109,7 +109,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="items">The items to add.</param>
         /// <returns>Returns this instance.</returns>
-        public IConfiguration AddGroup(string groupId, params IDataElement[] items)
+        public IBaseConfiguration AddGroup(string groupId, params IDataElement[] items)
         {
             if (items!=null)
             {

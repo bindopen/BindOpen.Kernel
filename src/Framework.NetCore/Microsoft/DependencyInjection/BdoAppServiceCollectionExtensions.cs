@@ -1,9 +1,11 @@
 ﻿using System;
+using BindOpen.Framework.Core.Application.Settings;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.NetCore.Services;
-using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
+using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -22,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBindOpenDefaultHost(
             this IServiceCollection services,
-            Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
+            Action<ITAppHostOptions<DefaultAppSettings>> setupAction = null)
         {
             services.AddSingleton<IAppHost>(_ => AppHostFactory.CreateBindOpenDefaultHost(setupAction));
 
@@ -35,12 +37,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenHost<Q>(
+        public static IServiceCollection AddBindOpenHost<T>(
             this IServiceCollection services,
-            Action<ITAppHostOptions<Q>> setupAction = null)
-            where Q : class, IAppConfiguration, new()
+            Action<ITAppHostOptions<T>> setupAction = null)
+            where T : class, IAppSettings, new()
         {
-            services.AddSingleton<IAppHost>(_ => AppHostFactory.CreateBindOpenHost<Q>(setupAction));
+            services.AddSingleton<IAppHost>(_ => AppHostFactory.CreateBindOpenHost<T>(setupAction));
 
             return services;
         }
@@ -52,11 +54,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenHost<THost, Q>(this IServiceCollection services, Action<ITAppHostOptions<Q>> setupAction = null)
-            where THost : TAppHost<Q>, new()
-            where Q : class, IAppConfiguration, new()
+        public static IServiceCollection AddBindOpenHost<THost, T>(
+            this IServiceCollection services,
+            Action<ITAppHostOptions<T>> setupAction = null)
+            where THost : TAppHost<T>, new()
+            where T : class, IAppSettings, new()
         {
-            services.AddSingleton<IAppHost, THost>(_ => AppHostFactory.CreateBindOpenHost<THost, Q>(setupAction));
+            services.AddSingleton<IAppHost, THost>(_ => AppHostFactory.CreateBindOpenHost<THost, T>(setupAction));
 
             return services;
         }
@@ -66,14 +70,17 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds a BindOpen application service.
         /// </summary>
-        /// <typeparam name="TAppService">The class of application service to consider.</typeparam>
+        /// <typeparam name="T">The class of application service to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenService<TAppService, Q>(this IServiceCollection services)
-            where TAppService : TAppService<Q>, ITAppHosted<Q>, new()
-            where Q : IAppConfiguration, new()
+        public static IServiceCollection AddBindOpenService<T>(
+            this IServiceCollection services,
+            ILogger[] loggers = null,
+            Func<IAppSettings, IBaseSettings> funcSettings =null)
+            where T : IAppService, IAppHosted, new()
         {
-            services.AddHostedService<BdoHostedService<TAppService, Q>>();
+            services.AddSingleton<ITAppServiceOptions<T>>(_ => new TAppServiceOptions<T>(loggers, funcSettings));
+            services.AddHostedService<TBdoHostedService<T> >();
 
             return services;
         }

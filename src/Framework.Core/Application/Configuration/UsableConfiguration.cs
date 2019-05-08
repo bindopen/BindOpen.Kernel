@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// </summary>
     [XmlType("UsableConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("usableConfiguration", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class UsableConfiguration : Configuration, IUsableConfigurationDto
+    public class UsableConfiguration : BaseConfiguration, IUsableConfigurationDto
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// The using configuration statement of this instance.
         /// </summary>
         [XmlIgnore()]
-        public IConfiguration UsingConfiguration
+        public IBaseConfiguration UsingConfiguration
         {
             get;
             set;

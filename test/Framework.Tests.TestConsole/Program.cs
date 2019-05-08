@@ -5,8 +5,6 @@ using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
-using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Tests.TestConsole.Services;
 using BindOpen.Framework.Tests.TestConsole.Settings;
@@ -21,29 +19,38 @@ namespace BindOpen.TestConsole
     /// <remarks>This class like the whole project is temporary. It allows to implement tests before inserting them in Unit test project.</remarks>
     internal static class Program
     {
-        public static ITAppHost<AppConfiguration> _AppHost = null;
-
         private static async Task Main(string[] args)
         {
+            ILogger[] loggers = new []
+            {
+                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console)
+            };
+
             await new HostBuilder()
                .ConfigureServices((services) =>
                {
                    services
-                    .AddBindOpenDefaultHost(
+                    .AddBindOpenHost<TestAppSettings>(
                         (options) => options
+                            .DefineSettings()
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
                             .SetModule(new AppModule("app.test"))
-                            .DefineSettings<TestAppSettings>()
                             .SetExtensions(
                                 new AppExtensionConfiguration()
                                     .AddFilter("BindOpen.Framework.Databases")
                                     .AddFilter("BindOpen.Framework.Databases.MSSqlServer"))
                             .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
                             .AddDefaultLogger()
-                            .SetLoggers(
-                                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
+                            .SetLoggers(loggers)
                     )
-                    .AddBindOpenService<TestService, AppConfiguration>();
+                    .AddBindOpenService<TestService>(loggers, p =>
+                        {
+                            TestAppSettings appSettings = p as TestAppSettings;
+                            return new TestServiceSettings()
+                            {
+                                TestFolderPath = appSettings.TestFolderPath
+                            };
+                        });
                })
                .RunConsoleAsync().ConfigureAwait(false);
         }

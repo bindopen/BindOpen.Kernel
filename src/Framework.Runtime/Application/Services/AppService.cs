@@ -1,8 +1,11 @@
 ﻿using System;
+using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Application.Settings;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 
 namespace BindOpen.Framework.Runtime.Application.Services
@@ -10,7 +13,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class AppService : ScopedService, IAppService
+    public abstract class AppService : ScopedService, IAppService
     {
         // ------------------------------------------
         // VARIABLES
@@ -44,6 +47,21 @@ namespace BindOpen.Framework.Runtime.Application.Services
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The runtime folder path.
+        /// </summary>
+        public ILogger[] Loggers { get; set; }
+
+        /// <summary>
+        /// The settings of this instance.
+        /// </summary>
+        public IBaseSettings Settings { get; set; }
+
+        /// <summary>
+        /// The settings of this instance.
+        /// </summary>
+        public IBaseConfiguration Configuration => Settings.Configuration;
 
         // Execution ----------------------
 
@@ -99,16 +117,70 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the AppService class.
         /// </summary>
         public AppService(
-            IAppHostScope appScope) : base(appScope)
+            IAppHostScope appScope,
+            IBaseSettings settings = null,
+            ILogger[] loggers = null) : base(appScope)
         {
+            Settings = settings;
+            Loggers = loggers ?? new ILogger[0];
+
             // we initiate the log of this instance
-            Log = new Log(_ => false)
+            Log = new Log(Loggers)
             {
                 Id = Id
             };
 
             // we instantiate the loaded extension handler and the application script interperter
             AppDomainPool = new AppDomainPool();
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // PROCESSING
+        // ------------------------------------------
+
+        #region Processing
+
+        /// <summary>
+        /// Starts the application.
+        /// </summary>
+        /// <returns>Returns true if this instance is started.</returns>
+        public virtual IAppService Start(ILog log = null)
+        {
+            log = log ?? new Log();
+
+            if (CurrentExecutionState != ProcessExecutionState.Pending)
+            {
+                // we start the application instance
+                log.AddMessage("Starting application instance...");
+                log.Start();
+
+                // we initialize this instance
+                log.AddMessage("Initializing application...");
+                log.Append(Initialize());
+
+                if (!IsLoadCompleted)
+                    CurrentExecutionStatus = ProcessExecutionStatus.Stopped_Error;
+                else
+                    log.AddMessage("Application instance started");
+
+                log.Sanitize();
+
+                Log.Append(log);
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates the application ends.
+        /// </summary>
+        /// <param name="executionStatus">The execution status to consider.</param>
+        public virtual IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        {
+            Log.End(executionStatus);
+            return this;
         }
 
         #endregion
@@ -122,11 +194,11 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Initializes information.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="A"></typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected override ILog Initialize<T>()
+        protected override ILog Initialize<A>()
         {
-            _appScope = new T();
+            _appScope = new A();
             _appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope

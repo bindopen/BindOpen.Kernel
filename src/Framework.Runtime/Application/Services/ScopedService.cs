@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -11,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// This class represents a scoped service.
     /// </summary>
-    public class ScopedService : IdentifiedDataItem, IScopedService
+    public abstract class ScopedService : IdentifiedDataItem, IScopedService
     {
         // ------------------------------------------
         // VARIABLES
