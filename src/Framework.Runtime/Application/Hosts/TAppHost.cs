@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Xml.Schema;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -14,11 +13,9 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
 using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
-using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
@@ -26,8 +23,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class TAppHost<Q> : TAppService<Q>, ITAppHost<Q>
-        where Q : class, IAppConfiguration, new()
+    public class TAppHost<T> : AppHost, ITAppHost<T>
+        where T : class, IAppSettings, new()
     {
         // ------------------------------------------
         // PROPERTIES
@@ -41,14 +38,25 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         public new IAppHostScope Scope => base.Scope as IAppHostScope;
 
         /// <summary>
-        /// The settings of this instance.
+        /// The options of this instance.
         /// </summary>
-        public ITAppSettings<Q> Settings => Options?.Settings;
+        public new ITAppHostOptions<T> Options
+        {
+            get => base.Options as ITAppHostOptions<T>;
+            set
+            {
+                base.Options = value;
+            }
+        }
 
         /// <summary>
-        /// The base options of this instance.
+        /// The settings of this instance.
         /// </summary>
-        public IBaseAppHostOptions BaseOptions => Options?.Settings as IBaseAppHostOptions;
+        public new T Settings
+        {
+            get => base.Settings as T;
+            set { }
+        }
 
         /// <summary>
         /// The set of user settings of this intance.
@@ -70,20 +78,20 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         {
         }
 
-            /// <summary>
-            /// Instantiates a new instance of the TAppHost class.
-            /// </summary>
-            public TAppHost(
+        /// <summary>
+        /// Instantiates a new instance of the TAppHost class.
+        /// </summary>
+        public TAppHost(
             IAppHostScope appScope = null,
-            ITAppHostOptions<Q> options = null,
-            IDataElementSet userSettingsSet = null) : base(appScope, options)
+            ITAppHostOptions<T> options = null,
+            IDataElementSet userSettingsSet = null)
+            : base(appScope, options ?? new TAppHostOptions<T>(), userSettingsSet)
         {
             // we initiate the options
             Options.SetAppFolder(Directory.GetCurrentDirectory());
 
             Options.SetExtensions(
                 new AppExtensionConfiguration(
-                    new AppExtensionFilter("BindOpen.Framework.Runtime"),
                     new AppExtensionFilter("BindOpen.Framework.Runtime")));
 
             UserSettingsSet = userSettingsSet;
@@ -102,7 +110,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        public ITAppHost<Q> Configure(Action<ITAppHostOptions<Q>> setupOptions)
+        public ITAppHost<T> Configure(Action<ITAppHostOptions<T>> setupOptions)
         {
             setupOptions?.Invoke(Options);
 
@@ -140,7 +148,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 Name = "[unkwnon]"
             };
-            return (Options?.Settings as ITAppSettings<Q>)?.Configuration?.Credentials.Find(p => p.KeyEquals(name));
+            return (Options?.Settings as T)?.AppConfiguration?.Credentials.Find(p => p.KeyEquals(name));
         }
 
         // Paths --------------------------------------
@@ -206,20 +214,20 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         private string GetDefaultSettingsFilePath()
         {
             // by default, settings file is {{runtime folder}}\settings\appconfig.xml
-            string defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + @"settings\".ToPath() + TAppHostOptions<Q>.__DefaultSettingsFileName;
+            string defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + @"settings\".ToPath() + TAppHostOptions<T>.__DefaultSettingsFileName;
 
             if (!File.Exists(defaultSettingsFilePath))
             {
                 // by default, settings file is {{runtime folder}}\appconfig.xml
-                defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + TAppHostOptions<Q>.__DefaultSettingsFileName;
+                defaultSettingsFilePath = string.IsNullOrEmpty(Options?.RuntimeFolderPath) ? null : Options?.RuntimeFolderPath + TAppHostOptions<T>.__DefaultSettingsFileName;
                 if (!File.Exists(defaultSettingsFilePath))
                 {
                     // then {{application folder}}\app_data\appconfig.xml
-                    defaultSettingsFilePath = string.IsNullOrEmpty(Options?.AppFolderPath) ? null : Options?.AppFolderPath + @"app_data\".ToPath() + TAppHostOptions<Q>.__DefaultSettingsFileName;
+                    defaultSettingsFilePath = string.IsNullOrEmpty(Options?.AppFolderPath) ? null : Options?.AppFolderPath + @"app_data\".ToPath() + TAppHostOptions<T>.__DefaultSettingsFileName;
                     if (!File.Exists(defaultSettingsFilePath))
                     {
                         // then {{application folder}}\appconfig.xml
-                        defaultSettingsFilePath = Options?.AppFolderPath + TAppHostOptions<Q>.__DefaultSettingsFileName;
+                        defaultSettingsFilePath = Options?.AppFolderPath + TAppHostOptions<T>.__DefaultSettingsFileName;
                     }
                 }
             }
@@ -239,18 +247,18 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public new virtual ITAppHost<Q> Start(ILog log = null)
+        public new virtual ITAppHost<T> Start(ILog log = null)
         {
-            return base.Start(log) as TAppHost<Q>;
+            return base.Start(log) as TAppHost<T>;
         }
 
         /// <summary>
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public new virtual ITAppHost<Q> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public new virtual ITAppHost<T> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
-            return base.End(executionStatus) as TAppHost<Q>;
+            return base.End(executionStatus) as TAppHost<T>;
         }
 
         #endregion
@@ -266,7 +274,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>Returns the log of the task.</returns>
-        protected override ILog Initialize<T>()
+        protected override ILog Initialize<A>()
         {
             // we initialize logging
             if (Options?.IsDefaultLoggerUsed == true)
@@ -278,7 +286,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             Log.AddLoggers(Options?.Loggers);
 
             // we initialize as scoped service
-            base.Initialize<T>();
+            base.Initialize<A>();
 
             ILog log = new Log();
 
@@ -308,12 +316,13 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                     log.AddMessage("Loading application settings...");
 
-                    String settingsFilePath = GetKnownPath(ApplicationPathKind.SettingsFile);
+                    string settingsFilePath = GetKnownPath(ApplicationPathKind.SettingsFile);
 
                     if (string.IsNullOrEmpty(settingsFilePath))
                         settingsFilePath = GetDefaultSettingsFilePath();
 
-                    ITAppSettings<Q> appSettings = LoadSettings(settingsFilePath, _appScope, null, log);
+                    T appSettings = new T();
+                    log.Append(appSettings.Load(settingsFilePath, _appScope, null));
 
                     if (log.HasErrorsOrExceptions())
                     {
@@ -358,9 +367,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         // we build the data module manager
                         DataSourceDepot.Clear();
-                        if (_appScope?.Extension != null && Options?.Settings?.Configuration?.DataSources != null)
+                        if (_appScope?.Extension != null && Options?.Settings?.AppConfiguration?.DataSources != null)
                         {
-                            foreach (IDataSource dataSource in Options?.Settings?.Configuration?.DataSources)
+                            foreach (IDataSource dataSource in Options?.Settings?.AppConfiguration?.DataSources)
                             {
                                 DataSourceDepot.AddSource(dataSource);
                             }
@@ -372,7 +381,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 }
 
                 // if at this end, neither exceptions nor errors occured then
-                if ((GetType() == typeof(TAppHost<Q>)) && (!log.HasErrorsOrExceptions()))
+                if ((GetType() == typeof(TAppHost<T>)) && (!log.HasErrorsOrExceptions()))
                 {
                     // we indicate that the configuration has been well loaded
                     log.AddMessage("Application configuration loaded");
@@ -387,34 +396,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             }
 
             _isLoadCompleted = !log.HasErrorsOrExceptions();
-            if (GetType() == typeof(TAppHost<Q>))
+            if (GetType() == typeof(TAppHost<T>))
                 LoadComplete();
 
             return log;
-        }
-
-        /// <summary>
-        /// Loads the application configuration of this instance.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-        /// <returns>Returns the loading log.</returns>
-        public virtual ITAppSettings<Q> LoadSettings(
-            string filePath,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null,
-            XmlSchemaSet xmlSchemaSet = null)
-        {
-            Q appConfiguration = XmlHelper.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet);
-            return new TAppSettings<Q>(appScope, appConfiguration);
-        }
-
-        public T GetSettings<T>() where T : TAppSettings<Q>
-        {
-            return Settings as T;
         }
 
         #endregion

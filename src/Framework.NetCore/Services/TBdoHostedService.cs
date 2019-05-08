@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
 
 namespace BindOpen.Framework.NetCore.Services
@@ -10,12 +10,11 @@ namespace BindOpen.Framework.NetCore.Services
     /// This service represents a BindOpen application service that can be hosted in generic .Net core host.
     /// </summary>
     /// <typeparam name="T">The class of the BindOpen application service to consider.</typeparam>
-    public class BdoHostedService<T, Q> : IBdoHostedService
-        where T : TAppService<Q>, ITAppHosted<Q>, new()
-        where Q : IAppConfiguration, new()
+    public class TBdoHostedService<T> : ITBdoHostedService<T>
+        where T : IAppService, IAppHosted, new()
     {
         private IAppHost _host;
-        private T _bdoService;
+        private T _service;
 
         /// <summary>
         /// The BindOpen application host of this instance.
@@ -25,13 +24,17 @@ namespace BindOpen.Framework.NetCore.Services
         /// <summary>
         /// Creates a new instance of the BdoHostedService class.
         /// </summary>
-        public BdoHostedService(IAppHost host)
+        public TBdoHostedService(
+            IAppHost host,
+            ITAppServiceOptions<T> options)
         {
             _host = host;
 
-            _bdoService = new T
+            _service = new T
             {
-                Host = host as ITAppHost<Q>
+                Host = host,
+                Settings = options?.FuncSettings?.Invoke(host.Settings),
+                Loggers = options?.Loggers
             };
         }
 
@@ -42,7 +45,7 @@ namespace BindOpen.Framework.NetCore.Services
         /// <returns></returns>
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _bdoService?.Start(_host?.Log);
+            _service?.Start(_host?.Log);
 
             return Task.CompletedTask;
         }
@@ -54,7 +57,7 @@ namespace BindOpen.Framework.NetCore.Services
         /// <returns></returns>
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _bdoService?.End();
+            _service?.End();
 
             return Task.CompletedTask;
         }
@@ -64,7 +67,7 @@ namespace BindOpen.Framework.NetCore.Services
         /// </summary>
         public void Dispose()
         {
-            _bdoService.Dispose();
+            _service.Dispose();
         }
     }
 }

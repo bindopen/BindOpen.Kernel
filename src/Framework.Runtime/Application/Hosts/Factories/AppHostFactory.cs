@@ -1,6 +1,6 @@
 ﻿using System;
-using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Options;
+using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {
@@ -16,10 +16,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static TAppHost<AppConfiguration> CreateBindOpenDefaultHost(
-            Action<ITAppHostOptions<AppConfiguration>> setupAction = null)
+        public static TAppHost<DefaultAppSettings> CreateBindOpenDefaultHost(
+            Action<ITAppHostOptions<DefaultAppSettings>> setupAction = null)
         {
-            return CreateBindOpenHost<TAppHost<AppConfiguration>, AppConfiguration>(setupAction);
+            return CreateBindOpenHost<TAppHost<DefaultAppSettings>, DefaultAppSettings>(setupAction);
         }
 
         /// <summary>
@@ -27,11 +27,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static TAppHost<Q> CreateBindOpenHost<Q>(
-            Action<ITAppHostOptions<Q>> setupAction = null)
-            where Q : class, IAppConfiguration, new()
+        public static TAppHost<T> CreateBindOpenHost<T>(
+            Action<ITAppHostOptions<T>> setupAction = null)
+            where T : class, IAppSettings, new()
         {
-            return CreateBindOpenHost<TAppHost<Q>, Q>(setupAction);
+            return CreateBindOpenHost<TAppHost<T>, T>(setupAction);
         }
 
         /// <summary>
@@ -40,10 +40,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <typeparam name="THost">The class of application host to consider.</typeparam>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static THost CreateBindOpenHost<THost, Q>(
-            Action<ITAppHostOptions<Q>> setupAction = null)
-            where THost : TAppHost<Q>, new()
-            where Q : class, IAppConfiguration, new()
+        public static THost CreateBindOpenHost<THost, T>(
+            Action<ITAppHostOptions<T>> setupAction = null)
+            where THost : TAppHost<T>, new()
+            where T : class, IAppSettings, new()
         {
             THost host = new THost();
             host.Configure(setupAction);

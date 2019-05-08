@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Tests.UnitTest
     public static class SetupVariables
     {
         static string _workingFolder = null;
-        static TAppHost<AppConfiguration> _appHost = null;
+        static IAppHost _appHost = null;
 
         public static string WorkingFolder
         {
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Tests.UnitTest
             }
         }
 
-        public static TAppHost<AppConfiguration> AppHost
+        public static IAppHost AppHost
         {
             get
             {

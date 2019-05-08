@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHost?.BaseOptions.ApplicationModule?.Name ?? "";
+            return appHost?.Options.ApplicationModule?.Name ?? "";
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHost?.BaseOptions.BaseSettings?.ApplicationInstanceName ?? "";
+            return appHost?.Options.Settings?.ApplicationInstanceName ?? "";
         }
 
         /// <summary>

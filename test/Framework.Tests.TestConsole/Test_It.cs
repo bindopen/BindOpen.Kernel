@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Labs.Platform.Data.Resolvers;
-using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Tests.TestConsole.Settings;
-using BindOpen.TestConsole;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -62,34 +53,34 @@ namespace BindOpen.Framework.Tests.TestConsole
             //field.Name = "test";
             //field.Alias = "alias";
 
-            Program._AppHost = new TAppHost<AppConfiguration>()
-                .Configure(options =>
-                    options.SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
-                    .SetModule(new AppModule("app.test"))
-                    .DefineSettings<TestAppSettings>()
-                    .SetExtensions(
-                        new AppExtensionConfiguration()
-                        .AddFilter("BindOpen.Framework.Databases")
-                        .AddFilter("BindOpen.Framework.Databases.MSSqlServer")
-                    )
-                    //.SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
-                    .AddDefaultLogger()
-                    .SetLoggers(
-                        LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
-                )
-                //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-                .Start();
+            //Program._AppHost = new TAppHost<TestSettings>()
+            //    .Configure(options => options
+            //        .DefineSettings<TestSettings>()
+            //        .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
+            //        .SetModule(new AppModule("app.test"))
+            //        .SetExtensions(
+            //            new AppExtensionConfiguration()
+            //            .AddFilter("BindOpen.Framework.Databases")
+            //            .AddFilter("BindOpen.Framework.Databases.MSSqlServer")
+            //        )
+            //        //.SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
+            //        .AddDefaultLogger()
+            //        .SetLoggers(
+            //            LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
+            //    )
+            //    //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
+            //    .Start();
 
             //string script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
             //string resultScript = Program._AppHost.ScriptInterpreter.Interprete(script, null, Program._AppHost.Log);
 
-            string path1 = Program._AppHost.GetSettings<TestAppSettings>().TestFolderPath;
+            //string path1 = Program._AppHost.GetSettings<TestSettings>().TestFolderPath;
 
-            string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
+            //string path2 = Program._AppHost.Settings.Get<string>("test.folderPath");
 
-            string path3 = Program._AppHost.Interpreter.Interprete("$sqlField('myfield')");
+            //string path3 = Program._AppHost.Interpreter.Interprete("$sqlField('myfield')");
 
-            string path4 = "";
+            //string path4 = "";
 
             //ILog log = new Log();
             //log.AddMessage("test1");

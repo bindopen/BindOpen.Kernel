@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// </summary>
         public new ITAppExtensionItemConfiguration<T> Configuration => _configuration;
 
-        IConfiguration IAppExtensionItem.Configuration => _configuration as IConfiguration;
+        IBaseConfiguration IAppExtensionItem.Configuration => _configuration as IBaseConfiguration;
 
         /// <summary>
         /// The definition of this instance.

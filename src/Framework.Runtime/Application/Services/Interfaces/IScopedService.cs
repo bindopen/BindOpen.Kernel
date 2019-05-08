@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Context;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Runtime.Application.Services
@@ -8,7 +9,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
     /// <summary>
     /// This interface defines a scoped service.
     /// </summary>
-    public interface IScopedService
+    public interface IScopedService : IIdentifiedDataItem
     {
         /// <summary>
         /// The application scope.

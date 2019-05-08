@@ -9,6 +9,8 @@
     <RootNamespace>BindOpen.Framework.Labs.NetCore</RootNamespace>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that contains common BindOpen classes. This library includes classes that handles platform.</Description>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Framework</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

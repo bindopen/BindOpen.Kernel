@@ -1,19 +1,20 @@
-﻿using BindOpen.Framework.Runtime.Application.Configuration;
+﻿using System;
+using BindOpen.Framework.Core.Application.Settings;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Options;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class THostedAppService<Q> : TAppService<Q>, ITAppHosted<Q>
-        where Q : IAppConfiguration, new()
+    public abstract class THostedAppService<T> : TAppService<T>, IAppHosted
+        where T : class, IBaseSettings, new()
     {
         /// <summary>
         /// The host of this instance.
         /// </summary>
-        public ITAppHost<Q> Host { get; set; }
+        public IAppHost Host { get; set; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -24,7 +25,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the THostedAppService class.
         /// </summary>
-        public THostedAppService() : this(null, null)
+        public THostedAppService() : base(null, default)
         {
         }
 
@@ -33,7 +34,18 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         public THostedAppService(
             IAppHost host,
-            ITAppHostOptions<Q> options = null) : base(host?.Scope, options)
+            T settings = default,
+            ILogger[] loggers = null) : base(host?.Scope, settings, loggers)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the THostedAppService class.
+        /// </summary>
+        public THostedAppService(
+            IAppHost host,
+            Func<IAppHost, T> settings = null,
+            ILogger[] loggers = null) : base(host?.Scope, settings(host), loggers)
         {
         }
 

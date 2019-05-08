@@ -28,50 +28,50 @@
             <param name="allowMissingItems">Indicates whether the items can be missing.</param>
             <returns>Returns the log of check.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Configuration.Configuration">
+        <member name="T:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration">
             <summary>
             This class represents a configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.Configuration.Name">
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.Configuration.CurrentFilePath">
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.CurrentFilePath">
             <summary>
             Current file path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.Configuration.CreationDate">
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.Configuration.LastModificationDate">
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the Configuration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Instantiates a new instance of the Configuration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.#ctor(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.#ctor(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Instantiates a new instance of the Configuration class.
             </summary>
             <param name="filePath">The file path to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.AddGroup(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Adds the specified elements into the specified group.
             </summary>
@@ -79,24 +79,24 @@
             <param name="items">The items to add.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.Key">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.Key">
             <summary>
             Returns the identifier key.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for storage.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.Configuration.SaveXml(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.SaveXml(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Saves this instance.
             </summary>
@@ -119,80 +119,6 @@
             Instantiates a new instance of the ConfigurationBundle class.
             </summary>
             <param name="values">The values to consider.</param>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Configuration.TSettings`1">
-            <summary>
-            This class represents a configuration.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Configuration.TSettings`1._appScope">
-            <summary>
-            The scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.TSettings`1.AppScope">
-            <summary>
-            The application scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Configuration.TSettings`1.Configuration">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.#ctor">
-            <summary>
-            Instantiates a new instance of the Configuration class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
-            <summary>
-            Instantiates a new instance of the Configuration class.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.Get``1(System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="name">The name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.GetProperty``1(System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="propertyName">The calling property name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.GetProperty``1(``0,System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="defaultValue">The default value to consider.</param>
-            <param name="propertyName">The calling property name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.Set(System.Object,System.String)">
-            <summary>
-            Sets the specified value.
-            </summary>
-            <param name="value">The value to set.</param>
-            <param name="name">The name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.TSettings`1.SetProperty(System.Object,System.String)">
-            <summary>
-            Sets the specified value.
-            </summary>
-            <param name="value">The value to set.</param>
-            <param name="propertyName">The calling property name to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.UsableConfiguration">
             <summary>
@@ -907,6 +833,125 @@
             <summary>
             The connection of the service.
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Settings.BaseSettings">
+            <summary>
+            This class represents a configuration.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Settings.BaseSettings._appScope">
+            <summary>
+            The scope of this instance.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Application.Settings.BaseSettings._configuration">
+            <summary>
+            The configuration of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Settings.BaseSettings.AppScope">
+            <summary>
+            The application scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Settings.BaseSettings.Configuration">
+            <summary>
+            The item of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the BaseSettings class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Application.Configuration.IBaseConfiguration)">
+            <summary>
+            Instantiates a new instance of the BaseSettings class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Get``1(System.String)">
+            <summary>
+            Gets the specified value.
+            </summary>
+            <typeparam name="Q"></typeparam>
+            <param name="name">The name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.GetProperty``1(System.String)">
+            <summary>
+            Gets the specified value.
+            </summary>
+            <typeparam name="Q"></typeparam>
+            <param name="propertyName">The calling property name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.GetProperty``1(``0,System.String)">
+            <summary>
+            Gets the specified value.
+            </summary>
+            <typeparam name="Q"></typeparam>
+            <param name="defaultValue">The default value to consider.</param>
+            <param name="propertyName">The calling property name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Set(System.Object,System.String)">
+            <summary>
+            Sets the specified value.
+            </summary>
+            <param name="value">The value to set.</param>
+            <param name="name">The name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.SetProperty(System.Object,System.String)">
+            <summary>
+            Sets the specified value.
+            </summary>
+            <param name="value">The value to set.</param>
+            <param name="propertyName">The calling property name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            Loads the application settings of this instance.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <returns>Returns the loading log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Application.Settings.TSettings`1">
+            <summary>
+            This class represents a configuration.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Settings.TSettings`1.Configuration">
+            <summary>
+            The configuration of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.#ctor">
+            <summary>
+            Instantiates a new instance of the TSettings class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
+            <summary>
+            Instantiates a new instance of the TSettings class.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="configuration">The configuration to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            Loads the application settings of this instance.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <returns>Returns the loading log.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase">
             <summary>

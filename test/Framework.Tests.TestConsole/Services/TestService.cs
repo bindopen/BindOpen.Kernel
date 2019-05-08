@@ -1,21 +1,19 @@
 ﻿using System;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Tests.TestConsole.Settings;
 
 namespace BindOpen.Framework.Tests.TestConsole.Services
 {
-    public class TestService : THostedAppService<AppConfiguration>
+    public class TestService : THostedAppService<TestServiceSettings>
     {
-        private TestAppSettings Settings { get => Host?.Settings as TestAppSettings; }
-
-        public override ITAppService<AppConfiguration> Start(ILog log = null)
+        public override IAppService Start(ILog log = null)
         {
             base.Start(log);
 
             Console.WriteLine("Test service: Hello, I'm working");
-            Console.WriteLine("Settings:" + this.Settings?.TestFolderPath);
+            Console.WriteLine("Host settings:" + Host.Settings?.Get<string>("test.folderPath"));
+            Console.WriteLine("Service tettings:" + Settings?.TestFolderPath);
 
             return this;
         }

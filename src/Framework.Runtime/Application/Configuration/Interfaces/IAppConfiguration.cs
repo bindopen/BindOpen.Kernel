@@ -5,7 +5,7 @@ using BindOpen.Framework.Runtime.Application.Security;
 
 namespace BindOpen.Framework.Runtime.Application.Configuration
 {
-    public interface IAppConfiguration : IConfiguration
+    public interface IAppConfiguration : IBaseConfiguration
     {
         List<ApplicationCredential> Credentials { get; set; }
 

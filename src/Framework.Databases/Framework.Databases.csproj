@@ -10,6 +10,8 @@
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles database connections.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Databases</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Framework</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

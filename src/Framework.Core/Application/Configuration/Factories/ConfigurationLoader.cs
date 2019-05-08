@@ -29,22 +29,26 @@ namespace BindOpen.Framework.Core.Application.Configuration
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : Configuration, new()
+            bool mustFileExist = true) where T : class, IBaseConfiguration, new()
         {
             T unionConfiguration = new T();
 
             T topConfiguration = XmlHelper.Load<T>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) as T;
-            if (topConfiguration is UsableConfiguration topUsableConfiguration)
+            if (topConfiguration!=null)
             {
                 unionConfiguration.Update(topConfiguration);
 
-                foreach (string usingFilePath in topUsableConfiguration.UsingFilePaths)
+                if (topConfiguration is UsableConfiguration topUsableConfiguration)
                 {
-                    string completeUsingFilePath = (usingFilePath.Contains(":") ?
-                        usingFilePath :
-                        Path.GetDirectoryName(filePath).GetEndedString(@"\") + usingFilePath).ToPath();
-                    if (Load<T>(completeUsingFilePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
-                        unionConfiguration.Update(usingConfiguration);
+
+                    foreach (string usingFilePath in topUsableConfiguration.UsingFilePaths)
+                    {
+                        string completeUsingFilePath = (usingFilePath.Contains(":") ?
+                            usingFilePath :
+                            Path.GetDirectoryName(filePath).GetEndedString(@"\") + usingFilePath).ToPath();
+                        if (Load<T>(completeUsingFilePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
+                            unionConfiguration.Update(usingConfiguration);
+                    }
                 }
             }
 
@@ -60,7 +64,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <param name="items">The items to add.</param>
         /// <returns>Returns this instance.</returns>
         public static T AddGroup<T>(this T configuration, string groupId, params IDataElement[] items)
-            where T : Configuration
+            where T : class, IBaseConfiguration
         {
             return configuration?.AddGroup(groupId, items) as T;
         }
