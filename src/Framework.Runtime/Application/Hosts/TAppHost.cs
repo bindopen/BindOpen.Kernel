@@ -346,7 +346,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         if (Options?.Settings != null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
-                            Options.Settings.ApplicationInstanceName = AppConfiguration._ApplicationInstanceName;
+                            Options.Settings.ApplicationInstanceName = AppConfiguration.__ApplicationInstanceName;
                         }
 
                         // we update the log folder path

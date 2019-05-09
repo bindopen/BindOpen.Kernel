@@ -164,7 +164,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         /// Gets the name of the application instance.
         /// </summary>
         /// <returns>Returns the name of the application instance.</returns>
-        public static string _ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
+        public static string __ApplicationInstanceName => (Environment.MachineName ?? "").ToUpper();
 
         #endregion
     }

@@ -3,7 +3,7 @@
 Features to add and test:
 
 - Defining default settings and simplifying for application host (optionnally)
-	AddBindOpenService<TestService, AppConfiguration>()
+	AddBindOpenService : remove loggers, predicate loggers
 - Loading extension items: script word index loading, entities, tasks.
 - Handling tasks.
 - Handling references.
@@ -11,3 +11,5 @@ Features to add and test:
 - Loading external assemblies.
 - Data source as element.
 - Load generic data item like dataelement.
+
+- Erasing old log files.

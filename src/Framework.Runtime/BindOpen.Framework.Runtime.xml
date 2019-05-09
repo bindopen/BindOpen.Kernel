@@ -53,7 +53,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration._ApplicationInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.__ApplicationInstanceName">
             <summary>
             Gets the name of the application instance.
             </summary>
