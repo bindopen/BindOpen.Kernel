@@ -11,8 +11,11 @@
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Core</RootNamespace>
     <LangVersion>7.3</LangVersion>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Framework</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://meltingflow.blob.core.windows.net/bindopen/pictures/bdo_icon_128x128.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

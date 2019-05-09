@@ -10,8 +10,12 @@
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <PackageId>BindOpen.Framework.Tests.UnitTest</PackageId>
     <RootNamespace>BindOpen.Framework.Tests.UnitTest</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Framework</PackageProjectUrl>
+    <LangVersion>7.3</LangVersion>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://meltingflow.blob.core.windows.net/bindopen/pictures/bdo_icon_128x128.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
