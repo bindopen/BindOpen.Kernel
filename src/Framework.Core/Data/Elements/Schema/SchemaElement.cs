@@ -369,32 +369,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
                     aElement.ApplyVisibility(accessibilityLevel, isRecursive);
         }
 
-        /// <summary>
-        /// Locks this instance.
-        /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public override void Lock(bool isRecursive = true)
-        {
-            base.Lock(isRecursive);
-
-            if ((this is SchemaZoneElement) && (isRecursive))
-                foreach (SchemaElement aElement in ((SchemaZoneElement)this).SubElements)
-                    aElement.Lock( isRecursive);
-        }
-
-        /// <summary>
-        /// Unlocks this instance.
-        /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public override void Unlock(bool isRecursive = true)
-        {
-            base.Lock(isRecursive);
-
-            if ((this is SchemaZoneElement) && (isRecursive))
-                foreach (SchemaElement aElement in ((SchemaZoneElement)this).SubElements)
-                    aElement.Unlock( isRecursive);
-        }
-
         #endregion
 
         // --------------------------------------------------

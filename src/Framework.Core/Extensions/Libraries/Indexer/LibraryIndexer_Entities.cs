@@ -45,12 +45,12 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             {
                 IEntityDefinitionDto definition = new EntityDefinitionDto();
                 
-                if (type.GetCustomAttribute(typeof(EntityAttribute)) is EntityAttribute entityAttribute)
+                if (type.GetCustomAttributes(typeof(EntityAttribute)).FirstOrDefault() is EntityAttribute entityAttribute)
                 {
                     definition.Update(entityAttribute);
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(DetailPropertyAttribute)) != null))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(DetailPropertyAttribute)).Any()))
                 {
                     definition.DetailSpec.Add(ElementSpecFactory.Create(property.Name, property.PropertyType));
                 }

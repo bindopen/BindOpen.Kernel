@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
 
                 // we create the detail specification from detail property attributes
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(DetailPropertyAttribute)) != null))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(DetailPropertyAttribute)).Any()))
                 {
                     definitionDto.DatasourceDetailSpec.Add(ElementSpecFactory.Create(property.Name, property.PropertyType));
                 }

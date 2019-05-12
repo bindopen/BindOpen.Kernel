@@ -2,6 +2,7 @@
 
 Features to add and test:
 
+- Data items : remove Specified suffixes
 - Defining default settings and simplifying for application host (optionnally)
 	AddBindOpenService : remove loggers, predicate loggers
 - Loading extension items: script word index loading, entities, tasks.

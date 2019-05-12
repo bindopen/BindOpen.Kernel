@@ -240,29 +240,31 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
             ILog log = new Log();
             if (aObject == null || elementSet.Elements == null) return null;
 
-            foreach(PropertyInfo propertyInfo in aObject.GetType().GetProperties().Where(p=>p.GetCustomAttribute(typeof(T)) != null))
+            foreach(PropertyInfo propertyInfo in aObject.GetType().GetProperties())
             {
-                Attribute attribute = propertyInfo.GetCustomAttribute(typeof(T));
-                if (attribute is DataElementAttribute elementAttribute)
+                if (propertyInfo.GetCustomAttribute(typeof(T)) is Attribute attribute)
                 {
-                    string name = elementAttribute.Name;
-                    if (string.IsNullOrEmpty(name))
-                        name = propertyInfo.Name;
-
-                    try
+                    if (attribute is DataElementAttribute elementAttribute)
                     {
-                        var value = elementSet.GetElementObject(name, appScope, scriptVariableSet, log);
-                        if (propertyInfo.PropertyType.IsEnum && value != null)
+                        string name = elementAttribute.Name;
+                        if (string.IsNullOrEmpty(name))
+                            name = propertyInfo.Name;
+
+                        try
                         {
-                            if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                value = Enum.Parse(propertyInfo.PropertyType, value as string);
-                        }
+                            var value = elementSet.GetElementObject(name, appScope, scriptVariableSet, log);
+                            if (propertyInfo.PropertyType.IsEnum && value != null)
+                            {
+                                if (Enum.IsDefined(propertyInfo.PropertyType, value))
+                                    value = Enum.Parse(propertyInfo.PropertyType, value as string);
+                            }
 
-                        propertyInfo.SetValue(aObject, value);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.AddException(ex);
+                            propertyInfo.SetValue(aObject, value);
+                        }
+                        catch (Exception ex)
+                        {
+                            log.AddException(ex);
+                        }
                     }
                 }
             }

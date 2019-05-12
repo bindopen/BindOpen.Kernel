@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace BindOpen.Framework.Labs.Platform.Data.Resolvers
+namespace BindOpen.Framework.Labs.AspNetCore.Data.Resolvers
 {
     /// <summary>
     /// This class represents an application client.
@@ -30,18 +33,36 @@ namespace BindOpen.Framework.Labs.Platform.Data.Resolvers
             }
             else
             {
+                object defaultValue = null;
+                if ((attribute = Attribute.GetCustomAttribute(member, typeof(DefaultValueAttribute))) != null)
+                {
+                    defaultValue = (attribute as DefaultValueAttribute)?.Value;
+                }
+
                 property.ShouldSerialize =
                     instance =>
                     {
                         bool? isSpecified = instance.GetType().GetProperty(member?.Name + "Specified")?.GetValue(instance) as bool?;
-                        return true; // isSpecified ?? true;
+                        if (defaultValue != null && (isSpecified ?? true == true))
+                        {
+                            isSpecified = !String.Equals(instance.GetType().GetProperty(member?.Name)?.GetValue(instance)?.ToString(), defaultValue?.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                        }
+                        return isSpecified ?? true;
                     };
 
                 if ((attribute = Attribute.GetCustomAttribute(member, typeof(XmlAttributeAttribute))) != null)
                 {
                     property.PropertyName = (attribute as XmlAttributeAttribute)?.AttributeName;
                 }
-                else if ((attribute = Attribute.GetCustomAttribute(member, typeof(XmlElementAttribute))) != null)
+                else if ((attribute = member.GetCustomAttributes(typeof(XmlArrayElementAttribute)).FirstOrDefault()) != null)
+                {
+                    property.PropertyName = (attribute as XmlArrayElementAttribute)?.ElementName;
+                }
+                else if ((attribute = member.GetCustomAttributes(typeof(XmlElementAttribute)).FirstOrDefault(p =>
+                {
+                    var typedP = p as XmlElementAttribute;
+                    return typedP.Type == null || (typedP.Type == property.PropertyType);
+                })) != null)
                 {
                     property.PropertyName = (attribute as XmlElementAttribute)?.ElementName;
                 }
@@ -60,14 +81,14 @@ namespace BindOpen.Framework.Labs.Platform.Data.Resolvers
                 {
                     property.PropertyName += "s";
                 }
-                //else if (property.PropertyType.IsEnum)
-                //{
-                //    property.Converter = new StringEnumConverter();
-                //}
-                //else if (property.PropertyType == typeof(DateTime))
-                //{
-                //    property.Converter = new JavaScriptDateTimeConverter();
-                //}
+                else if (property.PropertyType.IsEnum)
+                {
+                    property.Converter = new StringEnumConverter();
+                }
+                else if (property.PropertyType == typeof(DateTime) || property.PropertyType == typeof(DateTime?))
+                {
+                    property.Converter = new IsoDateTimeConverter();
+                }
             }
         }
     }
