@@ -26,9 +26,9 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the specified data.</returns>
         public static T GetData<T>(
-            this DataService dataService,
-            Log log,
-            DbDataQuery query,
+            this IDataService dataService,
+            ILog log,
+            IDbDataQuery query,
             Func<IDbConnection, string, T> function,
             IScriptVariableSet scriptVariableSet = null)
         {
@@ -72,13 +72,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="connection">The database connection to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns></returns>
-        public static T GetId<Q, T>(this DatabaseConnection connection, Log log) where Q : IDataService
+        public static T GetId<Q, T>(this IDatabaseConnection connection, ILog log) where Q : IDataService
         {
             T value = default(T);
 
             DbDataReader reader = null;
 
-            BasicDbDataQuery query = new BasicDbDataQuery(DbDataQueryKind.Select)
+            IBasicDbDataQuery query = new BasicDbDataQuery(DbDataQueryKind.Select)
             {
                 Fields =
                 {

@@ -1,6 +1,11 @@
 ﻿- Loading usable configuration: ok
 
+Bug fixes:
+- Json serialization when multiple xml element attributes are defined for the same property.
+
 Features to add and test:
+
+- Simplify logs : lighten logs, define activity logs
 
 - Data items : remove Specified suffixes
 - Defining default settings and simplifying for application host (optionnally)
