@@ -3528,18 +3528,6 @@
             <param name="accessibilityLevel">The visibility to apply.</param>
             <param name="isRecursive">Indicates whether the protection is applied to sub schema elements.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.Lock(System.Boolean)">
-            <summary>
-            Locks this instance.
-            </summary>
-            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.Unlock(System.Boolean)">
-            <summary>
-            Unlocks this instance.
-            </summary>
-            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.Clone">
             <summary>
             Clones this instance.
@@ -5889,6 +5877,18 @@
             Indicates whether this instance is locked.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.Dto.ILockable.Lock(System.Boolean)">
+            <summary>
+            Locks this instance.
+            </summary>
+            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Items.Dto.ILockable.Unlock(System.Boolean)">
+            <summary>
+            Unlocks this instance.
+            </summary>
+            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.Dto.INamed">
             <summary>
             This interface represents a named DTO.
@@ -6541,16 +6541,6 @@
             Specification of the LastModificationDate property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.StoredDataItem.IsLocked">
-            <summary>
-            Indicates whether this instance is locked.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.StoredDataItem.IsLockedSpecified">
-            <summary>
-            Specification of the IsLocked property of this instance.
-            </summary>
-        </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.StoredDataItem.#ctor">
             <summary>
             Instantiates a new instance of the StoredDataItem class.
@@ -6567,18 +6557,6 @@
             <summary>
             Declares this instance has changed.
             </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.StoredDataItem.Lock(System.Boolean)">
-            <summary>
-            Locks this instance.
-            </summary>
-            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.StoredDataItem.Unlock(System.Boolean)">
-            <summary>
-            Unlocks this instance.
-            </summary>
-            <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.StoredDataItem.Clone">
             <summary>
@@ -13006,6 +12984,12 @@
             <param name="versioningFormat">The versioning format to consider.</param>
             <param name="historicVersion">The historic version to consider.</param>
             <returns>The URL of the setup file of the new update. Null if there is no new update.</returns>
+        </member>
+        <member name="T:System.Xml.Serialization.XmlArrayElementAttribute">
+            <summary>
+            This class represents a Xml array element.
+            </summary>
+            <remarks>This attribute is used for Json serialization.</remarks>
         </member>
     </members>
 </doc>

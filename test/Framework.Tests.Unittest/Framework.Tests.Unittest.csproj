@@ -3,7 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>BindOpen.Framework.Tests.UnitTest</AssemblyName>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles database connections.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications.
+This package conducts unit tests.</Description>
     <Authors>Sumer Team</Authors>
     <Company>BindOpen</Company>
     <Product>BindOpen.Framework</Product>

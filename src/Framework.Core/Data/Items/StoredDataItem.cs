@@ -49,18 +49,6 @@ namespace BindOpen.Framework.Core.Data.Items
         [XmlIgnore()]
         public bool LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
 
-        /// <summary>
-        /// Indicates whether this instance is locked.
-        /// </summary>
-        [XmlElement("isLocked")]
-        public bool IsLocked { get; set; } = false;
-
-        /// <summary>
-        /// Specification of the IsLocked property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool IsLockedSpecified => IsLocked;
-
         #endregion
 
         // ------------------------------------------
@@ -103,24 +91,6 @@ namespace BindOpen.Framework.Core.Data.Items
         {
             // we update the modification date
             LastModificationDate = ObjectHelper.ToString(DateTime.Now);
-        }
-
-        /// <summary>
-        /// Locks this instance.
-        /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Lock(bool isRecursive = true)
-        {
-            IsLocked = true;
-        }
-
-        /// <summary>
-        /// Unlocks this instance.
-        /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
-        public virtual void Unlock(bool isRecursive = true)
-        {
-            IsLocked = false;
         }
 
         #endregion

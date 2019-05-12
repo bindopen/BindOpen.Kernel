@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Labs.Platform.Data.Resolvers;
+using BindOpen.Framework.Labs.AspNetCore.Data.Resolvers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -15,7 +17,7 @@ namespace BindOpen.Framework.Tests.TestConsole
     /// <remarks>This class like the whole project is temporary. It allows to implement tests before inserting them in Unit test project.</remarks>
     internal static class Test_It
     {
-        private static async Task Start(string[] args)
+        public static async Task Start()
         {
             //IDataElement element1 = ElementFactory.CreateScalar("test1", 1, 2, 3, 4, 5);
             //IDataElement element2 = ElementFactory.CreateScalar("test1", "a", "b", "c", "d", "e");
@@ -24,13 +26,16 @@ namespace BindOpen.Framework.Tests.TestConsole
             //TestArguments.Test();
 
             ILog log = new Log();
-            log.Execution = new ProcessExecution()
+            ILog subLog = log.AddSubLog();
+            subLog.Detail = new Core.Data.Elements.Sets.DataElementSet(
+                ElementFactory.CreateScalar("toto", "yes"));
+            subLog.Execution = new ProcessExecution()
             {
                 State = ProcessExecutionState.Ended,
                 Status = ProcessExecutionStatus.Processing,
                 ProgressIndex = 0
             };
-            log.AddError("test1", resultCode: "user.events");
+            subLog.AddError("test1", resultCode: "user.events");
             //log.Events.RemoveAll(p =>
             //    p.Kind != BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Error
             //    || p?.ResultCode?.StartsWith("user.") == false);
@@ -41,12 +46,15 @@ namespace BindOpen.Framework.Tests.TestConsole
                 {
                     ContractResolver = new XmlContractResolver(),
                     Converters = new List<JsonConverter> {
-                    new StringEnumConverter { CamelCaseText = true },
-                    new JavaScriptDateTimeConverter()
-                },
+                        new StringEnumConverter { CamelCaseText = true },
+                        new JavaScriptDateTimeConverter()
+                    },
                     NullValueHandling = NullValueHandling.Ignore
                 });
 
+            string st12 = XmlHelper.ToXml(log);
+
+            string st13 = "";
             //var model = AppDomain.CurrentDomain.GetAssemblies().SelectMany(p => p.GetTypes()).Where(p => p.FullName.Contains("Queries_"));
 
             //DbField field = new DbField();

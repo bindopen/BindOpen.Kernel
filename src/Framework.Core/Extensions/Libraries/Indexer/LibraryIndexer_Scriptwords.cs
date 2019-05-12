@@ -4,12 +4,11 @@ using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Indexes.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
 {
@@ -51,54 +50,53 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             }
             else
             {
-                var types = assembly.GetTypes().Where(p => p.GetCustomAttribute(typeof(ScriptwordDefinitionAttribute)) != null);
+                var types = assembly.GetTypes().Where(p => p.GetCustomAttributes(typeof(ScriptwordDefinitionAttribute)).Any());
                 foreach (Type type in types)
                 {
                     // we feach methods
-                    var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static).Where(p => p.GetCustomAttribute(typeof(ScriptwordAttribute)) != null);
+                    var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static);
                     foreach (MethodInfo methodInfo in methodInfos)
                     {
-                        // we determine the name of the definition
-
-                        string definitionName = null;
-                        if (type.GetCustomAttribute(typeof(ScriptwordAttribute)) is ScriptwordAttribute scriptWordAttribute)
+                        if (methodInfo.GetCustomAttribute(typeof(ScriptwordAttribute)) is ScriptwordAttribute scriptWordAttribute)
                         {
-                            definitionName = scriptWordAttribute.Name;
-                        }
+                            // we determine the name of the definition
 
-                        // we update the definition with the index if there is one
+                            string definitionName = scriptWordAttribute.Name;
 
-                        if (indexDto != null)
-                        {
-                            IScriptwordDefinitionDto definitionDto = indexDto.GetDefinition(definitionName, methodInfo.Name);
+                            // we update the definition with the index if there is one
 
-                            if (definitionDto == null)
+                            if (indexDto != null)
                             {
-                                log?.AddError(title: "Script word '" + methodInfo.Name + "' not found in index");
-                            }
-                            else
-                            {
-                                definitionDto.CallingClass = type.FullName;
-                                definitionDto.LibraryName = library?.Name;
+                                IScriptwordDefinitionDto definitionDto = indexDto.GetDefinition(definitionName, methodInfo.Name);
 
-                                // we create the runtime definition
-
-                                ScriptwordDefinition definition = new ScriptwordDefinition(library, definitionDto);
-
-                                try
+                                if (definitionDto == null)
                                 {
-                                    definition.RuntimeFunction += methodInfo.CreateDelegate(
-                                        typeof(ScriptwordFunction), definition.RuntimeFunction) as ScriptwordFunction;
-
-                                    definitions.Add(definition);
-
-                                    count++;
+                                    log?.AddError(title: "Script word '" + methodInfo.Name + "' not found in index");
                                 }
-                                catch (Exception ex)
+                                else
                                 {
-                                    log?.AddError(
-                                            title: "Incompatible function ('" + methodInfo.Name + "')",
-                                            description: "Function '" + definitionDto.RuntimeFunctionName + "' in class '" + definitionDto.CallingClass + "' has inexpected parameters.");
+                                    definitionDto.CallingClass = type.FullName;
+                                    definitionDto.LibraryName = library?.Name;
+
+                                    // we create the runtime definition
+
+                                    ScriptwordDefinition definition = new ScriptwordDefinition(library, definitionDto);
+
+                                    try
+                                    {
+                                        definition.RuntimeFunction += methodInfo.CreateDelegate(
+                                            typeof(ScriptwordFunction), definition.RuntimeFunction) as ScriptwordFunction;
+
+                                        definitions.Add(definition);
+
+                                        count++;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        log?.AddError(
+                                                title: "Incompatible function ('" + methodInfo.Name + "')",
+                                                description: "Function '" + definitionDto.RuntimeFunctionName + "' in class '" + definitionDto.CallingClass + "' has inexpected parameters.");
+                                    }
                                 }
                             }
                         }
