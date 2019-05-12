@@ -162,7 +162,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            DbDataQuery query,
+            IDbDataQuery query,
             ref DbDataReader dataReader,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
@@ -314,7 +314,6 @@ namespace BindOpen.Framework.Databases.Data.Connections
                 if (!log.HasErrorsOrExceptions())
                     this.UpdateDataSet(queryText, dataSet, tableNames, log);
             }
-
         }
 
         #endregion

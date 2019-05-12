@@ -92,7 +92,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -171,61 +171,6 @@
             <summary>
             This interfaces represents a connection.
             </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Executes a database data query that does not return anything.
-            </summary>
-            <param name="queryText">The text to execute.</param>
-            <param name="scriptVariableSet">The interpretation variables to consider.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The log of the data query execution task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Executes a database data query putting the result into a data reader.
-            </summary>
-            <param name="queryText">The text to execute.</param>
-            <param name="dataReader">The output data reader.</param>
-            <param name="scriptVariableSet">The interpretation variables to consider.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The log of the data query execution task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Executes a database data query putting the result into a dataset.
-            </summary>
-            <param name="queryText">The text to execute.</param>
-            <param name="dataSet">The output dataset.</param>
-            <param name="scriptVariableSet">The interpretation variables to consider.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The log of the data query execution task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Gets the identity of the last inserted item
-            </summary>
-            <param name="id">The long identifier to populate.</param>
-            <param name="log">The log to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Executes the specified data query and updates the specified data table.
-            </summary>
-            <param name="queryText">The text to execute.</param>
-            <param name="dataTable">The data table to update.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Executes the specified data query and updates the specified data table.
-            </summary>
-            <param name="queryText">The text to execute.</param>
-            <param name="dataSet">The data set to update.</param>
-            <param name="tableNames">The table names to consider.</param>
-            <param name="log">The log to consider.</param>
-            <returns>The log of the task.</returns>
         </member>
         <member name="T:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery">
             <summary>
@@ -385,7 +330,7 @@
             This class represents a data service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.DataService,BindOpen.Framework.Core.System.Diagnostics.Log,BindOpen.Framework.Databases.Data.Queries.DbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.IDataService,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Retrieves the specified data.
             </summary>
@@ -397,7 +342,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <returns>Returns the specified data.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetId``2(BindOpen.Framework.Databases.Data.Connections.DatabaseConnection,BindOpen.Framework.Core.System.Diagnostics.Log)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetId``2(BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes the specified function.
             </summary>
