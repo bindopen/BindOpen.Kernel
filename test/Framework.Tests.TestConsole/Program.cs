@@ -5,7 +5,7 @@ using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
-using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Tests.TestConsole;
 using BindOpen.Framework.Tests.TestConsole.Services;
 using BindOpen.Framework.Tests.TestConsole.Settings;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +21,8 @@ namespace BindOpen.TestConsole
     {
         private static async Task Main(string[] args)
         {
+            Test_It.Start();
+
             ILogger[] loggers = new []
             {
                 LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console)
@@ -34,7 +36,7 @@ namespace BindOpen.TestConsole
                         (options) => options
                             .DefineSettings()
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
-                            .SetModule(new AppModule("app.test"))
+                            //.SetModule(new AppModule("app.test"))
                             .SetExtensions(
                                 new AppExtensionConfiguration()
                                     .AddFilter("BindOpen.Framework.Databases")

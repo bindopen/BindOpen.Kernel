@@ -46,17 +46,17 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             {
                 ITaskDefinitionDto definition = new TaskDefinitionDto();
 
-                if (type.GetCustomAttribute(typeof(TaskAttribute)) is TaskAttribute taskAttribute)
+                if (type.GetCustomAttributes(typeof(TaskAttribute)).FirstOrDefault() is TaskAttribute taskAttribute)
                 {
                     definition.Update(taskAttribute);
                 }
 
-                foreach(PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(TaskInputAttribute)) != null))
+                foreach(PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(TaskInputAttribute)).Any()))
                 {
                     definition.InputSpecification.Add(ElementSpecFactory.Create(property.Name, property.PropertyType));
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(TaskOutputAttribute)) != null))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(TaskOutputAttribute)).Any()))
                 {
                     definition.OutputSpecification.Add(ElementSpecFactory.Create(property.Name, property.PropertyType));
                 }

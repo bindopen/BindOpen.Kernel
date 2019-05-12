@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -99,9 +100,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Factories
             {
                 foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
                 {
-                    DataElementAttribute attribute = propertyInfo.GetCustomAttribute(typeof(T)) as DetailPropertyAttribute;
-
-                    if (attribute != null)
+                    if (propertyInfo.GetCustomAttribute(typeof(T)) is DetailPropertyAttribute attribute)
                     {
                         string name = attribute.Name;
 

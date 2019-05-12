@@ -21,5 +21,17 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// Locks this instance.
+        /// </summary>
+        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        void Lock(bool isRecursive = true);
+
+        /// <summary>
+        /// Unlocks this instance.
+        /// </summary>
+        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        void Unlock(bool isRecursive = true);
     }
 }

@@ -39,6 +39,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlElement("meta", typeof(MetaDataElement))]
         [XmlElement("scalar", typeof(ScalarElement))]
         [XmlElement("source", typeof(SourceElement))]
+        [XmlArrayElement("elements")]
         public List<DataElement> Elements
         {
             get { return _items; }

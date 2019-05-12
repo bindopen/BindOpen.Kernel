@@ -7,7 +7,8 @@
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This library includes classes of the framework that handles MS SQL Server database connections.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications.
+This package handles MS SQL Server database connections.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Databases.MSSqlServer</RootNamespace>
     <LangVersion>7.3</LangVersion>
