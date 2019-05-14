@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a Snap logger.
@@ -45,7 +47,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
-            : base(name, LogFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            : base(name, LoggerFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 

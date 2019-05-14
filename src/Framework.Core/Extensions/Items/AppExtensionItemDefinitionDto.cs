@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public virtual string GetText(LogFormat logFormat = LogFormat.Xml, string uiCulture = "*")
+        public virtual string GetText(LoggerFormat logFormat = LoggerFormat.Xml, string uiCulture = "*")
         {
             return "";
         }

@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Runtime.Application.Options;
 
-namespace BindOpen.Framework.Core.Application.Arguments
+namespace BindOpen.Framework.Runtime.Application.Arguments
 {
     /// <summary>
     /// This class represents the application argument parser.

@@ -10,7 +10,6 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;

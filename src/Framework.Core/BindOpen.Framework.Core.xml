@@ -4,30 +4,6 @@
         <name>BindOpen.Framework.Core</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper">
-            <summary>
-            This class represents the application argument parser.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Core.Application.Options.IOptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Retrieves the arguments from the specified argument string values.
-            </summary>
-            <param name="arguments">The argument string values to consider.</param>
-            <param name="optionSpecificationSet">The option specification set to consider.</param>
-            <param name="allowMissingItems">Indicates whether the items can be missing.</param>
-            <param name="log">The log to consider.</param>
-            <returns>Returns the log of argument building.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet,BindOpen.Framework.Core.Application.Options.IOptionSpecSet,System.Boolean)">
-            <summary>
-            Checks this instance.
-            </summary>
-            <param name="optionSet">The set of options to consider.</param>
-            <param name="optionSpecificationSet">The set of option specifications to consider.</param>
-            <param name="allowMissingItems">Indicates whether the items can be missing.</param>
-            <returns>Returns the log of check.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration">
             <summary>
             This class represents a configuration.
@@ -352,309 +328,6 @@
             Business.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionNameKind">
-            <summary>
-            This enumeration lists all the possible option name kinds.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.OnlyName">
-            <summary>
-            Only name.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.NameWithValue">
-            <summary>
-            Name with value.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.NameThenValue">
-            <summary>
-            Name then value.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Options.OptionNameKind.OnlyValue">
-            <summary>
-            Only value.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension">
-            <summary>
-            The extension of the option name kind.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension.HasName(BindOpen.Framework.Core.Application.Options.OptionNameKind)">
-            <summary>
-            Indicates whether the specified kind has name.
-            </summary>
-            <param name="kind">The kind of the option name.</param>
-            <returns>Returns true or false.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionNameKindExtension.HasValue(BindOpen.Framework.Core.Application.Options.OptionNameKind)">
-            <summary>
-            Indicates whether the specified kind has value.
-            </summary>
-            <param name="kind">The kind of the option name.</param>
-            <returns>Returns true or false.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSet">
-            <summary>
-            This class represents a option set.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSet.#ctor">
-            <summary>
-            Instantiates a new instance of the OptionSet class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSet.HasOption(System.String)">
-            <summary>
-            Indicates whether this instance has the specified option.
-            </summary>
-            <param name="name">Name of the option to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSet.GetOptionValue(System.String)">
-            <summary>
-            Gets the value of the specified option.
-            </summary>
-            <param name="name">Name of the option to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSet.Update(System.String)">
-            <summary>
-            Updates this instance with the specified string value.
-            </summary>
-            <param name="stringValue">The string value to consider.</param>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpec">
-            <summary>
-            This class represents an option specification.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="dataValueType">The value type to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="requirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="requirementLevel">The requirement level of the entry to add.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="dataValueType">The value type to consider.</param>
-            <param name="requirementLevel">The requirement level of the entry to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.#ctor(System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Instantiates a new instance of the OptionSpec class.
-            </summary>
-            <param name="type">The type to consider.</param>
-            <param name="requirementLevel">The requirement level of the option to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.IsArgumentMarching(System.String,System.Int32@)">
-            <summary>
-            Indicates whether the specified argument matches with this instance.
-            </summary>
-            <param name="argumentstring">The argument to consider.</param>
-            <param name="aliasIndex">The alias index to consider. -2 not found. -1 Name matches. otherwise the index of matched alias.</param>
-            <returns>Returns True if the specified matches this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpec.IsArgumentMarching(System.String)">
-            <summary>
-            Indicates whether the specified argument matches with this instance.
-            </summary>
-            <param name="argumentstring">The argument to consider.</param>
-            <returns>Returns True if the specified matches this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Options.OptionSpecSet">
-            <summary>
-            This class represents a option specification set.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Name">
-            <summary>
-            The name of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Index">
-            <summary>
-            The index of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.Condition">
-            <summary>
-            The condition of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Options.OptionSpecSet.SubSets">
-            <summary>
-            The sub sets of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor">
-            <summary>
-            Instantiates a new instance of the OptionSpecSet class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor(BindOpen.Framework.Core.Application.Options.IOptionSpec[])">
-            <summary>
-            Instantiates a new instance of the OptionSpecSet class.
-            </summary>
-            <param name="optionSpecifications">The option specifications to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.#ctor(BindOpen.Framework.Core.Data.Conditions.ICondition,BindOpen.Framework.Core.Application.Options.IOptionSpec[])">
-            <summary>
-            Instantiates a new instance of the OptionSpecSet class.
-            </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="optionSpecifications">The option specifications to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.GetHelpText(System.String)">
-            <summary>
-            Gets the help text.
-            </summary>
-            <param name="uiCulture">The UI culture to consider.</param>
-            <returns>Returns the help text.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.ClearOptions">
-            <summary>
-            Clears the options.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Application.Options.IOptionSpecSet)">
-            <summary>
-            Adds the specified set of option specifications.
-            </summary>
-            <param name="subSet">The sub set to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Application.Options.IOptionSpec[])">
-            <summary>
-            Adds a new set of option specifications.
-            </summary>
-            <param name="optionSpecifications">The option specifications to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddSubSet(BindOpen.Framework.Core.Data.Conditions.ICondition,BindOpen.Framework.Core.Application.Options.IOptionSpec[])">
-            <summary>
-            Instantiates a new instance of the OptionSpecSet class.
-            </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="optionSpecifications">The option specifications to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.RequirementLevel,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="requirementLevel">The requirement level of the entry to add.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="dataValueType">The value type to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="requirementLevel">The requirement level of the entry to add.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="dataValueType">The value type to consider.</param>
-            <param name="requirementLevel">The requirement level of the entry to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.AddOption(System.Type,BindOpen.Framework.Core.Data.Common.RequirementLevel,BindOpen.Framework.Core.Application.Options.OptionNameKind,System.String[])">
-            <summary>
-            Adds a new option specification.
-            </summary>
-            <param name="type">The type to consider.</param>
-            <param name="requirementLevel">The requirement level of the option to consider.</param>
-            <param name="nameKind">The name kind to consider.</param>
-            <param name="aliases">Aliases of the option to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.RemoveOption(System.String)">
-            <summary>
-            Deletes the specified option.
-            </summary>
-            <param name="name">Name of the statement entry to remove.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.HasOption(System.String)">
-            <summary>
-            Indicates whether this instance has the specified option.
-            </summary>
-            <param name="name">Name of the option to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Options.OptionSpecSet.GetItem(System.String)">
-            <summary>
-            Returns the item with the specified name.
-            </summary>
-            <param name="key">The name of the alias of the item to return.</param>
-            <returns>Returns the item with the specified name.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.Application.Scopes.AppScope">
             <summary>
             This class represents an application scope.
@@ -833,125 +506,6 @@
             <summary>
             The connection of the service.
             </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Settings.BaseSettings">
-            <summary>
-            This class represents a configuration.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Settings.BaseSettings._appScope">
-            <summary>
-            The scope of this instance.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.Application.Settings.BaseSettings._configuration">
-            <summary>
-            The configuration of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Settings.BaseSettings.AppScope">
-            <summary>
-            The application scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Settings.BaseSettings.Configuration">
-            <summary>
-            The item of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.#ctor">
-            <summary>
-            Instantiates a new instance of the BaseSettings class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Application.Configuration.IBaseConfiguration)">
-            <summary>
-            Instantiates a new instance of the BaseSettings class.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Key">
-            <summary>
-            Returns the key of this instance.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Get``1(System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="name">The name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.GetProperty``1(System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="propertyName">The calling property name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.GetProperty``1(``0,System.String)">
-            <summary>
-            Gets the specified value.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="defaultValue">The default value to consider.</param>
-            <param name="propertyName">The calling property name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Set(System.Object,System.String)">
-            <summary>
-            Sets the specified value.
-            </summary>
-            <param name="value">The value to set.</param>
-            <param name="name">The name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.SetProperty(System.Object,System.String)">
-            <summary>
-            Sets the specified value.
-            </summary>
-            <param name="value">The value to set.</param>
-            <param name="propertyName">The calling property name to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.BaseSettings.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
-            <summary>
-            Loads the application settings of this instance.
-            </summary>
-            <param name="filePath">The file path to consider.</param>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <returns>Returns the loading log.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Settings.TSettings`1">
-            <summary>
-            This class represents a configuration.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Settings.TSettings`1.Configuration">
-            <summary>
-            The configuration of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.#ctor">
-            <summary>
-            Instantiates a new instance of the TSettings class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
-            <summary>
-            Instantiates a new instance of the TSettings class.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Settings.TSettings`1.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
-            <summary>
-            Loads the application settings of this instance.
-            </summary>
-            <param name="filePath">The file path to consider.</param>
-            <param name="appScope">The application scope to consider.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <returns>Returns the loading log.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase">
             <summary>
@@ -2789,7 +2343,7 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.ElementFactory">
             <summary>
             This static class provides methods to create data elements.
             </summary>
@@ -2812,21 +2366,21 @@
             This static class provides methods to create data elements.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.Create(System.String,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.Create(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.Create(System.String,System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.Create(System.String,System.Object)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The item to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.Create(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.IDataElementSpec,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.Create(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.IDataElementSpec,System.Object[])">
             <summary>
             Creates a data element of the specified kind.
             </summary>
@@ -2835,20 +2389,20 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateCarrier(System.String,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCarrier(System.String,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
             <summary>
             Initializes a new carrier element.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateCarrier(BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCarrier(BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
             <summary>
             Initializes a new carrier element.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateCarrier(System.String,System.String,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCarrier(System.String,System.String,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
             <summary>
             Initializes a new carrier element.
             </summary>
@@ -2856,7 +2410,7 @@
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateCarrier(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.ICarrierElementSpec,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCarrier(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.ICarrierElementSpec,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration[])">
             <summary>
             Initializes a new carrier element.
             </summary>
@@ -2866,7 +2420,7 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateDocument(System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.ICarrierElement,BindOpen.Framework.Core.Data.Elements._Object.IObjectElement)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateDocument(System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.ICarrierElement,BindOpen.Framework.Core.Data.Elements._Object.IObjectElement)">
             <summary>
             Initializes a new document element.
             </summary>
@@ -2875,20 +2429,20 @@
             <param name="containerElement">The container element to consider.</param>
             <param name="contentElement">The content element to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateObject(System.String,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateObject(System.String,System.Object[])">
             <summary>
             Initializes a new object element.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateObject(System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateObject(System.Object[])">
             <summary>
             Initializes a new object element.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateObject(System.String,System.String,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateObject(System.String,System.String,System.Object[])">
             <summary>
             Initializes a new object element.
             </summary>
@@ -2896,7 +2450,7 @@
             <param name="classFullName">The class full name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateObject(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements._Object.IObjectElementSpec,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateObject(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements._Object.IObjectElementSpec,System.Object[])">
             <summary>
             Initializes a new object element.
             </summary>
@@ -2906,33 +2460,33 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(BindOpen.Framework.Core.Data.Common.DataValueType)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(BindOpen.Framework.Core.Data.Common.DataValueType)">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
             <param name="dataValueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(System.String)">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
             <param name="name">The name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(BindOpen.Framework.Core.Data.Common.DataValueType,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(BindOpen.Framework.Core.Data.Common.DataValueType,System.Object[])">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
             <param name="valueType">The value type to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(System.String,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(System.String,System.Object[])">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.Object[])">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
@@ -2940,7 +2494,7 @@
             <param name="valueType">The value type to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateScalar(System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.Scalar.IScalarElementSpec,System.Object[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateScalar(System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Elements.Scalar.IScalarElementSpec,System.Object[])">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
@@ -2950,51 +2504,51 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSet(System.String[][])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSet(System.String[][])">
             <summary>
             Instantiates a new instance of the IDataElementSet class.
             </summary>
             <param name="detail">The detail table.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSet(System.String)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSet(System.String)">
             <summary>
             Creates a new instance of the IDataElementSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
             <returns>The collection.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateElementArray(System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateElementArray(System.Object)">
             <summary>
             Creates a data element array from a dynamic object.
             </summary>
             <param name="aObject">The objet to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSet``1(System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSet``1(System.Object)">
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
             <param name="aObject">The objet to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSetFromAttributes``1(System.Object)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSetFromAttributes``1(System.Object)">
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
             <param name="aObject">The objet to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSource(System.String,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSource(System.String,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
             <summary>
             Initializes a new source element.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSource(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSource(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
             <summary>
             Initializes a new source element.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSource(System.String,System.String,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSource(System.String,System.String,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
             <summary>
             Initializes a new source element.
             </summary>
@@ -3002,7 +2556,7 @@
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementFactory.CreateSource(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Source.ISourceElementSpec,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateSource(System.String,System.String,System.String,BindOpen.Framework.Core.Data.Elements.Source.ISourceElementSpec,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration[])">
             <summary>
             Initializes a new source element.
             </summary>
@@ -3012,19 +2566,19 @@
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Elements.Factories.ElementSpecFactory">
+        <member name="T:BindOpen.Framework.Core.Data.Elements.ElementSpecFactory">
             <summary>
             This static class provides methods to create element specifications.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementSpecFactory.Create(System.String,BindOpen.Framework.Core.Data.Common.DataValueType)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementSpecFactory.Create(System.String,BindOpen.Framework.Core.Data.Common.DataValueType)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Factories.ElementSpecFactory.Create(System.String,System.Type)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementSpecFactory.Create(System.String,System.Type)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
@@ -7677,7 +7231,7 @@
             <param name="preffix">The preffix to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat,System.String)">
             <summary>
             Returns a text summarizing this instance.
             </summary>
@@ -7935,7 +7489,7 @@
             Instantiates a new instance of the CarrierDefinitionDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.CarrierDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.CarrierDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat,System.String)">
             <summary>
             Returns a text summarizing this instance.
             </summary>
@@ -8339,12 +7893,12 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemDtoFactory">
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDtoFactory">
             <summary>
             This static class provides methods to create extension DTO item.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemDtoFactory.CreateConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDtoFactory.CreateConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8352,7 +7906,7 @@
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemDtoFactory.LoadConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDtoFactory.LoadConfiguration``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8360,12 +7914,12 @@
             <param name="xmlstring">The XML string to consider.</param>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory">
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory">
             <summary>
             This static class provides methods to create extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateCarrier``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateCarrier``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8377,7 +7931,7 @@
             <typeparam name="T">The carrier class to return.</typeparam>
             <returns>Returns the created carrier.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateCarrier(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateCarrier(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8388,7 +7942,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the created carrier.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateConnector``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateConnector``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8400,7 +7954,7 @@
             <typeparam name="T">The carrier class to return.</typeparam>
             <returns>Returns the created carrier.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateConnector(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateConnector(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8411,7 +7965,7 @@
             <param name="scriptVariableSet">The script variable set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateTask``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateTask``1(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8423,7 +7977,7 @@
             <typeparam name="T">The carrier class to return.</typeparam>
             <returns>Returns the created carrier.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Factories.AppExtensionItemFactory.CreateTask(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory.CreateTask(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -8935,7 +8489,7 @@
             <param name="variantName">The variant variant name to consider.</param>
             <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.ScriptwordDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,System.String)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.ScriptwordDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat,System.String)">
             <summary>
             Returns a text summarizing this instance.
             </summary>
@@ -10817,14 +10371,14 @@
             <param name="name">The name of the logger to consider.</param>
             <returns>Returns the logger with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetLogger(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetLogger(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat)">
             <summary>
             Gets the logger with the specified format.
             </summary>
             <param name="format">The name of the format to consider.</param>
             <returns>Returns the logger with the specified format.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat[])">
             <summary>
             Gets the loggers with the specified formats.
             </summary>
@@ -11279,28 +10833,6 @@
             <param name="logEvents">The log events to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories.LoggerFactory">
-            <summary>
-            This class represents a logger.
-            </summary>
-            <remarks>The output format is YAML.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories.LoggerFactory.Create``1(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
-            <summary>
-            Creates the specified logger.
-            </summary>
-            <typeparam name="T">The logger class to consider.</typeparam>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The expiration day number to consider.</param>
-            <returns>Returns the specified logger.</returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger">
             <summary>
             This interface represents a logger.
@@ -11474,94 +11006,6 @@
             <param name="logEvent">The log event to consider.</param>
             <param name="attributeNames">The attribute names to consider.</param>
             <returns>The string representing to the specified event.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger">
-            <summary>
-            This class represents a JSON logger.
-            </summary>
-            <remarks>The output format is JSON.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.#ctor">
-            <summary>
-            Instantiates a new instance of the JsonLogger class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
-            <summary>
-            Instantiates a new instance of the JsonLogger class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration)">
-            <summary>
-            Logs the specified task.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="task">The task to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.WriteEvent(BindOpen.Framework.Core.System.Diagnostics.ILogEvent)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="logEvent">The log event to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Object)">
-            <summary>
-            Logs the specified element.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="elementName">The element name to consider.</param>
-            <param name="elementValue">The element value to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.WriteChildLog(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="childLog">The child log to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.LoadLog(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Boolean)">
-            <summary>
-            Instantiates a new instance of Log class from a xml file.
-            </summary>
-            <param name="filePath">The path of the Xml file to load.</param>
-            <param name="loadLog">The output log of the load task.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
-            <returns>The load log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.LoadLogFromString(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Instantiates a new instance of Log class from a xml string.
-            </summary>
-            <param name="xmlString">The Xml string to load.</param>
-            <param name="loadLog">The output log of the load task.</param>
-            <returns>The log defined in the Xml file.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.Save(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Boolean)">
-            <summary>
-            Saves this instance in the specified log file.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="logFilePath">The path of the log file to save.</param>
-            <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
-            <returns>Returns the saving log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.JsonLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Collections.Generic.List{System.String})">
-            <summary>
-            Gets the string representing to the specified log.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="attributeNames">The attribute names to consider.</param>
-            <returns>The string representing to the specified log.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogEntries">
             <summary>
@@ -11738,51 +11182,6 @@
             The name of the task of the log.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat">
-            <summary>
-            This enumeration lists the possible log formats.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.None">
-            <summary>
-            None.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Custom">
-            <summary>
-            Custom.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Json">
-            <summary>
-            Json.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Snap">
-            <summary>
-            Snap.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Report">
-            <summary>
-            Report.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Yaml">
-            <summary>
-            YAML.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat.Xml">
-            <summary>
-            XML.
-            </summary>
-        </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.Logger">
             <summary>
             This class represents a logger.
@@ -11844,7 +11243,7 @@
             Instantiates a new instance of the Logger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.Logger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Loggers.LogFormat,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.Logger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
             <summary>
             Instantiates a new instance of the Logger class.
             </summary>
@@ -11997,246 +11396,54 @@
             <param name="attributeNames">The attribute names to consider.</param>
             <returns>The string representing to the specified event.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger">
+        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat">
             <summary>
-            This class represents a YAML logger.
-            </summary>
-            <remarks>The output format is YAML.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.#ctor">
-            <summary>
-            Instantiates a new instance of the ReportLogger class.
+            This enumeration lists the possible logger formats.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.None">
             <summary>
-            Instantiates a new instance of the ReportLogger class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration)">
-            <summary>
-            Logs the specified task.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="task">The task to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.WriteEvent(BindOpen.Framework.Core.System.Diagnostics.ILogEvent)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="logEvent">The log event to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Object)">
-            <summary>
-            Logs the specified element.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="elementName">The element name to consider.</param>
-            <param name="elementValue">The element value to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.WriteChildLog(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="childLog">The child log to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.ReportLogger.Save(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Boolean)">
-            <summary>
-            Saves this instance in the specified log file.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="logFilePath">The path of the log file to save.</param>
-            <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
-            <returns>Returns the saving log.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger">
-            <summary>
-            This class represents a Snap logger.
+            None.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger.#ctor">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Any">
             <summary>
-            Instantiates a new instance of the SnapLogger class.
+            Any.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Custom">
             <summary>
-            Instantiates a new instance of the SnapLogger class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Collections.Generic.List{System.String})">
-            <summary>
-            Gets the string representing to the specified log.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="attributeNames">The attribute names to consider.</param>
-            <returns>The string representing to the specified log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.ILogEvent,System.Collections.Generic.List{System.String})">
-            <summary>
-            Gets the string representing to the specified event.
-            </summary>
-            <param name="logEvent">The log event to consider.</param>
-            <param name="attributeNames">The attribute names to consider.</param>
-            <returns>The string representing to the specified event.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.SnapLogger.WriteEvent(BindOpen.Framework.Core.System.Diagnostics.ILogEvent)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="logEvent">The log event to consider.</param>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger">
-            <summary>
-            This class represents a XML logger.
-            </summary>
-            <remarks>The output format is YAML.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.#ctor">
-            <summary>
-            Instantiates a new instance of the XmlLogger class.
+            Custom.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Json">
             <summary>
-            Instantiates a new instance of the XmlLogger class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration)">
-            <summary>
-            Logs the specified task.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="task">The task to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.WriteEvent(BindOpen.Framework.Core.System.Diagnostics.ILogEvent)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="logEvent">The log event to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.WriteDetailElement(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Object)">
-            <summary>
-            Logs the specified element.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="elementName">The element name to consider.</param>
-            <param name="elementValue">The element value to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.WriteChildLog(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Logs the specified record.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="childLog">The child log to log.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.IsHistoryRequired">
-            <summary>
-            Indicates whether this instance requires all the event history to be maintained.
-            </summary>
-            <returns>Returns True if this instance requires all the event history.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.LoadLog(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Boolean)">
-            <summary>
-            Instantiates a new instance of Log class from a xml file.
-            </summary>
-            <param name="filePath">The path of the Xml file to load.</param>
-            <param name="loadLog">The output log of the load task.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
-            <returns>The load log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.LoadLogFromString(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Instantiates a new instance of Log class from a xml string.
-            </summary>
-            <param name="xmlString">The Xml string to load.</param>
-            <param name="loadLog">The output log of the load task.</param>
-            <returns>The log defined in the Xml file.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.Save(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.Boolean)">
-            <summary>
-            Saves this instance in the specified log file.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="logFilePath">The path of the log file to save.</param>
-            <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
-            <returns>Returns the saving log.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.XmlLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Collections.Generic.List{System.String})">
-            <summary>
-            Gets the string representing to the specified log.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <param name="attributeNames">The attribute names to consider.</param>
-            <returns>The string representing to the specified log.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Loggers.YamlLogger">
-            <summary>
-            This class represents a YAML logger.
+            Json.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.YamlLogger.#ctor">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Snap">
             <summary>
-            Instantiates a new instance of the YamlLogger class.
+            Snap.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.YamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.LoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DataSourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},System.Int32)">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Report">
             <summary>
-            Instantiates a new instance of the YamlLogger class.
+            Report.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="mode">The mode to consider.</param>
-            <param name="folderPath">The folder path to consider.</param>
-            <param name="fileName">The file name to consider.</param>
-            <param name="outputKind">The output kind to consider.</param>
-            <param name="isVerbose">Indicates whether .</param>
-            <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.YamlLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Collections.Generic.List{System.String})">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Yaml">
             <summary>
-            Gets the string representing to the specified log.
+            YAML.
             </summary>
-            <param name="log">The log to consider.</param>
-            <param name="attributeNames">The attribute names to consider.</param>
-            <returns>The string representing to the specified log.</returns>
+        </member>
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat.Xml">
+            <summary>
+            XML.
+            </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.LoggerMode">
             <summary>
-            This enumeration lists log modes.
+            This enumeration lists logger modes.
             </summary>
         </member>
         <member name="F:BindOpen.Framework.Core.System.Diagnostics.LoggerMode.Any">
@@ -12910,80 +12117,6 @@
             Clones this instance.
             </summary>
             <returns>Returns a clone of this instance.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Versioning.UpdateLevel">
-            <summary>
-            This enumeration lists all the possible update levels.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Versioning.UpdateLevel.Normal">
-            <summary>
-            Normal
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Versioning.UpdateLevel.Minor">
-            <summary>
-            Minor
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Versioning.UpdateLevel.Major">
-            <summary>
-            Major
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.System.Versioning.VersioningHelper">
-            <summary>
-            This class represents a versioning helper.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.GetVersionElement(System.String,System.Int32)">
-            <summary>
-            Gets the specified version element.
-            </summary>
-            <param name="version">The new version to consider.</param>
-            <param name="level">The base-0 level to consider.</param>
-            <returns>The version element at the specified level.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.GetVersion(System.String,System.Int32)">
-            <summary>
-            Gets the specified version.
-            </summary>
-            <param name="version">The new version to consider.</param>
-            <param name="level">The level to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.GetVersion(System.Int32[])">
-            <summary>
-            Gets the specified version.
-            </summary>
-            <param name="numbers">The version section numbers to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.GetVersion(System.String[])">
-            <summary>
-            Gets the specified version.
-            </summary>
-            <param name="numbers">The version section numbers to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.IsVersionMajor(System.String,System.String,System.Int32)">
-            <summary>
-            Indicates whether the specified new version is a major update of the specified current version considering the 
-            specified major update level.
-            </summary>
-            <param name="newVersion">The new version to consider.</param>
-            <param name="currentVersion">the current version to consider.</param>
-            <param name="majorUpdateLevel">The major update level to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.System.Versioning.VersioningHelper.GetIncrementedVersion(System.String,System.String,System.String)">
-            <summary>
-            Gets the incremented version considering the versioning format.
-            </summary>
-            <param name="currentVersion">The current version to consider.</param>
-            <param name="versioningFormat">The versioning format to consider.</param>
-            <param name="historicVersion">The historic version to consider.</param>
-            <returns>The URL of the setup file of the new update. Null if there is no new update.</returns>
         </member>
         <member name="T:System.Xml.Serialization.XmlArrayElementAttribute">
             <summary>

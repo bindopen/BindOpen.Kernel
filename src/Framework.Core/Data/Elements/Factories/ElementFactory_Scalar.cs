@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 
-namespace BindOpen.Framework.Core.Data.Elements.Factories
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data elements.

@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The format of this instance.
         /// </summary>
-        LogFormat Format { get; set; }
+        LoggerFormat Format { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is verbose.

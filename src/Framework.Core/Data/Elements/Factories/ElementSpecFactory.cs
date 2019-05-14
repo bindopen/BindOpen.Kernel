@@ -10,7 +10,7 @@ using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Specification.Design;
 using BindOpen.Framework.Core.Extensions.Items.Routines;
 
-namespace BindOpen.Framework.Core.Data.Elements.Factories
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create element specifications.

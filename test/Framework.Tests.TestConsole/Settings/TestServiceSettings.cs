@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Settings;
 using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Tests.TestConsole.Settings
 {

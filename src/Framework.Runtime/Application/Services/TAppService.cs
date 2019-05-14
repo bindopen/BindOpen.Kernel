@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Settings;
+using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 

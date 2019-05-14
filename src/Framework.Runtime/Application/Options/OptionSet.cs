@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Options;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Application.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This class represents a option set.

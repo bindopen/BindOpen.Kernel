@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;

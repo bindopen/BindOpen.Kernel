@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Sets;
 
-namespace BindOpen.Framework.Core.Application.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     public interface IOptionSet : IDataElementSet
     {

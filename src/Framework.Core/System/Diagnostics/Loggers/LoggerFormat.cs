@@ -3,13 +3,12 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 {
-
     /// <summary>
-    /// This enumeration lists the possible log formats.
+    /// This enumeration lists the possible logger formats.
     /// </summary>
     [Serializable()]
-    [XmlType("LogFormat", Namespace = "https://bindopen.org/xsd")]
-    public enum LogFormat
+    [XmlType("LoggerFormat", Namespace = "https://bindopen.org/xsd")]
+    public enum LoggerFormat
     {
         /// <summary>
         /// None.
@@ -51,5 +50,4 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         Xml,
     };
-
 }

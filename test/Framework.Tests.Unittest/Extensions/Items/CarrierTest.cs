@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Factories;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using NUnit.Framework;

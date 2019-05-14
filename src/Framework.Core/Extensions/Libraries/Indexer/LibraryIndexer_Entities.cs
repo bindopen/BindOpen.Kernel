@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Framework.Core.Data.Elements.Factories;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.Extensions.Items.Entities.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
 

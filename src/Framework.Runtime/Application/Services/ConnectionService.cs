@@ -6,7 +6,7 @@ using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
-using BindOpen.Framework.Core.Extensions.Items.Factories;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Runtime.Application.Services

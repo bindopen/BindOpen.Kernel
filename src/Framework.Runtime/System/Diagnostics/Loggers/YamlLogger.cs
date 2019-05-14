@@ -5,15 +5,15 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a YAML logger.
     /// </summary>
     public class YamlLogger : Logger
     {
-
         // ------------------------------------------------------
         // VARIABLES
         // ------------------------------------------------------
@@ -24,7 +24,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         private String _CurrentNode = null;
 
         #endregion
-
 
         // ------------------------------------------------------
         // CONSTRUCTORS
@@ -62,12 +61,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             string uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
-            : base(name, LogFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            : base(name, LoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 
         #endregion
-
 
         // ------------------------------------------
         // SERIALIZATION / UNSERIALIZATION
@@ -201,6 +199,5 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         //}
 
         #endregion
-
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Data.Items.Sets;
 
-namespace BindOpen.Framework.Core.Application.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     public interface IOptionSpecSet : IDataItemSet<OptionSpec>, INamed, IIndexed
     {
