@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+  <scalar name="text1">
+    <values>
+      <add>item1</add>
+      <add>item2</add>
+      <add>item3</add>
+    </values>
+  </scalar>
+  <scalar name="integer1" valueType="Integer">
+    <values>
+      <add>1</add>
+      <add>2</add>
+      <add>3</add>
+    </values>
+  </scalar>
+</usableConfiguration>

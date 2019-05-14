@@ -6,7 +6,6 @@ using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
@@ -49,6 +48,12 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         [XmlAttribute("definition")]
         public string DefinitionUniqueId { get; set; } = "";
 
+        /// <summary>
+        /// Specification of the DefinitionUniqueId property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
+
         // --------------------------------------------------
 
         /// <summary>
@@ -67,14 +72,6 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// </summary>
         [XmlIgnore()]
         public bool ObjectsSpecified => Items.Count > 0;
-
-        // --------------------------------------------------
-
-        /// <summary>
-        /// Specification of the DefinitionUniqueId property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         // Specifcation -----------------------
 

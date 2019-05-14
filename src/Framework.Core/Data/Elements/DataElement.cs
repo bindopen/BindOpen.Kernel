@@ -260,9 +260,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         public virtual object GetObject<T>(
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
-            ILog log = null) where T : class
+            ILog log = null)
         {
-            return GetObject(appScope, scriptVariableSet, log) as T;
+            return (T)GetObject(appScope, scriptVariableSet, log);
         }
 
         /// <summary>

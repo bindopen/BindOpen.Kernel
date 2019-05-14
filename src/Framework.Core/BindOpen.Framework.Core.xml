@@ -751,6 +751,11 @@
             Data source.
             </summary>
         </member>
+        <member name="F:BindOpen.Framework.Core.Data.Common.DataValueType.Element">
+            <summary>
+            Element.
+            </summary>
+        </member>
         <member name="F:BindOpen.Framework.Core.Data.Common.DataValueType.Date">
             <summary>
             Date.
@@ -1723,6 +1728,194 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement">
+            <summary>
+            This class represents a catalog element that is an element whose elements are entities.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.Elements">
+            <summary>
+            The elements of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.ElementsSpecified">
+            <summary>
+            Specification of the Elements property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.Specification">
+            <summary>
+            The specification of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.#ctor">
+            <summary>
+            Initializes a new catalog element.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Elements.Collection.ICollectionElementSpec,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Initializes a new data catalog element.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="id">The ID to consider.</param>
+            <param name="specification">The specification to consider.</param>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.#ctor(System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Initializes a new data catalog element.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Initializes a new data catalog element.
+            </summary>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.NewSpecification">
+            <summary>
+            Creates a new specification.
+            </summary>
+            <returns>Returns the new specifcation.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.AddItem(System.Object,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Adds a new single item of this instance.
+            </summary>
+            <param name="item">The string item of this instance.</param>
+            <param name="log">The log to populate.</param>
+            <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the elements will be the default ones..</remarks>
+            <returns>Returns True if the specified has been well added.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.SetItem(System.Object)">
+            <summary>
+            Sets the specified single item of this instance.
+            </summary>
+            <param name="item">The item to apply to this instance.</param>
+            <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.HasItem(System.Object,System.Boolean)">
+            <summary>
+            Indicates whether this instance contains the specified scalar item or the specified catalog name.
+            </summary>
+            <param name="indexItem">The index item to consider.</param>
+            <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
+            <returns>Returns true if this instance contains the specified scalar item or the specified catalog name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.ToString">
+            <summary>
+            Returns a text node representing this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.GetElement(System.String,System.String)">
+            <summary>
+            Returns the item with the specified name and group ID.
+            </summary>
+            <param name="name">The name of the item to return.</param>
+            <param name="groupId">The ID of the group of the item to return.</param>
+            <returns>Returns the item with the specified name and group ID.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.GetElementObject(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Returns the item object of this instance.
+            </summary>
+            <param name="elementName">The element name to consider.</param>
+            <param name="log">The log to populate.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the items of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.GetElementObject``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Returns the item object of this instance.
+            </summary>
+            <param name="elementName">The element name to consider.</param>
+            <param name="log">The log to populate.</param>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the items of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Updates information for storage.
+            </summary>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Updates information for runtime.
+            </summary>
+            <param name="log">The log to update.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns>Returns a cloned instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec">
+            <summary>
+            This class represents a catalog element specification.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.ClassFilter">
+            <summary>
+            The class filter of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.ClassFilterSpecified">
+            <summary>
+            Specification of the ClassFilter property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.DefinitionFilter">
+            <summary>
+            The entity filter of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.DefinitionFilterSpecified">
+            <summary>
+            Specification of the ClassFilter property of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.#ctor">
+            <summary>
+            Initializes a new object element specification.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+            <summary>
+            Initializes a new object element specification.
+            </summary>
+            <param name="accessibilityLevel">The accessibilty level of this instance.</param>
+            <param name="specificationLevels">The specification levels of this instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.CheckItem(System.Object,BindOpen.Framework.Core.Data.Elements.IDataElement)">
+            <summary>
+            Check the specified item.
+            </summary>
+            <param name="item">The item to consider.</param>
+            <param name="dataElement">The element to consider.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.CheckElement(BindOpen.Framework.Core.Data.Elements.IDataElement,System.String[])">
+            <summary>
+            Check the specified item.
+            </summary>
+            <param name="dataElement">The element to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns>Returns a cloned instance.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Data.Elements.DataElement">
             <summary>
             This class represents a data element.
@@ -2365,6 +2558,9 @@
             <summary>
             This static class provides methods to create data elements.
             </summary>
+            <summary>
+            This static class provides methods to create data elements.
+            </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.Create(System.String,System.Object[])">
             <summary>
@@ -2419,6 +2615,29 @@
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
             <param name="specification">The specification to consider.</param>
             <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCollection(System.String,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Initializes a new collection element.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCollection(BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Initializes a new collection element.
+            </summary>
+            <param name="elements">The elements to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateCollection(System.String,System.String,BindOpen.Framework.Core.Data.Elements.Collection.ICollectionElementSpec,BindOpen.Framework.Core.Data.Elements.DataElement[])">
+            <summary>
+            Initializes a new collection element.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="id">The ID to consider.</param>
+            <param name="classFullName">The class full name to consider.</param>
+            <param name="specification">The specification to consider.</param>
+            <param name="elements">The elements to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.ElementFactory.CreateDocument(System.String,System.String,BindOpen.Framework.Core.Data.Elements.Carrier.ICarrierElement,BindOpen.Framework.Core.Data.Elements._Object.IObjectElement)">
             <summary>
@@ -2642,6 +2861,11 @@
             The definition unique ID of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.DefinitionUniqueIdSpecified">
+            <summary>
+            Specification of the DefinitionUniqueId property of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.Objects">
             <summary>
             Objects of this instance.
@@ -2650,11 +2874,6 @@
         <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.ObjectsSpecified">
             <summary>
             Specification of the Objects property of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.DefinitionUniqueIdSpecified">
-            <summary>
-            Specification of the DefinitionUniqueId property of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Core.Data.Elements._Object.ObjectElement.Specification">
@@ -3351,9 +3570,9 @@
             Returns the item object of this instance.
             </summary>
             <param name="elementName">The element name to consider.</param>
-            <param name="log">The log to populate.</param>
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet.GetElementObject``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+  <collection name="collection1" valueType="Object">
+    <scalar name="key11" value="value11" />
+    <scalar name="key12" value="value12" />
+    <scalar name="key13" value="value13" />
+  </collection>
+  <collection name="collection2" valueType="Object">
+    <scalar name="key21" value="value21" />
+    <scalar name="key22" value="value22" />
+    <scalar name="key23" valueType="Integer" value="25" />
+    <carrier name="collection2" valueType="Carrier">
+      <definition>runtime$file</definition>
+      <items>
+        <add>
+          <scalar name="path" value="file2.txt" />
+        </add>
+      </items>
+    </carrier>
+  </collection>
+</element.set>
