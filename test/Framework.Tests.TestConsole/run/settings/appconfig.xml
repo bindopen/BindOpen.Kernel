@@ -48,10 +48,7 @@
         <detail>
           <scalar name="databaseKind" value="MSSqlServer" />
         </detail>
-        <connectionString>          
-          <![CDATA[Data Source=HERMES\SRV_DEV0;Initial Catalog=mfw_platform_db;User Id=adminapp;Password=Admin_A2011;]]>
-          <!--<![CDATA[Data Source=37.58.85.228,779;Initial Catalog=meltings_PTF_CENTRAL_DB;User Id=meltings_PTF_CENTRAL_DB_adminapps;Password=Admin_A2011;]]>-->
-        </connectionString>
+        <connectionString>connectionstring</connectionString>
       </configuration>
     </add>    
     
