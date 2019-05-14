@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         string GetDescriptionLabel(string key, string variantName = "*", string defaultVariantName = "*", string[] parameters = null);
 
         List<string> GetGroupIds();
-        IDataElement GetElement(string name, string groupId);
+        IDataElement GetElement(string name, string groupId = null);
         List<IDataElement> GetElementsWithGroupId(string groupId);
         string GetTextNode(string nodeName, string indent);
         string GetTitleLabel(string key, string variantName = "*", string defaultVariantName = "*", string[] parameters = null);
@@ -40,6 +40,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             string elementName = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
-            ILog log = null) where T : class;
+            ILog log = null);
     }
 }

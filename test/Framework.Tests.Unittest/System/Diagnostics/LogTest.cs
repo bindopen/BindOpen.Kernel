@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Tests.UnitTest;
 using NUnit.Framework;
 
 namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
@@ -9,7 +8,7 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
     [TestFixture, Order(21)]
     public class LogTest
     {
-        private readonly string _filePath = SetupVariables.WorkingFolder + "log.xml";
+        private readonly string _filePath = SetupVariables.WorkingFolder + "Log.xml";
 
         private const int _itemsNumber = 180;
 

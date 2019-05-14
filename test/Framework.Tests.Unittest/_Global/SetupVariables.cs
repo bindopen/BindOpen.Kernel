@@ -1,7 +1,6 @@
 ﻿using System;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions;
-using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 
@@ -18,7 +17,7 @@ namespace BindOpen.Framework.Tests.UnitTest
             {
                 String workingFolder = SetupVariables._workingFolder;
                 if (workingFolder == null)
-                    SetupVariables._workingFolder = workingFolder = (AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\") + @"temp\").ToPath();
+                    SetupVariables._workingFolder = workingFolder = ((_appHost?.Options?.RuntimeFolderPath ?? AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\")) + @"temp\").ToPath();
 
                 return workingFolder;
             }

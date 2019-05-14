@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements.Schema;
+using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Documents;
@@ -41,6 +41,11 @@ namespace BindOpen.Framework.Core.Data.Common
         /// Data source.
         /// </summary>
         DataSource,
+
+        /// <summary>
+        /// Element.
+        /// </summary>
+        Element,
 
         /// <summary>
         /// Date.
@@ -249,10 +254,8 @@ namespace BindOpen.Framework.Core.Data.Common
                 return DataValueType.Carrier;
             else if (typeof(IDataSource).IsAssignableFrom(type) || typeof(IConnectorConfiguration).IsAssignableFrom(type))
                 return DataValueType.DataSource;
-            else if (type == typeof(SchemaElement))
-                return DataValueType.Schema;
-            else if (type == typeof(SchemaZoneElement))
-                return DataValueType.SchemaZone;
+            else if (typeof(ICollectionElement).IsAssignableFrom(type))
+                return DataValueType.Element;
             else if (typeof(IDataItem).IsAssignableFrom(type))
                 return DataValueType.Object;
             else if (type == typeof(long) || type == typeof(long?))

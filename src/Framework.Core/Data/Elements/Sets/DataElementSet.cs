@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
+using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Elements.Document;
 using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
@@ -39,6 +40,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlElement("meta", typeof(MetaDataElement))]
         [XmlElement("scalar", typeof(ScalarElement))]
         [XmlElement("source", typeof(SourceElement))]
+        [XmlElement("collection", typeof(CollectionElement))]
         [XmlArrayElement("elements")]
         public List<DataElement> Elements
         {
@@ -255,7 +257,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="name">The name of the item to return.</param>
         /// <param name="groupId">The ID of the group of the item to return.</param>
         /// <returns>Returns the item with the specified name and group ID.</returns>
-        public IDataElement GetElement(string name, string groupId)
+        public IDataElement GetElement(string name, string groupId = null)
         {
             return Elements?.FirstOrDefault(p =>
                 p.Name.KeyEquals(name)
@@ -280,9 +282,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Returns the item object of this instance.
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
-        /// <param name="log">The log to populate.</param>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetElementObject(
             string elementName = null,
@@ -309,9 +311,9 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             string elementName = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
-            ILog log = null) where T : class
+            ILog log = null)
         {
-            return GetElementObject(elementName,appScope,scriptVariableSet, log) as T;
+            return (T)GetElementObject(elementName,appScope,scriptVariableSet, log);
         }
 
         // General ------------------------------
