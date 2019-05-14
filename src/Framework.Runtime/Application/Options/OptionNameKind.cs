@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Application.Options
+﻿namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This enumeration lists all the possible option name kinds.

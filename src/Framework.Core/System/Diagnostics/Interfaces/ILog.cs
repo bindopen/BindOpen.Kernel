@@ -53,8 +53,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         List<ILogEvent> GetEvents(bool isRecursive = false, params EventKind[] kinds);
         ILogEvent GetEventWithId(string id, bool isRecursive = false);
         ILogger GetLogger(string name = null);
-        ILogger GetLogger(LogFormat format);
-        List<ILogger> GetLoggers(params LogFormat[] formats);
+        ILogger GetLogger(LoggerFormat format);
+        List<ILogger> GetLoggers(params LoggerFormat[] formats);
         EventKind GetMaxEventKind(bool isRecursive = true, params EventKind[] kinds);
         ILog GetSubLogWithId(string id, bool isRecursive = false);
         new string GetTitle(string variantName = "*", string defaultVariantName = "*");

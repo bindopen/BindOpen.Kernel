@@ -4,7 +4,7 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Application.Settings
+namespace BindOpen.Framework.Runtime.Application.Settings
 {
     /// <summary>
     /// This class represents a configuration.

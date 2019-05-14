@@ -81,7 +81,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The format of this instance.
         /// </summary>
-        public LogFormat Format { get; set; } = LogFormat.None;
+        public LoggerFormat Format { get; set; } = LoggerFormat.None;
 
         /// <summary>
         /// Indicates whether this instance is verbose.
@@ -144,7 +144,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         protected Logger(
             String name,
-            LogFormat logFormat,
+            LoggerFormat logFormat,
             LoggerMode mode,
             DataSourceKind outputKind,
             bool isVerbose =false,

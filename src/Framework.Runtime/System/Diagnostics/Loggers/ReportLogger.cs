@@ -3,9 +3,11 @@ using System.IO;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a YAML logger.
@@ -49,12 +51,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             string uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1) : 
-            base(name, LogFormat.Report, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            base(name, LoggerFormat.Report, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 
         #endregion
-
 
         // ------------------------------------------------------
         // LOGGING
@@ -113,7 +114,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         }
 
         #endregion
-
 
         // ------------------------------------------
         // SERIALIZATION / UNSERIALIZATION
@@ -212,6 +212,5 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         }
 
         #endregion
-
     }
 }

@@ -11,12 +11,12 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {

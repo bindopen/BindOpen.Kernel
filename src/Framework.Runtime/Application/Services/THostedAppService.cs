@@ -1,5 +1,5 @@
 ﻿using System;
-using BindOpen.Framework.Core.Application.Settings;
+using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Hosts;
 

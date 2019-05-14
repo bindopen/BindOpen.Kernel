@@ -6,8 +6,10 @@ using System.Text;
 using System.Xml;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a JSON logger.
@@ -51,7 +53,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
-            : base(name, LogFormat.Json, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            : base(name, LoggerFormat.Json, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 
@@ -71,7 +73,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         public override bool WriteTask(
             ILog log, ITaskConfiguration task)
         {
-            return this.Save(log.Root, this.Filepath);
+            return Save(log.Root, Filepath);
         }
 
         /// <summary>
@@ -81,8 +83,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         public override bool WriteEvent(
             ILogEvent logEvent)
         {
-            if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
-                return this.Save(logEvent?.Root, this.Filepath);
+            if (EventFinder?.Invoke(logEvent) != false)
+                return Save(logEvent?.Root, Filepath);
             else
                 return false;
         }

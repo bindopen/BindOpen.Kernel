@@ -913,7 +913,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="format">The name of the format to consider.</param>
         /// <returns>Returns the logger with the specified format.</returns>
-        public ILogger GetLogger(LogFormat format)
+        public ILogger GetLogger(LoggerFormat format)
         {
             return Loggers.Find(p => p.Format == format);
         }
@@ -923,7 +923,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="formats">The log formats to consider.</param>
         /// <returns>The loggers with the specified formats.</returns>
-        public List<ILogger> GetLoggers(params LogFormat[] formats)
+        public List<ILogger> GetLoggers(params LoggerFormat[] formats)
         {
             return Loggers.Where(p => formats.Contains(p.Format)).ToList();
         }

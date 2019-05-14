@@ -1,10 +1,10 @@
 ﻿using System.IO;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Factories;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Factories;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using NUnit.Framework;

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using BindOpen.Framework.Core.Application.Options;
-using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.System;
 
 namespace BindOpen.Framework.Runtime.Application.Modules

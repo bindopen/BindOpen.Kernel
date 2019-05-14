@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Application.Settings
+namespace BindOpen.Framework.Runtime.Application.Settings
 {
     public interface IBaseSettings : IDataItem, IReferenced
     {

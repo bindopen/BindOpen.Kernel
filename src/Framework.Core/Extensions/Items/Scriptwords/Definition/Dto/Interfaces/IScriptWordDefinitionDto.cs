@@ -27,6 +27,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
 
         string GetDefaultRuntimeFunctionName();
         string GetRepeatedParameterDescriptionText(string variantName = "*", string defaultVariantName = "*");
-        string GetText(LogFormat logFormat = LogFormat.Xml, string uiCulture = "*");
+        string GetText(LoggerFormat logFormat = LoggerFormat.Xml, string uiCulture = "*");
     }
 }

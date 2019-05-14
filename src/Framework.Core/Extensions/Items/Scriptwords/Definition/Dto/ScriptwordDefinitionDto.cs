@@ -215,12 +215,12 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public override string GetText(LogFormat logFormat= LogFormat.Xml, String uiCulture = "*")
+        public override string GetText(LoggerFormat logFormat= LoggerFormat.Xml, String uiCulture = "*")
         {
             String st = "";
             switch(logFormat)
             {
-                case LogFormat.Xml:
+                case LoggerFormat.Xml:
                     st += "<span style='color: blue;' >" + this.Name + "</span> (" + this.Kind.ToString() + ")<br>";
                     st += "<br>";
                     st += "Modified: " + this.LastModificationDate + "<br>";

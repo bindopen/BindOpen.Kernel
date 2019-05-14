@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a logger.

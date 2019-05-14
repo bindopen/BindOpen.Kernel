@@ -4,7 +4,7 @@ using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Document;
 
-namespace BindOpen.Framework.Core.Data.Elements.Factories
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data elements.

@@ -4,7 +4,7 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers.Factories;
+using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using BindOpen.Framework.Tests.TestConsole;
 using BindOpen.Framework.Tests.TestConsole.Services;
 using BindOpen.Framework.Tests.TestConsole.Settings;

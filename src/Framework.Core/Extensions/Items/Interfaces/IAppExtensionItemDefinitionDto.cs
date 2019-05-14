@@ -10,6 +10,6 @@ namespace BindOpen.Framework.Core.Extensions.Items
         bool IsIndexed { get; set; }
         string LibraryName { get; set; }
 
-        string GetText(LogFormat logFormat = LogFormat.Xml, string uiCulture = "*");
+        string GetText(LoggerFormat logFormat = LoggerFormat.Xml, string uiCulture = "*");
     }
 }

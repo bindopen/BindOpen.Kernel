@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Settings;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.Application.Modules;

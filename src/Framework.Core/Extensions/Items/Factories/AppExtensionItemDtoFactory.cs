@@ -10,7 +10,7 @@ using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Extensions.Items.Factories
+namespace BindOpen.Framework.Core.Extensions.Items
 {
     /// <summary>
     /// This static class provides methods to create extension DTO item.

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Settings;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;

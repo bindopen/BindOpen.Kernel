@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Tasks;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a XML logger.
@@ -48,7 +50,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             String uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
-            : base(name, LogFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            : base(name, LoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
         {
         }
 
@@ -68,7 +70,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         public override bool WriteTask(
             ILog log, ITaskConfiguration task)
         {
-            return this.Save(log.Root, this.Filepath);
+            return Save(log.Root, Filepath);
         }
 
         /// <summary>
@@ -78,8 +80,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         public override bool WriteEvent(
             ILogEvent logEvent)
         {
-            if (this.EventFinder == null || this.EventFinder.Invoke(logEvent))
-                return this.Save(logEvent?.Root, this.Filepath);
+            if (EventFinder == null || EventFinder.Invoke(logEvent))
+                return Save(logEvent?.Root, Filepath);
             else
                 return false;
         }
@@ -195,7 +197,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             ILog log,
             List<string> attributeNames = null)
         {
-            return this.ToString();
+            return ToString();
         }
 
         #endregion

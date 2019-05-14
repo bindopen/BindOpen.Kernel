@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Options;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Sets;
 
-namespace BindOpen.Framework.Core.Application.Options
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This class represents a option specification set.

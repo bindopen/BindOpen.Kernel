@@ -5,6 +5,9 @@ Bug fixes:
 
 Features to add and test:
 
+- Integrate .net core logging
+- Integrate .net core configuration
+
 - Simplify logs : lighten logs, define activity logs
 
 - Data items : remove Specified suffixes

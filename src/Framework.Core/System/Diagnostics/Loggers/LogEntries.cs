@@ -20,14 +20,17 @@
         /// The title of the log.
         /// </summary>
         public const string __Title = "title";
+
         /// <summary>
         /// The description of the log.
         /// </summary>
         public const string __Description = "description";
+
         /// <summary>
         /// The detail of the log.
         /// </summary>
         public const string __Detail = "detail";
+
         /// <summary>
         /// The events of the log.
         /// </summary>
