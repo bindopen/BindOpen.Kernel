@@ -2750,30 +2750,37 @@
             <summary>
             Gets the specified value.
             </summary>
-            <typeparam name="Q"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="name">The name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.Get(System.String)">
+            <summary>
+            Gets the specified value.
+            </summary>
+            <typeparam name="T"></typeparam>
             <param name="name">The name to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.GetProperty``1(System.String)">
             <summary>
             Gets the specified value.
             </summary>
-            <typeparam name="Q"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="propertyName">The calling property name to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.GetProperty``1(``0,System.String)">
             <summary>
             Gets the specified value.
             </summary>
-            <typeparam name="Q"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="defaultValue">The default value to consider.</param>
             <param name="propertyName">The calling property name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.Set(System.Object,System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.Set(System.String,System.Object)">
             <summary>
             Sets the specified value.
             </summary>
-            <param name="value">The value to set.</param>
             <param name="name">The name to consider.</param>
+            <param name="value">The value to set.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.SetProperty(System.Object,System.String)">
             <summary>
