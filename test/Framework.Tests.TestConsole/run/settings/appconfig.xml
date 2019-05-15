@@ -19,6 +19,11 @@
   
   <scalar name="test.folderPath" script="$(application.folderPath) ..\app_data\test" />
 
+  <collection name="test.uris">
+    <scalar name="key1" script="url1" />
+    <scalar name="key2" script="url2" />
+  </collection>
+  
   <credentials>
     <credential name="crendential1">
       <domainId>bindopen.com</domainId>

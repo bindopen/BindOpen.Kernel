@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "test.uris")]
-        public HashSet<string> Uris { get; set; }
+        public Dictionary<string, string> Uris { get; set; }
 
         #endregion
 
