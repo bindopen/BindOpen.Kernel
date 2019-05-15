@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -17,13 +19,19 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         IBaseConfiguration Configuration { get; }
 
         Q Get<Q>(string name = null) where Q : class;
+
         Q GetProperty<Q>([CallerMemberName] string propertyName = null);
 
         Q GetProperty<Q>(Q defaultValue, [CallerMemberName] string propertyName = null) where Q : struct, IConvertible;
+
         void Set(object value, string name = null);
+
         void SetProperty(object value, [CallerMemberName] string propertyName = null);
-        ILog Load(
+
+        ILog UpdateFromFile(
             string filePath,
+            SpecificationLevel[] specificationLevels = null,
+            IDataElementSpecSet specificationSet = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null);

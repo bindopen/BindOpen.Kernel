@@ -154,7 +154,7 @@
             This static class provides methods to handle configurations.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean,System.Boolean)">
             <summary>
             Instantiates a new instance of Configuration class from a xml file.
             </summary>
@@ -1061,6 +1061,14 @@
             <param name="specificationLevel">The specified specification level to consider.</param>
             <returns></returns>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Has(BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+            <summary>
+            Indicates whether the specified specification level list contains the specified specification level.
+            </summary>
+            <param name="specificationLevels">The specified specification level list to consider.</param>
+            <param name="referenceSpecificationLevels">The specified reference specification levels to consider.</param>
+            <returns></returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Excluding(BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
             <summary>
             Gets the specified list excluding the second specified list.
@@ -1837,6 +1845,15 @@
             <param name="log">The log to populate.</param>
             <param name="appScope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to use.</param>
+            <returns>Returns the items of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.GetObject(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Returns the item object of this instance.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The script variable set to use.</param>
+            <param name="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElement.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
@@ -4651,7 +4668,7 @@
             <param name="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Data.Helpers.Serialization.XmlHelper.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,System.Xml.Schema.XmlSchemaSet,System.Boolean,System.Boolean)">
             <summary>
             Loads a data item from the specified file path.
             </summary>

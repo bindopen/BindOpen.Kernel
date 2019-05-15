@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -252,10 +253,28 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                         try
                         {
                             var value = elementSet.GetElementObject(name, appScope, scriptVariableSet, log);
-                            if (propertyInfo.PropertyType.IsEnum && value != null)
+                            if (value != null)
                             {
-                                if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                    value = Enum.Parse(propertyInfo.PropertyType, value as string);
+                                if (propertyInfo.PropertyType.IsEnum)
+                                {
+                                    if (Enum.IsDefined(propertyInfo.PropertyType, value))
+                                        value = Enum.Parse(propertyInfo.PropertyType, value as string);
+                                }
+                                else if (value.GetType() == typeof(HashSet<object>)
+                                    && propertyInfo.PropertyType.IsGenericType
+                                    && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(HashSet<>)
+                                    && propertyInfo.PropertyType != typeof(HashSet<object>))
+                                {
+                                    Type itemType = propertyInfo.PropertyType.GetGenericArguments()[0];
+                                    var array = (value as HashSet<object>)?.Select(p => Convert.ChangeType(p, itemType)).ToArray();
+                                    value = Activator.CreateInstance(typeof(HashSet<>).MakeGenericType(itemType));
+                                    var method = value.GetType().GetMethod("Add", new Type[] { itemType });
+
+                                    foreach(var item in array)
+                                    {
+                                        method.Invoke(value, new object[] { item });
+                                    }
+                                }
                             }
 
                             propertyInfo.SetValue(aObject, value);

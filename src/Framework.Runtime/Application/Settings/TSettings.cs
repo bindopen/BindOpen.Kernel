@@ -1,6 +1,9 @@
-﻿using System.Xml.Schema;
+﻿using System.Linq;
+using System.Xml.Schema;
 using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -59,16 +62,30 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
-        public override ILog Load(
+        public override ILog UpdateFromFile(
             string filePath,
+            SpecificationLevel[] specificationLevels = null,
+            IDataElementSpecSet specificationSet = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)
         {
             ILog log = new Log();
-            Q configuration = ConfigurationLoader.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet);
-            _appScope = appScope;
-            _configuration = configuration;
+
+            Q configuration = ConfigurationLoader.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, false, false);
+
+            if (!log.HasErrorsOrExceptions() && configuration != null)
+            {
+                _appScope = appScope;
+                Configuration?.Update(configuration);
+                Configuration?.Update(
+                    new DataElementSpecSet(
+                        specificationSet?.Items?
+                            .Where(p => p.SpecificationLevels?.ToArray().Has(specificationLevels) == true).ToArray()),
+                    null, new[] { UpdateMode.Incremental_UpdateCommonItems });
+
+                UpdateRuntimeInfo(_appScope, null, log);
+            }
 
             return log;
         }
