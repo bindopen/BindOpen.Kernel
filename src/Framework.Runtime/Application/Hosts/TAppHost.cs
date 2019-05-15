@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -321,8 +320,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     if (string.IsNullOrEmpty(settingsFilePath))
                         settingsFilePath = GetDefaultSettingsFilePath();
 
-                    T appSettings = new T();
-                    log.Append(appSettings.Load(settingsFilePath, _appScope, null));
+                    Options.Settings = new T();
+                    Options.Settings.UpdateFromFile(
+                        settingsFilePath,
+                        new SpecificationLevel[] { SpecificationLevel.Definition, SpecificationLevel.Configuration },
+                        Options?.SettingsSpecificationSet,
+                        _appScope, null);
 
                     if (log.HasErrorsOrExceptions())
                     {
@@ -331,18 +334,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     else
                     {
                         log.AddMessage("Application settings loaded");
-
-                        Options?.Settings?.SetAppScope(_appScope);
-                        Options?.Settings?.Configuration?.Update(appSettings.Configuration);
-                        Options?.Settings?.Configuration?.Update(
-                            new DataElementSpecSet(
-                                Options?.SettingsSpecificationSet?.Items?
-                                    .Where(p =>
-                                        p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Definition) == true
-                                        || p.SpecificationLevels?.ToArray().Has(SpecificationLevel.Configuration) == true).ToArray()),
-                                null,
-                                new[] { UpdateMode.Incremental_UpdateCommonItems });
-                        Options?.Settings?.UpdateRuntimeInfo(_appScope, null, log);
 
                         if (Options?.Settings != null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {

@@ -243,6 +243,31 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
             return (T)GetElementObject(elementName, appScope, scriptVariableSet, log);
         }
 
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public override object GetObject(
+            IAppScope appScope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            ILog log = null)
+        {
+            switch (ItemizationMode)
+            {
+                case DataItemizationMode.Valued:
+                    return Items.Count == 0 ? null : (Items.Count == 1 ? (Items[0] as DataElement)?.GetObject(appScope,scriptVariableSet, log) :
+                        new HashSet<object>(Items.Select(p=>(p as DataElement)?.GetObject(appScope, scriptVariableSet, log))));
+                case DataItemizationMode.Referenced:
+                case DataItemizationMode.Script:
+                    return base.GetObject(appScope, scriptVariableSet, log);
+            }
+
+            return null;
+        }
+
         #endregion
 
         // --------------------------------------------------

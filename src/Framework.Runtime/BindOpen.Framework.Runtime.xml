@@ -2782,7 +2782,7 @@
             <param name="value">The value to set.</param>
             <param name="propertyName">The calling property name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the application settings of this instance.
             </summary>
@@ -2914,7 +2914,7 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TSettings`1.Load(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TSettings`1.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the application settings of this instance.
             </summary>

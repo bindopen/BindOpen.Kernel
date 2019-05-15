@@ -62,7 +62,6 @@ namespace BindOpen.Framework.Core.Data.Common
     /// </summary>
     public static class SpecificationLevelExtension
     {
-
         /// <summary>
         /// Indicates whether the specified specification level list contains the specified specification level.
         /// </summary>
@@ -74,6 +73,19 @@ namespace BindOpen.Framework.Core.Data.Common
             SpecificationLevel specificationLevel)
         {
             return (specificationLevels.Aggregate((current, value) => current | value) & specificationLevel) == specificationLevel;
+        }
+
+        /// <summary>
+        /// Indicates whether the specified specification level list contains the specified specification level.
+        /// </summary>
+        /// <param name="specificationLevels">The specified specification level list to consider.</param>
+        /// <param name="referenceSpecificationLevels">The specified reference specification levels to consider.</param>
+        /// <returns></returns>
+        public static bool Has(
+            this SpecificationLevel[] specificationLevels,
+            SpecificationLevel[] referenceSpecificationLevels)
+        {
+            return referenceSpecificationLevels.Any(p=>specificationLevels.Has(p));
         }
 
         /// <summary>

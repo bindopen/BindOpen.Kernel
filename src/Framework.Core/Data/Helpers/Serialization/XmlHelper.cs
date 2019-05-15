@@ -136,7 +136,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : class, IDataItem
+            bool mustFileExist = true,
+            bool isRuntimeUpdated = true) where T : class, IDataItem
         {
             T dataItem = default;
             log = (log?? new Log());
@@ -145,7 +146,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             if (!File.Exists(filePath))
             {
                 if (mustFileExist)
-                    log.AddError("File not found ('" + filePath + "'). Could not load '" + typeof(T).Name.ToString() + "' object");
+                    log.AddError("File not found ('" + filePath + "'). Could not load '" + typeof(T).Name + "' object");
             }
             else
             {
@@ -155,10 +156,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                     if (xmlSchemaSet != null)
                     {
                         XDocument xDocument = XDocument.Load(filePath);
-                        xDocument.Validate(xmlSchemaSet, (o, e) =>
-                        {
-                            checkLog.AddError("File not valid ('" + filePath + "'). Could not load '" + typeof(T).Name.ToString() + "' object");
-                        });
+                        xDocument.Validate(xmlSchemaSet, (o, e) => checkLog.AddError("File not valid ('" + filePath + "'). Could not load '" + typeof(T).Name + "' object"));
                         log.Append(checkLog);
                     }
 
@@ -169,7 +167,10 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         streamReader = new StreamReader(filePath);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(streamReader)) as T;
 
-                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                        if (isRuntimeUpdated)
+                        {
+                            dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                        }
                     }
                 }
                 catch (Exception ex)

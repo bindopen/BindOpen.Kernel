@@ -6,6 +6,7 @@ using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
@@ -214,8 +215,10 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
-        public virtual ILog Load(
+        public virtual ILog UpdateFromFile(
             string filePath,
+            SpecificationLevel[] specificationLevels = null,
+            IDataElementSpecSet specificationSet = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)

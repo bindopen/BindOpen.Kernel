@@ -8,6 +8,10 @@ Features to add and test:
 - Integrate .net core logging
 - Integrate .net core configuration
 
+- Check Json serialization of data elements
+
+- Simplify settings loading: extract from application host initialization to settings UpdateFromFile function.
+
 - Simplify logs : lighten logs, define activity logs
 
 - Data items : remove Specified suffixes

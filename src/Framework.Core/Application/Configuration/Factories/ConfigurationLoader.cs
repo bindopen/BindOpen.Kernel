@@ -29,11 +29,12 @@ namespace BindOpen.Framework.Core.Application.Configuration
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : class, IBaseConfiguration, new()
+            bool mustFileExist = true,
+            bool isRuntimeUpdated = true) where T : class, IBaseConfiguration, new()
         {
             T unionConfiguration = new T();
 
-            T topConfiguration = XmlHelper.Load<T>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) as T;
+            T topConfiguration = XmlHelper.Load<T>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, mustFileExist, isRuntimeUpdated) as T;
             if (topConfiguration!=null)
             {
                 unionConfiguration.Update(topConfiguration);

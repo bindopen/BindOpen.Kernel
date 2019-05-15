@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Tests.UnitTest.Settings;
 
 namespace BindOpen.Framework.Tests.UnitTest
 {
@@ -27,7 +28,7 @@ namespace BindOpen.Framework.Tests.UnitTest
         {
             get
             {
-                return _appHost ?? (_appHost = AppHostFactory.CreateBindOpenDefaultHost(
+                return _appHost ?? (_appHost = AppHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
                             .SetModule(new AppModule("app.test"))
