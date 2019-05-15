@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Settings;
 
@@ -21,6 +22,13 @@ namespace BindOpen.Framework.Tests.TestConsole.Settings
         [XmlIgnore()]
         [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
+
+        /// <summary>
+        /// The URIs of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        [DetailProperty(Name = "test.uris")]
+        public Dictionary<string, string> Uris { get; set; }
 
         #endregion
 

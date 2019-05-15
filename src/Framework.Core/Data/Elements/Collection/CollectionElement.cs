@@ -258,8 +258,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
             switch (ItemizationMode)
             {
                 case DataItemizationMode.Valued:
-                    return Items.Count == 0 ? null : (Items.Count == 1 ? (Items[0] as DataElement)?.GetObject(appScope,scriptVariableSet, log) :
-                        new HashSet<object>(Items.Select(p=>(p as DataElement)?.GetObject(appScope, scriptVariableSet, log))));
+                    if (Items.Count == 0) return null;
+                    var aObject = new Dictionary<string, object>();
+                    foreach(var item in Items)
+                    {
+                        if (item is DataElement element)
+                        {
+                            aObject.Add(element.Name, element.GetObject(appScope, scriptVariableSet, log));
+                        }
+                    }
+                    return aObject;
                 case DataItemizationMode.Referenced:
                 case DataItemizationMode.Script:
                     return base.GetObject(appScope, scriptVariableSet, log);

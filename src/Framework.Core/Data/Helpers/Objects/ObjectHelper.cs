@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
@@ -260,20 +259,21 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
                                     if (Enum.IsDefined(propertyInfo.PropertyType, value))
                                         value = Enum.Parse(propertyInfo.PropertyType, value as string);
                                 }
-                                else if (value.GetType() == typeof(HashSet<object>)
+                                else if (value.GetType() == typeof(Dictionary<string, object>)
                                     && propertyInfo.PropertyType.IsGenericType
-                                    && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(HashSet<>)
-                                    && propertyInfo.PropertyType != typeof(HashSet<object>))
+                                    && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+                                    && propertyInfo.PropertyType != typeof(Dictionary<string, object>))
                                 {
                                     Type itemType = propertyInfo.PropertyType.GetGenericArguments()[0];
-                                    var array = (value as HashSet<object>)?.Select(p => Convert.ChangeType(p, itemType)).ToArray();
-                                    value = Activator.CreateInstance(typeof(HashSet<>).MakeGenericType(itemType));
-                                    var method = value.GetType().GetMethod("Add", new Type[] { itemType });
 
-                                    foreach(var item in array)
+                                    var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                    var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+
+                                    foreach(var item in (value as Dictionary<string, object>))
                                     {
-                                        method.Invoke(value, new object[] { item });
+                                        method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
                                     }
+                                    value = dictionary;
                                 }
                             }
 
