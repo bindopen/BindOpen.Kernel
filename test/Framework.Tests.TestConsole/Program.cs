@@ -21,7 +21,7 @@ namespace BindOpen.TestConsole
     {
         private static async Task Main(string[] args)
         {
-            Test_It.Start();
+            //Test_It.Start();
 
             ILogger[] loggers = new []
             {

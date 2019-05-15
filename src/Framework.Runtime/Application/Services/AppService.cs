@@ -216,6 +216,11 @@ namespace BindOpen.Framework.Runtime.Application.Services
             OnLoadCompleted?.Invoke(this);
         }
 
+        public virtual T GetSettings<T>() where T : IBaseSettings
+        {
+            return (T)Settings;
+        }
+
         #endregion
     }
 }

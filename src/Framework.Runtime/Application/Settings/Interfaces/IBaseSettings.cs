@@ -18,13 +18,15 @@ namespace BindOpen.Framework.Runtime.Application.Settings
 
         IBaseConfiguration Configuration { get; }
 
-        Q Get<Q>(string name = null) where Q : class;
+        T Get<T>(string name);
 
-        Q GetProperty<Q>([CallerMemberName] string propertyName = null);
+        object Get(string name);
 
-        Q GetProperty<Q>(Q defaultValue, [CallerMemberName] string propertyName = null) where Q : struct, IConvertible;
+        T GetProperty<T>([CallerMemberName] string propertyName = null);
 
-        void Set(object value, string name = null);
+        T GetProperty<T>(T defaultValue, [CallerMemberName] string propertyName = null) where T : struct, IConvertible;
+
+        void Set(string name, object value);
 
         void SetProperty(object value, [CallerMemberName] string propertyName = null);
 

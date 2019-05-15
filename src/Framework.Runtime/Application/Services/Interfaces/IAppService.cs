@@ -1,9 +1,9 @@
 ﻿using BindOpen.Framework.Core.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
+using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -81,5 +81,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the application host to consider.</returns>
         IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+
+        T GetSettings<T>() where T : IBaseSettings;
     }
 }

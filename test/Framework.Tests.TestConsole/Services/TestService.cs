@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Tests.TestConsole.Services
             base.Start(log);
 
             Console.WriteLine("Test service: Hello, I'm working");
-            Console.WriteLine("Host settings:" + Host.Settings?.Get<string>("test.folderPath"));
+            Console.WriteLine("Host settings:" + Host.GetSettings<TestAppSettings>().TestFolderPath);
             Console.WriteLine("Service tettings:" + Settings?.TestFolderPath);
 
             return this;

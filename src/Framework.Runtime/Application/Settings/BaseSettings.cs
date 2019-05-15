@@ -93,19 +93,29 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Gets the specified value.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="name">The name to consider.</param>
-        public Q Get<Q>(string name = null) where Q : class
+        public T Get<T>(string name)
         {
-            return Configuration?.GetElementObject<Q>(name, _appScope);
+            return Configuration.GetElementObject<T>(name, _appScope);
         }
 
         /// <summary>
         /// Gets the specified value.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name">The name to consider.</param>
+        public object Get(string name)
+        {
+            return Configuration.GetElementObject(name, _appScope);
+        }
+
+        /// <summary>
+        /// Gets the specified value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public Q GetProperty<Q>([CallerMemberName] string propertyName = null)
+        public T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
             if (Configuration == null) return default;
 
@@ -114,7 +124,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                 IDataElement element = Configuration.GetItem(propertyName);
                 if (element != null)
                 {
-                    return (Q)Configuration.GetElementObject(propertyName, _appScope);
+                    return (T)Configuration.GetElementObject(propertyName, _appScope);
                 }
                 else
                 {
@@ -126,8 +136,8 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                     if (attribute is DetailPropertyAttribute)
                     {
                         object value = Configuration.GetElementObject(attribute.Name, _appScope);
-                        if (value is Q q)
-                            return q;
+                        if (value is T t)
+                            return t;
                     }
                 }
             }
@@ -138,10 +148,10 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Gets the specified value.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="defaultValue">The default value to consider.</param>
         /// <param name="propertyName">The calling property name to consider.</param>
-        public Q GetProperty<Q>(Q defaultValue, [CallerMemberName] string propertyName = null) where Q : struct, IConvertible
+        public T GetProperty<T>(T defaultValue, [CallerMemberName] string propertyName = null) where T : struct, IConvertible
         {
             if (Configuration == null) return default;
 
@@ -150,7 +160,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                 IDataElement element = Configuration.GetItem(propertyName);
                 if (element != null)
                 {
-                    return (Q)Configuration.GetElementObject(propertyName, _appScope);
+                    return (T)Configuration.GetElementObject(propertyName, _appScope);
                 }
                 else
                 {
@@ -160,7 +170,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                         out DataElementAttribute attribute);
 
                     if (attribute is DetailPropertyAttribute)
-                        return (Configuration.GetElementObject(attribute.Name, _appScope) as string)?.ToEnum<Q>(defaultValue) ?? default;
+                        return (Configuration.GetElementObject(attribute.Name, _appScope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 
@@ -178,9 +188,9 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Sets the specified value.
         /// </summary>
-        /// <param name="value">The value to set.</param>
         /// <param name="name">The name to consider.</param>
-        public void Set(object value, string name = null)
+        /// <param name="value">The value to set.</param>
+        public void Set(string name, object value)
         {
             Configuration?.AddElementItem(name, value);
         }
