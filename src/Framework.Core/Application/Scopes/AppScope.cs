@@ -108,7 +108,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             Extension?.Initialize();
 

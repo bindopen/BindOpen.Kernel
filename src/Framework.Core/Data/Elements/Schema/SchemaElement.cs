@@ -362,7 +362,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         /// <param name="accessibilityLevel">The visibility to apply.</param>
         /// <param name="isRecursive">Indicates whether the protection is applied to sub schema elements.</param>
-        public void ApplyVisibility(AccessibilityLevel accessibilityLevel, bool isRecursive = true)
+        public void ApplyVisibility(AccessibilityLevels accessibilityLevel, bool isRecursive = true)
         {
             if ((this is SchemaZoneElement)&&(isRecursive))
                 foreach (SchemaElement aElement in ((SchemaZoneElement)this).SubElements)

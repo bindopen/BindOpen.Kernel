@@ -13,26 +13,32 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Local.
         /// </summary>
         Local,
+
         /// <summary>
         /// Remote.
         /// </summary>
         Remote,
+
         /// <summary>
         /// FTP.
         /// </summary>
         Ftp,
+
         /// <summary>
         /// SCP.
         /// </summary>
         Scp,
+
         /// <summary>
         /// SFTP.
         /// </summary>

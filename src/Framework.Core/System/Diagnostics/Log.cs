@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Errors => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Error).ToList<ILogEvent>();
+        public List<ILogEvent> Errors => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKinds.Error).ToList<ILogEvent>();
 
         /// <summary>
         /// Warnings of this instance.
@@ -155,7 +155,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Warnings => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Warning).ToList<ILogEvent>();
+        public List<ILogEvent> Warnings => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKinds.Warning).ToList<ILogEvent>();
 
         /// <summary>
         /// Messages of this instance.
@@ -167,7 +167,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Messages => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Message).ToList<ILogEvent>();
+        public List<ILogEvent> Messages => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKinds.Message).ToList<ILogEvent>();
 
         /// <summary>
         /// Exceptions of this instance.
@@ -179,7 +179,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Checkpoints"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Exceptions => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Exception).ToList<ILogEvent>();
+        public List<ILogEvent> Exceptions => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKinds.Exception).ToList<ILogEvent>();
 
         /// <summary>
         /// Checkpoints of this instance.
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <seealso cref="Events"/>
         /// <seealso cref="SubLogs"/>
         [XmlIgnore()]
-        public List<ILogEvent> Checkpoints => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKind.Checkpoint).ToList<ILogEvent>();
+        public List<ILogEvent> Checkpoints => Events == null ? new List<ILogEvent>() : Events.Where(p => p.Kind == EventKinds.Checkpoint).ToList<ILogEvent>();
 
         /// <summary>
         /// Logs of this instance.
@@ -433,7 +433,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                         {
                             if (logEvent.Title == null && childLog.Title != null) logEvent.Title = childLog.Title.Clone() as DictionaryDataItem;
                             if (logEvent.Description == null && childLog.Description != null) logEvent.Description = childLog.Description.Clone() as DictionaryDataItem;
-                            if (logEvent.Kind == EventKind.Any) logEvent.Kind = childLog.GetMaxEventKind();
+                            if (logEvent.Kind == EventKinds.Any) logEvent.Kind = childLog.GetMaxEventKind();
                             childLog.Parent = this;
                             childLog.Loggers = Loggers;
                             logEvent.Log = childLog;
@@ -469,7 +469,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         public ILogEvent AddEvent(
-            EventKind kind,
+            EventKinds kind,
             string title,
             EventCriticality criticality = EventCriticality.None,
             string description = null,
@@ -517,7 +517,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<ILog> logFinder = null)
         {
             return AddEvent(
-                EventKind.Warning,
+                EventKinds.Warning,
                 title,
                 criticality,
                 description,
@@ -548,7 +548,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<ILog> logFinder = null)
         {
             return AddEvent(
-                EventKind.Error,
+                EventKinds.Error,
                 title,
                 criticality,
                 description,
@@ -579,7 +579,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<ILog> logFinder = null)
         {
             return AddEvent(
-                EventKind.Checkpoint,
+                EventKinds.Checkpoint,
                 title,
                 criticality,
                 description,
@@ -610,7 +610,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<ILog> logFinder = null)
         {
             return AddEvent(
-                EventKind.Message,
+                EventKinds.Message,
                 title,
                 criticality,
                 description,
@@ -641,7 +641,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<ILog> logFinder = null)
         {
             return AddEvent(
-                EventKind.Exception,
+                EventKinds.Exception,
                 title,
                 criticality,
                 description,
@@ -685,7 +685,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>Returns the added events.</returns>
         public List<ILogEvent> AddEvents(
             ILog log,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             return AddEvents(log, null, kinds);
         }
@@ -700,7 +700,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public List<ILogEvent> AddEvents(
             ILog log,
             Predicate<ILog> logFinder = null,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             List<ILogEvent> logEvents = new List<ILogEvent>();
 
@@ -752,7 +752,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="kinds">The kinds to consider.</param>
         public void ClearEvents(
             bool isRecursive = true,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             Events?.RemoveAll(p => kinds.Contains(p.Kind));
 
@@ -772,7 +772,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         {
             // we clear the task check points if there is no special results in load task
             if (!HasErrorsOrExceptionsOrWarnings())
-                ClearEvents(true, EventKind.Checkpoint);
+                ClearEvents(true, EventKinds.Checkpoint);
         }
 
         // Sub logs ------------------------------------
@@ -792,7 +792,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public ILogEvent AddSubLog(
             ILog childLog,
             Predicate<ILog> logFinder = null,
-            EventKind eventKind = EventKind.Any,
+            EventKinds eventKind = EventKinds.Any,
             string title = null,
             EventCriticality criticality = EventCriticality.None,
             string description = null,
@@ -825,7 +825,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date to consider.</param>
         public ILog AddSubLog(
             Predicate<ILog> filterFinder = null,
-            EventKind eventKind = EventKind.Any,
+            EventKinds eventKind = EventKinds.Any,
             string title = null,
             EventCriticality criticality = EventCriticality.None,
             string description = null,
@@ -995,7 +995,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>Returns the specified events of this instance.</returns>
         public List<ILogEvent> GetEvents(
             bool isRecursive = false,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             if (Events == null) return new List<ILogEvent>();
 
@@ -1020,7 +1020,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>The number of the specified events of this instance.</returns>
         public int GetEventCount(
             bool isRecursive = false,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             if (Events == null) return 0;
 
@@ -1039,9 +1039,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <param name="kinds">The kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public EventKind GetMaxEventKind(
+        public EventKinds GetMaxEventKind(
             bool isRecursive = true,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             return GetEvents(isRecursive, kinds).Select(p => p.Kind).ToList().Max();
         }
@@ -1056,7 +1056,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasEvent(
             bool isRecursive = true,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             if (Events == null) return false;
 
@@ -1076,7 +1076,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="kinds">The event kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasEvent(
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             return HasEvent(false, kinds);
         }
@@ -1089,9 +1089,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasWarnings(
             bool isRecursive = true,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
-            return HasEvent(isRecursive, EventKind.Warning);
+            return HasEvent(isRecursive, EventKinds.Warning);
         }
 
         /// <summary>
@@ -1101,7 +1101,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrors(bool isRecursive = true)
         {
-            return HasEvent(isRecursive, EventKind.Error);
+            return HasEvent(isRecursive, EventKinds.Error);
         }
 
         /// <summary>
@@ -1111,7 +1111,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasExceptions(bool isRecursive = true)
         {
-            return HasEvent(isRecursive, EventKind.Exception);
+            return HasEvent(isRecursive, EventKinds.Exception);
         }
 
         /// <summary>
@@ -1121,7 +1121,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasMessages(bool isRecursive = true)
         {
-            return HasEvent(isRecursive, EventKind.Message);
+            return HasEvent(isRecursive, EventKinds.Message);
         }
 
         /// <summary>
@@ -1131,7 +1131,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrorsOrExceptions(bool isRecursive = true)
         {
-            return HasEvent(isRecursive, EventKind.Error, EventKind.Exception);
+            return HasEvent(isRecursive, EventKinds.Error, EventKinds.Exception);
         }
 
         /// <summary>
@@ -1141,7 +1141,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public bool HasErrorsOrExceptionsOrWarnings(bool isRecursive = true)
         {
-            return HasEvent(isRecursive, EventKind.Warning, EventKind.Error, EventKind.Exception);
+            return HasEvent(isRecursive, EventKinds.Warning, EventKinds.Error, EventKinds.Exception);
         }
 
         // Tree --------------------------------

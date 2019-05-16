@@ -10,18 +10,22 @@
         /// None. Used when the application module is not defined.
         /// </summary>
         None,
+
         /// <summary>
         /// Website.
         /// </summary>
         Website,
+
         /// <summary>
         /// Web service.
         /// </summary>
         WebService,
+
         /// <summary>
         /// Windows desktop.
         /// </summary>
         WindowsDesktop,
+
         /// <summary>
         /// Windows service.
         /// </summary>

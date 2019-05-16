@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         bool IsValueList { get; }
         RequirementLevel ItemRequirementLevel { get; }
         string ItemScript { get; set; }
-        List<SpecificationLevel> ItemSpecificationLevels { get; set; }
+        List<SpecificationLevels> ItemSpecificationLevels { get; set; }
         int MaximumItemNumber { get; set; }
         int MinimumItemNumber { get; set; }
         DataValueType ValueType { get; set; }

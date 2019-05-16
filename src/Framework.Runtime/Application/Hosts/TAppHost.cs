@@ -323,7 +323,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     Options.Settings = new T();
                     Options.Settings.UpdateFromFile(
                         settingsFilePath,
-                        new SpecificationLevel[] { SpecificationLevel.Definition, SpecificationLevel.Configuration },
+                        new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                         Options?.SettingsSpecificationSet,
                         _appScope, null);
 

@@ -51,7 +51,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <summary>
         /// Initializes a new data source element specification.
         /// </summary>
-        public SourceElementSpec(): this(AccessibilityLevel.Public)
+        public SourceElementSpec(): this(AccessibilityLevels.Public)
         {
         }
 
@@ -61,8 +61,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public SourceElementSpec(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }

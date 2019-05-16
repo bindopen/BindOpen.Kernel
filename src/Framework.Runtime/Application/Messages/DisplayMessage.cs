@@ -7,7 +7,6 @@ using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Runtime.Application.Messages
 {
-
     /// <summary>
     /// This structure respresents a display message.
     /// </summary>
@@ -29,10 +28,12 @@ namespace BindOpen.Framework.Runtime.Application.Messages
             /// The automatic message cannot be hidden.
             /// </summary>
             CannotBeHidden,
+
             /// <summary>
             /// The automatic message can be hidden.
             /// </summary>
             CanBeHidden,
+
             /// <summary>
             /// The automatic message can be hidden forever.
             /// </summary>
@@ -107,7 +108,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
         /// Kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public EventKind Kind
+        public EventKinds Kind
         {
             set;
             get;

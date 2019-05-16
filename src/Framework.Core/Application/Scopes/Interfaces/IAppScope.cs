@@ -48,6 +48,6 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="specificationAreas"></param>
         /// <param name="updateModes"></param>
         /// <returns></returns>
-        ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateMode[] updateModes = null) where T : IDataItem;
+        ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateModes[] updateModes = null) where T : IDataItem;
     }
 }

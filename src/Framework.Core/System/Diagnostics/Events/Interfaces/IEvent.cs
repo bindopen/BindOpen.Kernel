@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         EventCriticality Criticality { get; set; }
         string Date { get; set; }
         DataElementSet Detail { get; set; }
-        EventKind Kind { get; set; }
+        EventKinds Kind { get; set; }
         DictionaryDataItem LongDescription { get; set; }
     }
 }

@@ -55,8 +55,8 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public DataAreaSpecification(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null) : base(accessibilityLevel, specificationLevels)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null) : base(accessibilityLevel, specificationLevels)
         {
         }
 

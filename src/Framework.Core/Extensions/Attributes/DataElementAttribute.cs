@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
 
         private string[] _defaultStringItems = null;
 
-        private SpecificationLevel[] _itemSpecificationLevels = null;
+        private SpecificationLevels[] _itemSpecificationLevels = null;
 
         #endregion
 
@@ -159,13 +159,13 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public SpecificationLevel[] ItemSpecificationLevels
+        public SpecificationLevels[] ItemSpecificationLevels
         {
             get
             {
                 return this._itemSpecificationLevels;
             }
-            set { this._itemSpecificationLevels = value ?? new SpecificationLevel[0]; }
+            set { this._itemSpecificationLevels = value ?? new SpecificationLevels[0]; }
         }
 
         #endregion

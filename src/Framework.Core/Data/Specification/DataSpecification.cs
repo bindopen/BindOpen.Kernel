@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Core.Data.Specification
 
         #region Variables
 
-        private List<SpecificationLevel> _specificationLevels = null;
+        private List<SpecificationLevels> _specificationLevels = null;
 
         #endregion
 
@@ -68,9 +68,9 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         [XmlArray("specificationLevels")]
         [XmlArrayItem("specificationLevel")]
-        public List<SpecificationLevel> SpecificationLevels
+        public List<SpecificationLevels> SpecificationLevels
         {
-            get => _specificationLevels ?? (_specificationLevels = new List<SpecificationLevel>());
+            get => _specificationLevels ?? (_specificationLevels = new List<SpecificationLevels>());
             set { _specificationLevels = value; }
         }
 
@@ -78,14 +78,14 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// Specification of the SpecificationLevels property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool SpecificationLevelsSpecified => _specificationLevels?.Count > 0 && !_specificationLevels.Contains(SpecificationLevel.All);
+        public bool SpecificationLevelsSpecified => _specificationLevels?.Count > 0 && !_specificationLevels.Contains(Common.SpecificationLevels.All);
 
         /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
         [XmlElement("accessibilityLevel")]
-        [DefaultValue(Common.AccessibilityLevel.Public)]
-        public AccessibilityLevel AccessibilityLevel { get; set; } = AccessibilityLevel.Public;
+        [DefaultValue(Common.AccessibilityLevels.Public)]
+        public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
 
         #endregion
 
@@ -108,11 +108,11 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         protected DataSpecification(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
         {
             AccessibilityLevel = accessibilityLevel;
-            _specificationLevels = specificationLevels?.ToList() ?? new List<SpecificationLevel>() { SpecificationLevel.All };
+            _specificationLevels = specificationLevels?.ToList() ?? new List<SpecificationLevels>() { Common.SpecificationLevels.All };
         }
 
         #endregion

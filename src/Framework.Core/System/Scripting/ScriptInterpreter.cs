@@ -309,7 +309,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         if (rootScSriptWord != null)
                         {
                             scriptWordBeginIndex = resultScript.IndexOf(
-                               rootScSriptWord.Kind == ScriptItemKind.Function ?
+                               rootScSriptWord.Kind == ScriptItemKinds.Function ?
                                ScriptParsingHelper.Symbol_Fun + rootScSriptWord.Name :
                                ScriptParsingHelper.Symbol_Var + rootScSriptWord.Name);
                         }
@@ -371,7 +371,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             IScriptword scriptWord = null;
 
             // we retrieve the type of the next script word
-            ScriptItemKind scriptItemKind = ScriptItemKind.None;
+            ScriptItemKinds scriptItemKind = ScriptItemKinds.None;
             int nextIndex = -1;
             int nextFuncIndex = script.IndexOf(ScriptParsingHelper.Symbol_Fun, index);
             int nextVarIndex = script.IndexOf(ScriptParsingHelper.Symbol_Var, index);
@@ -380,24 +380,24 @@ namespace BindOpen.Framework.Core.System.Scripting
             if (script.Trim().StartsWith("'") && script.Trim().EndsWith("'"))
             {
                 index = script.Length;
-                scriptItemKind = ScriptItemKind.None;
+                scriptItemKind = ScriptItemKinds.None;
             }
             // else if the next word is a variable
             else if (parentScriptword != null && script.GetSubstring(index, index) == ".")
             {
                 index++;
-                scriptItemKind = ScriptItemKind.Function;
+                scriptItemKind = ScriptItemKinds.Function;
             }
             else if ((nextVarIndex > -1) && ((nextFuncIndex == -1) || (nextVarIndex <= nextFuncIndex)))
             {
                 index = nextVarIndex + 2;
-                scriptItemKind = ScriptItemKind.Variable;
+                scriptItemKind = ScriptItemKinds.Variable;
             }
             // else if the next word is a function
             else if ((nextFuncIndex > -1) && ((nextVarIndex == -1) || (nextFuncIndex < nextVarIndex)))
             {
                 index = nextFuncIndex + 1;
-                scriptItemKind = ScriptItemKind.Function;
+                scriptItemKind = ScriptItemKinds.Function;
             }
             else
             {
@@ -405,9 +405,9 @@ namespace BindOpen.Framework.Core.System.Scripting
             }
 
             // if a next script word has been found then
-            if (scriptItemKind != ScriptItemKind.None)
+            if (scriptItemKind != ScriptItemKinds.None)
             {
-                if (scriptItemKind == ScriptItemKind.Function)
+                if (scriptItemKind == ScriptItemKinds.Function)
                 {
                     // we look for the next "(" character.
                     nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
@@ -496,7 +496,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         }
                     }
                 }
-                else if (scriptItemKind == ScriptItemKind.Variable)
+                else if (scriptItemKind == ScriptItemKinds.Variable)
                 {
                     // we look for the next ")" character.
                     nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, ")", index + 2);

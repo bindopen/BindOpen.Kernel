@@ -1,6 +1,5 @@
 ﻿namespace BindOpen.Framework.Runtime.Application.Products
 {
-
     /// <summary>
     /// This enumerates the possible modes of product registration.
     /// </summary>
@@ -10,14 +9,15 @@
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Registered.
         /// </summary>
         Registered,
+
         /// <summary>
         /// Unregistered.
         /// </summary>
         Unregistered
     }
-
 }

@@ -189,14 +189,14 @@ namespace BindOpen.Framework.Core.System.Scripting
                     {
                         // we declare this something as a none-kind script item
                         scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                        if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                        if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                         {
                             scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                         }
                         else
                         {
                             scriptItems.Add(new ScriptItem(
-                               ScriptItemKind.None,
+                               ScriptItemKinds.None,
                                scriptItemName,
                                index));
                         }
@@ -222,21 +222,21 @@ namespace BindOpen.Framework.Core.System.Scripting
                     nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
                     scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = ScriptParsingHelper.FindScriptItem(scriptItemName, index);
-                    if (scriptItem.Kind == ScriptItemKind.Variable)
+                    if (scriptItem.Kind == ScriptItemKinds.Variable)
                     {
                         // if something between the last none index and the current then
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                             }
                             else
                             {
                                 scriptItems.Add(new ScriptItem(
-                               ScriptItemKind.None,
+                               ScriptItemKinds.None,
                                scriptItemName,
                                index));
                             }
@@ -251,7 +251,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         lastNoneIndex = index;
                     }
                     // if it is a literal script word then
-                    else if (scriptItem.Kind == ScriptItemKind.Literal)
+                    else if (scriptItem.Kind == ScriptItemKinds.Literal)
                     {
                         // we insert "()" in the item name and we update the index
                         scriptItem.Name += "()";
@@ -262,7 +262,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                             }
@@ -270,7 +270,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                             {
                                 scriptItems.Add(
                                    new ScriptItem(
-                                       ScriptItemKind.None,
+                                       ScriptItemKinds.None,
                                        scriptItemName,
                                        index));
                             }
@@ -299,14 +299,14 @@ namespace BindOpen.Framework.Core.System.Scripting
                     nextIndex = ScriptParsingHelper.GetIndexOfNextString(script, "(", index);
                     scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = ScriptParsingHelper.FindScriptItem(scriptItemName, index);
-                    if (scriptItem.Kind == ScriptItemKind.Function)
+                    if (scriptItem.Kind == ScriptItemKinds.Function)
                     {
                         // if something between the last none index and the current then
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                             }
@@ -314,7 +314,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                             {
                                 scriptItems.Add(
                                    new ScriptItem(
-                                       ScriptItemKind.None,
+                                       ScriptItemKinds.None,
                                        scriptItemName,
                                        index));
                             }
@@ -340,7 +340,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptItem = ScriptParsingHelper.FindScriptItem(currentChar, index);
 
                     // if it is a syntax item
-                    if (scriptItem.Kind == ScriptItemKind.Syntax)
+                    if (scriptItem.Kind == ScriptItemKinds.Syntax)
                     {
                         string scriptItemName = "";
 
@@ -349,7 +349,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                             }
@@ -357,7 +357,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                             {
                                 scriptItems.Add(
                                    new ScriptItem(
-                                       ScriptItemKind.None,
+                                       ScriptItemKinds.None,
                                        scriptItemName,
                                        index));
                             }
@@ -385,7 +385,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             {
                 // we declare this something as a none-kind script item
                 string scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
-                if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKind.None))
+                if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                 {
                     scriptItems[scriptItems.Count - 1].Name += scriptItemName;
                 }
@@ -393,7 +393,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 {
                     scriptItems.Add(
                        new ScriptItem(
-                           ScriptItemKind.None,
+                           ScriptItemKinds.None,
                            scriptItemName,
                            index));
                 }
@@ -409,7 +409,7 @@ namespace BindOpen.Framework.Core.System.Scripting
 
             // we define the default script item to return
             ScriptItem scriptItem = new ScriptItem(
-                ScriptItemKind.None,
+                ScriptItemKinds.None,
                 name,
                 index);
 
@@ -417,7 +417,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             if ((name.Length >= 1) && (name[0] == '\''))
             {
                 scriptItem.Index = index;
-                scriptItem.Kind = ScriptItemKind.Text;
+                scriptItem.Kind = ScriptItemKinds.Text;
                 scriptItem.Name = name;
             }
             // else if it is a variable
@@ -437,9 +437,9 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptItem.Name = name.Substring(0, name.Length - 1);
                     // we indentify the literal script functions
                     if (scriptItem.Name.ToUpper().Substring(0, "$LITERAL_".Length) == "$LITERAL_")
-                        scriptItem.Kind = ScriptItemKind.Literal;
+                        scriptItem.Kind = ScriptItemKinds.Literal;
                     else
-                        scriptItem.Kind = ScriptItemKind.Variable;
+                        scriptItem.Kind = ScriptItemKinds.Variable;
                 }
             }
             // else if it is a function
@@ -456,7 +456,7 @@ namespace BindOpen.Framework.Core.System.Scripting
                 if (isGood)
                 {
                     scriptItem.Index = index;
-                    scriptItem.Kind = ScriptItemKind.Function;
+                    scriptItem.Kind = ScriptItemKinds.Function;
                     scriptItem.Name = name.Substring(0, name.Length - 1);
                 }
             }
@@ -464,7 +464,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             else if ((new List<string>(ScriptParsingHelper.SyntaxItems)).Contains(name))
             {
                 scriptItem.Index = index;
-                scriptItem.Kind = ScriptItemKind.Syntax;
+                scriptItem.Kind = ScriptItemKinds.Syntax;
                 scriptItem.Name = name;
             }
             return scriptItem;

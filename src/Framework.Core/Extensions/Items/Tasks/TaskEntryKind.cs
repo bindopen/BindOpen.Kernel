@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Tasks
 {
-
     /// <summary>
     /// This enumeration represents the possible task entry kinds.
     /// </summary>
@@ -35,7 +34,6 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Non-scalar output.
         /// </summary>
         NonScalarOutput
-
     };
 
     // --------------------------------------------------

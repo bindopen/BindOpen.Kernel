@@ -66,7 +66,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -736,7 +736,7 @@
             <param name="module">Module to consider.</param>
             <param name="uri">URI to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.ApplicationModuleInstance.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -896,7 +896,7 @@
             <param name="sections">The sections to add.</param>
             <returns>Returns the specified sections.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -1032,77 +1032,77 @@
             Custom.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.ActionKind">
+        <member name="T:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds">
             <summary>
             This enumerates the possible kinds of action.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.None">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.None">
             <summary>
             None can access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Access">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Access">
             <summary>
             Access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.View">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.View">
             <summary>
             View.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Download">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Download">
             <summary>
             Download.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Print">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Print">
             <summary>
             Print.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Search">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Search">
             <summary>
             Search.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Create">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Create">
             <summary>
             Create.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Edit">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Edit">
             <summary>
             Edit.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.FullEdit">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.FullEdit">
             <summary>
             Full edit.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Delete">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Delete">
             <summary>
             Delete.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Duplicate">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Duplicate">
             <summary>
             Duplicate.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Import">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Import">
             <summary>
             Import.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Export">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Export">
             <summary>
             Export.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKind.Custom">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Custom">
             <summary>
             Custom.
             </summary>
@@ -2192,7 +2192,7 @@
             <param name="actionName">The action name to consider.</param>
             <param name="valueScript">The value script to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKind,System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKinds,System.String)">
             <summary>
             Creates a new instance of the UserPermission class.
             </summary>
@@ -2206,7 +2206,7 @@
             <param name="actionName">The action name to consider.</param>
             <param name="value">The boolean value to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKind,System.Nullable{System.Boolean})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Rights.UserPermission.#ctor(BindOpen.Framework.Runtime.Application.Navigation.ActionKinds,System.Nullable{System.Boolean})">
             <summary>
             Creates a new instance of the UserPermission class.
             </summary>
@@ -2431,7 +2431,7 @@
             <param name="connector">The connector to consider.</param>
             <returns>Returns the log of execution.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -2789,7 +2789,7 @@
             <param name="value">The value to set.</param>
             <param name="propertyName">The calling property name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the application settings of this instance.
             </summary>
@@ -2921,7 +2921,7 @@
             <param name="appScope">The application scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TSettings`1.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TSettings`1.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the application settings of this instance.
             </summary>
@@ -4344,44 +4344,44 @@
             <param name="attributeNames">The attribute names to consider.</param>
             <returns>The string representing to the specified log.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.System.InstanceIndexation">
+        <member name="T:BindOpen.Framework.Runtime.System.InstanceIndexations">
             <summary>
             This enumeration lists the possible visibilities of an application module.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.None">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.None">
             <summary>
             The application module is not indexed. Standalone application instances are not indexed.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Default">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Default">
             <summary>
             Default saying that the indexation is the one of the application module. And if it is Default, then None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Central">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Central">
             <summary>
             Global application module instance.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Cloud">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Cloud">
             <summary>
             Cloud application module instance.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Box">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Box">
             <summary>
             Box application module instance.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexation.Standalone">
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Standalone">
             <summary>
             Standalone.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.System.InstanceIndexations.Any">
+            <summary>
+            Any.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.System.ModuleOperatingSystem">

@@ -207,7 +207,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 
@@ -217,7 +217,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
                 log.Append(this.Sections.Update(
                     module.Sections,
                     null,
-                    new [] { UpdateMode.Incremental_AddItemsMissingInTarget }));
+                    new [] { UpdateModes.Incremental_AddItemsMissingInTarget }));
             }
 
             return log;

@@ -1,6 +1,5 @@
 ﻿namespace BindOpen.Framework.Databases.Data.Queries
 {
-
     /// <summary>
     /// This enumeration lists all the kinds of data query unions.
     /// </summary>
@@ -10,6 +9,7 @@
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Union.
         /// </summary>

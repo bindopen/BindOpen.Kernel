@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         public override ILog Update<T1>(
             T1 item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 
@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         public override ILog Repair<T1>(
             T1 item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 

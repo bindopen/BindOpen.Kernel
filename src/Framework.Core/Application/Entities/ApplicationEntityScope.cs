@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Application.Entities
 {
-
     /// <summary>
     /// This enumeration represents the possible application entity scopes.
     /// </summary>

@@ -31,8 +31,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Kind of this instance.
         /// </summary>
         [XmlAttribute("kind")]
-        [DefaultValue(EventKind.None)]
-        public EventKind Kind { get; set; } = EventKind.Other;
+        [DefaultValue(EventKinds.None)]
+        public EventKinds Kind { get; set; } = EventKinds.Other;
 
         /// <summary>
         /// Creation date of this instance.
@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
         public Event(
-            EventKind kind,
+            EventKinds kind,
             string title = null,
             EventCriticality criticality = EventCriticality.None,
             string description = null,
@@ -157,7 +157,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             this.Id = (id ?? this.Id);
             this.CreationDate = ObjectHelper.ToString((date ?? global::System.DateTime.Now));
 
-            this.Kind = EventKind.Exception;
+            this.Kind = EventKinds.Exception;
             this.Criticality = criticality;
 
             if (exception != null)
@@ -182,7 +182,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="st">The string to consider.</param>
         public static implicit operator Event(string st)
         {
-            return new LogEvent(EventKind.Message, st);
+            return new LogEvent(EventKinds.Message, st);
         }
 
         /// <summary>

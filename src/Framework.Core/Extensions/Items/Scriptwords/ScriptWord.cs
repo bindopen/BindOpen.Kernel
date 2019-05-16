@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        public ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
+        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
         // Values ----------------------------------
 

@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
 
         ILog UpdateFromFile(
             string filePath,
-            SpecificationLevel[] specificationLevels = null,
+            SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,

@@ -50,7 +50,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
         /// Kind of this instance.
         /// </summary>
         [XmlElement("kind")]
-        public ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
+        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
         /// <summary>
         /// Name of the runtime function.
@@ -181,10 +181,10 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
             String functionName = "";
             switch (this.Kind)
             {
-                case ScriptItemKind.Function:
+                case ScriptItemKinds.Function:
                     functionName += "Fun_";
                     break;
-                case ScriptItemKind.Variable:
+                case ScriptItemKinds.Variable:
                     functionName += "Var_";
                     break;
             };

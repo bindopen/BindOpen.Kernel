@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        public ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
+        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
         /// <summary>
         /// The index of this instance.
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <param name="name">The name of the instance.</param>
         /// <param name="index">The index of the instance.</param>
         public ScriptItem(
-            ScriptItemKind kind,
+            ScriptItemKinds kind,
             String name,
             int index)
         {

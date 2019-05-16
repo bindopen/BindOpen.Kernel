@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// <param name="id">The ID of this instance.</param>
         public ConditionalEvent(
             String conditionScript,
-            EventKind kind,
+            EventKinds kind,
             String title = "",
             EventCriticality criticality = EventCriticality.None,
             String description = "",

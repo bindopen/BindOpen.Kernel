@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         // Properties ---------------------------------------
 
         private DataElementSet _propertyDetail = null;
-        private EventKind? _eventKind = null;
+        private EventKinds? _eventKind = null;
 
         #endregion
 
@@ -201,9 +201,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// The event kind of this instance.
         /// </summary>
         [XmlElement("eventKind")]
-        public EventKind? EventKind
+        public EventKinds? EventKind
         {
-            get => _eventKind ?? System.Diagnostics.Events.EventKind.None;
+            get => _eventKind ?? System.Diagnostics.Events.EventKinds.None;
             set { _eventKind = value; }
         }
 
@@ -211,7 +211,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the EventKind property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool EventKindSpecified => _eventKind != null && _eventKind == System.Diagnostics.Events.EventKind.None;
+        public bool EventKindSpecified => _eventKind != null && _eventKind == System.Diagnostics.Events.EventKinds.None;
 
         #endregion
 
@@ -522,7 +522,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 
@@ -630,7 +630,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public override ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 

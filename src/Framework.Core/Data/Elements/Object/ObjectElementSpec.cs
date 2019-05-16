@@ -74,8 +74,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public ObjectElementSpec(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }

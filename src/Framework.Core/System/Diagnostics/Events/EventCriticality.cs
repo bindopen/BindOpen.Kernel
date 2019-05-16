@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {
-
     /// <summary>
     /// This enumeration lists the possible event criticalities.
     /// </summary>
@@ -15,18 +14,22 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Low.
         /// </summary>
         Low,
+
         /// <summary>
         /// Medium.
         /// </summary>
         Medium,
+
         /// <summary>
         /// High.
         /// </summary>
         High,
+
         /// <summary>
         /// Very high.
         /// </summary>

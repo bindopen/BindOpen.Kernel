@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto
     {
         List<ScriptwordDefinitionDto> Children { get; set; }
 
-        ScriptItemKind Kind { get; set; }
+        ScriptItemKinds Kind { get; set; }
         bool IsRepeatedParameters { get; set; }
         int MaxParameterNumber { get; set; }
         int MinParameterNumber { get; set; }

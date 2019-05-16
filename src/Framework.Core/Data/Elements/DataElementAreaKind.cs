@@ -1,10 +1,5 @@
-﻿
-using BindOpen.Framework.Core.Data.Common;
-using System;
-
-namespace BindOpen.Framework.Core.Data.Elements
+﻿namespace BindOpen.Framework.Core.Data.Elements
 {
-
     /// <summary>
     /// This enumeration lists the possible kinds of data areas.
     /// </summary>
@@ -14,14 +9,15 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Element attributes.
         /// </summary>
         Element
     }
-
 }

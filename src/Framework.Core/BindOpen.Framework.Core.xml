@@ -365,7 +365,7 @@
             </summary>
             <param name="appDomain">The application domain to instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -447,7 +447,7 @@
             </summary>
             <param name="appDomain">The application domain to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.IAppScope.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -553,37 +553,37 @@
             </summary>
             <returns>Returns the cloned object.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Common.AccessibilityLevel">
+        <member name="T:BindOpen.Framework.Core.Data.Common.AccessibilityLevels">
             <summary>
             This enumerates the possible levels of accesibility.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.None">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.None">
             <summary>
             None can access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.Inherited">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.Inherited">
             <summary>
             Inherited.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.Public">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.Public">
             <summary>
             Anyone can access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.Private">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.Private">
             <summary>
             Only authentized people can access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.Restricted">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.Restricted">
             <summary>
             Only allowed people can access.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevel.Payable">
+        <member name="F:BindOpen.Framework.Core.Data.Common.AccessibilityLevels.Payable">
             <summary>
             Only people who bought for it can access.
             </summary>
@@ -601,32 +601,32 @@
             <param name="defaultLevelString">The default visibility to consider.</param>
             <returns>Returns the visibility corresponding to the specified strings.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Common.ActionPriority">
+        <member name="T:BindOpen.Framework.Core.Data.Common.ActionPriorities">
             <summary>
             This enumeration lists the possible kinds of actions.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriority.None">
+        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriorities.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriority.Low">
+        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriorities.Low">
             <summary>
             Low.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriority.Medium">
+        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriorities.Medium">
             <summary>
             Medium.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriority.High">
+        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriorities.High">
             <summary>
             High.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriority.VeryHigh">
+        <member name="F:BindOpen.Framework.Core.Data.Common.ActionPriorities.VeryHigh">
             <summary>
             Very high.
             </summary>
@@ -715,6 +715,7 @@
             <summary>
             Descending.
             </summary>
+            
         </member>
         <member name="F:BindOpen.Framework.Core.Data.Common.DataSortingMode.Random">
             <summary>
@@ -1013,37 +1014,37 @@
             Simulation. Everything is executed empty.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Common.SpecificationLevel">
+        <member name="T:BindOpen.Framework.Core.Data.Common.SpecificationLevels">
             <summary>
             This enumeration represents the possible levels of specification.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.None">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.Definition">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.Definition">
             <summary>
             Definition.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.Design">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.Design">
             <summary>
             Design.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.Configuration">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.Configuration">
             <summary>
             Configuration.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.Runtime">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.Runtime">
             <summary>
             Runtime.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevel.All">
+        <member name="F:BindOpen.Framework.Core.Data.Common.SpecificationLevels.All">
             <summary>
             All the information specification levels.
             </summary>
@@ -1053,7 +1054,7 @@
             This class represents an specification level extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Has(BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Common.SpecificationLevel)">
+        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Has(BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Common.SpecificationLevels)">
             <summary>
             Indicates whether the specified specification level list contains the specified specification level.
             </summary>
@@ -1061,7 +1062,7 @@
             <param name="specificationLevel">The specified specification level to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Has(BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Has(BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Indicates whether the specified specification level list contains the specified specification level.
             </summary>
@@ -1069,7 +1070,7 @@
             <param name="referenceSpecificationLevels">The specified reference specification levels to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Excluding(BindOpen.Framework.Core.Data.Common.SpecificationLevel[],BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Excluding(BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Gets the specified list excluding the second specified list.
             </summary>
@@ -1077,7 +1078,7 @@
             <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Excluding(BindOpen.Framework.Core.Data.Common.SpecificationLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Common.SpecificationLevelExtension.Excluding(BindOpen.Framework.Core.Data.Common.SpecificationLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Gets the specified list excluding the secong specified list.
             </summary>
@@ -1085,41 +1086,46 @@
             <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Common.UpdateMode">
+        <member name="T:BindOpen.Framework.Core.Data.Common.UpdateModes">
             <summary>
             This enumeration represents the possible update modes.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateMode.Full">
+        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateModes.None">
             <summary>
-            Source fully replaces Target.
+            None.
             </summary>
-            <remarks>Used in full update.</remarks>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateMode.Incremental_AddItemsMissingInTarget">
+        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateModes.Incremental_AddItemsMissingInTarget">
             <summary>
             Adds Source items that are not in Target.
             </summary>
             <remarks>Used in incremental update.</remarks>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateMode.Incremental_RemoveItemsMissingInSource">
+        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateModes.Incremental_RemoveItemsMissingInSource">
             <summary>
             Removes Target items that are not in Source.
             </summary>
             <remarks>Used in incremental update.</remarks>
         </member>
-        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateMode.Incremental_UpdateCommonItems">
+        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateModes.Incremental_UpdateCommonItems">
             <summary>
             Updates Target items that are in Source.
             </summary>
             <remarks>Used in incremental update.</remarks>
+        </member>
+        <member name="F:BindOpen.Framework.Core.Data.Common.UpdateModes.Full">
+            <summary>
+            Source fully replaces Target.
+            </summary>
+            <remarks>Used in full update.</remarks>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Common.UpdateModeExtension">
             <summary>
             This class represents an update mode extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Has(BindOpen.Framework.Core.Data.Common.UpdateMode[],BindOpen.Framework.Core.Data.Common.UpdateMode)">
+        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Has(BindOpen.Framework.Core.Data.Common.UpdateModes[],BindOpen.Framework.Core.Data.Common.UpdateModes)">
             <summary>
             Indicates whether the specified update mode list contains the specified update mode.
             </summary>
@@ -1127,7 +1133,7 @@
             <param name="updateMode">The specified update mode to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Excluding(BindOpen.Framework.Core.Data.Common.UpdateMode[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Excluding(BindOpen.Framework.Core.Data.Common.UpdateModes[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Gets the specified list excluding the second specified list.
             </summary>
@@ -1135,7 +1141,7 @@
             <param name="excludingUpdateModes">The excluding update modes to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Excluding(BindOpen.Framework.Core.Data.Common.UpdateMode,BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Common.UpdateModeExtension.Excluding(BindOpen.Framework.Core.Data.Common.UpdateModes,BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Gets the specified list excluding the secong specified list.
             </summary>
@@ -1707,7 +1713,7 @@
             Initializes a new carrier element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new carrier element specification.
             </summary>
@@ -1904,7 +1910,7 @@
             Initializes a new object element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Collection.CollectionElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new object element specification.
             </summary>
@@ -2153,7 +2159,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -2172,7 +2178,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElement.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -2379,7 +2385,7 @@
             Initializes a new instance of the DataElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new instance of the DataElementSpec class.
             </summary>
@@ -2424,7 +2430,7 @@
             <param name="areaName">The data specification to consider.</param>
             <returns>Returns the area specification.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.DataElementSpec.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -2517,7 +2523,7 @@
             Initializes a new document element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Document.DocumentElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new document element specification.
             </summary>
@@ -3018,7 +3024,7 @@
             Initializes a new object element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements._Object.ObjectElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new object element specification.
             </summary>
@@ -3147,14 +3153,14 @@
             Initializes a new instance of the ScalarElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new instance of the ScalarElementSpec class.
             </summary>
             <param name="accessibilityLevel">The accessibilty level of this instance.</param>
             <param name="specificationLevels">The specification levels of this instance.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Scalar.ScalarElementSpec.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new instance of the ScalarElementSpec class.
             </summary>
@@ -3311,7 +3317,7 @@
             <param name="parentZoneElement">The parent schema element zone to consider.</param>
             <param name="aElement">The schema element to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.ApplyVisibility(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.ApplyVisibility(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,System.Boolean)">
             <summary>
             Apply the specified visibility to this instance.
             </summary>
@@ -3382,7 +3388,7 @@
             Initializes a new schema element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new schema element specification.
             </summary>
@@ -3811,7 +3817,7 @@
             Initializes a new data source element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Source.SourceElementSpec.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new data source element specification.
             </summary>
@@ -3995,7 +4001,7 @@
             </summary>
             <param name="arename">The name of the area to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Specification.DataAreaSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Specification.DataAreaSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new instance of the DataAreaSpecification class.
             </summary>
@@ -4053,7 +4059,7 @@
             Initializes a new insance of the DataSpecification class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Specification.DataSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevel,BindOpen.Framework.Core.Data.Common.SpecificationLevel[])">
+        <member name="M:BindOpen.Framework.Core.Data.Specification.DataSpecification.#ctor(BindOpen.Framework.Core.Data.Common.AccessibilityLevels,BindOpen.Framework.Core.Data.Common.SpecificationLevels[])">
             <summary>
             Initializes a new insance of the DataSpecification class.
             </summary>
@@ -5054,7 +5060,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -5064,7 +5070,7 @@
             <returns>The log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Update(System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Update(System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -5091,7 +5097,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -5100,7 +5106,7 @@
             <param name="updateModes">The update modes to consider.</param>
             <returns>The log of the operation.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Repair(System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.DataItem.Repair(System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -5516,7 +5522,7 @@
             <returns>Returns the text corresponding to the specified user interface language ID.
             Returns empty if there is none.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.Dictionary.DictionaryDataItem.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -6030,7 +6036,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -6049,7 +6055,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -6788,7 +6794,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.AppExtensionConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.AppExtensionConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -7611,7 +7617,7 @@
             <param name="definitionUniqueId">The definition unique ID to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -7630,7 +7636,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -7833,7 +7839,7 @@
             </summary>
             <returns>A cloned connector of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -7852,7 +7858,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -9240,7 +9246,7 @@
             <param name="taskEntryKind">The task entry kind to consider.</param>
             <returns>True if this instance is compatible with the specified element collection.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Task.IsConfigurable(BindOpen.Framework.Core.Data.Common.SpecificationLevel)">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Task.IsConfigurable(BindOpen.Framework.Core.Data.Common.SpecificationLevels)">
             <summary>
             Indicates whether this instance is configurable.
             </summary>
@@ -9332,7 +9338,7 @@
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -9351,7 +9357,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateMode[])">
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.Repair``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -9963,7 +9969,7 @@
             Instantiates a new instance of the ConditionalEvent class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.ConditionalEvent.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.Nullable{System.DateTime},System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.ConditionalEvent.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.Nullable{System.DateTime},System.String)">
             <summary>
             Instantiates a new instance of the ConditionalEvent class.
             </summary>
@@ -10045,7 +10051,7 @@
             Instantiates a new instance of the LogEvent class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.#ctor(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.Nullable{System.DateTime},System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.Event.#ctor(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.Nullable{System.DateTime},System.String)">
             <summary>
             Instantiates a new instance of the LogEvent class.
             </summary>
@@ -10119,49 +10125,49 @@
             Very high.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind">
+        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds">
             <summary>
             This enumeration lists the possible event kinds.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.None">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Any">
-            <summary>
-            None.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Message">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Message">
             <summary>
             Message.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Checkpoint">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Checkpoint">
             <summary>
             Checkpoint.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Other">
-            <summary>
-            Other.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Warning">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Warning">
             <summary>
             Warning.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Error">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Error">
             <summary>
             Error.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Exception">
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Exception">
             <summary>
             Exception.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Other">
+            <summary>
+            Other.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds.Any">
+            <summary>
+            None.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension">
@@ -10169,14 +10175,14 @@
             This class represents a event kind extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.Max(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.Events.EventKind})">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.Max(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds})">
             <summary>
             Gets the maximum kind of events of the specified event kinds.
             </summary>
             <param name="eventKinds">The event kinds to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.Max(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.Max(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds)">
             <summary>
             Gets the maximum between the two specified event kinds.
             </summary>
@@ -10184,7 +10190,7 @@
             <param name="eventKind2">The second event kind to consider.</param>
             <returns>True if the first event kind is greater than the second one.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.IsGreaterThan(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Events.EventKindExtension.IsGreaterThan(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds)">
             <summary>
             Indicates whether the first event kind is greater than the second one.
             </summary>
@@ -10423,7 +10429,7 @@
             <param name="childLog">The child log of this instance.</param>
             <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvent(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime},BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog})">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvent(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime},BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog})">
             <summary>
             Adds the specified log event.
             </summary>
@@ -10513,7 +10519,7 @@
             <param name="childLog">The child log of this instance.</param>
             <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvents(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvents(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Adds the events of the specified log.
             </summary>
@@ -10521,7 +10527,7 @@
             <param name="kinds">The event kinds to add.</param>
             <returns>Returns the added events.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvents(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddEvents(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Adds the events of the specified log.
             </summary>
@@ -10547,7 +10553,7 @@
             <returns>Returns the added events.</returns>
             <remarks>This function equals to AddEventsexcept except that it does not allow to filter with log event kinds.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.ClearEvents(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.ClearEvents(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Clears the specified events.
             </summary>
@@ -10559,7 +10565,7 @@
             Sanitize this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddSubLog(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddSubLog(BindOpen.Framework.Core.System.Diagnostics.ILog,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             Adds the specified warning.
             </summary>
@@ -10573,7 +10579,7 @@
             <param name="source">The ExtensionDataContext of this instance.</param>
             <param name="date">The date to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddSubLog(System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.AddSubLog(System.Predicate{BindOpen.Framework.Core.System.Diagnostics.ILog},BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             Adds the specified warning.
             </summary>
@@ -10643,7 +10649,7 @@
             <param name="isRecursive">Indicate whether the search is recursive.</param>
             <returns>The event of this instance with the specified ID.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetEvents(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetEvents(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Gets the specified events of this instance.
             </summary>
@@ -10651,7 +10657,7 @@
             <param name="kinds">The kinds to consider.</param>
             <returns>Returns the specified events of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetEventCount(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetEventCount(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Returns the number of the specified events of this instance.
             </summary>
@@ -10659,7 +10665,7 @@
             <param name="kinds">The kinds to consider.</param>
             <returns>The number of the specified events of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetMaxEventKind(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.GetMaxEventKind(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Gets the warnings, errors or exceptions of this instance.
             </summary>
@@ -10667,7 +10673,7 @@
             <param name="kinds">The kinds to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasEvent(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasEvent(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Indicates whether this instance has the specified events.
             </summary>
@@ -10675,14 +10681,14 @@
             <param name="kinds">The event kinds to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasEvent(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasEvent(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Indicates whether this instance has the specified events.
             </summary>
             <param name="kinds">The event kinds to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasWarnings(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Log.HasWarnings(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Checks this instance has any warnings.
             </summary>
@@ -10914,7 +10920,7 @@
             Instantiates a new instance of the LogEvent class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.#ctor(BindOpen.Framework.Core.System.Diagnostics.Events.EventKind,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime},System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.#ctor(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.String,System.Nullable{System.DateTime},System.String)">
             <summary>
             Instantiates a new instance of the LogEvent class.
             </summary>
@@ -10944,7 +10950,7 @@
             </summary>
             <param name="event1">The event to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.GetMaxEventKind(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEvent.GetMaxEventKind(System.Boolean,BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Gets the warnings, errors or exceptions of this instance.
             </summary>
@@ -10969,7 +10975,7 @@
             This class represents a log event extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEventExtension.GetEvents(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEventExtension.GetEvents(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Gets the specified events of this instance.
             </summary>
@@ -11019,7 +11025,7 @@
             <param name="logEvents">The log events to consider.</param>
             <returns>True if this instance has the specified events. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEventExtension.Has(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},BindOpen.Framework.Core.System.Diagnostics.Events.EventKind[])">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.LogEventExtension.Has(System.Collections.Generic.List{BindOpen.Framework.Core.System.Diagnostics.ILogEvent},BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds[])">
             <summary>
             Indicates whether this instance has the specified events.
             </summary>
@@ -12166,7 +12172,7 @@
             Instantiates a new instance of the ScriptItem class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptItem.#ctor(BindOpen.Framework.Core.System.Scripting.ScriptItemKind,System.String,System.Int32)">
+        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptItem.#ctor(BindOpen.Framework.Core.System.Scripting.ScriptItemKinds,System.String,System.Int32)">
             <summary>
             Instantiates a new instance of the ScriptItem class.
             </summary>
@@ -12174,44 +12180,44 @@
             <param name="name">The name of the instance.</param>
             <param name="index">The index of the instance.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.System.Scripting.ScriptItemKind">
+        <member name="T:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds">
             <summary>
             This enumeration lists the possible kinds of script items.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.None">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Function">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Function">
             <summary>
             Function.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Variable">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Variable">
             <summary>
             Variable.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Text">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Text">
             <summary>
             Text.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Syntax">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Syntax">
             <summary>
             Syntax.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKind.Literal">
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Literal">
             <summary>
             Literal.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Core.System.Scripting.ScriptItemKinds.Any">
+            <summary>
+            Any.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Scripting.ScriptItemKindExtension">
@@ -12219,7 +12225,7 @@
             This class represents an specification level extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptItemKindExtension.IsFunctionOrVariable(BindOpen.Framework.Core.System.Scripting.ScriptItemKind)">
+        <member name="M:BindOpen.Framework.Core.System.Scripting.ScriptItemKindExtension.IsFunctionOrVariable(BindOpen.Framework.Core.System.Scripting.ScriptItemKinds)">
             <summary>
             Indicates whether the specified element kind is a script word kind.
             </summary>

@@ -14,102 +14,127 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Auto.
         /// </summary>
         Auto,
+
         /// <summary>
         /// Text box.
         /// </summary>
         TextBox,
+
         /// <summary>
         /// Check box.
         /// </summary>
         CheckBox,
+
         /// <summary>
         /// Radio button list.
         /// </summary>
         RadioButtonList,
+
         /// <summary>
         /// Calendar.
         /// </summary>
         Calendar,
+
         /// <summary>
         /// List box.
         /// </summary>
         ListBox,
+
         /// <summary>
         /// Combo box.
         /// </summary>
         ComboBox,
+
         /// <summary>
         /// Label.
         /// </summary>
         Label,
+
         /// <summary>
         /// Linkbutton.
         /// </summary>
         LinkButton,
+
         /// <summary>
         /// Hyerplink.
         /// </summary>
         Hyperlink,
+
         /// <summary>
         /// Download Linkbutton.
         /// </summary>
         DownloadLinkButton,
+
         /// <summary>
         /// Memo Textbox.
         /// </summary>
         MemoTextBox,
+
         /// <summary>
         /// Password Textbox.
         /// </summary>
         PasswordTextBox,
+
         /// <summary>
         /// Entity editor.
         /// </summary>
         ObjectEditor,
+
         /// <summary>
         /// Progress bar.
         /// </summary>
         ProgressBar,
+
         /// <summary>
         /// Time selector.
         /// </summary>
         TimeSelector,
+
         /// <summary>
         /// Week day selector.
         /// </summary>
         WeekDaySelector,
+
         /// <summary>
         /// Global object editor.
         /// </summary>
         DictionaryEditor,
+
         /// <summary>
         /// Database table editor.
         /// </summary>
         DatabaseTableEditor,
+
         /// <summary>
         /// Email editor.
         /// </summary>
         EmailEditor,
+
         /// <summary>
         /// Data carrier editor.
         /// </summary>
         CarrierConfigurationEditor,
+
         /// <summary>
         /// Data source editor.
         /// </summary>
         DataSourceEditor,
+
         /// <summary>
         /// Document editor.
         /// </summary>
         DocumentEditor,
+
         /// <summary>
         /// Editor of list.
         /// </summary>
         ListEditor,
+
         /// <summary>
         /// Custom control using schema.
         /// </summary>
