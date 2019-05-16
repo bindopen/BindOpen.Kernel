@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         private List<object> _defaultItems = null;
         private List<string> _defaultStringItems = null;
 
-        private List<SpecificationLevel> _itemSpecificationLevels = null;
+        private List<SpecificationLevels> _itemSpecificationLevels = null;
 
         // Constraints ------------------------
 
@@ -284,9 +284,9 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         [XmlArray("itemSpecificationLevels")]
         [XmlArrayItem("itemSpecificationLevel")]
-        public List<SpecificationLevel> ItemSpecificationLevels
+        public List<SpecificationLevels> ItemSpecificationLevels
         {
-            get => _itemSpecificationLevels ?? (_itemSpecificationLevels = new List<SpecificationLevel>());
+            get => _itemSpecificationLevels ?? (_itemSpecificationLevels = new List<SpecificationLevels>());
             set { _itemSpecificationLevels = value; }
         }
 
@@ -294,7 +294,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the SpecificationLevels property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool ItemSpecificationLevelsSpecified => _itemSpecificationLevels?.Count > 0 && !_itemSpecificationLevels.Contains(SpecificationLevel.All);
+        public bool ItemSpecificationLevelsSpecified => _itemSpecificationLevels?.Count > 0 && !_itemSpecificationLevels.Contains(Common.SpecificationLevels.All);
 
         // Constraints ---------------------------
 
@@ -343,7 +343,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Initializes a new instance of the DataElementSpec class.
         /// </summary>
-        protected DataElementSpec() : this(AccessibilityLevel.Public)
+        protected DataElementSpec() : this(AccessibilityLevels.Public)
         {
         }
 
@@ -353,8 +353,8 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         protected DataElementSpec(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null) : base(accessibilityLevel, specificationLevels)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null) : base(accessibilityLevel, specificationLevels)
         {
             // we update the area specifications
             Repair();
@@ -465,7 +465,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public override ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 

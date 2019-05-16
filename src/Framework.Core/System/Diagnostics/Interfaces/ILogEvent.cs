@@ -14,6 +14,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         string Source { get; set; }
         List<LogEvent.LogEventStackTrace> StackTraces { get; set; }
 
-        EventKind GetMaxEventKind(bool isRecursive = true, params EventKind[] kinds);
+        EventKinds GetMaxEventKind(bool isRecursive = true, params EventKinds[] kinds);
     }
 }

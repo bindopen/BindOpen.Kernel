@@ -211,7 +211,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     catch (Exception ex)
                     {
                         log?.AddEvent(new LogEvent(
-                                EventKind.Exception,
+                                EventKinds.Exception,
                                 title: "Error while attempting to load assembly from file '" + filePath + "'",
                                 description: ex.ToString()));
                     }
@@ -244,13 +244,13 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     catch (FileNotFoundException)
                     {
                         log?.AddEvent(new LogEvent(
-                                EventKind.Error,
+                                EventKinds.Error,
                                 title: "Could not find the assembly '" + assemblyName + "'"));
                     }
                     catch (Exception ex)
                     {
                         log?.AddEvent(new LogEvent(
-                                EventKind.Exception,
+                                EventKinds.Exception,
                                 title: "Error while attempting to load assembly '" + assemblyName + "'",
                                 description: ex.ToString()));
                     }

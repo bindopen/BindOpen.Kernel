@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Indicates whether this instance is configurable.
         /// </summary>
         /// <returns>True if this instance is configurable.</returns>
-        public bool IsConfigurable(SpecificationLevel specificationLevel = SpecificationLevel.Runtime)
+        public bool IsConfigurable(SpecificationLevels specificationLevel = SpecificationLevels.Runtime)
         {
             List<IDataElement> elements = new List<IDataElement>();
             elements.AddRange(Configuration?.GetEntries(TaskEntryKind.Input));

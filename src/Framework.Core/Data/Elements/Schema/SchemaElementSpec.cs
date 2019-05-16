@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         [XmlArray("entitySpecificationLevels")]
         [XmlArrayItem("add.level")]
-        public List<SpecificationLevel> SchemaSpecificationLevels { get; set; } = new List<SpecificationLevel>();
+        public List<SpecificationLevels> SchemaSpecificationLevels { get; set; } = new List<SpecificationLevels>();
 
         // Format ----------------------------------
 
@@ -63,7 +63,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// </summary>
         [XmlArray("formatSpecificationLevels")]
         [XmlArrayItem("add.level")]
-        public List<SpecificationLevel> FormatSpecificationLevels { get; set; } = new List<SpecificationLevel>();
+        public List<SpecificationLevels> FormatSpecificationLevels { get; set; } = new List<SpecificationLevels>();
 
         #endregion
 
@@ -76,7 +76,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <summary>
         /// Initializes a new schema element specification.
         /// </summary>
-        public SchemaElementSpec() : base(AccessibilityLevel.Public)
+        public SchemaElementSpec() : base(AccessibilityLevels.Public)
         {
         }
 
@@ -86,8 +86,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public SchemaElementSpec(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }

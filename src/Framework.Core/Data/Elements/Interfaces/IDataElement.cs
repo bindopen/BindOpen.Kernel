@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         object this[string name] { get; }
         object First { get; }
 
-        EventKind? EventKind { get; set; }
+        EventKinds? EventKind { get; set; }
         bool EventKindSpecified { get; }
         //object FirstItem { get; set; }
         DataItemizationMode ItemizationMode { get; set; }

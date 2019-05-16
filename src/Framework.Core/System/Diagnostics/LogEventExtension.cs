@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public static List<ILogEvent> GetEvents(
             this List<ILogEvent> logEvents,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             return logEvents ==null ? new List<ILogEvent>() : logEvents.Where(p => kinds.Length==0 || kinds.Contains(p.Kind)).ToList();
         }
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetWarnings(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Warning);
+            return logEvents.GetEvents(EventKinds.Warning);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetErrors(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Error);
+            return logEvents.GetEvents(EventKinds.Error);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetExceptions(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Exception);
+            return logEvents.GetEvents(EventKinds.Exception);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetMessages(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Message);
+            return logEvents.GetEvents(EventKinds.Message);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetErrorOrExceptions(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Error, EventKind.Exception);
+            return logEvents.GetEvents(EventKinds.Error, EventKinds.Exception);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static List<ILogEvent> GetErrorOrExceptionOrWarnings(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.GetEvents(EventKind.Warning, EventKind.Error, EventKind.Exception);
+            return logEvents.GetEvents(EventKinds.Warning, EventKinds.Error, EventKinds.Exception);
         }
 
         // Has --------------------------
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public static bool Has(
             this List<ILogEvent> logEvents,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
             return logEvents?.Any(p => kinds.Contains(p.Kind)) ?? false;
         }
@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasWarnings(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Warning);
+            return logEvents.Has(EventKinds.Warning);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasErrors(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Error);
+            return logEvents.Has(EventKinds.Error);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasExceptions(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Exception);
+            return logEvents.Has(EventKinds.Exception);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasMessages(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Message);
+            return logEvents.Has(EventKinds.Message);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasErrorsOrExceptions(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Error, EventKind.Exception);
+            return logEvents.Has(EventKinds.Error, EventKinds.Exception);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public static bool HasErrorOrExceptionOrWarnings(
             this List<ILogEvent> logEvents)
         {
-            return logEvents.Has(EventKind.Warning, EventKind.Error, EventKind.Exception);
+            return logEvents.Has(EventKinds.Warning, EventKinds.Error, EventKinds.Exception);
         }
     }
 }

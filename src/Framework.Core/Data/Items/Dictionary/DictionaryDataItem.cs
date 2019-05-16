@@ -493,7 +493,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             if (_availableKeys?.Count > 0)
                 _values.RemoveAll(p => p.Key == null || !_availableKeys.Contains(p.Key.ToLower()));

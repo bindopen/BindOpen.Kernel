@@ -7,9 +7,9 @@ namespace BindOpen.Framework.Runtime.Application.Navigation
     /// This enumerates the possible kinds of action.
     /// </summary>
     [Serializable()]
-    [XmlType("ActionKind", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("ActionKinds", Namespace = "https://bindopen.org/xsd")]
     [Flags]
-    public enum ActionKind
+    public enum ActionKinds
     {
         /// <summary>
         /// None can access.
@@ -19,62 +19,62 @@ namespace BindOpen.Framework.Runtime.Application.Navigation
         /// <summary>
         /// Access.
         /// </summary>
-        Access = 0x1 << 2,
+        Access = 0x1 << 1,
 
         /// <summary>
         /// View.
         /// </summary>
-        View = 0x1 << 3,
+        View = 0x1 << 2,
 
         /// <summary>
         /// Download.
         /// </summary>
-        Download = 0x1 << 4,
+        Download = 0x1 << 3,
 
         /// <summary>
         /// Print.
         /// </summary>
-        Print = 0x1 << 5,
+        Print = 0x1 << 4,
 
         /// <summary>
         /// Search.
         /// </summary>
-        Search = 0x1 << 6,
+        Search = 0x1 << 5,
 
         /// <summary>
         /// Create.
         /// </summary>
-        Create = 0x1 << 7,
+        Create = 0x1 << 6,
 
         /// <summary>
         /// Edit.
         /// </summary>
-        Edit = 0x1 << 8,
+        Edit = 0x1 << 7,
 
         /// <summary>
         /// Full edit.
         /// </summary>
-        FullEdit = 0x1 << 9,
+        FullEdit = 0x1 << 8,
 
         /// <summary>
         /// Delete.
         /// </summary>
-        Delete = 0x1 << 10,
+        Delete = 0x1 << 9,
 
         /// <summary>
         /// Duplicate.
         /// </summary>
-        Duplicate = 0x1 << 11,
+        Duplicate = 0x1 << 10,
 
         /// <summary>
         /// Import.
         /// </summary>
-        Import = 0x1 << 12,
+        Import = 0x1 << 11,
 
         /// <summary>
         /// Export.
         /// </summary>
-        Export = 0x1 << 13,
+        Export = 0x1 << 12,
 
         /// <summary>
         /// Custom.

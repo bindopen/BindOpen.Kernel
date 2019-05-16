@@ -12,10 +12,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// File.
         /// </summary>
         File,
+
         /// <summary>
         /// Folder.
         /// </summary>

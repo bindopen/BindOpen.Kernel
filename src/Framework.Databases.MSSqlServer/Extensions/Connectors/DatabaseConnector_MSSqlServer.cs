@@ -161,7 +161,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -210,7 +210,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -254,7 +254,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -292,7 +292,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -332,7 +332,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -370,7 +370,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             if (this._connection == null)
             {
-                log.AddEvent(new LogEvent(EventKind.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
+                log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {

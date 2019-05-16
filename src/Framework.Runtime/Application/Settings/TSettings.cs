@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <returns>Returns the loading log.</returns>
         public override ILog UpdateFromFile(
             string filePath,
-            SpecificationLevel[] specificationLevels = null,
+            SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                     new DataElementSpecSet(
                         specificationSet?.Items?
                             .Where(p => p.SpecificationLevels?.ToArray().Has(specificationLevels) == true).ToArray()),
-                    null, new[] { UpdateMode.Incremental_UpdateCommonItems });
+                    null, new[] { UpdateModes.Incremental_UpdateCommonItems });
 
                 UpdateRuntimeInfo(_appScope, null, log);
             }

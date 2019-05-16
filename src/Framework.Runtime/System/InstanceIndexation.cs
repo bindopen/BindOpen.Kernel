@@ -2,18 +2,12 @@
 
 namespace BindOpen.Framework.Runtime.System
 {
-
     /// <summary>
     /// This enumeration lists the possible visibilities of an application module.
     /// </summary>
     [Flags]
-    public enum InstanceIndexation
+    public enum InstanceIndexations
     {
-        /// <summary>
-        /// Any.
-        /// </summary>
-        Any = InstanceIndexation.Default | InstanceIndexation.Central | InstanceIndexation.Cloud | InstanceIndexation.Box | InstanceIndexation.Standalone,
-        
         /// <summary>
         /// The application module is not indexed. Standalone application instances are not indexed.
         /// </summary>
@@ -38,11 +32,16 @@ namespace BindOpen.Framework.Runtime.System
         /// Box application module instance.
         /// </summary>
         Box = 0x1 << 3,
-        
+
         /// <summary>
         /// Standalone.
         /// </summary>
         Standalone = 0x1 << 4,
+
+        /// <summary>
+        /// Any.
+        /// </summary>
+        Any = InstanceIndexations.Default | InstanceIndexations.Central | InstanceIndexations.Cloud | InstanceIndexations.Box | InstanceIndexations.Standalone,
     }
 
 }

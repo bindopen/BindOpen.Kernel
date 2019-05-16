@@ -16,26 +16,32 @@ namespace BindOpen.Framework.Runtime.Application.Navigation
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Standard.
         /// </summary>
         Standard,
+
         /// <summary>
         /// Default page.
         /// </summary>
         Default,
+
         /// <summary>
         /// Main page.
         /// </summary>
         Main,
+
         /// <summary>
         /// Login page.
         /// </summary>
         Login,
+
         /// <summary>
         /// Home page.
         /// </summary>
         Home,
+
         /// <summary>
         /// Specified page.
         /// </summary>

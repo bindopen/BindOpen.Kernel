@@ -7,7 +7,6 @@ using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Rights
 {
-
     /// <summary>
     /// This structure respresents a right granted by an application.
     /// </summary>
@@ -30,10 +29,12 @@ namespace BindOpen.Framework.Runtime.Application.Rights
             /// Any.
             /// </summary>
             Any,
+
             /// <summary>
             /// Page or page section.
             /// </summary>
             Section,
+
             /// <summary>
             /// Object class.
             /// </summary>

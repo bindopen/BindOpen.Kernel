@@ -3,7 +3,6 @@ using System;
 
 namespace BindOpen.Framework.Runtime.Extensions.Routines
 {
-
     /// <summary>
     /// This enumeration lists all the possible kinds of the 'Standard' routines.
     /// </summary>
@@ -13,14 +12,17 @@ namespace BindOpen.Framework.Runtime.Extensions.Routines
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Item is required.
         /// </summary>
         ItemIsRequired,
+
         /// <summary>
         /// Text format must sbe.
         /// </summary>

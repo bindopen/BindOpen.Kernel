@@ -21,14 +21,18 @@ namespace BindOpen.Framework.Core.Data.Common
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Ascending.
         /// </summary>
         Ascending,
+
         /// <summary>
         /// Descending.
         /// </summary>
+        /// 
         Descending,
+
         /// <summary>
         /// Random.
         /// </summary>

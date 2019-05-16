@@ -301,7 +301,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         public override ILog Update<T1>(
                 T1 item = default,
                 string[] specificationAreas = null,
-                UpdateMode[] updateModes = null)
+                UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 
@@ -309,14 +309,14 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
             if (updateModes == null)
-                updateModes = new[] { UpdateMode.Incremental_AddItemsMissingInTarget };
+                updateModes = new[] { UpdateModes.Incremental_AddItemsMissingInTarget };
 
             if (item is IDataItemSet<T>)
             {
                 IDataItemSet<T> referenceItem = item as DataItemSet<T>;
 
                 // we repair this instance if needed
-                Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateMode.Incremental_UpdateCommonItems));
+                Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateModes.Incremental_UpdateCommonItems));
 
                 // we update the common element values
 
@@ -400,7 +400,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         public override ILog Repair<T1>(
             T1 item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             Log log = null;
 
@@ -408,7 +408,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
             if (updateModes == null)
-                updateModes = new[] { UpdateMode.Full };
+                updateModes = new[] { UpdateModes.Full };
 
             if (item is IDataItemSet<T>)
             {
@@ -416,8 +416,8 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 // we check that all the elements in this instance are in the specified item
 
-                if (updateModes.Has(UpdateMode.Incremental_RemoveItemsMissingInSource)
-                    || updateModes.Has(UpdateMode.Incremental_UpdateCommonItems))
+                if (updateModes.Has(UpdateModes.Incremental_RemoveItemsMissingInSource)
+                    || updateModes.Has(UpdateModes.Incremental_UpdateCommonItems))
                 {
                     int i = 0;
 
@@ -430,13 +430,13 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
                             T referenceSubItem = referenceItem.Items.Find(p => p.KeyEquals(currentSubItem));
                             if (referenceSubItem == null)
                             {
-                                if (updateModes.Has(UpdateMode.Incremental_RemoveItemsMissingInSource))
+                                if (updateModes.Has(UpdateModes.Incremental_RemoveItemsMissingInSource))
                                 {
                                     Items.RemoveAt(i);
                                     i--;
                                 }
                             }
-                            else if (updateModes.Has(UpdateMode.Incremental_UpdateCommonItems))
+                            else if (updateModes.Has(UpdateModes.Incremental_UpdateCommonItems))
                             {
                                 log.AddEvents(currentSubItem.Repair(referenceSubItem, specificationAreas));
                             }
@@ -448,7 +448,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
 
                 // we check that all the elements in specified item are in this instance
 
-                if (updateModes.Has(UpdateMode.Incremental_AddItemsMissingInTarget))
+                if (updateModes.Has(UpdateModes.Incremental_AddItemsMissingInTarget))
                 {
                     if (referenceItem.Items != null)
                     {

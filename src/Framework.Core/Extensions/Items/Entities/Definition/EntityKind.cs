@@ -21,18 +21,22 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities.Definition
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// Data carrier.
         /// </summary>
         Carrier,
+
         /// <summary>
         /// Data zone.
         /// </summary>
         Zone,
+
         /// <summary>
         /// Simple item.
         /// </summary>

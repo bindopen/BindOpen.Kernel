@@ -37,10 +37,12 @@ namespace BindOpen.Framework.Runtime.Application.Products
             /// Any
             /// </summary>
             Any,
+
             /// <summary>
             /// Application
             /// </summary>
             Application,
+
             /// <summary>
             /// Module
             /// </summary>
@@ -56,6 +58,7 @@ namespace BindOpen.Framework.Runtime.Application.Products
             /// None
             /// </summary>
             None,
+
             /// <summary>
             /// MyCommerce
             /// </summary>

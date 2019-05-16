@@ -121,7 +121,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 

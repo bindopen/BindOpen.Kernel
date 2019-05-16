@@ -470,7 +470,7 @@ namespace BindOpen.Framework.Core.System.Processing
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
 
-            _log?.AddEvent(EventKind.Checkpoint, "Task started");
+            _log?.AddEvent(EventKinds.Checkpoint, "Task started");
         }
 
         /// <summary>
@@ -491,20 +491,20 @@ namespace BindOpen.Framework.Core.System.Processing
                 {
                     case ProcessExecutionStatus.Completed:
                         _progressIndex = _progressMax;
-                        _log.AddEvent(EventKind.Checkpoint, "Task completed");
+                        _log.AddEvent(EventKinds.Checkpoint, "Task completed");
                         break;
                     case ProcessExecutionStatus.NothingDone:
                         _progressIndex = _progressMax;
-                        _log.AddEvent(EventKind.Checkpoint, "Task completed with nothing done");
+                        _log.AddEvent(EventKinds.Checkpoint, "Task completed with nothing done");
                         break;
                     case ProcessExecutionStatus.Stopped_Exception:
-                        _log.AddEvent(EventKind.Checkpoint, "Task stopped by exception");
+                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped by exception");
                         break;
                     case ProcessExecutionStatus.Stopped_User:
-                        _log.AddEvent(EventKind.Checkpoint, "Task stopped by user");
+                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped by user");
                         break;
                     default:
-                        _log.AddEvent(EventKind.Checkpoint, "Task stopped");
+                        _log.AddEvent(EventKinds.Checkpoint, "Task stopped");
                         break;
                 }
             }
@@ -521,7 +521,7 @@ namespace BindOpen.Framework.Core.System.Processing
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
 
-            _log?.AddEvent(EventKind.Checkpoint, "Task re-started");
+            _log?.AddEvent(EventKinds.Checkpoint, "Task re-started");
         }
 
         /// <summary>
@@ -535,7 +535,7 @@ namespace BindOpen.Framework.Core.System.Processing
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
 
-            _log?.AddEvent(EventKind.Checkpoint, "Task resume");
+            _log?.AddEvent(EventKinds.Checkpoint, "Task resume");
         }
 
         /// <summary>

@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
                     }
                     else
                     {
-                        firstLog.GetEvents(true, EventKind.Error, EventKind.Exception).ForEach(p => p.Kind = EventKind.Warning);
+                        firstLog.GetEvents(true, EventKinds.Error, EventKinds.Exception).ForEach(p => p.Kind = EventKinds.Warning);
                         log?.AddSubLog(firstLog);
 
                         library.Definition = LibraryDefinitionLoader.LoadFrom(assembly, null, log);

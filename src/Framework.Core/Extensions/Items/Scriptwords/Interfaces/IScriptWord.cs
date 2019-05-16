@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Scriptwords
 
         IScriptword SubScriptword { get; set; }
 
-        ScriptItemKind Kind { get; set; }
+        ScriptItemKinds Kind { get; set; }
         IDataElementSet ParameterDetail { get; set; }
 
         object Item { get; set; }

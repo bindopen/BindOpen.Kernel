@@ -169,7 +169,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
         public LogEvent(
-            EventKind kind,
+            EventKinds kind,
             string title = null,
             EventCriticality criticality = EventCriticality.None,
             string description = null,
@@ -234,18 +234,18 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="isRecursive">Indicate whether the search is recursive.</param>
         /// <param name="kinds">The kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public EventKind GetMaxEventKind(
+        public EventKinds GetMaxEventKind(
             bool isRecursive = true,
-            params EventKind[] kinds)
+            params EventKinds[] kinds)
         {
-            EventKind eventKind = EventKind.None;
+            EventKinds eventKind = EventKinds.None;
 
             if (Log != null)
             {
                 eventKind = Log.GetMaxEventKind(isRecursive, kinds);
             }
 
-            if (eventKind == EventKind.None)
+            if (eventKind == EventKinds.None)
             {
                 eventKind = Kind;
             }

@@ -173,7 +173,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
                 foreach (ILogEvent logEvent in log.Events)
                 {
                     line = "";
-                    line += textDelimiterValue + (logEvent.Kind == EventKind.Error ? "E" : "W").Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
+                    line += textDelimiterValue + (logEvent.Kind == EventKinds.Error ? "E" : "W").Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
                     line += aFieldDelimiterValue;
                     line += textDelimiterValue + logEvent.ResultCode.ToString().Replace(textDelimiterValue, textDelimiterValue + textDelimiterValue) + textDelimiterValue;
 

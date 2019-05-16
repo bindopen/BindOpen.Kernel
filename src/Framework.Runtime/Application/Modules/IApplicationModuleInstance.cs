@@ -9,9 +9,9 @@ namespace BindOpen.Framework.Runtime.Application.Modules
     public interface IApplicationModuleInstance : IDescribedDataItem
     {
         string AbsoluteUri { get; }
-        AccessibilityLevel AccessibilityLevel { get; set; }
+        AccessibilityLevels AccessibilityLevel { get; set; }
         string ApplicationExecutionPath { get; }
-        InstanceIndexation Indexation { get; set; }
+        InstanceIndexations Indexation { get; set; }
         bool IsLocal { get; }
         ApplicationModuleKind Kind { get; set; }
         IAppModule Module { get; set; }

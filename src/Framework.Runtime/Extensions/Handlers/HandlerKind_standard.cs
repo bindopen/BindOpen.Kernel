@@ -13,58 +13,72 @@ namespace BindOpen.Framework.Runtime.Extensions.Handlers
         /// None.
         /// </summary>
         None,
+
         /// <summary>
         /// Any.
         /// </summary>
         Any,
+
         /// <summary>
         /// BdO Script.
         /// </summary>
         BdOS,
+
         /// <summary>
         /// Dynamic data context.
         /// </summary>
         DynamicDataContext,
+
         /// <summary>
         /// Xml file.
         /// </summary>
         XmlFile,
+
         /// <summary>
         /// Xml file reference in database.
         /// </summary>
         XmlFileReferenceInDatabase,
+
         /// <summary>
         /// Text from file.
         /// </summary>
         TextFromFile,
+
         /// <summary>
         /// Text file reference in database.
         /// </summary>
         TextFileReferenceInDatabase,
+
         /// <summary>
         /// Database.
         /// </summary>
         Database,
+
         /// <summary>
         /// Xml String.
         /// </summary>
         TextFromXmlString,
+
         /// <summary>
         /// Text String.
         /// </summary>
         TextString,
+
         /// <summary>
         /// Embed resource
         /// </summary>
         EmbedResource,
+
         /// <summary>
         /// Web service
         /// </summary>
         WebService,
+
         /// <summary>
         /// Reference source ID
         /// </summary>
         ReferenceSourceId,
+
         /// <summary>
         /// Source ID
         /// </summary>

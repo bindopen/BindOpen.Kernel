@@ -60,8 +60,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public ScalarElementSpec(
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
         }
@@ -76,8 +76,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         public ScalarElementSpec(
             String name,
             DataValueType dataValueType = DataValueType.Text,
-            AccessibilityLevel accessibilityLevel = AccessibilityLevel.Public,
-            SpecificationLevel[] specificationLevels = null)
+            AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
+            SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
             this.Name = name;

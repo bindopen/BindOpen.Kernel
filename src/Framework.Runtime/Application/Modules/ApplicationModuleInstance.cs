@@ -87,14 +87,14 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// The accessibility level of this instance.
         /// </summary>
-        public AccessibilityLevel AccessibilityLevel { get; set; } = AccessibilityLevel.Public;
+        public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
 
         /// <summary>
         /// Indexation of this instance.
         /// </summary>
         [Bindable(false)]
         [DefaultValue("")]
-        public InstanceIndexation Indexation { get; set; } = InstanceIndexation.None;
+        public InstanceIndexations Indexation { get; set; } = InstanceIndexations.None;
 
         /// <summary>
         /// Kind of this instance.
@@ -169,7 +169,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             ILog log = new Log();
 

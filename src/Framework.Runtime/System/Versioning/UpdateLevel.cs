@@ -9,10 +9,12 @@
         /// Normal
         /// </summary>
         Normal,
+
         /// <summary>
         /// Minor
         /// </summary>
         Minor,
+
         /// <summary>
         /// Major
         /// </summary>

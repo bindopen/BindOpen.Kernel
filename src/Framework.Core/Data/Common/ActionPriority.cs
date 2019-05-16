@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Core.Data.Common
     /// </summary>
     [Serializable()]
     [Flags]
-    public enum ActionPriority
+    public enum ActionPriorities
     {
         /// <summary>
         /// None.

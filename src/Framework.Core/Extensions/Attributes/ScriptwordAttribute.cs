@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
 
         #region Properties
 
-        ScriptItemKind Kind { get; set; } = ScriptItemKind.None;
+        ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
         /// <summary>
         /// The sets of parameters of this instance.

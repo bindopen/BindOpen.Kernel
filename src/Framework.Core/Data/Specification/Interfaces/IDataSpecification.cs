@@ -8,11 +8,11 @@ namespace BindOpen.Framework.Core.Data.Specification
 {
     public interface IDataSpecification : IIndexedDataItem
     {
-        AccessibilityLevel AccessibilityLevel { get; set; }
+        AccessibilityLevels AccessibilityLevel { get; set; }
         InheritanceLevel InheritanceLevel { get; set; }
         RequirementLevel RequirementLevel { get; set; }
         string RequirementScript { get; set; }
-        List<SpecificationLevel> SpecificationLevels { get; set; }
+        List<SpecificationLevels> SpecificationLevels { get; set; }
 
         ILog Check(IDataSpecification referenceSpecification = null);
         bool IsCompatibleWith(IDataItem item);

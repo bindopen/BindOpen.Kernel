@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Core.Data.Items
         public virtual ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null) where T : IDataItem
+            UpdateModes[] updateModes = null) where T : IDataItem
         {
             return new Log();
         }
@@ -128,7 +128,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public ILog Update(
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             return this.Update<DataItem>(null,specificationAreas, updateModes);
         }
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Core.Data.Items
         public virtual ILog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null) where T : IDataItem
+            UpdateModes[] updateModes = null) where T : IDataItem
         {
             return new Log();
         }
@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <returns>The log of the operation.</returns>
         public ILog Repair(
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             return this.Repair<DataItem>(null, specificationAreas, updateModes);
         }

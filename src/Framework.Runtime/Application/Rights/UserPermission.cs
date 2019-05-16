@@ -98,7 +98,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// </summary>
         /// <param name="actionKind">The action kind to consider.</param>
         /// <param name="valueScript">The value script to consider.</param>
-        public UserPermission(ActionKind actionKind, String valueScript) : this(actionKind.ToString(), valueScript)
+        public UserPermission(ActionKinds actionKind, String valueScript) : this(actionKind.ToString(), valueScript)
         {
         }
 
@@ -118,7 +118,7 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         /// </summary>
         /// <param name="actionKind">The action kind to consider.</param>
         /// <param name="value">The boolean value to consider.</param>
-        public UserPermission(ActionKind actionKind, Boolean? value) : this(actionKind.ToString(), value)
+        public UserPermission(ActionKinds actionKind, Boolean? value) : this(actionKind.ToString(), value)
         {
         }
 

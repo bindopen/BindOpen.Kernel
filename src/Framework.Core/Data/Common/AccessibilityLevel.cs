@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Core.Data.Common
     [Serializable()]
     [XmlType("AccessibilityLevel", Namespace = "https://bindopen.org/xsd")]
     [Flags]
-    public enum AccessibilityLevel
+    public enum AccessibilityLevels
     {
         /// <summary>
         /// None can access.
@@ -61,14 +61,14 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="levelString">The visibility to consider.</param>
         /// <param name="defaultLevelString">The default visibility to consider.</param>
         /// <returns>Returns the visibility corresponding to the specified strings.</returns>
-        public static AccessibilityLevel ToAccessibilityLevel(
+        public static AccessibilityLevels ToAccessibilityLevel(
             String levelString,
             String defaultLevelString)
         {
-            AccessibilityLevel visibility = levelString.ToEnum<AccessibilityLevel>(AccessibilityLevel.None);
+            AccessibilityLevels visibility = levelString.ToEnum<AccessibilityLevels>(AccessibilityLevels.None);
 
-            if (visibility == AccessibilityLevel.Inherited)
-                visibility = defaultLevelString.ToEnum<AccessibilityLevel>(AccessibilityLevel.None);
+            if (visibility == AccessibilityLevels.Inherited)
+                visibility = defaultLevelString.ToEnum<AccessibilityLevels>(AccessibilityLevels.None);
 
             return visibility;
         }

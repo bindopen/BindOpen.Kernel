@@ -16,28 +16,36 @@ namespace BindOpen.Framework.Core.Data.Common
     [Serializable()]
     [XmlType("UpdateMode", Namespace = "https://bindopen.org/xsd")]
     [Flags]
-    public enum UpdateMode
+    public enum UpdateModes
     {
         /// <summary>
-        /// Source fully replaces Target.
+        /// None.
         /// </summary>
-        /// <remarks>Used in full update.</remarks>
-        Full = Incremental_AddItemsMissingInTarget | Incremental_RemoveItemsMissingInSource | Incremental_UpdateCommonItems,
+        None = 0,
+
         /// <summary>
         /// Adds Source items that are not in Target.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
         Incremental_AddItemsMissingInTarget = 1 << 0,
+
         /// <summary>
         /// Removes Target items that are not in Source.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
         Incremental_RemoveItemsMissingInSource = 1 << 1,
+
         /// <summary>
         /// Updates Target items that are in Source.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
-        Incremental_UpdateCommonItems = 1 << 2
+        Incremental_UpdateCommonItems = 1 << 2,
+
+        /// <summary>
+        /// Source fully replaces Target.
+        /// </summary>
+        /// <remarks>Used in full update.</remarks>
+        Full = Incremental_AddItemsMissingInTarget | Incremental_RemoveItemsMissingInSource | Incremental_UpdateCommonItems
     }
 
     #endregion
@@ -60,8 +68,8 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="updateMode">The specified update mode to consider.</param>
         /// <returns></returns>
         public static bool Has(
-            this UpdateMode[] updateModes,
-            UpdateMode updateMode)
+            this UpdateModes[] updateModes,
+            UpdateModes updateMode)
         {
             return (updateModes.Aggregate((current, value) => current | value) & updateMode) == updateMode;
         }
@@ -72,13 +80,13 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="updateModes">The update modes to consider.</param>
         /// <param name="excludingUpdateModes">The excluding update modes to consider.</param>
         /// <returns></returns>
-        public static UpdateMode[] Excluding(
-            this UpdateMode[] updateModes,
-            params UpdateMode[] excludingUpdateModes)
+        public static UpdateModes[] Excluding(
+            this UpdateModes[] updateModes,
+            params UpdateModes[] excludingUpdateModes)
         {
-            UpdateMode updateMode = updateModes.Aggregate((current, value) => current | value) & ~excludingUpdateModes.Aggregate((current, value) => current | value);
+            UpdateModes updateMode = updateModes.Aggregate((current, value) => current | value) & ~excludingUpdateModes.Aggregate((current, value) => current | value);
 
-            return Enum.GetValues(typeof(UpdateMode)).Cast<UpdateMode>().Where(p => (p & updateMode) == p).ToArray();
+            return Enum.GetValues(typeof(UpdateModes)).Cast<UpdateModes>().Where(p => (p & updateMode) == p).ToArray();
         }
 
         /// <summary>
@@ -87,9 +95,9 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <param name="updateMode">The update mode to consider.</param>
         /// <param name="excludingUpdateModes">The excluding update modes to consider.</param>
         /// <returns></returns>
-        public static UpdateMode[] Excluding(
-            this UpdateMode updateMode,
-            params UpdateMode[] excludingUpdateModes)
+        public static UpdateModes[] Excluding(
+            this UpdateModes updateMode,
+            params UpdateModes[] excludingUpdateModes)
         {
             return (new [] { updateMode }).Excluding(excludingUpdateModes);
         }

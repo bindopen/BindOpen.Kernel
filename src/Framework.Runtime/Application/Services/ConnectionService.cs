@@ -202,7 +202,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             return new Log();
         }

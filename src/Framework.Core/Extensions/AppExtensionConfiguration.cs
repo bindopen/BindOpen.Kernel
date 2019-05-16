@@ -203,7 +203,7 @@ namespace BindOpen.Framework.Core.Extensions
         public override ILog Update<T>(
             T item = default,
             string[] specificationAreas = null,
-            UpdateMode[] updateModes = null)
+            UpdateModes[] updateModes = null)
         {
             if (Filters != null)
                 Filters = Filters.GroupBy(p => new { p.Name, p.FileName }).Select(p => p.First()).ToList();

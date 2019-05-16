@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
             params TaskEntryKind[] taskEntryKinds);
 
         bool IsCompatibleWith(IDataElementSpecSet dataElementSpecSet, TaskEntryKind taskEntryKind = TaskEntryKind.Any);
-        bool IsConfigurable(SpecificationLevel specificationLevel = SpecificationLevel.Runtime);
+        bool IsConfigurable(SpecificationLevels specificationLevel = SpecificationLevels.Runtime);
 
         void UpdateAbsolutePaths(string relativePath);
 
