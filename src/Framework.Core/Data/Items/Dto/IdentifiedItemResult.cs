@@ -3,15 +3,15 @@
 namespace BindOpen.Framework.Core.Data.Items.Dto
 {
     /// <summary>
-    /// This class represents the indentified single result.
+    /// This class represents the indentified item result.
     /// </summary>
-    public class IdentifiedSingleResult
+    public class IdentifiedItemResult
     {
         public string Id { get; set; }
 
         public ResourceStatus Status { get; set; }
 
-        public IdentifiedSingleResult(string id, ResourceStatus status)
+        public IdentifiedItemResult(string id, ResourceStatus status)
         {
             Id = id;
             Status = status;
