@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Dto;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Labs.AspNetCore.Data.Resolvers;
 using Newtonsoft.Json;
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Tests.TestConsole
             //    p.Kind != BindOpen.Framework.Core.System.Diagnostics.Events.EventKind.Error
             //    || p?.ResultCode?.StartsWith("user.") == false);
             string st = JsonConvert.SerializeObject(
-                log,
+                log.ToApiDto(),
                 Formatting.Indented,
                 new JsonSerializerSettings()
                 {
@@ -238,9 +238,6 @@ namespace BindOpen.Framework.Tests.TestConsole
             //        "platform.bdd", null, Program._AppManager.Log))
             //    if (connection != null)
             //        connection.ExecuteNonQuery("SELECT * FROM TABLE1", null, Program._AppManager.Log);
-
-            Console.WriteLine("Press key to exit...");
-            Console.ReadKey();
         }
     }
 }
