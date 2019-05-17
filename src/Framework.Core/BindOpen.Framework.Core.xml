@@ -5603,9 +5603,9 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IdentifiedSingleResult">
+        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IdItemResult">
             <summary>
-            This class represents the indentified single result.
+            This class represents the ID item result.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IDescribed">
@@ -5741,7 +5741,7 @@
             Unique name of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.NamedItemResult">
+        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.NameItemResult">
             <summary>
             This class represents the named item result.
             </summary>
