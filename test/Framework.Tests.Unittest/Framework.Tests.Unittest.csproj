@@ -25,6 +25,10 @@ This package conducts unit tests.</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="System\Diagnostics\ApiLogDtoTest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />

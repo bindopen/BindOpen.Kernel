@@ -5603,6 +5603,11 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IdentifiedSingleResult">
+            <summary>
+            This class represents the indentified single result.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.Dto.IDescribed">
             <summary>
             This interface represents a described DTO.
@@ -5734,6 +5739,11 @@
         <member name="P:BindOpen.Framework.Core.Data.Items.Dto.IUnique.UniqueId">
             <summary>
             Unique name of this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Items.Dto.NamedItemResult">
+            <summary>
+            This class represents the named item result.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.IdentifiedDataItem">
@@ -9953,6 +9963,159 @@
             Resolves the domain i.e. initializes the assembly resolving routines.
             </summary>
             <param name="appDomain">The domain to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto">
+            <summary>
+            This class represents a log.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.DisplayName">
+            <summary>
+            The display name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.DisplayNameSpecified">
+            <summary>
+            Specification of the DisplayName property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.Description">
+            <summary>
+            The description of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.DescriptionSpecified">
+            <summary>
+            Specification of the Description property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.Events">
+            <summary>
+            The events of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.EventsSpecified">
+            <summary>
+            Specification of the Description property of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.#ctor">
+            <summary>
+            Instantiates a new instance of the ApiLogDto class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDto.#ctor(System.String,System.String,System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the ApiLogDto class.
+            </summary>
+            <param name="kind">The kind of this instance.</param>
+            <param name="title">The title of this instance.</param>
+            <param name="criticality">The criticality of this instance.</param>
+            <param name="description">The description of this instance.</param>
+            <param name="resultCode">The result code of this instance.</param>
+            <param name="date">The date of this instance.</param>
+            <param name="id">The ID of this instance.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDtoFactory">
+            <summary>
+            This class represents a factory for API logs.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDtoFactory.ToApiDto(BindOpen.Framework.Core.System.Diagnostics.ILog,System.String,System.String)">
+            <summary>
+            Converts the specified log to the Api log DTO.
+            </summary>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the Api log DTO.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogDtoFactory.ToApiDto(BindOpen.Framework.Core.System.Diagnostics.ILogEvent,System.String,System.String)">
+            <summary>
+            Converts the specified log to the Api log DTO.
+            </summary>
+            <param name="aEvent">The log to consider.</param>
+            <returns>Returns the Api log DTO.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto">
+            <summary>
+            This class represents a log event.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.Kind">
+            <summary>
+            Kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.Date">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.DateSpecified">
+            <summary>
+            Specification of the Date property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.CreationDate">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.CreationDateSpecified">
+            <summary>
+            Specification of the CreationDate property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.Criticality">
+            <summary>
+            Criticality of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.ResultCode">
+            <summary>
+            Result code of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.ResultCodeSpecified">
+            <summary>
+            Specification of the ResultCode property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.DisplayName">
+            <summary>
+            The display name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.DisplayNameSpecified">
+            <summary>
+            Specification of the DisplayName property of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.Description">
+            <summary>
+            The description of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.DescriptionSpecified">
+            <summary>
+            Specification of the Description property of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.#ctor">
+            <summary>
+            Instantiates a new instance of the ApiLogEventDto class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Dto.ApiLogEventDto.#ctor(BindOpen.Framework.Core.System.Diagnostics.Events.EventKinds,System.String,BindOpen.Framework.Core.System.Diagnostics.Events.EventCriticality,System.String,System.String,System.Nullable{System.DateTime},System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the ApiLogEventDto class.
+            </summary>
+            <param name="kind">The kind of this instance.</param>
+            <param name="displayName">The title of this instance.</param>
+            <param name="criticality">The criticality of this instance.</param>
+            <param name="description">The description of this instance.</param>
+            <param name="resultCode">The result code of this instance.</param>
+            <param name="date">The date of this instance.</param>
+            <param name="id">The ID of this instance.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.System.Diagnostics.Events.ConditionalEvent">
             <summary>

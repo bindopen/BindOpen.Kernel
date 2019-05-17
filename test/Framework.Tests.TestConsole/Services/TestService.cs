@@ -17,6 +17,8 @@ namespace BindOpen.Framework.Tests.TestConsole.Services
             Console.WriteLine("Service settings:" + Settings?.TestFolderPath);
             Console.WriteLine("Test Uri value:" + Host.GetSettings<TestAppSettings>()?.Uris?.FirstOrDefault().Value);
 
+            Test_It.Start();
+
             return this;
         }
     }
