@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Core.Data.Items.Sets
 {
-    public interface IDataItemSet<T> : IIdentifiedDataItem, IGloballyDescribed
+    public interface IDataItemSet<T> : IIdentifiedDataItem
         where T : IdentifiedDataItem
     {
         List<T> Items { get; set; }
@@ -25,7 +25,5 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         bool HasItem(string key);
         bool HasItems();
         void Remove(params string[] keys);
-
-        bool DescriptionSpecified { get; }
     }
 }

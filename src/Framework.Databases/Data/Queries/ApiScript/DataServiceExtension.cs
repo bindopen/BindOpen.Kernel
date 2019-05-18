@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             Func<IDbConnection, string, T> function,
             IScriptVariableSet scriptVariableSet = null)
         {
-            T result = default(T);
+            T result = default;
             log = log ?? new Log();
 
             if (dataService?.Connection is DatabaseConnection connection)

@@ -90,18 +90,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Instantiates a new instance of the IDataElementSet class.
         /// </summary>
         /// <param name="elements">The elements to consider.</param>
-        public DataElementSet(params IDataElement[] elements) : this(null, elements)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the IDataElementSet class.
-        /// </summary>
-        /// <param name="description">The description to consider.</param>
-        /// <param name="elements">The elements to consider.</param>
         public DataElementSet(
-            IDictionaryDataItem description,
-            params IDataElement[] elements) : base(description, elements.Cast<DataElement>().ToArray())
+            params IDataElement[] elements) : base(elements.Cast<DataElement>().ToArray())
         {
         }
 
@@ -495,8 +485,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public override object Clone()
         {
             DataElementSet elementSet = MemberwiseClone() as DataElementSet;
-            if (Description != null)
-                elementSet.Description = Description.Clone() as DictionaryDataItem;
             elementSet._items = Elements?.Select(p => p.Clone() as DataElement).ToList();
 
             return elementSet;

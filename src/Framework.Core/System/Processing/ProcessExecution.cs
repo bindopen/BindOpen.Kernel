@@ -65,7 +65,7 @@ namespace BindOpen.Framework.Core.System.Processing
         {
             get
             {
-                return Detail != null && (Detail.ElementsSpecified || Detail.DescriptionSpecified);
+                return Detail != null && (Detail.ElementsSpecified);
             }
         }
 

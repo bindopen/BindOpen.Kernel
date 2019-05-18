@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Xml;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -62,18 +60,6 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         public bool ItemsSpecified => _items?.Count > 0;
 
         /// <summary>
-        /// Description of this instance.
-        /// </summary>
-        [XmlElement("description")]
-        public DictionaryDataItem Description { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
-
-        /// <summary>
         /// Returns the number of items.
         /// </summary>
         [XmlIgnore()]
@@ -123,19 +109,9 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Instantiates a new instance of the DataItemSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public DataItemSet(params T[] items) : this(null, items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataItemSet class.
-        /// </summary>
-        /// <param name="description">The description to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public DataItemSet(IDictionaryDataItem description, params T[] items)
+        public DataItemSet(params T[] items)
         {
             _items = items?.ToList();
-            Description = description as DictionaryDataItem;
         }
 
         #endregion
@@ -519,8 +495,6 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         public override object Clone()
         {
             DataItemSet<T> dataItemSet = base.Clone() as DataItemSet<T>;
-            if (Description != null)
-                dataItemSet.Description = Description.Clone() as DictionaryDataItem;
             dataItemSet._items = _items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;
@@ -547,66 +521,6 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         {
             PropertyChangedEventHandler aHandler = PropertyChanged;
             if (aHandler != null) aHandler(this, new PropertyChangedEventArgs(name));
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IDescribedDataItem IMPLEMENTATION
-        // ------------------------------------------
-
-        #region IDescribedDataItem Implementation
-
-        /// <summary>
-        /// Adds the title text.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        public void AddDescription(string text)
-        {
-            AddDescription("*", text);
-        }
-
-        /// <summary>
-        /// Adds the title text.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="text">The text to consider.</param>
-        public void AddDescription(string key, string text)
-        {
-            (Description ?? (Description = new DictionaryDataItem())).AddValue(key, text);
-        }
-
-        /// <summary>
-        /// Sets the title text.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        public void SetDescription(string text)
-        {
-            SetDescription("*", text);
-        }
-
-        /// <summary>
-        /// Sets the title text.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="text">The text to consider.</param>
-        public void SetDescription(string key = "*", string text = "*")
-        {
-            (Description ?? (Description = new DictionaryDataItem())).SetValue(key, text);
-        }
-
-        /// <summary>
-        /// Returns the description label.
-        /// </summary>
-        /// <param name="variantName">The variant variant name to consider.</param>
-        /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
-        {
-            if (Description == null) return "";
-            string label = Description.GetContent(variantName);
-            if (string.IsNullOrEmpty(label))
-                label = Description.GetContent(defaultVariantName);
-            return label ?? "";
         }
 
         #endregion

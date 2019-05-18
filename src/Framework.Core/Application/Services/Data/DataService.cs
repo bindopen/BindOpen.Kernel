@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.Application.Services.Data
         /// </summary>
         public IConnection Connection
         {
-            get { return this._connection; }
+            get { return _connection; }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Core.Application.Services.Data
         /// <param name="connection">The connection to consider.</param>
         public DataService(IConnection connection)
         {
-            this._connection = connection;
+            _connection = connection;
         }
     }
 }
