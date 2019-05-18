@@ -54,17 +54,6 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Instantiates a new instance of the ObservableDataItemSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        /// <param name="description">The description to consider.</param>
-        public ObservableDataItemSet(
-            IDictionaryDataItem description,
-            params T[] items) : base(description, items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the ObservableDataItemSet class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
         public ObservableDataItemSet(params T[] items) : base(items)
         {
         }

@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the ScopedService class.
         /// </summary>
-        public ScopedService() : base("")
+        protected ScopedService() : base("")
         {
         }
 
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// Instantiates a new instance of the ScopedService class.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
-        public ScopedService(IAppHostScope appScope) : base("")
+        protected ScopedService(IAppHostScope appScope) : base("")
         {
             _appScope = appScope;
         }

@@ -6,6 +6,8 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
+using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Data.Items.Sets;
 
 namespace BindOpen.Framework.Runtime.Application.Options
@@ -15,13 +17,25 @@ namespace BindOpen.Framework.Runtime.Application.Options
     /// </summary>
     [XmlType("OptionSpecSet", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("optionSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class OptionSpecSet : DataItemSet<OptionSpec>, IOptionSpecSet
+    public class OptionSpecSet : DataItemSet<OptionSpec>, IOptionSpecSet, IGloballyDescribed
     {
         // -------------------------------------------------------------
         // PROPERTIES
         // -------------------------------------------------------------
 
         #region Properties
+        /// <summary>
+        /// Description of this instance.
+        /// </summary>
+        [XmlElement("description")]
+        public DictionaryDataItem Description { get; set; } = null;
+
+        /// <summary>
+        /// Specification of the Description property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
+
 
         /// <summary>
         /// The name of this instance.
@@ -64,7 +78,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="optionSpecifications">The option specifications to consider.</param>
         public OptionSpecSet(params IOptionSpec[] optionSpecifications)
         {
-            this.Items = optionSpecifications.Cast<OptionSpec>().ToList();
+            Items = optionSpecifications.Cast<OptionSpec>().ToList();
         }
 
         /// <summary>
@@ -74,7 +88,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="optionSpecifications">The option specifications to consider.</param>
         public OptionSpecSet(ICondition condition, params IOptionSpec[] optionSpecifications) : this(optionSpecifications)
         {
-            this.Condition = condition as Condition;
+            Condition = condition as Condition;
         }
 
         #endregion
@@ -92,9 +106,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns the help text.</returns>
         public string GetHelpText(String uiCulture = "*")
         {
-            String helpText = this.Description.GetContent(uiCulture);
+            String helpText = Description.GetContent(uiCulture);
 
-            foreach (DataElementSpec aElementSpec in this.Items)
+            foreach (DataElementSpec aElementSpec in Items)
             {
                 foreach (String aAlias in aElementSpec.Aliases)
                     helpText += (helpText?.Length == 0 ? "" : ", ") + aAlias;
@@ -119,7 +133,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         public void ClearOptions()
         {
-            this.ClearItems();
+            ClearItems();
         }
 
         // Add subset -------------------------------
@@ -130,7 +144,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="subSet">The sub set to add.</param>
         public IOptionSpecSet AddSubSet(IOptionSpecSet subSet)
         {
-            this.SubSets?.Add(subSet as OptionSpecSet);
+            SubSets?.Add(subSet as OptionSpecSet);
 
             return this;
         }
@@ -141,7 +155,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="optionSpecifications">The option specifications to consider.</param>
         public IOptionSpecSet AddSubSet(params IOptionSpec[] optionSpecifications)
         {
-            this.SubSets?.Add(new OptionSpecSet(optionSpecifications));
+            SubSets?.Add(new OptionSpecSet(optionSpecifications));
 
             return this;
         }
@@ -153,7 +167,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="optionSpecifications">The option specifications to consider.</param>
         public IOptionSpecSet AddSubSet(ICondition condition, params IOptionSpec[] optionSpecifications)
         {
-            this.SubSets?.Add(new OptionSpecSet(condition, optionSpecifications));
+            SubSets?.Add(new OptionSpecSet(condition, optionSpecifications));
 
             return this;
         }
@@ -166,7 +180,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(params string[] aliases)
         {
-            return this.AddOption(OptionNameKind.OnlyValue, aliases);
+            return AddOption(OptionNameKind.OnlyValue, aliases);
         }
 
         /// <summary>
@@ -178,7 +192,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return this.AddOption(DataValueType.Text, RequirementLevel.Optional, OptionNameKind.OnlyValue, aliases);
+            return AddOption(DataValueType.Text, RequirementLevel.Optional, OptionNameKind.OnlyValue, aliases);
         }
 
         /// <summary>
@@ -190,7 +204,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             RequirementLevel requirementLevel,
             params string[] aliases)
         {
-            this.Add(new OptionSpec(requirementLevel, aliases));
+            Add(new OptionSpec(requirementLevel, aliases));
             return this;
         }
 
@@ -205,7 +219,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return this.AddOption(dataValueType, RequirementLevel.Required, OptionNameKind.OnlyValue, aliases);
+            return AddOption(dataValueType, RequirementLevel.Required, OptionNameKind.OnlyValue, aliases);
         }
 
         /// <summary>
@@ -219,7 +233,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return this.AddOption(DataValueType.Text, requirementLevel, nameKind, aliases);
+            return AddOption(DataValueType.Text, requirementLevel, nameKind, aliases);
         }
 
         /// <summary>
@@ -235,7 +249,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            this.Add(new OptionSpec(dataValueType, requirementLevel, nameKind, aliases));
+            Add(new OptionSpec(dataValueType, requirementLevel, nameKind, aliases));
             return this;
         }
 
@@ -252,7 +266,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return this.AddOption(type.GetValueType(), requirementLevel, nameKind, aliases);
+            return AddOption(type.GetValueType(), requirementLevel, nameKind, aliases);
         }
 
         // Remove -----------------------------------
@@ -263,7 +277,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="name">Name of the statement entry to remove.</param>
         public IOptionSpecSet RemoveOption(String name)
         {
-            this.Remove(name);
+            Remove(name);
 
             return this;
         }
@@ -282,7 +296,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="name">Name of the option to consider.</param>
         public bool HasOption(String name)
         {
-            return this.HasItem(name);
+            return HasItem(name);
         }
 
         /// <summary>
@@ -294,8 +308,68 @@ namespace BindOpen.Framework.Runtime.Application.Options
         {
             if (key == null) return null;
 
-            return this.Items.Find(p =>
+            return Items.Find(p =>
                 p.KeyEquals(key) || (p?.Aliases?.Any(q => q.KeyEquals(key)) == true));
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDescribedDataItem IMPLEMENTATION
+        // ------------------------------------------
+
+        #region IDescribedDataItem Implementation
+
+        /// <summary>
+        /// Adds the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public void AddDescription(string text)
+        {
+            AddDescription("*", text);
+        }
+
+        /// <summary>
+        /// Adds the title text.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        public void AddDescription(string key, string text)
+        {
+            (Description ?? (Description = new DictionaryDataItem())).AddValue(key, text);
+        }
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public void SetDescription(string text)
+        {
+            SetDescription("*", text);
+        }
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        public void SetDescription(string key = "*", string text = "*")
+        {
+            (Description ?? (Description = new DictionaryDataItem())).SetValue(key, text);
+        }
+
+        /// <summary>
+        /// Returns the description label.
+        /// </summary>
+        /// <param name="variantName">The variant variant name to consider.</param>
+        /// <param name="defaultVariantName">The default variant name to consider.</param>
+        public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
+        {
+            if (Description == null) return "";
+            string label = Description.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
+                label = Description.GetContent(defaultVariantName);
+            return label ?? "";
         }
 
         #endregion

@@ -67,7 +67,7 @@ namespace Microsoft.Extensions.DependencyInjection
         // BindOpen services --------------------------
 
         /// <summary>
-        /// Adds a BindOpen application service.
+        /// Adds a BindOpen service.
         /// </summary>
         /// <typeparam name="T">The class of application service to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
@@ -80,6 +80,24 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddSingleton<ITAppServiceOptions<T>>(_ => new TAppServiceOptions<T>(loggers, funcSettings));
             services.AddHostedService<TBdoHostedService<T> >();
+
+            return services;
+        }
+
+        /// <summary>
+        /// Adds a BindOpen transient service.
+        /// </summary>
+        /// <typeparam name="T">The class of application service to consider.</typeparam>
+        /// <param name="services">The collection of services to populate.</param>
+        /// <returns></returns>
+        public static IServiceCollection AddBindOpenTransientService<T>(
+            this IServiceCollection services,
+            ILogger[] loggers = null,
+            Func<IAppSettings, IBaseSettings> funcSettings = null)
+            where T : IAppService, IAppHosted, new()
+        {
+            services.AddTransient<ITAppServiceOptions<T>>(_ => new TAppServiceOptions<T>(loggers, funcSettings));
+            //services.AddTransient<T>>(q => new T());
 
             return services;
         }

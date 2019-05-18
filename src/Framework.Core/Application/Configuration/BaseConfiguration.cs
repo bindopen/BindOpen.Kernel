@@ -6,6 +6,7 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -23,6 +24,18 @@ namespace BindOpen.Framework.Core.Application.Configuration
         // -------------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// Description of this instance.
+        /// </summary>
+        [XmlElement("description")]
+        public DictionaryDataItem Description { get; set; } = null;
+
+        /// <summary>
+        /// Specification of the Description property of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
 
         /// <summary>
         /// Name of this instance.
@@ -185,6 +198,66 @@ namespace BindOpen.Framework.Core.Application.Configuration
             }
 
             return false;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDescribedDataItem IMPLEMENTATION
+        // ------------------------------------------
+
+        #region IDescribedDataItem Implementation
+
+        /// <summary>
+        /// Adds the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public void AddDescription(string text)
+        {
+            AddDescription("*", text);
+        }
+
+        /// <summary>
+        /// Adds the title text.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        public void AddDescription(string key, string text)
+        {
+            (Description ?? (Description = new DictionaryDataItem())).AddValue(key, text);
+        }
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public void SetDescription(string text)
+        {
+            SetDescription("*", text);
+        }
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        public void SetDescription(string key = "*", string text = "*")
+        {
+            (Description ?? (Description = new DictionaryDataItem())).SetValue(key, text);
+        }
+
+        /// <summary>
+        /// Returns the description label.
+        /// </summary>
+        /// <param name="variantName">The variant variant name to consider.</param>
+        /// <param name="defaultVariantName">The default variant name to consider.</param>
+        public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
+        {
+            if (Description == null) return "";
+            string label = Description.GetContent(variantName);
+            if (string.IsNullOrEmpty(label))
+                label = Description.GetContent(defaultVariantName);
+            return label ?? "";
         }
 
         #endregion

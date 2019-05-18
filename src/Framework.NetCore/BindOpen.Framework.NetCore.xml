@@ -36,7 +36,15 @@
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
             <summary>
-            Adds a BindOpen application service.
+            Adds a BindOpen service.
+            </summary>
+            <typeparam name="T">The class of application service to consider.</typeparam>
+            <param name="services">The collection of services to populate.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenTransientService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
+            <summary>
+            Adds a BindOpen transient service.
             </summary>
             <typeparam name="T">The class of application service to consider.</typeparam>
             <param name="services">The collection of services to populate.</param>

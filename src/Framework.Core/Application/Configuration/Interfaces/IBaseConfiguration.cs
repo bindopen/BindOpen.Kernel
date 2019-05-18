@@ -5,7 +5,7 @@ using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
-    public interface IBaseConfiguration : IDataElementSet, INamed, IIdentifiedDataItem, ISavable
+    public interface IBaseConfiguration : IDataElementSet, INamed, IIdentifiedDataItem, ISavable, IGloballyDescribed
     {
         string CreationDate { get; set; }
         string CurrentFilePath { get; set; }

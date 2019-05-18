@@ -5,7 +5,6 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Items;
@@ -52,7 +51,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// Specification of the PathDetail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool PathDetailSpecified => PathDetail != null && (PathDetail.ElementsSpecified || PathDetail.DescriptionSpecified);
+        public bool PathDetailSpecified => PathDetail != null && (PathDetail.ElementsSpecified);
 
         #endregion
 

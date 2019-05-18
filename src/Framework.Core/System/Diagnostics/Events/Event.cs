@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
         /// Specification of the Detail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool DetailSpecified => this.Detail != null && (this.Detail.ElementsSpecified || this.Detail.DescriptionSpecified);
+        public bool DetailSpecified => this.Detail != null && (this.Detail.ElementsSpecified);
 
         /// <summary>
         /// Criticality of this instance.

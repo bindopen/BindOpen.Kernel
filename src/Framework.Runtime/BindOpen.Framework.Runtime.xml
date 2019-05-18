@@ -1701,6 +1701,16 @@
             This class represents a option specification set.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.Description">
+            <summary>
+            Description of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.DescriptionSpecified">
+            <summary>
+            Specification of the Description property of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.Name">
             <summary>
             The name of this instance.
@@ -1842,6 +1852,39 @@
             </summary>
             <param name="key">The name of the alias of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.AddDescription(System.String)">
+            <summary>
+            Adds the title text.
+            </summary>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.AddDescription(System.String,System.String)">
+            <summary>
+            Adds the title text.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.SetDescription(System.String)">
+            <summary>
+            Sets the title text.
+            </summary>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.SetDescription(System.String,System.String)">
+            <summary>
+            Sets the title text.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.OptionSpecSet.GetDescription(System.String,System.String)">
+            <summary>
+            Returns the description label.
+            </summary>
+            <param name="variantName">The variant variant name to consider.</param>
+            <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1">
             <summary>

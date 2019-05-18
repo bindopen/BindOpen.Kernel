@@ -9,6 +9,16 @@
             This class represents a configuration.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.Description">
+            <summary>
+            Description of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.DescriptionSpecified">
+            <summary>
+            Specification of the Description property of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.Name">
             <summary>
             Name of this instance.
@@ -79,6 +89,39 @@
             <param name="filePath">The file path to consider.</param>
             <param name="log">The output log.</param>
             <returns>True if this instance has been</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.AddDescription(System.String)">
+            <summary>
+            Adds the title text.
+            </summary>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.AddDescription(System.String,System.String)">
+            <summary>
+            Adds the title text.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.SetDescription(System.String)">
+            <summary>
+            Sets the title text.
+            </summary>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.SetDescription(System.String,System.String)">
+            <summary>
+            Sets the title text.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="text">The text to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.BaseConfiguration.GetDescription(System.String,System.String)">
+            <summary>
+            Returns the description label.
+            </summary>
+            <param name="variantName">The variant variant name to consider.</param>
+            <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.ConfigurationBundle">
             <summary>
@@ -3513,13 +3556,6 @@
             </summary>
             <param name="elements">The elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet.#ctor(BindOpen.Framework.Core.Data.Items.Dictionary.IDictionaryDataItem,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
-            <summary>
-            Instantiates a new instance of the IDataElementSet class.
-            </summary>
-            <param name="description">The description to consider.</param>
-            <param name="elements">The elements to consider.</param>
-        </member>
         <member name="M:BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet.AddElement(BindOpen.Framework.Core.Data.Elements.IDataElement,BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
             <summary>
             Adds a new element.
@@ -5936,16 +5972,6 @@
             Specification of the Items property of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Description">
-            <summary>
-            Description of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.DescriptionSpecified">
-            <summary>
-            Specification of the Description property of this instance.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.Count">
             <summary>
             Returns the number of items.
@@ -5970,13 +5996,6 @@
             <summary>
             Instantiates a new instance of the DataItemSet class.
             </summary>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.#ctor(BindOpen.Framework.Core.Data.Items.Dictionary.IDictionaryDataItem,`0[])">
-            <summary>
-            Instantiates a new instance of the DataItemSet class.
-            </summary>
-            <param name="description">The description to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.ClearItems">
@@ -6103,39 +6122,6 @@
             </summary>
             <param name="name">The name of the property that has changed.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.AddDescription(System.String)">
-            <summary>
-            Adds the title text.
-            </summary>
-            <param name="text">The text to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.AddDescription(System.String,System.String)">
-            <summary>
-            Adds the title text.
-            </summary>
-            <param name="key">The key to consider.</param>
-            <param name="text">The text to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.SetDescription(System.String)">
-            <summary>
-            Sets the title text.
-            </summary>
-            <param name="text">The text to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.SetDescription(System.String,System.String)">
-            <summary>
-            Sets the title text.
-            </summary>
-            <param name="key">The key to consider.</param>
-            <param name="text">The text to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.DataItemSet`1.GetDescription(System.String,System.String)">
-            <summary>
-            Returns the description label.
-            </summary>
-            <param name="variantName">The variant variant name to consider.</param>
-            <param name="defaultVariantName">The default variant name to consider.</param>
-        </member>
         <member name="T:BindOpen.Framework.Core.Data.Items.Sets.ObservableDataItemSet`1">
             <summary>
             This class represents a data item set.
@@ -6151,13 +6137,6 @@
             <summary>
             Instantiates a new instance of the ObservableDataItemSet class.
             </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.Sets.ObservableDataItemSet`1.#ctor(BindOpen.Framework.Core.Data.Items.Dictionary.IDictionaryDataItem,`0[])">
-            <summary>
-            Instantiates a new instance of the ObservableDataItemSet class.
-            </summary>
-            <param name="items">The items to consider.</param>
-            <param name="description">The description to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Items.Sets.ObservableDataItemSet`1.#ctor(`0[])">
             <summary>

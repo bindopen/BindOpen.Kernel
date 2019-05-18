@@ -195,7 +195,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Specification of the PropertyDetail property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool PropertyDetailSpecified => _propertyDetail != null && (_propertyDetail.ElementsSpecified || _propertyDetail.DescriptionSpecified);
+        public bool PropertyDetailSpecified => _propertyDetail != null && (_propertyDetail.ElementsSpecified);
 
         /// <summary>
         /// The event kind of this instance.

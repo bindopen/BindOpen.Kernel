@@ -8,7 +8,6 @@ using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Items.Tasks;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition;
 using BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -59,7 +58,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Specification of the InputSpecified property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool InputDetailSpecified => _inputDetail != null && (_inputDetail.ElementsSpecified || _inputDetail.DescriptionSpecified);
+        public bool InputDetailSpecified => _inputDetail != null && (_inputDetail.ElementsSpecified);
 
         /// <summary>
         /// Output detail of this instance.
@@ -75,7 +74,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
         /// Specification of the OutputSpecified property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool OutputDetailSpecified => _outputDetail != null && (_outputDetail.ElementsSpecified || _outputDetail.DescriptionSpecified);
+        public bool OutputDetailSpecified => _outputDetail != null && (_outputDetail.ElementsSpecified);
 
         #endregion
 
