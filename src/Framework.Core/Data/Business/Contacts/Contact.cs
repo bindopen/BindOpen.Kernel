@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Business.Contacts
     [Serializable()]
     [XmlType("Contact", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "contact", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class Contact : StoredDataItem
+    public class Contact : NamedDataItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -49,6 +49,13 @@ namespace BindOpen.Framework.Core.Data.Business.Contacts
         /// Instantiates a new instance of the Contact class.
         /// </summary>
         public Contact()
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the Contact class.
+        /// </summary>
+        public Contact(string name) : base(name, "contact_")
         {
         }
 
