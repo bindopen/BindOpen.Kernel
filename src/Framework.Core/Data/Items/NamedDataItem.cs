@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Core.Data.Items
         public override object Clone()
         {
             NamedDataItem item = base.Clone() as NamedDataItem;
-            item.Name =NamedDataItem.GetClonedName(this.Name, this.NamePreffix);
+            item.Name = Name;// NamedDataItem.GetClonedName(this.Name, this.NamePreffix);
             if (this.CreationDate != null)
                 item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;
