@@ -25,6 +25,12 @@ This package conducts unit tests.</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="run\logs\**" />
+    <EmbeddedResource Remove="run\logs\**" />
+    <None Remove="run\logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="System\Diagnostics\ApiLogDtoTest.cs" />
   </ItemGroup>
 

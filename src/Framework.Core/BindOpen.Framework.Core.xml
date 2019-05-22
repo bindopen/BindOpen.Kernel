@@ -590,6 +590,11 @@
             Instantiates a new instance of the Contact class.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Business.Contacts.Contact.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the Contact class.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Business.Contacts.Contact.Clone">
             <summary>
             Clones this instance.
