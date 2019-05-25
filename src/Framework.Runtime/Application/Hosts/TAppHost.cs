@@ -357,12 +357,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         //        new List<UpdateMode> { UpdateMode.Incremental_UpdateCommonItems });
 
                         // we build the data module manager
-                        DataSourceDepot.Clear();
+                        DataSourceDepot.ClearItems();
                         if (_appScope?.Extension != null && Options?.Settings?.AppConfiguration?.DataSources != null)
                         {
-                            foreach (IDataSource dataSource in Options?.Settings?.AppConfiguration?.DataSources)
+                            foreach (DataSource dataSource in Options?.Settings?.AppConfiguration?.DataSources)
                             {
-                                DataSourceDepot.AddSource(dataSource);
+                                DataSourceDepot.Add(dataSource);
                             }
                         }
 

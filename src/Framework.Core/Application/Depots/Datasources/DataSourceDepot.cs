@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
@@ -13,21 +13,8 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
     /// </summary>
     /// <remarks>The data source service stores sources by data sources.</remarks>
     [Serializable()]
-    public class DataSourceDepot : DataItem, IDataSourceDepot
+    public class DataSourceDepot : DataItemSet<DataSource>, IDataSourceDepot
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        /// <summary>
-        /// The data sources of this instance.
-        /// </summary>
-        protected IDataItemSet<DataSource> _dataSourceSet = null;
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -35,11 +22,14 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         #region Properties
 
         /// <summary>
-        /// The data source set of this instance. 
+        /// Elements of this instance.
         /// </summary>
-        public IDataItemSet<DataSource> DataSourceSet
+        [XmlArray("dataSources")]
+        [XmlArrayItem("add")]
+        public List<DataSource> Sources
         {
-            get { return _dataSourceSet ?? new DataItemSet<DataSource>(); }
+            get { return _items; }
+            set { _items = value; }
         }
 
         #endregion
@@ -61,57 +51,8 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         /// Instantiates a new instance of the DataSourceDepot class.
         /// </summary>
         /// <param name="dataSources">The data sources to consider.</param>
-        public DataSourceDepot(params IDataSource[] dataSources)
+        public DataSourceDepot(params DataSource[] dataSources) : base(dataSources)
         {
-            if (dataSources != null)
-            {
-                _dataSourceSet = new DataItemSet<DataSource>(dataSources.Cast<DataSource>().ToArray());
-            }
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        // Module instances -----------------------------------------
-
-        /// <summary>
-        /// Adds the specified data source.
-        /// </summary>
-        /// <param name="source">The data source to add.</param>
-        public void AddSource(IDataSource source)
-        {
-            if (source == null) return;
-
-            (_dataSourceSet ?? (_dataSourceSet = new DataItemSet<DataSource>())).Add(source as DataSource);
-        }
-
-        /// <summary>
-        /// Adds the specified module instances.
-        /// </summary>
-        /// <param name="sources">The data sources to add.</param>
-        public void AddSource(params IDataSource[] sources)
-        {
-            if (sources != null)
-            {
-                foreach (IDataSource source in sources)
-                {
-                    AddSource(source);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Remove the specified data sources.
-        /// </summary>
-        /// <param name="sourceNames">Names of the data source to remove.</param>
-        public void RemoveSource(params string[] sourceNames)
-        {
-            _dataSourceSet?.Remove(sourceNames);
         }
 
         #endregion
@@ -123,49 +64,13 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         #region Accessors
 
         /// <summary>
-        /// Clears this instance.
-        /// </summary>
-        public void Clear()
-        {
-            _dataSourceSet?.ClearItems();
-        }
-
-        // Sources -----------------------------------------------
-
-        /// <summary>
-        /// Gets the specified data source.
-        /// </summary>
-        /// <param name="sourceName">The name of the data source to consider.</param>
-        /// <returns>The data source with the specified data module name.</returns>
-        public IDataSource GetSource(string sourceName)
-        {
-            IDataSource dataSource = null;
-            if (_dataSourceSet != null)
-            {
-                dataSource = _dataSourceSet.GetItem(sourceName);
-            }
-
-            return dataSource;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance has the specified data module name.
-        /// </summary>
-        /// <param name="sourceName">The name of the data source to consider.</param>
-        /// <returns>The data source with the specified data module name.</returns>
-        public bool HasSource(string sourceName)
-        {
-            return _dataSourceSet?.HasItem(sourceName) == true;
-        }
-
-        /// <summary>
         /// Returns the module name of the specified data source.
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <returns>The module name corresponding to the specified data module name.</returns>
         public string GetModuleName(string sourceName)
         {
-            IDataSource source = GetSource(sourceName);
+            IDataSource source = GetItem(sourceName);
 
             return source != null ? source.ModuleName : StringHelper.__NoneString;
         }
@@ -177,7 +82,7 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceName(string sourceName)
         {
-            IDataSource source = GetSource(sourceName);
+            IDataSource source = GetItem(sourceName);
 
             return source != null ? source.InstanceName : StringHelper.__NoneString;
         }
@@ -189,7 +94,7 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceOtherwiseModuleName(string sourceName)
         {
-            IDataSource source = GetSource(sourceName);
+            IDataSource source = GetItem(sourceName);
 
             string name = (source == null ?
                 StringHelper.__NoneString :
@@ -210,7 +115,7 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
             string sourceName,
             string connectorDefinitionUniqueId)
         {
-            IDataSource dataSource = GetSource(sourceName);
+            IDataSource dataSource = GetItem(sourceName);
 
             return dataSource?.GetConfiguration(connectorDefinitionUniqueId);
         }
@@ -223,7 +128,7 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId)
         {
-            IDataSource dataSource = GetSource(sourceName);
+            IDataSource dataSource = GetItem(sourceName);
 
             return dataSource?.HasConfiguration(connectorDefinitionUniqueId) == true;
         }
@@ -245,5 +150,4 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
 
         #endregion
     }
-
 }

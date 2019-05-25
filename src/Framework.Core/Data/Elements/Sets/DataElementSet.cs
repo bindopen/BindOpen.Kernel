@@ -11,7 +11,6 @@ using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -460,15 +459,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
 
             return sortedDataItems;
         }
-
-        #endregion
-
-        // --------------------------------------------------
-        // UPDATE, CHECK, REPAIR
-        // --------------------------------------------------
-
-        #region Update_Check_Repair
-
 
         #endregion
 

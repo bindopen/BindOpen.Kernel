@@ -222,14 +222,9 @@
             </summary>
             <remarks>The data source service stores sources by data sources.</remarks>
         </member>
-        <member name="F:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot._dataSourceSet">
+        <member name="P:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.Sources">
             <summary>
-            The data sources of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.DataSourceSet">
-            <summary>
-            The data source set of this instance. 
+            Elements of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.#ctor">
@@ -237,48 +232,11 @@
             Instantiates a new instance of the DataSourceDepot class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.#ctor(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
+        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.#ctor(BindOpen.Framework.Core.Data.Items.Source.DataSource[])">
             <summary>
             Instantiates a new instance of the DataSourceDepot class.
             </summary>
             <param name="dataSources">The data sources to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource)">
-            <summary>
-            Adds the specified data source.
-            </summary>
-            <param name="source">The data source to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.AddSource(BindOpen.Framework.Core.Data.Items.Source.IDataSource[])">
-            <summary>
-            Adds the specified module instances.
-            </summary>
-            <param name="sources">The data sources to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.RemoveSource(System.String[])">
-            <summary>
-            Remove the specified data sources.
-            </summary>
-            <param name="sourceNames">Names of the data source to remove.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.Clear">
-            <summary>
-            Clears this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetSource(System.String)">
-            <summary>
-            Gets the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.HasSource(System.String)">
-            <summary>
-            Indicates whether this instance has the specified data module name.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Depots.Datasources.DataSourceDepot.GetModuleName(System.String)">
             <summary>
@@ -396,7 +354,7 @@
             The data source service of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain,BindOpen.Framework.Core.Data.Context.IDataContext,BindOpen.Framework.Core.System.Scripting.IScriptInterpreter,BindOpen.Framework.Core.Application.Depots.Datasources.IDataSourceDepot)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppScope.#ctor(System.AppDomain)">
             <summary>
             Instantiates a new instance of the AppScope class.
             </summary>
