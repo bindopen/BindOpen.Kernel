@@ -18,7 +18,7 @@ This package conducts on-demand tests before they are implemented in the unit te
     <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIconUrl>https://meltingflow.blob.core.windows.net/bindopen/pictures/bdo_icon_128x128.png</PackageIconUrl>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
