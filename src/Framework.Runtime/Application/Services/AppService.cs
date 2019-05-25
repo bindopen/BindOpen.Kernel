@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.System.Assemblies;
@@ -199,7 +198,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         protected override ILog Initialize<A>()
         {
             _appScope = new A();
-            _appScope.Initialize(AppDomain.CurrentDomain);
+            //_appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope
             _appScope.Context.AddSystemItem("appHost", this);

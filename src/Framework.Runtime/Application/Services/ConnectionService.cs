@@ -84,10 +84,10 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             if (dataSourceService == null)
                 log.AddError("Source manager missing");
-            else if (!dataSourceService.HasSource(dataSourceName))
+            else if (!dataSourceService.HasItem(dataSourceName))
                 log.AddError("Data source '" + dataSourceName + "' missing in manager");
             else
-                return this.Open<T>(dataSourceService.GetSource(dataSourceName), connectorDefinitionUniqueId, log);
+                return this.Open<T>(dataSourceService.GetItem(dataSourceName), connectorDefinitionUniqueId, log);
 
             return default;
         }

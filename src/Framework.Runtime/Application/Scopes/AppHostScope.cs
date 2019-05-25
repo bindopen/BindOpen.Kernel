@@ -39,10 +39,8 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
         public AppHostScope(
-            AppDomain appDomain,
-            IConnectionService connectionService = null) : base(appDomain)
+            AppDomain appDomain) : base(appDomain)
         {
-            this.ConnectionService = connectionService ?? new ConnectionService(this);
         }
 
         #endregion

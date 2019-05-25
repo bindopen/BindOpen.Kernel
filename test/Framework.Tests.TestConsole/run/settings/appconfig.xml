@@ -37,23 +37,23 @@
   </credentials>
   
   <dataSources>
-    <!--<add name="smtp_default"  connector="messages$smtp">
-      <detail>
+    <add name="smtp_default" kind="EmailServer">
+      <configuration definition="messages$smtp">
         <scalar name="host" value="smtp.googlemail.com" />
         <scalar name="port" value="587" valueType="Integer" />
         <scalar name="isDefaultCredentialsUsed" value="true" valueType="Boolean" />
         <scalar name="isSslEnabled" value="true" valueType="Boolean" />
         <scalar name="timeout" value="60000" valueType="Integer" />
-        <scalar name="login" value="login@meltingsoft.com" />
+        <scalar name="login" value="login@test.com" />
         <scalar name="password" value="passwordA" />
-      </detail>
-    </add>-->    
+      </configuration>
+    </add>
     <add name="sphere.identity" kind="Database">
       <configuration definition="database.mssqlserver$client">
-        <detail>
-          <scalar name="databaseKind" value="MSSqlServer" />
-        </detail>
-        <connectionString>connectionstring</connectionString>
+        <scalar name="databaseKind" value="MSSqlServer" />
+        <connectionString>
+          <![CDATA[Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;]]>
+        </connectionString>
       </configuration>
     </add>    
     
