@@ -216,9 +216,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
 
             if (Configurations != null)
             {
-                foreach (IConnectorConfiguration connector in Configurations)
+                foreach (IConnectorConfiguration configuration in Configurations)
                 {
-                    connector.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    configuration.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
                 }
             }
         }

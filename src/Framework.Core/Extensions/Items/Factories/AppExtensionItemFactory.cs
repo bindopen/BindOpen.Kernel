@@ -56,6 +56,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
             ILog log = null,
             IScriptVariableSet scriptVariableSet = null)
         {
+            log = log ?? new Log();
             Carrier carrier = null;
 
             if (!appScope.Check(true).HasErrorsOrExceptions())
@@ -126,6 +127,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
             ILog log = null,
             IScriptVariableSet scriptVariableSet = null)
         {
+            log = log ?? new Log();
             Connector connector = null;
 
             if (!appScope.Check(true).HasErrorsOrExceptions())
@@ -196,6 +198,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
             ILog log = null,
             IScriptVariableSet scriptVariableSet = null)
         {
+            log = log ?? new Log();
             Task task = null;
 
             if (!appScope.Check(true).HasErrorsOrExceptions())

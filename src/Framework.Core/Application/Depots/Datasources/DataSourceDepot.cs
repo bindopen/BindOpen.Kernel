@@ -13,6 +13,8 @@ namespace BindOpen.Framework.Core.Application.Depots.Datasources
     /// </summary>
     /// <remarks>The data source service stores sources by data sources.</remarks>
     [Serializable()]
+    [XmlType("DataSourceDepot", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataSourceDepot : DataItemSet<DataSource>, IDataSourceDepot
     {
         // ------------------------------------------

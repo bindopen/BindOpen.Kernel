@@ -8,7 +8,7 @@
         <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
         <scalar name="isSslEnabled" valueType="Boolean" value="true" />
         <scalar name="timeout" valueType="Integer" value="60000" />
-        <scalar name="login" value="login@meltingsoft.com" />
+        <scalar name="login" value="login@test.com" />
         <scalar name="password" value="passwordA" />
       </configuration>
     </add>
