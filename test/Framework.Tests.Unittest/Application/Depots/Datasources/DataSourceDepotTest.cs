@@ -28,12 +28,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
                     DataSourceKind.EmailServer,
                     new ConnectorConfiguration(
                         "messages$smtp",
-                        ElementFactory.CreateScalar("host", "smtp.googlemail.com"),
+                        ElementFactory.CreateScalar("host", "smtp.test.com"),
                         ElementFactory.CreateScalar("port", DataValueType.Integer, "587"),
                         ElementFactory.CreateScalar("isDefaultCredentialsUsed", DataValueType.Boolean, true),
                         ElementFactory.CreateScalar("isSslEnabled", DataValueType.Boolean, true),
                         ElementFactory.CreateScalar("timeout", DataValueType.Integer, 60000),
-                        ElementFactory.CreateScalar("login", "login@meltingsoft.com"),
+                        ElementFactory.CreateScalar("login", "login@test.com"),
                         ElementFactory.CreateScalar("password", "passwordA"))));
         }
 

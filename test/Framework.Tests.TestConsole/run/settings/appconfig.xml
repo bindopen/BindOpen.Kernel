@@ -23,27 +23,27 @@
     <scalar name="key1" script="url1" />
     <scalar name="key2" script="url2" />
   </collection>
-  
+
   <credentials>
     <credential name="crendential1">
-      <domainId>bindopen.com</domainId>
-      <login>userA@meltingsoft.com</login>
+      <domainId>test.com</domainId>
+      <login>userA@test.com</login>
       <password>passwordC</password>
     </credential>
     <credential name="crendential2">
-      <login>userB@meltingsoft.com</login>
+      <login>userB@test.com</login>
       <password>passwordB</password>
     </credential>
   </credentials>
-  
+
   <dataSources>
     <add name="smtp_default" kind="EmailServer">
       <configuration definition="messages$smtp">
         <scalar name="host" value="smtp.googlemail.com" />
-        <scalar name="port" value="587" valueType="Integer" />
-        <scalar name="isDefaultCredentialsUsed" value="true" valueType="Boolean" />
-        <scalar name="isSslEnabled" value="true" valueType="Boolean" />
-        <scalar name="timeout" value="60000" valueType="Integer" />
+        <scalar name="port" valueType="Integer" value="587" />
+        <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
+        <scalar name="isSslEnabled" valueType="Boolean" value="true" />
+        <scalar name="timeout" valueType="Integer" value="60000" />
         <scalar name="login" value="login@test.com" />
         <scalar name="password" value="passwordA" />
       </configuration>

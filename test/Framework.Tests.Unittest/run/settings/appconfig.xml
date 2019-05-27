@@ -2,7 +2,7 @@
 <app.config xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://bindopen.org/xsd">
   
   <scalar name="applicationInstanceName" value="test.console" />
-  <scalar name="cookieDomain" value=".meltingsoft.com" />
+  <scalar name="cookieDomain" value=".test.com" />
   <scalar name="defaultTheme" value="default" />
   <scalar name="defaultUICultureName" value="fr-FR" />
   
@@ -26,12 +26,12 @@
   
   <credentials>
     <credential name="crendential1">
-      <domainId>bindopen.com</domainId>
-      <login>userA@meltingsoft.com</login>
+      <domainId>test.com</domainId>
+      <login>userA@test.com</login>
       <password>passwordC</password>
     </credential>
     <credential name="crendential2">
-      <login>userB@meltingsoft.com</login>
+      <login>userB@test.com</login>
       <password>passwordB</password>
     </credential>
   </credentials>
@@ -50,9 +50,7 @@
     </add>-->    
     <add name="sphere.identity" kind="Database">
       <configuration definition="database.mssqlserver$client">
-        <detail>
-          <scalar name="databaseKind" value="MSSqlServer" />
-        </detail>
+        <scalar name="databaseKind" value="MSSqlServer" />
         <connectionString>          
           <![CDATA[Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;]]>
         </connectionString>

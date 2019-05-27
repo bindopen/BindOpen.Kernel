@@ -3525,6 +3525,31 @@
             <param name="isRecursive">Indicates whether the search is folder recursive.</param>
             <param name="fileKind">The kind of elements to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Connectors.TestConnector">
+            <summary>
+            This class represents a test connector.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Extensions.Connectors.TestConnector.Host">
+            <summary>
+            The host of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Extensions.Connectors.TestConnector.IsSslEnabled">
+            <summary>
+            Indicates whether this instance enables SSL.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Extensions.Connectors.TestConnector.Port">
+            <summary>
+            The port of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Connectors.TestConnector.#ctor">
+            <summary>
+            Instantiates a new instance of the TestConnector class.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Extensions.Handlers.HandlerKind_standard">
             <summary>
             This enumeration lists all the possible kinds of the 'Standard' handlers.

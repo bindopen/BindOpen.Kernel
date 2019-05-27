@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         {
             ILog log = new Log();
 
-            Q configuration = ConfigurationLoader.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, false, false);
+            Q configuration = ConfigurationLoader.Load<Q>(filePath, appScope, scriptVariableSet, log, xmlSchemaSet, false, true);
 
             if (!log.HasErrorsOrExceptions() && configuration != null)
             {
