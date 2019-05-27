@@ -79,10 +79,10 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         {
             base.UpdateStorageInfo(log);
 
-            foreach (ApplicationCredential applicationCredential in this.Credentials)
+            foreach (ApplicationCredential applicationCredential in Credentials)
                 applicationCredential.UpdateStorageInfo(log);
 
-            foreach (DataSource dataSource in this.DataSources)
+            foreach (DataSource dataSource in DataSources)
                 dataSource.UpdateStorageInfo(log);
         }
 
@@ -94,10 +94,10 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
         {
             base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            foreach (ApplicationCredential applicationCredential in this.Credentials)
+            foreach (ApplicationCredential applicationCredential in Credentials)
                 applicationCredential.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
 
-            foreach (DataSource dataSource in this.DataSources)
+            foreach (DataSource dataSource in DataSources)
                 dataSource.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
         }
 
