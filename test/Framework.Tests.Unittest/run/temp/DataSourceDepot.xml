@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<DataSourceDepot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<dataSource.depot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
   <dataSources>
     <add name="smtp_default" kind="EmailServer">
-      <configuration definition="messages$smtp" xmlns="https://bindopen.org/xsd">
-        <scalar name="host" value="smtp.googlemail.com" />
+      <configuration definition="messages$smtp">
+        <scalar name="host" value="smtp.test.com" />
         <scalar name="port" valueType="Integer" />
         <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
         <scalar name="isSslEnabled" valueType="Boolean" value="true" />
@@ -13,4 +13,4 @@
       </configuration>
     </add>
   </dataSources>
-</DataSourceDepot>
+</dataSource.depot>

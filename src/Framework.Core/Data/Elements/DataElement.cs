@@ -9,6 +9,7 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
+using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Elements.Document;
 using BindOpen.Framework.Core.Data.Elements.Meta;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
@@ -404,6 +405,11 @@ namespace BindOpen.Framework.Core.Data.Elements
                     if (Specification == null
                         && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
                     {
+                        if (this is CollectionElement)
+                        {
+                            _items?.RemoveAll(p => p.KeyEquals(item));
+                        }
+
                         (_items ?? (_items = new List<object>())).Add(item);
                         isAdded = true;
                     }

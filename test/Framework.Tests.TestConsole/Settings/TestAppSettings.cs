@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Tests.TestConsole.Settings
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "test.uris")]
-        public Dictionary<string, string> Uris { get; set; }
+        public Dictionary<string, object> Uris { get; set; }
 
         #endregion
 

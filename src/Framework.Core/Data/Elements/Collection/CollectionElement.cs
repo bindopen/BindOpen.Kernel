@@ -262,7 +262,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
                     var aObject = new Dictionary<string, object>();
                     foreach(var item in Items)
                     {
-                        if (item is DataElement element)
+                        if (item is DataElement element && !aObject.ContainsKey(element.Name))
                         {
                             aObject.Add(element.Name, element.GetObject(appScope, scriptVariableSet, log));
                         }
