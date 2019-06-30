@@ -157,11 +157,6 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
             object item,
             ILog log = null)
         {
-            if (!(item is DataElement))
-                return false;
-
-            Items?.RemoveAll(p => p.KeyEquals(item));
-
             bool boolean = base.AddItem(item, log);
             return boolean;
         }
