@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Dto
                 CreationDate = log.CreationDate,
                 Description = log.Description?.GetContent(key, alternateKey),
                 DisplayName = log.Title?.GetContent(key, alternateKey),
-                Events = log.Events.Select(q => q.ToApiDto()).ToList(),
+                Events = log.Events?.Select(q => q.ToApiDto()).ToList(),
                 Id = log.Id,
                 LastModificationDate = log.LastModificationDate,
                 Name = log.Name
