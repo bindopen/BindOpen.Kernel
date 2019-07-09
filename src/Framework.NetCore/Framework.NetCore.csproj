@@ -6,7 +6,7 @@
     <Company>BindOpen</Company>
     <Product>BindOpen.Framework</Product>
     <PackageId>BindOpen.Framework.NetCore</PackageId>
-    <RootNamespace>BindOpen.Framework.Labs.NetCore</RootNamespace>
+    <RootNamespace>BindOpen.Framework.NetCore</RootNamespace>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications.
 This package completes .Net Core framework.</Description>

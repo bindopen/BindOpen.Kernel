@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace BindOpen.Framework.Labs.AspNetCore.Data.Resolvers
+namespace BindOpen.Framework.Tests.TestConsole
 {
     /// <summary>
     /// This class represents an application client.
