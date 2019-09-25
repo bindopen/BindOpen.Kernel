@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using BindOpen.Framework.Core.Extensions.Libraries;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
@@ -34,29 +32,6 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             // we feach metrics classes
 
             int count = 0;
-
-            //var types = assembly.GetTypes().Where(p => typeof(Runtime.Metrics.Metrics).IsAssignableFrom(p));
-            //foreach(Type type in types)
-            //{
-            //    IMetricsDefinition definition = new MetricsDefinition();
-
-            //    if (type.GetCustomAttribute(typeof(MetricsAttribute)) is MetricsAttribute metricsAttribute)
-            //    {
-            //        definition.Update(metricsAttribute);
-            //    }
-
-            //    foreach(PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(MetricsInputAttribute)) != null))
-            //    {
-            //        definition.InputSpecification.Add(property.CreateSpecification());
-            //    }
-
-            //    if (isIndexLoaded)
-            //    {
-            //        //definition.Update()
-            //    }
-
-            //    count++;
-            //}
 
             return count;
         }

@@ -11,6 +11,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Dto
         /// Converts the specified log to the Api log DTO.
         /// </summary>
         /// <param name="log">The log to consider.</param>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="alternateKey">The alternate key to consider.</param>
         /// <returns>Returns the Api log DTO.</returns>
         public static ApiLogDto ToApiDto(this ILog log, string key = "*", string alternateKey = null)
             => log == null ? null : new ApiLogDto()
@@ -28,6 +30,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Dto
         /// Converts the specified log to the Api log DTO.
         /// </summary>
         /// <param name="aEvent">The log to consider.</param>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="alternateKey">The alternate key to consider.</param>
         /// <returns>Returns the Api log DTO.</returns>
         public static ApiLogEventDto ToApiDto(this ILogEvent aEvent, string key = "*", string alternateKey = null)
         {

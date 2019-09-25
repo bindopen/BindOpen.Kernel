@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using BindOpen.Framework.Core.Extensions.Libraries;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
@@ -34,29 +32,6 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             // we feach handler classes
 
             int count = 0;
-
-            //var types = assembly.GetTypes().Where(p => typeof(Handler).IsAssignableFrom(p));
-            //foreach (Type type in types)
-            //{
-            //    IHandlerDefinition definition = new HandlerDefinition();
-
-            //    if (type.GetCustomAttribute(typeof(HandlerAttribute)) is HandlerAttribute handlerAttribute)
-            //    {
-            //        definition.Update(handlerAttribute);
-            //    }
-
-            //    foreach(PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(HandlerInputAttribute)) != null))
-            //    {
-            //        definition.InputSpecification.Add(property.CreateSpecification());
-            //    }
-
-            //    if (isIndexLoaded)
-            //    {
-            //        //definition.Update()
-            //    }
-
-            //    count++;
-            //}
 
             return count;
         }

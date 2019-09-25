@@ -8,6 +8,9 @@ namespace BindOpen.Framework.Core.Extensions.Items
     /// </summary>
     public interface IAppExtensionItem : IDataItem
     {
+        /// <summary>
+        /// Configuration.
+        /// </summary>
         IBaseConfiguration Configuration { get; }
     }
 }

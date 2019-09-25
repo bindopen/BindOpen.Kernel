@@ -4,22 +4,54 @@ using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICarrier : ITAppExtensionItem<ICarrierDefinition>
     {
-        ICarrierElement AsElement(string name = null, ILog log = null);
-
+        /// <summary>
+        /// 
+        /// </summary>
         string RelativePath { get; set; }
 
-        void SetPath(string path = null, string relativePath = null);
-
+        /// <summary>
+        /// 
+        /// </summary>
         string CreationDate { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string Flag { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         bool IsReadonly { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string LastAccessDate { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string LastWriteDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="relativePath"></param>
+        void SetPath(string path = null, string relativePath = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        ICarrierElement AsElement(string name = null, ILog log = null);
     }
 }

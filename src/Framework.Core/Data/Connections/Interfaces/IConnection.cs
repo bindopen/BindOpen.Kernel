@@ -8,8 +8,16 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// </summary>
     public interface IConnection
     {
+        /// <summary>
+        /// Connector.
+        /// </summary>
         IConnector Connector { get; }
 
+
+        /// <summary>
+        /// Sets the specified connector.
+        /// </summary>
+        /// <param name="connector">The connector to consider.</param>
         void SetConnector(IConnector connector);
 
         // Open / Close -----------------------------

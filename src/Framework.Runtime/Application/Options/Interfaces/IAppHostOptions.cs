@@ -98,7 +98,6 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Define the default specified settings.
         /// </summary>
-        /// <typeparam name="T">The application settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the application host option.</returns>
         IAppHostOptions DefineDefaultSettings(IDataElementSpecSet specificationSet = null);

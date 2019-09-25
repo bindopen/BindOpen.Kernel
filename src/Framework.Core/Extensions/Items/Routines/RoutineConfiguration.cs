@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.Extensions.Common;
-using BindOpen.Framework.Core.Extensions.Items.Routines;
 using BindOpen.Framework.Core.Extensions.Items.Routines.Definition;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 
@@ -55,12 +54,10 @@ namespace BindOpen.Framework.Core.Extensions.Items.Routines
         /// Instantiates a new instance of the RoutineConfiguration class.
         /// </summary>
         /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="commandSet">The command set to consider.</param>
         /// <param name="outputEventSet">The output event set to consider.</param>
         /// <param name="items">The items to consider.</param>
         public RoutineConfiguration(
             string definitionUniqueId,
-            //IDataItemSet<Command> commandSet = null,
             IDataItemSet<ConditionalEvent> outputEventSet = null,
             params IDataElement[] items)
             : base(AppExtensionItemKind.Routine, definitionUniqueId, items)

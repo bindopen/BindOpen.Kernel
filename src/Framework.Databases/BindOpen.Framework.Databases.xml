@@ -172,6 +172,109 @@
             This interfaces represents a connection.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.Connector">
+            <summary>
+            Connector of the connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified non query text.
+            </summary>
+            <param name="queryText">The query text to execute.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified query text.
+            </summary>
+            <param name="query">The query to execute.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified query text and populate the specified data set.
+            </summary>
+            <param name="query">The query to execute.</param>
+            <param name="dataSet">The data set to populate.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataReader"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataSet"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataReader"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIDbConnection">
+            <summary>
+            Get the database connection.
+            </summary>
+            <returns>Returns the database connection.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Get the identity of the last tuple processed.
+            </summary>
+            <returns>Returns the identity of the last tuple processed.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataSet"></param>
+            <param name="tableNames"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataSet"></param>
+            <param name="tableNames"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataTable"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataTable"></param>
+            <param name="log"></param>
+        </member>
         <member name="T:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery">
             <summary>
             This class represents an advanced database data query.
@@ -1123,6 +1226,245 @@
         <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionStatement.#ctor">
             <summary>
             Instantiates a new instance of the DbDataQueryUnionStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.FromClauses">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.GroupByClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.HavingClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.IsDistinct">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.OrderByStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.WhereClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.FromClauses">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.IdFields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.IsDistinct">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.OrderByStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.GetIdFieldWithBoundFieldName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="boundFieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataModule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataTableAlias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Fields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.IsTrackingEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetDataFieldWithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetFieldWithBoundFieldName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="boundFieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetForeignKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetPrimaryKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement.JointureStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement.UnionStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryGroupByStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryGroupByStatement.Fields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryHavingStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryHavingStatement.DataExpression">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Table">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement.Field">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement.Sorting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement">
+            <summary>
+            This interface defines the statement data query union.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement.Type">
+            <summary>
+            The type.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement.Query">
+            <summary>
+            The query.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind">

@@ -51,7 +51,6 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Sets the specified settings file.
         /// </summary>
-        /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="settingsFilePath">The path of the settings file to consider.</param>
         /// <returns>Returns this instance.</returns>
         public ITAppHostOptions<T> SetSettingsFile(string settingsFilePath = null)
@@ -74,7 +73,6 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Defines the specified settings.
         /// </summary>
-        /// <typeparam name="T">The settings class to consider.</typeparam>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
         public ITAppHostOptions<T> DefineSettings(IDataElementSpecSet specificationSet = null)

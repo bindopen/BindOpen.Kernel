@@ -125,9 +125,12 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// Loads a data item from the specified file path.
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The output log of the method.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
+        /// <param name="isRuntimeUpdated">Indicates whether it is updated in runtime.</param>
         /// <returns>The loaded log.</returns>
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T Load<T>(
@@ -191,6 +194,8 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// </summary>
         /// <typeparam name="T">The data item class to consider.</typeparam>
         /// <param name="xmlString">The Xml string to load.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The output log of the load method.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>The loaded log.</returns>

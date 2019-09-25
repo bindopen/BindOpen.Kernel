@@ -38,23 +38,47 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // ------------------------------------------
 
         #region Variables
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         protected IAppModule _applicationModule = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected ILogger[] _loggers = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected IAppExtensionConfiguration _appExtensionConfiguration = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected bool _isDefaultLoggerUsed = false;
 
         // Paths ----------------------
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _appFolderPath = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _settingsFilePath = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _runtimeFolderPath = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _libraryFolderPath = null;
 
         #endregion

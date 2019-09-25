@@ -30,6 +30,7 @@
             Adds a BindOpen application hosting serivce.
             </summary>
             <typeparam name="THost">The class of application host to consider.</typeparam>
+            <typeparam name="T"></typeparam>
             <param name="services">The collection of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
@@ -38,22 +39,64 @@
             <summary>
             Adds a BindOpen service.
             </summary>
-            <typeparam name="T">The class of application service to consider.</typeparam>
+            <typeparam name="T"></typeparam>
             <param name="services">The collection of services to populate.</param>
+            <param name="loggers"></param>
+            <param name="funcSettings"></param>
             <returns></returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenTransientService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
             <summary>
             Adds a BindOpen transient service.
             </summary>
-            <typeparam name="T">The class of application service to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <typeparam name="T"></typeparam>
+            <param name="services"></param>
+            <param name="loggers"></param>
+            <param name="funcSettings"></param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.BdoConfigurationBinder">
             <summary>
             This static class extends .Net core dependency injection namespace.
             </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoConfigurationBinder.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoConfigurationBinder.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configuration"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoConfigurationBinder.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoConfigurationBinder.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+            <param name="type"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
         </member>
         <member name="T:BindOpen.Framework.NetCore.Services.ITBdoHostedService`1">
             <summary>

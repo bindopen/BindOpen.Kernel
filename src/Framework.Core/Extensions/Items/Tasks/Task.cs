@@ -14,6 +14,9 @@ namespace BindOpen.Framework.Core.Extensions.Items.Tasks
     /// </summary>
     public abstract class Task : TAppExtensionItem<ITaskDefinition>, ITask
     {
+        /// <summary>
+        /// 
+        /// </summary>
         new public ITaskConfiguration Configuration { get => base.Configuration as ITaskConfiguration; }
 
         // ------------------------------------------

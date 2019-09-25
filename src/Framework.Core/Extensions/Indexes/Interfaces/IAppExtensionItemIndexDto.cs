@@ -2,6 +2,9 @@
 
 namespace BindOpen.Framework.Core.Extensions.Indexes
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IAppExtensionItemIndexDto : IStoredDataItem
     {
     }
