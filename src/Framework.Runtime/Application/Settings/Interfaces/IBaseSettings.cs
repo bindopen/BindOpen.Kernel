@@ -12,24 +12,77 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IBaseSettings : IDataItem, IReferenced
     {
+        /// <summary>
+        /// 
+        /// </summary>
         IAppScope AppScope { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         IBaseConfiguration Configuration { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
         T Get<T>(string name);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         object Get(string name);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         T GetProperty<T>([CallerMemberName] string propertyName = null);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="defaultValue"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         T GetProperty<T>(T defaultValue, [CallerMemberName] string propertyName = null) where T : struct, IConvertible;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         void Set(string name, object value);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
         void SetProperty(object value, [CallerMemberName] string propertyName = null);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="specificationLevels"></param>
+        /// <param name="specificationSet"></param>
+        /// <param name="appScope"></param>
+        /// <param name="scriptVariableSet"></param>
+        /// <param name="xmlSchemaSet"></param>
+        /// <returns></returns>
         ILog UpdateFromFile(
             string filePath,
             SpecificationLevels[] specificationLevels = null,

@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// <summary>
         /// The configuration of this instance.
         /// </summary>
-        public new ITAppExtensionItemConfiguration<T> Configuration => _configuration;
+        public ITAppExtensionItemConfiguration<T> Configuration => _configuration;
 
         IBaseConfiguration IAppExtensionItem.Configuration => _configuration as IBaseConfiguration;
 

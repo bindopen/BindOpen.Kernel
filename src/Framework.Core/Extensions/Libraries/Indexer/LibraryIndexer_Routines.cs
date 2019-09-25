@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using BindOpen.Framework.Core.Extensions.Libraries;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
@@ -34,34 +32,6 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             // we feach routine classes
 
             int count = 0;
-
-            //var types = assembly.GetTypes().Where(p => typeof(Routine).IsAssignableFrom(p));
-            //foreach(Type type in types)
-            //{
-            //    IRoutineDefinition definition = new RoutineDefinition();
-
-            //    if (type.GetCustomAttribute(typeof(RoutineAttribute)) is RoutineAttribute routineAttribute)
-            //    {
-            //        definition.Update(routineAttribute);
-            //    }
-
-            //    foreach(PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(RoutineInputAttribute)) != null))
-            //    {
-            //        definition.InputSpecification.Add(property.CreateSpecification());
-            //    }
-
-            //    foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttribute(typeof(RoutineOutputAttribute)) != null))
-            //    {
-            //        definition.OutputSpecification.Add(property.CreateSpecification());
-            //    }
-
-            //    if (isIndexLoaded)
-            //    {
-            //        //definition.Update()
-            //    }
-
-            //    count++;
-            //}
 
             return count;
         }

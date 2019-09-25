@@ -27,6 +27,9 @@ namespace BindOpen.Framework.Core.Extensions
         /// </summary>
         protected List<ILibrary> _libraries = new List<ILibrary>();
 
+        /// <summary>
+        /// Definitions of script words.
+        /// </summary>
         protected List<IScriptwordDefinition> _scriptwordDefinitions = new List<IScriptwordDefinition>();
 
         #endregion

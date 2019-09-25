@@ -82,6 +82,11 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <returns>Returns the application host to consider.</returns>
         IAppService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         T GetSettings<T>() where T : IBaseSettings;
     }
 }

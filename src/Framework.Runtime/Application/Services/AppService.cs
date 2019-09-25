@@ -198,7 +198,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         protected override ILog Initialize<A>()
         {
             _appScope = new A();
-            //_appScope.Initialize(AppDomain.CurrentDomain);
 
             // we initialize the application scope
             _appScope.Context.AddSystemItem("appHost", this);
@@ -215,6 +214,11 @@ namespace BindOpen.Framework.Runtime.Application.Services
             OnLoadCompleted?.Invoke(this);
         }
 
+        /// <summary>
+        /// Gets the settings of this instance as the specified class.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public virtual T GetSettings<T>() where T : IBaseSettings
         {
             return (T)Settings;

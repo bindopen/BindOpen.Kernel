@@ -50,6 +50,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds a BindOpen application hosting serivce.
         /// </summary>
         /// <typeparam name="THost">The class of application host to consider.</typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
@@ -69,8 +70,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds a BindOpen service.
         /// </summary>
-        /// <typeparam name="T">The class of application service to consider.</typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="services">The collection of services to populate.</param>
+        /// <param name="loggers"></param>
+        /// <param name="funcSettings"></param>
         /// <returns></returns>
         public static IServiceCollection AddBindOpenService<T>(
             this IServiceCollection services,
@@ -87,8 +90,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds a BindOpen transient service.
         /// </summary>
-        /// <typeparam name="T">The class of application service to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="services"></param>
+        /// <param name="loggers"></param>
+        /// <param name="funcSettings"></param>
         /// <returns></returns>
         public static IServiceCollection AddBindOpenTransientService<T>(
             this IServiceCollection services,
@@ -97,7 +102,6 @@ namespace Microsoft.Extensions.DependencyInjection
             where T : IAppService, IAppHosted, new()
         {
             services.AddTransient<ITAppServiceOptions<T>>(_ => new TAppServiceOptions<T>(loggers, funcSettings));
-            //services.AddTransient<T>>(q => new T());
 
             return services;
         }

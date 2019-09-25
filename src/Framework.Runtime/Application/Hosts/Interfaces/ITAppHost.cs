@@ -17,6 +17,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     {
         // Execution ---------------------------------
 
+        /// <summary>
+        /// The options.
+        /// </summary>
         new ITAppHostOptions<T> Options { get; set; }
 
         /// <summary>

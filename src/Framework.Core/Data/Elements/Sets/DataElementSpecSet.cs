@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         [XmlElement("scalar", typeof(ScalarElementSpec))]
         [XmlElement("source", typeof(SourceElementSpec))]
         [XmlElement("specification")]
-        public List<DataElementSpec> Items
+        public new List<DataElementSpec> Items
         {
             get { return _items; }
             set { _items = value; }

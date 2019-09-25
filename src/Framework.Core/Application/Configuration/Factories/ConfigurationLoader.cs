@@ -18,12 +18,14 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// Instantiates a new instance of Configuration class from a xml file.
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
-        /// <param name="log">The log to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
+        /// <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
         /// <returns>The Xml operation project defined in the Xml file.</returns>
-        public new static T Load<T>(
+        public static T Load<T>(
             string filePath,
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,
@@ -61,6 +63,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Adds the specified elements into the specified group.
         /// </summary>
+        /// <param name="configuration">The configuration to consider.</param>
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="items">The items to add.</param>
         /// <returns>Returns this instance.</returns>

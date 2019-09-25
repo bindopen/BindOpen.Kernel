@@ -103,7 +103,6 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Gets the specified value.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
@@ -222,7 +221,10 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Loads the application settings of this instance.
         /// </summary>
         /// <param name="filePath">The file path to consider.</param>
+        /// <param name="specificationLevels">The specification levels to consider.</param>
+        /// <param name="specificationSet">The specification set to consider.</param>
         /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
         public virtual ILog UpdateFromFile(

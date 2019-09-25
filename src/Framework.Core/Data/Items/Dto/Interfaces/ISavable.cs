@@ -7,6 +7,12 @@ namespace BindOpen.Framework.Core.Data.Items.Dto
     /// </summary>
     public interface ISavable
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
         bool SaveXml(string filePath, ILog log = null);
     }
 }

@@ -8,6 +8,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
     public interface ITAppService<T> : IAppService
         where T : class, IBaseSettings, new()
     {
+        /// <summary>
+        /// Settings.
+        /// </summary>
         new T Settings { get; set; }
     }
 }
