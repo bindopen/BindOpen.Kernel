@@ -2,7 +2,6 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Sets;
@@ -57,14 +56,12 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="name">The name of constraint to create.</param>
         /// <param name="definitionUniqueId">The definition unique ID to create.</param>
         /// <param name="parameterDetail">The parameter detail to consider.</param>
-        /// <param name="commandSet">The command set to consider.</param>
         /// <param name="outputEventSet">The output event set to consider.</param>
         /// <returns>Returns the item with the specified name.</returns>
         public IRoutineConfiguration AddConstraint(
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
-            //IDataItemSet<Command> commandSet = null,
             IDataItemSet<ConditionalEvent> outputEventSet = null)
         {
             IRoutineConfiguration routine = null; // new RoutineConfiguration(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
@@ -212,8 +209,6 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="item">The item to consider.</param>
         /// <param name="dataElement">The element to consider.</param>
         /// <param name="isDeepCheck">Indicates whether other rules than allowed and forbidden values are checked.</param>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>The log of check log.</returns>
         public ILog CheckItem(
             object item,
@@ -221,29 +216,6 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             bool isDeepCheck = false)
         {
             ILog log = new Log();
-
-            //if (appScope != null && appScope.AppExtension != null)
-            //    if (!isDeepCheck)
-            //    {
-            //        Routine routine_AllowedValues =
-            //            appScope.CreateItem<RoutineDefinition>(null, GetConstraint("AllowedValues"), null, log) as Routine;
-            //        Routine routine_ForbiddenValues =
-            //            appScope.CreateItem<RoutineDefinition>(null, GetConstraint("ForbiddenValues"), null, log) as Routine;
-
-            //        if (routine_AllowedValues != null)
-            //            log.AddEvents(routine_AllowedValues.Execute(appScope, scriptVariableSet, item, dataElement));
-            //        if (routine_ForbiddenValues != null)
-            //            log.AddEvents(routine_ForbiddenValues.Execute(appScope, scriptVariableSet, item, dataElement));
-            //    }
-            //    else
-            //        foreach (IRoutineConfiguration config in Items)
-            //        {
-            //            Routine routine =
-            //                appScope.CreateItem<RoutineDefinition>(null, config, null, log) as Routine;
-
-            //            if (routine != null)
-            //                log.AddEvents(routine.Execute(appScope, scriptVariableSet, item, dataElement));
-            //        }
 
             return log;
         }

@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
-        public IAppHost Configure(Action<IAppHostOptions> setupOptions)
+        public virtual IAppHost Configure(Action<IAppHostOptions> setupOptions)
         {
             setupOptions?.Invoke(Options);
 
@@ -105,7 +105,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Saves settings.
         /// </summary>
-        public void SaveSettings()
+        public virtual void SaveSettings()
         {
             String filePath = GetKnownPath(ApplicationPathKind.SettingsFolder) + "appconfig.xml";
             if ((UserSettingsSet != null) && (!string.IsNullOrEmpty(filePath)))
@@ -127,7 +127,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns></returns>
-        public IApplicationCredential GetCredential(string name)
+        public virtual IApplicationCredential GetCredential(string name)
         {
             IApplicationCredential credential = new ApplicationCredential
             {

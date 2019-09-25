@@ -7,6 +7,10 @@ namespace BindOpen.Framework.Core.Data.Items
     /// </summary>
     public interface ITitledDataItem : INamedDataItem, IGloballyTitled
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updateBaseObject"></param>
         void Update(ITitledDataItem updateBaseObject);
     }
 }

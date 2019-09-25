@@ -175,7 +175,9 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="log">The log to update.</param>
+        /// <param name="appScope"></param>
+        /// <param name="scriptVariableSet"></param>
+        /// <param name="log"></param>
         public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);

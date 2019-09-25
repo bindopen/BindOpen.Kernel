@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using BindOpen.Framework.Core.Extensions.Libraries;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Extensions.Libraries
@@ -34,24 +32,6 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
             // we feach format classes
 
             int count = 0;
-
-            //var types = assembly.GetTypes().Where(p => typeof(Format).IsAssignableFrom(p));
-            //foreach(Type type in types)
-            //{
-            //    IFormatDefinition definition = new FormatDefinition();
-
-            //    if (type.GetCustomAttribute(typeof(FormatAttribute)) is FormatAttribute formatAttribute)
-            //    {
-            //        definition.Update(formatAttribute);
-            //    }
-
-            //    if (isIndexLoaded)
-            //    {
-            //        //definition.Update()
-            //    }
-
-            //    count++;
-            //}
 
             return count;
         }

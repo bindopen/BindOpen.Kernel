@@ -7,6 +7,10 @@ namespace BindOpen.Framework.Core.Data.Items
     /// </summary>
     public interface IDescribedDataItem : ITitledDataItem, IGloballyDescribed
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updateBaseObject"></param>
         void Update(IDescribedDataItem updateBaseObject);
     }
 }

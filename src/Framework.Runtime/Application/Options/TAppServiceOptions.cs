@@ -1,5 +1,4 @@
 ﻿using System;
-using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;

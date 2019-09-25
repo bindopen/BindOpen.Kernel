@@ -39,6 +39,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <typeparam name="THost">The class of application host to consider.</typeparam>
         /// <param name="setupAction">The setup action to consider.</param>
+        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static THost CreateBindOpenHost<THost, T>(
             Action<ITAppHostOptions<T>> setupAction = null)

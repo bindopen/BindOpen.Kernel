@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Expression;
 
 namespace BindOpen.Framework.Core.Data.Conditions

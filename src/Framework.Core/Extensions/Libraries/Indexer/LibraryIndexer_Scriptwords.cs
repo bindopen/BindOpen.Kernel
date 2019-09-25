@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries
 
                                         count++;
                                     }
-                                    catch (Exception ex)
+                                    catch
                                     {
                                         log?.AddError(
                                                 title: "Incompatible function ('" + methodInfo.Name + "')",

@@ -90,6 +90,8 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
         public virtual void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
