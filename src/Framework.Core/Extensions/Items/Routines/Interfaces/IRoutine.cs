@@ -8,8 +8,20 @@ using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Routines
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IRoutine : ITAppExtensionItem<IRoutineDefinition>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appScope"></param>
+        /// <param name="scriptVariableSet"></param>
+        /// <param name="item"></param>
+        /// <param name="dataElement"></param>
+        /// <param name="objects"></param>
+        /// <returns></returns>
         ILog Execute(
             IAppScope appScope = null,
             IScriptVariableSet scriptVariableSet = null,

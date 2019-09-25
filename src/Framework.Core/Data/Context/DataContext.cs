@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
@@ -17,18 +16,6 @@ namespace BindOpen.Framework.Core.Data.Context
     public class DataContext : DataItem, IDataContext
     {
         // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        public Dictionary<string, object> _singletonItems = new Dictionary<string, object>();
-        public Dictionary<string, object> _scopedItems = new Dictionary<string, object>();
-        public Dictionary<string, object> _transientItems = new Dictionary<string, object>();
-
-        #endregion
-
-        // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
@@ -37,17 +24,17 @@ namespace BindOpen.Framework.Core.Data.Context
         /// <summary>
         /// Singletons.
         /// </summary>
-        public Dictionary<string, object> SingletonItems { get => _singletonItems; }
+        public Dictionary<string, object> SingletonItems { get; } = new Dictionary<string, object>();
 
         /// <summary>
         /// Scoped items.
         /// </summary>
-        public Dictionary<string, object> ScopedItems { get => _scopedItems; }
+        public Dictionary<string, object> ScopedItems { get; } = new Dictionary<string, object>();
 
         /// <summary>
         /// Transient items.
         /// </summary>
-        public Dictionary<string, object> TransientItems { get => _transientItems; }
+        public Dictionary<string, object> TransientItems { get; } = new Dictionary<string, object>();
 
         /// <summary>
         /// ID of this instance.
@@ -67,9 +54,9 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         public DataContext()
         {
-            this._scopedItems = new Dictionary<string, object>();
-            this._singletonItems = new Dictionary<string, object>();
-            this._transientItems = new Dictionary<string, object>();
+            this.ScopedItems = new Dictionary<string, object>();
+            this.SingletonItems = new Dictionary<string, object>();
+            this.TransientItems = new Dictionary<string, object>();
         }
 
         #endregion
@@ -101,25 +88,25 @@ namespace BindOpen.Framework.Core.Data.Context
             {
                 foreach (KeyValuePair<string,object> entry in dataContext.SingletonItems)
                 {
-                    if (!this._singletonItems.ContainsKey(entry.Key))
+                    if (!this.SingletonItems.ContainsKey(entry.Key))
                     {
-                        this._singletonItems.Add(entry.Key, entry.Value);
+                        this.SingletonItems.Add(entry.Key, entry.Value);
                     }
                 }
 
                 foreach (KeyValuePair<string, object> entry in dataContext.ScopedItems)
                 {
-                    if (!this._scopedItems.ContainsKey(entry.Key))
+                    if (!this.ScopedItems.ContainsKey(entry.Key))
                     {
-                        this._scopedItems.Add(entry.Key, entry.Value);
+                        this.ScopedItems.Add(entry.Key, entry.Value);
                     }
                 }
 
                 foreach (KeyValuePair<string, object> entry in dataContext.TransientItems)
                 {
-                    if (!this._transientItems.ContainsKey(entry.Key))
+                    if (!this.TransientItems.ContainsKey(entry.Key))
                     {
-                        this._transientItems.Add(entry.Key, entry.Value);
+                        this.TransientItems.Add(entry.Key, entry.Value);
                     }
                 }
             }
@@ -130,9 +117,9 @@ namespace BindOpen.Framework.Core.Data.Context
         /// </summary>
         public void Clear()
         {
-            this._singletonItems.Clear();
-            this._scopedItems.Clear();
-            this._transientItems.Clear();
+            this.SingletonItems.Clear();
+            this.ScopedItems.Clear();
+            this.TransientItems.Clear();
         }
 
         // Items ------------------------------------
@@ -189,8 +176,8 @@ namespace BindOpen.Framework.Core.Data.Context
         {
             string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
-            this._singletonItems.Remove(itemName);
-            this._singletonItems.Add(itemName, item);
+            this.SingletonItems.Remove(itemName);
+            this.SingletonItems.Add(itemName, item);
         }
 
         /// <summary>
@@ -206,8 +193,8 @@ namespace BindOpen.Framework.Core.Data.Context
         {
             string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
-            this._scopedItems.Remove(itemName);
-            this._scopedItems.Add(name, item);
+            this.ScopedItems.Remove(itemName);
+            this.ScopedItems.Add(name, item);
         }
 
         /// <summary>
@@ -223,8 +210,8 @@ namespace BindOpen.Framework.Core.Data.Context
         {
             string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
 
-            this._transientItems.Remove(itemName);
-            this._transientItems.Add(itemName, item);
+            this.TransientItems.Remove(itemName);
+            this.TransientItems.Add(itemName, item);
         }
 
         /// <summary>
@@ -236,18 +223,18 @@ namespace BindOpen.Framework.Core.Data.Context
             switch (persistenceLevel)
             {
                 case PersistenceLevel.Singleton:
-                    this._singletonItems.Clear();
+                    this.SingletonItems.Clear();
                     break;
                 case PersistenceLevel.Scoped:
-                    this._scopedItems.Clear();
+                    this.ScopedItems.Clear();
                     break;
                 case PersistenceLevel.Transient:
-                    this._transientItems.Clear();
+                    this.TransientItems.Clear();
                     break;
                 case PersistenceLevel.Any:
-                    this._singletonItems.Clear();
-                    this._scopedItems.Clear();
-                    this._transientItems.Clear();
+                    this.SingletonItems.Clear();
+                    this.ScopedItems.Clear();
+                    this.TransientItems.Clear();
                     break;
             }
         }
@@ -263,32 +250,32 @@ namespace BindOpen.Framework.Core.Data.Context
         {
             if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Singleton))
             {
-                var items = this._singletonItems.Keys.Where(p =>
+                var items = this.SingletonItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this._singletonItems.Remove(key);
+                    this.SingletonItems.Remove(key);
                 }
             }
             if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Scoped))
             {
-                var items = this._scopedItems.Keys.Where(p =>
+                var items = this.ScopedItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this._scopedItems.Remove(key);
+                    this.ScopedItems.Remove(key);
                 }
             }
             if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Transient))
             {
-                var items = this._transientItems.Keys.Where(p =>
+                var items = this.TransientItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this._transientItems.Remove(key);
+                    this.TransientItems.Remove(key);
                 }
             }
         }
@@ -327,7 +314,7 @@ namespace BindOpen.Framework.Core.Data.Context
         public object GetSingletonItem(string name, string contextSectionName = null)
         {
             string itemName = DataContext.GetItemUniqueName(name,contextSectionName);
-            return this._singletonItems.ContainsKey(itemName) ? this._singletonItems[itemName] : null;
+            return this.SingletonItems.ContainsKey(itemName) ? this.SingletonItems[itemName] : null;
         }
 
         /// <summary>
@@ -339,7 +326,7 @@ namespace BindOpen.Framework.Core.Data.Context
         public object GetScopedItem(string name, string contextSectionName = null)
         {
             string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
-            return _scopedItems.ContainsKey(itemName) ? this._scopedItems[itemName] : null;
+            return ScopedItems.ContainsKey(itemName) ? this.ScopedItems[itemName] : null;
         }
 
         /// <summary>
@@ -351,7 +338,7 @@ namespace BindOpen.Framework.Core.Data.Context
         public object GetTransientItem(string name, string contextSectionName = null)
         {
             string itemName = DataContext.GetItemUniqueName(name, contextSectionName);
-            return this._transientItems.ContainsKey(itemName) ? this._transientItems[itemName] : null;
+            return this.TransientItems.ContainsKey(itemName) ? this.TransientItems[itemName] : null;
         }
 
         /// <summary>

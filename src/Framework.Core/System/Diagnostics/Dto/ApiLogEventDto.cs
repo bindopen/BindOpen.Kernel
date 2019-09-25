@@ -130,6 +130,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Dto
         /// <param name="description">The description of this instance.</param>
         /// <param name="resultCode">The result code of this instance.</param>
         /// <param name="date">The date of this instance.</param>
+        /// <param name="name">The name of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
         public ApiLogEventDto(
             EventKinds kind,

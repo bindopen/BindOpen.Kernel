@@ -1,7 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-
-namespace BindOpen.Framework.Core.Data.Elements.Document
+﻿namespace BindOpen.Framework.Core.Data.Elements.Document
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IDocumentElementSpec : IDataElementSpec
     {
     }

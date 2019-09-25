@@ -34,7 +34,6 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="classFullName">The class full name to consider.</param>
         /// <param name="specification">The specification to consider.</param>
         /// <param name="elements">The elements to consider.</param>
         public static CollectionElement CreateCollection(

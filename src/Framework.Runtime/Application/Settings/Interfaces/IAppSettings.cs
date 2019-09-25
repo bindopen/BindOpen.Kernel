@@ -6,35 +6,85 @@ using BindOpen.Framework.Runtime.System;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IAppSettings : IBaseSettings
     {
-        new IAppConfiguration AppConfiguration { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        IAppConfiguration AppConfiguration { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string ApplicationInstanceId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ApplicationInstanceKind ApplicationInstanceKind { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string ApplicationInstanceName { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string CookieDomain { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         RuntimeMode CurrentRuntimeMode { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string DefaultTheme { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string DefaultUICultureName { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         ApplicationExecutionLevel ExecutionLevel { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string ExtensionsFolderPath { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         bool? IsUserTrackingEnabled { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string LogFolderPath { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string RuntimeFolderPath { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         string ServerInstanceName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appScope"></param>
         void SetAppScope(IAppHostScope appScope);
     }
 }

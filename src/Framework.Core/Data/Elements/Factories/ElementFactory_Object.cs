@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements._Object;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {

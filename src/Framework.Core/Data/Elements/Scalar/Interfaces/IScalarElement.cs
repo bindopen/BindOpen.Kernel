@@ -1,13 +1,18 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-
-namespace BindOpen.Framework.Core.Data.Elements.Scalar
+﻿namespace BindOpen.Framework.Core.Data.Elements.Scalar
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IScalarElement : IDataElement
     {
+        /// <summary>
+        /// 
+        /// </summary>
         string Value { get; set; }
 
-        DataValueType ValueType { get; set; }
-
+        /// <summary>
+        /// 
+        /// </summary>
         new ScalarElementSpec Specification { get; set; }
     }
 }

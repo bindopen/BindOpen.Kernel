@@ -76,13 +76,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Dto
         /// <summary>
         /// Instantiates a new instance of the ApiLogDto class.
         /// </summary>
-        /// <param name="kind">The kind of this instance.</param>
-        /// <param name="title">The title of this instance.</param>
-        /// <param name="criticality">The criticality of this instance.</param>
-        /// <param name="description">The description of this instance.</param>
-        /// <param name="resultCode">The result code of this instance.</param>
-        /// <param name="date">The date of this instance.</param>
-        /// <param name="id">The ID of this instance.</param>
+        /// <param name="displayName"></param>
+        /// <param name="description"></param>
+        /// <param name="date"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
         public ApiLogDto(
             string displayName = null,
             string description = null,

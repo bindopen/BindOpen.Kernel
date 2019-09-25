@@ -5,7 +5,6 @@ using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Dto;
 using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Labs.AspNetCore.Data.Resolvers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -17,6 +16,10 @@ namespace BindOpen.Framework.Tests.TestConsole
     /// <remarks>This class like the whole project is temporary. It allows to implement tests before inserting them in Unit test project.</remarks>
     internal static class Test_It
     {
+        /// <summary>
+        /// Starts the test.
+        /// </summary>
+        /// <returns></returns>
         public static async Task Start()
         {
             //IDataElement element1 = ElementFactory.CreateScalar("test1", 1, 2, 3, 4, 5);
@@ -61,25 +64,7 @@ namespace BindOpen.Framework.Tests.TestConsole
             //field.Name = "test";
             //field.Alias = "alias";
 
-            //Program._AppHost = new TAppHost<TestSettings>()
-            //    .Configure(options => options
-            //        .DefineSettings<TestSettings>()
-            //        .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run")
-            //        .SetModule(new AppModule("app.test"))
-            //        .SetExtensions(
-            //            new AppExtensionConfiguration()
-            //            .AddFilter("BindOpen.Framework.Databases")
-            //            .AddFilter("BindOpen.Framework.Databases.MSSqlServer")
-            //        )
-            //        //.SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\lib")
-            //        .AddDefaultLogger()
-            //        .SetLoggers(
-            //            LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))
-            //    )
-            //    //.UseSettingsFile((AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\run\settings\").ToPath())
-            //    .Start();
-
-            //string script = @"$(application.folderPath) ..\..\meltingFlow.Store.Sky.Repo";
+            //string script = @"$(application.folderPath) ..\..\TOTO";
             //string resultScript = Program._AppHost.ScriptInterpreter.Interprete(script, null, Program._AppHost.Log);
 
             //string path1 = Program._AppHost.GetSettings<TestSettings>().TestFolderPath;
@@ -187,7 +172,7 @@ namespace BindOpen.Framework.Tests.TestConsole
 
             //(new DataItemSet<Event>(
             //    new Event(EventKind.Error),
-            //    new Event(EventKind.Exception))).SaveXml(@"c:\workarea\temp\test.xml", Program._AppManager.Log);
+            //    new Event(EventKind.Exception))).SaveXml(@"test.xml", Program._AppManager.Log);
 
 
             //var value = Program._AppManager.Configuration?.LogsFolderPath;

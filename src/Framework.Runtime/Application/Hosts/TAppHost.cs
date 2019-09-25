@@ -57,11 +57,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             set { }
         }
 
-        /// <summary>
-        /// The set of user settings of this intance.
-        /// </summary>
-        public IDataElementSet UserSettingsSet { get; set; } = new DataElementSet();
-
         #endregion
 
         // ------------------------------------------
@@ -119,7 +114,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Saves settings.
         /// </summary>
-        public void SaveSettings()
+        public override void SaveSettings()
         {
             String filePath = GetKnownPath(ApplicationPathKind.SettingsFolder) + "appconfig.xml";
             if ((UserSettingsSet != null) && (!string.IsNullOrEmpty(filePath)))
@@ -141,7 +136,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="name">Name</param>
         /// <returns></returns>
-        public IApplicationCredential GetCredential(string name)
+        public override IApplicationCredential GetCredential(string name)
         {
             IApplicationCredential credential = new ApplicationCredential
             {
@@ -157,9 +152,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="pathKind">The kind of paths.</param>
         /// <returns>The path of the application temporary folder.</returns>
-        public virtual String GetKnownPath(ApplicationPathKind pathKind)
+        public override string GetKnownPath(ApplicationPathKind pathKind)
         {
-            String path = null;
+            string path = null;
             switch (pathKind)
             {
                 case ApplicationPathKind.AppFolder:
@@ -271,7 +266,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Initializes information.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="A"></typeparam>
         /// <returns>Returns the log of the task.</returns>
         protected override ILog Initialize<A>()
         {
