@@ -15,6 +15,9 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
     /// </summary>
     public abstract class Connector : TAppExtensionItem<IConnectorDefinition>, IConnector
     {
+        /// <summary>
+        /// 
+        /// </summary>
         new public IConnectorConfiguration Configuration { get => base.Configuration as IConnectorConfiguration; }
 
         // ------------------------------------------
@@ -157,6 +160,8 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {

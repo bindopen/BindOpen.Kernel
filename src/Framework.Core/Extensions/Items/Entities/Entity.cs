@@ -10,6 +10,9 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
     /// </summary>
     public abstract class Entity : TAppExtensionItem<EntityDefinition>, IEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         new public IEntityConfiguration Configuration { get => base.Configuration as IEntityConfiguration; }
 
         // ------------------------------------------
@@ -35,59 +38,11 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
 
         #endregion
 
-        //// ------------------------------------------
-        //// MUTATORS
-        //// ------------------------------------------
+        // --------------------------------------------------
+        // ACCESSORS
+        // --------------------------------------------------
 
-        //#region Mutators
-
-        ///// <summary>
-        ///// Sets the specififed configuration.
-        ///// </summary>
-        ///// <param name="configuration">The configuration to consider.</param>
-        //public void SetConfiguration(TAppExtensionItemDto<EntityDefinition> configuration)
-        //{
-        //    if (configuration == null
-        //        || (AppScope != null && configuration.KeyEquals(this.DefinitionUniqueId)))
-        //    {
-        //        configuration = this.AppScope.AppExtension.CreateConfiguration<EntityDefinition>(this.DefinitionUniqueId) as EntityConfiguration;
-        //    }
-
-        //    if (configuration != null)
-        //        this.Update(configuration);
-        //}
-
-        ///// <summary>
-        ///// Sets the specified value.
-        ///// </summary>
-        ///// <param name="value">The value to set.</param>
-        ///// <param name="propertyName">The calling property name to consider.</param>
-        //public void Set(object value, [CallerMemberName] String propertyName = null)
-        //{
-        //    if (propertyName != null)
-        //    {
-        //        DataElementAttribute attribute = null;
-        //        PropertyInfo propertyInfo = this.GetPropertyInfo(
-        //            this.GetType(),
-        //            propertyName,
-        //            new Type[] { typeof(DetailPropertyAttribute) },
-        //            ref attribute,
-        //            this.AppScope);
-
-        //        if (attribute is DetailPropertyAttribute)
-        //        {
-        //            (this.Detail ?? (this.Detail = new DataElementSet())).AddElement(attribute.Name, value, propertyInfo.PropertyType.GetValueType());
-        //        }
-        //    }
-        //}
-
-        //#endregion
-
-        //// --------------------------------------------------
-        //// ACCESSORS
-        //// --------------------------------------------------
-
-        //#region Accessors
+        #region Accessors
 
         /// <summary>
         /// Returns a data element representing this instance.
@@ -99,57 +54,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Entities
         {
             return ElementFactory.CreateObject(name ?? Name, base.Configuration as IEntityConfiguration);
         }
-        ///// <summary>
-        ///// Gets the specified value.
-        ///// </summary>
-        ///// <param name="propertyName">The calling property name to consider.</param>
-        //public T Get<T>([CallerMemberName] String propertyName = null)
-        //{
-        //    if (propertyName != null)
-        //    {
-        //        DataElementAttribute attribute = null;
-        //        PropertyInfo propertyInfo = this.GetPropertyInfo(
-        //            this.GetType(),
-        //            propertyName,
-        //        new Type[] { typeof(DetailPropertyAttribute) },
-        //        ref attribute,
-        //        this.AppScope);
 
-        //        if (attribute is DetailPropertyAttribute)
-        //        {
-        //            Object value = this.Detail?.GetElementItemObject(attribute.Name, this.AppScope);
-        //            if (value is T)
-        //                return (T)value;
-        //        }
-        //    }
-
-        //    return default(T);
-        //}
-
-        ///// <summary>
-        ///// Gets the specified value.
-        ///// </summary>
-        ///// <param name="propertyName">The calling property name to consider.</param>
-        ///// <param name="defaultValue">The default value to consider.</param>
-        //public T Get<T>(T defaultValue, [CallerMemberName] String propertyName = null) where T : struct, IConvertible
-        //{
-        //    if (propertyName != null)
-        //    {
-        //        DataElementAttribute attribute = null;
-        //        PropertyInfo propertyInfo = this.GetPropertyInfo(
-        //            this.GetType(),
-        //            propertyName,
-        //            new Type[] { typeof(DetailPropertyAttribute) },
-        //            ref attribute,
-        //            this.AppScope);
-
-        //        if (attribute is DetailPropertyAttribute)
-        //            return (this.Detail.GetElementItemObject(attribute.Name, this.AppScope) as string).ToEnum<T>(defaultValue); ;
-        //    }
-
-        //    return default(T);
-        //}
-
-        //#endregion
+        #endregion
     }
 }

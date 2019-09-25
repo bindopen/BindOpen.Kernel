@@ -54,12 +54,6 @@ namespace BindOpen.Framework.Core.Extensions.Items
                     case AppExtensionItemKind.Format:
                         configuration = new FormatConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
-                    //case AppExtensionItemKind.Metrics:
-                    //    configuration = new MetricsDto(definitionUniqueId) as ITAppExtensionItemDto<T>;
-                    //    break;
-                    //case AppExtensionItemKind.Routine:
-                    //    configuration = new RoutineConfiguration(definitionUniqueId) as ITAppExtensionItemDto<T>;
-                    //    break;
                     case AppExtensionItemKind.Task:
                         configuration = new TaskConfiguration(definitionUniqueId) as ITAppExtensionItemConfiguration<T>;
                         break;
@@ -80,6 +74,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <param name="xmlstring">The XML string to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to consider.</param>
         public static ITAppExtensionItemConfiguration<T> LoadConfiguration<T>(
             this IAppScope appScope,
@@ -105,12 +100,6 @@ namespace BindOpen.Framework.Core.Extensions.Items
                 case AppExtensionItemKind.Format:
                     configuration = XmlHelper.LoadFromString<FormatConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;
-                //case AppExtensionItemKind.Metrics:
-                //    configuration = XmlHelper.LoadFromString<MetricsDto>(xmlstring, log) as ITAppExtensionItemDto<T>;
-                //    break;
-                //case AppExtensionItemKind.Routine:
-                //    configuration = XmlHelper.LoadFromString<RoutineConfiguration>(xmlstring, log) as ITAppExtensionItemDto<T>;
-                //    break;
                 case AppExtensionItemKind.Task:
                     configuration = XmlHelper.LoadFromString<CarrierConfiguration>(xmlstring, appScope, scriptVariableSet, log) as ITAppExtensionItemConfiguration<T>;
                     break;

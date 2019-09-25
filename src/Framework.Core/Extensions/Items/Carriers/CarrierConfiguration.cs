@@ -162,8 +162,9 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-
-            /// <param name="log">The log to update.</param>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
+        /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
             base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);

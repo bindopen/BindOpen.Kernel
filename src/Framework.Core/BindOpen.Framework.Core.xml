@@ -9558,6 +9558,11 @@
             This class represents a carrier.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier.Configuration">
+            <summary>
+            The configuration of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Carrier.Path">
             <summary>
             Path of this instance.
@@ -9642,6 +9647,8 @@
             <summary>
             Updates information for runtime.
             </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.CarrierConfiguration">
@@ -9711,6 +9718,8 @@
             <summary>
             Updates information for runtime.
             </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.CarrierDefinition">
@@ -9789,9 +9798,99 @@
             <param name="uiCulture">The UI culture to consider.</param>
             <returns>A text summarizing this instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.ICarrierDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.ICarrierDefinitionDto.DataSourceKind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.ICarrierDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.Dto.ICarrierDefinitionDto.DetailSpec">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.ICarrierDefinition">
+            <summary>
+            This interface defines the carrier definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.Definition.ICarrierDefinition.RuntimeType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.RelativePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.CreationDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.Flag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.IsReadonly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.LastAccessDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.LastWriteDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.SetPath(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="relativePath"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrier.AsElement(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration">
+            <summary>
+            This interface defines the carrier configuration.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector">
             <summary>
             This class represents a connector.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.Configuration">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.ConnectionString">
@@ -9857,6 +9956,8 @@
             <summary>
             Updates information for runtime.
             </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.ConnectorConfiguration">
@@ -9927,6 +10028,8 @@
             <summary>
             Updates information for runtime.
             </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.ConnectorDefinition">
@@ -9997,6 +10100,78 @@
             Instantiates a new instance of the ConnectorDefinitionDto class.
             </summary>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto.IConnectorDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto.IConnectorDefinitionDto.DataSourceKind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto.IConnectorDefinitionDto.DatasourceDetailSpec">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.Dto.IConnectorDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.IConnectorDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Connectors.Definition.IConnectorDefinition.RuntimeType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.AsElement(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.IsConnected">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.Open">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.Close">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.UpdateConnectionString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="connectionString"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.EntityDefinitionDto">
             <summary>
             This class represents the entity definition.
@@ -10058,6 +10233,62 @@
             </summary>
             <param ID="id">Id of the application module.</param>
             <returns>The current visitor application module.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.FormatDefinitions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.PossibleMetaSchemas">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.ViewerClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.DetailSpec">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.GetFormatWithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.GetFormatWithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.Dto.IEntityDefinitionDto.GetFormatWithUniqueName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="uniqueName"></param>
+            <returns></returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.EntityDefinition">
             <summary>
@@ -10132,9 +10363,24 @@
             Simple item.
             </summary>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.IEntityDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Definition.IEntityDefinition.RuntimeType">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.Entity">
             <summary>
             This class represents an data entity item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.Entity.Configuration">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.Entity.#ctor">
@@ -10185,6 +10431,29 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.IEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Entities.IEntity.AsElement(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Entities.IEntityConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Entities.IEntityConfiguration.Schema">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemDtoFactory">
             <summary>
             This static class provides methods to create extension DTO item.
@@ -10204,6 +10473,7 @@
             </summary>
             <param name="appScope">The application scope to consider.</param>
             <param name="xmlstring">The XML string to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.AppExtensionItemFactory">
@@ -10311,6 +10581,26 @@
             Instantiates a new instance of the FormatDefinition class.
             </summary>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto.IFormatDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto.IFormatDefinitionDto.DataSourceKind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto.IFormatDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.Dto.IFormatDefinitionDto.ViewerClass">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.FormatDefinition">
             <summary>
             This class represents a format definition.
@@ -10354,9 +10644,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.IFormatDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Definition.IFormatDefinition.RuntimeType">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.Format">
             <summary>
             This class represents an format.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Formats.Format.Configuration">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Formats.Format.#ctor">
@@ -10392,6 +10697,16 @@
             Clones this instance.
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.IFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Formats.IFormatConfiguration">
+             <summary>
+            
+             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.HandlerDefinitionDto">
             <summary>
@@ -10431,6 +10746,41 @@
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.HandlerDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the HandlerDefinition class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.CallingClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.GetFunctionName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.ParameterSpecification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.PostFunctionName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.SourceSpecification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.Dto.IHandlerDefinitionDto.TargetSpecification">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.HandlerDefinition">
@@ -10481,6 +10831,21 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.IHandlerDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.IHandlerDefinition.RuntimeFunctionGet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Handlers.Definition.IHandlerDefinition.RuntimeFunctionPost">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Handlers.HandlerGetFunction">
             <summary>
             This delegate represents a handler GET function.
@@ -10508,9 +10873,148 @@
             This class represents an application extension runtime item.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItem.Configuration">
+            <summary>
+            Configuration.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinition.Library">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto.ImageUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto.IsEditable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto.IsIndexed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto.LibraryName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemDefinitionDto.GetText(BindOpen.Framework.Core.System.Diagnostics.Loggers.LoggerFormat,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="logFormat"></param>
+            <param name="uiCulture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemGroup.SubGroups">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.IAppExtensionItemGroup.GetGroupWithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItem`1">
             <summary>
             This class represents an application extension runtime item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItem`1.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItem`1.Definition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItem`1.SetDefinition(`0)">
+            <summary>
+            
+            </summary>
+            <param name="definition"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemConfiguration`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemConfiguration`1.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemConfiguration`1.DefinitionUniqueId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemConfiguration`1.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemDefinition`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionItemDefinition`1.Dto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.ITAppExtensionTitledItemConfiguration`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.IRoutineDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.IRoutineDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.IRoutineDefinitionDto.OutputResultCodes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.IRoutineDefinitionDto.ParameterStatement">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.RoutineDefinitionDto">
@@ -10541,6 +11045,16 @@
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.Dto.RoutineDefinitionDto.#ctor">
             <summary>
             Initializes a new instance of the RoutineDefinition class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.IRoutineDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.IRoutineDefinition.RuntimeType">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Definition.RoutineDefinition">
@@ -10586,6 +11100,32 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.IRoutine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.IRoutine.Execute(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.Object,BindOpen.Framework.Core.Data.Elements.IDataElement,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="appScope"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="item"></param>
+            <param name="dataElement"></param>
+            <param name="objects"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.IRoutineConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.IRoutineConfiguration.OutputEventSet">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.KnownRoutineKind">
             <summary>
             This enumeration represents the basic routine kinds.
@@ -10609,6 +11149,11 @@
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Routines.Routine">
             <summary>
             This class represents a routine.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Routines.Routine.Configuration">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Routines.Routine.#ctor">
@@ -10664,7 +11209,6 @@
             Instantiates a new instance of the RoutineConfiguration class.
             </summary>
             <param name="definitionUniqueId">The definition unique ID to consider.</param>
-            <param name="commandSet">The command set to consider.</param>
             <param name="outputEventSet">The output event set to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
@@ -10679,6 +11223,90 @@
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.IsRepeatedParameters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.MaxParameterNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.MinParameterNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.ParameterSpecification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.ReferenceUniqueName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.RepeatedParameterDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.RepeatedParameterName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.RepeatedParameterValueType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.ReturnValueType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.CallingClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.RuntimeFunctionName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.GetDefaultRuntimeFunctionName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.IScriptwordDefinitionDto.GetRepeatedParameterDescriptionText(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="variantName"></param>
+            <param name="defaultVariantName"></param>
+            <returns></returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.Dto.ScriptwordDefinitionDto">
             <summary>
@@ -10789,6 +11417,26 @@
             <param name="uiCulture">The UI culture to consider.</param>
             <returns>A text summarizing this instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition.Parent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition.Children">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.IScriptwordDefinition.RuntimeFunction">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition">
             <summary>
             This class represents a carrier definition.
@@ -10840,6 +11488,53 @@
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition.ScriptwordDefinition.Key">
             <summary>
             Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.Parent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.SubScriptword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.ParameterDetail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.Item">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.StringItem">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.Last">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword.Root">
+            <summary>
+            
             </summary>
             <returns></returns>
         </member>
@@ -11133,6 +11828,77 @@
             <param name="variantName">The variant variant name to consider.</param>
             <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.GroupName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.InputSpecification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.OutputSpecification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.MaximumIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.IsExecutable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.CustomCheck">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.GetEntries(BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.GetEntryDefaultItemWithName(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="log"></param>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.GetEntryWithName(System.String,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto.Repair(BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.ITaskDefinitionDto)">
+            <summary>
+            
+            </summary>
+            <param name="taskDefinition"></param>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.Dto.TaskDefinitionDto">
             <summary>
             This class represents a task definition.
@@ -11219,6 +11985,16 @@
             </summary>
             <param name="taskDefinition">The definition task to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.ITaskDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.ITaskDefinition.RuntimeType">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Definition.TaskDefinition">
             <summary>
             This class represents a task definition.
@@ -11262,9 +12038,90 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask.GetEntryObjectWithName(System.String,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="appScope"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask.IsCompatibleWith(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind)">
+            <summary>
+            
+            </summary>
+            <param name="dataElementSpecSet"></param>
+            <param name="taskEntryKind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask.IsConfigurable(BindOpen.Framework.Core.Data.Common.SpecificationLevels)">
+            <summary>
+            
+            </summary>
+            <param name="specificationLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask.UpdateAbsolutePaths(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="relativePath"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITask.Execute(BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Data.Common.RuntimeMode)">
+            <summary>
+            
+            </summary>
+            <param name="log"></param>
+            <param name="appScope"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="runtimeMode"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration.InputDetail">
+            <summary>
+            The input detail.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration.OutputDetail">
+            <summary>
+            The output detail.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration.GetEntries(BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.ITaskConfiguration.GetEntryWithName(System.String,BindOpen.Framework.Core.Extensions.Items.Tasks.TaskEntryKind[])">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="taskEntryKinds"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Tasks.Task">
             <summary>
             This class represents an task.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Tasks.Task.Configuration">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.Task.#ctor">
@@ -11386,6 +12243,8 @@
             <summary>
             Updates information for runtime.
             </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Tasks.TaskConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
@@ -11458,6 +12317,21 @@
             <param name="taskEntryKind">The entry kind to consider.</param>
             <returns>The result object.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto.IMetricsDefinitionDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto.IMetricsDefinitionDto.ItemClass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto.IMetricsDefinitionDto.UnitCode">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto.MetricsDefinitionDto">
             <summary>
             This class represents a metrics definition.
@@ -11481,6 +12355,16 @@
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.Dto.MetricsDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the MetricsDefinition class. 
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.IMetricsDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.IMetricsDefinition.RuntimeType">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Metrics.Definition.MetricsDefinition">
