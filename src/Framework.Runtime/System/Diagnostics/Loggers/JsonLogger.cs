@@ -44,13 +44,13 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public JsonLogger(
-            String name,
+            string name,
             LoggerMode mode,
-            String folderPath,
-            String fileName = null,
+            string folderPath,
+            string fileName = null,
             DataSourceKind outputKind = DataSourceKind.Repository,
             bool isVerbose = false,
-            String uiCulture = null,
+            string uiCulture = null,
             Predicate<ILogEvent> eventFinder = null,
             int expirationDayNumber = -1)
             : base(name, LoggerFormat.Json, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
@@ -133,7 +133,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         public override ILog LoadLog(
-            String filePath,
+            string filePath,
             ILog loadLog = null,
             bool mustFileExist = true)
         {
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="loadLog">The output log of the load task.</param>
         /// <returns>The log defined in the Xml file.</returns>
         public override ILog LoadLogFromString(
-            String xmlString,
+            string xmlString,
             ILog loadLog = null)
         {
             Log log = null;
@@ -198,7 +198,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        public override bool Save(ILog log, String logFilePath, bool isAppended = false)
+        public override bool Save(ILog log, string logFilePath, bool isAppended = false)
         {
             if (log == null) return false;
 

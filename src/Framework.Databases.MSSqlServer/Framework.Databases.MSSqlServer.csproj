@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>BindOpen.Framework.Databases.MSSqlServer</AssemblyName>
     <PackageId>BindOpen.Framework.Databases.MSSqlServer</PackageId>
     <Product>BindOpen.Framework</Product>
@@ -49,7 +49,7 @@ This package handles MS SQL Server database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
