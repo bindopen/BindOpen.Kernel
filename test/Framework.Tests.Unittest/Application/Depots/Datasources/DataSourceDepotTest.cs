@@ -20,8 +20,6 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         [SetUp]
         public void Setup()
         {
-            Log log = new Log();
-
             _dataSourceDepot = new DataSourceDepot(
                 new DataSource(
                     "smtp_default",
