@@ -79,6 +79,5 @@ namespace BindOpen.Framework.Core.Data.Business.Contacts
         }
 
         #endregion
-
     }
 }
