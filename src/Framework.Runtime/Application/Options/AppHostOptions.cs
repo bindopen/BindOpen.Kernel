@@ -267,7 +267,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions AddLoggers(params ILogger[] loggers)
         {
-            if (_loggers == null) _loggers = Array.Empty<ILogger>();
+            if (_loggers == null) _loggers = new List<ILogger>();
             loggers?.ToList().ForEach(p => _loggers.Add(p));
 
             return this;
