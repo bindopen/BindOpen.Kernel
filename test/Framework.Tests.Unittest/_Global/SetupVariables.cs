@@ -31,13 +31,12 @@ namespace BindOpen.Framework.Tests.UnitTest
                 return _appHost ?? (_appHost = AppHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
                             .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
+                            .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\lib")
                             .SetModule(new AppModule("app.test"))
                             .DefineDefaultSettings()
                             .SetExtensions(
-                                new AppExtensionConfiguration()
-                                    .AddFilter("BindOpen.Framework.Databases")
-                                    .AddFilter("BindOpen.Framework.Databases.MSSqlServer"))
-                            .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\lib")
+                                new AppExtensionFilter("BindOpen.Framework.Databases"),
+                                new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer"))
                             .AddDefaultLogger()));
             }
         }

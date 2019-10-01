@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
@@ -47,7 +49,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// 
         /// </summary>
-        protected ILogger[] _loggers = null;
+        protected IList<ILogger> _loggers = null;
 
         /// <summary>
         /// 
@@ -117,14 +119,14 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public string RuntimeFolderPath => _runtimeFolderPath;
 
         /// <summary>
-        /// The library folder path.
+        /// The library folder path of this instance.
         /// </summary>
         public string LibraryFolderPath => _libraryFolderPath;
 
         /// <summary>
-        /// The runtime folder path.
+        /// The loggers of this instance.
         /// </summary>
-        public ILogger[] Loggers { get; }
+        public IList<ILogger> Loggers { get; }
 
         /// <summary>
         /// Indicates whether the default logger is used.
@@ -173,7 +175,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetAppFolder(string appFolderPath)
         {
-            this._appFolderPath = appFolderPath.GetEndedString(@"\").ToPath();
+            _appFolderPath = appFolderPath.GetEndedString(@"\").ToPath();
 
             return this;
         }
@@ -185,7 +187,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetRuntimeFolder(string runtimeFolderPath)
         {
-            this._runtimeFolderPath = runtimeFolderPath.GetEndedString(@"\").ToPath();
+            _runtimeFolderPath = runtimeFolderPath.GetEndedString(@"\").ToPath();
             return this;
         }
 
@@ -196,7 +198,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetLibraryFolder(string libraryFolderPath)
         {
-            this._libraryFolderPath = libraryFolderPath.GetEndedString(@"\").ToPath();
+            _libraryFolderPath = libraryFolderPath.GetEndedString(@"\").ToPath();
             return this;
         }
 
@@ -207,39 +209,43 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetModule(IAppModule module)
         {
-            this._applicationModule = module;
+            _applicationModule = module;
             return this;
         }
 
         /// <summary>
         /// Sets the specified extension settings.
         /// </summary>
-        /// <param name="extensionConfiguration"></param>
+        /// <param name="extensionConfiguration">The extension configuration to consider.</param>
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration)
         {
             if (extensionConfiguration != null)
             {
-                (this._appExtensionConfiguration ?? (this._appExtensionConfiguration = new AppExtensionConfiguration())).Merge(extensionConfiguration);
+                (_appExtensionConfiguration ?? (_appExtensionConfiguration = new AppExtensionConfiguration())).Merge(extensionConfiguration);
 
-                if (this._appExtensionConfiguration.DefaultSourceKinds == null)
-                    this._appExtensionConfiguration.DefaultSourceKinds = new List<DataSourceKind>() { DataSourceKind.Memory, DataSourceKind.Repository };
+                if (_appExtensionConfiguration.DefaultSourceKinds == null)
+                    _appExtensionConfiguration.DefaultSourceKinds = new List<DataSourceKind>() { DataSourceKind.Memory, DataSourceKind.Repository };
             }
 
             return this;
         }
 
-        ///// <summary>
-        ///// Defines the specified settings.
-        ///// </summary>
-        ///// <param name="specificationSet">The set of data element specifcations to consider.</param>
-        ///// <returns>Returns this instance.</returns>
-        //public IAppHostOptions DefineSettings(IDataElementSpecSet specificationSet)
-        //{
-        //    this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
+        /// <summary>
+        /// Sets the specified extension settings.
+        /// </summary>
+        /// <param name="filters">The filters to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAppHostOptions SetExtensions(params IAppExtensionFilter[] filters)
+        {
+            if (filters != null)
+            {
+                var extensionConfiguration = new AppExtensionConfiguration(filters);
+                SetExtensions(extensionConfiguration);
+            }
 
-        //    return this;
-        //}
+            return this;
+        }
 
         /// <summary>
         /// Defines the specified default settings.
@@ -248,20 +254,21 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public virtual IAppHostOptions DefineDefaultSettings(IDataElementSpecSet specificationSet)
         {
-            this.Settings = new DefaultAppSettings();
-            this.SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
+            Settings = new DefaultAppSettings();
+            SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
             return this;
         }
 
         /// <summary>
-        /// Sets the specified settings specification.
+        /// Adds the specified settings specification.
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetLoggers(params ILogger[] loggers)
+        public IAppHostOptions AddLoggers(params ILogger[] loggers)
         {
-            this._loggers = loggers;
+            if (_loggers == null) _loggers = Array.Empty<ILogger>();
+            loggers?.ToList().ForEach(p => _loggers.Add(p));
 
             return this;
         }

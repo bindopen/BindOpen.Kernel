@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -277,7 +278,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     Logger.__DefaultName, LoggerMode.Auto, DataSourceKind.Repository, false, null,
                     GetKnownPath(ApplicationPathKind.DefaultLogFolder), "log_" + Id + ".txt"));
             }
-            Log.AddLoggers(Options?.Loggers);
+            Log.AddLoggers(Options?.Loggers?.ToArray());
 
             // we initialize as scoped service
             base.Initialize<A>();
