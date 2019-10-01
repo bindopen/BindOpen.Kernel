@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Runtime.Application.Options
 {
@@ -29,7 +30,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The loggers.
         /// </summary>
-        ILogger[] Loggers { get; }
+        IList<ILogger> Loggers { get; }
 
         /// <summary>
         /// The extension configuration.
@@ -103,11 +104,18 @@ namespace BindOpen.Framework.Runtime.Application.Options
         IAppHostOptions DefineDefaultSettings(IDataElementSpecSet specificationSet = null);
 
         /// <summary>
-        /// Set the extensions.
+        /// Sets the extensions.
         /// </summary>
         /// <param name="extensionConfiguration">The extension configuration.</param>
         /// <returns>Returns the application host option.</returns>
         IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration);
+
+        /// <summary>
+        /// Adds the extensions.
+        /// </summary>
+        /// <param name="filters">The filters to consider.</param>
+        /// <returns>Returns the application host option.</returns>
+        IAppHostOptions SetExtensions(params IAppExtensionFilter[] filters);
 
         /// <summary>
         /// Adds the default logger.
@@ -116,11 +124,11 @@ namespace BindOpen.Framework.Runtime.Application.Options
         IAppHostOptions AddDefaultLogger();
 
         /// <summary>
-        /// Set the specified loggers.
+        /// Adds the specified loggers.
         /// </summary>
         /// <param name="loggers">The loggers to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetLoggers(params ILogger[] loggers);
+        IAppHostOptions AddLoggers(params ILogger[] loggers);
 
         /// <summary>
         /// Set the module.

@@ -1607,12 +1607,12 @@
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.LibraryFolderPath">
             <summary>
-            The library folder path.
+            The library folder path of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.Loggers">
             <summary>
-            The runtime folder path.
+            The loggers of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.IsDefaultLoggerUsed">
@@ -1667,7 +1667,14 @@
             <summary>
             Sets the specified extension settings.
             </summary>
-            <param name="extensionConfiguration"></param>
+            <param name="extensionConfiguration">The extension configuration to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+            <summary>
+            Sets the specified extension settings.
+            </summary>
+            <param name="filters">The filters to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
@@ -1677,9 +1684,9 @@
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
-            Sets the specified settings specification.
+            Adds the specified settings specification.
             </summary>
             <param name="loggers">The loggers to consider.</param>
             <returns>Returns this instance.</returns>
@@ -1775,9 +1782,16 @@
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
-            Set the extensions.
+            Sets the extensions.
             </summary>
             <param name="extensionConfiguration">The extension configuration.</param>
+            <returns>Returns the application host option.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+            <summary>
+            Adds the extensions.
+            </summary>
+            <param name="filters">The filters to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddDefaultLogger">
@@ -1786,9 +1800,9 @@
             </summary>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
-            Set the specified loggers.
+            Adds the specified loggers.
             </summary>
             <param name="loggers">The loggers to consider.</param>
             <returns>Returns the application host option.</returns>
@@ -3857,135 +3871,22 @@
             This class contains data queries for the 'Standard' extension.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard">
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Connectors.BindOpenHostExtension">
             <summary>
-            This enumeration lists all the possible kinds of 'Standard' carriers.
+            This class extends BindOpenHost.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.Any">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Connectors.BindOpenHostExtension.AddExtension_Messages(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
             <summary>
-            Any.
+            Gets the database connection of this instance.
             </summary>
+            <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.File">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Connectors.BindOpenHostExtension.AddExtension_DatabaseMSSqlServer(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
             <summary>
-            File.
+            Gets the database connection of this instance.
             </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.Folder">
-            <summary>
-            Folder.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standardExtension">
-            <summary>
-            This class represents an extension of the CarrierKind_standard enumeration.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standardExtension.GetUniqueName(BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard)">
-            <summary>
-            Gets the unique name corresponding to the specified carrier kind.
-            </summary>
-            <param name="aCarrierKind_standard">The carrier unique name to consider.</param>
-            <returns>The result object.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile">
-            <summary>
-            This class represents a repository file.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.Length">
-            <summary>
-            The length of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor">
-            <summary>
-            Instantiates a new instance of the RepositoryFile class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor(System.String)">
-            <summary>
-            Instantiates a new instance of the RepositoryFile class.
-            </summary>
-            <param name="path">The path of the instance.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor(System.String,System.String)">
-            <summary>
-            Instantiates a new instance of the RepositoryFile class.
-            </summary>
-            <param name="fileName">The file name of the instance.</param>
-            <param name="folderPath">The folder path of the instance.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.Check``1(System.Boolean,``0,System.String[])">
-            <summary>
-            Checks this instance.
-            </summary>
-            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
-            <returns>Returns the check log.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder">
-            <summary>
-            This class represents a repository folder.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.#ctor">
-            <summary>
-            Instantiates a new instance of the RepositoryFolder class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.#ctor(System.String)">
-            <summary>
-            Instantiates a new instance of the RepositoryFolder class.
-            </summary>
-            <param name="path">The path of the instance.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.Check``1(System.Boolean,``0,System.String[])">
-            <summary>
-            Checks this instance.
-            </summary>
-            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
-            <returns>Returns the check log.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem">
-            <summary>
-            This class represents a repository item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor">
-            <summary>
-            Instantiates a new instance of the RepositoryItem class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor(BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration)">
-            <summary>
-            Instantiates a new instance of the RepositoryItem class.
-            </summary>
-            <param name="dto">The DTO item of this instance.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.SetPath(System.String,System.String)">
-            <summary>
-            Sets the path of this instance.
-            </summary>
-            <param name="path">The new path to consider. Null to update the existing one.</param>
-            <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
-            <returns>Returns True if this instance exists. False otherwise.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Extensions.Common.Extension_standard">
-            <summary>
-            This class represents the standard extension.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Common.Extension_standard.GetUniqueName_standard(System.String)">
-            <summary>
-            Gets the database unique name.
-            </summary>
-            <param name="uniqueName">The unique name to consider.</param>
-            <returns>The result object.</returns>
+            <returns>Returns the connection of this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Extensions.Connectors.ConnectorKind_standard">
             <summary>
@@ -4242,6 +4143,136 @@
             <summary>
             Instantiates a new instance of the TestConnector class.
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard">
+            <summary>
+            This enumeration lists all the possible kinds of 'Standard' carriers.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.File">
+            <summary>
+            File.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard.Folder">
+            <summary>
+            Folder.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standardExtension">
+            <summary>
+            This class represents an extension of the CarrierKind_standard enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standardExtension.GetUniqueName(BindOpen.Framework.Runtime.Extensions.Carriers.CarrierKind_standard)">
+            <summary>
+            Gets the unique name corresponding to the specified carrier kind.
+            </summary>
+            <param name="aCarrierKind_standard">The carrier unique name to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile">
+            <summary>
+            This class represents a repository file.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.Length">
+            <summary>
+            The length of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+            <param name="path">The path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFile class.
+            </summary>
+            <param name="fileName">The file name of the instance.</param>
+            <param name="folderPath">The folder path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFile.Check``1(System.Boolean,``0,System.String[])">
+            <summary>
+            Checks this instance.
+            </summary>
+            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <returns>Returns the check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder">
+            <summary>
+            This class represents a repository folder.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryFolder class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the RepositoryFolder class.
+            </summary>
+            <param name="path">The path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryFolder.Check``1(System.Boolean,``0,System.String[])">
+            <summary>
+            Checks this instance.
+            </summary>
+            <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
+            <param name="item">The item to consider.</param>
+            <param name="specificationAreas">The specification areas to consider.</param>
+            <returns>Returns the check log.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem">
+            <summary>
+            This class represents a repository item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor">
+            <summary>
+            Instantiates a new instance of the RepositoryItem class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor(BindOpen.Framework.Core.Extensions.Items.Carriers.ICarrierConfiguration)">
+            <summary>
+            Instantiates a new instance of the RepositoryItem class.
+            </summary>
+            <param name="dto">The DTO item of this instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.SetPath(System.String,System.String)">
+            <summary>
+            Sets the path of this instance.
+            </summary>
+            <param name="path">The new path to consider. Null to update the existing one.</param>
+            <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
+            <returns>Returns True if this instance exists. False otherwise.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Extensions.Common.Extension_standard">
+            <summary>
+            This class represents the standard extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Common.Extension_standard.GetUniqueName_standard(System.String)">
+            <summary>
+            Gets the database unique name.
+            </summary>
+            <param name="uniqueName">The unique name to consider.</param>
+            <returns>The result object.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Extensions.Handlers.HandlerKind_standard">
             <summary>
