@@ -5,6 +5,7 @@ using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
