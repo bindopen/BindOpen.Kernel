@@ -34,6 +34,15 @@ namespace BindOpen.Framework.Core.Application.Services.Data
         /// <param name="connection">The connection to consider.</param>
         public DataService(IConnection connection)
         {
+            SetConnection(connection);
+        }
+
+        /// <summary>
+        /// Sets the specified connection.
+        /// </summary>
+        /// <param name="connection">The connection to consider.</param>
+        public void SetConnection(IConnection connection)
+        {
             _connection = connection;
         }
     }
