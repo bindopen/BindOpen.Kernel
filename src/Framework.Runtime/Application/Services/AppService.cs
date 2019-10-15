@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the AppService class.
         /// </summary>
-        public AppService(
+        protected AppService(
             IAppHostScope appScope,
             IBaseSettings settings = null,
             ILogger[] loggers = null) : base(appScope)

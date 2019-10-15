@@ -361,6 +361,38 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             Value = text.CreateScript();
         }
 
+        /// <summary>
+        /// Sets the specified alias.
+        /// </summary>
+        /// <param name="alias">The alias to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithAlias(string alias)
+        {
+            Alias = alias;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified size.
+        /// </summary>
+        /// <param name="size">The size to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithSize(int size)
+        {
+            Size = size;
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates that this instance represents all fields.
+        /// </summary>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithAll()
+        {
+            IsAll  = true;
+            return this;
+        }
+
         #endregion
     }
 }
