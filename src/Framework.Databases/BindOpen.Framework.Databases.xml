@@ -1683,6 +1683,26 @@
             </summary>
             <param name="text">The script value.</param>
         </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithAlias(System.String)">
+            <summary>
+            Sets the specified alias.
+            </summary>
+            <param name="alias">The alias to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithSize(System.Int32)">
+            <summary>
+            Sets the specified size.
+            </summary>
+            <param name="size">The size to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithAll">
+            <summary>
+            Indicates that this instance represents all fields.
+            </summary>
+            <returns>Returns this instance.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DbTable">
             <summary>
             This class represents a database data table.
@@ -1722,6 +1742,13 @@
             <param name="name">The name to consider.</param>
             <param name="schema">The schema to consider.</param>
             <param name="dataModuleName">The name of the data module to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.WithAlias(System.String)">
+            <summary>
+            Sets the specified alias.
+            </summary>
+            <param name="alias">The alias to consider.</param>
+            <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Databases.Extensions.Common.Extension_database">
             <summary>

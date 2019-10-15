@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TAppService class.
         /// </summary>
-        public TAppService(
+        protected TAppService(
             IAppHostScope appScope,
             T settings = default,
             ILogger[] loggers = null)

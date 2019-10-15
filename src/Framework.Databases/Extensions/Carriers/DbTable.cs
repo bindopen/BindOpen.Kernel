@@ -93,5 +93,24 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
 
         #endregion
 
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Sets the specified alias.
+        /// </summary>
+        /// <param name="alias">The alias to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbTable WithAlias(string alias)
+        {
+            Alias = alias;
+            return this;
+        }
+
+        #endregion
     }
 }

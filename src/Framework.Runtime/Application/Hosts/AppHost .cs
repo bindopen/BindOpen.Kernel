@@ -57,14 +57,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Instantiates a new instance of the AppHost class.
         /// </summary>
-        public AppHost() : this(null)
+        protected AppHost() : this(null)
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the AppHost class.
         /// </summary>
-        public AppHost(
+        protected AppHost(
             IAppHostScope appScope = null,
             IAppHostOptions options = null,
             IDataElementSet userSettingsSet = null) : base(appScope, options?.Settings)
