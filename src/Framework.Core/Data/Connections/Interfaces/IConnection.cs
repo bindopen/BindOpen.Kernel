@@ -1,18 +1,18 @@
 ﻿using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 
 namespace BindOpen.Framework.Core.Data.Connections
 {
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    public interface IConnection
+    public interface IConnection : IDisposable
     {
         /// <summary>
         /// Connector.
         /// </summary>
         IConnector Connector { get; }
-
 
         /// <summary>
         /// Sets the specified connector.
