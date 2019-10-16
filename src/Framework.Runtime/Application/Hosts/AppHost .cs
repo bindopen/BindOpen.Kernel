@@ -74,10 +74,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             // we initiate the options
             Options?.SetAppFolder(Directory.GetCurrentDirectory());
 
-            Options?.SetExtensions(
-                new AppExtensionConfiguration(
-                    new AppExtensionFilter("BindOpen.Framework.Runtime"),
-                    new AppExtensionFilter("BindOpen.Framework.Runtime")));
+            Options?.SetExtensions(new AppExtensionFilter("BindOpen.Framework.Runtime"));
 
             UserSettingsSet = userSettingsSet;
         }

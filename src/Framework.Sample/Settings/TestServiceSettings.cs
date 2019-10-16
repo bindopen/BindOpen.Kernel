@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Settings;
 
-namespace BindOpen.Framework.Tests.TestConsole.Settings
+namespace BindOpen.Framework.Sample.Settings
 {
     /// <summary>
-    /// This class represents a test application settings.
+    /// This class represents a test service settings.
     /// </summary>
-    public class TestAppSettings : DefaultAppSettings
+    public class TestServiceSettings : BaseSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -23,13 +22,6 @@ namespace BindOpen.Framework.Tests.TestConsole.Settings
         [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
 
-        /// <summary>
-        /// The URIs of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        [DetailProperty(Name = "test.uris")]
-        public Dictionary<string, object> Uris { get; set; }
-
         #endregion
 
         // -------------------------------------------------------------
@@ -39,9 +31,9 @@ namespace BindOpen.Framework.Tests.TestConsole.Settings
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TestAppSettings class.
+        /// Instantiates a new instance of the TestServiceSettings class.
         /// </summary>
-        public TestAppSettings()
+        public TestServiceSettings()
             : base()
         {
         }

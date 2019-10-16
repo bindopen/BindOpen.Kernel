@@ -175,7 +175,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetAppFolder(string appFolderPath)
         {
-            _appFolderPath = appFolderPath.GetEndedString(@"\").ToPath();
+            _appFolderPath = appFolderPath?.GetEndedString(@"\").ToPath();
+            SetRuntimeFolder(_runtimeFolderPath);
+            SetLibraryFolder(_libraryFolderPath);
 
             return this;
         }
@@ -187,7 +189,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetRuntimeFolder(string runtimeFolderPath)
         {
-            _runtimeFolderPath = runtimeFolderPath.GetEndedString(@"\").ToPath();
+            if (runtimeFolderPath?.Contains(":")==false)
+            {
+                runtimeFolderPath = (_appFolderPath.GetEndedString(@"\") + runtimeFolderPath).ToPath();
+            }
+            _runtimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
+
             return this;
         }
 
@@ -198,7 +205,13 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public IAppHostOptions SetLibraryFolder(string libraryFolderPath)
         {
-            _libraryFolderPath = libraryFolderPath.GetEndedString(@"\").ToPath();
+            if (libraryFolderPath?.Contains(":") == false)
+            {
+                libraryFolderPath = (_appFolderPath.GetEndedString(@"\") + libraryFolderPath).ToPath();
+            }
+
+            _libraryFolderPath = libraryFolderPath?.GetEndedString(@"\").ToPath();
+
             return this;
         }
 

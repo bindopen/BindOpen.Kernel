@@ -15,8 +15,19 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         /// <returns>Returns the connection of this instance.</returns>
         public static IAppHostOptions AddMSSqlServerExtension(this IAppHostOptions options)
         {
-            options?.SetExtensions(new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer"));
+            options?.SetExtensions(
+                new AppExtensionFilter("BindOpen.Framework.Databases"),
+                new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer"));
             return options;
+        }
+
+        /// <summary>
+        /// Gets the database connection of this instance.
+        /// </summary>
+        /// <returns>Returns the connection of this instance.</returns>
+        public static void AddExtension_Messages(this IAppHostOptions options)
+        {
+            options?.SetExtensions(new AppExtensionFilter("BindOpen.Framework.Labs.Messages"));
         }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace BindOpen.Framework.Databases.Extensions.Common
 {
-
     // --------------------------------------------------
     // EXTENSION
     // --------------------------------------------------
@@ -26,6 +25,4 @@ namespace BindOpen.Framework.Databases.Extensions.Common
     }
 
     #endregion
-
-
 }

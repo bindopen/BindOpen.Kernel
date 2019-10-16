@@ -48,12 +48,10 @@
         <scalar name="password" value="passwordA" />
       </configuration>
     </add>
-    <add name="sphere.identity" kind="Database">
+    <add name="test.db" kind="Database">
       <configuration definition="database.mssqlserver$client">
         <scalar name="databaseKind" value="MSSqlServer" />
-        <connectionString>
-          <![CDATA[Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;]]>
-        </connectionString>
+        <scalar name="connectionString" value="Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;" />
       </configuration>
     </add>    
     

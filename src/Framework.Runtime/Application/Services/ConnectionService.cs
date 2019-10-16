@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="appScope">The application scope to consider.</param>
         public ConnectionService(IAppHostScope appScope)
         {
-            this._appScope = appScope;
+            _appScope = appScope;
         }
 
         #endregion
@@ -58,36 +58,36 @@ namespace BindOpen.Framework.Runtime.Application.Services
             string connectorDefinitionUniqueId,
             ILog log = null) where T : IConnection, new()
         {
-            return this.Open<T>(null, dataSourceName, connectorDefinitionUniqueId, log);
+            return Open<T>(null, dataSourceName, connectorDefinitionUniqueId, log);
         }
 
         /// <summary>
         /// Creates a connector.
         /// </summary>
-        /// <param name="dataSourceService">The source service to consider.</param>
+        /// <param name="depot">The data source depot to consider.</param>
         /// <param name="dataSourceName">The data source name to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public T Open<T>(
-            IDataSourceDepot dataSourceService,
+            IDataSourceDepot depot,
             string dataSourceName,
             string connectorDefinitionUniqueId,
             ILog log = null) where T : IConnection, new()
         {
             if (log == null) log = new Log();
 
-            this.Update<ConnectionService>();
+            Update<ConnectionService>();
 
-            if (dataSourceService == null)
-                dataSourceService = this._appScope?.DataSourceDepot;
+            if (depot == null)
+                depot = _appScope?.DataSourceDepot;
 
-            if (dataSourceService == null)
+            if (depot == null)
                 log.AddError("Source manager missing");
-            else if (!dataSourceService.HasItem(dataSourceName))
+            else if (!depot.HasItem(dataSourceName))
                 log.AddError("Data source '" + dataSourceName + "' missing in manager");
             else
-                return this.Open<T>(dataSourceService.GetItem(dataSourceName), connectorDefinitionUniqueId, log);
+                return Open<T>(depot.GetItem(dataSourceName), connectorDefinitionUniqueId, log);
 
             return default;
         }
@@ -112,9 +112,9 @@ namespace BindOpen.Framework.Runtime.Application.Services
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId) && dataSource.HasConfiguration(connectorDefinitionUniqueId))
                 log.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
-                return this.Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueId), log);
+                return Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueId), log);
             else if (dataSource.Configurations.Count>0)
-                return this.Open<T>(dataSource.Configurations[0], log);
+                return Open<T>(dataSource.Configurations[0], log);
 
             return default;
         }
@@ -129,21 +129,21 @@ namespace BindOpen.Framework.Runtime.Application.Services
         {
             ILog subLog = new Log();
 
-            this.Update<ConnectionService>();
+            Update<ConnectionService>();
 
             T connection = default;
             if (configuration == null)
             {
                 subLog.AddError("Connection missing");
             }
-            else if (this._appScope == null)
+            else if (_appScope == null)
             {
                 subLog.AddError("Application scope missing", description: "No application scope was defined for this connection service.");
             }
-            else if (!subLog.Append(this._appScope.Check(true)).HasErrorsOrExceptions())
+            else if (!subLog.Append(_appScope.Check(true)).HasErrorsOrExceptions())
             {
                 connection = new T();
-                connection.SetConnector(this._appScope.CreateConnector(configuration, null, subLog));
+                connection.SetConnector(_appScope.CreateConnector(configuration, null, subLog));
 
                 if (connection.Connector == null)
                 {
@@ -173,7 +173,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             if (connector == null)
             {
-                this.Update<ConnectionService>();
+                Update<ConnectionService>();
             }
             else
             {

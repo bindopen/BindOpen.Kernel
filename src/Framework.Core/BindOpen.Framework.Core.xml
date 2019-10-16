@@ -582,19 +582,11 @@
             </summary>
             <param name="connection">The connection to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.DataServiceExtension">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.DataService.SetConnection(BindOpen.Framework.Core.Data.Connections.IConnection)">
             <summary>
-            This class represents a data context service extension.
+            Sets the specified connection.
             </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.DataServiceExtension.Execute``1(``0,System.Action{``0})">
-            <summary>
-            Executes the specified function.
-            </summary>
-            <typeparam name="Q"></typeparam>
-            <param name="service"></param>
-            <param name="function"></param>
-            <returns></returns>
+            <param name="connection">The connection to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Services.Data.IDataService">
             <summary>
@@ -605,6 +597,12 @@
             <summary>
             The connection of the service.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.IDataService.SetConnection(BindOpen.Framework.Core.Data.Connections.IConnection)">
+            <summary>
+            Set the specified connection.
+            </summary>
+            <param name="connection">The connection to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Business.Cases.BusinessCase">
             <summary>
