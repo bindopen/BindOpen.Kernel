@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
     /// <summary>
     /// This class represents a OleDb database connector.
     /// </summary>
-    [Connector(Name= "database.mssqlserver$msSqlServer")]
+    [Connector(Name= "database.mssqlserver$client")]
     public class DatabaseConnector_MSSqlServer : DatabaseConnector
     {
         // ------------------------------------------
@@ -68,7 +68,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// <returns>Returns the connection of this instance.</returns>
         public override IDbConnection GetDbConnection()
         {
-            return this._connection;
+            return _connection;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// <returns>Returns the database builder.</returns>
         public override void SetQueryBuilder(AppScope appScope)
         {
-            this.QueryBuilder = new DbQueryBuilder_MSSqlServer(appScope);
+            QueryBuilder = new DbQueryBuilder_MSSqlServer(appScope);
         }
 
         // Open / Close ---------------------------------------
@@ -91,22 +91,22 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         {
             ILog log = new Log();
 
-            if (!log.Append(this.Check<DatabaseConnector_MSSqlServer>(), p => p.HasErrorsOrExceptions()).HasErrorsOrExceptions())
+            if (!log.Append(Check<DatabaseConnector_MSSqlServer>(), p => p.HasErrorsOrExceptions()).HasErrorsOrExceptions())
             {
                 try
                 {
                     // we close the connection if it is opened yet
-                    if ((this._connection != null) && (this._connection.State != ConnectionState.Closed))
-                        this._connection.Close();
+                    if ((_connection != null) && (_connection.State != ConnectionState.Closed))
+                        _connection.Close();
 
                     // we load the dataset
-                    this._connection = new SqlConnection(this.ConnectionString);
-                    this._connection.Open();
+                    _connection = new SqlConnection(ConnectionString);
+                    _connection.Open();
                 }
                 catch (Exception ex)
                 {
                     log.AddCheckpoint(
-                        "Trying to open the following connection string: '" + this.ConnectionString + "'");
+                        "Trying to open the following connection string: '" + ConnectionString + "'");
                     log.AddException(ex);
                 }
             }
@@ -124,7 +124,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
 
             try
             {
-                this._connection?.Close();
+                _connection?.Close();
             }
             catch (Exception ex)
             {
@@ -140,7 +140,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         /// </summary>
         public override Boolean IsConnected()
         {
-            return (this._connection != null) && (this._connection.State == ConnectionState.Closed);
+            return (_connection != null) && (_connection.State == ConnectionState.Closed);
         }
 
         // Execution non query  ---------------------------------------
@@ -159,7 +159,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         {
             log = log ?? new Log();
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
@@ -171,7 +171,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 {
                     if (!log.HasErrorsOrExceptions())
                     {
-                        command = this._connection.CreateCommand();
+                        command = _connection.CreateCommand();
                         command.CommandText = queryText;
                         command.CommandType = CommandType.Text;
 
@@ -208,7 +208,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         {
             log = log ?? new Log();
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
@@ -220,7 +220,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 {
                     if (!log.HasErrorsOrExceptions())
                     {
-                        command = this._connection.CreateCommand();
+                        command = _connection.CreateCommand();
                         command.CommandText = queryText;
                         command.CommandType = CommandType.Text;
                         dataReader = command.ExecuteReader();
@@ -252,7 +252,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         {
             log = log ?? new Log();
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
@@ -262,7 +262,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 {
                     if (!log.HasErrorsOrExceptions())
                     {
-                        SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, this._connection);
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, _connection);
 
                         dataSet = new DataSet();
                         dataAdapter.Fill(dataSet, "TABLE");
@@ -290,7 +290,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
         {
             log = log ?? new Log();
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
@@ -301,7 +301,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
                 try
                 {
                     // retrieve all the alias platform users
-                    command = this._connection.CreateCommand();
+                    command = _connection.CreateCommand();
                     command.CommandText = "SELECT @@IDENTITY;";
                     command.CommandType = CommandType.Text;
                     id = int.Parse(command.ExecuteScalar().ToString());
@@ -330,7 +330,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             if (dataTable == null)
                 return;
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
@@ -338,7 +338,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, this._connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, _connection);
                     dataAdapter.Fill(dataTable);
                 }
                 catch (Exception ex)
@@ -368,7 +368,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             if (dataSet == null)
                 return;
 
-            if (this._connection == null)
+            if (_connection == null)
             {
                 log.AddEvent(new LogEvent(EventKinds.Error) { ResultCode="DBCONNECTION_NOTINITIALIZED" });
             }
@@ -376,7 +376,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             {
                 try
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, this._connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(queryText, _connection);
                     foreach (String tableName in tableNames)
                         dataAdapter.Fill(dataSet, tableName);
                 }
@@ -402,7 +402,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             String tableName,
             ILog log = null)
         {
-            DataTable dataTable = this.GetTableColumnsDataTable(
+            DataTable dataTable = GetTableColumnsDataTable(
                 dataModuleName,
                 ownerName,
                 tableName);
@@ -438,7 +438,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             try
             {
                 // Get the DataTable with all the info
-                dataTable = this._connection.GetSchema();
+                dataTable = _connection.GetSchema();
                 //.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
     //                new object[] { dataModuleName, ownerName, tableName, null });
             }
@@ -460,7 +460,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             String ownerName,
             ILog log = null)
         {
-            DataTable dataTable = this.GetTableDataTable(dataModuleName, ownerName);
+            DataTable dataTable = GetTableDataTable(dataModuleName, ownerName);
 
             List<string> strings = new List<string>();
             if (dataTable != null)
@@ -487,7 +487,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             try
             {
                 // Get the DataTable with all the info
-                dataTable = this._connection.GetSchema();
+                dataTable = _connection.GetSchema();
                 //.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
     //                new object[] { dataModuleName, ownerName, null, null });
             }
@@ -516,8 +516,8 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors
             try
             {
                 // Get the DataTable with all the info
-                dataTable = this._connection.GetSchema();
-                //dataTable = this._OleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys,
+                dataTable = _connection.GetSchema();
+                //dataTable = _OleDbConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Primary_Keys,
     //                new object[] { dataModuleName, ownerName, tableName });
             }
             finally

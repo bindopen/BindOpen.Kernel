@@ -31,6 +31,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                 using (Q dataService = new Q())
                 {
                     dataService.SetConnection(connection);
+
                     action?.Invoke(dataService, log);
                 }
             }

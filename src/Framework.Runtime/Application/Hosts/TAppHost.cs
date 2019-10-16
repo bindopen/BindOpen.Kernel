@@ -83,12 +83,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             : base(appScope, options ?? new TAppHostOptions<T>(), userSettingsSet)
         {
             // we initiate the options
-            Options.SetAppFolder(Directory.GetCurrentDirectory());
-
-            Options.SetExtensions(
-                new AppExtensionConfiguration(
-                    new AppExtensionFilter("BindOpen.Framework.Runtime")));
-
             UserSettingsSet = userSettingsSet;
         }
 

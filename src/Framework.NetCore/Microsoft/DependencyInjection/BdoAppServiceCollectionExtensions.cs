@@ -32,6 +32,16 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
+        /// Adds a BindOpen default application hosting serivce.
+        /// </summary>
+        /// <param name="provider">The service provider to consider.</param>
+        /// <returns></returns>
+        public static IAppHost GetBindOpenDefaultHost(this IServiceProvider provider)
+        {
+            return provider?.GetService<IAppHost>();
+        }        
+
+        /// <summary>
         /// Adds a BindOpen application hosting serivce.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
