@@ -309,9 +309,9 @@
             </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.SetQueryBuilder(BindOpen.Framework.Core.Application.Scopes.AppScope)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
-            Sets the database builder of this instance.
+            Updates this instance considering the specified scope.
             </summary>
             <param name="appScope">The application scope to consider.</param>
             <returns>Returns the database builder.</returns>

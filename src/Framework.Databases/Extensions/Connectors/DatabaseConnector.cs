@@ -157,13 +157,6 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         }
 
         /// <summary>
-        /// Sets the query builder of this instance.
-        /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        /// <returns>Returns the database builder.</returns>
-        public abstract void SetQueryBuilder(AppScope appScope);
-
-        /// <summary>
         /// Updates the connection string.
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>

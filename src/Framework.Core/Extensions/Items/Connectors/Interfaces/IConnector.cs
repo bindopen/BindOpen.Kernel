@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Source;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 
@@ -40,5 +41,11 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
         /// </summary>
         /// <param name="connectionString"></param>
         void UpdateConnectionString(string connectionString = null);
+
+        /// <summary>
+        /// Updates the instance considering the specified scope.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        void UpdateWithScope(IAppScope appScope);
     }
 }

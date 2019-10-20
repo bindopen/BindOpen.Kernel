@@ -9922,6 +9922,13 @@
             <param name="log">The log of the operation.</param>
             <returns>Retuns the data element that represents this instace.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            Updates this instance considering the specified scope.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <returns>Returns the database builder.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.Connector.UpdateConnectionString(System.String)">
             <summary>
             Sets the connection string with the specified string.
@@ -10164,6 +10171,12 @@
             
             </summary>
             <param name="connectionString"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            Updates the instance considering the specified scope.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Items.Connectors.IConnectorConfiguration">
             <summary>

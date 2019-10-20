@@ -72,11 +72,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         }
 
         /// <summary>
-        /// Sets the database builder of this instance.
+        /// Updates this instance considering the specified scope.
         /// </summary>
         /// <param name="appScope">The application scope to consider.</param>
         /// <returns>Returns the database builder.</returns>
-        public override void SetQueryBuilder(AppScope appScope)
+        public override void UpdateWithScope(IAppScope appScope)
         {
             QueryBuilder = new DbQueryBuilder_PostgreSql(appScope);
         }
