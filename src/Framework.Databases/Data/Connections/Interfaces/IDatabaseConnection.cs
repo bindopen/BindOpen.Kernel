@@ -51,7 +51,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataReader"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(IDbDataQuery query, ref DbDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbDataQuery query, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
 
         /// <summary>
         /// 
@@ -69,7 +69,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataReader"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(string queryText, ref DbDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(string queryText, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
 
         /// <summary>
         /// Get the database connection.

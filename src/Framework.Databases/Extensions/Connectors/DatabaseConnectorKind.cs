@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// Postgre SQL.
         /// </summary>
-        PostgreSQL
+        PostgreSql
     }
 
 
