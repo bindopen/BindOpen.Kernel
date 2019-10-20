@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
             string queryText,
-            ref DbDataReader dataReader,
+            ref IDataReader dataReader,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
@@ -163,7 +163,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
             IDbDataQuery query,
-            ref DbDataReader dataReader,
+            ref IDataReader dataReader,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {

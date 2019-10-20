@@ -229,7 +229,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
             //    databaseKind = ConnectorKind_database.TextFiles;
             else if (connectionString.IndexOf("POSTGRESQL", StringComparison.OrdinalIgnoreCase) >= 0)
             {
-                return DatabaseConnectorKind.PostgreSQL;
+                return DatabaseConnectorKind.PostgreSql;
             }
 
             return DatabaseConnectorKind.Any;
@@ -272,7 +272,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <returns>The log of the data query execution task.</returns>
         public virtual void ExecuteQuery(
             string queryText,
-            ref DbDataReader dataReader,
+            ref IDataReader dataReader,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {

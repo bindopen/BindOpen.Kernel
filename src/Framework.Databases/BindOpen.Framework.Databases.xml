@@ -82,7 +82,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes a database data query putting the result into a data reader.
             </summary>
@@ -92,7 +92,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -202,7 +202,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             
             </summary>
@@ -220,7 +220,7 @@
             <param name="scriptVariableSet"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             
             </summary>
@@ -1870,7 +1870,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.Common.DbDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes a database data query putting the result into a data reader.
             </summary>
@@ -1952,7 +1952,7 @@
             MySQL.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.PostgreSQL">
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.PostgreSql">
             <summary>
             Postgre SQL.
             </summary>

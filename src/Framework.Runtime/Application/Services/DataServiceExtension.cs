@@ -28,12 +28,18 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             using (IConnection connection = initializer?.Invoke(service, log))
             {
-                using (Q dataService = new Q())
+                if (!log.HasErrorsOrExceptions())
                 {
-                    dataService.SetConnection(connection);
+                    using (Q dataService = new Q())
+                    {
+                        dataService.SetConnection(connection);
 
-                    action?.Invoke(dataService, log);
-                }
+                        if (!log.HasErrorsOrExceptions())
+                        {
+                            action?.Invoke(dataService, log);
+                        }
+                    }
+                }                
             }
 
             return log;
