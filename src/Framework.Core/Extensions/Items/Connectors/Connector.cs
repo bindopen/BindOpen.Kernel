@@ -86,6 +86,15 @@ namespace BindOpen.Framework.Core.Extensions.Items.Connectors
         #region Mutators
 
         /// <summary>
+        /// Updates this instance considering the specified scope.
+        /// </summary>
+        /// <param name="appScope">The application scope to consider.</param>
+        /// <returns>Returns the database builder.</returns>
+        public virtual void UpdateWithScope(IAppScope appScope)
+        {
+        }
+
+        /// <summary>
         /// Sets the connection string with the specified string.
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>

@@ -151,6 +151,7 @@ namespace BindOpen.Framework.Core.Extensions.Items
                         {
                             connector = item as Connector;
                             connector.Name = name ?? configuration?.Name;
+                            connector.UpdateWithScope(appScope);
                             connector.UpdateFromElementSet<DetailPropertyAttribute>(configuration, appScope, scriptVariableSet);
                         }
                     }

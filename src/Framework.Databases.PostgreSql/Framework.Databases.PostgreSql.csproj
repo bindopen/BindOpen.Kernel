@@ -39,6 +39,7 @@ This package handles PostgreSQL database connections.</Description>
   <ItemGroup>
     <None Remove="Data\Queries\Builders\ve-27F.tmp" />
     <None Remove="Extensions\Connectors\Connectors.index" />
+    <None Remove="Extensions\Connectors\DatabaseConnector_PostgreSql.cs~RF7702964.TMP" />
     <None Remove="library.definition" />
   </ItemGroup>
 

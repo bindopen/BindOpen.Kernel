@@ -1828,13 +1828,6 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the SQL text of the specified query.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetQueryBuilder(BindOpen.Framework.Core.Application.Scopes.AppScope)">
-            <summary>
-            Sets the query builder of this instance.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-            <returns>Returns the database builder.</returns>
-        </member>
         <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateConnectionString(System.String)">
             <summary>
             Updates the connection string.
