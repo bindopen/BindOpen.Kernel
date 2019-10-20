@@ -52,6 +52,7 @@ This package conducts on-demand tests before they are implemented in the unit te
   <ItemGroup>
     <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\..\src\Framework.NetCore\Framework.NetCore.csproj" />
+    <ProjectReference Include="..\Framework.Databases.PostgreSql\Framework.Databases.PostgreSql.csproj" />
   </ItemGroup>
 
 </Project>

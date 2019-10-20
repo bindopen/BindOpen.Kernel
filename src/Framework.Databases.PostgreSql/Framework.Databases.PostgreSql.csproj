@@ -20,7 +20,7 @@ This package handles PostgreSQL database connections.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Framework.Databases.MSSqlServer.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Databases.PostgreSql.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

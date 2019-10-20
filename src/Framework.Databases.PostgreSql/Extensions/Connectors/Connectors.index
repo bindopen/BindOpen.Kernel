@@ -8,7 +8,7 @@
   <lastModificationDate>2018-08-03</lastModificationDate>
   <definitions>
 
-    <!-- postGreSql -->
+    <!-- postgresql -->
 
     <add.definition name="client">
       <creationDate>2018-12-20</creationDate>

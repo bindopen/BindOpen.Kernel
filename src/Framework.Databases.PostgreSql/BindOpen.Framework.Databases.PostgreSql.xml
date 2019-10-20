@@ -342,7 +342,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.SqlClient.SqlDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Executes a database data query putting the result into a OleDb Data Reader.
             </summary>

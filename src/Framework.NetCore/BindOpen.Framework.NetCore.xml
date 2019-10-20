@@ -117,6 +117,13 @@
             <param name="options">The options to consider.</param>
             <returns>Returns the connection of this instance.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddPostgreSqlExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
+            <summary>
+            Adds PostgreSql extension to the specified options.
+            </summary>
+            <param name="options">The options to consider.</param>
+            <returns>Returns the connection of this instance.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddExtension_Messages(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
             <summary>
             Gets the database connection of this instance.
