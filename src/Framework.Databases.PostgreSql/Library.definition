@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <!-- Database -->
-<library.definition id="dce3ca39-f0a9-4586-95c0-1a38a1c314b4"  name="database.mssqlserver"
+<library.definition id="dce3ca39-f0a9-4586-95c0-1a38a1c314b4"  name="database.postgresql"
   xmlns="https://bindopen.org/xsd" xmlns:SchemaLocation="bdo:LibraryDefinition LibraryDefinition.xsd" >
   <creationDate>2018-09-08</creationDate>
   <lastModificationDate>2018-09-08</lastModificationDate>
   <title>
-    <add.value key="en">MS SQL Server Databases</add.value>
+    <add.value key="en">PostgreSql Databases</add.value>
   </title>
   <description>
-    <add.value key="en">Extension library 'Database.MSSQLServer'.</add.value>
+    <add.value key="en">Extension library 'Database.PostgreSql'.</add.value>
   </description>
   <assembly>BindOpen.Framework.Databases.PostgreSql</assembly>
   <fileName>BindOpen.Framework.Databases.PostgreSql.dll</fileName>

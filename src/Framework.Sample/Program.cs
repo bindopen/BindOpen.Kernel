@@ -25,6 +25,7 @@ namespace BindOpen.Framework.Sample
                             .SetRuntimeFolder(@"..\..\..\run")
                             .SetLibraryFolder(@"..\..\..\lib")
                             .SetModule(new AppModule("app.test"))
+                            .AddPostgreSqlExtension()
                             .AddMSSqlServerExtension()
                             .AddDefaultLogger()
                             .AddLoggers(
@@ -35,7 +36,7 @@ namespace BindOpen.Framework.Sample
                             TestAppSettings appSettings = p as TestAppSettings;
                             return new TestServiceSettings()
                             {
-                                TestFolderPath = appSettings.TestFolderPath
+                                TestFolderPath = appSettings?.TestFolderPath
                             };
                         });
                })

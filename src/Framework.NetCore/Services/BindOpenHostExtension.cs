@@ -22,6 +22,19 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         }
 
         /// <summary>
+        /// Adds PostgreSql extension to the specified options.
+        /// </summary>
+        /// <param name="options">The options to consider.</param>
+        /// <returns>Returns the connection of this instance.</returns>
+        public static IAppHostOptions AddPostgreSqlExtension(this IAppHostOptions options)
+        {
+            options?.SetExtensions(
+                new AppExtensionFilter("BindOpen.Framework.Databases"),
+                new AppExtensionFilter("BindOpen.Framework.Databases.PostgreSql"));
+            return options;
+        }
+
+        /// <summary>
         /// Gets the database connection of this instance.
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
