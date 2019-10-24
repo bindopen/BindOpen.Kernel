@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             string name,
             string schema,
             string dataModuleName)
-            : this(name, dataModuleName)
+            : this(name, schema)
         {
             DataModule = dataModuleName;
         }

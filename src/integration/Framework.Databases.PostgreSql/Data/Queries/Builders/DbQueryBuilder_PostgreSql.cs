@@ -121,7 +121,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                                     defaultDataTable);
 
                                 if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias && !string.IsNullOrEmpty(field.Alias))
-                                    queryString += " as [" + field.Alias + "\"";
+                                    queryString += " as \"" + field.Alias + "\"";
                             }
                         }
                         break;
@@ -151,7 +151,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                             queryString += "\"" + field.Name + "\"";
                         }
                         if ((field.Alias != null) & (field.Alias != ""))
-                            queryString += " as [" + field.Alias + "\"";
+                            queryString += " as \"" + field.Alias + "\"";
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
@@ -279,7 +279,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                 if ((viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
                     && (!string.IsNullOrEmpty(tableAlias)))
                 {
-                    queryString += " as [" + tableAlias + "\"";
+                    queryString += " as \"" + tableAlias + "\"";
                 }
             }
 

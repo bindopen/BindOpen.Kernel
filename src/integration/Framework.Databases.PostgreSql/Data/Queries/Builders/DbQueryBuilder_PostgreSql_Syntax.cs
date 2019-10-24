@@ -48,8 +48,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
         }
 
         /// <summary>
@@ -62,8 +61,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
         }
 
         /// <summary>
@@ -76,8 +74,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
         }
 
         /// <summary>
