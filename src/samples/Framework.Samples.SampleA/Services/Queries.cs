@@ -34,18 +34,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     {
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.None,
-                            new DbTable(nameof(DbMyTable).Substring(2), "Ptf", null).WithAlias("table")),
+                            new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("status"),
-                            new DbField("table1key", "status"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
+                            new DbField("table1key", "table1"),
                             new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("state"),
-                            new DbField("table1key", "state"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
+                            new DbField("table1key", "table2"),
                             new DbField("Field1", "table"))
                     }
                 }
@@ -90,18 +90,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     {
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.None,
-                            new DbTable(nameof(DbMyTable).Substring(2), "Ptf", null).WithAlias("table")),
+                            new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("status"),
-                            new DbField("table1key", "status"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
+                            new DbField("table1key", "table1"),
                             new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("state"),
-                            new DbField("table1key", "state"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
+                            new DbField("table1key", "table2"),
                             new DbField("Field1", "table"))
                     }
                 }
@@ -113,7 +113,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             };
 
         public static IDbDataQuery DeleteMyTable(string name, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Delete, dataModuleName, "Ptf", nameof(DbMyTable).Substring(2))
+            => new BasicDbDataQuery(DbDataQueryKind.Delete, dataModuleName, "schema1", nameof(DbMyTable).Substring(2))
             {
                 Name = "DeleteMyTable",
                 IdFields =
@@ -123,7 +123,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             };
 
         public static IDbDataQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Update, dataModuleName, "Ptf", nameof(DbMyTable).Substring(2))
+            => new BasicDbDataQuery(DbDataQueryKind.Update, dataModuleName, "schema1", nameof(DbMyTable).Substring(2))
             {
                 Name = "UpdateMyTable",
                 Fields =
@@ -138,18 +138,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     {
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.None,
-                            new DbTable(nameof(DbMyTable).Substring(2), "Ptf", null).WithAlias("table")),
+                            new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("status"),
-                            new DbField("table1key", "status"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
+                            new DbField("table1key", "table1"),
                             new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
 
                         new DbDataQueryJointureStatement(
                             DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "Mdm", null).WithAlias("state"),
-                            new DbField("table1key", "state"),
+                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
+                            new DbField("table1key", "table2"),
                             new DbField("Field1", "table"))
                     }
                 }
