@@ -1,5 +1,4 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
@@ -8,6 +7,7 @@ using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 {
@@ -21,12 +21,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         private ICarrierElement _carrierElement3 = null;
         private ICarrierElement _carrierElement4 = null;
 
-        private DataElementSet _carrierElementSetA = null;
+        private IDataElementSet _carrierElementSetA = null;
 
         [SetUp]
         public void Setup()
         {
-            Log log = new Log();
+            ILog log = new Log();
 
             _carrierElement1 = ElementFactory.CreateCarrier(
                 "carrier1", "runtime$file",
@@ -52,10 +52,10 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         public void TestCreateCarrierElementSet()
         {
             Assert.That(
-                ((string)_carrierElement1.First?["path"] == "file1.txt")
-                && ((string)_carrierElement2.First?["path"] == "file2.txt")
-                && ((string)_carrierElement3.First?["path"] == "file3.txt")
-                && ((string)_carrierElement4.First?["path"] == "file4.txt")
+                ((string)_carrierElement1?.First?["path"] == "file1.txt")
+                && ((string)_carrierElement2?.First?["path"] == "file2.txt")
+                && ((string)_carrierElement3?.First?["path"] == "file3.txt")
+                && ((string)_carrierElement4?.First?["path"] == "file4.txt")
                 , "Bad carrier element creation");
 
             Assert.That(
@@ -88,7 +88,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             _carrierElementSetA.SaveXml(_filePath, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + xml);
         }
 
         [Test]
@@ -101,7 +106,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
         }
     }
 }

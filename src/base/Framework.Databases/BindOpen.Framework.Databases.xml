@@ -1,0 +1,2371 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Framework.Databases</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition">
+            <summary>
+            This class represents a condition using a database query condition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition.Query">
+            <summary>
+            Database data query used in the condition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryCondition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition.#ctor(System.Boolean,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery)">
+            <summary>
+            Instantiates a new instance of the DbDataQueryCondition class.
+            </summary>
+            <param name="trueValue">The true value to consider.</param>
+            <param name="query">The data query to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Business.Conditions.DbDataQueryCondition.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection">
+            <summary>
+            This class represents a database connection.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.Connector">
+            <summary>
+            The connector of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.#ctor">
+            <summary>
+            Instantiates a new instance of the DatabaseConnection class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.#ctor(BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector)">
+            <summary>
+            Instantiates a new instance of the DatabaseConnection class.
+            </summary>
+            <param name="connector">The connector to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
+            <summary>
+            Sets the connector of this instance.
+            </summary>
+            <param name="connector">The database connector to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.GetIDbConnection">
+            <summary>
+            Gets the database connection of this instance.
+            </summary>
+            <returns>Returns the connection of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query that returns nothing.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a data reader.
+            </summary>
+            <param name="query">The data query to execute.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a data reader.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataReader">The output data reader.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a dataset.
+            </summary>
+            <param name="query">The database data query to execute.</param>
+            <param name="dataReader">The output data reader.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a dataset.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataSet">The output dataset.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a dataset.
+            </summary>
+            <param name="query">The database data query to execute.</param>
+            <param name="dataSet">The output dataset.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Gets the identity of the last inserted item
+            </summary>
+            <param name="id">The long identifier to populate.</param>
+            <param name="log">The log to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataTable">The data table to update.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="query">The data query to execute.</param>
+            <param name="dataTable">The data table to update.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataSet">The data set to update.</param>
+            <param name="tableNames">The table names to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="query">The data query to execute.</param>
+            <param name="dataSet">The data set to update.</param>
+            <param name="tableNames">The table names to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection">
+            <summary>
+            This interfaces represents a connection.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.Connector">
+            <summary>
+            Connector of the connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified non query text.
+            </summary>
+            <param name="queryText">The query text to execute.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified query text.
+            </summary>
+            <param name="query">The query to execute.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified query text and populate the specified data set.
+            </summary>
+            <param name="query">The query to execute.</param>
+            <param name="dataSet">The data set to populate.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataReader"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataSet"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataReader"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIDbConnection">
+            <summary>
+            Get the database connection.
+            </summary>
+            <returns>Returns the database connection.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Get the identity of the last tuple processed.
+            </summary>
+            <returns>Returns the identity of the last tuple processed.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataSet"></param>
+            <param name="tableNames"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataSet"></param>
+            <param name="tableNames"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="dataTable"></param>
+            <param name="log"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            
+            </summary>
+            <param name="queryText"></param>
+            <param name="dataTable"></param>
+            <param name="log"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery">
+            <summary>
+            This class represents an advanced database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.IsDistinct">
+            <summary>
+            Indicates whether this instance is distinct. When distinct an advanced Select 
+            database data query only returns distinct records.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.Top">
+            <summary>
+            Number of top items of this instance. Top items are the items a advanced Select 
+            database data query will return.
+            </summary>
+            <remarks>By default it is -1 meaning no limit.</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.FromClauses">
+            <summary>
+            From clause of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.WhereClause">
+            <summary>
+            Where clause of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.GroupByClause">
+            <summary>
+            Group by statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.HavingClause">
+            <summary>
+            Having statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.OrderByStatements">
+            <summary>
+            Order statements of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.#ctor">
+            <summary>
+            Instantiates a new instance of the AdvancedDbDataQuery class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.AdvancedDbDataQuery.#ctor(BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind,System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the AdvancedDbDataQuery class.
+            </summary>
+            <param name="kind">Type of database data query.</param>
+            <param name="dataModule">Name of the data module.</param>
+            <param name="schema">Schema of the data module.</param>
+            <param name="dataTable">Name of data table.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause">
+            <summary>
+            This class represents a Api script clause.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.Operators">
+            <summary>
+            The operators of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.ValueDefinition">
+            <summary>
+            The value definition of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.#ctor">
+            <summary>
+            Creates a new instance of the ApiScriptClause class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.#ctor(System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField,BindOpen.Framework.Core.Data.Common.DataOperator[])">
+            <summary>
+            Creates a new instance of the ApiScriptClause class.
+            </summary>
+            <param name="fieldAlias">The field alias to consider.</param>
+            <param name="field">The field to consider.</param>
+            <param name="operators">The operators to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause.#ctor(System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField,BindOpen.Framework.Core.Data.Common.DataOperator,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition)">
+            <summary>
+            Creates a new instance of the DbDataQueryScriptItem class.
+            </summary>
+            <param name="fieldAlias">The field alias to consider.</param>
+            <param name="field">The field to consider.</param>
+            <param name="aOperator">The operator to consider.</param>
+            <param name="valueFilteringDefinition">The value filter definition to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField">
+            <summary>
+            This class represents a Api script expression.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField.FieldAlias">
+            <summary>
+            The field alias of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField.Field">
+            <summary>
+            The field of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField.#ctor">
+            <summary>
+            Creates a new instance of the ApiScriptExpression class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField.#ctor(System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Creates a new instance of the ApiScriptExpression class.
+            </summary>
+            <param name="fieldAlias">The field alias to consider.</param>
+            <param name="field">The field to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition">
+            <summary>
+            This class represents a Api script filtering definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition.#ctor">
+            <summary>
+            Creates a new instance of the ApiScriptFilteringDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition.#ctor(BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptClause[])">
+            <summary>
+            Creates a new instance of the ApiScriptFilteringDefinition class.
+            </summary>
+            <param name="clauses">The clauses to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition">
+            <summary>
+            This class represents a Api script sorting definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition.#ctor">
+            <summary>
+            Creates a new instance of the ApiScriptSortingDefinition class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition.#ctor(BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptField[])">
+            <summary>
+            Creates a new instance of the ApiScriptSortingDefinition class.
+            </summary>
+            <param name="clauses">The clauses to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension">
+            <summary>
+            This class represents a data service extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.IDataService,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+            <summary>
+            Retrieves the specified data.
+            </summary>
+            <param name="dataService">The data service to consider.</param>
+            <typeparam name="T">The class of the data to consider.</typeparam>
+            <param name="log">The log to consider.</param>
+            <param name="query">The query to consider.</param>
+            <param name="function">The function to get data.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <returns>Returns the specified data.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetId``2(BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified function.
+            </summary>
+            <typeparam name="Q"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="connection">The database connection to use.</param>
+            <param name="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbDataQueryExtension">
+            <summary>
+            This class represents the database data query extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbDataQueryExtension.ConvertToXtensionScript(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition,System.Int32)">
+            <summary>
+            Converts the specifed search query into an extension script.
+            </summary>
+            <param name="searchQuery">The search query to consider.</param>
+            <param name="log">The </param>
+            <param name="definition">The clause statement to consider.</param>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbDataQueryExtension.Filter(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition)">
+            <summary>
+            Adds filters to the specified database query considering the specified filter query string.
+            </summary>
+            <param name="dbQuery">The database query to consider.</param>
+            <param name="filterQuery">The filter query string to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="definition">The clause statement to consider.</param>
+            <returns>The built query.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbDataQueryExtension.Sort(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
+            <summary>
+            Sorts the specified query considering the specified query script.
+            </summary>
+            <param name="query">The database query to consider.</param>
+            <param name="sortQuery">The sort query text to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="definition">The definition to consider.</param>
+            <returns>The built query.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbDataQueryExtension.Paginate(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,System.Nullable{System.Int32},System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
+            <summary>
+            Builds the following query: Get the server instances.
+            </summary>
+            <param name="query">The database query to consider.</param>
+            <param name="pageSize">The page size to consider.</param>
+            <param name="pageToken">The page token text to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="clauseStatement">The clause statement to consider.</param>
+            <returns>The built query.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery">
+            <summary>
+            This class represents an simple database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.IsDistinct">
+            <summary>
+            Indicates whether this instance is distinct. When distinct an advanced Select 
+            database data query only returns distinct records.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.Top">
+            <summary>
+            Number of top items of this instance. Top items are the items a advanced Select 
+            database data query will return.
+            </summary>
+            <remarks>By default it is -1 meaning no limit.</remarks>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.IdFields">
+            <summary>
+            ID fields of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.FromClauses">
+            <summary>
+            From clause of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.OrderByStatements">
+            <summary>
+            Order by statements of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.#ctor">
+            <summary>
+            Instantiates a new instance of the BasicDbDataQuery class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.#ctor(BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind,System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the BasicDbDataQuery class.
+            </summary>
+            <param name="kind">Kind of database data query.</param>
+            <param name="dataModule">Name of the data module.</param>
+            <param name="schema">Schema of the data module.</param>
+            <param name="dataTable">Name of data table.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.BasicDbDataQuery.GetIdFieldWithBoundFieldName(System.String)">
+            <summary>
+            Gets the data field with the specified bound data field name.
+            </summary>
+            <param name="boundFieldName">Name of the bound data field.</param>
+            <returns>The data field with the specified bound data field name.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode">
+            <summary>
+            This enumerates the possible modes of data field.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.OnlyName">
+            <summary>
+            Only name.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.CompleteName">
+            <summary>
+            Complete name.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.CompleteNameOrValue">
+            <summary>
+            Complete name or value.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.NameEqualsValue">
+            <summary>
+            Name equals value.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.OnlyValue">
+            <summary>
+            Only value.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.CompleteNameAsAlias">
+            <summary>
+            Complete name as alias.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbDataFieldViewMode.OnlyNameAsAlias">
+            <summary>
+            Only name as alias.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder">
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+            <summary>
+            This class represents a builder of database query.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder._appScope">
+            <summary>
+            The application scope of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.#ctor(BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            Instantiates a new instance of the DbQueryBuilder class.
+            </summary>
+            <param name="databaseKind">The kind of database to consider.</param>
+            <param name="appScope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetDatabaseName(System.String)">
+            <summary>
+            Gets the database name corresponding to the specified data module name.
+            </summary>
+            <param name="dataModuleName">The data module name to consider.</param>
+            <remarks>If not found, it returns the specified data module name.</remarks>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+            <summary>
+            Builds the specified simple database data query and put the result into the specified string query.
+            </summary>
+            <param name="query">The database data query to build.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="queryString">The output string query.</param>
+            <returns>The log of the build task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+            <summary>
+            Builds the specified simple database data query and put the result
+            into the specified string MS Sql Server query.
+            <remarks>We assume the query already exits.</remarks>
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+            <summary>
+            Builds the specified simple database data query and put the result into the specified string query.
+            </summary>
+            <param name="query">The database data query to build.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="queryString">The output string query.</param>
+            <returns>The log of the build task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+            <summary>
+            Builds the specified simple database data query and put the result
+            into the specified string MS Sql Server query.
+            <remarks>We assume the query already exits.</remarks>
+            </summary>
+            <param name="query"></param>
+            <param name="scriptVariableSet"></param>
+            <param name="queryString"></param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+            <summary>
+            Builds the specified advanced database data query and put the result
+            into the specified string query.
+            </summary>
+            <param name="query">The database data query to build.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="queryString">The output string query.</param>
+            <returns>The log of the build task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Count(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCOUNT.
+            </summary>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_TextCount(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCOUNT.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Sum(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLSUM.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Average(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLAVG.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_In(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLIN.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Equal(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLEQ.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_NotEqual(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLDIFF.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Greater(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLGT.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_GreaterOrEqual(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLGTE.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Less(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLLT.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_LessOrEqual(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLLTE.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_IsNull(System.String)">
+            <summary>
+            Evaluates the script word $SQLISNULL.
+            </summary>
+            <param name="value1"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_ConvertToText(System.String)">
+            <summary>
+            Evaluates the script word $SQLCONVERTTOTEXT.
+            </summary>
+            <param name="value1"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_CurrentDate(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLGETCURRENTDATE.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_If(System.String,System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLIF.
+            </summary>
+            <param name="condition"></param>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Not(System.String)">
+            <summary>
+            Evaluates the script word $SQLNOT.
+            </summary>
+            <param name="value1">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Or(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLOR.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_And(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLAND.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Xor(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLXOR.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Text(System.String)">
+            <summary>
+            Evaluates the script word $SQLTEXT.
+            </summary>
+            <param name="value1"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Like(System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLLIKE.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Replace(System.String,System.String,System.String)">
+            <summary>
+            Evaluates the script word $SQLREPLACE.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <param name="value3"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Concatenate(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCONCATENATE.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Null">
+            <summary>
+            Evaluates the script word $SQLNULL.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_True">
+            <summary>
+            Evaluates the script word $SQLTRUE.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Database(System.String)">
+            <summary>
+            Evaluates the script word %SQLDATABASE.
+            </summary>
+            <param name="name"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Schema(System.String,System.String)">
+            <summary>
+            Evaluates the script word %SQLSCHEMA.
+            </summary>
+            <param name="name"></param>
+            <param name="location"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Table(System.String,System.String)">
+            <summary>
+            Evaluates the script word [%DATABASE->]%TABLE.
+            </summary>
+            <param name="name"></param>
+            <param name="location"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Field(System.String,System.String)">
+            <summary>
+            Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
+            </summary>
+            <param name="name"></param>
+            <param name="location"></param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_List(System.Object[])">
+            <summary>
+            Evaluates the script word $SQLLIST.
+            </summary>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_NewGuid">
+            <summary>
+            Evaluates the script word $SQLNEWGUID.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetSqlText_Random">
+            <summary>
+            Evaluates the script word $SQLRANDOM.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQuery">
+            <summary>
+            This class represents a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.IsTrackingEnabled">
+            <summary>
+            Indicates whether the tracking is enabled for this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.Name">
+            <summary>
+            Name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.DataModule">
+            <summary>
+            Name of the data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.DataTable">
+            <summary>
+            Name of the data table of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.DataTableAlias">
+            <summary>
+            Name of the data table alias of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.Schema">
+            <summary>
+            Schema of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.Kind">
+            <summary>
+            The kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.Fields">
+            <summary>
+            Fields of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQuery class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.GetFieldWithBoundFieldName(System.String)">
+            <summary>
+            Gets the data field with the specified bound data field name.
+            </summary>
+            <param name="boundFieldName">Name of the bound data field.</param>
+            <returns>The data field with the specified bound data field name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.GetDataFieldWithName(System.String)">
+            <summary>
+            Gets the data field with the specified data field name.
+            </summary>
+            <param name="name">Name of the field.</param>
+            <returns>The data field with the specified data field name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.GetKeyDataFields">
+            <summary>
+            Gets the key data fields of this instance.
+            </summary>
+            <returns>The key data fields of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.GetPrimaryKeyDataFields">
+            <summary>
+            Gets the primary data fields of this instance.
+            </summary>
+            <returns>The primary data fields of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQuery.GetForeignKeyDataFields">
+            <summary>
+            Gets the foreign data fields of this instance.
+            </summary>
+            <returns>The foreign data fields of this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryFromStatement">
+            <summary>
+            This class represents the From statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryFromStatement.UnionStatement">
+            <summary>
+            Union statement.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryFromStatement.JointureStatements">
+            <summary>
+            List of jointure statements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryFromStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryFromStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryGroupByStatement">
+            <summary>
+            This class represents the GroupBy statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryGroupByStatement.Fields">
+            <summary>
+            Fields of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryGroupByStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryGroupByStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryHavingStatement">
+            <summary>
+            This class represents the Having statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryHavingStatement.DataExpression">
+            <summary>
+            The data expression of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryHavingStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryHavingStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind">
+            <summary>
+            This enumeration lists all the kinds of data query jointures.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind.Inner">
+            <summary>
+            Inner.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind.Left">
+            <summary>
+            Left.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind.Right">
+            <summary>
+            Right.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind.Union">
+            <summary>
+            Union.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement">
+            <summary>
+            This class represents the Jointure statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.Kind">
+            <summary>
+            The kind of jointure of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.Table">
+            <summary>
+            The data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.Condition">
+            <summary>
+            The condition of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryJointureStatement class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.#ctor(BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind,BindOpen.Framework.Databases.Extensions.Carriers.DbTable)">
+            <summary>
+            Instantiates a new instance of the DbDataQueryJointureStatement class.
+            </summary>
+            <param name="kind">The kind to consider.</param>
+            <param name="table">The table to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.#ctor(BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind,BindOpen.Framework.Databases.Extensions.Carriers.DbTable,System.String)">
+            <summary>
+            Instantiates a new instance of the DbDataQueryJointureStatement class.
+            </summary>
+            <param name="kind">The kind to consider.</param>
+            <param name="table">The table to consider.</param>
+            <param name="query">The query to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureStatement.#ctor(BindOpen.Framework.Databases.Data.Queries.DbDataQueryJointureKind,BindOpen.Framework.Databases.Extensions.Carriers.DbTable,BindOpen.Framework.Databases.Extensions.Carriers.DbField,BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Instantiates a new instance of the DbDataQueryJointureStatement class.
+            </summary>
+            <param name="kind">The kind to consider.</param>
+            <param name="table">The table to consider.</param>
+            <param name="field1">The field1 to consider.</param>
+            <param name="field2">The field2 to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind">
+            <summary>
+            This enumeration lists the possible kinds of database data queries.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Create">
+            <summary>
+            Create.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Select">
+            <summary>
+            Select.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Delete">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Insert">
+            <summary>
+            Insert.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Duplicate">
+            <summary>
+            Duplicate.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryKind.Drop">
+            <summary>
+            Drop.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryOrderByStatement">
+            <summary>
+            This class represents the Order-By statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryOrderByStatement.Field">
+            <summary>
+            The field of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryOrderByStatement.Sorting">
+            <summary>
+            The sorting order of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryOrderByStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryOrderByStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionKind">
+            <summary>
+            This enumeration lists all the kinds of data query unions.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionKind.Union">
+            <summary>
+            Union.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionStatement">
+            <summary>
+            This class represents a union statement of a database data query.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionStatement.Type">
+            <summary>
+            Type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionStatement.Query">
+            <summary>
+            Data query of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.DbDataQueryUnionStatement.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataQueryUnionStatement class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.FromClauses">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.GroupByClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.HavingClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.IsDistinct">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.OrderByStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery.WhereClause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.FromClauses">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.IdFields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.IsDistinct">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.OrderByStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.Top">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery.GetIdFieldWithBoundFieldName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="boundFieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataModule">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataTable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.DataTableAlias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Fields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.IsTrackingEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.Schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetDataFieldWithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetFieldWithBoundFieldName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="boundFieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetForeignKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.IDbDataQuery.GetPrimaryKeyDataFields">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement.JointureStatements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryFromStatement.UnionStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryGroupByStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryGroupByStatement.Fields">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryHavingStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryHavingStatement.DataExpression">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Kind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryJointureStatement.Table">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement.Field">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryOrderByStatement.Sorting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement">
+            <summary>
+            This interface defines the statement data query union.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement.Type">
+            <summary>
+            The type.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Data.Queries.IDbDataQueryUnionStatement.Query">
+            <summary>
+            The query.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind">
+            <summary>
+            This enumeration lists all the possible kinds of database carriers.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind.DbField">
+            <summary>
+            Database field.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind.DbTable">
+            <summary>
+            Database table.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKindExtension">
+            <summary>
+            This class represents an extension of the DatabaseCarrierKind enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKindExtension.GetUniqueName(BindOpen.Framework.Databases.Extensions.Carriers.DatabaseCarrierKind)">
+            <summary>
+            Gets the unique name corresponding to the specified carrier kind.
+            </summary>
+            <param name="aDatabaseCarrierKind">The carrier kind to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DbField">
+            <summary>
+            This class represents a database data field.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.IsAll">
+            <summary>
+            Indicates wheteher this instance represents all the fields.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.DataModule">
+            <summary>
+            Data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.Schema">
+            <summary>
+            Data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.DataTable">
+            <summary>
+            Data table of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.DataTableAlias">
+            <summary>
+            Alias of the data table of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.Alias">
+            <summary>
+            Alias of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.Size">
+            <summary>
+            Size of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.Value">
+            <summary>
+            Value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.Query">
+            <summary>
+            Value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.IsKey">
+            <summary>
+            Indicates wheteher this instance is a key.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.IsForeignKey">
+            <summary>
+            Indicates wheteher this instance is a foreign key.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.IsNameAsScript">
+            <summary>
+            Indicates wheteher the name of this instance can be defined by a script.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbField.ValueType">
+            <summary>
+            Type of value of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="value">The value to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="value">The value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core.Data.Common.DataValueType)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="schema">The schema to consider.</param>
+            <param name="dataModule">The data module to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="value">The value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.Object)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="value">The value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.Object)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="tableName">The data table to consider.</param>
+            <param name="name">The name to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="value">The value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.Object)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="schema">The schema to consider.</param>
+            <param name="dataModule">The data module to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="value">The value to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="query">The query to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="query">The query to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="schema">The schema to consider.</param>
+            <param name="dataModule">The data module to consider.</param>
+            <param name="query">The query to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.GetName">
+            <summary>
+            Get the name of this instance that is the alias if there is or the name otherwise.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetValue(BindOpen.Framework.Core.Data.Expression.DataExpression)">
+            <summary>
+            Sets the expression value of this instance.
+            </summary>
+            <param name="expression">Data expression value of the instance.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetLiteralValue(System.String)">
+            <summary>
+            Sets the literal value of this instance.
+            </summary>
+            <param name="text">The literal value.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetScriptValue(System.String)">
+            <summary>
+            Sets the script value of this instance.
+            </summary>
+            <param name="text">The script value.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithAlias(System.String)">
+            <summary>
+            Sets the specified alias.
+            </summary>
+            <param name="alias">The alias to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithSize(System.Int32)">
+            <summary>
+            Sets the specified size.
+            </summary>
+            <param name="size">The size to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.WithAll">
+            <summary>
+            Indicates that this instance represents all fields.
+            </summary>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Carriers.DbTable">
+            <summary>
+            This class represents a database data table.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.DataModule">
+            <summary>
+            Data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.Schema">
+            <summary>
+            Data module of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.Alias">
+            <summary>
+            Alias of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.#ctor">
+            <summary>
+            Instantiates a new instance of the DbDataTable class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the DbTable class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="schema">The schema to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the DbTable class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="schema">The schema to consider.</param>
+            <param name="dataModuleName">The name of the data module to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbTable.WithAlias(System.String)">
+            <summary>
+            Sets the specified alias.
+            </summary>
+            <param name="alias">The alias to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Common.Extension_database">
+            <summary>
+            This class represents the database extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Common.Extension_database.GetUniqueName_database(System.String)">
+            <summary>
+            Gets the database unique name.
+            </summary>
+            <param name="uniqueName">The unique name to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector">
+            <summary>
+            This class defines a database connector.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.QueryBuilder">
+            <summary>
+            The provider of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.Provider">
+            <summary>
+            The provider of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ServerAddress">
+            <summary>
+            The server address of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.InitialCatalog">
+            <summary>
+            The initial catalog of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.IntegratedSecurity">
+            <summary>
+            The integrated security of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UserName">
+            <summary>
+            The user name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.Password">
+            <summary>
+            The password of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.DatabaseConnectorKind">
+            <summary>
+            The database kind of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.#ctor">
+            <summary>
+            Instantiates a new instance of the DatabaseConnector class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the DatabaseConnector class.
+            </summary>
+            <param name="name">The name of this instance.</param>
+            <param name="connectionString">The connection string to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetSqlText(BindOpen.Framework.Databases.Data.Queries.IDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Gets the SQL text of the specified query.
+            </summary>
+            <param name="query">The query to consider.</param>
+            <param name="scriptVariableSet">The script variable set to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the SQL text of the specified query.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateConnectionString(System.String)">
+            <summary>
+            Updates the connection string.
+            </summary>
+            <param name="connectionString">The connection string to consider.</param>
+            <returns>Returns a clone of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetDbConnection">
+            <summary>
+            Gets the database connection of this instance.
+            </summary>
+            <returns>Returns the connection of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GuessDatabaseConnectorKind(System.String)">
+            <summary>
+            Gets the database kind from the specified connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <returns>The database provider  of the specified connection string.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GuessDatabaseConnectorKind">
+            <summary>
+            Guesses the database kind of this instance.
+            </summary>
+            <returns>The database kind of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query that returns nothing.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a data reader.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataReader">The output data reader.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes a database data query putting the result into a dataset.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataSet">The output dataset.</param>
+            <param name="scriptVariableSet">The interpretation variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the data query execution task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Gets the identity of the last inserted item
+            </summary>
+            <param name="id">The long identifier to populate.</param>
+            <param name="log">The log to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataTable">The data table to update.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Executes the specified data query and updates the specified data table.
+            </summary>
+            <param name="queryText">The text to execute.</param>
+            <param name="dataSet">The data set to update.</param>
+            <param name="tableNames">The table names to consider.</param>
+            <param name="log">The log to consider.</param>
+            <returns>The log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
+            <summary>
+            
+            </summary>
+            <param name="connector"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind">
+            <summary>
+            This enumeration lists all the possible kinds of database connectors.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.MSSqlServer">
+            <summary>
+            Microsoft SQL Server.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.Oracle">
+            <summary>
+            Oracle.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.MySQL">
+            <summary>
+            MySQL.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind.PostgreSql">
+            <summary>
+            Postgre SQL.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Connectors.ConnectorKind_databaseExtension">
+            <summary>
+            This class represents an extension of the ConnectorKind_database enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.ConnectorKind_databaseExtension.GetUniqueName(BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind)">
+            <summary>
+            Gets the unique name corresponding to the specified connector kind.
+            </summary>
+            <param name="connectorKind_database">The connector kind to consider.</param>
+            <returns>The result object.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database">
+            <summary>
+            This class represents a script helper concerning database.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlDataFieldString(BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Gets the BdO string corresponding to the specified data field.
+            </summary>
+            <param name="field">The database date field to consider.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlNumberFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that filters number values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlNumberAndFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that AND filters number values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlNumberOrFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that AND filters number values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlTextFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that filters text values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlTextAndFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that AND filters text values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptHelper_Database.GetSqlTextOrFilterString(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Gets the BdO filter string that AND filters text values.
+            </summary>
+            <param name="sqlDbFieldString">The Sql script representing the data field to consider.</param>
+            <param name="values">Values used to filter.</param>
+            <returns>The string that allows to filter users and workgroup users.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptVariableKey_Database">
+            <summary>
+            This class represents the database script variable key.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptVariableKey_Database.DbBuilder">
+            <summary>
+            database builder
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database">
+            <summary>
+            This class represents a 'Database' script word definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlCount(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCOUNT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlSum(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLSUM.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAverage(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLAVG.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGetCurrentDate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLGETCURRENTDATE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlTrue(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLTRUE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIf(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLIF.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNot(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLNOT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
+            <param name="scriptWord">The script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlOr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLOR.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAnd(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLAND.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlXor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLXOR.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlEq(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLEQ.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDiff(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLDIFF.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLGT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLGTE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLLT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLLTE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIsNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLISNULL.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConvertToText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCONVERTTOTEXT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLTEXT.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLike(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLLIKE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlReplace(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLREPLACE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConcatenate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLCONCATENATE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLNULL.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word %SQLDATABASE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlSchema(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word [%DATABASE->]%SCHEMA.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word [%DATABASE->]%TABLE.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable_SqlField(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNewGuid(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLNEWGUID.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlRandom(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLRANDOM.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIn(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLIN.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlList(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+            <summary>
+            Evaluates the script word $SQLLIST.
+            </summary>
+            <param name="appScope">The application scope to consider.</param>
+            <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
+            <param name="scriptWord">Script word to evaluate.</param>
+            <param name="parameters">The parameters to consider.</param>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="T:dkm_core_wdl.data.Carriers.database.DatabaseElement">
+            <summary>
+            This class represents the information about a database element.
+            </summary>
+        </member>
+        <member name="P:dkm_core_wdl.data.Carriers.database.DatabaseElement.Name">
+            <summary>
+            Name of this instance.
+            </summary>
+        </member>
+        <member name="P:dkm_core_wdl.data.Carriers.database.DatabaseElement.CreationTime">
+            <summary>
+            Date of creation of this instance.
+            </summary>
+        </member>
+        <member name="M:dkm_core_wdl.data.Carriers.database.DatabaseElement.#ctor">
+            <summary>
+            Instantiates a new instance of the DatabaseElement class.
+            </summary>
+        </member>
+    </members>
+</doc>

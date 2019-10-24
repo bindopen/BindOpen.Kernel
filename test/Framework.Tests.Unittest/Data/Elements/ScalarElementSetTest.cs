@@ -1,10 +1,10 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 {
@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [SetUp]
         public void Setup()
         {
-            _scalarElementSetA = new []
+            _scalarElementSetA = new[]
             {
                 ElementFactory.CreateScalar("float1", DataValueType.Number, 10),
                 ElementFactory.CreateScalar("text1", DataValueType.Text, "item1", "item2", "item3"),
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
             Assert.That(
                 ((string)_scalarElementSetA["text1"]?[0] == "item1")
                 && ((string)_scalarElementSetA["text1"]?[1] == "item2")
-                && ((string)_scalarElementSetA["text1"]?[2]=="item3"), "Bad text scalar element creation");
+                && ((string)_scalarElementSetA["text1"]?[2] == "item3"), "Bad text scalar element creation");
             Assert.That(
                 ((int)_scalarElementSetA["integer1"]?[0] == 1)
                 && ((int)_scalarElementSetA["integer1"]?[1] == 2)
@@ -44,7 +44,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
                 && ((double)_scalarElementSetA["float2"]?[2] == 1.3), "Bad float scalar element creation");
 
             Assert.That(
-                _scalarElementSetA.Count==4, "Bad scalar element set creation");
+                _scalarElementSetA.Count == 4, "Bad scalar element set creation");
         }
 
         [Test]
@@ -69,7 +69,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             _scalarElementSetA.SaveXml(_filePath, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + xml);
         }
 
         [Test]
@@ -80,9 +85,14 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
             if (_scalarElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null,log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
 
             TestCreateElementSet();
         }

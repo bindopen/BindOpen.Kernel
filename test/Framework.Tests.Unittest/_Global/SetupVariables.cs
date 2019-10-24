@@ -1,12 +1,12 @@
-﻿using System;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Databases.MSSqlServer.Extensions;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using BindOpen.Framework.Tests.UnitTest.Settings;
+using System;
 
 namespace BindOpen.Framework.Tests.UnitTest
 {
@@ -33,13 +33,11 @@ namespace BindOpen.Framework.Tests.UnitTest
             {
                 return _appHost ?? (_appHost = AppHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
-                            .SetRuntimeFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\run")
-                            .SetLibraryFolder(AppDomain.CurrentDomain.BaseDirectory + @"..\..\lib")
+                            .SetRuntimeFolder(@"..\..\run")
+                            .SetLibraryFolder(@"..\..\lib")
                             .SetModule(new AppModule("app.test"))
                             .DefineDefaultSettings()
-                            .SetExtensions(
-                                new AppExtensionFilter("BindOpen.Framework.Databases"),
-                                new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer"))
+                            .AddMSSqlServerExtension()
                             .AddDefaultLogger()
                             .AddLoggers(
                                 LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console))));

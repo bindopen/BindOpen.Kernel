@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -41,8 +41,8 @@ This package conducts unit tests.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
-    <ProjectReference Include="..\..\src\Framework.Runtime\Framework.Runtime.csproj" />
+    <ProjectReference Include="..\..\src\integration\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\src\integration\Framework.NetCore\Framework.NetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

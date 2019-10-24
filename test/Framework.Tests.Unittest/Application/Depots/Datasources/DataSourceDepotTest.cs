@@ -1,5 +1,4 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Application.Depots.Datasources;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
@@ -7,6 +6,7 @@ using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
 {
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         {
             Assert.That(
                 depot.HasItem("smtp_default")
-                && depot.GetItem("smtp_default")?.Configurations?.Count==1
+                && depot.GetItem("smtp_default")?.Configurations?.Count == 1
                 && depot.GetItem("smtp_default")?.Configurations[0]?.GetElementObject<int>("timeout") == 60000
                 , "Bad data source depot");
         }
@@ -57,7 +57,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
 
             _dataSourceDepot.SaveXml(_filePath, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Data source depots saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Data source depots saving failed. Result was '" + xml);
         }
 
         [Test]
@@ -70,7 +75,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
 
             var dataSourceDepot = XmlHelper.Load<DataSourceDepot>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + xml);
 
             TestDataSourceDepotSet(dataSourceDepot);
         }
