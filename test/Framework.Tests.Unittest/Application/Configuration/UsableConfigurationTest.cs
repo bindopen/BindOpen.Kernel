@@ -1,10 +1,10 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
 {
@@ -24,8 +24,8 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         {
             _usableConfiguration1 = new UsableConfiguration(
                 _filePath1,
-                new [] { Path.GetFileName(_filePath20), Path.GetFileName(_filePath21) },
-                new []
+                new[] { Path.GetFileName(_filePath20), Path.GetFileName(_filePath21) },
+                new[]
                 {
                     ElementFactory.CreateScalar("float1", DataValueType.Number, 10),
                 }
@@ -58,7 +58,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
             _usableConfiguration20.SaveXml(_filePath20, log);
             _usableConfiguration21.SaveXml(_filePath21, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration saving failed. Result was '" + xml);
         }
 
         [Test]
@@ -71,7 +76,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
 
             var configuration = ConfigurationLoader.Load<UsableConfiguration>(_filePath1, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration loading failed. Result was '" + xml);
 
             Assert.That(
                 ((string)configuration["text1"]?[0] == "item1")

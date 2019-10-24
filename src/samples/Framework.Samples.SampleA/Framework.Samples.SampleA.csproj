@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Samples.SampleA</AssemblyName>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Authors>Sumer Team</Authors>
+    <PackageId>BindOpen.Framework.TestConsole</PackageId>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications.
+This package conducts on-demand tests before they are implemented in the unit test project.</Description>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <RootNamespace>BindOpen.Framework.Samples.SampleA</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="app_data\**" />
+    <Compile Remove="lib\**" />
+    <Compile Remove="runtime\**" />
+    <Compile Remove="run\**" />
+    <EmbeddedResource Remove="app_data\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <EmbeddedResource Remove="runtime\**" />
+    <EmbeddedResource Remove="run\**" />
+    <None Remove="app_data\**" />
+    <None Remove="lib\**" />
+    <None Remove="runtime\**" />
+    <None Remove="run\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Settings\TestArguments.cs" />
+    <Compile Remove="Settings\TestTask.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\integration\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\..\src\integration\Framework.NetCore\Framework.NetCore.csproj" />
+    <ProjectReference Include="..\..\integration\Framework.Databases.PostgreSql\Framework.Databases.PostgreSql.csproj" />
+  </ItemGroup>
+
+</Project>

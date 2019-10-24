@@ -1,11 +1,11 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 {
@@ -84,7 +84,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             _collectionElementSetA.SaveXml(_filePath, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + xml);
         }
 
         [Test]
@@ -97,7 +102,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
         }
     }
 }

@@ -31,7 +31,12 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
                 resultScript = SetupVariables.AppHost.Scope.Interpreter.Interprete(this._script, scriptVariableSet, log);
             }
 
-            Assert.That(this._interpretedScript.ToLower() == resultScript?.ToLower(), "Bad script interpretation. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(this._interpretedScript.ToLower() == resultScript?.ToLower(), "Bad script interpretation. Result was '" + xml);
         }
     }
 }

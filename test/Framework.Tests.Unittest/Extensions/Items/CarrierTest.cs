@@ -1,12 +1,12 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
 {
@@ -63,7 +63,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
 
             _field.SaveXml(_filePath, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Carrier saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Carrier saving failed. Result was '" + xml);
         }
 
         [Test, Order(3)]
@@ -77,7 +82,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             CarrierConfiguration configuration = XmlHelper.Load<CarrierConfiguration>(_filePath, null, null, log);
             var field = SetupVariables.AppHost.Scope.CreateCarrier<DbField>(configuration, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Carrier loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Carrier loading failed. Result was '" + xml);
 
             Test(field);
         }

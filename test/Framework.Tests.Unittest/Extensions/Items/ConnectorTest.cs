@@ -1,5 +1,4 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Extensions.Items;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
@@ -8,6 +7,7 @@ using BindOpen.Framework.Databases.Data.Connections;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
 using BindOpen.Framework.Runtime.Extensions.Connectors;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
 {
@@ -54,7 +54,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             _connector1.SaveXml(_filePath1, log);
             _connector2.SaveXml(_filePath2, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed. Result was '" + xml);
         }
 
         [Test, Order(3)]
@@ -68,14 +73,23 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
                 TestSaveConnector();
             }
 
-            ConnectorConfiguration configuration1 = XmlHelper.Load<ConnectorConfiguration>(_filePath1, null,null, log);
+            ConnectorConfiguration configuration1 = XmlHelper.Load<ConnectorConfiguration>(_filePath1, null, null, log);
             DatabaseConnector_MSSqlServer connector1 = SetupVariables.AppHost.Scope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration1, null, log);
-            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + xml);
             Test1(connector1);
 
             ConnectorConfiguration configuration2 = XmlHelper.Load<ConnectorConfiguration>(_filePath2, null, null, log);
             TestConnector connector2 = SetupVariables.AppHost.Scope.CreateConnector<TestConnector>(configuration2, null, log);
-            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + log.ToXml());
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + xml);
             Test2(connector2);
         }
 

@@ -1,7 +1,7 @@
-﻿using System.IO;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
+﻿using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
+using System.IO;
 
 namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
 {
@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
         [Test, Order(2)]
         public void TestSaveEvents()
         {
-            if (_log==null)
+            if (_log == null)
             {
                 CreateEvents();
             }
@@ -65,7 +65,12 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
             Log log = new Log();
             _log = XmlHelper.Load<Log>(_filePath, null, null, log);
 
-            Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + log.ToXml());
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + xml);
 
             TestCreateEvents();
         }
