@@ -127,37 +127,32 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             {
                 Name = "UpdateMyTable",
                 Fields =
-            {
-                new DbField(nameof(DbMyTable.Name), DataValueType.Text, table?.Name),
-            },
-                FromClauses =
-            {
-                new DbDataQueryFromStatement()
                 {
-                    JointureStatements=
+                    new DbField(nameof(DbMyTable.Name), DataValueType.Text, table?.Name),
+                    new DbField("fieldA",
+                        new BasicDbDataQuery(DbDataQueryKind.Select, dataModuleName, "schema1","table1")
+                        {
+                            IsDistinct = true,
+                            Fields = { new DbField("id") },
+                            IdFields = { new DbField("name", DataValueType.Text, "myname") }
+                        })
+                },
+                FromClauses =
+                {
+                    new DbDataQueryFromStatement()
                     {
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.None,
-                            new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
-
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
-                            new DbField("table1key", "table1"),
-                            new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
-
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
-                            new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
-                            new DbField("table1key", "table2"),
-                            new DbField("Field1", "table"))
+                        JointureStatements=
+                        {
+                            new DbDataQueryJointureStatement(
+                                DbDataQueryJointureKind.None,
+                                new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
+                        }
                     }
-                }
-            },
+                },
                 IdFields =
-            {
-                new DbField(nameof(DbMyTable.MyTableId), "table", DataValueType.Text, table?.MyTableId)
-            }
+                {
+                    new DbField(nameof(DbMyTable.MyTableId), "table", DataValueType.Text, table?.MyTableId)
+                }
             };
 
         public static IDbDataQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")

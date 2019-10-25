@@ -257,7 +257,59 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             DataModule = dataModule;
         }
 
-        // Constructors with data expression -----
+        // Constructors with field -----
+
+        /// <summary>
+        /// Instantiates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="field">The field to consider.</param>
+        public DbField(
+            string name,
+            DbField field)
+            : base()
+        {
+            Name = name;
+            ValueType = DataValueType.None;
+            Value = field.ToDataExpression();
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="field">The field to consider.</param>
+        public DbField(
+            string name,
+            string tableName,
+            DbField field)
+            : this(name, field)
+        {
+            DataTable = tableName;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="schema">The schema to consider.</param>
+        /// <param name="dataModule">The data module to consider.</param>
+        /// <param name="field">The field to consider.</param>
+        public DbField(
+            string name,
+            string tableName,
+            string schema,
+            string dataModule,
+            DbField field)
+            : this(name, tableName, field)
+        {
+            Schema = schema;
+            DataModule = dataModule;
+        }
+
+        // Constructors with query -----
 
         /// <summary>
         /// Instantiates a new instance of the DbField class.
@@ -267,8 +319,9 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbField(
             string name,
             DbDataQuery query)
-            : base(name, "field_")
+            : base()
         {
+            Name = name;
             ValueType = DataValueType.None;
             Query = query;
         }
@@ -326,6 +379,34 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
                 return alias;
             else
                 return Name ?? "";
+        }
+
+        /// <summary>
+        /// Gets the data expression of this instance.
+        /// </summary>
+        /// <returns>Returns the data expression of this instance.</returns>
+        public DataExpression ToDataExpression()
+        {
+            string st = "";
+
+            if (!string.IsNullOrEmpty(DataModule))
+            {
+                st += "$sqlDatabase('" + DataModule + "').";
+            }
+            if (!string.IsNullOrEmpty(Schema))
+            {
+                st += "$sqlSchema('" + DataModule + "').";
+            }
+            if (!string.IsNullOrEmpty(DataTable))
+            {
+                st += "$sqlTable('" + DataTable + "').";
+            }
+            if (!string.IsNullOrEmpty(Name))
+            {
+                st += "$sqlField('" + Name + "').";
+            }
+
+            return DataExpressionFactory.CreateScript(st);
         }
 
         #endregion
