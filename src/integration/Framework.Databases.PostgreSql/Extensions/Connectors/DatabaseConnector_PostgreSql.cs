@@ -153,7 +153,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public override void ExecuteNonQuery(
-            String queryText,
+            string queryText,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
@@ -235,7 +235,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public override void ExecuteQuery(
-            String queryText,
+            string queryText,
             ref DataSet dataSet,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
@@ -304,7 +304,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public override void UpdateDataTable(
-            String queryText,
+            string queryText,
             DataTable dataTable,
             ILog log = null)
         {
@@ -339,7 +339,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public override void UpdateDataSet(
-            String queryText,
+            string queryText,
             DataSet dataSet,
             List<string> tableNames,
             ILog log = null)
@@ -356,7 +356,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
                 try
                 {
                     NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(queryText, _connection);
-                    foreach (String tableName in tableNames)
+                    foreach (string tableName in tableNames)
                         dataAdapter.Fill(dataSet, tableName);
                 }
                 catch (Exception ex)
@@ -376,9 +376,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The columns of the table with the specified name.</returns>
         public List<string> GetTableColumns(
-            String dataModuleName,
-            String ownerName,
-            String tableName,
+            string dataModuleName,
+            string ownerName,
+            string tableName,
             ILog log = null)
         {
             DataTable dataTable = GetTableColumnsDataTable(
@@ -435,8 +435,8 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The tables of the table with the specified name.</returns>
         public List<string> GetTables(
-            String dataModuleName,
-            String ownerName,
+            string dataModuleName,
+            string ownerName,
             ILog log = null)
         {
             DataTable dataTable = GetTableDataTable(dataModuleName, ownerName);
@@ -458,8 +458,8 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>The data table containing the schema of the specified table.</returns>
         public DataTable GetTableDataTable(
-            String dataModuleName,
-            String ownerName,
+            string dataModuleName,
+            string ownerName,
             ILog log = null)
         {
             DataTable dataTable = null;

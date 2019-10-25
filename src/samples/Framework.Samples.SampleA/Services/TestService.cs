@@ -19,10 +19,16 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             Console.WriteLine(sql1);
 
             Host.Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.DeleteMyTable("", null), null, out string sql2));
+            new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+                Queries.GetMyTable("name", null), null, out string sql2));
 
             Console.WriteLine(sql2);
+
+            Host.Log.Append(
+                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+                    Queries.DeleteMyTable("", null), null, out string sql3));
+
+            Console.WriteLine(sql3);
 
             return this;
         }

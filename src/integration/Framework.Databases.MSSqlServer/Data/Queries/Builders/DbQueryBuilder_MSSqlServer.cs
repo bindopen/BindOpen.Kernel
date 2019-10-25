@@ -416,6 +416,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                                 index++;
                             }
                         }
+
                         if (query.IdFields.Count > 0)
                         {
                             queryString += " where ";

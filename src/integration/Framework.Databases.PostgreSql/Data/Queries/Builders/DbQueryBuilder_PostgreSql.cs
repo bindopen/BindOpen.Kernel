@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         }
                         else if (field.IsNameAsScript)
                         {
-                            String name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            string name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "\"" + name + "\"";
                         }
                         else
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                     case DbDataFieldViewMode.OnlyNameAsAlias:
                         if (field.IsNameAsScript)
                         {
-                            String name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            string name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "\"" + name + "\"";
                         }
                         else
