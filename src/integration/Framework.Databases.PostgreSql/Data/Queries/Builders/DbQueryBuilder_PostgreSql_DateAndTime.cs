@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+﻿using BindOpen.Framework.Databases.Data.Queries.Builders;
 
 namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 {
@@ -17,7 +16,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_CurrentDate(object[] parameters)
         {
-            return "getdate()";
+            return "now()";
         }
     }
 }
