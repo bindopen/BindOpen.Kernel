@@ -1635,6 +1635,31 @@
             <param name="valueType">The value type to consider.</param>
             <param name="value">The value to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="field">The field to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="field">The field to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,System.String,System.String,System.String,BindOpen.Framework.Databases.Extensions.Carriers.DbField)">
+            <summary>
+            Instantiates a new instance of the DbField class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="tableName">The data table to consider.</param>
+            <param name="schema">The schema to consider.</param>
+            <param name="dataModule">The data module to consider.</param>
+            <param name="field">The field to consider.</param>
+        </member>
         <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.#ctor(System.String,BindOpen.Framework.Databases.Data.Queries.DbDataQuery)">
             <summary>
             Instantiates a new instance of the DbField class.
@@ -1664,6 +1689,12 @@
             <summary>
             Get the name of this instance that is the alias if there is or the name otherwise.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.ToDataExpression">
+            <summary>
+            Gets the data expression of this instance.
+            </summary>
+            <returns>Returns the data expression of this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.Extensions.Carriers.DbField.SetValue(BindOpen.Framework.Core.Data.Expression.DataExpression)">
             <summary>
