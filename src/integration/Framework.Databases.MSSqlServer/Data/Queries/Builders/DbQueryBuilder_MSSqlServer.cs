@@ -474,7 +474,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         queryString = "update ";
                         queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
-                            log, DbDataFieldViewMode.CompleteName, scriptVariableSet, query.Schema, query.DataTable);
+                            log, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet, query.DataModule, query.Schema);
                         queryString += " set ";
                         index = 0;
                         foreach (DbField field in query.Fields)
@@ -734,8 +734,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         queryString = "update ";
                         queryString += GetTableSqlText(
                             query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
-                            log, DbDataFieldViewMode.CompleteName, scriptVariableSet,
-                            query.DataModule, query.Schema);
+                            log, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet, query.DataModule, query.Schema);
                         queryString += " set ";
                         index = 0;
                         foreach (DbField field in query.Fields)

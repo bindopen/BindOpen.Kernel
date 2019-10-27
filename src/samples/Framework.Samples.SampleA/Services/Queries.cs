@@ -123,9 +123,10 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             };
 
         public static IDbDataQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Update, dataModuleName, "schema1", nameof(DbMyTable).Substring(2))
+            => new BasicDbDataQuery(DbDataQueryKind.Update, null, "schema1", nameof(DbMyTable).Substring(2))
             {
                 Name = "UpdateMyTable",
+                DataTableAlias = "u_table1",
                 Fields =
                 {
                     new DbField(nameof(DbMyTable.Name), DataValueType.Text, table?.Name),
@@ -145,13 +146,21 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                         {
                             new DbDataQueryJointureStatement(
                                 DbDataQueryJointureKind.None,
-                                new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
+                                new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table1")),
+
+                            new DbDataQueryJointureStatement(
+                                DbDataQueryJointureKind.Left,
+                                new DbTable("fieldA", "schema1", null).WithAlias("item"),
+                                new DbField("idA", ""),
+                                new DbField("idA", "")),
                         }
                     }
                 },
                 IdFields =
                 {
-                    new DbField(nameof(DbMyTable.MyTableId), "table", DataValueType.Text, table?.MyTableId)
+                    new DbField("fieldA", "u_item", new DbField("fieldA", "item")),
+                    new DbField(nameof(DbMyTable.Name), "table1", DataValueType.Text, table?.Name),
+                    new DbField("fieldA", "item", DataValueType.Text, "categoryName"),
                 }
             };
 

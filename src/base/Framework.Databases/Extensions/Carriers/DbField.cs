@@ -387,23 +387,23 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <returns>Returns the data expression of this instance.</returns>
         public DataExpression ToDataExpression()
         {
-            string st = "";
+            string st = "$";
 
             if (!string.IsNullOrEmpty(DataModule))
             {
-                st += "$sqlDatabase('" + DataModule + "').";
+                st += "sqlDatabase('" + DataModule + "').";
             }
             if (!string.IsNullOrEmpty(Schema))
             {
-                st += "$sqlSchema('" + DataModule + "').";
+                st += "sqlSchema('" + DataModule + "').";
             }
             if (!string.IsNullOrEmpty(DataTable))
             {
-                st += "$sqlTable('" + DataTable + "').";
+                st += "sqlTable('" + DataTable + "').";
             }
             if (!string.IsNullOrEmpty(Name))
             {
-                st += "$sqlField('" + Name + "').";
+                st += "sqlField('" + Name + "')";
             }
 
             return DataExpressionFactory.CreateScript(st);
