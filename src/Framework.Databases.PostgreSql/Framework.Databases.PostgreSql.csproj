@@ -52,7 +52,7 @@ This package handles PostgreSQL database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\base\Framework.Databases\Framework.Databases.csproj" />
+    <ProjectReference Include="..\Framework.Databases\Framework.Databases.csproj" />
   </ItemGroup>
 
 </Project>

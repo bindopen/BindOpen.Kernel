@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>BindOpen.Framework.Databases</AssemblyName>
-    <PackageId>BindOpen.Framework.Databases</PackageId>
+    <AssemblyName>BindOpen.Framework.Databases.MSSqlServer</AssemblyName>
+    <PackageId>BindOpen.Framework.Databases.MSSqlServer</PackageId>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications.
-This package handles database connections.</Description>
+This package handles MS SQL Server database connections.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Framework.Databases</RootNamespace>
+    <RootNamespace>BindOpen.Framework.Databases.MSSqlServer</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
@@ -19,48 +19,40 @@ This package handles database connections.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Framework.Databases.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Databases.MSSqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Databases.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Queries\Builders\DbQueryBuilder_PostgreSql.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnector_MSSqlServer.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
     <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Extensions\Carriers\carriers.index" />
-    <None Remove="Extensions\Connectors\connectors.index" />
-    <None Remove="Extensions\Entities\entities.index" />
-    <None Remove="Extensions\Handlers\handlers.index" />
-    <None Remove="Extensions\Metrics\metrics.index" />
-    <None Remove="Extensions\Routines\routines.index" />
-    <None Remove="Extensions\Scriptwords\Scriptwords.index" />
-    <None Remove="Extensions\Tasks\tasks.index" />
+    <None Remove="Data\Queries\Builders\ve-27F.tmp" />
+    <None Remove="Extensions\Connectors\Connectors.index" />
     <None Remove="library.definition" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Extensions\Carriers\Carriers.index" />
-    <EmbeddedResource Include="Extensions\Entities\Entities.index" />
-    <EmbeddedResource Include="Extensions\Handlers\Handlers.index" />
-    <EmbeddedResource Include="Extensions\Metrics\Metrics.index" />
-    <EmbeddedResource Include="Extensions\Routines\Routines.index" />
-    <EmbeddedResource Include="Extensions\Scriptwords\Scriptwords.index" />
-    <EmbeddedResource Include="Extensions\Tasks\Tasks.index" />
+    <EmbeddedResource Include="Extensions\Connectors\Connectors.index" />
     <EmbeddedResource Include="Library.definition" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\base\Framework.Core\Framework.Core.csproj" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Databases\Framework.Databases.csproj" />
   </ItemGroup>
 
 </Project>

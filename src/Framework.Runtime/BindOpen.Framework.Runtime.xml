@@ -893,6 +893,13 @@
             </summary>
             <param name="name">The name of the instance.</param>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.#ctor(System.String,BindOpen.Framework.Runtime.Application.Modules.AppSection[])">
+            <summary>
+            Initializes a new instance of the ApplicationModule class.
+            </summary>
+            <param name="name">The name of the instance.</param>
+            <param name="sections">The sections of the instance.</param>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Modules.AppModule.GetSubSectionWithName(System.String)">
             <summary>
             Returns the sub section with the specified name.
@@ -1663,6 +1670,13 @@
             <param name="module"></param>
             <returns>Returns this instance.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetModule(System.String)">
+            <summary>
+            Sets the specified module.
+            </summary>
+            <param name="moduleName">The name of the module.</param>
+            <returns>Returns this instance.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Sets the specified extension settings.
@@ -1812,6 +1826,13 @@
             Set the module.
             </summary>
             <param name="module">The module.</param>
+            <returns>Returns the application host option.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetModule(System.String)">
+            <summary>
+            Set the module.
+            </summary>
+            <param name="moduleName">The name of the module.</param>
             <returns>Returns the application host option.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.IOptionSet">

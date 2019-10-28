@@ -1,14 +1,12 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Languages;
+using System.ComponentModel;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Application.Modules
 {
@@ -90,6 +88,16 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the ApplicationModule class.
+        /// </summary>
+        /// <param name="name">The name of the instance.</param>
+        /// <param name="sections">The sections of the instance.</param>
+        public AppModule(string name, params AppSection[] sections) : base(name, "module_")
+        {
+            Sections = new DataItemSet<AppSection>(sections);
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -153,7 +161,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <returns>The language to return.</returns>
         public IApplicationLanguage GetLanguageWithUICulture(string uiCulureName)
         {
-            return this.Languages?.Items?.FirstOrDefault(p=>p.UICultureName.KeyEquals(uiCulureName));
+            return this.Languages?.Items?.FirstOrDefault(p => p.UICultureName.KeyEquals(uiCulureName));
         }
 
         #endregion
@@ -217,7 +225,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
                 log.Append(this.Sections.Update(
                     module.Sections,
                     null,
-                    new [] { UpdateModes.Incremental_AddItemsMissingInTarget }));
+                    new[] { UpdateModes.Incremental_AddItemsMissingInTarget }));
             }
 
             return log;

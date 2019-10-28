@@ -227,6 +227,17 @@ namespace BindOpen.Framework.Runtime.Application.Options
         }
 
         /// <summary>
+        /// Sets the specified module.
+        /// </summary>
+        /// <param name="moduleName">The name of the module.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAppHostOptions SetModule(string moduleName)
+        {
+            _applicationModule = new AppModule(moduleName);
+            return this;
+        }
+
+        /// <summary>
         /// Sets the specified extension settings.
         /// </summary>
         /// <param name="extensionConfiguration">The extension configuration to consider.</param>

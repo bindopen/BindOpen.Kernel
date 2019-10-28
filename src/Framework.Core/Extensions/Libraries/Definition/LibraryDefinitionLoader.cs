@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Core.Extensions.Libraries.Definition
         /// <summary>
         /// The default resource file name for library definition.
         /// </summary>
-        public static readonly string __DefaultResourceFileName = "Library.Definition";
+        public static readonly string __DefaultResourceFileName = "Library.definition";
 
         #endregion
 

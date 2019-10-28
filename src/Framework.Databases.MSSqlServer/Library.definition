@@ -16,6 +16,5 @@
   <rootNamespace>BindOpen.Framework.Databases.MSSqlServer.Extensions</rootNamespace>
   <indexes>
     <add.value key="connector">.Connectors.Connectors.index</add.value>
-    <add.value key="scriptWord">.Scriptwords.Scriptwords.index</add.value>    
   </indexes>
 </library.definition>

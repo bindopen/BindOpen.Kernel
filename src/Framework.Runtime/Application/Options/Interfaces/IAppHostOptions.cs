@@ -136,5 +136,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="module">The module.</param>
         /// <returns>Returns the application host option.</returns>
         IAppHostOptions SetModule(IAppModule module);
+
+        /// <summary>
+        /// Set the module.
+        /// </summary>
+        /// <param name="moduleName">The name of the module.</param>
+        /// <returns>Returns the application host option.</returns>
+        IAppHostOptions SetModule(string moduleName);
     }
 }

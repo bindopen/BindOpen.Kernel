@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
@@ -13,6 +8,11 @@ using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.System.Diagnostics
 {
@@ -427,7 +427,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                 if (logFinder == null || (childLog != null && logFinder.Invoke(childLog)))
                 {
                     if (Loggers?.Any(q => q.IsHistoryRequired()) != false
-                        || (SubLogEventPredicate == null || SubLogEventPredicate.Invoke(logEvent)))
+                        || (SubLogEventPredicate != null && SubLogEventPredicate.Invoke(logEvent)))
                     {
                         if (childLog != null)
                         {
@@ -1192,15 +1192,15 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         public void BuildTree()
         {
-                foreach (ILogEvent aEvent in Events)
+            foreach (ILogEvent aEvent in Events)
+            {
+                aEvent.Parent = this;
+                if (aEvent.Log != null)
                 {
-                    aEvent.Parent = this;
-                    if (aEvent.Log != null)
-                    {
-                        aEvent.Log.Parent = this;
-                        aEvent.Log.BuildTree();
-                    }
+                    aEvent.Log.Parent = this;
+                    aEvent.Log.BuildTree();
                 }
+            }
         }
 
         #endregion

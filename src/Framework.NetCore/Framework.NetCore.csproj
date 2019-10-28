@@ -26,7 +26,7 @@ This package completes .Net Core framework.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\base\Framework.Runtime\Framework.Runtime.csproj" />
+    <ProjectReference Include="..\Framework.Runtime\Framework.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

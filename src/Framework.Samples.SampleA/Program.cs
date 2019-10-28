@@ -1,13 +1,11 @@
 ﻿using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions;
-using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Threading.Tasks;
 
 namespace BindOpen.Framework.Samples.SampleA
@@ -22,9 +20,9 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
+                            .SetModule("app.test")
                             .SetRuntimeFolder(@"..\..\..\run")
                             .SetLibraryFolder(@"..\..\..\lib")
-                            .SetModule(new AppModule("app.test"))
                             .AddPostgreSqlExtension()
                             .AddMSSqlServerExtension()
                             .AddDefaultLogger()

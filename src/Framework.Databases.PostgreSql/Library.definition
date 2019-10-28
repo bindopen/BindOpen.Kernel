@@ -15,7 +15,6 @@
   <fileName>BindOpen.Framework.Databases.PostgreSql.dll</fileName>
   <rootNamespace>BindOpen.Framework.Databases.PostgreSql.Extensions</rootNamespace>
   <indexes>
-    <add.value key="connector">.Connectors.Connectors.index</add.value>
-    <add.value key="scriptWord">.Scriptwords.Scriptwords.index</add.value>    
+    <add.value key="connector">.Connectors.Connectors.index</add.value>   
   </indexes>
 </library.definition>
