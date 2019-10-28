@@ -41,8 +41,8 @@ This package conducts unit tests.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\integration\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
-    <ProjectReference Include="..\..\src\integration\Framework.NetCore\Framework.NetCore.csproj" />
+    <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
+    <ProjectReference Include="..\..\src\Framework.NetCore\Framework.NetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

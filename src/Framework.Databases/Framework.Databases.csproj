@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Databases</AssemblyName>
+    <PackageId>BindOpen.Framework.Databases</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications.
+This package handles database connections.</Description>
+    <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Framework.Databases</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>BindOpen.Framework.Databases.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Databases.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnector_MSSqlServer.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
+    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\Carriers\carriers.index" />
+    <None Remove="Extensions\Connectors\connectors.index" />
+    <None Remove="Extensions\Entities\entities.index" />
+    <None Remove="Extensions\Handlers\handlers.index" />
+    <None Remove="Extensions\Metrics\metrics.index" />
+    <None Remove="Extensions\Routines\routines.index" />
+    <None Remove="Extensions\Scriptwords\Scriptwords.index" />
+    <None Remove="Extensions\Tasks\tasks.index" />
+    <None Remove="library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Extensions\Carriers\Carriers.index" />
+    <EmbeddedResource Include="Extensions\Entities\Entities.index" />
+    <EmbeddedResource Include="Extensions\Handlers\Handlers.index" />
+    <EmbeddedResource Include="Extensions\Metrics\Metrics.index" />
+    <EmbeddedResource Include="Extensions\Routines\Routines.index" />
+    <EmbeddedResource Include="Extensions\Scriptwords\Scriptwords.index" />
+    <EmbeddedResource Include="Extensions\Tasks\Tasks.index" />
+    <EmbeddedResource Include="Library.definition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj" />
+  </ItemGroup>
+
+</Project>
