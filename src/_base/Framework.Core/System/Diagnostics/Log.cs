@@ -479,7 +479,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             ILog childLog = null,
             Predicate<ILog> logFinder = null)
         {
-            LogEvent logEvent;
+            ILogEvent logEvent;
             AddEvent(
                 logEvent = new LogEvent(
                     kind,

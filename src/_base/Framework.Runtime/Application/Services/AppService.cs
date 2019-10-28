@@ -152,17 +152,13 @@ namespace BindOpen.Framework.Runtime.Application.Services
             if (CurrentExecutionState != ProcessExecutionState.Pending)
             {
                 // we start the application instance
-                log.AddMessage("Starting application instance...");
                 log.Start();
 
                 // we initialize this instance
-                log.AddMessage("Initializing application...");
                 log.Append(Initialize());
 
-                if (!IsLoadCompleted)
+                if (IsLoadCompleted)
                     CurrentExecutionStatus = ProcessExecutionStatus.Stopped_Error;
-                else
-                    log.AddMessage("Application instance started");
 
                 log.Sanitize();
 

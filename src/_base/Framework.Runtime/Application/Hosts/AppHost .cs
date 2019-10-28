@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
@@ -12,6 +10,8 @@ using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
+using System;
+using System.IO;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {
@@ -231,7 +231,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns true if this instance is started.</returns>
         public new virtual IAppHost Start(ILog log = null)
         {
-            return base.Start(log) as IAppHost;
+            log ??= new Log();
+            log.AddMessage("Starting application host...");
+
+            IAppHost host = base.Start(log) as IAppHost;
+
+            if (IsLoadCompleted)
+                log.AddMessage("Application host started");
+
+            return host;
+
         }
 
         /// <summary>
@@ -240,6 +249,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="executionStatus">The execution status to consider.</param>
         public new virtual IAppHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
+            Log?.AddMessage("Application host ended");
             return base.End(executionStatus) as IAppHost;
         }
 
