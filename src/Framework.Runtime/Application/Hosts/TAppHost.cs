@@ -1,14 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
@@ -17,6 +13,9 @@ using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace BindOpen.Framework.Runtime.Application.Hosts
 {
@@ -323,8 +322,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     }
                     else
                     {
-                        log.AddMessage("Application settings loaded");
-
                         if (Options?.Settings != null && string.IsNullOrEmpty(Options.Settings.ApplicationInstanceName))
                         {
                             Options.Settings.ApplicationInstanceName = AppConfiguration.__ApplicationInstanceName;
