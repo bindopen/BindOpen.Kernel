@@ -1677,14 +1677,14 @@
             <param name="moduleName">The name of the module.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Sets the specified extension settings.
             </summary>
             <param name="extensionConfiguration">The extension configuration to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
             <summary>
             Sets the specified extension settings.
             </summary>
@@ -1794,14 +1794,14 @@
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Sets the extensions.
             </summary>
             <param name="extensionConfiguration">The extension configuration.</param>
             <returns>Returns the application host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
             <summary>
             Adds the extensions.
             </summary>

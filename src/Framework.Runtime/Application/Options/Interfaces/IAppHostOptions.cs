@@ -108,14 +108,14 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="extensionConfiguration">The extension configuration.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration);
+        IAppHostOptions AddExtensions(IAppExtensionConfiguration extensionConfiguration);
 
         /// <summary>
         /// Adds the extensions.
         /// </summary>
         /// <param name="filters">The filters to consider.</param>
         /// <returns>Returns the application host option.</returns>
-        IAppHostOptions SetExtensions(params IAppExtensionFilter[] filters);
+        IAppHostOptions AddExtensions(params IAppExtensionFilter[] filters);
 
         /// <summary>
         /// Adds the default logger.

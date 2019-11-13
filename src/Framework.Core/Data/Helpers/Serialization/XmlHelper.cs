@@ -154,7 +154,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             {
                 try
                 {
-                    using ILog checkLog = new Log();
+                    ILog checkLog = new Log();
 
                     if (xmlSchemaSet != null)
                     {
@@ -214,7 +214,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                 StreamReader streamReader = null;
                 try
                 {
-                    using ILog checkLog = new Log();
+                    ILog checkLog = new Log();
 
                     if (xmlSchemaSet != null)
                     {
