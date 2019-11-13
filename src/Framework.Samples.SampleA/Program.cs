@@ -21,7 +21,8 @@ namespace BindOpen.Framework.Samples.SampleA
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
                             .SetModule("app.test")
-                            .SetRuntimeFolder(@"..\..\..\run")
+                            //.SetRuntimeFolder(@"=$if($isEqual('dev'), '..\..\..\run', 'run')")
+                            .SetLibraryFolder(@"..\..\..\run")
                             .SetLibraryFolder(@"..\..\..\lib")
                             .AddPostgreSqlExtension()
                             .AddMSSqlServerExtension()

@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
 
             IDataReader reader = null;
 
-            using IBasicDbDataQuery query = new BasicDbDataQuery(DbDataQueryKind.Select)
+            IBasicDbDataQuery query = new BasicDbDataQuery(DbDataQueryKind.Select)
             {
                 Fields =
                 {

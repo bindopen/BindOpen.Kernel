@@ -110,6 +110,13 @@
             This class extends BindOpenHost.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddRuntimeExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
+            <summary>
+            Adds Runtime extension to the specified options.
+            </summary>
+            <param name="options">The options to consider.</param>
+            <returns>Returns the connection of this instance.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddMSSqlServerExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
             <summary>
             Adds MS SqlServer extension to the specified options.
@@ -122,12 +129,6 @@
             Adds PostgreSql extension to the specified options.
             </summary>
             <param name="options">The options to consider.</param>
-            <returns>Returns the connection of this instance.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddExtension_Messages(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
-            <summary>
-            Gets the database connection of this instance.
-            </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.NetCore.Services.ITBdoHostedService`1">

@@ -147,7 +147,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <returns>Returns true if this instance is started.</returns>
         public virtual IAppService Start(ILog log = null)
         {
-            log ??= new Log();
+            log = log ?? new Log();
 
             if (CurrentExecutionState != ProcessExecutionState.Pending)
             {

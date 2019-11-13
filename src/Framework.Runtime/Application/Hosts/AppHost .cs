@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             // we initiate the options
             Options?.SetAppFolder(Directory.GetCurrentDirectory());
 
-            Options?.SetExtensions(new AppExtensionFilter("BindOpen.Framework.Runtime"));
+            Options?.AddExtensions(new AppExtensionFilter("BindOpen.Framework.Runtime"));
 
             UserSettingsSet = userSettingsSet;
         }
@@ -231,7 +231,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns true if this instance is started.</returns>
         public new virtual IAppHost Start(ILog log = null)
         {
-            log ??= new Log();
+            log = log ?? new Log();
             log.AddMessage("Starting application host...");
 
             IAppHost host = base.Start(log) as IAppHost;

@@ -9,13 +9,23 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
     public static class BindOpenHostExtension
     {
         /// <summary>
+        /// Adds Runtime extension to the specified options.
+        /// </summary>
+        /// <param name="options">The options to consider.</param>
+        /// <returns>Returns the connection of this instance.</returns>
+        public static void AddRuntimeExtension(this IAppHostOptions options)
+        {
+            options?.AddExtensions(new AppExtensionFilter("BindOpen.Framework.Runtime"));
+        }
+
+        /// <summary>
         /// Adds MS SqlServer extension to the specified options.
         /// </summary>
         /// <param name="options">The options to consider.</param>
         /// <returns>Returns the connection of this instance.</returns>
         public static IAppHostOptions AddMSSqlServerExtension(this IAppHostOptions options)
         {
-            options?.SetExtensions(
+            options?.AddExtensions(
                 new AppExtensionFilter("BindOpen.Framework.Databases"),
                 new AppExtensionFilter("BindOpen.Framework.Databases.MSSqlServer"));
             return options;
@@ -28,19 +38,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         /// <returns>Returns the connection of this instance.</returns>
         public static IAppHostOptions AddPostgreSqlExtension(this IAppHostOptions options)
         {
-            options?.SetExtensions(
+            options?.AddExtensions(
                 new AppExtensionFilter("BindOpen.Framework.Databases"),
                 new AppExtensionFilter("BindOpen.Framework.Databases.PostgreSql"));
             return options;
-        }
-
-        /// <summary>
-        /// Gets the database connection of this instance.
-        /// </summary>
-        /// <returns>Returns the connection of this instance.</returns>
-        public static void AddExtension_Messages(this IAppHostOptions options)
-        {
-            options?.SetExtensions(new AppExtensionFilter("BindOpen.Framework.Labs.Messages"));
         }
     }
 }

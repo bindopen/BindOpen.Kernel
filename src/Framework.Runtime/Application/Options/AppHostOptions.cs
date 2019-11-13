@@ -252,7 +252,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="extensionConfiguration">The extension configuration to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetExtensions(IAppExtensionConfiguration extensionConfiguration)
+        public IAppHostOptions AddExtensions(IAppExtensionConfiguration extensionConfiguration)
         {
             if (extensionConfiguration != null)
             {
@@ -270,12 +270,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         /// <param name="filters">The filters to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IAppHostOptions SetExtensions(params IAppExtensionFilter[] filters)
+        public IAppHostOptions AddExtensions(params IAppExtensionFilter[] filters)
         {
             if (filters != null)
             {
                 var extensionConfiguration = new AppExtensionConfiguration(filters);
-                SetExtensions(extensionConfiguration);
+                AddExtensions(extensionConfiguration);
             }
 
             return this;

@@ -1,11 +1,10 @@
-﻿using System;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.NetCore.Services;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
-using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -39,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IAppHost GetBindOpenDefaultHost(this IServiceProvider provider)
         {
             return provider?.GetService<IAppHost>();
-        }        
+        }
 
         /// <summary>
         /// Adds a BindOpen application hosting serivce.
@@ -89,11 +88,11 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddBindOpenService<T>(
             this IServiceCollection services,
             ILogger[] loggers = null,
-            Func<IAppSettings, IBaseSettings> funcSettings =null)
+            Func<IAppSettings, IBaseSettings> funcSettings = null)
             where T : IAppService, IAppHosted, new()
         {
             services.AddSingleton<ITAppServiceOptions<T>>(_ => new TAppServiceOptions<T>(loggers, funcSettings));
-            services.AddHostedService<TBdoHostedService<T> >();
+            services.AddHostedService<TBdoHostedService<T>>();
 
             return services;
         }
