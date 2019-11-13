@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using BindOpen.Framework.Runtime.Application.Hosts;
+﻿using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BindOpen.Framework.NetCore.Services
 {
