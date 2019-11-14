@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents the Jointure statement of a database data query.
     /// </summary>
-    public class DbDataQueryJointureStatement : IDbDataQueryJointureStatement
+    public class DbQueryJointureStatement : IDbQueryJointureStatement
     {
         // ------------------------------------------
         // PROPERTIES
@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// The kind of jointure of this instance.
         /// </summary>
-        public DbDataQueryJointureKind Kind { get; set; }
+        public DbQueryJointureKind Kind { get; set; }
 
         /// <summary>
         /// The data module of this instance.
@@ -38,19 +38,19 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryJointureStatement class.
+        /// Instantiates a new instance of the DbQueryJointureStatement class.
         /// </summary>
-        public DbDataQueryJointureStatement()
+        public DbQueryJointureStatement()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryJointureStatement class.
+        /// Instantiates a new instance of the DbQueryJointureStatement class.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
-        public DbDataQueryJointureStatement(
-            DbDataQueryJointureKind kind,
+        public DbQueryJointureStatement(
+            DbQueryJointureKind kind,
             DbTable table)
         {
             this.Kind = kind;
@@ -58,13 +58,13 @@ namespace BindOpen.Framework.Databases.Data.Queries
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryJointureStatement class.
+        /// Instantiates a new instance of the DbQueryJointureStatement class.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public DbDataQueryJointureStatement(
-            DbDataQueryJointureKind kind,
+        public DbQueryJointureStatement(
+            DbQueryJointureKind kind,
             DbTable table,
             string query)
         {
@@ -74,14 +74,14 @@ namespace BindOpen.Framework.Databases.Data.Queries
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryJointureStatement class.
+        /// Instantiates a new instance of the DbQueryJointureStatement class.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
         /// <param name="field1">The field1 to consider.</param>
         /// <param name="field2">The field2 to consider.</param>
-        public DbDataQueryJointureStatement(
-            DbDataQueryJointureKind kind,
+        public DbQueryJointureStatement(
+            DbQueryJointureKind kind,
             DbTable table,
             DbField field1,
             DbField field2)

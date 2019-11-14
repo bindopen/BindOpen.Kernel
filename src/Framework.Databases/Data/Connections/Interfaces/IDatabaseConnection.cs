@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="query">The query to execute.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to append.</param>
-        void ExecuteQuery(IDbDataQuery query, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, IScriptVariableSet scriptVariableSet = null, ILog log = null);
 
         /// <summary>
         /// Executes the specified query text and populate the specified data set.
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet">The data set to populate.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to append.</param>
-        void ExecuteQuery(IDbDataQuery query, ref DataSet dataSet, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, ref DataSet dataSet, IScriptVariableSet scriptVariableSet = null, ILog log = null);
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataReader"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(IDbDataQuery query, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
 
         /// <summary>
         /// 
@@ -90,7 +90,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet"></param>
         /// <param name="tableNames"></param>
         /// <param name="log"></param>
-        void UpdateDataSet(IDbDataQuery query, DataSet dataSet, List<string> tableNames, ILog log = null);
+        void UpdateDataSet(IDbQuery query, DataSet dataSet, List<string> tableNames, ILog log = null);
 
         /// <summary>
         /// 
@@ -107,7 +107,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="query"></param>
         /// <param name="dataTable"></param>
         /// <param name="log"></param>
-        void UpdateDataTable(IDbDataQuery query, DataTable dataTable, ILog log = null);
+        void UpdateDataTable(IDbQuery query, DataTable dataTable, ILog log = null);
 
         /// <summary>
         /// 

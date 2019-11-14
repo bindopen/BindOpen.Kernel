@@ -1,13 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Databases.Extensions.Carriers;
+using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Databases.Extensions.Carriers;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
     /// <summary>
     /// This class represents an simple database data query.
     /// </summary>
-    public class BasicDbDataQuery : DbDataQuery, IBasicDbDataQuery
+    public class BasicDbQuery : DbQuery, IBasicDbQuery
     {
         // ------------------------------------------
         // PROPERTIES
@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Indicates whether this instance is distinct. When distinct an advanced Select 
         /// database data query only returns distinct records.
         /// </summary>
-        public Boolean IsDistinct { get; set; }
+        public bool IsDistinct { get; set; }
 
         /// <summary>
         /// Number of top items of this instance. Top items are the items a advanced Select 
@@ -36,12 +36,12 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// From clause of this instance.
         /// </summary>
-        public List<IDbDataQueryFromStatement> FromClauses { get; set; } = new List<IDbDataQueryFromStatement>();
+        public List<IDbQueryFromStatement> FromClauses { get; set; } = new List<IDbQueryFromStatement>();
 
         /// <summary>
         /// Order by statements of this instance.
         /// </summary>
-        public List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbDataQueryOrderByStatement>();
+        public List<IDbQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbQueryOrderByStatement>();
 
         #endregion
 
@@ -52,21 +52,21 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BasicDbDataQuery class.
+        /// Instantiates a new instance of the BasicDbQuery class.
         /// </summary>
-        public BasicDbDataQuery()
+        public BasicDbQuery()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BasicDbDataQuery class.
+        /// Instantiates a new instance of the BasicDbQuery class.
         /// </summary>
         /// <param name="kind">Kind of database data query.</param>
         /// <param name="dataModule">Name of the data module.</param>
         /// <param name="schema">Schema of the data module.</param>
         /// <param name="dataTable">Name of data table.</param>
-        public BasicDbDataQuery(
-            DbDataQueryKind kind,
+        public BasicDbQuery(
+            DbQueryKind kind,
             string dataModule = null,
             string schema = null,
             string dataTable = null)

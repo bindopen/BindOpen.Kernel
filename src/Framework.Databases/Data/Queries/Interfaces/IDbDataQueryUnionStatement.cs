@@ -3,16 +3,16 @@
     /// <summary>
     /// This interface defines the statement data query union.
     /// </summary>
-    public interface IDbDataQueryUnionStatement
+    public interface IDbQueryUnionStatement
     {
         /// <summary>
         /// The type.
         /// </summary>
-        DbDataQueryUnionKind Type { get; set; }
+        DbQueryUnionKind Type { get; set; }
 
         /// <summary>
         /// The query.
         /// </summary>
-        IAdvancedDbDataQuery Query { get; set; }
+        IAdvancedDbQuery Query { get; set; }
     }
 }

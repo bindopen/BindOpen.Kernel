@@ -3,8 +3,13 @@
     /// <summary>
     /// This enumeration lists the possible kinds of database data queries.
     /// </summary>
-    public enum DbDataQueryKind
+    public enum DbQueryKind
     {
+        /// <summary>
+        /// None.
+        /// </summary>
+        None,
+
         /// <summary>
         /// Create.
         /// </summary>

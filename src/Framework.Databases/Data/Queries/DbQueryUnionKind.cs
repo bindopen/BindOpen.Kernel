@@ -3,7 +3,7 @@
     /// <summary>
     /// This enumeration lists all the kinds of data query unions.
     /// </summary>
-    public enum DbDataQueryUnionKind
+    public enum DbQueryUnionKind
     {
         /// <summary>
         /// None.

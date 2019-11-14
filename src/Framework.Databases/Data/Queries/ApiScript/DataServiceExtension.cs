@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         public static T GetData<T>(
             this IDataService dataService,
             ILog log,
-            IDbDataQuery query,
+            IDbQuery query,
             Func<IDbConnection, string, T> function,
             IScriptVariableSet scriptVariableSet = null)
         {
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
 
             IDataReader reader = null;
 
-            IBasicDbDataQuery query = new BasicDbDataQuery(DbDataQueryKind.Select)
+            IBasicDbQuery query = new BasicDbQuery(DbQueryKind.Select)
             {
                 Fields =
                 {
