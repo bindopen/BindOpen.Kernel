@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbDataQueryGroupByStatement
+    public interface IDbQueryGroupByStatement
     {
         /// <summary>
         /// 

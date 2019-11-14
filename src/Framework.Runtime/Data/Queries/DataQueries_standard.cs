@@ -27,7 +27,7 @@
         ///// <param name="simpleMessageAttachedFiles">Attached files of the simple message to insert.</param>
         ///// <param name="aBasicMessageDetail">Detail of the simple message to insert.</param>
         ///// <returns>The built query.</returns>
-        //public static BasicDbDataQuery GetDbDataQuery_InsertInternalMessage(
+        //public static BasicDbQuery GetDbQuery_InsertInternalMessage(
         //    String aBasicMessageFromId,
         //    String aBasicMessageFromName,
         //    String aBasicMessageSubjectLabel,
@@ -36,12 +36,12 @@
         //    List<string> simpleMessageAttachedFiles,
         //    DataElementSet aBasicMessageDetail)
         //{
-        //    BasicDbDataQuery aDbQuery = new BasicDbDataQuery()
+        //    BasicDbQuery aDbQuery = new BasicDbQuery()
         //    {
-        //        Name = "GetDbDataQuery_InsertInternalMessage",
+        //        Name = "GetDbQuery_InsertInternalMessage",
         //        DataModule = "ENT_CENTRAL_DB",
         //        DataTable = "INTERNALMESSAGE",
-        //        Type = DbDataQuery.DbDataQueryType.Insert,
+        //        Type = DbQuery.DbQueryType.Insert,
         //        Fields =
         //        {                    
         //            new DbField()
@@ -130,17 +130,17 @@
         ///// <param name="currentUserContactUserName">Destionation name of the internal message.</param>
         ///// <param name="currentUserContactUserId">The ID of the current user contact to link to the message.</param>
         ///// <returns>The built query.</returns>
-        //public static BasicDbDataQuery GetDbDataQuery_InsertInternalMessageUserRelationship(
+        //public static BasicDbQuery GetDbQuery_InsertInternalMessageUserRelationship(
         //    long aInternalMessageId,
         //    String currentUserContactUserName,
         //    long currentUserContactUserId)
         //{
-        //    BasicDbDataQuery aDbQuery = new BasicDbDataQuery()
+        //    BasicDbQuery aDbQuery = new BasicDbQuery()
         //    {
-        //        Name = "GetDbDataQuery_InsertInternalMessageUserRelationship",
+        //        Name = "GetDbQuery_InsertInternalMessageUserRelationship",
         //        DataModule = "ENT_CENTRAL_DB",
         //        DataTable = "INTERNALMESSAGE_USER_ASSIGNEDTO",
-        //        Type = DbDataQuery.DbDataQueryType.Insert,
+        //        Type = DbQuery.DbQueryType.Insert,
         //        Fields =
         //        {
         //            new DbField()
@@ -184,17 +184,17 @@
         ///// <param name="aMaxTryNumber">The number maximum of tries for sending messages.</param>
         ///// <param name="status">The status of the message sending request.</param>
         ///// <returns>The built query.</returns>
-        //public static BasicDbDataQuery GetDbDataQuery_InsertMessageSendingRequest(
+        //public static BasicDbQuery GetDbQuery_InsertMessageSendingRequest(
         //    String logFilePath,
         //    int aMaxTryNumber,
         //    String status)
         //{
-        //    BasicDbDataQuery aDbQuery = new BasicDbDataQuery()
+        //    BasicDbQuery aDbQuery = new BasicDbQuery()
         //    {
-        //        Name = "GetDbDataQuery_InsertMessageSendingRequest",
+        //        Name = "GetDbQuery_InsertMessageSendingRequest",
         //        DataModule = "PTF_STANDARD_DB",
         //        DataTable = "MESSAGESESENDINGREQUEST",
-        //        Type = DbDataQuery.DbDataQueryType.Insert,
+        //        Type = DbQuery.DbQueryType.Insert,
         //        Fields =
         //        {
         //            new DbField()

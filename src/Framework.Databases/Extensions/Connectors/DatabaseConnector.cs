@@ -142,7 +142,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string GetSqlText(
-            IDbDataQuery query,
+            IDbQuery query,
             IScriptVariableSet scriptVariableSet,
             ILog log)
         {

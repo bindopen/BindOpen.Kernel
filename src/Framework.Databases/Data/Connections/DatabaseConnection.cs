@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            IDbDataQuery query,
+            IDbQuery query,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
         {
@@ -158,7 +158,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            IDbDataQuery query,
+            IDbQuery query,
             ref IDataReader dataReader,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
@@ -200,7 +200,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
-            IDbDataQuery query,
+            IDbQuery query,
             ref DataSet dataSet,
             IScriptVariableSet scriptVariableSet = null,
             ILog log = null)
@@ -251,7 +251,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataTable(
-            IDbDataQuery query,
+            IDbQuery query,
             DataTable dataTable,
             ILog log = null)
         {
@@ -290,7 +290,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the task.</returns>
         public void UpdateDataSet(
-            IDbDataQuery query,
+            IDbQuery query,
             DataSet dataSet,
             List<string> tableNames,
             ILog log = null)

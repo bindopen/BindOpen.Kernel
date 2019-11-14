@@ -3,7 +3,7 @@
     /// <summary>
     /// This enumeration lists all the kinds of data query jointures.
     /// </summary>
-    public enum DbDataQueryJointureKind
+    public enum DbQueryJointureKind
     {
         /// <summary>
         /// None.

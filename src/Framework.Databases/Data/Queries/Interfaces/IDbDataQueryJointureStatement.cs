@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbDataQueryJointureStatement
+    public interface IDbQueryJointureStatement
     {
         /// <summary>
         /// 
@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        DbDataQueryJointureKind Kind { get; set; }
+        DbQueryJointureKind Kind { get; set; }
 
         /// <summary>
         /// 

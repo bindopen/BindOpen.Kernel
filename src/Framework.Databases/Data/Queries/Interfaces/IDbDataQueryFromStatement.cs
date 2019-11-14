@@ -5,16 +5,16 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbDataQueryFromStatement
+    public interface IDbQueryFromStatement
     {
         /// <summary>
         /// 
         /// </summary>
-        List<IDbDataQueryJointureStatement> JointureStatements { get; set; }
+        List<IDbQueryJointureStatement> JointureStatements { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IDbDataQueryUnionStatement UnionStatement { get; set; }
+        IDbQueryUnionStatement UnionStatement { get; set; }
     }
 }

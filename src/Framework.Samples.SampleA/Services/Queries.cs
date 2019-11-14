@@ -9,14 +9,14 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 {
     public static class Queries
     {
-        public static IAdvancedDbDataQuery GetMyTables(
+        public static IAdvancedDbQuery GetMyTables(
             string dataModuleName = "",
             ILog log = null,
             string filterQuery = null,
             string orderByQuery = null,
             int? pageSize = null,
             string pageToken = null)
-        => new AdvancedDbDataQuery(DbDataQueryKind.Select, dataModuleName, null, null)
+        => new AdvancedDbQuery(DbQueryKind.Select, dataModuleName, null, null)
         {
             Name = "GetMyTables",
             IsDistinct = true,
@@ -28,22 +28,22 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             },
             FromClauses =
             {
-                new DbDataQueryFromStatement()
+                new DbQueryFromStatement()
                 {
                     JointureStatements=
                     {
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.None,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.None,
                             new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
 
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.Left,
                             new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
                             new DbField("table1key", "table1"),
                             new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
 
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.Left,
                             new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
                             new DbField("table1key", "table2"),
                             new DbField("Field1", "table"))
@@ -71,8 +71,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     , new ApiScriptField("LastModificationDate", new DbField("LastModificationDate", "table"))
             ));
 
-        public static IDbDataQuery GetMyTable(string name, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Select, dataModuleName, null, nameof(DbMyTable).Substring(2))
+        public static IDbQuery GetMyTable(string name, string dataModuleName = "module")
+            => new BasicDbQuery(DbQueryKind.Select, dataModuleName, null, nameof(DbMyTable).Substring(2))
             {
                 Name = "GetMyTable",
                 IsDistinct = true,
@@ -84,22 +84,22 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             },
                 FromClauses =
             {
-                new DbDataQueryFromStatement()
+                new DbQueryFromStatement()
                 {
                     JointureStatements=
                     {
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.None,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.None,
                             new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table")),
 
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.Left,
                             new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table1"),
                             new DbField("table1key", "table1"),
                             new DbField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
 
-                        new DbDataQueryJointureStatement(
-                            DbDataQueryJointureKind.Left,
+                        new DbQueryJointureStatement(
+                            DbQueryJointureKind.Left,
                             new DbTable("DbTable1".Substring(2), "schema2", null).WithAlias("table2"),
                             new DbField("table1key", "table2"),
                             new DbField("Field1", "table"))
@@ -112,8 +112,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             }
             };
 
-        public static IDbDataQuery DeleteMyTable(string name, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Delete, dataModuleName, "schema1", nameof(DbMyTable).Substring(2))
+        public static IDbQuery DeleteMyTable(string name, string dataModuleName = "module")
+            => new BasicDbQuery(DbQueryKind.Delete, dataModuleName, "schema1", nameof(DbMyTable).Substring(2))
             {
                 Name = "DeleteMyTable",
                 IdFields =
@@ -122,8 +122,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
             }
             };
 
-        public static IDbDataQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Update, null, "schema1", nameof(DbMyTable).Substring(2))
+        public static IDbQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
+            => new BasicDbQuery(DbQueryKind.Update, null, "schema1", nameof(DbMyTable).Substring(2))
             {
                 Name = "UpdateMyTable",
                 DataTableAlias = "u_table1",
@@ -131,7 +131,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                 {
                     new DbField(nameof(DbMyTable.Name), DataValueType.Text, table?.Name),
                     new DbField("fieldA",
-                        new BasicDbDataQuery(DbDataQueryKind.Select, dataModuleName, "schema1","table1")
+                        new BasicDbQuery(DbQueryKind.Select, dataModuleName, "schema1","table1")
                         {
                             IsDistinct = true,
                             Fields = { new DbField("id") },
@@ -140,16 +140,16 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                 },
                 FromClauses =
                 {
-                    new DbDataQueryFromStatement()
+                    new DbQueryFromStatement()
                     {
                         JointureStatements=
                         {
-                            new DbDataQueryJointureStatement(
-                                DbDataQueryJointureKind.None,
+                            new DbQueryJointureStatement(
+                                DbQueryJointureKind.None,
                                 new DbTable(nameof(DbMyTable).Substring(2), "schema1", null).WithAlias("table1")),
 
-                            new DbDataQueryJointureStatement(
-                                DbDataQueryJointureKind.Left,
+                            new DbQueryJointureStatement(
+                                DbQueryJointureKind.Left,
                                 new DbTable("fieldA", "schema1", null).WithAlias("item"),
                                 new DbField("idA", ""),
                                 new DbField("idA", "")),
@@ -164,8 +164,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                 }
             };
 
-        public static IDbDataQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
-            => new BasicDbDataQuery(DbDataQueryKind.Insert, dataModuleName, null, nameof(DbMyTable).Substring(2))
+        public static IDbQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
+            => new BasicDbQuery(DbQueryKind.Insert, dataModuleName, null, nameof(DbMyTable).Substring(2))
             {
                 Name = "InsertMyTable",
                 Fields =

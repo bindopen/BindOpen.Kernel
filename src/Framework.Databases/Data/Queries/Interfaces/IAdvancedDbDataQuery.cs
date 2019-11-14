@@ -6,22 +6,22 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IAdvancedDbDataQuery : IDbDataQuery
+    public interface IAdvancedDbQuery : IDbQuery
     {
         /// <summary>
         /// 
         /// </summary>
-        List<IDbDataQueryFromStatement> FromClauses { get; set; }
+        List<IDbQueryFromStatement> FromClauses { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IDbDataQueryGroupByStatement GroupByClause { get; set; }
+        IDbQueryGroupByStatement GroupByClause { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IDbDataQueryHavingStatement HavingClause { get; set; }
+        IDbQueryHavingStatement HavingClause { get; set; }
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; }
+        List<IDbQueryOrderByStatement> OrderByStatements { get; set; }
 
         /// <summary>
         /// 

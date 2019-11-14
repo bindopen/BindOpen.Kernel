@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
-
+﻿
 namespace BindOpen.Framework.Databases.Data.Queries
 {
     /// <summary>
-    /// This class represents the Having statement of a database data query.
+    /// This class represents a union statement of a database data query.
     /// </summary>
-    public class DbDataQueryHavingStatement : IDbDataQueryHavingStatement
+    public class DbQueryUnionStatement : IDbQueryUnionStatement
     {
         // ------------------------------------------
         // PROPERTIES
@@ -14,9 +13,14 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Properties
 
         /// <summary>
-        /// The data expression of this instance.
+        /// Type of this instance.
         /// </summary>
-        public IDataExpression DataExpression { get; set; }
+        public DbQueryUnionKind Type { get; set; }
+
+        /// <summary>
+        /// Data query of this instance.
+        /// </summary>
+        public IAdvancedDbQuery Query { get; set; }
 
         #endregion
 
@@ -27,9 +31,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryHavingStatement class.
+        /// Instantiates a new instance of the DbQueryUnionStatement class.
         /// </summary>
-        public DbDataQueryHavingStatement()
+        public DbQueryUnionStatement()
         {
         }
 

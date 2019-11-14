@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
     /// <summary>
     /// This class represents the database data query extension.
     /// </summary>
-    public static partial class DbDataQueryExtension
+    public static partial class DbQueryExtension
     {
         private static string GetScriptFunction(DataOperator aOperator)
         {
@@ -100,7 +100,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                         DataOperator.Has, DataOperator.In })
                     {
                         int k1 = 0;
-                        string currentScriptOperator = DbDataQueryExtension.GetInstruction(currentOperator);
+                        string currentScriptOperator = DbQueryExtension.GetInstruction(currentOperator);
                         script.GetIndexOfNextString(currentScriptOperator, ref k1);
                         if (k1 < k)
                         {
@@ -115,7 +115,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                     }
                     else
                     {
-                        string scriptFunction = DbDataQueryExtension.GetScriptFunction(aOperator)?.Trim();
+                        string scriptFunction = DbQueryExtension.GetScriptFunction(aOperator)?.Trim();
                         string fieldName = script.Substring(0, k)?.Trim();
                         string value = script.Substring(k + scriptOperator.Length)?.Trim();
 
@@ -203,8 +203,8 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbDataQuery Filter(
-            this IAdvancedDbDataQuery dbQuery,
+        public static IAdvancedDbQuery Filter(
+            this IAdvancedDbQuery dbQuery,
             string filterQuery,
             ILog log = null,
             ApiScriptFilteringDefinition definition = null)
@@ -237,18 +237,18 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The definition to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbDataQuery Sort(
-            this IAdvancedDbDataQuery query,
+        public static IAdvancedDbQuery Sort(
+            this IAdvancedDbQuery query,
             string sortQuery,
             ILog log = null,
             ApiScriptSortingDefinition definition = null)
         {
             if (query != null && !string.IsNullOrEmpty(sortQuery))
             {
-                query.OrderByStatements = new List<IDbDataQueryOrderByStatement>();
+                query.OrderByStatements = new List<IDbQueryOrderByStatement>();
                 foreach (string fieldItem in sortQuery.Split(','))
                 {
-                    IDbDataQueryOrderByStatement statement = new DbDataQueryOrderByStatement();
+                    IDbQueryOrderByStatement statement = new DbQueryOrderByStatement();
                     var fieldItemParams = fieldItem?.Trim().Split(' ');
                     if (fieldItemParams.Length > 0)
                     {
@@ -296,8 +296,8 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="log">The log to consider.</param>
         /// <param name="clauseStatement">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbDataQuery Paginate(
-            this IAdvancedDbDataQuery query,
+        public static IAdvancedDbQuery Paginate(
+            this IAdvancedDbQuery query,
             int? pageSize,
             string pageToken,
             ILog log = null,
