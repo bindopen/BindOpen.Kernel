@@ -6,12 +6,12 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IBasicDbDataQuery : IDbDataQuery
+    public interface IBasicDbQuery : IDbQuery
     {
         /// <summary>
         /// 
         /// </summary>
-        List<IDbDataQueryFromStatement> FromClauses { get; set; }
+        List<IDbQueryFromStatement> FromClauses { get; set; }
 
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; }
+        List<IDbQueryOrderByStatement> OrderByStatements { get; set; }
 
         /// <summary>
         /// 

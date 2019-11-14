@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbDataQuery: IDataItem
+    public interface IDbQuery: IDataItem
     {
         /// <summary>
         /// 
@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        DbDataQueryKind Kind { get; set; }
+        DbQueryKind Kind { get; set; }
 
         /// <summary>
         /// 

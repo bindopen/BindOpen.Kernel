@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         }
 
         /// <summary>
-        /// Creates a new instance of the DbDataQueryScriptItem class.
+        /// Creates a new instance of the DbQueryScriptItem class.
         /// </summary>
         /// <param name="fieldAlias">The field alias to consider.</param>
         /// <param name="field">The field to consider.</param>

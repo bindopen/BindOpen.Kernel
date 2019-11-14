@@ -5,7 +5,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbDataQueryHavingStatement
+    public interface IDbQueryHavingStatement
     {
         /// <summary>
         /// 

@@ -75,15 +75,15 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
         public ILog BuildQuery(
-            IDbDataQuery query,
+            IDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
-            if (query is BasicDbDataQuery basicDbDataQuery)
-                return BuildQuery(basicDbDataQuery, scriptVariableSet, out queryString);
-            else if (query is AdvancedDbDataQuery advancedDbDataQuery)
-                return BuildQuery(advancedDbDataQuery, scriptVariableSet, out queryString);
+            if (query is BasicDbQuery basicDbQuery)
+                return BuildQuery(basicDbQuery, scriptVariableSet, out queryString);
+            else if (query is AdvancedDbQuery advancedDbQuery)
+                return BuildQuery(advancedDbQuery, scriptVariableSet, out queryString);
 
             return null;
         }
@@ -96,7 +96,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
         protected virtual ILog Build(
-            IBasicDbDataQuery query,
+            IBasicDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
@@ -112,7 +112,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
         public ILog BuildQuery(
-            IBasicDbDataQuery query,
+            IBasicDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
@@ -160,7 +160,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
         protected virtual ILog Build(
-            IAdvancedDbDataQuery query,
+            IAdvancedDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
         public ILog BuildQuery(
-            IAdvancedDbDataQuery query,
+            IAdvancedDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {

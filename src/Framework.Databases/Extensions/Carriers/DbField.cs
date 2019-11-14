@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "query")]
-        public DbDataQuery Query { get; set; }
+        public DbQuery Query { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a key.
@@ -318,7 +318,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="query">The query to consider.</param>
         public DbField(
             string name,
-            DbDataQuery query)
+            DbQuery query)
             : base()
         {
             Name = name;
@@ -335,7 +335,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbField(
             string name,
             string tableName,
-            DbDataQuery query)
+            DbQuery query)
             : this(name, query)
         {
             DataTable = tableName;
@@ -354,7 +354,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             string tableName,
             string schema,
             string dataModule,
-            DbDataQuery query)
+            DbQuery query)
             : this(name, tableName, query)
         {
             Schema = schema;

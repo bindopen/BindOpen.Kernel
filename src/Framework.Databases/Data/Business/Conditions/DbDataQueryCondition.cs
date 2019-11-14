@@ -9,9 +9,9 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
     /// This class represents a condition using a database query condition.
     /// </summary>
     [Serializable()]
-    [XmlType("DbDataQueryCondition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "DbDataQueryCondition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DbDataQueryCondition : Condition
+    [XmlType("DbQueryCondition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "DbQueryCondition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    public class DbQueryCondition : Condition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
         /// Database data query used in the condition.
         /// </summary>
         [XmlAttribute("query")]
-        public IDbDataQuery Query { get; set; } = null;
+        public IDbQuery Query { get; set; } = null;
 
         #endregion
 
@@ -34,18 +34,18 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryCondition class.
+        /// Instantiates a new instance of the DbQueryCondition class.
         /// </summary>
-        public DbDataQueryCondition()
+        public DbQueryCondition()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryCondition class.
+        /// Instantiates a new instance of the DbQueryCondition class.
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
         /// <param name="query">The data query to consider.</param>
-        public DbDataQueryCondition(bool trueValue, IDbDataQuery query) : base(trueValue)
+        public DbQueryCondition(bool trueValue, IDbQuery query) : base(trueValue)
         {
             this.Query = query;
         }
@@ -63,8 +63,8 @@ namespace BindOpen.Framework.Databases.Data.Business.Conditions
         /// </summary>
         public override object Clone()
         {
-            DbDataQueryCondition condition = new DbDataQueryCondition();
-            condition.Query = this.Query.Clone() as IDbDataQuery;
+            DbQueryCondition condition = new DbQueryCondition();
+            condition.Query = this.Query.Clone() as IDbQuery;
 
             return condition;
         }

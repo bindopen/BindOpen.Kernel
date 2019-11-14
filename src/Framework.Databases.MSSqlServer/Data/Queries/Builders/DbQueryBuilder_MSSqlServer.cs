@@ -160,10 +160,10 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         if (field.Query != null)
                         {
                             string subQueryText = "";
-                            if (field.Query is BasicDbDataQuery)
-                                Build(field.Query as BasicDbDataQuery, scriptVariableSet, out subQueryText);
-                            else if (field.Query is AdvancedDbDataQuery)
-                                Build(field.Query as AdvancedDbDataQuery, scriptVariableSet, out subQueryText);
+                            if (field.Query is BasicDbQuery)
+                                Build(field.Query as BasicDbQuery, scriptVariableSet, out subQueryText);
+                            else if (field.Query is AdvancedDbQuery)
+                                Build(field.Query as AdvancedDbQuery, scriptVariableSet, out subQueryText);
 
                             queryString += "(" + subQueryText + ")";
                         }
@@ -287,31 +287,31 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         }
 
         private string GetJointureSqlText(
-            IDbDataQueryFromStatement queryFrom,
+            IDbQueryFromStatement queryFrom,
             IScriptVariableSet scriptVariableSet,
             ILog log)
         {
             string queryString = "";
-            foreach (DbDataQueryJointureStatement queryJointure in queryFrom.JointureStatements)
+            foreach (DbQueryJointureStatement queryJointure in queryFrom.JointureStatements)
             {
                 switch (queryJointure.Kind)
                 {
-                    case DbDataQueryJointureKind.Inner:
+                    case DbQueryJointureKind.Inner:
                         {
                             queryString += " inner join ";
                             break;
                         }
-                    case DbDataQueryJointureKind.Left:
+                    case DbQueryJointureKind.Left:
                         {
                             queryString += " left join ";
                             break;
                         }
-                    case DbDataQueryJointureKind.Right:
+                    case DbQueryJointureKind.Right:
                         {
                             queryString += " right join ";
                             break;
                         }
-                    case DbDataQueryJointureKind.Union:
+                    case DbQueryJointureKind.Union:
                         {
                             queryString += " inner join ";
                             break;
@@ -319,7 +319,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                 }
                 queryString += GetTableSqlText(queryJointure.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
 
-                if (queryJointure.Kind != DbDataQueryJointureKind.None)
+                if (queryJointure.Kind != DbQueryJointureKind.None)
                 {
                     queryString += " on ";
                     string expression = _appScope?.Interpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
@@ -330,7 +330,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             {
                 switch (queryFrom.UnionStatement.Type)
                 {
-                    case DbDataQueryUnionKind.Union:
+                    case DbQueryUnionKind.Union:
                         {
                             queryString += " union ";
                             break;
@@ -354,7 +354,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
         protected override ILog Build(
-            IBasicDbDataQuery query,
+            IBasicDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
@@ -368,7 +368,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             switch (query.Kind)
             {
                 // Select
-                case DbDataQueryKind.Select:
+                case DbQueryKind.Select:
                     {
                         queryString = "select ";
                         if (query.IsDistinct)
@@ -406,7 +406,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         else
                         {
                             index = 0;
-                            foreach (DbDataQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -437,7 +437,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         {
                             queryString += " order by ";
                             index = 0;
-                            foreach (DbDataQueryOrderByStatement queryOrderByStatement in query.OrderByStatements)
+                            foreach (DbQueryOrderByStatement queryOrderByStatement in query.OrderByStatements)
                             {
                                 if (index > 0)
                                     queryString += ", ";
@@ -469,7 +469,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Update
-                case DbDataQueryKind.Update:
+                case DbQueryKind.Update:
                     {
                         queryString = "update ";
                         queryString += GetTableSqlText(
@@ -492,7 +492,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbDataQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -522,7 +522,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Delete
-                case DbDataQueryKind.Delete:
+                case DbQueryKind.Delete:
                     {
                         queryString = "delete from ";
                         queryString += GetTableSqlText(
@@ -549,7 +549,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Insert
-                case DbDataQueryKind.Insert:
+                case DbQueryKind.Insert:
                     {
                         queryString = "insert into ";
                         queryString += GetTableSqlText(
@@ -611,7 +611,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
         protected override ILog Build(
-            IAdvancedDbDataQuery query,
+            IAdvancedDbQuery query,
             IScriptVariableSet scriptVariableSet,
             out string queryString)
         {
@@ -624,7 +624,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             switch (query.Kind)
             {
                 // Select
-                case DbDataQueryKind.Select:
+                case DbQueryKind.Select:
                     {
                         queryString = "select ";
                         if (query.IsDistinct)
@@ -653,7 +653,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         queryString += " from ";
                         index = 0;
 
-                        foreach (DbDataQueryFromStatement queryFrom in query.FromClauses)
+                        foreach (DbQueryFromStatement queryFrom in query.FromClauses)
                         {
                             if (index > 0)
                                 queryString += ",";
@@ -697,7 +697,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         {
                             queryString += " order by ";
                             index = 0;
-                            foreach (DbDataQueryOrderByStatement queryOrderByStatement in query.OrderByStatements)
+                            foreach (DbQueryOrderByStatement queryOrderByStatement in query.OrderByStatements)
                             {
                                 if (index > 0)
                                     queryString += ", ";
@@ -729,7 +729,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Update
-                case DbDataQueryKind.Update:
+                case DbQueryKind.Update:
                     {
                         queryString = "update ";
                         queryString += GetTableSqlText(
@@ -752,7 +752,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbDataQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -771,7 +771,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Delete
-                case DbDataQueryKind.Delete:
+                case DbQueryKind.Delete:
                     {
                         queryString = "delete from ";
 
@@ -789,7 +789,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                     }
                     break;
                 // Insert
-                case DbDataQueryKind.Insert:
+                case DbQueryKind.Insert:
                     {
                         queryString = "insert into ";
                         queryString += GetTableSqlText(

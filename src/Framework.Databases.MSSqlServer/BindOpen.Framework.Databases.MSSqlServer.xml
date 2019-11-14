@@ -39,7 +39,7 @@
             </summary>
             <param name="appScope">The application scope to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result
             into the specified string MS Sql Server query.
@@ -49,7 +49,7 @@
             <param name="scriptVariableSet"></param>
             <param name="queryString"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbDataQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
             <summary>
             Builds the specified advanced database data query and put the result
             into the specified string MS Sql Server query.

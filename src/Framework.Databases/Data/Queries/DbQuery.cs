@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
+using System;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
     /// <summary>
     /// This class represents a database data query.
     /// </summary>
-    public abstract class DbDataQuery : DataItem, IDbDataQuery
+    public abstract class DbQuery : DataItem, IDbQuery
     {
         // ------------------------------------------
         // VARIABLES
@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
 
         #region Variables
 
-        private List<DbField> _Fields = new List<DbField>();
+        private List<DbField> _fields = new List<DbField>();
 
         #endregion
 
@@ -60,15 +60,15 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        public DbDataQueryKind Kind { get; set; } = DbDataQueryKind.Select;
+        public DbQueryKind Kind { get; set; } = DbQueryKind.Select;
 
         /// <summary>
         /// Fields of this instance.
         /// </summary>
         public List<DbField> Fields
         {
-            get { return this._Fields; }
-            set { this._Fields = new List<DbField>(value); }
+            get { return this._fields; }
+            set { this._fields = new List<DbField>(value); }
         }
 
         #endregion
@@ -80,9 +80,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQuery class.
+        /// Instantiates a new instance of the DbQuery class.
         /// </summary>
-        protected DbDataQuery()
+        protected DbQuery()
         {
         }
 
@@ -101,9 +101,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <returns>The data field with the specified bound data field name.</returns>
         public DbField GetFieldWithBoundFieldName(string boundFieldName)
         {
-            if ((boundFieldName!=null)&&(this._Fields!=null))
+            if ((boundFieldName != null) && (this._fields != null))
             {
-                foreach (DbField field in this._Fields)
+                foreach (DbField field in this._fields)
                 {
                     if (field.GetName().Equals(boundFieldName, StringComparison.OrdinalIgnoreCase))
                         return field;
@@ -120,7 +120,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <returns>The data field with the specified data field name.</returns>
         public DbField GetDataFieldWithName(string name)
         {
-            foreach (DbField field in this._Fields)
+            foreach (DbField field in this._fields)
             {
                 if (field.Alias.Equals(name, StringComparison.OrdinalIgnoreCase))
                     return field;
@@ -137,9 +137,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._Fields)
+            foreach (DbField field in this._fields)
             {
-                if ((field.IsKey)||(field.IsForeignKey))
+                if ((field.IsKey) || (field.IsForeignKey))
                     fields.Add(field);
             }
             return fields;
@@ -152,7 +152,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetPrimaryKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._Fields)
+            foreach (DbField field in this._fields)
             {
                 if (field.IsKey)
                     fields.Add(field);
@@ -167,7 +167,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public List<DbField> GetForeignKeyDataFields()
         {
             List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._Fields)
+            foreach (DbField field in this._fields)
             {
                 if (field.IsForeignKey)
                     fields.Add(field);

@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents the From statement of a database data query.
     /// </summary>
-    public class DbDataQueryFromStatement : IDbDataQueryFromStatement
+    public class DbQueryFromStatement : IDbQueryFromStatement
     {
         // ------------------------------------------
         // VARIABLES
@@ -14,8 +14,8 @@ namespace BindOpen.Framework.Databases.Data.Queries
 
         #region Variables
 
-        private IDbDataQueryUnionStatement _unionStatement;
-        private List<IDbDataQueryJointureStatement> _jointureStatements = new List<IDbDataQueryJointureStatement>();
+        private IDbQueryUnionStatement _unionStatement;
+        private List<IDbQueryJointureStatement> _jointureStatements = new List<IDbQueryJointureStatement>();
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Union statement.
         /// </summary>
-        public IDbDataQueryUnionStatement UnionStatement
+        public IDbQueryUnionStatement UnionStatement
         {
             get { return this._unionStatement; }
             set { this._unionStatement = value; }
@@ -38,10 +38,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// List of jointure statements.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbDataQueryJointureStatement> JointureStatements
+        public List<IDbQueryJointureStatement> JointureStatements
         {
             get { return this._jointureStatements; }
-            set { this._jointureStatements = new List<IDbDataQueryJointureStatement>(value); }
+            set { this._jointureStatements = new List<IDbQueryJointureStatement>(value); }
         }
 
         #endregion
@@ -53,9 +53,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DbDataQueryFromStatement class.
+        /// Instantiates a new instance of the DbQueryFromStatement class.
         /// </summary>
-        public DbDataQueryFromStatement()
+        public DbQueryFromStatement()
         {
         }
 

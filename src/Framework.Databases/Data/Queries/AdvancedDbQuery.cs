@@ -1,14 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Expression;
 using System.Collections.Generic;
 using System.ComponentModel;
-using BindOpen.Framework.Core.Data.Expression;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
     /// <summary>
     /// This class represents an advanced database data query.
     /// </summary>
-    public class AdvancedDbDataQuery : DbDataQuery, IAdvancedDbDataQuery
+    public class AdvancedDbQuery : DbQuery, IAdvancedDbQuery
     {
         // ------------------------------------------
         // VARIABLES
@@ -16,7 +15,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
 
         #region Variables
 
-        private List<IDbDataQueryFromStatement> _FromClause= new List<IDbDataQueryFromStatement>();
+        private List<IDbQueryFromStatement> _FromClause = new List<IDbQueryFromStatement>();
 
         #endregion
 
@@ -30,7 +29,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Indicates whether this instance is distinct. When distinct an advanced Select 
         /// database data query only returns distinct records.
         /// </summary>
-        public Boolean IsDistinct { get; set; }
+        public bool IsDistinct { get; set; }
 
         /// <summary>
         /// Number of top items of this instance. Top items are the items a advanced Select 
@@ -43,10 +42,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// From clause of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbDataQueryFromStatement> FromClauses
+        public List<IDbQueryFromStatement> FromClauses
         {
             get { return this._FromClause; }
-            set { this._FromClause = new List<IDbDataQueryFromStatement>(value); }
+            set { this._FromClause = new List<IDbQueryFromStatement>(value); }
         }
 
         /// <summary>
@@ -59,19 +58,19 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Group by statement of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public IDbDataQueryGroupByStatement GroupByClause { get; set; }
+        public IDbQueryGroupByStatement GroupByClause { get; set; }
 
         /// <summary>
         /// Having statement of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public IDbDataQueryHavingStatement HavingClause { get; set; }
+        public IDbQueryHavingStatement HavingClause { get; set; }
 
         /// <summary>
         /// Order statements of this instance.
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbDataQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbDataQueryOrderByStatement>();
+        public List<IDbQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbQueryOrderByStatement>();
 
         #endregion
 
@@ -82,21 +81,21 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedDbDataQuery class.
+        /// Instantiates a new instance of the AdvancedDbQuery class.
         /// </summary>
-        public AdvancedDbDataQuery()
+        public AdvancedDbQuery()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedDbDataQuery class.
+        /// Instantiates a new instance of the AdvancedDbQuery class.
         /// </summary>
         /// <param name="kind">Type of database data query.</param>
         /// <param name="dataModule">Name of the data module.</param>
         /// <param name="schema">Schema of the data module.</param>
         /// <param name="dataTable">Name of data table.</param>
-        public AdvancedDbDataQuery(
-            DbDataQueryKind kind,
+        public AdvancedDbQuery(
+            DbQueryKind kind,
             string dataModule = null,
             string schema = null,
             string dataTable = null)
