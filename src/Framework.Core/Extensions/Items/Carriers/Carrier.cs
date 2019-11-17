@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
@@ -9,6 +7,8 @@ using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Carriers.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System.ComponentModel;
+using System.Linq;
 
 namespace BindOpen.Framework.Core.Extensions.Items.Carriers
 {
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         // -----------------------------------------------
 
         #region Variables
-        
+
         /// <summary>
         /// The configuration of this instance.
         /// </summary>
@@ -119,7 +119,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// Instantiates a new instance of the Carrier class.
         /// </summary>
         /// <param name="config">The configuration of this instance.</param>
-        protected Carrier(ICarrierConfiguration config): base(config)
+        protected Carrier(ICarrierConfiguration config) : base(config)
         {
         }
 
@@ -141,7 +141,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <param name="name">The name of the element to create.</param>
         /// <param name="log">The log of the operation.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public ICarrierElement AsElement(string name =null, ILog log = null)
+        public ICarrierElement AsElement(string name = null, ILog log = null)
         {
             UpdateStorageInfo(log);
             return ElementFactory.CreateCarrier(name ?? Name, Configuration as ICarrierConfiguration);
@@ -213,7 +213,7 @@ namespace BindOpen.Framework.Core.Extensions.Items.Carriers
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
         {
-            if (Configuration!=null)
+            if (Configuration != null)
             {
                 if (string.IsNullOrEmpty(Name))
                 {

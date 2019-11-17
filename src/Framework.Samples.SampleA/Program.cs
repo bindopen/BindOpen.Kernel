@@ -18,11 +18,11 @@ namespace BindOpen.Framework.Samples.SampleA
                .ConfigureServices((services) =>
                {
                    services
-                    .AddBindOpenHost<TestAppSettings>(
+                    .AddBindOpenBot<TestAppSettings>(
                         (options) => options
                             .SetModule("app.test")
                             //.SetRuntimeFolder(@"=$if($isEqual('dev'), '..\..\..\run', 'run')")
-                            .SetLibraryFolder(@"..\..\..\run")
+                            .SetRuntimeFolder(@"..\..\..\run")
                             .SetLibraryFolder(@"..\..\..\lib")
                             .AddPostgreSqlExtension()
                             .AddMSSqlServerExtension()

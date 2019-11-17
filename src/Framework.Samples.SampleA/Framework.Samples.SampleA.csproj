@@ -47,7 +47,7 @@ This package conducts on-demand tests before they are implemented in the unit te
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="run\settings\appconfig.xml" />
+    <Content Include="run\settings\bindopen.xml" />
   </ItemGroup>
 
   <ItemGroup>

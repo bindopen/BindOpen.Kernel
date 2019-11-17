@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name="sqlCount")]
+        [Scriptword(Name = "sqlCount")]
         public static string Fun_SqlCount(
             IAppScope appScope,
             IScriptVariableSet scriptVariableSet,

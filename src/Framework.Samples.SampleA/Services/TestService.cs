@@ -7,33 +7,33 @@ using System;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {
-    public class TestService : THostedAppService<TestServiceSettings>
+    public class TestService : THostedBotService<TestServiceSettings>
     {
-        public override IAppService Start(ILog log = null)
+        public override IBotService Start(ILog log = null)
         {
             base.Start(log);
 
             var element = ElementFactory.CreateScalar(Core.Data.Common.DataValueType.Boolean, false);
 
-            Host.Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+            Bot.Log.Append(
+                new DbQueryBuilder_MSSqlServer(Bot.Scope).BuildQuery(
                     Queries.UpdateMyTable(new DbMyTable() { Name = "nameA" }, null), null, out string sql4));
             Console.WriteLine(sql4);
 
-            Host.Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+            Bot.Log.Append(
+                new DbQueryBuilder_MSSqlServer(Bot.Scope).BuildQuery(
                     Queries.GetMyTables("", null), null, out string sql1));
 
             Console.WriteLine(sql1);
 
-            Host.Log.Append(
-            new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+            Bot.Log.Append(
+            new DbQueryBuilder_MSSqlServer(Bot.Scope).BuildQuery(
                 Queries.GetMyTable("name", null), null, out string sql2));
 
             Console.WriteLine(sql2);
 
-            Host.Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
+            Bot.Log.Append(
+                new DbQueryBuilder_MSSqlServer(Bot.Scope).BuildQuery(
                     Queries.DeleteMyTable("", null), null, out string sql3));
 
             Console.WriteLine(sql3);

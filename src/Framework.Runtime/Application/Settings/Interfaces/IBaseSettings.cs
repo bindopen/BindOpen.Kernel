@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
-using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
@@ -9,6 +6,9 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Runtime.CompilerServices;
+using System.Xml.Schema;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {

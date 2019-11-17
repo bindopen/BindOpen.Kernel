@@ -1,13 +1,11 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.Extensions.Items.Carriers;
 using BindOpen.Framework.Databases.Data.Queries;
 using System;
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
@@ -84,7 +82,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "value")]
         public DataExpression Value { get; set; }
@@ -92,7 +89,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         [XmlIgnore()]
         [DetailProperty(Name = "query")]
         public DbQuery Query { get; set; }
@@ -102,21 +98,21 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "isKey")]
-        public Boolean IsKey { get; set; }
+        public bool IsKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a foreign key.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "isForeignKey")]
-        public Boolean IsForeignKey { get; set; }
+        public bool IsForeignKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher the name of this instance can be defined by a script.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "isNameAsScript")]
-        public Boolean IsNameAsScript { get; set; }
+        public bool IsNameAsScript { get; set; }
 
         /// <summary>
         /// Type of value of this instance.
@@ -138,227 +134,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         public DbField() : base()
         {
-        }
-
-        // Constructors with data expression -----
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        public DbField(
-            string name,
-            DataExpression value,
-            DataValueType valueType = DataValueType.None)
-            : base()
-        {
-            Name = name;
-            ValueType = DataValueType.None;
-            Value = value;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            DataExpression value,
-            DataValueType valueType = DataValueType.None)
-            : this(name, value, valueType)
-        {
-            DataTable = tableName;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            DataExpression value,
-            DataValueType valueType = DataValueType.None)
-            : this(name, tableName, value, valueType)
-        {
-            Schema = schema;
-            DataModule = dataModule;
-        }
-
-        // Constructors with object -----
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public DbField(
-            string name,
-            DataValueType valueType = DataValueType.Any,
-            object value = null)
-            : base()
-        {
-            Name = name;
-            ValueType = valueType;
-            if (value != null)
-                Value = value.ToString(valueType).CreateLiteral();
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            DataValueType valueType = DataValueType.Any,
-            object value = null)
-            : this(name, valueType, value)
-        {
-            DataTable = tableName;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            DataValueType valueType = DataValueType.Any,
-            object value = null)
-            : this(name, tableName, valueType, value)
-        {
-            Schema = schema;
-            DataModule = dataModule;
-        }
-
-        // Constructors with field -----
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="field">The field to consider.</param>
-        public DbField(
-            string name,
-            DbField field)
-            : base()
-        {
-            Name = name;
-            ValueType = DataValueType.None;
-            Value = field.ToDataExpression();
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="field">The field to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            DbField field)
-            : this(name, field)
-        {
-            DataTable = tableName;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="field">The field to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            DbField field)
-            : this(name, tableName, field)
-        {
-            Schema = schema;
-            DataModule = dataModule;
-        }
-
-        // Constructors with query -----
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        public DbField(
-            string name,
-            DbQuery query)
-            : base()
-        {
-            Name = name;
-            ValueType = DataValueType.None;
-            Query = query;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            DbQuery query)
-            : this(name, query)
-        {
-            DataTable = tableName;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        public DbField(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            DbQuery query)
-            : this(name, tableName, query)
-        {
-            Schema = schema;
-            DataModule = dataModule;
         }
 
         #endregion
@@ -473,6 +248,26 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         public DbField WithAll()
         {
             IsAll = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates that this instance represents a key.
+        /// </summary>
+        /// <returns>Returns this instance.</returns>
+        public DbField AsKey()
+        {
+            IsKey = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates that the name of this instance is as script.
+        /// </summary>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithNameAsScript()
+        {
+            IsNameAsScript = true;
             return this;
         }
 

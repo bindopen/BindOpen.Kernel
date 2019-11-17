@@ -9,40 +9,40 @@
             This static class extends .Net core dependency injection namespace.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultHost(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Settings.DefaultAppSettings}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultBot(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{BindOpen.Framework.Runtime.Application.Settings.DefaultBotSettings}})">
             <summary>
-            Adds a BindOpen default application hosting serivce.
+            Adds a BindOpen default bot service.
             </summary>
             <param name="services">The collection of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.GetBindOpenDefaultHost(System.IServiceProvider)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.GetBindOpenDefaultBot(System.IServiceProvider)">
             <summary>
-            Adds a BindOpen default application hosting serivce.
+            Adds a BindOpen default bot service.
             </summary>
             <param name="provider">The service provider to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``0}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenBot``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{``0}})">
             <summary>
-            Adds a BindOpen application hosting serivce.
+            Adds a BindOpen bot service.
             </summary>
             <param name="services">The collection of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``1}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenBot``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{``1}})">
             <summary>
-            Adds a BindOpen application hosting serivce.
+            Adds a BindOpen bot service.
             </summary>
-            <typeparam name="THost">The class of application host to consider.</typeparam>
+            <typeparam name="THost">The class of bot to consider.</typeparam>
             <typeparam name="T"></typeparam>
             <param name="services">The collection of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IBotSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
             <summary>
             Adds a BindOpen service.
             </summary>
@@ -52,7 +52,7 @@
             <param name="funcSettings"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenTransientService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenTransientService``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IBotSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
             <summary>
             Adds a BindOpen transient service.
             </summary>
@@ -110,21 +110,21 @@
             This class extends BindOpenHost.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddRuntimeExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddRuntimeExtension(BindOpen.Framework.Runtime.Application.Options.IBotOptions)">
             <summary>
             Adds Runtime extension to the specified options.
             </summary>
             <param name="options">The options to consider.</param>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddMSSqlServerExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddMSSqlServerExtension(BindOpen.Framework.Runtime.Application.Options.IBotOptions)">
             <summary>
             Adds MS SqlServer extension to the specified options.
             </summary>
             <param name="options">The options to consider.</param>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddPostgreSqlExtension(BindOpen.Framework.Runtime.Application.Options.IAppHostOptions)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.BindOpenHostExtension.AddPostgreSqlExtension(BindOpen.Framework.Runtime.Application.Options.IBotOptions)">
             <summary>
             Adds PostgreSql extension to the specified options.
             </summary>
@@ -133,21 +133,21 @@
         </member>
         <member name="T:BindOpen.Framework.NetCore.Services.ITBdoHostedService`1">
             <summary>
-            This interface defines a BindOpen application service that can be hosted in generic .Net core host.
+            This interface defines a BindOpen bot service that can be hosted in generic .Net core host.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.NetCore.Services.TBdoHostedService`1">
             <summary>
-            This service represents a BindOpen application service that can be hosted in generic .Net core host.
+            This service represents a BindOpen bot service that can be hosted in generic .Net core host.
             </summary>
-            <typeparam name="T">The class of the BindOpen application service to consider.</typeparam>
+            <typeparam name="T">The class of the BindOpen bot service to consider.</typeparam>
         </member>
         <member name="P:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.Host">
             <summary>
-            The BindOpen application host of this instance.
+            The BindOpen bot of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost,BindOpen.Framework.Runtime.Application.Options.ITAppServiceOptions{`0})">
+        <member name="M:BindOpen.Framework.NetCore.Services.TBdoHostedService`1.#ctor(BindOpen.Framework.Runtime.Application.Bots.IBot,BindOpen.Framework.Runtime.Application.Options.ITBotServiceOptions{`0})">
             <summary>
             Creates a new instance of the BdoHostedService class.
             </summary>

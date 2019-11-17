@@ -18,8 +18,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="connector"></param>
         /// <returns>The log of the operation.</returns>
         ILog Close(IConnection connector);
-        //Connection GetConnection(string name);
-        //bool IsOpened(string name);
 
         /// <summary>
         /// Opens the connection.

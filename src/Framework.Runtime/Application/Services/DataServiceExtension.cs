@@ -19,8 +19,8 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <param name="action"></param>
         /// <returns></returns>
         public static ILog Execute<Q>(
-            this IAppService service,
-            Func<IAppService, ILog, IConnection> initializer,
+            this IBotService service,
+            Func<IBotService, ILog, IConnection> initializer,
             Action<Q, ILog> action)
             where Q : IDataService, new()
         {

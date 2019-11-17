@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
@@ -14,6 +11,9 @@ using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords.Definition;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Framework.Core.System.Scripting
 {
@@ -29,9 +29,9 @@ namespace BindOpen.Framework.Core.System.Scripting
 
         #region Variables
 
-        private IAppScope _appScope = null;
+        private IAppScope _scope = null;
 
-        private List<IScriptwordDefinition> _definitions => _appScope?.Extension?.ScriptwordDefinitions;
+        private List<IScriptwordDefinition> _definitions => _scope?.Extension?.ScriptwordDefinitions;
 
         #endregion
 
@@ -51,11 +51,10 @@ namespace BindOpen.Framework.Core.System.Scripting
         /// <summary>
         /// Instantiates a new instance of the ScriptInterpreter class.
         /// </summary>
-        /// <param name="appScope">The application scope used to interprete.</param>
-        public ScriptInterpreter(
-            IAppScope appScope)
+        /// <param name="scope">The application scope used to interprete.</param>
+        public ScriptInterpreter(IAppScope scope)
         {
-            _appScope = appScope;
+            _scope = scope;
         }
 
         #endregion
@@ -626,7 +625,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             bool isSimulationModeOn = false,
             ILog log = null)
         {
-            if (_appScope == null) return null;
+            if (_scope == null) return null;
             if ((scriptWord == null) || (scriptWord.Definition == null)) return null;
 
             string resultString = "<Evaluation_Error />";
@@ -639,8 +638,8 @@ namespace BindOpen.Framework.Core.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        new object[0] : scriptWord.ParameterDetail?.Elements?.Select(p=>p.GetObject()).ToArray());
-                    resultString = scriptWord.Definition.RuntimeFunction(_appScope, scriptVariableSet, scriptWord, parameters);
+                        new object[0] : scriptWord.ParameterDetail?.Elements?.Select(p => p.GetObject()).ToArray());
+                    resultString = scriptWord.Definition.RuntimeFunction(_scope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
                 {

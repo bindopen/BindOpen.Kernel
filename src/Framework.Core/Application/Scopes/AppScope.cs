@@ -1,11 +1,11 @@
-﻿using System;
-using BindOpen.Framework.Core.Application.Depots.Datasources;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
 
 namespace BindOpen.Framework.Core.Application.Scopes
 {
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// </summary>
         /// <param name="appDomain">The application domain to consider.</param>
         public AppScope(
-            AppDomain appDomain = null) :  base()
+            AppDomain appDomain = null) : base()
         {
             Initialize(appDomain ?? AppDomain.CurrentDomain);
         }

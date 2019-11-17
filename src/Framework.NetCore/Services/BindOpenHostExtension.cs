@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         /// </summary>
         /// <param name="options">The options to consider.</param>
         /// <returns>Returns the connection of this instance.</returns>
-        public static void AddRuntimeExtension(this IAppHostOptions options)
+        public static void AddRuntimeExtension(this IBotOptions options)
         {
             options?.AddExtensions(new AppExtensionFilter("BindOpen.Framework.Runtime"));
         }
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         /// </summary>
         /// <param name="options">The options to consider.</param>
         /// <returns>Returns the connection of this instance.</returns>
-        public static IAppHostOptions AddMSSqlServerExtension(this IAppHostOptions options)
+        public static IBotOptions AddMSSqlServerExtension(this IBotOptions options)
         {
             options?.AddExtensions(
                 new AppExtensionFilter("BindOpen.Framework.Databases"),
@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Extensions
         /// </summary>
         /// <param name="options">The options to consider.</param>
         /// <returns>Returns the connection of this instance.</returns>
-        public static IAppHostOptions AddPostgreSqlExtension(this IAppHostOptions options)
+        public static IBotOptions AddPostgreSqlExtension(this IBotOptions options)
         {
             options?.AddExtensions(
                 new AppExtensionFilter("BindOpen.Framework.Databases"),

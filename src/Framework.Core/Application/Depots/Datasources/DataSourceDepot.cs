@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items.Sets;
+﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Application.Depots.Datasources
 {
     /// <summary>
-    /// This class represents a data source service.
+    /// This class represents a data source depot.
     /// </summary>
-    /// <remarks>The data source service stores sources by data sources.</remarks>
     [Serializable()]
     [XmlType("DataSourceDepot", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataSourceDepot : DataItemSet<DataSource>, IDataSourceDepot
+    public class DataSourceDepot : TDepot<DataSource>, IDataSourceDepot
     {
         // ------------------------------------------
         // PROPERTIES

@@ -86,6 +86,15 @@ namespace BindOpen.Framework.Databases.Data.Queries
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the DbQuery class.
+        /// </summary>
+        /// <param name="name">Name of the query.</param>
+        protected DbQuery(string name)
+        {
+            Name = name;
+        }
+
         #endregion
 
         // ------------------------------------------

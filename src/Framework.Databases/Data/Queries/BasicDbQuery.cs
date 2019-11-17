@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Databases.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
@@ -36,12 +37,12 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// From clause of this instance.
         /// </summary>
-        public List<IDbQueryFromStatement> FromClauses { get; set; } = new List<IDbQueryFromStatement>();
+        public List<DbQueryFromStatement> FromStatements { get; set; } = new List<DbQueryFromStatement>();
 
         /// <summary>
         /// Order by statements of this instance.
         /// </summary>
-        public List<IDbQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbQueryOrderByStatement>();
+        public List<DbQueryOrderByStatement> OrderByStatements { get; set; } = new List<DbQueryOrderByStatement>();
 
         #endregion
 
@@ -71,10 +72,28 @@ namespace BindOpen.Framework.Databases.Data.Queries
             string schema = null,
             string dataTable = null)
         {
-            this.Kind = kind;
-            this.DataModule = dataModule;
-            this.Schema = schema;
-            this.DataTable = dataTable;
+            Kind = kind;
+            DataModule = dataModule;
+            Schema = schema;
+            DataTable = dataTable;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BasicDbQuery class.
+        /// </summary>
+        /// <param name="name">Name of the query.</param>
+        /// <param name="kind">Kind of database data query.</param>
+        /// <param name="dataModule">Name of the data module.</param>
+        /// <param name="schema">Schema of the data module.</param>
+        /// <param name="dataTable">Name of data table.</param>
+        public BasicDbQuery(
+            string name,
+            DbQueryKind kind,
+            string dataModule = null,
+            string schema = null,
+            string dataTable = null) : this(kind, dataModule, schema, dataTable)
+        {
+            Name = name;
         }
 
         #endregion
@@ -90,11 +109,11 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="boundFieldName">Name of the bound data field.</param>
         /// <returns>The data field with the specified bound data field name.</returns>
-        public DbField GetIdFieldWithBoundFieldName(String boundFieldName)
+        public DbField GetIdFieldWithBoundFieldName(string boundFieldName)
         {
-            if ((boundFieldName != null) & (this.IdFields != null))
+            if ((boundFieldName != null) & (IdFields != null))
             {
-                foreach (DbField rField in this.IdFields)
+                foreach (DbField rField in IdFields)
                 {
                     if (rField.Alias?.Equals(boundFieldName, StringComparison.OrdinalIgnoreCase) == true)
                         return rField;
@@ -104,6 +123,80 @@ namespace BindOpen.Framework.Databases.Data.Queries
             }
 
             return null;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Sets the specified fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery WithFields(params DbField[] fields)
+        {
+            Fields = fields?.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBasicDbQuery From(params IDbQueryFromStatement[] statements)
+        {
+            FromStatements = statements?.Cast<DbQueryFromStatement>().ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBasicDbQuery WithIdFields(params DbField[] fields)
+        {
+            IdFields = fields?.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates that this instance is distinct.
+        /// </summary>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AsDistinct()
+        {
+            IsDistinct = true;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBasicDbQuery OrderBy(params IDbQueryOrderByStatement[] statements)
+        {
+            OrderByStatements = statements?.Cast<DbQueryOrderByStatement>().ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBasicDbQuery WithTop(int top)
+        {
+            Top = top;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBasicDbQuery WithTableAlias(string tableAlias)
+        {
+            DataTableAlias = tableAlias;
+            return this;
         }
 
         #endregion

@@ -396,7 +396,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                             queryString += " * ";
                         }
                         queryString += " from ";
-                        if ((query.FromClauses == null) | (query.FromClauses.Count == 0))
+                        if ((query.FromStatements == null) | (query.FromStatements.Count == 0))
                         {
                             queryString += GetTableSqlText(
                                 query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
@@ -406,7 +406,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         else
                         {
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -488,11 +488,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                             index++;
                         }
-                        if (query.FromClauses?.Count > 0)
+                        if (query.FromStatements?.Count > 0)
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -653,7 +653,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
                         queryString += " from ";
                         index = 0;
 
-                        foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                        foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                         {
                             if (index > 0)
                                 queryString += ",";
@@ -748,11 +748,11 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 
                             index++;
                         }
-                        if (query.FromClauses?.Count > 0)
+                        if (query.FromStatements?.Count > 0)
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";

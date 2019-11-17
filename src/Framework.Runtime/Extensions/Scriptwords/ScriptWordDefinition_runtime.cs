@@ -6,7 +6,7 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
 using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Runtime.Application.Bots;
 
 namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
 {
@@ -32,14 +32,14 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_ApplicationModuleName(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
+            IBot appHost = appScope.Context.GetSystemItem("appHost") as IBot;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -56,14 +56,14 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_ApplicationInstanceName(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null || appScope.Context == null)
                 return "<!--Application scope missing-->";
-            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
+            IBot appHost = appScope.Context.GetSystemItem("appHost") as IBot;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_IsEmpty(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_Text(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -122,7 +122,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_FormatText(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_If(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_Not(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_Or(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -206,7 +206,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_And(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -227,7 +227,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_Xor(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -248,7 +248,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_IsEqual(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -269,7 +269,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_IsDifferent(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -290,7 +290,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_GetCurrentDateTime(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -309,7 +309,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_DateTime_Format(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -338,7 +338,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_DateTime_TimeStamp(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -364,7 +364,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_DateTime_Add(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -404,7 +404,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_DataModule(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -422,7 +422,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Fun_DataModule_Name(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -460,7 +460,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_GetEmpty(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -478,7 +478,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_Literal_Tab(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -496,7 +496,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_Literal_Cr(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -514,7 +514,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword]
         public static string Var_Literal_CarretPos(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
@@ -534,14 +534,14 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword("application.folderpath")]
         public static string Var_ApplicationFolderPath(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
+            IBot appHost = appScope.Context.GetSystemItem("appHost") as IBot;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -558,14 +558,14 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword("application.roaming.folderpath")]
         public static string Var_ApplicationRoamingFolderPath(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)
         {
             if (appScope == null)
                 return "<!--Application scope missing-->";
-            IAppHost appHost = appScope.Context.GetSystemItem("appHost") as IAppHost;
+            IBot appHost = appScope.Context.GetSystemItem("appHost") as IBot;
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
@@ -582,7 +582,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         /// <returns>The interpreted string value.</returns>
         [Scriptword(Name = "mydocuments.folderpath")]
         public static string Var_MyDocumentsFolderPath(
-            IAppScope appScope,
+            IBotScope appScope,
             IScriptVariableSet scriptVariableSet,
             IScriptword scriptWord,
             params object[] parameters)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
-using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
@@ -13,18 +9,22 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Xml.Schema;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
     /// <summary>
-    /// This class represents a configuration.
+    /// This class represents a base settings.
     /// </summary>
     public abstract class BaseSettings : DataItem, IBaseSettings
     {
         /// <summary>
         /// The scope of this instance.
         /// </summary>
-        protected IAppScope _appScope = null;
+        protected IAppScope _scope = null;
 
         /// <summary>
         /// The configuration of this instance.
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        public IAppScope AppScope => _appScope;
+        public IAppScope AppScope => _scope;
 
         /// <summary>
         /// The item of this instance.
@@ -65,11 +65,11 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Instantiates a new instance of the BaseSettings class.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The application scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
-        public BaseSettings(IAppScope appScope, IBaseConfiguration configuration)
+        public BaseSettings(IAppScope scope, IBaseConfiguration configuration)
         {
-            _appScope = appScope;
+            _scope = scope;
             _configuration = configuration;
         }
 
@@ -97,7 +97,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="name">The name to consider.</param>
         public T Get<T>(string name)
         {
-            return Configuration.GetElementObject<T>(name, _appScope);
+            return Configuration.GetElementObject<T>(name, _scope);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
-            return Configuration.GetElementObject(name, _appScope);
+            return Configuration.GetElementObject(name, _scope);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                 IDataElement element = Configuration.GetItem(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _appScope);
+                    return (T)Configuration.GetElementObject(propertyName, _scope);
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
 
                     if (attribute is DetailPropertyAttribute)
                     {
-                        object value = Configuration.GetElementObject(attribute.Name, _appScope);
+                        object value = Configuration.GetElementObject(attribute.Name, _scope);
                         if (value is T t)
                             return t;
                     }
@@ -159,7 +159,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                 IDataElement element = Configuration.GetItem(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _appScope);
+                    return (T)Configuration.GetElementObject(propertyName, _scope);
                 }
                 else
                 {
@@ -169,7 +169,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                         out DataElementAttribute attribute);
 
                     if (attribute is DetailPropertyAttribute)
-                        return (Configuration.GetElementObject(attribute.Name, _appScope) as string)?.ToEnum<T>(defaultValue) ?? default;
+                        return (Configuration.GetElementObject(attribute.Name, _scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="filePath">The file path to consider.</param>
         /// <param name="specificationLevels">The specification levels to consider.</param>
         /// <param name="specificationSet">The specification set to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The application scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>Returns the loading log.</returns>
@@ -231,7 +231,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
             string filePath,
             SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
-            IAppScope appScope = null,
+            IAppScope scope = null,
             IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)
         => new Log();

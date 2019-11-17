@@ -28,39 +28,426 @@
             <param name="allowMissingItems">Indicates whether the items can be missing.</param>
             <returns>Returns the log of check.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration">
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind">
             <summary>
-            This class represents a DTO application configuration.
+            This enumeration lists all the possible application log kinds.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.Credentials">
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind.Any">
+            <summary>
+            Any.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind.Application">
+            <summary>
+            Application logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind.Runtime">
+            <summary>
+            Runtime logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind.Runtime_Users">
+            <summary>
+            Runtime users logs.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationLogKind.Runtime_Users_Anonymous">
+            <summary>
+            Anonymous runtime users logs.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind">
+            <summary>
+            This enumeration lists all the possible kinds of application path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.AppFolder">
+            <summary>
+            The application folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.DefaultLogFolder">
+            <summary>
+            The default log folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.ExtensionsFolder">
+            <summary>
+            The extensions folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.LibraryFolder">
+            <summary>
+            The library folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.LogFolder">
+            <summary>
+            The log folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.RoamingFolder">
+            <summary>
+            The roaming folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.RuntimeFolder">
+            <summary>
+            The runtime folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.SettingsFile">
+            <summary>
+            The settings file.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.SettingsFolder">
+            <summary>
+            The settings folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.TemporaryFolder">
+            <summary>
+            The temporary folder.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind.UsersFolder">
+            <summary>
+            The users folder.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.Bot">
+            <summary>
+            This class represents an bot.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.Bot.Scope">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.Bot.Options">
+            <summary>
+            The options of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.Bot.Settings">
+            <summary>
+            The settings of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.Bot.UserSettingsSet">
+            <summary>
+            The set of user settings of this intance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.#ctor">
+            <summary>
+            Instantiates a new instance of the AppHost class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Runtime.Application.Options.IBotOptions,BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
+            <summary>
+            Instantiates a new instance of the AppHost class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.IBotOptions})">
+            <summary>
+            Configures the bot.
+            </summary>
+            <param name="setupOptions">The action to setup the bot.</param>
+            <returns>Returns the bot.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.SaveSettings">
+            <summary>
+            Saves settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.GetCredential(System.String)">
+            <summary>
+            Get the credential with the specified name.
+            </summary>
+            <param name="name">Name</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.GetKnownPath(BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind)">
+            <summary>
+            Returns the path of the application temporary folder.
+            </summary>
+            <param name="pathKind">The kind of paths.</param>
+            <returns>The path of the application temporary folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.Bot.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.BotFactory">
+            <summary>
+            This static class proposes bot creators.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.BotFactory.CreateBindOpenDefaultBot(System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{BindOpen.Framework.Runtime.Application.Settings.DefaultBotSettings}})">
+            <summary>
+            Adds a BindOpen default bot service.
+            </summary>
+            <param name="setupAction">The setup action to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.BotFactory.CreateBindOpenBot``1(System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{``0}})">
+            <summary>
+            Adds a BindOpen bot service.
+            </summary>
+            <param name="setupAction">The setup action to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.BotFactory.CreateBindOpenBot``2(System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{``1}})">
+            <summary>
+            Adds a BindOpen bot service.
+            </summary>
+            <typeparam name="THost">The class of bot to consider.</typeparam>
+            <param name="setupAction">The setup action to consider.</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.IBot">
+            <summary>
+            The interface defines the base bot.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.IBot.Scope">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.IBot.Options">
+            <summary>
+            The application options.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.IBot.Settings">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.IBot.GetKnownPath(BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind)">
+            <summary>
+            Get the specified known path.
+            </summary>
+            <param name="pathKind">The kind of known path.</param>
+            <returns>Returns the specified path.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.IBot.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.IBotOptions})">
+            <summary>
+            Configures the bot.
+            </summary>
+            <param name="setupOptions">The action to setup the bot.</param>
+            <returns>Returns the bot.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.IBot.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the process.
+            </summary>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the bot to consider.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.IBot.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Ends the process specifying the status.
+            </summary>
+            <param name="executionStatus">The execution status to apply.</param>
+            <returns>Returns the bot to consider.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.IBoted">
+            <summary>
+            The interface defines a boted item.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.IBoted.Bot">
+            <summary>
+            The bot.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.ITBot`1">
+            <summary>
+            The interface defines the bot.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.Options">
+            <summary>
+            The options.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{`0}})">
+            <summary>
+            Configures the bot.
+            </summary>
+            <param name="setupOptions">The action to setup the bot.</param>
+            <returns>Returns the bot.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the process.
+            </summary>
+            <param name="log">The log to consider.</param>
+            <returns>Returns the bot to consider.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Ends the process specifying the status.
+            </summary>
+            <param name="executionStatus">The execution status to apply.</param>
+            <returns>Returns the bot to consider.</returns>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.UserSettingsSet">
+            <summary>
+            The set of user settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.GetCredential(System.String)">
+            <summary>
+            Gets the specified credential.
+            </summary>
+            <param name="name">The name of the credential to consider.</param>
+            <returns>Returns the specified credential.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.ITBot`1.SaveSettings">
+            <summary>
+            Saves settings.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.SettingsKind">
+            <summary>
+            This enumeration lists all the possible kinds of settings.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.SettingsKind.StandaloneApplicationModuleName">
+            <summary>
+            The name of the standalone application module.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Bots.SettingsKind.RuntimeMode">
+            <summary>
+            The runtime mode.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Bots.TBot`1">
+            <summary>
+            This class represents an application host.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Scope">
+            <summary>
+            The application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Options">
+            <summary>
+            The options of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Settings">
+            <summary>
+            The settings of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.#ctor">
+            <summary>
+            Instantiates a new instance of the TBot class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Runtime.Application.Options.ITBotOptions{`0},BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
+            <summary>
+            Instantiates a new instance of the TBot class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.ITBotOptions{`0}})">
+            <summary>
+            Configures the application host.
+            </summary>
+            <param name="setupOptions">The action to setup the application host.</param>
+            <returns>Returns the application host.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.SaveSettings">
+            <summary>
+            Saves settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.GetCredential(System.String)">
+            <summary>
+            Get the credential with the specified name.
+            </summary>
+            <param name="name">Name</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.GetKnownPath(BindOpen.Framework.Runtime.Application.Bots.ApplicationPathKind)">
+            <summary>
+            Returns the path of the application temporary folder.
+            </summary>
+            <param name="pathKind">The kind of paths.</param>
+            <returns>The path of the application temporary folder.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+            <summary>
+            Starts the application.
+            </summary>
+            <returns>Returns true if this instance is started.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+            <summary>
+            Indicates the application ends.
+            </summary>
+            <param name="executionStatus">The execution status to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Bots.TBot`1.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="A"></typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration">
+            <summary>
+            This class represents a bot configuration.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.Credentials">
             <summary>
             The credentials of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.DataSources">
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.DataSources">
             <summary>
             The data sources of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the AppConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Instantiates a new instance of the AppConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for storage.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -68,7 +455,7 @@
             <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -79,23 +466,23 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.AppConfiguration.__ApplicationInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BotConfiguration.__ApplicationInstanceName">
             <summary>
             Gets the name of the application instance.
             </summary>
             <returns>Returns the name of the application instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.IAppConfiguration">
+        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.IBotConfiguration">
             <summary>
             This interface defines application configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IAppConfiguration.Credentials">
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IBotConfiguration.Credentials">
             <summary>
             Credentials.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IAppConfiguration.DataSources">
+        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IBotConfiguration.DataSources">
             <summary>
             Data sources.
             </summary>
@@ -122,393 +509,6 @@
             <param name="aSecretKeyIV">The secret IV key to consider.</param>
             <param name="inputBytes">The input bytes to consider.</param>
             <returns>Returns the decrypted data.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.AppHost">
-            <summary>
-            This class represents an application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Scope">
-            <summary>
-            The application settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Options">
-            <summary>
-            The options of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Settings">
-            <summary>
-            The settings of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.AppHost.UserSettingsSet">
-            <summary>
-            The set of user settings of this intance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.#ctor">
-            <summary>
-            Instantiates a new instance of the AppHost class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.IAppHostOptions,BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
-            <summary>
-            Instantiates a new instance of the AppHost class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.IAppHostOptions})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.SaveSettings">
-            <summary>
-            Saves settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.GetCredential(System.String)">
-            <summary>
-            Get the credential with the specified name.
-            </summary>
-            <param name="name">Name</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
-            <summary>
-            Returns the path of the application temporary folder.
-            </summary>
-            <param name="pathKind">The kind of paths.</param>
-            <returns>The path of the application temporary folder.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the application.
-            </summary>
-            <returns>Returns true if this instance is started.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Indicates the application ends.
-            </summary>
-            <param name="executionStatus">The execution status to consider.</param>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind">
-            <summary>
-            This enumeration lists all the possible application log kinds.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind.Any">
-            <summary>
-            Any.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind.Application">
-            <summary>
-            Application logs.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind.Runtime">
-            <summary>
-            Runtime logs.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind.Runtime_Users">
-            <summary>
-            Runtime users logs.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationLogKind.Runtime_Users_Anonymous">
-            <summary>
-            Anonymous runtime users logs.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind">
-            <summary>
-            This enumeration lists all the possible kinds of application path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.AppFolder">
-            <summary>
-            The application folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.DefaultLogFolder">
-            <summary>
-            The default log folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.ExtensionsFolder">
-            <summary>
-            The extensions folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.LibraryFolder">
-            <summary>
-            The library folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.LogFolder">
-            <summary>
-            The log folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.RoamingFolder">
-            <summary>
-            The roaming folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.RuntimeFolder">
-            <summary>
-            The runtime folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.SettingsFile">
-            <summary>
-            The settings file.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.SettingsFolder">
-            <summary>
-            The settings folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.TemporaryFolder">
-            <summary>
-            The temporary folder.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind.UsersFolder">
-            <summary>
-            The users folder.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory">
-            <summary>
-            This static class proposes application host creators.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenDefaultHost(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{BindOpen.Framework.Runtime.Application.Settings.DefaultAppSettings}})">
-            <summary>
-            Adds a BindOpen default application hosting serivce.
-            </summary>
-            <param name="setupAction">The setup action to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenHost``1(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``0}})">
-            <summary>
-            Adds a BindOpen application hosting serivce.
-            </summary>
-            <param name="setupAction">The setup action to consider.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.AppHostFactory.CreateBindOpenHost``2(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{``1}})">
-            <summary>
-            Adds a BindOpen application hosting serivce.
-            </summary>
-            <typeparam name="THost">The class of application host to consider.</typeparam>
-            <param name="setupAction">The setup action to consider.</param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IAppHost">
-            <summary>
-            The interface defines the base application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Scope">
-            <summary>
-            The application settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Options">
-            <summary>
-            The application options.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Settings">
-            <summary>
-            The application settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
-            <summary>
-            Get the specified known path.
-            </summary>
-            <param name="pathKind">The kind of known path.</param>
-            <returns>Returns the specified path.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.IAppHostOptions})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the process.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.IAppHost.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Ends the process specifying the status.
-            </summary>
-            <param name="executionStatus">The execution status to apply.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.IAppHosted">
-            <summary>
-            The interface defines a BDO application hosted item.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.IAppHosted.Host">
-            <summary>
-            The application host.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1">
-            <summary>
-            The interface defines the application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.Options">
-            <summary>
-            The options.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0}})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the process.
-            </summary>
-            <param name="log">The log to consider.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Ends the process specifying the status.
-            </summary>
-            <param name="executionStatus">The execution status to apply.</param>
-            <returns>Returns the application host to consider.</returns>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.UserSettingsSet">
-            <summary>
-            The set of user settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.GetCredential(System.String)">
-            <summary>
-            Gets the specified credential.
-            </summary>
-            <param name="name">The name of the credential to consider.</param>
-            <returns>Returns the specified credential.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.ITAppHost`1.SaveSettings">
-            <summary>
-            Saves settings.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.SettingsKind">
-            <summary>
-            This enumeration lists all the possible kinds of settings.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.SettingsKind.StandaloneApplicationModuleName">
-            <summary>
-            The name of the standalone application module.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.SettingsKind.RuntimeMode">
-            <summary>
-            The runtime mode.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1">
-            <summary>
-            This class represents an application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Scope">
-            <summary>
-            The application settings.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Options">
-            <summary>
-            The options of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Settings">
-            <summary>
-            The settings of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.#ctor">
-            <summary>
-            Instantiates a new instance of the TAppHost class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0},BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
-            <summary>
-            Instantiates a new instance of the TAppHost class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Configure(System.Action{BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions{`0}})">
-            <summary>
-            Configures the application host.
-            </summary>
-            <param name="setupOptions">The action to setup the application host.</param>
-            <returns>Returns the application host.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.SaveSettings">
-            <summary>
-            Saves settings.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.GetCredential(System.String)">
-            <summary>
-            Get the credential with the specified name.
-            </summary>
-            <param name="name">Name</param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.GetKnownPath(BindOpen.Framework.Runtime.Application.Hosts.ApplicationPathKind)">
-            <summary>
-            Returns the path of the application temporary folder.
-            </summary>
-            <param name="pathKind">The kind of paths.</param>
-            <returns>The path of the application temporary folder.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
-            <summary>
-            Starts the application.
-            </summary>
-            <returns>Returns true if this instance is started.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
-            <summary>
-            Indicates the application ends.
-            </summary>
-            <param name="executionStatus">The execution status to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TAppHost`1.Initialize``1">
-            <summary>
-            Initializes information.
-            </summary>
-            <typeparam name="A"></typeparam>
-            <returns>Returns the log of the task.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Languages.ApplicationLanguage">
             <summary>
@@ -1532,308 +1532,308 @@
             Specified page.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.AppHostOptions">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.BotOptions">
             <summary>
-            This class represents an application host options.
+            This class represents an bot options.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.__DefaultSettingsFileName">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions.__DefaultSettingsFileName">
             <summary>
             The default settings file name
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._AUTHENTICATIONTIMEOUT">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._AUTHENTICATIONTIMEOUT">
             <summary>
             Maximum number of minutes : authentication 
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._applicationModule">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._applicationModule">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._loggers">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._loggers">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._appExtensionConfiguration">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._appExtensionConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._isDefaultLoggerUsed">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._isDefaultLoggerUsed">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._appFolderPath">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._appFolderPath">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._settingsFilePath">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._settingsFilePath">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._runtimeFolderPath">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._runtimeFolderPath">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.AppHostOptions._libraryFolderPath">
+        <member name="F:BindOpen.Framework.Runtime.Application.Options.BotOptions._libraryFolderPath">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.Settings">
             <summary>
             The settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.ApplicationModule">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.ApplicationModule">
             <summary>
             The application module.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AppFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.AppFolderPath">
             <summary>
             The application folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SettingsFilePath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.SettingsFilePath">
             <summary>
             The settings file path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.RuntimeFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.RuntimeFolderPath">
             <summary>
             The runtime folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.LibraryFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.LibraryFolderPath">
             <summary>
             The library folder path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.Loggers">
             <summary>
             The loggers of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.IsDefaultLoggerUsed">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.IsDefaultLoggerUsed">
             <summary>
             Indicates whether the default logger is used.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.ExtensionConfiguration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.ExtensionConfiguration">
             <summary>
             The extension configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SettingsSpecificationSet">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.BotOptions.SettingsSpecificationSet">
             <summary>
             The set of settings specifications of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.#ctor">
             <summary>
             Instantiates a new instance of the AppHostOptions class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetAppFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.SetAppFolder(System.String)">
             <summary>
             Sets the specified application folder path.
             </summary>
             <param name="appFolderPath"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetRuntimeFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.SetRuntimeFolder(System.String)">
             <summary>
             Sets the runtime folder path.
             </summary>
             <param name="runtimeFolderPath"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetLibraryFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.SetLibraryFolder(System.String)">
             <summary>
             Sets the library folder path.
             </summary>
             <param name="libraryFolderPath">The libarry folder path</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
             <summary>
             Sets the specified module.
             </summary>
             <param name="module"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.SetModule(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.SetModule(System.String)">
             <summary>
             Sets the specified module.
             </summary>
             <param name="moduleName">The name of the module.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Sets the specified extension settings.
             </summary>
             <param name="extensionConfiguration">The extension configuration to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
             <summary>
             Sets the specified extension settings.
             </summary>
             <param name="filters">The filters to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Defines the specified default settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Adds the specified settings specification.
             </summary>
             <param name="loggers">The loggers to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.AppHostOptions.AddDefaultLogger">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.BotOptions.AddDefaultLogger">
             <summary>
             Adds the default logger.
             </summary>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.IBotOptions">
             <summary>
-            The interface defines the base BDO application host options.
+            The interface defines the base BDO bot options.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.Settings">
             <summary>
             The base settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.ApplicationModule">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.ApplicationModule">
             <summary>
             The application module.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.IsDefaultLoggerUsed">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.IsDefaultLoggerUsed">
             <summary>
             Indicates whether the default logger is used.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.Loggers">
             <summary>
             The loggers.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.ExtensionConfiguration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.ExtensionConfiguration">
             <summary>
             The extension configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AppFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.AppFolderPath">
             <summary>
             The application folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.LibraryFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.LibraryFolderPath">
             <summary>
             The library folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SettingsFilePath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SettingsFilePath">
             <summary>
             The application configuration file path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.RuntimeFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.RuntimeFolderPath">
             <summary>
             The runtime application folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SettingsSpecificationSet">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SettingsSpecificationSet">
             <summary>
             The set of settings specifications of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetAppFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SetAppFolder(System.String)">
             <summary>
             Set the application folder.
             </summary>
             <param name="appFolderPath">The application folder path.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetRuntimeFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SetRuntimeFolder(System.String)">
             <summary>
             Set the runtime folder.
             </summary>
             <param name="runtimeFolderPath">The runtime folder path.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetLibraryFolder(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SetLibraryFolder(System.String)">
             <summary>
             Set the library folder.
             </summary>
             <param name="libraryFolderPath">The library folder path.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.DefineDefaultSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Define the default specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionConfiguration)">
             <summary>
             Sets the extensions.
             </summary>
             <param name="extensionConfiguration">The extension configuration.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.AddExtensions(BindOpen.Framework.Core.Extensions.IAppExtensionFilter[])">
             <summary>
             Adds the extensions.
             </summary>
             <param name="filters">The filters to consider.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddDefaultLogger">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.AddDefaultLogger">
             <summary>
             Adds the default logger.
             </summary>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Adds the specified loggers.
             </summary>
             <param name="loggers">The loggers to consider.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SetModule(BindOpen.Framework.Runtime.Application.Modules.IAppModule)">
             <summary>
             Set the module.
             </summary>
             <param name="module">The module.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.IAppHostOptions.SetModule(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.IBotOptions.SetModule(System.String)">
             <summary>
             Set the module.
             </summary>
             <param name="moduleName">The name of the module.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.IOptionSet">
             <summary>
@@ -1998,42 +1998,42 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.ITBotOptions`1">
             <summary>
-            The interface defines the application host options.
+            The interface defines the bot options.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITBotOptions`1.Settings">
             <summary>
             The settings.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1.SetSettingsFile(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITBotOptions`1.SetSettingsFile(System.String)">
             <summary>
             Set the settings file.
             </summary>
             <param name="settingsFilePath">The path of the settings file.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITBotOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Define the specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
-            <returns>Returns the application host option.</returns>
+            <returns>Returns the bot option.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.ITAppServiceOptions`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.ITBotServiceOptions`1">
             <summary>
             This interface represents a logger.
             </summary>
             <remarks>The output format is YAML.</remarks>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITAppServiceOptions`1.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITBotServiceOptions`1.Loggers">
             <summary>
             Loggers.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITAppServiceOptions`1.FuncSettings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.ITBotServiceOptions`1.FuncSettings">
             <summary>
             Functional settings.
             </summary>
@@ -2384,51 +2384,51 @@
             <param name="variantName">The variant variant name to consider.</param>
             <param name="defaultVariantName">The default variant name to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.TBotOptions`1">
             <summary>
-            This class represents an application host options.
+            This class represents a bot options.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.TBotOptions`1.Settings">
             <summary>
             The settings.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBotOptions`1.#ctor">
             <summary>
             Instantiates a new instance of the AppHostOptions class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.SetSettingsFile(System.String)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBotOptions`1.SetSettingsFile(System.String)">
             <summary>
             Sets the specified settings file.
             </summary>
             <param name="settingsFilePath">The path of the settings file to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBotOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
             <summary>
             Defines the specified settings.
             </summary>
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Options.TAppServiceOptions`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Options.TBotServiceOptions`1">
             <summary>
-            This class represents loggers.
+            This class represents bot service options.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.TAppServiceOptions`1.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.TBotServiceOptions`1.Loggers">
             <summary>
             The loggers of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.TAppServiceOptions`1.FuncSettings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.TBotServiceOptions`1.FuncSettings">
             <summary>
             The settings function of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TAppServiceOptions`1.#ctor(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IAppSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBotServiceOptions`1.#ctor(BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[],System.Func{BindOpen.Framework.Runtime.Application.Settings.IBotSettings,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings})">
             <summary>
             Instantiates a new instance of the Logger class.
             </summary>
@@ -2845,98 +2845,157 @@
             Token value.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.BotScopedService">
             <summary>
-            This class represents an application host.
+            This class represents a scoped service.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Services.AppService._isLoadCompleted">
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.BotScopedService._scope">
+            <summary>
+            The scope of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotScopedService.Scope">
+            <summary>
+            The application extension of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotScopedService.Context">
+            <summary>
+            The data context of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotScopedService.Interpreter">
+            <summary>
+            Script interpreter of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotScopedService.DataSourceDepot">
+            <summary>
+            Data source service of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotScopedService.ConnectionService">
+            <summary>
+            Connection manager of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotScopedService.#ctor">
+            <summary>
+            Instantiates a new instance of the ScopedService class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotScopedService.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope)">
+            <summary>
+            Instantiates a new instance of the ScopedService class.
+            </summary>
+            <param name="scope">The application scope to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotScopedService.Initialize">
+            <summary>
+            Initializes information.
+            </summary>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotScopedService.Initialize``1">
+            <summary>
+            Initializes information.
+            </summary>
+            <typeparam name="T">The bot scope to consider.</typeparam>
+            <returns>Returns the log of the task.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.BotService">
+            <summary>
+            This class represents an bot.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.BotService._isLoaded">
             <summary>
             Indicates whether this instance is loaded.
             </summary>
             <remarks>The value can be assigned.</remarks>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompletedEventHandler">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.BotService.OnLoadCompletedEventHandler">
             <summary>
             This delegate is called when the application is successfully initialized.
             </summary>
-            <param name="sender">The application host</param>
+            <param name="sender">The bot</param>
         </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.AppService.OnLoadCompleted">
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.BotService.OnLoadCompleted">
             <summary>
             This event is triggered when the application is successfully initialized.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.Loggers">
             <summary>
             The runtime folder path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.Settings">
             <summary>
             The settings of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Configuration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.Configuration">
             <summary>
             The settings of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionState">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.CurrentExecutionState">
             <summary>
             The current execution state of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.CurrentExecutionStatus">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.CurrentExecutionStatus">
             <summary>
             The current execution status of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.AppDomainPool">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.AppDomainPool">
             <summary>
             Application domain pool of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.Log">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.Log">
             <summary>
             ILog of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.AppService.IsLoadCompleted">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.BotService.IsLoaded">
             <summary>
             Indicates whether the platform information is loaded.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Runtime.Application.Settings.IBaseSettings,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Instantiates a new instance of the AppService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Starts the application.
             </summary>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
             <summary>
             Indicates the application ends.
             </summary>
             <param name="executionStatus">The execution status to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.Initialize``1">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.Initialize``1">
             <summary>
             Initializes information.
             </summary>
             <typeparam name="A"></typeparam>
             <returns>Returns the log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.LoadComplete">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.LoadComplete">
             <summary>
             Fires the 'LoadComplete' event.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.AppService.GetSettings``1">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BotService.GetSettings``1">
             <summary>
             Gets the settings of this instance as the specified class.
             </summary>
@@ -2948,16 +3007,16 @@
             This class represents a connection service.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Services.ConnectionService._appScope">
+        <member name="F:BindOpen.Framework.Runtime.Application.Services.ConnectionService._scope">
             <summary>
             The application scope of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope)">
             <summary>
             Instantiates a new instance of the ConnectionManager class.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.ConnectionService.Open``1(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
@@ -3017,7 +3076,7 @@
             This class represents a data context service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.DataServiceExtension.Execute``1(BindOpen.Framework.Runtime.Application.Services.IAppService,System.Func{BindOpen.Framework.Runtime.Application.Services.IAppService,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Data.Connections.IConnection},System.Action{``0,BindOpen.Framework.Core.System.Diagnostics.ILog})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.DataServiceExtension.Execute``1(BindOpen.Framework.Runtime.Application.Services.IBotService,System.Func{BindOpen.Framework.Runtime.Application.Services.IBotService,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Core.Data.Connections.IConnection},System.Action{``0,BindOpen.Framework.Core.System.Diagnostics.ILog})">
             <summary>
             Executes the specified function.
             </summary>
@@ -3027,76 +3086,106 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.IAppService">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IBotScopedService">
             <summary>
-            The interface defines the application service.
+            This interface defines a scoped service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Loggers">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotScopedService.Scope">
+            <summary>
+            The application scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotScopedService.ConnectionService">
+            <summary>
+            The connection service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotScopedService.Context">
+            <summary>
+            The data context.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotScopedService.DataSourceDepot">
+            <summary>
+            The data source service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotScopedService.Interpreter">
+            <summary>
+            The script interpreter.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.IBotService">
+            <summary>
+            The interface defines the bot service.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.Loggers">
             <summary>
             The loggers.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.Settings">
             <summary>
             The settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Configuration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.Configuration">
             <summary>
             The settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.AppDomainPool">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.AppDomainPool">
             <summary>
             The application domain pool.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.Log">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.Log">
             <summary>
             The log.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.IsLoadCompleted">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.IsLoaded">
             <summary>
             Indicates whether the load is completed.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.LoadComplete">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBotService.LoadComplete">
             <summary>
             Fires the 'LoadComplete' event.
             </summary>
         </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.IAppService.OnLoadCompleted">
+        <member name="E:BindOpen.Framework.Runtime.Application.Services.IBotService.OnLoadCompleted">
             <summary>
             This event is triggered when the application is successfully initialized.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionState">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.CurrentExecutionState">
             <summary>
             The state of the current execution.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IAppService.CurrentExecutionStatus">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.IBotService.CurrentExecutionStatus">
             <summary>
             The status of the current execution.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBotService.Start(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Starts the process.
             </summary>
             <param name="log">The log to consider.</param>
-            <returns>Returns the application host to consider.</returns>
+            <returns>Returns the bot to consider.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBotService.End(BindOpen.Framework.Core.System.Processing.ProcessExecutionStatus)">
             <summary>
             Ends the process specifying the status.
             </summary>
             <param name="executionStatus">The execution status to apply.</param>
-            <returns>Returns the application host to consider.</returns>
+            <returns>Returns the bot to consider.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.IAppService.GetSettings``1">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.IBotService.GetSettings``1">
             <summary>
             
             </summary>
@@ -3155,158 +3244,69 @@
             <param name="log"></param>
             <returns>The log of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.IScopedService">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.ITBotService`1">
             <summary>
-            This interface defines a scoped service.
+            The interface defines the bot service.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.Scope">
-            <summary>
-            The application scope.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.ConnectionService">
-            <summary>
-            The connection service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.Context">
-            <summary>
-            The data context.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.DataSourceDepot">
-            <summary>
-            The data source service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.IScopedService.Interpreter">
-            <summary>
-            The script interpreter.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.ITAppService`1">
-            <summary>
-            The interface defines the application service.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITAppService`1.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBotService`1.Settings">
             <summary>
             Settings.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.ScopedService">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.TBotService`1">
             <summary>
-            This class represents a scoped service.
+            This class represents an bot.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Services.ScopedService._appScope">
-            <summary>
-            The scope of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.Scope">
-            <summary>
-            The application extension of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.Context">
-            <summary>
-            The data context of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.Interpreter">
-            <summary>
-            Script interpreter of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.DataSourceDepot">
-            <summary>
-            Data source service of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ScopedService.ConnectionService">
-            <summary>
-            Connection manager of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor">
-            <summary>
-            Instantiates a new instance of the ScopedService class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
-            <summary>
-            Instantiates a new instance of the ScopedService class.
-            </summary>
-            <param name="appScope">The application scope to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize">
-            <summary>
-            Initializes information.
-            </summary>
-            <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ScopedService.Initialize``1">
-            <summary>
-            Initializes information.
-            </summary>
-            <typeparam name="T">The runtime application scope to consider.</typeparam>
-            <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.TAppService`1">
-            <summary>
-            This class represents an application host.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TAppService`1.Settings">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBotService`1.Settings">
             <summary>
             The settings of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppHostScope,`0,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBotService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IBotScope,`0,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Instantiates a new instance of the TAppService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.TAppService`1.Initialize``1">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBotService`1.Initialize``1">
             <summary>
             Initializes information.
             </summary>
             <typeparam name="A"></typeparam>
             <returns>Returns the log of the task.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.THostedBotService`1">
             <summary>
-            This class represents an application host.
+            This class represents an bot.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.Host">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.THostedBotService`1.Bot">
             <summary>
             The host of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedBotService`1.#ctor">
             <summary>
             Instantiates a new instance of the THostedAppService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost,`0,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedBotService`1.#ctor(BindOpen.Framework.Runtime.Application.Bots.IBot,`0,BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Instantiates a new instance of the THostedAppService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedAppService`1.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IAppHost,System.Func{BindOpen.Framework.Runtime.Application.Hosts.IAppHost,`0},BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.THostedBotService`1.#ctor(BindOpen.Framework.Runtime.Application.Bots.IBot,System.Func{BindOpen.Framework.Runtime.Application.Bots.IBot,`0},BindOpen.Framework.Core.System.Diagnostics.Loggers.ILogger[])">
             <summary>
             Instantiates a new instance of the THostedAppService class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.BaseSettings">
             <summary>
-            This class represents a configuration.
+            This class represents a base settings.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Settings.BaseSettings._appScope">
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.BaseSettings._scope">
             <summary>
             The scope of this instance.
             </summary>
@@ -3335,7 +3335,7 @@
             <summary>
             Instantiates a new instance of the BaseSettings class.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The application scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.BaseSettings.Key">
@@ -3393,96 +3393,15 @@
             <param name="filePath">The file path to consider.</param>
             <param name="specificationLevels">The specification levels to consider.</param>
             <param name="specificationSet">The specification set to consider.</param>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The application scope to consider.</param>
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
             <returns>Returns the loading log.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Settings.DefaultAppSettings">
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.DefaultBotSettings">
             <summary>
             This class represents the default application.
             </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Settings.IAppSettings">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.AppConfiguration">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ApplicationInstanceId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ApplicationInstanceKind">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ApplicationInstanceName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.CookieDomain">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.CurrentRuntimeMode">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.DefaultTheme">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.DefaultUICultureName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ExecutionLevel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ExtensionsFolderPath">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.IsUserTrackingEnabled">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.LogFolderPath">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.RuntimeFolderPath">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.ServerInstanceName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.IAppSettings.SetAppScope(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
-            <summary>
-            
-            </summary>
-            <param name="appScope"></param>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.IBaseSettings">
             <summary>
@@ -3557,7 +3476,88 @@
             <param name="xmlSchemaSet"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Settings.ITAppSettings`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.IBotSettings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.AppConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ApplicationInstanceId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ApplicationInstanceKind">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ApplicationInstanceName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.CookieDomain">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.CurrentRuntimeMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.DefaultTheme">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.DefaultUICultureName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ExecutionLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ExtensionsFolderPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.IsUserTrackingEnabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.LogFolderPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.RuntimeFolderPath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.ServerInstanceName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.IBotSettings.SetAppScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+            <summary>
+            
+            </summary>
+            <param name="appScope"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.ITBotSettings`1">
             <summary>
             
             </summary>
@@ -3574,101 +3574,101 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1">
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1">
             <summary>
             This class represents a BDO application settings.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ApplicationInstanceKind">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ApplicationInstanceKind">
             <summary>
             The application instance kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ApplicationInstanceId">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ApplicationInstanceId">
             <summary>
             Application instance ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.DefaultUICultureName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.DefaultUICultureName">
             <summary>
             Default current UI culture name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.DefaultTheme">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.DefaultTheme">
             <summary>
             Default theme of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.CookieDomain">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.CookieDomain">
             <summary>
             Cookie domain name of this instance.
             </summary>
             <example>toto.com, titi.com...</example>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.CurrentRuntimeMode">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.CurrentRuntimeMode">
             <summary>
             Runtime mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ExecutionLevel">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ExecutionLevel">
             <summary>
             Execution level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ServerInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ServerInstanceName">
             <summary>
             Name of the platform server instance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ApplicationInstanceName">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ApplicationInstanceName">
             <summary>
             Name of the application instance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.IsUserTrackingEnabled">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.IsUserTrackingEnabled">
             <summary>
             Indicates whether user tracking is enabled.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.ExtensionsFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.ExtensionsFolderPath">
             <summary>
             The extensions folder path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.LogFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.LogFolderPath">
             <summary>
             The path of the log folder.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.RuntimeFolderPath">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.RuntimeFolderPath">
             <summary>
             The path of the runtime folder.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.AppConfiguration">
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.AppConfiguration">
             <summary>
             The application configuration of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.#ctor">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.#ctor">
             <summary>
             Instantiates a new instance of the TAppSettings class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope,`0)">
             <summary>
             Instantiates a new instance of the TAppSettings class.
             </summary>
             <param name="appScope">The application scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for storage.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -3676,7 +3676,7 @@
             <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TAppSettings`1.SetAppScope(BindOpen.Framework.Core.Application.Scopes.IAppHostScope)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBotSettings`1.SetAppScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
             <summary>
             Sets the specified application scope.
             </summary>
@@ -4523,7 +4523,7 @@
             This class represents a 'Runtime' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationModuleName).
             </summary>
@@ -4533,7 +4533,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationInstanceName).
             </summary>
@@ -4543,7 +4543,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEmpty(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEmpty(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISEMPTY.
             </summary>
@@ -4553,7 +4553,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Text(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Text(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $TEXT.
             </summary>
@@ -4563,7 +4563,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_FormatText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_FormatText(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $FORMAT.
             </summary>
@@ -4573,7 +4573,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_If(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_If(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $IF.
             </summary>
@@ -4583,7 +4583,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Not(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Not(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $NOT.
             </summary>
@@ -4593,7 +4593,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Or(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Or(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $OR.
             </summary>
@@ -4603,7 +4603,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_And(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_And(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $AND.
             </summary>
@@ -4613,7 +4613,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Xor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Xor(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $XOR.
             </summary>
@@ -4623,7 +4623,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEqual(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEqual(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISEQUAL.
             </summary>
@@ -4633,7 +4633,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsDifferent(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsDifferent(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISDIFFERENT.
             </summary>
@@ -4643,7 +4643,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_GetCurrentDateTime(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_GetCurrentDateTime(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(GETCURRENTDATETIME).
             </summary>
@@ -4653,7 +4653,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Format(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Format(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().FORMAT(aFormat).
             </summary>
@@ -4663,7 +4663,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_TimeStamp(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_TimeStamp(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().TIMESTAMP().
             </summary>
@@ -4673,7 +4673,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Add(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Add(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
             </summary>
@@ -4683,7 +4683,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word %DATAMODULE.
             </summary>
@@ -4693,7 +4693,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule_Name(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule_Name(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word %DATAMODULE.
             </summary>
@@ -4703,7 +4703,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_GetEmpty(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_GetEmpty(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(EMPTY).
             </summary>
@@ -4713,7 +4713,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Tab(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Tab(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_TAB).
             </summary>
@@ -4723,7 +4723,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Cr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Cr(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_CR).
             </summary>
@@ -4733,7 +4733,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_CarretPos(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_CarretPos(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_CARRETPOS).
             </summary>
@@ -4743,7 +4743,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(application.folderPath).
             </summary>
@@ -4753,7 +4753,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationRoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationRoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(roaming.folderPath).
             </summary>
@@ -4763,7 +4763,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_MyDocumentsFolderPath(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_MyDocumentsFolderPath(BindOpen.Framework.Core.Application.Scopes.IBotScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(myDocuments.folderPath).
             </summary>
@@ -5215,45 +5215,45 @@
             Linux
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Scopes.AppHostScope">
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.BotScope">
             <summary>
-            This class represents a runtime application scope.
+            This class represents a bot scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.AppHostScope.ConnectionService">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.BotScope.ConnectionService">
             <summary>
             The connection service of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScope.#ctor">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.BotScope.#ctor">
             <summary>
             Instantiates a new instance of the RuntimeAppScope class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScope.#ctor(System.AppDomain)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.BotScope.#ctor(System.AppDomain)">
             <summary>
             Instantiates a new instance of the RuntimeAppScope class.
             </summary>
             <param name="appDomain">The application domain to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScope.Initialize(System.AppDomain)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.BotScope.Initialize(System.AppDomain)">
             <summary>
             Sets the specified application domain.
             </summary>
             <param name="appDomain">The application domain to instance.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Scopes.AppHostScopeHelper">
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.BotScopeHelper">
             <summary>
-            This class represents a runtime application scope helper.
+            This class represents a bot scope helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScopeHelper.CreateHostScope(System.AppDomain)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.BotScopeHelper.CreateHostScope(System.AppDomain)">
             <summary>
             Creates a new scope.
             </summary>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Scopes.AppHostScopeHelper.Check(BindOpen.Framework.Core.Application.Scopes.AppHostScope,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:BindOpen.Framework.Core.Application.Scopes.BotScopeHelper.Check(BindOpen.Framework.Core.Application.Scopes.BotScope,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Check the specified item.
             </summary>
@@ -5265,12 +5265,12 @@
             <param name="isDataSourceDepotChecked">Indicates whether the data module manager is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Scopes.IAppHostScope">
+        <member name="T:BindOpen.Framework.Core.Application.Scopes.IBotScope">
             <summary>
-            This interface defines a runtime application scope.
+            This interface defines a bot scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IAppHostScope.ConnectionService">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IBotScope.ConnectionService">
             <summary>
             The connection service.
             </summary>

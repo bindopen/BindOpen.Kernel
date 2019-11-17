@@ -1,13 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Items.Connectors;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        protected readonly IAppHostScope _appScope = null;
+        protected readonly IBotScope _scope = null;
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -30,10 +30,10 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the ConnectionManager class.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
-        public ConnectionService(IAppHostScope appScope)
+        /// <param name="scope">The scope to consider.</param>
+        public ConnectionService(IBotScope scope)
         {
-            _appScope = appScope;
+            _scope = scope;
         }
 
         #endregion
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             Update<ConnectionService>();
 
             if (depot == null)
-                depot = _appScope?.DataSourceDepot;
+                depot = _scope?.DataSourceDepot;
 
             if (depot == null)
                 log.AddError("Source manager missing");
@@ -113,7 +113,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                 log.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
                 return Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueId), log);
-            else if (dataSource.Configurations.Count>0)
+            else if (dataSource.Configurations.Count > 0)
                 return Open<T>(dataSource.Configurations[0], log);
 
             return default;
@@ -136,14 +136,14 @@ namespace BindOpen.Framework.Runtime.Application.Services
             {
                 subLog.AddError("Connection missing");
             }
-            else if (_appScope == null)
+            else if (_scope == null)
             {
                 subLog.AddError("Application scope missing", description: "No application scope was defined for this connection service.");
             }
-            else if (!subLog.Append(_appScope.Check(true)).HasErrorsOrExceptions())
+            else if (!subLog.Append(_scope.Check(true)).HasErrorsOrExceptions())
             {
                 connection = new T();
-                connection.SetConnector(_appScope.CreateConnector(configuration, null, subLog));
+                connection.SetConnector(_scope.CreateConnector(configuration, null, subLog));
 
                 if (connection.Connector == null)
                 {

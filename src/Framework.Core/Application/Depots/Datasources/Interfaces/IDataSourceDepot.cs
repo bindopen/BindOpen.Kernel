@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Items.Sets;
-using BindOpen.Framework.Core.Data.Items.Source;
+﻿using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Application.Depots.Datasources
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataSourceDepot : IDataItemSet<DataSource>
+    public interface IDataSourceDepot : ITDepot<DataSource>
     {
         /// <summary>
         /// 
         /// </summary>
-        List<DataSource> Sources {get; set; }
+        List<DataSource> Sources { get; set; }
 
         /// <summary>
         /// 

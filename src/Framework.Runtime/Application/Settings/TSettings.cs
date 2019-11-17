@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Xml.Schema;
-using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Core.Application.Configuration;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System.Linq;
+using System.Xml.Schema;
 
 namespace BindOpen.Framework.Runtime.Application.Settings
 {
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="configuration">The configuration to consider.</param>
         public TSettings(IAppScope appScope, Q configuration)
         {
-            _appScope = appScope;
+            _scope = appScope;
             _configuration = configuration;
         }
 
@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
 
             if (!log.HasErrorsOrExceptions() && configuration != null)
             {
-                _appScope = appScope;
+                _scope = appScope;
                 Configuration?.Update(configuration);
                 Configuration?.Update(
                     new DataElementSpecSet(
@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
                             .Where(p => p.SpecificationLevels?.ToArray().Has(specificationLevels) == true).ToArray()),
                     null, new[] { UpdateModes.Incremental_UpdateCommonItems });
 
-                UpdateRuntimeInfo(_appScope, null, log);
+                UpdateRuntimeInfo(_scope, null, log);
             }
 
             return log;

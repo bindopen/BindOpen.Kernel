@@ -63,35 +63,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the DbTable class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        public DbTable(
-            string name,
-            string schema)
-            : base()
-        {
-            Name = name;
-            Schema = schema;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbTable class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModuleName">The name of the data module to consider.</param>
-        public DbTable(
-            string name,
-            string schema,
-            string dataModuleName)
-            : this(name, schema)
-        {
-            DataModule = dataModuleName;
-        }
-
         #endregion
 
 
