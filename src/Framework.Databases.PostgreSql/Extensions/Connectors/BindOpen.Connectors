@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<connectors.dictionary library="database.postgresql"
+<connectors.dictionary library="databases.postgresql"
   xmlns="https://bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:BdoConnectorDictionary BdoConnectorDictionary.xsd">
   

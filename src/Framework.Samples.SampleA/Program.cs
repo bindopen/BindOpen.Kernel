@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Samples.SampleA
                             .AddExtensions(p =>
                                 p.AddMSSqlServer()
                                 .AddPostgreSql())
-                            .AddDefaultFileLogger())
+                            .AddDefaultFileLogger("testA.txt"))
 
                     .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {

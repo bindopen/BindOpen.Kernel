@@ -131,7 +131,6 @@ namespace BindOpen.Framework.Core.Application.Scopes
             }
             var loader = new BdoExtensionStoreLoader(AppDomain, ExtensionStore, loadOptions);
             var log = loader.LoadExtensionsInStore(references);
-            ExtensionStore.Initialize();
             return log;
         }
 

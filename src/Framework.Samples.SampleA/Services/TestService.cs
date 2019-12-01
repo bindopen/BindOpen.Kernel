@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
             Log.Append(
                 new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.DeleteMyTable("", null), null, out string sql3));
+                    Queries.DeleteMyTable("name", null), null, out string sql3));
 
             Console.WriteLine(sql3);
 

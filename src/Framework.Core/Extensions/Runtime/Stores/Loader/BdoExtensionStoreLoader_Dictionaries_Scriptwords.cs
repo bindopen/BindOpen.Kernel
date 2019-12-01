@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Definition.Dictionaries;
 using BindOpen.Framework.Core.Extensions.Definition.Extensions;
@@ -48,6 +49,8 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
             }
             else
             {
+                List<BdoScriptwordDefinition> scriptwordDefinitions = new List<BdoScriptwordDefinition>();
+
                 var types = assembly.GetTypes().Where(p => p.GetCustomAttributes(typeof(BdoScriptwordDefinitionAttribute)).Any());
                 foreach (Type type in types)
                 {
@@ -85,7 +88,8 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
                                         itemDefinition.RuntimeFunction += methodInfo.CreateDelegate(
                                             typeof(BdoScriptwordFunction), itemDefinition.RuntimeFunction) as BdoScriptwordFunction;
 
-                                        _store.Add<IBdoScriptwordDefinition>(itemDefinition);
+
+                                        scriptwordDefinitions.Add(itemDefinition);
 
                                         count++;
                                     }
@@ -101,19 +105,17 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
                     }
                 }
 
+                // we build the script word tree
 
-                // we build the script tree
-
-                BuildScriptwordTree(extensionDefinition, dictionaryDto, log);
+                BuildScriptwordTree(dictionaryDto, scriptwordDefinitions, log);
             }
 
             return count;
         }
 
         private void BuildScriptwordTree(
-            IBdoExtensionDefinition extensionDefinition,
             IBdoScriptwordDictionaryDto dictionaryDto,
-            Dictionary<string, IBdoScriptwordDefinition> allDefinitions,
+            List<BdoScriptwordDefinition> allDefinitions,
             IBdoLog log = null,
             IBdoScriptwordDefinition parentDefinition = null)
         {
@@ -124,16 +126,44 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
             // we recursively retrieve the sub script words
             foreach (IBdoScriptwordDefinitionDto definitionDto in scriptWordDefinitionDtos)
             {
-                // if the current script word is not a reference then
-                // (references are handled during scope initalization)
-
-                if (string.IsNullOrEmpty(definitionDto.ReferenceUniqueName))
+                // if the current script word is a reference then
+                if (!string.IsNullOrEmpty(definitionDto.ReferenceUniqueName))
                 {
-                    var definition = new BdoScriptwordDefinition(extensionDefinition, definitionDto, parentDefinition);
-                    parentDefinition.Children.Add(definitionDto.Name.ToUpper(), definition);
+                    // we retrieve the reference script word
+                    IBdoScriptwordDefinition referenceScriptwordDefinition = allDefinitions.Find(p => p.KeyEquals(definitionDto.ReferenceUniqueName) == true);
 
+                    if (referenceScriptwordDefinition == null)
+                    {
+                        log?.AddError(
+                            title: "Child reference '" + definitionDto.ReferenceUniqueName + "' not found in index for script word '" + definitionDto.Key() + "'");
+                    }
+                    else
+                    {
+                        parentDefinition?.Children?.Add(referenceScriptwordDefinition.UniqueId?.ToUpper(), referenceScriptwordDefinition);
+                    }
+                }
+                else
+                {
+                    IBdoScriptwordDefinition definition = allDefinitions.Find(p => p.Dto?.KeyEquals(definitionDto) == true);
 
-                    BuildScriptwordTree(extensionDefinition, dictionaryDto, allDefinitions, log, definition);
+                    if (definition == null)
+                    {
+                        log?.AddError(title: "Script word '" + definitionDto.Key() + "' not found in code");
+                    }
+                    else
+                    {
+                        if (parentDefinition != null)
+                        {
+                            parentDefinition.Children.Add(definition.UniqueId?.ToUpper(), definition);
+                            definition.Parent = parentDefinition;
+                        }
+                        else
+                        {
+                            _store.Add<IBdoScriptwordDefinition>(definition);
+                        }
+
+                        BuildScriptwordTree(dictionaryDto, allDefinitions, log, definition);
+                    }
                 }
             }
         }

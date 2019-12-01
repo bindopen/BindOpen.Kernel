@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.System;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -69,28 +68,36 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "configuration.folderPath")]
-        public string ConfigurationFolderPath { get; internal set; } = (@".\" + BdoHostDefaultPaths.__DefaultConfigurationFolderPath).ToPath();
+        public string ConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultConfigurationFolderPath).ToPath();
 
         /// <summary>
         /// The logs folder path of this instance.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "logs.folderPath")]
-        public string LogsFolderPath { get; internal set; } = (@".\" + BdoHostDefaultPaths.__DefaultLogsFolderPath).ToPath();
+        public string LogsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLogsFolderPath).ToPath();
 
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "library.folderPath")]
-        public string LibraryFolderPath { get; internal set; } = (@".\" + BdoHostDefaultPaths.__DefaultLibraryFolderPath).ToPath();
+        public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 
         /// <summary>
         /// The settings folder path of this instance.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "packages.folderPath")]
-        public string PackagesFolderPath { get; internal set; } = (@".\" + BdoHostDefaultPaths.__DefaultPackagesFolderPath).ToPath();
+        public string PackagesFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultPackagesFolderPath).ToPath();
+
+        /// <summary>
+        /// The logs file name of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        [DetailProperty(Name = "logs.fileName")]
+        public string LogsFileName { get; internal set; } = BdoDefaultHostPaths.__DefaultLogsFileName;
+
 
         #endregion
 
@@ -170,6 +177,17 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         public IBdoHostAppSettings SetPackagesFolder(string packagesFolderPath = null)
         {
             PackagesFolderPath = packagesFolderPath?.GetEndedString(@"\").ToPath();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the log file name.
+        /// </summary>
+        /// <param name="logFileName">The log file name to consider.</param>
+        public IBdoHostAppSettings SetLogsFileName(string logFileName)
+        {
+            LogsFileName = logFileName;
 
             return this;
         }

@@ -1,12 +1,19 @@
 <bindopen xmlns="https://bindopen.org/xsd">
   
   <scalar name="applicationInstanceName" value="test.console" />
-  <scalar name="cookieDomain" value=".meltingsoft.com" />
-  <scalar name="defaultTheme" value="default" />
-  <scalar name="defaultUICultureName" value="fr-FR" />
-  
-  <scalar name="applicationInstanceKind" value="Autonomous" />
-  <scalar name="currentRuntimeMode" value="Debug" />
+
+  <scalar name="logs.fileName" script="testB_$(id).txt" />
+  <scalar name="logs.folderPath" script=".\..\..\..\bdo1\logs" />
+
+  <!--
   <scalar name="executionLevel" value="Development" />
-    
+  <scalar name="runtime.folderPath" script="$(application.folderPath) \bdo" />
+  <scalar name="configuration.folderPath" script="$(runtime.folderPath) \config" />
+  <scalar name="library.folderPath" script="$(runtime.folderPath) \lib" />
+  <scalar name="logs.folderPath" script="$(runtime.folderPath) \logs" />
+  <scalar name="logs.fileName" script="testB.xt" />
+  <scalar name="packages.filePath" script="$(runtime.folderPath) \packages" />
+  -->
+
+
 </bindopen>

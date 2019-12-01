@@ -1,7 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -313,85 +311,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
                     _taskDefinitions.Add(task.UniqueId?.ToUpper(), task);
                 }
             }
-        }
-
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        /// <returns></returns>
-        public IBdoLog Initialize()
-        {
-            var log = BuildScriptwordTree();
-
-            return log;
-        }
-
-
-        private IBdoLog BuildScriptwordTree(IBdoScriptwordDefinition parentDefinition = null)
-        {
-            var log = new BdoLog();
-
-            Dictionary<string, IBdoScriptwordDefinition> definitions = parentDefinition == null ? _scriptWordDefinitions : parentDefinition.Children;
-
-            // we recursively retrieve the sub script words
-            foreach (var definitionEntry in definitions)
-            {
-                var definition = definitionEntry.Value;
-
-                if (definition?.Dto != null)
-                {
-                    var referenceUniqueName = definition?.Dto?.ReferenceUniqueName;
-
-                    // if the current script word is a reference then
-                    if (!string.IsNullOrEmpty(referenceUniqueName))
-                    {
-                        // we retrieve the reference script word
-                        IBdoScriptwordDefinition referenceScriptwordDefinition = _scriptWordDefinitions.Where(p => p.Value.KeyEquals(referenceUniqueName) == true).Select(p => p.Value).FirstOrDefault();
-
-                        if (referenceScriptwordDefinition == null)
-                        {
-                            log?.AddError(
-                                title: "No child reference '" + referenceUniqueName + "' found in store for script word '" + definition.Key() + "'");
-                        }
-                        else
-                        {
-                            parentDefinition?.Children?.Add(referenceScriptwordDefinition.UniqueId?.ToUpper(), referenceScriptwordDefinition);
-                        }
-                    }
-                    else
-                    {
-                        foreach (var subDefinitionEntry in definition.Children)
-                        {
-                            var subDefinition = subDefinitionEntry.Value;
-                            BuildScriptwordTree(subDefinition);
-                        }
-
-                        //IBdoScriptwordDefinition definition = allDefinitions.Find(p => p.Dto?.KeyEquals(definitionDto) == true);
-
-                        //if (definition == null)
-                        //{
-                        //    log?.AddError(title: "No script word '" + definitionDto.Key() + "' found in store");
-                        //}
-                        //else
-                        //{
-                        //    if (parentDefinition != null)
-                        //    {
-                        //        parentDefinition.Children.Add(definition.UniqueId?.ToUpper(), definition);
-                        //        definition.Parent = parentDefinition;
-                        //    }
-                        //    else
-                        //    {
-                        //        Add<IBdoScriptwordDefinition>(definition);
-                        //    }
-
-                        //    var subLog = BuildScriptwordTree(definition);
-                        //    log?.Append(subLog);
-                        //}
-                    }
-                }
-            }
-
-            return log;
         }
 
         #endregion

@@ -53,6 +53,11 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// 
         /// </summary>
+        string LogsFileName { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         string PackagesFolderPath { get; }
 
         /// <summary>
@@ -82,5 +87,11 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <param name="packagesFolderPath">The packages folder path.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostAppSettings SetPackagesFolder(string packagesFolderPath);
+
+        /// <summary>
+        /// Sets the log file name.
+        /// </summary>
+        /// <param name="logFileName">The log file name to consider.</param>
+        IBdoHostAppSettings SetLogsFileName(string logFileName);
     }
 }

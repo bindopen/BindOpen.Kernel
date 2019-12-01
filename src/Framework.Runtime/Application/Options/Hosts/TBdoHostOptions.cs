@@ -7,7 +7,6 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
@@ -64,12 +63,12 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// 
         /// </summary>
-        protected string _appSettingsFilePath = (@".\" + BdoHostDefaultPaths.__DefaultAppSettingsFileName).ToPath();
+        protected string _appSettingsFilePath = (@".\" + BdoDefaultHostPaths.__DefaultAppSettingsFileName).ToPath();
 
         /// <summary>
         /// 
         /// </summary>
-        protected string _runtimeFolderPath = (@".\" + BdoHostDefaultPaths.__DefaultRuntimeFolderPath).ToPath();
+        protected string _runtimeFolderPath = (@".\" + BdoDefaultHostPaths.__DefaultRuntimeFolderPath).ToPath();
 
         #endregion
 
@@ -165,7 +164,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         public TBdoHostOptions() : base()
         {
             _extensionLoadOptions = new ExtensionLoadOptions()
-                .WithLibraryFolderPath((@".\" + BdoHostDefaultPaths.__DefaultLibraryFolderPath).ToPath())
+                .WithLibraryFolderPath((@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath())
                 .WithSourceKinds(DatasourceKind.Memory, DatasourceKind.Repository);
         }
 
@@ -195,11 +194,11 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
 
             if (string.IsNullOrEmpty(AppFolderPath))
             {
-                _appFolderPath = BdoHostDefaultPaths.__DefaultAppFolderPath;
+                _appFolderPath = BdoDefaultHostPaths.__DefaultAppFolderPath;
             }
             else
             {
-                _appFolderPath = _appFolderPath.GetConcatenatedPath(BdoHostDefaultPaths.__DefaultAppFolderPath).GetEndedString(@"\").ToPath();
+                _appFolderPath = _appFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultAppFolderPath).GetEndedString(@"\").ToPath();
             }
 
             _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_appFolderPath).ToPath();
@@ -356,10 +355,14 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// Adds the default file logger.
         /// </summary>
+        /// <param name="logFileName">The log file name to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddDefaultFileLogger()
+        public ITBdoHostOptions<S> AddDefaultFileLogger(string logFileName = null)
         {
             _isDefaultLoggerUsed = true;
+
+            AppSettings = AppSettings ?? new BdoHostAppSettings();
+            AppSettings?.SetLogsFileName(logFileName);
 
             return this;
         }

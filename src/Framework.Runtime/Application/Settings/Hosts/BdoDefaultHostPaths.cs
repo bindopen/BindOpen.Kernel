@@ -2,12 +2,12 @@
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Framework.Runtime.Application.Hosts
+namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
 {
     /// <summary>
     /// This static class contains the default option values.
     /// </summary>
-    public static class BdoHostDefaultPaths
+    public static class BdoDefaultHostPaths
     {
         // ------------------------------------------
         // CONSTANTS
@@ -54,6 +54,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// The default extensions folder path.
         /// </summary>
         public static readonly string __DefaultPackagesFolderPath = @"packages\".ToPath();
+
+        /// <summary>
+        /// The default log file name.
+        /// </summary>
+        public static readonly string __DefaultLogsFileName = @"log_$(timestamp)_$(id).txt";
 
         /// <summary>
         /// Maximum number of minutes : authentication 

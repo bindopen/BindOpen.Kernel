@@ -159,7 +159,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Sets the name of the file of this instance.
         /// </summary>
         /// <param name="fileName">The name of the file to consider.</param>
-        void SetFileName(String fileName);
+        /// <param name="id">The ID to consider.</param>
+        void SetFileName(string fileName, string id = null);
 
         /// <summary>
         /// Sets the log file location.
@@ -167,7 +168,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="newFolderPath">The new folder path to consider.</param>
         /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
         /// <param name="newFileName">The new file name to consider.</param>
-        void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null);
+        /// <param name="id">The ID to consider.</param>
+        void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null, string id = null);
 
         #endregion
 

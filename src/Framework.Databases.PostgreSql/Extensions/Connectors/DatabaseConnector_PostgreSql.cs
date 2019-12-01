@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
     /// <summary>
     /// This class represents a OleDb database connector.
     /// </summary>
-    [BdoConnector(Name = "database.postgresql$client")]
+    [BdoConnector(Name = "databases.postgresql$client")]
     public class DatabaseConnector_PostgreSql : DatabaseConnector
     {
         // ------------------------------------------

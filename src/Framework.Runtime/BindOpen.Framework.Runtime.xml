@@ -246,56 +246,6 @@
             <param name="executionStatus">The execution status to apply.</param>
             <returns>Returns the bot to consider.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths">
-            <summary>
-            This static class contains the default option values.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultAppFolderPath">
-            <summary>
-            The default application folder
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultAppSettingsFileName">
-            <summary>
-            The default host settings file name
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultConfigurationFileName">
-            <summary>
-            The default application configuration file name
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultRuntimeFolderPath">
-            <summary>
-            The default runtime folder path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultConfigurationFolderPath">
-            <summary>
-            The default settings folder path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultLogsFolderPath">
-            <summary>
-            The default logs folder path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultLibraryFolderPath">
-            <summary>
-            The default library folder path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths.__DefaultPackagesFolderPath">
-            <summary>
-            The default extensions folder path.
-            </summary>
-        </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Hosts.BdoHostDefaultPaths._AUTHENTICATIONTIMEOUT">
-            <summary>
-            Maximum number of minutes : authentication 
-            </summary>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.BdoHostPathKind">
             <summary>
             This enumeration lists all the possible kinds of host path.
@@ -1574,10 +1524,11 @@
             </summary>
             <returns>Returns the host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.AddDefaultFileLogger">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.AddDefaultFileLogger(System.String)">
             <summary>
             Adds the default file logger.
             </summary>
+            <param name="logFileName">The log file name to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.AddDefaultConsoleLogger">
@@ -1809,10 +1760,11 @@
             <param name="loggers">The loggers to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.AddDefaultFileLogger">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.AddDefaultFileLogger(System.String)">
             <summary>
             Adds the default file logger.
             </summary>
+            <param name="logFileName">The log file name to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.AddDefaultConsoleLogger">
@@ -3004,6 +2956,61 @@
             <param name="scope">The scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths">
+            <summary>
+            This static class contains the default option values.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultAppFolderPath">
+            <summary>
+            The default application folder
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultAppSettingsFileName">
+            <summary>
+            The default host settings file name
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultConfigurationFileName">
+            <summary>
+            The default application configuration file name
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultRuntimeFolderPath">
+            <summary>
+            The default runtime folder path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultConfigurationFolderPath">
+            <summary>
+            The default settings folder path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultLogsFolderPath">
+            <summary>
+            The default logs folder path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultLibraryFolderPath">
+            <summary>
+            The default library folder path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultPackagesFolderPath">
+            <summary>
+            The default extensions folder path.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultLogsFileName">
+            <summary>
+            The default log file name.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths._AUTHENTICATIONTIMEOUT">
+            <summary>
+            Maximum number of minutes : authentication 
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostSettings">
             <summary>
             This class represents the default host settings.
@@ -3059,6 +3066,11 @@
             The settings folder path of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.LogsFileName">
+            <summary>
+            The logs file name of this instance.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.#ctor">
             <summary>
             Instantiates a new instance of the BdoHostAppSettings class.
@@ -3098,6 +3110,12 @@
             </summary>
             <param name="packagesFolderPath"></param>
             <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.SetLogsFileName(System.String)">
+            <summary>
+            Sets the log file name.
+            </summary>
+            <param name="logFileName">The log file name to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings">
             <summary>
@@ -3144,6 +3162,11 @@
             
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.LogsFileName">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.PackagesFolderPath">
             <summary>
             
@@ -3176,6 +3199,12 @@
             </summary>
             <param name="packagesFolderPath">The packages folder path.</param>
             <returns>Returns the host option.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.SetLogsFileName(System.String)">
+            <summary>
+            Sets the log file name.
+            </summary>
+            <param name="logFileName">The log file name to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostSettings">
             <summary>

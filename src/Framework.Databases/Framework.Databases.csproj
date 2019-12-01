@@ -40,9 +40,10 @@ This package handles database connections.</Description>
   <ItemGroup>
     <None Remove="BindOpen.Extension" />
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
+    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
     <None Remove="Extensions\Connectors\connectors.dictionary" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />
-    <None Remove="Extensions\Handlers\XBindOpen.Handlers" />
+    <None Remove="Extensions\Handlers\BindOpen.Handlers" />
     <None Remove="Extensions\Metrics\BindOpen.Metrics" />
     <None Remove="Extensions\Routines\BindOpen.Routines" />
     <None Remove="Extensions\Scriptwords\BindOpen.Scriptwords" />
@@ -51,8 +52,9 @@ This package handles database connections.</Description>
 
   <ItemGroup>
     <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
     <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
-    <EmbeddedResource Include="Extensions\Handlers\XBindOpen.Handlers" />
+    <EmbeddedResource Include="Extensions\Handlers\BindOpen.Handlers" />
     <EmbeddedResource Include="Extensions\Metrics\BindOpen.Metrics" />
     <EmbeddedResource Include="Extensions\Routines\BindOpen.Routines" />
     <EmbeddedResource Include="Extensions\Scriptwords\BindOpen.Scriptwords" />

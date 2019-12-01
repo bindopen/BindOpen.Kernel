@@ -369,11 +369,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Sets the name of the file of this instance.
         /// </summary>
         /// <param name="fileName">The name of the file to consider.</param>
-        public void SetFileName(string fileName)
+        /// <param name="id">The ID to consider.</param>
+        public void SetFileName(string fileName, string id = null)
         {
             fileName = (string.IsNullOrEmpty(fileName) ? "log_$(timeStamp).log" : fileName);
             fileName = fileName.Replace("$(timeStamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), false);
-            fileName = fileName.Replace("$(id)", Guid.NewGuid().ToString(), false);
+            fileName = fileName.Replace("$(id)", id ?? Guid.NewGuid().ToString(), false);
             _FileName = fileName;
         }
 
@@ -383,17 +384,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="newFolderPath">The new folder path to consider.</param>
         /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
         /// <param name="newFileName">The new file name to consider.</param>
-        public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null)
+        /// <param name="id">The new file name to consider.</param>
+        public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null, string id = null)
         {
             if (string.IsNullOrEmpty(newFolderPath)) return;
 
             string oldFilePath = Filepath;
             newFileName = (string.IsNullOrEmpty(newFileName) ? (oldFilePath == null ? null : Path.GetFileName(oldFilePath)) : newFileName);
 
+            _FolderPath = newFolderPath;
+            SetFileName(newFileName, id);
+
             if (isFileToBeMoved && File.Exists(oldFilePath) && !string.IsNullOrEmpty(oldFilePath))
             {
                 // we move the old file to the new folder
-                string newFilePath = newFolderPath.ToLower().GetEndedString(@"\").ToPath() + newFileName;
+                string newFilePath = Filepath;
 
                 try
                 {
@@ -405,9 +410,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                 {
                 }
             }
-
-            _FolderPath = newFolderPath;
-            SetFileName(newFileName);
         }
 
         #endregion

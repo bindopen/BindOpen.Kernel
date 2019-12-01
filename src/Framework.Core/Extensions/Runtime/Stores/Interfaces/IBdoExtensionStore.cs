@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
@@ -46,11 +45,5 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
         IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null);
-
-        /// <summary>
-        /// Initialize this instance.
-        /// </summary>
-        /// <returns></returns>
-        IBdoLog Initialize();
     }
 }

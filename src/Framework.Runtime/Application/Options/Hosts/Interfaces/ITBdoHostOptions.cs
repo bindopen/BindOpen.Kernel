@@ -86,8 +86,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// Adds the default file logger.
         /// </summary>
+        /// <param name="logFileName">The log file name to consider.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddDefaultFileLogger();
+        ITBdoHostOptions<S> AddDefaultFileLogger(string logFileName = null);
 
         /// <summary>
         /// Adds the default file logger.

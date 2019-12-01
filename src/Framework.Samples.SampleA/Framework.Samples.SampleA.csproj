@@ -48,7 +48,6 @@ This package conducts on-demand tests before they are implemented in the unit te
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bdo\bindopen.config" />
     <Content Include="bdo\config\bindopen.config" />
   </ItemGroup>
 

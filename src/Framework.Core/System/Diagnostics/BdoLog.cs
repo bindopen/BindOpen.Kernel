@@ -1247,7 +1247,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null)
         {
             foreach (IBdoLogger logger in Loggers)
-                logger.SetFilePath(newFolderPath, isFileToBeMoved, newFileName);
+                logger.SetFilePath(newFolderPath, isFileToBeMoved, newFileName, Id);
         }
 
         /// <summary>

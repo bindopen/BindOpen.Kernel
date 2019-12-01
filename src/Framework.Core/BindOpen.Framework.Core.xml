@@ -12427,12 +12427,6 @@
             <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
             <param name="definition">The definition to add.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Runtime.Stores.BdoExtensionStore.Initialize">
-            <summary>
-            Initializes this instance.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Runtime.Stores.ExtensionLoadOptions">
             <summary>
             This class represents the extension loading configuration.
@@ -12529,12 +12523,6 @@
             </summary>
             <param name="uniqueId"></param>
             <param name="parentDefinition"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Extensions.Runtime.Stores.IBdoExtensionStore.Initialize">
-            <summary>
-            Initialize this instance.
-            </summary>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Runtime.Stores.IExtensionLoadOptions">
@@ -15237,19 +15225,21 @@
             <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.SetFileName(System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.SetFileName(System.String,System.String)">
             <summary>
             Sets the name of the file of this instance.
             </summary>
             <param name="fileName">The name of the file to consider.</param>
+            <param name="id">The ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.SetFilePath(System.String,System.Boolean,System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.SetFilePath(System.String,System.Boolean,System.String,System.String)">
             <summary>
             Sets the log file location.
             </summary>
             <param name="newFolderPath">The new folder path to consider.</param>
             <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
             <param name="newFileName">The new file name to consider.</param>
+            <param name="id">The new file name to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.LoadLog(System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Boolean)">
             <summary>
@@ -15456,19 +15446,21 @@
             <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.SetFileName(System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.SetFileName(System.String,System.String)">
             <summary>
             Sets the name of the file of this instance.
             </summary>
             <param name="fileName">The name of the file to consider.</param>
+            <param name="id">The ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.SetFilePath(System.String,System.Boolean,System.String)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.SetFilePath(System.String,System.Boolean,System.String,System.String)">
             <summary>
             Sets the log file location.
             </summary>
             <param name="newFolderPath">The new folder path to consider.</param>
             <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
             <param name="newFileName">The new file name to consider.</param>
+            <param name="id">The ID to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.LoadLog(System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Boolean)">
             <summary>
