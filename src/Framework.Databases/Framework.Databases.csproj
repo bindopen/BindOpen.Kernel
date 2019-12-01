@@ -16,6 +16,7 @@ This package handles database connections.</Description>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -37,26 +38,26 @@ This package handles database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Extensions\Carriers\carriers.index" />
-    <None Remove="Extensions\Connectors\connectors.index" />
-    <None Remove="Extensions\Entities\entities.index" />
-    <None Remove="Extensions\Handlers\handlers.index" />
-    <None Remove="Extensions\Metrics\metrics.index" />
-    <None Remove="Extensions\Routines\routines.index" />
-    <None Remove="Extensions\Scriptwords\Scriptwords.index" />
-    <None Remove="Extensions\Tasks\tasks.index" />
-    <None Remove="library.definition" />
+    <None Remove="BindOpen.Extension" />
+    <None Remove="Extensions\Carriers\BindOpen.Carriers" />
+    <None Remove="Extensions\Connectors\connectors.dictionary" />
+    <None Remove="Extensions\Entities\BindOpen.Entities" />
+    <None Remove="Extensions\Handlers\XBindOpen.Handlers" />
+    <None Remove="Extensions\Metrics\BindOpen.Metrics" />
+    <None Remove="Extensions\Routines\BindOpen.Routines" />
+    <None Remove="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <None Remove="Extensions\Tasks\BindOpen.Tasks" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Extensions\Carriers\Carriers.index" />
-    <EmbeddedResource Include="Extensions\Entities\Entities.index" />
-    <EmbeddedResource Include="Extensions\Handlers\Handlers.index" />
-    <EmbeddedResource Include="Extensions\Metrics\Metrics.index" />
-    <EmbeddedResource Include="Extensions\Routines\Routines.index" />
-    <EmbeddedResource Include="Extensions\Scriptwords\Scriptwords.index" />
-    <EmbeddedResource Include="Extensions\Tasks\Tasks.index" />
-    <EmbeddedResource Include="Library.definition" />
+    <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
+    <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
+    <EmbeddedResource Include="Extensions\Handlers\XBindOpen.Handlers" />
+    <EmbeddedResource Include="Extensions\Metrics\BindOpen.Metrics" />
+    <EmbeddedResource Include="Extensions\Routines\BindOpen.Routines" />
+    <EmbeddedResource Include="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <EmbeddedResource Include="Extensions\Tasks\BindOpen.Tasks" />
+    <EmbeddedResource Include="BindOpen.Extension" />
   </ItemGroup>
 
   <ItemGroup>

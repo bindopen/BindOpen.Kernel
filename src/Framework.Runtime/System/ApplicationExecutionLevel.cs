@@ -11,29 +11,19 @@
         None,
 
         /// <summary>
-        /// Development.
+        /// Debug.
         /// </summary>
-        DEV,
+        Debug,
 
         /// <summary>
-        /// Operation Acceptance Testing.
+        /// Staging.
         /// </summary>
-        OAT,
-
-        /// <summary>
-        /// User Acceptance Testing.
-        /// </summary>
-        UAT,
+        Staging,
 
         /// <summary>
         /// Production.
         /// </summary>
-        PROD,
-
-        /// <summary>
-        /// Demonstration.
-        /// </summary>
-        DEM
+        Production
     }
 
 }

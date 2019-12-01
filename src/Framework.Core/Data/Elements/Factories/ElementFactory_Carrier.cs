@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="items">The items to consider.</param>
         public static CarrierElement CreateCarrier(
             string name,
-            params ICarrierConfiguration[] items)
+            params IBdoCarrierConfiguration[] items)
         {
             return CreateCarrier(name, null, null, null, items);
         }
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static CarrierElement CreateCarrier(
-            params ICarrierConfiguration[] items)
+            params IBdoCarrierConfiguration[] items)
         {
             return CreateCarrier(null, null, null, null, items);
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public static CarrierElement CreateCarrier(
             string name,
             string definitionUniqueId,
-            params ICarrierConfiguration[] items)
+            params IBdoCarrierConfiguration[] items)
         {
             return CreateCarrier(name, null, definitionUniqueId, null, items);
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             string id,
             string definitionUniqueId,
             ICarrierElementSpec specification,
-            params ICarrierConfiguration[] items)
+            params IBdoCarrierConfiguration[] items)
         {
             CarrierElement element = new CarrierElement(name, id)
             {

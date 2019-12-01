@@ -1,0 +1,1 @@
+- Check whether an extension has already been loaded in store

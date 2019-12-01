@@ -52,7 +52,7 @@
             </summary>
             <param name="connector">The connector to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.SetConnector(BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoConnector)">
             <summary>
             Sets the connector of this instance.
             </summary>
@@ -64,7 +64,7 @@
             </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query that returns nothing.
             </summary>
@@ -73,7 +73,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a data reader.
             </summary>
@@ -82,7 +82,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a data reader.
             </summary>
@@ -92,7 +92,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -102,7 +102,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -112,7 +112,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -122,14 +122,14 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Gets the identity of the last inserted item
             </summary>
             <param name="id">The long identifier to populate.</param>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -138,7 +138,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -147,7 +147,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -157,7 +157,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.DatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -177,7 +177,7 @@
             Connector of the connection.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified non query text.
             </summary>
@@ -185,7 +185,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified query text.
             </summary>
@@ -193,7 +193,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified query text and populate the specified data set.
             </summary>
@@ -202,7 +202,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -211,7 +211,7 @@
             <param name="scriptVariableSet"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -220,7 +220,7 @@
             <param name="scriptVariableSet"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -235,13 +235,13 @@
             </summary>
             <returns>Returns the database connection.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Get the identity of the last tuple processed.
             </summary>
             <returns>Returns the identity of the last tuple processed.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -250,7 +250,7 @@
             <param name="tableNames"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -259,7 +259,7 @@
             <param name="tableNames"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -267,7 +267,7 @@
             <param name="dataTable"></param>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             
             </summary>
@@ -503,7 +503,7 @@
             This class represents a data service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.IDataService,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IScriptVariableSet)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetData``1(BindOpen.Framework.Core.Application.Services.Data.IBdoDataService,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Databases.Data.Queries.IDbQuery,System.Func{System.Data.IDbConnection,System.String,``0},BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet)">
             <summary>
             Retrieves the specified data.
             </summary>
@@ -515,7 +515,7 @@
             <param name="scriptVariableSet">The script variable set to consider.</param>
             <returns>Returns the specified data.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetId``2(BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DataServiceExtension.GetId``2(BindOpen.Framework.Databases.Data.Connections.IDatabaseConnection,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified function.
             </summary>
@@ -530,7 +530,7 @@
             This class represents the database data query extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.ConvertToExtensionScript(System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition,System.Int32)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.ConvertToExtensionScript(System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition,System.Int32)">
             <summary>
             Converts the specifed search query into an extension script.
             </summary>
@@ -540,7 +540,7 @@
             <param name="i"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Filter(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Filter(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptFilteringDefinition)">
             <summary>
             Adds filters to the specified database query considering the specified filter query string.
             </summary>
@@ -550,7 +550,7 @@
             <param name="definition">The clause statement to consider.</param>
             <returns>The built query.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Sort(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Sort(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
             <summary>
             Sorts the specified query considering the specified query script.
             </summary>
@@ -560,7 +560,7 @@
             <param name="definition">The definition to consider.</param>
             <returns>The built query.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Paginate(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.Nullable{System.Int32},System.String,BindOpen.Framework.Core.System.Diagnostics.ILog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.ApiScript.DbQueryExtension.Paginate(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,System.Nullable{System.Int32},System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Databases.Data.Queries.ApiScript.ApiScriptSortingDefinition)">
             <summary>
             Builds the following query: Get the server instances.
             </summary>
@@ -742,17 +742,17 @@
             This class represents a builder of database query.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder._appScope">
+        <member name="F:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder._scope">
             <summary>
             The application scope of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.#ctor(BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind,BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.#ctor(BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnectorKind,BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Instantiates a new instance of the DbQueryBuilder class.
             </summary>
             <param name="databaseKind">The kind of database to consider.</param>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.GetDatabaseName(System.String)">
             <summary>
@@ -761,7 +761,7 @@
             <param name="dataModuleName">The data module name to consider.</param>
             <remarks>If not found, it returns the specified data module name.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result into the specified string query.
             </summary>
@@ -770,14 +770,14 @@
             <param name="queryString">The output string query.</param>
             <returns>The log of the build task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result
             into the specified string MS Sql Server query.
             <remarks>We assume the query already exits.</remarks>
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result into the specified string query.
             </summary>
@@ -786,7 +786,7 @@
             <param name="queryString">The output string query.</param>
             <returns>The log of the build task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result
             into the specified string MS Sql Server query.
@@ -796,7 +796,7 @@
             <param name="scriptVariableSet"></param>
             <param name="queryString"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.Data.Queries.Builders.DbQueryBuilder.BuildQuery(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified advanced database data query and put the result
             into the specified string query.
@@ -2316,7 +2316,7 @@
             <param name="name">The name of this instance.</param>
             <param name="connectionString">The connection string to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetSqlText(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetSqlText(BindOpen.Framework.Databases.Data.Queries.IDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Gets the SQL text of the specified query.
             </summary>
@@ -2351,7 +2351,7 @@
             </summary>
             <returns>The database kind of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query that returns nothing.
             </summary>
@@ -2360,7 +2360,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a data reader.
             </summary>
@@ -2370,7 +2370,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -2380,14 +2380,14 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Gets the identity of the last inserted item
             </summary>
             <param name="id">The long identifier to populate.</param>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -2396,7 +2396,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -2406,7 +2406,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetConnector(BindOpen.Framework.Core.Extensions.Items.Connectors.IConnector)">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Connectors.DatabaseConnector.SetConnector(BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoConnector)">
             <summary>
             
             </summary>
@@ -2534,311 +2534,311 @@
             This class represents a 'Database' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlCount(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlCount(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCOUNT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlSum(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlSum(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLSUM.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAverage(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAverage(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLAVG.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGetCurrentDate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGetCurrentDate(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGETCURRENTDATE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlTrue(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlTrue(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLTRUE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIf(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIf(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLIF.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNot(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNot(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNOT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
             <param name="scriptWord">The script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlOr(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlOr(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLOR.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAnd(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlAnd(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLAND.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlXor(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlXor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLXOR.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlEq(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlEq(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLEQ.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDiff(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDiff(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLDIFF.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGt(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlGte(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLGTE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLt(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLt(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLte(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLte(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLTE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIsNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIsNull(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLISNULL.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConvertToText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConvertToText(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCONVERTTOTEXT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlText(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlText(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLTEXT.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLike(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlLike(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLIKE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlReplace(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlReplace(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLREPLACE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConcatenate(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlConcatenate(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLCONCATENATE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNull(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNull(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNULL.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word %SQLDATABASE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlSchema(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlSchema(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word [%DATABASE->]%SCHEMA.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word [%DATABASE->]%TABLE.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable_SqlField(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlDatabase_SqlTable_SqlField(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNewGuid(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlNewGuid(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLNEWGUID.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlRandom(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlRandom(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLRANDOM.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIn(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlIn(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLIN.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlList(BindOpen.Framework.Core.Application.Scopes.IAppScope,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.Extensions.Items.Scriptwords.IScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Databases.Extensions.Scriptwords.ScriptwordDefinition_Database.Fun_SqlList(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $SQLLIST.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
             <param name="scriptWord">Script word to evaluate.</param>
             <param name="parameters">The parameters to consider.</param>

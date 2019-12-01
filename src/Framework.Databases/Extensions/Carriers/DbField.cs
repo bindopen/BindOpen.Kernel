@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Databases.Data.Queries;
 using System;
 using System.Xml.Serialization;
@@ -16,13 +16,13 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     [Serializable()]
     [XmlType("DbField", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dbField", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    [Carrier(
+    [BdoCarrier(
         Name = "databases$dbField",
-        DataSourceKind = DataSourceKind.Database,
+        DatasourceKind = DatasourceKind.Database,
         Description = "Database field.",
         CreationDate = "2016-09-14"
     )]
-    public class DbField : Carrier
+    public class DbField : BdoCarrier
     {
         // ------------------------------------------
         // PROPERTIES

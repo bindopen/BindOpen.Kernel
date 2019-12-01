@@ -9,7 +9,7 @@
     <scalar name="key21" value="value21" />
     <scalar name="key22" value="value22" />
     <scalar name="key23" valueType="Integer" value="25" />
-    <carrier name="collection2" valueType="Carrier">
+    <carrier name="carrier1" valueType="Carrier">
       <definition>runtime$file</definition>
       <items>
         <add>

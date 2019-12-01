@@ -425,7 +425,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the item object.</returns>
         public object GetDefaultItemObject(
-            ILog log = null)
+            IBdoLog log = null)
         {
             return !IsValueList ? this.DefaultItems.FirstOrDefault() : this.DefaultItems;
         }
@@ -459,12 +459,12 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
-        public override ILog Repair<T>(
+        public override IBdoLog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (MinimumItemNumber < 0) MinimumItemNumber = 0;
             if (MaximumItemNumber < 0) MaximumItemNumber = -1;
@@ -497,11 +497,11 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item">The item to consider.</param>
         /// <param name="dataElement">The element to consider.</param>
         /// <returns>The log of check log.</returns>
-        public virtual ILog CheckItem(
+        public virtual IBdoLog CheckItem(
             object item,
             IDataElement dataElement = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
             if (item != null)
             {
                 if (_constraintStatement != null)
@@ -519,11 +519,11 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="dataElement">The element to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>The log of check log.</returns>
-        public virtual ILog CheckElement(
+        public virtual IBdoLog CheckElement(
             IDataElement dataElement,
             string[] specificationAreas = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (dataElement == null)
                 return log;

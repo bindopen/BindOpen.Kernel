@@ -95,11 +95,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="item">The item to consider.</param>
         /// <param name="dataElement">The element to consider.</param>
         /// <returns>The log of check log.</returns>
-        public override ILog CheckItem(
+        public override IBdoLog CheckItem(
             object item,
             IDataElement dataElement = null)
         {
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -108,11 +108,11 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <param name="dataElement">The element to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>The log of check log.</returns>
-        public override ILog CheckElement(
+        public override IBdoLog CheckElement(
             IDataElement dataElement,
             string[] specificationAreas = null)
         {
-            return new Log();
+            return new BdoLog();
         }
 
         #endregion

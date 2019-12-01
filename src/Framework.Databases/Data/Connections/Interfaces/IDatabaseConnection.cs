@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    public interface IDatabaseConnection : IConnection
+    public interface IDatabaseConnection : IBdoConnection
     {
         /// <summary>
         /// Connector of the connection.
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="queryText">The query text to execute.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to append.</param>
-        void ExecuteNonQuery(string queryText, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteNonQuery(string queryText, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Executes the specified query text.
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="query">The query to execute.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to append.</param>
-        void ExecuteQuery(IDbQuery query, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Executes the specified query text and populate the specified data set.
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet">The data set to populate.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to append.</param>
-        void ExecuteQuery(IDbQuery query, ref DataSet dataSet, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, ref DataSet dataSet, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataReader"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(IDbQuery query, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(IDbQuery query, ref IDataReader dataReader, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -60,7 +60,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(string queryText, ref DataSet dataSet, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(string queryText, ref DataSet dataSet, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -69,7 +69,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataReader"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void ExecuteQuery(string queryText, ref IDataReader dataReader, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void ExecuteQuery(string queryText, ref IDataReader dataReader, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Get the database connection.
@@ -81,7 +81,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// Get the identity of the last tuple processed.
         /// </summary>
         /// <returns>Returns the identity of the last tuple processed.</returns>
-        void GetIdentity(ref long id, ILog log = null);
+        void GetIdentity(ref long id, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -90,7 +90,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet"></param>
         /// <param name="tableNames"></param>
         /// <param name="log"></param>
-        void UpdateDataSet(IDbQuery query, DataSet dataSet, List<string> tableNames, ILog log = null);
+        void UpdateDataSet(IDbQuery query, DataSet dataSet, List<string> tableNames, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="dataSet"></param>
         /// <param name="tableNames"></param>
         /// <param name="log"></param>
-        void UpdateDataSet(string queryText, DataSet dataSet, List<string> tableNames, ILog log = null);
+        void UpdateDataSet(string queryText, DataSet dataSet, List<string> tableNames, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -107,7 +107,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="query"></param>
         /// <param name="dataTable"></param>
         /// <param name="log"></param>
-        void UpdateDataTable(IDbQuery query, DataTable dataTable, ILog log = null);
+        void UpdateDataTable(IDbQuery query, DataTable dataTable, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -115,6 +115,6 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="queryText"></param>
         /// <param name="dataTable"></param>
         /// <param name="log"></param>
-        void UpdateDataTable(string queryText, DataTable dataTable, ILog log = null);
+        void UpdateDataTable(string queryText, DataTable dataTable, IBdoLog log = null);
     }
 }

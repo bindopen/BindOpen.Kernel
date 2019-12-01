@@ -148,7 +148,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
@@ -158,12 +158,12 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             if (!ValueSpecified)
             {
@@ -185,7 +185,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Scalar
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            ScalarElement scalarElement = MemberwiseClone() as ScalarElement;
+            ScalarElement scalarElement = base.Clone() as ScalarElement;
             return scalarElement;
         }
 

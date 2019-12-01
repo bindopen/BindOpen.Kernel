@@ -1,12 +1,11 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements.Collection;
+﻿using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Data.Items.Documents;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Common
 {
@@ -40,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <summary>
         /// Data source.
         /// </summary>
-        DataSource,
+        Datasource,
 
         /// <summary>
         /// Element.
@@ -170,9 +169,9 @@ namespace BindOpen.Framework.Core.Data.Common
                 case DataValueType.Boolean:
                     return typeof(Boolean);
                 case DataValueType.Carrier:
-                    return typeof(CarrierConfiguration);
-                case DataValueType.DataSource:
-                    return typeof(DataSource);
+                    return typeof(BdoCarrierConfiguration);
+                case DataValueType.Datasource:
+                    return typeof(Datasource);
                 case DataValueType.Date:
                     return typeof(DateTime);
                 case DataValueType.Dictionary:
@@ -206,7 +205,7 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <returns>The result object.</returns>
         public static bool IsCompatibleWith(this DataValueType valueType, DataValueType refValueType)
         {
-            if (valueType== refValueType)
+            if (valueType == refValueType)
             {
                 return true;
             }
@@ -220,12 +219,12 @@ namespace BindOpen.Framework.Core.Data.Common
             return false;
         }
 
-            /// <summary>
-            /// Returns the value type of the specified object.
-            /// </summary>
-            /// <param name="type">The type to consider.</param>
-            /// <returns>The result object.</returns>
-            public static DataValueType GetValueType(this Type type)
+        /// <summary>
+        /// Returns the value type of the specified object.
+        /// </summary>
+        /// <param name="type">The type to consider.</param>
+        /// <returns>The result object.</returns>
+        public static DataValueType GetValueType(this Type type)
         {
             if (type == null) return DataValueType.None;
 
@@ -250,10 +249,10 @@ namespace BindOpen.Framework.Core.Data.Common
                 return DataValueType.Dictionary;
             else if (typeof(IDocument).IsAssignableFrom(type))
                 return DataValueType.Document;
-            else if (typeof(ICarrier).IsAssignableFrom(type) || typeof(ICarrierConfiguration).IsAssignableFrom(type))
+            else if (typeof(IBdoCarrier).IsAssignableFrom(type) || typeof(IBdoCarrierConfiguration).IsAssignableFrom(type))
                 return DataValueType.Carrier;
-            else if (typeof(IDataSource).IsAssignableFrom(type) || typeof(IConnectorConfiguration).IsAssignableFrom(type))
-                return DataValueType.DataSource;
+            else if (typeof(IDatasource).IsAssignableFrom(type) || typeof(IBdoConnectorConfiguration).IsAssignableFrom(type))
+                return DataValueType.Datasource;
             else if (typeof(ICollectionElement).IsAssignableFrom(type))
                 return DataValueType.Element;
             else if (typeof(IDataItem).IsAssignableFrom(type))

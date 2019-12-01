@@ -1,12 +1,12 @@
 ﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Runtime.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a repository item.
     /// </summary>
-    public abstract class RepositoryItem : Carrier
+    public abstract class RepositoryItem : BdoCarrier
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
         /// Instantiates a new instance of the RepositoryItem class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryItem(ICarrierConfiguration dto) : base(dto)
+        protected RepositoryItem(IBdoCarrierConfiguration dto) : base(dto)
         {
         }
 

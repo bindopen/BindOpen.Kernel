@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Items.Dto;
 
 namespace BindOpen.Framework.Core.Data.Items.Sets
 {
@@ -7,8 +6,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDataItemSet<T> : IIdentifiedDataItem
-        where T : IdentifiedDataItem
+    public interface IDataItemSet<T> : IIdentifiedDataItem where T : IIdentifiedDataItem
     {
         /// <summary>
         /// 

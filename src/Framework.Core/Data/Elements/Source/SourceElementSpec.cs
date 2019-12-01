@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// The data source kind of this instance.
         /// </summary>
         [XmlAttribute("kind")]
-        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.Any;
+        public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.Any;
 
         /// <summary>
         /// The definition filter of this instance.

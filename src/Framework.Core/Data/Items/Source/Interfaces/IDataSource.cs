@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.Items.Source
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataSource : INamedDataItem
+    public interface IDatasource : INamedDataItem
     {
         /// <summary>
         /// 
         /// </summary>
-        List<ConnectorConfiguration> Configurations { get; set; }
+        List<BdoConnectorConfiguration> Configurations { get; set; }
 
         /// <summary>
         /// 
@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// 
         /// </summary>
-        DataSourceKind Kind { get; set; }
+        DatasourceKind Kind { get; set; }
 
         /// <summary>
         /// 
@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="definitionName"></param>
         /// <returns></returns>
-        IConnectorConfiguration GetConfiguration(string definitionName);
+        IBdoConnectorConfiguration GetConfiguration(string definitionName);
 
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// 
         /// </summary>
         /// <param name="config"></param>
-        void AddConfiguration(IConnectorConfiguration config);
+        void AddConfiguration(IBdoConnectorConfiguration config);
 
         /// <summary>
         /// 

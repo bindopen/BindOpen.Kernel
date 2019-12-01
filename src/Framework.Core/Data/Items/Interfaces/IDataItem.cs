@@ -1,8 +1,8 @@
-﻿using System;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isExistenceChecked"></param>
         /// <param name="specificationAreas"></param>
         /// <returns></returns>
-        ILog Check(bool isExistenceChecked = true, string[] specificationAreas = null);
+        IBdoLog Check(bool isExistenceChecked = true, string[] specificationAreas = null);
 
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="item"></param>
         /// <param name="specificationAreas"></param>
         /// <returns></returns>
-        ILog Check<T>(bool isExistenceChecked = true, T item = default, string[] specificationAreas = null) where T : IDataItem;
+        IBdoLog Check<T>(bool isExistenceChecked = true, T item = default, string[] specificationAreas = null) where T : IDataItem;
 
         /// <summary>
         /// 
@@ -35,7 +35,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas"></param>
         /// <param name="updateModes"></param>
         /// <returns></returns>
-        ILog Repair(string[] specificationAreas = null, UpdateModes[] updateModes = null);
+        IBdoLog Repair(string[] specificationAreas = null, UpdateModes[] updateModes = null);
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas"></param>
         /// <param name="updateModes"></param>
         /// <returns></returns>
-        ILog Repair<T>(T item = default, string[] specificationAreas = null, UpdateModes[] updateModes = null) where T : IDataItem;
+        IBdoLog Repair<T>(T item = default, string[] specificationAreas = null, UpdateModes[] updateModes = null) where T : IDataItem;
 
         /// <summary>
         /// 
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas"></param>
         /// <param name="updateModes"></param>
         /// <returns></returns>
-        ILog Update(string[] specificationAreas = null, UpdateModes[] updateModes = null);
+        IBdoLog Update(string[] specificationAreas = null, UpdateModes[] updateModes = null);
 
         /// <summary>
         /// 
@@ -63,20 +63,25 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas"></param>
         /// <param name="updateModes"></param>
         /// <returns></returns>
-        ILog Update<T>(T item = default, string[] specificationAreas = null, UpdateModes[] updateModes = null) where T : IDataItem;
+        IBdoLog Update<T>(T item = default, string[] specificationAreas = null, UpdateModes[] updateModes = null) where T : IDataItem;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null);
+        void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="log"></param>
-        void UpdateStorageInfo(ILog log = null);
+        void UpdateStorageInfo(IBdoLog log = null);
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        T Clone<T>() where T : class;
     }
 }

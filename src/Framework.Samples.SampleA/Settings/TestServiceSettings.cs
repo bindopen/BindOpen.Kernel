@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Samples.SampleA.Settings
     /// <summary>
     /// This class represents a test service settings.
     /// </summary>
-    public class TestServiceSettings : BaseSettings
+    public class TestServiceSettings : BdoDefaultSettings
     {
         // -------------------------------------------------------
         // PROPERTIES

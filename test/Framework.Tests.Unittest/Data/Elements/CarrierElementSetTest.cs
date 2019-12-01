@@ -2,8 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Items;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using NUnit.Framework;
@@ -26,21 +25,21 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [SetUp]
         public void Setup()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _carrierElement1 = ElementFactory.CreateCarrier(
                 "carrier1", "runtime$file",
-                new CarrierConfiguration(
+                new BdoCarrierConfiguration(
                     ElementFactory.CreateScalar("path", "file1.txt")));
 
             _carrierElement2 = ElementFactory.CreateCarrier(
                 "carrier2", "runtime$file",
-                ElementFactory.CreateSet<CarrierConfiguration>(new { path = "file2.txt" }));
+                ElementFactory.CreateSet<BdoCarrierConfiguration>(new { path = "file2.txt" }));
 
             _carrierElement3 = new RepositoryFile("file3.txt", "myfolder")?.AsElement();
 
-            _carrierElement4 = SetupVariables.AppHost.Scope.CreateCarrier(
-                new CarrierConfiguration(
+            _carrierElement4 = SetupVariables.BdoHost.Scope.CreateCarrier(
+                new BdoCarrierConfiguration(
                     "runtime$file",
                     ElementFactory.CreateElementArray(new { path = "file4.txt" })),
                 "carrier4", log)?.AsElement();
@@ -69,7 +68,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestUpdateCheckRepair()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
@@ -84,7 +83,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestSaveDataElementSet()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _carrierElementSetA.SaveXml(_filePath, log);
 
@@ -99,7 +98,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestLoadDataElementSet()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_carrierElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();

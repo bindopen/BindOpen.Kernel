@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 
 namespace BindOpen.Framework.Core.Data.Items.Dictionary
 {
@@ -109,7 +108,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <returns>Returns a cloned instance.</returns>
         public virtual Object Clone()
         {
-            return this.MemberwiseClone() as DataItem;
+            return MemberwiseClone() as DataKeyValue;
         }
 
         #endregion

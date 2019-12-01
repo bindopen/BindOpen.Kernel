@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
 using BindOpen.Framework.Databases.Data.Queries.Builders;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Databases.Extensions.Connectors
 {
     /// <summary>
     /// This class defines a database connector.
     /// </summary>
-    public abstract class DatabaseConnector : Connector
+    public abstract class DatabaseConnector : BdoConnector
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -34,7 +32,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The provider of this instance.
         /// </summary>
-        [DetailProperty(Name="provider")]
+        [DetailProperty(Name = "provider")]
         public string Provider
         {
             get;
@@ -44,7 +42,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The server address of this instance.
         /// </summary>
-        [DetailProperty(Name="serverAddress")]
+        [DetailProperty(Name = "serverAddress")]
         public string ServerAddress
         {
             get;
@@ -54,7 +52,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The initial catalog of this instance.
         /// </summary>
-        [DetailProperty(Name="initialCatalog")]
+        [DetailProperty(Name = "initialCatalog")]
         public string InitialCatalog
         {
             get;
@@ -64,7 +62,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The integrated security of this instance.
         /// </summary>
-        [DetailProperty(Name="integratedSecurity")]
+        [DetailProperty(Name = "integratedSecurity")]
         public string IntegratedSecurity
         {
             get;
@@ -74,7 +72,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The user name of this instance.
         /// </summary>
-        [DetailProperty(Name="userName")]
+        [DetailProperty(Name = "userName")]
         public string UserName
         {
             get;
@@ -84,7 +82,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <summary>
         /// The password of this instance.
         /// </summary>
-        [DetailProperty(Name="password")]
+        [DetailProperty(Name = "password")]
         public string Password
         {
             get;
@@ -143,8 +141,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string GetSqlText(
             IDbQuery query,
-            IScriptVariableSet scriptVariableSet,
-            ILog log)
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoLog log)
         {
             string sqlText = "";
 
@@ -248,8 +246,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <returns>The log of the data query execution task.</returns>
         public virtual void ExecuteNonQuery(
             string queryText,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
         }
 
@@ -266,8 +264,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         public virtual void ExecuteQuery(
             string queryText,
             ref IDataReader dataReader,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
         }
 
@@ -284,8 +282,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         public virtual void ExecuteQuery(
             string queryText,
             ref DataSet dataSet,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
         }
 
@@ -298,7 +296,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         public virtual void GetIdentity(
             ref long id,
-            ILog log = null)
+            IBdoLog log = null)
         {
         }
 
@@ -312,7 +310,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         public virtual void UpdateDataTable(
             string queryText,
             DataTable dataTable,
-            ILog log = null)
+            IBdoLog log = null)
         {
         }
 
@@ -328,7 +326,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
             string queryText,
             DataSet dataSet,
             List<string> tableNames,
-            ILog log = null)
+            IBdoLog log = null)
         {
         }
 
@@ -336,7 +334,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// 
         /// </summary>
         /// <param name="connector"></param>
-        public void SetConnector(IConnector connector)
+        public void SetConnector(IBdoConnector connector)
         {
         }
 

@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
     /// <summary>
     /// This class represents a repository folder.
     /// </summary>
-    [Carrier(Name = "runtime$folder")]
+    [BdoCarrier(Name = "runtime$folder")]
     public class RepositoryFolder : RepositoryItem
     {
         // ------------------------------------------
@@ -46,12 +46,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public override ILog Check<T>(
+        public override IBdoLog Check<T>(
             bool isExistenceChecked = true,
             T item = default,
             string[] specificationAreas = null)
         {
-            ILog log = base.Check<T>(isExistenceChecked);
+            IBdoLog log = base.Check<T>(isExistenceChecked);
 
             if (string.IsNullOrEmpty(this.Path))
                 log.AddError("Folder path missing");

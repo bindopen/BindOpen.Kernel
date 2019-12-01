@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Common;
+using BindOpen.Framework.Core.Extensions.Definition.Items;
 using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.System.Scripting
@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.System.Scripting
     /// This class represents a script variable box that allows to store interpretation variables.
     /// </summary>
     /// <remarks>Interpreation variables are variables that cannot be evaluated directly though definitions. Example current objects.</remarks>
-    public class ScriptVariableSet : DataItem, IScriptVariableSet
+    public class ScriptVariableSet : DataItem, IBdoScriptVariableSet
     {
         // ------------------------------------------
         // VARIABLES
@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             {
                 switch (item.GetType().GetExtensionItemKind())
                 {
-                    case AppExtensionItemKind.Task:
+                    case BdoExtensionItemKind.Task:
                         entry = this.SetValue("currentTask", item);
                         break;
                     default:

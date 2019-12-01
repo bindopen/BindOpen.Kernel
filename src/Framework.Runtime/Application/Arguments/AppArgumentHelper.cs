@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Runtime.Application.Arguments
             this string[] arguments,
             IOptionSpecSet optionSpecificationSet,
             bool allowMissingItems = false,
-            ILog log = null)
+            IBdoLog log = null)
         {
             IOptionSet optionSet = new OptionSet();
 
@@ -114,11 +114,11 @@ namespace BindOpen.Framework.Runtime.Application.Arguments
         /// <param name="optionSpecificationSet">The set of option specifications to consider.</param>
         /// <param name="allowMissingItems">Indicates whether the items can be missing.</param>
         /// <returns>Returns the log of check.</returns>
-        public static ILog Check(this IDataElementSet optionSet,
+        public static IBdoLog Check(this IDataElementSet optionSet,
             IOptionSpecSet optionSpecificationSet,
             bool allowMissingItems = false)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (optionSet?.Elements != null && optionSpecificationSet != null)
             {

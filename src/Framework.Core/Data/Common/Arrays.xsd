@@ -9,7 +9,7 @@
   <xs:include schemaLocation="../specification/DataAreaSpecification.xsd" />
   <xs:include schemaLocation="../../application/commands/Command.xsd" />
   <xs:include schemaLocation="../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
-  <xs:include schemaLocation="../items/source/DataSource.xsd" />
+  <xs:include schemaLocation="../items/source/Datasource.xsd" />
 
   <xs:complexType name="ArrayOfString">
     <xs:sequence>
@@ -47,9 +47,9 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="ArrayOfDataSources">
+  <xs:complexType name="ArrayOfDatasources">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:DataSource" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:Datasource" />
     </xs:sequence>
   </xs:complexType>
 

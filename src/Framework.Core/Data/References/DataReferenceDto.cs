@@ -134,22 +134,22 @@ namespace BindOpen.Framework.Core.Data.References
         /// Gets the initial data source of this instance.
         /// </summary>
         /// <returns>Returns the initial data source of this instance.</returns>
-        public IDataSource GetDataSource()
+        public IDatasource GetDatasource()
         {
-            return (SourceElement != null ? GetPrimarySource() : SourceElement) as IDataSource;
+            return (SourceElement != null ? GetPrimarySource() : SourceElement) as IDatasource;
         }
 
         /// <summary>
         /// Gets the initial data source kind of this instance.
         /// </summary>
         /// <returns>Returns the initial data source kind of this instance.</returns>
-        public DataSourceKind GetDataSourceKind()
+        public DatasourceKind GetDatasourceKind()
         {
-            IDataSource dataSource = GetDataSource();
+            IDatasource dataSource = GetDatasource();
             if (dataSource != null)
                 return dataSource.Kind;
 
-            return DataSourceKind.None;
+            return DatasourceKind.None;
         }
 
         #endregion
@@ -186,7 +186,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             if (PathDetail != null)
             {
@@ -202,23 +202,23 @@ namespace BindOpen.Framework.Core.Data.References
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (PathDetail != null)
             {
                 foreach (DataElement dataElement in PathDetail.Elements)
                 {
-                    dataElement.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    dataElement.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
 
-            SourceElement?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            SourceElement?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

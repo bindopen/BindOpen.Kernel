@@ -1,9 +1,11 @@
 ﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.NetCore.Services;
-using BindOpen.Framework.Runtime.Application.Bots;
-using BindOpen.Framework.Runtime.Application.Options;
+using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Runtime.Application.Options.Hosts;
+using BindOpen.Framework.Runtime.Application.Options.Services;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -16,61 +18,61 @@ namespace Microsoft.Extensions.DependencyInjection
         // BindOpen host --------------------------
 
         /// <summary>
-        /// Adds a BindOpen default bot service.
+        /// Adds a BindOpen default host.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenDefaultBot(
+        public static IServiceCollection AddBindOpenDefaultHost(
             this IServiceCollection services,
-            Action<ITBotOptions<DefaultBotSettings>> setupAction = null)
+            Action<ITBdoHostOptions<BdoDefaultHostSettings>> setupAction = null)
         {
-            services.AddSingleton<IBot>(_ => BotFactory.CreateBindOpenDefaultBot(setupAction));
+            services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenDefaultHost(setupAction));
 
             return services;
         }
 
         /// <summary>
-        /// Adds a BindOpen default bot service.
+        /// Adds a BindOpen default host.
         /// </summary>
         /// <param name="provider">The service provider to consider.</param>
         /// <returns></returns>
-        public static IBot GetBindOpenDefaultBot(this IServiceProvider provider)
+        public static IBdoHost GetBindOpenDefaulHost(this IServiceProvider provider)
         {
-            return provider?.GetService<IBot>();
+            return provider?.GetService<IBdoHost>();
         }
 
         /// <summary>
-        /// Adds a BindOpen bot service.
+        /// Adds a BindOpen host.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenBot<T>(
+        public static IServiceCollection AddBindOpenHost<S>(
             this IServiceCollection services,
-            Action<ITBotOptions<T>> setupAction = null)
-            where T : class, IBotSettings, new()
+            Action<ITBdoHostOptions<S>> setupAction = null)
+            where S : class, IBdoHostSettings, new()
         {
-            services.AddSingleton<IBot>(_ => BotFactory.CreateBindOpenBot<T>(setupAction));
+            services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenHost<S>(setupAction));
 
             return services;
         }
 
         /// <summary>
-        /// Adds a BindOpen bot service.
+        /// Adds a BindOpen host.
         /// </summary>
-        /// <typeparam name="THost">The class of bot to consider.</typeparam>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="SHost">The class of bot to consider.</typeparam>
+        /// <typeparam name="S"></typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenBot<THost, T>(
+        public static IServiceCollection AddBindOpenHost<SHost, S>(
             this IServiceCollection services,
-            Action<ITBotOptions<T>> setupAction = null)
-            where THost : TBot<T>, new()
-            where T : class, IBotSettings, new()
+            Action<ITBdoHostOptions<S>> setupAction = null)
+            where SHost : TBdoHost<S>, new()
+            where S : class, IBdoHostSettings, new()
         {
-            services.AddSingleton<IBot, THost>(_ => BotFactory.CreateBindOpenBot<THost, T>(setupAction));
+            services.AddSingleton<IBdoHost, SHost>(_ => BdoHostFactory.CreateBindOpenHost<SHost, S>(setupAction));
 
             return services;
         }
@@ -80,38 +82,23 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds a BindOpen service.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="Serv"></typeparam>
+        /// <typeparam name="SServ"></typeparam>
+        /// <typeparam name="SHost"></typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="loggers"></param>
-        /// <param name="funcSettings"></param>
+        /// <param name="funcSettingsConverter"></param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenService<T>(
+        public static IServiceCollection AddBindOpenService<Serv, SServ, SHost>(
             this IServiceCollection services,
-            ILogger[] loggers = null,
-            Func<IBotSettings, IBaseSettings> funcSettings = null)
-            where T : IBotService, IBoted, new()
+            IBdoLogger[] loggers = null,
+            Func<SHost, SServ> funcSettingsConverter = null)
+            where Serv : ITBdoService<SServ>, IBdoHosted, new()
+            where SServ : class, IBdoSettings, new()
+            where SHost : IBdoHostSettings
         {
-            services.AddSingleton<ITBotServiceOptions<T>>(_ => new TBotServiceOptions<T>(loggers, funcSettings));
-            services.AddHostedService<TBdoHostedService<T>>();
-
-            return services;
-        }
-
-        /// <summary>
-        /// Adds a BindOpen transient service.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="services"></param>
-        /// <param name="loggers"></param>
-        /// <param name="funcSettings"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddBindOpenTransientService<T>(
-            this IServiceCollection services,
-            ILogger[] loggers = null,
-            Func<IBotSettings, IBaseSettings> funcSettings = null)
-            where T : IBotService, IBoted, new()
-        {
-            services.AddTransient<ITBotServiceOptions<T>>(_ => new TBotServiceOptions<T>(loggers, funcSettings));
+            services.AddSingleton<TBdoServiceOptions<SServ, SHost>>(_ => new TBdoServiceOptions<SServ, SHost>(loggers, funcSettingsConverter));
+            services.AddHostedService<THostedService<Serv, SServ, SHost>>();
 
             return services;
         }

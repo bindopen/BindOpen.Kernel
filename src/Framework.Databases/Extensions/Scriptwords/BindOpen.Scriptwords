@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<scriptWords.dictionary library="databases"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:BdoScriptwordDictionary BdoScriptwordDictionary.xsd">
+
+  <creationDate>2010-08-05</creationDate>
+  <lastModificationDate>2016-08-19</lastModificationDate>
+  <definitions>
+
+    <!-- Functions -->
+
+    <!-- $SQLIF(condition,value1,value2) -->
+    <add.definition name="SQLIF">
+      <creationDate>2011-06-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function CASE WHEN that returns value1 if aCondition is true, value2 otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlIf</functionName>
+      <parameter.specification>
+        <scalar name="condition" valueType="Any" />
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+    
+    <!-- $SQLNOT(boolean) -->
+    <add.definition name="SQLNOT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function NOT that returns FALSE if the parameter is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlNot</functionName>
+      <parameter.specification>
+        <scalar name="boolean" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLOR(boolean1, boolean2...) -->
+    <add.definition name="SQLOR">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function OR that returns TRUE if one of the parameters is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlOr</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Boolean</repeatedParameterValueType>
+      <repeatedParameterName>boolean</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLAND(boolean1, boolean2...) -->
+    <add.definition name="SQLAND">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function OR that returns TRUE if all of the parameters is TRUE and FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlAnd</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Boolean</repeatedParameterValueType>
+      <repeatedParameterName>boolean</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLXOR(boolean1, boolean2...) -->
+    <add.definition name="SQLXOR">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function OR that returns TRUE if one of the two parameters is TRUE and but not both, and returns FALSE otherwise.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlXor</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Boolean</repeatedParameterValueType>
+      <repeatedParameterName>boolean</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLLIKE(value1, value2) -->
+    <add.definition name="SQLLIKE">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function LIKE that returns TRUE if the first parameter looks like the second one. The wildcard character used is the '%'.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlLike</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+
+    <!-- $SQLEQ(value1, value2) -->
+    <add.definition name="SQLEQ">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function EQUAL that returns TRUE if the first parameter equals the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlEq</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLGT(value1, value2) -->
+    <add.definition name="SQLGT">
+      <creationDate>2012-06-01</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function that returns TRUE if the first parameter is greater than the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlGt</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLGTE(value1, value2) -->
+    <add.definition name="SQLGTE">
+      <creationDate>2018-12-03</creationDate>
+      <lastModificationDate>2018-12-03</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function that returns TRUE if the first parameter is greater or equal than the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlGte</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLLT(value1, value2) -->
+    <add.definition name="SQLLT">
+      <creationDate>2012-06-01</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function that returns TRUE if the first parameter is less than the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlLt</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLLTE(value1, value2) -->
+    <add.definition name="SQLLTE">
+      <creationDate>2018-12-03</creationDate>
+      <lastModificationDate>2018-12-03</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function that returns TRUE if the first parameter is less or equal than the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlLte</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLDIFF(value1, value2) -->
+    <add.definition name="SQLDIFF">
+      <creationDate>2012-05-04</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function NOT EQUAL that returns TRUE if the first parameter does not equal the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlDiff</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLTEXT(text) -->
+    <add.definition name="SQLTEXT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns parameter into the SQL text format.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlText</functionName>
+      <parameter.specification>
+        <scalar name="text" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+    
+    <!-- $SQLREPLACE(value1, value2) -->
+    <add.definition name="SQLREPLACE">
+      <creationDate>2014-03-28</creationDate>
+      <lastModificationDate>2014-03-28</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function that replaces in the first parameter the second one by the third.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlReplace</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+        <scalar name="value3" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>    
+
+    <!-- $SQLCONVERTTOTEXT(text) -->
+    <add.definition name="SQLCONVERTTOTEXT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that allows to convert the parameter to a text value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlConvertToText</functionName>
+      <parameter.specification>
+        <scalar name="text" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLCONCATENATE(value1, value2...) -->
+    <add.definition name="SQLCONCATENATE">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that allows to concatenate all the parameters.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlConcatenate</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLNULL() -->
+    <add.definition name="SQLNULL">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL null value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlNull</functionName>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLISNULL(value) -->
+    <add.definition name="SQLISNULL">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL logic function checking if the parameter equals to SQL null value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlIsNull</functionName>
+      <parameter.specification>
+        <scalar name="value" valueType="Any" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLIN(value1, value2...) -->
+    <add.definition name="SQLIN">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2019-04-24</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL In function.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlIn</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLLIST(value1, value2...) -->
+    <add.definition name="SQLLIST">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2019-04-24</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL List function.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlList</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLCOUNT(value1, value2...) -->
+    <add.definition name="SQLCOUNT">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2011-01-09</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that counts records.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlCount</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLAVERAGE(value1, value2...) -->
+    <add.definition name="SQLAVERAGE">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2011-01-09</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that delivers the average of records.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlAverage</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLSUM(value1, value2...) -->
+    <add.definition name="SQLSUM">
+      <creationDate>2011-01-09</creationDate>
+      <lastModificationDate>2011-01-09</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that delivers the sum of records.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlSum</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
+
+    <!-- $SQLGETCURRENTDATE() -->
+    <add.definition name="SQLGETCURRENTDATE">
+      <creationDate>2011-01-10</creationDate>
+      <lastModificationDate>2011-01-10</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that delivers the current date.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlGetCurrentDate</functionName>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- $SQLNEWGUID() -->
+    <add.definition name="SQLNEWGUID">
+      <creationDate>2019-02-20</creationDate>
+      <lastModificationDate>2019-02-20</lastModificationDate>
+      <description>
+        <add.value>Returns a new GUID.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlNewGuid</functionName>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+    
+    <!-- $SQLRANDOM() -->
+    <add.definition name="SQLRANDOM">
+      <creationDate>2011-01-10</creationDate>
+      <lastModificationDate>2011-01-10</lastModificationDate>
+      <description>
+        <add.value>Returns the SQL function that delivers a random row.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlRandom</functionName>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- [[$SQLDATABASE('name').][$SQLTABLE('name').]]$SQLFIELD('name') -->
+    <add.definition name="SQLFIELD">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Represents the field in SQL whose name equals to 'name' parameter.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlDatabase_SqlTable_SqlField</functionName>
+      <parameter.specification>
+        <scalar name="name" valueType="Text" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+    <!-- [$SQLDATABASE('name').]SQLTABLE('name') -->
+    <add.definition name="SQLTABLE">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Represents the table in SQL whose name equals to 'Name' parameter.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlDatabase_SqlTable</functionName>
+      <parameter.specification>
+        <scalar name="name" valueType="Text" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+      <children>
+        
+        <!-- [[$SQLDATABASE('name').$][SQLTABLE].$]SQLFIELD("name") -->
+        <add.definition referenceUniqueName="databases$sqlField" />
+      </children>
+    </add.definition>
+
+    <!-- [$SQLDATABASE('name').]SQLSCHEMA('name') -->
+    <add.definition name="SQLSCHEMA">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Represents the schema in SQL whose name equals to 'Name' parameter.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlDatabase_SqlSchema</functionName>
+      <parameter.specification>
+        <scalar name="name" valueType="Text" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+      <children>
+
+        <!-- [[$SQLDATABASE('name').][$SQLSCHEMA.]]$SQLTABLE("name") -->
+        <add.definition referenceUniqueName="databases$sqlTable" />
+      </children>
+    </add.definition>
+
+    <!-- $SQLDATABASE('name') -->
+    <add.definition name="SQLDATABASE">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2016-08-19</lastModificationDate>
+      <description>
+        <add.value>Represents the database in SQL whose name equals to 'Name' parameter.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlDatabase</functionName>
+      <parameter.specification>
+        <scalar name="name" valueType="Text" />
+      </parameter.specification>
+      <returnValueType>Text</returnValueType>
+      <children>
+        
+        <!-- [$SQLDATABASE('name').]SQLTABLE('name') -->
+        <add.definition referenceUniqueName="databases$sqlTable" />
+      </children>
+    </add.definition>
+
+    <!-- $SQLTRUE() -->
+    <add.definition name="SQLTRUE">
+      <creationDate>2015-09-02</creationDate>
+      <lastModificationDate>2015-09-02</lastModificationDate>
+      <description>
+        <add.value>Returns the True SQL value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_SqlTrue</functionName>
+      <returnValueType>Text</returnValueType>
+    </add.definition>
+
+  </definitions>
+  
+  <definitionClass>.Scriptwords.ScriptwordDefinition_Database</definitionClass>
+
+</scriptWords.dictionary>

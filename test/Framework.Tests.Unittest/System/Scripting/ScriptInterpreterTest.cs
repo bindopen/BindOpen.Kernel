@@ -21,14 +21,14 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
         [Test, Order(1)]
         public void TestInterprete_Databases()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             string resultScript = "";
 
             using (ScriptVariableSet scriptVariableSet = new ScriptVariableSet())
             {
-                scriptVariableSet.SetValue(ScriptVariableKey_Database.DbBuilder, new DbQueryBuilder_MSSqlServer(SetupVariables.AppHost.Scope));
-                resultScript = SetupVariables.AppHost.Scope.Interpreter.Interprete(this._script, scriptVariableSet, log);
+                scriptVariableSet.SetValue(ScriptVariableKey_Database.DbBuilder, new DbQueryBuilder_MSSqlServer(SetupVariables.BdoHost.Scope));
+                resultScript = SetupVariables.BdoHost.Scope.Interpreter.Interprete(this._script, scriptVariableSet, log);
             }
 
             string xml = "";

@@ -88,14 +88,14 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        bool AddItem(object item, ILog log = null);
+        bool AddItem(object item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <param name="log"></param>
-        void AddItems(object[] items, ILog log = null);
+        void AddItems(object[] items, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -173,13 +173,13 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         object GetObject(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
     }
 }

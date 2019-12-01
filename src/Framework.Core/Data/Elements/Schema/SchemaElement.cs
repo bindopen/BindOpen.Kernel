@@ -405,7 +405,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
             if (parentZoneElement == null)
                 parentZoneElement = this.ParentZone;
 
-            SchemaZoneElement aSchemaElement = this.MemberwiseClone() as SchemaZoneElement;
+            SchemaZoneElement aSchemaElement = base.Clone() as SchemaZoneElement;
             aSchemaElement.Entity = this._entity;
             aSchemaElement.ParentZone = parentZoneElement;
             if (parentZoneElement != null)

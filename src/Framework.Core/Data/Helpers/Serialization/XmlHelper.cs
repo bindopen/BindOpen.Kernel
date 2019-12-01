@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Items;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using System;
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="object1">The object1 to save.</param>
         /// <param name="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static string ToXml(this Object object1, ILog log = null)
+        public static string ToXml(this Object object1, IBdoLog log = null)
         {
             if (object1 == null) return "";
 
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveXml(this Object object1, String filePath, ILog log = null)
+        public static bool SaveXml(this Object object1, String filePath, IBdoLog log = null)
         {
             if (object1 == null) return false;
 
@@ -92,7 +92,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         dataItem?.UpdateStorageInfo(log);
                     }
 
-                    if (object1 is IAppExtensionItem appExtensionItem)
+                    if (object1 is IBdoExtensionItem appExtensionItem)
                     {
                         object1 = appExtensionItem.Configuration;
                     }
@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// Loads a data item from the specified file path.
         /// </summary>
         /// <param name="filePath">The path of the Xml file to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The output log of the method.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
@@ -135,9 +135,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T Load<T>(
             String filePath,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null,
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true,
             bool isRuntimeUpdated = true) where T : class, IDataItem
@@ -154,7 +154,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
             {
                 try
                 {
-                    ILog checkLog = new Log();
+                    IBdoLog checkLog = new BdoLog();
 
                     if (xmlSchemaSet != null)
                     {
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
 
                         if (isRuntimeUpdated)
                         {
-                            dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                            dataItem?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                         }
                     }
                 }
@@ -194,7 +194,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// </summary>
         /// <typeparam name="T">The data item class to consider.</typeparam>
         /// <param name="xmlString">The Xml string to load.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The output log of the load method.</param>
         /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
@@ -202,9 +202,9 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadFromString<T>(
             String xmlString,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null,
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : DataItem
         {
             T dataItem = null;
@@ -214,7 +214,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                 StreamReader streamReader = null;
                 try
                 {
-                    ILog checkLog = new Log();
+                    IBdoLog checkLog = new BdoLog();
 
                     if (xmlSchemaSet != null)
                     {
@@ -235,7 +235,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Serialization
                         StringReader stringReader = new StringReader(xmlString);
                         dataItem = xmlSerializer.Deserialize(XmlReader.Create(stringReader)) as T;
 
-                        dataItem?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                        dataItem?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     }
                 }
                 catch (Exception ex)

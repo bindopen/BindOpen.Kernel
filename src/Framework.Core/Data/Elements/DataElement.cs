@@ -254,29 +254,29 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetObject<T>(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
-            return (T)GetObject(appScope, scriptVariableSet, log);
+            return (T)GetObject(scope, scriptVariableSet, log);
         }
 
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
         /// <param name="log">The log to populate.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetObject(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             object object1 = null;
 
@@ -285,11 +285,11 @@ namespace BindOpen.Framework.Core.Data.Elements
                 case DataItemizationMode.Valued:
                     return _items.Count == 0 ? null : (_items.Count==1? _items[0] : _items);
                 case DataItemizationMode.Referenced:
-                    if (appScope == null)
+                    if (scope == null)
                     {
                         log?.AddError(title: "Application scope missing");
                     }
-                    else if (appScope.Interpreter == null)
+                    else if (scope.Interpreter == null)
                     {
                         log?.AddError(title: "Script interpreter missing");
                     }
@@ -301,15 +301,15 @@ namespace BindOpen.Framework.Core.Data.Elements
                     {
                         DataReference reference = new DataReference(ItemReference);
 
-                        return reference.Get(appScope, scriptVariableSet, log);
+                        return reference.Get(scope, scriptVariableSet, log);
                     }
                     break;
                 case DataItemizationMode.Script:
-                    if (appScope == null)
+                    if (scope == null)
                     {
                         log?.AddError(title: "Application scope missing");
                     }
-                    else if (appScope.Interpreter == null)
+                    else if (scope.Interpreter == null)
                     {
                         log?.AddError(title: "Script interpreter missing");
                     }
@@ -319,7 +319,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                     }
                     else
                     {
-                        object1 = appScope.Interpreter.Interprete(ItemScript, scriptVariableSet, log);
+                        object1 = scope.Interpreter.Interprete(ItemScript, scriptVariableSet, log);
                         if (object1 != null)
                         {
                             return object1.GetType().IsArray ? object1 as List<object> : object1;
@@ -387,7 +387,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns True if the specified has been well added.</returns>
         public virtual bool AddItem(
             object item,
-            ILog log = null)
+            IBdoLog log = null)
         {
             bool isAdded = false;
 
@@ -427,7 +427,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         public void AddItems(
             object[] items,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (items != null)
             {
@@ -525,12 +525,12 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>ILog of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override ILog Update<T>(
+        public override IBdoLog Update<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -585,12 +585,12 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public override ILog Check<T>(
+        public override IBdoLog Check<T>(
             bool isExistenceChecked = true,
             T item = default,
             string[] specificationAreas = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -633,12 +633,12 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>ILog of the operation.</returns>
-        public override ILog Repair<T>(
+        public override IBdoLog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (item is IDataElement)
             {
@@ -727,7 +727,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             _propertyDetail?.UpdateStorageInfo(log);
 
@@ -737,14 +737,14 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            _propertyDetail?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            _propertyDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
-            ItemReference?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            ItemReference?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         /// <summary>

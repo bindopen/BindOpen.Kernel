@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            Items.Documents.Document aDocument = this.MemberwiseClone() as Items.Documents.Document;
+            Items.Documents.Document aDocument = base.Clone() as Items.Documents.Document;
             return aDocument;
         }
 

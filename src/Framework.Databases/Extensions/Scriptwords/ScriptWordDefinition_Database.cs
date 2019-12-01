@@ -1,8 +1,9 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Items.Scriptwords;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries.Builders;
 
@@ -11,7 +12,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
     /// <summary>
     /// This class represents a 'Database' script word definition.
     /// </summary>
-    [ScriptwordDefinition()]
+    [BdoScriptwordDefinition()]
     public static class ScriptwordDefinition_Database
     {
         // ------------------------------------------
@@ -25,16 +26,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLCOUNT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlCount")]
+        [BdoScriptword(Name = "sqlCount")]
         public static string Fun_SqlCount(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -54,16 +55,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLSUM.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlSum")]
+        [BdoScriptword(Name = "sqlSum")]
         public static string Fun_SqlSum(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -83,16 +84,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLAVG.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlAverage")]
+        [BdoScriptword(Name = "sqlAverage")]
         public static string Fun_SqlAverage(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -114,16 +115,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLGETCURRENTDATE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlGetCurrentDate")]
+        [BdoScriptword(Name = "sqlGetCurrentDate")]
         public static string Fun_SqlGetCurrentDate(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -147,16 +148,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLTRUE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlTrue")]
+        [BdoScriptword(Name = "sqlTrue")]
         public static string Fun_SqlTrue(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -176,16 +177,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLIF.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlIf")]
+        [BdoScriptword(Name = "sqlIf")]
         public static string Fun_SqlIf(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string condition = parameters.GetStringAtIndex(0);
@@ -209,16 +210,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLNOT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
         /// <param name="scriptWord">The script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlNot")]
+        [BdoScriptword(Name = "sqlNot")]
         public static string Fun_SqlNot(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -240,16 +241,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLOR.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlOr")]
+        [BdoScriptword(Name = "sqlOr")]
         public static string Fun_SqlOr(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -269,16 +270,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLAND.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlAnd")]
+        [BdoScriptword(Name = "sqlAnd")]
         public static string Fun_SqlAnd(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -298,16 +299,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLXOR.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlXor")]
+        [BdoScriptword(Name = "sqlXor")]
         public static string Fun_SqlXor(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -328,16 +329,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLEQ.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlEq")]
+        [BdoScriptword(Name = "sqlEq")]
         public static string Fun_SqlEq(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -360,16 +361,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLDIFF.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlDiff")]
+        [BdoScriptword(Name = "sqlDiff")]
         public static string Fun_SqlDiff(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -392,16 +393,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLGT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlGt")]
+        [BdoScriptword(Name = "sqlGt")]
         public static string Fun_SqlGt(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -424,16 +425,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLGTE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlGte")]
+        [BdoScriptword(Name = "sqlGte")]
         public static string Fun_SqlGte(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -456,16 +457,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLLT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlLt")]
+        [BdoScriptword(Name = "sqlLt")]
         public static string Fun_SqlLt(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -488,16 +489,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLLTE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlLte")]
+        [BdoScriptword(Name = "sqlLte")]
         public static string Fun_SqlLte(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -520,16 +521,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLISNULL.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlIsNull")]
+        [BdoScriptword(Name = "sqlIsNull")]
         public static string Fun_SqlIsNull(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -553,16 +554,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLCONVERTTOTEXT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlConvertToText")]
+        [BdoScriptword(Name = "sqlConvertToText")]
         public static string Fun_SqlConvertToText(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -586,16 +587,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLTEXT.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlText")]
+        [BdoScriptword(Name = "sqlText")]
         public static string Fun_SqlText(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -617,16 +618,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLLIKE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlLike")]
+        [BdoScriptword(Name = "sqlLike")]
         public static string Fun_SqlLike(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -649,16 +650,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLREPLACE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlReplace")]
+        [BdoScriptword(Name = "sqlReplace")]
         public static string Fun_SqlReplace(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -682,16 +683,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLCONCATENATE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlConcatenate")]
+        [BdoScriptword(Name = "sqlConcatenate")]
         public static string Fun_SqlConcatenate(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -711,16 +712,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLNULL.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlNull")]
+        [BdoScriptword(Name = "sqlNull")]
         public static string Fun_SqlNull(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -742,16 +743,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word %SQLDATABASE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlDatabase")]
+        [BdoScriptword(Name = "sqlDatabase")]
         public static string Fun_SqlDatabase(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -765,7 +766,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             {
                 value1 = value1.GetValueFromText();
 
-                string instanceName = appScope?.DataSourceDepot?.GetInstanceName(value1);
+                string instanceName = scope?.DepotSet?.Get<IBdoDatasourceDepot>()?.GetInstanceName(value1);
                 if (string.IsNullOrEmpty(instanceName) || instanceName == StringHelper.__NoneString)
                     instanceName = value1;
 
@@ -779,16 +780,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word [%DATABASE->]%SCHEMA.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword]
+        [BdoScriptword]
         public static string Fun_SqlDatabase_SqlSchema(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -811,16 +812,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word [%DATABASE->]%TABLE.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword]
+        [BdoScriptword]
         public static string Fun_SqlDatabase_SqlTable(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -843,16 +844,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword]
+        [BdoScriptword]
         public static string Fun_SqlDatabase_SqlTable_SqlField(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -877,16 +878,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLNEWGUID.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlNewGuid")]
+        [BdoScriptword(Name = "sqlNewGuid")]
         public static string Fun_SqlNewGuid(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -906,16 +907,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLRANDOM.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlRandom")]
+        [BdoScriptword(Name = "sqlRandom")]
         public static string Fun_SqlRandom(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";
@@ -936,16 +937,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLIN.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlIn")]
+        [BdoScriptword(Name = "sqlIn")]
         public static string Fun_SqlIn(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string value1 = parameters.GetStringAtIndex(0);
@@ -969,16 +970,16 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $SQLLIST.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">Variables that can be used for interpretation.</param>
         /// <param name="scriptWord">Script word to evaluate.</param>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        [Scriptword(Name = "sqlList")]
+        [BdoScriptword(Name = "sqlList")]
         public static string Fun_SqlList(
-            IAppScope appScope,
-            IScriptVariableSet scriptVariableSet,
-            IScriptword scriptWord,
+            IBdoScope scope,
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoScriptword scriptWord,
             params object[] parameters)
         {
             string text = "";

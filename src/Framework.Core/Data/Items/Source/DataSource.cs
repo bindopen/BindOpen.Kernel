@@ -1,12 +1,12 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Items.Source
 {
@@ -14,9 +14,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
     /// This class represents a data source.
     /// </summary>
     [Serializable()]
-    [XmlType("DataSource", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("Datasource", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataSource : NamedDataItem, IDataSource
+    public class Datasource : NamedDataItem, IDatasource
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -28,13 +28,13 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Kind of the data module of this instance. 
         /// </summary>
         [XmlAttribute("kind")]
-        public DataSourceKind Kind { get; set; } = DataSourceKind.Any;
+        public DatasourceKind Kind { get; set; } = DatasourceKind.Any;
 
         /// <summary>
         /// Specification of the Kind property of this instance.
         /// </summary>
         [XmlIgnore()]
-        public bool KindSpecified => Kind != DataSourceKind.Any;
+        public bool KindSpecified => Kind != DatasourceKind.Any;
 
         /// <summary>
         /// The module name of this instance.
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// The connectors for this instance.
         /// </summary>
         [XmlElement("configuration")]
-        public List<ConnectorConfiguration> Configurations { get; set; } = null;
+        public List<BdoConnectorConfiguration> Configurations { get; set; } = null;
 
         /// <summary>
         /// Specification of the ConnectorConfigurations property of this instance.
@@ -81,25 +81,25 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         #region Constructors
 
         /// <summary>
-        /// This instantiates a new instance of the DataSource class.
+        /// This instantiates a new instance of the Datasource class.
         /// </summary>
-        public DataSource() : base(null, "dataSource_")
+        public Datasource() : base(null, "dataSource_")
         {
         }
 
         /// <summary>
-        /// This instantiates a new instance of the DataSource class.
+        /// This instantiates a new instance of the Datasource class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="kind">The kind of the data source to consider.</param>
         /// <param name="configurations">The configurations to consider.</param>
-        public DataSource(
+        public Datasource(
             string name,
-            DataSourceKind kind,
-            params IConnectorConfiguration[] configurations) : base(name, "dataSource_")
+            DatasourceKind kind,
+            params IBdoConnectorConfiguration[] configurations) : base(name, "dataSource_")
         {
             Kind = kind;
-            Configurations = configurations?.Select(p=>p as ConnectorConfiguration).ToList();
+            Configurations = configurations?.Select(p => p as BdoConnectorConfiguration).ToList();
         }
 
         #endregion
@@ -114,10 +114,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Adds the specified connector configuration.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public void AddConfiguration(IConnectorConfiguration config)
+        public void AddConfiguration(IBdoConnectorConfiguration config)
         {
             if (config != null)
-                Configurations.Add(config as ConnectorConfiguration);
+                Configurations.Add(config as BdoConnectorConfiguration);
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         public void RemoveConfiguration(string definitionName)
         {
-                Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
+            Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
         }
 
         #endregion
@@ -144,9 +144,9 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IConnectorConfiguration GetConfiguration(string definitionName)
+        public IBdoConnectorConfiguration GetConfiguration(string definitionName)
         {
-            return Configurations?.Find(p => definitionName ==null || p.DefinitionUniqueId.KeyEquals(definitionName));
+            return Configurations?.Find(p => definitionName == null || p.DefinitionUniqueId.KeyEquals(definitionName));
         }
 
         /// <summary>
@@ -173,10 +173,10 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <returns>Returns a clone of this instance.</returns>
         public override object Clone()
         {
-            DataSource dataSource = base.Clone() as DataSource;
+            Datasource dataSource = base.Clone() as Datasource;
 
             if (Configurations != null)
-                dataSource.Configurations = Configurations?.Select(p => p.Clone() as ConnectorConfiguration).ToList();
+                dataSource.Configurations = Configurations?.Select(p => p.Clone() as BdoConnectorConfiguration).ToList();
 
             return dataSource;
         }
@@ -193,13 +193,13 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
             if (Configurations != null)
             {
-                foreach (IConnectorConfiguration connector in Configurations)
+                foreach (IBdoConnectorConfiguration connector in Configurations)
                 {
                     connector.UpdateStorageInfo(log);
                 }
@@ -209,18 +209,18 @@ namespace BindOpen.Framework.Core.Data.Items.Source
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             if (Configurations != null)
             {
-                foreach (IConnectorConfiguration configuration in Configurations)
+                foreach (IBdoConnectorConfiguration configuration in Configurations)
                 {
-                    configuration.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    configuration.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
         }

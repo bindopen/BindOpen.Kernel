@@ -16,6 +16,7 @@ This package handles runtime.</Description>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -27,6 +28,20 @@ This package handles runtime.</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\Scopes\**" />
+    <EmbeddedResource Remove="Application\Scopes\**" />
+    <None Remove="Application\Scopes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Options\Hosts\BdoHostOptions.cs" />
+    <Compile Remove="Application\Services\BdoService.cs" />
+    <Compile Remove="Application\Services\Interfaces\IBdoService.cs" />
+    <Compile Remove="Application\Settings\Hosts\Interfaces\ITBdoHostSettings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="BindOpen.Extension" />
     <None Remove="Extensions\Carriers\Carriers.index" />
     <None Remove="Extensions\Connectors\Connectors.index" />
     <None Remove="Extensions\Entities\Entities.index" />
@@ -35,19 +50,10 @@ This package handles runtime.</Description>
     <None Remove="Extensions\Routines\Routines.index" />
     <None Remove="Extensions\Scriptwords\scriptwords.index" />
     <None Remove="Extensions\Tasks\Tasks.index" />
-    <None Remove="library.definition" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Extensions\Carriers\Carriers.index" />
-    <EmbeddedResource Include="Extensions\Connectors\Connectors.index" />
-    <EmbeddedResource Include="Extensions\Entities\Entities.index" />
-    <EmbeddedResource Include="Extensions\Handlers\Handlers.index" />
-    <EmbeddedResource Include="Extensions\Metrics\Metrics.index" />
-    <EmbeddedResource Include="Extensions\Routines\Routines.index" />
-    <EmbeddedResource Include="Extensions\Scriptwords\Scriptwords.index" />
-    <EmbeddedResource Include="Extensions\Tasks\Tasks.index" />
-    <EmbeddedResource Include="Library.definition" />
+    <EmbeddedResource Include="BindOpen.Extension" />
   </ItemGroup>
 
   <ItemGroup>

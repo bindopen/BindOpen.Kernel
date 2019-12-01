@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
     /// <summary>
     /// This class represents a OleDb database connector.
     /// </summary>
-    [Connector(Name = "database.postgresql$client")]
+    [BdoConnector(Name = "database.postgresql$client")]
     public class DatabaseConnector_PostgreSql : DatabaseConnector
     {
         // ------------------------------------------
@@ -74,11 +74,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <summary>
         /// Updates this instance considering the specified scope.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <returns>Returns the database builder.</returns>
-        public override void UpdateWithScope(IAppScope appScope)
+        public override void UpdateWithScope(IBdoScope scope)
         {
-            QueryBuilder = new DbQueryBuilder_PostgreSql(appScope);
+            QueryBuilder = new DbQueryBuilder_PostgreSql(scope);
         }
 
         // Open / Close ---------------------------------------
@@ -87,9 +87,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// Opens an OleDb connection with the specified connection string.
         /// </summary>
         /// <returns>The log of the connection task.</returns>
-        public override ILog Open()
+        public override IBdoLog Open()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (!log.Append(Check<DatabaseConnector_PostgreSql>(), p => p.HasErrorsOrExceptions()).HasErrorsOrExceptions())
             {
@@ -118,9 +118,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// Closes the current OleDb connection.
         /// </summary>
         /// <returns>The log of the connection-closing task.</returns>
-        public override ILog Close()
+        public override IBdoLog Close()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             try
             {
@@ -154,12 +154,12 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <returns>The log of the data query execution task.</returns>
         public override void ExecuteNonQuery(
             string queryText,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -198,12 +198,12 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         public override void ExecuteQuery(
             string queryText,
             ref IDataReader dataReader,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -237,12 +237,12 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         public override void ExecuteQuery(
             string queryText,
             ref DataSet dataSet,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -271,11 +271,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// <returns>The log of the task.</returns>
         public override void GetIdentity(
             ref long id,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -306,14 +306,14 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         public override void UpdateDataTable(
             string queryText,
             DataTable dataTable,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (dataTable == null)
                 return;
 
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -342,14 +342,14 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
             string queryText,
             DataSet dataSet,
             List<string> tableNames,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (dataSet == null)
                 return;
 
             if (_connection == null)
             {
-                log?.AddEvent(new LogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
+                log?.AddEvent(new BdoLogEvent(EventKinds.Error) { ResultCode = "DBCONNECTION_NOTINITIALIZED" });
             }
             else
             {
@@ -379,7 +379,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
             string dataModuleName,
             string ownerName,
             string tableName,
-            ILog log = null)
+            IBdoLog log = null)
         {
             DataTable dataTable = GetTableColumnsDataTable(
                 dataModuleName,
@@ -411,7 +411,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
             string dataModuleName,
             string ownerName,
             string tableName,
-            ILog log = null)
+            IBdoLog log = null)
         {
             DataTable dataTable = null;
             try
@@ -437,7 +437,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         public List<string> GetTables(
             string dataModuleName,
             string ownerName,
-            ILog log = null)
+            IBdoLog log = null)
         {
             DataTable dataTable = GetTableDataTable(dataModuleName, ownerName);
 
@@ -460,7 +460,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         public DataTable GetTableDataTable(
             string dataModuleName,
             string ownerName,
-            ILog log = null)
+            IBdoLog log = null)
         {
             DataTable dataTable = null;
             try
@@ -489,7 +489,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
             string dataModuleName,
             string ownerName,
             string tableName,
-            ILog log = null)
+            IBdoLog log = null)
         {
             DataTable dataTable = null;
             try

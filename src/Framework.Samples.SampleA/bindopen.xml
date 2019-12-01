@@ -1,0 +1,12 @@
+<bindopen xmlns="https://bindopen.org/xsd">
+  
+  <scalar name="applicationInstanceName" value="test.console" />
+  <scalar name="cookieDomain" value=".meltingsoft.com" />
+  <scalar name="defaultTheme" value="default" />
+  <scalar name="defaultUICultureName" value="fr-FR" />
+  
+  <scalar name="applicationInstanceKind" value="Autonomous" />
+  <scalar name="currentRuntimeMode" value="Debug" />
+  <scalar name="executionLevel" value="Development" />
+    
+</bindopen>

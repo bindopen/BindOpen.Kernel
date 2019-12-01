@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
     {
         public static IAdvancedDbQuery GetMyTables(
             string dataModuleName = "",
-            ILog log = null,
+            IBdoLog log = null,
             string filterQuery = null,
             string orderByQuery = null,
             int? pageSize = null,

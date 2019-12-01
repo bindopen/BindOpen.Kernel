@@ -4,18 +4,18 @@
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="../../../data/items/StoredDataItem.xsd" />
-  <xs:include schemaLocation="DataSourceKind.xsd" />
+  <xs:include schemaLocation="DatasourceKind.xsd" />
   <xs:include schemaLocation="../../../data/elements/sets/DataElementSet.xsd" />
   <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
   <xs:include schemaLocation="../../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
 
-  <xs:complexType name="DataSource">
+  <xs:complexType name="Datasource">
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:NamedDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="bdo:ConnectorConfiguration" />
         </xs:sequence>
-        <xs:attribute name="kind" type="bdo:DataSourceKind" use="required" />
+        <xs:attribute name="kind" type="bdo:DatasourceKind" use="required" />
         <xs:attribute name="moduleName" type="xs:string" use="optional" />
         <xs:attribute name="instanceName" type="xs:string" use="optional" />
       </xs:extension>

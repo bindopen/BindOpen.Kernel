@@ -1,7 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.MSSqlServer.Extensions;
-using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Databases.MSSqlServer.Extensions;
+using BindOpen.Framework.Databases.PostgreSql.Extensions;
 using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,19 +16,15 @@ namespace BindOpen.Framework.Samples.SampleA
                .ConfigureServices((services) =>
                {
                    services
-                    .AddBindOpenBot<TestAppSettings>(
+                    .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetModule("app.test")
-                            //.SetRuntimeFolder(@"=$if($isEqual('dev'), '..\..\..\run', 'run')")
-                            .SetRuntimeFolder(@"..\..\..\run")
-                            .SetLibraryFolder(@"..\..\..\lib")
-                            .AddPostgreSqlExtension()
-                            .AddMSSqlServerExtension()
-                            .AddDefaultLogger()
-                            .AddLoggers(
-                                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console)))
+                            .SetAppFolder(@".\..\..\..")
+                            .AddExtensions(p =>
+                                p.AddMSSqlServer()
+                                .AddPostgreSql())
+                            .AddDefaultFileLogger())
 
-                    .AddBindOpenService<TestService>(null, p =>
+                    .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {
                             TestAppSettings appSettings = p as TestAppSettings;
                             return new TestServiceSettings()

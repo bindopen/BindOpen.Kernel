@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<handlers.dictionary library="databases"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:HandlerDictionary HandlerDictionary.xsd">
+
+  <creationDate>2014-07-12</creationDate>
+  <lastModificationDate>2016-09-10</lastModificationDate>
+  
+  <definitions />
+
+</handlers.dictionary>

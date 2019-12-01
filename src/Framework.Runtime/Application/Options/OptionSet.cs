@@ -64,10 +64,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// Updates this instance with the specified string value.
         /// </summary>
         /// <param name="stringValue">The string value to consider.</param>
-        public ILog Update(
+        public IBdoLog Update(
             string stringValue)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (!string.IsNullOrEmpty(stringValue))
             {

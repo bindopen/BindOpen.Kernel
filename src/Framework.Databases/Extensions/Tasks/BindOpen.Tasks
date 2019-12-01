@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<tasks.dictionary library="databases"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:TaskDictionary TaskDictionary.xsd">
+  
+  <creationDate>2011-07-07</creationDate>
+  <lastModificationDate>2016-10-15</lastModificationDate>
+  
+  <definitions />
+  
+</tasks.dictionary>

@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
 using System.IO;
@@ -11,20 +11,20 @@ using System.IO;
 namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
 {
     [TestFixture, Order(21)]
-    public class DataSourceDepotTest
+    public class DatasourceDepotTest
     {
-        private readonly string _filePath = SetupVariables.WorkingFolder + "DataSourceDepot.xml";
+        private readonly string _filePath = SetupVariables.WorkingFolder + "DatasourceDepot.xml";
 
-        private DataSourceDepot _dataSourceDepot = null;
+        private BdoDatasourceDepot _dataSourceDepot = null;
 
         [SetUp]
         public void Setup()
         {
-            _dataSourceDepot = new DataSourceDepot(
-                new DataSource(
+            _dataSourceDepot = new BdoDatasourceDepot(
+                new Datasource(
                     "smtp_default",
-                    DataSourceKind.EmailServer,
-                    new ConnectorConfiguration(
+                    DatasourceKind.EmailServer,
+                    new BdoConnectorConfiguration(
                         "messages$smtp",
                         ElementFactory.CreateScalar("host", "smtp.test.com"),
                         ElementFactory.CreateScalar("port", DataValueType.Integer, "587"),
@@ -35,7 +35,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
                         ElementFactory.CreateScalar("password", "passwordA"))));
         }
 
-        public void TestDataSourceDepotSet(DataSourceDepot depot)
+        public void TestDatasourceDepotSet(BdoDatasourceDepot depot)
         {
             Assert.That(
                 depot.HasItem("smtp_default")
@@ -45,15 +45,15 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         }
 
         [Test]
-        public void TestCreateDataSourceDepotSet()
+        public void TestCreateDatasourceDepotSet()
         {
-            TestDataSourceDepotSet(_dataSourceDepot);
+            TestDatasourceDepotSet(_dataSourceDepot);
         }
 
         [Test]
-        public void TestSaveDataSourceDepot()
+        public void TestSaveDatasourceDepot()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _dataSourceDepot.SaveXml(_filePath, log);
 
@@ -66,14 +66,14 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         }
 
         [Test]
-        public void TestLoadDataSourceDepot()
+        public void TestLoadDatasourceDepot()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_dataSourceDepot == null || !File.Exists(_filePath))
-                TestSaveDataSourceDepot();
+                TestSaveDatasourceDepot();
 
-            var dataSourceDepot = XmlHelper.Load<DataSourceDepot>(_filePath, null, null, log);
+            var dataSourceDepot = XmlHelper.Load<BdoDatasourceDepot>(_filePath, null, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + xml);
 
-            TestDataSourceDepotSet(dataSourceDepot);
+            TestDatasourceDepotSet(dataSourceDepot);
         }
     }
 }

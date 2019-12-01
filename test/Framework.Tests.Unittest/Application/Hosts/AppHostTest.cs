@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Hosts
         [Test]
         public void TestLoggers()
         {
-            SetupVariables.AppHost.Log.AddError("This is a test");
+            SetupVariables.BdoHost.Log.AddError("This is a test");
         }
     }
 }

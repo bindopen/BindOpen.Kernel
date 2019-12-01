@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
 using System.IO;
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [SetUp]
         public void Setup()
         {
-            Log log = new Log();
+            BdoLog log = new BdoLog();
 
             _collectionElement1 = ElementFactory.CreateCollection(
                 "collection1",
@@ -37,8 +37,8 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
                 ElementFactory.CreateScalar("key22", "value22"),
                 ElementFactory.CreateScalar("key23", 25),
                 ElementFactory.CreateCarrier(
-                    "collection2", "runtime$file",
-                    ElementFactory.CreateSet<CarrierConfiguration>(new { path = "file2.txt" }))
+                    "carrier1", "runtime$file",
+                    ElementFactory.CreateSet<BdoCarrierConfiguration>(new { path = "file2.txt" }))
             );
 
             _collectionElementSetA = new DataElementSet(_collectionElement1, _collectionElement2);
@@ -65,7 +65,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestUpdateCheckRepair()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
@@ -80,7 +80,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestSaveDataElementSet()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _collectionElementSetA.SaveXml(_filePath, log);
 
@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestLoadDataElementSet()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_collectionElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();

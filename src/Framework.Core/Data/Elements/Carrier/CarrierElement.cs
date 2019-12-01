@@ -1,14 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Carrier
 {
@@ -24,19 +23,19 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Returns the element with the specified indexed.
         /// </summary>
         [XmlIgnore()]
-        public new ICarrierConfiguration this[int index] => base[index] as CarrierConfiguration;
+        public new IBdoCarrierConfiguration this[int index] => base[index] as BdoCarrierConfiguration;
 
         /// <summary>
         /// Returns the element with the specified unique name.
         /// </summary>
         [XmlIgnore()]
-        public new ICarrierConfiguration this[string name] => base[name] as CarrierConfiguration;
+        public new IBdoCarrierConfiguration this[string name] => base[name] as BdoCarrierConfiguration;
 
         /// <summary>
         /// Returns the first item.
         /// </summary>
         [XmlIgnore()]
-        public new ICarrierConfiguration First => this[0];
+        public new IBdoCarrierConfiguration First => this[0];
 
         // --------------------------------------------------
         // PROPERTIES
@@ -57,7 +56,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// </summary>
         [XmlArray("items")]
         [XmlArrayItem("add")]
-        public List<CarrierConfiguration> Carriers
+        public List<BdoCarrierConfiguration> Carriers
         {
             get;
             set;
@@ -140,7 +139,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         {
             base.SetItem(item);
 
-            if (this[0] is CarrierConfiguration configuration && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
+            if (this[0] is BdoCarrierConfiguration configuration && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
                 DefinitionUniqueId = configuration?.DefinitionUniqueId;
         }
 
@@ -164,7 +163,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? "").ToArray());
         }
 
         #endregion
@@ -179,13 +178,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
             Carriers = Items?.Select(p =>
                 {
-                    CarrierConfiguration configuration = p as CarrierConfiguration;
+                    BdoCarrierConfiguration configuration = p as BdoCarrierConfiguration;
                     configuration?.UpdateStorageInfo(log);
                     return configuration;
                 }).ToList();
@@ -194,16 +193,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
-            SetItems(Carriers?.Select(p=>
+            SetItems(Carriers?.Select(p =>
                 {
-                    p.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     return p;
                 }).ToArray());
         }
@@ -222,7 +221,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            CarrierElement dataCarrierElement = MemberwiseClone() as CarrierElement;
+            CarrierElement dataCarrierElement = base.Clone() as CarrierElement;
             return dataCarrierElement;
         }
 

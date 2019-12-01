@@ -15,14 +15,14 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         private readonly string _filePath20 = SetupVariables.WorkingFolder + "UsableConfiguration_Child1.xml";
         private readonly string _filePath21 = SetupVariables.WorkingFolder + "UsableConfiguration_Child2.xml";
 
-        private UsableConfiguration _usableConfiguration1 = null;
-        private UsableConfiguration _usableConfiguration20 = null;
-        private UsableConfiguration _usableConfiguration21 = null;
+        private BdoUsableConfiguration _usableConfiguration1 = null;
+        private BdoUsableConfiguration _usableConfiguration20 = null;
+        private BdoUsableConfiguration _usableConfiguration21 = null;
 
         [SetUp]
         public void Setup()
         {
-            _usableConfiguration1 = new UsableConfiguration(
+            _usableConfiguration1 = new BdoUsableConfiguration(
                 _filePath1,
                 new[] { Path.GetFileName(_filePath20), Path.GetFileName(_filePath21) },
                 new[]
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
                 }
             );
 
-            _usableConfiguration20 = new UsableConfiguration(
+            _usableConfiguration20 = new BdoUsableConfiguration(
                 _filePath20,
                 new[]
                 {
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
                 }
             );
 
-            _usableConfiguration21 = new UsableConfiguration(
+            _usableConfiguration21 = new BdoUsableConfiguration(
                 _filePath21,
                 new[]
                 {
@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         [Test]
         public void TestSaveUsableConfiguration()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _usableConfiguration1.SaveXml(_filePath1, log);
             _usableConfiguration20.SaveXml(_filePath20, log);
@@ -69,12 +69,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         [Test]
         public void TestLoadUsableConfiguration()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_usableConfiguration1 == null || !File.Exists(_filePath1))
                 TestSaveUsableConfiguration();
 
-            var configuration = ConfigurationLoader.Load<UsableConfiguration>(_filePath1, null, null, log);
+            var configuration = ConfigurationLoader.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

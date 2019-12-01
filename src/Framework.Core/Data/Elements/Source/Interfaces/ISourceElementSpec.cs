@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <summary>
         /// 
         /// </summary>
-        DataSourceKind DataSourceKind { get; set; }
+        DatasourceKind DatasourceKind { get; set; }
 
         /// <summary>
         /// 

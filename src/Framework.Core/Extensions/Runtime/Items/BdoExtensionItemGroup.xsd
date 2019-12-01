@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../data/items/DescribedDataItem.xsd" />
+
+  <xs:complexType name="TBdoExtensionItemGroup">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:DescribedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="subGroups" type="bdo:ArrayOfBdoExtensionItemGroup" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfBdoExtensionItemGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="group" nillable="true" type="bdo:TBdoExtensionItemGroup" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
