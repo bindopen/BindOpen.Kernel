@@ -6386,6 +6386,13 @@
             <param name="quoteChar">The quote character to consider.</param>
             <returns>Returns the quoted string.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Core.Data.Helpers.Strings.StringHelper.GuessObjectValueFromString(System.String)">
+            <summary>
+            Gets the object from the specified string.
+            </summary>
+            <param name="st">The string to consider.</param>
+            <returns>Returns the object corresponding to the specified string.</returns>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Helpers.Strings.StringHelper.ToObject(System.String,BindOpen.Framework.Core.Data.Common.DataValueType,System.String)">
             <summary>
             Gets the object from the specified string.
@@ -15135,7 +15142,7 @@
             Instantiates a new instance of the Logger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLoggerFormat,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLoggerFormat,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the Logger class.
             </summary>
@@ -15148,8 +15155,6 @@
             <param name="folderPath">The folder path to consider.</param>
             <param name="fileName">The file name to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
-            <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.WriteLog(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
@@ -15218,11 +15223,12 @@
             </summary>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.DeleteExpiredLogs(System.Int32)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.DeleteExpiredLogs(System.Int32,System.String)">
             <summary>
             Delete the logs older than the specified day number.
             </summary>
             <param name="expirationDayNumber">The number of expiration days to consider.</param>
+            <param name="fileFormat">The file format to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.SetFileName(System.String,System.String)">
@@ -15439,11 +15445,12 @@
             </summary>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.DeleteExpiredLogs(System.Int32)">
+        <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.DeleteExpiredLogs(System.Int32,System.String)">
             <summary>
             Delete the logs older than the specified day number.
             </summary>
             <param name="expirationDayNumber">The number of expiration days to consider.</param>
+            <param name="fileFormat">The file format to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger.SetFileName(System.String,System.String)">
@@ -16050,6 +16057,12 @@
             <param name="scriptWord">The script word to consider.</param>
             <param name="scriptWordDefinition">The script word definition to consider.</param>
             <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.System.Scripting.BdoScriptInterpreter.GetDefinitions">
+            <summary>
+            Gets the script word definitions of this instance.
+            </summary>
+            <returns>Returns the script word definitions of this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Scripting.BdoScriptInterpreter.GetDefinitionsWithExactName(System.String,BindOpen.Framework.Core.Extensions.Definition.Items.IBdoScriptwordDefinition)">
             <summary>

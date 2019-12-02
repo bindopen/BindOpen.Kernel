@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Tests.UnitTest
     public static class SetupVariables
     {
         static string _workingFolder = null;
-        static ITBdoHost<TestAppSettings> _bdoHost = null;
+        static IBdoHost _appHost = null;
 
         public static string WorkingFolder
         {
@@ -21,22 +21,21 @@ namespace BindOpen.Framework.Tests.UnitTest
             {
                 String workingFolder = SetupVariables._workingFolder;
                 if (workingFolder == null)
-                    SetupVariables._workingFolder = workingFolder = ((_bdoHost?.Options?.RuntimeFolderPath ?? AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\")) + @"temp\").ToPath();
+                    SetupVariables._workingFolder = workingFolder = ((_appHost?.GetKnownPath(BdoHostPathKind.RuntimeFolder) ?? AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\")) + @"temp\").ToPath();
 
                 return workingFolder;
             }
         }
 
-        public static ITBdoHost<TestAppSettings> BdoHost
+        public static IBdoHost AppHost
         {
             get
             {
-                return _bdoHost ?? (_bdoHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
+                return _appHost ?? (_appHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
-                            .SetRuntimeFolder(@"..\..\run")
-                            .SetAppSettings(q => q.SetLibraryFolder(@"..\..\lib"))
-                            .SetModule(new AppModule("app.test"))
-                            .AddExtensions(p => p.AddMSSqlServer())
+                            .SetModule("app.test")
+                            .SetAppFolder(@"..\..")
+                            .AddExtensions(p=>p.AddMSSqlServer())
                             .AddDefaultFileLogger()
                             .AddLoggers(
                                 BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto, DatasourceKind.Console))));

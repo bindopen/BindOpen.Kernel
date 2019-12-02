@@ -35,7 +35,6 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="isVerbose">Indicates whether .</param>
         /// <param name="uiCulture">The folder path to consider.</param>
         /// <param name="eventFinder">The function that filters event.</param>
-        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public BdoSnapLogger(
             string name,
@@ -45,9 +44,8 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
             DatasourceKind outputKind = DatasourceKind.Repository,
             bool isVerbose = false,
             string uiCulture = null,
-            Predicate<IBdoLogEvent> eventFinder = null,
-            int expirationDayNumber = -1)
-            : base(name, BdoLoggerFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            Predicate<IBdoLogEvent> eventFinder = null)
+            : base(name, BdoLoggerFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder)
         {
         }
 

@@ -1419,11 +1419,6 @@
             The settings file path.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.IBdoHostOptions.RuntimeFolderPath">
-            <summary>
-            The runtime application folder path.
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.IBdoHostOptions.AppSettings">
             <summary>
             The application settings.
@@ -1483,13 +1478,6 @@
             Set the settings file.
             </summary>
             <param name="settingsFilePath">The settings file path.</param>
-            <returns>Returns the host option.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.SetRuntimeFolder(System.String)">
-            <summary>
-            Set the runtime folder.
-            </summary>
-            <param name="runtimeFolderPath">The runtime folder path.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.Settings">
@@ -1598,11 +1586,6 @@
             
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1._runtimeFolderPath">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.ApplicationModule">
             <summary>
             The application module.
@@ -1621,11 +1604,6 @@
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.AppSettingsFilePath">
             <summary>
             The settings file path.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.RuntimeFolderPath">
-            <summary>
-            The runtime folder path.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.ExtensionReferences">
@@ -1717,13 +1695,6 @@
             </summary>
             <param name="settingsFilePath">The settings file path.</param>
             <returns>Returns the host option.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.SetRuntimeFolder(System.String)">
-            <summary>
-            Sets the runtime folder path.
-            </summary>
-            <param name="runtimeFolderPath"></param>
-            <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.ConfigureExtensionLoad(System.Action{BindOpen.Framework.Core.Extensions.Runtime.Stores.IExtensionLoadOptions})">
             <summary>
@@ -3006,6 +2977,11 @@
             The default log file name.
             </summary>
         </member>
+        <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix">
+            <summary>
+            The preffix of the default primary logs file name.
+            </summary>
+        </member>
         <member name="F:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostPaths._AUTHENTICATIONTIMEOUT">
             <summary>
             Maximum number of minutes : authentication 
@@ -3046,6 +3022,11 @@
             Name of the application instance of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.RuntimeFolderPath">
+            <summary>
+            The path of the runtime folder.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.ConfigurationFolderPath">
             <summary>
             The path of the configuration folder.
@@ -3071,6 +3052,12 @@
             The logs file name of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.LogsExpirationDayNumber">
+            <summary>
+            The expiration day number for logs.
+            </summary>
+            <remarks>The value -1 means that there is no expiration of logs.</remarks>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.#ctor">
             <summary>
             Instantiates a new instance of the BdoHostAppSettings class.
@@ -3082,6 +3069,13 @@
             </summary>
             <param name="scope">The scope to consider.</param>
             <param name="configuration">The configuration to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.SetRuntimeFolder(System.String)">
+            <summary>
+            Sets the runtime folder path.
+            </summary>
+            <param name="runtimeFolderPath"></param>
+            <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.SetConfigurationFolder(System.String)">
             <summary>
@@ -3117,6 +3111,12 @@
             </summary>
             <param name="logFileName">The log file name to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoHostAppSettings.SetLogsExpirationDayNumber(System.Int32)">
+            <summary>
+            Sets the expiration day number for logs.
+            </summary>
+            <param name="dayNumber">The expiration day number to consider.</param>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings">
             <summary>
             
@@ -3147,6 +3147,11 @@
             
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.RuntimeFolderPath">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.ConfigurationFolderPath">
             <summary>
             
@@ -3171,6 +3176,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.LogsExpirationDayNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.SetRuntimeFolder(System.String)">
+            <summary>
+            Set the runtime folder.
+            </summary>
+            <param name="runtimeFolderPath">The runtime folder path.</param>
+            <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.SetConfigurationFolder(System.String)">
             <summary>
@@ -3205,6 +3222,12 @@
             Sets the log file name.
             </summary>
             <param name="logFileName">The log file name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostAppSettings.SetLogsExpirationDayNumber(System.Int32)">
+            <summary>
+            Sets the expiration day number for logs.
+            </summary>
+            <param name="dayNumber">The expiration day number to consider.</param>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.Hosts.IBdoHostSettings">
             <summary>
@@ -4538,7 +4561,7 @@
             Instantiates a new instance of the JsonLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the JsonLogger class.
             </summary>
@@ -4550,7 +4573,6 @@
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -4626,7 +4648,7 @@
             Instantiates a new instance of the ReportLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the ReportLogger class.
             </summary>
@@ -4638,7 +4660,6 @@
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -4688,7 +4709,7 @@
             Instantiates a new instance of the SnapLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the SnapLogger class.
             </summary>
@@ -4700,7 +4721,6 @@
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Collections.Generic.List{System.String})">
@@ -4736,7 +4756,7 @@
             Instantiates a new instance of the XmlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the XmlLogger class.
             </summary>
@@ -4748,7 +4768,6 @@
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -4829,7 +4848,7 @@
             Instantiates a new instance of the YamlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the YamlLogger class.
             </summary>
@@ -4841,7 +4860,6 @@
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
             <param name="eventFinder">The function that filters event.</param>
-            <param name="expirationDayNumber">The number of expiration days to consider.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Collections.Generic.List{System.String})">

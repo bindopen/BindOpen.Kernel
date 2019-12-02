@@ -259,56 +259,56 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
             {
                 if (!_carrierDefinitions.ContainsKey(uniqueId))
                 {
-                    _carrierDefinitions.Add(carier.UniqueId?.ToUpper(), carier);
+                    _carrierDefinitions.Add(uniqueId, carier);
                 }
             }
             else if (definition is IBdoConnectorDefinition connector)
             {
                 if (!_connectorDefinitions.ContainsKey(uniqueId))
                 {
-                    _connectorDefinitions.Add(connector.UniqueId?.ToUpper(), connector);
+                    _connectorDefinitions.Add(uniqueId, connector);
                 }
             }
             else if (definition is IBdoEntityDefinition entity)
             {
                 if (!_entityDefinitions.ContainsKey(uniqueId))
                 {
-                    _entityDefinitions.Add(entity.UniqueId?.ToUpper(), entity);
+                    _entityDefinitions.Add(uniqueId, entity);
                 }
             }
             else if (definition is IBdoHandlerDefinition handler)
             {
                 if (!_handlerDefinitions.ContainsKey(uniqueId))
                 {
-                    _handlerDefinitions.Add(handler.UniqueId?.ToUpper(), handler);
+                    _handlerDefinitions.Add(uniqueId, handler);
                 }
             }
             else if (definition is IBdoMetricsDefinition metrics)
             {
                 if (!_metricsDefinitions.ContainsKey(uniqueId))
                 {
-                    _metricsDefinitions.Add(metrics.UniqueId?.ToUpper(), metrics);
+                    _metricsDefinitions.Add(uniqueId, metrics);
                 }
             }
             else if (definition is IBdoRoutineDefinition routine)
             {
                 if (!_routineDefinitions.ContainsKey(uniqueId))
                 {
-                    _routineDefinitions.Add(routine.UniqueId?.ToUpper(), routine);
+                    _routineDefinitions.Add(uniqueId, routine);
                 }
             }
             else if (definition is IBdoScriptwordDefinition scriptWord)
             {
                 if (!_scriptWordDefinitions.ContainsKey(uniqueId))
                 {
-                    _scriptWordDefinitions.Add(scriptWord.UniqueId?.ToUpper(), scriptWord);
+                    _scriptWordDefinitions.Add(uniqueId, scriptWord);
                 }
             }
             else if (definition is IBdoTaskDefinition task)
             {
                 if (!_taskDefinitions.ContainsKey(uniqueId))
                 {
-                    _taskDefinitions.Add(task.UniqueId?.ToUpper(), task);
+                    _taskDefinitions.Add(uniqueId, task);
                 }
             }
         }

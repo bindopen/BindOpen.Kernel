@@ -2,6 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements.Collection;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.Extensions.Runtime;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using NUnit.Framework;
@@ -37,7 +38,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
                 ElementFactory.CreateScalar("key22", "value22"),
                 ElementFactory.CreateScalar("key23", 25),
                 ElementFactory.CreateCarrier(
-                    "carrier1", "runtime$file",
+                    "collection2", "runtime$file",
                     ElementFactory.CreateSet<BdoCarrierConfiguration>(new { path = "file2.txt" }))
             );
 

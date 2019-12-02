@@ -30,7 +30,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         public void Setup()
         {
             _connector1 = new DatabaseConnector_MSSqlServer("test", _connectionString1);
-            _connector2 = SetupVariables.BdoHost.Scope.CreateConnector<TestConnector>(
+            _connector2 = SetupVariables.AppHost.Scope.CreateConnector<TestConnector>(
                 new BdoConnectorConfiguration(
                     "runtime$test",
                     ElementFactory.CreateScalar("host", _host2),
@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             }
 
             BdoConnectorConfiguration configuration1 = XmlHelper.Load<BdoConnectorConfiguration>(_filePath1, null, null, log);
-            DatabaseConnector_MSSqlServer connector1 = SetupVariables.BdoHost.Scope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration1, null, log);
+            DatabaseConnector_MSSqlServer connector1 = SetupVariables.AppHost.Scope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration1, null, log);
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             Test1(connector1);
 
             BdoConnectorConfiguration configuration2 = XmlHelper.Load<BdoConnectorConfiguration>(_filePath2, null, null, log);
-            TestConnector connector2 = SetupVariables.BdoHost.Scope.CreateConnector<TestConnector>(configuration2, null, log);
+            TestConnector connector2 = SetupVariables.AppHost.Scope.CreateConnector<TestConnector>(configuration2, null, log);
             if (log.HasErrorsOrExceptions())
             {
                 xml = log.ToXml();
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             BdoLog log = new BdoLog();
 
             using (DatabaseConnection connection =
-                SetupVariables.BdoHost.Scope.Open<DatabaseConnection>("bdd1", null, log))
+                SetupVariables.AppHost.Scope.Open<DatabaseConnection>("bdd1", null, log))
             {
             }
         }

@@ -727,6 +727,11 @@ namespace BindOpen.Framework.Core.System.Scripting
 
             return true;
         }
+
+        /// <summary>
+        /// Gets the script word definitions of this instance.
+        /// </summary>
+        /// <returns>Returns the script word definitions of this instance.</returns>
         public Dictionary<string, IBdoScriptwordDefinition> GetDefinitions() => _definitions;
 
         /// <summary>

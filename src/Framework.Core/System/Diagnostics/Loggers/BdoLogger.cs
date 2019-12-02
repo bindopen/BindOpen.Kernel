@@ -33,9 +33,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
         #region Variables
 
-        private string _FileName = null;
-        private string _FolderPath = null;
-        private IBdoLog _Log = null;
+        private IBdoLog _log = null;
+        private string _fileName = null;
+        private string _fileNameFormat = null;
+        private string _folderPath = null;
 
         #endregion
 
@@ -52,8 +53,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         {
             get
             {
-                return (!string.IsNullOrEmpty(_FolderPath) & !string.IsNullOrEmpty(_FileName) ?
-                    FolderPath + _FileName : "").ToPath();
+                return (!string.IsNullOrEmpty(_folderPath) & !string.IsNullOrEmpty(_fileName) ?
+                    FolderPath + _fileName : "").ToPath();
             }
         }
 
@@ -64,7 +65,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         {
             get
             {
-                return _FolderPath.GetEndedString(@"\").ToPath();
+                return _folderPath.GetEndedString(@"\").ToPath();
             }
         }
 
@@ -96,13 +97,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        public IBdoLog Log
-        {
-            get
-            {
-                return _Log;
-            }
-        }
+        public IBdoLog Log => _log;
 
         /// <summary>
         /// Function that filters event.
@@ -140,8 +135,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="folderPath">The folder path to consider.</param>
         /// <param name="fileName">The file name to consider.</param>
         /// <param name="eventFinder">The function that filters event.</param>
-        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
-        /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         protected BdoLogger(
             string name,
             BdoLoggerFormat logFormat,
@@ -151,19 +144,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             string uiCulture = null,
             string folderPath = null,
             string fileName = null,
-            Predicate<IBdoLogEvent> eventFinder = null,
-            int expirationDayNumber = -1) : this()
+            Predicate<IBdoLogEvent> eventFinder = null) : this()
         {
             Name = name;
             Format = logFormat;
             Mode = mode;
             OutputKind = outputKind;
-            _FolderPath = folderPath;
+            _folderPath = folderPath;
             SetFileName(fileName);
             IsVerbose = isVerbose;
             UICulture = uiCulture;
             EventFinder = eventFinder;
-            DeleteExpiredLogs(expirationDayNumber);
         }
 
         #endregion
@@ -329,19 +320,26 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         public void SetLog(IBdoLog log)
         {
-            _Log = log;
+            _log = log;
         }
 
         /// <summary>
         /// Delete the logs older than the specified day number.
         /// </summary>
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
+        /// <param name="fileFormat">The file format to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        public void DeleteExpiredLogs(int expirationDayNumber)
+        public void DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null)
         {
-            if (expirationDayNumber > -1 && Directory.Exists(_FolderPath))
+            if (expirationDayNumber > -1 && Directory.Exists(_folderPath))
             {
-                string[] files = Directory.GetFiles(_FolderPath);
+                if (fileFormat == null)
+                {
+                    fileFormat = _fileNameFormat;
+                }
+                fileFormat = fileFormat.Replace("$(id)", "*", false).Replace("$(timestamp)", "*", false);
+
+                string[] files = Directory.GetFiles(_folderPath, fileFormat);
 
                 string logFilePath = Filepath;
 
@@ -372,10 +370,11 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="id">The ID to consider.</param>
         public void SetFileName(string fileName, string id = null)
         {
+            _fileNameFormat = fileName;
             fileName = (string.IsNullOrEmpty(fileName) ? "log_$(timeStamp).log" : fileName);
             fileName = fileName.Replace("$(timeStamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), false);
             fileName = fileName.Replace("$(id)", id ?? Guid.NewGuid().ToString(), false);
-            _FileName = fileName;
+            _fileName = fileName;
         }
 
         /// <summary>
@@ -392,7 +391,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
             string oldFilePath = Filepath;
             newFileName = (string.IsNullOrEmpty(newFileName) ? (oldFilePath == null ? null : Path.GetFileName(oldFilePath)) : newFileName);
 
-            _FolderPath = newFolderPath;
+            _folderPath = newFolderPath;
             SetFileName(newFileName, id);
 
             if (isFileToBeMoved && File.Exists(oldFilePath) && !string.IsNullOrEmpty(oldFilePath))
@@ -471,7 +470,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <returns>Returns the saving log.</returns>
         public bool Save(bool isAppended = false)
         {
-            return Save(_Log, Filepath, isAppended);
+            return Save(_log, Filepath, isAppended);
         }
 
         /// <summary>

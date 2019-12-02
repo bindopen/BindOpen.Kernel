@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Tests.UnitTest
         public void Setup()
         {
             // Setup variables for the first time
-            var host = SetupVariables.BdoHost;
+            var host = SetupVariables.AppHost;
         }
     }
 }

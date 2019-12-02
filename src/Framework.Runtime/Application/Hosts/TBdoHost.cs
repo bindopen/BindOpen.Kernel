@@ -231,7 +231,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
                     break;
                 case BdoHostPathKind.RuntimeFolder:
-                    path = Options?.RuntimeFolderPath;
+                    path = Options?.AppSettings?.RuntimeFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
                         path = GetKnownPath(BdoHostPathKind.AppFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
@@ -292,11 +292,13 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             Options.Update();
 
             // we initialize logging
+            IBdoLogger primaryLogger = null;
             if (Options?.IsDefaultFileLoggerUsed == true)
             {
-                Log.AddLoggers(BdoLoggerFactory.Create<BdoSnapLogger>(
+                primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(
                     BdoLogger.__DefaultName, BdoLoggerMode.Auto, DatasourceKind.Repository, false, null,
-                    GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), "log_$(timestamp)_" + Id + ".txt"));
+                    GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
+                Log.AddLoggers(primaryLogger);
             }
             Log.AddLoggers(Options?.Loggers?.ToArray());
 
@@ -315,7 +317,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 subLog.AddMessage("Core extensions loaded");
             }
-            //log.Append(subLog, p => p.HasErrorsOrExceptionsOrWarnings());
 
             // if no errors was found
 
@@ -377,7 +378,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                     if (!log.HasErrorsOrExceptions())
                     {
-
                         // we load the configuration
 
                         string configFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
@@ -402,9 +402,21 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                             }
                         }
 
+                        // we delete expired primary logs
+
+                        int logsExpirationDayNumber = Options?.AppSettings?.LogsExpirationDayNumber ?? -1;
+                        primaryLogger?.DeleteExpiredLogs(logsExpirationDayNumber, BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + "*.txt");
+
                         // we update the log folder path
 
                         Log.SetFilePath(GetKnownPath(BdoHostPathKind.LogsFolder), true, Options?.AppSettings?.LogsFileName);
+
+                        // we delete expired logs
+
+                        foreach (var logger in Log.Loggers)
+                        {
+                            logger?.DeleteExpiredLogs(logsExpirationDayNumber);
+                        }
 
                         // we populate the data source depot from settings
 

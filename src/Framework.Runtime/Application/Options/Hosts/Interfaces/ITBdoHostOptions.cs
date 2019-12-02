@@ -12,8 +12,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
     /// <summary>
     /// The interface defines the host options.
     /// </summary>
-    public interface ITBdoHostOptions<S> : IBdoHostOptions
-        where S : class, IBdoHostSettings, new()
+    public interface ITBdoHostOptions<S> : IBdoHostOptions where S : class, IBdoHostSettings, new()
     {
         /// <summary>
         /// Sets the specified environment.
@@ -37,13 +36,6 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <param name="settingsFilePath">The settings file path.</param>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> SetSettingsFile(string settingsFilePath);
-
-        /// <summary>
-        /// Set the runtime folder.
-        /// </summary>
-        /// <param name="runtimeFolderPath">The runtime folder path.</param>
-        /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetRuntimeFolder(string runtimeFolderPath);
 
         // Settings ----------------------
 

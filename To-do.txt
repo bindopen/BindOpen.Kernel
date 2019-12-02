@@ -1,1 +1,6 @@
 - Check whether an extension has already been loaded in store
+- Set logs.expirationDayNumber in application settings
+	- Régler bugs
+- Faire fonctionner les tests unitaires
+
+- Evaluer les performances du nouvel host

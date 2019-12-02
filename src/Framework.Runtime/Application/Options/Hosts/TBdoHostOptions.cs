@@ -65,11 +65,6 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// </summary>
         protected string _appSettingsFilePath = (@".\" + BdoDefaultHostPaths.__DefaultAppSettingsFileName).ToPath();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        protected string _runtimeFolderPath = (@".\" + BdoDefaultHostPaths.__DefaultRuntimeFolderPath).ToPath();
-
         #endregion
 
         // ------------------------------------------
@@ -99,11 +94,6 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// The settings file path.
         /// </summary>
         public string AppSettingsFilePath => _appSettingsFilePath;
-
-        /// <summary>
-        /// The runtime folder path.
-        /// </summary>
-        public string RuntimeFolderPath => _runtimeFolderPath;
 
         // Extensions ----------------------
 
@@ -202,12 +192,12 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
             }
 
             _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_appFolderPath).ToPath();
-            _runtimeFolderPath = _runtimeFolderPath.GetConcatenatedPath(_appFolderPath).GetEndedString(@"\").ToPath();
 
-            AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(_runtimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(_runtimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(_runtimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetPackagesFolder(AppSettings?.PackagesFolderPath.GetConcatenatedPath(_runtimeFolderPath).GetEndedString(@"\").ToPath());
+            AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_appFolderPath).GetEndedString(@"\").ToPath());
+            AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+            AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+            AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+            AppSettings?.SetPackagesFolder(AppSettings?.PackagesFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
 
             ExtensionLoadOptions?.WithLibraryFolderPath(AppSettings?.LibraryFolderPath);
 
@@ -274,18 +264,6 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
             return this;
         }
 
-        /// <summary>
-        /// Sets the runtime folder path.
-        /// </summary>
-        /// <param name="runtimeFolderPath"></param>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> SetRuntimeFolder(string runtimeFolderPath = "")
-        {
-            _runtimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
-
-            return this;
-        }
-
         // Extensions -------------------------------------------
 
         /// <summary>
@@ -337,7 +315,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
             return this;
         }
 
-        // Loggers -------------------------------------------
+        // Logs -------------------------------------------
 
         /// <summary>
         /// Adds the specified settings specification.

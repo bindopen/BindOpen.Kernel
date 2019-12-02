@@ -152,8 +152,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Delete the logs older than the specified day number.
         /// </summary>
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
+        /// <param name="fileFormat">The file format to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        void DeleteExpiredLogs(int expirationDayNumber);
+        void DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null);
 
         /// <summary>
         /// Sets the name of the file of this instance.

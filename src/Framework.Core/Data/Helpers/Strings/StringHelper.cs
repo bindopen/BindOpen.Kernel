@@ -608,13 +608,56 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// Gets the object from the specified string.
         /// </summary>
         /// <param name="st">The string to consider.</param>
+        /// <returns>Returns the object corresponding to the specified string.</returns>
+        public static object GuessObjectValueFromString(this string st)
+        {
+            object object1 = null;
+
+            if (st != null)
+            {
+                object1 = st.ToObject(DataValueType.Integer);
+                if (object1 == null)
+                {
+                    object1 = st.ToObject(DataValueType.Long);
+                    if (object1 == null)
+                    {
+                        object1 = st.ToObject(DataValueType.ULong);
+                        if (object1 == null)
+                        {
+                            object1 = st.ToObject(DataValueType.Number);
+                            if (object1 == null)
+                            {
+                                object1 = st.ToObject(DataValueType.Date);
+                                if (object1 == null)
+                                {
+                                    object1 = st.ToObject(DataValueType.Time);
+                                    if (object1 == null)
+                                    {
+                                        object1 = st;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return object1;
+        }
+
+        /// <summary>
+        /// Gets the object from the specified string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static Object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
+        public static object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
         {
             if (valueType == DataValueType.Any)
-                valueType = st.GetValueType();
+            {
+                return st.GuessObjectValueFromString();
+            }
 
             switch (valueType)
             {
@@ -634,19 +677,23 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                     return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
                 case DataValueType.Number:
                     double aDouble = new double();
-                    double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble);
+                    if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))
+                        return null;
                     return new double?(aDouble);
                 case DataValueType.Integer:
                     int aInt = new int();
-                    int.TryParse(st, out aInt);
+                    if (!int.TryParse(st, out aInt))
+                        return null;
                     return new int?(aInt);
                 case DataValueType.Long:
                     long aLong = new long();
-                    long.TryParse(st, out aLong);
+                    if (!long.TryParse(st, out aLong))
+                        return null;
                     return new long?(aLong);
                 case DataValueType.ULong:
                     ulong aULong = new ulong();
-                    ulong.TryParse(st, out aULong);
+                    if (!ulong.TryParse(st, out aULong))
+                        return null;
                     return new ulong?(aULong);
                 default:
                     return st;

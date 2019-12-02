@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
                 TestSaveCarrier();
 
             BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, null, null, log);
-            var field = SetupVariables.BdoHost.Scope.CreateCarrier<DbField>(configuration, null, log);
+            var field = SetupVariables.AppHost.Scope.CreateCarrier<DbField>(configuration, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

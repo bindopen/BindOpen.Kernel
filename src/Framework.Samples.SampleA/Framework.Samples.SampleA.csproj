@@ -29,26 +29,19 @@ This package conducts on-demand tests before they are implemented in the unit te
     <Compile Remove="bin\Debug\netcoreapp3.0\run\**" />
     <Compile Remove="lib\**" />
     <Compile Remove="runtime\**" />
-    <Compile Remove="bdo\**" />
     <EmbeddedResource Remove="app_data\**" />
     <EmbeddedResource Remove="bin\Debug\netcoreapp3.0\run\**" />
     <EmbeddedResource Remove="lib\**" />
     <EmbeddedResource Remove="runtime\**" />
-    <EmbeddedResource Remove="bdo\**" />
     <None Remove="app_data\**" />
     <None Remove="bin\Debug\netcoreapp3.0\run\**" />
     <None Remove="lib\**" />
     <None Remove="runtime\**" />
-    <None Remove="bdo\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Settings\TestArguments.cs" />
     <Compile Remove="Settings\TestTask.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="bdo\config\bindopen.config" />
   </ItemGroup>
 
   <ItemGroup>

@@ -38,6 +38,11 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// 
         /// </summary>
+        string RuntimeFolderPath { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         string ConfigurationFolderPath { get; }
 
         /// <summary>
@@ -59,6 +64,18 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// 
         /// </summary>
         string PackagesFolderPath { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        int LogsExpirationDayNumber { get; }
+
+        /// <summary>
+        /// Set the runtime folder.
+        /// </summary>
+        /// <param name="runtimeFolderPath">The runtime folder path.</param>
+        /// <returns>Returns the host option.</returns>
+        IBdoHostAppSettings SetRuntimeFolder(string runtimeFolderPath);
 
         /// <summary>
         /// Set the configuration folder.
@@ -93,5 +110,12 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="logFileName">The log file name to consider.</param>
         IBdoHostAppSettings SetLogsFileName(string logFileName);
+
+        /// <summary>
+        /// Sets the expiration day number for logs.
+        /// </summary>
+        /// <param name="dayNumber">The expiration day number to consider.</param>
+        IBdoHostAppSettings SetLogsExpirationDayNumber(int dayNumber);
+
     }
 }

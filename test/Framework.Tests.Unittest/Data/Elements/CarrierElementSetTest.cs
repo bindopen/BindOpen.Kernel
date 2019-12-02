@@ -38,7 +38,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             _carrierElement3 = new RepositoryFile("file3.txt", "myfolder")?.AsElement();
 
-            _carrierElement4 = SetupVariables.BdoHost.Scope.CreateCarrier(
+            _carrierElement4 = SetupVariables.AppHost.Scope.CreateCarrier(
                 new BdoCarrierConfiguration(
                     "runtime$file",
                     ElementFactory.CreateElementArray(new { path = "file4.txt" })),

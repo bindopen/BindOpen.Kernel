@@ -272,7 +272,8 @@ namespace BindOpen.Framework.Core.Data.Common
         /// <returns>The result object.</returns>
         public static DataValueType GetValueType(this Object object1)
         {
-            return object1 == null ? DataValueType.None : object1.GetType().GetValueType();
+            var objectType = object1?.GetType();
+            return objectType == null ? DataValueType.None : objectType.GetValueType();
         }
 
         /// <summary>

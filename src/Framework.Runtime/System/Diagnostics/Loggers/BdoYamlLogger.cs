@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items.Source;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using System;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 {
@@ -49,7 +49,6 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="isVerbose">Indicates whether .</param>
         /// <param name="uiCulture">The folder path to consider.</param>
         /// <param name="eventFinder">The function that filters event.</param>
-        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public BdoYamlLogger(
             string name,
@@ -59,9 +58,8 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
             DatasourceKind outputKind = DatasourceKind.Repository,
             bool isVerbose = false,
             string uiCulture = null,
-            Predicate<IBdoLogEvent> eventFinder = null,
-            int expirationDayNumber = -1)
-            : base(name, BdoLoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder, expirationDayNumber)
+            Predicate<IBdoLogEvent> eventFinder = null)
+            : base(name, BdoLoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder)
         {
         }
 
@@ -157,10 +155,10 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         private String ToString(DataElement element, String indent = "")
         {
             String st = "";
-            if (element!=null)
+            if (element != null)
             {
                 st += indent + element.Key() + ":" + Environment.NewLine;
-                if (element.Items.Count==1)
+                if (element.Items.Count == 1)
                     st += indent + " value: " + element.Items[0]?.ToString(element.ValueType) + Environment.NewLine;
                 if (element.Items.Count > 1)
                 {

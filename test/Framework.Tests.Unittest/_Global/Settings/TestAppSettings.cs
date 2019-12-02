@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// The test folder path of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name = "test.folderPath")]
+        [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
 
         /// <summary>
@@ -41,8 +41,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// <summary>
         /// Instantiates a new instance of the TestAppSettings class.
         /// </summary>
-        public TestAppSettings()
-            : base()
+        public TestAppSettings() : base()
         {
         }
 

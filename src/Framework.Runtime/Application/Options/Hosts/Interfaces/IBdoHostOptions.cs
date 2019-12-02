@@ -5,7 +5,6 @@ using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
-using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Runtime.Application.Options.Hosts
@@ -33,11 +32,6 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// The settings file path.
         /// </summary>
         string AppSettingsFilePath { get; }
-
-        /// <summary>
-        /// The runtime application folder path.
-        /// </summary>
-        string RuntimeFolderPath { get; }
 
         // Settings ----------------------
 

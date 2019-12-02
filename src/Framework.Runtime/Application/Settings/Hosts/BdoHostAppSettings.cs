@@ -64,6 +64,13 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         // Folders ---------------
 
         /// <summary>
+        /// The path of the runtime folder.
+        /// </summary>
+        [XmlIgnore()]
+        [DetailProperty(Name = "runtime.folderPath")]
+        public string RuntimeFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultRuntimeFolderPath).ToPath();
+
+        /// <summary>
         /// The path of the configuration folder.
         /// </summary>
         [XmlIgnore()]
@@ -98,6 +105,15 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         [DetailProperty(Name = "logs.fileName")]
         public string LogsFileName { get; internal set; } = BdoDefaultHostPaths.__DefaultLogsFileName;
 
+        // Logs ---------------
+
+        /// <summary>
+        /// The expiration day number for logs.
+        /// </summary>
+        /// <remarks>The value -1 means that there is no expiration of logs.</remarks>
+        [XmlIgnore()]
+        [DetailProperty(Name = "logs.expirationDayNumber")]
+        public int LogsExpirationDayNumber { get; internal set; } = -1;
 
         #endregion
 
@@ -132,6 +148,18 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         // ------------------------------------------
 
         #region Mutators
+
+        /// <summary>
+        /// Sets the runtime folder path.
+        /// </summary>
+        /// <param name="runtimeFolderPath"></param>
+        /// <returns>Returns this instance.</returns>
+        public IBdoHostAppSettings SetRuntimeFolder(string runtimeFolderPath = "")
+        {
+            RuntimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
+
+            return this;
+        }
 
         /// <summary>
         /// Sets the configuration folder path.
@@ -188,6 +216,21 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         public IBdoHostAppSettings SetLogsFileName(string logFileName)
         {
             LogsFileName = logFileName;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the expiration day number for logs.
+        /// </summary>
+        /// <param name="dayNumber">The expiration day number to consider.</param>
+        public IBdoHostAppSettings SetLogsExpirationDayNumber(int dayNumber)
+        {
+            if (dayNumber < -1)
+            {
+                dayNumber = -1;
+            }
+            LogsExpirationDayNumber = dayNumber;
 
             return this;
         }
