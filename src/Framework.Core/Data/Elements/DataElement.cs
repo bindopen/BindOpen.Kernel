@@ -310,15 +310,18 @@ namespace BindOpen.Framework.Core.Data.Elements
                 case DataItemizationMode.Script:
                     if (scope == null)
                     {
-                        log?.AddError(title: "Application scope missing");
+                        log?.AddWarning(title: "Application scope missing");
+                        return ItemScript;
                     }
                     else if (scope.Interpreter == null)
                     {
                         log?.AddError(title: "Script interpreter missing");
+                        return ItemScript;
                     }
                     else if (string.IsNullOrEmpty(ItemScript))
                     {
                         log?.AddWarning(title: "Script missing");
+                        return ItemScript;
                     }
                     else
                     {

@@ -7,6 +7,7 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
@@ -182,24 +183,31 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         {
             IBdoLog log = new BdoLog();
 
-            if (string.IsNullOrEmpty(AppFolderPath))
+            if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.AppFolder.ToString()))
             {
-                _appFolderPath = BdoDefaultHostPaths.__DefaultAppFolderPath;
+                if (string.IsNullOrEmpty(AppFolderPath))
+                {
+                    _appFolderPath = BdoDefaultHostPaths.__DefaultAppFolderPath;
+                }
+                else
+                {
+                    _appFolderPath = _appFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultAppFolderPath).GetEndedString(@"\").ToPath();
+                }
             }
-            else
+
+            if (specificationAreas == null)
             {
-                _appFolderPath = _appFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultAppFolderPath).GetEndedString(@"\").ToPath();
+                _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_appFolderPath).ToPath();
+
+                AppSettings?.UpdateRuntimeInfo(null, null, log);
+                AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_appFolderPath).GetEndedString(@"\").ToPath());
+                AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                AppSettings?.SetPackagesFolder(AppSettings?.PackagesFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+
+                ExtensionLoadOptions?.WithLibraryFolderPath(AppSettings?.LibraryFolderPath);
             }
-
-            _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_appFolderPath).ToPath();
-
-            AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_appFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-            AppSettings?.SetPackagesFolder(AppSettings?.PackagesFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-
-            ExtensionLoadOptions?.WithLibraryFolderPath(AppSettings?.LibraryFolderPath);
 
             return log;
         }

@@ -288,7 +288,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         {
             log = log ?? new BdoLog();
 
-            // we update options paths
+            // we update options
+            var premiaryAppSettings = Options.AppSettings.Clone<BdoHostAppSettings>();
             Options.Update();
 
             // we initialize logging
@@ -327,7 +328,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     // we load the application settings
 
                     string appSettingsFilePath = GetKnownPath(BdoHostPathKind.AppSettingsFile);
-                    Options.AppSettings = Options.AppSettings ?? new BdoHostAppSettings();
+                    Options.AppSettings = premiaryAppSettings ?? new BdoHostAppSettings();
 
                     if (!File.Exists(appSettingsFilePath))
                     {

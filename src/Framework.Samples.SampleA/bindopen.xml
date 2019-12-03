@@ -3,8 +3,8 @@
   <scalar name="applicationInstanceName" value="test.console" />
 
   <scalar name="logs.fileName" script="testB_$(id).txt" />
-  <scalar name="logs.expirationDayNumber" value="10" />
-  <scalar name="runtime.folderPath" script=".\bdo-a" />
+  <scalar name="logs.expirationDayNumber" value="1" />
+  <!--<scalar name="runtime.folderPath" script=".\bdo-a" />-->
 
   <!--
   <scalar name="executionLevel" value="Development" />
