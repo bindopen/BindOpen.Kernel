@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items.Source
+namespace BindOpen.Framework.Core.Data.Items.Datasources
 {
     /// <summary>
     /// This class represents a data source.

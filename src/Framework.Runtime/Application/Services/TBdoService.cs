@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
+﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Assemblies;
@@ -6,6 +6,7 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Settings;
+using System;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -26,13 +27,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         /// <remarks>The value can be assigned.</remarks>
         protected bool _isLoaded = false;
-
-        // Extensions ----------------------
-
-        /// <summary>
-        /// This event is triggered when the application is successfully initialized.
-        /// </summary>
-        public event OnLoadCompletedEventHandler OnLoadCompleted;
 
         // Scope ----------------------
 
@@ -96,7 +90,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Indicates whether the platform information is loaded.
         /// </summary>
-        public bool IsSuccessfullyLoaded
+        public bool IsLoaded
         {
             get { return _isLoaded; }
         }
@@ -110,6 +104,28 @@ namespace BindOpen.Framework.Runtime.Application.Services
         {
             get { return _scope; }
         }
+
+        // Trigger actions --------------------------------------
+
+        /// <summary>
+        /// The action that the start of this instance completes.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+
+        /// <summary>
+        /// The action that the start of this instance fails.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+
+        /// <summary>
+        /// The action that this instance completes.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+
+        /// <summary>
+        /// The action that is executed when the instance fails.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
 
         #endregion
 
@@ -180,7 +196,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
                 // we initialize this instance
                 Initialize(log);
 
-                if (IsSuccessfullyLoaded)
+                if (IsLoaded)
                 {
                     ExecutionStatus = ProcessExecutionStatus.Stopped_Error;
                 }
@@ -199,6 +215,40 @@ namespace BindOpen.Framework.Runtime.Application.Services
         {
             Log?.End(executionStatus);
             return this;
+        }
+
+        // Events ------------------------------
+
+        /// <summary>
+        /// Indicates that this instance has successfully started.
+        /// </summary>
+        public virtual void StartSucceeds()
+        {
+            Action_OnStartSuccess?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Indicates that this instance has not successfully started.
+        /// </summary>
+        public virtual void StartFails()
+        {
+            Action_OnStartFailure?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Indicates that this instance completes.
+        /// </summary>
+        public virtual void ExecutionSucceedes()
+        {
+            Action_OnExecutionSucess?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Indicates that this instance fails.
+        /// </summary>
+        public virtual void ExecutionFails()
+        {
+            Action_OnExecutionFailure?.Invoke(this);
         }
 
         #endregion
@@ -228,14 +278,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             if (GetType() == typeof(TBdoService<S>))
                 _isLoaded = true;
-        }
-
-        /// <summary>
-        /// Fires the 'LoadComplete' event.
-        /// </summary>
-        public virtual void LoadComplete()
-        {
-            OnLoadCompleted?.Invoke(this);
         }
 
         #endregion

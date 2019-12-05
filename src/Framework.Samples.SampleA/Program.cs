@@ -4,6 +4,7 @@ using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Threading.Tasks;
 
 namespace BindOpen.Framework.Samples.SampleA
@@ -22,7 +23,8 @@ namespace BindOpen.Framework.Samples.SampleA
                             .AddExtensions(p =>
                                 p.AddMSSqlServer()
                                 .AddPostgreSql())
-                            .AddDefaultFileLogger("testA.txt"))
+                            .AddDefaultFileLogger("testA.txt")
+                            .ThrowExceptionOnStartFailure())
 
                     .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {

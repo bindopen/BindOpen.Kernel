@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Data.Specification.Filters;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source

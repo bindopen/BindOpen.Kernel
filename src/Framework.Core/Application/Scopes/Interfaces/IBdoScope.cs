@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Depots;
+﻿using BindOpen.Framework.Core.Data.Depots;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
@@ -80,5 +80,10 @@ namespace BindOpen.Framework.Core.Application.Scopes
         IBdoLog LoadExtensions(
             Action<IExtensionLoadOptions> loadOptionsAction,
             params IBdoExtensionReference[] references);
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        void Clear();
     }
 }

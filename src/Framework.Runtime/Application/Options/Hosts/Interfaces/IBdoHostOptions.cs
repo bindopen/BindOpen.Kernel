@@ -4,7 +4,9 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
+using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Runtime.Application.Options.Hosts
@@ -43,7 +45,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// The host settings.
         /// </summary>
-        IBdoHostSettings HostSettings { get; set; }
+        IBdoHostSettings HostSettings { get; }
 
         /// <summary>
         /// The set of settings specifications of this instance.
@@ -73,5 +75,11 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// The loggers.
         /// </summary>
         IList<IBdoLogger> Loggers { get; }
+
+        /// <summary>
+        /// Get the settings as the specified host settings class.
+        /// </summary>
+        /// <typeparam name="T">The host settings class to consider.</typeparam>
+        T GetSettings<T>() where T : class, IBdoHostSettings;
     }
 }

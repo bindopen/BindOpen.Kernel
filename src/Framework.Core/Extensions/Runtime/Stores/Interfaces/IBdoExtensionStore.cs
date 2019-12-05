@@ -45,5 +45,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
         IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null);
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        void Clear();
     }
 }

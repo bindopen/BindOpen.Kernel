@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Settings;
+using System;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -36,22 +36,52 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// </summary>
         IBdoLog Log { get; }
 
-        // Load --------------------------------------
+        // Trigger actions --------------------------------------
+
+        /// <summary>
+        /// The action that the start of this instance completes.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+
+        /// <summary>
+        /// The action that the start of this instance fails.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+
+        /// <summary>
+        /// The action that this instance completes.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+
+        /// <summary>
+        /// The action that is executed when the instance fails.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
 
         /// <summary>
         /// Indicates whether this is successfully loaded.
         /// </summary>
-        bool IsSuccessfullyLoaded { get; }
+        bool IsLoaded { get; }
 
         /// <summary>
-        /// Fires the 'LoadComplete' event.
+        /// Indicates that the start of this instance completes.
         /// </summary>
-        void LoadComplete();
+        void StartSucceeds();
 
         /// <summary>
-        /// This event is triggered when the application is successfully initialized.
+        /// Indicates that the start of this instance fails.
         /// </summary>
-        event OnLoadCompletedEventHandler OnLoadCompleted;
+        void StartFails();
+
+        /// <summary>
+        /// Indicates that this instance execution succeeds.
+        /// </summary>
+        void ExecutionSucceedes();
+
+        /// <summary>
+        /// Indicates that this instance execution fails.
+        /// </summary>
+        void ExecutionFails();
 
         // Process -----------------------------------
 

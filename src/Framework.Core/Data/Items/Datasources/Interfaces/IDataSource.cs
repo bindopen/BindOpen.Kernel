@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Data.Items.Source
+namespace BindOpen.Framework.Core.Data.Items.Datasources
 {
     /// <summary>
     /// 

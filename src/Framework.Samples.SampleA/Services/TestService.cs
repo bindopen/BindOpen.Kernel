@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using System;
@@ -12,6 +13,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         protected override ITBdoService<TestServiceSettings> Process(IBdoLog log)
         {
             base.Process(log);
+
+            BdoHostFactory.InitBindOpenFolders(@"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test", true, @"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test\out");
 
             var element = ElementFactory.CreateScalar(Core.Data.Common.DataValueType.Boolean, false);
 

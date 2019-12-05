@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System;
 using System.Collections.Generic;
@@ -110,5 +111,63 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <param name="moduleName">The name of the module.</param>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> SetModule(string moduleName);
+
+        // Trigger actions -------------------------------------------
+
+        /// <summary>  
+        /// The action that is executed when start succeeds.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        ITBdoHostOptions<S> OnStartSuccess(Action<ITBdoService<S>> action);
+
+        /// <summary>
+        /// The action that is executed when start fails.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        ITBdoHostOptions<S> OnStartFailure(Action<ITBdoService<S>> action);
+
+        /// <summary>
+        /// The action that is executed when execution succeeds.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        ITBdoHostOptions<S> OnExecutionSuccess(Action<ITBdoService<S>> action);
+
+        /// <summary>
+        /// The action that is executed when execution fails.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        ITBdoHostOptions<S> OnExecutionFailure(Action<ITBdoService<S>> action);
+
+        /// <summary>
+        /// Throws an exception when start fails.
+        /// </summary>
+        ITBdoHostOptions<S> ThrowExceptionOnStartFailure();
+
+        /// <summary>
+        /// Throws an exception when execution fails.
+        /// </summary>
+        ITBdoHostOptions<S> ThrowExceptionOnExecutionFailure();
+
+        // Trigger actions -------------------------------------------
+
+        /// <summary>
+        /// The action that the start of this instance completes.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+
+        /// <summary>
+        /// The action that the start of this instance fails.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+
+        /// <summary>
+        /// The action that this instance completes.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+
+        /// <summary>
+        /// The action that is executed when the instance fails.
+        /// </summary>
+        Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
     }
 }

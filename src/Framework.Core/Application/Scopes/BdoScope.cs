@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Depots;
+﻿using BindOpen.Framework.Core.Data.Depots;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Context;
 using BindOpen.Framework.Core.Data.Items;
@@ -140,6 +140,16 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="references">The extension references to consider.</param>
         public IBdoLog LoadExtensions(params IBdoExtensionReference[] references)
             => LoadExtensions(null, references);
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        public void Clear()
+        {
+            Context?.Clear();
+            DepotSet?.Clear();
+            ExtensionStore?.Clear();
+        }
 
         #endregion
 

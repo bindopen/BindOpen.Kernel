@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items.Source
+namespace BindOpen.Framework.Core.Data.Items.Datasources
 {
-
     // --------------------------------------------------
     // ENUMERATIONS
     // --------------------------------------------------
@@ -64,5 +63,4 @@ namespace BindOpen.Framework.Core.Data.Items.Source
     }
 
     #endregion
-
 }

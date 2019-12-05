@@ -1,8 +1,5 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.System.Processing;
+﻿using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Options.Hosts;
-using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System;

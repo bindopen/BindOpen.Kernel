@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The options.
         /// </summary>
-        IBdoHostOptions HostOptions { get; set; }
+        IBdoHostOptions HostOptions { get; }
 
         /// <summary>
         /// The application settings.

@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
+﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Application.Depots
+namespace BindOpen.Framework.Core.Data.Depots
 {
     /// <summary>
     /// 

@@ -2,13 +2,15 @@
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using BindOpen.Framework.Runtime.Application.Exceptions;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
+using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using System;
@@ -121,18 +123,19 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         public bool IsDefaultFileLoggerUsed => _isDefaultLoggerUsed;
 
         // Settings ----------------------
+
         /// <summary>
-        /// The application settings.
+        /// The application settings of this instance.
         /// </summary>
         public IBdoHostAppSettings AppSettings { get; set; }
 
         /// <summary>
-        /// The settings as host settings.
+        /// The settings of this instance as host settings.
         /// </summary>
-        public IBdoHostSettings HostSettings { get; set; }
+        public IBdoHostSettings HostSettings => Settings;
 
         /// <summary>
-        /// The settings.
+        /// The settings of this instance.
         /// </summary>
         public S Settings { get; set; }
 
@@ -140,6 +143,28 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// The set of settings specifications of this instance.
         /// </summary>
         public IDataElementSpecSet SettingsSpecificationSet { get; set; } = new DataElementSpecSet();
+
+        // Trigger actions ----------------------
+
+        /// <summary>
+        /// The action that the start of this instance completes.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+
+        /// <summary>
+        /// The action that the start of this instance fails.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+
+        /// <summary>
+        /// The action that this instance completes.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+
+        /// <summary>
+        /// The action that is executed when the instance fails.
+        /// </summary>
+        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
 
         #endregion
 
@@ -162,11 +187,25 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         #endregion
 
         // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Get the settings as the specified host settings class.
+        /// </summary>
+        /// <typeparam name="T">The host settings class to consider.</typeparam>
+        public T GetSettings<T>() where T : class, IBdoHostSettings
+            => HostSettings as T;
+
+        #endregion
+
+        // ------------------------------------------
         // MUTATORS
         // ------------------------------------------
 
         #region Mutators
-
 
         /// <summary>
         /// Updates this instance.
@@ -360,6 +399,72 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         public ITBdoHostOptions<S> AddDefaultConsoleLogger()
         {
             AddLoggers(BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto, DatasourceKind.Console));
+
+            return this;
+        }
+
+        // Trigger actions -------------------------------------------
+
+        /// <summary>  
+        /// The action that is executed when the start of this instance succedes.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        public ITBdoHostOptions<S> OnStartSuccess(Action<ITBdoService<S>> action)
+        {
+            Action_OnStartSuccess = action;
+
+            return this;
+        }
+
+        /// <summary>
+        /// The action that is executed when the start of this instance fails.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        public ITBdoHostOptions<S> OnStartFailure(Action<ITBdoService<S>> action)
+        {
+            Action_OnStartFailure = action;
+
+            return this;
+        }
+
+        /// <summary>
+        /// The action that is executed when this instance is successfully completed.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        public ITBdoHostOptions<S> OnExecutionSuccess(Action<ITBdoService<S>> action)
+        {
+            Action_OnExecutionSucess = action;
+
+            return this;
+        }
+
+        /// <summary>
+        /// The action that is executed when this instance execution fails.
+        /// </summary>
+        /// <param name="action">The action to execute.</param>
+        public ITBdoHostOptions<S> OnExecutionFailure(Action<ITBdoService<S>> action)
+        {
+            Action_OnExecutionFailure = action;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Throws an exception when start fails.
+        /// </summary>
+        public ITBdoHostOptions<S> ThrowExceptionOnStartFailure()
+        {
+            Action_OnStartFailure = (_ => throw new BdoHostLoadException("BindOpen host failed while loading"));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Throws an exception when start fails.
+        /// </summary>
+        public ITBdoHostOptions<S> ThrowExceptionOnExecutionFailure()
+        {
+            Action_OnExecutionFailure = (_ => throw new BdoHostLoadException("BindOpen host failed while loading"));
 
             return this;
         }

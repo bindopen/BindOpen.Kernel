@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using System.Collections;
 
-namespace BindOpen.Framework.Core.Application.Depots
+namespace BindOpen.Framework.Core.Data.Depots
 {
     /// <summary>
     /// 
@@ -24,5 +24,9 @@ namespace BindOpen.Framework.Core.Application.Depots
         /// </summary>
         T Get<T>() where T : IBdoDepot;
 
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        void Clear();
     }
 }

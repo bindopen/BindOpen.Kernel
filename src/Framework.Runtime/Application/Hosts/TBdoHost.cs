@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Application.Depots.Datasources;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// The options of this instance.
         /// </summary>
-        public IBdoHostOptions HostOptions { get; set; } = null;
+        public IBdoHostOptions HostOptions => Options;
 
         /// <summary>
         /// The options of this instance.
@@ -105,14 +105,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
             Log?.AddSubLog(log, title: "Initializing host...", eventKind: EventKinds.Message);
 
-            if (IsSuccessfullyLoaded)
+            if (IsLoaded)
             {
                 Log?.AddMessage("Host started successfully");
+                StartSucceeds();
             }
             else
             {
                 Log?.AddMessage("Host loaded with errors");
                 End();
+                StartFails();
             }
 
             return this;
@@ -133,6 +135,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="executionStatus">The execution status to consider.</param>
         public new virtual ITBdoHost<S> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
+            // we unload the host (syncrhonously for the moment)
+            _isLoaded = false;
+            _scope.Clear();
+
             Log?.AddMessage("Host ended");
             return base.End(executionStatus) as ITBdoHost<S>;
         }
@@ -288,11 +294,20 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         {
             log = log ?? new BdoLog();
 
+            // we bind the trigger actions
+
+            Action_OnExecutionSucess = Options?.Action_OnExecutionSucess;
+            Action_OnExecutionFailure = Options?.Action_OnExecutionFailure;
+            Action_OnStartSuccess = Options?.Action_OnStartSuccess;
+            Action_OnStartFailure = Options?.Action_OnStartFailure;
+
             // we update options
+
             var premiaryAppSettings = Options.AppSettings.Clone<BdoHostAppSettings>();
             Options.Update();
 
             // we initialize logging
+
             IBdoLogger primaryLogger = null;
             if (Options?.IsDefaultFileLoggerUsed == true)
             {
@@ -332,7 +347,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                     if (!File.Exists(appSettingsFilePath))
                     {
-                        subLog.AddWarning("File '" + BdoDefaultHostPaths.__DefaultAppSettingsFileName + "' not found");
+                        subLog.AddWarning("Settings file ('" + BdoDefaultHostPaths.__DefaultAppSettingsFileName + "') not found");
                     }
                     else
                     {
@@ -381,26 +396,30 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     {
                         // we load the configuration
 
+                        Options.Settings = new S();
+
                         string configFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
 
                         subLog = log.AddSubLog(title: "Loading configuration...", eventKind: EventKinds.Message);
                         if (!File.Exists(configFilePath))
                         {
-                            subLog.AddMessage(title: "No configuration loaded");
+                            subLog.AddWarning(title: "Configuration file ('bindopen.config.xml') not found");
                         }
                         else
                         {
-                            Options.Settings = new S();
-                            Options.Settings.UpdateFromFile(
+                            subLog.Append(Options.Settings.UpdateFromFile(
                                 configFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                                 Options?.SettingsSpecificationSet,
-                                _scope, null);
-
-                            if (!subLog.HasErrorsOrExceptions())
-                            {
-                                subLog.AddError("Configuration loaded");
-                            }
+                                _scope, null));
+                        }
+                        if (!subLog.HasErrorsOrExceptions())
+                        {
+                            subLog.AddMessage("Configuration loaded");
+                        }
+                        else
+                        {
+                            subLog.AddMessage(title: "No configuration loaded");
                         }
 
                         // we delete expired primary logs
@@ -445,8 +464,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             }
 
             _isLoaded = !log.HasErrorsOrExceptions();
-            if (_isLoaded && GetType() == typeof(TBdoHost<S>))
-                LoadComplete();
         }
 
         #endregion

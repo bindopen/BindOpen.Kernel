@@ -4,7 +4,7 @@ using BindOpen.Framework.Core.System.Diagnostics;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Application.Depots
+namespace BindOpen.Framework.Core.Data.Depots
 {
     /// <summary>
     /// This class represents a depot.

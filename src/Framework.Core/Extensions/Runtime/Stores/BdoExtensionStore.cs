@@ -234,7 +234,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <summary>
         /// Clears this instance.
         /// </summary>
-        internal void Clear()
+        public void Clear()
         {
             _carrierDefinitions.Clear();
             _connectorDefinitions.Clear();

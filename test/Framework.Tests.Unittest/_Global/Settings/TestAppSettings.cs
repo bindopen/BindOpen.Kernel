@@ -19,14 +19,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// <summary>
         /// The test folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
 
         /// <summary>
         /// The URIs of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "test.uris")]
         public Dictionary<string, string> Uris { get; set; }
 

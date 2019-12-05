@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using System.Collections;
 
-namespace BindOpen.Framework.Core.Application.Depots
+namespace BindOpen.Framework.Core.Data.Depots
 {
     /// <summary>
     /// This class represents a set of depots.
@@ -62,6 +62,14 @@ namespace BindOpen.Framework.Core.Application.Depots
             }
 
             return default(T);
+        }
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        public void Clear()
+        {
+            Depots?.Clear();
         }
 
         #endregion

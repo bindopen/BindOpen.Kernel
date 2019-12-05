@@ -144,10 +144,35 @@
             <param name="inputBytes">The input bytes to consider.</param>
             <returns>Returns the decrypted data.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException">
+            <summary>
+            This static class lists the BindOpen host load exceptions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException.#ctor">
+            <summary>
+            Initializes a new instance of the BdoHostLoadException class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the BdoHostLoadException class.
+            </summary>
+            <param name="title">The title to consider.</param>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Hosts.BdoHostFactory">
             <summary>
             This static class is a factory for BindOpen hosts.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoHostFactory.InitBindOpenFolders(System.String,System.Boolean,System.String)">
+            <summary>
+            Initializes the specified runtime folder.
+            </summary>
+            <param name="appFolderPath">The setup action to consider.</param>
+            <param name="mustRuntimeFolderBeCreated">Indicates whether the runtime folder must be created.</param>
+            <param name="runtimeFolderPath">The setup action to consider.</param>
+            <returns></returns>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Hosts.BdoHostFactory.CreateBindOpenDefaultHost(System.Action{BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostSettings}})">
             <summary>
@@ -1454,6 +1479,12 @@
             The loggers.
             </summary>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.IBdoHostOptions.GetSettings``1">
+            <summary>
+            Get the settings as the specified host settings class.
+            </summary>
+            <typeparam name="T">The host settings class to consider.</typeparam>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1">
             <summary>
             The interface defines the host options.
@@ -1546,6 +1577,60 @@
             <param name="moduleName">The name of the module.</param>
             <returns>Returns the host option.</returns>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.OnStartSuccess(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>  
+            The action that is executed when start succeeds.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.OnStartFailure(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when start fails.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.OnExecutionSuccess(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when execution succeeds.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.OnExecutionFailure(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when execution fails.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.ThrowExceptionOnStartFailure">
+            <summary>
+            Throws an exception when start fails.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.ThrowExceptionOnExecutionFailure">
+            <summary>
+            Throws an exception when execution fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.Action_OnStartSuccess">
+            <summary>
+            The action that the start of this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.Action_OnStartFailure">
+            <summary>
+            The action that the start of this instance fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.Action_OnExecutionSucess">
+            <summary>
+            The action that this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.Action_OnExecutionFailure">
+            <summary>
+            The action that is executed when the instance fails.
+            </summary>
+        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1">
             <summary>
             This class represents a host options.
@@ -1628,17 +1713,17 @@
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.AppSettings">
             <summary>
-            The application settings.
+            The application settings of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.HostSettings">
             <summary>
-            The settings as host settings.
+            The settings of this instance as host settings.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Settings">
             <summary>
-            The settings.
+            The settings of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.SettingsSpecificationSet">
@@ -1646,10 +1731,36 @@
             The set of settings specifications of this instance.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Action_OnStartSuccess">
+            <summary>
+            The action that the start of this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Action_OnStartFailure">
+            <summary>
+            The action that the start of this instance fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Action_OnExecutionSucess">
+            <summary>
+            The action that this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Action_OnExecutionFailure">
+            <summary>
+            The action that is executed when the instance fails.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.#ctor">
             <summary>
             Instantiates a new instance of the BdoHostOptions class.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.GetSettings``1">
+            <summary>
+            Get the settings as the specified host settings class.
+            </summary>
+            <typeparam name="T">The host settings class to consider.</typeparam>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
@@ -1743,6 +1854,40 @@
             Adds the default console logger.
             </summary>
             <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.OnStartSuccess(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>  
+            The action that is executed when the start of this instance succedes.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.OnStartFailure(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when the start of this instance fails.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.OnExecutionSuccess(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when this instance is successfully completed.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.OnExecutionFailure(System.Action{BindOpen.Framework.Runtime.Application.Services.ITBdoService{`0}})">
+            <summary>
+            The action that is executed when this instance execution fails.
+            </summary>
+            <param name="action">The action to execute.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.ThrowExceptionOnStartFailure">
+            <summary>
+            Throws an exception when start fails.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.ThrowExceptionOnExecutionFailure">
+            <summary>
+            Throws an exception when start fails.
+            </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Options.IOptionSet">
             <summary>
@@ -2719,12 +2864,6 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.OnLoadCompletedEventHandler">
-            <summary>
-            This delegate is called when the application is successfully initialized.
-            </summary>
-            <param name="sender">The bot</param>
-        </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1">
             <summary>
             The interface defines the BindOpen service.
@@ -2750,19 +2889,49 @@
             The log.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.IsSuccessfullyLoaded">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.Action_OnStartSuccess">
+            <summary>
+            The action that the start of this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.Action_OnStartFailure">
+            <summary>
+            The action that the start of this instance fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.Action_OnExecutionSucess">
+            <summary>
+            The action that this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.Action_OnExecutionFailure">
+            <summary>
+            The action that is executed when the instance fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.IsLoaded">
             <summary>
             Indicates whether this is successfully loaded.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.LoadComplete">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.StartSucceeds">
             <summary>
-            Fires the 'LoadComplete' event.
+            Indicates that the start of this instance completes.
             </summary>
         </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.OnLoadCompleted">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.StartFails">
             <summary>
-            This event is triggered when the application is successfully initialized.
+            Indicates that the start of this instance fails.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.ExecutionSucceedes">
+            <summary>
+            Indicates that this instance execution succeeds.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.ExecutionFails">
+            <summary>
+            Indicates that this instance execution fails.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Runtime.Application.Services.ITBdoService`1.ExecutionState">
@@ -2824,11 +2993,6 @@
             </summary>
             <remarks>The value can be assigned.</remarks>
         </member>
-        <member name="E:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.OnLoadCompleted">
-            <summary>
-            This event is triggered when the application is successfully initialized.
-            </summary>
-        </member>
         <member name="F:BindOpen.Framework.Runtime.Application.Services.TBdoService`1._scope">
             <summary>
             The scope of this instance.
@@ -2864,7 +3028,7 @@
             ILog of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.IsSuccessfullyLoaded">
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.IsLoaded">
             <summary>
             Indicates whether the platform information is loaded.
             </summary>
@@ -2872,6 +3036,26 @@
         <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Scope">
             <summary>
             The BindOpen extension of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Action_OnStartSuccess">
+            <summary>
+            The action that the start of this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Action_OnStartFailure">
+            <summary>
+            The action that the start of this instance fails.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Action_OnExecutionSucess">
+            <summary>
+            The action that this instance completes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Action_OnExecutionFailure">
+            <summary>
+            The action that is executed when the instance fails.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,`0,BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger[])">
@@ -2898,17 +3082,32 @@
             </summary>
             <param name="executionStatus">The execution status to consider.</param>
         </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.StartSucceeds">
+            <summary>
+            Indicates that this instance has successfully started.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.StartFails">
+            <summary>
+            Indicates that this instance has not successfully started.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.ExecutionSucceedes">
+            <summary>
+            Indicates that this instance completes.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.ExecutionFails">
+            <summary>
+            Indicates that this instance fails.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.Initialize(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Initializes information.
             </summary>
             <param name="log">The log to populate.</param>
             <returns>Returns the log of the task.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.TBdoService`1.LoadComplete">
-            <summary>
-            Fires the 'LoadComplete' event.
-            </summary>
         </member>
         <member name="T:BindOpen.Framework.Runtime.Application.Settings.BdoDefaultSettings">
             <summary>
@@ -4561,7 +4760,7 @@
             Instantiates a new instance of the JsonLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the JsonLogger class.
             </summary>
@@ -4648,7 +4847,7 @@
             Instantiates a new instance of the ReportLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the ReportLogger class.
             </summary>
@@ -4709,7 +4908,7 @@
             Instantiates a new instance of the SnapLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the SnapLogger class.
             </summary>
@@ -4756,7 +4955,7 @@
             Instantiates a new instance of the XmlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the XmlLogger class.
             </summary>
@@ -4848,7 +5047,7 @@
             Instantiates a new instance of the YamlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the YamlLogger class.
             </summary>
@@ -4876,7 +5075,7 @@
             </summary>
             <remarks>The output format is YAML.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoLoggerFactory.Create``1(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.Source.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoLoggerFactory.Create``1(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
             <summary>
             Creates the specified logger.
             </summary>

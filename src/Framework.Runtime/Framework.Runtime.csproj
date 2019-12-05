@@ -36,6 +36,7 @@ This package handles runtime.</Description>
   <ItemGroup>
     <Compile Remove="Application\Options\Hosts\BdoHostOptions.cs" />
     <Compile Remove="Application\Services\BdoService.cs" />
+    <Compile Remove="Application\Services\BdoServiceEventHandlers.cs" />
     <Compile Remove="Application\Services\Interfaces\IBdoService.cs" />
     <Compile Remove="Application\Settings\Hosts\Interfaces\ITBdoHostSettings.cs" />
   </ItemGroup>
