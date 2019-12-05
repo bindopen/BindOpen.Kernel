@@ -164,12 +164,12 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override ILog Update<T>(
+        public override IBdoLog Update<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (item is IApplicationModuleInstance)
             {

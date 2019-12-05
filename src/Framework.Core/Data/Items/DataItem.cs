@@ -1,9 +1,9 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         ~DataItem()
         {
-            this.Dispose(false);
+            Dispose(false);
         }
 
         #endregion
@@ -66,9 +66,18 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public virtual Object Clone()
+        public virtual object Clone()
         {
-            return this.MemberwiseClone() as DataItem;
+            return MemberwiseClone();
+        }
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>Returns a cloned instance.</returns>
+        public T Clone<T>() where T : class
+        {
+            return Clone() as T;
         }
 
         #endregion
@@ -83,17 +92,17 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public virtual void UpdateStorageInfo(ILog log = null)
+        public virtual void UpdateStorageInfo(IBdoLog log = null)
         {
         }
 
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public virtual void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public virtual void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
         }
 
@@ -113,12 +122,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public virtual ILog Update<T>(
+        public virtual IBdoLog Update<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null) where T : IDataItem
         {
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -128,12 +137,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public ILog Update(
+        public IBdoLog Update(
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
-        {
-            return this.Update<DataItem>(null,specificationAreas, updateModes);
-        }
+            => Update<DataItem>(null, specificationAreas, updateModes);
+
 
         /// <summary>
         /// Checks this instance.
@@ -143,12 +151,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public virtual ILog Check<T>(
+        public virtual IBdoLog Check<T>(
             bool isExistenceChecked = true,
             T item = default,
             string[] specificationAreas = null) where T : IDataItem
         {
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -157,11 +165,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public virtual ILog Check(
+        public virtual IBdoLog Check(
             bool isExistenceChecked = true,
             string[] specificationAreas = null)
         {
-            return this.Check<DataItem>(isExistenceChecked, null, specificationAreas);
+            return Check<DataItem>(isExistenceChecked, null, specificationAreas);
         }
 
         /// <summary>
@@ -171,12 +179,12 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
-        public virtual ILog Repair<T>(
+        public virtual IBdoLog Repair<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null) where T : IDataItem
         {
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -185,11 +193,11 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
-        public ILog Repair(
+        public IBdoLog Repair(
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            return this.Repair<DataItem>(null, specificationAreas, updateModes);
+            return Repair<DataItem>(null, specificationAreas, updateModes);
         }
 
         #endregion
@@ -210,7 +218,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         public virtual void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -220,7 +228,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             if (isDisposing)
@@ -231,7 +239,7 @@ namespace BindOpen.Framework.Core.Data.Items
 
             // Free any unmanaged objects here.
             //
-            this.IsDisposed = true;
+            IsDisposed = true;
         }
 
         #endregion

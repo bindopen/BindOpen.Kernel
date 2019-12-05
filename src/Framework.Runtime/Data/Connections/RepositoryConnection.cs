@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
     /// </summary>
     [XmlType("RepositoryConnection", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "repositoryConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class RepositoryConnection : Connection, IRepositoryConnection
+    public class RepositoryConnection : BdoConnection, IRepositoryConnection
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String remoteFileUri,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(remoteFileUri, localPathUri, canOverwrite, log);
@@ -102,7 +102,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String remoteFilter,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false)
         {
             if (this.Connector != null)
@@ -120,7 +120,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             List<string> remoteFileUris,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(remoteFileUris, localPathUri, canOverwrite, log);
@@ -139,7 +139,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String localFileUri,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Push(localFileUri, remotePathUri, canOverwrite, log);
@@ -159,7 +159,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String localFilter,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false)
         {
             if (this.Connector != null)
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             List<string> localFileUris,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (this.Connector != null)
                 this.Connector.Pull(localFileUris, remotePathUri, canOverwrite, log);
@@ -199,7 +199,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String folderUri,
             String filter,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             List<RepositoryItem> repositoryItems = new List<RepositoryItem>();
@@ -224,7 +224,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             if (this.Connector != null)

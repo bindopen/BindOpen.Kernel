@@ -1,40 +1,43 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using System;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {
-    public class TestService : THostedAppService<TestServiceSettings>
+    public class TestService : TBdoHostedService<TestServiceSettings>
     {
-        public override IAppService Start(ILog log = null)
+        protected override ITBdoService<TestServiceSettings> Process(IBdoLog log)
         {
-            base.Start(log);
+            base.Process(log);
+
+            BdoHostFactory.InitBindOpenFolders(@"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test", true, @"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test\out");
 
             var element = ElementFactory.CreateScalar(Core.Data.Common.DataValueType.Boolean, false);
 
-            Host.Log.Append(
+            Log.Append(
                 new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
                     Queries.UpdateMyTable(new DbMyTable() { Name = "nameA" }, null), null, out string sql4));
             Console.WriteLine(sql4);
 
-            Host.Log.Append(
+            Log.Append(
                 new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
                     Queries.GetMyTables("", null), null, out string sql1));
 
             Console.WriteLine(sql1);
 
-            Host.Log.Append(
+            Log.Append(
             new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
                 Queries.GetMyTable("name", null), null, out string sql2));
 
             Console.WriteLine(sql2);
 
-            Host.Log.Append(
+            Log.Append(
                 new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.DeleteMyTable("", null), null, out string sql3));
+                    Queries.DeleteMyTable("name", null), null, out string sql3));
 
             Console.WriteLine(sql3);
 

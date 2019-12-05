@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="items">The items to consider.</param>
         public static SourceElement CreateSource(
             string name,
-            params IConnectorConfiguration[] items)
+            params IBdoConnectorConfiguration[] items)
         {
             return CreateSource(name, null, null, null, items);
         }
@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static SourceElement CreateSource(
-            params IConnectorConfiguration[] items)
+            params IBdoConnectorConfiguration[] items)
         {
             return CreateSource(null, null, null, null, items);
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         public static SourceElement CreateSource(
             string name,
             string definitionUniqueId,
-            params IConnectorConfiguration[] items)
+            params IBdoConnectorConfiguration[] items)
         {
             return CreateSource(name, null, definitionUniqueId, null, items);
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             string id,
             string definitionUniqueId,
             ISourceElementSpec specification,
-            params IConnectorConfiguration[] items)
+            params IBdoConnectorConfiguration[] items)
         {
             SourceElement element = new SourceElement(name, id)
             {

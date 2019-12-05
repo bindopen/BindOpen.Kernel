@@ -228,15 +228,15 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// </summary>
         /// <param name="aObject">The object to update.</param>
         /// <param name="elementSet">The set of elements to return.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        public static ILog UpdateFromElementSet<T>(
+        public static IBdoLog UpdateFromElementSet<T>(
             this Object aObject,
             IDataElementSet elementSet,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
             if (aObject == null || elementSet.Elements == null) return null;
 
             foreach(PropertyInfo propertyInfo in aObject.GetType().GetProperties())
@@ -251,33 +251,36 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
 
                         try
                         {
-                            var value = elementSet.GetElementObject(name, appScope, scriptVariableSet, log);
-                            if (value != null)
+                            if (elementSet.HasItem(name))
                             {
-                                if (propertyInfo.PropertyType.IsEnum)
+                                var value = elementSet.GetElementObject(name, scope, scriptVariableSet, log);
+                                if (value != null)
                                 {
-                                    if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                        value = Enum.Parse(propertyInfo.PropertyType, value as string);
-                                }
-                                else if (value.GetType() == typeof(Dictionary<string, object>)
-                                    && propertyInfo.PropertyType.IsGenericType
-                                    && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
-                                    && propertyInfo.PropertyType != typeof(Dictionary<string, object>))
-                                {
-                                    Type itemType = propertyInfo.PropertyType.GetGenericArguments()[0];
-
-                                    var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
-                                    var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
-
-                                    foreach(var item in (value as Dictionary<string, object>))
+                                    if (propertyInfo.PropertyType.IsEnum)
                                     {
-                                        method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                        if (Enum.IsDefined(propertyInfo.PropertyType, value))
+                                            value = Enum.Parse(propertyInfo.PropertyType, value as string);
                                     }
-                                    value = dictionary;
-                                }
-                            }
+                                    else if (value.GetType() == typeof(Dictionary<string, object>)
+                                        && propertyInfo.PropertyType.IsGenericType
+                                        && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+                                        && propertyInfo.PropertyType != typeof(Dictionary<string, object>))
+                                    {
+                                        Type itemType = propertyInfo.PropertyType.GetGenericArguments()[0];
 
-                            propertyInfo.SetValue(aObject, value);
+                                        var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                        var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+
+                                        foreach (var item in (value as Dictionary<string, object>))
+                                        {
+                                            method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                        }
+                                        value = dictionary;
+                                    }
+                                }
+
+                                propertyInfo.SetValue(aObject, value);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -297,11 +300,11 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
         /// <param name="object1">The object to serialize.</param>
         /// <typeparam name="T">The data element attribute to consider.</typeparam>
         /// <returns>The Xml string serializing the specified object.</returns>
-        public static ILog UpdateFromObject<T>(
+        public static IBdoLog UpdateFromObject<T>(
             this IDataElementSet elementSet,
             object object1) where T : DataElementAttribute
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (elementSet != null && object1 != null)
             {

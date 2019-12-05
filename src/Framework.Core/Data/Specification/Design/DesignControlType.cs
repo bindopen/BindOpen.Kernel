@@ -123,7 +123,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
         /// <summary>
         /// Data source editor.
         /// </summary>
-        DataSourceEditor,
+        DatasourceEditor,
 
         /// <summary>
         /// Document editor.
@@ -167,8 +167,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Design
                     return DesignControlType.CheckBox;
                 case DataValueType.Carrier:
                     return DesignControlType.CarrierConfigurationEditor;
-                case DataValueType.DataSource:
-                    return DesignControlType.DataSourceEditor;
+                case DataValueType.Datasource:
+                    return DesignControlType.DatasourceEditor;
                 case DataValueType.Date:
                     return DesignControlType.Calendar;
                 case DataValueType.Dictionary:

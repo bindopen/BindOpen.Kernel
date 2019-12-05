@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
     /// <summary>
     /// This class represents a file NFS connector.
     /// </summary>
-    [Connector(Name = "runtime$nfsConnector")]
+    [BdoConnector(Name = "runtime$nfsConnector")]
     public class NFSConnector : RepositoryConnector
     {
         // ------------------------------------------
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        public override ILog Open()
+        public override IBdoLog Open()
         {
             return base.Open();
         }
@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        public override ILog Close()
+        public override IBdoLog Close()
         {
             return base.Close();
         }
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
            String remoteFileUri,
            String localPathUri,
            Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             }
             catch (Exception exception)
             {
-                ILogEvent logEvent = log?.AddException(exception);
+                IBdoLogEvent logEvent = log?.AddException(exception);
             }
         }
 
@@ -94,7 +94,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
            String localFileUri,
            String remotePathUri,
            Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         public static bool WaitForFile(
             String path,
             int aSecondNumber = 4,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (string.IsNullOrEmpty(path))
                 return false;
@@ -164,7 +164,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
            String folderUri,
            String filter,
            Boolean isRecursive,
-           ILog log = null,
+           IBdoLog log = null,
            CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             Boolean isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith("/")));
@@ -272,7 +272,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         public static void DeleteFile(
             String localFileUri,
-            ILog log = null)
+            IBdoLog log = null)
         {
             try
             {
@@ -297,7 +297,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// <param name="log">The log to consider.</param>
         public static void DeleteFolder(
             String localfolderUri,
-            ILog log = null)
+            IBdoLog log = null)
         {
             try
             {
@@ -329,7 +329,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             foreach (RepositoryItem item in this.GetFiles(

@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Specification.Design;
-using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Runtime;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                         return new DocumentElementSpec() { Name = name };
                     case DataValueType.Object:
                         return new ObjectElementSpec() { Name = name };
-                    case DataValueType.DataSource:
+                    case DataValueType.Datasource:
                         return new SourceElementSpec() { Name = name };
                 }
             }

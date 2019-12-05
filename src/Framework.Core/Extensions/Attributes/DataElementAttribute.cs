@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
     /// This class represents a data element attribute.
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
-    public class DataElementAttribute : AppExtensionItemAttribute
+    public class DataElementAttribute : BdoExtensionItemAttribute
     {
         // --------------------------------------------------
         // VARIABLES

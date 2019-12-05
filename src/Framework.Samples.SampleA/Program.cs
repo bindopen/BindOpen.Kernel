@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.MSSqlServer.Extensions;
-using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Databases.MSSqlServer.Extensions;
+using BindOpen.Framework.Databases.PostgreSql.Extensions;
 using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Threading.Tasks;
 
 namespace BindOpen.Framework.Samples.SampleA
@@ -20,17 +19,14 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetModule("app.test")
-                            //.SetRuntimeFolder(@"=$if($isEqual('dev'), '..\..\..\run', 'run')")
-                            .SetLibraryFolder(@"..\..\..\run")
-                            .SetLibraryFolder(@"..\..\..\lib")
-                            .AddPostgreSqlExtension()
-                            .AddMSSqlServerExtension()
-                            .AddDefaultLogger()
-                            .AddLoggers(
-                                LoggerFactory.Create<SnapLogger>(null, LoggerMode.Auto, DataSourceKind.Console)))
+                            .SetAppFolder(@".\..\..\..")
+                            .AddExtensions(p =>
+                                p.AddMSSqlServer()
+                                .AddPostgreSql())
+                            .AddDefaultFileLogger("testA.txt")
+                            .ThrowExceptionOnStartFailure())
 
-                    .AddBindOpenService<TestService>(null, p =>
+                    .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {
                             TestAppSettings appSettings = p as TestAppSettings;
                             return new TestServiceSettings()

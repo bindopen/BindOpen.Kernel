@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -16,6 +16,7 @@ This package provides core classes of the framework.</Description>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -32,47 +33,43 @@ This package provides core classes of the framework.</Description>
     <Compile Remove="Data\Elements\Handlers\**" />
     <Compile Remove="Data\Items\Handlers\**" />
     <Compile Remove="Data\Items\Strings\**" />
-    <Compile Remove="Extensions\Indexes\Libraries\**" />
-    <Compile Remove="Extensions\Items\Metrics\**" />
+    <Compile Remove="Extensions\Definition\Dictionaries\Libraries\**" />
+    <Compile Remove="Extensions\Runtime\Items\Metrics\**" />
+    <Compile Remove="Extensions\Runtime\Libraries\**" />
     <EmbeddedResource Remove="Application\Commands\**" />
     <EmbeddedResource Remove="Application\Configuration\Factories\**" />
     <EmbeddedResource Remove="Data\Elements\Handlers\**" />
     <EmbeddedResource Remove="Data\Items\Handlers\**" />
     <EmbeddedResource Remove="Data\Items\Strings\**" />
-    <EmbeddedResource Remove="Extensions\Indexes\Libraries\**" />
-    <EmbeddedResource Remove="Extensions\Items\Metrics\**" />
+    <EmbeddedResource Remove="Extensions\Definition\Dictionaries\Libraries\**" />
+    <EmbeddedResource Remove="Extensions\Runtime\Items\Metrics\**" />
+    <EmbeddedResource Remove="Extensions\Runtime\Libraries\**" />
     <None Remove="Application\Commands\**" />
     <None Remove="Application\Configuration\Factories\**" />
     <None Remove="Data\Elements\Handlers\**" />
     <None Remove="Data\Items\Handlers\**" />
     <None Remove="Data\Items\Strings\**" />
-    <None Remove="Extensions\Indexes\Libraries\**" />
-    <None Remove="Extensions\Items\Metrics\**" />
+    <None Remove="Extensions\Definition\Dictionaries\Libraries\**" />
+    <None Remove="Extensions\Runtime\Items\Metrics\**" />
+    <None Remove="Extensions\Runtime\Libraries\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\Indexes\Interfaces\ITAppExtensionItemIndex.cs" />
-    <Compile Remove="Extensions\Indexes\Scriptwords\Interfaces\IScriptWordIndex.cs" />
-    <Compile Remove="Extensions\Indexes\Scriptwords\ScriptwordIndex.cs" />
-    <Compile Remove="Extensions\Indexes\TAppExtensionItemIndex.cs" />
-    <Compile Remove="Extensions\Items\Factories\AppExtensionFactory.cs" />
-    <Compile Remove="Extensions\Libraries\Archive.cs" />
+    <Compile Remove="Extensions\Definition\Dictionaries\Interfaces\ITBdoExtensionItemIndex.cs" />
+    <Compile Remove="Extensions\Definition\Dictionaries\Scriptwords\Interfaces\IScriptWordIndex.cs" />
+    <Compile Remove="Extensions\Definition\Dictionaries\Scriptwords\BdoScriptwordIndex.cs" />
+    <Compile Remove="Extensions\Definition\Dictionaries\TBdoExtensionItemIndex.cs" />
+    <Compile Remove="System\Assemblies\References\BdoExtensionReference.cs" />
+    <Compile Remove="System\Assemblies\References\Interfaces\IBdoExtensionReference.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="Application\Configuration\Factories\ConfigurationLoader.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\Dto\Interfaces\IMetricsDefinitionDto.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\Interfaces\IMetricsDefinition.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\MetricsDefinition.cs" />
-    <Compile Include="Extensions\Items\Metrics\Definition\Dto\MetricsDefinitionDto.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Elements\Schema\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Extensions\Items\Metrics\Definition\Dto\MetricsDefinitionDto.xsd" />
+    <Folder Include="Extensions\Runtime\Items\Metrics\" />
   </ItemGroup>
 
 </Project>

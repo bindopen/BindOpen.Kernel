@@ -10,11 +10,32 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        List<IDbQueryJointureStatement> JointureStatements { get; set; }
+        List<DbQueryJointureStatement> JointureStatements { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IDbQueryUnionStatement UnionStatement { get; set; }
+        DbQueryUnionStatement UnionStatement { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <returns></returns>
+        IDbQueryFromStatement WithUnion(IDbQueryUnionStatement statement);
+
+        /// <summary>
+        /// Sets the specified jointure statement.
+        /// </summary>
+        /// <param name="statement">The jointure statement to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQueryFromStatement WithJointure(IDbQueryJointureStatement statement);
+
+        /// <summary>
+        /// Sets the specified jointure statement.
+        /// </summary>
+        /// <param name="statements">The DbQueryJointureStatement statements to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQueryFromStatement WithJointures(params IDbQueryJointureStatement[] statements);
     }
 }

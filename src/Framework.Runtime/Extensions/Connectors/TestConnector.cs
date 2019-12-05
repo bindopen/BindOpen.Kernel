@@ -1,13 +1,13 @@
 ﻿using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Runtime.Extensions.Connectors
 {
     /// <summary>
     /// This class represents a test connector.
     /// </summary>
-    [Connector(Name = "runtime$test")]
-    public class TestConnector : Connector
+    [BdoConnector(Name = "runtime$test")]
+    public class TestConnector : BdoConnector
     {
         /// <summary>
         /// The host of this instance.

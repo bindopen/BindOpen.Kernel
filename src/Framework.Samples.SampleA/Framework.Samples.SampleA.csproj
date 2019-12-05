@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>BindOpen.Framework.Samples.SampleA</AssemblyName>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
@@ -17,6 +17,7 @@ This package conducts on-demand tests before they are implemented in the unit te
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,26 +29,19 @@ This package conducts on-demand tests before they are implemented in the unit te
     <Compile Remove="bin\Debug\netcoreapp3.0\run\**" />
     <Compile Remove="lib\**" />
     <Compile Remove="runtime\**" />
-    <Compile Remove="run\**" />
     <EmbeddedResource Remove="app_data\**" />
     <EmbeddedResource Remove="bin\Debug\netcoreapp3.0\run\**" />
     <EmbeddedResource Remove="lib\**" />
     <EmbeddedResource Remove="runtime\**" />
-    <EmbeddedResource Remove="run\**" />
     <None Remove="app_data\**" />
     <None Remove="bin\Debug\netcoreapp3.0\run\**" />
     <None Remove="lib\**" />
     <None Remove="runtime\**" />
-    <None Remove="run\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Settings\TestArguments.cs" />
     <Compile Remove="Settings\TestTask.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="run\settings\appconfig.xml" />
   </ItemGroup>
 
   <ItemGroup>

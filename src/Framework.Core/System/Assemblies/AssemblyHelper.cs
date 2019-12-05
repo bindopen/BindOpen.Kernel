@@ -148,12 +148,12 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="type">The type to consider.</param>
         /// <param name="object1">The object to consider.</param>
         /// <param name="attributes">The attributes to consider.</param>
-        public static ILog CreateInstance(
+        public static IBdoLog CreateInstance(
             Type type,
             out Object object1,
             params object[] attributes)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
             object1 = null;
 
             try
@@ -174,12 +174,12 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="fullyQualifiedName">The type fully qualified name to consider.</param>
         /// <param name="object1">The object to consider.</param>
         /// <param name="attributes">The attributes to consider.</param>
-        public static ILog CreateInstance(
+        public static IBdoLog CreateInstance(
             string fullyQualifiedName,
             out Object object1,
             params object[] attributes)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
             object1 = null;
 
             try

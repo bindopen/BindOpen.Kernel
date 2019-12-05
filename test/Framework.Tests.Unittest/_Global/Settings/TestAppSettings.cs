@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Runtime.Application.Settings.Hosts;
+using System.Collections.Generic;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Runtime.Application.Settings;
 
 namespace BindOpen.Framework.Tests.UnitTest.Settings
 {
     /// <summary>
     /// This class represents a test application settings.
     /// </summary>
-    public class TestAppSettings : DefaultAppSettings
+    public class TestAppSettings : BdoDefaultHostSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -19,14 +19,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// <summary>
         /// The test folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
 
         /// <summary>
         /// The URIs of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "test.uris")]
         public Dictionary<string, string> Uris { get; set; }
 
@@ -41,8 +39,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
         /// <summary>
         /// Instantiates a new instance of the TestAppSettings class.
         /// </summary>
-        public TestAppSettings()
-            : base()
+        public TestAppSettings() : base()
         {
         }
 

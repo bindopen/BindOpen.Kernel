@@ -10,12 +10,12 @@ Features to add and test:
 
 - Check Json serialization of data elements
 
-- Simplify settings loading: extract from application host initialization to settings UpdateFromFile function.
+- Simplify settings loading: extract from bot initialization to settings UpdateFromFile function.
 
 - Simplify logs : lighten logs, define activity logs
 
 - Data items : remove Specified suffixes
-- Defining default settings and simplifying for application host (optionnally)
+- Defining default settings and simplifying for bot (optionnally)
 	AddBindOpenService : remove loggers, predicate loggers
 - Loading extension items: script word index loading, entities, tasks.
 - Handling tasks.

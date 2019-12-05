@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items.Sets
 {
@@ -18,8 +18,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [Serializable()]
     [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T>
-        where T : IdentifiedDataItem
+    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T> where T : IIdentifiedDataItem
     {
         // ------------------------------------------
         // VARIABLES
@@ -274,12 +273,12 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override ILog Update<T1>(
+        public override IBdoLog Update<T1>(
                 T1 item = default,
                 string[] specificationAreas = null,
                 UpdateModes[] updateModes = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -323,12 +322,12 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public override ILog Check<T1>(
+        public override IBdoLog Check<T1>(
             bool isExistenceChecked = true,
             T1 item = default,
             string[] specificationAreas = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -373,12 +372,12 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
-        public override ILog Repair<T1>(
+        public override IBdoLog Repair<T1>(
             T1 item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            Log log = null;
+            BdoLog log = null;
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -454,7 +453,7 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             if (_items != null)
             {
@@ -468,16 +467,16 @@ namespace BindOpen.Framework.Core.Data.Items.Sets
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             if (_items != null)
             {
                 foreach (T item in _items)
                 {
-                    item.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                    item.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
         }

@@ -155,7 +155,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// <returns>Returns True if the specified has been well added.</returns>
         public override bool AddItem(
             object item,
-            ILog log = null)
+            IBdoLog log = null)
         {
             bool boolean = base.AddItem(item, log);
             return boolean;
@@ -213,17 +213,17 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="log">The log to populate.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public object GetElementObject(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             IDataElement element = (elementName != null ? GetElement(elementName) : Elements[0]);
-            return element?.GetObject(appScope, scriptVariableSet, log);
+            return element?.GetObject(scope, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -231,29 +231,29 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="log">The log to populate.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public T GetElementObject<T>(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
-            return (T)GetElementObject(elementName, appScope, scriptVariableSet, log);
+            return (T)GetElementObject(elementName, scope, scriptVariableSet, log);
         }
 
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public override object GetObject(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             switch (ItemizationMode)
             {
@@ -264,13 +264,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
                     {
                         if (item is DataElement element && !aObject.ContainsKey(element.Name))
                         {
-                            aObject.Add(element.Name, element.GetObject(appScope, scriptVariableSet, log));
+                            aObject.Add(element.Name, element.GetObject(scope, scriptVariableSet, log));
                         }
                     }
                     return aObject;
                 case DataItemizationMode.Referenced:
                 case DataItemizationMode.Script:
-                    return base.GetObject(appScope, scriptVariableSet, log);
+                    return base.GetObject(scope, scriptVariableSet, log);
             }
 
             return null;
@@ -288,7 +288,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
@@ -303,16 +303,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             foreach (DataElement element in Elements)
             {
-                element.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                element.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 AddItem(element);
             }
         }
@@ -331,7 +331,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            CollectionElement aCatalogElement = MemberwiseClone() as CollectionElement;
+            CollectionElement aCatalogElement = base.Clone() as CollectionElement;
             //if (DataSchemreference != null)
             //    aCatalogElement.DataSchemreference = DataSchemreference.Clone() as DataHandler;
 

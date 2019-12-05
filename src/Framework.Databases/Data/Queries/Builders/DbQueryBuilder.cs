@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
+using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Extensions.Connectors;
@@ -23,7 +24,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
-        protected readonly IAppScope _appScope = null;
+        protected readonly IBdoScope _scope = null;
 
         #endregion
 
@@ -37,13 +38,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Instantiates a new instance of the DbQueryBuilder class.
         /// </summary>
         /// <param name="databaseKind">The kind of database to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         public DbQueryBuilder(
             DatabaseConnectorKind databaseKind,
-            IAppScope appScope = null)
+            IBdoScope scope = null)
         {
             _databaseConnectorKind = databaseKind;
-            _appScope = appScope;
+            _scope = scope;
         }
 
         #endregion
@@ -61,10 +62,11 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>If not found, it returns the specified data module name.</remarks>
         protected string GetDatabaseName(string dataModuleName)
         {
-            if (_appScope?.DataSourceDepot == null)
+            var dataSourceDepot = _scope?.DepotSet?.Get<IBdoDatasourceDepot>();
+            if (dataSourceDepot == null)
                 return dataModuleName;
             else
-                return _appScope?.DataSourceDepot.GetInstanceOtherwiseModuleName(dataModuleName);
+                return dataSourceDepot.GetInstanceOtherwiseModuleName(dataModuleName);
         }
 
         /// <summary>
@@ -74,9 +76,9 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public ILog BuildQuery(
+        public IBdoLog BuildQuery(
             IDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
@@ -95,13 +97,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// into the specified string MS Sql Server query.
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
-        protected virtual ILog Build(
+        protected virtual IBdoLog Build(
             IBasicDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -111,15 +113,15 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public ILog BuildQuery(
+        public IBdoLog BuildQuery(
             IBasicDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
 
             // we instantiate the logger and the script interpreter
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             // we check that the data query exists
             if (query == null)
@@ -159,13 +161,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected virtual ILog Build(
+        protected virtual IBdoLog Build(
             IAdvancedDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -176,13 +178,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="queryString">The output string query.</param>
         /// <returns>The log of the build task.</returns>
-        public ILog BuildQuery(
+        public IBdoLog BuildQuery(
             IAdvancedDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
             queryString = "";
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             // we check that the data query exists
             if (query == null)

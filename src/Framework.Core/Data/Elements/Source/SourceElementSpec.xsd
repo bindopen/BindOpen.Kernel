@@ -3,7 +3,7 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/items/source/DataSourceKind.xsd" />
+  <xs:include schemaLocation="../../../data/items/source/DatasourceKind.xsd" />
   <xs:include schemaLocation="../../../data/elements/DataElementSpec.xsd" />
   <xs:include schemaLocation="../../../data/specification/filters/DataValueFilter.xsd" />
   <xs:include schemaLocation="../../../data/common/RequirementLevel.xsd" />
@@ -13,7 +13,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="bdo:DataElementSpec">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="kind" type="bdo:DataSourceKind" />
+          <xs:element minOccurs="1" maxOccurs="1" name="kind" type="bdo:DatasourceKind" />
           <xs:element minOccurs="0" maxOccurs="1" name="connector.filter" type="bdo:DataValueFilter" />
         </xs:sequence>
       </xs:extension>

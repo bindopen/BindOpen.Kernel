@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbQuery: IDataItem
+    public interface IDbQuery : IDataItem
     {
         /// <summary>
         /// 
@@ -28,11 +28,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// 
         /// </summary>
         List<DbField> Fields { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsTrackingEnabled { get; set; }
 
         /// <summary>
         /// 

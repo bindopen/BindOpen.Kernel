@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items.Source;
+﻿using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System;
 using System.Xml.Serialization;
 
@@ -13,13 +13,13 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     [Serializable()]
     [XmlType("DbTable", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dbTable", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    [Carrier(
+    [BdoCarrier(
         Name = "databases$dbTable",
-        DataSourceKind = DataSourceKind.Database,
+        DatasourceKind = DatasourceKind.Database,
         Description = "Database table.",
         CreationDate = "2016-09-14"
     )]
-    public class DbTable : Carrier
+    public class DbTable : BdoCarrier
     {
         // ------------------------------------------
         // PROPERTIES
@@ -61,35 +61,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// </summary>
         public DbTable() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbTable class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        public DbTable(
-            string name,
-            string schema)
-            : base()
-        {
-            Name = name;
-            Schema = schema;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DbTable class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModuleName">The name of the data module to consider.</param>
-        public DbTable(
-            string name,
-            string schema,
-            string dataModuleName)
-            : this(name, schema)
-        {
-            DataModule = dataModuleName;
         }
 
         #endregion

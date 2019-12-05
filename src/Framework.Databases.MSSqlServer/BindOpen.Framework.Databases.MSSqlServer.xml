@@ -33,13 +33,13 @@
             This class represents a builder of database query.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.#ctor(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Instantiates a new instance of the DbQueryBuilder_MSSqlServer class.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result
             into the specified string MS Sql Server query.
@@ -49,7 +49,7 @@
             <param name="scriptVariableSet"></param>
             <param name="queryString"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders.DbQueryBuilder_MSSqlServer.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified advanced database data query and put the result
             into the specified string MS Sql Server query.
@@ -309,11 +309,11 @@
             </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IAppScope)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Updates this instance considering the specified scope.
             </summary>
-            <param name="appScope">The application scope to consider.</param>
+            <param name="scope">The scope to consider.</param>
             <returns>Returns the database builder.</returns>
         </member>
         <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.Open">
@@ -333,7 +333,7 @@
             Indicates whether the instance is connected.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query that returns nothing.
             </summary>
@@ -342,7 +342,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteQuery(System.String,System.Data.SqlClient.SqlDataReader@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteQuery(System.String,System.Data.SqlClient.SqlDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a OleDb Data Reader.
             </summary>
@@ -352,7 +352,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -362,7 +362,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the identity of the recently-added record and puts the value in the specified ID.
             </summary>
@@ -370,7 +370,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -379,7 +379,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -389,7 +389,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the columns of the specified table.
             </summary>
@@ -399,7 +399,7 @@
             <param name="log">The log to consider.</param>
             <returns>The columns of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -409,7 +409,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the tables of the specified table.
             </summary>
@@ -418,7 +418,7 @@
             <param name="log">The log to consider.</param>
             <returns>The tables of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -427,7 +427,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.ILog)">
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors.DatabaseConnector_MSSqlServer.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the table with the specified name.
             </summary>
@@ -436,6 +436,23 @@
             <param name="tableName">The name of the table.</param>
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the table with the specified name.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Databases.MSSqlServer.Extensions.ExtensionReferenceFactory">
+            <summary>
+            This class represents an application scope factory.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.ExtensionReferenceFactory.CreateMSSqlServer">
+            <summary>
+            Creates a reference to the MSSqlServer extension.
+            </summary>
+            <returns>Returns the reference to the MSSqlServer extension.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Databases.MSSqlServer.Extensions.ExtensionReferenceFactory.AddMSSqlServer(System.Collections.Generic.List{BindOpen.Framework.Core.Extensions.References.IBdoExtensionReference})">
+            <summary>
+            Adds a MSSqlServer extension reference to a specified list of references.
+            </summary>
+            <returns>Returns the updated list of references.</returns>
         </member>
     </members>
 </doc>

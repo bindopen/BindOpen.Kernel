@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Items.Connectors;
+﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
 {
@@ -12,19 +12,19 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        new IConnectorConfiguration this[int index] { get; }
+        new IBdoConnectorConfiguration this[int index] { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        new IConnectorConfiguration this[string name] { get; }
+        new IBdoConnectorConfiguration this[string name] { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        new IConnectorConfiguration First { get; }
+        new IBdoConnectorConfiguration First { get; }
 
         /// <summary>
         /// 

@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Items.Carriers;
+﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 
 namespace BindOpen.Framework.Core.Data.Elements.Carrier
 {
@@ -12,19 +12,19 @@ namespace BindOpen.Framework.Core.Data.Elements.Carrier
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        new ICarrierConfiguration this[int index] { get; }
+        new IBdoCarrierConfiguration this[int index] { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        new ICarrierConfiguration this[string name] { get; }
+        new IBdoCarrierConfiguration this[string name] { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        new ICarrierConfiguration First { get; }
+        new IBdoCarrierConfiguration First { get; }
 
         /// <summary>
         /// 

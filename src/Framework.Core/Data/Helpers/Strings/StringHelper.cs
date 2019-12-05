@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -7,9 +10,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Strings
 {
@@ -23,6 +23,11 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         // ------------------------------------------
 
         #region Constants
+
+        /// <summary>
+        /// The unique token.
+        /// </summary>
+        public static string __UniqueToken = "|*|";
 
         /// <summary>
         /// The pattern empty value.
@@ -216,19 +221,41 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         }
 
         /// <summary>
+        /// Converts the specified path according to the environment.
+        /// </summary>
+        /// <param name="path">The path to consider.</param>
+        /// <param name="rootPath">The root path to consider.</param>
+        /// <returns></returns>
+        public static string GetConcatenatedPath(this string path, string rootPath)
+        {
+            if (path == null) return null;
+
+            if ((path?.StartsWith(@".\") == true) || (path?.StartsWith(@"./") == true))
+            {
+                path = (rootPath.GetEndedString(@"\") + path.Substring(2)).ToPath();
+            }
+            else if ((path?.StartsWith(@"..\") == true) || (path?.StartsWith(@"../") == true))
+            {
+                path = (rootPath.GetEndedString(@"\") + path).ToPath();
+            }
+
+            return path?.Replace('\\', Path.DirectorySeparatorChar);
+        }
+
+        /// <summary>
         /// Gets the specified sub string.
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <param name="endIndex">The end index to consider.</param>
         /// <returns>The formated path.</returns>
-        public static string GetSubstring(this string st, int startIndex, int endIndex=-1)
+        public static string GetSubstring(this string st, int startIndex, int endIndex = -1)
         {
             if (st == null) return null;
 
             if (startIndex < 0) startIndex = 0;
             if (endIndex == -1 || endIndex >= st.Length) endIndex = st.Length - 1;
-            if ((st?.Length == 0) || (startIndex>=st.Length)|| (endIndex < startIndex)) return "";
+            if ((st?.Length == 0) || (startIndex >= st.Length) || (endIndex < startIndex)) return "";
 
             return st.Substring(startIndex, endIndex - startIndex + 1);
         }
@@ -323,14 +350,14 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             startIndex = StringHelper.GetIndexOfLastString(st, stv, startIndex);
         }
 
-            /// <summary>
-            /// Gets the index of the last sub string in the specified string.
-            /// </summary>
-            /// <param name="st">The string to consider.</param>
-            /// <param name="stv">The string to search.</param>
-            /// <param name="startIndex">The start index to consider.</param>
-            /// <returns>The formated string.</returns>
-            public static int GetIndexOfLastString(this string st, string stv, int startIndex)
+        /// <summary>
+        /// Gets the index of the last sub string in the specified string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
+        /// <param name="stv">The string to search.</param>
+        /// <param name="startIndex">The start index to consider.</param>
+        /// <returns>The formated string.</returns>
+        public static int GetIndexOfLastString(this string st, string stv, int startIndex)
         {
             int index = startIndex;
             bool b = false;
@@ -394,7 +421,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                 else if ((index <= st_l - stv_l) && (string.Equals(st.Substring(index, stv_l), stv, stringComparison)))
                     b = true;
                 else
-                    index ++;
+                    index++;
             }
             return index;
         }
@@ -466,7 +493,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="excludingStringItems">The string items to exclude.</param>
         /// <returns>Returns the excluded string items.</returns>
-        public static List<string> Excluding(this List<string> stringItems, params string[] excludingStringItems)
+        public static IEnumerable<string> Excluding(this IEnumerable<string> stringItems, params string[] excludingStringItems)
         {
             return StringHelper.Excluding(stringItems, excludingStringItems.ToList());
         }
@@ -477,7 +504,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="excludingStringItems">The string items to exclude.</param>
         /// <returns>Returns the excluded string items.</returns>
-        public static List<string> Excluding(this List<string> stringItems, List<string> excludingStringItems)
+        public static IEnumerable<string> Excluding(this IEnumerable<string> stringItems, IEnumerable<string> excludingStringItems)
         {
             if (stringItems == null)
             {
@@ -501,7 +528,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="addingStringItems">The string items to add.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<string> Adding(this List<string> stringItems, params string[] addingStringItems)
+        public static IEnumerable<string> Adding(this IEnumerable<string> stringItems, params string[] addingStringItems)
         {
             return StringHelper.Adding(stringItems, addingStringItems.ToList());
         }
@@ -512,7 +539,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// <param name="stringItems">The string items to consider.</param>
         /// <param name="addingStringItems">The string items to add.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<string> Adding(this List<string> stringItems, List<string> addingStringItems)
+        public static IEnumerable<string> Adding(this IEnumerable<string> stringItems, IEnumerable<string> addingStringItems)
         {
             if (stringItems == null)
             {
@@ -570,7 +597,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
 
             var quoteString = quoteChar.ToString();
 
-            if (st.Length>2 && st.StartsWith(quoteString) && st.EndsWith(quoteString))
+            if (st.Length > 2 && st.StartsWith(quoteString) && st.EndsWith(quoteString))
                 st = st.Substring(1, st.Length - 2);
             return st;
         }
@@ -581,13 +608,56 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         /// Gets the object from the specified string.
         /// </summary>
         /// <param name="st">The string to consider.</param>
+        /// <returns>Returns the object corresponding to the specified string.</returns>
+        public static object GuessObjectValueFromString(this string st)
+        {
+            object object1 = null;
+
+            if (st != null)
+            {
+                object1 = st.ToObject(DataValueType.Integer);
+                if (object1 == null)
+                {
+                    object1 = st.ToObject(DataValueType.Long);
+                    if (object1 == null)
+                    {
+                        object1 = st.ToObject(DataValueType.ULong);
+                        if (object1 == null)
+                        {
+                            object1 = st.ToObject(DataValueType.Number);
+                            if (object1 == null)
+                            {
+                                object1 = st.ToObject(DataValueType.Date);
+                                if (object1 == null)
+                                {
+                                    object1 = st.ToObject(DataValueType.Time);
+                                    if (object1 == null)
+                                    {
+                                        object1 = st;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return object1;
+        }
+
+        /// <summary>
+        /// Gets the object from the specified string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static Object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
+        public static object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
         {
             if (valueType == DataValueType.Any)
-                valueType = st.GetValueType();
+            {
+                return st.GuessObjectValueFromString();
+            }
 
             switch (valueType)
             {
@@ -607,19 +677,23 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
                     return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
                 case DataValueType.Number:
                     double aDouble = new double();
-                    double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble);
+                    if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))
+                        return null;
                     return new double?(aDouble);
                 case DataValueType.Integer:
                     int aInt = new int();
-                    int.TryParse(st, out aInt);
+                    if (!int.TryParse(st, out aInt))
+                        return null;
                     return new int?(aInt);
                 case DataValueType.Long:
                     long aLong = new long();
-                    long.TryParse(st, out aLong);
+                    if (!long.TryParse(st, out aLong))
+                        return null;
                     return new long?(aLong);
                 case DataValueType.ULong:
                     ulong aULong = new ulong();
-                    ulong.TryParse(st, out aULong);
+                    if (!ulong.TryParse(st, out aULong))
+                        return null;
                     return new ulong?(aULong);
                 default:
                     return st;
@@ -662,7 +736,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
             string pattern = "{{char1,8}}",
             params string[] charLists)
         {
-            if (charLists==null)
+            if (charLists == null)
             {
                 charLists = new String[1]
                    { "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-" };

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>BindOpen.Framework.Tests.UnitTest</AssemblyName>
     <Description>BindOpen is a framework that allows you to build widely-extended applications.
 This package conducts unit tests.</Description>
@@ -25,9 +25,9 @@ This package conducts unit tests.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="run\logs\**" />
-    <EmbeddedResource Remove="run\logs\**" />
-    <None Remove="run\logs\**" />
+    <Compile Remove="bdo\logs\**" />
+    <EmbeddedResource Remove="bdo\logs\**" />
+    <None Remove="bdo\logs\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,7 +47,6 @@ This package conducts unit tests.</Description>
 
   <ItemGroup>
     <Folder Include="Data\References\" />
-    <Folder Include="run\" />
   </ItemGroup>
 
 </Project>

@@ -112,7 +112,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="log"></param>
         /// <returns></returns>
-        object GetDefaultItemObject(ILog log = null);
+        object GetDefaultItemObject(IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="item"></param>
         /// <param name="dataElement"></param>
         /// <returns></returns>
-        ILog CheckItem(
+        IBdoLog CheckItem(
             object item,
             IDataElement dataElement);
 
@@ -144,7 +144,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <param name="dataElement"></param>
         /// <param name="specificationAreas"></param>
         /// <returns></returns>
-        ILog CheckElement(
+        IBdoLog CheckElement(
             IDataElement dataElement,
             string[] specificationAreas = null);
     }

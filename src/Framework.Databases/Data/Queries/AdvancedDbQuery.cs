@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Expression;
+using BindOpen.Framework.Databases.Extensions.Carriers;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
@@ -9,16 +10,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// </summary>
     public class AdvancedDbQuery : DbQuery, IAdvancedDbQuery
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private List<IDbQueryFromStatement> _FromClause = new List<IDbQueryFromStatement>();
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -41,36 +32,27 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// From clause of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbQueryFromStatement> FromClauses
-        {
-            get { return this._FromClause; }
-            set { this._FromClause = new List<IDbQueryFromStatement>(value); }
-        }
+        public List<DbQueryFromStatement> FromStatements { get; set; } = new List<DbQueryFromStatement>();
 
         /// <summary>
         /// Where clause of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public IDataExpression WhereClause { get; set; }
+        public DataExpression WhereClause { get; set; }
 
         /// <summary>
         /// Group by statement of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public IDbQueryGroupByStatement GroupByClause { get; set; }
+        public DbQueryGroupByStatement GroupByClause { get; set; }
 
         /// <summary>
         /// Having statement of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public IDbQueryHavingStatement HavingClause { get; set; }
+        public DbQueryHavingStatement HavingClause { get; set; }
 
         /// <summary>
         /// Order statements of this instance.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbQueryOrderByStatement> OrderByStatements { get; set; } = new List<IDbQueryOrderByStatement>();
+        public List<DbQueryOrderByStatement> OrderByStatements { get; set; } = new List<DbQueryOrderByStatement>();
 
         #endregion
 
@@ -100,10 +82,132 @@ namespace BindOpen.Framework.Databases.Data.Queries
             string schema = null,
             string dataTable = null)
         {
-            this.Kind = kind;
-            this.DataModule = dataModule;
-            this.Schema = schema;
-            this.DataTable = dataTable;
+            Kind = kind;
+            DataModule = dataModule;
+            Schema = schema;
+            DataTable = dataTable;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the AdvancedDbQuery class.
+        /// </summary>
+        /// <param name="name">Name of the query.</param>
+        /// <param name="kind">Type of database data query.</param>
+        /// <param name="dataModule">Name of the data module.</param>
+        /// <param name="schema">Schema of the data module.</param>
+        /// <param name="dataTable">Name of data table.</param>
+        public AdvancedDbQuery(
+                string name,
+                DbQueryKind kind,
+                string dataModule = null,
+                string schema = null,
+                string dataTable = null) : this(kind, dataModule, schema, dataTable)
+        {
+            Name = name;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Sets the specified fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery WithFields(params DbField[] fields)
+        {
+            Fields = fields?.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="statements"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery From(params IDbQueryFromStatement[] statements)
+        {
+            FromStatements = statements?.Cast<DbQueryFromStatement>().ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clause"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery GroupBy(IDbQueryGroupByStatement clause)
+        {
+            GroupByClause = clause as DbQueryGroupByStatement;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clause"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery Having(IDbQueryHavingStatement clause)
+        {
+            HavingClause = clause as DbQueryHavingStatement;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IAdvancedDbQuery AsDistinct()
+        {
+            IsDistinct = true;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="statements"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery OrderBy(params IDbQueryOrderByStatement[] statements)
+        {
+            OrderByStatements = statements?.Cast<DbQueryOrderByStatement>().ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery WithTop(int top)
+        {
+            Top = top;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clause"></param>
+        /// <returns></returns>
+        public IAdvancedDbQuery Where(IDataExpression clause)
+        {
+            WhereClause = clause as DataExpression;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IAdvancedDbQuery WithTableAlias(string tableAlias)
+        {
+            DataTableAlias = tableAlias;
+            return this;
         }
 
         #endregion

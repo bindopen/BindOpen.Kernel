@@ -1,13 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items.Sets;
-using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Specification.Constraints
 {
@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
     [Serializable()]
     [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataConstraintStatement : DataItemSet<RoutineConfiguration>, IDataConstraintStatement
+    public class DataConstraintStatement : DataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -45,9 +45,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// </summary>
         /// <param name="routine">The constraint to add.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public void AddConstraint(IRoutineConfiguration routine)
+        public void AddConstraint(IBdoRoutineConfiguration routine)
         {
-            if (routine != null) Add(routine as RoutineConfiguration);
+            if (routine != null) Add(routine as BdoRoutineConfiguration);
         }
 
         /// <summary>
@@ -58,14 +58,14 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="parameterDetail">The parameter detail to consider.</param>
         /// <param name="outputEventSet">The output event set to consider.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public IRoutineConfiguration AddConstraint(
+        public IBdoRoutineConfiguration AddConstraint(
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
-            IDataItemSet<ConditionalEvent> outputEventSet = null)
+            IDataItemSet<BdoConditionalEvent> outputEventSet = null)
         {
-            IRoutineConfiguration routine = null; // new RoutineConfiguration(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
-            Add(routine as RoutineConfiguration);
+            IBdoRoutineConfiguration routine = null; // new RoutineConfiguration(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
+            Add(routine as BdoRoutineConfiguration);
 
             return routine;
         }
@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         {
             IDataElement dataElement = null;
 
-            IRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             if ((routine == null) || (!routine.DefinitionUniqueId.KeyEquals(definitionUniqueId)))
                 routine = AddConstraint(constraintName, definitionUniqueId);
 
@@ -125,7 +125,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         {
             IDataElement dataElement = null;
 
-            IRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             if (routine?.DefinitionUniqueId.KeyEquals(definitionUniqueId) != true)
                 routine = AddConstraint(constraintName, definitionUniqueId);
 
@@ -162,9 +162,9 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public IRoutineConfiguration GetConstraint(string name)
+        public IBdoRoutineConfiguration GetConstraint(string name)
         {
-            return GetItem(name) as RoutineConfiguration;
+            return GetItem(name) as BdoRoutineConfiguration;
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             string constraintName,
             string parameterName = null)
         {
-            IRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             return routine?[parameterName];
         }
 
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
             string constraintName,
             string parameterName = null)
         {
-            IRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             return routine?.GetElementObject(parameterName);
         }
 
@@ -210,12 +210,12 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="dataElement">The element to consider.</param>
         /// <param name="isDeepCheck">Indicates whether other rules than allowed and forbidden values are checked.</param>
         /// <returns>The log of check log.</returns>
-        public ILog CheckItem(
+        public IBdoLog CheckItem(
             object item,
             IDataElement dataElement,
             bool isDeepCheck = false)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             return log;
         }

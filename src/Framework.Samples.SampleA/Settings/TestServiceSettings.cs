@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Samples.SampleA.Settings
     /// <summary>
     /// This class represents a test service settings.
     /// </summary>
-    public class TestServiceSettings : BaseSettings
+    public class TestServiceSettings : BdoDefaultSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -18,7 +18,6 @@ namespace BindOpen.Framework.Samples.SampleA.Settings
         /// <summary>
         /// The test folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name= "test.folderPath")]
         public string TestFolderPath { get; set; }
 

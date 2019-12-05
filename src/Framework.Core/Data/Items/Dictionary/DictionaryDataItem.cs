@@ -488,7 +488,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public override ILog Update<T>(
+        public override IBdoLog Update<T>(
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
@@ -496,7 +496,7 @@ namespace BindOpen.Framework.Core.Data.Items.Dictionary
             if (_availableKeys?.Count > 0)
                 _values.RemoveAll(p => p.Key == null || !_availableKeys.Contains(p.Key.ToLower()));
 
-            return new Log();
+            return new BdoLog();
         }
 
         #endregion

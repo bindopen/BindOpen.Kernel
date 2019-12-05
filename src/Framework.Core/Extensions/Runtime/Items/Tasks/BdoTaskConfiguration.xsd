@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../data/elements/sets/DataElementSet.xsd" />
+  <xs:include schemaLocation="../../../data/items/dictionary/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="../../../data/items/StoredDataItem.xsd" />
+  
+  <xs:complexType name="TaskConfiguration">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:BdoExtensionTitledItemOfBdoExtensionItemDefinition_TaskConfiguration">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="detail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="maximumIndex" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="bdo:DataElementSet" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BdoExtensionTitledItemOfBdoExtensionItemDefinition_TaskConfiguration" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:TBdoExtensionItemOfBdoExtensionItemDefinition_TaskConfiguration">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="uniqueName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="title" type="bdo:DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBdoExtensionItemOfBdoExtensionItemDefinition_TaskConfiguration" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:StoredDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="group" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="definition" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Items.Datasources;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.Extensions.Items.Formats;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Documents
 {
@@ -27,13 +25,13 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// Container of this instance. 
         /// </summary>
         [XmlElement("container")]
-        public CarrierConfiguration Container { get; set; } = null;
+        public BdoCarrierConfiguration Container { get; set; } = null;
 
         /// <summary>
         /// Content of this instance. 
         /// </summary>
         [XmlElement("content")]
-        public EntityConfiguration Content { get; set; } = null;
+        public BdoEntityConfiguration Content { get; set; } = null;
 
         #endregion
 
@@ -44,14 +42,14 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         #region Constructors
 
         /// <summary>
-        /// This instantiates a new instance of the DataSource class.
+        /// This instantiates a new instance of the Datasource class.
         /// </summary>
         public Document() : this(null)
         {
         }
 
         /// <summary>
-        /// This instantiates a new instance of the DataSource class.
+        /// This instantiates a new instance of the Datasource class.
         /// </summary>
         /// <param name="name">The name of this instance.</param>
         public Document(string name = null)
@@ -60,16 +58,16 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         }
 
         /// <summary>
-        /// This instantiates a new instance of the DataSource class.
+        /// This instantiates a new instance of the Datasource class.
         /// </summary>
         /// <param name="container">The container to consider.</param>
         /// <param name="content">The content to consider.</param>
         /// <param name="name">The name of this instance.</param>
-        public Document(ICarrierConfiguration container, IEntityConfiguration content, string name = null)
+        public Document(IBdoCarrierConfiguration container, IBdoEntityConfiguration content, string name = null)
             : base(name, "document_")
         {
-            Container = container as CarrierConfiguration;
-            Content = content as EntityConfiguration;
+            Container = container as BdoCarrierConfiguration;
+            Content = content as BdoEntityConfiguration;
         }
 
         #endregion
@@ -88,9 +86,9 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <param name="documentDataItem">The document item to consider.</param>
         /// <param name="relativePath">The relative path to consider.</param>
         /// <returns>The log of the schema update.</returns>
-        public virtual ILog Update(IDocument documentDataItem, string relativePath = "")
+        public virtual IBdoLog Update(IDocument documentDataItem, string relativePath = "")
         {
-            return new Log();
+            return new BdoLog();
         }
 
         // Detection -----------------------------------------
@@ -100,11 +98,11 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// </summary>
         /// <param name="dataSource">The data source to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public virtual IFormatConfiguration DetectFormat(
-            IDataSource dataSource,
-            ref ILog log)
+        public virtual IBdoFormatConfiguration DetectFormat(
+            IDatasource dataSource,
+            ref IBdoLog log)
         {
-            return new FormatConfiguration();
+            return new BdoFormatConfiguration();
         }
 
         #endregion
@@ -123,9 +121,9 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         {
             Document dataEntityItem = base.Clone() as Document;
             if (this.Container != null)
-                dataEntityItem.Container = this.Container.Clone() as CarrierConfiguration;
+                dataEntityItem.Container = this.Container.Clone() as BdoCarrierConfiguration;
             if (this.Content != null)
-                dataEntityItem.Content = this.Content.Clone() as EntityConfiguration;
+                dataEntityItem.Content = this.Content.Clone() as BdoEntityConfiguration;
 
             return dataEntityItem;
         }

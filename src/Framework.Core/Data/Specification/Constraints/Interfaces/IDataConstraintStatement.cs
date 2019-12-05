@@ -2,7 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items.Sets;
-using BindOpen.Framework.Core.Extensions.Items.Routines;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 
@@ -11,13 +11,13 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataConstraintStatement : IDataItemSet<RoutineConfiguration>
+    public interface IDataConstraintStatement : IDataItemSet<BdoRoutineConfiguration>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="routine"></param>
-        void AddConstraint(IRoutineConfiguration routine);
+        void AddConstraint(IBdoRoutineConfiguration routine);
 
         /// <summary>
         /// 
@@ -27,11 +27,11 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="parameterDetail"></param>
         /// <param name="outputEventSet"></param>
         /// <returns></returns>
-        IRoutineConfiguration AddConstraint(
+        IBdoRoutineConfiguration AddConstraint(
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
-            IDataItemSet<ConditionalEvent> outputEventSet = null);
+            IDataItemSet<BdoConditionalEvent> outputEventSet = null);
 
         /// <summary>
         /// 
@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IRoutineConfiguration GetConstraint(string name);
+        IBdoRoutineConfiguration GetConstraint(string name);
 
         /// <summary>
         /// 
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Constraints
         /// <param name="dataElement"></param>
         /// <param name="isDeepCheck"></param>
         /// <returns></returns>
-        ILog CheckItem(
+        IBdoLog CheckItem(
             object item,
             IDataElement dataElement,
             bool isDeepCheck = false);

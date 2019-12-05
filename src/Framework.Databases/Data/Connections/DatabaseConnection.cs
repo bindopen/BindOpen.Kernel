@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries;
@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
     /// </summary>
     [XmlType("DatabaseConnection", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "databaseConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DatabaseConnection : Connection, IDatabaseConnection
+    public class DatabaseConnection : BdoConnection, IDatabaseConnection
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// Sets the connector of this instance.
         /// </summary>
         /// <param name="connector">The database connector to consider.</param>
-        public override void SetConnector(IConnector connector)
+        public override void SetConnector(IBdoConnector connector)
         {
             base.SetConnector(connector);
         }
@@ -100,8 +100,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteNonQuery(
             string queryText,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             Connector?.ExecuteNonQuery(queryText, scriptVariableSet, log);
         }
@@ -115,8 +115,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <returns>The log of the data query execution task.</returns>
         public void ExecuteQuery(
             IDbQuery query,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (query != null)
             {
@@ -140,8 +140,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             string queryText,
             ref IDataReader dataReader,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (Connector != null)
             {
@@ -160,8 +160,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             IDbQuery query,
             ref IDataReader dataReader,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (query != null)
             {
@@ -185,8 +185,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             string queryText,
             ref DataSet dataSet,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             Connector?.ExecuteQuery(queryText, ref dataSet, scriptVariableSet, log);
         }
@@ -202,8 +202,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void ExecuteQuery(
             IDbQuery query,
             ref DataSet dataSet,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (query != null)
             {
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// <param name="log">The log to consider.</param>
         public void GetIdentity(
             ref long id,
-            ILog log = null)
+            IBdoLog log = null)
         {
             Connector?.GetIdentity(ref id, log);
         }
@@ -238,7 +238,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataTable(
             string queryText,
             DataTable dataTable,
-            ILog log = null)
+            IBdoLog log = null)
         {
             Connector?.UpdateDataTable(queryText, dataTable, log);
         }
@@ -253,7 +253,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
         public void UpdateDataTable(
             IDbQuery query,
             DataTable dataTable,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (query != null)
             {
@@ -276,7 +276,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             string queryText,
             DataSet dataSet,
             List<string> tableNames,
-            ILog log = null)
+            IBdoLog log = null)
         {
             Connector?.UpdateDataSet(queryText, dataSet, tableNames, log);
         }
@@ -293,7 +293,7 @@ namespace BindOpen.Framework.Databases.Data.Connections
             IDbQuery query,
             DataSet dataSet,
             List<string> tableNames,
-            ILog log = null)
+            IBdoLog log = null)
         {
             if (query != null)
             {

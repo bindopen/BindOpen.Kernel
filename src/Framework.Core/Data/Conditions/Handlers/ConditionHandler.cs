@@ -19,8 +19,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
             this ICondition condition,
-            IScriptInterpreter scriptInterpreter,
-            IScriptVariableSet scriptVariableSet)
+            IBdoScriptInterpreter scriptInterpreter,
+            IBdoScriptVariableSet scriptVariableSet)
         {
             if (condition is AdvancedCondition advancedCondition)
             {
@@ -47,8 +47,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
             this AdvancedCondition condition,
-            IScriptInterpreter scriptInterpreter,
-            IScriptVariableSet scriptVariableSet)
+            IBdoScriptInterpreter scriptInterpreter,
+            IBdoScriptVariableSet scriptVariableSet)
         {
             if (condition == null) return false;
 
@@ -80,8 +80,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
             this BasicCondition condition,
-            IScriptInterpreter scriptInterpreter,
-            IScriptVariableSet scriptVariableSet)
+            IBdoScriptInterpreter scriptInterpreter,
+            IBdoScriptVariableSet scriptVariableSet)
         {
             if (condition == null) return false;
 
@@ -117,8 +117,8 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
             this ScriptCondition condition,
-            IScriptInterpreter scriptInterpreter,
-            IScriptVariableSet scriptVariableSet)
+            IBdoScriptInterpreter scriptInterpreter,
+            IBdoScriptVariableSet scriptVariableSet)
         {
             if (condition == null) return false;
 
