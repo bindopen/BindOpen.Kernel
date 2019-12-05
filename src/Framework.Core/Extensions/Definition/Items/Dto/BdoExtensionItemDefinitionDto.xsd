@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../data/items/IndexedDataItem.xsd" />
+  
+  <xs:complexType name="BdoExtensionItemDefinition" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:IndexedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="imageUri" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="isEditable" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="isIndexed" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

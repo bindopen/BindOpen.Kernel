@@ -1,0 +1,54 @@
+2019-12-05T18:14:39 - Message: Host starting...
+2019-12-05T18:14:39 o Message: Initializing host...
+2019-12-05T18:14:32     o Message: Loading core extensions...
+2019-12-05T18:14:37         - Message: Extension 'BindOpen.Framework.Runtime' loaded
+2019-12-05T18:14:37         - Message: Core extensions loaded
+2019-12-05T18:14:37     o Message: Loading application settings...
+2019-12-05T18:14:38         - Message: Application settings loaded
+2019-12-05T18:14:38     o Message: Loading extensions...
+2019-12-05T18:14:38         o Warning: Loading extension 'BindOpen.Framework.Databases.MSSqlServer'
+2019-12-05T18:14:38             o Message: Loading library 'BindOpen.Framework.Databases.MSSqlServer'
+2019-12-05T18:14:38                 o Message: Loading assembly from 'Memory'
+2019-12-05T18:14:38                     - Message: Assembly loaded
+2019-12-05T18:14:38             o Message: Loading using extensions...
+2019-12-05T18:14:38                 - Message: Extension 'BindOpen.Framework.Databases' loaded
+2019-12-05T18:14:38             o Warning: Dictionary 'Carrier' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Carriers' found in assembly
+2019-12-05T18:14:38             - Message: Dictionary 'Connector' loaded (1 items added)
+2019-12-05T18:14:38             o Warning: Dictionary 'Entity' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Entities' found in assembly
+2019-12-05T18:14:38             - Message: Dictionary 'Handler' loaded (0 items added)
+2019-12-05T18:14:38             - Message: Dictionary 'Metrics' loaded (0 items added)
+2019-12-05T18:14:38             - Message: Dictionary 'Routine' loaded (0 items added)
+2019-12-05T18:14:38             o Warning: Dictionary 'Scriptword' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Scriptwords' found in assembly
+2019-12-05T18:14:38                 - Warning: No script word dictionary was found
+2019-12-05T18:14:38             o Warning: Dictionary 'Task' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Tasks' found in assembly
+2019-12-05T18:14:38         o Warning: Loading extension 'BindOpen.Framework.Databases.PostgreSql'
+2019-12-05T18:14:38             o Message: Loading library 'BindOpen.Framework.Databases.PostgreSql'
+2019-12-05T18:14:38                 o Message: Loading assembly from 'Memory'
+2019-12-05T18:14:38                     - Message: Assembly loaded
+2019-12-05T18:14:38             o Message: Loading using extensions...
+2019-12-05T18:14:38                 - Message: Extension 'BindOpen.Framework.Databases' loaded
+2019-12-05T18:14:38             o Warning: Dictionary 'Carrier' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Carriers' found in assembly
+2019-12-05T18:14:38             - Message: Dictionary 'Connector' loaded (1 items added)
+2019-12-05T18:14:38             o Warning: Dictionary 'Entity' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Entities' found in assembly
+2019-12-05T18:14:38             - Message: Dictionary 'Handler' loaded (0 items added)
+2019-12-05T18:14:38             - Message: Dictionary 'Metrics' loaded (0 items added)
+2019-12-05T18:14:38             - Message: Dictionary 'Routine' loaded (0 items added)
+2019-12-05T18:14:38             o Warning: Dictionary 'Scriptword' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Scriptwords' found in assembly
+2019-12-05T18:14:38                 - Warning: No script word dictionary was found
+2019-12-05T18:14:38             o Warning: Dictionary 'Task' loaded (0 items added)
+2019-12-05T18:14:38                 - Warning: No dictionary named 'BindOpen.Tasks' found in assembly
+2019-12-05T18:14:38         - Message: Extensions loaded
+2019-12-05T18:14:38     o Message: Loading configuration...
+2019-12-05T18:14:39         - Message: Configuration loaded
+2019-12-05T18:14:39     o Message: Loading data store...
+2019-12-05T18:14:39         o Message: Loading depot called 'dataSource'...
+2019-12-05T18:14:39             - Message: Data source depot loaded (1 data sources added)
+2019-12-05T18:14:39         - Message: Data store loaded (1 depots added)
+2019-12-05T18:14:39 - Message: Host started successfully

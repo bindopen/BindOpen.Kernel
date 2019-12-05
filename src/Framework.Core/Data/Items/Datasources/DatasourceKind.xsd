@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="DatasourceKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="Dll" />
+      <xs:enumeration value="Database" />
+      <xs:enumeration value="Repository" />
+      <xs:enumeration value="RestAPI" />
+      <xs:enumeration value="SoapAPI" />
+      <xs:enumeration value="EmailServer" />
+      <xs:enumeration value="Memory" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

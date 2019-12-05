@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="SpecificationLevel.xsd" />
+  <xs:include schemaLocation="../items/DescribedDataItem.xsd" />
+  <xs:include schemaLocation="../items/dictionary/DataKeyValue.xsd" />
+  <xs:include schemaLocation="../specification/DataAreaSpecification.xsd" />
+  <xs:include schemaLocation="../../application/commands/Command.xsd" />
+  <xs:include schemaLocation="../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="../items/source/Datasource.xsd" />
+
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDescribedDataItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:DescribedDataItem" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfSpecificationLevel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.level" type="bdo:SpecificationLevel" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataKeyValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.value" nillable="true" type="bdo:DataKeyValue" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDataAreaSpecification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:DataAreaSpecification" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfCommand">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:Command" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfDatasources">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="bdo:Datasource" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

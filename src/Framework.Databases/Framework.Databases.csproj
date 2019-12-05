@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>BindOpen.Framework.Databases</AssemblyName>
+    <PackageId>BindOpen.Framework.Databases</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications.
+This package handles database connections.</Description>
+    <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Framework.Databases</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Framework.Databases.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BindOpen.Extension" />
+    <None Remove="Extensions\Carriers\BindOpen.Carriers" />
+    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
+    <None Remove="Extensions\Entities\BindOpen.Entities" />
+    <None Remove="Extensions\Handlers\BindOpen.Handlers" />
+    <None Remove="Extensions\Metrics\BindOpen.Metrics" />
+    <None Remove="Extensions\Routines\BindOpen.Routines" />
+    <None Remove="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <None Remove="Extensions\Tasks\BindOpen.Tasks" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="BindOpen.Extension" />
+    <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
+    <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
+    <EmbeddedResource Include="Extensions\Handlers\BindOpen.Handlers" />
+    <EmbeddedResource Include="Extensions\Metrics\BindOpen.Metrics" />
+    <EmbeddedResource Include="Extensions\Routines\BindOpen.Routines" />
+    <EmbeddedResource Include="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <EmbeddedResource Include="Extensions\Tasks\BindOpen.Tasks" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Core\Framework.Core.csproj" />
+  </ItemGroup>
+
+</Project>

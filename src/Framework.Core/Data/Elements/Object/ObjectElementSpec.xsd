@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="../../../data/elements/DataElementSpec.xsd" />
+  <xs:include schemaLocation="../../../data/specification/filters/DataValueFilter.xsd" />
+  <xs:include schemaLocation="../../../data/common/RequirementLevel.xsd" />
+  <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
+
+  <xs:complexType name="ObjectElementSpec">
+    <xs:complexContent mixed="false">
+      <xs:extension base="bdo:DataElementSpec">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="class.filter" type="bdo:DataValueFilter" />
+          <xs:element minOccurs="0" maxOccurs="1" name="entity.filter" type="bdo:DataValueFilter" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
