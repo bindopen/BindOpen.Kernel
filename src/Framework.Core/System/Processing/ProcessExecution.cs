@@ -29,7 +29,7 @@ namespace BindOpen.Framework.Core.System.Processing
 
         #region Variables
 
-        private readonly ILog _log = null;
+        private readonly IBdoLog _log = null;
 
         private ProcessExecutionStatus _status = ProcessExecutionStatus.None;
         private ProcessExecutionState _state = ProcessExecutionState.None;
@@ -103,7 +103,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _progressIndex = value;
-                _log?.WriteLog("execution.progressIndex", _progressIndex, LoggerMode.Auto);
+                _log?.WriteLog("execution.progressIndex", _progressIndex, BdoLoggerMode.Auto);
             }
         }
 
@@ -119,7 +119,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _progressMax = value;
-                _log?.WriteLog("execution.progressMax", _progressMax, LoggerMode.Auto);
+                _log?.WriteLog("execution.progressMax", _progressMax, BdoLoggerMode.Auto);
             }
         }
 
@@ -140,7 +140,7 @@ namespace BindOpen.Framework.Core.System.Processing
                 if (_state != (aProcessExecutionState = ProcessExecution.GetState(_status)))
                     _state = aProcessExecutionState;
 
-                _log?.WriteLog("execution.status", _status, LoggerMode.Auto);
+                _log?.WriteLog("execution.status", _status, BdoLoggerMode.Auto);
             }
         }
 
@@ -160,7 +160,7 @@ namespace BindOpen.Framework.Core.System.Processing
                 if (!ProcessExecution.GetStatuses(_state).Contains(_status))
                     _status = ProcessExecution.GetDefaultStatus(_state);
 
-                _log?.WriteLog("execution.state", _state, LoggerMode.Auto);
+                _log?.WriteLog("execution.state", _state, BdoLoggerMode.Auto);
             }
         }
 
@@ -174,7 +174,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _customStatus = value;
-                _log?.WriteLog("execution.customStatus", _customStatus, LoggerMode.Auto);
+                _log?.WriteLog("execution.customStatus", _customStatus, BdoLoggerMode.Auto);
             }
         }
 
@@ -202,7 +202,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _startDate = value;
-                _log?.WriteLog("execution.startDate", _startDate, LoggerMode.Auto);
+                _log?.WriteLog("execution.startDate", _startDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -228,7 +228,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _restartDate = value;
-                _log?.WriteLog("execution.restartDate", _restartDate, LoggerMode.Auto);
+                _log?.WriteLog("execution.restartDate", _restartDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -254,7 +254,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _endDate = value;
-                _log?.WriteLog("execution.endDate", _endDate, LoggerMode.Auto);
+                _log?.WriteLog("execution.endDate", _endDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -291,7 +291,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _duration = value;
-                _log?.WriteLog("execution.duration", _duration, LoggerMode.Auto);
+                _log?.WriteLog("execution.duration", _duration, BdoLoggerMode.Auto);
             }
         }
 
@@ -321,7 +321,7 @@ namespace BindOpen.Framework.Core.System.Processing
             set
             {
                 _resultLevel = value;
-                _log?.WriteLog("execution.resultLevel", _resultLevel, LoggerMode.Auto);
+                _log?.WriteLog("execution.resultLevel", _resultLevel, BdoLoggerMode.Auto);
             }
         }
 
@@ -343,7 +343,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// <summary>
         /// Instantiates a new instance of the LogEventExecution class.
         /// </summary>
-        public ProcessExecution(ILog log) : this()
+        public ProcessExecution(IBdoLog log) : this()
         {
             _log = log;
         }
@@ -546,7 +546,7 @@ namespace BindOpen.Framework.Core.System.Processing
         public void AddDetail(string name, object value)
         {
             Detail.AddElement(ElementFactory.CreateScalar(name, DataValueType.Text, (value ?? "").ToString()));
-            _log?.WriteLog(name, value, LoggerMode.Auto);
+            _log?.WriteLog(name, value, BdoLoggerMode.Auto);
         }
 
         #endregion

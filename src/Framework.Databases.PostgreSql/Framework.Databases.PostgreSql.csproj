@@ -16,6 +16,7 @@ This package handles PostgreSQL database connections.</Description>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,15 +37,14 @@ This package handles PostgreSQL database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="BindOpen.Extension" />
     <None Remove="Data\Queries\Builders\ve-27F.tmp" />
     <None Remove="Extensions\Connectors\Connectors.index" />
     <None Remove="Extensions\Connectors\DatabaseConnector_PostgreSql.cs~RF7702964.TMP" />
-    <None Remove="library.definition" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Extensions\Connectors\Connectors.index" />
-    <EmbeddedResource Include="Library.definition" />
+    <EmbeddedResource Include="BindOpen.Extension" />
   </ItemGroup>
 
   <ItemGroup>

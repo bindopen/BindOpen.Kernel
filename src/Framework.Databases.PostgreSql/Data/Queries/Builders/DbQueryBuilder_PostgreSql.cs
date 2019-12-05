@@ -25,10 +25,10 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <summary>
         /// Instantiates a new instance of the DbQueryBuilder_PostgreSql class.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         public DbQueryBuilder_PostgreSql(
-            IAppScope appScope = null)
-            : base(DatabaseConnectorKind.PostgreSql, appScope)
+            IBdoScope scope = null)
+            : base(DatabaseConnectorKind.PostgreSql, scope)
         {
         }
 
@@ -42,9 +42,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
         private string GetFieldSqlText(
             DbField field,
-            ILog log,
+            IBdoLog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            IScriptVariableSet scriptVariableSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null,
             string defaultDataTable = null)
@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         }
                         else if (field.IsNameAsScript)
                         {
-                            string name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            string name = _scope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "\"" + name + "\"";
                         }
                         else
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                     case DbDataFieldViewMode.OnlyNameAsAlias:
                         if (field.IsNameAsScript)
                         {
-                            string name = _appScope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
+                            string name = _scope?.Interpreter.Interprete(field.Name.CreateScript(), scriptVariableSet, log) ?? "";
                             queryString += "\"" + name + "\"";
                         }
                         else
@@ -155,7 +155,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
-                        string value = _appScope?.Interpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
+                        string value = _scope?.Interpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
 
                         if (field.Query != null)
                         {
@@ -211,9 +211,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
         private string GetTableSqlText(
             DbTable table,
-            ILog log,
+            IBdoLog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            IScriptVariableSet scriptVariableSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null)
         {
@@ -239,9 +239,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string tableSchema,
             string tableName,
             string tableAlias,
-            ILog log,
+            IBdoLog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            IScriptVariableSet scriptVariableSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null)
         {
@@ -288,8 +288,8 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
         private string GetJointureSqlText(
             IDbQueryFromStatement queryFrom,
-            IScriptVariableSet scriptVariableSet,
-            ILog log)
+            IBdoScriptVariableSet scriptVariableSet,
+            IBdoLog log)
         {
             string queryString = "";
             foreach (DbQueryJointureStatement queryJointure in queryFrom.JointureStatements)
@@ -322,7 +322,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                 if (queryJointure.Kind != DbQueryJointureKind.None)
                 {
                     queryString += " on ";
-                    string expression = _appScope?.Interpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
+                    string expression = _scope?.Interpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
                     queryString += expression;
                 }
             }
@@ -353,12 +353,12 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected override ILog Build(
+        protected override IBdoLog Build(
             IBasicDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             int index = 0;
 
@@ -396,7 +396,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                             queryString += " * ";
                         }
                         queryString += " from ";
-                        if ((query.FromClauses == null) | (query.FromClauses.Count == 0))
+                        if ((query.FromStatements == null) | (query.FromStatements.Count == 0))
                         {
                             queryString += GetTableSqlText(
                                 query.DataModule, query.Schema, query.DataTable, query.DataTableAlias,
@@ -406,7 +406,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         else
                         {
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -487,11 +487,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
                             index++;
                         }
-                        if (query.FromClauses?.Count > 0)
+                        if (query.FromStatements?.Count > 0)
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -609,12 +609,12 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <param name="query"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected override ILog Build(
+        protected override IBdoLog Build(
             IAdvancedDbQuery query,
-            IScriptVariableSet scriptVariableSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             int index = 0;
             queryString = "";
@@ -652,7 +652,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         queryString += " from ";
                         index = 0;
 
-                        foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                        foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                         {
                             if (index > 0)
                                 queryString += ",";
@@ -666,7 +666,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         if (query.WhereClause != null && query.WhereClause.Text != null)
                         {
                             queryString += " where ";
-                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _scope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.GroupByClause != null)
@@ -689,7 +689,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         if (query.HavingClause != null)
                         {
                             queryString += " having ";
-                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _scope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                         if (query.OrderByStatements.Count > 0)
@@ -747,11 +747,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 
                             index++;
                         }
-                        if (query.FromClauses?.Count > 0)
+                        if (query.FromStatements?.Count > 0)
                         {
                             queryString += " from ";
                             index = 0;
-                            foreach (DbQueryFromStatement queryFrom in query.FromClauses)
+                            foreach (DbQueryFromStatement queryFrom in query.FromStatements)
                             {
                                 if (index > 0)
                                     queryString += ",";
@@ -764,7 +764,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            String expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            String expression = _scope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }
@@ -782,7 +782,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         if (query.WhereClause != null)
                         {
                             queryString += " where ";
-                            string expression = _appScope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
+                            string expression = _scope?.Interpreter.Interprete(query.WhereClause, scriptVariableSet, log) ?? "";
                             queryString += expression;
                         }
                     }

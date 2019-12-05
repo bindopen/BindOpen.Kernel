@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -41,18 +41,18 @@ namespace BindOpen.Framework.Core.Data.References
         /// 
         /// </summary>
         /// <returns></returns>
-        IDataSource GetDataSource();
+        IDatasource GetDatasource();
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Get(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
     }
 }

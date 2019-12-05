@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Items.Connectors;
+﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using System;
@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
     /// <summary>
     /// This class represents a repository connector.
     /// </summary>
-    public abstract class RepositoryConnector : Connector
+    public abstract class RepositoryConnector : BdoConnector
     {
         // -----------------------------------------------
         // CONSTRUCTORS
@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryConnector(IConnectorConfiguration dto) : base(dto)
+        protected RepositoryConnector(IBdoConnectorConfiguration dto) : base(dto)
         {
         }
 
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string remoteFileUri,
             string localPathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
         }
 
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string remoteFilter,
             string localPathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false)
         {
             List<RepositoryItem> files = GetFiles(
@@ -95,7 +95,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             List<string> remoteFileUris,
             string localPathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             foreach (string remoteFileUri in remoteFileUris)
                 Pull(remoteFileUri, localPathUri, canOverwrite, log);
@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string localFileUri,
             string remotePathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
         }
 
@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string localFilter,
             string remotePathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false)
         {
             List<RepositoryItem> files = GetFiles(
@@ -156,7 +156,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             List<string> localFileUris,
             string remotePathUri,
             Boolean canOverwrite,
-            ILog log = null)
+            IBdoLog log = null)
         {
             foreach (string remoteFileUri in localFileUris)
                 Pull(remoteFileUri, remotePathUri, canOverwrite, log);
@@ -178,7 +178,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string folderUri,
             string filter,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
             return new List<RepositoryItem>();
@@ -198,7 +198,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             string filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
         }

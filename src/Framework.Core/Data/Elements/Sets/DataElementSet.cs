@@ -155,7 +155,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public virtual bool AddElementItem(
             string elementName,
             object item = null,
-            ILog log = null)
+            IBdoLog log = null)
         {
             IDataElement element = GetItem(elementName);
             if (element != null)
@@ -174,7 +174,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public virtual List<object> AddElementItems(
             string elementName,
             object[] items = null,
-            ILog log = null)
+            IBdoLog log = null)
         {
             IDataElement element = GetItem(elementName);
             element?.AddItems(items, log);
@@ -271,19 +271,19 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// Returns the item object of this instance.
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetElementObject(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             IDataElement element = (elementName != null ? GetItem(elementName) : Elements[0]);
             if (element != null)
-                return element.GetObject(appScope, scriptVariableSet, log);
+                return element.GetObject(scope, scriptVariableSet, log);
 
             return null;
         }
@@ -293,16 +293,16 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// </summary>
         /// <param name="elementName">The element name to consider.</param>
         /// <param name="log">The log to populate.</param>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual T GetElementObject<T>(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
-            return (T)GetElementObject(elementName,appScope,scriptVariableSet, log);
+            return (T)GetElementObject(elementName,scope,scriptVariableSet, log);
         }
 
         // General ------------------------------
@@ -474,7 +474,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            DataElementSet elementSet = MemberwiseClone() as DataElementSet;
+            DataElementSet elementSet = base.Clone() as DataElementSet;
             elementSet._items = Elements?.Select(p => p.Clone() as DataElement).ToList();
 
             return elementSet;

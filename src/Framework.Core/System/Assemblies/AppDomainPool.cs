@@ -1,13 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Diagnostics.Events;
+using BindOpen.Framework.Core.System.Processing.Resources;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Processing.Resources;
 
 namespace BindOpen.Framework.Core.System.Assemblies
 {
@@ -87,12 +87,12 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="appDomainId">The ID of the application domain to consider.</param>
         /// <param name="ownerId">The ID of the owner.</param>
         public AppDomain Allocate(
-            String appDomainId =null,
+            String appDomainId = null,
             String ownerId = null)
         {
-            if (appDomainId==null)
+            if (appDomainId == null)
                 return null;
-            
+
             AppDomain appDomain = this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
             if (appDomain == null)
             {
@@ -109,14 +109,14 @@ namespace BindOpen.Framework.Core.System.Assemblies
                 //}
             }
 
-            this._resourceAllocations.RemoveAll(p=>
+            this._resourceAllocations.RemoveAll(p =>
                     ((p.AllocatedResourceId != null) && (p.AllocatedResourceId == appDomainId))
                     & ((ownerId == p.OwnerId) | ((ownerId != null) && (p.OwnerId != null) && (string.Equals(ownerId, p.OwnerId, StringComparison.OrdinalIgnoreCase)))));
             this._resourceAllocations.Add(new ResourceAllocation(appDomainId, ownerId));
 
             return appDomain;
         }
-        
+
         /// <summary>
         /// Deallocates the specified application domain.
         /// </summary>
@@ -127,20 +127,20 @@ namespace BindOpen.Framework.Core.System.Assemblies
             if (appDomainId == null)
                 return false;
 
-            this._resourceAllocations.RemoveAll(p=>
-                ((p.AllocatedResourceId!=null)&&(string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))) &
-                (((p.OwnerId == ownerId) & (ownerId ==null))||((p.OwnerId!=null) && (string.Equals(p.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)))));
+            this._resourceAllocations.RemoveAll(p =>
+                ((p.AllocatedResourceId != null) && (string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))) &
+                (((p.OwnerId == ownerId) & (ownerId == null)) || ((p.OwnerId != null) && (string.Equals(p.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)))));
 
-            if (!this._resourceAllocations.Any(p=>(p.AllocatedResourceId!=null)&&(string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))))
+            if (!this._resourceAllocations.Any(p => (p.AllocatedResourceId != null) && (string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))))
             {
                 // we retrieve the application domain
-                AppDomain appDomain = this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId) );
+                AppDomain appDomain = this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
                 if ((appDomain != null) && (appDomain != AppDomain.CurrentDomain))
                 {
                     // we remove the resolve event handler from the main domain
                     ResolveEventHandler aResolveEventHandler = (ResolveEventHandler)this._resolveEventHandlerHashTable[appDomainId];
-                    if (aResolveEventHandler!=null)
-                    { 
+                    if (aResolveEventHandler != null)
+                    {
                         AppDomain.CurrentDomain.AssemblyResolve -= aResolveEventHandler;
                         this._resolveEventHandlerHashTable.Remove(appDomainId);
                     }
@@ -177,7 +177,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="filePath">Path of the file to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, ILog log = null)
+        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, IBdoLog log = null)
         {
             Assembly assembly = null;
 
@@ -209,7 +209,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(new LogEvent(
+                        log?.AddEvent(new BdoLogEvent(
                                 EventKinds.Exception,
                                 title: "Error while attempting to load assembly from file '" + filePath + "'",
                                 description: ex.ToString()));
@@ -227,7 +227,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <param name="assemblyName">The assembly name to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssembly(AppDomain appDomain, String assemblyName, ILog log = null)
+        public static Assembly LoadAssembly(AppDomain appDomain, String assemblyName, IBdoLog log = null)
         {
             Assembly assembly = null;
 
@@ -242,16 +242,11 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     }
                     catch (FileNotFoundException)
                     {
-                        log?.AddEvent(new LogEvent(
-                                EventKinds.Error,
-                                title: "Could not find the assembly '" + assemblyName + "'"));
+                        log?.AddError("Could not find the assembly '" + assemblyName + "'");
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(new LogEvent(
-                                EventKinds.Exception,
-                                title: "Error while attempting to load assembly '" + assemblyName + "'",
-                                description: ex.ToString()));
+                        log?.AddException("Error while attempting to load assembly '" + assemblyName + "'", description: ex.ToString());
                     }
                 }
             }

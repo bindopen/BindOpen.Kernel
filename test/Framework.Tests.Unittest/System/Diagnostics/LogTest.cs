@@ -12,11 +12,11 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
 
         private const int _itemsNumber = 180;
 
-        private ILog _log = null;
+        private IBdoLog _log = null;
 
         public void CreateEvents()
         {
-            _log = new Log();
+            _log = new BdoLog();
 
             for (int i = 0; i < _itemsNumber; i++)
                 _log.AddError("Error" + i);
@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
             for (int i = 0; i < _itemsNumber; i++)
                 _log.AddWarning("Warning" + i);
             for (int i = 0; i < _itemsNumber; i++)
-                _log.AddSubLog(new Log());
+                _log.AddSubLog(new BdoLog());
         }
 
         [Test, Order(1)]
@@ -62,8 +62,8 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
             if (!File.Exists(_filePath))
                 TestSaveEvents();
 
-            Log log = new Log();
-            _log = XmlHelper.Load<Log>(_filePath, null, null, log);
+            BdoLog log = new BdoLog();
+            _log = XmlHelper.Load<BdoLog>(_filePath, null, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

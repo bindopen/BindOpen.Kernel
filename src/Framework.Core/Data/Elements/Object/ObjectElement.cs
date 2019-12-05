@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <returns>Returns True if the specified has been well added.</returns>
         public override bool AddItem(
             object item,
-            ILog log = null)
+            IBdoLog log = null)
         {
             bool boolean = base.AddItem(item, log);
             if (this[0] is DataItem)
@@ -249,7 +249,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
@@ -264,12 +264,12 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             foreach(DataElementSet elementSet in Objects)
             {
@@ -277,8 +277,8 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
 
                 if (!log.HasErrorsOrExceptions() && (item is DataItem dataItem))
                 {
-                    elementSet.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
-                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, appScope, scriptVariableSet);
+                    elementSet.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+                    item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, scope, scriptVariableSet);
                 }
 
                 AddItem(item);
@@ -299,7 +299,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            ObjectElement aObjectElement = this.MemberwiseClone() as ObjectElement;
+            ObjectElement aObjectElement = base.Clone() as ObjectElement;
             //if (this.DataSchemreference != null)
             //    aObjectElement.DataSchemreference = this.DataSchemreference.Clone() as DataHandler;
 

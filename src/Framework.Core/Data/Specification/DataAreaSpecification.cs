@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            DataAreaSpecification dataAreaSpecification = this.MemberwiseClone() as DataAreaSpecification;
+            DataAreaSpecification dataAreaSpecification = base.Clone() as DataAreaSpecification;
             return dataAreaSpecification;
         }
 

@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements._Object;
 using BindOpen.Framework.Core.Data.Elements.Carrier;
 using BindOpen.Framework.Core.Data.Elements.Scalar;
 using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using System.Linq;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -70,11 +69,11 @@ namespace BindOpen.Framework.Core.Data.Elements
                 switch (valueType)
                 {
                     case DataValueType.Carrier:
-                        definitionUniqueId = ((items.Length>0 ? items[0] : null) as ICarrierConfiguration)?.DefinitionUniqueId;
+                        definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IBdoCarrierConfiguration)?.DefinitionUniqueId;
                         element = CreateCarrier(name, null, definitionUniqueId, specification as ICarrierElementSpec);
                         break;
-                    case DataValueType.DataSource:
-                        definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IConnectorConfiguration)?.DefinitionUniqueId;
+                    case DataValueType.Datasource:
+                        definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IBdoConnectorConfiguration)?.DefinitionUniqueId;
                         element = CreateSource(name, null, definitionUniqueId, specification as ISourceElementSpec);
                         break;
                     case DataValueType.Dictionary:
@@ -96,7 +95,7 @@ namespace BindOpen.Framework.Core.Data.Elements
                         break;
                 }
 
-                if (items!=null)
+                if (items != null)
                 {
                     element?.SetItems(items);
                 }
@@ -110,17 +109,17 @@ namespace BindOpen.Framework.Core.Data.Elements
         ///// </summary>
         ///// <param name="type">The value type to consider.</param>
         ///// <param name="name">The name to consider.</param>
-        ///// <param name="appScope">The application scope to consider.</param>
+        ///// <param name="scope">The scope to consider.</param>
         ///// <param name="specification">The specification to consider.</param>
         //public static IDataElement Create(
         //    string name,
         //    Type type,
-        //    IAppScope appScope = null,
+        //    IBdoScope scope = null,
         //    IDataElementSpec specification = null)
         //{
         //    if (type == null) return null;
 
-        //    IDataElement element = Create(name, type.GetValueType(), appScope, specification);
+        //    IDataElement element = Create(name, type.GetValueType(), scope, specification);
 
         //    if (element?.Specification != null)
         //    {

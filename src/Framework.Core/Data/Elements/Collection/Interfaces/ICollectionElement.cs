@@ -32,29 +32,29 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
         /// 
         /// </summary>
         /// <param name="elementName"></param>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         object GetElementObject(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="elementName"></param>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         T GetElementObject<T>(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
     }
 }

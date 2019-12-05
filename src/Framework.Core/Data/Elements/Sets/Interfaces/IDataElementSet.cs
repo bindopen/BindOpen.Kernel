@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="item"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        bool AddElementItem(string elementName, object item = null, ILog log = null);
+        bool AddElementItem(string elementName, object item = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// <param name="items"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        List<object> AddElementItems(string elementName, object[] items = null, ILog log = null);
+        List<object> AddElementItems(string elementName, object[] items = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -127,29 +127,29 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         /// 
         /// </summary>
         /// <param name="elementName"></param>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         object GetElementObject(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="elementName"></param>
-        /// <param name="appScope"></param>
+        /// <param name="scope"></param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         T GetElementObject<T>(
             string elementName = null,
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null);
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
     }
 }

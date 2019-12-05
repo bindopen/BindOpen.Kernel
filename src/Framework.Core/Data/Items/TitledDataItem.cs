@@ -1,9 +1,9 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -176,9 +176,9 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            TitledDataItem item = base.Clone() as TitledDataItem;
+            var item = base.Clone() as TitledDataItem;
             if (Title != null)
-                item.Title = Title.Clone() as DictionaryDataItem;
+                item.Title = Title.Clone<DictionaryDataItem>();
 
             return item;
         }
@@ -195,7 +195,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
             Title?.UpdateStorageInfo(log);
@@ -204,14 +204,14 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
-            Title?.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            Title?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

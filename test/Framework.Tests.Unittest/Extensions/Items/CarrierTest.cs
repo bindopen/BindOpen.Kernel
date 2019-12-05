@@ -1,8 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Items;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using NUnit.Framework;
@@ -59,7 +58,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         [Test, Order(2)]
         public void TestSaveCarrier()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _field.SaveXml(_filePath, log);
 
@@ -74,12 +73,12 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         [Test, Order(3)]
         public void TestLoadCarrier()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_field == null || !File.Exists(_filePath))
                 TestSaveCarrier();
 
-            CarrierConfiguration configuration = XmlHelper.Load<CarrierConfiguration>(_filePath, null, null, log);
+            BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, null, null, log);
             var field = SetupVariables.AppHost.Scope.CreateCarrier<DbField>(configuration, null, log);
 
             string xml = "";

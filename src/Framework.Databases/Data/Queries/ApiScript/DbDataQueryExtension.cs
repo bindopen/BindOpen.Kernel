@@ -50,9 +50,9 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="definition">The clause statement to consider.</param>
         /// <param name="i"></param>
         /// <returns></returns>
-        public static string ConvertToXtensionScript(
+        public static string ConvertToExtensionScript(
             this string searchQuery,
-            ILog log = null,
+            IBdoLog log = null,
             ApiScriptFilteringDefinition definition = null,
             int i = 0)
         {
@@ -69,14 +69,14 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                     while (j < script.Length - 1)
                     {
                         string clause = script.Substring(i, j - i + 1);
-                        clause = clause.ConvertToXtensionScript(log, definition, 0);
+                        clause = clause.ConvertToExtensionScript(log, definition, 0);
                         clauses.Add(clause);
                         j = i = j + (" " + instruction + " ").Length;
                         script.GetIndexOfNextString(" " + instruction + " ", ref j);
                         if (j == script.Length)
                         {
                             clause = script.Substring(i);
-                            clause = clause.ConvertToXtensionScript(log, definition, 0);
+                            clause = clause.ConvertToExtensionScript(log, definition, 0);
                             clauses.Add(clause);
                         }
                     }
@@ -138,13 +138,13 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                             }
                             else
                             {
-                                if (clause.Field == null) clause.Field = new DbField(fieldName);
+                                if (clause.Field == null) clause.Field = DbFieldFactory.Create(fieldName);
 
                                 if (aOperator == DataOperator.Has)
                                 {
                                     if (value.Length > 2 && value.StartsWith("{") && value.EndsWith("}"))
                                         value = value.Substring(1, value.Length - 2);
-                                    value = value.ConvertToXtensionScript(log, clause.ValueDefinition, 0);
+                                    value = value.ConvertToExtensionScript(log, clause.ValueDefinition, 0);
                                     script = "(" + value + ")";
                                 }
                                 else
@@ -206,12 +206,12 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         public static IAdvancedDbQuery Filter(
             this IAdvancedDbQuery dbQuery,
             string filterQuery,
-            ILog log = null,
+            IBdoLog log = null,
             ApiScriptFilteringDefinition definition = null)
         {
             if (dbQuery != null && !string.IsNullOrEmpty(filterQuery))
             {
-                string scriptText = filterQuery.ConvertToXtensionScript(log, definition);
+                string scriptText = filterQuery.ConvertToExtensionScript(log, definition);
 
                 if (scriptText?.Length > 0)
                 {
@@ -240,15 +240,15 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         public static IAdvancedDbQuery Sort(
             this IAdvancedDbQuery query,
             string sortQuery,
-            ILog log = null,
+            IBdoLog log = null,
             ApiScriptSortingDefinition definition = null)
         {
             if (query != null && !string.IsNullOrEmpty(sortQuery))
             {
-                query.OrderByStatements = new List<IDbQueryOrderByStatement>();
+                query.OrderByStatements = new List<DbQueryOrderByStatement>();
                 foreach (string fieldItem in sortQuery.Split(','))
                 {
-                    IDbQueryOrderByStatement statement = new DbQueryOrderByStatement();
+                    DbQueryOrderByStatement statement = new DbQueryOrderByStatement();
                     var fieldItemParams = fieldItem?.Trim().Split(' ');
                     if (fieldItemParams.Length > 0)
                     {
@@ -259,7 +259,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                         }
                         else
                         {
-                            statement.Field = definition?[fieldName]?.Field ?? new DbField(fieldName);
+                            statement.Field = definition?[fieldName]?.Field ?? DbFieldFactory.Create(fieldName);
                             statement.Sorting = DataSortingMode.Ascending;
 
                             if (fieldItemParams.Length > 1)
@@ -300,7 +300,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             this IAdvancedDbQuery query,
             int? pageSize,
             string pageToken,
-            ILog log = null,
+            IBdoLog log = null,
             ApiScriptSortingDefinition clauseStatement = null)
         {
             return query;

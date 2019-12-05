@@ -2,7 +2,7 @@
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
@@ -88,7 +88,7 @@ namespace BindOpen.Framework.Core.Data.References
         /// Gets the initial data source of this instance.
         /// </summary>
         /// <returns>Returns the initial data source of this instance.</returns>
-        public IDataSource GetDataSource()
+        public IDatasource GetDatasource()
         {
             return null;
         }
@@ -120,16 +120,16 @@ namespace BindOpen.Framework.Core.Data.References
         /// <summary>
         /// Gets the items from the source of this instance and update the target items.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the retrieved items.</returns>
         public object Get(
-            IAppScope appScope = null,
-            IScriptVariableSet scriptVariableSet = null,
-            ILog log = null)
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
-            //this.SetDefinition((appScope== null ? null : appScope.AppExtension));
+            //this.SetDefinition((scope== null ? null : scope.BdoExtension));
             //log.AddEvents(this.Check());
 
             List<object> dataItems = new List<object>();
@@ -143,7 +143,7 @@ namespace BindOpen.Framework.Core.Data.References
             //    else if (aSourceElement == null)
             //        log.AddError(title: "Source element missing");
             //    else
-            //        dataItems.AddRange(this.Definition.RuntimeFunction_Get(aSourceElement, parameterDetail, appScope, scriptVariableSet, log));
+            //        dataItems.AddRange(this.Definition.RuntimeFunction_Get(aSourceElement, parameterDetail, scope, scriptVariableSet, log));
 
             return dataItems;
         }

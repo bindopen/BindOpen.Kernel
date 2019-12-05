@@ -1,7 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items.Source;
-using BindOpen.Framework.Core.Extensions.Items.Carriers;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.Extensions.Items.Formats;
+﻿using BindOpen.Framework.Core.Data.Items.Datasources;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items.Documents
@@ -14,12 +12,12 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <summary>
         /// 
         /// </summary>
-        CarrierConfiguration Container { get; set; }
+        BdoCarrierConfiguration Container { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        EntityConfiguration Content { get; set; }
+        BdoEntityConfiguration Content { get; set; }
 
         /// <summary>
         /// 
@@ -27,7 +25,7 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <param name="dataSource"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IFormatConfiguration DetectFormat(IDataSource dataSource, ref ILog log);
+        IBdoFormatConfiguration DetectFormat(IDatasource dataSource, ref IBdoLog log);
 
         /// <summary>
         /// 
@@ -35,6 +33,6 @@ namespace BindOpen.Framework.Core.Data.Items.Documents
         /// <param name="documentDataItem"></param>
         /// <param name="relativePath"></param>
         /// <returns></returns>
-        ILog Update(IDocument documentDataItem, string relativePath = "");
+        IBdoLog Update(IDocument documentDataItem, string relativePath = "");
     }
 }

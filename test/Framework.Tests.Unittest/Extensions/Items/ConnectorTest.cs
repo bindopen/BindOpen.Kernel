@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Connections;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Items;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Data.Connections;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
@@ -14,8 +14,8 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
     [TestFixture, Order(11)]
     public class ConnectorTest
     {
-        private Connector _connector1 = null;
-        private Connector _connector2 = null;
+        private BdoConnector _connector1 = null;
+        private BdoConnector _connector2 = null;
 
         private readonly string _filePath1 = SetupVariables.WorkingFolder + "Connector1.xml";
         private readonly string _filePath2 = SetupVariables.WorkingFolder + "Connector2.xml";
@@ -31,7 +31,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         {
             _connector1 = new DatabaseConnector_MSSqlServer("test", _connectionString1);
             _connector2 = SetupVariables.AppHost.Scope.CreateConnector<TestConnector>(
-                new ConnectorConfiguration(
+                new BdoConnectorConfiguration(
                     "runtime$test",
                     ElementFactory.CreateScalar("host", _host2),
                     ElementFactory.CreateScalar("port", _port2),
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         [Test, Order(2)]
         public void TestSaveConnector()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             _connector1.SaveXml(_filePath1, log);
             _connector2.SaveXml(_filePath2, log);
@@ -65,7 +65,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         [Test, Order(3)]
         public void TestLoadConnector()
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (_connector1 == null || !File.Exists(_filePath1)
                 || _connector2 == null || !File.Exists(_filePath2))
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
                 TestSaveConnector();
             }
 
-            ConnectorConfiguration configuration1 = XmlHelper.Load<ConnectorConfiguration>(_filePath1, null, null, log);
+            BdoConnectorConfiguration configuration1 = XmlHelper.Load<BdoConnectorConfiguration>(_filePath1, null, null, log);
             DatabaseConnector_MSSqlServer connector1 = SetupVariables.AppHost.Scope.CreateConnector<DatabaseConnector_MSSqlServer>(configuration1, null, log);
             string xml = "";
             if (log.HasErrorsOrExceptions())
@@ -83,7 +83,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + xml);
             Test1(connector1);
 
-            ConnectorConfiguration configuration2 = XmlHelper.Load<ConnectorConfiguration>(_filePath2, null, null, log);
+            BdoConnectorConfiguration configuration2 = XmlHelper.Load<BdoConnectorConfiguration>(_filePath2, null, null, log);
             TestConnector connector2 = SetupVariables.AppHost.Scope.CreateConnector<TestConnector>(configuration2, null, log);
             if (log.HasErrorsOrExceptions())
             {
@@ -96,15 +96,15 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         [Test, Order(3)]
         public void TestCreateOpenCloseConnection()
         {
-            Log log = new Log();
+            BdoLog log = new BdoLog();
 
             using (DatabaseConnection connection =
-                SetupVariables.AppHost.ConnectionService.Open<DatabaseConnection>("bdd1", null, log))
+                SetupVariables.AppHost.Scope.Open<DatabaseConnection>("bdd1", null, log))
             {
             }
         }
 
-        private void Test1(Connector connector)
+        private void Test1(BdoConnector connector)
         {
             Assert.That(connector != null, "Connector missing");
             if (connector != null)
@@ -113,7 +113,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
             }
         }
 
-        private void Test2(Connector connector)
+        private void Test2(BdoConnector connector)
         {
             TestConnector testConnector = connector as TestConnector;
 

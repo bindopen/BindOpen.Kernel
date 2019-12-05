@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
@@ -9,17 +9,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
     public class DbQueryFromStatement : IDbQueryFromStatement
     {
         // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private IDbQueryUnionStatement _unionStatement;
-        private List<IDbQueryJointureStatement> _jointureStatements = new List<IDbQueryJointureStatement>();
-
-        #endregion
-
-        // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
@@ -28,21 +17,12 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Union statement.
         /// </summary>
-        public IDbQueryUnionStatement UnionStatement
-        {
-            get { return this._unionStatement; }
-            set { this._unionStatement = value; }
-        }
+        public DbQueryUnionStatement UnionStatement { get; set; }
 
         /// <summary>
         /// List of jointure statements.
         /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public List<IDbQueryJointureStatement> JointureStatements
-        {
-            get { return this._jointureStatements; }
-            set { this._jointureStatements = new List<IDbQueryJointureStatement>(value); }
-        }
+        public List<DbQueryJointureStatement> JointureStatements { get; set; } = new List<DbQueryJointureStatement>();
 
         #endregion
 
@@ -57,6 +37,47 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         public DbQueryFromStatement()
         {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Sets the specified union statement.
+        /// </summary>
+        /// <param name="statement">The union statement to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IDbQueryFromStatement WithUnion(IDbQueryUnionStatement statement)
+        {
+            UnionStatement = statement as DbQueryUnionStatement;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified jointure statement.
+        /// </summary>
+        /// <param name="statement">The jointure statement to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IDbQueryFromStatement WithJointure(IDbQueryJointureStatement statement)
+        {
+            JointureStatements?.Add(statement as DbQueryJointureStatement);
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified jointure statement.
+        /// </summary>
+        /// <param name="statements">The DbQueryJointureStatement statements to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IDbQueryFromStatement WithJointures(params IDbQueryJointureStatement[] statements)
+        {
+            JointureStatements?.AddRange(statements?.Cast<DbQueryJointureStatement>());
+            return this;
         }
 
         #endregion

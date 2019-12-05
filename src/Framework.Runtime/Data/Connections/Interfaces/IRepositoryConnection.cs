@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
     /// <summary>
     /// This interfaces represents a connection.
     /// </summary>
-    interface IRepositoryConnection : IConnection
+    interface IRepositoryConnection : IBdoConnection
     {
 
         // Pull ---------------------------------------
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String remoteFileUri,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// Pulls a remote files in folder to a local URI.
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String remoteFilter,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false);
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             List<string> remoteFileUris,
             String localPathUri,
             Boolean canOverwrite,
-            ILog log = null);
+            IBdoLog log = null);
 
         // Push ---------------------------------------
 
@@ -71,7 +71,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String localFileUri,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// Pushes a local file in folder to a remote URI.
@@ -87,7 +87,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String localFilter,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null,
+            IBdoLog log = null,
             Boolean isRecursive = false);
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             List<string> localFileUris,
             String remotePathUri,
             Boolean canOverwrite,
-            ILog log = null);
+            IBdoLog log = null);
 
 
         // Browser ---------------------------------------
@@ -119,7 +119,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String folderUri,
             String filter,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any);
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Runtime.Data.Connections
             String filter,
             DateTime timeLimit,
             Boolean isRecursive,
-            ILog log = null,
+            IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any);
 
     }

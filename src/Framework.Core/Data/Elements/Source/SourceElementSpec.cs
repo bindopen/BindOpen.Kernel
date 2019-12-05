@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items.Source;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Data.Specification.Filters;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
@@ -24,7 +24,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// The data source kind of this instance.
         /// </summary>
         [XmlAttribute("kind")]
-        public DataSourceKind DataSourceKind { get; set; } = DataSourceKind.Any;
+        public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.Any;
 
         /// <summary>
         /// The definition filter of this instance.

@@ -25,11 +25,11 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the specified data.</returns>
         public static T GetData<T>(
-            this IDataService dataService,
-            ILog log,
+            this IBdoDataService dataService,
+            IBdoLog log,
             IDbQuery query,
             Func<IDbConnection, string, T> function,
-            IScriptVariableSet scriptVariableSet = null)
+            IBdoScriptVariableSet scriptVariableSet = null)
         {
             T result = default;
 
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                 else
                 {
                     string sql = "";
-                    ILog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, scriptVariableSet, out sql);
+                    IBdoLog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, scriptVariableSet, out sql);
                     log?.Append(subLog);
 
                     if (function != null)
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="connection">The database connection to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns></returns>
-        public static T GetId<Q, T>(this IDatabaseConnection connection, ILog log) where Q : IDataService
+        public static T GetId<Q, T>(this IDatabaseConnection connection, IBdoLog log) where Q : IBdoDataService
         {
             T value = default;
 

@@ -147,11 +147,11 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
-        public virtual ILog Update(
+        public virtual IBdoLog Update(
             IDataElementSpec referenceSpecification = null,
             string[] specificationAreas = null)
         {
-            return new Log();
+            return new BdoLog();
         }
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification">The reference specification to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
-        public virtual ILog Check(
+        public virtual IBdoLog Check(
             IDataSpecification referenceSpecification = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             if (referenceSpecification == null)
                 return log;
@@ -175,10 +175,10 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification">The reference specification to consider.</param>
         /// <returns>Returns the log of the operation.</returns>
-        public virtual ILog Repair(
+        public virtual IBdoLog Repair(
             IDataSpecification referenceSpecification = null)
         {
-            ILog log = new Log();
+            IBdoLog log = new BdoLog();
 
             return log;
         }
@@ -197,7 +197,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            DataSpecification specification = MemberwiseClone() as DataSpecification;
+            DataSpecification specification = base.Clone() as DataSpecification;
             return specification;
         }
 

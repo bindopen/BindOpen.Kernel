@@ -1,15 +1,15 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Extensions.Attributes;
+﻿using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a repository file.
     /// </summary>
-    [Carrier(Name="runtime$file")]
+    [BdoCarrier(Name = "runtime$file")]
     public class RepositoryFile : RepositoryItem
     {
         // ------------------------------------------
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
         /// The length of this instance.
         /// </summary>
         [XmlIgnore()]
-        [DetailProperty(Name="length")]
+        [DetailProperty(Name = "length")]
         public ulong Length
         {
             get;
@@ -78,12 +78,12 @@ namespace BindOpen.Framework.Runtime.Extensions.Carriers
         /// <param name="item">The item to consider.</param>
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
-        public override ILog Check<T>(
+        public override IBdoLog Check<T>(
             Boolean isExistenceChecked = true,
             T item = default,
             string[] specificationAreas = null)
         {
-            ILog log = base.Check<T>(isExistenceChecked);
+            IBdoLog log = base.Check<T>(isExistenceChecked);
 
             if (string.IsNullOrEmpty(this.Path))
                 log.AddError("File path missing");

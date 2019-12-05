@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_Text(string value1)
         {
-            return "'" + ScriptParsingHelper.GetValueFromText(value1).Replace("'", "''") + "'";
+            return "'" + BdoScriptParsingHelper.GetValueFromText(value1).Replace("'", "''") + "'";
         }
 
         /// <summary>

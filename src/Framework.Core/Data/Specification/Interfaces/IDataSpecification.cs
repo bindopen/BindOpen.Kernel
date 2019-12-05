@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification"></param>
         /// <returns></returns>
-        ILog Check(IDataSpecification referenceSpecification = null);
+        IBdoLog Check(IDataSpecification referenceSpecification = null);
 
         /// <summary>
         /// 
@@ -55,7 +55,7 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// </summary>
         /// <param name="referenceSpecification"></param>
         /// <returns></returns>
-        ILog Repair(IDataSpecification referenceSpecification = null);
+        IBdoLog Repair(IDataSpecification referenceSpecification = null);
 
         /// <summary>
         /// 
@@ -63,6 +63,6 @@ namespace BindOpen.Framework.Core.Data.Specification
         /// <param name="referenceSpecification"></param>
         /// <param name="specificationAreas"></param>
         /// <returns></returns>
-        ILog Update(IDataElementSpec referenceSpecification = null, string[] specificationAreas = null);
+        IBdoLog Update(IDataElementSpec referenceSpecification = null, string[] specificationAreas = null);
     }
 }

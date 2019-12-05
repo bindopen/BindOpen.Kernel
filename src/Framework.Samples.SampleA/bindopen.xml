@@ -1,0 +1,21 @@
+<bindopen xmlns="https://bindopen.org/xsd">
+  
+  <scalar name="applicationInstanceName" value="test.console" />
+
+  <scalar name="logs.fileName" script="testB_$(id).txt" />
+  <scalar name="logs.expirationDayNumber" value="1" />
+  <!--<scalar name="runtime.folderPath" script=".\bdo-a" />-->
+
+  <!--
+  <scalar name="executionLevel" value="Development" />
+  <scalar name="runtime.folderPath" script="$(application.folderPath) \bdo" />
+  <scalar name="configuration.folderPath" script="$(runtime.folderPath) \config" />
+  <scalar name="library.folderPath" script="$(runtime.folderPath) \lib" />
+  <scalar name="logs.folderPath" script="$(runtime.folderPath) \logs" />
+  <scalar name="logs.fileName" script="log_$(timestamp)_$(id).xt" />
+  <scalar name="logs.exirationDayNumber" value="10" />
+  <scalar name="packages.filePath" script="$(runtime.folderPath) \packages" />
+  -->
+
+
+</bindopen>

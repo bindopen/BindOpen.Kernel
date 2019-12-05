@@ -13,6 +13,6 @@ namespace BindOpen.Framework.Core.Data.Items.Dto
         /// <param name="filePath"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        bool SaveXml(string filePath, ILog log = null);
+        bool SaveXml(string filePath, IBdoLog log = null);
     }
 }

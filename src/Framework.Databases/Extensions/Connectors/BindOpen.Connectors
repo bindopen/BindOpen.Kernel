@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<connectors.dictionary library="databases"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:BdoConnectorDictionary BdoConnectorDictionary.xsd">
+  
+  <creationDate>2018-08-09</creationDate>
+  <lastModificationDate>2018-08-03</lastModificationDate>
+  <definitions>
+
+
+  </definitions>
+
+</connectors.dictionary>

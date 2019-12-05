@@ -1,14 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Items.Connectors;
-using BindOpen.Framework.Core.Extensions.Items.Entities;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Elements.Source
 {
@@ -25,13 +24,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Returns the element with the specified indexed.
         /// </summary>
         [XmlIgnore()]
-        public new IConnectorConfiguration this[int index] => base[index] as ConnectorConfiguration;
+        public new IBdoConnectorConfiguration this[int index] => base[index] as BdoConnectorConfiguration;
 
         /// <summary>
         /// Returns the element with the specified unique name.
         /// </summary>
         [XmlIgnore()]
-        public new IConnectorConfiguration this[string name] => base[name] as ConnectorConfiguration;
+        public new IBdoConnectorConfiguration this[string name] => base[name] as BdoConnectorConfiguration;
 
         // --------------------------------------------------
         // PROPERTIES
@@ -51,14 +50,14 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Returns the first item.
         /// </summary>
         [XmlIgnore()]
-        public new IConnectorConfiguration First => this[0];
+        public new IBdoConnectorConfiguration First => this[0];
 
         /// <summary>
         /// Connectors of this instance.
         /// </summary>
         [XmlArray("items")]
         [XmlArrayItem("add")]
-        public List<ConnectorConfiguration> Connectors
+        public List<BdoConnectorConfiguration> Connectors
         {
             get;
             set;
@@ -107,7 +106,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
             string id = null)
             : base(name, "source_", id)
         {
-            ValueType = DataValueType.DataSource;
+            ValueType = DataValueType.Datasource;
         }
 
         #endregion
@@ -151,7 +150,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", this.Items.Select(p => (p as EntityConfiguration)?.Key() ?? "").ToArray());
+            return string.Join("|", this.Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? "").ToArray());
         }
 
         #endregion
@@ -168,7 +167,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            SourceElement dataSourceElement = this.MemberwiseClone() as SourceElement;
+            SourceElement dataSourceElement = base.Clone() as SourceElement;
             return dataSourceElement;
         }
 
@@ -184,13 +183,13 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// Updates information for storage.
         /// </summary>
         /// <param name="log">The log to update.</param>
-        public override void UpdateStorageInfo(ILog log = null)
+        public override void UpdateStorageInfo(IBdoLog log = null)
         {
             base.UpdateStorageInfo(log);
 
             Connectors = Items?.Select(p =>
             {
-                ConnectorConfiguration configuration = p as ConnectorConfiguration;
+                BdoConnectorConfiguration configuration = p as BdoConnectorConfiguration;
                 configuration?.UpdateStorageInfo(log);
                 return configuration;
             }).ToList();
@@ -199,20 +198,20 @@ namespace BindOpen.Framework.Core.Data.Elements.Source
         /// <summary>
         /// Updates information for runtime.
         /// </summary>
-        /// <param name="appScope">The application scope to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IAppScope appScope = null, IScriptVariableSet scriptVariableSet = null, ILog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             SetItems(Connectors?.Select(p =>
             {
-                p.UpdateRuntimeInfo(appScope, scriptVariableSet, log);
+                p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 return p;
             }).ToArray());
         }
 
         #endregion
     }
-    }
+}
