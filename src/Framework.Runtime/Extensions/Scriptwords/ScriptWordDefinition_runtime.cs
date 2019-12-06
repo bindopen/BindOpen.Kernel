@@ -545,7 +545,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHost.GetKnownPath(BdoHostPathKind.AppFolder);
+            return appHost.GetKnownPath(BdoHostPathKind.RootFolder);
         }
 
         /// <summary>

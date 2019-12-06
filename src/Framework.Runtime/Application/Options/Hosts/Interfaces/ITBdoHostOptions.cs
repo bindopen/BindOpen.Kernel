@@ -27,11 +27,11 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths ----------------------
 
         /// <summary>
-        /// Set the application folder.
+        /// Set the root folder.
         /// </summary>
-        /// <param name="appFolderPath">The application folder path.</param>
+        /// <param name="rootFolderPath">The root folder path.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetAppFolder(string appFolderPath);
+        ITBdoHostOptions<S> SetRootFolder(string rootFolderPath);
 
         /// <summary>
         /// Set the settings file.

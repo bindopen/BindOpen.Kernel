@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Data.Queries;
@@ -74,11 +75,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                                 DbFieldFactory.Create("Field1", "table"))))
                 .WithIdFields(DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), name, DataValueType.Text));
 
+        [DbPrecompiledQuery("DeleteMyTable")]
         public static IDbQuery DeleteMyTable(string name, string dataModuleName = "module")
             => DbQueryFactory.CreateBasicDelete(
                 "DeleteMyTable",
                 DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1", dataModuleName))
-                    .WithIdFields(new[] { DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), name) });
+                    .WithIdFields(new[] { DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), name) })
+                    .UsingParameters(ElementSpecFactory.Create("name", DataValueType.Text));
+
+
+        Connection.Execute(depot.GetQueryText("DeleteMyTable"), "lml", "mlml")
+
+        Connection.Execute(depot.GetQueryText("DeleteMyTable"), ("name", "lml"), ("dataModuleName", "mlml"))
 
         public static IDbQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
             => DbQueryFactory.CreateBasicUpdate("UpdateMyTable", DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1"))

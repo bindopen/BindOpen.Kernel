@@ -6,9 +6,9 @@
     public enum BdoHostPathKind
     {
         /// <summary>
-        /// The application folder.
+        /// The root folder.
         /// </summary>
-        AppFolder,
+        RootFolder,
 
         /// <summary>
         /// The primary log folder.

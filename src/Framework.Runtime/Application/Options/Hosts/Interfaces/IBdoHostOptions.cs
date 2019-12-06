@@ -28,9 +28,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths ----------------------
 
         /// <summary>
-        /// The application folder path.
+        /// The root folder path.
         /// </summary>
-        string AppFolderPath { get; }
+        string RootFolderPath { get; }
 
         /// <summary>
         /// The settings file path.

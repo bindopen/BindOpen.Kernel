@@ -23,6 +23,7 @@ namespace BindOpen.Framework.Core.Data.Depots
         /// <summary>
         /// The initialization function.
         /// </summary>
+        [XmlIgnore()]
         public Func<IBdoDepot, IBdoLog, int> LazyLoadFunction { get; set; }
 
         #endregion

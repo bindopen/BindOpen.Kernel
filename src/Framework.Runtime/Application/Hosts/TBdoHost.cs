@@ -175,8 +175,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             string path = null;
             switch (pathKind)
             {
-                case BdoHostPathKind.AppFolder:
-                    path = Options?.AppFolderPath;
+                case BdoHostPathKind.RootFolder:
+                    path = Options?.RootFolderPath;
                     break;
                 case BdoHostPathKind.ConfigurationFile:
                     path = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
@@ -239,14 +239,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     path = Options?.AppSettings?.RuntimeFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.AppFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
+                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
                     }
                     break;
                 case BdoHostPathKind.AppSettingsFile:
                     path = Options.AppSettingsFilePath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.AppFolder) + BdoDefaultHostPaths.__DefaultAppSettingsFileName;
+                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultAppSettingsFileName;
                     }
                     break;
                 case BdoHostPathKind.TemporaryFolder:

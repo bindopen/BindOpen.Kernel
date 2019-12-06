@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Depots;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
@@ -63,7 +62,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// 
         /// </summary>
-        protected string _appFolderPath = null;
+        protected string _rootFolderPath = null;
 
         /// <summary>
         /// 
@@ -95,9 +94,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths ----------------------
 
         /// <summary>
-        /// The application folder path.
+        /// The root folder path.
         /// </summary>
-        public string AppFolderPath => _appFolderPath;
+        public string RootFolderPath => _rootFolderPath;
 
         /// <summary>
         /// The settings file path.
@@ -174,6 +173,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
 
         // Depot initialization actions ----------------------
 
+        /// <summary>
+        /// The data store of this instance.
+        /// </summary>
         public IBdoDataStore DataStore => _dataStore;
 
         #endregion
@@ -232,24 +234,24 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         {
             IBdoLog log = new BdoLog();
 
-            if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.AppFolder.ToString()))
+            if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.RootFolder.ToString()))
             {
-                if (string.IsNullOrEmpty(AppFolderPath))
+                if (string.IsNullOrEmpty(RootFolderPath))
                 {
-                    _appFolderPath = BdoDefaultHostPaths.__DefaultAppFolderPath;
+                    _rootFolderPath = BdoDefaultHostPaths.__DefaultRootFolderPath;
                 }
                 else
                 {
-                    _appFolderPath = _appFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultAppFolderPath).GetEndedString(@"\").ToPath();
+                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultRootFolderPath).GetEndedString(@"\").ToPath();
                 }
             }
 
             if (specificationAreas == null)
             {
-                _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_appFolderPath).ToPath();
+                _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_rootFolderPath).ToPath();
 
                 AppSettings?.UpdateRuntimeInfo(null, null, log);
-                AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_appFolderPath).GetEndedString(@"\").ToPath());
+                AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
                 AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
@@ -299,24 +301,24 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths -------------------------------------------
 
         /// <summary>
-        /// Sets the specified application folder path.
+        /// Sets the specified root folder path.
         /// </summary>
-        /// <param name="appFolderPath"></param>
+        /// <param name="path">The path to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> SetAppFolder(string appFolderPath)
+        public ITBdoHostOptions<S> SetRootFolder(string path)
         {
-            _appFolderPath = appFolderPath?.GetEndedString(@"\").ToPath();
+            _rootFolderPath = path?.GetEndedString(@"\").ToPath();
 
             return this;
         }
         /// <summary>
-        /// Set the settings file.
+        /// Set the specified settings file path.
         /// </summary>
-        /// <param name="settingsFilePath">The settings file path.</param>
+        /// <param name="path">The settings file path.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetSettingsFile(string settingsFilePath)
+        public ITBdoHostOptions<S> SetSettingsFile(string path)
         {
-            _appSettingsFilePath = settingsFilePath?.ToPath();
+            _appSettingsFilePath = path?.ToPath();
 
             return this;
         }

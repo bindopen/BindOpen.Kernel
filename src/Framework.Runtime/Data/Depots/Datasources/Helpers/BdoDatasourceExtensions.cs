@@ -1,10 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Items.Datasources;
-using BindOpen.Framework.Core.Data.Stores;
+﻿using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Application.Options.Hosts;
 using BindOpen.Framework.Runtime.Data.Depots.Datasources;
-using System;
 
 namespace BindOpen.Framework.Core.Data.Depots.Datasources
 {
@@ -14,9 +11,10 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
     public static class BdoDatasourceExtensions
     {
         /// <summary>
-        /// Add a data source depot into the specified data store.
+        /// Add a data source depot into the specified data store using the specified options.
         /// </summary>
         /// <param name="dataStore">The data store to consider.</param>
+        /// <param name="options">The options to consider.</param>
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDasourceDepot(this IBdoDataStore dataStore, IBdoHostOptions options = null)
         {
@@ -30,7 +28,7 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
                     {
                         if (options?.HostSettings?.HostConfiguration?.Datasources != null)
                         {
-                            foreach (Datasource dataSource in options?.HostSettings?.HostConfiguration?.Datasources)
+                            foreach (var dataSource in options?.HostSettings?.HostConfiguration?.Datasources)
                             {
                                 datasourceDepot.Add(dataSource);
                             }

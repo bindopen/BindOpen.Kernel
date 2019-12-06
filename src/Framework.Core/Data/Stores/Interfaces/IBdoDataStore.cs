@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.Stores
@@ -18,9 +17,9 @@ namespace BindOpen.Framework.Core.Data.Stores
         Dictionary<Type, IBdoDepot> Depots { get; }
 
         /// <summary>
-        /// Adds a new depot of the specified depot class.
+        /// Adds the specified depot executing the specified action.
         /// </summary>
-        /// <param name="depot">The depot to add.</param>
+        /// <param name="depot">The depot to consider.</param>
         /// <param name="action">The action to execute on the newly created depot.</param>
         /// <typeparam name="T">The depot class to consider.</typeparam>
         IBdoDataStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot;
@@ -39,7 +38,7 @@ namespace BindOpen.Framework.Core.Data.Stores
         /// <summary>
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
-        /// <param name="subLog">The log to append.</param>
+        /// <param name="log">The log to append.</param>
         void LoadLazy(IBdoLog log);
     }
 }

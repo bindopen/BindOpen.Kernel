@@ -16,9 +16,9 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         #region Constants
 
         /// <summary>
-        /// The default application folder
+        /// The default root folder
         /// </summary>
-        public static readonly string __DefaultAppFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).GetEndedString(@"\").ToPath();
+        public static readonly string __DefaultRootFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).GetEndedString(@"\").ToPath();
 
         /// <summary>
         /// The default host settings file name

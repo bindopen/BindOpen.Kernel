@@ -3,7 +3,6 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.Stores
@@ -48,8 +47,9 @@ namespace BindOpen.Framework.Core.Data.Stores
         #region Mutators
 
         /// <summary>
-        /// Adds a new depot of the specified depot class.
+        /// Adds the specified depot executing the specified action.
         /// </summary>
+        /// <param name="depot">The depot to consider.</param>
         /// <param name="action">The action to execute on the newly created depot.</param>
         /// <typeparam name="T">The depot class to consider.</typeparam>
         public IBdoDataStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot
@@ -87,10 +87,10 @@ namespace BindOpen.Framework.Core.Data.Stores
         /// <param name="log"></param>
         public void LoadLazy(IBdoLog log)
         {
-            foreach(var depotEntry in Depots)
+            foreach (var depotEntry in Depots)
             {
                 var depot = depotEntry.Value;
-                if (depot!=null)
+                if (depot != null)
                 {
                     var subLog = log?.AddSubLog(title: "Loading depot '" + depot.Id + "'...", eventKind: EventKinds.Message);
                     depot.LoadLazy(subLog);

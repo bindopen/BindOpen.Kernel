@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetAppFolder(@".\..\..\..")
+                            .SetRootFolder(@".\..\..\..")
                             .AddDataStore(s=>
                                 s.RegisterDasourceDepot(options)
                                 .RegisterDbQueryDepot(m => m.AddFromAssembly<TestService>()))
