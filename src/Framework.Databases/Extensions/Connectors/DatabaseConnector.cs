@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -142,6 +143,20 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         public string GetSqlText(
             IDbQuery query,
             IBdoScriptVariableSet scriptVariableSet,
+            IBdoLog log) => GetSqlText(query, null, scriptVariableSet, log);
+
+        /// <summary>
+        /// Gets the SQL text of the specified query.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns>Returns the SQL text of the specified query.</returns>
+        public string GetSqlText(
+            IDbQuery query,
+            DataElementSet parameterSet,
+            IBdoScriptVariableSet scriptVariableSet,
             IBdoLog log)
         {
             string sqlText = "";
@@ -149,7 +164,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
             if (QueryBuilder == null)
                 log.AddError("Data builder missing");
             else
-                log.Append(QueryBuilder.BuildQuery(query, scriptVariableSet, out sqlText));
+                log.Append(QueryBuilder.BuildQuery(query, parameterSet, scriptVariableSet, out sqlText));
 
             return sqlText;
         }
@@ -181,10 +196,10 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         #region Database Management
 
         /// <summary>
-        /// Gets the database connection of this instance.
+        /// Gets the .NET database connection of this instance.
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
-        public virtual IDbConnection GetDbConnection()
+        public virtual IDbConnection GetDotNetDbConnection()
         {
             return null;
         }

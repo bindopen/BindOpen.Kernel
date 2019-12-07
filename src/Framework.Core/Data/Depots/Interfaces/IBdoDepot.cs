@@ -12,18 +12,21 @@ namespace BindOpen.Framework.Core.Data.Depots
         /// <summary>
         /// Add the items from all the assemblies.
         /// </summary>
-        IBdoLog AddFromAllAssemblies();
+        /// <param name="log">The log to append.</param>
+        IBdoDepot AddFromAllAssemblies(IBdoLog log = null);
 
         /// <summary>
         /// Add the items from the specified assembly.
         /// </summary>
         /// <param name="assemblyName">The name of the assembly.</param>
-        IBdoLog AddFromAssembly(string assemblyName);
+        /// <param name="log">The log to append.</param>
+        IBdoDepot AddFromAssembly(string assemblyName, IBdoLog log = null);
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
-        IBdoLog AddFromAssembly<T>() where T : class;
+        /// <param name="log">The log to append.</param>
+        IBdoDepot AddFromAssembly<T>(IBdoLog log = null) where T : class;
 
         /// <summary>
         /// Loads this instance.

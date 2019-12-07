@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using System.Collections.Generic;
 
@@ -7,42 +9,42 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbQuery : IIdentifiedDataItem
+    public interface IDbQuery : IDescribedDataItem
     {
         /// <summary>
-        /// 
+        /// The name of data module of this instance.
         /// </summary>
         string DataModule { get; set; }
 
         /// <summary>
-        /// 
+        /// The table name of this instance.
         /// </summary>
         string DataTable { get; set; }
 
         /// <summary>
-        /// 
+        /// The data table alias of this instance.
         /// </summary>
         string DataTableAlias { get; set; }
 
         /// <summary>
-        /// 
+        /// The fields of this instance.
         /// </summary>
         List<DbField> Fields { get; set; }
 
         /// <summary>
-        /// 
+        /// The kind of this instance.
         /// </summary>
         DbQueryKind Kind { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        string Name { get; set; }
-
-        /// <summary>
-        /// 
+        /// The schema of this instance.
         /// </summary>
         string Schema { get; set; }
+
+        /// <summary>
+        /// The parameter specification set of this instance.
+        /// </summary>
+        DataElementSpecSet ParameterSpecSet { get; set; }
 
         /// <summary>
         /// 
@@ -75,5 +77,19 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <returns></returns>
         List<DbField> GetPrimaryKeyDataFields();
+
+        /// <summary>
+        /// Defines the parameter specifications of this instance.
+        /// </summary>
+        /// <param name="parameterSet">The set of parameter specifications to consider.</param>
+        /// <returns>Return this instance.</returns>
+        IDbQuery WithParameters(DataElementSpecSet parameterSpecSet);
+
+        /// <summary>
+        /// Defines the parameter specifications of this instance.
+        /// </summary>
+        /// <param name="parameterSpecs">The set of parameter specifications to consider.</param>
+        /// <returns>Return this instance.</returns>
+        IDbQuery WithParameters(params DataElementSpec[] parameterSpecs);
     }
 }

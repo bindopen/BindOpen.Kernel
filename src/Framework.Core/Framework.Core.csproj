@@ -28,4 +28,9 @@ This package provides core classes of the framework.</Description>
     <None Remove="Application\Commands\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Items\Attributes\ParameterAttribute.cs" />
+    <Compile Remove="Data\Items\Attributes\ScalarAttribute.cs" />
+  </ItemGroup>
+
 </Project>

@@ -8,6 +8,7 @@ using BindOpen.Framework.Databases.Extensions.Carriers;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {
+    [DbQueryDepot()]
     public static class Queries
     {
         public static IAdvancedDbQuery GetMyTables(
@@ -75,18 +76,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                                 DbFieldFactory.Create("Field1", "table"))))
                 .WithIdFields(DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), name, DataValueType.Text));
 
-        [DbPrecompiledQuery("DeleteMyTable")]
-        public static IDbQuery DeleteMyTable(string name, string dataModuleName = "module")
+        [StoredDbQuery("delete_table")]
+        public static IDbQuery DeleteMyTable()
             => DbQueryFactory.CreateBasicDelete(
                 "DeleteMyTable",
-                DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1", dataModuleName))
-                    .WithIdFields(new[] { DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), name) })
-                    .UsingParameters(ElementSpecFactory.Create("name", DataValueType.Text));
-
-
-        Connection.Execute(depot.GetQueryText("DeleteMyTable"), "lml", "mlml")
-
-        Connection.Execute(depot.GetQueryText("DeleteMyTable"), ("name", "lml"), ("dataModuleName", "mlml"))
+                DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1", DbParameterFactory.Create("dataModuleName")))
+                    .WithIdFields(
+                        DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.MyTableId), DbParameterFactory.Create("id")),
+                        DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), DbParameterFactory.Create("name")))
+                    .WithParameters(
+                        ElementSpecFactory.Create("dataModuleName", DataValueType.Text),
+                        ElementSpecFactory.Create("id", DataValueType.Text),
+                        ElementSpecFactory.Create("name", DataValueType.Text));
 
         public static IDbQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
             => DbQueryFactory.CreateBasicUpdate("UpdateMyTable", DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1"))

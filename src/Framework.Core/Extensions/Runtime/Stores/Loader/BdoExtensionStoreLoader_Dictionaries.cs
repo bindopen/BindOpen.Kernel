@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Attributes;
 using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Definition.Dictionaries;
@@ -187,7 +188,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <param name="attribute">The attribute to consider.</param>
         public void UpdateDictionary(
             IBdoExtensionItemDefinitionDto definition,
-            BdoExtensionItemAttribute attribute)
+            DescribedDataItemAttribute attribute)
         {
             definition.Name = attribute.Name?.IndexOf("$") > 0 ?
                 attribute.Name.Substring(attribute.Name.IndexOf("$") + 1) : attribute.Name;

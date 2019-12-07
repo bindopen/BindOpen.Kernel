@@ -91,15 +91,33 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
+        public static T CreateConnector<T>(
+            this IBdoScope scope,
+            string name = null) where T : BdoConnector, new()
+        {
+            T connector = new T();
+            connector.Name = name;
+            connector.WithScope(scope);
+
+            return connector;
+        }
+
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="name">The name to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
-        /// <typeparam name="T">The carrier class to return.</typeparam>
-        /// <returns>Returns the created carrier.</returns>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
         public static T CreateConnector<T>(
             this IBdoScope scope,
-            IBdoConnectorConfiguration configuration = null,
+            IBdoConnectorConfiguration configuration,
             string name = null,
             IBdoLog log = null,
             IBdoScriptVariableSet scriptVariableSet = null) where T : BdoConnector
@@ -147,7 +165,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
                         {
                             connector = item as BdoConnector;
                             connector.Name = name ?? configuration?.Name;
-                            connector.UpdateWithScope(scope);
+                            connector.WithScope(scope);
                             connector.UpdateFromElementSet<DetailPropertyAttribute>(configuration, scope, scriptVariableSet);
                         }
                     }

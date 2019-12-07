@@ -1,7 +1,10 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Databases.Data.Depots.DbQueries;
 using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
-using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using System;
@@ -13,10 +16,6 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         protected override ITBdoService<TestServiceSettings> Process(IBdoLog log)
         {
             base.Process(log);
-
-            BdoHostFactory.InitBindOpenFolders(@"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test", true, @"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test\out");
-
-            var element = ElementFactory.CreateScalar(Core.Data.Common.DataValueType.Boolean, false);
 
             Log.Append(
                 new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
@@ -35,11 +34,15 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
             Console.WriteLine(sql2);
 
-            Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.DeleteMyTable("name", null), null, out string sql3));
+            var depot = Host.Scope.GetDbQueryDepot();
 
-            Console.WriteLine(sql3);
+            string sql11 = Host.Scope.CreateConnector<DatabaseConnector_MSSqlServer>().GetSqlText(
+                depot.GetQuery("delete_table"), ElementSetFactory.Create("mymodule", "myid", "myname"), null, Log);
+            Console.WriteLine(sql11);
+
+            string sql12 = Host.Scope.CreateConnector<DatabaseConnector_MSSqlServer>().GetSqlText(
+                depot.GetQuery("delete_table"), ElementSetFactory.Create("mymodule", "myid", "myname"), null, Log);
+            Console.WriteLine(sql12);
 
             return this;
         }

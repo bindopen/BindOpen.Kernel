@@ -22,6 +22,5 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         }
 
         #endregion
-
     }
 }

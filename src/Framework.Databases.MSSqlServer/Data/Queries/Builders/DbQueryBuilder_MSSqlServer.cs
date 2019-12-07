@@ -30,6 +30,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             IBdoScope scope = null)
             : base(DatabaseConnectorKind.MSSqlServer, scope)
         {
+            Id = Id = "databases.mssqlserver$client";
         }
 
         #endregion

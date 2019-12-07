@@ -16,7 +16,6 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
 
         #endregion
 
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -24,7 +23,6 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         #region Properties
 
         #endregion
-
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -40,6 +38,5 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         }
 
         #endregion
-
     }
 }

@@ -30,6 +30,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             IBdoScope scope = null)
             : base(DatabaseConnectorKind.PostgreSql, scope)
         {
+            Id = "databases.postgresql$client";
         }
 
         #endregion

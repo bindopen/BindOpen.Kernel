@@ -60,19 +60,30 @@ namespace BindOpen.Framework.Core.Data.Depots
         /// <summary>
         /// Add the items from all the assemblies.
         /// </summary>
-        public virtual IBdoLog AddFromAllAssemblies() => new BdoLog();
+        /// <param name="log">The log to append.</param>
+        public IBdoDepot AddFromAllAssemblies(IBdoLog log = null)
+        {
+            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                AddFromAssembly(assembly.FullName, log);
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Add the items from the specified assembly.
         /// </summary>
         /// <param name="assemblyName">The name of the assembly.</param>
-        public virtual IBdoLog AddFromAssembly(string assemblyName) => new BdoLog();
+        /// <param name="log">The log to append.</param>
+        public virtual IBdoDepot AddFromAssembly(string assemblyName, IBdoLog log = null) => this;
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
-        public virtual IBdoLog AddFromAssembly<T1>() where T1 : class
-            => AddFromAssembly(typeof(T1).Assembly.FullName);
+        /// <param name="log">The log to append.</param>
+        public IBdoDepot AddFromAssembly<T1>(IBdoLog log = null) where T1 : class
+            => AddFromAssembly(typeof(T1).Assembly.FullName, log);
 
         /// <summary>
         /// Loads this instance.

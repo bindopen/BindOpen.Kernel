@@ -1,7 +1,6 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 using System.Reflection;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.System.Assemblies
 {
@@ -58,89 +57,11 @@ namespace BindOpen.Framework.Core.System.Assemblies
             if ((appDomain != null) && (assemblyName != null))
             {
                 assemblyName = assemblyName.Trim();
-                assembly =Array.Find(appDomain.GetAssemblies(), p => p.GetName().Name.KeyEquals(assemblyName));
+                assembly = Array.Find(appDomain.GetAssemblies(), p => p.FullName.Contains(assemblyName));
             }
 
             return assembly;
         }
-
-        // Class references --------------------------------
-
-        ///// <summary>
-        ///// Dertermines the assembly reference from the specified complete class name.
-        ///// </summary>
-        ///// <param name="completeClassName">The complete class name to consider.</param>
-        ///// <param name="defaultAssemblyName">The default assembly name to consider.</param>
-        ///// <returns></returns>
-        //public static ClassReference GetClassReference(string completeClassName, string defaultAssemblyName=null)
-        //{
-        //    if (completeClassName == null)
-        //        return new ClassReference();
-
-        //    string[] subStrings = completeClassName.Split(',');
-
-        //    string className = completeClassName;
-        //    if (subStrings.Length > 0)
-        //        className = subStrings[0];
-
-        //    string assemblyName ="";
-        //    if (subStrings.Length > 1)
-        //        assemblyName = subStrings[1];
-        //    else if (!string.IsNullOrEmpty(defaultAssemblyName))
-        //        assemblyName = defaultAssemblyName;
-        //    else if (completeClassName.Contains("."))
-        //        assemblyName = className.Substring(0, completeClassName.IndexOf(".") - 1);
-
-        //    ClassReference assemblyReference = new ClassReference()
-        //    {
-        //        ClassName = className.Trim(),
-        //        AssemblyName = assemblyName.Trim()
-        //    };
-
-        //    return assemblyReference;
-        //}
-
-        // Instances --------------------------------
-
-        ///// <summary>
-        ///// Creates the instance of the specified extension object instance type.
-        ///// </summary>
-        ///// <param name="appDomain">The application domain to consider.</param>
-        ///// <param name="classReference">The class reference to consider.</param>
-        ///// <param name="object1">The object to consider.</param>
-        ///// <param name="attributes">The attributes to consider.</param>
-        //public static ILog CreateInstance(
-        //    this AppDomain appDomain,
-        //    AssemblyHelper.ClassReference classReference,
-        //    out Object object1,
-        //    params object[] attributes)
-        //{
-        //    ILog log = new Log();
-        //    object1 = null;
-
-        //    if (appDomain != null)
-        //    {
-        //        try
-        //        {
-        //            if (!string.IsNullOrEmpty(classReference.AssemblyName))
-        //            {
-        //                Assembly assembly = appDomain?.GetAsssembly(classReference.AssemblyName);
-        //                if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
-        //                {
-        //                    object1 = assembly.CreateInstance(
-        //                       classReference.ClassName,
-        //                       true, BindingFlags.CreateInstance, null, attributes, null, null);
-        //                }
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            log.AddException(ex);
-        //        }
-        //    }
-
-        //    return log;
-        //}
 
         /// <summary>
         /// Creates the instance of the specified extension object instance type.
@@ -158,7 +79,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
 
             try
             {
-                object1 =  Activator.CreateInstance(type);
+                object1 = Activator.CreateInstance(type);
             }
             catch (Exception ex)
             {
@@ -185,7 +106,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
             try
             {
                 Type type = Type.GetType(fullyQualifiedName);
-                if (type==null)
+                if (type == null)
                 {
                     log.AddError("Unknown type '" + fullyQualifiedName + "'");
                 }
@@ -201,127 +122,6 @@ namespace BindOpen.Framework.Core.System.Assemblies
 
             return log;
         }
-
-        ///// <summary>
-        ///// Loads the specified instance of the specified class from the specified Xml string.
-        ///// </summary>
-        ///// <param name="appDomain">The application domain to consider.</param>
-        ///// <param name="classReference">The class reference to consider.</param>
-        ///// <param name="xmlstring">The XML string to consider.</param>
-        ///// <param name="object1">The object to consider.</param>
-        //public static ILog LoadDataItemInstance(
-        //    this AppDomain appDomain,
-        //    AssemblyHelper.ClassReference classReference,
-        //    string xmlstring,
-        //    out Object object1)
-        //{
-        //    ILog log = new Log();
-        //    object1 = null;
-
-        //    if (appDomain != null)
-        //    {
-        //        try
-        //        {
-        //            if (!string.IsNullOrEmpty(classReference.AssemblyName))
-        //            {
-        //                Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
-        //                if (assembly != null)
-        //                {
-        //                    Type type = assembly.GetType(classReference.ClassName);
-        //                    if (type != null)
-        //                    {
-        //                        MethodInfo methodInfo = typeof(XmlHelper).GetMethod("LoadFromstring", BindingFlags.Public | BindingFlags.Static);
-        //                        if (methodInfo != null)
-        //                        {
-        //                            MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(
-        //                                new Type[] { type });
-
-        //                            object[] objects = new Object[3] { xmlstring, log, null };
-        //                            object1 = genericMethodInfo.Invoke(null, objects);
-        //                        }
-        //                        else
-        //                            log.AddError(
-        //                                title: "'LoadFromXmlstring' function not found in the specified class",
-        //                                description: "Could not find the static function called 'LoadFromXmlstring' in the specified type ('" + classReference.ClassName + "').");
-        //                    }
-        //                    else
-        //                    {
-        //                        log.AddError(
-        //                           title: "Specified type not found",
-        //                           description: "Could not retrieve the specified type ('" + classReference.ClassName + "') in the specified assembly ('" + assembly.FullName + "').");
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    log.AddError("Could not retrieve the specified assembly ('" + assembly.FullName + "')");
-        //                }
-        //            }
-        //            else
-        //            {
-        //                log.AddError("Assembly name '" + classReference.AssemblyName + "' missing");
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            log.AddException(ex);
-        //        }
-        //    }
-
-        //    return log;
-        //}
-
-        ///// <summary>
-        ///// Gets the specified type from the specified assembly reference.
-        ///// </summary>
-        ///// <param name="appDomain">The application domain to consider.</param>
-        ///// <param name="classReference">The class reference to consider.</param>
-        //public static Type GetType(
-        //    this AppDomain appDomain,
-        //    AssemblyHelper.ClassReference classReference)
-        //{
-        //    if (appDomain == null) return null;
-
-        //    Type type = null;
-        //    try
-        //    {
-        //        if (!string.IsNullOrEmpty(classReference.AssemblyName))
-        //        {
-        //            Assembly assembly = appDomain.GetAsssembly(classReference.AssemblyName);
-        //            if ((assembly != null) && (!string.IsNullOrEmpty(classReference.ClassName)))
-        //                type = assembly.GetType(classReference.ClassName);
-        //        }
-        //    }
-        //    catch
-        //    {
-        //    }
-
-        //    return type;
-        //}
-
-        ///// <summary>
-        ///// Gets the class name of the specified complete name.
-        ///// </summary>
-        ///// <param name="completeName">The complete name to consider.</param>
-        ///// <returns>Returns the cloned metrics definition.</returns>
-        //public static string GetClassName(string completeName)
-        //{
-        //    string className = completeName;
-
-        //    if (completeName != null)
-        //    {
-        //        if (completeName.Contains("."))
-        //        {
-        //            className = className.Substring(
-        //               completeName.IndexOf('.') + 1);
-        //        }
-
-        //        if (completeName.Contains(","))
-        //            className = className.Substring(0, className.IndexOf(','));
-        //    }
-
-        //    return className ?? "";
-        //}
-
 
         /// <summary>
         /// Gets the root namespace.

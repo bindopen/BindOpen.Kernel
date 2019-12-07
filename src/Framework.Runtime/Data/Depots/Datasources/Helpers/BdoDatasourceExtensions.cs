@@ -1,5 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Stores;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options.Hosts;
 using BindOpen.Framework.Runtime.Data.Depots.Datasources;
 
@@ -59,6 +61,16 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
         public static IBdoDatasourceDepot GetDatasourceDepot(this IBdoDataStore dataStore)
         {
             return dataStore?.Get<IBdoDatasourceDepot>();
+        }
+
+        /// <summary>
+        /// Gets the datasource depot of the specified scope.
+        /// </summary>
+        /// <param name="scope">The data store to consider.</param>
+        /// <returns>Returns the datasource depot of the specified scope.</returns>
+        public static IBdoDatasourceDepot GetDatasourceDepot(this IBdoScope scope)
+        {
+            return scope?.DataStore?.Get<IBdoDatasourceDepot>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Depots;
 using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using System;
@@ -18,7 +19,18 @@ namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDbQueryDepot(
             this IBdoDataStore dataStore,
-            Action<IBdoDbQueryDepot> action)
+            Action<IBdoDbQueryDepot> action) =>
+            RegisterDbQueryDepot(dataStore, (d, l) => action?.Invoke(d));
+
+        /// <summary>
+        /// Add a database queries depot into the specified data store executing the specified action.
+        /// </summary>
+        /// <param name="dataStore">The data store to consider.</param>
+        /// <param name="action">The action to execute on the created depot.</param>
+        /// <returns>Returns the data store to update.</returns>
+        public static IBdoDataStore RegisterDbQueryDepot(
+            this IBdoDataStore dataStore,
+            Action<IBdoDbQueryDepot, IBdoLog> action)
         {
             var depot = new BdoDbQueryDepot()
             {
@@ -28,7 +40,7 @@ namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
 
                     if (d is IBdoDbQueryDepot dbQueryDepot)
                     {
-                        action?.Invoke(dbQueryDepot);
+                        action?.Invoke(dbQueryDepot, log);
 
                         number = dbQueryDepot.Count;
 
@@ -56,6 +68,16 @@ namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
         public static IBdoDbQueryDepot GetDbQueryDepot(this IBdoDataStore dataStore)
         {
             return dataStore?.Get<IBdoDbQueryDepot>();
+        }
+
+        /// <summary>
+        /// Gets the datasource depot of the specified scope.
+        /// </summary>
+        /// <param name="scope">The data store to consider.</param>
+        /// <returns>Returns the datasource depot of the specified scope.</returns>
+        public static IBdoDbQueryDepot GetDbQueryDepot(this IBdoScope scope)
+        {
+            return scope?.DataStore?.Get<IBdoDbQueryDepot>();
         }
     }
 }

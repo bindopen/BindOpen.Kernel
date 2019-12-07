@@ -26,8 +26,11 @@ This package conducts unit tests.</Description>
 
   <ItemGroup>
     <Compile Remove="bdo\logs\**" />
+    <Compile Remove="Data\References\**" />
     <EmbeddedResource Remove="bdo\logs\**" />
+    <EmbeddedResource Remove="Data\References\**" />
     <None Remove="bdo\logs\**" />
+    <None Remove="Data\References\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,10 +46,6 @@ This package conducts unit tests.</Description>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Framework.Databases.MSSqlServer\Framework.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\..\src\Framework.NetCore\Framework.NetCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\References\" />
   </ItemGroup>
 
 </Project>

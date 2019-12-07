@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Items.Attributes;
+using System;
 
 namespace BindOpen.Framework.Core.Extensions.Attributes
 {
@@ -6,7 +7,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
     /// This class represents an attribute of tasks.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class BdoTaskAttribute : BdoExtensionItemAttribute
+    public class BdoTaskAttribute : DescribedDataItemAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Extensions.Attributes
+namespace BindOpen.Framework.Core.Data.Items.Attributes
 {
     /// <summary>
     /// This class represents an indexed data item attribute.
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.All, AllowMultiple = false)]
-    public class BdoExtensionItemAttribute : Attribute
+    public abstract class DescribedDataItemAttribute : Attribute
     {
         // ------------------------------------------
         // PROPERTIES
@@ -60,7 +60,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
         /// <summary>
         /// Instantiates a new instance of the BdoExtensionItemAttribute class.
         /// </summary>
-        public BdoExtensionItemAttribute() : base()
+        public DescribedDataItemAttribute() : base()
         {
         }
 

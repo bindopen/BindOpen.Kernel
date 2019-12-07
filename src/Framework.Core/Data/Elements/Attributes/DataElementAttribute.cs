@@ -1,15 +1,16 @@
 ﻿using System;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Items.Attributes;
 using BindOpen.Framework.Core.Data.Specification;
 
-namespace BindOpen.Framework.Core.Extensions.Attributes
+namespace BindOpen.Framework.Core.Data.Elements.Attributes
 {
     /// <summary>
     /// This class represents a data element attribute.
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
-    public class DataElementAttribute : BdoExtensionItemAttribute
+    public abstract class DataElementAttribute : DescribedDataItemAttribute
     {
         // --------------------------------------------------
         // VARIABLES
