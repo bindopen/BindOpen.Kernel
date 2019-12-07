@@ -88,9 +88,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             string value1 = parameters.GetStringAtIndex(0);
 
             if ((value1 == "\"\"") | (value1 == String.Empty))
-                return "%TRUE()";
+                return "true";
             else
-                return "%FALSE()";
+                return "false";
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             String aCondition = parameters.GetStringAtIndex(0);
 
-            if (string.Equals(aCondition, "%TRUE()", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(aCondition, "true", StringComparison.OrdinalIgnoreCase))
                 return parameters.GetStringAtIndex(1);
             else
                 return parameters.GetStringAtIndex(2);
@@ -172,7 +172,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             params object[] parameters)
         {
             String value1 = parameters.GetStringAtIndex(0);
-            return (!string.Equals(value1, "%TRUE()", StringComparison.OrdinalIgnoreCase) ? "%True()" : "%False()");
+            return (!string.Equals(value1, "true", StringComparison.OrdinalIgnoreCase) ? "true" : "false");
         }
 
         /// <summary>
@@ -192,8 +192,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             Boolean b = false;
             foreach (String st in parameters)
-                b = (b | (string.Equals(st, "%TRUE()", StringComparison.OrdinalIgnoreCase)));
-            return (b ? "%TRUE()" : "%FALSE()");
+                b = (b | (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
+            return (b ? "true" : "false");
         }
 
         /// <summary>
@@ -213,8 +213,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             Boolean b = true;
             foreach (String st in parameters)
-                b &= (string.Equals(st, "%TRUE()", StringComparison.OrdinalIgnoreCase));
-            return (b ? "%TRUE()" : "%FALSE()");
+                b &= (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase));
+            return (b ? "true" : "false");
         }
 
         /// <summary>
@@ -234,8 +234,8 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             Boolean b = true;
             foreach (String st in parameters)
-                b = (b ^ (string.Equals(st, "%TRUE()", StringComparison.OrdinalIgnoreCase)));
-            return (b ? "%TRUE()" : "%FALSE()");
+                b = (b ^ (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
+            return (b ? "true" : "false");
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
 
-            return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "%TRUE()" : "%FALSE()");
+            return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "true" : "false");
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             String value1 = parameters.GetStringAtIndex(0);
             String value2 = parameters.GetStringAtIndex(1);
 
-            return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "%FALSE()" : "%TRUE()");
+            return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "false" : "true");
         }
 
         /// <summary>

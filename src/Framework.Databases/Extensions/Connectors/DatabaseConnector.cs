@@ -142,8 +142,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string GetSqlText(
             IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet,
-            IBdoLog log) => GetSqlText(query, null, scriptVariableSet, log);
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null) => GetSqlText(query, null, scriptVariableSet, log);
 
         /// <summary>
         /// Gets the SQL text of the specified query.
@@ -156,8 +156,8 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         public string GetSqlText(
             IDbQuery query,
             DataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet,
-            IBdoLog log)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             string sqlText = "";
 
