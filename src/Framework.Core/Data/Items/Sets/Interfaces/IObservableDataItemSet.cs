@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace BindOpen.Framework.Core.Data.Items.Sets
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// 

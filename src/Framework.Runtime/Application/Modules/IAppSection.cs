@@ -35,7 +35,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        Core.Data.Items.Sets.DataItemSet<AppSection> SubSections { get; set; }
+        DataItemSet<AppSection> SubSections { get; set; }
 
         /// <summary>
         /// 

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items.Dictionary
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a data key value.

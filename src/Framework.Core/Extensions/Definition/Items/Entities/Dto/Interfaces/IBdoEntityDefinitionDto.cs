@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Items.Schema;
+﻿using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Items;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Items

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Source
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a data source element.

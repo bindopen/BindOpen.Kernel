@@ -1,11 +1,10 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.System.Diagnostics.Events;
+using System;
 using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dto;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Dto
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
 
 namespace BindOpen.Framework.Core.Data.Conditions
 {
@@ -69,7 +68,7 @@ namespace BindOpen.Framework.Core.Data.Conditions
         /// <param name="arg2">The argument 2 to consider.</param>
         public BasicCondition(string arg1, ConditionOperator ope, string arg2 = null)
         {
-            Argument1= arg1;
+            Argument1 = arg1;
             Argument2 = arg2;
             Operator = ope;
         }

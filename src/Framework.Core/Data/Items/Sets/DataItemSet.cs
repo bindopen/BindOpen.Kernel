@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items.Sets
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a data item set.

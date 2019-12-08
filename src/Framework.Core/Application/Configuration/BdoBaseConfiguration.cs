@@ -1,14 +1,13 @@
-﻿using System.ComponentModel;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Helpers.Serialization;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
@@ -124,7 +123,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
         /// <returns>Returns this instance.</returns>
         public IBdoBaseConfiguration AddGroup(string groupId, params IDataElement[] items)
         {
-            if (items!=null)
+            if (items != null)
             {
                 foreach (DataElement element in items.Cast<DataElement>())
                 {

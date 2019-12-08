@@ -8,7 +8,7 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Scalar
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.

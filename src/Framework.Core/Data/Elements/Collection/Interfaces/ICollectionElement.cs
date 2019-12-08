@@ -3,7 +3,7 @@ using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Collection
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

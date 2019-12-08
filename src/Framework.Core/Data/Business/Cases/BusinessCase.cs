@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Core.Data.Business.Cases
 
         #region Variables
 
-        private Condition _BusinessCondition = null;
+        private Condition _businessCondition = null;
 
         #endregion
 
@@ -35,8 +35,8 @@ namespace BindOpen.Framework.Core.Data.Business.Cases
         [XmlElement("businessCondition")]
         public Condition BusinessCondition
         {
-            get { return this._BusinessCondition; }
-            set { this._BusinessCondition = value; }
+            get { return this._businessCondition; }
+            set { this._businessCondition = value; }
         }
 
         #endregion

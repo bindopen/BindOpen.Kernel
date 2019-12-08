@@ -1,5 +1,5 @@
-﻿using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Items;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {

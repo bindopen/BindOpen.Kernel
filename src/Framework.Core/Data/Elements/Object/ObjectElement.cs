@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Xml;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements._Object
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a object element that is an element whose items are entities.
@@ -271,7 +270,7 @@ namespace BindOpen.Framework.Core.Data.Elements._Object
         {
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
-            foreach(DataElementSet elementSet in Objects)
+            foreach (DataElementSet elementSet in Objects)
             {
                 log.Append(AssemblyHelper.CreateInstance(ClassFullName, out object item));
 

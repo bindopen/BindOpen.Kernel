@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Items.Datasources;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using System;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items.Documents
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a document item.

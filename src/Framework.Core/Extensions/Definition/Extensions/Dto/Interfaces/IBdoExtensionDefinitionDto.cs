@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Extensions

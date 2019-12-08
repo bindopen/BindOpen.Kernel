@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 
-namespace BindOpen.Framework.Core.Data.Elements.Meta
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

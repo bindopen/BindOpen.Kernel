@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;

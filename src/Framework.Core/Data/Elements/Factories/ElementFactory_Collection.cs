@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Collection;
+﻿using BindOpen.Framework.Core.Data.Elements;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {

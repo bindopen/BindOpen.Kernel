@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Specification.Filters;
+﻿using BindOpen.Framework.Core.Data.Specification;
 
-namespace BindOpen.Framework.Core.Data.Elements.Collection
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

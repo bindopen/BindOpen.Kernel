@@ -1,7 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-
-namespace BindOpen.Framework.Core.Data.Elements.Document
+﻿namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

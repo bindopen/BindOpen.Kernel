@@ -1,5 +1,5 @@
 ﻿
-namespace BindOpen.Framework.Core.Data.Specification.Constraints
+namespace BindOpen.Framework.Core.Data.Specification
 {
     // ------------------------------------------
     // ENUMERATIONS

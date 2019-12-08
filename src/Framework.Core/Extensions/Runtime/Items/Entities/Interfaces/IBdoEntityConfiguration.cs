@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Items.Schema;
+﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Items

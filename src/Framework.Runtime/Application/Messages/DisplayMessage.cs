@@ -1,9 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
+﻿using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Application.Messages
 {
@@ -167,7 +166,7 @@ namespace BindOpen.Framework.Runtime.Application.Messages
             aDisplayMessage.DisplayedLabel = this.DisplayedLabel.Clone() as DictionaryDataItem;
             return aDisplayMessage;
         }
-        
+
         #endregion
     }
 }

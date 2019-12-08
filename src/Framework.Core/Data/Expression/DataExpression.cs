@@ -1,7 +1,7 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Expression
 {

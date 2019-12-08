@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items.Sets;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Sets
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

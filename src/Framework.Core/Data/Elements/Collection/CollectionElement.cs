@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Meta;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Collection
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are entities.
@@ -260,7 +254,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Collection
                 case DataItemizationMode.Valued:
                     if (Items.Count == 0) return null;
                     var aObject = new Dictionary<string, object>();
-                    foreach(var item in Items)
+                    foreach (var item in Items)
                     {
                         if (item is DataElement element && !aObject.ContainsKey(element.Name))
                         {

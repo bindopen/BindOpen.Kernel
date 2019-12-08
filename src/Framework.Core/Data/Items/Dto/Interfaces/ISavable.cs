@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Items.Dto
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This interface represents a savable DTO.

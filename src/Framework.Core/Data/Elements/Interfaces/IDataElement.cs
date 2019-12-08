@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Data.References;
-using BindOpen.Framework.Core.Data.Specification.Design;
+using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Scripting;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -45,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// 
         /// </summary>
         bool EventKindSpecified { get; }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -65,7 +63,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// 
         /// </summary>
         string ItemScript { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>

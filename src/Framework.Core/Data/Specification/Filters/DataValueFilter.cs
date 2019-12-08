@@ -1,12 +1,11 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Specification.Filters;
 
-namespace BindOpen.Framework.Core.Data.Specification.Filters
+namespace BindOpen.Framework.Core.Data.Specification
 {
 
     /// <summary>
@@ -98,8 +97,8 @@ namespace BindOpen.Framework.Core.Data.Specification.Filters
         /// <returns>Returns all the values allowed by this instance.</returns>
         public List<string> GetValues(List<string> allValues = null)
         {
-            allValues = new List<string>((AddedValues==null || AddedValues.Count == 0 ? allValues : AddedValues));
-            if (allValues != null && RemovedValues!=null)
+            allValues = new List<string>((AddedValues == null || AddedValues.Count == 0 ? allValues : AddedValues));
+            if (allValues != null && RemovedValues != null)
                 allValues.RemoveAll(p => RemovedValues.Contains(p));
 
             return allValues;
@@ -128,7 +127,7 @@ namespace BindOpen.Framework.Core.Data.Specification.Filters
         /// Repairs this instance.
         /// </summary>
         /// <param name="allValues">All the values to consider.</param>
-        public void Repair(List<string> allValues =null)
+        public void Repair(List<string> allValues = null)
         {
             AddedValues.RemoveAll(p => allValues.Any(q => p.KeyEquals(q)));
             AddedValues = AddedValues.Distinct().ToList();

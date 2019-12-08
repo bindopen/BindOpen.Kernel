@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
 using System;
 using System.Collections.Generic;

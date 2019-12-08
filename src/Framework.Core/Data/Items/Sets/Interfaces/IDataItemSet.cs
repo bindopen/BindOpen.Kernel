@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Data.Items.Sets
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// 

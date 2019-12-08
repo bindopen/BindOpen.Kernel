@@ -1,10 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Elements.Source;
 using System;
 using System.Xml.Serialization;
 
