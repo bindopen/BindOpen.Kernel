@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Schema;
+using BindOpen.Framework.Core.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;

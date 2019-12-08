@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Extensions.Definition.Extensions;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Items

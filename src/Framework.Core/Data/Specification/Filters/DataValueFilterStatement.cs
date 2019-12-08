@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Specification.Filters;
+using BindOpen.Framework.Core.Data.Specification;
 
-namespace BindOpen.Framework.Core.Data.Specification.Filters
+namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// This interface specifies the value filter statement.

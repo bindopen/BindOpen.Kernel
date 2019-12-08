@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Data.Items.Sets;
 
-namespace BindOpen.Framework.Core.Data.Items.Sets
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a data item set.

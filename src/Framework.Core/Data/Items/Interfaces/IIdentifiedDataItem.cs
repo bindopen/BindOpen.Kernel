@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Items.Dto;
+﻿using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Items
 {

@@ -1,10 +1,9 @@
-﻿using System;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Attributes;
 using BindOpen.Framework.Core.Data.Specification;
+using System;
 
-namespace BindOpen.Framework.Core.Data.Elements.Attributes
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a data element attribute.

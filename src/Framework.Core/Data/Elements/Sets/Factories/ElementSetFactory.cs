@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.Data.Elements.Sets
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data element set.
@@ -46,7 +46,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
         public static DataElementSet Create(params object[] parameterValues)
         {
             var index = 0;
-            return new DataElementSet(parameterValues?.Select(p => { 
+            return new DataElementSet(parameterValues?.Select(p =>
+            {
                 var scalar = ElementFactory.CreateScalar("", DataValueType.Any, p);
                 scalar.Index = ++index;
                 return scalar;

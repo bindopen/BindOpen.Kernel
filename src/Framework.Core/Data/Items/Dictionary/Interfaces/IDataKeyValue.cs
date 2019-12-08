@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Data.Items.Dictionary
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// 

@@ -1,8 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-
-namespace BindOpen.Framework.Core.Data.Elements
+﻿namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data elements.

@@ -1,21 +1,14 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Schema;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Specification;
+using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Schema;
-using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.Data.Specification.Constraints;
-using BindOpen.Framework.Core.Data.Specification.Design;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
@@ -42,7 +35,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Names of the attribute areas of the DataElementSpec class.
         /// </summary>
-        public static string[] __Arenames = new []
+        public static string[] __Arenames = new[]
         {
             nameof(DataAreaKind.Design),
             nameof(DataAreaKind.Constraints),
@@ -439,7 +432,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <returns>Returns the area specification.</returns>
         public IDataAreaSpecification GetAreaSpecification(string areaName)
         {
-            IDataAreaSpecification areaSpecification = _areaSpecifications.Find(p=>p.AreaName.KeyEquals(areaName));
+            IDataAreaSpecification areaSpecification = _areaSpecifications.Find(p => p.AreaName.KeyEquals(areaName));
 
             return areaSpecification ?? new DataAreaSpecification() { AreaName = areaName };
         }

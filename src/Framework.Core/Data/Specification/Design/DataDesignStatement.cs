@@ -1,9 +1,9 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Specification.Design
+namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// This class represents a data design statement.

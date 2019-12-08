@@ -19,7 +19,7 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the log of argument building.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet,BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.IDataElementSet,BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean)">
             <summary>
             Checks this instance.
             </summary>
@@ -366,7 +366,7 @@
             Instantiates a new instance of the TBdoHost class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoHost`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{`0},BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Hosts.TBdoHost`1.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{`0},BindOpen.Framework.Core.Data.Elements.IDataElementSet)">
             <summary>
             Instantiates a new instance of the TBdoHost class.
             </summary>
@@ -783,7 +783,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.IBdoSettings.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.IBdoSettings.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             
             </summary>
@@ -937,7 +937,7 @@
             <param name="value">The value to set.</param>
             <param name="propertyName">The calling property name to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoSettings`1.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.TBdoSettings`1.UpdateFromFile(System.String,BindOpen.Framework.Core.Data.Common.SpecificationLevels[],BindOpen.Framework.Core.Data.Elements.IDataElementSpecSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the application settings of this instance.
             </summary>
@@ -2074,7 +2074,7 @@
             <param name="action">The action to consider on the settings.</param>
             <returns>Returns the host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.IDataElementSpecSet)">
             <summary>
             Defines the specified settings.
             </summary>
@@ -2390,7 +2390,7 @@
             <param name="action">The action to consider on the settings.</param>
             <returns>Returns the host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.Sets.IDataElementSpecSet)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.Hosts.TBdoHostOptions`1.DefineSettings(BindOpen.Framework.Core.Data.Elements.IDataElementSpecSet)">
             <summary>
             Defines the specified default settings.
             </summary>
@@ -4363,7 +4363,7 @@
             This static class represents the handler 
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Handlers.ObjectFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Handlers.ObjectFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Gets the target objects from the specified source.
             </summary>
@@ -4390,7 +4390,7 @@
             This static class represents the handler 
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Handlers.TextFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.Sets.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Handlers.TextFromFile.Get(BindOpen.Framework.Core.Data.Elements.DataElement,BindOpen.Framework.Core.Data.Elements.DataElementSet,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Gets the target objects from the specified source.
             </summary>
@@ -4782,7 +4782,7 @@
             Instantiates a new instance of the JsonLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the JsonLogger class.
             </summary>
@@ -4869,7 +4869,7 @@
             Instantiates a new instance of the ReportLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the ReportLogger class.
             </summary>
@@ -4930,7 +4930,7 @@
             Instantiates a new instance of the SnapLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the SnapLogger class.
             </summary>
@@ -4977,7 +4977,7 @@
             Instantiates a new instance of the XmlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the XmlLogger class.
             </summary>
@@ -5069,7 +5069,7 @@
             Instantiates a new instance of the YamlLogger class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.#ctor(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,System.String,System.String,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
             <summary>
             Instantiates a new instance of the YamlLogger class.
             </summary>
@@ -5097,7 +5097,7 @@
             </summary>
             <remarks>The output format is YAML.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoLoggerFactory.Create``1(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.Datasources.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoLoggerFactory.Create``1(System.String,BindOpen.Framework.Core.System.Diagnostics.BdoLoggerMode,BindOpen.Framework.Core.Data.Items.DatasourceKind,System.Boolean,System.String,System.String,System.String,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},System.Int32)">
             <summary>
             Creates the specified logger.
             </summary>

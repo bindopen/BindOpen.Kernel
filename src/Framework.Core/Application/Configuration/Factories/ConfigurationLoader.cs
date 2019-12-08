@@ -1,11 +1,11 @@
-﻿using System.IO;
-using System.Xml.Schema;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System.IO;
+using System.Xml.Schema;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {
@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
             T unionConfiguration = new T();
 
             T topConfiguration = XmlHelper.Load<T>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, mustFileExist, isRuntimeUpdated) as T;
-            if (topConfiguration!=null)
+            if (topConfiguration != null)
             {
                 unionConfiguration.Update(topConfiguration);
 

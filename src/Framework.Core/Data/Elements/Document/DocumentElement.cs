@@ -1,13 +1,10 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements;
 
-namespace BindOpen.Framework.Core.Data.Elements.Document
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a document element that is an element whose items are documents.
@@ -29,7 +26,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         [XmlElement("container")]
         public CarrierElement ContainerElement
         {
-            get { return this.Items[0] as CarrierElement; }
+            get { return Items[0] as CarrierElement; }
         }
 
         /// <summary>
@@ -38,7 +35,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         [XmlElement("content")]
         public ObjectElement ContentElement
         {
-            get { return this.Items[1] as ObjectElement; }
+            get { return Items[1] as ObjectElement; }
         }
 
         /// <summary>
@@ -109,7 +106,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
             if (indexItem is string)
-                return this.Items.Any(p => p is Items.Documents.Document && string.Equals((p as Items.Documents.Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
+                return Items.Any(p => p is Document && string.Equals((p as Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
 
             return false;
         }
@@ -137,8 +134,8 @@ namespace BindOpen.Framework.Core.Data.Elements.Document
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            Items.Documents.Document aDocument = base.Clone() as Items.Documents.Document;
-            return aDocument;
+            Document document = base.Clone() as Document;
+            return document;
         }
 
         #endregion

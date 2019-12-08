@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
@@ -7,7 +6,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// <summary>
     /// 
     /// </summary>
-    public interface BdoIEvent: IDescribedDataItem
+    public interface BdoIEvent : IDescribedDataItem
     {
         /// <summary>
         /// 

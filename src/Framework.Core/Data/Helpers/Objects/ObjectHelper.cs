@@ -1,13 +1,9 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Attributes;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Data.Items.Dto;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
@@ -240,7 +236,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Objects
             IBdoLog log = new BdoLog();
             if (aObject == null || elementSet.Elements == null) return null;
 
-            foreach(PropertyInfo propertyInfo in aObject.GetType().GetProperties())
+            foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
             {
                 if (propertyInfo.GetCustomAttribute(typeof(T)) is Attribute attribute)
                 {

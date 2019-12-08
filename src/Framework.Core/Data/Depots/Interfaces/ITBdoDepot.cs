@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Sets;
 
 namespace BindOpen.Framework.Core.Data.Depots
 {

@@ -12,7 +12,7 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Items.Dictionary
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a dictionary data item.

@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Scalar;
+﻿using BindOpen.Framework.Core.Data.Elements;
 
 namespace BindOpen.Framework.Runtime.Application.Options
 {

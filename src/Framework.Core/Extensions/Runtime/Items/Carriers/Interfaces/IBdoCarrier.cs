@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Carrier;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 

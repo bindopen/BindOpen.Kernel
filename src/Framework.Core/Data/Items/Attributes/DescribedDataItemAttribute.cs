@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Data.Items.Attributes
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents an indexed data item attribute.

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Framework.Core.Data.Elements;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements;
 
 namespace BindOpen.Framework.Core.Application.Configuration
 {

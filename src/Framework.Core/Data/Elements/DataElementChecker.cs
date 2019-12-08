@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Specification.Constraints
+﻿namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// This static class provides methods to check data elements.

@@ -1,6 +1,5 @@
-﻿using System;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dto;
+﻿using BindOpen.Framework.Core.Data.Items;
+using System;
 
 namespace BindOpen.Framework.Core.System.Scripting
 {
