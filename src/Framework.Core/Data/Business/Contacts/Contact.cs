@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Core.Data.Business.Contacts
 {

@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items.Dictionary;
+﻿using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Items.Dto
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This interface represents a globally described DTO.

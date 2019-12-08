@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Xml;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.System.Processing
 {
@@ -388,7 +387,7 @@ namespace BindOpen.Framework.Core.System.Processing
         /// <param name="aState">The state to consider.</param>
         public static List<ProcessExecutionStatus> GetStatuses(ProcessExecutionState aState)
         {
-            switch(aState)
+            switch (aState)
             {
                 case ProcessExecutionState.Ended:
                     return new List<ProcessExecutionStatus>()

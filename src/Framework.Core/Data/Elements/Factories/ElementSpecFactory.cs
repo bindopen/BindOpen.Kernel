@@ -1,14 +1,8 @@
-﻿using System;
-using System.Linq;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Data.Specification.Design;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Extensions.Runtime;
+using System;
+using System.Linq;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Specification.Filters;
+using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Elements.Carrier
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a carrier element specification.

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
 
-namespace BindOpen.Framework.Core.Data.Items.Dto
+namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents the ID item result.

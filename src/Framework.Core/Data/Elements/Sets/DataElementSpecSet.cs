@@ -1,14 +1,9 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Data.Items.Sets;
 
-namespace BindOpen.Framework.Core.Data.Elements.Sets
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a set of data element specifications.

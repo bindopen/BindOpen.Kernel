@@ -2,7 +2,7 @@
 using System;
 using BindOpen.Framework.Core.Data.Common;
 
-namespace BindOpen.Framework.Core.Data.Specification.Design
+namespace BindOpen.Framework.Core.Data.Specification
 {
 
     /// <summary>

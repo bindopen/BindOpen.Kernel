@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Specification.Design
+namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// 

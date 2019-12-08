@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Carrier
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a carrier element.

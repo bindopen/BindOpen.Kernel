@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Elements.Scalar
+﻿namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 

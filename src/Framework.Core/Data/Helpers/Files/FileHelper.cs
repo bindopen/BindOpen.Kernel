@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 using System.IO;
-using System.Reflection;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Sets;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Dictionary;
-using BindOpen.Framework.Core.Data.Items.Dto;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
 namespace BindOpen.Framework.Core.Data.Helpers.Files
 {
@@ -40,7 +27,7 @@ namespace BindOpen.Framework.Core.Data.Helpers.Files
                 }
                 isExisting = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log?.AddException(ex);
             }

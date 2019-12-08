@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Attributes;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using System;
 
 namespace BindOpen.Framework.Core.Extensions.Attributes

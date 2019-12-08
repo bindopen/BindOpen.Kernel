@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Specification.Constraints;
+using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.Extensions.Runtime;
+using System;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Application.Options
 {
@@ -192,7 +190,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             int i = name1.IndexOf(StringHelper.__PatternEmptyValue);
             if (i > -1)
             {
-                name1 = name1.GetSubstring(0, i-1);
+                name1 = name1.GetSubstring(0, i - 1);
                 name2 = name2.GetSubstring(0, i - 1);
             }
             return name1.KeyEquals(name2);

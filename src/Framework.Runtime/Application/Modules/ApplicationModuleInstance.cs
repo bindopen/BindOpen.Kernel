@@ -1,12 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Items.Sets;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.System;
+using System;
+using System.ComponentModel;
 
 namespace BindOpen.Framework.Runtime.Application.Modules
 {
@@ -144,7 +143,7 @@ namespace BindOpen.Framework.Runtime.Application.Modules
             IAppModule module,
             string uri)
         {
-            this.Module= module;
+            this.Module = module;
             this._uri = uri;
         }
 

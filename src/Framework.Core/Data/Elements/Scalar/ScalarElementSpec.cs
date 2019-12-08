@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Elements.Scalar
+namespace BindOpen.Framework.Core.Data.Elements
 {
 
     /// <summary>

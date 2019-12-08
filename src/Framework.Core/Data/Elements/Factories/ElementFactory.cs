@@ -1,8 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Source;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System.Linq;
 

@@ -1,21 +1,14 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.System.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements._Object;
-using BindOpen.Framework.Core.Data.Elements.Carrier;
-using BindOpen.Framework.Core.Data.Elements.Collection;
-using BindOpen.Framework.Core.Data.Elements.Document;
-using BindOpen.Framework.Core.Data.Elements.Meta;
-using BindOpen.Framework.Core.Data.Elements.Scalar;
-using BindOpen.Framework.Core.Data.Elements.Source;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items.Sets;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
 
-namespace BindOpen.Framework.Core.Data.Elements.Sets
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a data element set.
@@ -302,7 +295,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Sets
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return (T)GetElementObject(elementName,scope,scriptVariableSet, log);
+            return (T)GetElementObject(elementName, scope, scriptVariableSet, log);
         }
 
         // General ------------------------------

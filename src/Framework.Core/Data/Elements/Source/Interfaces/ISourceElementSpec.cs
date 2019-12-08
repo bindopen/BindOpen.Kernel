@@ -1,8 +1,8 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items.Datasources;
-using BindOpen.Framework.Core.Data.Specification.Filters;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Specification;
 
-namespace BindOpen.Framework.Core.Data.Elements.Source
+namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// 
