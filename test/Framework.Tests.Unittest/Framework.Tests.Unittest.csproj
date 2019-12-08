@@ -3,15 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>BindOpen.Framework.Tests.UnitTest</AssemblyName>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications.
-This package conducts unit tests.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests.</Description>
     <Authors>Sumer Team</Authors>
     <Company>BindOpen</Company>
     <Product>BindOpen.Framework</Product>
-    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
+    <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
     <PackageId>BindOpen.Framework.Tests.UnitTest</PackageId>
     <RootNamespace>BindOpen.Framework.Tests.UnitTest</RootNamespace>
-    <LangVersion>7.3</LangVersion>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/bindopen/BindOpen.Framework/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
@@ -38,7 +36,7 @@ This package conducts unit tests.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
   </ItemGroup>

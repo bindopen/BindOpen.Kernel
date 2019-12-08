@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>BindOpen.Framework.Databases.PostgreSql</AssemblyName>
     <PackageId>BindOpen.Framework.Databases.PostgreSql</PackageId>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2019</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications.
-This package handles PostgreSQL database connections.</Description>
+    <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles PostgreSQL database connections.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Framework.Databases.MSSqlServer</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
@@ -16,7 +15,6 @@ This package handles PostgreSQL database connections.</Description>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Framework.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,7 +32,7 @@ This package handles PostgreSQL database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="4.1.1" />
+    <PackageReference Include="Npgsql" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>
