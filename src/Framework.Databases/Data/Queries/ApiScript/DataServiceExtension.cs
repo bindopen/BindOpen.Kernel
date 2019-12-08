@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         {
             T result = default;
 
-            if (dataService?.Connection is DatabaseConnection connection)
+            if (dataService?.Connection is BdoDbConnection connection)
             {
                 if (connection.Connector == null)
                 {
@@ -42,12 +42,12 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                 else
                 {
                     string sql = "";
-                    IBdoLog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, scriptVariableSet, out sql);
+                    IBdoLog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, null, scriptVariableSet, out sql);
                     log?.Append(subLog);
 
                     if (function != null)
                     {
-                        result = function(connection.GetIDbConnection(), sql);
+                        result = function(connection.DotNetDbConnection, sql);
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
         /// <param name="connection">The database connection to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns></returns>
-        public static T GetId<Q, T>(this IDatabaseConnection connection, IBdoLog log) where Q : IBdoDataService
+        public static T GetId<Q, T>(this IBdoDbConnection connection, IBdoLog log) where Q : IBdoDataService
         {
             T value = default;
 

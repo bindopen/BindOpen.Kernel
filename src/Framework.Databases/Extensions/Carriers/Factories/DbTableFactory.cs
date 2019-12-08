@@ -11,7 +11,7 @@
         /// <param name="name">The name to consider.</param>
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModuleName">The name of the data module to consider.</param>
-        public static DbTable Create(string name, string schema = null, string dataModuleName = null)
+        public static DbTable Create(string name = null, string schema = null, string dataModuleName = null)
             => new DbTable()
             {
                 Name = name,

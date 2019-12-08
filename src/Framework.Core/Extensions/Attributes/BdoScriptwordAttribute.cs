@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Items.Attributes;
 using BindOpen.Framework.Core.System.Scripting;
 using System;
 
@@ -8,7 +9,7 @@ namespace BindOpen.Framework.Core.Extensions.Attributes
     /// This class represents a script word attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class BdoScriptwordAttribute : BdoExtensionItemAttribute
+    public class BdoScriptwordAttribute : DescribedDataItemAttribute
     {
         // --------------------------------------------------
         // PROPERTIES

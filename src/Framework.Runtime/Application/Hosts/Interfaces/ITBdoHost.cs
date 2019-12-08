@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     public interface ITBdoHost<S> : ITBdoService<S>, IBdoHost
         where S : class, IBdoHostSettings, new()
     {
-        // Execution ---------------------------------
+        // Options ---------------------------------
 
         /// <summary>
         /// The options.

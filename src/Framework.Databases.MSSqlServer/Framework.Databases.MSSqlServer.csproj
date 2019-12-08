@@ -19,35 +19,20 @@ This package handles MS SQL Server database connections.</Description>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.Framework.Databases.MSSqlServer.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Data\Queries\Builders\DbQueryBuilder_PostgreSql.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <None Remove="BindOpen.Extension" />
-    <None Remove="Data\Queries\Builders\ve-27F.tmp" />
     <None Remove="Extensions\Connectors\BindOpen.Connectors" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
     <EmbeddedResource Include="BindOpen.Extension" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
   </ItemGroup>

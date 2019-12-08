@@ -3,7 +3,6 @@ using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions;
 using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using BindOpen.Framework.Tests.UnitTest.Settings;
 using System;
@@ -34,9 +33,10 @@ namespace BindOpen.Framework.Tests.UnitTest
                 return _appHost ?? (_appHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
                             .SetModule("app.test")
-                            .SetAppFolder(@"..\..")
-                            .AddExtensions(p=>p.AddMSSqlServer())
+                            .SetRootFolder(@"..\..")
+                            .AddExtensions(p => p.AddMSSqlServer())
                             .AddDefaultFileLogger()
+                            .ThrowExceptionOnStartFailure()
                             .AddLoggers(
                                 BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto, DatasourceKind.Console))));
             }

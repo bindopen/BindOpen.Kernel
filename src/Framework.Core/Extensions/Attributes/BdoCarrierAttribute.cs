@@ -1,14 +1,14 @@
-﻿using BindOpen.Framework.Core.Data.Items.Datasources;
-using BindOpen.Framework.Core.Extensions.Attributes;
+﻿using BindOpen.Framework.Core.Data.Items.Attributes;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using System;
 
-namespace BindOpen.Framework.Core.Extensions.Carriers
+namespace BindOpen.Framework.Core.Extensions.Attributes
 {
     /// <summary>
     /// This class represents a carrier attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class BdoCarrierAttribute : BdoExtensionItemAttribute
+    public class BdoCarrierAttribute : DescribedDataItemAttribute
     {
         // ------------------------------------------
         // PROPERTIES

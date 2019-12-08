@@ -19,29 +19,14 @@ This package handles database connections.</Description>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.Framework.Databases.xml</DocumentationFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Databases.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnector_MSSqlServer.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="BindOpen.Extension" />
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
     <None Remove="Extensions\Connectors\BindOpen.Connectors" />
-    <None Remove="Extensions\Connectors\connectors.dictionary" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />
     <None Remove="Extensions\Handlers\BindOpen.Handlers" />
     <None Remove="Extensions\Metrics\BindOpen.Metrics" />
@@ -51,6 +36,7 @@ This package handles database connections.</Description>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="BindOpen.Extension" />
     <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
     <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
     <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
@@ -59,7 +45,6 @@ This package handles database connections.</Description>
     <EmbeddedResource Include="Extensions\Routines\BindOpen.Routines" />
     <EmbeddedResource Include="Extensions\Scriptwords\BindOpen.Scriptwords" />
     <EmbeddedResource Include="Extensions\Tasks\BindOpen.Tasks" />
-    <EmbeddedResource Include="BindOpen.Extension" />
   </ItemGroup>
 
   <ItemGroup>

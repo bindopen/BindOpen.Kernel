@@ -98,8 +98,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Extensions.Runtime
         {
             BdoLog log = new BdoLog();
 
-            using (DatabaseConnection connection =
-                SetupVariables.AppHost.Scope.Open<DatabaseConnection>("bdd1", null, log))
+            using (var connection = SetupVariables.AppHost.Scope.Open<BdoDbConnection>("bdd1", null, log))
             {
             }
         }

@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
         /// <summary>
         /// Instantiates a new instance of the DatasourceDepot class.
         /// </summary>
-        public BdoDatasourceDepot()
+        public BdoDatasourceDepot() : this(null)
         {
         }
 
@@ -53,6 +53,7 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
         /// <param name="dataSources">The data sources to consider.</param>
         public BdoDatasourceDepot(params Datasource[] dataSources) : base(dataSources)
         {
+            Id = "datasource";
         }
 
         #endregion

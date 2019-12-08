@@ -194,6 +194,33 @@
             <param name="items">The items to add.</param>
             <returns>Returns this instance.</returns>
         </member>
+        <member name="T:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader">
+            <summary>
+            This static class provides methods to handle configurations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean,System.Boolean)">
+            <summary>
+            Instantiates a new instance of Configuration class from a xml file.
+            </summary>
+            <param name="filePath">The file path to consider.</param>
+            <param name="scope">The scope to consider.</param>
+            <param name="scriptVariableSet">The set of script variables to consider.</param>
+            <param name="log">The log to consider.</param>
+            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param name="mustFileExist">Indicates whether the file must exist.</param>
+            <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
+            <returns>The Xml operation project defined in the Xml file.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.AddGroup``1(``0,System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+            <summary>
+            Adds the specified elements into the specified group.
+            </summary>
+            <param name="configuration">The configuration to consider.</param>
+            <param name="groupId">The ID of the group.</param>
+            <param name="items">The items to add.</param>
+            <returns>Returns this instance.</returns>
+        </member>
         <member name="T:BindOpen.Framework.Core.Application.Configuration.IBdoBaseConfiguration">
             <summary>
             
@@ -231,33 +258,6 @@
             <summary>
             
             </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader">
-            <summary>
-            This static class provides methods to handle configurations.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.Load``1(System.String,BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean,System.Boolean)">
-            <summary>
-            Instantiates a new instance of Configuration class from a xml file.
-            </summary>
-            <param name="filePath">The file path to consider.</param>
-            <param name="scope">The scope to consider.</param>
-            <param name="scriptVariableSet">The set of script variables to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
-            <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
-            <returns>The Xml operation project defined in the Xml file.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Application.Configuration.ConfigurationLoader.AddGroup``1(``0,System.String,BindOpen.Framework.Core.Data.Elements.IDataElement[])">
-            <summary>
-            Adds the specified elements into the specified group.
-            </summary>
-            <param name="configuration">The configuration to consider.</param>
-            <param name="groupId">The ID of the group.</param>
-            <param name="items">The items to add.</param>
-            <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Core.Application.Entities.ApplicationEntity">
             <summary>
@@ -330,9 +330,9 @@
             The data context of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.BdoScope.DepotSet">
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.BdoScope.DataStore">
             <summary>
-            The set of depots of this instance.
+            The data store of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Scopes.BdoScope.#ctor(System.AppDomain)">
@@ -348,7 +348,7 @@
             <param name="isExtensionStoreChecked">Indicates whether the extension item definition store extistence is chekced.</param>
             <param name="isScriptInterpreterChecked">Indicates whether the script interpreter extistence is chekced.</param>
             <param name="isDataContextChecked">Indicates whether the data context extistence is chekced.</param>
-            <param name="isDepotSetChecked">Indicates whether the depot set extistence is chekced.</param>
+            <param name="isDataStoreChecked">Indicates whether the data store extistence is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Scopes.BdoScope.LoadExtensions(System.Action{BindOpen.Framework.Core.Extensions.Runtime.Stores.IExtensionLoadOptions},BindOpen.Framework.Core.Extensions.References.IBdoExtensionReference[])">
@@ -406,14 +406,14 @@
             The extension item definition store.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Application.Scopes.IBdoScope.DataStore">
+            <summary>
+            The data store of this instance.
+            </summary>
+        </member>
         <member name="P:BindOpen.Framework.Core.Application.Scopes.IBdoScope.Context">
             <summary>
             The data context.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Scopes.IBdoScope.DepotSet">
-            <summary>
-            The depots of this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Framework.Core.Application.Scopes.IBdoScope.Interpreter">
@@ -438,7 +438,7 @@
             <param name="isExtensionStoreChecked"></param>
             <param name="isScriptInterpreterChecked"></param>
             <param name="isDataContextChecked"></param>
-            <param name="isDepotSetChecked"></param>
+            <param name="isDataStoreChecked"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Framework.Core.Application.Scopes.IBdoScope.LoadExtensions(BindOpen.Framework.Core.Extensions.References.IBdoExtensionReference[])">
@@ -1486,27 +1486,6 @@
             This class represents a connection service.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoConnectionFactory.Open``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
-            <summary>
-            Creates a connector.
-            </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="dataSourceName">The data source name to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
-            <param name="log">The log of execution to consider.</param>
-            <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoConnectionFactory.Open``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
-            <summary>
-            Creates a connector.
-            </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="depot">The data source depot to consider.</param>
-            <param name="dataSourceName">The data source name to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
-            <param name="log">The log of execution to consider.</param>
-            <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        </member>
         <member name="M:BindOpen.Framework.Core.Data.Connections.BdoConnectionFactory.Open``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.Data.Items.Datasources.IDatasource,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Creates a connector.
@@ -1855,158 +1834,6 @@
             <param name="filePath"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.BdoDepotSet">
-            <summary>
-            This class represents a set of depots.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Depots.BdoDepotSet.Depots">
-            <summary>
-            The set of depots of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDepotSet.#ctor">
-            <summary>
-            Instantiates a new instance of the BdoDepotSet class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDepotSet.Add(BindOpen.Framework.Core.Data.Depots.IBdoDepot)">
-            <summary>
-            Adds the specified depot.
-            </summary>
-            <param name="depot">The depot to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDepotSet.Get``1">
-            <summary>
-            Gets the depot of the specified type.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDepotSet.Clear">
-            <summary>
-            Clears this instance.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot">
-            <summary>
-            This class represents a data source depot.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.Sources">
-            <summary>
-            Elements of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.#ctor">
-            <summary>
-            Instantiates a new instance of the DatasourceDepot class.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.#ctor(BindOpen.Framework.Core.Data.Items.Datasources.Datasource[])">
-            <summary>
-            Instantiates a new instance of the DatasourceDepot class.
-            </summary>
-            <param name="dataSources">The data sources to consider.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetModuleName(System.String)">
-            <summary>
-            Returns the module name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The module name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetInstanceName(System.String)">
-            <summary>
-            Returns the instance name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The instance name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
-            <summary>
-            Returns the instance name otherwise module name of the specified data source.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <returns>The instance name corresponding to the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
-            <summary>
-            Gets the specified connector configuration.
-            </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
-            <returns>The specified connector.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
-            <summary>
-            Indicates whether this instance has the specified connector configuration.
-            </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
-            <returns>The data source with the specified data module name.</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetStringConnection(System.String,System.String)">
-            <summary>
-            Returns the connection string corresponding to the specified configuration.
-            </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
-            <returns>The connection string corresponding to the specified data module name.</returns>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.Sources">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetInstanceName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetModuleName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetStringConnection(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
-            <returns></returns>
-        </member>
         <member name="T:BindOpen.Framework.Core.Data.Depots.IBdoDepot">
             <summary>
             
@@ -2028,33 +1855,18 @@
             Add the items from the assembly of the specified type.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.IBdoDepotSet">
+        <member name="M:BindOpen.Framework.Core.Data.Depots.IBdoDepot.LoadLazy(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
-            
+            Loads this instance.
+            </summary>
+            <param name="log">The log to append.</param>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Depots.IBdoDepot.LazyLoadFunction">
+            <summary>
+            The initialization function.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Depots.IBdoDepotSet.Depots">
-            <summary>
-            The depots of this instance.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.IBdoDepotSet.Add(BindOpen.Framework.Core.Data.Depots.IBdoDepot)">
-            <summary>
-            Adds the specified depot.
-            </summary>
-            <param name="depot">The depot to add.</param>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.IBdoDepotSet.Get``1">
-            <summary>
-            Gets the depot of the specified type.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.IBdoDepotSet.Clear">
-            <summary>
-            Clears this instance.
-            </summary>
-        </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.IBdoTDepot`1">
+        <member name="T:BindOpen.Framework.Core.Data.Depots.ITBdoDepot`1">
             <summary>
             
             </summary>
@@ -2065,14 +1877,19 @@
             This class represents a depot.
             </summary>
         </member>
+        <member name="P:BindOpen.Framework.Core.Data.Depots.TBdoDepot`1.LazyLoadFunction">
+            <summary>
+            The initialization function.
+            </summary>
+        </member>
         <member name="M:BindOpen.Framework.Core.Data.Depots.TBdoDepot`1.#ctor">
             <summary>
-            Instantiates a new instance of the TDepot class.
+            Instantiates a new instance of the TBdoDepot class.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Core.Data.Depots.TBdoDepot`1.#ctor(`0[])">
             <summary>
-            Instantiates a new instance of the TDepot class.
+            Instantiates a new instance of the TBdoDepot class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
@@ -2091,6 +1908,12 @@
             <summary>
             Add the items from the assembly of the specified type.
             </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.TBdoDepot`1.LoadLazy(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+            <summary>
+            Loads this instance.
+            </summary>
+            <param name="log">The log to append.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Data.Elements.Carrier.CarrierElement">
             <summary>
@@ -8654,6 +8477,80 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Stores.BdoDataStore">
+            <summary>
+            This class represents a set of depots.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Stores.BdoDataStore.Depots">
+            <summary>
+            The set of depots of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.BdoDataStore.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoDataStore class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.BdoDataStore.Add``1(``0,System.Action{``0})">
+            <summary>
+            Adds the specified depot executing the specified action.
+            </summary>
+            <param name="depot">The depot to consider.</param>
+            <param name="action">The action to execute on the newly created depot.</param>
+            <typeparam name="T">The depot class to consider.</typeparam>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.BdoDataStore.Get``1">
+            <summary>
+            Gets the depot of the specified type.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.BdoDataStore.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+            <summary>
+            Executes the lazy functions of all the depots of this instance.
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Stores.IBdoDataStore">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Stores.IBdoDataStore.Depots">
+            <summary>
+            The depots of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.IBdoDataStore.Add``1(``0,System.Action{``0})">
+            <summary>
+            Adds the specified depot executing the specified action.
+            </summary>
+            <param name="depot">The depot to consider.</param>
+            <param name="action">The action to execute on the newly created depot.</param>
+            <typeparam name="T">The depot class to consider.</typeparam>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.IBdoDataStore.Get``1">
+            <summary>
+            Gets the depot of the specified class.
+            </summary>
+            <typeparam name="T">The depot class to consider.</typeparam>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.IBdoDataStore.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Stores.IBdoDataStore.LoadLazy(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+            <summary>
+            Executes the lazy functions of all the depots of this instance.
+            </summary>
+            <param name="log">The log to append.</param>
         </member>
         <member name="T:BindOpen.Framework.Core.Extensions.Carriers.BdoCarrierAttribute">
             <summary>
@@ -16469,6 +16366,127 @@
             Clones this instance.
             </summary>
             <returns>Returns a clone of this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot">
+            <summary>
+            This class represents a data source depot.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.Sources">
+            <summary>
+            Elements of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.#ctor">
+            <summary>
+            Instantiates a new instance of the DatasourceDepot class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.#ctor(BindOpen.Framework.Core.Data.Items.Datasources.Datasource[])">
+            <summary>
+            Instantiates a new instance of the DatasourceDepot class.
+            </summary>
+            <param name="dataSources">The data sources to consider.</param>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetModuleName(System.String)">
+            <summary>
+            Returns the module name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The module name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetInstanceName(System.String)">
+            <summary>
+            Returns the instance name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The instance name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
+            <summary>
+            Returns the instance name otherwise module name of the specified data source.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <returns>The instance name corresponding to the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
+            <summary>
+            Gets the specified connector configuration.
+            </summary>
+            <param name="sourceName">The name of the data module to consider.</param>
+            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <returns>The specified connector.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
+            <summary>
+            Indicates whether this instance has the specified connector configuration.
+            </summary>
+            <param name="sourceName">The name of the data module to consider.</param>
+            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <returns>The data source with the specified data module name.</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceDepot.GetStringConnection(System.String,System.String)">
+            <summary>
+            Returns the connection string corresponding to the specified configuration.
+            </summary>
+            <param name="sourceName">The name of the data source to consider.</param>
+            <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
+            <returns>The connection string corresponding to the specified data module name.</returns>
+        </member>
+        <member name="T:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.Sources">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <param name="connectorDefinitionUniqueId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetInstanceName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetModuleName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.GetStringConnection(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <param name="connectorDefinitionUniqueId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sourceName"></param>
+            <param name="connectorDefinitionUniqueId"></param>
+            <returns></returns>
         </member>
         <member name="T:System.Xml.Serialization.XmlArrayElementAttribute">
             <summary>

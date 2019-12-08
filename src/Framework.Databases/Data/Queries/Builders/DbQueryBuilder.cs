@@ -1,9 +1,12 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Extensions.Connectors;
 using BindOpen.Framework.Databases.Extensions.Scriptwords;
+using BindOpen.Framework.Core.Data.Depots.Datasources;
 using System;
 
 namespace BindOpen.Framework.Databases.Data.Queries.Builders
@@ -11,7 +14,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
     /// <summary>
     /// This class represents a builder of database query.
     /// </summary>
-    public abstract partial class DbQueryBuilder
+    public abstract partial class DbQueryBuilder : IdentifiedDataItem
     {
         // ------------------------------------------
         // VARIABLES
@@ -62,7 +65,12 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>If not found, it returns the specified data module name.</remarks>
         protected string GetDatabaseName(string dataModuleName)
         {
-            var dataSourceDepot = _scope?.DepotSet?.Get<IBdoDatasourceDepot>();
+            if (dataModuleName != null && dataModuleName.StartsWith(StringHelper.__UniqueToken) && dataModuleName.EndsWith(StringHelper.__UniqueToken))
+            {
+                return dataModuleName;
+            }
+
+            var dataSourceDepot = _scope?.DataStore?.Get<IBdoDatasourceDepot>();
             if (dataSourceDepot == null)
                 return dataModuleName;
             else
@@ -79,13 +87,67 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         public IBdoLog BuildQuery(
             IDbQuery query,
             IBdoScriptVariableSet scriptVariableSet,
+            out string queryString) => BuildQuery(query, null, scriptVariableSet, out queryString);
+
+        /// <summary>
+        /// Builds the specified simple database data query and put the result into the specified string query.
+        /// </summary>
+        /// <param name="query">The database data query to build.</param>
+        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="queryString">The output string query.</param>
+        /// <returns>The log of the build task.</returns>
+        public IBdoLog BuildQuery(
+            IDbQuery query,
+            DataElementSet parameterSet,
+            IBdoScriptVariableSet scriptVariableSet,
             out string queryString)
         {
+            var log = new BdoLog();
+
             queryString = "";
-            if (query is BasicDbQuery basicDbQuery)
-                return BuildQuery(basicDbQuery, scriptVariableSet, out queryString);
-            else if (query is AdvancedDbQuery advancedDbQuery)
-                return BuildQuery(advancedDbQuery, scriptVariableSet, out queryString);
+
+            try
+            {
+                if (query is BasicDbQuery basicDbQuery)
+                {
+                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
+                    log.AddEvents(Build(basicDbQuery, scriptVariableSet, out queryString));
+                }
+                else if (query is AdvancedDbQuery advancedDbQuery)
+                {
+                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
+                    log.AddEvents(Build(advancedDbQuery, scriptVariableSet, out queryString));
+                }
+                else if (query is StoredDbQuery storedDbQuery)
+                {
+                    if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
+                    {
+                        BuildQuery(storedDbQuery.Query, null, scriptVariableSet, out queryString);
+                        storedDbQuery.QueryTexts.Add(Id, queryString);
+                    }
+
+                    if (!string.IsNullOrEmpty(queryString) && (parameterSet != null))
+                    {
+                        foreach (var element in parameterSet.Elements)
+                        {
+                            var name = element.Name;
+                            if (string.IsNullOrEmpty(name) && storedDbQuery.ParameterSpecSet != null)
+                            {
+                                name = storedDbQuery.ParameterSpecSet[element.Index - 1]?.Name;
+                            }
+                            queryString = queryString.Replace(StringHelper.__UniqueToken + name + StringHelper.__UniqueToken, element.GetObject()?.ToString() ?? "", false);
+                        }
+                    }
+                    return log;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.AddError(
+                    "Error trying to build query '" + (query.Name ?? "(Undefinied)") + "'",
+                    description: ex.ToString() + ". Built query is : '" + queryString + "'.");
+            }
 
             return null;
         }
@@ -106,50 +168,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
             return new BdoLog();
         }
 
-        /// <summary>
-        /// Builds the specified simple database data query and put the result into the specified string query.
-        /// </summary>
-        /// <param name="query">The database data query to build.</param>
-        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
-        /// <param name="queryString">The output string query.</param>
-        /// <returns>The log of the build task.</returns>
-        public IBdoLog BuildQuery(
-            IBasicDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
-        {
-            queryString = "";
-
-            // we instantiate the logger and the script interpreter
-            IBdoLog log = new BdoLog();
-
-            // we check that the data query exists
-            if (query == null)
-            {
-                log.AddError(
-                    "[QUERYBUILDER_SIMPLEQUERY_DATAQUERYMISSING] Build simple query not possible because data query to interprete was missing",
-                    description: "Could not build query '" + (query.Name ?? "(Undefinied)") + "' because its data module was missing.");
-            }
-            else
-            {
-                try
-                {
-                    // we instantiate the interpretation variables containing the database provider
-
-                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-
-                    log.AddEvents(Build(query, scriptVariableSet, out queryString));
-                }
-                catch (Exception ex)
-                {
-                    log.AddError(
-                        "Error trying to build query '" + (query.Name ?? "(Undefinied)") + "'",
-                        description: ex.ToString() + ". Built query is : '" + queryString + "'.");
-                }
-            }
-
-            return log;
-        }
 
         // Builds advanced query ----------------------
 
@@ -168,51 +186,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         {
             queryString = "";
             return new BdoLog();
-        }
-
-        /// <summary>
-        /// Builds the specified advanced database data query and put the result
-        /// into the specified string query.
-        /// </summary>
-        /// <param name="query">The database data query to build.</param>
-        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
-        /// <param name="queryString">The output string query.</param>
-        /// <returns>The log of the build task.</returns>
-        public IBdoLog BuildQuery(
-            IAdvancedDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
-        {
-            queryString = "";
-            IBdoLog log = new BdoLog();
-
-            // we check that the data query exists
-            if (query == null)
-            {
-                log.AddError(
-                    "[QUERYBUILDER_SIMPLEQUERY_DATAQUERYMISSING] Build simple query not possible because data query to interprete was missing.",
-                    description: "Could not build query '" + (query.Name ?? "(Undefinied)") + "' because its data module was missing."
-                    );
-            }
-            else
-            {
-                try
-                {
-                    // we instantiate the interpretation variables containing the database provider
-
-                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-
-                    log.AddEvents(Build(query, scriptVariableSet, out queryString));
-                }
-                catch (Exception ex)
-                {
-                    log.AddError(
-                        "Error trying to build query '" + (query.Name ?? "(Undefinied)") + "'",
-                        description: ex.ToString() + ". Built query is : '" + queryString + "'.");
-                }
-            }
-
-            return log;
         }
 
         #endregion

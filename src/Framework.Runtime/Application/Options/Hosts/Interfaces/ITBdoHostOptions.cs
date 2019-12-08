@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+﻿using BindOpen.Framework.Core.Data.Depots;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
@@ -25,11 +27,11 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths ----------------------
 
         /// <summary>
-        /// Set the application folder.
+        /// Set the root folder.
         /// </summary>
-        /// <param name="appFolderPath">The application folder path.</param>
+        /// <param name="rootFolderPath">The root folder path.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetAppFolder(string appFolderPath);
+        ITBdoHostOptions<S> SetRootFolder(string rootFolderPath);
 
         /// <summary>
         /// Set the settings file.
@@ -169,5 +171,13 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// The action that is executed when the instance fails.
         /// </summary>
         Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
+
+        // Depots -------------------------------------------
+
+        /// <summary>
+        /// Adds the data store executing the specified action.
+        /// </summary>
+        /// <param name="action">The action to execute on the created data store.</param>
+        ITBdoHostOptions<S> AddDataStore(Action<IBdoDataStore> action = null);
     }
 }

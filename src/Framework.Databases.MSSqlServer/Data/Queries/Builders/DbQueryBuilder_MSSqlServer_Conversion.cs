@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
     /// <summary>
     /// This class represents a builder of database query.
     /// </summary>
-    public partial class DbQueryBuilder_MSSqlServer : DbQueryBuilder
+    internal partial class DbQueryBuilder_MSSqlServer : DbQueryBuilder
     {
         // Conversion
 

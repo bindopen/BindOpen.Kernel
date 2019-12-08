@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Carriers;
+﻿using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Runtime.Extensions.Carriers

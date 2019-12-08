@@ -7,6 +7,24 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// </summary>
     public static partial class DbQueryFactory
     {
+        /// <summary>
+        /// Creates a new stored database query.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        /// <returns>Returns a new Select basic database query</returns>
+        public static IStoredDbQuery CreateStored(IDbQuery query)
+            => CreateStored(null, query);
+
+        /// <summary>
+        /// Creates a new stored basic database query.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        /// <returns>Returns a new Select basic database query</returns>
+        public static IStoredDbQuery CreateStored(string name, IDbQuery query)
+            => new StoredDbQuery() { Name = name, Query = query, ParameterSpecSet = query?.ParameterSpecSet };
+
+
         // Delete --------------------------------
 
         /// <summary>

@@ -19,32 +19,18 @@ This package handles PostgreSQL database connections.</Description>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Framework.Databases.PostgreSql.xml</DocumentationFile>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Databases.PostgreSql.xml.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConfiguration_OleDb.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnectorFactory.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseConnector_Odbc.cs" />
-    <Compile Remove="Extensions\Connectors\DatabaseKind.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="BindOpen.Extension" />
-    <None Remove="Data\Queries\Builders\ve-27F.tmp" />
-    <None Remove="Extensions\Connectors\Connectors.index" />
-    <None Remove="Extensions\Connectors\DatabaseConnector_PostgreSql.cs~RF7702964.TMP" />
+    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="BindOpen.Extension" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
   </ItemGroup>
 
   <ItemGroup>

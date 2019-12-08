@@ -2,6 +2,7 @@
 using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Extensions.Attributes;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
 using BindOpen.Framework.Core.System.Scripting;
@@ -66,7 +67,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// Gets the database connection of this instance.
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
-        public override IDbConnection GetDbConnection()
+        public override IDbConnection GetDotNetDbConnection()
         {
             return _connection;
         }
@@ -76,9 +77,11 @@ namespace BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <returns>Returns the database builder.</returns>
-        public override void UpdateWithScope(IBdoScope scope)
+        public override IBdoConnector WithScope(IBdoScope scope)
         {
             QueryBuilder = new DbQueryBuilder_PostgreSql(scope);
+
+            return this;
         }
 
         // Open / Close ---------------------------------------

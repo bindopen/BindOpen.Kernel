@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items.Datasources;
+﻿using BindOpen.Framework.Core.Data.Depots;
+using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDatasourceDepot : IBdoTDepot<Datasource>
+    public interface IBdoDatasourceDepot : ITBdoDepot<Datasource>
     {
         /// <summary>
         /// 

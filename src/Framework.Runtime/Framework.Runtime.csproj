@@ -19,42 +19,31 @@ This package handles runtime.</Description>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.Framework.Runtime.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Runtime.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <Compile Remove="Application\Scopes\**" />
-    <EmbeddedResource Remove="Application\Scopes\**" />
-    <None Remove="Application\Scopes\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Application\Options\Hosts\BdoHostOptions.cs" />
-    <Compile Remove="Application\Services\BdoService.cs" />
-    <Compile Remove="Application\Services\BdoServiceEventHandlers.cs" />
-    <Compile Remove="Application\Services\Interfaces\IBdoService.cs" />
-    <Compile Remove="Application\Settings\Hosts\Interfaces\ITBdoHostSettings.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="BindOpen.Extension" />
-    <None Remove="Extensions\Carriers\Carriers.index" />
-    <None Remove="Extensions\Connectors\Connectors.index" />
-    <None Remove="Extensions\Entities\Entities.index" />
-    <None Remove="Extensions\Handlers\Handlers.index" />
-    <None Remove="Extensions\Metrics\Metrics.index" />
-    <None Remove="Extensions\Routines\Routines.index" />
-    <None Remove="Extensions\Scriptwords\scriptwords.index" />
-    <None Remove="Extensions\Tasks\Tasks.index" />
+    <None Remove="Extensions\Carriers\BindOpen.Carriers" />
+    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
+    <None Remove="Extensions\Entities\BindOpen.Entities" />
+    <None Remove="Extensions\Handlers\BindOpen.Handlers" />
+    <None Remove="Extensions\Metrics\BindOpen.Metrics" />
+    <None Remove="Extensions\Routines\BindOpen.Routines" />
+    <None Remove="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <None Remove="Extensions\Tasks\BindOpen.Tasks" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="BindOpen.Extension" />
+    <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
+    <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
+    <EmbeddedResource Include="Extensions\Handlers\BindOpen.Handlers" />
+    <EmbeddedResource Include="Extensions\Metrics\BindOpen.Metrics" />
+    <EmbeddedResource Include="Extensions\Routines\BindOpen.Routines" />
+    <EmbeddedResource Include="Extensions\Scriptwords\BindOpen.Scriptwords" />
+    <EmbeddedResource Include="Extensions\Tasks\BindOpen.Tasks" />
   </ItemGroup>
 
   <ItemGroup>

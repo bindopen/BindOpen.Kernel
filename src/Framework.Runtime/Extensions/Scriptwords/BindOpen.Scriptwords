@@ -321,7 +321,7 @@
       <creationDate>2017-11-01</creationDate>
       <lastModificationDate>2017-11-01</lastModificationDate>
       <description>
-        <add.value>The path of the application folder.</add.value>
+        <add.value>The path of the root folder.</add.value>
       </description>
       <kind>Variable</kind>
       <functionName>Var_ApplicationFolderPath</functionName>

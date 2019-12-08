@@ -90,9 +90,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <returns>Returns the database builder.</returns>
-        public virtual void UpdateWithScope(IBdoScope scope)
-        {
-        }
+        public virtual IBdoConnector WithScope(IBdoScope scope) => this;
 
         /// <summary>
         /// Sets the connection string with the specified string.
