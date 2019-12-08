@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using System;
@@ -9,7 +11,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// <summary>
     /// This class represents a database data query.
     /// </summary>
-    public abstract class DbQuery : DataItem, IDbQuery
+    public abstract class DbQuery : DescribedDataItem, IDbQuery
     {
         // ------------------------------------------
         // VARIABLES
@@ -35,7 +37,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Name of this instance.
         /// </summary>
-        public string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
+        public new string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
 
         /// <summary>
         /// Name of the data module of this instance.
@@ -69,6 +71,15 @@ namespace BindOpen.Framework.Databases.Data.Queries
         {
             get { return this._fields; }
             set { this._fields = new List<DbField>(value); }
+        }
+
+        /// <summary>
+        /// The parameter specification set of this instance.
+        /// </summary>
+        public DataElementSpecSet ParameterSpecSet
+        {
+            get;
+            set;
         }
 
         #endregion
@@ -182,6 +193,38 @@ namespace BindOpen.Framework.Databases.Data.Queries
                     fields.Add(field);
             }
             return fields;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Defines the parameter specifications of this instance.
+        /// </summary>
+        /// <param name="parameterSet">The set of parameter specifications to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public IDbQuery WithParameters(DataElementSpecSet parameterSpecSet)
+        {
+            ParameterSpecSet = parameterSpecSet;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Defines the parameter specifications of this instance.
+        /// </summary>
+        /// <param name="parameterSpecs">The set of parameter specifications to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public IDbQuery WithParameters(params DataElementSpec[] parameterSpecs)
+        {
+            ParameterSpecSet = new DataElementSpecSet(parameterSpecs);
+
+            return this;
         }
 
         #endregion

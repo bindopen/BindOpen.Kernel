@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Queries.Builders;
+using BindOpen.Framework.Core.Data.Depots.Datasources;
 
 namespace BindOpen.Framework.Databases.Extensions.Scriptwords
 {
@@ -766,7 +766,7 @@ namespace BindOpen.Framework.Databases.Extensions.Scriptwords
             {
                 value1 = value1.GetValueFromText();
 
-                string instanceName = scope?.DepotSet?.Get<IBdoDatasourceDepot>()?.GetInstanceName(value1);
+                string instanceName = scope?.DataStore?.Get<IBdoDatasourceDepot>()?.GetInstanceName(value1);
                 if (string.IsNullOrEmpty(instanceName) || instanceName == StringHelper.__NoneString)
                     instanceName = value1;
 

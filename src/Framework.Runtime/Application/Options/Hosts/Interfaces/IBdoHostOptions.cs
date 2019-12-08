@@ -1,5 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+﻿using BindOpen.Framework.Core.Data.Depots;
+using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
@@ -26,9 +28,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Paths ----------------------
 
         /// <summary>
-        /// The application folder path.
+        /// The root folder path.
         /// </summary>
-        string AppFolderPath { get; }
+        string RootFolderPath { get; }
 
         /// <summary>
         /// The settings file path.
@@ -81,5 +83,12 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// </summary>
         /// <typeparam name="T">The host settings class to consider.</typeparam>
         T GetSettings<T>() where T : class, IBdoHostSettings;
+
+        // Depots ----------------------
+
+        /// <summary>
+        /// The depot sets of this instance.
+        /// </summary>
+        IBdoDataStore DataStore { get; }
     }
 }

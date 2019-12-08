@@ -16,22 +16,22 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Initializes the specified runtime folder.
         /// </summary>
-        /// <param name="appFolderPath">The setup action to consider.</param>
+        /// <param name="rootFolderPath">The setup action to consider.</param>
         /// <param name="mustRuntimeFolderBeCreated">Indicates whether the runtime folder must be created.</param>
         /// <param name="runtimeFolderPath">The setup action to consider.</param>
         /// <returns></returns>
-        public static IBdoLog InitBindOpenFolders(string appFolderPath, bool mustRuntimeFolderBeCreated = false, string runtimeFolderPath = null)
+        public static IBdoLog InitBindOpenFolders(string rootFolderPath, bool mustRuntimeFolderBeCreated = false, string runtimeFolderPath = null)
         {
             IBdoLog log = new BdoLog();
 
-            if (!string.IsNullOrEmpty(appFolderPath) || mustRuntimeFolderBeCreated)
+            if (!string.IsNullOrEmpty(rootFolderPath) || mustRuntimeFolderBeCreated)
             {
                 var options = new TBdoHostOptions<BdoDefaultHostSettings>();
-                options.SetAppFolder(appFolderPath);
+                options.SetRootFolder(rootFolderPath);
                 options.SetAppSettings(p => { if (runtimeFolderPath != null) { p.SetRuntimeFolder(runtimeFolderPath); } });
                 options.Update();
 
-                if (!string.IsNullOrEmpty(appFolderPath))
+                if (!string.IsNullOrEmpty(rootFolderPath))
                 {
                     // we create the application settings file (bindopen.xml)
                     options.AppSettings.Configuration?.SaveXml(options.AppSettingsFilePath, log);

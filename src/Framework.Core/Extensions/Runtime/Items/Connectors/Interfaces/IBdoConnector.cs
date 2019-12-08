@@ -46,6 +46,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
         /// Updates the instance considering the specified scope.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        void UpdateWithScope(IBdoScope scope);
+        IBdoConnector WithScope(IBdoScope scope);
     }
 }

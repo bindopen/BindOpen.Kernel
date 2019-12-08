@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
@@ -270,7 +269,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             _scope = BdoScopeFactory.CreateScope();
             _scope.Context.AddSystemItem("host", this);
-            _scope.DepotSet.Add(new BdoDatasourceDepot());
 
             // we initialize the settings
 

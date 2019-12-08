@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
@@ -176,8 +175,8 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             string path = null;
             switch (pathKind)
             {
-                case BdoHostPathKind.AppFolder:
-                    path = Options?.AppFolderPath;
+                case BdoHostPathKind.RootFolder:
+                    path = Options?.RootFolderPath;
                     break;
                 case BdoHostPathKind.ConfigurationFile:
                     path = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
@@ -240,14 +239,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     path = Options?.AppSettings?.RuntimeFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.AppFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
+                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
                     }
                     break;
                 case BdoHostPathKind.AppSettingsFile:
                     path = Options.AppSettingsFilePath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.AppFolder) + BdoDefaultHostPaths.__DefaultAppSettingsFileName;
+                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultAppSettingsFileName;
                     }
                     break;
                 case BdoHostPathKind.TemporaryFolder:
@@ -438,18 +437,21 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                             logger?.DeleteExpiredLogs(logsExpirationDayNumber);
                         }
 
-                        // we populate the data source depot from settings
+                        // we load the data store
 
-                        var depot = _scope.DepotSet.Get<IBdoDatasourceDepot>();
-                        if (depot != null)
+                        _scope.DataStore = Options?.DataStore;
+                        subLog = log.AddSubLog(title: "Loading data store...", eventKind: EventKinds.Message);
+                        if(_scope.DataStore==null)
                         {
-                            depot.ClearItems();
-                            if (_scope?.ExtensionStore != null && Options?.Settings?.HostConfiguration?.Datasources != null)
+                            subLog.AddMessage(title: "No data store registered");
+                        }
+                        else
+                        {
+                            _scope.DataStore.LoadLazy(subLog);
+
+                            if (!subLog.HasErrorsOrExceptions())
                             {
-                                foreach (Datasource dataSource in Options?.Settings?.HostConfiguration?.Datasources)
-                                {
-                                    depot.Add(dataSource);
-                                }
+                                subLog.AddMessage("Data store loaded (" + _scope.DataStore.Depots.Count + " depots added)");
                             }
                         }
                     }

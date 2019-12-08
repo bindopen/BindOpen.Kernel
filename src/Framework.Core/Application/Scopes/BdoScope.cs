@@ -7,6 +7,7 @@ using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using System;
+using BindOpen.Framework.Core.Data.Stores;
 
 namespace BindOpen.Framework.Core.Application.Scopes
 {
@@ -42,9 +43,9 @@ namespace BindOpen.Framework.Core.Application.Scopes
         public IBdoDataContext Context { get; set; } = null;
 
         /// <summary>
-        /// The set of depots of this instance.
+        /// The data store of this instance.
         /// </summary>
-        public IBdoDepotSet DepotSet { get; set; } = null;
+        public IBdoDataStore DataStore { get; set; } = null;
 
         #endregion
 
@@ -67,7 +68,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
             Context = new BdoDataContext();
             Interpreter = new BdoScriptInterpreter(this);
 
-            DepotSet = new BdoDepotSet();
+            DataStore = null;
         }
 
         #endregion
@@ -84,13 +85,13 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="isExtensionStoreChecked">Indicates whether the extension item definition store extistence is chekced.</param>
         /// <param name="isScriptInterpreterChecked">Indicates whether the script interpreter extistence is chekced.</param>
         /// <param name="isDataContextChecked">Indicates whether the data context extistence is chekced.</param>
-        /// <param name="isDepotSetChecked">Indicates whether the depot set extistence is chekced.</param>
+        /// <param name="isDataStoreChecked">Indicates whether the data store extistence is chekced.</param>
         /// <returns>The log of check log.</returns>
         public IBdoLog Check(
             bool isExtensionStoreChecked = false,
             bool isScriptInterpreterChecked = false,
             bool isDataContextChecked = false,
-            bool isDepotSetChecked = false)
+            bool isDataStoreChecked = false)
         {
             IBdoLog log = new BdoLog();
 
@@ -100,7 +101,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
                 log.AddError(title: "Script interpreter missing", description: "No script interpreter specified.");
             if (isDataContextChecked && Context == null)
                 log.AddError(title: "Data context missing", description: "No data context specified.");
-            if (isDepotSetChecked && DepotSet == null)
+            if (isDataStoreChecked && DataStore == null)
                 log.AddError(title: "Depot set missing", description: "No depot set specified.");
 
             return log;
@@ -147,7 +148,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
         public void Clear()
         {
             Context?.Clear();
-            DepotSet?.Clear();
+            DataStore?.Clear();
             ExtensionStore?.Clear();
         }
 

@@ -19,57 +19,18 @@ This package provides core classes of the framework.</Description>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>BindOpen.Framework.Core.xml</DocumentationFile>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Core.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Framework.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Application\Commands\**" />
-    <Compile Remove="Application\Configuration\Factories\**" />
-    <Compile Remove="Data\Elements\Handlers\**" />
-    <Compile Remove="Data\Items\Handlers\**" />
-    <Compile Remove="Data\Items\Strings\**" />
-    <Compile Remove="Extensions\Definition\Dictionaries\Libraries\**" />
-    <Compile Remove="Extensions\Runtime\Items\Metrics\**" />
-    <Compile Remove="Extensions\Runtime\Libraries\**" />
-    <EmbeddedResource Remove="Application\Commands\**" />
-    <EmbeddedResource Remove="Application\Configuration\Factories\**" />
-    <EmbeddedResource Remove="Data\Elements\Handlers\**" />
-    <EmbeddedResource Remove="Data\Items\Handlers\**" />
-    <EmbeddedResource Remove="Data\Items\Strings\**" />
-    <EmbeddedResource Remove="Extensions\Definition\Dictionaries\Libraries\**" />
-    <EmbeddedResource Remove="Extensions\Runtime\Items\Metrics\**" />
-    <EmbeddedResource Remove="Extensions\Runtime\Libraries\**" />
     <None Remove="Application\Commands\**" />
-    <None Remove="Application\Configuration\Factories\**" />
-    <None Remove="Data\Elements\Handlers\**" />
-    <None Remove="Data\Items\Handlers\**" />
-    <None Remove="Data\Items\Strings\**" />
-    <None Remove="Extensions\Definition\Dictionaries\Libraries\**" />
-    <None Remove="Extensions\Runtime\Items\Metrics\**" />
-    <None Remove="Extensions\Runtime\Libraries\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\Definition\Dictionaries\Interfaces\ITBdoExtensionItemIndex.cs" />
-    <Compile Remove="Extensions\Definition\Dictionaries\Scriptwords\Interfaces\IScriptWordIndex.cs" />
-    <Compile Remove="Extensions\Definition\Dictionaries\Scriptwords\BdoScriptwordIndex.cs" />
-    <Compile Remove="Extensions\Definition\Dictionaries\TBdoExtensionItemIndex.cs" />
-    <Compile Remove="System\Assemblies\References\BdoExtensionReference.cs" />
-    <Compile Remove="System\Assemblies\References\Interfaces\IBdoExtensionReference.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Application\Configuration\Factories\ConfigurationLoader.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Elements\Schema\Interfaces\" />
-    <Folder Include="Extensions\Runtime\Items\Metrics\" />
+    <Compile Remove="Data\Items\Attributes\ParameterAttribute.cs" />
+    <Compile Remove="Data\Items\Attributes\ScalarAttribute.cs" />
   </ItemGroup>
 
 </Project>

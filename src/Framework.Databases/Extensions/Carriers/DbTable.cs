@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System;
 using System.Xml.Serialization;
@@ -71,6 +70,28 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         // ------------------------------------------
 
         #region Mutators
+
+        /// <summary>
+        /// Sets the specified data module.
+        /// </summary>
+        /// <param name="dataModule">The data module to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbTable WithDataModule(string dataModule)
+        {
+            DataModule = dataModule;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified schema.
+        /// </summary>
+        /// <param name="schema">The schema to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbTable WithSchema(string schema)
+        {
+            Schema = schema;
+            return this;
+        }
 
         /// <summary>
         /// Sets the specified alias.

@@ -25,26 +25,6 @@ This package conducts on-demand tests before they are implemented in the unit te
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="app_data\**" />
-    <Compile Remove="bin\Debug\netcoreapp3.0\run\**" />
-    <Compile Remove="lib\**" />
-    <Compile Remove="runtime\**" />
-    <EmbeddedResource Remove="app_data\**" />
-    <EmbeddedResource Remove="bin\Debug\netcoreapp3.0\run\**" />
-    <EmbeddedResource Remove="lib\**" />
-    <EmbeddedResource Remove="runtime\**" />
-    <None Remove="app_data\**" />
-    <None Remove="bin\Debug\netcoreapp3.0\run\**" />
-    <None Remove="lib\**" />
-    <None Remove="runtime\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Settings\TestArguments.cs" />
-    <Compile Remove="Settings\TestTask.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 

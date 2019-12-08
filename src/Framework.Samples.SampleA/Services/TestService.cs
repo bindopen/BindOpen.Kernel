@@ -1,7 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements.Sets;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
-using BindOpen.Framework.Runtime.Application.Hosts;
+using BindOpen.Framework.Databases.Data.Depots.DbQueries;
+using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using System;
@@ -14,32 +15,26 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         {
             base.Process(log);
 
-            BdoHostFactory.InitBindOpenFolders(@"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test", true, @"W:\repos\BindOpen.Framework\src\Framework.Samples.SampleA\output.test\out");
+            var connector = Host.Scope.CreateConnector<DatabaseConnector_MSSqlServer>();
 
-            var element = ElementFactory.CreateScalar(Core.Data.Common.DataValueType.Boolean, false);
-
-            Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.UpdateMyTable(new DbMyTable() { Name = "nameA" }, null), null, out string sql4));
-            Console.WriteLine(sql4);
-
-            Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.GetMyTables("", null), null, out string sql1));
-
+            var sql1 = connector.GetSqlText(Queries.UpdateMyTable(new DbMyTable() { Name = "nameA" }, null), null, log);
             Console.WriteLine(sql1);
 
-            Log.Append(
-            new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                Queries.GetMyTable("name", null), null, out string sql2));
-
+            var sql2 = connector.GetSqlText(Queries.GetMyTables("", null), null, log);
             Console.WriteLine(sql2);
 
-            Log.Append(
-                new DbQueryBuilder_MSSqlServer(Host.Scope).BuildQuery(
-                    Queries.DeleteMyTable("name", null), null, out string sql3));
-
+            var sql3 = connector.GetSqlText(Queries.GetMyTable("name", null), null, log);
             Console.WriteLine(sql3);
+
+            var depot = Host.Scope.GetDbQueryDepot();
+
+            string sql4 = connector.GetSqlText(
+                depot.GetQuery("delete_table"), ElementSetFactory.Create("mymodule", "myid", "myname"), null, Log);
+            Console.WriteLine(sql4);
+
+            string sql12 = connector.GetSqlText(
+                depot.GetQuery("delete_table"), ElementSetFactory.Create("mymodule", "myid", "myname"), null, Log);
+            Console.WriteLine(sql12);
 
             return this;
         }

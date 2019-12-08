@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         public static DbField Create(
-            string name,
+            string name = null,
             string tableName = null,
             string schema = null,
             string dataModule = null)
@@ -239,6 +239,28 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
             var field = Create(name, tableName, schema, dataModule);
             field.Value = otherField.ToDataExpression();
             return field;
+        }
+
+        // As All
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="schema">The schema to consider.</param>
+        /// <param name="dataModule">The data module to consider.</param>
+        public static DbField CreateAsAll(
+            string tableName = null,
+            string schema = null,
+            string dataModule = null)
+        {
+            return new DbField()
+            {
+                Name = null,
+                DataTable = tableName,
+                Schema = schema,
+                DataModule = dataModule
+            };
         }
     }
 }

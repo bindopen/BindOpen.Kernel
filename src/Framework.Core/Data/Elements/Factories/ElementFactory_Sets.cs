@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements.Attributes;
 using BindOpen.Framework.Core.Data.Elements.Sets;
 using BindOpen.Framework.Core.Extensions.Attributes;
 

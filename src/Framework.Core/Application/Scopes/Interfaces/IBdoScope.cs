@@ -8,6 +8,7 @@ using BindOpen.Framework.Core.System.Assemblies.References;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using System;
+using BindOpen.Framework.Core.Data.Stores;
 
 namespace BindOpen.Framework.Core.Application.Scopes
 {
@@ -27,14 +28,14 @@ namespace BindOpen.Framework.Core.Application.Scopes
         IBdoExtensionStore ExtensionStore { get; set; }
 
         /// <summary>
+        /// The data store of this instance.
+        /// </summary>
+        IBdoDataStore DataStore { get; set; }
+
+        /// <summary>
         /// The data context.
         /// </summary>
         IBdoDataContext Context { get; set; }
-
-        /// <summary>
-        /// The depots of this instance.
-        /// </summary>
-        IBdoDepotSet DepotSet { get; set; }
 
         /// <summary>
         /// The script interpreter.
@@ -57,13 +58,13 @@ namespace BindOpen.Framework.Core.Application.Scopes
         /// <param name="isExtensionStoreChecked"></param>
         /// <param name="isScriptInterpreterChecked"></param>
         /// <param name="isDataContextChecked"></param>
-        /// <param name="isDepotSetChecked"></param>
+        /// <param name="isDataStoreChecked"></param>
         /// <returns></returns>
         IBdoLog Check(
             bool isExtensionStoreChecked = false,
             bool isScriptInterpreterChecked = false,
             bool isDataContextChecked = false,
-            bool isDepotSetChecked = false);
+            bool isDataStoreChecked = false);
 
         /// <summary>
         /// Loads the specified extensions.

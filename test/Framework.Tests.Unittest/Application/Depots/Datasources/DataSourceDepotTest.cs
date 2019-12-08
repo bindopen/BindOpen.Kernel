@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Items.Datasources;
-using BindOpen.Framework.Core.Extensions.Runtime;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Core.Data.Depots.Datasources;
 using NUnit.Framework;
 using System.IO;
 
@@ -36,7 +35,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
                         ElementFactory.CreateScalar("password", "passwordA"))));
         }
 
-        public void TestDatasourceDepotSet(BdoDatasourceDepot depot)
+        public void TestDatasourceDataStore(BdoDatasourceDepot depot)
         {
             Assert.That(
                 depot.HasItem("smtp_default")
@@ -46,9 +45,9 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         }
 
         [Test]
-        public void TestCreateDatasourceDepotSet()
+        public void TestCreateDatasourceDataStore()
         {
-            TestDatasourceDepotSet(_dataSourceDepot);
+            TestDatasourceDataStore(_dataSourceDepot);
         }
 
         [Test]
@@ -83,7 +82,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + xml);
 
-            TestDatasourceDepotSet(dataSourceDepot);
+            TestDatasourceDataStore(dataSourceDepot);
         }
     }
 }

@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Items.Datasources;
 using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Carriers;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Databases.Data.Queries;
 using System;
@@ -220,6 +219,39 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         }
 
         /// <summary>
+        /// Sets the specified data module.
+        /// </summary>
+        /// <param name="dataModule">The data module to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithDataModule(string dataModule)
+        {
+            DataModule = dataModule;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified data table.
+        /// </summary>
+        /// <param name="dataTable">The data table to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithDataTable(string dataTable)
+        {
+            DataTable = dataTable;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified schema.
+        /// </summary>
+        /// <param name="schema">The schema to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithSchema(string schema)
+        {
+            Schema = schema;
+            return this;
+        }
+
+        /// <summary>
         /// Sets the specified alias.
         /// </summary>
         /// <param name="alias">The alias to consider.</param>
@@ -245,7 +277,7 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
         /// Indicates that this instance represents all fields.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        public DbField WithAll()
+        public DbField AsAll()
         {
             IsAll = true;
             return this;

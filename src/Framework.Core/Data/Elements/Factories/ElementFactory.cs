@@ -103,43 +103,5 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             return element;
         }
-
-        ///// <summary>
-        ///// Creates a data element of the specified kind.
-        ///// </summary>
-        ///// <param name="type">The value type to consider.</param>
-        ///// <param name="name">The name to consider.</param>
-        ///// <param name="scope">The scope to consider.</param>
-        ///// <param name="specification">The specification to consider.</param>
-        //public static IDataElement Create(
-        //    string name,
-        //    Type type,
-        //    IBdoScope scope = null,
-        //    IDataElementSpec specification = null)
-        //{
-        //    if (type == null) return null;
-
-        //    IDataElement element = Create(name, type.GetValueType(), scope, specification);
-
-        //    if (element?.Specification != null)
-        //    {
-        //        element.Specification.DesignStatement.ControlType = type.GetDefaultControlType();
-
-        //        if (type.IsArray)
-        //        {
-        //            element.Specification.MaximumItemNumber = -1;
-        //        }
-        //        else if (type.IsEnum)
-        //        {
-        //            element.Specification.ConstraintStatement.AddConstraint(
-        //               null,
-        //               "standard$" + KnownRoutineKind.ItemMustBeInList,
-        //               new DataElementSet(
-        //                   CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
-        //        }
-        //    }
-
-        //    return element;
-        //}
     }
 }

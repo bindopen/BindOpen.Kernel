@@ -7,7 +7,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
     /// <summary>
     /// This class represents a builder of database query.
     /// </summary>
-    public partial class DbQueryBuilder_PostgreSql : DbQueryBuilder
+    internal partial class DbQueryBuilder_PostgreSql : DbQueryBuilder
     {
         // Aggregate
 
