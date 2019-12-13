@@ -1,13 +1,11 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Expression;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Expression;
 
 namespace BindOpen.Framework.Core.Data.Conditions
 {
     /// <summary>
     /// This class represents a script condition.
     /// </summary>
-    [Serializable()]
     [XmlType("ScriptBusinessCondition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "script.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ScriptCondition : Condition, IScriptCondition

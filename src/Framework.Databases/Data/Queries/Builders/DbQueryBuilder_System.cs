@@ -13,7 +13,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Evaluates the script word $SQLNEWGUID.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_NewGuid()
+        public virtual string GetSqlText_NewGuid()
         {
             return "";
         }
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Evaluates the script word $SQLRANDOM.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Random()
+        public virtual string GetSqlText_Random()
         {
             return "";
        }

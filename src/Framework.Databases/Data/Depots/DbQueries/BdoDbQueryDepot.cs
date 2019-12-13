@@ -111,7 +111,8 @@ namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
 
                                 if (query != null)
                                 {
-                                    Add(DbQueryFactory.CreateStored(queryName, query) as StoredDbQuery);
+                                    StoredDbQuery storedQuery = new StoredDbQuery(query, queryName);
+                                    Add(storedQuery);
                                 }
                             }
                         }

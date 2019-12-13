@@ -20,8 +20,8 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
 
         #region Variables
 
-        private String _CurrentLogId = null;
-        private String _CurrentNode = null;
+        private string _CurrentLogId = null;
+        private string _CurrentNode = null;
 
         #endregion
 
@@ -152,7 +152,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
             return st;
         }
 
-        private String ToString(DataElement element, String indent = "")
+        private string ToString(DataElement element, String indent = "")
         {
             String st = "";
             if (element != null)

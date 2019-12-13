@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_If(string condition, string value1, string value2)
+        public virtual string GetSqlText_If(string condition, string value1, string value2)
         {
             return "";
         }
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="value1">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Not(string value1)
+        public virtual string GetSqlText_Not(string value1)
         {
             return "";
         }
@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Or(object[] parameters)
+        public virtual string GetSqlText_Or(object[] parameters)
         {
             return "";
         }
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_And(object[] parameters)
+        public virtual string GetSqlText_And(object[] parameters)
         {
             return "";
         }
@@ -56,7 +56,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Xor(object[] parameters)
+        public virtual string GetSqlText_Xor(object[] parameters)
         {
             return "";
         }

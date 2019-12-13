@@ -1,13 +1,13 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.Data.Depots.Datasources;
+using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Connections
 {
     /// <summary>
     /// This class represents a connection service.
     /// </summary>
-    public static class BdoConnectionFactory
+    public static class BdoDbConnectionFactory
     {
         // Create -------------------------------------
 
@@ -25,7 +25,8 @@ namespace BindOpen.Framework.Core.Data.Connections
             IBdoDatasourceDepot depot,
             string dataSourceName,
             string connectorDefinitionUniqueId,
-            IBdoLog log = null) where T : IBdoConnection, new()
+            IBdoLog log = null)
+            where T : class, IBdoConnection
         {
             if (log == null) log = new BdoLog();
 
@@ -54,7 +55,8 @@ namespace BindOpen.Framework.Core.Data.Connections
             this IBdoScope scope,
             string dataSourceName,
             string connectorDefinitionUniqueId,
-            IBdoLog log = null) where T : IBdoConnection, new()
+            IBdoLog log = null)
+            where T : class, IBdoConnection
         {
             return scope.Open<T>(null, dataSourceName, connectorDefinitionUniqueId, log);
         }

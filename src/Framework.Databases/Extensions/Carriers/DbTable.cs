@@ -1,7 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
@@ -9,7 +8,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     /// <summary>
     /// This class represents a database data table.
     /// </summary>
-    [Serializable()]
     [XmlType("DbTable", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dbTable", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [BdoCarrier(

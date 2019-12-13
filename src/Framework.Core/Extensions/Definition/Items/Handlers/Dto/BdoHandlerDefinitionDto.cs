@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Items
@@ -7,7 +6,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents a handler definition.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoHandlerDefinition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataHandler.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoHandlerDefinitionDto : BdoExtensionItemDefinitionDto, IBdoHandlerDefinitionDto

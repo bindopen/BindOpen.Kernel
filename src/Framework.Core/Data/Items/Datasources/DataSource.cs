@@ -3,7 +3,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -13,7 +12,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    [Serializable()]
     [XmlType("Datasource", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Datasource : NamedDataItem, IDatasource

@@ -9,7 +9,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents a routine definition.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoRoutineDefinitionDto", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "routine.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoRoutineDefinitionDto : BdoExtensionItemDefinitionDto, IBdoRoutineDefinitionDto

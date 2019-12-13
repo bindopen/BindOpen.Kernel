@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Databases.Extensions.Common;
+﻿using BindOpen.Framework.Databases.Extensions.Common;
 
 namespace BindOpen.Framework.Databases.Extensions.Connectors
 {
@@ -7,7 +6,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
     /// <summary>
     /// This enumeration lists all the possible kinds of database connectors.
     /// </summary>
-    public enum DatabaseConnectorKind
+    public enum BdoDbConnectorKind
     {
         /// <summary>
         /// None.
@@ -57,7 +56,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
         /// </summary>
         /// <param name="connectorKind_database">The connector kind to consider.</param>
         /// <returns>The result object.</returns>
-        public static string GetUniqueName(this DatabaseConnectorKind connectorKind_database)
+        public static string GetUniqueName(this BdoDbConnectorKind connectorKind_database)
         {
             return connectorKind_database.ToString().ToLower().GetUniqueName_database();
         }

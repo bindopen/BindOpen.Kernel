@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -9,7 +8,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoExtensionItemDefinition", Namespace = "https://bindopen.org/xsd")]
     public abstract class BdoExtensionItemDefinitionDto : IndexedDataItem, IBdoExtensionItemDefinitionDto
     {

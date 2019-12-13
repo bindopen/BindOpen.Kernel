@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {

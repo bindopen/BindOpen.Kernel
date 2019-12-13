@@ -9,7 +9,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoExtensionItemGroup", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "extension.item.group", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoExtensionItemGroup : DescribedDataItem, IBdoExtensionItemGroup
@@ -83,5 +82,4 @@ namespace BindOpen.Framework.Core.Extensions.Runtime
 
         #endregion
     }
-
 }

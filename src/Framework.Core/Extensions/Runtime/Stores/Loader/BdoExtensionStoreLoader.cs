@@ -17,9 +17,9 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
     /// </summary>
     internal partial class BdoExtensionStoreLoader : DataItem, IBdoExtensionStoreLoader
     {
-        private AppDomain _appDomain;
-        private IBdoExtensionStore _store;
-        private IExtensionLoadOptions _loadOptions;
+        private readonly AppDomain _appDomain;
+        private readonly IBdoExtensionStore _store;
+        private readonly IExtensionLoadOptions _loadOptions;
 
         /// <summary>
         /// Initializes a new instance of BdoExtensionStoreLoader the class.
@@ -207,5 +207,26 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
 
             return log;
         }
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _loadOptions?.Dispose();
+            }
+        }
+
+        #endregion   
     }
 }

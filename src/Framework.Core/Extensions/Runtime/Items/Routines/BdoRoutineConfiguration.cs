@@ -2,7 +2,6 @@
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
 using BindOpen.Framework.Core.System.Diagnostics.Events;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Runtime.Items
@@ -10,7 +9,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
     /// <summary>
     /// This class represents a routine configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("RoutineConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("routine", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoRoutineConfiguration

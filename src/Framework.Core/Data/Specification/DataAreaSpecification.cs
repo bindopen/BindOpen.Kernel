@@ -1,14 +1,11 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Specification;
 
 namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// This class represents a data area specification.
     /// </summary>
-    [Serializable()]
     [XmlType("DataAreaSpecification", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "areaSpecification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataAreaSpecification : DataSpecification, IDataAreaSpecification

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
+using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Attributes;
@@ -30,6 +31,12 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
         /// </summary>
         [DetailProperty("connectionString")]
         public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// The connection string of this instance.
+        /// </summary>
+        [DetailProperty("connectionTimeOut")]
+        public int ConnectionTimeOut { get; set; }
 
         #endregion
 
@@ -110,30 +117,13 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
 
         #region Management
 
-        // Open / Close -----------------------------
-
         /// <summary>
-        /// Opens a connection.
+        /// Creates a new connection.
         /// </summary>
-        public virtual IBdoLog Open()
+        /// <param name="log">The log to consider.</param>
+        public virtual IBdoConnection CreateConnection(IBdoLog log = null)
         {
-            return new BdoLog();
-        }
-
-        /// <summary>
-        /// Closes the existing connection.
-        /// </summary>
-        public virtual IBdoLog Close()
-        {
-            return new BdoLog();
-        }
-
-        /// <summary>
-        /// Indicates whether the instance is connected.
-        /// </summary>
-        public virtual bool IsConnected()
-        {
-            return false;
+            return null;
         }
 
         #endregion

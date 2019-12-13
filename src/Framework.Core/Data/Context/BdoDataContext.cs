@@ -12,7 +12,6 @@ namespace BindOpen.Framework.Core.Data.Context
     /// <summary>
     /// This class represents a data context. A data context contains all the data related to a user session.
     /// </summary>
-    [Serializable()]
     public class BdoDataContext : DataItem, IBdoDataContext
     {
         // --------------------------------------------------

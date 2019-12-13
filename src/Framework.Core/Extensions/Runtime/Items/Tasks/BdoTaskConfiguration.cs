@@ -15,7 +15,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
     /// <summary>
     /// This class represents a task configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoTaskConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "task", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoTaskConfiguration
@@ -281,6 +280,28 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
             }
 
             return log;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _inputDetail?.Dispose();
+                _outputDetail?.Dispose();
+            }
         }
 
         #endregion

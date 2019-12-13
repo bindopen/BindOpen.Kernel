@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Core.Data.Connections
     public static class BdoConnectionFactory
     {
         // Create -------------------------------------
-        
+
         /// <summary>
         /// Creates a connector.
         /// </summary>
@@ -25,14 +25,12 @@ namespace BindOpen.Framework.Core.Data.Connections
             IDatasource dataSource,
             string connectorDefinitionUniqueId,
             IBdoLog log = null)
-            where T : IBdoConnection, new()
+            where T : class, IBdoConnection
         {
             if (log == null) log = new BdoLog();
 
             if (dataSource == null)
                 log.AddError("Data source missing");
-            //else if (string.IsNullOrEmpty(connectorDefinitionUniqueId))
-            //    log.AddError("Connection definition missing");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId) && dataSource.HasConfiguration(connectorDefinitionUniqueId))
                 log.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
@@ -54,7 +52,7 @@ namespace BindOpen.Framework.Core.Data.Connections
             this IBdoScope scope,
             IBdoConnectorConfiguration configuration,
             IBdoLog log = null)
-            where T : IBdoConnection, new()
+            where T : class, IBdoConnection
         {
             IBdoLog subLog = new BdoLog();
 
@@ -65,15 +63,15 @@ namespace BindOpen.Framework.Core.Data.Connections
             }
             else if (scope != null && !subLog.Append(scope.Check(true)).HasErrorsOrExceptions())
             {
-                connection = new T();
-                connection.SetConnector(scope.CreateConnector(configuration, null, subLog));
+                var connector = scope.CreateConnector(configuration, null, subLog);
 
-                if (connection.Connector == null)
+                if (connector == null)
                 {
                     connection = default;
                 }
                 else
                 {
+                    connection = connector.CreateConnection(log) as T;
                     subLog.Append(connection.Open());
                 }
             }
@@ -81,22 +79,6 @@ namespace BindOpen.Framework.Core.Data.Connections
             (log ?? (log = new BdoLog())).Append(subLog);
 
             return connection;
-        }
-
-        // Close -------------------------------------
-
-        /// <summary>
-        /// Closes the specified connector.
-        /// </summary>
-        /// <param name="connector">The connector to consider.</param>
-        /// <returns>Returns the log of execution.</returns>
-        public static IBdoLog Close(this IBdoConnection connector)
-        {
-            IBdoLog log = new BdoLog();
-
-            connector?.Close();
-
-            return log;
         }
     }
 }

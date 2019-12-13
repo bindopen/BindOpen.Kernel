@@ -8,4 +8,5 @@
   <scalar name="password" />
   <scalar name="databaseKind" value="None" />
   <scalar name="connectionString" value="&lt;connectionString&gt;" />
+  <scalar name="connectionTimeOut" valueType="Integer" value="0" />
 </connector>

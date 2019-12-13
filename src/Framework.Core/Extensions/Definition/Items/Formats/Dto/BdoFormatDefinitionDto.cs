@@ -7,7 +7,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents the format definition.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoFormatDefinition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "format.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoFormatDefinitionDto : BdoExtensionItemDefinitionDto, IBdoFormatDefinitionDto

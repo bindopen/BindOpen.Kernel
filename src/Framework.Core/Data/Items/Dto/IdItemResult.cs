@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items
@@ -7,7 +6,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This class represents the ID item result.
     /// </summary>
-    [Serializable()]
     [XmlType("IdItemResult", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("idItemResult", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IdItemResult

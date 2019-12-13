@@ -1,7 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -11,7 +10,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
     /// <summary>
     /// This class represents the extension loading configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("ExtensionLoadOptions", Namespace = "https://bindopen.org/xsd")]
     public class ExtensionLoadOptions : DataItem, IExtensionLoadOptions
     {

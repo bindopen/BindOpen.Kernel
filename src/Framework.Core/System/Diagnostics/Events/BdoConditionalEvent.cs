@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Events
 {
     /// <summary>
     /// This class represents a conditional event.
     /// </summary>
-    [Serializable()]
     [XmlType("ConditionalEvent", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoConditionalEvent : BdoEvent, IBdoConditionalEvent
@@ -57,7 +55,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
             BdoEventCriticality criticality = BdoEventCriticality.None,
             String description = "",
             DateTime? date = null,
-            String id = null) : base(kind,title, criticality,description, date,id)
+            String id = null) : base(kind, title, criticality, description, date, id)
         {
             this.ConditionScript = conditionScript;
         }

@@ -81,6 +81,15 @@ namespace BindOpen.Framework.Databases.Data.Queries
             set;
         }
 
+        /// <summary>
+        /// The parameters of this instance.
+        /// </summary>
+        public DataElementSet ParameterSet
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -205,7 +214,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Defines the parameter specifications of this instance.
         /// </summary>
-        /// <param name="parameterSet">The set of parameter specifications to consider.</param>
+        /// <param name="parameterSpecSet">The set of parameter specifications to consider.</param>
         /// <returns>Return this instance.</returns>
         public IDbQuery WithParameters(DataElementSpecSet parameterSpecSet)
         {
@@ -219,11 +228,31 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="parameterSpecs">The set of parameter specifications to consider.</param>
         /// <returns>Return this instance.</returns>
-        public IDbQuery WithParameters(params DataElementSpec[] parameterSpecs)
+        public IDbQuery WithParameters(params IDataElementSpec[] parameterSpecs)
         {
             ParameterSpecSet = new DataElementSpecSet(parameterSpecs);
 
             return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+            }
         }
 
         #endregion

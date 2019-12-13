@@ -8,7 +8,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [Serializable()]
     [XmlType("DataKeyValue", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "add.value", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataKeyValue : MarshalByRefObject, IDataKeyValue
@@ -127,7 +126,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Disposes this instance.
         /// </summary>
-        public virtual void Dispose()
+        public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);

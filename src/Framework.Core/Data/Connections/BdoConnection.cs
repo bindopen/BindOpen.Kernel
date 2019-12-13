@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System.Data;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Connections
@@ -8,8 +9,6 @@ namespace BindOpen.Framework.Core.Data.Connections
     /// <summary>
     /// This class represents a connection.
     /// </summary>
-    [XmlType("BdoConnection", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class BdoConnection : DataItem, IBdoConnection
     {
         // ------------------------------------------
@@ -18,7 +17,10 @@ namespace BindOpen.Framework.Core.Data.Connections
 
         #region Variables
 
-        private IBdoConnector _connector = null;
+        /// <summary>
+        /// The connector of this instance.
+        /// </summary>
+        protected IBdoConnector _connector = null;
 
         #endregion
 
@@ -32,34 +34,22 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// The connector of this instance.
         /// </summary>
         [XmlIgnore()]
-        public IBdoConnector Connector
-        {
-            get => _connector;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
+        public IBdoConnector Connector => _connector;
 
         /// <summary>
-        /// Instantiates a new instance of the Connection class.
+        /// The connection string of this instance.
         /// </summary>
-        protected BdoConnection() : base()
-        {
-        }
+        public string ConnectionString => _connector?.ConnectionString;
 
         /// <summary>
-        /// Instantiates a new instance of the Connection class.
+        /// The connection timeout of this instance.
         /// </summary>
-        /// <param name="connector">The connector to consider.</param>
-        protected BdoConnection(IBdoConnector connector)
-        {
-            _connector = connector;
-        }
+        public int ConnectionTimeout => _connector?.ConnectionTimeOut ?? 0;
+
+        /// <summary>
+        /// The state of this instance.
+        /// </summary>
+        public ConnectionState State => ConnectionState.Closed;
 
         #endregion
 
@@ -72,10 +62,15 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        public override void Dispose()
+        protected override void Dispose(bool isDisposing)
         {
             Close();
-            base.Dispose();
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _connector?.Dispose();
+            }
         }
 
         #endregion
@@ -86,39 +81,25 @@ namespace BindOpen.Framework.Core.Data.Connections
 
         #region Management
 
-        /// <summary>
-        /// Sets the connector of this instance.
-        /// </summary>
-        /// <param name="connector">The database connector to consider.</param>
-        public virtual void SetConnector(IBdoConnector connector)
-        {
-            _connector = connector;
-        }
-
         // Open / Close -----------------------------
 
         /// <summary>
         /// Opens this instance.
         /// </summary>
-        public virtual IBdoLog Open()
-        {
-            return _connector?.Open();
-        }
+        public abstract IBdoLog Open();
 
         /// <summary>
         /// Closes this instance.
         /// </summary>
-        public virtual IBdoLog Close()
-        {
-            return _connector?.Close();
-        }
+        public abstract IBdoLog Close();
 
         /// <summary>
-        /// Indicates whether the instance is connected.
+        /// Updates the connector.
         /// </summary>
-        public virtual bool IsConnected()
+        /// <param name="connector">The connector to consider.</param>
+        public void WithConnector(IBdoConnector connector)
         {
-            return _connector?.IsConnected() == true;
+            _connector = connector;
         }
 
         #endregion

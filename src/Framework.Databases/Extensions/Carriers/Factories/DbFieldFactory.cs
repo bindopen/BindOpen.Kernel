@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Databases.Data.Queries;
@@ -262,5 +263,61 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
                 DataModule = dataModule
             };
         }
+
+        // As parameter -----
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="parameter">The parameter element to consider.</param>
+        public static DbField CreateAsParameter(
+            string name,
+            IDataElement parameter)
+        {
+            return CreateAsParameter(name, null, null, null, parameter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="parameter">The parameter element to consider.</param>
+        public static DbField CreateAsParameter(
+            string name,
+            string tableName,
+            IDataElement parameter)
+        {
+            return CreateAsParameter(name, tableName, null, null, parameter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="schema">The schema to consider.</param>
+        /// <param name="dataModule">The data module to consider.</param>
+        /// <param name="parameter">The parameter element to consider.</param>
+        public static DbField CreateAsParameter(
+            string name,
+            string tableName,
+            string schema,
+            string dataModule,
+            IDataElement parameter)
+        {
+            var field = Create(name, tableName, schema, dataModule);
+            field.ValueType = DataValueType.None;
+            field.Value = CreateParameterString(parameter).CreateLiteral();
+            return field;
+        }
+
+        /// <summary>
+        /// Creates a parameter string from the specified parameter.
+        /// </summary>
+        /// <param name="parameter">The parameter to consider.</param>
+        /// <returns>Returns the string corresponding to the specified parameter.</returns>
+        public static string CreateParameterString(this IDataElement parameter) => "@" + parameter?.Name ?? parameter.Index.ToString();
     }
 }

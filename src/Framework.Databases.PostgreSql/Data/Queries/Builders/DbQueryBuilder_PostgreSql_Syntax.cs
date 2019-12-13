@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+﻿using BindOpen.Framework.Databases.Data.Queries.Builders;
 
 namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
 {
@@ -35,7 +34,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_Database(string name)
         {
-            return "\"" + name + "\"";
+            return "\"" + name?.Replace("\"", "'\"\"") + "\"";
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name?.Replace("\"", "'\"\"") + "\"";
         }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name?.Replace("\"", "'\"\"") + "\"";
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
             string name,
             string location = null)
         {
-            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name + "\"";
+            return (!string.IsNullOrEmpty(location) ? location + "." : "") + "\"" + name?.Replace("\"", "'\"\"") + "\"";
         }
 
         /// <summary>

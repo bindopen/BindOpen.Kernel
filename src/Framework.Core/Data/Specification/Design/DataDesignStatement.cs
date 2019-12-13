@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -8,7 +7,6 @@ namespace BindOpen.Framework.Core.Data.Specification
     /// <summary>
     /// This class represents a data design statement.
     /// </summary>
-    [Serializable()]
     [XmlType("DataDesignStatement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "design.statement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataDesignStatement : DataItem, IDataDesignStatement

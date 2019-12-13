@@ -6,7 +6,6 @@ using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Core.System.Assemblies;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +17,6 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// <summary>
     /// This class represents a object element that is an element whose items are entities.
     /// </summary>
-    [Serializable()]
     [XmlType("ObjectElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "object", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ObjectElement : DataElement, IObjectElement

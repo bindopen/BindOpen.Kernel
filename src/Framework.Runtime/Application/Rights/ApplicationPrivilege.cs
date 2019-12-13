@@ -1,16 +1,15 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Rights
 {
     /// <summary>
     /// This structure respresents a right granted by an application.
     /// </summary>
-    [Serializable()]
     public class ApplicationPrivilege : DataItem
     {
 
@@ -205,10 +204,10 @@ namespace BindOpen.Framework.Runtime.Application.Rights
         public UserPermission GetDefaultPermission(String actionName)
         {
             // we build the complete entity name
-            if (actionName==null) return null;
+            if (actionName == null) return null;
             return this.DefaultPermissions.FirstOrDefault(p => p.KeyEquals(actionName));
         }
-        
+
         #endregion
 
     }

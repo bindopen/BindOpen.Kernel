@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="value1"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_ConvertToText(string value1)
+        public virtual string GetSqlText_ConvertToText(string value1)
         {
             return "";
         }

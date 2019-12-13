@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements
@@ -77,6 +78,14 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public DataElementSpecSet(params DataElementSpec[] items) : base(items)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DataElementSet class.
+        /// </summary>
+        /// <param name="elements">The elements to consider.</param>
+        public DataElementSpecSet(params IDataElementSpec[] elements) : base(elements.Cast<DataElementSpec>().ToArray())
         {
         }
 

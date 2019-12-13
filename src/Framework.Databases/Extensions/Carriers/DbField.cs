@@ -12,7 +12,6 @@ namespace BindOpen.Framework.Databases.Extensions.Carriers
     /// <summary>
     /// This class represents a database data field.
     /// </summary>
-    [Serializable()]
     [XmlType("DbField", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dbField", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [BdoCarrier(

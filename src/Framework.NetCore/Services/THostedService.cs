@@ -3,6 +3,7 @@ using BindOpen.Framework.Runtime.Application.Options.Services;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -73,7 +74,28 @@ namespace BindOpen.Framework.NetCore.Services
         /// </summary>
         public void Dispose()
         {
-            _service.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _service.Dispose();
+            }
+        }
+
+        #endregion
+
     }
 }

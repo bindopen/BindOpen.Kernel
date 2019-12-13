@@ -18,7 +18,6 @@ namespace BindOpen.Framework.Core.System.Assemblies
         /// <summary>
         /// This structure represents an class reference.
         /// </summary>
-        [Serializable()]
         public struct ClassReference
         {
             /// <summary>

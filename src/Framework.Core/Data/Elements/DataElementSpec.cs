@@ -15,7 +15,6 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("DataElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElementSpec))]
@@ -671,6 +670,28 @@ namespace BindOpen.Framework.Core.Data.Elements
             if (DesignStatement != null)
                 dataElementSpec.DesignStatement = DesignStatement.Clone() as DataDesignStatement;
             return dataElementSpec;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _constraintStatement?.Dispose();
+                _designStatement?.Dispose();
+            }
         }
 
         #endregion

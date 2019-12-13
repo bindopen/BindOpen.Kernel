@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Databases.Extensions.Carriers;
+using System;
 
 namespace BindOpen.Framework.Databases.Data.Queries
 {
@@ -7,118 +8,130 @@ namespace BindOpen.Framework.Databases.Data.Queries
     /// </summary>
     public static partial class DbQueryFactory
     {
-        /// <summary>
-        /// Creates a new stored database query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <returns>Returns a new Select basic database query</returns>
-        public static IStoredDbQuery CreateStored(IDbQuery query)
-            => CreateStored(null, query);
-
-        /// <summary>
-        /// Creates a new stored basic database query.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        /// <returns>Returns a new Select basic database query</returns>
-        public static IStoredDbQuery CreateStored(string name, IDbQuery query)
-            => new StoredDbQuery() { Name = name, Query = query, ParameterSpecSet = query?.ParameterSpecSet };
-
-
         // Delete --------------------------------
 
         /// <summary>
-        /// Creates a new Delete basic database query.
+        /// Creates a new Delete advanced database query.
         /// </summary>
-        /// <returns>Returns a new Delete basic database query</returns>
-        public static IBasicDbQuery CreateBasicDelete(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Delete, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Delete advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDelete(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Delete basic database query.
+        /// Creates a new Delete advanced database query.
         /// </summary>
-        /// <returns>Returns a new Delete basic database query</returns>
-        public static IBasicDbQuery CreateBasicDelete(DbTable table)
-            => CreateBasicDelete(null, table);
+        /// <returns>Returns a new Delete advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDelete(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedDelete(null, table, initAction);
 
         // Drop --------------------------------
 
         /// <summary>
-        /// Creates a new Drop basic database query.
+        /// Creates a new Drop advanced database query.
         /// </summary>
-        /// <returns>Returns a new Drop basic database query</returns>
-        public static IBasicDbQuery CreateBasicDrop(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Drop advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDrop(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Drop basic database query.
+        /// Creates a new Drop advanced database query.
         /// </summary>
-        /// <returns>Returns a new Drop basic database query</returns>
-        public static IBasicDbQuery CreateBasicDrop(DbTable table)
-            => CreateBasicDrop(null, table);
+        /// <returns>Returns a new Drop advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDrop(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedDrop(null, table, initAction);
 
         // Duplicate --------------------------------
 
         /// <summary>
-        /// Creates a new Duplicate basic database query.
+        /// Creates a new Duplicate advanced database query.
         /// </summary>
-        /// <returns>Returns a new Duplicate basic database query</returns>
-        public static IBasicDbQuery CreateBasicDuplicate(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Duplicate, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Duplicate advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDuplicate(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Duplicate, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Duplicate basic database query.
+        /// Creates a new Duplicate advanced database query.
         /// </summary>
-        /// <returns>Returns a new Duplicate basic database query</returns>
-        public static IBasicDbQuery CreateBasicDuplicate(DbTable table)
-            => CreateBasicDuplicate(null, table);
+        /// <returns>Returns a new Duplicate advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedDuplicate(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedDuplicate(null, table, initAction);
 
         // Insert --------------------------------
 
         /// <summary>
-        /// Creates a new Insert basic database query.
+        /// Creates a new Insert advanced database query.
         /// </summary>
-        /// <returns>Returns a new Insert basic database query</returns>
-        public static IBasicDbQuery CreateBasicInsert(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Insert advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedInsert(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Insert basic database query.
+        /// Creates a new Insert advanced database query.
         /// </summary>
-        /// <returns>Returns a new Insert basic database query</returns>
-        public static IBasicDbQuery CreateBasicInsert(DbTable table)
-            => CreateBasicInsert(null, table);
+        /// <returns>Returns a new Insert advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedInsert(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedInsert(null, table, initAction);
 
         // Select --------------------------------
 
         /// <summary>
-        /// Creates a new Select basic database query.
+        /// Creates a new Select advanced database query.
         /// </summary>
-        /// <returns>Returns a new Select basic database query</returns>
-        public static IBasicDbQuery CreateBasicSelect(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Select advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedSelect(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Select basic database query.
+        /// Creates a new Select advanced database query.
         /// </summary>
-        /// <returns>Returns a new Select basic database query</returns>
-        public static IBasicDbQuery CreateBasicSelect(DbTable table)
-            => CreateBasicSelect(null, table);
+        /// <returns>Returns a new Select advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedSelect(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedSelect(null, table, initAction);
 
         // Update --------------------------------
 
         /// <summary>
-        /// Creates a new Update basic database query.
+        /// Creates a new Update advanced database query.
         /// </summary>
-        /// <returns>Returns a new Update basic database query</returns>
-        public static IBasicDbQuery CreateBasicUpdate(string name, DbTable table)
-            => new BasicDbQuery(name, DbQueryKind.Update, table?.DataModule, table?.Schema, table?.Name);
+        /// <returns>Returns a new Update advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedUpdate(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Update, table?.DataModule, table?.Schema, table?.Name);
+            initAction?.Invoke(query);
+
+            return query;
+        }
 
         /// <summary>
-        /// Creates a new Update basic database query.
+        /// Creates a new Update advanced database query.
         /// </summary>
-        /// <returns>Returns a new Update basic database query</returns>
-        public static IBasicDbQuery CreateBasicUpdate(DbTable table)
-            => CreateBasicUpdate(null, table);
+        /// <returns>Returns a new Update advanced database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedUpdate(DbTable table, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedUpdate(null, table, initAction);
     }
 }

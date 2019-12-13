@@ -1,15 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a catalog element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("CatalogElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CollectionElementSpec : DataElementSpec, ICollectionElementSpec

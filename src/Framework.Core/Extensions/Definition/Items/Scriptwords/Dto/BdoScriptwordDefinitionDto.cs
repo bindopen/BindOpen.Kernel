@@ -12,7 +12,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoScriptwordDefinitionDto", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDefinitionDto : BdoExtensionItemDefinitionDto, IBdoScriptwordDefinitionDto
@@ -243,6 +242,27 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
             }
 
             return st;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _parameterSpecification?.Dispose();
+            }
         }
 
         #endregion

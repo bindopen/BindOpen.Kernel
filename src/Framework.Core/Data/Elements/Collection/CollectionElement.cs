@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -15,7 +14,6 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are entities.
     /// </summary>
-    [Serializable()]
     [XmlType("CatalogElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "catalog", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CollectionElement : DataElement, ICollectionElement

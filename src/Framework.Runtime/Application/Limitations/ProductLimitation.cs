@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Runtime.Application.Limitations
 
         #region Variables
 
-        private String _RegistrationMode = ProductRegistrationMode.Registered.ToString();
+        private string _RegistrationMode = ProductRegistrationMode.Registered.ToString();
         private List<DataReference> _TargetElementReferences = new List<DataReference>();
 
         #endregion

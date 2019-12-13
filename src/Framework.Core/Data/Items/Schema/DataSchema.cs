@@ -1,15 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements.Schema;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Core.Data.Elements.Schema;
 using BindOpen.Framework.Core.Data.References;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a data schema.
     /// </summary>
-    [Serializable()]
     [XmlType("DataSchema", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataSchema : DescribedDataItem, IDataSchema

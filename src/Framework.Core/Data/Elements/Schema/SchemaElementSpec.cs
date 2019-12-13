@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("SchemaElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SchemaElementSpec : DataElementSpec

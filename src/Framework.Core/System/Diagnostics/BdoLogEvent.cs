@@ -13,7 +13,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// <summary>
     /// This class represents a log event.
     /// </summary>
-    [Serializable()]
     [XmlType("LogEvent", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "logEvent", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoLogEvent : BdoEvent, IBdoLogEvent
@@ -27,7 +26,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <summary>
         /// This structures defines the stack trace of a task result.
         /// </summary>
-        [Serializable()]
         [XmlType("LogEventStackTrace", Namespace = "https://bindopen.org/xsd")]
         public struct LogEventStackTrace
         {

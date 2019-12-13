@@ -14,7 +14,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Events
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    [Serializable()]
     [XmlType("Event", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEvent))]

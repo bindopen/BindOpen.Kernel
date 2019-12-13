@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BindOpen.Framework.Databases.Data.Queries.Builders
+﻿namespace BindOpen.Framework.Databases.Data.Queries.Builders
 {
     /// <summary>
     /// This class represents a builder of database query.
@@ -15,7 +13,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Equal(string value1, string value2)
+        public virtual string GetSqlText_Equal(string value1, string value2)
         {
             return "";
         }
@@ -26,7 +24,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_NotEqual(string value1, string value2)
+        public virtual string GetSqlText_NotEqual(string value1, string value2)
         {
             return "";
         }
@@ -37,7 +35,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Greater(string value1, string value2)
+        public virtual string GetSqlText_Greater(string value1, string value2)
         {
             return "";
         }
@@ -48,7 +46,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_GreaterOrEqual(string value1, string value2)
+        public virtual string GetSqlText_GreaterOrEqual(string value1, string value2)
         {
             return "";
         }
@@ -59,7 +57,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Less(string value1, string value2)
+        public virtual string GetSqlText_Less(string value1, string value2)
         {
             return "";
         }
@@ -70,17 +68,17 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_LessOrEqual(string value1, string value2)
+        public virtual string GetSqlText_LessOrEqual(string value1, string value2)
         {
             return "";
         }
-        
+
         /// <summary>
         /// Evaluates the script word $SQLISNULL.
         /// </summary>
         /// <param name="value1"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_IsNull(string value1)
+        public virtual string GetSqlText_IsNull(string value1)
         {
             return "";
         }

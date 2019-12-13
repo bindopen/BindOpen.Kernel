@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
-using System;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -9,7 +8,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This class represents a document item.
     /// </summary>
-    [Serializable()]
     [XmlType("Document", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Document : NamedDataItem, IDocument

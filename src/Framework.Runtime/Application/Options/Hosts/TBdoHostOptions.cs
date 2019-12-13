@@ -70,6 +70,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
 
         // Depots ----------------------
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected IBdoDataStore _dataStore = null;
 
         #endregion
@@ -492,6 +495,29 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
             action?.Invoke(_dataStore);
 
             return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _applicationModule?.Dispose();
+                _extensionLoadOptions?.Dispose();
+                _dataStore?.Dispose();
+            }
         }
 
         #endregion

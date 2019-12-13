@@ -18,7 +18,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoLog", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "log", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoLog : DescribedDataItem, IBdoLog
@@ -1378,6 +1377,27 @@ namespace BindOpen.Framework.Core.System.Diagnostics
              where T : IBdoLogger, new()
         {
             return (new T()).ToString(this);
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _task?.Dispose();
+            }
         }
 
         #endregion
