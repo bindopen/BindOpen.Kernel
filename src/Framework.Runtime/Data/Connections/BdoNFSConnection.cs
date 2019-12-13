@@ -1,18 +1,17 @@
-﻿using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
+using BindOpen.Framework.Runtime.Extensions.Connectors;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace BindOpen.Framework.Runtime.Extensions.Connectors
+namespace BindOpen.Framework.Runtime.Data.Connections
 {
     /// <summary>
     /// This class represents a file NFS connector.
     /// </summary>
-    [BdoConnector(Name = "runtime$nfsConnector")]
-    public class NFSConnector : RepositoryConnector
+    public class BdoNFSConnection : BdoRepoConnection
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -21,64 +20,110 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the NFSConnector class.
+        /// Instantiates a new instance of the NFSConnection class.
         /// </summary>
-        public NFSConnector() : base()
+        public BdoNFSConnection(BdoNFSConnector connector) : base()
         {
+            _connector = connector;
         }
 
         #endregion
 
         // -----------------------------------------------
-        // MANAGEMENT
+        // BdoConnection METHODS
         // -----------------------------------------------
 
-        #region Management
-
-        // Open / Close ---------------------------------------
+        #region BdoConnection_Methods
 
         /// <summary>
-        /// Opens a connection.
+        /// Opens this instance.
         /// </summary>
+        /// <returns>Returns the log of process.</returns>
         public override IBdoLog Open()
         {
-            return base.Open();
+            return new BdoLog();
         }
 
         /// <summary>
-        /// Closes the existing connection.
+        /// Closes this instance.
         /// </summary>
+        /// <returns>Returns the log of process.</returns>
         public override IBdoLog Close()
         {
-            return base.Close();
+            return new BdoLog();
         }
+
+        #endregion
+
+        // -----------------------------------------------
+        // BdoRepoConnection METHODS
+        // -----------------------------------------------
+
+        #region BdoRepoConnection_Methods
 
         // Pull ---------------------------------------
 
         /// <summary>
-        /// Gets a remote file to a local Uri.
+        /// Pulls a remote file to a local URI.
         /// </summary>
-        /// <param name="remoteFileUri">The remote Uri to consider.</param>
-        /// <param name="localPathUri">The Uri of the local path to consider.</param>
+        /// <param name="remoteFileUri">The URI of the remote file to consider.</param>
+        /// <param name="localUri">The local URI to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the local file can be overwritten.</param>
         public override void Pull(
-           String remoteFileUri,
-           String localPathUri,
-           Boolean canOverwrite,
+            string remoteFileUri,
+            string localUri,
+            bool canOverwrite,
             IBdoLog log = null)
         {
             try
             {
-                if (!Directory.Exists(Path.GetDirectoryName(localPathUri)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(localPathUri));
+                if (!Directory.Exists(Path.GetDirectoryName(localUri)))
+                    Directory.CreateDirectory(Path.GetDirectoryName(localUri));
 
-                File.Copy(remoteFileUri, localPathUri, canOverwrite);
+                File.Copy(remoteFileUri, localUri, canOverwrite);
             }
             catch (Exception exception)
             {
                 IBdoLogEvent logEvent = log?.AddException(exception);
             }
+        }
+
+        /// <summary>
+        /// Pulls a remote files in folder to a local URI.
+        /// </summary>
+        /// <param name="remoteFileUri">The URI of the remote file to consider.</param>
+        /// <param name="remoteFilter">The remote filter to consider.</param>
+        /// <param name="localFolderUri">The URI of the local folder to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+        /// <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+
+        public override void Pull(
+            string remoteFileUri,
+            string remoteFilter,
+            string localFolderUri,
+            bool canOverwrite,
+            IBdoLog log = null,
+            bool isRecursive = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Pulls remote files to a local URI.
+        /// </summary>
+        /// <param name="remoteFileUris">The remote URIs to consider.</param>
+        /// <param name="localFolderUri">The URI of the local folder to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="canOverwrite">Indicates whether the local files can be overwritten.</param>
+        public override void Pull(
+            List<string> remoteFileUris,
+            string localFolderUri,
+            bool canOverwrite,
+            IBdoLog log = null)
+        {
+            throw new NotImplementedException();
         }
 
         // Push ---------------------------------------
@@ -107,6 +152,43 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
             {
                 log?.AddException(exception);
             }
+        }
+
+        /// <summary>
+        /// Pushes a local file into folder to a remote URI.
+        /// </summary>
+        /// <param name="localFileUri">The local URI to consider.</param>
+        /// <param name="localFilter">The local filter to consider.</param>
+        /// <param name="remoteFolderUri">The URI of the remote folder to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
+        /// <param name="isRecursive">Indicates whether the search is folder recursive.</param>
+        /// 
+        public override void Push(
+            string localFileUri,
+            string localFilter,
+            string remoteFolderUri,
+            bool canOverwrite,
+            IBdoLog log = null,
+            bool isRecursive = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Pushes local files to a remote URI.
+        /// </summary>
+        /// <param name="localFileUris">The local URIs to consider.</param>
+        /// <param name="remoteFolderUri">The URI of the remote folder to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="canOverwrite">Indicates whether the remote files can be overwritten.</param>
+        public override void Push(
+            List<string> localFileUris,
+            string remoteFolderUri,
+            bool canOverwrite,
+            IBdoLog log = null)
+        {
+            throw new NotImplementedException();
         }
 
         // Browser ---------------------------------------
@@ -202,7 +284,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
 
                         if (isFound)
                         {
-                            Carriers.RepositoryFile file = new Carriers.RepositoryFile()
+                            RepositoryFile file = new RepositoryFile()
                             {
                                 Name = fileInfo.Name,
                                 Path = fileInfo.FullName,
@@ -245,7 +327,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
 
                         if (isFound)
                         {
-                            Carriers.RepositoryFolder folder = new Carriers.RepositoryFolder()
+                            RepositoryFolder folder = new RepositoryFolder()
                             {
                                 Name = directoryInfo.Name,
                                 Path = directoryInfo.FullName,
@@ -262,6 +344,15 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
 
             return files;
         }
+
+        #endregion
+
+        // -----------------------------------------------
+        // OTHER METHODS
+        // -----------------------------------------------
+
+        #region Other_Methods
+
 
         // Delete ---------------------------------------------------
 
@@ -342,9 +433,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
                         ((DateTime.TryParse(item.LastWriteDate, out lastWriteDateTime)) &&
                         (DateTime.Now.Subtract(lastWriteDateTime).Ticks > timeLimit.Ticks)))
                         if (item is RepositoryFolder)
-                            NFSConnector.DeleteFolder(item.Path, log);
+                            BdoNFSConnection.DeleteFolder(item.Path, log);
                         else if (item is RepositoryFile)
-                            NFSConnector.DeleteFile(item.Path, log);
+                            BdoNFSConnection.DeleteFile(item.Path, log);
                 }
             }
         }

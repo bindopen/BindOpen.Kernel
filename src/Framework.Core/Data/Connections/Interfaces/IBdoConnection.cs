@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using System;
+using System.Data;
 
 namespace BindOpen.Framework.Core.Data.Connections
 {
@@ -15,10 +16,25 @@ namespace BindOpen.Framework.Core.Data.Connections
         IBdoConnector Connector { get; }
 
         /// <summary>
+        /// The connection string.
+        /// </summary>
+        string ConnectionString { get; }
+
+        /// <summary>
+        /// The connection timeout.
+        /// </summary>
+        int ConnectionTimeout { get; }
+
+        /// <summary>
+        /// The state.
+        /// </summary>
+        ConnectionState State { get; }
+
+        /// <summary>
         /// Sets the specified connector.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        void SetConnector(IBdoConnector connector);
+        void WithConnector(IBdoConnector connector);
 
         // Open / Close -----------------------------
 
@@ -31,10 +47,5 @@ namespace BindOpen.Framework.Core.Data.Connections
         /// Closes the existing connection.
         /// </summary>
         IBdoLog Close();
-
-        /// <summary>
-        /// Indicates whether the instance is connected.
-        /// </summary>
-        bool IsConnected();
     }
 }

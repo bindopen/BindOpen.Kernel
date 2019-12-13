@@ -16,7 +16,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// This class represents a data item set.
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
-    [Serializable()]
     [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T> where T : IIdentifiedDataItem
     {
@@ -75,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         [XmlIgnore()]
         public T this[int index]
-            => _items != null && index >= 0 && index < _items.Count ? _items[index] : default(T);
+            => _items != null && index >= 0 && index < _items.Count ? _items[index] : default;
 
         /// <summary>
         /// Returns the element with the specified key.

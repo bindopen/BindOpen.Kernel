@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Connectors;
+using System;
 using System.Data;
 using System.Xml.Serialization;
 
@@ -14,6 +15,17 @@ namespace BindOpen.Framework.Databases.Data.Connections
     public class BdoDbConnection : BdoConnection, IBdoDbConnection
     {
         // -----------------------------------------------
+        // VARIABLES
+        // -----------------------------------------------
+
+        #region Variables
+
+        private readonly string _databaseName = null;
+        private readonly IDbConnection _nativeDbConnection = null;
+
+        #endregion
+
+        // -----------------------------------------------
         // PROPERTIES
         // -----------------------------------------------
 
@@ -23,24 +35,19 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// The connector of this instance.
         /// </summary>
         [XmlIgnore()]
-        public new DatabaseConnector Connector
-        {
-            get
-            {
-                return base.Connector as DatabaseConnector;
-            }
-            set
-            {
-                SetConnector(value);
-            }
-        }
+        public new BdoDbConnector Connector => base.Connector as BdoDbConnector;
 
         /// <summary>
-        /// Gets the database connection of this instance.
+        /// Gets the .NET database connection of this instance.
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
         [XmlIgnore()]
-        public IDbConnection DotNetDbConnection => Connector?.GetDotNetDbConnection();
+        public IDbConnection NativeConnection => _nativeDbConnection;
+
+        /// <summary>
+        /// The name of the database of this instance.
+        /// </summary>
+        public string Database => _databaseName;
 
         #endregion
 
@@ -51,19 +58,14 @@ namespace BindOpen.Framework.Databases.Data.Connections
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DatabaseConnection class.
-        /// </summary>
-        public BdoDbConnection() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DatabaseConnection class.
+        /// Instantiates a new instance of the BdoDbConnection class.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        public BdoDbConnection(DatabaseConnector connector)
+        /// <param name="nativeConnection">The native connection to consider.</param>
+        public BdoDbConnection(BdoDbConnector connector, IDbConnection nativeConnection)
         {
-            Connector = connector;
+            _connector = connector;
+            _nativeDbConnection = nativeConnection;
         }
 
         #endregion
@@ -75,14 +77,93 @@ namespace BindOpen.Framework.Databases.Data.Connections
         #region Management
 
         /// <summary>
-        /// Sets the connector of this instance.
+        /// Changes the current database .
         /// </summary>
-        /// <param name="connector">The database connector to consider.</param>
-        public override void SetConnector(IBdoConnector connector)
+        /// <param name="databaseName">The name of the database to consider.</param>
+        /// <returns>Returns the log of process.</returns>
+        public IBdoLog ChangeDatabase(string databaseName)
         {
-            base.SetConnector(connector);
+            IBdoLog log = new BdoLog();
+            try
+            {
+                _nativeDbConnection?.ChangeDatabase(databaseName);
+            }
+            catch (Exception ex)
+            {
+                log.AddException(ex);
+            }
+
+            return log;
         }
 
         #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _nativeDbConnection?.Dispose();
+            }
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IBDOCONNECTION METHODS
+        // ------------------------------------------
+
+        #region IBdoConnection_Methods
+
+        /// <summary>
+        /// Opens this instance.
+        /// </summary>
+        /// <returns>Returns the log of process.</returns>
+        public override IBdoLog Open()
+        {
+            IBdoLog log = new BdoLog();
+            try
+            {
+                _nativeDbConnection?.Open();
+            }
+            catch (Exception ex)
+            {
+                log.AddException(ex);
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
+        /// <returns>Returns the log of process.</returns>
+        public override IBdoLog Close()
+        {
+            IBdoLog log = new BdoLog();
+            try
+            {
+                _nativeDbConnection?.Close();
+            }
+            catch (Exception ex)
+            {
+                log.AddException(ex);
+            }
+
+            return log;
+        }
+
+        #endregion
+
     }
 }

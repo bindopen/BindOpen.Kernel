@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Items;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.System.Assemblies.References
@@ -7,7 +6,6 @@ namespace BindOpen.Framework.Core.System.Assemblies.References
     /// <summary>
     /// This class represents the BindOpen library reference.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoAssemblyReference", Namespace = "https://bindopen.org/xsd")]
     public class BdoAssemblyReference : DataItem, IBdoAssemblyReference
     {

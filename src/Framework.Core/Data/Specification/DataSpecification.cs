@@ -1,19 +1,17 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Elements;
+using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Core.System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Specification
 {
     /// <summary>
     /// This abstract class represents a data specification.
     /// </summary>
-    [Serializable()]
     [XmlType("DataSpecification", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class DataSpecification : IndexedDataItem, IDataSpecification

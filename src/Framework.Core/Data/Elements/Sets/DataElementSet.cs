@@ -72,18 +72,25 @@ namespace BindOpen.Framework.Core.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the IDataElementSet class.
+        /// Instantiates a new instance of the DataElementSet class.
         /// </summary>
         public DataElementSet()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the IDataElementSet class.
+        /// Instantiates a new instance of the DataElementSet class.
         /// </summary>
         /// <param name="elements">The elements to consider.</param>
-        public DataElementSet(
-            params IDataElement[] elements) : base(elements.Cast<DataElement>().ToArray())
+        public DataElementSet(params DataElement[] elements) : base(elements)
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DataElementSet class.
+        /// </summary>
+        /// <param name="elements">The elements to consider.</param>
+        public DataElementSet(params IDataElement[] elements) : base(elements.Cast<DataElement>().ToArray())
         {
         }
 

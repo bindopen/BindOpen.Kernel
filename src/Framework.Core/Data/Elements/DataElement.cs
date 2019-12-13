@@ -20,7 +20,6 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    [Serializable()]
     [XmlType("DataElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElement))]
@@ -765,6 +764,27 @@ namespace BindOpen.Framework.Core.Data.Elements
             }
 
             return st;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _propertyDetail?.Dispose();
+            }
         }
 
         #endregion

@@ -9,7 +9,6 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
     /// <summary>
     /// This class represents an entity configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoEntityConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoEntityConfiguration

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -8,7 +7,6 @@ namespace BindOpen.Framework.Core.Data.Conditions
     /// <summary>
     /// This class represents an advanced condition.
     /// </summary>
-    [Serializable()]
     [XmlType("AdvancedBusinessCondition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "advanced.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class AdvancedCondition : Condition, IAdvancedCondition

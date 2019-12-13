@@ -168,5 +168,27 @@ namespace BindOpen.Framework.Core.Data.References
         }
 
         #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _item?.Dispose();
+            }
+        }
+
+        #endregion
+
     }
 }

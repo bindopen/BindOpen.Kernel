@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BindOpen.Framework.Databases.Data.Queries.Builders
+﻿namespace BindOpen.Framework.Databases.Data.Queries.Builders
 {
     /// <summary>
     /// This class represents a builder of database query.
@@ -13,7 +11,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Evaluates the script word $SQLNULL.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Null()
+        public virtual string GetSqlText_Null()
         {
             return "";
         }
@@ -22,7 +20,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// Evaluates the script word $SQLTRUE.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_True()
+        public virtual string GetSqlText_True()
         {
             return "";
         }
@@ -32,7 +30,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="name"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Database(string name)
+        public virtual string GetSqlText_Database(string name)
         {
             return "";
         }
@@ -43,7 +41,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Schema(
+        public virtual string GetSqlText_Schema(
             string name,
             string location = null)
         {
@@ -56,7 +54,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Table(
+        public virtual string GetSqlText_Table(
             string name,
             string location = null)
         {
@@ -69,7 +67,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <param name="name"></param>
         /// <param name="location"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_Field(string name, string location)
+        public virtual string GetSqlText_Field(string name, string location)
         {
             return "";
         }
@@ -79,7 +77,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_List(params object[] parameters)
+        public virtual string GetSqlText_List(params object[] parameters)
         {
             return "";
         }

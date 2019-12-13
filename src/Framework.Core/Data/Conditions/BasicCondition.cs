@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Conditions
 {
@@ -7,7 +6,6 @@ namespace BindOpen.Framework.Core.Data.Conditions
     /// <summary>
     /// This class represents an basic condition.
     /// </summary>
-    [Serializable()]
     [XmlType("BasicBusinessCondition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "basic.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BasicCondition : Condition, IBasicCondition

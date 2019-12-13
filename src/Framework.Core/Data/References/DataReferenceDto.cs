@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -13,7 +12,6 @@ namespace BindOpen.Framework.Core.Data.References
     /// <summary>
     /// This class represents a data reference configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("DataReference", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "data.reference", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataReferenceDto : DataItem, IDataReferenceDto

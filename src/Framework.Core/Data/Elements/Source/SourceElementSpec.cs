@@ -1,15 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Data.Specification;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a data source element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("SourceElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElementSpec : DataElementSpec, ISourceElementSpec
@@ -51,7 +49,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Initializes a new data source element specification.
         /// </summary>
-        public SourceElementSpec(): this(AccessibilityLevels.Public)
+        public SourceElementSpec() : this(AccessibilityLevels.Public)
         {
         }
 

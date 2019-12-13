@@ -22,8 +22,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Connections\Factories\**" />
+    <EmbeddedResource Remove="Data\Connections\Factories\**" />
+    <None Remove="Data\Connections\Factories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
-    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />
     <None Remove="Extensions\Handlers\BindOpen.Handlers" />
     <None Remove="Extensions\Metrics\BindOpen.Metrics" />
@@ -35,7 +40,6 @@
   <ItemGroup>
     <EmbeddedResource Include="BindOpen.Extension" />
     <EmbeddedResource Include="Extensions\Carriers\BindOpen.Carriers" />
-    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
     <EmbeddedResource Include="Extensions\Entities\BindOpen.Entities" />
     <EmbeddedResource Include="Extensions\Handlers\BindOpen.Handlers" />
     <EmbeddedResource Include="Extensions\Metrics\BindOpen.Metrics" />

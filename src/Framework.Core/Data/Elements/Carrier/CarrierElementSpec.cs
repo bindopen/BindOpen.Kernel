@@ -1,15 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Specification;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a carrier element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("CarrierElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CarrierElementSpec : DataElementSpec, ICarrierElementSpec
@@ -59,7 +57,7 @@ namespace BindOpen.Framework.Core.Data.Elements
         /// <summary>
         /// Initializes a new carrier element specification.
         /// </summary>
-        public CarrierElementSpec(): base()
+        public CarrierElementSpec() : base()
         {
         }
 
@@ -124,9 +122,30 @@ namespace BindOpen.Framework.Core.Data.Elements
         public override object Clone()
         {
             CarrierElementSpec dataCarrierElementSpec = base.Clone() as CarrierElementSpec;
-            if (this.DefinitionFilter!= null)
+            if (this.DefinitionFilter != null)
                 dataCarrierElementSpec.DefinitionFilter = this.DefinitionFilter.Clone() as DataValueFilter;
             return dataCarrierElementSpec;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _definitionFilter?.Dispose();
+            }
         }
 
         #endregion

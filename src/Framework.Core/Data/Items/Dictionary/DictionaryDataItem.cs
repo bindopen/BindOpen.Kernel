@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Helpers.Objects;
+using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +11,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Diagnostics;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
@@ -19,7 +19,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="DataKeyValue"/>
-    [Serializable()]
     [XmlType("DictionaryDataItem", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "item", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DictionaryDataItem : DataItem, IDictionaryDataItem
@@ -30,7 +29,7 @@ namespace BindOpen.Framework.Core.Data.Items
 
         #region Constants
 
-        private readonly string[] __UICultureNames = new string[] { "de", "du", "en", "es", "fr", "it", "po" };
+        private static readonly string[] __UICultureNames = new string[] { "de", "du", "en", "es", "fr", "it", "po" };
 
         #endregion
 
@@ -57,10 +56,12 @@ namespace BindOpen.Framework.Core.Data.Items
         [XmlText()]
         public string SingleValue
         {
-            get {
+            get
+            {
                 return GetContent();
             }
-            set {
+            set
+            {
                 SetValue(value);
             }
         }
@@ -73,7 +74,7 @@ namespace BindOpen.Framework.Core.Data.Items
         {
             get
             {
-                return _values != null && _values.Count ==1 && _values[0].Key=="*" && !AvailableKeysSpecified ;
+                return _values != null && _values.Count == 1 && _values[0].Key == "*" && !AvailableKeysSpecified;
             }
         }
 
@@ -86,7 +87,7 @@ namespace BindOpen.Framework.Core.Data.Items
             get { return _availableKeys; }
             set
             {
-                _availableKeys = value.Select(p=> p.ToLower()).ToList();
+                _availableKeys = value.Select(p => p.ToLower()).ToList();
                 Update<DictionaryDataItem>();
             }
         }
@@ -112,8 +113,9 @@ namespace BindOpen.Framework.Core.Data.Items
         public virtual List<DataKeyValue> Values
         {
             get { return _values; }
-            set {
-                _values=new List<DataKeyValue>(value);
+            set
+            {
+                _values = new List<DataKeyValue>(value);
                 Update<DictionaryDataItem>();
             }
         }
@@ -184,7 +186,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="values">The values to consider.</param>
         public DictionaryDataItem(params IDataKeyValue[] values)
         {
-            foreach(DataKeyValue value in values)
+            foreach (DataKeyValue value in values)
             {
                 if (value != null)
                 {
@@ -293,7 +295,7 @@ namespace BindOpen.Framework.Core.Data.Items
             RemoveValue(key);
 
             DataKeyValue dataKeyValue = null;
-            if (_availableKeys==null || _availableKeys.Count == 0 || AvailableKeys.Contains(key.ToLower()))
+            if (_availableKeys == null || _availableKeys.Count == 0 || AvailableKeys.Contains(key.ToLower()))
                 _values.Add(dataKeyValue = new DataKeyValue(key, text));
 
             return dataKeyValue;
@@ -324,7 +326,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// </summary>
         public void Clear()
         {
-            _values= new List<DataKeyValue>();
+            _values = new List<DataKeyValue>();
         }
 
         // Remove -------------------------------
@@ -462,7 +464,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <param name="alternateKey">The alternate key to used if the key is not found.</param>
         /// <returns>Returns the text corresponding to the specified user interface language ID.
         /// Returns empty if there is none.</returns>
-        public string GetContent(string key = "*", string alternateKey=null)
+        public string GetContent(string key = "*", string alternateKey = null)
         {
             DataKeyValue dataKeyValue = GetValue(key);
             if (dataKeyValue != null)
@@ -517,7 +519,7 @@ namespace BindOpen.Framework.Core.Data.Items
         {
             string st = "";
 
-            st += indent  + nodeName + "\n";
+            st += indent + nodeName + "\n";
             st += "\t" + indent + nodeName + ":values\n";
             foreach (DataKeyValue value in Values)
                 st += value.GetTextNode(nodeName + ":values", "\t\t" + indent);

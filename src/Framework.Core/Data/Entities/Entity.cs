@@ -1,14 +1,12 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Entities
 {
     /// <summary>
     /// This class represents the data entity.
     /// </summary>
-    [Serializable()]
     [XmlType("DataEntity", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataEntity : DescribedDataItem

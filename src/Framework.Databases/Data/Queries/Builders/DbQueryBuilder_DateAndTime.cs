@@ -14,7 +14,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
-        public virtual String GetSqlText_CurrentDate(object[] parameters)
+        public virtual string GetSqlText_CurrentDate(object[] parameters)
         {
             return "";
         }

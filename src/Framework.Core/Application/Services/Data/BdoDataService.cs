@@ -45,5 +45,26 @@ namespace BindOpen.Framework.Core.Application.Services.Data
         {
             _connection = connection;
         }
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _connection?.Dispose();
+            }
+        }
+
+        #endregion
     }
 }

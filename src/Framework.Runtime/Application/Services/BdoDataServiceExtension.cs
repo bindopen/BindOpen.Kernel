@@ -31,14 +31,12 @@ namespace BindOpen.Framework.Runtime.Application.Services
             {
                 if (!log.HasErrorsOrExceptions())
                 {
-                    using (Q dataService = new Q())
-                    {
-                        dataService.SetConnection(connection);
+                    using Q dataService = new Q();
+                    dataService.SetConnection(connection);
 
-                        if (!log.HasErrorsOrExceptions())
-                        {
-                            action?.Invoke(dataService, log);
-                        }
+                    if (!log.HasErrorsOrExceptions())
+                    {
+                        action?.Invoke(dataService, log);
                     }
                 }                
             }

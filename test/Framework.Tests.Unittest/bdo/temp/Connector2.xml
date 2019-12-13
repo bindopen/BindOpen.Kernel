@@ -4,4 +4,5 @@
   <scalar name="isSslEnabled" valueType="Boolean" value="false" />
   <scalar name="port" valueType="Integer" value="587" />
   <scalar name="connectionString" />
+  <scalar name="connectionTimeOut" valueType="Integer" value="0" />
 </connector>

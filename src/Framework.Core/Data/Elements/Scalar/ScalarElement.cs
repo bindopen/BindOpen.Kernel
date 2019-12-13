@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Elements
 {
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.
     /// </summary>
-    [Serializable()]
     [XmlType("ScalarElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "scalar", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ScalarElement : DataElement, IScalarElement

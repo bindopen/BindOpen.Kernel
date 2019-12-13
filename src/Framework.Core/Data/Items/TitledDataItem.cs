@@ -1,8 +1,6 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Items
@@ -10,7 +8,6 @@ namespace BindOpen.Framework.Core.Data.Items
     /// <summary>
     /// This class represents titled data item.
     /// </summary>
-    [Serializable()]
     [XmlType("TitledDataItem", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("titledDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class TitledDataItem : NamedDataItem, ITitledDataItem

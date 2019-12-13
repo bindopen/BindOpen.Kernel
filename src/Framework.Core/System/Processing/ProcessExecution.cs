@@ -17,7 +17,6 @@ namespace BindOpen.Framework.Core.System.Processing
     /// <summary>
     /// This class represents the process execution.
     /// </summary>
-    [Serializable()]
     [XmlType("ProcessExecution", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "processExecution", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ProcessExecution : DataItem, IProcessExecution
@@ -32,14 +31,14 @@ namespace BindOpen.Framework.Core.System.Processing
 
         private ProcessExecutionStatus _status = ProcessExecutionStatus.None;
         private ProcessExecutionState _state = ProcessExecutionState.None;
-        private String _customStatus = null;
+        private string _customStatus = null;
         private float _progressIndex = 0;
         private float _progressMax = 100;
 
-        private String _startDate = null;
-        private String _restartDate = null;
-        private String _endDate = null;
-        private String _duration = null;
+        private string _startDate = null;
+        private string _restartDate = null;
+        private string _endDate = null;
+        private string _duration = null;
         private int _resultLevel = 0;   // Estimated by the programmer. Over a certain number the result could be considered as satisfying.
 
         #endregion
@@ -549,5 +548,26 @@ namespace BindOpen.Framework.Core.System.Processing
         }
 
         #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _log?.Dispose();
+            }
+        }
+
+        #endregion   
     }
 }

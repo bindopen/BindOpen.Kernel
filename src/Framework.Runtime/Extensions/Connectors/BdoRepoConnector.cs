@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Runtime.Data.Connections;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
     /// <summary>
     /// This class represents a repository connector.
     /// </summary>
-    public abstract class RepositoryConnector : BdoConnector
+    public abstract class BdoRepoConnector : BdoConnector
     {
         // -----------------------------------------------
         // CONSTRUCTORS
@@ -20,7 +21,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// <summary>
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
-        protected RepositoryConnector() : base()
+        protected BdoRepoConnector() : base()
         {
         }
 
@@ -28,9 +29,23 @@ namespace BindOpen.Framework.Runtime.Extensions.Connectors
         /// Instantiates a new instance of the RepositoryConnector class.
         /// </summary>
         /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryConnector(IBdoConnectorConfiguration dto) : base(dto)
+        protected BdoRepoConnector(IBdoConnectorConfiguration dto) : base(dto)
         {
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// Creates a new connection.
+        /// </summary>
+        /// <param name="log">The log to consider.</param>
+        public new abstract BdoRepoConnection CreateConnection(IBdoLog log = null);
 
         #endregion
 

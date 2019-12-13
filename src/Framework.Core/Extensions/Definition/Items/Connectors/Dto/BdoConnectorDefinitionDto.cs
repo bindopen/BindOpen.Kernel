@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Items;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Extensions.Definition.Items
@@ -8,7 +7,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoConnectorDefinition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "connector.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoConnectorDefinitionDto : BdoExtensionItemDefinitionDto, IBdoConnectorDefinitionDto

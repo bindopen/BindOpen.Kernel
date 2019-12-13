@@ -1,9 +1,7 @@
 ﻿using BindOpen.Framework.Core.Application.Services.Data;
-using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using BindOpen.Framework.Databases.Data.Connections;
-using BindOpen.Framework.Databases.Extensions.Carriers;
 using System;
 using System.Data;
 
@@ -42,12 +40,12 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                 else
                 {
                     string sql = "";
-                    IBdoLog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, null, scriptVariableSet, out sql);
+                    IBdoLog subLog = connection.Connector.QueryBuilder?.BuildQuery(query, null, false, scriptVariableSet, out sql);
                     log?.Append(subLog);
 
                     if (function != null)
                     {
-                        result = function(connection.DotNetDbConnection, sql);
+                        result = function(connection.NativeConnection, sql);
                     }
                 }
             }
@@ -57,41 +55,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Executes the specified function.
-        /// </summary>
-        /// <typeparam name="Q"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="connection">The database connection to use.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns></returns>
-        public static T GetId<Q, T>(this IBdoDbConnection connection, IBdoLog log) where Q : IBdoDataService
-        {
-            T value = default;
-
-            IDataReader reader = null;
-
-            IBasicDbQuery query = new BasicDbQuery(DbQueryKind.Select)
-            {
-                Fields =
-                {
-                    new DbField() { Value= "$sqlNewGuid()".CreateScript() }
-                }
-            };
-
-            connection?.ExecuteQuery(query, ref reader);
-
-            if (reader != null)
-            {
-                while (reader.Read())
-                {
-                    value = (T)reader[0];
-                }
-            }
-
-            return value;
         }
     }
 }

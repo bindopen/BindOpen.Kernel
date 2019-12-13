@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Definition.Items;
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -9,7 +8,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Dictionaries
     /// <summary>
     /// This class represents a DTO script word dictionary.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoScriptwordDictionaryDto", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "scriptWords.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDictionaryDto : TBdoExtensionDictionaryDto<BdoScriptwordDefinitionDto>, IBdoScriptwordDictionaryDto

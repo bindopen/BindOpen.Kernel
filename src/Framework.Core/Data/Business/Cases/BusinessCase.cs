@@ -1,7 +1,7 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
+﻿using BindOpen.Framework.Core.Data.Conditions;
 using BindOpen.Framework.Core.Data.Items;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Core.Data.Business.Cases
 {
@@ -11,18 +11,8 @@ namespace BindOpen.Framework.Core.Data.Business.Cases
     [Serializable()]
     [XmlType("BusinessCase", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "businessCase", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class BusinessCase :DescribedDataItem
+    public class BusinessCase : DescribedDataItem
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private Condition _businessCondition = null;
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -35,8 +25,8 @@ namespace BindOpen.Framework.Core.Data.Business.Cases
         [XmlElement("businessCondition")]
         public Condition BusinessCondition
         {
-            get { return this._businessCondition; }
-            set { this._businessCondition = value; }
+            get;
+            set;
         }
 
         #endregion

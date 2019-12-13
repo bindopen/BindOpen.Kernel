@@ -11,7 +11,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Extensions
     /// <summary>
     /// This class represents the definition of a library.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoExtensionDefinition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "extension", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoExtensionDefinitionDto : DescribedDataItem, IBdoExtensionDefinitionDto
@@ -162,6 +161,27 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Extensions
                 {
                     dataKeyValue.Content = _rootNamespace.GetEndedString(".").Concatenate(dataKeyValue.Content, ".");
                 }
+            }
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _itemIndexFullNameDictionary?.Dispose();
             }
         }
 

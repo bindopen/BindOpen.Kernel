@@ -55,8 +55,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     , new ApiScriptField("LastModificationDate", DbFieldFactory.Create("LastModificationDate", "table"))));
 
         public static IDbQuery GetMyTable(string name, string dataModuleName = "module")
-            => DbQueryFactory.CreateBasicSelect("GetMyTable", DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName))
-                .AsDistinct()
+            => DbQueryFactory.CreateBasicSelect("GetMyTable", DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), p =>
+                p.AsDistinct()
                 .WithFields(
                     DbFieldFactory.Create("table").AsAll(),
                     DbFieldFactory.Create("Field1", "table"),
@@ -74,16 +74,17 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                                 DbTableFactory.Create("DbTable1".Substring(2), "schema2").WithAlias("table2"),
                                 DbFieldFactory.Create("table1key", "table2"),
                                 DbFieldFactory.Create("Field1", "table"))))
-                .WithIdFields(DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), name, DataValueType.Text));
+                .WithIdFields(DbFieldFactory.CreateAsParameter(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), p.UseParameter("name", DataValueType.Text, name))));
+
 
         [StoredDbQuery("delete_table")]
         public static IDbQuery DeleteMyTable()
             => DbQueryFactory.CreateBasicDelete(
                 "DeleteMyTable",
-                DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1", DbParameterFactory.Create("dataModuleName")))
-                    .WithIdFields(
-                        DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.MyTableId), DbParameterFactory.Create("id")),
-                        DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), DbParameterFactory.Create("name")))
+                DbTableFactory.Create(nameof(DbMyTable).Substring(2), "schema1", "dataModuleName"), p =>
+                    p.WithIdFields(
+                        DbFieldFactory.CreateAsParameter(nameof(DbMyTable.MyTableId), p.UseParameter("id")),
+                        DbFieldFactory.CreateAsParameter(nameof(DbMyTable.Name), p.UseParameter("name"))))
                     .WithParameters(
                         ElementSpecFactory.Create("dataModuleName", DataValueType.Text),
                         ElementSpecFactory.Create("id", DataValueType.Text),
@@ -112,13 +113,14 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     DbFieldFactory.CreateAsLiteral("fieldA", "item", "categoryName", DataValueType.Text));
 
         public static IDbQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
-            => DbQueryFactory.CreateBasicInsert("InsertMyTable", DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName))
-                .WithFields(
+            => DbQueryFactory.CreateBasicInsert("InsertMyTable",
+                DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), p =>
+                p.WithFields(
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.CreationDate), "$sqlGetCurrentDate()".CreateScript()),
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.LastModificationDate), "$sqlGetCurrentDate()".CreateScript()),
-                    DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), table?.Name, DataValueType.Text),
+                    DbFieldFactory.CreateAsParameter(nameof(DbMyTable.Name), p.UseParameter("name", table?.Name)),
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.rowguid), "$sqlNewGuid()".CreateScript()),
-                    DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.DisplayName), table?.DisplayName, DataValueType.Text),
-                    DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Description), table?.Description, DataValueType.Text));
+                    DbFieldFactory.CreateAsParameter(nameof(DbMyTable.DisplayName), p.UseParameter("displayName", table?.DisplayName)),
+                    DbFieldFactory.CreateAsParameter(nameof(DbMyTable.Description), p.UseParameter(null, table?.Description))));
     }
 }

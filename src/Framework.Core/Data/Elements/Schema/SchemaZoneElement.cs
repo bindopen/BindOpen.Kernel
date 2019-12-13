@@ -1,17 +1,16 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema zone element.
     /// </summary>
-    [Serializable()]
     [XmlType("SchemaZoneElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SchemaZoneElement : SchemaElement, INotifyPropertyChanged
@@ -49,7 +48,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         [XmlIgnore()]
         public ObservableCollection<SchemaElement> SubElements
         {
-            get 
+            get
             {
                 return this._SubElements;
             }
@@ -165,7 +164,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
 
             if (parentSchemaElement is SchemaZoneElement)
                 foreach (SchemaElement aSubSchemaElement in ((SchemaZoneElement)parentSchemaElement).SubElements)
-                    if ((aSchemaElement = this.GetElementWithId(id, aSubSchemaElement) ) != null)
+                    if ((aSchemaElement = this.GetElementWithId(id, aSubSchemaElement)) != null)
                         break;
 
             return aSchemaElement;

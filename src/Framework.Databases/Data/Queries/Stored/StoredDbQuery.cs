@@ -43,7 +43,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="query">The query to consider.</param>
         /// <param name="name">The name of the query to consider.</param>
-        /// <param name="mode">The interpretation mode to consider.</param>
         public StoredDbQuery(IDbQuery query, string name = null)
         {
             Query = query;

@@ -1,14 +1,13 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
 
 namespace BindOpen.Framework.Core.Data.Items
 {
     /// <summary>
     /// This class represents a named data item.
     /// </summary>
-    [Serializable()]
     [XmlType("NamedDataItem", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("namedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class NamedDataItem : StoredDataItem, INamedDataItem

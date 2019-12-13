@@ -18,7 +18,6 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
     /// This class represents a task definition.
     /// </summary>
     /// <seealso cref="BdoTaskConfiguration"/>
-    [Serializable()]
     [XmlType("BdoTaskDefinition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "task.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoTaskDefinitionDto : BdoExtensionItemDefinitionDto, IBdoTaskDefinitionDto
@@ -231,6 +230,28 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
                     DataElementSpec.__Arenames.ToList().Excluding(new[] { nameof(DataAreaKind.Items) }).ToArray());
             }
         }
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _inputSpecification?.Dispose();
+                _outputSpecification?.Dispose();
+            }
+        }
+
         #endregion
     }
 }

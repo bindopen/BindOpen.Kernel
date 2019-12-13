@@ -1,5 +1,4 @@
-﻿using System;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+﻿using BindOpen.Framework.Databases.Data.Queries.Builders;
 
 namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
 {
@@ -49,7 +48,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             string location = null)
         {
             return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "[" + name + "]";
+                "[" + name?.Replace("]", "][") + "]";
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             string location = null)
         {
             return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "[" + name + "]";
+                "[" + name?.Replace("]", "][") + "]";
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders
             string location = null)
         {
             return (!string.IsNullOrEmpty(location) ? location + "." : "") +
-                "[" + name + "]";
+                "[" + name?.Replace("]", "][") + "]";
         }
 
         /// <summary>

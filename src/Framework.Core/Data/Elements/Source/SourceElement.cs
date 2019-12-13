@@ -4,7 +4,6 @@ using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -15,7 +14,6 @@ namespace BindOpen.Framework.Core.Data.Elements
     /// This class represents a data source element.
     /// </summary>
     /// <remarks>A data source element can only have one item maximum.</remarks>
-    [Serializable()]
     [XmlType("SourceElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement

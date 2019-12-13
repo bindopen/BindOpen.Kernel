@@ -216,7 +216,7 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Disposes this instance.
         /// </summary>
-        public virtual void Dispose()
+        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);

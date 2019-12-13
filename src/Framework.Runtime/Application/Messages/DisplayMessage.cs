@@ -9,7 +9,6 @@ namespace BindOpen.Framework.Runtime.Application.Messages
     /// <summary>
     /// This structure respresents a display message.
     /// </summary>
-    [Serializable()]
     public class DisplayMessage : StoredDataItem
     {
         // ------------------------------------------

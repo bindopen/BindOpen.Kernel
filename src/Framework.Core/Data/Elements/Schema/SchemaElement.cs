@@ -1,16 +1,15 @@
-﻿using System;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Entities;
 
 namespace BindOpen.Framework.Core.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema element.
     /// </summary>
-    [Serializable()]
     [XmlType("SchemaElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(SchemaZoneElement))]
@@ -23,7 +22,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         #region Variables
 
         private SchemaZoneElement _parentZone = null;
-        private String _imageFileName = null;
+        private string _imageFileName = null;
 
         private DataEntity _entity = null;
 
@@ -105,7 +104,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         //-----------------------------------------
 
         #region Constructors
-        
+
         /// <summary>
         /// Initializes a new schema element.
         /// </summary>
@@ -364,7 +363,7 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         /// <param name="isRecursive">Indicates whether the protection is applied to sub schema elements.</param>
         public void ApplyVisibility(AccessibilityLevels accessibilityLevel, bool isRecursive = true)
         {
-            if ((this is SchemaZoneElement)&&(isRecursive))
+            if ((this is SchemaZoneElement) && (isRecursive))
                 foreach (SchemaElement aElement in ((SchemaZoneElement)this).SubElements)
                     aElement.ApplyVisibility(accessibilityLevel, isRecursive);
         }
@@ -435,6 +434,28 @@ namespace BindOpen.Framework.Core.Data.Elements.Schema
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IDISPOSABLE METHODS
+        // ------------------------------------------
+
+        #region IDisposable_Methods
+
+        /// <summary>
+        /// Disposes this instance. 
+        /// </summary>
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+
+            if (isDisposing)
+            {
+                _parentZone?.Dispose();
+                _entity?.Dispose();
+            }
         }
 
         #endregion
