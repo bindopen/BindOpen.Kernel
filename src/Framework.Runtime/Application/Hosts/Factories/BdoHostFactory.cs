@@ -45,6 +45,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     FileHelper.CreateDirectory(options.HostSettings.LibraryFolderPath, log);
                     FileHelper.CreateDirectory(options.HostSettings.LogsFolderPath, log);
                     FileHelper.CreateDirectory(options.HostSettings.PackagesFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.ProjectsFolderPath, log);
 
                     // we create the configuration file (bindopen.config.xml)
                     options.Settings = new BdoDefaultAppSettings();

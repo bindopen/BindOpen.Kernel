@@ -68,6 +68,11 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// 
         /// </summary>
+        string ProjectsFolderPath { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         int LogsExpirationDayNumber { get; }
 
         /// <summary>
@@ -104,6 +109,13 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <param name="packagesFolderPath">The packages folder path.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostSettings SetPackagesFolder(string packagesFolderPath);
+
+        /// <summary>
+        /// Set the projects folder.
+        /// </summary>
+        /// <param name="projectsFolderPath">The projects folder path.</param>
+        /// <returns>Returns the host option.</returns>
+        IBdoHostSettings SetProjectsFolder(string projectsFolderPath = null);
 
         /// <summary>
         /// Sets the log file name.

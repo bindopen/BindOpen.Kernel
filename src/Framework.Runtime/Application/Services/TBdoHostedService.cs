@@ -25,14 +25,14 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TBdoHostedService class.
         /// </summary>
-        public TBdoHostedService() : base(null, default)
+        protected TBdoHostedService() : base(null, default)
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the THostedAppService class.
         /// </summary>
-        public TBdoHostedService(
+        protected TBdoHostedService(
             IBdoHost host,
             S settings = default,
             IBdoLogger[] loggers = null) : base(host?.Scope, settings, loggers)
@@ -42,7 +42,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TBdoHostedService class.
         /// </summary>
-        public TBdoHostedService(
+        protected TBdoHostedService(
             IBdoHost host,
             Func<IBdoHost, S> settings = null,
             IBdoLogger[] loggers = null) : base(host?.Scope, settings(host), loggers)
