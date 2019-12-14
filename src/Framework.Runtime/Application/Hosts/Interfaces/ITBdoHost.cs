@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// The interface defines the bot.
     /// </summary>
     public interface ITBdoHost<S> : ITBdoService<S>, IBdoHost
-        where S : class, IBdoHostSettings, new()
+        where S : class, IBdoAppSettings, new()
     {
         // Options ---------------------------------
 

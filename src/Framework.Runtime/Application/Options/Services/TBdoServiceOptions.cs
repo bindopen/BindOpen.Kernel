@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Services
     /// <remarks>The genericity was added to insure depency injection.</remarks>
     public class TBdoServiceOptions<SServ, SHost>
         where SServ : class, IBdoSettings, new()
-        where SHost : IBdoHostSettings
+        where SHost : IBdoAppSettings
     {
         // ------------------------------------------------------
         // PROPERTIES

@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
@@ -15,7 +14,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
     /// <summary>
     /// The interface defines the host options.
     /// </summary>
-    public interface ITBdoHostOptions<S> : IBdoHostOptions where S : class, IBdoHostSettings, new()
+    public interface ITBdoHostOptions<S> : IBdoHostOptions where S : class, IBdoAppSettings, new()
     {
         /// <summary>
         /// Sets the specified environment.
@@ -34,11 +33,11 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         ITBdoHostOptions<S> SetRootFolder(string rootFolderPath);
 
         /// <summary>
-        /// Set the settings file.
+        /// Set the host configuration file.
         /// </summary>
         /// <param name="settingsFilePath">The settings file path.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetSettingsFile(string settingsFilePath);
+        ITBdoHostOptions<S> SetHostConfigFile(string settingsFilePath);
 
         // Settings ----------------------
 
@@ -48,18 +47,18 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         S Settings { get; set; }
 
         /// <summary>
-        /// Defines the application settings.
+        /// Defines the host settings.
         /// </summary>
         /// <param name="action">The action to consider on the settings.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetAppSettings(Action<IBdoHostAppSettings> action);
+        ITBdoHostOptions<S> SetHostSettings(Action<IBdoHostSettings> action);
 
         /// <summary>
-        /// Defines the specified settings.
+        /// Defines the specified application settings.
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> DefineSettings(IDataElementSpecSet specificationSet = null);
+        ITBdoHostOptions<S> DefineAppSettings(IDataElementSpecSet specificationSet = null);
 
         // Extensions ----------------------
 

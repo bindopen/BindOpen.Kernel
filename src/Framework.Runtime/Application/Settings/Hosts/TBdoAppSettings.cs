@@ -6,8 +6,8 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
     /// <summary>
     /// This class represents a BindOpen host settings.
     /// </summary>
-    public class TBdoHostSettings<Q> : TBdoSettings<Q>, ITBdoSettings<Q>, IBdoHostSettings
-        where Q : class, IBdoHostConfiguration, new()
+    public class TBdoAppSettings<Q> : TBdoSettings<Q>, ITBdoSettings<Q>, IBdoAppSettings
+        where Q : class, IBdoAppConfiguration, new()
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// The host configuration of this instance.
         /// </summary>
-        public IBdoHostConfiguration HostConfiguration => Configuration;
+        public IBdoAppConfiguration HostConfiguration => Configuration;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// Instantiates a new instance of the TBdoHostSettings class.
         /// </summary>
-        public TBdoHostSettings()
+        public TBdoAppSettings()
             : base()
         {
         }
@@ -46,7 +46,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
-        public TBdoHostSettings(IBdoScope scope, Q configuration)
+        public TBdoAppSettings(IBdoScope scope, Q configuration)
             : base(scope, configuration)
         {
         }

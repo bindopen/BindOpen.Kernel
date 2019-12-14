@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
     /// <summary>
     /// This interface defines application configuration.
     /// </summary>
-    public interface IBdoHostConfiguration : IBdoBaseConfiguration
+    public interface IBdoAppConfiguration : IBdoBaseConfiguration
     {
         /// <summary>
         /// Credentials.

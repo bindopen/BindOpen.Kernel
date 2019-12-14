@@ -1,14 +1,13 @@
 ﻿using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Samples.SampleA.Settings
 {
     /// <summary>
     /// This class represents a test application settings.
     /// </summary>
-    public class TestAppSettings : BdoDefaultHostSettings
+    public class TestAppSettings : BdoDefaultAppSettings
     {
         // -------------------------------------------------------
         // PROPERTIES

@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--Application manager missing-->";
 
-            return appHost?.HostOptions.AppSettings?.ApplicationInstanceName ?? "";
+            return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? "";
         }
 
         /// <summary>

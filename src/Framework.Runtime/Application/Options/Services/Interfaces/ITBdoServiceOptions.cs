@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Services
     /// <remarks>The genericity was added to insure depency injection.</remarks>
     public interface ITBdoServiceOptions<SServ, SHost>
         where SServ : IBdoSettings
-        where SHost : IBdoHostSettings
+        where SHost : IBdoAppSettings
     {
         /// <summary>
         /// Loggers.

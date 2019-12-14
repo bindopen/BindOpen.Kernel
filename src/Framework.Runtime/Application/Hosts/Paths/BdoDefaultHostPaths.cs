@@ -23,12 +23,12 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// The default host settings file name
         /// </summary>
-        public static readonly string __DefaultAppSettingsFileName = "bindopen.xml";
+        public static readonly string __DefaultHostConfigFileName = "bindopen.xml";
 
         /// <summary>
         /// The default application configuration file name
         /// </summary>
-        public static readonly string __DefaultConfigurationFileName = "bindopen.config.xml";
+        public static readonly string __DefaultAppConfigFileName = "appconfig.xml";
 
         /// <summary>
         /// The default runtime folder path.
@@ -38,7 +38,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// The default settings folder path.
         /// </summary>
-        public static readonly string __DefaultConfigurationFolderPath = @"config\".ToPath();
+        public static readonly string __DefaultAppConfigFolderPath = @"config\".ToPath();
 
         /// <summary>
         /// The default logs folder path.

@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Settings
     /// <summary>
     /// This class represents a test application settings.
     /// </summary>
-    public class TestAppSettings : BdoDefaultHostSettings
+    public class TestAppSettings : BdoDefaultAppSettings
     {
         // -------------------------------------------------------
         // PROPERTIES

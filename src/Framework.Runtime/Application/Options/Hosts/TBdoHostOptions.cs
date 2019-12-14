@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
     /// This class represents a host options.
     /// </summary>
     public class TBdoHostOptions<S> : DataItem, ITBdoHostOptions<S>
-        where S : class, IBdoHostSettings, new()
+        where S : class, IBdoAppSettings, new()
     {
         // ------------------------------------------
         // VARIABLES
@@ -66,7 +66,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// 
         /// </summary>
-        protected string _appSettingsFilePath = (@".\" + BdoDefaultHostPaths.__DefaultAppSettingsFileName).ToPath();
+        protected string _hostConfigFilePath = (@".\" + BdoDefaultHostPaths.__DefaultHostConfigFileName).ToPath();
 
         // Depots ----------------------
 
@@ -91,7 +91,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// The settings.
         /// </summary>
-        public string Environment => AppSettings?.Environment ?? _environment;
+        public string Environment => HostSettings?.Environment ?? _environment;
 
         // Paths ----------------------
 
@@ -101,9 +101,9 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         public string RootFolderPath => _rootFolderPath;
 
         /// <summary>
-        /// The settings file path.
+        /// The hot configuration file path.
         /// </summary>
-        public string AppSettingsFilePath => _appSettingsFilePath;
+        public string HostConfigFilePath => _hostConfigFilePath;
 
         // Extensions ----------------------
 
@@ -132,14 +132,14 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         // Settings ----------------------
 
         /// <summary>
-        /// The application settings of this instance.
+        /// The host settings of this instance.
         /// </summary>
-        public IBdoHostAppSettings AppSettings { get; set; }
+        public IBdoHostSettings HostSettings { get; set; }
 
         /// <summary>
-        /// The settings of this instance as host settings.
+        /// The application settings of this instance.
         /// </summary>
-        public IBdoHostSettings HostSettings => Settings;
+        public IBdoAppSettings AppSettings => Settings;
 
         /// <summary>
         /// The settings of this instance.
@@ -210,8 +210,8 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// Get the settings as the specified host settings class.
         /// </summary>
         /// <typeparam name="T">The host settings class to consider.</typeparam>
-        public T GetSettings<T>() where T : class, IBdoHostSettings
-            => HostSettings as T;
+        public T GetSettings<T>() where T : class, IBdoAppSettings
+            => AppSettings as T;
 
         #endregion
 
@@ -250,16 +250,16 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
 
             if (specificationAreas == null)
             {
-                _appSettingsFilePath = _appSettingsFilePath.GetConcatenatedPath(_rootFolderPath).ToPath();
+                _hostConfigFilePath = _hostConfigFilePath.GetConcatenatedPath(_rootFolderPath).ToPath();
 
-                AppSettings?.UpdateRuntimeInfo(null, null, log);
-                AppSettings?.SetRuntimeFolder(AppSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
-                AppSettings?.SetConfigurationFolder(AppSettings?.ConfigurationFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                AppSettings?.SetLibraryFolder(AppSettings?.LibraryFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                AppSettings?.SetLogsFolder(AppSettings?.LogsFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                AppSettings?.SetPackagesFolder(AppSettings?.PackagesFolderPath.GetConcatenatedPath(AppSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.UpdateRuntimeInfo(null, null, log);
+                HostSettings?.SetRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetConfigurationFolder(HostSettings?.ConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
 
-                ExtensionLoadOptions?.WithLibraryFolderPath(AppSettings?.LibraryFolderPath);
+                ExtensionLoadOptions?.WithLibraryFolderPath(HostSettings?.LibraryFolderPath);
             }
 
             return log;
@@ -314,13 +314,13 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
             return this;
         }
         /// <summary>
-        /// Set the specified settings file path.
+        /// Set the specified host configuration file path.
         /// </summary>
         /// <param name="path">The settings file path.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetSettingsFile(string path)
+        public ITBdoHostOptions<S> SetHostConfigFile(string path)
         {
-            _appSettingsFilePath = path?.ToPath();
+            _hostConfigFilePath = path?.ToPath();
 
             return this;
         }
@@ -356,10 +356,10 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// </summary>
         /// <param name="action">The action to consider on the settings.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetAppSettings(Action<IBdoHostAppSettings> action)
+        public ITBdoHostOptions<S> SetHostSettings(Action<IBdoHostSettings> action)
         {
-            AppSettings = AppSettings ?? new BdoHostAppSettings();
-            action?.Invoke(AppSettings);
+            HostSettings ??= new BdoHostSettings();
+            action?.Invoke(HostSettings);
 
             return this;
         }
@@ -369,7 +369,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// </summary>
         /// <param name="specificationSet">The set of data element specifcations to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public virtual ITBdoHostOptions<S> DefineSettings(IDataElementSpecSet specificationSet)
+        public virtual ITBdoHostOptions<S> DefineAppSettings(IDataElementSpecSet specificationSet)
         {
             SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
@@ -400,8 +400,8 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         {
             _isDefaultLoggerUsed = true;
 
-            AppSettings = AppSettings ?? new BdoHostAppSettings();
-            AppSettings?.SetLogsFileName(logFileName);
+            HostSettings = HostSettings ?? new BdoHostSettings();
+            HostSettings?.SetLogsFileName(logFileName);
 
             return this;
         }

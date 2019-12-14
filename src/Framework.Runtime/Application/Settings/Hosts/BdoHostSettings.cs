@@ -11,7 +11,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
     /// <summary>
     /// This class represents a BindOpen host settings.
     /// </summary>
-    public class BdoHostAppSettings : TBdoSettings<BdoHostAppConfiguration>, IBdoHostAppSettings
+    public class BdoHostSettings : TBdoSettings<BdoHostConfiguration>, IBdoHostSettings
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -75,7 +75,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "configuration.folderPath")]
-        public string ConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultConfigurationFolderPath).ToPath();
+        public string ConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultAppConfigFolderPath).ToPath();
 
         /// <summary>
         /// The logs folder path of this instance.
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoHostAppSettings class.
         /// </summary>
-        public BdoHostAppSettings()
+        public BdoHostSettings()
             : base()
         {
         }
@@ -136,7 +136,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
-        public BdoHostAppSettings(IBdoScope scope, BdoHostAppConfiguration configuration)
+        public BdoHostSettings(IBdoScope scope, BdoHostConfiguration configuration)
             : base(scope, configuration)
         {
         }
@@ -154,7 +154,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="runtimeFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostAppSettings SetRuntimeFolder(string runtimeFolderPath = "")
+        public IBdoHostSettings SetRuntimeFolder(string runtimeFolderPath = "")
         {
             RuntimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -166,7 +166,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="configurationFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostAppSettings SetConfigurationFolder(string configurationFolderPath = null)
+        public IBdoHostSettings SetConfigurationFolder(string configurationFolderPath = null)
         {
             ConfigurationFolderPath = configurationFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -178,7 +178,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="libraryFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostAppSettings SetLibraryFolder(string libraryFolderPath = null)
+        public IBdoHostSettings SetLibraryFolder(string libraryFolderPath = null)
         {
             LibraryFolderPath = libraryFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -190,7 +190,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="logsFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostAppSettings SetLogsFolder(string logsFolderPath = null)
+        public IBdoHostSettings SetLogsFolder(string logsFolderPath = null)
         {
             LogsFolderPath = logsFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -202,7 +202,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// </summary>
         /// <param name="packagesFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostAppSettings SetPackagesFolder(string packagesFolderPath = null)
+        public IBdoHostSettings SetPackagesFolder(string packagesFolderPath = null)
         {
             PackagesFolderPath = packagesFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -213,7 +213,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// Sets the log file name.
         /// </summary>
         /// <param name="logFileName">The log file name to consider.</param>
-        public IBdoHostAppSettings SetLogsFileName(string logFileName)
+        public IBdoHostSettings SetLogsFileName(string logFileName)
         {
             LogsFileName = logFileName;
 
@@ -224,7 +224,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         /// Sets the expiration day number for logs.
         /// </summary>
         /// <param name="dayNumber">The expiration day number to consider.</param>
-        public IBdoHostAppSettings SetLogsExpirationDayNumber(int dayNumber)
+        public IBdoHostSettings SetLogsExpirationDayNumber(int dayNumber)
         {
             if (dayNumber < -1)
             {
