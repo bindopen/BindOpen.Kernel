@@ -26,29 +26,29 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
             if (!string.IsNullOrEmpty(rootFolderPath) || mustRuntimeFolderBeCreated)
             {
-                var options = new TBdoHostOptions<BdoDefaultHostSettings>();
+                var options = new TBdoHostOptions<BdoDefaultAppSettings>();
                 options.SetRootFolder(rootFolderPath);
-                options.SetAppSettings(p => { if (runtimeFolderPath != null) { p.SetRuntimeFolder(runtimeFolderPath); } });
+                options.SetHostSettings(p => { if (runtimeFolderPath != null) { p.SetRuntimeFolder(runtimeFolderPath); } });
                 options.Update();
 
                 if (!string.IsNullOrEmpty(rootFolderPath))
                 {
                     // we create the application settings file (bindopen.xml)
-                    options.AppSettings.Configuration?.SaveXml(options.AppSettingsFilePath, log);
+                    options.HostSettings.Configuration?.SaveXml(options.HostConfigFilePath, log);
                 }
 
                 if (mustRuntimeFolderBeCreated)
                 {
                     // we create the default folders
-                    FileHelper.CreateDirectory(options.AppSettings.RuntimeFolderPath, log);
-                    FileHelper.CreateDirectory(options.AppSettings.ConfigurationFolderPath, log);
-                    FileHelper.CreateDirectory(options.AppSettings.LibraryFolderPath, log);
-                    FileHelper.CreateDirectory(options.AppSettings.LogsFolderPath, log);
-                    FileHelper.CreateDirectory(options.AppSettings.PackagesFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.RuntimeFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.ConfigurationFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.LibraryFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.LogsFolderPath, log);
+                    FileHelper.CreateDirectory(options.HostSettings.PackagesFolderPath, log);
 
                     // we create the configuration file (bindopen.config.xml)
-                    options.Settings = new BdoDefaultHostSettings();
-                    options.Settings.Configuration?.SaveXml(options.AppSettings.ConfigurationFolderPath + BdoDefaultHostPaths.__DefaultConfigurationFileName, log);
+                    options.Settings = new BdoDefaultAppSettings();
+                    options.Settings.Configuration?.SaveXml(options.HostSettings.ConfigurationFolderPath + BdoDefaultHostPaths.__DefaultAppConfigFileName, log);
                 }
             }
 
@@ -62,9 +62,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static ITBdoHost<BdoDefaultHostSettings> CreateBindOpenDefaultHost(
-            Action<ITBdoHostOptions<BdoDefaultHostSettings>> setupAction = null)
-            => CreateBindOpenHost<TBdoHost<BdoDefaultHostSettings>, BdoDefaultHostSettings>(setupAction);
+        public static ITBdoHost<BdoDefaultAppSettings> CreateBindOpenDefaultHost(
+            Action<ITBdoHostOptions<BdoDefaultAppSettings>> setupAction = null)
+            => CreateBindOpenHost<TBdoHost<BdoDefaultAppSettings>, BdoDefaultAppSettings>(setupAction);
 
         /// <summary>
         /// Adds a BindOpen host.
@@ -72,7 +72,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static ITBdoHost<S> CreateBindOpenHost<S>(Action<ITBdoHostOptions<S>> setupAction = null)
-            where S : class, IBdoHostSettings, new()
+            where S : class, IBdoAppSettings, new()
             => CreateBindOpenHost<TBdoHost<S>, S>(setupAction);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         public static THost CreateBindOpenHost<THost, S>(
             Action<ITBdoHostOptions<S>> setupAction = null)
             where THost : class, ITBdoHost<S>, new()
-            where S : class, IBdoHostSettings, new()
+            where S : class, IBdoAppSettings, new()
         {
             THost host = new THost();
             host.Configure(setupAction);

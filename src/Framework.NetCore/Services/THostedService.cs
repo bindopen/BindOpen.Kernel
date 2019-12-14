@@ -18,7 +18,7 @@ namespace BindOpen.Framework.NetCore.Services
     public class THostedService<Serv, SServ, SHost> : ITHostedService<Serv, SServ, SHost>
         where Serv : ITBdoService<SServ>, IBdoHosted, new()
         where SServ : class, IBdoSettings, new()
-        where SHost : IBdoHostSettings
+        where SHost : IBdoAppSettings
     {
         private IBdoHost _host;
         private Serv _service;
@@ -40,7 +40,7 @@ namespace BindOpen.Framework.NetCore.Services
             _service = new Serv
             {
                 Host = host,
-                Settings = options?.FuncSettingsConverter.Invoke((SHost)host.HostOptions?.HostSettings),
+                Settings = options?.FuncSettingsConverter.Invoke((SHost)host.HostOptions?.AppSettings),
                 Loggers = options?.Loggers
             };
         }

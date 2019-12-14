@@ -35,19 +35,19 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// <summary>
         /// The settings file path.
         /// </summary>
-        string AppSettingsFilePath { get; }
+        string HostConfigFilePath { get; }
 
         // Settings ----------------------
 
         /// <summary>
         /// The application settings.
         /// </summary>
-        IBdoHostAppSettings AppSettings { get; set; }
+        IBdoHostSettings HostSettings { get; set; }
 
         /// <summary>
         /// The host settings.
         /// </summary>
-        IBdoHostSettings HostSettings { get; }
+        IBdoAppSettings AppSettings { get; }
 
         /// <summary>
         /// The set of settings specifications of this instance.
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
         /// Get the settings as the specified host settings class.
         /// </summary>
         /// <typeparam name="T">The host settings class to consider.</typeparam>
-        T GetSettings<T>() where T : class, IBdoHostSettings;
+        T GetSettings<T>() where T : class, IBdoAppSettings;
 
         // Depots ----------------------
 

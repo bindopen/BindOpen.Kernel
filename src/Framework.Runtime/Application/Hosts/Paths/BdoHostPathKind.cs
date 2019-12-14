@@ -41,14 +41,14 @@
         RuntimeFolder,
 
         /// <summary>
-        /// The application settings file.
+        /// The host configuration file.
         /// </summary>
-        AppSettingsFile,
+        HostConfigFile,
 
         /// <summary>
-        /// The configuration file.
+        /// The application configuration file.
         /// </summary>
-        ConfigurationFile,
+        AppConfigFile,
 
         /// <summary>
         /// The settings folder.

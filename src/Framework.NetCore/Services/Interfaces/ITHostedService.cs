@@ -13,7 +13,7 @@ namespace BindOpen.Framework.NetCore.Services
     public interface ITHostedService<Serv, SServ, SHost> : IHostedService, IDisposable
         where Serv : ITBdoService<SServ>, IBdoHosted, new()
         where SServ : class, IBdoSettings, new()
-        where SHost : IBdoHostSettings
+        where SHost : IBdoAppSettings
     {
         /// <summary>
         /// 

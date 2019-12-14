@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddBindOpenDefaultHost(
             this IServiceCollection services,
-            Action<ITBdoHostOptions<BdoDefaultHostSettings>> setupAction = null)
+            Action<ITBdoHostOptions<BdoDefaultAppSettings>> setupAction = null)
         {
             services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenDefaultHost(setupAction));
 
@@ -51,7 +51,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddBindOpenHost<S>(
             this IServiceCollection services,
             Action<ITBdoHostOptions<S>> setupAction = null)
-            where S : class, IBdoHostSettings, new()
+            where S : class, IBdoAppSettings, new()
         {
             services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenHost<S>(setupAction));
 
@@ -70,7 +70,7 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Action<ITBdoHostOptions<S>> setupAction = null)
             where SHost : TBdoHost<S>, new()
-            where S : class, IBdoHostSettings, new()
+            where S : class, IBdoAppSettings, new()
         {
             services.AddSingleton<IBdoHost, SHost>(_ => BdoHostFactory.CreateBindOpenHost<SHost, S>(setupAction));
 
@@ -95,7 +95,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Func<SHost, SServ> funcSettingsConverter = null)
             where Serv : ITBdoService<SServ>, IBdoHosted, new()
             where SServ : class, IBdoSettings, new()
-            where SHost : IBdoHostSettings
+            where SHost : IBdoAppSettings
         {
             services.AddSingleton<TBdoServiceOptions<SServ, SHost>>(_ => new TBdoServiceOptions<SServ, SHost>(loggers, funcSettingsConverter));
             services.AddHostedService<THostedService<Serv, SServ, SHost>>();

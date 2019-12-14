@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Core.Data.Depots
         // PROPERTIES
         // ------------------------------------------
 
-        #region Constructors
+        #region Properties
 
         /// <summary>
         /// The initialization function.

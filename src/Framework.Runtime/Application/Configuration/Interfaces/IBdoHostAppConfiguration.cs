@@ -5,7 +5,7 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
     /// <summary>
     /// This interface defines host application configuration.
     /// </summary>
-    public interface IBdoHostAppConfiguration : IBdoBaseConfiguration
+    public interface IBdoHostConfiguration : IBdoBaseConfiguration
     {
     }
 }

@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
     /// This class represents an application host.
     /// </summary>
     public class TBdoHost<S> : TBdoService<S>, ITBdoHost<S>
-        where S : class, IBdoHostSettings, new()
+        where S : class, IBdoAppSettings, new()
     {
         // ------------------------------------------
         // PROPERTIES
@@ -178,25 +178,25 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 case BdoHostPathKind.RootFolder:
                     path = Options?.RootFolderPath;
                     break;
-                case BdoHostPathKind.ConfigurationFile:
-                    path = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
+                case BdoHostPathKind.AppConfigFile:
+                    path = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
                     break;
                 case BdoHostPathKind.ConfigurationFolder:
-                    path = Options?.AppSettings?.ConfigurationFolderPath;
+                    path = Options?.HostSettings?.ConfigurationFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = Options?.AppSettings?.ConfigurationFolderPath;
+                        path = Options?.HostSettings?.ConfigurationFolderPath;
                     }
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultConfigurationFolderPath;
+                        path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultAppConfigFolderPath;
                     }
                     break;
                 case BdoHostPathKind.LibraryFolder:
-                    path = Options?.AppSettings?.LibraryFolderPath;
+                    path = Options?.HostSettings?.LibraryFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = Options?.AppSettings?.LibraryFolderPath;
+                        path = Options?.HostSettings?.LibraryFolderPath;
                     }
                     if (string.IsNullOrEmpty(path))
                     {
@@ -204,10 +204,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     }
                     break;
                 case BdoHostPathKind.LogsFolder:
-                    path = Options?.AppSettings?.LogsFolderPath;
+                    path = Options?.HostSettings?.LogsFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = Options?.AppSettings?.LogsFolderPath;
+                        path = Options?.HostSettings?.LogsFolderPath;
                     }
                     if (string.IsNullOrEmpty(path))
                     {
@@ -219,10 +219,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     }
                     break;
                 case BdoHostPathKind.PackagesFolder:
-                    path = Options?.AppSettings?.PackagesFolderPath;
+                    path = Options?.HostSettings?.PackagesFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = Options?.AppSettings?.PackagesFolderPath;
+                        path = Options?.HostSettings?.PackagesFolderPath;
                     }
                     if (string.IsNullOrEmpty(path))
                     {
@@ -236,17 +236,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
                     break;
                 case BdoHostPathKind.RuntimeFolder:
-                    path = Options?.AppSettings?.RuntimeFolderPath;
+                    path = Options?.HostSettings?.RuntimeFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
                         path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultRuntimeFolderPath;
                     }
                     break;
-                case BdoHostPathKind.AppSettingsFile:
-                    path = Options.AppSettingsFilePath;
+                case BdoHostPathKind.HostConfigFile:
+                    path = Options.HostConfigFilePath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultAppSettingsFileName;
+                        path = GetKnownPath(BdoHostPathKind.RootFolder) + BdoDefaultHostPaths.__DefaultHostConfigFileName;
                     }
                     break;
                 case BdoHostPathKind.TemporaryFolder:
@@ -302,7 +302,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
             // we update options
 
-            var premiaryAppSettings = Options.AppSettings.Clone<BdoHostAppSettings>();
+            var premiaryAppSettings = Options.HostSettings.Clone<BdoHostSettings>();
             Options.Update();
 
             // we initialize logging
@@ -341,17 +341,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                 {
                     // we load the application settings
 
-                    string appSettingsFilePath = GetKnownPath(BdoHostPathKind.AppSettingsFile);
-                    Options.AppSettings = premiaryAppSettings ?? new BdoHostAppSettings();
+                    string appSettingsFilePath = GetKnownPath(BdoHostPathKind.HostConfigFile);
+                    Options.HostSettings = premiaryAppSettings ?? new BdoHostSettings();
 
                     if (!File.Exists(appSettingsFilePath))
                     {
-                        subLog.AddWarning("Settings file ('" + BdoDefaultHostPaths.__DefaultAppSettingsFileName + "') not found");
+                        subLog.AddWarning("Settings file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");
                     }
                     else
                     {
                         subLog = log.AddSubLog(title: "Loading application settings...", eventKind: EventKinds.Message);
-                        subLog.Append(Options.AppSettings.UpdateFromFile(
+                        subLog.Append(Options.HostSettings.UpdateFromFile(
                                 appSettingsFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                                 Options?.SettingsSpecificationSet,
@@ -364,9 +364,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                     subLog.Append(Options.Update());
 
-                    if (string.IsNullOrEmpty(Options?.AppSettings.ApplicationInstanceName))
+                    if (string.IsNullOrEmpty(Options?.HostSettings.ApplicationInstanceName))
                     {
-                        Options.AppSettings.ApplicationInstanceName = BdoHostConfiguration.__ApplicationInstanceName;
+                        Options.HostSettings.ApplicationInstanceName = BdoAppConfiguration.__ApplicationInstanceName;
                     }
 
                     // we load extensions
@@ -397,7 +397,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         Options.Settings = new S();
 
-                        string configFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultConfigurationFileName;
+                        string configFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
 
                         subLog = log.AddSubLog(title: "Loading configuration...", eventKind: EventKinds.Message);
                         if (!File.Exists(configFilePath))
@@ -423,12 +423,12 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         // we delete expired primary logs
 
-                        int logsExpirationDayNumber = Options?.AppSettings?.LogsExpirationDayNumber ?? -1;
+                        int logsExpirationDayNumber = Options?.HostSettings?.LogsExpirationDayNumber ?? -1;
                         primaryLogger?.DeleteExpiredLogs(logsExpirationDayNumber, BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + "*.txt");
 
                         // we update the log folder path
 
-                        Log.SetFilePath(GetKnownPath(BdoHostPathKind.LogsFolder), true, Options?.AppSettings?.LogsFileName);
+                        Log.SetFilePath(GetKnownPath(BdoHostPathKind.LogsFolder), true, Options?.HostSettings?.LogsFileName);
 
                         // we delete expired logs
 
