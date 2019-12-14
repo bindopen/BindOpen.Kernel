@@ -9,7 +9,7 @@
             This static class extends .Net core dependency injection namespace.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultHost(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{BindOpen.Framework.Runtime.Application.Settings.Hosts.BdoDefaultHostSettings}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenDefaultHost(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoHostOptions{BindOpen.Framework.Runtime.Application.Settings.BdoDefaultHostSettings}})">
             <summary>
             Adds a BindOpen default host.
             </summary>
@@ -24,7 +24,7 @@
             <param name="provider">The service provider to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{``0}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoHostOptions{``0}})">
             <summary>
             Adds a BindOpen host.
             </summary>
@@ -32,7 +32,7 @@
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.Hosts.ITBdoHostOptions{``1}})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBindOpenHost``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{BindOpen.Framework.Runtime.Application.Options.ITBdoHostOptions{``1}})">
             <summary>
             Adds a BindOpen host.
             </summary>
@@ -120,7 +120,7 @@
             The BindOpen bot of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.NetCore.Services.THostedService`3.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IBdoHost,BindOpen.Framework.Runtime.Application.Options.Services.ITBdoServiceOptions{`1,`2})">
+        <member name="M:BindOpen.Framework.NetCore.Services.THostedService`3.#ctor(BindOpen.Framework.Runtime.Application.Hosts.IBdoHost,BindOpen.Framework.Runtime.Application.Options.ITBdoServiceOptions{`1,`2})">
             <summary>
             Creates a new instance of the BdoHostedService class.
             </summary>

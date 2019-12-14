@@ -6,7 +6,7 @@ using BindOpen.Framework.Runtime.System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
+namespace BindOpen.Framework.Runtime.Application.Settings
 {
     /// <summary>
     /// This class represents a BindOpen host settings.

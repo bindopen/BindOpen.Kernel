@@ -1,9 +1,9 @@
 ﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Settings;
-using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System;
+using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options.Services
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This interface represents a service options provider.
@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Services
         /// <summary>
         /// Loggers.
         /// </summary>
-        IBdoLogger[] Loggers { get; }
+        List<IBdoLogger> Loggers { get; }
 
         /// <summary>
         /// Functional settings.

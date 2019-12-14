@@ -1,7 +1,6 @@
 ﻿using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
-using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using Microsoft.Extensions.Hosting;
 using System;
 

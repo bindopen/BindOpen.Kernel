@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
+namespace BindOpen.Framework.Runtime.Application.Settings
 {
     /// <summary>
     /// This static class contains the default option values.

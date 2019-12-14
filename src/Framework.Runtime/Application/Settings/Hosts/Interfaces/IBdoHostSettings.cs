@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.System;
 
-namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
+namespace BindOpen.Framework.Runtime.Application.Settings
 {
     /// <summary>
     /// 

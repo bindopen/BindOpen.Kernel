@@ -6,6 +6,8 @@ using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Core.System.Processing;
 using BindOpen.Framework.Runtime.Application.Settings;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -50,7 +52,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
         /// <summary>
         /// The runtime folder path.
         /// </summary>
-        public IBdoLogger[] Loggers { get; set; }
+        public List<IBdoLogger> Loggers { get; set; }
 
         // Execution ----------------------
 
@@ -140,15 +142,15 @@ namespace BindOpen.Framework.Runtime.Application.Services
         protected TBdoService(
             IBdoScope scope,
             S settings = default,
-            IBdoLogger[] loggers = null) : base("")
+            params IBdoLogger[] loggers) : base("")
         {
             _scope = scope;
 
             Settings = settings;
-            Loggers = loggers ?? new IBdoLogger[0];
+            Loggers = loggers?.ToList() ?? new List<IBdoLogger>();
 
             // we initiate the log of this instance
-            Log = new BdoLog(Loggers)
+            Log = new BdoLog(Loggers.ToArray())
             {
                 Id = Id
             };

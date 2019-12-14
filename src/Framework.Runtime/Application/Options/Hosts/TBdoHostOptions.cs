@@ -11,13 +11,13 @@ using BindOpen.Framework.Runtime.Application.Exceptions;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings.Hosts;
+using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Options.Hosts
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This class represents a host options.
@@ -258,6 +258,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Hosts
                 HostSettings?.SetLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.SetLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.SetPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
 
                 ExtensionLoadOptions?.WithLibraryFolderPath(HostSettings?.LibraryFolderPath);
             }

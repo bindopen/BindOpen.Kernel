@@ -1,15 +1,16 @@
 ﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Settings;
-using BindOpen.Framework.Runtime.Application.Settings.Hosts;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Options.Services
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// This class represents a service options provider.
     /// </summary>
     /// <remarks>The genericity was added to insure depency injection.</remarks>
-    public class TBdoServiceOptions<SServ, SHost>
+    public class TBdoServiceOptions<SServ, SHost> : ITBdoServiceOptions<SServ, SHost>
         where SServ : class, IBdoSettings, new()
         where SHost : IBdoAppSettings
     {
@@ -22,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Services
         /// <summary>
         /// The loggers of this instance.
         /// </summary>
-        public IBdoLogger[] Loggers { get; }
+        public List<IBdoLogger> Loggers { get; }
 
         /// <summary>
         /// The settings function of this instance.
@@ -46,7 +47,7 @@ namespace BindOpen.Framework.Runtime.Application.Options.Services
             IBdoLogger[] loggers = null,
             Func<SHost, SServ> funcSettingsConverter = null)
         {
-            Loggers = loggers;
+            Loggers = loggers?.ToList();
             FuncSettingsConverter = funcSettingsConverter;
         }
 
