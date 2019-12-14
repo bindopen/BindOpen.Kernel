@@ -5,10 +5,10 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Settings.Hosts;
+using BindOpen.Framework.Runtime.Application.Settings;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options.Hosts
+namespace BindOpen.Framework.Runtime.Application.Options
 {
     /// <summary>
     /// The interface defines the base BDO host options.

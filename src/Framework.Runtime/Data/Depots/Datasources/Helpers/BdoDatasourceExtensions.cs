@@ -1,9 +1,7 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Options.Hosts;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
+using BindOpen.Framework.Runtime.Application.Options;
 
 namespace BindOpen.Framework.Core.Data.Depots.Datasources
 {

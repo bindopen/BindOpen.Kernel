@@ -298,7 +298,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             IBdoLog parentLog,
             IBdoTaskConfiguration task = null,
             Predicate<IBdoLogEvent> eventFinder = null)
-            : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : new BdoLogger[0]))
+            : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : Array.Empty<BdoLogger>()))
         {
             _task = task as BdoTaskConfiguration;
             if (parentLog != null)
