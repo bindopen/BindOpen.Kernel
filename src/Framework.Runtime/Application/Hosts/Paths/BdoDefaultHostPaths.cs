@@ -51,9 +51,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         public static readonly string __DefaultLibraryFolderPath = @"lib\".ToPath();
 
         /// <summary>
-        /// The default extensions folder path.
+        /// The default packages folder path.
         /// </summary>
         public static readonly string __DefaultPackagesFolderPath = @"packages\".ToPath();
+
+        /// <summary>
+        /// The default projects folder path.
+        /// </summary>
+        public static readonly string __DefaultProjectsFolderPath = @"projects\".ToPath();
 
         /// <summary>
         /// The default log file name.

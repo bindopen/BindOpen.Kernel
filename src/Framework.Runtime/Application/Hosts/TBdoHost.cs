@@ -229,6 +229,17 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultPackagesFolderPath;
                     }
                     break;
+                case BdoHostPathKind.ProjectsFolder:
+                    path = Options?.HostSettings?.ProjectsFolderPath;
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        path = Options?.HostSettings?.ProjectsFolderPath;
+                    }
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultProjectsFolderPath;
+                    }
+                    break;
                 case BdoHostPathKind.PrimaryLogsFolder:
                     path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultLogsFolderPath;
                     break;
@@ -441,7 +452,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         _scope.DataStore = Options?.DataStore;
                         subLog = log.AddSubLog(title: "Loading data store...", eventKind: EventKinds.Message);
-                        if(_scope.DataStore==null)
+                        if (_scope.DataStore == null)
                         {
                             subLog.AddMessage(title: "No data store registered");
                         }

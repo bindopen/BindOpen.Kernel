@@ -92,11 +92,18 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 
         /// <summary>
-        /// The settings folder path of this instance.
+        /// The packages folder path of this instance.
         /// </summary>
         [XmlIgnore()]
         [DetailProperty(Name = "packages.folderPath")]
         public string PackagesFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultPackagesFolderPath).ToPath();
+
+        /// <summary>
+        /// The projects folder path of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        [DetailProperty(Name = "projects.folderPath")]
+        public string ProjectsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultProjectsFolderPath).ToPath();
 
         /// <summary>
         /// The logs file name of this instance.
@@ -198,13 +205,25 @@ namespace BindOpen.Framework.Runtime.Application.Settings.Hosts
         }
 
         /// <summary>
-        /// Sets the extensions folder path.
+        /// Sets the packages folder path.
         /// </summary>
         /// <param name="packagesFolderPath"></param>
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings SetPackagesFolder(string packagesFolderPath = null)
         {
             PackagesFolderPath = packagesFolderPath?.GetEndedString(@"\").ToPath();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the projects folder path.
+        /// </summary>
+        /// <param name="projectsFolderPath"></param>
+        /// <returns>Returns this instance.</returns>
+        public IBdoHostSettings SetProjectsFolder(string projectsFolderPath = null)
+        {
+            ProjectsFolderPath = projectsFolderPath?.GetEndedString(@"\").ToPath();
 
             return this;
         }

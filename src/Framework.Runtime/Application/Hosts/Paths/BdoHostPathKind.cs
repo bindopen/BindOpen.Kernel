@@ -16,9 +16,14 @@
         PrimaryLogsFolder,
 
         /// <summary>
-        /// The extensions folder.
+        /// The packages folder.
         /// </summary>
         PackagesFolder,
+
+        /// <summary>
+        /// The projects folder.
+        /// </summary>
+        ProjectsFolder,
 
         /// <summary>
         /// The library folder.
