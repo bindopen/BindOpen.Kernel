@@ -101,51 +101,54 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
 
             queryString = "";
 
-            try
+            if (query != null)
             {
-                if (query is BasicDbQuery basicDbQuery)
+                try
                 {
-                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                    log.AddEvents(Build(basicDbQuery, parameterSet, scriptVariableSet, out queryString));
-                }
-                else if (query is AdvancedDbQuery advancedDbQuery)
-                {
-                    (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                    log.AddEvents(Build(advancedDbQuery, parameterSet, scriptVariableSet, out queryString));
-                }
-                else if (query is StoredDbQuery storedDbQuery)
-                {
-                    if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
+                    if (query is BasicDbQuery basicDbQuery)
                     {
-                        BuildQuery(storedDbQuery.Query, parameterSet, false, scriptVariableSet, out queryString);
-                        storedDbQuery.QueryTexts.Add(Id, queryString);
+                        (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
+                        log.AddEvents(Build(basicDbQuery, parameterSet, scriptVariableSet, out queryString));
                     }
-
-                    return log;
-                }
-
-                if (isParametersInjected)
-                {
-                    if (parameterSet == null)
+                    else if (query is AdvancedDbQuery advancedDbQuery)
                     {
-                        parameterSet = query.ParameterSet;
+                        (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
+                        log.AddEvents(Build(advancedDbQuery, parameterSet, scriptVariableSet, out queryString));
                     }
-
-                    if (parameterSet!=null)
+                    else if (query is StoredDbQuery storedDbQuery)
                     {
-                        foreach (var parameter in parameterSet.Elements)
+                        if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            queryString = queryString.Replace(parameter.CreateParameterString(),
-                                GetValuedSqlText(parameter.GetObject(_scope, scriptVariableSet, log).ToString(), parameter.ValueType));
+                            BuildQuery(storedDbQuery.Query, parameterSet, false, scriptVariableSet, out queryString);
+                            storedDbQuery.QueryTexts.Add(Id, queryString);
+                        }
+
+                        return log;
+                    }
+
+                    if (isParametersInjected)
+                    {
+                        if (parameterSet == null)
+                        {
+                            parameterSet = query.ParameterSet;
+                        }
+
+                        if (parameterSet?.Elements != null)
+                        {
+                            foreach (var parameter in parameterSet.Elements)
+                            {
+                                queryString = queryString.Replace(parameter.CreateParameterString(),
+                                    GetValuedSqlText(parameter.GetObject(_scope, scriptVariableSet, log).ToString(), parameter.ValueType));
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                log.AddError(
-                    "Error trying to build query '" + (query.Name ?? "(Undefinied)") + "'",
-                    description: ex.ToString() + ". Built query is : '" + queryString + "'.");
+                catch (Exception ex)
+                {
+                    log.AddError(
+                        "Error trying to build query '" + (query?.Name ?? "(Undefinied)") + "'",
+                        description: ex.ToString() + ". Built query is : '" + queryString + "'.");
+                }
             }
 
             return null;

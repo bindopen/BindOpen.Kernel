@@ -43,7 +43,13 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// 
         /// </summary>
-        string ConfigurationFolderPath { get; }
+        string AppConfigurationFolderPath { get; }
+
+        /// <summary>
+        /// Indicates whether the application configuration file must exist.
+        /// </summary>
+        /// <remarks>If it does not exist then an exception is thrown.</remarks>
+        bool IsAppConfigFileRequired { get; }
 
         /// <summary>
         /// 
@@ -83,11 +89,19 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         IBdoHostSettings SetRuntimeFolder(string runtimeFolderPath);
 
         /// <summary>
-        /// Set the configuration folder.
+        /// Set the application configuration file.
         /// </summary>
-        /// <param name="configFolderPath">The configuration folder path.</param>
+        /// <param name="configFolderPath">The application configuration folder path.</param>
+        /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetConfigurationFolder(string configFolderPath);
+        IBdoHostSettings SetAppConfigFile(string configFolderPath, bool isRequired = false);
+
+        /// <summary>
+        /// Set the application configuration file.
+        /// </summary>
+        /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
+        /// <returns>Returns the host option.</returns>
+        IBdoHostSettings SetAppConfigFile(bool isRequired);
 
         /// <summary>
         /// Set the library folder.

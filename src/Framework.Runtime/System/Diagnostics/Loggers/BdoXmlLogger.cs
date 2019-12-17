@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
@@ -32,23 +31,13 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="mode">The mode to consider.</param>
-        /// <param name="folderPath">The folder path to consider.</param>
-        /// <param name="fileName">The file name to consider.</param>
-        /// <param name="outputKind">The output kind to consider.</param>
-        /// <param name="isVerbose">Indicates whether .</param>
-        /// <param name="uiCulture">The folder path to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public BdoXmlLogger(
             String name,
             BdoLoggerMode mode,
-            String folderPath,
-            String fileName = null,
-            DatasourceKind outputKind = DatasourceKind.Repository,
-            bool isVerbose = false,
-            String uiCulture = null,
-            Predicate<IBdoLogEvent> eventFinder = null)
-            : base(name, BdoLoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder)
+            Predicate<IBdoLogEvent> eventFilter = null)
+            : base(name, BdoDefaultLoggerFormat.Xml, mode, eventFilter)
         {
         }
 
@@ -77,7 +66,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         public override bool WriteEvent(
             IBdoLogEvent logEvent)
         {
-            if (EventFinder == null || EventFinder.Invoke(logEvent))
+            if (EventFilter == null || EventFilter.Invoke(logEvent))
                 return Save(logEvent?.Root, Filepath);
             else
                 return false;

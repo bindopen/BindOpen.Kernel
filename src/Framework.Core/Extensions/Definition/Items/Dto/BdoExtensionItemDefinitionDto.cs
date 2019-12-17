@@ -100,7 +100,7 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public virtual string GetText(BdoLoggerFormat logFormat = BdoLoggerFormat.Xml, string uiCulture = "*")
+        public virtual string GetText(BdoDefaultLoggerFormat logFormat = BdoDefaultLoggerFormat.Xml, string uiCulture = "*")
         {
             return "";
         }

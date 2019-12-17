@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
@@ -29,23 +28,13 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="mode">The mode to consider.</param>
-        /// <param name="folderPath">The folder path to consider.</param>
-        /// <param name="fileName">The file name to consider.</param>
-        /// <param name="outputKind">The output kind to consider.</param>
-        /// <param name="isVerbose">Indicates whether .</param>
-        /// <param name="uiCulture">The folder path to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public BdoSnapLogger(
             string name,
             BdoLoggerMode mode,
-            string folderPath,
-            string fileName = null,
-            DatasourceKind outputKind = DatasourceKind.Repository,
-            bool isVerbose = false,
-            string uiCulture = null,
-            Predicate<IBdoLogEvent> eventFinder = null)
-            : base(name, BdoLoggerFormat.Snap, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder)
+            Predicate<IBdoLogEvent> eventFilter = null)
+            : base(name, BdoDefaultLoggerFormat.Snap, mode, eventFilter)
         {
         }
 
@@ -98,7 +87,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
             indent += indent;
             indent += indent;
 
-            string st = logEvent.Date + indent + (logEvent.Log != null ? " o " : " - ") + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture)
+            string st = logEvent.Date + " " + indent + (logEvent.Log != null ? "o " : "- ") + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture)
                 + (logEvent.Description != null ? " | " + logEvent.GetDescription(UICulture) : "") + Environment.NewLine;
 
             if (logEvent?.Log != null)
@@ -114,7 +103,7 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         public override bool WriteEvent(
             IBdoLogEvent logEvent)
         {
-            if (EventFinder?.Invoke(logEvent) != false)
+            if (EventFilter?.Invoke(logEvent) != false)
                 return Write(ToString(logEvent));
             else
                 return false;

@@ -27,10 +27,10 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
             var depot = Host.Scope.GetDbQueryDepot();
 
-            string sql4 = "4- " + connector.CreateCommandText(depot.GetQuery("delete_table"), true, null, Log);
+            string sql4 = "4- " + connector.CreateCommandText(depot?.GetQuery("delete_table"), true, null, Log);
             Console.WriteLine(sql4);
 
-            string sql12 = "5- " + connector.CreateCommandText(depot.GetQuery("delete_table"), true, null, Log);
+            string sql12 = "5- " + connector.CreateCommandText(depot?.GetQuery("delete_table"), true, null, Log);
             Console.WriteLine(sql12);
 
             return this;

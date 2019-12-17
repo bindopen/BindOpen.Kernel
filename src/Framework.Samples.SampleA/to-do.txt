@@ -1,0 +1,11 @@
+- Console logger not working
+- Exception in database.dll
+- Exception with host with only default file logger
+
+- Logger using several writeTo kinds
+	- Simplify logger factory
+	- Remove verbose property in logger class
+	- Simplify host options for default logger : IsDefault...Used -> DefaultLoggerOutputKinds (if none then no default logger set)
+
+- SetRootFolder	according to environmenet
+- SetRootFolderAsWeb

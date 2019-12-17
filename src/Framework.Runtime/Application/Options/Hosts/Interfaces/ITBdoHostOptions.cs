@@ -17,6 +17,11 @@ namespace BindOpen.Framework.Runtime.Application.Options
     public interface ITBdoHostOptions<S> : IBdoHostOptions where S : class, IBdoAppSettings, new()
     {
         /// <summary>
+        /// The root folder path.
+        /// </summary>
+        List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)> RootFolderPathDefinitions { get; }
+
+        /// <summary>
         /// Sets the specified environment.
         /// </summary>
         /// <param name="environment">The environment to consider.</param>
@@ -28,16 +33,32 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Set the root folder.
         /// </summary>
-        /// <param name="rootFolderPath">The root folder path.</param>
+        /// <param name="predicate">The condition that muse be satistfied.</param>
+        /// <param name="rootFolderPath">The root folder path to consider.</param>
+        /// <returns>Returns the host option.</returns>
+        ITBdoHostOptions<S> SetRootFolder(Predicate<ITBdoHostOptions<S>> predicate, string rootFolderPath);
+
+        /// <summary>
+        /// Set the root folder.
+        /// </summary>
+        /// <param name="rootFolderPath">The root folder path to consider.</param>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> SetRootFolder(string rootFolderPath);
 
         /// <summary>
         /// Set the host configuration file.
         /// </summary>
-        /// <param name="settingsFilePath">The settings file path.</param>
+        /// <param name="filePath">The host configuration file path.</param>
+        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetHostConfigFile(string settingsFilePath);
+        ITBdoHostOptions<S> SetHostConfigFile(string filePath, bool isRequired = false);
+
+        /// <summary>
+        /// Set the host configuration file.
+        /// </summary>
+        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <returns>Returns the host option.</returns>
+        ITBdoHostOptions<S> SetHostConfigFile(bool isRequired);
 
         // Settings ----------------------
 
@@ -63,15 +84,17 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // Extensions ----------------------
 
         /// <summary>
-        /// Configures the extension load of this instance.
+        /// Adds the extensions.
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        ITBdoHostOptions<S> ConfigureExtensionLoad(Action<IExtensionLoadOptions> action);
+        /// <param name="loadOptionsAction">The action for loading options.</param>
+        /// <param name="action">The action for adding extensions.</param>
+        /// <returns>Returns the host option.</returns>
+        ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action);
 
         /// <summary>
         /// Adds the extensions.
         /// </summary>
+        /// <param name="action">The action for adding extensions.</param>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action);
 
@@ -148,28 +171,6 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// Throws an exception when execution fails.
         /// </summary>
         ITBdoHostOptions<S> ThrowExceptionOnExecutionFailure();
-
-        // Trigger actions -------------------------------------------
-
-        /// <summary>
-        /// The action that the start of this instance completes.
-        /// </summary>
-        Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
-
-        /// <summary>
-        /// The action that the start of this instance fails.
-        /// </summary>
-        Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
-
-        /// <summary>
-        /// The action that this instance completes.
-        /// </summary>
-        Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
-
-        /// <summary>
-        /// The action that is executed when the instance fails.
-        /// </summary>
-        Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
 
         // Depots -------------------------------------------
 

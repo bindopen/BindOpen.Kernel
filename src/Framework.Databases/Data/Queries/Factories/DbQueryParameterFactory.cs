@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
                 query.ParameterSet = new DataElementSet();
             }
 
-            IDataElement parameter;
+            DataElement parameter;
             if ((parameter = query.ParameterSet[name]) != null)
             {
                 parameter.SetItem(value);
@@ -63,6 +63,7 @@ namespace BindOpen.Framework.Databases.Data.Queries
             {
                 parameter = ElementFactory.CreateScalar(name, valueType, value);
                 parameter.Index = query.ParameterSet.Count + 1;
+                query.ParameterSet.Add(parameter);
             }
 
             return parameter;

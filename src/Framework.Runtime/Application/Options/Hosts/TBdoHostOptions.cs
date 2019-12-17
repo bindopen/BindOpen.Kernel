@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Core.Application.Exceptions;
+using BindOpen.Framework.Core.Data.Common;
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
@@ -7,12 +8,10 @@ using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Exceptions;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
-using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +45,21 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         protected IList<IBdoLogger> _loggers = null;
 
+
+        /// <summary>
+        /// The output kinds of the default loggers.
+        /// </summary>
+        protected HashSet<DatasourceKind> _defaultLoggerOutputKinds = new HashSet<DatasourceKind>();
+
         /// <summary>
         /// 
         /// </summary>
         protected IExtensionLoadOptions _extensionLoadOptions = null;
 
         /// <summary>
-        /// 
+        /// The root folder path.
         /// </summary>
-        protected bool _isDefaultLoggerUsed = false;
+        protected List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)> _rootFolderPathDefinitions = null;
 
         // Paths ----------------------
 
@@ -67,6 +72,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// 
         /// </summary>
         protected string _hostConfigFilePath = (@".\" + BdoDefaultHostPaths.__DefaultHostConfigFileName).ToPath();
+
+        /// <summary>
+        /// Indicates whether the host configuration file is required.
+        /// </summary>
+        /// <remarks>If it does not exist then an exception is thrown.</remarks>
+        protected bool _isHostConfigFileRequired = false;
 
         // Depots ----------------------
 
@@ -101,9 +112,20 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public string RootFolderPath => _rootFolderPath;
 
         /// <summary>
+        /// The root folder path.
+        /// </summary>
+        public List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)> RootFolderPathDefinitions => _rootFolderPathDefinitions;
+
+        /// <summary>
         /// The hot configuration file path.
         /// </summary>
         public string HostConfigFilePath => _hostConfigFilePath;
+
+        /// <summary>
+        /// Indicates whether the host configuration file must exist.
+        /// </summary>
+        /// <remarks>If it does not exist then an exception is thrown.</remarks>
+        public bool IsHostConfigFileRequired => _isHostConfigFileRequired;
 
         // Extensions ----------------------
 
@@ -125,9 +147,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public IList<IBdoLogger> Loggers { get; }
 
         /// <summary>
-        /// Indicates whether the default logger is used.
+        /// The output kinds of the default logger.
         /// </summary>
-        public bool IsDefaultFileLoggerUsed => _isDefaultLoggerUsed;
+        /// <remarks>If there is none then we do not have any default logger.</remarks>
+        public HashSet<DatasourceKind> DefaultLoggerOutputKinds => _defaultLoggerOutputKinds;
 
         // Settings ----------------------
 
@@ -238,7 +261,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
 
             if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.RootFolder.ToString()))
             {
-                if (string.IsNullOrEmpty(RootFolderPath))
+                if (string.IsNullOrEmpty(_rootFolderPath))
                 {
                     _rootFolderPath = BdoDefaultHostPaths.__DefaultRootFolderPath;
                 }
@@ -254,7 +277,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
 
                 HostSettings?.UpdateRuntimeInfo(null, null, log);
                 HostSettings?.SetRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.SetConfigurationFolder(HostSettings?.ConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.SetAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath(), HostSettings?.IsAppConfigFileRequired ?? false);
                 HostSettings?.SetLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.SetLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.SetPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
@@ -304,6 +327,20 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // Paths -------------------------------------------
 
         /// <summary>
+        /// Set the root folder.
+        /// </summary>
+        /// <param name="predicate">The condition that must be satisfied.</param>
+        /// <param name="rootFolderPath">The root folder path.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> SetRootFolder(Predicate<ITBdoHostOptions<S>> predicate, string rootFolderPath)
+        {
+            _rootFolderPathDefinitions ??= new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
+            _rootFolderPathDefinitions.Add((predicate, rootFolderPath));
+
+            return this;
+        }
+
+        /// <summary>
         /// Sets the specified root folder path.
         /// </summary>
         /// <param name="path">The path to consider.</param>
@@ -314,14 +351,28 @@ namespace BindOpen.Framework.Runtime.Application.Options
 
             return this;
         }
+
         /// <summary>
         /// Set the specified host configuration file path.
         /// </summary>
         /// <param name="path">The settings file path.</param>
+        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetHostConfigFile(string path)
+        public ITBdoHostOptions<S> SetHostConfigFile(string path, bool isRequired = false)
         {
             _hostConfigFilePath = path?.ToPath();
+            return SetHostConfigFile(isRequired);
+        }
+
+        /// <summary>
+        /// Set the specified host configuration file path.
+        /// </summary>
+        /// <param name="path">The settings file path.</param>
+        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> SetHostConfigFile(bool isRequired)
+        {
+            _isHostConfigFileRequired = isRequired;
 
             return this;
         }
@@ -329,14 +380,15 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // Extensions -------------------------------------------
 
         /// <summary>
-        /// Configures the extension load of this instance.
+        /// Adds the extensions.
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public ITBdoHostOptions<S> ConfigureExtensionLoad(Action<IExtensionLoadOptions> action)
+        /// <param name="loadOptionsAction">The action for loading options.</param>
+        /// <param name="action">The action for adding extensions.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action)
         {
-            action?.Invoke(ExtensionLoadOptions);
-            return this;
+            loadOptionsAction?.Invoke(ExtensionLoadOptions);
+            return AddExtensions(action);
         }
 
         /// <summary>
@@ -347,6 +399,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action)
         {
             action?.Invoke(ExtensionReferences);
+
             return this;
         }
 
@@ -399,9 +452,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public ITBdoHostOptions<S> AddDefaultFileLogger(string logFileName = null)
         {
-            _isDefaultLoggerUsed = true;
+            _defaultLoggerOutputKinds.Add(DatasourceKind.Repository);
 
-            HostSettings = HostSettings ?? new BdoHostSettings();
+            HostSettings ??= new BdoHostSettings();
             HostSettings?.SetLogsFileName(logFileName);
 
             return this;
@@ -413,7 +466,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public ITBdoHostOptions<S> AddDefaultConsoleLogger()
         {
-            AddLoggers(BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto, DatasourceKind.Console));
+            _defaultLoggerOutputKinds.Add(DatasourceKind.Console);
 
             return this;
         }

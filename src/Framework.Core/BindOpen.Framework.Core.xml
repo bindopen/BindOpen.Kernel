@@ -13085,7 +13085,7 @@
             <summary>
             Instantiates a new instance of the Log class.
             </summary>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <param name="loggers">The loggers to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.BdoLog.#ctor(BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent},BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger[])">
@@ -13093,7 +13093,7 @@
             Instantiates a new instance of the Log class.
             </summary>
             <param name="task">The task to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <param name="loggers">The loggers to consider.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.BdoLog.#ctor(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration,System.Predicate{BindOpen.Framework.Core.System.Diagnostics.IBdoLogEvent})">
@@ -13102,7 +13102,7 @@
             </summary>
             <param name="parentLog">The parent logger to consider.</param>
             <param name="task">The task to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.BdoLog.AddLoggers(BindOpen.Framework.Core.System.Diagnostics.Loggers.IBdoLogger[])">
             <summary>
@@ -15089,7 +15089,7 @@
             <param name="uiCulture">The folder path to consider.</param>
             <param name="folderPath">The folder path to consider.</param>
             <param name="fileName">The file name to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
         </member>
         <member name="M:BindOpen.Framework.Core.System.Diagnostics.Loggers.BdoLogger.WriteLog(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>

@@ -149,7 +149,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the application host.</returns>
         public ITBdoHost<S> Configure(Action<ITBdoHostOptions<S>> setupOptions)
         {
-            Options = Options ?? new TBdoHostOptions<S>();
+            Options ??= new TBdoHostOptions<S>();
             setupOptions?.Invoke(Options);
 
             return this;
@@ -182,10 +182,10 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     path = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
                     break;
                 case BdoHostPathKind.ConfigurationFolder:
-                    path = Options?.HostSettings?.ConfigurationFolderPath;
+                    path = Options?.HostSettings?.AppConfigurationFolderPath;
                     if (string.IsNullOrEmpty(path))
                     {
-                        path = Options?.HostSettings?.ConfigurationFolderPath;
+                        path = Options?.HostSettings?.AppConfigurationFolderPath;
                     }
                     if (string.IsNullOrEmpty(path))
                     {
@@ -302,30 +302,53 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the log of the task.</returns>
         protected override void Initialize(IBdoLog log)
         {
-            log = log ?? new BdoLog();
+            log ??= new BdoLog();
 
             // we bind the trigger actions
 
-            Action_OnExecutionSucess = Options?.Action_OnExecutionSucess;
-            Action_OnExecutionFailure = Options?.Action_OnExecutionFailure;
-            Action_OnStartSuccess = Options?.Action_OnStartSuccess;
-            Action_OnStartFailure = Options?.Action_OnStartFailure;
+            var options = Options as TBdoHostOptions<S>;
 
-            // we update options
+            Action_OnExecutionSucess = options?.Action_OnExecutionSucess;
+            Action_OnExecutionFailure = options?.Action_OnExecutionFailure;
+            Action_OnStartSuccess = options?.Action_OnStartSuccess;
+            Action_OnStartFailure = options?.Action_OnStartFailure;
 
-            var premiaryAppSettings = Options.HostSettings.Clone<BdoHostSettings>();
+            // we clone the current options host settings as the primary ones
+
+            var primaryHostSettings = Options.HostSettings.Clone<BdoHostSettings>();
+
+            // we determine the root folder path
+
+            var rootFolderPathDefinition = Options?.RootFolderPathDefinitions?.FirstOrDefault(p => p.Predicate(Options) == true);
+            if (rootFolderPathDefinition != null)
+            {
+                Options?.SetRootFolder(rootFolderPathDefinition?.RootFolderPath);
+            }
+
+            // we update options (specially paths)
+
             Options.Update();
 
             // we initialize logging
 
             IBdoLogger primaryLogger = null;
-            if (Options?.IsDefaultFileLoggerUsed == true)
+            if (Options?.DefaultLoggerOutputKinds?.Count > 0)
             {
-                primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(
-                    BdoLogger.__DefaultName, BdoLoggerMode.Auto, DatasourceKind.Repository, false, null,
-                    GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
+                primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(BdoLogger.__DefaultName, BdoLoggerMode.Auto);
+
+                if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Repository))
+                {
+                    primaryLogger.AddFileOutput(GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
+                }
+
+                if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Console))
+                {
+                    primaryLogger.AddConsoleOutput();
+                }
+
                 Log.AddLoggers(primaryLogger);
             }
+
             Log.AddLoggers(Options?.Loggers?.ToArray());
 
             // we launch the standard initialization of service
@@ -337,8 +360,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             // we load the core extensions
 
             subLog = log.AddSubLog(title: "Loading core extensions...", eventKind: EventKinds.Message);
-            var testLog = _scope.LoadExtensions(ExtensionReferenceFactory.CreateRuntime());
-            subLog.Append(testLog);
+            subLog.Append(_scope.LoadExtensions(ExtensionReferenceFactory.CreateRuntime()));
             if (!subLog.HasErrorsOrExceptions())
             {
                 subLog.AddMessage("Core extensions loaded");
@@ -350,26 +372,34 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 try
                 {
-                    // we load the application settings
+                    // we load the host configuration
 
-                    string appSettingsFilePath = GetKnownPath(BdoHostPathKind.HostConfigFile);
-                    Options.HostSettings = premiaryAppSettings ?? new BdoHostSettings();
+                    string hostConfigFilePath = GetKnownPath(BdoHostPathKind.HostConfigFile);
+                    Options.HostSettings = primaryHostSettings ?? new BdoHostSettings();
 
-                    if (!File.Exists(appSettingsFilePath))
+                    if (!File.Exists(hostConfigFilePath))
                     {
-                        subLog.AddWarning("Settings file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found");
+                        var message = "Host configuration file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
+                        if (Options.IsHostConfigFileRequired)
+                        {
+                            subLog.AddError(message);
+                        }
+                        else
+                        {
+                            subLog.AddWarning(message);
+                        }
                     }
                     else
                     {
-                        subLog = log.AddSubLog(title: "Loading application settings...", eventKind: EventKinds.Message);
+                        subLog = log.AddSubLog(title: "Loading host configuration...", eventKind: EventKinds.Message);
                         subLog.Append(Options.HostSettings.UpdateFromFile(
-                                appSettingsFilePath,
+                                hostConfigFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                                 Options?.SettingsSpecificationSet,
                                 _scope, null));
                         if (!subLog.HasErrorsOrExceptions())
                         {
-                            subLog.AddMessage("Application settings loaded");
+                            subLog.AddMessage("Host configuration loaded");
                         }
                     }
 
@@ -404,28 +434,36 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                     if (!log.HasErrorsOrExceptions())
                     {
-                        // we load the configuration
+                        // we load the application configuration
 
                         Options.Settings = new S();
 
-                        string configFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
+                        string appConfigFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
 
-                        subLog = log.AddSubLog(title: "Loading configuration...", eventKind: EventKinds.Message);
-                        if (!File.Exists(configFilePath))
+                        subLog = log.AddSubLog(title: "Loading application configuration...", eventKind: EventKinds.Message);
+                        if (!File.Exists(appConfigFilePath))
                         {
-                            subLog.AddWarning(title: "Configuration file ('bindopen.config.xml') not found");
+                            var message = "Application configuration file ('" + BdoDefaultHostPaths.__DefaultAppConfigFileName + "') not found";
+                            if (Options.HostSettings.IsAppConfigFileRequired)
+                            {
+                                subLog.AddError(message);
+                            }
+                            else
+                            {
+                                subLog.AddWarning(message);
+                            }
                         }
                         else
                         {
                             subLog.Append(Options.Settings.UpdateFromFile(
-                                configFilePath,
+                                appConfigFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                                 Options?.SettingsSpecificationSet,
                                 _scope, null));
                         }
                         if (!subLog.HasErrorsOrExceptions())
                         {
-                            subLog.AddMessage("Configuration loaded");
+                            subLog.AddMessage("Application configuration loaded");
                         }
                         else
                         {
@@ -439,9 +477,9 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
                         // we update the log folder path
 
-                        Log.SetFilePath(GetKnownPath(BdoHostPathKind.LogsFolder), true, Options?.HostSettings?.LogsFileName);
+                        Log.ForLoggers(p => p.AddFileOutput(GetKnownPath(BdoHostPathKind.LogsFolder), Options?.HostSettings?.LogsFileName, true));
 
-                        // we delete expired logs
+                        // we delete expired logs in the logs folder
 
                         foreach (var logger in Log.Loggers)
                         {
