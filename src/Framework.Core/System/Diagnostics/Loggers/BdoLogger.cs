@@ -235,7 +235,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
             if (!string.IsNullOrEmpty(text))
             {
-                Debug.Write(text);
+                Trace.Write(text);
                 isLogged = true;
             }
 
