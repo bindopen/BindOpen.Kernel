@@ -20,37 +20,32 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// File path of this instance.
         /// </summary>
-        String Filepath { get; }
+        string Filepath { get; }
 
         /// <summary>
         /// Folder path of this instance.
         /// </summary>
-        String FolderPath { get; }
+        string FolderPath { get; }
 
         /// <summary>
         /// The mode of this instance.
         /// </summary>
-        BdoLoggerMode Mode { get; set; }
+        BdoLoggerMode Mode { get; }
 
         /// <summary>
-        /// The output kind of this instance.
+        /// The output kinds of this instance.
         /// </summary>
-        DatasourceKind OutputKind { get; set; }
+        HashSet<DatasourceKind> OutputKinds { get; }
 
         /// <summary>
         /// The format of this instance.
         /// </summary>
-        BdoLoggerFormat Format { get; set; }
-
-        /// <summary>
-        /// Indicates whether this instance is verbose.
-        /// </summary>
-        bool IsVerbose { get; set; }
+        BdoDefaultLoggerFormat DefaultFormat { get; }
 
         /// <summary>
         /// The UI culture of this instance.
         /// </summary>
-        string UICulture { get; set; }
+        string UICulture { get; }
 
         /// <summary>
         /// The log of this instance.
@@ -60,7 +55,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Function that filters event.
         /// </summary>
-        Predicate<IBdoLogEvent> EventFinder { get; set; }
+        Predicate<IBdoLogEvent> EventFilter { get; }
 
         #endregion
 
@@ -122,10 +117,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         #endregion
 
         // ------------------------------------------------------
-        // ACCESSORS
+        // MUTATORS
         // ------------------------------------------------------
 
-        #region Accessors
+        #region Mutators
 
         /// <summary>
         /// Indicates whether this instance requires all the event history to be maintained.
@@ -136,16 +131,48 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         #endregion
 
         // ------------------------------------------------------
-        // MANAGEMENT
+        // ACCESSORS
         // ------------------------------------------------------
 
-        #region Management
+        #region Accessors
+
+        /// <summary>
+        /// Adds a file output.
+        /// </summary>
+        /// <param name="folderPath">The folder path to consider.</param>
+        /// <param name="fileName">The file name to consider.</param>
+        /// <param name="isFileToBeMoved">Indicates whether the current file must be moved.</param>
+        /// <param name="id">The ID to consider.</param>
+        IBdoLogger AddFileOutput(string folderPath, string fileName = null, bool isFileToBeMoved = false, string id = null);
+
+        /// <summary>
+        /// Adds a console output.
+        /// </summary>
+        IBdoLogger AddConsoleOutput();
+
+        /// <summary>
+        /// Sets the UI culture.
+        /// </summary>
+        /// <param name="uiCulture">The UI culture to consider.</param>
+        IBdoLogger WithUICulture(string uiCulture);
+
+        /// <summary>
+        /// Sets the mode.
+        /// </summary>
+        /// <param name="mode">The mode to consider.</param>
+        IBdoLogger WithMode(BdoLoggerMode mode);
+
+        /// <summary>
+        /// Sets the event filter.
+        /// </summary>
+        /// <param name="eventFilter">The event filter to consider.</param>
+        IBdoLogger WithEventFilter(Predicate<IBdoLogEvent> eventFilter);
 
         /// <summary>
         /// Sets the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        void SetLog(IBdoLog log);
+        IBdoLogger SetLog(IBdoLog log);
 
         /// <summary>
         /// Delete the logs older than the specified day number.
@@ -153,23 +180,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <param name="fileFormat">The file format to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        void DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null);
-
-        /// <summary>
-        /// Sets the name of the file of this instance.
-        /// </summary>
-        /// <param name="fileName">The name of the file to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        void SetFileName(string fileName, string id = null);
-
-        /// <summary>
-        /// Sets the log file location.
-        /// </summary>
-        /// <param name="newFolderPath">The new folder path to consider.</param>
-        /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
-        /// <param name="newFileName">The new file name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        void SetFilePath(String newFolderPath, bool isFileToBeMoved, String newFileName = null, string id = null);
+        IBdoLogger DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null);
 
         #endregion
 
@@ -227,7 +238,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="log">The log to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified log.</returns>
-        String ToString(
+        string ToString(
             IBdoLog log,
             List<string> attributeNames = null);
 
@@ -237,7 +248,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logEvent">The log event to consider.</param>
         /// <param name="attributeNames">The attribute names to consider.</param>
         /// <returns>The string representing to the specified event.</returns>
-        String ToString(
+        string ToString(
             IBdoLogEvent logEvent,
             List<string> attributeNames = null);
 

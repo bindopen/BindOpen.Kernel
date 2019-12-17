@@ -20,13 +20,17 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetRootFolder(@".\..\..\..")
+                            .SetRootFolder(q => q.HostSettings.Environment == Environments.Development, @".\..\..\..")
+                            .SetRootFolder(q => q.HostSettings.Environment != Environments.Development, @".\")
                             .AddDataStore(s => s
                                 .RegisterDasourceDepot(options)
                                 .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
-                            .AddExtensions(p => p
-                                .AddMSSqlServer()
-                                .AddPostgreSql())
+                            .AddExtensions(
+                                p => p.WithRemoteServerUri(""),
+                                q => q.AddMSSqlServer().AddPostgreSql())
+                            .SetHostConfigFile(false)
+                            .SetHostSettings(p => p.SetAppConfigFile(false))
+                            .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
                             .ThrowExceptionOnStartFailure())
 

@@ -320,14 +320,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        IBdoLogger GetLogger(BdoLoggerFormat format);
+        IBdoLogger GetLogger(BdoDefaultLoggerFormat format);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="formats"></param>
         /// <returns></returns>
-        List<IBdoLogger> GetLoggers(params BdoLoggerFormat[] formats);
+        List<IBdoLogger> GetLoggers(params BdoDefaultLoggerFormat[] formats);
 
         /// <summary>
         /// 
@@ -447,12 +447,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         bool Save<T>(string logFilePath) where T : IBdoLogger, new();
 
         /// <summary>
-        /// 
+        /// Executes the specified action on loggers of this instance.
         /// </summary>
-        /// <param name="newFolderPath"></param>
-        /// <param name="isFileToBeMoved"></param>
-        /// <param name="newFileName"></param>
-        void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null);
+        /// <param name="action">The action to consider.</param>
+        void ForLoggers(Action<IBdoLogger> action);
 
         /// <summary>
         /// 

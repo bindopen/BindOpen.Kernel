@@ -261,13 +261,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <summary>
         /// Instantiates a new instance of the Log class.
         /// </summary>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public BdoLog(
-            Predicate<IBdoLogEvent> eventFinder = null,
+            Predicate<IBdoLogEvent> eventFilter = null,
             params IBdoLogger[] loggers) : this()
         {
-            SubLogEventPredicate = eventFinder;
+            SubLogEventPredicate = eventFilter;
             Loggers = loggers.Where(p => p != null).ToList();
             foreach (IBdoLogger logger in Loggers)
                 logger.SetLog(this);
@@ -277,13 +277,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// Instantiates a new instance of the Log class.
         /// </summary>
         /// <param name="task">The task to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         /// <param name="loggers">The loggers to consider.</param>
         public BdoLog(
             IBdoTaskConfiguration task,
-            Predicate<IBdoLogEvent> eventFinder = null,
+            Predicate<IBdoLogEvent> eventFilter = null,
             params IBdoLogger[] loggers)
-            : this(eventFinder, loggers)
+            : this(eventFilter, loggers)
         {
             _task = task as BdoTaskConfiguration;
         }
@@ -293,12 +293,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="parentLog">The parent logger to consider.</param>
         /// <param name="task">The task to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         public BdoLog(
             IBdoLog parentLog,
             IBdoTaskConfiguration task = null,
-            Predicate<IBdoLogEvent> eventFinder = null)
-            : this(eventFinder, (parentLog != null ? parentLog.Loggers.ToArray() : Array.Empty<BdoLogger>()))
+            Predicate<IBdoLogEvent> eventFilter = null)
+            : this(eventFilter, (parentLog != null ? parentLog.Loggers.ToArray() : Array.Empty<BdoLogger>()))
         {
             _task = task as BdoTaskConfiguration;
             if (parentLog != null)
@@ -909,9 +909,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="format">The name of the format to consider.</param>
         /// <returns>Returns the logger with the specified format.</returns>
-        public IBdoLogger GetLogger(BdoLoggerFormat format)
+        public IBdoLogger GetLogger(BdoDefaultLoggerFormat format)
         {
-            return Loggers.Find(p => p.Format == format);
+            return Loggers.Find(p => p.DefaultFormat == format);
         }
 
         /// <summary>
@@ -919,9 +919,9 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         /// <param name="formats">The log formats to consider.</param>
         /// <returns>The loggers with the specified formats.</returns>
-        public List<IBdoLogger> GetLoggers(params BdoLoggerFormat[] formats)
+        public List<IBdoLogger> GetLoggers(params BdoDefaultLoggerFormat[] formats)
         {
-            return Loggers.Where(p => formats.Contains(p.Format)).ToList();
+            return Loggers.Where(p => formats.Contains(p.DefaultFormat)).ToList();
         }
 
         #endregion
@@ -1237,15 +1237,18 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         #region Mutators
 
         /// <summary>
-        /// Sets the log file location.
+        /// Executes the specified action on loggers of this instance.
         /// </summary>
-        /// <param name="newFolderPath">The new folder path to consider.</param>
-        /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
-        /// <param name="newFileName">The new file name to consider.</param>
-        public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null)
+        /// <param name="action">The action to consider.</param>
+        public void ForLoggers(Action<IBdoLogger> action)
         {
-            foreach (IBdoLogger logger in Loggers)
-                logger.SetFilePath(newFolderPath, isFileToBeMoved, newFileName, Id);
+            if (action != null)
+            {
+                foreach (IBdoLogger logger in Loggers)
+                {
+                    action?.Invoke(logger);
+                }
+            }
         }
 
         /// <summary>
@@ -1253,7 +1256,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         public void Start()
         {
-            Execution = Execution ?? new ProcessExecution();
+            Execution ??= new ProcessExecution();
             Execution.Start();
         }
 
@@ -1263,7 +1266,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="status">The new status to consider.</param>
         public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
         {
-            Execution = Execution ?? new ProcessExecution();
+            Execution ??= new ProcessExecution();
             Execution.End(status);
         }
 

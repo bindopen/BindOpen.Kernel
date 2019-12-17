@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
@@ -32,7 +33,6 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
         #region Variables
 
-        private IBdoLog _log = null;
         private string _fileName = null;
         private string _fileNameFormat = null;
         private string _folderPath = null;
@@ -76,17 +76,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The output kind of this instance.
         /// </summary>
-        public DatasourceKind OutputKind { get; set; } = DatasourceKind.Repository;
+        public HashSet<DatasourceKind> OutputKinds { get; set; } = new HashSet<DatasourceKind>() { DatasourceKind.Repository };
 
         /// <summary>
-        /// The format of this instance.
+        /// The default format of this instance.
         /// </summary>
-        public BdoLoggerFormat Format { get; set; } = BdoLoggerFormat.None;
-
-        /// <summary>
-        /// Indicates whether this instance is verbose.
-        /// </summary>
-        public bool IsVerbose { get; set; } = false;
+        public BdoDefaultLoggerFormat DefaultFormat { get; set; } = BdoDefaultLoggerFormat.Custom;
 
         /// <summary>
         /// The UI culture of this instance.
@@ -96,12 +91,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        public IBdoLog Log => _log;
+        public IBdoLog Log { get; private set; } = null;
 
         /// <summary>
         /// Function that filters event.
         /// </summary>
-        public Predicate<IBdoLogEvent> EventFinder
+        public Predicate<IBdoLogEvent> EventFilter
         {
             get;
             set;
@@ -118,7 +113,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <summary>
         /// Instantiates a new instance of the Logger class.
         /// </summary>
-        public BdoLogger()
+        protected BdoLogger()
         {
         }
 
@@ -128,32 +123,17 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="name">The name to consider.</param>
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="mode">The mode to consider.</param>
-        /// <param name="outputKind">The output kind to consider.</param>
-        /// <param name="isVerbose">Indicates whether .</param>
-        /// <param name="uiCulture">The folder path to consider.</param>
-        /// <param name="folderPath">The folder path to consider.</param>
-        /// <param name="fileName">The file name to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         protected BdoLogger(
             string name,
-            BdoLoggerFormat logFormat,
+            BdoDefaultLoggerFormat logFormat,
             BdoLoggerMode mode,
-            DatasourceKind outputKind,
-            bool isVerbose = false,
-            string uiCulture = null,
-            string folderPath = null,
-            string fileName = null,
-            Predicate<IBdoLogEvent> eventFinder = null) : this()
+            Predicate<IBdoLogEvent> eventFilter = null) : this()
         {
             Name = name;
-            Format = logFormat;
+            DefaultFormat = logFormat;
             Mode = mode;
-            OutputKind = outputKind;
-            _folderPath = folderPath;
-            SetFileName(fileName);
-            IsVerbose = isVerbose;
-            UICulture = uiCulture;
-            EventFinder = eventFinder;
+            EventFilter = eventFilter;
         }
 
         #endregion
@@ -168,8 +148,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public virtual bool WriteLog(
-            IBdoLog log)
+        public virtual bool WriteLog(IBdoLog log)
         {
             return false;
         }
@@ -179,8 +158,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="task">The task to log.</param>
-        public virtual bool WriteTask(
-            IBdoLog log, IBdoTaskConfiguration task)
+        public virtual bool WriteTask(IBdoLog log, IBdoTaskConfiguration task)
         {
             return false;
         }
@@ -189,8 +167,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// Logs the specified event.
         /// </summary>
         /// <param name="logEvent">The log event to consider.</param>
-        public virtual bool WriteEvent(
-            IBdoLogEvent logEvent)
+        public virtual bool WriteEvent(IBdoLogEvent logEvent)
         {
             return false;
         }
@@ -204,7 +181,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         public virtual bool WriteDetailElement(
             IBdoLog log,
             string elementName,
-            Object elementValue)
+            object elementValue)
         {
             return false;
         }
@@ -230,15 +207,21 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <returns>Returns true whether the text has been written.</returns>
         public bool Write(string text)
         {
-            switch (OutputKind)
+            bool isGood = true;
+            foreach (var outputKind in OutputKinds)
             {
-                case DatasourceKind.Console:
-                    return WriteToConsole(text);
-                case DatasourceKind.Repository:
-                    return WriteToFile(text);
+                switch (outputKind)
+                {
+                    case DatasourceKind.Console:
+                        isGood &= WriteToConsole(text);
+                        break;
+                    case DatasourceKind.Repository:
+                        isGood &= WriteToFile(text);
+                        break;
+                };
             }
 
-            return false;
+            return isGood;
         }
 
         /// <summary>
@@ -252,7 +235,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
             if (!string.IsNullOrEmpty(text))
             {
-                Console.Write(text);
+                Debug.Write(text);
                 isLogged = true;
             }
 
@@ -275,8 +258,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                     if (!Directory.Exists(FolderPath))
                         Directory.CreateDirectory(FolderPath);
 
-                    using (StreamWriter streamWriter = new global::System.IO.StreamWriter(Filepath, true))
+                    using (StreamWriter streamWriter = new StreamWriter(Filepath, true))
+                    {
                         streamWriter.Write(text);
+                    }
 
                     isLogged = true;
                 }
@@ -307,19 +292,105 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
         #endregion
 
+
         // ------------------------------------------------------
-        // MANAGEMENT
+        // MUTATORS
         // ------------------------------------------------------
 
-        #region Management
+        #region Mutators
+
+        /// <summary>
+        /// Adds a console output.
+        /// </summary>
+        public IBdoLogger AddConsoleOutput()
+        {
+            OutputKinds.Add(DatasourceKind.Console);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a file output.
+        /// </summary>
+        /// <param name="folderPath">The folder path to consider.</param>
+        /// <param name="fileName">The file name to consider.</param>
+        /// <param name="isFileToBeMoved">Indicates whether the current file must be moved.</param>
+        /// <param name="id">The ID to consider.</param>
+        public IBdoLogger AddFileOutput(string folderPath, string fileName = null, bool isFileToBeMoved = false, string id = null)
+        {
+            if (!string.IsNullOrEmpty(folderPath))
+            {
+                string oldFilePath = Filepath;
+                fileName = (string.IsNullOrEmpty(fileName) ? (oldFilePath == null ? null : Path.GetFileName(oldFilePath)) : fileName);
+
+                _folderPath = folderPath;
+                SetFileName(fileName, id);
+
+                if (isFileToBeMoved && File.Exists(oldFilePath) && !string.IsNullOrEmpty(oldFilePath))
+                {
+                    // we move the old file to the new folder
+                    string newFilePath = Filepath;
+
+                    try
+                    {
+                        if (!Directory.Exists(folderPath))
+                            Directory.CreateDirectory(folderPath);
+                        File.Move(oldFilePath, newFilePath);
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                OutputKinds.Add(DatasourceKind.Repository);
+            }
+
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the UI culture of this instance.
+        /// </summary>
+        /// <param name="uiCulture">The UI culture to consider.</param>
+        public IBdoLogger WithUICulture(string uiCulture)
+        {
+            UICulture = uiCulture;
+
+            return this;
+        }
 
         /// <summary>
         /// Sets the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public void SetLog(IBdoLog log)
+        public IBdoLogger SetLog(IBdoLog log)
         {
-            _log = log;
+            Log = log;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the mode of this instance.
+        /// </summary>
+        /// <param name="mode">The logger mode to consider.</param>
+        public IBdoLogger WithMode(BdoLoggerMode mode)
+        {
+            Mode = mode;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified event filter.
+        /// </summary>
+        /// <param name="eventFilter">The event filter to consider.</param>
+        public IBdoLogger WithEventFilter(Predicate<IBdoLogEvent> eventFilter)
+        {
+            EventFilter = eventFilter;
+
+            return this;
         }
 
         /// <summary>
@@ -328,7 +399,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
         /// <param name="fileFormat">The file format to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        public void DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null)
+        public IBdoLogger DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null)
         {
             if (expirationDayNumber > -1 && Directory.Exists(_folderPath))
             {
@@ -360,6 +431,8 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
                     }
                 }
             }
+
+            return this;
         }
 
         /// <summary>
@@ -367,47 +440,13 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// </summary>
         /// <param name="fileName">The name of the file to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        public void SetFileName(string fileName, string id = null)
+        private void SetFileName(string fileName, string id = null)
         {
             _fileNameFormat = fileName;
             fileName = (string.IsNullOrEmpty(fileName) ? "log_$(timeStamp).log" : fileName);
             fileName = fileName.Replace("$(timeStamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), false);
             fileName = fileName.Replace("$(id)", id ?? Guid.NewGuid().ToString(), false);
             _fileName = fileName;
-        }
-
-        /// <summary>
-        /// Sets the log file location.
-        /// </summary>
-        /// <param name="newFolderPath">The new folder path to consider.</param>
-        /// <param name="isFileToBeMoved">Indicates whether the file must be moved.</param>
-        /// <param name="newFileName">The new file name to consider.</param>
-        /// <param name="id">The new file name to consider.</param>
-        public void SetFilePath(string newFolderPath, bool isFileToBeMoved, string newFileName = null, string id = null)
-        {
-            if (string.IsNullOrEmpty(newFolderPath)) return;
-
-            string oldFilePath = Filepath;
-            newFileName = (string.IsNullOrEmpty(newFileName) ? (oldFilePath == null ? null : Path.GetFileName(oldFilePath)) : newFileName);
-
-            _folderPath = newFolderPath;
-            SetFileName(newFileName, id);
-
-            if (isFileToBeMoved && File.Exists(oldFilePath) && !string.IsNullOrEmpty(oldFilePath))
-            {
-                // we move the old file to the new folder
-                string newFilePath = Filepath;
-
-                try
-                {
-                    if (!Directory.Exists(newFolderPath))
-                        Directory.CreateDirectory(newFolderPath);
-                    File.Move(oldFilePath, newFilePath);
-                }
-                catch
-                {
-                }
-            }
         }
 
         #endregion
@@ -469,7 +508,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <returns>Returns the saving log.</returns>
         public bool Save(bool isAppended = false)
         {
-            return Save(_log, Filepath, isAppended);
+            return Save(Log, Filepath, isAppended);
         }
 
         /// <summary>
@@ -515,10 +554,10 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
 
             if (isDisposing)
             {
-                _log?.Dispose();
+                Log?.Dispose();
             }
         }
 
-        #endregion   
+        #endregion
     }
 }

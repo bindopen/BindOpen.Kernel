@@ -211,12 +211,12 @@ namespace BindOpen.Framework.Core.Extensions.Definition.Items
         /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public override string GetText(BdoLoggerFormat logFormat = BdoLoggerFormat.Xml, String uiCulture = "*")
+        public override string GetText(BdoDefaultLoggerFormat logFormat = BdoDefaultLoggerFormat.Xml, String uiCulture = "*")
         {
             String st = "";
             switch (logFormat)
             {
-                case BdoLoggerFormat.Xml:
+                case BdoDefaultLoggerFormat.Xml:
                     st += "<span style='color: blue;' >" + this.Name + "</span> (" + this.Kind.ToString() + ")<br>";
                     st += "<br>";
                     st += "Modified: " + this.LastModificationDate + "<br>";

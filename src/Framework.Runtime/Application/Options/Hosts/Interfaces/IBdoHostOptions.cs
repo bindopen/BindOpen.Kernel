@@ -34,6 +34,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// </summary>
         string HostConfigFilePath { get; }
 
+        /// <summary>
+        /// Indicates whether the host configuration file must exist.
+        /// </summary>
+        /// <remarks>If it does not exist then an exception is thrown.</remarks>
+        bool IsHostConfigFileRequired { get; }
+
         // Settings ----------------------
 
         /// <summary>
@@ -66,9 +72,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // Loggers ----------------------
 
         /// <summary>
-        /// Indicates whether this instance uses a default logger.
+        /// The output kinds of the default logger.
         /// </summary>
-        bool IsDefaultFileLoggerUsed { get; }
+        /// <remarks>If there is none then we do not have any default logger.</remarks>
+        HashSet<DatasourceKind> DefaultLoggerOutputKinds { get; }
 
         /// <summary>
         /// The loggers.

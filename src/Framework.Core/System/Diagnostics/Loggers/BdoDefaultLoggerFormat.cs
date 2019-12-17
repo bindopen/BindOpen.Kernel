@@ -8,7 +8,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
     /// </summary>
     [Serializable()]
     [XmlType("LoggerFormat", Namespace = "https://bindopen.org/xsd")]
-    public enum BdoLoggerFormat
+    public enum BdoDefaultLoggerFormat
     {
         /// <summary>
         /// None.

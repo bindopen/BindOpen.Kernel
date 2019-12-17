@@ -1,7 +1,6 @@
 ﻿using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
 using System;
@@ -32,14 +31,14 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the YamlLogger class.
+        /// Instantiates a new instance of the BdoYamlLogger class.
         /// </summary>
         public BdoYamlLogger()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the YamlLogger class.
+        /// Instantiates a new instance of the BdoYamlLogger class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="mode">The mode to consider.</param>
@@ -48,18 +47,13 @@ namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
         /// <param name="outputKind">The output kind to consider.</param>
         /// <param name="isVerbose">Indicates whether .</param>
         /// <param name="uiCulture">The folder path to consider.</param>
-        /// <param name="eventFinder">The function that filters event.</param>
+        /// <param name="eventFilter">The function that filters events.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public BdoYamlLogger(
             string name,
             BdoLoggerMode mode,
-            string folderPath,
-            string fileName = null,
-            DatasourceKind outputKind = DatasourceKind.Repository,
-            bool isVerbose = false,
-            string uiCulture = null,
-            Predicate<IBdoLogEvent> eventFinder = null)
-            : base(name, BdoLoggerFormat.Xml, mode, outputKind, isVerbose, uiCulture, folderPath, fileName, eventFinder)
+            Predicate<IBdoLogEvent> eventFilter = null)
+            : base(name, BdoDefaultLoggerFormat.Xml, mode, eventFilter)
         {
         }
 

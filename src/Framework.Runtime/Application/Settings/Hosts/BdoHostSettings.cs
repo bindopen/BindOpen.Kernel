@@ -24,7 +24,6 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Application instance ID of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "applicationInstanceId")]
         public string ApplicationInstanceId { get; set; }
 
@@ -33,14 +32,12 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Environment of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "environment")]
         public string Environment { get; set; }
 
         /// <summary>
         /// Execution level of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DefaultValue(ApplicationExecutionLevel.Production)]
         [DetailProperty(Name = "executionLevel")]
         public ApplicationExecutionLevel ExecutionLevel { get; set; }
@@ -50,14 +47,12 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// Name of the platform server instance of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "serverInstanceName")]
         public string ServerInstanceName { get; set; }
 
         /// <summary>
         /// Name of the application instance of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "applicationInstanceName")]
         public string ApplicationInstanceName { get; set; }
 
@@ -66,49 +61,49 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// The path of the runtime folder.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "runtime.folderPath")]
         public string RuntimeFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultRuntimeFolderPath).ToPath();
 
         /// <summary>
         /// The path of the configuration folder.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "configuration.folderPath")]
-        public string ConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultAppConfigFolderPath).ToPath();
+        public string AppConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultAppConfigFolderPath).ToPath();
+
+        /// <summary>
+        /// Indicates whether the application configuration file must exist.
+        /// </summary>
+        /// <remarks>If it does not exist then an exception is thrown.</remarks>
+        [XmlIgnore()]
+        public bool IsAppConfigFileRequired { get; internal set; }
 
         /// <summary>
         /// The logs folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "logs.folderPath")]
         public string LogsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLogsFolderPath).ToPath();
 
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 
         /// <summary>
         /// The packages folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "packages.folderPath")]
         public string PackagesFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultPackagesFolderPath).ToPath();
 
         /// <summary>
         /// The projects folder path of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "projects.folderPath")]
         public string ProjectsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultProjectsFolderPath).ToPath();
 
         /// <summary>
         /// The logs file name of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "logs.fileName")]
         public string LogsFileName { get; internal set; } = BdoDefaultHostPaths.__DefaultLogsFileName;
 
@@ -118,7 +113,6 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// The expiration day number for logs.
         /// </summary>
         /// <remarks>The value -1 means that there is no expiration of logs.</remarks>
-        [XmlIgnore()]
         [DetailProperty(Name = "logs.expirationDayNumber")]
         public int LogsExpirationDayNumber { get; internal set; } = -1;
 
@@ -169,13 +163,25 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         }
 
         /// <summary>
-        /// Sets the configuration folder path.
+        /// Set the application configuration file.
         /// </summary>
-        /// <param name="configurationFolderPath"></param>
-        /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetConfigurationFolder(string configurationFolderPath = null)
+        /// <param name="appConfigurationFolderPath">The application configuration folder path.</param>
+        /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
+        /// <returns>Returns the host option.</returns>
+        public IBdoHostSettings SetAppConfigFile(string appConfigurationFolderPath, bool isRequired = false)
         {
-            ConfigurationFolderPath = configurationFolderPath?.GetEndedString(@"\").ToPath();
+            AppConfigurationFolderPath = appConfigurationFolderPath?.GetEndedString(@"\").ToPath();
+            return SetAppConfigFile(isRequired);
+        }
+
+        /// <summary>
+        /// Set the application configuration file.
+        /// </summary>
+        /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
+        /// <returns>Returns the host option.</returns>
+        public IBdoHostSettings SetAppConfigFile(bool isRequired)
+        {
+            IsAppConfigFileRequired = isRequired;
 
             return this;
         }

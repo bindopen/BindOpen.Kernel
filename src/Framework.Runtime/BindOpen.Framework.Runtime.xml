@@ -144,17 +144,17 @@
             <param name="inputBytes">The input bytes to consider.</param>
             <returns>Returns the decrypted data.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException">
+        <member name="T:BindOpen.Framework.Core.Application.Exceptions.BdoHostLoadException">
             <summary>
             This static class lists the BindOpen host load exceptions.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException.#ctor">
+        <member name="M:BindOpen.Framework.Core.Application.Exceptions.BdoHostLoadException.#ctor">
             <summary>
             Initializes a new instance of the BdoHostLoadException class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Exceptions.BdoHostLoadException.#ctor(System.String)">
+        <member name="M:BindOpen.Framework.Core.Application.Exceptions.BdoHostLoadException.#ctor(System.String)">
             <summary>
             Initializes a new instance of the BdoHostLoadException class.
             </summary>
@@ -4793,7 +4793,7 @@
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -4880,7 +4880,7 @@
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -4941,7 +4941,7 @@
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoSnapLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Collections.Generic.List{System.String})">
@@ -4988,7 +4988,7 @@
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
@@ -5080,7 +5080,7 @@
             <param name="outputKind">The output kind to consider.</param>
             <param name="isVerbose">Indicates whether .</param>
             <param name="uiCulture">The folder path to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
         <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoYamlLogger.ToString(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,System.Collections.Generic.List{System.String})">
@@ -5109,7 +5109,7 @@
             <param name="uiCulture">The folder path to consider.</param>
             <param name="folderPath">The folder path to consider.</param>
             <param name="fileName">The file name to consider.</param>
-            <param name="eventFinder">The function that filters event.</param>
+            <param name="eventFilter">The function that filters events.</param>
             <param name="expirationDayNumber">The expiration day number to consider.</param>
             <returns>Returns the specified logger.</returns>
         </member>
