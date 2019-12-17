@@ -315,7 +315,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
 
             // we clone the current options host settings as the primary ones
 
-            var primaryHostSettings = Options.HostSettings.Clone<BdoHostSettings>();
+            var primaryHostSettings = Options.HostSettings?.Clone<BdoHostSettings>();
 
             // we determine the root folder path
 

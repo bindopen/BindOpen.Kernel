@@ -200,7 +200,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The load log.</returns>
         IBdoLog LoadLog(
-            String filePath,
+            string filePath,
             IBdoLog loadLog = null,
             bool mustFileExist = true);
 
@@ -211,7 +211,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="loadLog">The output log of the load task.</param>
         /// <returns>The log defined in the Xml file.</returns>
         IBdoLog LoadLogFromString(
-            String xmlString,
+            string xmlString,
             IBdoLog loadLog = null);
 
         // Serialization ---------------------------------
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
         /// <param name="logFilePath">The path of the log file to save.</param>
         /// <param name="isAppended">Indicates whether the new content is appended if one alreay exists.</param>
         /// <returns>Returns the saving log.</returns>
-        bool Save(IBdoLog log, String logFilePath, bool isAppended = false);
+        bool Save(IBdoLog log, string logFilePath, bool isAppended = false);
 
         /// <summary>
         /// Saves this instance in the specified log file.
