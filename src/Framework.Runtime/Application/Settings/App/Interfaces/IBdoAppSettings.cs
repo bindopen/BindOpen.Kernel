@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// The configuration of the instance.
         /// </summary>
-        IBdoAppConfiguration HostConfiguration { get; }
+        IBdoAppConfiguration AppConfiguration { get; }
 
         #endregion
     }

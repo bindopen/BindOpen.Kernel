@@ -270,7 +270,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
             // we initialize the application scope
 
             _scope = BdoScopeFactory.CreateScope();
-            _scope.Context.AddSystemItem("host", this);
+            _scope.Context.AddSystemItem("bdoHost", this);
 
             // we initialize the settings
 

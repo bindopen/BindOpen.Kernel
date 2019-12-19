@@ -6,6 +6,7 @@ using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace BindOpen.Framework.Samples.SampleA
@@ -20,8 +21,8 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetRootFolder(q => q.HostSettings.Environment == Environments.Development, @".\..\..\..")
-                            .SetRootFolder(q => q.HostSettings.Environment != Environments.Development, @".\")
+                            .SetRootFolder(q => q.HostSettings.Environment != Environments.Development, @".\..\..\..")
+                            .SetRootFolder(q => q.HostSettings.Environment == Environments.Development, @".\")
                             .AddDataStore(s => s
                                 .RegisterDasourceDepot(options)
                                 .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
@@ -32,7 +33,9 @@ namespace BindOpen.Framework.Samples.SampleA
                             .SetHostSettings(p => p.SetAppConfigFile(false))
                             .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
-                            .ThrowExceptionOnStartFailure())
+                            .ExecuteOnStartSuccess(p => Trace.WriteLine("# events: " + p.Log.GetEventCount().ToString()))
+                            .ThrowExceptionOnStartFailure()
+                        )
 
 
                     .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>

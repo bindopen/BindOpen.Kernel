@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
+using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Data.Depots.DbQueries;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
@@ -13,6 +14,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         protected override ITBdoService<TestServiceSettings> Process(IBdoLog log)
         {
             base.Process(log);
+
+            var configuration = Host.Scope.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("sphere.identity", "messages$smtp");
 
             var connector = Host.Scope.CreateConnector<DatabaseConnector_MSSqlServer>();
 

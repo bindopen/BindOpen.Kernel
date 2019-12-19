@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Data.Stores;
 using BindOpen.Framework.Core.Extensions.References;
 using BindOpen.Framework.Core.Extensions.Runtime.Stores;
 using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Modules;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
@@ -142,25 +143,25 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// The action that is executed when start succeeds.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        ITBdoHostOptions<S> OnStartSuccess(Action<ITBdoService<S>> action);
+        ITBdoHostOptions<S> ExecuteOnStartSuccess(Action<ITBdoHost<S>> action);
 
         /// <summary>
         /// The action that is executed when start fails.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        ITBdoHostOptions<S> OnStartFailure(Action<ITBdoService<S>> action);
+        ITBdoHostOptions<S> ExecuteOnStartFailure(Action<ITBdoHost<S>> action);
 
         /// <summary>
         /// The action that is executed when execution succeeds.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        ITBdoHostOptions<S> OnExecutionSuccess(Action<ITBdoService<S>> action);
+        ITBdoHostOptions<S> ExecuteOnExecutionSuccess(Action<ITBdoHost<S>> action);
 
         /// <summary>
         /// The action that is executed when execution fails.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        ITBdoHostOptions<S> OnExecutionFailure(Action<ITBdoService<S>> action);
+        ITBdoHostOptions<S> ExecuteOnExecutionFailure(Action<ITBdoHost<S>> action);
 
         /// <summary>
         /// Throws an exception when start fails.

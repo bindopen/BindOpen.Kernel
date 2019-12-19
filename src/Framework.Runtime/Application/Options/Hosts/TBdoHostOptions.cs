@@ -477,9 +477,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// The action that is executed when the start of this instance succedes.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        public ITBdoHostOptions<S> OnStartSuccess(Action<ITBdoService<S>> action)
+        public ITBdoHostOptions<S> ExecuteOnStartSuccess(Action<ITBdoHost<S>> action)
         {
-            Action_OnStartSuccess = action;
+            Action_OnStartSuccess = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -488,9 +488,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// The action that is executed when the start of this instance fails.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        public ITBdoHostOptions<S> OnStartFailure(Action<ITBdoService<S>> action)
+        public ITBdoHostOptions<S> ExecuteOnStartFailure(Action<ITBdoHost<S>> action)
         {
-            Action_OnStartFailure = action;
+            Action_OnStartFailure = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -499,9 +499,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// The action that is executed when this instance is successfully completed.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        public ITBdoHostOptions<S> OnExecutionSuccess(Action<ITBdoService<S>> action)
+        public ITBdoHostOptions<S> ExecuteOnExecutionSuccess(Action<ITBdoHost<S>> action)
         {
-            Action_OnExecutionSucess = action;
+            Action_OnExecutionSucess = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -510,9 +510,9 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// The action that is executed when this instance execution fails.
         /// </summary>
         /// <param name="action">The action to execute.</param>
-        public ITBdoHostOptions<S> OnExecutionFailure(Action<ITBdoService<S>> action)
+        public ITBdoHostOptions<S> ExecuteOnExecutionFailure(Action<ITBdoHost<S>> action)
         {
-            Action_OnExecutionFailure = action;
+            Action_OnExecutionFailure = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -545,7 +545,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="action">The action to execute on the created data store.</param>
         public ITBdoHostOptions<S> AddDataStore(Action<IBdoDataStore> action = null)
         {
-            _dataStore = _dataStore ?? new BdoDataStore();
+            _dataStore ??= new BdoDataStore();
             action?.Invoke(_dataStore);
 
             return this;
