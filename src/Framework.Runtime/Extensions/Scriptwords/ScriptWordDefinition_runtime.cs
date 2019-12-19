@@ -39,9 +39,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("appHost") as IBdoHost;
+            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
             if (appHost == null)
-                return "<!--Application manager missing-->";
+                return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.ApplicationModule?.Name ?? "";
         }
@@ -63,9 +63,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (scope == null || scope.Context == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("appHost") as IBdoHost;
+            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
             if (appHost == null)
-                return "<!--Application manager missing-->";
+                return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? "";
         }
@@ -541,9 +541,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("appHost") as IBdoHost;
+            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
             if (appHost == null)
-                return "<!--Application manager missing-->";
+                return "<!--BindOpen host missing-->";
 
             return appHost.GetKnownPath(BdoHostPathKind.RootFolder);
         }
@@ -565,9 +565,9 @@ namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("appHost") as IBdoHost;
+            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
             if (appHost == null)
-                return "<!--Application manager missing-->";
+                return "<!--BindOpen host missing-->";
 
             return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder);
         }

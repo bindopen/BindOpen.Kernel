@@ -23,7 +23,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <summary>
         /// The host configuration of this instance.
         /// </summary>
-        public IBdoAppConfiguration HostConfiguration => Configuration;
+        public IBdoAppConfiguration AppConfiguration => Configuration;
 
         #endregion
 

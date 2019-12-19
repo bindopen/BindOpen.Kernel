@@ -26,9 +26,9 @@ namespace BindOpen.Framework.Core.Data.Depots.Datasources
 
                     if (d is BdoDatasourceDepot datasourceDepot)
                     {
-                        if (options?.AppSettings?.HostConfiguration?.Datasources != null)
+                        if (options?.AppSettings?.AppConfiguration?.Datasources != null)
                         {
-                            foreach (var dataSource in options?.AppSettings?.HostConfiguration?.Datasources)
+                            foreach (var dataSource in options?.AppSettings?.AppConfiguration?.Datasources)
                             {
                                 datasourceDepot.Add(dataSource);
                             }

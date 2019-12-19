@@ -91,6 +91,18 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         #region Processing
 
         /// <summary>
+        /// Runs the specified action.
+        /// </summary>
+        /// <param name="action">The action to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public ITBdoHost<S> Run(Action<ITBdoHost<S>> action)
+        {
+            action?.Invoke(this);
+
+            return this;
+        }
+
+        /// <summary>
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
@@ -284,7 +296,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 Name = "[unkwnon]"
             };
-            return Options?.Settings?.HostConfiguration?.Credentials.Find(p => p.KeyEquals(name));
+            return Options?.Settings?.AppConfiguration?.Credentials.Find(p => p.KeyEquals(name));
         }
 
         #endregion

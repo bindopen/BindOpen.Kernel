@@ -40,5 +40,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the bot to consider.</returns>
         new ITBdoHost<S> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+
+        // Run ----------------------------------
+
+        /// <summary>
+        /// Runs the specified action.
+        /// </summary>
+        /// <param name="action">The action to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        ITBdoHost<S> Run(Action<ITBdoHost<S>> action);
     }
 }
