@@ -8,7 +8,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
@@ -181,21 +180,6 @@ namespace BindOpen.Framework.Core.Data.Items
         }
 
         /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
-        /// </summary>
-        /// <param name="values">The values to consider.</param>
-        public DictionaryDataItem(params IDataKeyValue[] values)
-        {
-            foreach (DataKeyValue value in values)
-            {
-                if (value != null)
-                {
-                    AddValue(value.Key, value.Content);
-                }
-            }
-        }
-
-        /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class
         /// specifying the text for the default user interface language ID.
         /// </summary>
@@ -204,52 +188,6 @@ namespace BindOpen.Framework.Core.Data.Items
         public DictionaryDataItem(string key, string text)
         {
             AddValue(key, text);
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class
-        /// from a global object/text data row.
-        /// </summary>
-        /// <param name="dataRow">The global object/text row to consider.</param>
-        public DictionaryDataItem(DataRow dataRow)
-        {
-            if (dataRow != null)
-            {
-                foreach (string stringObject in __UICultureNames)
-                {
-                    if ((!dataRow.IsNull(stringObject)) || (dataRow[stringObject] != DBNull.Value))
-                    {
-                        AddValue(stringObject.ToLower(), dataRow[stringObject.ToUpper()].ToString());
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class
-        /// from an object.
-        /// </summary>
-        /// <param name="object1">The object to consider.</param>
-        public DictionaryDataItem(object object1)
-        {
-            if (object1 != null)
-            {
-                foreach (string stringObject in __UICultureNames)
-                {
-                    try
-                    {
-                        PropertyInfo propertyInfo = object1.GetType().GetProperty(stringObject);
-                        if (propertyInfo != null)
-                        {
-                            string value = (string)propertyInfo.GetValue(object1, null);
-                            AddValue(stringObject.ToLower(), value);
-                        }
-                    }
-                    catch
-                    {
-                    }
-                }
-            }
         }
 
         #endregion

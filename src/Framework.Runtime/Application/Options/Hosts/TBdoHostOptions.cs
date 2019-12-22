@@ -334,7 +334,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns the host option.</returns>
         public ITBdoHostOptions<S> SetRootFolder(Predicate<ITBdoHostOptions<S>> predicate, string rootFolderPath)
         {
-            _rootFolderPathDefinitions ??= new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
+            _rootFolderPathDefinitions = _rootFolderPathDefinitions ?? new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
             _rootFolderPathDefinitions.Add((predicate, rootFolderPath));
 
             return this;
@@ -412,7 +412,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns the host option.</returns>
         public ITBdoHostOptions<S> SetHostSettings(Action<IBdoHostSettings> action)
         {
-            HostSettings ??= new BdoHostSettings();
+            HostSettings = HostSettings ?? new BdoHostSettings();
             action?.Invoke(HostSettings);
 
             return this;
@@ -454,7 +454,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         {
             _defaultLoggerOutputKinds.Add(DatasourceKind.Repository);
 
-            HostSettings ??= new BdoHostSettings();
+            HostSettings = HostSettings ?? new BdoHostSettings();
             HostSettings?.SetLogsFileName(logFileName);
 
             return this;
@@ -545,7 +545,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <param name="action">The action to execute on the created data store.</param>
         public ITBdoHostOptions<S> AddDataStore(Action<IBdoDataStore> action = null)
         {
-            _dataStore ??= new BdoDataStore();
+            _dataStore = _dataStore ?? new BdoDataStore();
             action?.Invoke(_dataStore);
 
             return this;

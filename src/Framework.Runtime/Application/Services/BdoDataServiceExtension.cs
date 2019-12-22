@@ -1,8 +1,8 @@
-﻿using System;
-using BindOpen.Framework.Core.Application.Scopes;
+﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Application.Services.Data;
 using BindOpen.Framework.Core.Data.Connections;
 using BindOpen.Framework.Core.System.Diagnostics;
+using System;
 
 namespace BindOpen.Framework.Runtime.Application.Services
 {
@@ -31,14 +31,16 @@ namespace BindOpen.Framework.Runtime.Application.Services
             {
                 if (!log.HasErrorsOrExceptions())
                 {
-                    using Q dataService = new Q();
-                    dataService.SetConnection(connection);
-
-                    if (!log.HasErrorsOrExceptions())
+                    using (Q dataService = new Q())
                     {
-                        action?.Invoke(dataService, log);
+                        dataService.SetConnection(connection);
+
+                        if (!log.HasErrorsOrExceptions())
+                        {
+                            action?.Invoke(dataService, log);
+                        }
                     }
-                }                
+                }
             }
 
             return log;

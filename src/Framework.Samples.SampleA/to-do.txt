@@ -5,3 +5,7 @@
 - Bind logger with .NET Core logger
 
 - SetWebRootFolder
+
+- Simplify <TBdoHost>.UseDatasources()
+- DictionaryFactory
+- Allow mapping of names

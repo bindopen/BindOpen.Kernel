@@ -245,7 +245,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         {
             IBdoLog log = new BdoLog();
 
-            Q configuration = ConfigurationLoader.Load<Q>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, false, true);
+            Q configuration = ConfigurationFactory.Load<Q>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, false, true);
 
             if (!log.HasErrorsOrExceptions() && configuration != null)
             {

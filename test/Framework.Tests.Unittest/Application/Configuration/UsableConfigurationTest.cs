@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
             if (_usableConfiguration1 == null || !File.Exists(_filePath1))
                 TestSaveUsableConfiguration();
 
-            var configuration = ConfigurationLoader.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
+            var configuration = ConfigurationFactory.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

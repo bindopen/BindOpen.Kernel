@@ -76,7 +76,7 @@ namespace BindOpen.Framework.Core.Data.References
         {
             DataHandlerUniqueName = dataHandlerUniqueName;
             SourceElement = sourceElement as DataElement;
-            PathDetail.Update(ElementFactory.CreateSet<DataElementSet>(dynamicObject));
+            PathDetail.Update(ElementSetFactory.CreateFromObject<DataElementSet>(dynamicObject));
         }
 
         /// <summary>
