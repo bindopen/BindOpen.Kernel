@@ -13,6 +13,21 @@ namespace BindOpen.Framework.Core.Data.Items
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
+        /// <param name="items">The items to consider.</param>
+        public static DictionaryDataItem Create(params (string name, string value)[] items)
+        {
+            DictionaryDataItem dictionary = new DictionaryDataItem();
+            foreach (var (name, value) in items)
+            {
+                dictionary.AddValue(name, value);
+            }
+
+            return dictionary;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
+        /// </summary>
         /// <param name="values">The values to consider.</param>
         public static DictionaryDataItem Create(params IDataKeyValue[] values)
         {
