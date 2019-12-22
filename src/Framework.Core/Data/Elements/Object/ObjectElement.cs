@@ -252,7 +252,7 @@ namespace BindOpen.Framework.Core.Data.Elements
 
             Objects = Items?.Select(p =>
             {
-                DataElementSet elementSet = ElementFactory.CreateSet<DataElementSet>(p);
+                DataElementSet elementSet = ElementSetFactory.CreateFromObject<DataElementSet>(p);
                 elementSet?.UpdateStorageInfo(log);
                 return elementSet;
             }).ToList();

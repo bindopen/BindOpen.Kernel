@@ -24,14 +24,6 @@ namespace BindOpen.Framework.Core.Application.Configuration
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the ConfigurationBundle class.
-        /// </summary>
-        /// <param name="values">The values to consider.</param>
-        public BdoConfigurationBundle(params DataKeyValue[] values) : base(values)
-        {
-        }
-
         #endregion
     }
 }

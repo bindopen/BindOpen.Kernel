@@ -32,14 +32,14 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
 
             _carrierElement2 = ElementFactory.CreateCarrier(
                 "carrier2", "runtime$file",
-                ElementFactory.CreateSet<BdoCarrierConfiguration>(new { path = "file2.txt" }));
+                ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
 
             _carrierElement3 = new RepositoryFile("file3.txt", "myfolder")?.AsElement();
 
             _carrierElement4 = SetupVariables.AppHost.Scope.CreateCarrier(
                 new BdoCarrierConfiguration(
                     "runtime$file",
-                    ElementFactory.CreateElementArray(new { path = "file4.txt" })),
+                    ElementSetFactory.CreateElementArray(new { path = "file4.txt" })),
                 "carrier4", log)?.AsElement();
 
             _carrierElementSetA = new DataElementSet(_carrierElement1, _carrierElement2, _carrierElement3, _carrierElement4);

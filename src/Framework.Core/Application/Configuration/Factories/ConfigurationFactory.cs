@@ -2,6 +2,7 @@
 using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Serialization;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
+using BindOpen.Framework.Core.Data.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Core.System.Scripting;
 using System.IO;
@@ -12,7 +13,7 @@ namespace BindOpen.Framework.Core.Application.Configuration
     /// <summary>
     /// This static class provides methods to handle configurations.
     /// </summary>
-    public static class ConfigurationLoader
+    public static class ConfigurationFactory
     {
         /// <summary>
         /// Instantiates a new instance of Configuration class from a xml file.
@@ -71,6 +72,24 @@ namespace BindOpen.Framework.Core.Application.Configuration
             where T : class, IBdoBaseConfiguration
         {
             return configuration?.AddGroup(groupId, items) as T;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the ConfigurationBundle class.
+        /// </summary>
+        /// <param name="values">The values to consider.</param>
+        public static BdoConfigurationBundle CreateBundle(params IDataKeyValue[] values)
+        {
+            BdoConfigurationBundle bundle = new BdoConfigurationBundle();
+            foreach (DataKeyValue value in values)
+            {
+                if (value != null)
+                {
+                    bundle.AddValue(value.Key, value.Content);
+                }
+            }
+
+            return bundle;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
                 ElementFactory.CreateScalar("key23", 25),
                 ElementFactory.CreateCarrier(
                     "collection2", "runtime$file",
-                    ElementFactory.CreateSet<BdoCarrierConfiguration>(new { path = "file2.txt" }))
+                    ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }))
             );
 
             _collectionElementSetA = new DataElementSet(_collectionElement1, _collectionElement2);

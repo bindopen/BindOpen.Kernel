@@ -1256,7 +1256,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// </summary>
         public void Start()
         {
-            Execution ??= new ProcessExecution();
+            Execution = Execution ?? new ProcessExecution();
             Execution.Start();
         }
 
@@ -1266,7 +1266,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="status">The new status to consider.</param>
         public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
         {
-            Execution ??= new ProcessExecution();
+            Execution = Execution ?? new ProcessExecution();
             Execution.End(status);
         }
 

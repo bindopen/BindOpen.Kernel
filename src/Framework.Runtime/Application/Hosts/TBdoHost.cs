@@ -161,7 +161,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the application host.</returns>
         public ITBdoHost<S> Configure(Action<ITBdoHostOptions<S>> setupOptions)
         {
-            Options ??= new TBdoHostOptions<S>();
+            Options = Options ?? new TBdoHostOptions<S>();
             setupOptions?.Invoke(Options);
 
             return this;
@@ -314,7 +314,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <returns>Returns the log of the task.</returns>
         protected override void Initialize(IBdoLog log)
         {
-            log ??= new BdoLog();
+            log = log ?? new BdoLog();
 
             // we bind the trigger actions
 
