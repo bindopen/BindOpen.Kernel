@@ -276,12 +276,12 @@ namespace BindOpen.Framework.Runtime.Application.Options
                 _hostConfigFilePath = _hostConfigFilePath.GetConcatenatedPath(_rootFolderPath).ToPath();
 
                 HostSettings?.UpdateRuntimeInfo(null, null, log);
-                HostSettings?.SetRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.SetAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath(), HostSettings?.IsAppConfigFileRequired ?? false);
-                HostSettings?.SetLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.SetLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.SetPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.SetProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath(), HostSettings?.IsAppConfigFileRequired ?? false);
+                HostSettings?.WithLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
 
                 ExtensionLoadOptions?.WithLibraryFolderPath(HostSettings?.LibraryFolderPath);
             }
@@ -455,7 +455,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             _defaultLoggerOutputKinds.Add(DatasourceKind.Repository);
 
             HostSettings = HostSettings ?? new BdoHostSettings();
-            HostSettings?.SetLogsFileName(logFileName);
+            HostSettings?.WithLogsFileName(logFileName);
 
             return this;
         }

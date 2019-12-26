@@ -86,7 +86,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="runtimeFolderPath">The runtime folder path.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetRuntimeFolder(string runtimeFolderPath);
+        IBdoHostSettings WithRuntimeFolder(string runtimeFolderPath);
 
         /// <summary>
         /// Set the application configuration file.
@@ -94,54 +94,54 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="configFolderPath">The application configuration folder path.</param>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetAppConfigFile(string configFolderPath, bool isRequired = false);
+        IBdoHostSettings WithAppConfigFile(string configFolderPath, bool isRequired = false);
 
         /// <summary>
         /// Set the application configuration file.
         /// </summary>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetAppConfigFile(bool isRequired);
+        IBdoHostSettings WithAppConfigFileRequired(bool isRequired);
 
         /// <summary>
         /// Set the library folder.
         /// </summary>
         /// <param name="logsFolderPath">The logs folder path.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetLogsFolder(string logsFolderPath);
+        IBdoHostSettings WithLogsFolder(string logsFolderPath);
 
         /// <summary>
         /// Set the library folder.
         /// </summary>
         /// <param name="libraryFolderPath">The library folder path.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetLibraryFolder(string libraryFolderPath);
+        IBdoHostSettings WithLibraryFolder(string libraryFolderPath);
 
         /// <summary>
         /// Set the packages folder.
         /// </summary>
         /// <param name="packagesFolderPath">The packages folder path.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetPackagesFolder(string packagesFolderPath);
+        IBdoHostSettings WithPackagesFolder(string packagesFolderPath);
 
         /// <summary>
         /// Set the projects folder.
         /// </summary>
         /// <param name="projectsFolderPath">The projects folder path.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings SetProjectsFolder(string projectsFolderPath = null);
+        IBdoHostSettings WithProjectsFolder(string projectsFolderPath = null);
 
         /// <summary>
         /// Sets the log file name.
         /// </summary>
         /// <param name="logFileName">The log file name to consider.</param>
-        IBdoHostSettings SetLogsFileName(string logFileName);
+        IBdoHostSettings WithLogsFileName(string logFileName);
 
         /// <summary>
         /// Sets the expiration day number for logs.
         /// </summary>
         /// <param name="dayNumber">The expiration day number to consider.</param>
-        IBdoHostSettings SetLogsExpirationDayNumber(int dayNumber);
+        IBdoHostSettings WithLogsExpirationDayNumber(int dayNumber);
 
     }
 }
