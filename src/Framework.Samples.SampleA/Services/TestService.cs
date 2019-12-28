@@ -1,10 +1,12 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
+﻿using BindOpen.Framework.AspNetCore.Data.Resolvers;
+using BindOpen.Framework.Core.Data.Depots.Datasources;
 using BindOpen.Framework.Core.Extensions.Runtime.Items;
 using BindOpen.Framework.Core.System.Diagnostics;
 using BindOpen.Framework.Databases.Data.Depots.DbQueries;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
+using Newtonsoft.Json;
 using System;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
@@ -15,7 +17,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         {
             base.Process(log);
 
-            var configuration = Host.Scope.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("sphere.identity", "messages$smtp");
+            var configuration = Host.Scope.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("sphere.identity", "database.mssqlserver$client");
+            var st = JsonConvert.SerializeObject(Host.HostOptions.AppSettings.AppConfiguration, Formatting.Indented, SerializerSettingsFactory.CreateSettings());
 
             var connector = Host.Scope.CreateConnector<DatabaseConnector_MSSqlServer>();
 

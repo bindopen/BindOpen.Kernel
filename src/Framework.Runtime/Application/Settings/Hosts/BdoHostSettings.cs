@@ -155,7 +155,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="runtimeFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetRuntimeFolder(string runtimeFolderPath = "")
+        public IBdoHostSettings WithRuntimeFolder(string runtimeFolderPath = "")
         {
             RuntimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -168,10 +168,10 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="appConfigurationFolderPath">The application configuration folder path.</param>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public IBdoHostSettings SetAppConfigFile(string appConfigurationFolderPath, bool isRequired = false)
+        public IBdoHostSettings WithAppConfigFile(string appConfigurationFolderPath, bool isRequired = false)
         {
             AppConfigurationFolderPath = appConfigurationFolderPath?.GetEndedString(@"\").ToPath();
-            return SetAppConfigFile(isRequired);
+            return WithAppConfigFileRequired(isRequired);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public IBdoHostSettings SetAppConfigFile(bool isRequired)
+        public IBdoHostSettings WithAppConfigFileRequired(bool isRequired)
         {
             IsAppConfigFileRequired = isRequired;
 
@@ -191,7 +191,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="libraryFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetLibraryFolder(string libraryFolderPath = null)
+        public IBdoHostSettings WithLibraryFolder(string libraryFolderPath = null)
         {
             LibraryFolderPath = libraryFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -203,7 +203,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="logsFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetLogsFolder(string logsFolderPath = null)
+        public IBdoHostSettings WithLogsFolder(string logsFolderPath = null)
         {
             LogsFolderPath = logsFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -215,7 +215,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="packagesFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetPackagesFolder(string packagesFolderPath = null)
+        public IBdoHostSettings WithPackagesFolder(string packagesFolderPath = null)
         {
             PackagesFolderPath = packagesFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -227,7 +227,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="projectsFolderPath"></param>
         /// <returns>Returns this instance.</returns>
-        public IBdoHostSettings SetProjectsFolder(string projectsFolderPath = null)
+        public IBdoHostSettings WithProjectsFolder(string projectsFolderPath = null)
         {
             ProjectsFolderPath = projectsFolderPath?.GetEndedString(@"\").ToPath();
 
@@ -238,7 +238,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Sets the log file name.
         /// </summary>
         /// <param name="logFileName">The log file name to consider.</param>
-        public IBdoHostSettings SetLogsFileName(string logFileName)
+        public IBdoHostSettings WithLogsFileName(string logFileName)
         {
             LogsFileName = logFileName;
 
@@ -249,7 +249,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Sets the expiration day number for logs.
         /// </summary>
         /// <param name="dayNumber">The expiration day number to consider.</param>
-        public IBdoHostSettings SetLogsExpirationDayNumber(int dayNumber)
+        public IBdoHostSettings WithLogsExpirationDayNumber(int dayNumber)
         {
             if (dayNumber < -1)
             {

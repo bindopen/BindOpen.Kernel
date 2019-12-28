@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
             {
                 var options = new TBdoHostOptions<BdoDefaultAppSettings>();
                 options.SetRootFolder(rootFolderPath);
-                options.SetHostSettings(p => { if (runtimeFolderPath != null) { p.SetRuntimeFolder(runtimeFolderPath); } });
+                options.SetHostSettings(p => { if (runtimeFolderPath != null) { p.WithRuntimeFolder(runtimeFolderPath); } });
                 options.Update();
 
                 if (!string.IsNullOrEmpty(rootFolderPath))

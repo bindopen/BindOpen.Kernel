@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Samples.SampleA
         private static async Task Main(string[] args)
         {
             await new HostBuilder()
-               .ConfigureServices((services) =>
+               .ConfigureServices(services =>
                {
                    services
                     .AddBindOpenHost<TestAppSettings>(
@@ -30,7 +30,9 @@ namespace BindOpen.Framework.Samples.SampleA
                                 p => p.WithRemoteServerUri(""),
                                 q => q.AddMSSqlServer().AddPostgreSql())
                             .SetHostConfigFile(false)
-                            .SetHostSettings(p => p.SetAppConfigFile(false))
+                            //.SetAppSettings(p=>p.FromDotNetAppSettigs(services.Configuration, "bindopen"))
+                            //.SetHostSettings(p => p.FromDotNetAppSettigs(services.Configuration., "bindopen").WithAppConfigFileRequired(false))
+                            .SetHostSettings(p => p.WithAppConfigFileRequired(false))
                             .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
                             .ExecuteOnStartSuccess(p => Trace.WriteLine("# events: " + p.Log.GetEventCount().ToString()))
