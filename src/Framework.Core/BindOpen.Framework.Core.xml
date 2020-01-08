@@ -7282,24 +7282,24 @@
             <param name="relativePath"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Items.IdItemResult">
+        <member name="T:BindOpen.Framework.Core.Data.Items.OperationItemResultDto">
             <summary>
             This class represents the ID item result.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IdItemResult.Id">
+        <member name="P:BindOpen.Framework.Core.Data.Items.OperationItemResultDto.Id">
             <summary>
             The ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Data.Items.IdItemResult.Status">
+        <member name="P:BindOpen.Framework.Core.Data.Items.OperationItemResultDto.Status">
             <summary>
             The status of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Items.IdItemResult.#ctor(System.String,BindOpen.Framework.Core.Data.Common.ResourceStatus)">
+        <member name="M:BindOpen.Framework.Core.Data.Items.OperationItemResultDto.#ctor(System.String,BindOpen.Framework.Core.Data.Common.ResourceStatus)">
             <summary>
-            Initializes a new instance of the IdItemResult class.
+            Initializes a new instance of the OperationItemResultDto class.
             </summary>
             <param name="id">The ID to consider.</param>
             <param name="status">The status to consider.</param>

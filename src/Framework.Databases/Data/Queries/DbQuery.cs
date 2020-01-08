@@ -29,11 +29,6 @@ namespace BindOpen.Framework.Databases.Data.Queries
         #region Properties
 
         /// <summary>
-        /// Indicates whether the tracking is enabled for this instance.
-        /// </summary>
-        public bool IsTrackingEnabled { get; set; } = false;
-
-        /// <summary>
         /// Name of this instance.
         /// </summary>
         public new string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
@@ -62,6 +57,11 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// The kind of this instance.
         /// </summary>
         public DbQueryKind Kind { get; set; } = DbQueryKind.Select;
+
+        /// <summary>
+        /// Indicates whether existence is checked.
+        /// </summary>
+        public bool IsExistenceChecked { get; set; } = false;
 
         /// <summary>
         /// Fields of this instance.
@@ -108,8 +108,41 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the DbQuery class.
         /// </summary>
+        /// <param name="kind">Kind of database data query.</param>
+        /// <param name="dataModule">Name of the data module.</param>
+        /// <param name="schema">Schema of the data module.</param>
+        /// <param name="dataTable">Name of data table.</param>
+        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
+        protected DbQuery(
+            DbQueryKind kind,
+            string dataModule = null,
+            string schema = null,
+            string dataTable = null,
+            bool isExistenceChecked = false)
+        {
+            Kind = kind;
+            DataModule = dataModule;
+            Schema = schema;
+            DataTable = dataTable;
+            IsExistenceChecked = isExistenceChecked;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DbQuery class.
+        /// </summary>
         /// <param name="name">Name of the query.</param>
-        protected DbQuery(string name)
+        /// <param name="kind">Kind of database data query.</param>
+        /// <param name="dataModule">Name of the data module.</param>
+        /// <param name="schema">Schema of the data module.</param>
+        /// <param name="dataTable">Name of data table.</param>
+        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
+        protected DbQuery(
+            string name,
+            DbQueryKind kind,
+            string dataModule = null,
+            string schema = null,
+            string dataTable = null,
+            bool isExistenceChecked = false) : this(kind, dataModule, schema, dataTable, isExistenceChecked)
         {
             Name = name;
         }

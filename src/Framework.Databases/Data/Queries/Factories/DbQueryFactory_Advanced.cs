@@ -29,15 +29,36 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public static IAdvancedDbQuery CreateAdvancedDelete(DbTable table, Action<IAdvancedDbQuery> initAction = null)
             => CreateAdvancedDelete(null, table, initAction);
 
+        // Create --------------------------------
+
+        /// <summary>
+        /// Creates a new Create advanced database query.
+        /// </summary>
+        /// <returns>Returns a new Create basic database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedCreate(string name, DbTable table, bool onlyIfNotExisting = true, Action<IAdvancedDbQuery> initAction = null)
+        {
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Create, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
+            initAction?.Invoke(query);
+
+            return query;
+        }
+
+        /// <summary>
+        /// Creates a new Create advanced database query.
+        /// </summary>
+        /// <returns>Returns a new Create basic database query</returns>
+        public static IAdvancedDbQuery CreateAdvancedCreate(DbTable table, bool onlyIfNotExisting = true, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedCreate(null, table, onlyIfNotExisting, initAction);
+
         // Drop --------------------------------
 
         /// <summary>
         /// Creates a new Drop advanced database query.
         /// </summary>
         /// <returns>Returns a new Drop advanced database query</returns>
-        public static IAdvancedDbQuery CreateAdvancedDrop(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        public static IAdvancedDbQuery CreateAdvancedDrop(string name, DbTable table, bool onlyIfExisting = true, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name, onlyIfExisting);
             initAction?.Invoke(query);
 
             return query;
@@ -47,8 +68,8 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Creates a new Drop advanced database query.
         /// </summary>
         /// <returns>Returns a new Drop advanced database query</returns>
-        public static IAdvancedDbQuery CreateAdvancedDrop(DbTable table, Action<IAdvancedDbQuery> initAction = null)
-            => CreateAdvancedDrop(null, table, initAction);
+        public static IAdvancedDbQuery CreateAdvancedDrop(DbTable table, bool onlyIfExisting = true, Action<IAdvancedDbQuery> initAction = null)
+            => CreateAdvancedDrop(null, table, onlyIfExisting, initAction);
 
         // Duplicate --------------------------------
 

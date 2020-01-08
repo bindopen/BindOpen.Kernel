@@ -114,7 +114,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
         public static IDbQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
             => DbQueryFactory.CreateBasicInsert("InsertMyTable",
-                DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), p =>
+                DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), false, p =>
                 p.WithFields(
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.CreationDate), "$sqlGetCurrentDate()".CreateScript()),
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.LastModificationDate), "$sqlGetCurrentDate()".CreateScript()),

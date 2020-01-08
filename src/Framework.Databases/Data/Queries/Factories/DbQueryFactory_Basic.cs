@@ -29,15 +29,36 @@ namespace BindOpen.Framework.Databases.Data.Queries
         public static IBasicDbQuery CreateBasicDelete(DbTable table, Action<IBasicDbQuery> initAction = null)
             => CreateBasicDelete(null, table, initAction);
 
+        // Create --------------------------------
+
+        /// <summary>
+        /// Creates a new Create basic database query.
+        /// </summary>
+        /// <returns>Returns a new Create basic database query</returns>
+        public static IBasicDbQuery CreateBasicCreate(string name, DbTable table, bool onlyIfNotExisting = true, Action<IBasicDbQuery> initAction = null)
+        {
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Create, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
+            initAction?.Invoke(query);
+
+            return query;
+        }
+
+        /// <summary>
+        /// Creates a new Create basic database query.
+        /// </summary>
+        /// <returns>Returns a new Create basic database query</returns>
+        public static IBasicDbQuery CreateBasicCreate(DbTable table, bool onlyIfNotExisting = true, Action<IBasicDbQuery> initAction = null)
+            => CreateBasicCreate(null, table, onlyIfNotExisting, initAction);
+
         // Drop --------------------------------
 
         /// <summary>
         /// Creates a new Drop basic database query.
         /// </summary>
         /// <returns>Returns a new Drop basic database query</returns>
-        public static IBasicDbQuery CreateBasicDrop(string name, DbTable table, Action<IBasicDbQuery> initAction = null)
+        public static IBasicDbQuery CreateBasicDrop(string name, DbTable table, bool onlyIfExisting = true, Action<IBasicDbQuery> initAction = null)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name, onlyIfExisting);
             initAction?.Invoke(query);
 
             return query;
@@ -47,8 +68,8 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Creates a new Drop basic database query.
         /// </summary>
         /// <returns>Returns a new Drop basic database query</returns>
-        public static IBasicDbQuery CreateBasicDrop(DbTable table, Action<IBasicDbQuery> initAction = null)
-            => CreateBasicDrop(null, table, initAction);
+        public static IBasicDbQuery CreateBasicDrop(DbTable table, bool onlyIfExisting = true, Action<IBasicDbQuery> initAction = null)
+            => CreateBasicDrop(null, table, onlyIfExisting, initAction);
 
         // Duplicate --------------------------------
 
@@ -77,9 +98,9 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Creates a new Insert basic database query.
         /// </summary>
         /// <returns>Returns a new Insert basic database query</returns>
-        public static IBasicDbQuery CreateBasicInsert(string name, DbTable table, Action<IBasicDbQuery> initAction = null)
+        public static IBasicDbQuery CreateBasicInsert(string name, DbTable table, bool onlyIfNotExisting = true, Action<IBasicDbQuery> initAction = null)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
             initAction?.Invoke(query);
 
             return query;
@@ -89,8 +110,8 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// Creates a new Insert basic database query.
         /// </summary>
         /// <returns>Returns a new Insert basic database query</returns>
-        public static IBasicDbQuery CreateBasicInsert(DbTable table, Action<IBasicDbQuery> initAction = null)
-            => CreateBasicInsert(null, table, initAction);
+        public static IBasicDbQuery CreateBasicInsert(DbTable table, bool onlyIfNotExisting = true, Action<IBasicDbQuery> initAction = null)
+            => CreateBasicInsert(null, table, onlyIfNotExisting, initAction);
 
         // Select --------------------------------
 

@@ -437,6 +437,16 @@ namespace BindOpen.Framework.Core.Data.Helpers.Strings
         }
 
         /// <summary>
+        /// Gets the date string of this instance.
+        /// </summary>
+        /// <param name="date">The date to consider.</param>
+        /// <returns>Returns the date string of this instance.</returns>
+        public static string GetString(this DateTime date)
+        {
+            return date.ToString(StringHelper.__DateFormat);
+        }
+
+        /// <summary>
         /// Gets the normalized string from the specified string.
         /// </summary>
         /// <param name="st">The string to normalize.</param>

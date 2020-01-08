@@ -84,22 +84,20 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <summary>
         /// Builds the specified simple database data query and put the result into the specified string query.
         /// </summary>
+        /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
-        /// <param name="queryString">The output string query.</param>
-        /// <returns>The log of the build task.</returns>
-        public IBdoLog BuildQuery(
+        /// <returns>Returns the built query text.</returns>
+        public string Build(
             IDbQuery query,
-            IDataElementSet parameterSet,
-            bool isParametersInjected,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            bool isParametersInjected = true,
+            IBdoScriptVariableSet scriptVariableSet = null)
         {
-            var log = new BdoLog();
-
-            queryString = "";
+            var queryString = "";
 
             if (query != null)
             {
@@ -108,22 +106,22 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
                     if (query is BasicDbQuery basicDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        log.AddEvents(Build(basicDbQuery, parameterSet, scriptVariableSet, out queryString));
+                        queryString = Build(basicDbQuery, log, parameterSet, scriptVariableSet);
                     }
                     else if (query is AdvancedDbQuery advancedDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        log.AddEvents(Build(advancedDbQuery, parameterSet, scriptVariableSet, out queryString));
+                        queryString = Build(advancedDbQuery, log, parameterSet, scriptVariableSet);
                     }
                     else if (query is StoredDbQuery storedDbQuery)
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            BuildQuery(storedDbQuery.Query, parameterSet, false, scriptVariableSet, out queryString);
+                            queryString = Build(storedDbQuery.Query, log, parameterSet, false, scriptVariableSet);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
 
-                        return log;
+                        return queryString;
                     }
 
                     if (isParametersInjected)
@@ -162,18 +160,19 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
         /// <param name="query"></param>
+        /// <param name="log">The log to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        protected virtual IBdoLog Build(
+        /// <returns>Returns the built query text.</returns>
+        protected virtual string Build(
             IBasicDbQuery query,
-            IDataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null)
         {
-            queryString = "";
-            return new BdoLog();
+            return "";
         }
 
 
@@ -185,17 +184,18 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
         /// <param name="query"></param>
+        /// <param name="log">The log to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected virtual IBdoLog Build(
+        /// <returns>Returns the built query text.</returns>
+        protected virtual string Build(
             IAdvancedDbQuery query,
-            IDataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null)
         {
-            queryString = "";
-            return new BdoLog();
+            return "";
         }
 
         /// <summary>

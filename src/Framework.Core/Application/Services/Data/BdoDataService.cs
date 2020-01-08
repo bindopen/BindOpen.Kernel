@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Core.Application.Services.Data
     /// <summary>
     /// This class represents a BindOpen data service.
     /// </summary>
-    public class BdoDataService : DataItem, IBdoDataService
+    public abstract class BdoDataService : DataItem, IBdoDataService
     {
         /// <summary>
         /// The connection of this instance.
@@ -22,17 +22,17 @@ namespace BindOpen.Framework.Core.Application.Services.Data
         }
 
         /// <summary>
-        /// Initializes a new instance of the DataService class.
+        /// Initializes a new instance of the BdoDataService class.
         /// </summary>
-        public BdoDataService()
+        protected BdoDataService()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the DataService class.
+        /// Initializes a new instance of the BdoDataService class.
         /// </summary>
         /// <param name="connection">The connection to consider.</param>
-        public BdoDataService(IBdoConnection connection)
+        protected BdoDataService(IBdoConnection connection)
         {
             SetConnection(connection);
         }
