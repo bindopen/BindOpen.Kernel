@@ -221,7 +221,7 @@ namespace BindOpen.Framework.Databases.Extensions.Connectors
             if (QueryBuilder == null)
                 log.AddError("Data builder missing");
             else
-                log.Append(QueryBuilder.BuildQuery(query, parameterSet, isParametersInjected, scriptVariableSet, out sqlText));
+                sqlText = QueryBuilder.Build(query, log, parameterSet, isParametersInjected, scriptVariableSet);
 
             return sqlText;
         }

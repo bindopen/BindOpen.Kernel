@@ -106,7 +106,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                             DbQueryStatementFactory.CreateJointure(DbQueryJointureKind.Left,
                                 DbTableFactory.Create("tableA", "schema1").WithAlias("item"),
                                 DbFieldFactory.Create("idA", "tableA"),
-                                DbFieldFactory.Create("idA", nameof(DbMyTable).Substring(2), "schema1"))))
+                                DbFieldFactory.Create("idA", nameof(DbMyTable).Substring(2), "schema1"),
+                                DataOperator.Lesser)))
                 .WithIdFields(
                     DbFieldFactory.CreateAsOther("fieldA", "u_item", DbFieldFactory.Create("fieldA", "item")),
                     DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), "table1", table?.Name, DataValueType.Text),
@@ -114,7 +115,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
         public static IDbQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
             => DbQueryFactory.CreateBasicInsert("InsertMyTable",
-                DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), p =>
+                DbTableFactory.Create(nameof(DbMyTable).Substring(2), null, dataModuleName), false, p =>
                 p.WithFields(
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.CreationDate), "$sqlGetCurrentDate()".CreateScript()),
                     DbFieldFactory.CreateAsScript(nameof(DbMyTable.LastModificationDate), "$sqlGetCurrentDate()".CreateScript()),

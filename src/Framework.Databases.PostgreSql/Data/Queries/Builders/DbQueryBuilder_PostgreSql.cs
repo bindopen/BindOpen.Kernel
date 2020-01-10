@@ -165,9 +165,9 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                         {
                             string subQueryText = "";
                             if (field.Query is BasicDbQuery)
-                                Build(field.Query as BasicDbQuery, parameterSet, scriptVariableSet, out subQueryText);
+                                subQueryText = Build(field.Query as BasicDbQuery, log, parameterSet, scriptVariableSet);
                             else if (field.Query is AdvancedDbQuery)
-                                Build(field.Query as AdvancedDbQuery, parameterSet, scriptVariableSet, out subQueryText);
+                                subQueryText = Build(field.Query as AdvancedDbQuery, log, parameterSet, scriptVariableSet);
 
                             queryString += "(" + subQueryText + ")";
                         }
@@ -334,9 +334,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                             break;
                         }
                 }
-                string subQuery = String.Empty;
-                log?.AddEvents(
-                    BuildQuery(queryFrom.UnionStatement.Query, parameterSet, false, scriptVariableSet, out subQuery));
+                string subQuery = Build(queryFrom.UnionStatement.Query, log, parameterSet, false, scriptVariableSet);
                 queryString += "(" + subQuery + ")";
             }
 

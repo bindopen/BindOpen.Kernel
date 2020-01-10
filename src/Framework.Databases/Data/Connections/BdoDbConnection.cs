@@ -49,6 +49,8 @@ namespace BindOpen.Framework.Databases.Data.Connections
         /// </summary>
         public string Database => _databaseName;
 
+        string IDbConnection.ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         #endregion
 
         // ------------------------------------------
@@ -161,6 +163,49 @@ namespace BindOpen.Framework.Databases.Data.Connections
             }
 
             return log;
+        }
+
+        /// <summary>
+        /// Begins transaction.
+        /// </summary>
+        /// <returns>Returns the created transaction.</returns>
+        public IDbTransaction BeginTransaction()
+        {
+            return _nativeDbConnection?.BeginTransaction();
+        }
+
+        /// <summary>
+        /// Begins transaction.
+        /// </summary>
+        /// <param name="il">The isolation level to cosnider.</param>
+        /// <returns>Returns the created transaction.</returns>
+        public IDbTransaction BeginTransaction(IsolationLevel il)
+        {
+            return _nativeDbConnection?.BeginTransaction(il);
+        }
+
+        /// <summary>
+        /// Changes database.
+        /// </summary>
+        /// <param name="databaseName">The name of the database to consider.</param>
+        void IDbConnection.ChangeDatabase(string databaseName)
+        {
+            _nativeDbConnection?.ChangeDatabase(databaseName);
+        }
+
+        void IDbConnection.Close()
+        {
+            _nativeDbConnection?.Close();
+        }
+
+        public IDbCommand CreateCommand()
+        {
+            return _nativeDbConnection?.CreateCommand();
+        }
+
+        void IDbConnection.Open()
+        {
+            _nativeDbConnection?.Open();
         }
 
         #endregion

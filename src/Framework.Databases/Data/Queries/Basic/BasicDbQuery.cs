@@ -66,16 +66,14 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <param name="dataModule">Name of the data module.</param>
         /// <param name="schema">Schema of the data module.</param>
         /// <param name="dataTable">Name of data table.</param>
+        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
         public BasicDbQuery(
             DbQueryKind kind,
             string dataModule = null,
             string schema = null,
-            string dataTable = null)
+            string dataTable = null,
+            bool isExistenceChecked = false) : base(kind, dataModule, schema, dataTable, isExistenceChecked)
         {
-            Kind = kind;
-            DataModule = dataModule;
-            Schema = schema;
-            DataTable = dataTable;
         }
 
         /// <summary>
@@ -86,14 +84,15 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <param name="dataModule">Name of the data module.</param>
         /// <param name="schema">Schema of the data module.</param>
         /// <param name="dataTable">Name of data table.</param>
+        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
         public BasicDbQuery(
             string name,
             DbQueryKind kind,
             string dataModule = null,
             string schema = null,
-            string dataTable = null) : this(kind, dataModule, schema, dataTable)
+            string dataTable = null,
+            bool isExistenceChecked = false) : base(name, kind, dataModule, schema, dataTable, isExistenceChecked)
         {
-            Name = name;
         }
 
         #endregion

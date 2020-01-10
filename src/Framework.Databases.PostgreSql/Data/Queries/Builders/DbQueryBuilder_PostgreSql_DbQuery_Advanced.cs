@@ -23,24 +23,25 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
         // Builds advanced query ----------------------
 
         /// <summary>
-        /// Builds the specified advanced database data query and put the result
+        /// Builds the specified simple database data query and put the result
         /// into the specified string MS Sql Server query.
         /// <remarks>We assume the query already exits.</remarks>
         /// </summary>
         /// <param name="query"></param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet"></param>
         /// <param name="queryString"></param>
-        protected override IBdoLog Build(
+        /// <returns>Returns the built query text.</returns>
+        protected override string Build(
             IAdvancedDbQuery query,
-            IDataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet,
-            out string queryString)
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null)
         {
-            IBdoLog log = new BdoLog();
-            queryString = "";
-
-
+            var queryString = "";
             int index;
+
             // we build the query
             switch (query.Kind)
             {
@@ -250,7 +251,7 @@ namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
                     break;
             }
 
-            return log;
+            return queryString;
         }
 
         #endregion

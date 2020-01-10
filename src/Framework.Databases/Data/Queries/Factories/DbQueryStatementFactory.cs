@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
+﻿using BindOpen.Framework.Core.Data.Common;
+using BindOpen.Framework.Core.Data.Expression;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 
 namespace BindOpen.Framework.Databases.Data.Queries
@@ -44,10 +45,10 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
-        /// <param name="query">The query to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, string query)
-            => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = query.CreateScript() };
+        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, string conditionScript)
+            => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = conditionScript.CreateScript() };
 
         /// <summary>
         /// Creates a new Jointure statement.
@@ -56,13 +57,37 @@ namespace BindOpen.Framework.Databases.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="field1">The field1 to consider.</param>
         /// <param name="field2">The field2 to consider.</param>
-        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, DbField field1, DbField field2)
+        /// <param name="operator">The operator to consider.</param>
+        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, DbField field1, DbField field2, DataOperator _operator = DataOperator.Equal)
         {
             var jointure = CreateJointure(kind, table);
 
             if (field1 != null && field2 != null)
             {
-                string query = "$sqlEq($" +
+                string query = "";
+
+                switch (_operator)
+                {
+                    case DataOperator.Equal:
+                        query += "$sqlEq(";
+                        break;
+                    case DataOperator.Different:
+                        query += "$sqlDiff(";
+                        break;
+                    case DataOperator.Greater:
+                        query += "$sqlGt(";
+                        break;
+                    case DataOperator.GreaterOrEqual:
+                        query += "$sqlGte(";
+                        break;
+                    case DataOperator.Lesser:
+                        query += "$sqlLt(";
+                        break;
+                    case DataOperator.LesserOrEqual:
+                        query += "$sqlLte(";
+                        break;
+                }
+                query += "$" +
                    (string.IsNullOrEmpty(field1.DataModule) ? "" : ("sqlDatabase('" + field1.DataModule + "').")) +
                    (string.IsNullOrEmpty(field1.Schema) ? "" : ("sqlSchema('" + field1.Schema + "').")) +
                    (string.IsNullOrEmpty(field1.DataTable) ? "" : ("sqlTable('" + field1.DataTable + "').")) +
