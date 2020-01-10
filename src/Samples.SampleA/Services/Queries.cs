@@ -106,7 +106,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                             DbQueryStatementFactory.CreateJointure(DbQueryJointureKind.Left,
                                 DbTableFactory.Create("tableA", "schema1").WithAlias("item"),
                                 DbFieldFactory.Create("idA", "tableA"),
-                                DbFieldFactory.Create("idA", nameof(DbMyTable).Substring(2), "schema1"))))
+                                DbFieldFactory.Create("idA", nameof(DbMyTable).Substring(2), "schema1"),
+                                DataOperator.Lesser)))
                 .WithIdFields(
                     DbFieldFactory.CreateAsOther("fieldA", "u_item", DbFieldFactory.Create("fieldA", "item")),
                     DbFieldFactory.CreateAsLiteral(nameof(DbMyTable.Name), "table1", table?.Name, DataValueType.Text),

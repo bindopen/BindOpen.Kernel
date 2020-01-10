@@ -149,7 +149,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
                 }
             }
 
-            return null;
+            return queryString;
         }
 
         // Builds simple query ----------------------
