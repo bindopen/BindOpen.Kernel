@@ -19,7 +19,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <param name="rootFolderPath">The setup action to consider.</param>
         /// <param name="mustRuntimeFolderBeCreated">Indicates whether the runtime folder must be created.</param>
         /// <param name="runtimeFolderPath">The setup action to consider.</param>
-        /// <returns></returns>
+        /// <returns>Returns the log.</returns>
         public static IBdoLog InitBindOpenFolders(string rootFolderPath, bool mustRuntimeFolderBeCreated = false, string runtimeFolderPath = null)
         {
             IBdoLog log = new BdoLog();
@@ -63,14 +63,15 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static ITBdoHost<BdoDefaultAppSettings> CreateBindOpenDefaultHost(
+        public static BdoDefaultHost CreateBindOpenDefaultHost(
             Action<ITBdoHostOptions<BdoDefaultAppSettings>> setupAction = null)
-            => CreateBindOpenHost<TBdoHost<BdoDefaultAppSettings>, BdoDefaultAppSettings>(setupAction);
+            => CreateBindOpenHost<BdoDefaultHost, BdoDefaultAppSettings>(setupAction);
 
         /// <summary>
         /// Adds a BindOpen host.
         /// </summary>
         /// <param name="setupAction">The setup action to consider.</param>
+        /// <typeparam name="S"></typeparam>
         /// <returns></returns>
         public static ITBdoHost<S> CreateBindOpenHost<S>(Action<ITBdoHostOptions<S>> setupAction = null)
             where S : class, IBdoAppSettings, new()

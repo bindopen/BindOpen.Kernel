@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.Runtime.Application.Services;
@@ -29,11 +28,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         IBdoScope Scope { get; }
 
         // Settings ----------------------------------
-
-        /// <summary>
-        /// The set of user settings.
-        /// </summary>
-        IDataElementSet UserSettingsSet { get; set; }
 
         /// <summary>
         /// Gets the specified credential.

@@ -3,6 +3,7 @@ using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.System;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -25,6 +26,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Application instance ID of this instance.
         /// </summary>
         [DetailProperty(Name = "applicationInstanceId")]
+        [JsonProperty("applicationInstanceId")]
         public string ApplicationInstanceId { get; set; }
 
         // Execution ----------------------
@@ -33,6 +35,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Environment of this instance.
         /// </summary>
         [DetailProperty(Name = "environment")]
+        [JsonProperty("environment")]
         public string Environment { get; set; }
 
         /// <summary>
@@ -40,6 +43,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         [DefaultValue(ApplicationExecutionLevel.Production)]
         [DetailProperty(Name = "executionLevel")]
+        [JsonProperty("executionLevel")]
         public ApplicationExecutionLevel ExecutionLevel { get; set; }
 
         // Platform ----------------------
@@ -48,12 +52,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Name of the platform server instance of this instance.
         /// </summary>
         [DetailProperty(Name = "serverInstanceName")]
+        [JsonProperty("serverInstanceName")]
         public string ServerInstanceName { get; set; }
 
         /// <summary>
         /// Name of the application instance of this instance.
         /// </summary>
         [DetailProperty(Name = "applicationInstanceName")]
+        [JsonProperty("applicationInstanceName")]
         public string ApplicationInstanceName { get; set; }
 
         // Folders ---------------
@@ -62,12 +68,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// The path of the runtime folder.
         /// </summary>
         [DetailProperty(Name = "runtime.folderPath")]
+        [JsonProperty("runtime.folderPath")]
         public string RuntimeFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultRuntimeFolderPath).ToPath();
 
         /// <summary>
         /// The path of the configuration folder.
         /// </summary>
         [DetailProperty(Name = "configuration.folderPath")]
+        [JsonProperty("configuration.folderPath")]
         public string AppConfigurationFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultAppConfigFolderPath).ToPath();
 
         /// <summary>
@@ -75,36 +83,41 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <remarks>If it does not exist then an exception is thrown.</remarks>
         [XmlIgnore()]
-        public bool IsAppConfigFileRequired { get; internal set; }
+        public bool? IsAppConfigFileRequired { get; internal set; }
 
         /// <summary>
         /// The logs folder path of this instance.
         /// </summary>
         [DetailProperty(Name = "logs.folderPath")]
+        [JsonProperty("logs.folderPath")]
         public string LogsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLogsFolderPath).ToPath();
 
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
         [DetailProperty(Name = "library.folderPath")]
+        [JsonProperty("library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 
         /// <summary>
         /// The packages folder path of this instance.
         /// </summary>
         [DetailProperty(Name = "packages.folderPath")]
+        [JsonProperty("packages.folderPath")]
         public string PackagesFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultPackagesFolderPath).ToPath();
 
         /// <summary>
         /// The projects folder path of this instance.
         /// </summary>
         [DetailProperty(Name = "projects.folderPath")]
+        [JsonProperty("projects.folderPath")]
         public string ProjectsFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultProjectsFolderPath).ToPath();
 
         /// <summary>
         /// The logs file name of this instance.
         /// </summary>
         [DetailProperty(Name = "logs.fileName")]
+        [JsonProperty("logs.fileName")]
         public string LogsFileName { get; internal set; } = BdoDefaultHostPaths.__DefaultLogsFileName;
 
         // Logs ---------------
@@ -114,6 +127,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <remarks>The value -1 means that there is no expiration of logs.</remarks>
         [DetailProperty(Name = "logs.expirationDayNumber")]
+        [JsonProperty("logs.expirationDayNumber")]
         public int LogsExpirationDayNumber { get; internal set; } = -1;
 
         #endregion
@@ -168,7 +182,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="appConfigurationFolderPath">The application configuration folder path.</param>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public IBdoHostSettings WithAppConfigFile(string appConfigurationFolderPath, bool isRequired = false)
+        public IBdoHostSettings WithAppConfigFile(string appConfigurationFolderPath, bool? isRequired = false)
         {
             AppConfigurationFolderPath = appConfigurationFolderPath?.GetEndedString(@"\").ToPath();
             return WithAppConfigFileRequired(isRequired);
@@ -179,7 +193,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public IBdoHostSettings WithAppConfigFileRequired(bool isRequired)
+        public IBdoHostSettings WithAppConfigFileRequired(bool? isRequired)
         {
             IsAppConfigFileRequired = isRequired;
 

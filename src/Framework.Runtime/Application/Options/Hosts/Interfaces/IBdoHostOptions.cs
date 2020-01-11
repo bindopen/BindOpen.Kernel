@@ -35,34 +35,34 @@ namespace BindOpen.Framework.Runtime.Application.Options
         string HostConfigFilePath { get; }
 
         /// <summary>
-        /// Indicates whether the host configuration file must exist.
+        /// Indicates whether the host settings file must exist.
         /// </summary>
         /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        bool IsHostConfigFileRequired { get; }
+        bool? IsHostConfigFileRequired { get; }
 
         // Settings ----------------------
 
         /// <summary>
-        /// The application settings.
+        /// The host settings.
         /// </summary>
-        IBdoHostSettings HostSettings { get; set; }
+        IBdoHostSettings HostSettings { get; }
 
         /// <summary>
-        /// The host settings.
+        /// The application settings.
         /// </summary>
         IBdoAppSettings AppSettings { get; }
 
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        IDataElementSpecSet SettingsSpecificationSet { get; set; }
+        IDataElementSpecSet AppSettingsSpecificationSet { get; }
 
         // Extensions ----------------------
 
         /// <summary>
         /// The extension to load.
         /// </summary>
-        List<IBdoExtensionReference> ExtensionReferences { get; set; }
+        List<IBdoExtensionReference> ExtensionReferences { get; }
 
         /// <summary>
         /// The extension load options.

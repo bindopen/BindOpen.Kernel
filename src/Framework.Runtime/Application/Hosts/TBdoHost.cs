@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Core.Application.Scopes;
 using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
 using BindOpen.Framework.Core.Data.Helpers.Objects;
 using BindOpen.Framework.Core.Data.Helpers.Strings;
 using BindOpen.Framework.Core.Data.Items;
@@ -48,11 +47,6 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// </summary>
         public ITBdoHostOptions<S> Options { get; set; } = null;
 
-        /// <summary>
-        /// The set of user settings of this intance.
-        /// </summary>
-        public IDataElementSet UserSettingsSet { get; set; } = new DataElementSet();
-
         #endregion
 
         // ------------------------------------------
@@ -71,15 +65,14 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
         /// <summary>
         /// Instantiates a new instance of the TBdoHost class.
         /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="options">The options to consider.</param>
         public TBdoHost(
             IBdoScope scope = null,
-            ITBdoHostOptions<S> options = null,
-            IDataElementSet userSettingsSet = null)
+            ITBdoHostOptions<S> options = null)
              : base(scope, options?.Settings)
         {
             Options = options;
-
-            UserSettingsSet = userSettingsSet;
         }
 
         #endregion
@@ -387,16 +380,16 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     // we load the host configuration
 
                     string hostConfigFilePath = GetKnownPath(BdoHostPathKind.HostConfigFile);
-                    Options.HostSettings = primaryHostSettings ?? new BdoHostSettings();
+                    Options.SetHostSettings(primaryHostSettings ?? new BdoHostSettings());
 
                     if (!File.Exists(hostConfigFilePath))
                     {
                         var message = "Host configuration file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
-                        if (Options.IsHostConfigFileRequired)
+                        if (Options.IsHostConfigFileRequired == true)
                         {
                             subLog.AddError(message);
                         }
-                        else
+                        else if (Options.IsHostConfigFileRequired == false)
                         {
                             subLog.AddWarning(message);
                         }
@@ -407,7 +400,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         subLog.Append(Options.HostSettings.UpdateFromFile(
                                 hostConfigFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
-                                Options?.SettingsSpecificationSet,
+                                Options?.AppSettingsSpecificationSet,
                                 _scope, null));
                         if (!subLog.HasErrorsOrExceptions())
                         {
@@ -448,7 +441,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                     {
                         // we load the application configuration
 
-                        Options.Settings = new S();
+                        Options.SetAppSettings(new S());
 
                         string appConfigFilePath = GetKnownPath(BdoHostPathKind.ConfigurationFolder) + BdoDefaultHostPaths.__DefaultAppConfigFileName;
 
@@ -456,11 +449,11 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                         if (!File.Exists(appConfigFilePath))
                         {
                             var message = "Application configuration file ('" + BdoDefaultHostPaths.__DefaultAppConfigFileName + "') not found";
-                            if (Options.HostSettings.IsAppConfigFileRequired)
+                            if (Options.HostSettings.IsAppConfigFileRequired == true)
                             {
                                 subLog.AddError(message);
                             }
-                            else
+                            else if (Options.HostSettings.IsAppConfigFileRequired == false)
                             {
                                 subLog.AddWarning(message);
                             }
@@ -470,7 +463,7 @@ namespace BindOpen.Framework.Runtime.Application.Hosts
                             subLog.Append(Options.Settings.UpdateFromFile(
                                 appConfigFilePath,
                                 new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
-                                Options?.SettingsSpecificationSet,
+                                Options?.AppSettingsSpecificationSet,
                                 _scope, null));
                         }
                         if (!subLog.HasErrorsOrExceptions())

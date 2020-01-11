@@ -29,10 +29,10 @@ namespace BindOpen.Framework.Samples.SampleA
                             .AddExtensions(
                                 p => p.WithRemoteServerUri(""),
                                 q => q.AddMSSqlServer().AddPostgreSql())
-                            .SetHostConfigFile(false)
-                            //.SetAppSettings(p=>p.FromDotNetAppSettigs(services.Configuration, "bindopen"))
+                            .SetHostSettingsFile(false)
                             //.SetHostSettings(p => p.FromDotNetAppSettigs(services.Configuration., "bindopen").WithAppConfigFileRequired(false))
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
+                            .SetAppSettings(p => p.FromConfiguration(services.Configuration, "bindopen"))
                             .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
                             .ExecuteOnStartSuccess(p => Trace.WriteLine("# events: " + p.Log.GetEventCount().ToString()))

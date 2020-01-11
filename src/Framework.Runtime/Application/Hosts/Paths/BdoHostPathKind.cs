@@ -46,7 +46,7 @@
         RuntimeFolder,
 
         /// <summary>
-        /// The host configuration file.
+        /// The host settings file.
         /// </summary>
         HostConfigFile,
 
