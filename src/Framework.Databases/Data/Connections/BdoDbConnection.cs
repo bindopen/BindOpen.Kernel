@@ -1,11 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Extensions.Connectors;
+﻿using BindOpen.Framework.Databases.Extensions.Connectors;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Data;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Databases.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class represents a database connection.

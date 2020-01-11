@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Common
+namespace BindOpen.Framework.Data.Common
 {
 
     // --------------------------------------------------

@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Application.Configuration;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Application.Configuration;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// 

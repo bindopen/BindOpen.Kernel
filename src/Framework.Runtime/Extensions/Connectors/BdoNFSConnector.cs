@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.Runtime.Data.Connections;
 
 namespace BindOpen.Framework.Runtime.Extensions.Connectors

@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Data.Connections;
+﻿using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.Data.Connections;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
 using BindOpen.Framework.Runtime.Extensions.Connectors;
 using NUnit.Framework;

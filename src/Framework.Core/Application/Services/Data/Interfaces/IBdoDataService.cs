@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
+﻿using BindOpen.Framework.Data.Connections;
 using System;
 
-namespace BindOpen.Framework.Core.Application.Services.Data
+namespace BindOpen.Framework.Data.Services
 {
     /// <summary>
     /// This interfaces represents a data service.

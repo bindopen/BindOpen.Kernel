@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Scripting;
 using System;
 
-namespace BindOpen.Framework.Core.Extensions.Attributes
+namespace BindOpen.Framework.Extensions.Attributes
 {
     /// <summary>
     /// This class represents a script word attribute.

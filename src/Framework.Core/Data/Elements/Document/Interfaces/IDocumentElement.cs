@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Elements
+﻿namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// 

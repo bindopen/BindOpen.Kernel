@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Depots
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// 

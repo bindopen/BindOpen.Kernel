@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// 

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Databases.Extensions.Carriers;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a Api script clause.

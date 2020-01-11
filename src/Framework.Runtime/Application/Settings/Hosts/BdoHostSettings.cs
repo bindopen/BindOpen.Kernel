@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Attributes;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.Runtime.Application.Configuration;
 using BindOpen.Framework.Runtime.System;
 using Newtonsoft.Json;

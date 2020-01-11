@@ -1,15 +1,15 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This class represents a configuration.

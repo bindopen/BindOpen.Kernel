@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Items
+﻿namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This interface represents an referenced DTO.

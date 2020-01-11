@@ -1,9 +1,8 @@
-﻿using System;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
+using System;
 
-namespace BindOpen.Framework.Core.System.Processing.Resources
+namespace BindOpen.Framework.System.Processing
 {
     /// <summary>
     /// This class represents an resource allocation.
@@ -24,7 +23,7 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
             get;
             set;
         }
-        
+
         /// <summary>
         /// The owner ID of this instance.
         /// </summary>
@@ -56,7 +55,7 @@ namespace BindOpen.Framework.Core.System.Processing.Resources
         /// <param name="aOwnerId">The owner ID to consider.</param>
         public ResourceAllocation(
             String aAllocatedResourceId,
-            String aOwnerId=null)
+            String aOwnerId = null)
         {
             this.CreationDate = ObjectHelper.ToString(DateTime.Now);
             this.AllocatedResourceId = aAllocatedResourceId;

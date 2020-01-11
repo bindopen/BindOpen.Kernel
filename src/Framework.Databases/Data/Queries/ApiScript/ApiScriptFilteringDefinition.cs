@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a Api script filtering definition.

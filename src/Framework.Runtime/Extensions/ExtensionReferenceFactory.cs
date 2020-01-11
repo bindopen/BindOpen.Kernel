@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.References;
+﻿using BindOpen.Framework.Extensions.References;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using System.Collections.Generic;
 

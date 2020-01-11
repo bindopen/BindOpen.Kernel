@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.System.Diagnostics.Events;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// 

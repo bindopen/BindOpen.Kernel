@@ -1,15 +1,15 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Events
+namespace BindOpen.Framework.System.Diagnostics.Events
 {
     /// <summary>
     /// This class represents an event.

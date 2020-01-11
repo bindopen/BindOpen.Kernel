@@ -1,15 +1,14 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Queries;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using BindOpen.Framework.Databases.Extensions.Connectors;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 
-namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.

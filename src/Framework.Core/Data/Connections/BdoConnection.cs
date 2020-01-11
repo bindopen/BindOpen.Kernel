@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using System.Data;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class represents a connection.

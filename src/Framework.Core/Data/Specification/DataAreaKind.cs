@@ -1,8 +1,4 @@
-﻿
-using BindOpen.Framework.Core.Data.Common;
-using System;
-
-namespace BindOpen.Framework.Core.Data.Specification
+﻿namespace BindOpen.Framework.Data.Specification
 {
     /// <summary>
     /// This enumeration lists the possible kinds of data areas.

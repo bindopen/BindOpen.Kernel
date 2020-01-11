@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Events
+namespace BindOpen.Framework.System.Diagnostics.Events
 {
     /// <summary>
     /// 

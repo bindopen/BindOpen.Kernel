@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Specification;
+using BindOpen.Framework.System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This class represents a carrier element specification.

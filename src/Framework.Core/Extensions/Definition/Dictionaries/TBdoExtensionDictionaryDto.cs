@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.Extensions.Runtime;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.Extensions.Runtime;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Dictionaries
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents a BindOpen extension dictionary.

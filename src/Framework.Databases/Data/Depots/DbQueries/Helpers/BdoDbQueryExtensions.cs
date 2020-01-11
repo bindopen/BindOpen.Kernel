@@ -1,10 +1,9 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Stores;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Stores;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 
-namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// This class represents an data queries factory.

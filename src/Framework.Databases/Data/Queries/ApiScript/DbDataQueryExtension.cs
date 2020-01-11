@@ -1,12 +1,12 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Databases.Extensions.Carriers;
+using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents the database data query extension.

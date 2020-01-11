@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Scripting;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Items
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// 

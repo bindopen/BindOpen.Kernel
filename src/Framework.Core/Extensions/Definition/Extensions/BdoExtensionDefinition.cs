@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Extensions
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents a library definition.

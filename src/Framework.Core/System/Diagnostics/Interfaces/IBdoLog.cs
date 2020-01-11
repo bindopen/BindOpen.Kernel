@@ -1,13 +1,13 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Processing;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics.Events;
+using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.System.Processing;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// 

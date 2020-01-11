@@ -1,17 +1,13 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Definition;
-using BindOpen.Framework.Core.Extensions.Definition.Dictionaries;
-using BindOpen.Framework.Core.Extensions.Definition.Extensions;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents a extension scope loader.

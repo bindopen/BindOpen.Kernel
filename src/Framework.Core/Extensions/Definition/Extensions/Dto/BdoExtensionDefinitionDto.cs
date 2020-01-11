@@ -1,12 +1,12 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Extensions
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents the definition of a library.

@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Stores;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.Runtime.Application.Options;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Depots.Datasources
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// This class represents an data source extensions.

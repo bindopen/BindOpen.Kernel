@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Schema;
-using BindOpen.Framework.Core.Data.References;
+﻿using BindOpen.Framework.Data.Elements.Schema;
+using BindOpen.Framework.Data.References;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This class represents a data schema.

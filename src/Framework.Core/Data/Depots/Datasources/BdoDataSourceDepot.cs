@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Depots.Datasources
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// This class represents a data source depot.

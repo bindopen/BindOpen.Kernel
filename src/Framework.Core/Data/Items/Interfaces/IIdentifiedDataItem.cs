@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This interface represents an identified data item.

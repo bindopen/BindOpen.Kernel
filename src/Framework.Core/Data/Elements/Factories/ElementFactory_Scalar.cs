@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data elements.

@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using System;
 using System.Collections.Generic;

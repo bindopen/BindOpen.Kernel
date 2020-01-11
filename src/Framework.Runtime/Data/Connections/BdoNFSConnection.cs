@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using BindOpen.Framework.Runtime.Extensions.Connectors;
 using System;

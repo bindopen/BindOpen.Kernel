@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Scripting;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Scripting;
 using BindOpen.Framework.Runtime.Application.Navigation;
 
 namespace BindOpen.Framework.Runtime.Application.Rights

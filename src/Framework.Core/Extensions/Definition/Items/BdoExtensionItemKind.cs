@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Extensions.Runtime;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Items
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This enumeration represents the possible kinds of library items.

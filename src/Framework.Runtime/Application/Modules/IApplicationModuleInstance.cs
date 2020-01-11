@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.System;
 

@@ -1,11 +1,11 @@
 ﻿using BindOpen.Framework.AspNetCore.Data.Resolvers;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Data.Depots.DbQueries;
+using BindOpen.Framework.Data.Depots;
+using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions.Connectors;
+using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
+using BindOpen.Framework.System.Diagnostics;
 using Newtonsoft.Json;
 using System;
 

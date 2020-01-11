@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.System.Assemblies.References;
+﻿using BindOpen.Framework.System.Assemblies.References;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.References
+namespace BindOpen.Framework.Extensions.References
 {
     /// <summary>
     /// This class represents the BindOpen extension reference.

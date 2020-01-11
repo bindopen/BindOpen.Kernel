@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// This enumeration lists logger modes.

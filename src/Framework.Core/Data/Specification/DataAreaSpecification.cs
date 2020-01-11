@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Data.Common;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Specification
+namespace BindOpen.Framework.Data.Specification
 {
     /// <summary>
     /// This class represents a data area specification.

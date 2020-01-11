@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.IO;
 
-namespace BindOpen.Framework.Core.Data.Helpers.Files
+namespace BindOpen.Framework.Data.Helpers.Files
 {
     /// <summary>
     /// This class represents a helper for files.

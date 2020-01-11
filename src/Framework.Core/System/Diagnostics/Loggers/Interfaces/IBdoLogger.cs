@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This interface represents a logger.

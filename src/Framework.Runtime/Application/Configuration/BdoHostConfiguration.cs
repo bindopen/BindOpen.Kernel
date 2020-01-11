@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Application.Configuration;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Application.Configuration;
+using BindOpen.Framework.Data.Elements;
 using System.Xml.Serialization;
 
 namespace BindOpen.Framework.Runtime.Application.Configuration

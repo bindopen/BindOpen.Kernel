@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This class represents indexed data item.

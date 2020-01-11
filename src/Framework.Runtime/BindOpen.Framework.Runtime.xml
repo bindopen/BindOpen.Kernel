@@ -2081,7 +2081,7 @@
             <param name="specificationSet">The set of data element specifcations to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITBdoHostOptions`1.ConfigureExtensionLoad(System.Action{BindOpen.Framework.Core.Extensions.Runtime.Stores.IExtensionLoadOptions})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.ITBdoHostOptions`1.ConfigureExtensionLoad(System.Action{BindOpen.Framework.Core.Extensions.Runtime.IExtensionLoadOptions})">
             <summary>
             Configures the extension load of this instance.
             </summary>
@@ -2369,7 +2369,7 @@
             <param name="path">The settings file path.</param>
             <returns>Returns the host option.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBdoHostOptions`1.ConfigureExtensionLoad(System.Action{BindOpen.Framework.Core.Extensions.Runtime.Stores.IExtensionLoadOptions})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Options.TBdoHostOptions`1.ConfigureExtensionLoad(System.Action{BindOpen.Framework.Core.Extensions.Runtime.IExtensionLoadOptions})">
             <summary>
             Configures the extension load of this instance.
             </summary>
@@ -3967,7 +3967,7 @@
             Instantiates a new instance of the RepositoryItem class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor(BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoCarrierConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Carriers.RepositoryItem.#ctor(BindOpen.Framework.Core.Extensions.Runtime.IBdoCarrierConfiguration)">
             <summary>
             Instantiates a new instance of the RepositoryItem class.
             </summary>
@@ -4138,7 +4138,7 @@
             Instantiates a new instance of the RepositoryConnector class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Connectors.RepositoryConnector.#ctor(BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Connectors.RepositoryConnector.#ctor(BindOpen.Framework.Core.Extensions.Runtime.IBdoConnectorConfiguration)">
             <summary>
             Instantiates a new instance of the RepositoryConnector class.
             </summary>
@@ -4496,7 +4496,7 @@
             This class represents a 'Runtime' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationModuleName).
             </summary>
@@ -4506,7 +4506,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationInstanceName(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationInstanceName).
             </summary>
@@ -4516,7 +4516,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEmpty(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEmpty(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISEMPTY.
             </summary>
@@ -4526,7 +4526,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Text(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Text(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $TEXT.
             </summary>
@@ -4536,7 +4536,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_FormatText(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_FormatText(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $FORMAT.
             </summary>
@@ -4546,7 +4546,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_If(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_If(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $IF.
             </summary>
@@ -4556,7 +4556,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Not(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Not(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $NOT.
             </summary>
@@ -4566,7 +4566,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Or(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Or(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $OR.
             </summary>
@@ -4576,7 +4576,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_And(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_And(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $AND.
             </summary>
@@ -4586,7 +4586,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Xor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_Xor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $XOR.
             </summary>
@@ -4596,7 +4596,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEqual(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsEqual(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISEQUAL.
             </summary>
@@ -4606,7 +4606,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsDifferent(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_IsDifferent(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $ISDIFFERENT.
             </summary>
@@ -4616,7 +4616,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_GetCurrentDateTime(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_GetCurrentDateTime(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(GETCURRENTDATETIME).
             </summary>
@@ -4626,7 +4626,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Format(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Format(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().FORMAT(aFormat).
             </summary>
@@ -4636,7 +4636,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_TimeStamp(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_TimeStamp(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().TIMESTAMP().
             </summary>
@@ -4646,7 +4646,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Add(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DateTime_Add(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $GETCURRENTDATE().SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
             </summary>
@@ -4656,7 +4656,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word %DATAMODULE.
             </summary>
@@ -4666,7 +4666,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule_Name(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Fun_DataModule_Name(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word %DATAMODULE.
             </summary>
@@ -4676,7 +4676,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_GetEmpty(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_GetEmpty(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(EMPTY).
             </summary>
@@ -4686,7 +4686,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Tab(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Tab(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_TAB).
             </summary>
@@ -4696,7 +4696,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Cr(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_Cr(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_CR).
             </summary>
@@ -4706,7 +4706,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_CarretPos(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_Literal_CarretPos(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(LITERAL_CARRETPOS).
             </summary>
@@ -4716,7 +4716,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(application.folderPath).
             </summary>
@@ -4726,7 +4726,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationRoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationRoamingFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(roaming.folderPath).
             </summary>
@@ -4736,7 +4736,7 @@
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_MyDocumentsFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Framework.Runtime.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_MyDocumentsFolderPath(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(myDocuments.folderPath).
             </summary>
@@ -4796,7 +4796,7 @@
             <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoJsonLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.IBdoTaskConfiguration)">
             <summary>
             Logs the specified task.
             </summary>
@@ -4883,7 +4883,7 @@
             <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoReportLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.IBdoTaskConfiguration)">
             <summary>
             Logs the specified task.
             </summary>
@@ -4991,7 +4991,7 @@
             <param name="eventFilter">The function that filters events.</param>
             <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.Items.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.System.Diagnostics.Loggers.BdoXmlLogger.WriteTask(BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Extensions.Runtime.IBdoTaskConfiguration)">
             <summary>
             Logs the specified task.
             </summary>
@@ -5178,7 +5178,7 @@
             This class represents a connection service.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoConnectionFactory.Open``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.Data.Depots.Datasources.IBdoDatasourceDepot,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Core.Data.Connections.BdoConnectionFactory.Open``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.Data.Depots.IBdoDatasourceDepot,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Creates a connector.
             </summary>
@@ -5199,12 +5199,12 @@
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceExtensions">
+        <member name="T:BindOpen.Framework.Core.Data.Depots.BdoDatasourceExtensions">
             <summary>
             This class represents an data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceExtensions.RegisterDasourceDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore,BindOpen.Framework.Runtime.Application.Options.IBdoHostOptions)">
+        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDatasourceExtensions.RegisterDasourceDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore,BindOpen.Framework.Runtime.Application.Options.IBdoHostOptions)">
             <summary>
             Add a data source depot into the specified data store using the specified options.
             </summary>
@@ -5212,7 +5212,7 @@
             <param name="options">The options to consider.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Depots.Datasources.BdoDatasourceExtensions.GetDatasourceDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.Framework.Core.Data.Depots.BdoDatasourceExtensions.GetDatasourceDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore)">
             <summary>
             Gets the datasource depot of the specified data store.
             </summary>

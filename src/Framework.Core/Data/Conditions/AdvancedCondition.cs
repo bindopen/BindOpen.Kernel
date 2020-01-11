@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// This class represents an advanced condition.

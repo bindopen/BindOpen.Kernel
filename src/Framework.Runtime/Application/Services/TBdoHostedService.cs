@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.System.Diagnostics.Loggers;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Settings;
 using System;

@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents the extension loading configuration.

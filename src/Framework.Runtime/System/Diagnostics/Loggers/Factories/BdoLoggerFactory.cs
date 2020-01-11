@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 
 namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers

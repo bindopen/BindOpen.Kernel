@@ -1,17 +1,17 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.Data.Helpers.Objects
+namespace BindOpen.Framework.Data.Helpers.Objects
 {
     /// <summary>
     /// This class represents a helper for objects.

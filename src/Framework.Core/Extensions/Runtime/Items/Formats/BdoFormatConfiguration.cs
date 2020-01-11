@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Extensions.Definition;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents an format configuration.

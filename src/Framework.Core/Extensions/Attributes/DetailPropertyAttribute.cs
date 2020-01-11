@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Data.Elements;
 using System;
 
-namespace BindOpen.Framework.Core.Extensions.Attributes
+namespace BindOpen.Framework.Extensions.Attributes
 {
     /// <summary>
     /// This class represents a detail property attribute.

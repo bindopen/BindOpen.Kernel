@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Dto
+namespace BindOpen.Framework.System.Diagnostics.Dto
 {
     /// <summary>
     /// This class represents a factory for API logs.

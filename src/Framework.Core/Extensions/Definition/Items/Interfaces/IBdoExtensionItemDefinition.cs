@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Extensions;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Items
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// 

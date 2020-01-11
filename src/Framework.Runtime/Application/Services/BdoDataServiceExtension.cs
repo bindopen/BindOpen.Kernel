@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Application.Services.Data;
-using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Services;
+using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 
 namespace BindOpen.Framework.Runtime.Application.Services

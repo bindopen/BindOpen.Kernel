@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Connections;
-using BindOpen.Framework.Databases.Data.Queries;
+﻿using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Data.Queries;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.Data;
 
-namespace BindOpen.Framework.Core.Application.Services.Data
+namespace BindOpen.Framework.Data.Services
 {
     /// <summary>
     /// This class represents a data service extension.

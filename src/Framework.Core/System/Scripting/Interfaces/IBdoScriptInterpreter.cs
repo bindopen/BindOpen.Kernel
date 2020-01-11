@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.System.Scripting
+namespace BindOpen.Framework.System.Scripting
 {
     /// <summary>
     /// This interface defines the script interpreter.

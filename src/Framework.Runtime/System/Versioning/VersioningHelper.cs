@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.System.Versioning
+namespace BindOpen.Framework.System.Versioning
 {
 
     /// <summary>

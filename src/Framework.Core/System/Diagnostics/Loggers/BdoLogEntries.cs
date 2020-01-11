@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.System.Diagnostics.Loggers
+﻿namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This enumeration lists the possible log entries.

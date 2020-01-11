@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Application.Services.Data;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Data.Services;
 using BindOpen.Framework.NetCore.Services;
 using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.Runtime.Application.Options;
 using BindOpen.Framework.Runtime.Application.Services;
 using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection

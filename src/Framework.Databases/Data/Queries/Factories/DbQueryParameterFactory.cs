@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This static class represents a factory of data query parameter.

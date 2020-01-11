@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BindOpen.Framework.Data.Items;
+using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Security
 {
@@ -109,7 +109,7 @@ namespace BindOpen.Framework.Runtime.Application.Security
             , String aDomainId = null
             , String aTokenValue = null) : base(name, "credential_")
         {
-            if (name!=null)
+            if (name != null)
                 Name = name;
             DomainId = aDomainId;
             Login = login;

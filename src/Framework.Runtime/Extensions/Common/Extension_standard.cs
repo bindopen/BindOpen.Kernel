@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
 using System;
 
 namespace BindOpen.Framework.Runtime.Extensions.Common

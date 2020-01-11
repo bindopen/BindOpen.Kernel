@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.Data.Items;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Business.Cases
+namespace BindOpen.Framework.Data.Business
 {
     /// <summary>
     /// This class represents a business case.

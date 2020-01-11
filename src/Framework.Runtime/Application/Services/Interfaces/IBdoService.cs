@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Assemblies;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Processing;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Assemblies;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.System.Processing;
 using BindOpen.Framework.Runtime.Application.Settings;
 using System;
 using System.Collections.Generic;

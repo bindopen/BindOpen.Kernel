@@ -1,5 +1,5 @@
 ﻿
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a union statement of a database data query.

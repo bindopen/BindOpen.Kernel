@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This class represents a document element specification.

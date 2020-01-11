@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Extensions.Definition;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Dictionaries
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents a DTO script word dictionary.

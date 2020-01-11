@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 using System.IO;

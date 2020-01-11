@@ -1,16 +1,16 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Context;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Core.Extensions.Runtime.Stores;
-using BindOpen.Framework.Core.System.Assemblies.References;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Data.Depots;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Context;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Assemblies.References;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
-using BindOpen.Framework.Core.Data.Stores;
+using BindOpen.Framework.Data.Stores;
 
-namespace BindOpen.Framework.Core.Application.Scopes
+namespace BindOpen.Framework.Application.Scopes
 {
     /// <summary>
     /// This interface defines an application scope.

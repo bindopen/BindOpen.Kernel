@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
+﻿using BindOpen.Framework.Data.Expression;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// This class represents a script condition.

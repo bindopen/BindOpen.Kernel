@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 using System;
 
-namespace BindOpen.Framework.Core.Extensions.Attributes
+namespace BindOpen.Framework.Extensions.Attributes
 {
     /// <summary>
     /// This class represents a carrier attribute.

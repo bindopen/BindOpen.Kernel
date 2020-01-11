@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Assemblies.References;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Assemblies.References;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// 

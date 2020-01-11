@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.System.Scripting
+namespace BindOpen.Framework.System.Scripting
 {
 
     /// <summary>

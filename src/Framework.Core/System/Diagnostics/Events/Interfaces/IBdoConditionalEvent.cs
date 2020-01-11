@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.System.Diagnostics.Events
+﻿namespace BindOpen.Framework.System.Diagnostics.Events
 {
     /// <summary>
     /// 

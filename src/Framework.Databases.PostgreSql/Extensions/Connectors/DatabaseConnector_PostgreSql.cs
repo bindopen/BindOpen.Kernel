@@ -1,13 +1,12 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Connections;
-using BindOpen.Framework.Databases.Data.Queries;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Databases.Extensions.Connectors;
-using BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using Npgsql;
 using System.Data;
 

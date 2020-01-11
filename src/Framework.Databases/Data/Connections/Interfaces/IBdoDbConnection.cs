@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
+﻿using BindOpen.Framework.Data.Connections;
 using BindOpen.Framework.Databases.Extensions.Connectors;
 using System.Data;
 
-namespace BindOpen.Framework.Databases.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This interfaces represents a connection.

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Extensions.Definition.Items
+﻿namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// 

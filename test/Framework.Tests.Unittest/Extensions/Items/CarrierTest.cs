@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using NUnit.Framework;
 using System.IO;

@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.References;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.References;
 using BindOpen.Framework.Runtime.Application.Products;
 using System;
 using System.Collections.Generic;

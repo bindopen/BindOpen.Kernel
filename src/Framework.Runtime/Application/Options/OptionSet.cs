@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.System.Diagnostics;
 
 namespace BindOpen.Framework.Runtime.Application.Options
 {

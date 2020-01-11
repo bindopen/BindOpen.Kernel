@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Business.Contacts
+namespace BindOpen.Framework.Data.Business
 {
 
     /// <summary>

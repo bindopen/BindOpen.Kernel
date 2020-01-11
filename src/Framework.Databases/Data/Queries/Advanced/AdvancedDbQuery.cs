@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
+﻿using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents an advanced database data query.

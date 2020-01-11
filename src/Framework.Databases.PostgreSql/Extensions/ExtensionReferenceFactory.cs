@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders;
+﻿using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.Data.Queries;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Databases.PostgreSql.Extensions

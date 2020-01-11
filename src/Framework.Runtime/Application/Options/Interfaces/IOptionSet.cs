@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Data.Elements;
 
 namespace BindOpen.Framework.Runtime.Application.Options
 {

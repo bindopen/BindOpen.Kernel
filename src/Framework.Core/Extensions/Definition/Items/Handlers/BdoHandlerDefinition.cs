@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Extensions;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.Extensions.Runtime;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Items
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents a handler definition.

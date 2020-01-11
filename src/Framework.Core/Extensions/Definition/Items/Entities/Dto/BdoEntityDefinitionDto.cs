@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Items
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents the entity definition.

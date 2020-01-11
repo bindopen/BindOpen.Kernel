@@ -1,9 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Assemblies.References;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BindOpen.Framework.System.Assemblies.References;
 
-namespace BindOpen.Framework.Core.Extensions.References
+namespace BindOpen.Framework.Extensions.References
 {
     /// <summary>
     /// This class represents an extension reference factory.

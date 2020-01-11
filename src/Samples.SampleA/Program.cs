@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Databases.Data.Depots.DbQueries;
+﻿using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Databases.MSSqlServer.Extensions;
 using BindOpen.Framework.Databases.PostgreSql.Extensions;
 using BindOpen.Framework.Samples.SampleA.Services;
@@ -32,7 +31,7 @@ namespace BindOpen.Framework.Samples.SampleA
                             .SetHostSettingsFile(false)
                             //.SetHostSettings(p => p.FromDotNetAppSettigs(services.Configuration., "bindopen").WithAppConfigFileRequired(false))
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
-                            .SetAppSettings(p => p.FromConfiguration(services.Configuration, "bindopen"))
+                            //.SetAppSettings(p => p.FromConfiguration(services.Configuration, "bindopen"))
                             .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
                             .ExecuteOnStartSuccess(p => Trace.WriteLine("# events: " + p.Log.GetEventCount().ToString()))

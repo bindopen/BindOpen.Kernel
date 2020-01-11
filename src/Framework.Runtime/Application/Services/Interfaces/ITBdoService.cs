@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.System.Processing;
+﻿using BindOpen.Framework.System.Processing;
 using BindOpen.Framework.Runtime.Application.Settings;
 using System;
 

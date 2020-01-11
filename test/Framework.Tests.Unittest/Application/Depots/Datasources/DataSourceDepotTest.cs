@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.Data.Depots;
 using NUnit.Framework;
 using System.IO;
 

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors;
 
-namespace BindOpen.Framework.Core.Application.Services.Data
+namespace BindOpen.Framework.Data.Services
 {
     /// <summary>
     /// This class represents a data service extension.

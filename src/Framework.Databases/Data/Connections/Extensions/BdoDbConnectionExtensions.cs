@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Queries;
+﻿using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Databases.Extensions.Connectors;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System.Data;
 
-namespace BindOpen.Framework.Databases.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class proposes extensions for database connection.

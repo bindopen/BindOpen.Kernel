@@ -1,10 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Data.Queries;
-using BindOpen.Framework.Databases.Data.Queries.ApiScript;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Databases.Extensions.Carriers;
+using BindOpen.Framework.System.Diagnostics;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {

@@ -1,14 +1,14 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System.ComponentModel;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents a carrier.

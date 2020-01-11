@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Depots;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Data.Stores
+namespace BindOpen.Framework.Data.Stores
 {
     /// <summary>
     /// 

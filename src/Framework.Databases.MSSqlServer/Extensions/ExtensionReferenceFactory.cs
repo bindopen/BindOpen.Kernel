@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Databases.MSSqlServer.Data.Queries.Builders;
+﻿using BindOpen.Framework.Data.Queries;
+using BindOpen.Framework.Extensions.References;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Databases.MSSqlServer.Extensions

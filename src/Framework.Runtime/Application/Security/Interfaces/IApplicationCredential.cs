@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
 namespace BindOpen.Framework.Runtime.Application.Security
 {

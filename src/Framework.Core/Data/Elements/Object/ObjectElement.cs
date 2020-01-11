@@ -1,18 +1,18 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Assemblies;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.System.Assemblies;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This class represents a object element that is an element whose items are entities.

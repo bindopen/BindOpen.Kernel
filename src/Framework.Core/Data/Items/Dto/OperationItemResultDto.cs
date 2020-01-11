@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Common;
+﻿using BindOpen.Framework.Data.Common;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This class represents a DTO operation item result.

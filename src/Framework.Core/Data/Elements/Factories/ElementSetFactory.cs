@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Extensions.Attributes;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Extensions.Attributes;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data element set.

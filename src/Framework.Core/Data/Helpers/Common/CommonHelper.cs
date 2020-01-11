@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Data.Helpers.Common
+namespace BindOpen.Framework.Data.Helpers.Common
 {
     /// <summary>
     /// This class represents a common helper.

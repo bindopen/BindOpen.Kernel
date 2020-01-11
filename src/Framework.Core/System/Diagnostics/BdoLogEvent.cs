@@ -1,14 +1,14 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics.Events;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// This class represents a log event.

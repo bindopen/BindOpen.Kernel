@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Specification
+namespace BindOpen.Framework.Data.Specification
 {
     /// <summary>
     /// 

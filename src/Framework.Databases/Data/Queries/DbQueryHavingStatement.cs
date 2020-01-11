@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Expression;
+﻿using BindOpen.Framework.Data.Expression;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents the Having statement of a database data query.

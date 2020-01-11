@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Databases.Extensions.Carriers;
 using System;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a factory of database query.

@@ -1,8 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Databases.Data.Queries;
+﻿using BindOpen.Framework.Data.Queries;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Databases.Data.Depots.DbQueries
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// 

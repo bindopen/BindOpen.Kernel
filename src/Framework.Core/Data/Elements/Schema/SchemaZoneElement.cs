@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Schema
+namespace BindOpen.Framework.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema zone element.

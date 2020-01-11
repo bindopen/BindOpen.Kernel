@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Common
+﻿namespace BindOpen.Framework.Data.Common
 {
     /// <summary>
     /// This enumerates the possible modes of runtime.

@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a database data query.

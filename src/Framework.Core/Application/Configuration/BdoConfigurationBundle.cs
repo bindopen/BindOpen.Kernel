@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This class represents a configuration.

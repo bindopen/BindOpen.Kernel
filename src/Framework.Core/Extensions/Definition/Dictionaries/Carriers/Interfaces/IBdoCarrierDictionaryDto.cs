@@ -1,6 +1,4 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Items;
-
-namespace BindOpen.Framework.Core.Extensions.Definition.Dictionaries
+﻿namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// 

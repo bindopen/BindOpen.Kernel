@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.System.Assemblies
+namespace BindOpen.Framework.System.Assemblies
 {
     /// <summary>
     /// This structure represents a string manager.

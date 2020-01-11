@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using NUnit.Framework;
 using System;
 

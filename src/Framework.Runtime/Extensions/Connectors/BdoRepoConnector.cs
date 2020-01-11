@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.Runtime.Data.Connections;
 using BindOpen.Framework.Runtime.Extensions.Carriers;
 using System;

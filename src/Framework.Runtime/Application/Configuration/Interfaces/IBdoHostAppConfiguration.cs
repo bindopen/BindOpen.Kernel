@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Core.Application.Configuration;
+﻿using BindOpen.Framework.Application.Configuration;
 
 namespace BindOpen.Framework.Runtime.Application.Configuration
 {

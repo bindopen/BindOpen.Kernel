@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Conditions
+﻿namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// 

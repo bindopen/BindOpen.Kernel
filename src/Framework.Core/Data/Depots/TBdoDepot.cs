@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Depots
+namespace BindOpen.Framework.Data.Depots
 {
     /// <summary>
     /// This class represents a depot.

@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Databases.Extensions.Carriers;
 
-namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a Api script expression.

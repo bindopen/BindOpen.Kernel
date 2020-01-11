@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// 

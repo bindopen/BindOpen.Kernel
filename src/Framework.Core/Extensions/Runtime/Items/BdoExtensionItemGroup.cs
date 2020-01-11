@@ -1,10 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents the group of BindOpen extension items.

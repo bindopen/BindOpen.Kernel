@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Core.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.System.Processing
+namespace BindOpen.Framework.System.Processing
 {
     /// <summary>
     /// This class represents a process execution status helper.

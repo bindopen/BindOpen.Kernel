@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Application.Services.Data
+namespace BindOpen.Framework.Data.Services
 {
     /// <summary>
     /// This class represents a BindOpen data service.

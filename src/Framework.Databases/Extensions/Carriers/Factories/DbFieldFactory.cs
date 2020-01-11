@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Databases.Data.Queries;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Queries;
 
 namespace BindOpen.Framework.Databases.Extensions.Carriers
 {

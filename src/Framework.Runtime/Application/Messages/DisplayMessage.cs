@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.Xml.Serialization;
 

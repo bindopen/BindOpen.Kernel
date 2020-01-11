@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
 using System;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This class represents a meta data element that is a data element whose items are data elements.
