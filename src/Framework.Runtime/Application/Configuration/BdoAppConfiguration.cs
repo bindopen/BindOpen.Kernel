@@ -1,16 +1,15 @@
-﻿using BindOpen.Framework.Application.Configuration;
-using BindOpen.Framework.Application.Scopes;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Security;
 using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Items;
-using BindOpen.Framework.Runtime.Application.Security;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This class represents a BindOpen application configuration.
@@ -126,11 +125,11 @@ namespace BindOpen.Framework.Runtime.Application.Configuration
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoAppConfiguration configuration)
             {
-                log.Append(base.Update(
+                log.AddEvents(base.Update(
                     configuration,
                     specificationAreas,
                     updateModes));

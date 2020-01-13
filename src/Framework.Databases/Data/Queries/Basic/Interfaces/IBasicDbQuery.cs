@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Databases.Extensions.Carriers;
+﻿using BindOpen.Framework.Extensions.Carriers;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Data.Queries

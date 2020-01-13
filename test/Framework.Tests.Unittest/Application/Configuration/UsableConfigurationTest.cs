@@ -52,7 +52,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         [Test]
         public void TestSaveUsableConfiguration()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             _usableConfiguration1.SaveXml(_filePath1, log);
             _usableConfiguration20.SaveXml(_filePath20, log);
@@ -69,7 +69,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Configuration
         [Test]
         public void TestLoadUsableConfiguration()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (_usableConfiguration1 == null || !File.Exists(_filePath1))
                 TestSaveUsableConfiguration();

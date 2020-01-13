@@ -148,24 +148,7 @@ namespace BindOpen.Framework.System.Diagnostics
         /// <param name="childLog"></param>
         /// <param name="logFinder"></param>
         /// <returns></returns>
-        bool AddEvent(IBdoLogEvent logEvent, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="log"></param>
-        /// <param name="logFinder"></param>
-        /// <param name="kinds"></param>
-        /// <returns></returns>
-        List<IBdoLogEvent> AddEvents(IBdoLog log, Predicate<IBdoLog> logFinder = null, params EventKinds[] kinds);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="log"></param>
-        /// <param name="kinds"></param>
-        /// <returns></returns>
-        List<IBdoLogEvent> AddEvents(IBdoLog log, params EventKinds[] kinds);
+        IBdoLogEvent AddEvent(IBdoLogEvent logEvent, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
@@ -257,19 +240,45 @@ namespace BindOpen.Framework.System.Diagnostics
         IBdoLogEvent AddWarning(string title, BdoEventCriticality criticality = BdoEventCriticality.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
-        /// 
+        /// Adds the specified events to this instance.
         /// </summary>
-        /// <param name="log"></param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="logFinder"></param>
+        /// <param name="kinds"></param>
         /// <returns></returns>
-        List<IBdoLogEvent> Append(IBdoLog log);
+        List<IBdoLogEvent> AddEvents(IBdoLog log, Predicate<IBdoLog> logFinder = null, params EventKinds[] kinds);
 
         /// <summary>
-        /// 
+        /// Adds the specified events to this instance.
         /// </summary>
-        /// <param name="log"></param>
-        /// <param name="logFinder"></param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="kinds"></param>
         /// <returns></returns>
-        List<IBdoLogEvent> Append(IBdoLog log, Predicate<IBdoLog> logFinder = null);
+        List<IBdoLogEvent> AddEvents(IBdoLog log, params EventKinds[] kinds);
+
+        /// <summary>
+        /// Adds the specified events.
+        /// </summary>
+        /// <param name="eventFuncs">The functions that return events.</param>
+        /// <returns>Returns the added events.</returns>
+        IBdoLog WithEvents(params Func<IBdoLog, IBdoLogEvent>[] eventFuncs);
+
+        /// <summary>
+        /// Adds the events of this instance to the specified log.
+        /// </summary>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="logFinder"></param>
+        /// <param name="kinds"></param>
+        /// <returns></returns>
+        List<IBdoLogEvent> AddEventsTo(IBdoLog log, Predicate<IBdoLog> logFinder = null, params EventKinds[] kinds);
+
+        /// <summary>
+        /// Adds the events of this instance to the specified log.
+        /// </summary>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="kinds"></param>
+        /// <returns></returns>
+        List<IBdoLogEvent> AddEventsTo(IBdoLog log, params EventKinds[] kinds);
 
         /// <summary>
         /// 

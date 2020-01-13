@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Application.Configuration;
 using BindOpen.Framework.Application.Scopes;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// This class represents a base settings.

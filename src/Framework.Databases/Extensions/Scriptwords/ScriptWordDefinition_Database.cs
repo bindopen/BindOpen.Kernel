@@ -7,7 +7,7 @@ using BindOpen.Framework.System.Scripting;
 using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Data.Depots;
 
-namespace BindOpen.Framework.Databases.Extensions.Scriptwords
+namespace BindOpen.Framework.Extensions.Scriptwords
 {
     /// <summary>
     /// This class represents a 'Database' script word definition.

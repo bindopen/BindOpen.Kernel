@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
         [Test, Order(1)]
         public void TestInterprete_Databases()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             string resultScript = "";
 

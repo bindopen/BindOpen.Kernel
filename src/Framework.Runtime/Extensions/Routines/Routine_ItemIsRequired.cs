@@ -8,7 +8,7 @@ using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Routines
+namespace BindOpen.Framework.Extensions.Routines
 {
     /// <summary>
     /// This class represents a routine 'ItemIsRequired'.
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Routines
             IDataElement dataElement = null,
             params object[] objects)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (dataElement == null)
                 log.AddError("Element missing");

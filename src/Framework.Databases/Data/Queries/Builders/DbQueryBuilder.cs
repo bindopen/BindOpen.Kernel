@@ -4,9 +4,7 @@ using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Data.Items;
-using BindOpen.Framework.Databases.Extensions.Carriers;
-using BindOpen.Framework.Databases.Extensions.Connectors;
-using BindOpen.Framework.Databases.Extensions.Scriptwords;
+using BindOpen.Framework.Extensions.Scriptwords;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
@@ -24,8 +22,6 @@ namespace BindOpen.Framework.Data.Queries
 
         #region Variables
 
-        private readonly BdoDbConnectorKind _databaseConnectorKind;
-
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
@@ -42,13 +38,9 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the DbQueryBuilder class.
         /// </summary>
-        /// <param name="databaseKind">The kind of database to consider.</param>
         /// <param name="scope">The scope to consider.</param>
-        public DbQueryBuilder(
-            BdoDbConnectorKind databaseKind,
-            IBdoScope scope = null)
+        public DbQueryBuilder(IBdoScope scope = null)
         {
-            _databaseConnectorKind = databaseKind;
             _scope = scope;
         }
 

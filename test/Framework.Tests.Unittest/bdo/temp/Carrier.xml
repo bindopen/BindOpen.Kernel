@@ -7,7 +7,7 @@
   <scalar name="dataTableAlias" value="dataTableAlias" />
   <scalar name="alias" value="alias" />
   <scalar name="size" valueType="Integer" value="50" />
-  <object name="value" valueType="Object" class="BindOpen.Framework.Core.Data.Expression.DataExpression,BindOpen.Framework.Core">
+  <object name="value" valueType="Object" class="BindOpen.Framework.Data.Expression.DataExpression,BindOpen.Framework.Core">
     <items>
       <add>
         <scalar name="Text" value="=$bidule()" />

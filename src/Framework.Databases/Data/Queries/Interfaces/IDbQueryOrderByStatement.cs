@@ -1,5 +1,5 @@
 ﻿using BindOpen.Framework.Data.Common;
-using BindOpen.Framework.Databases.Extensions.Carriers;
+using BindOpen.Framework.Extensions.Carriers;
 
 namespace BindOpen.Framework.Data.Queries
 {

@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.System.Diagnostics;
-using BindOpen.Framework.System.Diagnostics.Events;
 using BindOpen.Framework.System.Processing;
 using System;
 using System.Collections;
@@ -209,10 +208,9 @@ namespace BindOpen.Framework.System.Assemblies
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(new BdoLogEvent(
-                                EventKinds.Exception,
-                                title: "Error while attempting to load assembly from file '" + filePath + "'",
-                                description: ex.ToString()));
+                        log?.AddException(
+                            title: "Error while attempting to load assembly from file '" + filePath + "'",
+                            description: ex.ToString());
                     }
                 }
             }

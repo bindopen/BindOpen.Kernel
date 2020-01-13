@@ -548,7 +548,7 @@ namespace BindOpen.Framework.System.Scripting
             string stringBlockToParse = stringBlock;
             if (stringBlockToParse.Contains("." + BdoScriptParsingHelper.Symbol_Fun))
                 stringBlockToParse = stringBlockToParse.Substring(0, stringBlockToParse.IndexOf("." + BdoScriptParsingHelper.Symbol_Fun));
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             int aTempIndex = 0;
             IBdoScriptword rootScriptword = scriptInterpreter.FindNextScriptword(
                 ref stringBlockToParse,

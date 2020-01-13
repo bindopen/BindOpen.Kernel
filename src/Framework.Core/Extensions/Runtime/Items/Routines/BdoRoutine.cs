@@ -62,7 +62,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             IDataElement dataElement = null,
             params object[] objects)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             return log;
         }

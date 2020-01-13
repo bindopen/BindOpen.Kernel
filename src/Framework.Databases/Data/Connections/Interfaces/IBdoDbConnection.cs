@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Data.Connections;
-using BindOpen.Framework.Databases.Extensions.Connectors;
+﻿using BindOpen.Framework.Extensions.Runtime;
 using System.Data;
 
 namespace BindOpen.Framework.Data.Connections

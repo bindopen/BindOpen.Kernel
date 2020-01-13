@@ -2,7 +2,7 @@
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Security
+namespace BindOpen.Framework.Application.Security
 {
     /// <summary>
     /// This class represents an application credential.

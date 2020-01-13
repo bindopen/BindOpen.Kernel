@@ -5,7 +5,7 @@ using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
+namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a XML logger.

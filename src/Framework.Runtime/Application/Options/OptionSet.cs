@@ -1,9 +1,9 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Framework.Data.Elements;
+﻿using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.System.Diagnostics;
+using System;
+using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This class represents a option set.
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public IBdoLog Update(
             string stringValue)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (!string.IsNullOrEmpty(stringValue))
             {

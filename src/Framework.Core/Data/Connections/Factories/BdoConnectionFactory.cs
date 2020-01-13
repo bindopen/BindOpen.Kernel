@@ -54,16 +54,14 @@ namespace BindOpen.Framework.Data.Connections
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            IBdoLog subLog = new BdoLog();
-
             T connection = default;
             if (configuration == null)
             {
-                subLog.AddError("Connection missing");
+                log?.AddError("Connection missing");
             }
-            else if (scope != null && !subLog.Append(scope.Check(true)).HasErrorsOrExceptions())
+            else if (scope != null && !scope.Check(true).AddEventsTo(log).HasErrorsOrExceptions())
             {
-                var connector = scope.CreateConnector(configuration, null, subLog);
+                var connector = scope.CreateConnector(configuration, null, log);
 
                 if (connector == null)
                 {
@@ -72,11 +70,9 @@ namespace BindOpen.Framework.Data.Connections
                 else
                 {
                     connection = connector.CreateConnection(log) as T;
-                    subLog.Append(connection.Open());
+                    connection.Open().AddEventsTo(log);
                 }
             }
-
-            (log ?? (log = new BdoLog())).Append(subLog);
 
             return connection;
         }

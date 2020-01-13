@@ -525,7 +525,7 @@ namespace BindOpen.Framework.Data.Elements
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -585,7 +585,7 @@ namespace BindOpen.Framework.Data.Elements
             T item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -633,7 +633,7 @@ namespace BindOpen.Framework.Data.Elements
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement)
             {

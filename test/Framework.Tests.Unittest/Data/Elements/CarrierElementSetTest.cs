@@ -1,7 +1,8 @@
-﻿using BindOpen.Framework.Data.Elements;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.Extensions.Carriers;
 using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.Runtime.Extensions.Carriers;
 using BindOpen.Framework.System.Diagnostics;
 using NUnit.Framework;
 using System.IO;
@@ -23,7 +24,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [SetUp]
         public void Setup()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             _carrierElement1 = ElementFactory.CreateCarrier(
                 "carrier1", "runtime$file",
@@ -60,13 +61,13 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
                 , "Bad carrier element set indexation");
 
             Assert.That(
-                _carrierElementSetA.Count == 4, "Bad carrier element set creation");
+                _carrierElementSetA?.Count == 4, "Bad carrier element set creation");
         }
 
         [Test]
         public void TestUpdateCheckRepair()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
@@ -81,7 +82,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestSaveDataElementSet()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             _carrierElementSetA.SaveXml(_filePath, log);
 
@@ -96,7 +97,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestLoadDataElementSet()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (_carrierElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();

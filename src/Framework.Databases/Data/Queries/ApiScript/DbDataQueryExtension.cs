@@ -1,7 +1,6 @@
 ﻿using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Data.Helpers.Strings;
-using BindOpen.Framework.Databases.Extensions.Carriers;
 using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,7 +137,7 @@ namespace BindOpen.Framework.Data.Queries
                             }
                             else
                             {
-                                if (clause.Field == null) clause.Field = DbFieldFactory.Create(fieldName);
+                                if (clause.Field == null) clause.Field = DbFactory.CreateField(fieldName);
 
                                 if (aOperator == DataOperator.Has)
                                 {
@@ -259,7 +258,7 @@ namespace BindOpen.Framework.Data.Queries
                         }
                         else
                         {
-                            statement.Field = definition?[fieldName]?.Field ?? DbFieldFactory.Create(fieldName);
+                            statement.Field = definition?[fieldName]?.Field ?? DbFactory.CreateField(fieldName);
                             statement.Sorting = DataSortingMode.Ascending;
 
                             if (fieldItemParams.Length > 1)

@@ -1,14 +1,13 @@
-﻿using BindOpen.Framework.Data.Depots;
+﻿using BindOpen.Framework.Application.Options;
 using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Context;
 using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.Extensions.References;
 using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.System.Assemblies.References;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
-using BindOpen.Framework.Data.Stores;
 
 namespace BindOpen.Framework.Application.Scopes
 {
@@ -59,7 +58,7 @@ namespace BindOpen.Framework.Application.Scopes
         /// <param name="isScriptInterpreterChecked"></param>
         /// <param name="isDataContextChecked"></param>
         /// <param name="isDataStoreChecked"></param>
-        /// <returns></returns>
+        /// <returns>Returns the check log.</returns>
         IBdoLog Check(
             bool isExtensionStoreChecked = false,
             bool isScriptInterpreterChecked = false,

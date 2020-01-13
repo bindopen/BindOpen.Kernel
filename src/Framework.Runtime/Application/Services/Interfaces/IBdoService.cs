@@ -3,11 +3,9 @@ using BindOpen.Framework.System.Assemblies;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Diagnostics.Loggers;
 using BindOpen.Framework.System.Processing;
-using BindOpen.Framework.Runtime.Application.Settings;
-using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Services
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// The interface defines the BindOpen service.

@@ -37,10 +37,10 @@ namespace BindOpen.Framework.Extensions.Runtime
         IBdoConnection CreateConnection(IBdoLog log = null);
 
         /// <summary>
-        /// 
+        /// Updates the connection string with the specified string.
         /// </summary>
-        /// <param name="connectionString"></param>
-        void UpdateConnectionString(string connectionString = null);
+        /// <param name="connectionString">The connection string to consider.</param>
+        IBdoConnector WithConnectionString(string connectionString = null);
 
         /// <summary>
         /// Updates the instance considering the specified scope.

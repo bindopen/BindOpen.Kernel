@@ -1,15 +1,14 @@
-﻿using BindOpen.Framework.Data.Elements;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.Extensions.References;
-using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// The interface defines the host options.
@@ -106,17 +105,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Adds the extensions.
         /// </summary>
+        /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
-        /// <param name="action">The action for adding extensions.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action = null);
-
-        /// <summary>
-        /// Adds the extensions.
-        /// </summary>
-        /// <param name="action">The action for adding extensions.</param>
-        /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action);
+        ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
         // Loggers ----------------------
 

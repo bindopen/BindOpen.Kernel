@@ -3,7 +3,7 @@ using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.Extensions.Runtime;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Databases.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a database data table.

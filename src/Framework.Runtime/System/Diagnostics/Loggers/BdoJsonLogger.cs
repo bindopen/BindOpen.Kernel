@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
 
-namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
+namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a JSON logger.

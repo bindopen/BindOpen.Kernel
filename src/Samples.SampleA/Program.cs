@@ -1,8 +1,8 @@
 ﻿using BindOpen.Framework.Data.Depots;
-using BindOpen.Framework.Databases.MSSqlServer.Extensions;
-using BindOpen.Framework.Databases.PostgreSql.Extensions;
+using BindOpen.Framework.Extensions.References;
 using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
+using BindOpen.Framework.System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics;
@@ -20,25 +20,27 @@ namespace BindOpen.Framework.Samples.SampleA
                    services
                     .AddBindOpenHost<TestAppSettings>(
                         (options) => options
-                            .SetRootFolder(q => q.HostSettings.Environment != Environments.Development, @".\..\..\..")
-                            .SetRootFolder(q => q.HostSettings.Environment == Environments.Development, @".\")
+                            .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
+                            .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
                             .AddDataStore(s => s
                                 .RegisterDasourceDepot(options)
                                 .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
                             .AddExtensions(
-                                p => p.WithRemoteServerUri(""),
-                                q => q.AddMSSqlServer().AddPostgreSql())
+                                q => q.AddPostgreSql(),
+                                p => p.WithRemoteServerUri(""))
                             .SetHostSettingsFile(false)
-                            //.SetHostSettings(p => p.FromDotNetAppSettigs(services.Configuration., "bindopen").WithAppConfigFileRequired(false))
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
                             //.SetAppSettings(p => p.FromConfiguration(services.Configuration, "bindopen"))
                             .AddDefaultConsoleLogger()
                             .AddDefaultFileLogger("testA.txt")
                             .ExecuteOnStartSuccess(p => Trace.WriteLine("# events: " + p.Log.GetEventCount().ToString()))
                             .ThrowExceptionOnStartFailure()
-                        )
-
-
+                            .ExecuteOnStartSuccess(host =>
+                            {
+                                var log = new BdoLog();
+                                Service_Command.Process(host, log);
+                            })
+                    )
                     .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {
                             TestAppSettings appSettings = p as TestAppSettings;

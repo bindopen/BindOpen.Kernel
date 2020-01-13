@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.System;
+﻿using BindOpen.Framework.Application.Configuration;
+using BindOpen.Framework.System;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// 

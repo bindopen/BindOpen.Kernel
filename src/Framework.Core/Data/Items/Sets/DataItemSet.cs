@@ -276,7 +276,7 @@ namespace BindOpen.Framework.Data.Items
                 string[] specificationAreas = null,
                 UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -325,7 +325,7 @@ namespace BindOpen.Framework.Data.Items
             T1 item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -356,7 +356,7 @@ namespace BindOpen.Framework.Data.Items
                     if (currentSubItem == null)
                         log.AddError("").ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
                     else
-                        log.Append(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
+                        log.AddEvents(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
                 }
             }
 

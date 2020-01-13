@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Rights
+namespace BindOpen.Framework.Application.Rights
 {
     /// <summary>
     /// This structure respresents a right granted by an application.

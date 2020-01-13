@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Runtime.System
+﻿namespace BindOpen.Framework.System
 {
     /// <summary>
     /// This enumeration lists all the possible module operating systems.

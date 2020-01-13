@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Runtime.Application.Navigation
+﻿namespace BindOpen.Framework.Application.Navigation
 {
     /// <summary>
     /// This enumeration lists the possible modes of action.

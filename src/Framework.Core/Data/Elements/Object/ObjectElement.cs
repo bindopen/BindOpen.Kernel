@@ -270,9 +270,9 @@ namespace BindOpen.Framework.Data.Elements
 
             foreach (DataElementSet elementSet in Objects)
             {
-                log.Append(AssemblyHelper.CreateInstance(ClassFullName, out object item));
+                AssemblyHelper.CreateInstance(ClassFullName, out object item).AddEventsTo(log);
 
-                if (!log.HasErrorsOrExceptions() && (item is DataItem dataItem))
+                if (!log.HasErrorsOrExceptions() && (item is DataItem))
                 {
                     elementSet.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, scope, scriptVariableSet);

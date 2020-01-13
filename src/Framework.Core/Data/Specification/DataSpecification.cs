@@ -160,7 +160,7 @@ namespace BindOpen.Framework.Data.Specification
         public virtual IBdoLog Check(
             IDataSpecification referenceSpecification = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (referenceSpecification == null)
                 return log;
@@ -176,7 +176,7 @@ namespace BindOpen.Framework.Data.Specification
         public virtual IBdoLog Repair(
             IDataSpecification referenceSpecification = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             return log;
         }

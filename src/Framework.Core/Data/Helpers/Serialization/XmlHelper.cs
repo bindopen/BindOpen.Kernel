@@ -160,7 +160,7 @@ namespace BindOpen.Framework.Data.Helpers.Serialization
                     {
                         XDocument xDocument = XDocument.Load(filePath);
                         xDocument.Validate(xmlSchemaSet, (o, e) => checkLog.AddError("File not valid ('" + filePath + "'). Could not load '" + typeof(T).Name + "' object"));
-                        log?.Append(checkLog);
+                        log?.AddEvents(checkLog);
                     }
 
                     if (!checkLog.HasErrorsOrExceptions())
@@ -225,7 +225,7 @@ namespace BindOpen.Framework.Data.Helpers.Serialization
                                title: "Xml string not valid",
                                description: e.Message);
                         });
-                        log?.Append(checkLog);
+                        log?.AddEvents(checkLog);
                     }
 
                     if (!checkLog.HasErrorsOrExceptions())

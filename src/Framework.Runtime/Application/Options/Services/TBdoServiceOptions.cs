@@ -1,10 +1,10 @@
 ﻿using BindOpen.Framework.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.Application.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This class represents a service options provider.

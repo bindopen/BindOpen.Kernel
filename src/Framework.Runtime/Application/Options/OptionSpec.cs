@@ -8,7 +8,7 @@ using System;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This class represents an option specification.

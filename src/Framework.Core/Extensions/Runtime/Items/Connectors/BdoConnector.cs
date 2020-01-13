@@ -103,10 +103,12 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>
         /// <returns>Returns a clone of this instance.</returns>
-        public virtual void UpdateConnectionString(string connectionString = null)
+        public virtual IBdoConnector WithConnectionString(string connectionString = null)
         {
             if (connectionString != null)
                 ConnectionString = connectionString;
+
+            return this;
         }
 
         #endregion

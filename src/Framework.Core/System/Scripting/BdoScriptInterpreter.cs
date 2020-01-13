@@ -227,20 +227,16 @@ namespace BindOpen.Framework.System.Scripting
                     scriptWordBeginIndex = index;
 
                     // we get the next function or variable
-                    item = Interprete(
-                        script, out resultScript, ref index, 0, scriptVariableSet, false, subLog);
+                    item = Interprete(script, out resultScript, ref index, 0, scriptVariableSet, false, subLog);
 
-                    if (log != null)
+                    if (subLog.AddEvents(log).HasErrorsOrExceptions())
                     {
-                        if (log.Append(subLog).HasErrorsOrExceptions())
-                        {
-                            log.AddError(
-                                title: "Error occured while interpreting script",
-                                description: "Error while interpreting the script '" + script + "'. " +
-                                    "The result is '" + resultScript + "'.",
-                                resultCode: "SCRIPTINTERPRETATIONERROR"
-                                );
-                        }
+                        log?.AddError(
+                            title: "Error occured while interpreting script",
+                            description: "Error while interpreting the script '" + script + "'. " +
+                                "The result is '" + resultScript + "'.",
+                            resultCode: "SCRIPTINTERPRETATIONERROR"
+                            );
                     }
 
                     break;

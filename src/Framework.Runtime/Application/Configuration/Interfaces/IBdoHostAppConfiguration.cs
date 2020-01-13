@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Application.Configuration;
 
-namespace BindOpen.Framework.Runtime.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This interface defines host application configuration.

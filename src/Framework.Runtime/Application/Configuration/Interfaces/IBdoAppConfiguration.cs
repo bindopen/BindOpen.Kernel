@@ -1,9 +1,9 @@
 ﻿using BindOpen.Framework.Application.Configuration;
 using BindOpen.Framework.Data.Items;
-using BindOpen.Framework.Runtime.Application.Security;
+using BindOpen.Framework.Application.Security;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This interface defines application configuration.

@@ -1,13 +1,13 @@
 ﻿using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Extensions.Attributes;
-using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.System;
+using BindOpen.Framework.Application.Configuration;
+using BindOpen.Framework.System;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// This class represents a BindOpen host settings.

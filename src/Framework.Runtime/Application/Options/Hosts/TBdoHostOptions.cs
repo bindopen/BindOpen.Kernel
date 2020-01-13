@@ -1,22 +1,21 @@
 ﻿using BindOpen.Framework.Application.Exceptions;
+using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Services;
+using BindOpen.Framework.Application.Settings;
 using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.Extensions.References;
-using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This class represents a host options.
@@ -132,7 +131,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The extension loading options.
         /// </summary>
-        public List<IBdoExtensionReference> ExtensionReferences { get; internal set; } = new List<IBdoExtensionReference>();
+        public IBdoExtensionReferenceCollection ExtensionReferences { get; internal set; } = new BdoExtensionReferenceCollection();
 
         /// <summary>
         /// The extension loading options.
@@ -257,7 +256,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.RootFolder.ToString()))
             {
@@ -378,27 +377,16 @@ namespace BindOpen.Framework.Runtime.Application.Options
         }
 
         // Extensions -------------------------------------------
-
         /// <summary>
         /// Adds the extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <param name="action">The action for adding extensions.</param>
+        /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action = null)
-        {
-            loadOptionsAction?.Invoke(ExtensionLoadOptions);
-            return AddExtensions(action);
-        }
-
-        /// <summary>
-        /// Sets the specified extensions.
-        /// </summary>
-        /// <param name="action">The action to invoke on extensions.</param>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action)
+        public ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null)
         {
             action?.Invoke(ExtensionReferences);
+            loadOptionsAction?.Invoke(ExtensionLoadOptions);
 
             return this;
         }

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Data.Items;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Languages
+namespace BindOpen.Framework.Application.Languages
 {
     /// <summary>
     /// This class represents a application languages.

@@ -214,7 +214,7 @@ namespace BindOpen.Framework.Data.Specification
             IDataElement dataElement,
             bool isDeepCheck = false)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             return log;
         }

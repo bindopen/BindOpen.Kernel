@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Data.Items;
-using BindOpen.Framework.Runtime.Application.Languages;
+using BindOpen.Framework.Application.Languages;
 
-namespace BindOpen.Framework.Runtime.Application.Modules
+namespace BindOpen.Framework.Application.Modules
 {
     /// <summary>
     /// 

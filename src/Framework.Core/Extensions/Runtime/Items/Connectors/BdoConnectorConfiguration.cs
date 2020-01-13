@@ -92,11 +92,11 @@ namespace BindOpen.Framework.Extensions.Runtime
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoConnectorConfiguration configuration)
             {
-                log.Append(Update(configuration, specificationAreas, updateModes));
+                log.AddEvents(Update(configuration, specificationAreas, updateModes));
             }
             return log;
         }
@@ -113,11 +113,11 @@ namespace BindOpen.Framework.Extensions.Runtime
             T item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoConnectorConfiguration configuration)
             {
-                log.Append(Check(isExistenceChecked, configuration, specificationAreas));
+                log.AddEvents(Check(isExistenceChecked, configuration, specificationAreas));
             }
             return log;
         }
@@ -134,7 +134,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoConnectorConfiguration configuration)
             {

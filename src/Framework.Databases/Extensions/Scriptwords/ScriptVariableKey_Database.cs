@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Databases.Extensions.Scriptwords
+﻿namespace BindOpen.Framework.Extensions.Scriptwords
 {
     /// <summary>
     /// This class represents the database script variable key.

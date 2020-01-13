@@ -1,8 +1,7 @@
-﻿using BindOpen.Framework.Application.Configuration;
-using BindOpen.Framework.Data.Elements;
+﻿using BindOpen.Framework.Data.Elements;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This class represents a BindOpen host application configuration.

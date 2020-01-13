@@ -1,8 +1,8 @@
 ﻿using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.System.Diagnostics;
-using BindOpen.Framework.Runtime.Data.Connections;
+using BindOpen.Framework.Data.Connections;
 
-namespace BindOpen.Framework.Runtime.Extensions.Connectors
+namespace BindOpen.Framework.Extensions.Connectors
 {
     /// <summary>
     /// This class represents a file NFS connector.

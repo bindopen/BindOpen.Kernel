@@ -1,12 +1,12 @@
 ﻿using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Data.References;
-using BindOpen.Framework.Runtime.Application.Products;
+using BindOpen.Framework.Application.Products;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Limitations
+namespace BindOpen.Framework.Application.Limitations
 {
     /// <summary>
     /// This class represents a product limitation.

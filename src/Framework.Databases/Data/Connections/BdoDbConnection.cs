@@ -1,4 +1,4 @@
-﻿using BindOpen.Framework.Databases.Extensions.Connectors;
+﻿using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Data;
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Data.Connections
         /// <returns>Returns the log of process.</returns>
         public IBdoLog ChangeDatabase(string databaseName)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             try
             {
                 _nativeDbConnection?.ChangeDatabase(databaseName);
@@ -132,7 +132,7 @@ namespace BindOpen.Framework.Data.Connections
         /// <returns>Returns the log of process.</returns>
         public override IBdoLog Open()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             try
             {
                 _nativeDbConnection?.Open();
@@ -151,7 +151,7 @@ namespace BindOpen.Framework.Data.Connections
         /// <returns>Returns the log of process.</returns>
         public override IBdoLog Close()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             try
             {
                 _nativeDbConnection?.Close();

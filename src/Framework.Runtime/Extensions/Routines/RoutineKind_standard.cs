@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Runtime.Extensions.Common;
+﻿using BindOpen.Framework.Extensions.Common;
 using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Routines
+namespace BindOpen.Framework.Extensions.Routines
 {
     /// <summary>
     /// This enumeration lists all the possible kinds of the 'Standard' routines.

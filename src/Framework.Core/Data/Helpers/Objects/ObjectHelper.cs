@@ -233,7 +233,7 @@ namespace BindOpen.Framework.Data.Helpers.Objects
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             if (aObject == null || elementSet.Elements == null) return null;
 
             foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
@@ -301,7 +301,7 @@ namespace BindOpen.Framework.Data.Helpers.Objects
             this IDataElementSet elementSet,
             object object1) where T : DataElementAttribute
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (elementSet != null && object1 != null)
             {

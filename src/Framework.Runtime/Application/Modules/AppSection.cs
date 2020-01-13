@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Modules
+namespace BindOpen.Framework.Application.Modules
 {
     /// <summary>
     /// This class represents a visitor application module section.

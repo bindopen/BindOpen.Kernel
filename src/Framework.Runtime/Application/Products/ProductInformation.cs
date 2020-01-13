@@ -1,10 +1,10 @@
 ﻿using BindOpen.Framework.Data.Items;
-using BindOpen.Framework.Runtime.Application.Limitations;
+using BindOpen.Framework.Application.Limitations;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Products
+namespace BindOpen.Framework.Application.Products
 {
     /// <summary>
     /// This class represents the information about the product.

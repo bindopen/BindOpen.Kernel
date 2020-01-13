@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestUpdateCheckRepair()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestSaveDataElementSet()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             _scalarElementSetA.SaveXml(_filePath, log);
 
@@ -79,7 +79,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Data.Elements
         [Test]
         public void TestLoadDataElementSet()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (_scalarElementSetA == null || !File.Exists(_filePath))
                 TestSaveDataElementSet();

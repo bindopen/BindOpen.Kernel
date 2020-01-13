@@ -4,7 +4,6 @@ using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Data.Specification;
 using BindOpen.Framework.System.Diagnostics;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -456,7 +455,7 @@ namespace BindOpen.Framework.Data.Elements
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (MinimumItemNumber < 0) MinimumItemNumber = 0;
             if (MaximumItemNumber < 0) MaximumItemNumber = -1;
@@ -493,12 +492,12 @@ namespace BindOpen.Framework.Data.Elements
             object item,
             IDataElement dataElement = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             if (item != null)
             {
                 if (_constraintStatement != null)
                 {
-                    log = _constraintStatement.CheckItem(item, dataElement, true);
+                    log.AddEvents(_constraintStatement.CheckItem(item, dataElement, true));
                 }
             }
 
@@ -515,7 +514,7 @@ namespace BindOpen.Framework.Data.Elements
             IDataElement dataElement,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (dataElement == null)
                 return log;

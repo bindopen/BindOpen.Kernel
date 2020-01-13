@@ -1,9 +1,7 @@
 ﻿using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Expression;
-using BindOpen.Framework.Data.Queries;
-using BindOpen.Framework.Databases.Extensions.Carriers;
-using BindOpen.Framework.Databases.Extensions.Connectors;
+using BindOpen.Framework.Extensions.Carriers;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
@@ -27,7 +25,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="scope">The scope to consider.</param>
         public DbQueryBuilder_PostgreSql(
             IBdoScope scope = null)
-            : base(BdoDbConnectorKind.PostgreSql, scope)
+            : base(scope)
         {
             Id = "databases.postgresql$client";
         }

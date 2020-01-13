@@ -4,7 +4,7 @@ using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Messages
+namespace BindOpen.Framework.Application.Messages
 {
     /// <summary>
     /// This structure respresents a display message.

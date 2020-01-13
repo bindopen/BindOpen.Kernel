@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         [Test]
         public void TestSaveDatasourceDepot()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             _dataSourceDepot.SaveXml(_filePath, log);
 
@@ -68,7 +68,7 @@ namespace BindOpen.Framework.Tests.UnitTest.Application.Depots.Datasources
         [Test]
         public void TestLoadDatasourceDepot()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (_dataSourceDepot == null || !File.Exists(_filePath))
                 TestSaveDatasourceDepot();

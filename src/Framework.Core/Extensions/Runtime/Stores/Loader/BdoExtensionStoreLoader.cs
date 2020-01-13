@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Extensions.Definition;
 using BindOpen.Framework.System.Assemblies;
@@ -44,7 +45,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <param name="references">The library references to consider.</param>
         public IBdoLog LoadExtensionsInStore(params IBdoAssemblyReference[] references)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             if (_store == null) return log;
 
             // we load libraries
@@ -72,7 +73,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the loaded library.</returns>
         private IBdoLog LoadLibrary(IBdoAssemblyReference libraryReference)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (libraryReference != null && _loadOptions?.SourceKinds != null)
             {

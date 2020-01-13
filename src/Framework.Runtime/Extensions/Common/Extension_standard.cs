@@ -1,7 +1,7 @@
 ﻿using BindOpen.Framework.Data.Helpers.Strings;
 using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Common
+namespace BindOpen.Framework.Extensions.Common
 {
 
     // --------------------------------------------------

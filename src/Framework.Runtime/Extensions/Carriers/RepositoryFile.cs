@@ -3,7 +3,7 @@ using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a repository file.

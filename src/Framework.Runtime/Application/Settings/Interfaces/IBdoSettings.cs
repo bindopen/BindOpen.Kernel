@@ -8,7 +8,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// 

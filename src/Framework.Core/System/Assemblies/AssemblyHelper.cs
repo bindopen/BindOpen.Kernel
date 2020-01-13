@@ -73,7 +73,7 @@ namespace BindOpen.Framework.System.Assemblies
             out Object object1,
             params object[] attributes)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             object1 = null;
 
             try
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.System.Assemblies
             out Object object1,
             params object[] attributes)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             object1 = null;
 
             try

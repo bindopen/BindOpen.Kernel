@@ -5,7 +5,6 @@ using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Extensions.Definition;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -223,14 +222,14 @@ namespace BindOpen.Framework.Extensions.Runtime
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoTaskDefinitionDto)
             {
                 BdoTaskDefinitionDto definition = item as BdoTaskDefinitionDto;
 
                 if (OutputDetail != null)
-                    log.Append(OutputDetail.Update(definition.OutputSpecification));
+                    log.AddEvents(OutputDetail.Update(definition.OutputSpecification));
             }
 
             return log;
@@ -248,11 +247,11 @@ namespace BindOpen.Framework.Extensions.Runtime
             T item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoTaskConfiguration configuration)
             {
-                log.Append(Check(isExistenceChecked, configuration, specificationAreas));
+                log.AddEvents(Check(isExistenceChecked, configuration, specificationAreas));
             }
             return log;
         }
@@ -269,14 +268,14 @@ namespace BindOpen.Framework.Extensions.Runtime
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoTaskDefinitionDto)
             {
                 BdoTaskDefinitionDto definition = item as BdoTaskDefinitionDto;
 
                 if (OutputDetail != null)
-                    log.Append(OutputDetail.Repair(definition.OutputSpecification));
+                    log.AddEvents(OutputDetail.Repair(definition.OutputSpecification));
             }
 
             return log;

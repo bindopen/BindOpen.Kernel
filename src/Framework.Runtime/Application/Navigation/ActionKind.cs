@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Navigation
+namespace BindOpen.Framework.Application.Navigation
 {
     /// <summary>
     /// This enumerates the possible kinds of action.

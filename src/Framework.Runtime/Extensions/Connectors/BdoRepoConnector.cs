@@ -1,11 +1,11 @@
 ﻿using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.System.Diagnostics;
-using BindOpen.Framework.Runtime.Data.Connections;
-using BindOpen.Framework.Runtime.Extensions.Carriers;
+using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Extensions.Connectors
+namespace BindOpen.Framework.Extensions.Connectors
 {
     /// <summary>
     /// This class represents a repository connector.

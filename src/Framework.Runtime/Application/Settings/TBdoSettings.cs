@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// This class represents a configuration.
@@ -243,7 +243,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
             IBdoScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             Q configuration = ConfigurationFactory.Load<Q>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, false, true);
 

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 using BindOpen.Framework.Extensions.Attributes;
-using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.Application.Settings;
 
 namespace BindOpen.Framework.Samples.SampleA.Settings
 {

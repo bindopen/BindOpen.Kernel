@@ -1,8 +1,8 @@
 ﻿using BindOpen.Framework.System.Processing;
-using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.Application.Settings;
 using System;
 
-namespace BindOpen.Framework.Runtime.Application.Services
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// The interface defines the BindOpen service.

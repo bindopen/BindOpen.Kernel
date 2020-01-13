@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Options;
-using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Application.Services;
+using BindOpen.Framework.Application.Settings;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

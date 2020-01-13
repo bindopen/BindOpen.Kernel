@@ -3,12 +3,11 @@ using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.Runtime.Application.Hosts;
 using BindOpen.Framework.System.Scripting;
 using System;
 using System.Collections;
 
-namespace BindOpen.Framework.Runtime.Extensions.Scriptwords
+namespace BindOpen.Framework.Extensions.Scriptwords
 {
     /// <summary>
     /// This class represents a 'Runtime' script word definition.

@@ -459,49 +459,49 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.BdoDataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.Data.BdoConnection">
             <summary>
-            This class represents a BindOpen data service.
+            This class represents a BindOpen repository.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Core.Application.Services.Data.BdoDataService._connection">
-            <summary>
-            The connection of this instance.
-            </summary>
-        </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.Connection">
+        <member name="F:BindOpen.Framework.Core.Application.Services.Data.BdoConnection._connection">
             <summary>
             The connection of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.#ctor">
+        <member name="P:BindOpen.Framework.Core.Application.Services.Data.BdoConnection.Connection">
+            <summary>
+            The connection of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoConnection.#ctor">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.#ctor(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoConnection.#ctor(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
             <summary>
             Initializes a new instance of the DataService class.
             </summary>
             <param name="connection">The connection to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoDataService.SetConnection(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.BdoConnection.SetConnection(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
             <summary>
             Sets the specified connection.
             </summary>
             <param name="connection">The connection to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Core.Application.Services.Data.IBdoDataService">
+        <member name="T:BindOpen.Framework.Core.Application.Services.Data.IBdoConnection">
             <summary>
-            This interfaces represents a data service.
+            This interfaces represents a repository.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Core.Application.Services.Data.IBdoDataService.Connection">
+        <member name="P:BindOpen.Framework.Core.Application.Services.Data.IBdoConnection.Connection">
             <summary>
             The connection of the service.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Core.Application.Services.Data.IBdoDataService.SetConnection(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
+        <member name="M:BindOpen.Framework.Core.Application.Services.Data.IBdoConnection.SetConnection(BindOpen.Framework.Core.Data.Connections.IBdoConnection)">
             <summary>
             Set the specified connection.
             </summary>

@@ -1,14 +1,13 @@
-﻿using BindOpen.Framework.Data.Elements;
+﻿using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.Extensions.References;
-using BindOpen.Framework.Extensions.Runtime;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Settings;
 using BindOpen.Framework.System.Diagnostics.Loggers;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// The interface defines the base BDO host options.
@@ -62,7 +61,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The extension to load.
         /// </summary>
-        List<IBdoExtensionReference> ExtensionReferences { get; }
+        IBdoExtensionReferenceCollection ExtensionReferences { get; }
 
         /// <summary>
         /// The extension load options.

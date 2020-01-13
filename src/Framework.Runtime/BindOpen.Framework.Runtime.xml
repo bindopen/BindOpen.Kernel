@@ -4,12 +4,12 @@
         <name>BindOpen.Framework.Runtime</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Framework.Runtime.Application.Arguments.AppArgumentHelper">
+        <member name="T:BindOpen.Framework.Application.Arguments.AppArgumentHelper">
             <summary>
             This class represents the application argument parser.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Application.Arguments.AppArgumentHelper.UpdateOptions(System.String[],BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the arguments from the specified argument string values.
             </summary>
@@ -19,7 +19,7 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the log of argument building.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.IDataElementSet,BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean)">
+        <member name="M:BindOpen.Framework.Application.Arguments.AppArgumentHelper.Check(BindOpen.Framework.Core.Data.Elements.IDataElementSet,BindOpen.Framework.Runtime.Application.Options.IOptionSpecSet,System.Boolean)">
             <summary>
             Checks this instance.
             </summary>
@@ -28,55 +28,55 @@
             <param name="allowMissingItems">Indicates whether the items can be missing.</param>
             <returns>Returns the log of check.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.BdoHostConfiguration">
+        <member name="T:BindOpen.Framework.Application.Configuration.BdoHostConfiguration">
             <summary>
             This class represents a BindOpen host application configuration.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoHostConfiguration.#ctor">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoHostConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the BdoHostConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoHostConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoHostConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Instantiates a new instance of the BdoHostConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration">
+        <member name="T:BindOpen.Framework.Application.Configuration.BdoAppConfiguration">
             <summary>
             This class represents a BindOpen host configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.Credentials">
+        <member name="P:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.Credentials">
             <summary>
             The credentials of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.Datasources">
+        <member name="P:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.Datasources">
             <summary>
             The data sources of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.#ctor">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the AppConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.#ctor(BindOpen.Framework.Core.Data.Elements.IDataElement[])">
             <summary>
             Instantiates a new instance of the AppConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.UpdateStorageInfo(BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Updates information for storage.
             </summary>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.UpdateRuntimeInfo(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Updates information for runtime.
             </summary>
@@ -84,7 +84,7 @@
             <param name="scriptVariableSet">The set of script variables to consider.</param>
             <param name="log">The log to update.</param>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.Update``1(``0,System.String[],BindOpen.Framework.Core.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -95,28 +95,28 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.BdoAppConfiguration.__ApplicationInstanceName">
+        <member name="P:BindOpen.Framework.Application.Configuration.BdoAppConfiguration.__ApplicationInstanceName">
             <summary>
             Gets the name of the application instance.
             </summary>
             <returns>Returns the name of the application instance.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.IBdoHostConfiguration">
+        <member name="T:BindOpen.Framework.Application.Configuration.IBdoHostConfiguration">
             <summary>
             This interface defines host application configuration.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Configuration.IBdoAppConfiguration">
+        <member name="T:BindOpen.Framework.Application.Configuration.IBdoAppConfiguration">
             <summary>
             This interface defines application configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IBdoAppConfiguration.Credentials">
+        <member name="P:BindOpen.Framework.Application.Configuration.IBdoAppConfiguration.Credentials">
             <summary>
             Credentials.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Runtime.Application.Configuration.IBdoAppConfiguration.Datasources">
+        <member name="P:BindOpen.Framework.Application.Configuration.IBdoAppConfiguration.Datasources">
             <summary>
             Data sources.
             </summary>
@@ -553,7 +553,7 @@
             Instantiates a new instance of the BdoHostAppSettings class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoHostAppSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Runtime.Application.Configuration.BdoHostConfiguration)">
+        <member name="M:BindOpen.Framework.Runtime.Application.Settings.BdoHostAppSettings.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Application.Configuration.BdoHostConfiguration)">
             <summary>
             Instantiates a new instance of the BdoHostAppSettings class.
             </summary>
@@ -3417,12 +3417,12 @@
             Token value.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Runtime.Application.Services.BdoDataServiceExtension">
+        <member name="T:BindOpen.Framework.Runtime.Application.Services.BdoConnectionExtension">
             <summary>
             This class represents a data context service extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoDataServiceExtension.Execute``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,System.Func{BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Data.Connections.IBdoConnection},System.Action{``0,BindOpen.Framework.Core.System.Diagnostics.IBdoLog})">
+        <member name="M:BindOpen.Framework.Runtime.Application.Services.BdoConnectionExtension.Execute``1(BindOpen.Framework.Core.Application.Scopes.IBdoScope,System.Func{BindOpen.Framework.Core.Application.Scopes.IBdoScope,BindOpen.Framework.Core.System.Diagnostics.IBdoLog,BindOpen.Framework.Core.Data.Connections.IBdoConnection},System.Action{``0,BindOpen.Framework.Core.System.Diagnostics.IBdoLog})">
             <summary>
             Executes the specified function.
             </summary>

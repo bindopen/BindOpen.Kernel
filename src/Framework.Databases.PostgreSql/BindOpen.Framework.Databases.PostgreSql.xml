@@ -286,54 +286,54 @@
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql">
+        <member name="T:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql">
             <summary>
             This class represents a OleDb database connector.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.#ctor">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.#ctor">
             <summary>
-            Instantiates a new instance of the DatabaseConnector_PostgreSql class.
+            Instantiates a new instance of the BdoDbConnector_PostgreSql class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.#ctor(System.String,System.String)">
             <summary>
-            Instantiates a new instance of the DatabaseConnector_PostgreSql class.
+            Instantiates a new instance of the BdoDbConnector_PostgreSql class.
             </summary>
             <param name="name">The name of this instance.</param>
             <param name="connectionString">The connection string to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetDbConnection">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetDbConnection">
             <summary>
             Gets the database connection of this instance.
             </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Updates this instance considering the specified scope.
             </summary>
             <param name="scope">The scope to consider.</param>
             <returns>Returns the database builder.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.Open">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.Open">
             <summary>
             Opens an OleDb connection with the specified connection string.
             </summary>
             <returns>The log of the connection task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.Close">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.Close">
             <summary>
             Closes the current OleDb connection.
             </summary>
             <returns>The log of the connection-closing task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.IsConnected">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.IsConnected">
             <summary>
             Indicates whether the instance is connected.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query that returns nothing.
             </summary>
@@ -342,7 +342,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a OleDb Data Reader.
             </summary>
@@ -352,7 +352,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -362,7 +362,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the identity of the recently-added record and puts the value in the specified ID.
             </summary>
@@ -370,7 +370,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -379,7 +379,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -389,7 +389,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the columns of the specified table.
             </summary>
@@ -399,7 +399,7 @@
             <param name="log">The log to consider.</param>
             <returns>The columns of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -409,7 +409,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the tables of the specified table.
             </summary>
@@ -418,7 +418,7 @@
             <param name="log">The log to consider.</param>
             <returns>The tables of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -427,7 +427,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the table with the specified name.
             </summary>

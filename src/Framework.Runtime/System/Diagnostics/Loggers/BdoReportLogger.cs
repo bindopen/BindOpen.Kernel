@@ -6,7 +6,7 @@ using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.IO;
 
-namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
+namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a YAML logger.
