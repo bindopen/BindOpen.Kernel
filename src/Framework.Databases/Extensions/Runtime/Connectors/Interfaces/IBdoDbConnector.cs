@@ -57,10 +57,10 @@ namespace BindOpen.Framework.Extensions.Runtime
         #endregion
 
         // ------------------------------------------
-        // ACCESSORS
+        // MUTators
         // ------------------------------------------
 
-        #region Accessors
+        #region Mutators
 
         /// <summary>
         /// Updates the connection string with the specified string.
@@ -81,6 +81,23 @@ namespace BindOpen.Framework.Extensions.Runtime
         // ------------------------------------------
 
         #region Accessors
+
+        /// <summary>
+        /// Builds the SQL text from the specified database query.
+        /// </summary>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="query">The database data query to build.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
+        /// <returns>Returns the built query text.</returns>
+        string BuildSqlText(
+            IDbQuery query,
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            bool isParametersInjected = true,
+            IBdoScriptVariableSet scriptVariableSet = null);
+
 
         /// <summary>
         /// Creates a new database connection.

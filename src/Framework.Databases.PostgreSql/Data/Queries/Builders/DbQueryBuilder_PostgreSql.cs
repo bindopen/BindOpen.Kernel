@@ -331,7 +331,7 @@ namespace BindOpen.Framework.Data.Queries
                             break;
                         }
                 }
-                string subQuery = Build(queryFrom.UnionStatement.Query, log, parameterSet, false, scriptVariableSet);
+                string subQuery = BuildSqlText(queryFrom.UnionStatement.Query, log, parameterSet, false, scriptVariableSet);
                 queryString += "(" + subQuery + ")";
             }
 

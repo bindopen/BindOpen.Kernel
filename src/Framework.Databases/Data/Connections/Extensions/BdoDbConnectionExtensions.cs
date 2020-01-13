@@ -26,7 +26,7 @@ namespace BindOpen.Framework.Data.Connections
             IBdoLog log = null)
         {
             IDbCommand command = connection?.Connector?.CreateCommand(query, scriptVariableSet, log);
-            command.Connection = connection?.NativeConnection;
+            command.Connection = connection?.Native;
 
             return command;
         }
@@ -90,7 +90,7 @@ namespace BindOpen.Framework.Data.Connections
         /// <param name="connection">The connection to consider.</param>
         /// <returns></returns>
         public static IDbTransaction BeginTransaction(this IBdoDbConnection connection)
-            => connection?.NativeConnection?.BeginTransaction();
+            => connection?.Native?.BeginTransaction();
 
         /// <summary>
         /// Begins a transaction.
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Data.Connections
         /// <param name="isolationLevel">The isolation level.</param>
         /// <returns></returns>
         public static IDbTransaction BeginTransaction(this IBdoDbConnection connection, IsolationLevel isolationLevel)
-            => connection?.NativeConnection?.BeginTransaction(isolationLevel);
+            => connection?.Native?.BeginTransaction(isolationLevel);
 
         /// <summary>
         /// Gets the identity of the last inserted item
