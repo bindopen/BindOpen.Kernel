@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Settings;
 using System;
 
-namespace BindOpen.Framework.Runtime.Application.Services
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// This class represents an bot.

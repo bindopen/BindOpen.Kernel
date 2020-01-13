@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Databases.Data.Queries.Builders
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.

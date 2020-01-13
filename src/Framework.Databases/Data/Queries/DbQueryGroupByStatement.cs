@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Databases.Extensions.Carriers;
+﻿using BindOpen.Framework.Extensions.Carriers;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
 
     /// <summary>

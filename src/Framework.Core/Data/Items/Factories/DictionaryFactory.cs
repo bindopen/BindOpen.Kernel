@@ -2,7 +2,7 @@
 using System.Data;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This class represents a dictionary data factory.

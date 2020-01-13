@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Runtime.Extensions.Carriers;
-using BindOpen.Framework.Runtime.Extensions.Connectors;
+﻿using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.Extensions.Carriers;
+using BindOpen.Framework.Extensions.Connectors;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
 
     /// <summary>

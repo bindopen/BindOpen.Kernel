@@ -1,8 +1,6 @@
-﻿
-using System;
-using BindOpen.Framework.Databases.Extensions.Common;
+﻿using BindOpen.Framework.Databases.Extensions;
 
-namespace BindOpen.Framework.Databases.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This enumeration lists all the possible kinds of database carriers.

@@ -1,13 +1,13 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace BindOpen.Framework.Core.Data.Context
+namespace BindOpen.Framework.Data.Context
 {
     /// <summary>
     /// This class represents a data context. A data context contains all the data related to a user session.

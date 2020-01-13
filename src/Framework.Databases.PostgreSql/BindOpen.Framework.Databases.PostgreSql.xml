@@ -4,7 +4,7 @@
         <name>BindOpen.Framework.Databases.PostgreSql</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql">
+        <member name="T:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql">
             <summary>
             This class represents a builder of database query.
             </summary>
@@ -33,13 +33,13 @@
             This class represents a builder of database query.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.#ctor(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Instantiates a new instance of the DbQueryBuilder_PostgreSql class.
             </summary>
             <param name="scope">The scope to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.Build(BindOpen.Framework.Databases.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.Build(BindOpen.Framework.Data.Queries.IBasicDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified simple database data query and put the result
             into the specified string MS Sql Server query.
@@ -49,7 +49,7 @@
             <param name="scriptVariableSet"></param>
             <param name="queryString"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.Build(BindOpen.Framework.Databases.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.Build(BindOpen.Framework.Data.Queries.IAdvancedDbQuery,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,System.String@)">
             <summary>
             Builds the specified advanced database data query and put the result
             into the specified string MS Sql Server query.
@@ -59,35 +59,35 @@
             <param name="scriptVariableSet"></param>
             <param name="queryString"></param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_TextCount(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_TextCount(System.Object[])">
             <summary>
             Evaluates the script word $SQLCOUNT.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Sum(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Sum(System.Object[])">
             <summary>
             Evaluates the script word $SQLSUM.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Average(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Average(System.Object[])">
             <summary>
             Evaluates the script word $SQLAVG.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_In(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_In(System.Object[])">
             <summary>
             Evaluates the script word $SQLIN.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Equal(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Equal(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLEQ.
             </summary>
@@ -95,7 +95,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_NotEqual(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_NotEqual(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLDIFF.
             </summary>
@@ -103,7 +103,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Greater(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Greater(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLGT.
             </summary>
@@ -111,7 +111,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_GreaterOrEqual(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_GreaterOrEqual(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLGTE.
             </summary>
@@ -119,7 +119,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Less(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Less(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLLT.
             </summary>
@@ -127,7 +127,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_LessOrEqual(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_LessOrEqual(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLLTE.
             </summary>
@@ -135,28 +135,28 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_IsNull(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_IsNull(System.String)">
             <summary>
             Evaluates the script word $SQLISNULL.
             </summary>
             <param name="value1"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_ConvertToText(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_ConvertToText(System.String)">
             <summary>
             Evaluates the script word $SQLCONVERTTOTEXT.
             </summary>
             <param name="value1"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_CurrentDate(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_CurrentDate(System.Object[])">
             <summary>
             Evaluates the script word $SQLGETCURRENTDATE.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_If(System.String,System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_If(System.String,System.String,System.String)">
             <summary>
             Evaluates the script word $SQLIF.
             </summary>
@@ -165,42 +165,42 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Not(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Not(System.String)">
             <summary>
             Evaluates the script word $SQLNOT.
             </summary>
             <param name="value1">The value 1 to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Or(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Or(System.Object[])">
             <summary>
             Evaluates the script word $SQLOR.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_And(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_And(System.Object[])">
             <summary>
             Evaluates the script word $SQLAND.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Xor(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Xor(System.Object[])">
             <summary>
             Evaluates the script word $SQLXOR.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Text(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Text(System.String)">
             <summary>
             Evaluates the script word $SQLTEXT.
             </summary>
             <param name="value1"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Like(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Like(System.String,System.String)">
             <summary>
             Evaluates the script word $SQLLIKE.
             </summary>
@@ -208,7 +208,7 @@
             <param name="value2"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Replace(System.String,System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Replace(System.String,System.String,System.String)">
             <summary>
             Evaluates the script word $SQLREPLACE.
             </summary>
@@ -217,33 +217,33 @@
             <param name="value3"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Concatenate(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Concatenate(System.Object[])">
             <summary>
             Evaluates the script word $SQLCONCATENATE.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Null">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Null">
             <summary>
             Evaluates the script word $SQLNULL.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_True">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_True">
             <summary>
             Evaluates the script word $SQLTRUE.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Database(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Database(System.String)">
             <summary>
             Evaluates the script word %SQLDATABASE.
             </summary>
             <param name="name"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Schema(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Schema(System.String,System.String)">
             <summary>
             Evaluates the script word %SQLSCHEMA.
             </summary>
@@ -251,7 +251,7 @@
             <param name="location"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Table(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Table(System.String,System.String)">
             <summary>
             Evaluates the script word [%DATABASE->]%TABLE.
             </summary>
@@ -259,7 +259,7 @@
             <param name="location"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Field(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Field(System.String,System.String)">
             <summary>
             Evaluates the script word [[%DATABASE->]%TABLE->]%FIELD.
             </summary>
@@ -267,73 +267,73 @@
             <param name="location"></param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_List(System.Object[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_List(System.Object[])">
             <summary>
             Evaluates the script word $SQLLIST.
             </summary>
             <param name="parameters">The parameters to consider.</param>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_NewGuid">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_NewGuid">
             <summary>
             Evaluates the script word $SQLNEWGUID.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders.DbQueryBuilder_PostgreSql.GetSqlText_Random">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryBuilder_PostgreSql.GetSqlText_Random">
             <summary>
             Evaluates the script word $SQLRANDOM.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql">
+        <member name="T:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql">
             <summary>
             This class represents a OleDb database connector.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.#ctor">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.#ctor">
             <summary>
-            Instantiates a new instance of the DatabaseConnector_PostgreSql class.
+            Instantiates a new instance of the BdoDbConnector_PostgreSql class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.#ctor(System.String,System.String)">
             <summary>
-            Instantiates a new instance of the DatabaseConnector_PostgreSql class.
+            Instantiates a new instance of the BdoDbConnector_PostgreSql class.
             </summary>
             <param name="name">The name of this instance.</param>
             <param name="connectionString">The connection string to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetDbConnection">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetDbConnection">
             <summary>
             Gets the database connection of this instance.
             </summary>
             <returns>Returns the connection of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateWithScope(BindOpen.Framework.Core.Application.Scopes.IBdoScope)">
             <summary>
             Updates this instance considering the specified scope.
             </summary>
             <param name="scope">The scope to consider.</param>
             <returns>Returns the database builder.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.Open">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.Open">
             <summary>
             Opens an OleDb connection with the specified connection string.
             </summary>
             <returns>The log of the connection task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.Close">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.Close">
             <summary>
             Closes the current OleDb connection.
             </summary>
             <returns>The log of the connection-closing task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.IsConnected">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.IsConnected">
             <summary>
             Indicates whether the instance is connected.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteNonQuery(System.String,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query that returns nothing.
             </summary>
@@ -342,7 +342,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteQuery(System.String,System.Data.IDataReader@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a OleDb Data Reader.
             </summary>
@@ -352,7 +352,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.ExecuteQuery(System.String,System.Data.DataSet@,BindOpen.Framework.Core.System.Scripting.IBdoScriptVariableSet,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes a database data query putting the result into a dataset.
             </summary>
@@ -362,7 +362,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the data query execution task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetIdentity(System.Int64@,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the identity of the recently-added record and puts the value in the specified ID.
             </summary>
@@ -370,7 +370,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateDataTable(System.String,System.Data.DataTable,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -379,7 +379,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.UpdateDataSet(System.String,System.Data.DataSet,System.Collections.Generic.List{System.String},BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the specified data query and updates the specified data table.
             </summary>
@@ -389,7 +389,7 @@
             <param name="log">The log to consider.</param>
             <returns>The log of the task.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableColumns(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the columns of the specified table.
             </summary>
@@ -399,7 +399,7 @@
             <param name="log">The log to consider.</param>
             <returns>The columns of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableColumnsDataTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -409,7 +409,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTables(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the tables of the specified table.
             </summary>
@@ -418,7 +418,7 @@
             <param name="log">The log to consider.</param>
             <returns>The tables of the table with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetTableDataTable(System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the specified table.
             </summary>
@@ -427,7 +427,7 @@
             <param name="log">The log to consider.</param>
             <returns>The data table containing the schema of the specified table.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.DatabaseConnector_PostgreSql.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Framework.Databases.PostgreSql.Extensions.Connectors.BdoDbConnector_PostgreSql.GetPrimaryKeysTable(System.String,System.String,System.String,BindOpen.Framework.Core.System.Diagnostics.IBdoLog)">
             <summary>
             Retrieves the data table containing the schema of the table with the specified name.
             </summary>

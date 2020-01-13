@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Assemblies.References
+namespace BindOpen.Framework.System.Assemblies.References
 {
     /// <summary>
     /// This class represents the BindOpen library reference.

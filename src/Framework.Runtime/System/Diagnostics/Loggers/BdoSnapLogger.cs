@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.System.Diagnostics.Loggers
+namespace BindOpen.Framework.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This class represents a Snap logger.

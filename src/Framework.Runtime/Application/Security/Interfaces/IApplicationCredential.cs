@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Runtime.Application.Security
+namespace BindOpen.Framework.Application.Security
 {
     /// <summary>
     /// This interface defines application credential.

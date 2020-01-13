@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace BindOpen.Framework.Core.Data.Helpers.Strings
+namespace BindOpen.Framework.Data.Helpers.Strings
 {
     /// <summary>
     /// This structure represents a string helper.

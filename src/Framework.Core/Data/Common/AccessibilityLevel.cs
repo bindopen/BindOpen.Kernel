@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
 
-namespace BindOpen.Framework.Core.Data.Common
+namespace BindOpen.Framework.Data.Common
 {
     /// <summary>
     /// This enumerates the possible levels of accesibility.

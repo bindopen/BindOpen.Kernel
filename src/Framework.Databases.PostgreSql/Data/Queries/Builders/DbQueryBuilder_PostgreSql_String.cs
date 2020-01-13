@@ -1,8 +1,8 @@
 ﻿using System;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
+using BindOpen.Framework.System.Scripting;
+using BindOpen.Framework.Data.Queries;
 
-namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.

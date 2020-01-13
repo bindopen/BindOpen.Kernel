@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Runtime.Application.Modules
+﻿namespace BindOpen.Framework.Application.Modules
 {
 
     /// <summary>

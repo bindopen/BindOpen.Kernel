@@ -1,22 +1,21 @@
-﻿using BindOpen.Framework.Core.Application.Exceptions;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Stores;
-using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Core.Extensions.Runtime.Stores;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Application.Exceptions;
+using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Services;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Stores;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This class represents a host options.
@@ -74,10 +73,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         protected string _hostConfigFilePath = (@".\" + BdoDefaultHostPaths.__DefaultHostConfigFileName).ToPath();
 
         /// <summary>
-        /// Indicates whether the host configuration file is required.
+        /// Indicates whether the host settings file is required.
         /// </summary>
-        /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        protected bool _isHostConfigFileRequired = false;
+        /// <remarks>If the configuration file does not exist then an exception is thrown if value is true, a warning is thrown if value is false, nothing is thrown if value is null.</remarks>
+        protected bool? _isHostConfigFileRequired = null;
 
         // Depots ----------------------
 
@@ -122,17 +121,17 @@ namespace BindOpen.Framework.Runtime.Application.Options
         public string HostConfigFilePath => _hostConfigFilePath;
 
         /// <summary>
-        /// Indicates whether the host configuration file must exist.
+        /// Indicates whether the host settings file must exist.
         /// </summary>
         /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        public bool IsHostConfigFileRequired => _isHostConfigFileRequired;
+        public bool? IsHostConfigFileRequired => _isHostConfigFileRequired;
 
         // Extensions ----------------------
 
         /// <summary>
         /// The extension loading options.
         /// </summary>
-        public List<IBdoExtensionReference> ExtensionReferences { get; set; } = new List<IBdoExtensionReference>();
+        public IBdoExtensionReferenceCollection ExtensionReferences { get; internal set; } = new BdoExtensionReferenceCollection();
 
         /// <summary>
         /// The extension loading options.
@@ -157,7 +156,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The host settings of this instance.
         /// </summary>
-        public IBdoHostSettings HostSettings { get; set; }
+        public IBdoHostSettings HostSettings { get; internal set; }
 
         /// <summary>
         /// The application settings of this instance.
@@ -167,34 +166,34 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// The settings of this instance.
         /// </summary>
-        public S Settings { get; set; }
+        public S Settings { get; internal set; }
 
         /// <summary>
-        /// The set of settings specifications of this instance.
+        /// The specification set for application settings of this instance.
         /// </summary>
-        public IDataElementSpecSet SettingsSpecificationSet { get; set; } = new DataElementSpecSet();
+        public IDataElementSpecSet AppSettingsSpecificationSet { get; internal set; } = new DataElementSpecSet();
 
         // Trigger actions ----------------------
 
         /// <summary>
         /// The action that the start of this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+        public Action<ITBdoService<S>> Action_OnStartSuccess { get; internal set; }
 
         /// <summary>
         /// The action that the start of this instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+        public Action<ITBdoService<S>> Action_OnStartFailure { get; internal set; }
 
         /// <summary>
         /// The action that this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; internal set; }
 
         /// <summary>
         /// The action that is executed when the instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
+        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; internal set; }
 
         // Depot initialization actions ----------------------
 
@@ -257,7 +256,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.RootFolder.ToString()))
             {
@@ -277,7 +276,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
 
                 HostSettings?.UpdateRuntimeInfo(null, null, log);
                 HostSettings?.WithRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath(), HostSettings?.IsAppConfigFileRequired ?? false);
+                HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.WithLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.WithLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
                 HostSettings?.WithPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
@@ -353,24 +352,24 @@ namespace BindOpen.Framework.Runtime.Application.Options
         }
 
         /// <summary>
-        /// Set the specified host configuration file path.
+        /// Set the specified host settings file path.
         /// </summary>
         /// <param name="path">The settings file path.</param>
-        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetHostConfigFile(string path, bool isRequired = false)
+        public ITBdoHostOptions<S> SetHostSettingsFile(string path, bool? isRequired = false)
         {
             _hostConfigFilePath = path?.ToPath();
-            return SetHostConfigFile(isRequired);
+            return SetHostSettingsFile(isRequired);
         }
 
         /// <summary>
-        /// Set the specified host configuration file path.
+        /// Set the specified host settings file path.
         /// </summary>
         /// <param name="path">The settings file path.</param>
-        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> SetHostConfigFile(bool isRequired)
+        public ITBdoHostOptions<S> SetHostSettingsFile(bool? isRequired)
         {
             _isHostConfigFileRequired = isRequired;
 
@@ -378,27 +377,16 @@ namespace BindOpen.Framework.Runtime.Application.Options
         }
 
         // Extensions -------------------------------------------
-
         /// <summary>
         /// Adds the extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <param name="action">The action for adding extensions.</param>
+        /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action)
-        {
-            loadOptionsAction?.Invoke(ExtensionLoadOptions);
-            return AddExtensions(action);
-        }
-
-        /// <summary>
-        /// Sets the specified extensions.
-        /// </summary>
-        /// <param name="action">The action to invoke on extensions.</param>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action)
+        public ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null)
         {
             action?.Invoke(ExtensionReferences);
+            loadOptionsAction?.Invoke(ExtensionLoadOptions);
 
             return this;
         }
@@ -406,14 +394,46 @@ namespace BindOpen.Framework.Runtime.Application.Options
         // Settings -------------------------------------------
 
         /// <summary>
-        /// Defines the application settings.
+        /// Sets the host settings.
         /// </summary>
         /// <param name="action">The action to consider on the settings.</param>
         /// <returns>Returns the host option.</returns>
         public ITBdoHostOptions<S> SetHostSettings(Action<IBdoHostSettings> action)
         {
-            HostSettings = HostSettings ?? new BdoHostSettings();
+            return SetHostSettings(HostSettings, action);
+        }
+
+        /// <summary>
+        /// Sets the host settings applying action on it.
+        /// </summary>
+        /// <param name="hostSettings">The host settings to consider.</param>
+        /// <param name="action">The action to apply on the settings.</param>
+        public ITBdoHostOptions<S> SetHostSettings(IBdoHostSettings hostSettings, Action<IBdoHostSettings> action = null)
+        {
+            HostSettings = hostSettings ?? new BdoHostSettings();
             action?.Invoke(HostSettings);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the application settings.
+        /// </summary>
+        /// <param name="action">The action to apply on the settings.</param>
+        public ITBdoHostOptions<S> SetAppSettings(Action<S> action)
+        {
+            return SetAppSettings(Settings, action);
+        }
+
+        /// <summary>
+        /// Sets the application settings applying action on it.
+        /// </summary>
+        /// <param name="appSettings">The application settings to consider.</param>
+        /// <param name="action">The action to apply on the settings.</param>
+        public ITBdoHostOptions<S> SetAppSettings(S appSettings, Action<S> action = null)
+        {
+            Settings = appSettings ?? new S();
+            action?.Invoke(Settings);
 
             return this;
         }
@@ -425,7 +445,7 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <returns>Returns this instance.</returns>
         public virtual ITBdoHostOptions<S> DefineAppSettings(IDataElementSpecSet specificationSet)
         {
-            SettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
+            AppSettingsSpecificationSet = specificationSet ?? new DataElementSpecSet();
 
             return this;
         }

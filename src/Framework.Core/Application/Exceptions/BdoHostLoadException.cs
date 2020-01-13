@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Application.Exceptions
+namespace BindOpen.Framework.Application.Exceptions
 {
     /// <summary>
     /// This static class lists the BindOpen host load exceptions.

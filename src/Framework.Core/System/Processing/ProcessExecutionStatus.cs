@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Processing
+namespace BindOpen.Framework.System.Processing
 {
 
     /// <summary>

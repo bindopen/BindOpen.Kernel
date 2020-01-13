@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Entities;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Schema
+namespace BindOpen.Framework.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema element.

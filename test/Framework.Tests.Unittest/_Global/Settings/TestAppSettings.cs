@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Application.Settings;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 

@@ -1,16 +1,15 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using System;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Specification;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// This class represents a data item set.
@@ -277,7 +276,7 @@ namespace BindOpen.Framework.Core.Data.Items
                 string[] specificationAreas = null,
                 UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -326,7 +325,7 @@ namespace BindOpen.Framework.Core.Data.Items
             T1 item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -357,7 +356,7 @@ namespace BindOpen.Framework.Core.Data.Items
                     if (currentSubItem == null)
                         log.AddError("").ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
                     else
-                        log.Append(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
+                        log.AddEvents(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
                 }
             }
 

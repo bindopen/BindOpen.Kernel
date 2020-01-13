@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Expression
+﻿namespace BindOpen.Framework.Data.Expression
 {
     /// <summary>
     /// This enumeration represents the possible kinds for data expression.

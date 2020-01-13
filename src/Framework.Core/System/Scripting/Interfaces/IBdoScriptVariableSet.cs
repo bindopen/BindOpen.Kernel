@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.System.Scripting
+namespace BindOpen.Framework.System.Scripting
 {
     /// <summary>
     /// 

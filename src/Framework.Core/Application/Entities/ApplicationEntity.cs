@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Entities;
+using BindOpen.Framework.Data.Entities;
 
-namespace BindOpen.Framework.Core.Application.Entities
+namespace BindOpen.Framework.Application.Entities
 {
     /// <summary>
     /// This class represents an application entity.

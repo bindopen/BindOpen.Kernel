@@ -1,16 +1,14 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Stores;
-using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Core.Extensions.Runtime.Stores;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Stores;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// The interface defines the host options.
@@ -47,33 +45,53 @@ namespace BindOpen.Framework.Runtime.Application.Options
         ITBdoHostOptions<S> SetRootFolder(string rootFolderPath);
 
         /// <summary>
-        /// Set the host configuration file.
+        /// Set the host settings file.
         /// </summary>
-        /// <param name="filePath">The host configuration file path.</param>
-        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <param name="filePath">The host settings file path.</param>
+        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetHostConfigFile(string filePath, bool isRequired = false);
+        ITBdoHostOptions<S> SetHostSettingsFile(string filePath, bool? isRequired = false);
 
         /// <summary>
-        /// Set the host configuration file.
+        /// Set the host settings file.
         /// </summary>
-        /// <param name="isRequired">Indicates whether the host configuration file is required.</param>
+        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetHostConfigFile(bool isRequired);
+        ITBdoHostOptions<S> SetHostSettingsFile(bool? isRequired);
 
         // Settings ----------------------
 
         /// <summary>
         /// The settings.
         /// </summary>
-        S Settings { get; set; }
+        S Settings { get; }
 
         /// <summary>
-        /// Defines the host settings.
+        /// Sets the host settings.
         /// </summary>
         /// <param name="action">The action to consider on the settings.</param>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> SetHostSettings(Action<IBdoHostSettings> action);
+
+        /// <summary>
+        /// Sets the host settings applying action on it.
+        /// </summary>
+        /// <param name="hostSettings">The host settings to consider.</param>
+        /// <param name="action">The action to apply on the settings.</param>
+        ITBdoHostOptions<S> SetHostSettings(IBdoHostSettings hostSettings, Action<IBdoHostSettings> action = null);
+
+        /// <summary>
+        /// Sets the application settings.
+        /// </summary>
+        /// <param name="action">The action to apply on the settings.</param>
+        ITBdoHostOptions<S> SetAppSettings(Action<S> action);
+
+        /// <summary>
+        /// Sets the application settings applying action on it.
+        /// </summary>
+        /// <param name="appSettings">The application settings to consider.</param>
+        /// <param name="action">The action to apply on the settings.</param>
+        ITBdoHostOptions<S> SetAppSettings(S appSettings, Action<S> action = null);
 
         /// <summary>
         /// Defines the specified application settings.
@@ -87,17 +105,10 @@ namespace BindOpen.Framework.Runtime.Application.Options
         /// <summary>
         /// Adds the extensions.
         /// </summary>
+        /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
-        /// <param name="action">The action for adding extensions.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddExtensions(Action<IExtensionLoadOptions> loadOptionsAction, Action<List<IBdoExtensionReference>> action);
-
-        /// <summary>
-        /// Adds the extensions.
-        /// </summary>
-        /// <param name="action">The action for adding extensions.</param>
-        /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddExtensions(Action<List<IBdoExtensionReference>> action);
+        ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
         // Loggers ----------------------
 

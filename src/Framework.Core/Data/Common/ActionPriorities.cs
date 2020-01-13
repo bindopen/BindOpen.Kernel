@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Data.Common
+namespace BindOpen.Framework.Data.Common
 {
     /// <summary>
     /// This enumeration lists the possible kinds of actions.

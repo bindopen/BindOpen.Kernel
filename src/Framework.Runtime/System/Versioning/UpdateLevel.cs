@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.System.Versioning
+﻿namespace BindOpen.Framework.System.Versioning
 {
     /// <summary>
     /// This enumeration lists all the possible update levels.

@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Data;
 
-namespace BindOpen.Framework.Core.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This interfaces represents a connection.

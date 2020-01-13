@@ -1,17 +1,15 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Extensions.Carriers;
-using BindOpen.Framework.Databases.Extensions.Connectors;
-using BindOpen.Framework.Databases.Extensions.Scriptwords;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Depots;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Scriptwords;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 
-namespace BindOpen.Framework.Databases.Data.Queries.Builders
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.
@@ -23,8 +21,6 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         // ------------------------------------------
 
         #region Variables
-
-        private readonly BdoDbConnectorKind _databaseConnectorKind;
 
         /// <summary>
         /// The application scope of this instance.
@@ -42,13 +38,9 @@ namespace BindOpen.Framework.Databases.Data.Queries.Builders
         /// <summary>
         /// Instantiates a new instance of the DbQueryBuilder class.
         /// </summary>
-        /// <param name="databaseKind">The kind of database to consider.</param>
         /// <param name="scope">The scope to consider.</param>
-        public DbQueryBuilder(
-            BdoDbConnectorKind databaseKind,
-            IBdoScope scope = null)
+        public DbQueryBuilder(IBdoScope scope = null)
         {
-            _databaseConnectorKind = databaseKind;
             _scope = scope;
         }
 

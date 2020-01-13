@@ -1,5 +1,5 @@
 ﻿
-namespace BindOpen.Framework.Runtime.Application.Navigation
+namespace BindOpen.Framework.Application.Navigation
 {
     // ------------------------------------------
     // ENUMERATIONS

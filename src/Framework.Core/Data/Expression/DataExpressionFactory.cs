@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Expression
+﻿namespace BindOpen.Framework.Data.Expression
 {
     /// <summary>
     /// This class represents a data expression that can contain a literal and script texts.

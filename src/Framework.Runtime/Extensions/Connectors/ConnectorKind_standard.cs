@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Runtime.Extensions.Common;
+﻿using BindOpen.Framework.Extensions.Common;
 using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Connectors
+namespace BindOpen.Framework.Extensions.Connectors
 {
 
     /// <summary>

@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BindOpen.Framework.Runtime.Application.Encryption
+namespace BindOpen.Framework.Application.Encryption
 {
     /// <summary>
     /// This class represents a encryption box.

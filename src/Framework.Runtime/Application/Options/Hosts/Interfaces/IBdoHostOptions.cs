@@ -1,14 +1,13 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.Stores;
-using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Core.Extensions.Runtime.Stores;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Modules;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Stores;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// The interface defines the base BDO host options.
@@ -35,34 +34,34 @@ namespace BindOpen.Framework.Runtime.Application.Options
         string HostConfigFilePath { get; }
 
         /// <summary>
-        /// Indicates whether the host configuration file must exist.
+        /// Indicates whether the host settings file must exist.
         /// </summary>
         /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        bool IsHostConfigFileRequired { get; }
+        bool? IsHostConfigFileRequired { get; }
 
         // Settings ----------------------
 
         /// <summary>
-        /// The application settings.
+        /// The host settings.
         /// </summary>
-        IBdoHostSettings HostSettings { get; set; }
+        IBdoHostSettings HostSettings { get; }
 
         /// <summary>
-        /// The host settings.
+        /// The application settings.
         /// </summary>
         IBdoAppSettings AppSettings { get; }
 
         /// <summary>
         /// The set of settings specifications of this instance.
         /// </summary>
-        IDataElementSpecSet SettingsSpecificationSet { get; set; }
+        IDataElementSpecSet AppSettingsSpecificationSet { get; }
 
         // Extensions ----------------------
 
         /// <summary>
         /// The extension to load.
         /// </summary>
-        List<IBdoExtensionReference> ExtensionReferences { get; set; }
+        IBdoExtensionReferenceCollection ExtensionReferences { get; }
 
         /// <summary>
         /// The extension load options.

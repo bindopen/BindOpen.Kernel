@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Runtime.System
+namespace BindOpen.Framework.System
 {
     /// <summary>
     /// This enumeration lists the possible visibilities of an application module.

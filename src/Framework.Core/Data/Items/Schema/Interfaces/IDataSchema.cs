@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Elements.Schema;
-using BindOpen.Framework.Core.Data.References;
+﻿using BindOpen.Framework.Data.Elements.Schema;
+using BindOpen.Framework.Data.References;
 
-namespace BindOpen.Framework.Core.Data.Items
+namespace BindOpen.Framework.Data.Items
 {
     /// <summary>
     /// 

@@ -1,13 +1,13 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Scripting;
+using BindOpen.Framework.Data.Queries;
+using BindOpen.Framework.Data.Depots;
 
-namespace BindOpen.Framework.Databases.Extensions.Scriptwords
+namespace BindOpen.Framework.Extensions.Scriptwords
 {
     /// <summary>
     /// This class represents a 'Database' script word definition.

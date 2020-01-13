@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Common
+namespace BindOpen.Framework.Data.Common
 {
     /// <summary>
     /// This enumeration represents the possible data value types.

@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
+﻿using BindOpen.Framework.Data.Elements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Application.Configuration
+namespace BindOpen.Framework.Application.Configuration
 {
     /// <summary>
     /// This class represents an usable configuration.

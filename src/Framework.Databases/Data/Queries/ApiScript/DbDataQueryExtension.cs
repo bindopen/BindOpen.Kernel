@@ -1,12 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.Extensions.Carriers;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents the database data query extension.
@@ -138,7 +137,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                             }
                             else
                             {
-                                if (clause.Field == null) clause.Field = DbFieldFactory.Create(fieldName);
+                                if (clause.Field == null) clause.Field = DbFactory.CreateField(fieldName);
 
                                 if (aOperator == DataOperator.Has)
                                 {
@@ -259,7 +258,7 @@ namespace BindOpen.Framework.Databases.Data.Queries.ApiScript
                         }
                         else
                         {
-                            statement.Field = definition?[fieldName]?.Field ?? DbFieldFactory.Create(fieldName);
+                            statement.Field = definition?[fieldName]?.Field ?? DbFactory.CreateField(fieldName);
                             statement.Sorting = DataSortingMode.Ascending;
 
                             if (fieldItemParams.Length > 1)

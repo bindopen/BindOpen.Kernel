@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// 

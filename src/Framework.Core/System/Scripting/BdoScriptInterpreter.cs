@@ -1,19 +1,19 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Expression;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.System.Scripting
+namespace BindOpen.Framework.System.Scripting
 {
     /// <summary>
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
@@ -227,20 +227,16 @@ namespace BindOpen.Framework.Core.System.Scripting
                     scriptWordBeginIndex = index;
 
                     // we get the next function or variable
-                    item = Interprete(
-                        script, out resultScript, ref index, 0, scriptVariableSet, false, subLog);
+                    item = Interprete(script, out resultScript, ref index, 0, scriptVariableSet, false, subLog);
 
-                    if (log != null)
+                    if (subLog.AddEvents(log).HasErrorsOrExceptions())
                     {
-                        if (log.Append(subLog).HasErrorsOrExceptions())
-                        {
-                            log.AddError(
-                                title: "Error occured while interpreting script",
-                                description: "Error while interpreting the script '" + script + "'. " +
-                                    "The result is '" + resultScript + "'.",
-                                resultCode: "SCRIPTINTERPRETATIONERROR"
-                                );
-                        }
+                        log?.AddError(
+                            title: "Error occured while interpreting script",
+                            description: "Error while interpreting the script '" + script + "'. " +
+                                "The result is '" + resultScript + "'.",
+                            resultCode: "SCRIPTINTERPRETATIONERROR"
+                            );
                     }
 
                     break;

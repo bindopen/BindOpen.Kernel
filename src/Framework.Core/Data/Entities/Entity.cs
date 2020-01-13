@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Entities
+namespace BindOpen.Framework.Data.Entities
 {
     /// <summary>
     /// This class represents the data entity.

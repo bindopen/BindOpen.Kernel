@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Serialization;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Data.Helpers.Serialization;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using NUnit.Framework;
 using System;
 
@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Tests.UnitTest.System.Diagnostics
         [Test, Order(1)]
         public void TestInterprete_Databases()
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             string resultScript = "";
 

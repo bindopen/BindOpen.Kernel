@@ -1,15 +1,15 @@
-﻿using BindOpen.Framework.Core.Data.Depots;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Context;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.References;
-using BindOpen.Framework.Core.Extensions.Runtime.Stores;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Context;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Stores;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
-using BindOpen.Framework.Core.Data.Stores;
 
-namespace BindOpen.Framework.Core.Application.Scopes
+namespace BindOpen.Framework.Application.Scopes
 {
     /// <summary>
     /// This class represents an application scope.
@@ -93,7 +93,7 @@ namespace BindOpen.Framework.Core.Application.Scopes
             bool isDataContextChecked = false,
             bool isDataStoreChecked = false)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (isExtensionStoreChecked && ExtensionStore == null)
                 log.AddError(title: "Application extension missing", description: "No extension item definition store specified.");

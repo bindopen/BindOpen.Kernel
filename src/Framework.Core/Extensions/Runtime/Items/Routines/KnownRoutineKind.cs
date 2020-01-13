@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Extensions.Runtime
+﻿namespace BindOpen.Framework.Extensions.Runtime
 {
     // --------------------------------------------------
     // ENUMERATIONS

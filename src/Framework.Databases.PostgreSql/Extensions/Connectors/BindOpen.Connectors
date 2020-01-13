@@ -19,7 +19,7 @@
       <description>
         <add.value>This connector allows you to connect to a MS SQL Severver databases.</add.value>
       </description>
-      <itemClass>.Connectors.DatabaseConnector_PostgreSql</itemClass>
+      <itemClass>.Connectors.BdoDbConnector_PostgreSql</itemClass>
       <dataSource.specification>
         <detail.specification>
           <scalar name="databasekind" valueType="Text">

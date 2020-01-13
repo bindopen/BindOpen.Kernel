@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Events
+namespace BindOpen.Framework.System.Diagnostics.Events
 {
     /// <summary>
     /// This enumeration lists the possible event criticalities.

@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Depots.Datasources;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Depots;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class represents a connection service.

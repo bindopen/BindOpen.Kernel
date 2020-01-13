@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Items;
+﻿using BindOpen.Framework.Extensions.Definition;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Definition.Dictionaries
+namespace BindOpen.Framework.Extensions.Definition
 {
     /// <summary>
     /// This class represents a DTO task dictionary.

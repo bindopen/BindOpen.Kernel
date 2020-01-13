@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class represents a connection service.
@@ -54,16 +54,14 @@ namespace BindOpen.Framework.Core.Data.Connections
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            IBdoLog subLog = new BdoLog();
-
             T connection = default;
             if (configuration == null)
             {
-                subLog.AddError("Connection missing");
+                log?.AddError("Connection missing");
             }
-            else if (scope != null && !subLog.Append(scope.Check(true)).HasErrorsOrExceptions())
+            else if (scope != null && !scope.Check(true).AddEventsTo(log).HasErrorsOrExceptions())
             {
-                var connector = scope.CreateConnector(configuration, null, subLog);
+                var connector = scope.CreateConnector(configuration, null, log);
 
                 if (connector == null)
                 {
@@ -72,11 +70,9 @@ namespace BindOpen.Framework.Core.Data.Connections
                 else
                 {
                     connection = connector.CreateConnection(log) as T;
-                    subLog.Append(connection.Open());
+                    connection.Open().AddEventsTo(log);
                 }
             }
-
-            (log ?? (log = new BdoLog())).Append(subLog);
 
             return connection;
         }

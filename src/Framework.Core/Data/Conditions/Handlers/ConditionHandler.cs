@@ -1,9 +1,9 @@
 ﻿using System;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.System.Scripting;
-using static BindOpen.Framework.Core.Data.Conditions.AdvancedCondition;
+using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.System.Scripting;
+using static BindOpen.Framework.Data.Conditions.AdvancedCondition;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

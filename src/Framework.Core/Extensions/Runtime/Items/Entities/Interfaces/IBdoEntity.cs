@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// 

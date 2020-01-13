@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Core.System.Scripting
+namespace BindOpen.Framework.System.Scripting
 {
     /// <summary>
     /// This class represents a string parser.
@@ -548,7 +548,7 @@ namespace BindOpen.Framework.Core.System.Scripting
             string stringBlockToParse = stringBlock;
             if (stringBlockToParse.Contains("." + BdoScriptParsingHelper.Symbol_Fun))
                 stringBlockToParse = stringBlockToParse.Substring(0, stringBlockToParse.IndexOf("." + BdoScriptParsingHelper.Symbol_Fun));
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             int aTempIndex = 0;
             IBdoScriptword rootScriptword = scriptInterpreter.FindNextScriptword(
                 ref stringBlockToParse,

@@ -1,12 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Databases.Data.Queries;
-using BindOpen.Framework.Databases.Data.Queries.Builders;
-using BindOpen.Framework.Databases.Extensions.Carriers;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Queries;
+using BindOpen.Framework.Extensions.Carriers;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 
-namespace BindOpen.Framework.Databases.PostgreSql.Data.Queries.Builders
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.

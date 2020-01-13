@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Connections;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Diagnostics;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// 
@@ -37,10 +37,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
         IBdoConnection CreateConnection(IBdoLog log = null);
 
         /// <summary>
-        /// 
+        /// Updates the connection string with the specified string.
         /// </summary>
-        /// <param name="connectionString"></param>
-        void UpdateConnectionString(string connectionString = null);
+        /// <param name="connectionString">The connection string to consider.</param>
+        IBdoConnector WithConnectionString(string connectionString = null);
 
         /// <summary>
         /// Updates the instance considering the specified scope.

@@ -1,10 +1,11 @@
-﻿using BindOpen.Framework.Core.Application.Services.Data;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Application.Repositories;
+using BindOpen.Framework.Application.Services;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.NetCore.Services;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.Application.Options;
-using BindOpen.Framework.Runtime.Application.Services;
-using BindOpen.Framework.Runtime.Application.Settings;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -102,75 +103,81 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        // BindOpen data services --------------------------
+        // BindOpen repositorys --------------------------
 
         /// <summary>
-        /// Adds a singleton data service.
+        /// Adds a singleton repository.
         /// </summary>
-        /// <typeparam name="ITBdoDataService">The interface of BindOpen data service to consider.</typeparam>
-        /// <typeparam name="TBdoDataService">The BindOpen data service class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddSingletonDataService<ITBdoDataService, TBdoDataService>(
+        public static IServiceCollection AddSingletonRepository<IT, T>(
             this IServiceCollection services,
-            Action<TBdoDataService> setupAction = null)
-            where ITBdoDataService : class, IBdoDataService
-            where TBdoDataService : class, ITBdoDataService, new()
+            Func<IBdoHost, IBdoConnector> setupAction = null)
+            where IT : class, IBdoRepository
+            where T : class, IT, new()
         {
-            services.AddSingleton<ITBdoDataService, TBdoDataService>(p =>
+            services.AddSingleton<IT, T>(p =>
             {
-                var service = p.GetService<ITBdoDataService>() as TBdoDataService;
-                setupAction?.Invoke(service);
-                return service;
+                var host = p.GetService<IBdoHost>();
+                var repo = new T();
+
+                repo.SetConnector(setupAction?.Invoke(host));
+                return repo;
             });
 
             return services;
         }
 
         /// <summary>
-        /// Adds a scoped data service.
+        /// Adds a scoped repository.
         /// </summary>
-        /// <typeparam name="ITBdoDataService">The interface of BindOpen data service to consider.</typeparam>
-        /// <typeparam name="TBdoDataService">The BindOpen data service class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddScopedDataService<ITBdoDataService, TBdoDataService>(
+        public static IServiceCollection AddScopedRepository<IT, T>(
             this IServiceCollection services,
-            Action<TBdoDataService> setupAction = null)
-            where ITBdoDataService : class, IBdoDataService
-            where TBdoDataService : class, ITBdoDataService, new()
+            Func<IBdoHost, IBdoConnector> setupAction = null)
+            where IT : class, IBdoRepository
+            where T : class, IT, new()
         {
-            services.AddScoped<ITBdoDataService, TBdoDataService>(p =>
+            services.AddScoped<IT, T>(p =>
             {
-                var service = p.GetService<ITBdoDataService>() as TBdoDataService;
-                setupAction?.Invoke(service);
-                return service;
+                var host = p.GetService<IBdoHost>();
+                var repo = new T();
+
+                repo.SetConnector(setupAction?.Invoke(host));
+                return repo;
             });
 
             return services;
         }
 
         /// <summary>
-        /// Adds a transient data service.
+        /// Adds a transient repository.
         /// </summary>
-        /// <typeparam name="ITBdoDataService">The interface of BindOpen data service to consider.</typeparam>
-        /// <typeparam name="TBdoDataService">The BindOpen data service class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddTransientDataService<ITBdoDataService, TBdoDataService>(
+        public static IServiceCollection AddTransientRepository<IT, T>(
             this IServiceCollection services,
-            Action<TBdoDataService> setupAction = null)
-            where ITBdoDataService : class, IBdoDataService
-            where TBdoDataService : class, ITBdoDataService, new()
+            Func<IBdoHost, IBdoConnector> setupAction = null)
+            where IT : class, IBdoRepository
+            where T : class, IT, new()
         {
-            services.AddTransient<ITBdoDataService, TBdoDataService>(p =>
+            services.AddTransient<IT, T>(p =>
             {
-                var service = p.GetService<ITBdoDataService>() as TBdoDataService;
-                setupAction?.Invoke(service);
-                return service;
+                var host = p.GetService<IBdoHost>();
+                var repo = new T();
+
+                repo.SetConnector(setupAction?.Invoke(host));
+                return repo;
             });
 
             return services;

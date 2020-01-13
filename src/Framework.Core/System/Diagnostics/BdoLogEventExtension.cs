@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.System.Diagnostics.Events;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// This class represents a log event extension.
@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             this List<IBdoLogEvent> logEvents,
             params EventKinds[] kinds)
         {
-            return logEvents ==null ? new List<IBdoLogEvent>() : logEvents.Where(p => kinds.Length==0 || kinds.Contains(p.Kind)).ToList();
+            return logEvents == null ? new List<IBdoLogEvent>() : logEvents.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList();
         }
 
         /// <summary>

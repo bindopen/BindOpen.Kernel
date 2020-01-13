@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Databases.Extensions.Carriers;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Extensions.Carriers;
 using System.ComponentModel;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents the Order-By statement of a database data query.

@@ -1,13 +1,13 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Runtime.Application.Languages;
+﻿using BindOpen.Framework.Application.Languages;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Modules
+namespace BindOpen.Framework.Application.Modules
 {
     /// <summary>
     /// This class represents a Sphere application module.
@@ -216,12 +216,12 @@ namespace BindOpen.Framework.Runtime.Application.Modules
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IAppModule)
             {
                 IAppModule module = item as AppModule;
-                log.Append(this.Sections.Update(
+                log.AddEvents(this.Sections.Update(
                     module.Sections,
                     null,
                     new[] { UpdateModes.Incremental_AddItemsMissingInTarget }));

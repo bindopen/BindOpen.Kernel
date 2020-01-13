@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Events
+namespace BindOpen.Framework.System.Diagnostics.Events
 {
     /// <summary>
     /// This class represents a conditional event.

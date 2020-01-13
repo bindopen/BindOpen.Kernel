@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Databases.Data.Queries
+﻿namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This enumeration lists the possible kinds of database data queries.

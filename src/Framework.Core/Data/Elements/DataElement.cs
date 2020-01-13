@@ -1,13 +1,12 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Data.References;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Scripting;
-using System;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.References;
+using BindOpen.Framework.Data.Specification;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Events;
+using BindOpen.Framework.System.Scripting;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +14,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This class represents a data element.
@@ -526,7 +525,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -586,7 +585,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             T item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement element)
             {
@@ -634,7 +633,7 @@ namespace BindOpen.Framework.Core.Data.Elements
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is IDataElement)
             {

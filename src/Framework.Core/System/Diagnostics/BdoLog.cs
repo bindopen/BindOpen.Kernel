@@ -1,19 +1,19 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics.Events;
+using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.System.Processing;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics
+namespace BindOpen.Framework.System.Diagnostics
 {
     /// <summary>
     /// This class represents a logger of tasks.
@@ -417,12 +417,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
         /// <param name="logEvent">The log event to add.</param>
         /// <param name="childLog">The child log of this instance.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
-        public bool AddEvent(
+        public IBdoLogEvent AddEvent(
             IBdoLogEvent logEvent,
             IBdoLog childLog = null,
             Predicate<IBdoLog> logFinder = null)
         {
-            bool isAdded = false;
+            IBdoLogEvent _event = null;
             if (logEvent != null)
             {
                 if (logFinder == null || (childLog != null && logFinder.Invoke(childLog)))
@@ -445,12 +445,12 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                         logEvent.Parent = this;
                         WriteLog(logEvent, BdoLoggerMode.Auto);
 
-                        isAdded = true;
+                        _event = logEvent;
                     }
                 }
             }
 
-            return isAdded;
+            return _event;
         }
 
         /// <summary>
@@ -664,11 +664,26 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             IBdoLog childLog = null,
             Predicate<IBdoLog> logFinder = null)
         {
-            BdoLogEvent logEvent = null;
+            BdoLogEvent logEvent;
 
             AddEvent(logEvent = new BdoLogEvent(exception, criticality, resultCode, source));
 
             return logEvent;
+        }
+
+        /// <summary>
+        /// Adds the specified events.
+        /// </summary>
+        /// <param name="eventFuncs">The functions that return events.</param>
+        /// <returns>Returns the added events.</returns>
+        public IBdoLog WithEvents(params Func<IBdoLog, IBdoLogEvent>[] eventFuncs)
+        {
+            var events = new List<IBdoLogEvent>();
+            foreach (var fun in eventFuncs)
+            {
+                events.Add(AddEvent(fun?.Invoke(this)));
+            }
+            return this;
         }
 
         /// <summary>
@@ -696,14 +711,14 @@ namespace BindOpen.Framework.Core.System.Diagnostics
             Predicate<IBdoLog> logFinder = null,
             params EventKinds[] kinds)
         {
-            List<IBdoLogEvent> logEvents = new List<IBdoLogEvent>();
+            List<IBdoLogEvent> events = new List<IBdoLogEvent>();
 
             if ((log?.Events != null) && (logFinder?.Invoke(log) != false))
             {
-                logEvents = log.Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<IBdoLogEvent>();
-                if (logEvents != null)
+                events = log.Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<IBdoLogEvent>();
+                if (events != null)
                 {
-                    foreach (IBdoLogEvent currentEvent in logEvents)
+                    foreach (IBdoLogEvent currentEvent in events)
                     {
                         var clonedEvent = currentEvent.Clone<BdoLogEvent>(this);
                         AddEvent(clonedEvent);
@@ -711,32 +726,50 @@ namespace BindOpen.Framework.Core.System.Diagnostics
                 }
             }
 
-            return logEvents;
+            return events;
         }
 
         /// <summary>
-        /// Adds the events of the specified log.
+        /// Inserts the events of this instance into the specified log.
         /// </summary>
         /// <param name="log">The log whose task results must be added.</param>
+        /// <param name="kinds">The event kinds to add.</param>
         /// <returns>Returns the added events.</returns>
-        /// <remarks>This function equals to AddEventsexcept except that it does not allow to filter with log event kinds.</remarks>
-        public List<IBdoLogEvent> Append(IBdoLog log)
+        public List<IBdoLogEvent> AddEventsTo(
+            IBdoLog log,
+            params EventKinds[] kinds)
         {
-            return AddEvents(log, null as Predicate<IBdoLog>);
+            return AddEvents(log, null, kinds);
         }
 
         /// <summary>
-        /// Adds the events of the specified log.
+        /// Adds the events of this instance to the specified log.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="logFinder">The filter function to consider. If true then the child log is added otherwise it is not.</param>
+        /// <param name="kinds">The event kinds to add.</param>
         /// <returns>Returns the added events.</returns>
-        /// <remarks>This function equals to AddEventsexcept except that it does not allow to filter with log event kinds.</remarks>
-        public List<IBdoLogEvent> Append(
+        public List<IBdoLogEvent> AddEventsTo(
             IBdoLog log,
-            Predicate<IBdoLog> logFinder = null)
+            Predicate<IBdoLog> logFinder = null,
+            params EventKinds[] kinds)
         {
-            return AddEvents(log, logFinder);
+            List<IBdoLogEvent> events = new List<IBdoLogEvent>();
+
+            if ((log?.Events != null) && (logFinder?.Invoke(log) != false))
+            {
+                events = Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<IBdoLogEvent>();
+                if (events != null)
+                {
+                    foreach (IBdoLogEvent currentEvent in events)
+                    {
+                        var clonedEvent = currentEvent.Clone<BdoLogEvent>(this);
+                        log.AddEvent(clonedEvent);
+                    }
+                }
+            }
+
+            return events;
         }
 
         /// <summary>

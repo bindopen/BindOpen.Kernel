@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Specification;
+using BindOpen.Framework.System.Diagnostics;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Data.Elements.Schema
+namespace BindOpen.Framework.Data.Elements.Schema
 {
     /// <summary>
     /// This class represents a schema element specification.

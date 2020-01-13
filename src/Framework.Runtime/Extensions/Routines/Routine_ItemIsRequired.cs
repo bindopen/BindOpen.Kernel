@@ -1,14 +1,14 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Runtime;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Routines
+namespace BindOpen.Framework.Extensions.Routines
 {
     /// <summary>
     /// This class represents a routine 'ItemIsRequired'.
@@ -53,7 +53,7 @@ namespace BindOpen.Framework.Runtime.Extensions.Routines
             IDataElement dataElement = null,
             params object[] objects)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (dataElement == null)
                 log.AddError("Element missing");

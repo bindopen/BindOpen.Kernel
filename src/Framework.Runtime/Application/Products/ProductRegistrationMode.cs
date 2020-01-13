@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Runtime.Application.Products
+﻿namespace BindOpen.Framework.Application.Products
 {
     /// <summary>
     /// This enumerates the possible modes of product registration.

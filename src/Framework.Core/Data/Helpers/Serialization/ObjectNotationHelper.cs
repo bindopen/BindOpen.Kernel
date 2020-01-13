@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace BindOpen.Framework.Core.Data.Helpers.Serialization
+namespace BindOpen.Framework.Data.Helpers.Serialization
 {
 
     /// <summary>

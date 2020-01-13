@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Runtime.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
 
     /// <summary>

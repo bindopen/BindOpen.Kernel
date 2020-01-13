@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Runtime.Application.Languages
+namespace BindOpen.Framework.Application.Languages
 {
     /// <summary>
     /// This interface defines an 

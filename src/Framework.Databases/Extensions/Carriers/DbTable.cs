@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.Extensions.Runtime;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Databases.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a database data table.

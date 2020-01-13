@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Specification;
-using BindOpen.Framework.Core.Extensions.Runtime;
+﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Specification;
+using BindOpen.Framework.Extensions.Runtime;
 using System;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create element specifications.

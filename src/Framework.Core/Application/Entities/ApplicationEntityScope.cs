@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Application.Entities
+namespace BindOpen.Framework.Application.Entities
 {
     /// <summary>
     /// This enumeration represents the possible application entity scopes.

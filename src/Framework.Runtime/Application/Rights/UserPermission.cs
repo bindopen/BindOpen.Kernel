@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Scripting;
-using BindOpen.Framework.Runtime.Application.Navigation;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Scripting;
+using BindOpen.Framework.Application.Navigation;
 
-namespace BindOpen.Framework.Runtime.Application.Rights
+namespace BindOpen.Framework.Application.Rights
 {
 
     /// <summary>

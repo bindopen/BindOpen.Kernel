@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Runtime.Application.Configuration;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Configuration;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// This class represents a BindOpen host settings.

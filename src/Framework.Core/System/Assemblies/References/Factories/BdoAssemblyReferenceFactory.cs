@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Core.System.Assemblies.References
+namespace BindOpen.Framework.System.Assemblies.References
 {
     /// <summary>
     /// This class represents an application scope factory.

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.Data.Conditions
+﻿namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// This enumeration lists all the possible operators of conditions.

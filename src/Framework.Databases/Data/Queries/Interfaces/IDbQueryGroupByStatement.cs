@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Framework.Databases.Extensions.Carriers;
+using BindOpen.Framework.Extensions.Carriers;
 
-namespace BindOpen.Framework.Databases.Data.Queries
+namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// 

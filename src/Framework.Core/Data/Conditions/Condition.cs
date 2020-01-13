@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.Data.Conditions
+namespace BindOpen.Framework.Data.Conditions
 {
     /// <summary>
     /// This class represents a condition.

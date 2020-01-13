@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.Runtime;
 
-namespace BindOpen.Framework.Runtime.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a repository item.

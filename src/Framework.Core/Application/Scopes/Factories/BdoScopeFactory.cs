@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Framework.Core.Application.Scopes
+namespace BindOpen.Framework.Application.Scopes
 {
     /// <summary>
     /// This class represents an application scope helper.

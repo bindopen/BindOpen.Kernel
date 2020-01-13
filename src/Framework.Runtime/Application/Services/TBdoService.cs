@@ -1,15 +1,15 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Assemblies;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Core.System.Processing;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Settings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Assemblies;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.System.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Framework.Runtime.Application.Services
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// This class represents an bot.
@@ -98,14 +98,6 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
         // Scopes ----------------------
 
-        /// <summary>
-        /// The BindOpen extension of this instance.
-        /// </summary>
-        public IBdoScope Scope
-        {
-            get { return _scope; }
-        }
-
         // Trigger actions --------------------------------------
 
         /// <summary>
@@ -177,7 +169,7 @@ namespace BindOpen.Framework.Runtime.Application.Services
 
             Process(log);
 
-            Log?.Append(log);
+            log.AddEventsTo(Log);
 
             return this;
         }

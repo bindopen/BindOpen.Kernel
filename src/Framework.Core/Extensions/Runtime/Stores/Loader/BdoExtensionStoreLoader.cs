@@ -1,16 +1,16 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.Extensions.Definition.Extensions;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Assemblies;
-using BindOpen.Framework.Core.System.Assemblies.References;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Assemblies;
+using BindOpen.Framework.System.Assemblies.References;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents a extension scope loader.
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <param name="references">The library references to consider.</param>
         public IBdoLog LoadExtensionsInStore(params IBdoAssemblyReference[] references)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             if (_store == null) return log;
 
             // we load libraries
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Stores
         /// <returns>Returns the loaded library.</returns>
         private IBdoLog LoadLibrary(IBdoAssemblyReference libraryReference)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (libraryReference != null && _loadOptions?.SourceKinds != null)
             {

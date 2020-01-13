@@ -1,10 +1,10 @@
-﻿using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Messages
+namespace BindOpen.Framework.Application.Messages
 {
     /// <summary>
     /// This structure respresents a display message.

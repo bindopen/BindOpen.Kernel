@@ -1,12 +1,12 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.Data.Items;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.System.Diagnostics.Events;
 using System;
 using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.System.Diagnostics.Dto
+namespace BindOpen.Framework.System.Diagnostics.Dto
 {
     /// <summary>
     /// This class represents a log event.

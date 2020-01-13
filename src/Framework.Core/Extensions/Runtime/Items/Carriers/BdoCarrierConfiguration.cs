@@ -1,13 +1,13 @@
-﻿using BindOpen.Framework.Core.Application.Scopes;
-using BindOpen.Framework.Core.Data.Common;
-using BindOpen.Framework.Core.Data.Elements;
-using BindOpen.Framework.Core.Extensions.Definition.Items;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Scripting;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Extensions.Definition;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Scripting;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Core.Extensions.Runtime.Items
+namespace BindOpen.Framework.Extensions.Runtime
 {
     /// <summary>
     /// This class represents a carrier configuration.
@@ -74,10 +74,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoCarrierConfiguration configuration)
-                log.Append(base.Update(configuration));
+                log.AddEvents(base.Update(configuration));
 
             return log;
         }
@@ -94,11 +94,11 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
             T1 item = default,
             string[] specificationAreas = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoCarrierConfiguration configuration)
             {
-                log.Append(Check(isExistenceChecked, configuration, specificationAreas));
+                log.AddEvents(Check(isExistenceChecked, configuration, specificationAreas));
             }
             return log;
         }
@@ -115,10 +115,10 @@ namespace BindOpen.Framework.Core.Extensions.Runtime.Items
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
 
             if (item is BdoCarrierConfiguration configuration)
-                log.Append(base.Repair(configuration));
+                log.AddEvents(base.Repair(configuration));
 
             return log;
         }

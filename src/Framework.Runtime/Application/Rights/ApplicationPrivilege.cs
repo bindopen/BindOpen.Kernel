@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.Data.Items;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Application.Rights
+namespace BindOpen.Framework.Application.Rights
 {
     /// <summary>
     /// This structure respresents a right granted by an application.

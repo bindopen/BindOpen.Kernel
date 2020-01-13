@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.Extensions.Attributes;
-using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.Extensions.Attributes;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Extensions.Carriers
+namespace BindOpen.Framework.Extensions.Carriers
 {
     /// <summary>
     /// This class represents a repository file.

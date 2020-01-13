@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics;
+﻿using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.System.Assemblies
+namespace BindOpen.Framework.System.Assemblies
 {
     /// <summary>
     /// This structure represents a string manager.
@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
             out Object object1,
             params object[] attributes)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             object1 = null;
 
             try
@@ -99,7 +99,7 @@ namespace BindOpen.Framework.Core.System.Assemblies
             out Object object1,
             params object[] attributes)
         {
-            IBdoLog log = new BdoLog();
+            var log = new BdoLog();
             object1 = null;
 
             try

@@ -1,9 +1,9 @@
-﻿using BindOpen.Framework.Core.System.Diagnostics.Loggers;
-using BindOpen.Framework.Runtime.Application.Settings;
+﻿using BindOpen.Framework.System.Diagnostics.Loggers;
+using BindOpen.Framework.Application.Settings;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Framework.Runtime.Application.Options
+namespace BindOpen.Framework.Application.Options
 {
     /// <summary>
     /// This interface represents a service options provider.

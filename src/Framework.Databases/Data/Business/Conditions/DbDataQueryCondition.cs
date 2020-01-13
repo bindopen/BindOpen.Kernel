@@ -1,9 +1,9 @@
-﻿using System;
+﻿using BindOpen.Framework.Data.Conditions;
+using BindOpen.Framework.Data.Queries;
+using System;
 using System.Xml.Serialization;
-using BindOpen.Framework.Core.Data.Conditions;
-using BindOpen.Framework.Databases.Data.Queries;
 
-namespace BindOpen.Framework.Databases.Data.Business.Conditions
+namespace BindOpen.Framework.Databases.Data.Business
 {
     /// <summary>
     /// This class represents a condition using a database query condition.

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Framework.Core.System.Scripting
+﻿namespace BindOpen.Framework.System.Scripting
 {
     /// <summary>
     /// This enumerates the possible modes of runtime.

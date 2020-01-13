@@ -1,7 +1,7 @@
-﻿using BindOpen.Framework.Runtime.Application.Configuration;
-using BindOpen.Framework.Runtime.System;
+﻿using BindOpen.Framework.Application.Configuration;
+using BindOpen.Framework.System;
 
-namespace BindOpen.Framework.Runtime.Application.Settings
+namespace BindOpen.Framework.Application.Settings
 {
     /// <summary>
     /// 
@@ -49,7 +49,7 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// Indicates whether the application configuration file must exist.
         /// </summary>
         /// <remarks>If it does not exist then an exception is thrown.</remarks>
-        bool IsAppConfigFileRequired { get; }
+        bool? IsAppConfigFileRequired { get; }
 
         /// <summary>
         /// 
@@ -94,14 +94,14 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// <param name="configFolderPath">The application configuration folder path.</param>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings WithAppConfigFile(string configFolderPath, bool isRequired = false);
+        IBdoHostSettings WithAppConfigFile(string configFolderPath, bool? isRequired = false);
 
         /// <summary>
         /// Set the application configuration file.
         /// </summary>
         /// <param name="isRequired">Indicates whether the application configuration file is required.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostSettings WithAppConfigFileRequired(bool isRequired);
+        IBdoHostSettings WithAppConfigFileRequired(bool? isRequired);
 
         /// <summary>
         /// Set the library folder.
@@ -142,6 +142,5 @@ namespace BindOpen.Framework.Runtime.Application.Settings
         /// </summary>
         /// <param name="dayNumber">The expiration day number to consider.</param>
         IBdoHostSettings WithLogsExpirationDayNumber(int dayNumber);
-
     }
 }

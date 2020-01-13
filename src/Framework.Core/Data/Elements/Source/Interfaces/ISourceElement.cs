@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Core.Extensions.Runtime.Items;
+﻿using BindOpen.Framework.Extensions.Runtime;
 
-namespace BindOpen.Framework.Core.Data.Elements
+namespace BindOpen.Framework.Data.Elements
 {
     /// <summary>
     /// 

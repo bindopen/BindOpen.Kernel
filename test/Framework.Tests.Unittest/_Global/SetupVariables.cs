@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Strings;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Databases.MSSqlServer.Extensions;
-using BindOpen.Framework.Runtime.Application.Hosts;
-using BindOpen.Framework.Runtime.System.Diagnostics.Loggers;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.References;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Diagnostics.Loggers;
 using BindOpen.Framework.Tests.UnitTest.Settings;
 using System;
 

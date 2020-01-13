@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BindOpen.Framework.Extensions.Carriers;
+using System;
 using System.Collections.Generic;
-using BindOpen.Framework.Databases.Extensions.Carriers;
 
-namespace BindOpen.Framework.Databases.Extensions.Scriptwords
+namespace BindOpen.Framework.Extensions.Scriptwords
 {
     /// <summary>
     /// This class represents a script helper concerning database.

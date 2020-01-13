@@ -1,7 +1,6 @@
-﻿using BindOpen.Framework.Core.Data.Helpers.Objects;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Core.System.Diagnostics.Events;
-using BindOpen.Framework.Core.System.Processing.Resources;
+﻿using BindOpen.Framework.Data.Helpers.Objects;
+using BindOpen.Framework.System.Diagnostics;
+using BindOpen.Framework.System.Processing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Framework.Core.System.Assemblies
+namespace BindOpen.Framework.System.Assemblies
 {
     /// <summary>
     /// This class represents an assembly pool.
@@ -209,10 +208,9 @@ namespace BindOpen.Framework.Core.System.Assemblies
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(new BdoLogEvent(
-                                EventKinds.Exception,
-                                title: "Error while attempting to load assembly from file '" + filePath + "'",
-                                description: ex.ToString()));
+                        log?.AddException(
+                            title: "Error while attempting to load assembly from file '" + filePath + "'",
+                            description: ex.ToString());
                     }
                 }
             }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using BindOpen.Framework.Core.Data.Items;
+using BindOpen.Framework.Data.Items;
 
-namespace BindOpen.Framework.Core.System.Assemblies
+namespace BindOpen.Framework.System.Assemblies
 {
 
     /// <summary>

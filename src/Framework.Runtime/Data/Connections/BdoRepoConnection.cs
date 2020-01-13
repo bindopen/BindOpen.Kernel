@@ -1,12 +1,11 @@
-﻿using BindOpen.Framework.Core.Data.Connections;
-using BindOpen.Framework.Core.System.Diagnostics;
-using BindOpen.Framework.Runtime.Extensions.Carriers;
-using BindOpen.Framework.Runtime.Extensions.Connectors;
+﻿using BindOpen.Framework.Extensions.Carriers;
+using BindOpen.Framework.Extensions.Connectors;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Framework.Runtime.Data.Connections
+namespace BindOpen.Framework.Data.Connections
 {
     /// <summary>
     /// This class represents a repository connection.
