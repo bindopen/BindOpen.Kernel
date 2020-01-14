@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Data.Queries
         }
 
         /// <summary>
-        /// Builds the specified simple database data query and put the result into the specified string query.
+        /// Builds the SQL text from the specified database query.
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
@@ -82,7 +82,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        public string Build(
+        public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
             IDataElementSet parameterSet = null,
@@ -109,7 +109,7 @@ namespace BindOpen.Framework.Data.Queries
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            queryString = Build(storedDbQuery.Query, log, parameterSet, false, scriptVariableSet);
+                            queryString = BuildSqlText(storedDbQuery.Query, log, parameterSet, false, scriptVariableSet);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
 

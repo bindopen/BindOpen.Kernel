@@ -1,4 +1,6 @@
-﻿using BindOpen.Framework.Data.Depots;
+﻿using BindOpen.Framework.Application.Repositories;
+using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Extensions.References;
 using BindOpen.Framework.Samples.SampleA.Services;
 using BindOpen.Framework.Samples.SampleA.Settings;
@@ -24,6 +26,7 @@ namespace BindOpen.Framework.Samples.SampleA
                             .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
                             .AddDataStore(s => s
                                 .RegisterDasourceDepot(options)
+                                //.RegisterDatasourceDepotFromNative(service.Configuration)
                                 .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
                             .AddExtensions(
                                 q => q.AddPostgreSql(),
@@ -41,6 +44,7 @@ namespace BindOpen.Framework.Samples.SampleA
                                 Service_Command.Process(host, log);
                             })
                     )
+                    .AddTransientRepository<IBdoDbRepository, TestDbRepository>(host => host.CreateMSSqlServerConnector().WithConnectionString("mlmlm"))
                     .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                         {
                             TestAppSettings appSettings = p as TestAppSettings;

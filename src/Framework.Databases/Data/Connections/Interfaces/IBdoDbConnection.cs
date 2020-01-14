@@ -12,7 +12,7 @@ namespace BindOpen.Framework.Data.Connections
         /// Gets the .NET database connection of this instance.
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
-        IDbConnection NativeConnection { get; }
+        IDbConnection Native { get; }
 
         /// <summary>
         /// Connector of the connection.

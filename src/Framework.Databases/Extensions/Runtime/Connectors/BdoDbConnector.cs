@@ -177,6 +177,23 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         public new abstract IBdoDbConnection CreateConnection(IBdoLog log = null);
 
+        /// <summary>
+        /// Builds the SQL text from the specified database query.
+        /// </summary>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="query">The database data query to build.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
+        /// <returns>Returns the built query text.</returns>
+        public string BuildSqlText(
+            IDbQuery query,
+            IBdoLog log = null,
+            IDataElementSet parameterSet = null,
+            bool isParametersInjected = true,
+            IBdoScriptVariableSet scriptVariableSet = null)
+            => QueryBuilder?.BuildSqlText(query, log, parameterSet, isParametersInjected, scriptVariableSet);
+
         // SQL commands
 
         /// <summary>
@@ -187,9 +204,9 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string CreateCommandText(
-            IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommandText(query, false, scriptVariableSet, log);
+        IDbQuery query,
+        IBdoScriptVariableSet scriptVariableSet = null,
+        IBdoLog log = null) => CreateCommandText(query, false, scriptVariableSet, log);
 
         /// <summary>
         /// Gets the SQL text of the specified query.
@@ -241,7 +258,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             if (QueryBuilder == null)
                 log.AddError("Data builder missing");
             else
-                sqlText = QueryBuilder.Build(query, log, parameterSet, isParametersInjected, scriptVariableSet);
+                sqlText = QueryBuilder.BuildSqlText(query, log, parameterSet, isParametersInjected, scriptVariableSet);
 
             return sqlText;
         }

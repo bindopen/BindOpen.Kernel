@@ -41,7 +41,7 @@ namespace BindOpen.Framework.Data.Connections
         /// </summary>
         /// <returns>Returns the connection of this instance.</returns>
         [XmlIgnore()]
-        public IDbConnection NativeConnection => _nativeDbConnection;
+        public IDbConnection Native => _nativeDbConnection;
 
         /// <summary>
         /// The name of the database of this instance.
