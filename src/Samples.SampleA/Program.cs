@@ -25,7 +25,7 @@ namespace BindOpen.Framework.Samples.SampleA
                             .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
                             .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
                             .AddDataStore(s => s
-                                .RegisterDasourceDepot(options)
+                                .RegisterDatasourceDepot(options)
                                 //.RegisterDatasourceDepotFromNative(service.Configuration)
                                 .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
                             .AddExtensions(

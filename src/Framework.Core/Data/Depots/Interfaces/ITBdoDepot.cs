@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Data.Items;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Items;
 
 namespace BindOpen.Framework.Data.Depots
 {

@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Data.Items;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.System.Diagnostics;
 using System;
 
@@ -9,6 +10,11 @@ namespace BindOpen.Framework.Data.Depots
     /// </summary>
     public interface IBdoDepot : IIdentifiedDataItem
     {
+        /// <summary>
+        /// The scope of this instance.
+        /// </summary>
+        IBdoScope Scope { get; }
+
         /// <summary>
         /// Add the items from all the assemblies.
         /// </summary>
@@ -38,5 +44,11 @@ namespace BindOpen.Framework.Data.Depots
         /// The initialization function.
         /// </summary>
         Func<IBdoDepot, IBdoLog, int> LazyLoadFunction { get; set; }
+
+        /// <summary>
+        /// Sets the scope of this instance.
+        /// </summary>
+        /// <param name="scope">The scope to append.</param>
+        IBdoDepot WithScope(IBdoScope scope);
     }
 }

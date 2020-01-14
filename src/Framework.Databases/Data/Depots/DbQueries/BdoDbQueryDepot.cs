@@ -45,7 +45,7 @@ namespace BindOpen.Framework.Data.Depots
         /// <summary>
         /// Instantiates a new instance of the BdoDbQueryDepot class.
         /// </summary>
-        public BdoDbQueryDepot() : this(null)
+        public BdoDbQueryDepot() : base()
         {
         }
 

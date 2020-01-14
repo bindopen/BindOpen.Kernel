@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Data.Depots
         /// <summary>
         /// Instantiates a new instance of the DatasourceDepot class.
         /// </summary>
-        public BdoDatasourceDepot() : this(null)
+        public BdoDatasourceDepot() : base()
         {
         }
 
