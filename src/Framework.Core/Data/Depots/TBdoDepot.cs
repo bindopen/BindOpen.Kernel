@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Data.Items;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Xml.Serialization;
@@ -13,6 +14,11 @@ namespace BindOpen.Framework.Data.Depots
     [XmlRoot(ElementName = "depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class TBdoDepot<T> : DataItemSet<T>, ITBdoDepot<T> where T : IdentifiedDataItem
     {
+        /// <summary>
+        /// The scope of this instance.
+        /// </summary>
+        protected IBdoScope _scope;
+
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -20,7 +26,13 @@ namespace BindOpen.Framework.Data.Depots
         #region Properties
 
         /// <summary>
-        /// The initialization function.
+        /// The scope of this instance.
+        /// </summary>
+        [XmlIgnore()]
+        public IBdoScope Scope => _scope;
+
+        /// <summary>
+        /// The initialization function of this instance.
         /// </summary>
         [XmlIgnore()]
         public Func<IBdoDepot, IBdoLog, int> LazyLoadFunction { get; set; }
@@ -36,7 +48,7 @@ namespace BindOpen.Framework.Data.Depots
         /// <summary>
         /// Instantiates a new instance of the TBdoDepot class.
         /// </summary>
-        public TBdoDepot()
+        protected TBdoDepot()
         {
         }
 
@@ -44,7 +56,7 @@ namespace BindOpen.Framework.Data.Depots
         /// Instantiates a new instance of the TBdoDepot class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public TBdoDepot(params T[] items) : base(items)
+        protected TBdoDepot(params T[] items) : base(items)
         {
         }
 
@@ -91,6 +103,17 @@ namespace BindOpen.Framework.Data.Depots
         public void LoadLazy(IBdoLog log)
         {
             LazyLoadFunction?.Invoke(this, log);
+        }
+
+        /// <summary>
+        /// Sets the scope of this instance.
+        /// </summary>
+        /// <param name="scope">The scope to append.</param>
+        public IBdoDepot WithScope(IBdoScope scope)
+        {
+            _scope = scope;
+
+            return this;
         }
 
         #endregion

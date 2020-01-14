@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Data.Depots
         /// <param name="dataStore">The data store to consider.</param>
         /// <param name="options">The options to consider.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDasourceDepot(this IBdoDataStore dataStore, IBdoHostOptions options = null)
+        public static IBdoDataStore RegisterDatasourceDepot(this IBdoDataStore dataStore, IBdoHostOptions options = null)
         {
             var depot = new BdoDatasourceDepot()
             {
