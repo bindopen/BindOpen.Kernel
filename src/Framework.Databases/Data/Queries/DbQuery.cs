@@ -247,11 +247,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// Defines the parameter specifications of this instance.
         /// </summary>
-        /// <param name="parameterSpecSet">The set of parameter specifications to consider.</param>
+        /// <param name="parameters">The set of parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public IDbQuery WithParameters(DataElementSpecSet parameterSpecSet)
+        public IDbQuery WithParameters(params IDataElement[] parameters)
         {
-            ParameterSpecSet = parameterSpecSet;
+            ParameterSet = new DataElementSet(parameters);
 
             return this;
         }
@@ -261,7 +261,7 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="parameterSpecs">The set of parameter specifications to consider.</param>
         /// <returns>Return this instance.</returns>
-        public IDbQuery WithParameters(params IDataElementSpec[] parameterSpecs)
+        public IDbQuery UsingParameters(params IDataElementSpec[] parameterSpecs)
         {
             ParameterSpecSet = new DataElementSpecSet(parameterSpecs);
 

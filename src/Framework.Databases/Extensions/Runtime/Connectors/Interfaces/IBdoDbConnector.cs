@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Application.Scopes;
-using BindOpen.Framework.Data.Connections;
+﻿using BindOpen.Framework.Data.Connections;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.System.Diagnostics;
@@ -56,25 +55,25 @@ namespace BindOpen.Framework.Extensions.Runtime
 
         #endregion
 
-        // ------------------------------------------
-        // MUTators
-        // ------------------------------------------
+        //// ------------------------------------------
+        //// MUTators
+        //// ------------------------------------------
 
-        #region Mutators
+        //#region Mutators
 
-        /// <summary>
-        /// Updates the connection string with the specified string.
-        /// </summary>
-        /// <param name="connectionString">The connection string to consider.</param>
-        new IBdoConnector WithConnectionString(string connectionString = null);
+        ///// <summary>
+        ///// Updates the connection string with the specified string.
+        ///// </summary>
+        ///// <param name="connectionString">The connection string to consider.</param>
+        //new IBdoConnector WithConnectionString(string connectionString = null);
 
-        /// <summary>
-        /// Updates the instance considering the specified scope.
-        /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        new IBdoConnector WithScope(IBdoScope scope);
+        ///// <summary>
+        ///// Updates the instance considering the specified scope.
+        ///// </summary>
+        ///// <param name="scope">The scope to consider.</param>
+        //new IBdoDbConnector WithScope(IBdoScope scope);
 
-        #endregion
+        //#endregion
 
         // ------------------------------------------
         // ACCESSORS

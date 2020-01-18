@@ -3,15 +3,15 @@ using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.System.Diagnostics;
 using System;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// This class represents a repository factory.
     /// </summary>
-    public static class BdoDbRepositoryFactory
+    public static class BdoDbServiceFactory
     {
         /// <summary>
-        /// Creates a new repository.
+        /// Creates a new database service.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="scope"></param>
@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Application.Repositories
             this IBdoScope scope,
             Func<IBdoScope, IBdoLog, IBdoConnector> initializer,
             IBdoLog log = null)
-            where T : IBdoDbRepository, new()
+            where T : IBdoDbService, new()
         {
             var repo = new T();
 

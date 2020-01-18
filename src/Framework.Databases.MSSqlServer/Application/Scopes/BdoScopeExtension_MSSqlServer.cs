@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Application.Scopes
         /// <returns>Returns the connector.</returns>
         public static IBdoDbConnector CreateMSSqlServerConnector(this IBdoScope scope, string connectionString = null)
         {
-            return scope?.CreateDbConnector<BdoDbConnector_MSSqlServer>().WithConnectionString(connectionString);
+            return scope?.CreateDbConnector<BdoDbConnector_MSSqlServer>().WithConnectionString(connectionString) as IBdoDbConnector;
         }
     }
 }

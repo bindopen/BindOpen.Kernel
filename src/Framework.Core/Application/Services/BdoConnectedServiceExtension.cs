@@ -2,30 +2,30 @@
 using BindOpen.Framework.System.Diagnostics;
 using System;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
-    /// This class represents a repository extension.
+    /// This class represents a connected service extension.
     /// </summary>
-    public static class BdoDbRepositoryExtension
+    public static class BdoConnectedServiceExtension
     {
         /// <summary>
         /// Executes the specified function.
         /// </summary>
         /// <typeparam name="Q"></typeparam>
-        /// <param name="repository">The repository to consider</param>
+        /// <param name="repository">The connected service to consider</param>
         /// <param name="initializer"></param>
         /// <param name="action"></param>
         /// <returns></returns>
         public static IBdoLog UsingConnection(
-            this IBdoDbRepository repository,
-            Action<IBdoDbConnection> action)
+            this IBdoConnectedService repository,
+            Action<IBdoConnection> action)
         {
             var log = new BdoLog();
 
             if (repository != null)
             {
-                using (IBdoDbConnection connection = repository.Connector?.CreateConnection(log))
+                using (IBdoConnection connection = repository.Connector?.CreateConnection(log))
                 {
                     if (!log.HasErrorsOrExceptions())
                     {

@@ -1,11 +1,11 @@
 ﻿using BindOpen.Framework.Extensions.Runtime;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
-    /// This class represents a repository.
+    /// This class represents a database service.
     /// </summary>
-    public abstract class BdoDbRepository : BdoRepository, IBdoDbRepository
+    public abstract class BdoDbService : BdoConnectedService, IBdoDbService
     {
         /// <summary>
         /// The connector of this instance.
@@ -16,17 +16,17 @@ namespace BindOpen.Framework.Application.Repositories
         }
 
         /// <summary>
-        /// Initializes a new instance of the BdoDbRepository class.
+        /// Initializes a new instance of the BdoDbService class.
         /// </summary>
-        protected BdoDbRepository()
+        protected BdoDbService()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BdoDbRepository class.
+        /// Initializes a new instance of the BdoDbService class.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        protected BdoDbRepository(IBdoConnector connector)
+        protected BdoDbService(IBdoConnector connector)
         {
             SetConnector(connector);
         }

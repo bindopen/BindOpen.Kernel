@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Extensions.References;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BindOpen.Framework.Extensions.References
 {
@@ -20,9 +19,9 @@ namespace BindOpen.Framework.Extensions.References
         /// <param name="references">The references to consider.</param>
         public BdoExtensionReferenceCollection(IEnumerable<IBdoExtensionReference> references = null)
         {
-            if (references!=null)
+            if (references != null)
             {
-                foreach(var reference in references)
+                foreach (var reference in references)
                 {
                     Add(reference);
                 }

@@ -21,7 +21,7 @@ namespace BindOpen.Framework.Application.Scopes
         public static T CreateDbConnector<T>(
             this IBdoScope scope,
             string name = null) where T : class, IBdoDbConnector, new()
-            => scope.CreateDbConnector<T>(name);
+            => scope.CreateConnector<T>(name).WithScope(scope) as T;
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -39,7 +39,7 @@ namespace BindOpen.Framework.Application.Scopes
             string name = null,
             IBdoLog log = null,
             IBdoScriptVariableSet scriptVariableSet = null) where T : class, IBdoDbConnector, new()
-            => scope.CreateDbConnector<T>(configuration, name, log, scriptVariableSet);
+            => scope.CreateConnector<T>(configuration, name, log, scriptVariableSet).WithScope(scope) as T;
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -56,6 +56,6 @@ namespace BindOpen.Framework.Application.Scopes
             string name = null,
             IBdoLog log = null,
             IBdoScriptVariableSet scriptVariableSet = null)
-            => scope.CreateDbConnector(configuration, name, log, scriptVariableSet);
+            => scope.CreateConnector(configuration, name, log, scriptVariableSet).WithScope(scope) as BdoDbConnector;
     }
 }
