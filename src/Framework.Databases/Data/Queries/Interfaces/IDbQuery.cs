@@ -83,17 +83,17 @@ namespace BindOpen.Framework.Data.Queries
         List<DbField> GetPrimaryKeyDataFields();
 
         /// <summary>
-        /// Defines the parameter specifications of this instance.
+        /// Defines the parameters of this instance.
         /// </summary>
-        /// <param name="parameterSpecSet">The set of parameter specifications to consider.</param>
+        /// <param name="parameters">The set of parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        IDbQuery WithParameters(DataElementSpecSet parameterSpecSet);
+        IDbQuery WithParameters(params IDataElement[] parameters);
 
         /// <summary>
         /// Defines the parameter specifications of this instance.
         /// </summary>
-        /// <param name="parameterSpecs">The set of parameter specifications to consider.</param>
+        /// <param name="parameters">The set of parameter specifications to consider.</param>
         /// <returns>Return this instance.</returns>
-        IDbQuery WithParameters(params IDataElementSpec[] parameterSpecs);
+        IDbQuery UsingParameters(params IDataElementSpec[] parameterSpecs);
     }
 }

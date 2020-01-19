@@ -1,12 +1,12 @@
 ﻿using BindOpen.Framework.Data.Items;
 using BindOpen.Framework.Extensions.Runtime;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
-    /// This class represents a repository.
+    /// This class represents a connected service.
     /// </summary>
-    public abstract class BdoRepository : DataItem, IBdoRepository
+    public abstract class BdoConnectedService : DataItem, IBdoConnectedService
     {
         /// <summary>
         /// The connector of this instance.
@@ -22,17 +22,17 @@ namespace BindOpen.Framework.Application.Repositories
         }
 
         /// <summary>
-        /// Initializes a new instance of the BdoRepository class.
+        /// Initializes a new instance of the BdoConnectedService class.
         /// </summary>
-        protected BdoRepository()
+        protected BdoConnectedService()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BdoRepository class.
+        /// Initializes a new instance of the BdoConnectedService class.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        protected BdoRepository(IBdoConnector connector)
+        protected BdoConnectedService(IBdoConnector connector)
         {
             SetConnector(connector);
         }

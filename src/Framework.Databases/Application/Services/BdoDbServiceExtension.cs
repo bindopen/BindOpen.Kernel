@@ -2,12 +2,12 @@
 using BindOpen.Framework.System.Diagnostics;
 using System;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
-    /// This class represents a repository extension.
+    /// This class represents a database service extension.
     /// </summary>
-    public static class BdoRepositoryExtension
+    public static class BdoDbServiceExtension
     {
         /// <summary>
         /// Executes the specified function.
@@ -18,14 +18,14 @@ namespace BindOpen.Framework.Application.Repositories
         /// <param name="action"></param>
         /// <returns></returns>
         public static IBdoLog UsingConnection(
-            this IBdoRepository repository,
-            Action<IBdoConnection> action)
+            this IBdoDbService repository,
+            Action<IBdoDbConnection> action)
         {
             var log = new BdoLog();
 
             if (repository != null)
             {
-                using (IBdoConnection connection = repository.Connector?.CreateConnection(log))
+                using (IBdoDbConnection connection = repository.Connector?.CreateConnection(log))
                 {
                     if (!log.HasErrorsOrExceptions())
                     {

@@ -16,9 +16,9 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="table">The table to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryFromStatement CreateFrom(DbTable table)
+        public static IDbQueryFromStatement CreateFromStatement(DbTable table)
             => new DbQueryFromStatement()
-                .WithJointure(CreateJointure(table));
+                .WithJointure(CreateJoinStatement(table));
 
         // Jointure --------------------------------
 
@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="table">The table to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJointure(DbTable table)
+        public static IDbQueryJointureStatement CreateJoinStatement(DbTable table)
             => new DbQueryJointureStatement() { Kind = DbQueryJointureKind.None, Table = table };
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="condition">The condition to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, DataExpression condition = null)
+        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, DataExpression condition = null)
             => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = condition };
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, string conditionScript)
+        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, string conditionScript)
             => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = conditionScript.CreateScript() };
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="field1">The field1 to consider.</param>
         /// <param name="field2">The field2 to consider.</param>
         /// <param name="operator">The operator to consider.</param>
-        public static IDbQueryJointureStatement CreateJointure(DbQueryJointureKind kind, DbTable table, DbField field1, DbField field2, DataOperator _operator = DataOperator.Equal)
+        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, DbField field1, DbField field2, DataOperator _operator = DataOperator.Equal)
         {
-            var jointure = CreateJointure(kind, table);
+            var jointure = CreateJoinStatement(kind, table);
 
             if (field1 != null && field2 != null)
             {

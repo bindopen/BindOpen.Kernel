@@ -1,6 +1,6 @@
 ﻿using BindOpen.Framework.Application.Exceptions;
-using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Services;
 using BindOpen.Framework.Application.Settings;
 using BindOpen.Framework.Data.Common;
@@ -383,9 +383,16 @@ namespace BindOpen.Framework.Application.Options
         /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        public ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null)
+        public ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null)
         {
-            action?.Invoke(ExtensionReferences);
+            if (action != null)
+            {
+                action?.Invoke(ExtensionReferences);
+            }
+            else
+            {
+                ExtensionReferences.AddAllAssemblies();
+            }
             loadOptionsAction?.Invoke(ExtensionLoadOptions);
 
             return this;

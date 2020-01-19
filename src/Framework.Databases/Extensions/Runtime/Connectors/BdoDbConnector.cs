@@ -17,6 +17,11 @@ namespace BindOpen.Framework.Extensions.Runtime
     /// </summary>
     public abstract class BdoDbConnector : BdoConnector, IBdoDbConnector
     {
+        /// <summary>
+        /// The query builder of this instance.
+        /// </summary>
+        protected DbQueryBuilder _queryBuilder;
+
         // -----------------------------------------------
         // PROPERTIES
         // -----------------------------------------------
@@ -27,7 +32,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// The provider of this instance.
         /// </summary>
         [XmlIgnore()]
-        protected DbQueryBuilder QueryBuilder { get; set; } = null;
+        protected DbQueryBuilder QueryBuilder => _queryBuilder;
 
         /// <summary>
         /// The provider of this instance.
@@ -136,7 +141,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// Updates the connection string with the specified string.
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>
-        public new virtual IBdoDbConnector WithConnectionString(string connectionString = null)
+        public override IBdoConnector WithConnectionString(string connectionString = null)
         {
             base.WithConnectionString(connectionString);
             DictionaryDataItem item = DictionaryDataItem.Create(connectionString);
@@ -149,14 +154,13 @@ namespace BindOpen.Framework.Extensions.Runtime
             Password = item.GetContent("Password");
 
             return this;
-
         }
 
         /// <summary>
         /// Updates the instance considering the specified scope.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        public new virtual IBdoDbConnector WithScope(IBdoScope scope)
+        public override IBdoConnector WithScope(IBdoScope scope)
         {
             base.WithScope(scope);
 
@@ -306,29 +310,26 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>The database provider  of the specified connection string.</returns>
         public static BdoDbConnectorKind EstimateDbConnectorKind(string connectionString)
         {
-            connectionString = connectionString.Trim();
+            if (connectionString != null)
+            {
+                connectionString = connectionString.Trim();
 
-            if (connectionString.IndexOf("SQLOLEDB", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return BdoDbConnectorKind.MSSqlServer;
-            }
-            else if (connectionString.IndexOf("MSDASQL", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return BdoDbConnectorKind.MySQL;
-            }
-            else if (connectionString.IndexOf("MSDAORA", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return BdoDbConnectorKind.Oracle;
-            }
-            //else if ((connectionString.ToUpper().Contains("MICROSOFT.JET.OLEDB.4.0")) &
-            //    (connectionString.Contains("EXTENDED PROPERTIES=\"EXCEL")))
-            //    databaseKind = ConnectorKind_database.Excel;
-            //else if ((connectionString.ToUpper().Contains("MICROSOFT.JET.OLEDB.4.0")) &
-            //    (connectionString.Contains("EXTENDED PROPERTIES=\"TEXT")))
-            //    databaseKind = ConnectorKind_database.TextFiles;
-            else if (connectionString.IndexOf("POSTGRESQL", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return BdoDbConnectorKind.PostgreSql;
+                if (connectionString.IndexOf("SQLOLEDB", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return BdoDbConnectorKind.MSSqlServer;
+                }
+                else if (connectionString.IndexOf("MSDASQL", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return BdoDbConnectorKind.MySQL;
+                }
+                else if (connectionString.IndexOf("MSDAORA", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return BdoDbConnectorKind.Oracle;
+                }
+                else if (connectionString.IndexOf("POSTGRESQL", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return BdoDbConnectorKind.PostgreSql;
+                }
             }
 
             return BdoDbConnectorKind.Any;

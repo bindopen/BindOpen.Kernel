@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Application.Repositories;
+﻿using BindOpen.Framework.Application.Services;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {
-    public class TestDbRepository : BdoDbRepository
+    public class TestDbRepository : BdoDbService
     {
         public void Test()
         {

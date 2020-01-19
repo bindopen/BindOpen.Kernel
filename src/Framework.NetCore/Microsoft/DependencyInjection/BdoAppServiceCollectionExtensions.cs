@@ -1,6 +1,5 @@
-﻿using BindOpen.Framework.Application.Scopes;
-using BindOpen.Framework.Application.Options;
-using BindOpen.Framework.Application.Repositories;
+﻿using BindOpen.Framework.Application.Options;
+using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Services;
 using BindOpen.Framework.Application.Settings;
 using BindOpen.Framework.Extensions.Runtime;
@@ -18,12 +17,12 @@ namespace Microsoft.Extensions.DependencyInjection
         // BindOpen host --------------------------
 
         /// <summary>
-        /// Adds a BindOpen default host.
+        /// Adds a BindOpen default service.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenDefaultHost(
+        public static IServiceCollection AddBindOpen(
             this IServiceCollection services,
             Action<ITBdoHostOptions<BdoDefaultAppSettings>> setupAction = null)
         {
@@ -33,22 +32,22 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Adds a BindOpen default host.
+        /// Adds a BindOpen host.
         /// </summary>
         /// <param name="provider">The service provider to consider.</param>
         /// <returns></returns>
-        public static IBdoHost GetBindOpenDefaulHost(this IServiceProvider provider)
+        public static IBdoHost GetBindOpenHost(this IServiceProvider provider)
         {
             return provider?.GetService<IBdoHost>();
         }
 
         /// <summary>
-        /// Adds a BindOpen host.
+        /// Adds a BindOpen service.
         /// </summary>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenHost<S>(
+        public static IServiceCollection AddBindOpen<S>(
             this IServiceCollection services,
             Action<ITBdoHostOptions<S>> setupAction = null)
             where S : class, IBdoAppSettings, new()
@@ -59,14 +58,14 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Adds a BindOpen host.
+        /// Adds a BindOpen service.
         /// </summary>
         /// <typeparam name="SHost">The class of bot to consider.</typeparam>
         /// <typeparam name="S"></typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
-        public static IServiceCollection AddBindOpenHost<SHost, S>(
+        public static IServiceCollection AddBindOpen<SHost, S>(
             this IServiceCollection services,
             Action<ITBdoHostOptions<S>> setupAction = null)
             where SHost : TBdoHost<S>, new()
@@ -103,20 +102,20 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        // BindOpen repositorys --------------------------
+        // BindOpen connected services --------------------------
 
         /// <summary>
-        /// Adds a singleton repository.
+        /// Adds a singleton connected service.
         /// </summary>
-        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
-        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen connected service to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen connected service class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddSingletonRepository<IT, T>(
+        public static IServiceCollection AddSingletonConnectedService<IT, T>(
             this IServiceCollection services,
             Func<IBdoHost, IBdoConnector> setupAction = null)
-            where IT : class, IBdoRepository
+            where IT : class, IBdoConnectedService
             where T : class, IT, new()
         {
             services.AddSingleton<IT, T>(p =>
@@ -132,17 +131,17 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Adds a scoped repository.
+        /// Adds a scoped connected service.
         /// </summary>
-        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
-        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen connected service to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen connected service class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddScopedRepository<IT, T>(
+        public static IServiceCollection AddScopedConnectedService<IT, T>(
             this IServiceCollection services,
             Func<IBdoHost, IBdoConnector> setupAction = null)
-            where IT : class, IBdoRepository
+            where IT : class, IBdoConnectedService
             where T : class, IT, new()
         {
             services.AddScoped<IT, T>(p =>
@@ -158,17 +157,17 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        /// Adds a transient repository.
+        /// Adds a transient connected service.
         /// </summary>
-        /// <typeparam name="IT">The interface of BindOpen repository to consider.</typeparam>
-        /// <typeparam name="T">The BindOpen repository class to consider.</typeparam>
+        /// <typeparam name="IT">The interface of BindOpen connected service to consider.</typeparam>
+        /// <typeparam name="T">The BindOpen connected service class to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddTransientRepository<IT, T>(
+        public static IServiceCollection AddTransientConnectedService<IT, T>(
             this IServiceCollection services,
             Func<IBdoHost, IBdoConnector> setupAction = null)
-            where IT : class, IBdoRepository
+            where IT : class, IBdoConnectedService
             where T : class, IT, new()
         {
             services.AddTransient<IT, T>(p =>

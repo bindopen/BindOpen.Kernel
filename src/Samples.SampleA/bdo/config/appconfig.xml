@@ -7,7 +7,7 @@
     <scalar name="key2" script="url2" />
   </collection>
   
-  <credentials>
+  <credentials> 
     <credential name="crendential1">
       <domainId>test.com</domainId>
       <login>userA@test.com</login>

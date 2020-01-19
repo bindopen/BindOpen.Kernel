@@ -1,12 +1,12 @@
 ﻿using BindOpen.Framework.Extensions.Runtime;
 using System;
 
-namespace BindOpen.Framework.Application.Repositories
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
-    /// This interfaces represents a repository.
+    /// This interfaces represents a connected service.
     /// </summary>
-    public interface IBdoRepository : IDisposable
+    public interface IBdoConnectedService : IDisposable
     {
         /// <summary>
         /// The connector of the service.

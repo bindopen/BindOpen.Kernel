@@ -2,6 +2,7 @@
 using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Data.Stores;
 using BindOpen.Framework.System.Diagnostics;
+using System;
 
 namespace BindOpen.Framework.Data.Depots
 {
@@ -11,37 +12,45 @@ namespace BindOpen.Framework.Data.Depots
     public static class BdoDatasourceExtensions
     {
         /// <summary>
+        /// Add a database queries depot into the specified data store executing the specified action.
+        /// </summary>
+        /// <param name="dataStore">The data store to consider.</param>
+        /// <param name="action">The action to execute on the created depot.</param>
+        /// <returns>Returns the data store to update.</returns>
+        public static IBdoDataStore RegisterDatasourceDepot(
+            this IBdoDataStore dataStore,
+            Action<IBdoDatasourceDepot> action) =>
+            RegisterDatasourceDepot(dataStore, (d, l) => action?.Invoke(d));
+
+        /// <summary>
         /// Add a data source depot into the specified data store using the specified options.
         /// </summary>
         /// <param name="dataStore">The data store to consider.</param>
-        /// <param name="options">The options to consider.</param>
+        /// <param name="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasourceDepot(this IBdoDataStore dataStore, IBdoHostOptions options = null)
+        public static IBdoDataStore RegisterDatasourceDepot(
+            this IBdoDataStore dataStore,
+            Action<IBdoDatasourceDepot, IBdoLog> action)
         {
             var depot = new BdoDatasourceDepot()
             {
                 LazyLoadFunction = (IBdoDepot d, IBdoLog log) =>
                 {
-                    var dataSourceNumber = 0;
+                    var number = 0;
 
                     if (d is BdoDatasourceDepot datasourceDepot)
                     {
-                        if (options?.AppSettings?.AppConfiguration?.Datasources != null)
-                        {
-                            foreach (var dataSource in options?.AppSettings?.AppConfiguration?.Datasources)
-                            {
-                                datasourceDepot.Add(dataSource);
-                            }
-                            dataSourceNumber++;
-                        }
+                        action?.Invoke(datasourceDepot, log);
+
+                        number = datasourceDepot.Count;
 
                         if (!log.HasErrorsOrExceptions())
                         {
-                            log.AddMessage("Depot loaded (" + dataSourceNumber + " data sources added)");
+                            log.AddMessage("Depot loaded (" + number + " data sources added)");
                         }
                     }
 
-                    return dataSourceNumber;
+                    return number;
                 }
             };
 
@@ -49,6 +58,24 @@ namespace BindOpen.Framework.Data.Depots
 
             dataStore?.Add<IBdoDatasourceDepot>(depot);
             return dataStore;
+        }
+
+
+        /// <summary>
+        /// Adds sources from BindOpen configuration.
+        /// </summary>
+        /// <param name="options">The host options to consider.</param>
+        public static IBdoDatasourceDepot AddFromConfiguration(this IBdoDatasourceDepot depot, IBdoHostOptions options)
+        {
+            if (options?.AppSettings?.AppConfiguration?.Datasources != null)
+            {
+                foreach (var dataSource in options?.AppSettings?.AppConfiguration?.Datasources)
+                {
+                    depot.Add(dataSource);
+                }
+            }
+
+            return depot;
         }
 
         /// <summary>

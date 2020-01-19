@@ -53,9 +53,9 @@ namespace BindOpen.Framework.Extensions.Connectors
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <returns>Returns the database builder.</returns>
-        public override IBdoDbConnector WithScope(IBdoScope scope)
+        public override IBdoConnector WithScope(IBdoScope scope)
         {
-            QueryBuilder = new DbQueryBuilder_PostgreSql(scope);
+            _queryBuilder = new DbQueryBuilder_PostgreSql(scope);
 
             return this;
         }

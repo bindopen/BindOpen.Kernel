@@ -1,5 +1,5 @@
-﻿using BindOpen.Framework.Application.Scopes;
-using BindOpen.Framework.Application.Modules;
+﻿using BindOpen.Framework.Application.Modules;
+using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Settings;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Stores;
@@ -108,7 +108,7 @@ namespace BindOpen.Framework.Application.Options
         /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action, Action<IExtensionLoadOptions> loadOptionsAction = null);
+        ITBdoHostOptions<S> AddExtensions(Action<IBdoExtensionReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
         // Loggers ----------------------
 

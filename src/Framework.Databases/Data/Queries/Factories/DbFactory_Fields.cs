@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Data.Common;
-using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Extensions.Carriers;
@@ -270,12 +269,12 @@ namespace BindOpen.Framework.Data.Queries
         /// Creates a new instance of the DbField class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="parameter">The parameter element to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
         public static DbField CreateFieldAsParameter(
             string name,
-            IDataElement parameter)
+            string parameterName)
         {
-            return CreateFieldAsParameter(name, null, null, null, parameter);
+            return CreateFieldAsParameter(name, null, null, null, parameterName);
         }
 
         /// <summary>
@@ -283,13 +282,13 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
-        /// <param name="parameter">The parameter element to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
         public static DbField CreateFieldAsParameter(
             string name,
             string tableName,
-            IDataElement parameter)
+            string parameterName)
         {
-            return CreateFieldAsParameter(name, tableName, null, null, parameter);
+            return CreateFieldAsParameter(name, tableName, null, null, parameterName);
         }
 
         /// <summary>
@@ -299,17 +298,64 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="parameter">The parameter element to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
         public static DbField CreateFieldAsParameter(
             string name,
             string tableName,
             string schema,
             string dataModule,
-            IDataElement parameter)
+            string parameterName)
         {
             var field = CreateField(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
-            field.Value = CreateParameterString(parameter).CreateLiteral();
+            field.Value = ("@" + parameterName).CreateLiteral();
+            return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField CreateFieldAsParameter(
+            string name,
+            byte parameterIndex)
+        {
+            return CreateFieldAsParameter(name, null, null, null, parameterIndex);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField CreateFieldAsParameter(
+            string name,
+            string tableName,
+            byte parameterIndex)
+        {
+            return CreateFieldAsParameter(name, tableName, null, null, parameterIndex);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="tableName">The data table to consider.</param>
+        /// <param name="schema">The schema to consider.</param>
+        /// <param name="dataModule">The data module to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField CreateFieldAsParameter(
+            string name,
+            string tableName,
+            string schema,
+            string dataModule,
+            byte parameterIndex)
+        {
+            var field = CreateField(name, tableName, schema, dataModule);
+            field.ValueType = DataValueType.None;
+            field.Value = ("@" + parameterIndex.ToString()).CreateLiteral();
             return field;
         }
     }
