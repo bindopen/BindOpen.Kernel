@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Data.Connections
         /// </summary>
         public string Database => _databaseName;
 
-        string IDbConnection.ConnectionString { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        string IDbConnection.ConnectionString { get => base.ConnectionString; set { Connector?.WithConnectionString(ConnectionString); } }
 
         #endregion
 
@@ -208,6 +208,5 @@ namespace BindOpen.Framework.Data.Connections
         }
 
         #endregion
-
     }
 }
