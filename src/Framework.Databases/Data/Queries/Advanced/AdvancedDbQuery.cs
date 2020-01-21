@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Extensions.Carriers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -113,17 +114,6 @@ namespace BindOpen.Framework.Data.Queries
         #region Mutators
 
         /// <summary>
-        /// Sets the specified fields.
-        /// </summary>
-        /// <param name="fields">The fields to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IAdvancedDbQuery WithFields(params DbField[] fields)
-        {
-            Fields = fields?.ToList();
-            return this;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="statements"></param>
@@ -206,6 +196,40 @@ namespace BindOpen.Framework.Data.Queries
         {
             DataTableAlias = tableAlias;
             return this;
+        }
+
+        /// <summary>
+        /// Sets the specified fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery WithFields(params DbField[] fields)
+        {
+            Fields = fields?.ToList();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the fields using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery WithFields(Func<IAdvancedDbQuery, DbField[]> initiliazer)
+        {
+            return WithFields(initiliazer?.Invoke(this));
+        }
+
+        public IAdvancedDbQuery AddField(DbField field)
+        {
+            Fields?.Add(field);
+
+            return this;
+        }
+
+        public IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer)
+        {
+            return AddField(initiliazer?.Invoke(this));
         }
 
         #endregion

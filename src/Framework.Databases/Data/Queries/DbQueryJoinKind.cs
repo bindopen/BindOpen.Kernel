@@ -1,9 +1,9 @@
 ﻿namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
-    /// This enumeration lists all the kinds of data query jointures.
+    /// This enumeration lists all the kinds of data query joins.
     /// </summary>
-    public enum DbQueryJointureKind
+    public enum DbQueryJoinKind
     {
         /// <summary>
         /// None.

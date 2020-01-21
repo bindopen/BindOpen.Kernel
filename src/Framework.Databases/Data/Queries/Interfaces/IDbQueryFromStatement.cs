@@ -10,7 +10,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        List<DbQueryJointureStatement> JointureStatements { get; set; }
+        List<DbQueryJoinStatement> JoinStatements { get; set; }
 
         /// <summary>
         /// 
@@ -18,24 +18,24 @@ namespace BindOpen.Framework.Data.Queries
         DbQueryUnionStatement UnionStatement { get; set; }
 
         /// <summary>
-        /// 
+        /// Adds the specified union statement.
         /// </summary>
         /// <param name="statement"></param>
         /// <returns></returns>
-        IDbQueryFromStatement WithUnion(IDbQueryUnionStatement statement);
+        IDbQueryFromStatement Union(IDbQueryUnionStatement statement);
 
         /// <summary>
-        /// Sets the specified jointure statement.
+        /// Adds the specified join statement.
         /// </summary>
-        /// <param name="statement">The jointure statement to consider.</param>
+        /// <param name="statement">The join statement to consider.</param>
         /// <returns>Returns this instance.</returns>
-        IDbQueryFromStatement WithJointure(IDbQueryJointureStatement statement);
+        IDbQueryFromStatement Join(IDbQueryJoinStatement statement);
 
         /// <summary>
-        /// Sets the specified jointure statement.
+        /// Sets the specified join statement.
         /// </summary>
-        /// <param name="statements">The DbQueryJointureStatement statements to consider.</param>
+        /// <param name="statements">The DbQueryJoinStatement statements to consider.</param>
         /// <returns>Returns this instance.</returns>
-        IDbQueryFromStatement WithJointures(params IDbQueryJointureStatement[] statements);
+        IDbQueryFromStatement WithJoins(params IDbQueryJoinStatement[] statements);
     }
 }

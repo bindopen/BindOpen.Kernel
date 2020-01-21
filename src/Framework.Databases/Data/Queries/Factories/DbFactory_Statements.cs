@@ -16,95 +16,62 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="table">The table to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryFromStatement CreateFromStatement(DbTable table)
+        public static IDbQueryFromStatement CreateFromStatement(DbTable table = null)
             => new DbQueryFromStatement()
-                .WithJointure(CreateJoinStatement(table));
+                .Join(CreateJoinStatement(table));
 
-        // Jointure --------------------------------
-
-        /// <summary>
-        /// Creates a new Jointure statement.
-        /// </summary>
-        /// <param name="table">The table to consider.</param>
-        /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJoinStatement(DbTable table)
-            => new DbQueryJointureStatement() { Kind = DbQueryJointureKind.None, Table = table };
+        // Join --------------------------------
 
         /// <summary>
-        /// Creates a new Jointure statement.
-        /// </summary>
-        /// <param name="kind">The kind to consider.</param>
-        /// <param name="table">The table to consider.</param>
-        /// <param name="condition">The condition to consider.</param>
-        /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, DataExpression condition = null)
-            => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = condition };
-
-        /// <summary>
-        /// Creates a new Jointure statement.
+        /// Creates a new Join statement.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
         /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, string conditionScript)
-            => new DbQueryJointureStatement() { Kind = kind, Table = table, Condition = conditionScript.CreateScript() };
+        public static IDbQueryJoinStatement CreateJoinStatement(DbQueryJoinKind kind, DbTable table, string conditionScript)
+            => CreateJoinStatement(kind, table).WithCondition(conditionScript.CreateScript());
 
         /// <summary>
-        /// Creates a new Jointure statement.
+        /// Creates a new Join statement.
+        /// </summary>
+        /// <param name="table">The table to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static IDbQueryJoinStatement CreateJoinStatement(DbTable table, string conditionScript)
+            => CreateJoinStatement(DbQueryJoinKind.Inner, table).WithCondition(conditionScript.CreateScript());
+
+        /// <summary>
+        /// Creates a new Join statement.
+        /// </summary>
+        /// <param name="table">The table to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static IDbQueryJoinStatement CreateJoinStatement(DbTable table)
+            => CreateJoinStatement(DbQueryJoinKind.Inner, table);
+
+        /// <summary>
+        /// Creates a new Join statement.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="table">The table to consider.</param>
-        /// <param name="field1">The field1 to consider.</param>
-        /// <param name="field2">The field2 to consider.</param>
-        /// <param name="operator">The operator to consider.</param>
-        public static IDbQueryJointureStatement CreateJoinStatement(DbQueryJointureKind kind, DbTable table, DbField field1, DbField field2, DataOperator _operator = DataOperator.Equal)
+        /// <returns>Returns a new From statement.</returns>
+        public static IDbQueryJoinStatement CreateJoinStatement(DbQueryJoinKind kind, DbTable table)
+            => new DbQueryJoinStatement() { Kind = kind, Table = table };
+
+        /// <summary>
+        /// Creates a new instance of the DbQueryJoinCondition class.
+        /// </summary>
+        /// <param name="field1">The field 1 to consider.</param>
+        /// <param name="field2">The field 2 to consider.</param>
+        /// <param name="op">The operation to consider.</param>
+        public static DbQueryJoinCondition CreateJoinCondition(DbField field1, DbField field2, DataOperator op = DataOperator.Equal)
         {
-            var jointure = CreateJoinStatement(kind, table);
-
-            if (field1 != null && field2 != null)
+            return new DbQueryJoinCondition()
             {
-                string query = "";
-
-                switch (_operator)
-                {
-                    case DataOperator.Equal:
-                        query += "$sqlEq(";
-                        break;
-                    case DataOperator.Different:
-                        query += "$sqlDiff(";
-                        break;
-                    case DataOperator.Greater:
-                        query += "$sqlGt(";
-                        break;
-                    case DataOperator.GreaterOrEqual:
-                        query += "$sqlGte(";
-                        break;
-                    case DataOperator.Lesser:
-                        query += "$sqlLt(";
-                        break;
-                    case DataOperator.LesserOrEqual:
-                        query += "$sqlLte(";
-                        break;
-                }
-                query += "$" +
-                   (string.IsNullOrEmpty(field1.DataModule) ? "" : ("sqlDatabase('" + field1.DataModule + "').")) +
-                   (string.IsNullOrEmpty(field1.Schema) ? "" : ("sqlSchema('" + field1.Schema + "').")) +
-                   (string.IsNullOrEmpty(field1.DataTable) ? "" : ("sqlTable('" + field1.DataTable + "').")) +
-                   (string.IsNullOrEmpty(field1.Name) ? "" : ("sqlField('" + field1.Name + "')"));
-
-                query += ", $" +
-                   (string.IsNullOrEmpty(field2.DataModule) ? "" : ("sqlDatabase('" + field2.DataModule + "').")) +
-                   (string.IsNullOrEmpty(field2.Schema) ? "" : ("sqlSchema('" + field2.Schema + "').")) +
-                   (string.IsNullOrEmpty(field2.DataTable) ? "" : ("sqlTable('" + field2.DataTable + "').")) +
-                   (string.IsNullOrEmpty(field2.Name) ? "" : ("sqlField('" + field2.Name + "')"));
-
-                query += ")";
-
-                jointure.Condition = query.CreateScript();
-            }
-
-            return jointure;
+                Field1 = field1,
+                Field2 = field2,
+                Operator = op
+            };
         }
     }
 }

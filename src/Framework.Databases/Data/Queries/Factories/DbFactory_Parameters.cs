@@ -14,20 +14,10 @@ namespace BindOpen.Framework.Data.Queries
         /// Creates a new instance of the DataElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        public static IDataElement CreateParameter(
-            string name)
-        {
-            return DbFactory.CreateParameter(name, DataValueType.Any, null);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DataElement class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
         /// <param name="value">The data table to consider.</param>
         public static IDataElement CreateParameter(
             string name,
-            object value)
+            object value = null)
         {
             return DbFactory.CreateParameter(name, DataValueType.Any, value);
         }

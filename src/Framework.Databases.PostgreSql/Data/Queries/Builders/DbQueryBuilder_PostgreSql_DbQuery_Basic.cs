@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Elements;
-using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Extensions.Carriers;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
@@ -85,7 +84,7 @@ namespace BindOpen.Framework.Data.Queries
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += GetJointureSqlText(queryFrom, parameterSet, scriptVariableSet, log);
+                                queryString += GetJoinSqlText(queryFrom, parameterSet, scriptVariableSet, log);
 
                                 index++;
                             }
@@ -171,7 +170,7 @@ namespace BindOpen.Framework.Data.Queries
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += GetJointureSqlText(queryFrom, parameterSet, scriptVariableSet, log);
+                                queryString += GetJoinSqlText(queryFrom, parameterSet, scriptVariableSet, log);
 
                                 index++;
                             }
