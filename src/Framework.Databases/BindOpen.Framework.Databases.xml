@@ -1209,9 +1209,9 @@
             Union statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.DbQueryFromStatement.JointureStatements">
+        <member name="P:BindOpen.Framework.Data.Queries.DbQueryFromStatement.JoinStatements">
             <summary>
-            List of jointure statements.
+            List of join statements.
             </summary>
         </member>
         <member name="M:BindOpen.Framework.Data.Queries.DbQueryFromStatement.#ctor">
@@ -1226,18 +1226,18 @@
             <param name="statement">The union statement to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbQueryFromStatement.WithJointure(BindOpen.Framework.Data.Queries.IDbQueryJointureStatement)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryFromStatement.WithJoin(BindOpen.Framework.Data.Queries.IDbQueryJoinStatement)">
             <summary>
-            Sets the specified jointure statement.
+            Sets the specified join statement.
             </summary>
-            <param name="statement">The jointure statement to consider.</param>
+            <param name="statement">The join statement to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbQueryFromStatement.WithJointures(BindOpen.Framework.Data.Queries.IDbQueryJointureStatement[])">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryFromStatement.WithJoins(BindOpen.Framework.Data.Queries.IDbQueryJoinStatement[])">
             <summary>
-            Sets the specified jointure statement.
+            Sets the specified join statement.
             </summary>
-            <param name="statements">The DbQueryJointureStatement statements to consider.</param>
+            <param name="statements">The DbQueryJoinStatement statements to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Data.Queries.DbQueryGroupByStatement">
@@ -1270,59 +1270,59 @@
             Instantiates a new instance of the DbQueryHavingStatement class.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Data.Queries.DbQueryJointureKind">
+        <member name="T:BindOpen.Framework.Data.Queries.DbQueryJoinKind">
             <summary>
-            This enumeration lists all the kinds of data query jointures.
+            This enumeration lists all the kinds of data query joins.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJointureKind.None">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJoinKind.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJointureKind.Inner">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJoinKind.Inner">
             <summary>
             Inner.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJointureKind.Left">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJoinKind.Left">
             <summary>
             Left.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJointureKind.Right">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJoinKind.Right">
             <summary>
             Right.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJointureKind.Union">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryJoinKind.Union">
             <summary>
             Union.
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Data.Queries.DbQueryJointureStatement">
+        <member name="T:BindOpen.Framework.Data.Queries.DbQueryJoinStatement">
             <summary>
-            This class represents the Jointure statement of a database data query.
+            This class represents the Join statement of a database data query.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJointureStatement.Kind">
+        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJoinStatement.Kind">
             <summary>
-            The kind of jointure of this instance.
+            The kind of join of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJointureStatement.Table">
+        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJoinStatement.Table">
             <summary>
             The data module of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJointureStatement.Condition">
+        <member name="P:BindOpen.Framework.Data.Queries.DbQueryJoinStatement.Condition">
             <summary>
             The condition of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbQueryJointureStatement.#ctor">
+        <member name="M:BindOpen.Framework.Data.Queries.DbQueryJoinStatement.#ctor">
             <summary>
-            Instantiates a new instance of the DbQueryJointureStatement class.
+            Instantiates a new instance of the DbQueryJoinStatement class.
             </summary>
         </member>
         <member name="T:BindOpen.Framework.Data.Queries.DbQueryKind">
@@ -1589,34 +1589,34 @@
             <param name="table">The table to consider.</param>
             <returns>Returns a new From statement.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJointure(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJoin(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
-            Creates a new Jointure statement.
+            Creates a new Join statement.
             </summary>
             <param name="table">The table to consider.</param>
             <returns>Returns a new From statement.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJointure(BindOpen.Framework.Data.Queries.DbQueryJointureKind,BindOpen.Framework.Extensions.Carriers.DbTable,BindOpen.Framework.Core.Data.Expression.DataExpression)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJoin(BindOpen.Framework.Data.Queries.DbQueryJoinKind,BindOpen.Framework.Extensions.Carriers.DbTable,BindOpen.Framework.Core.Data.Expression.DataExpression)">
             <summary>
-            Creates a new Jointure statement.
+            Creates a new Join statement.
             </summary>
             <param name="kind">The kind to consider.</param>
             <param name="table">The table to consider.</param>
             <param name="condition">The condition to consider.</param>
             <returns>Returns a new From statement.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJointure(BindOpen.Framework.Data.Queries.DbQueryJointureKind,BindOpen.Framework.Extensions.Carriers.DbTable,System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJoin(BindOpen.Framework.Data.Queries.DbQueryJoinKind,BindOpen.Framework.Extensions.Carriers.DbTable,System.String)">
             <summary>
-            Creates a new Jointure statement.
+            Creates a new Join statement.
             </summary>
             <param name="kind">The kind to consider.</param>
             <param name="table">The table to consider.</param>
             <param name="query">The query to consider.</param>
             <returns>Returns a new From statement.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJointure(BindOpen.Framework.Data.Queries.DbQueryJointureKind,BindOpen.Framework.Extensions.Carriers.DbTable,BindOpen.Framework.Extensions.Carriers.DbField,BindOpen.Framework.Extensions.Carriers.DbField)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateJoin(BindOpen.Framework.Data.Queries.DbQueryJoinKind,BindOpen.Framework.Extensions.Carriers.DbTable,BindOpen.Framework.Extensions.Carriers.DbField,BindOpen.Framework.Extensions.Carriers.DbField)">
             <summary>
-            Creates a new Jointure statement.
+            Creates a new Join statement.
             </summary>
             <param name="kind">The kind to consider.</param>
             <param name="table">The table to consider.</param>
@@ -1861,7 +1861,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.JointureStatements">
+        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.JoinStatements">
             <summary>
             
             </summary>
@@ -1878,18 +1878,18 @@
             <param name="statement"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.WithJointure(BindOpen.Framework.Data.Queries.IDbQueryJointureStatement)">
+        <member name="M:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.WithJoin(BindOpen.Framework.Data.Queries.IDbQueryJoinStatement)">
             <summary>
-            Sets the specified jointure statement.
+            Sets the specified join statement.
             </summary>
-            <param name="statement">The jointure statement to consider.</param>
+            <param name="statement">The join statement to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.WithJointures(BindOpen.Framework.Data.Queries.IDbQueryJointureStatement[])">
+        <member name="M:BindOpen.Framework.Data.Queries.IDbQueryFromStatement.WithJoins(BindOpen.Framework.Data.Queries.IDbQueryJoinStatement[])">
             <summary>
-            Sets the specified jointure statement.
+            Sets the specified join statement.
             </summary>
-            <param name="statements">The DbQueryJointureStatement statements to consider.</param>
+            <param name="statements">The DbQueryJoinStatement statements to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Framework.Data.Queries.IDbQueryGroupByStatement">
@@ -1912,22 +1912,22 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Framework.Data.Queries.IDbQueryJointureStatement">
+        <member name="T:BindOpen.Framework.Data.Queries.IDbQueryJoinStatement">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJointureStatement.Condition">
+        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJoinStatement.Condition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJointureStatement.Kind">
+        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJoinStatement.Kind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJointureStatement.Table">
+        <member name="P:BindOpen.Framework.Data.Queries.IDbQueryJoinStatement.Table">
             <summary>
             
             </summary>

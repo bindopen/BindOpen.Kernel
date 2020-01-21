@@ -133,31 +133,11 @@ namespace BindOpen.Framework.Data.Queries
         #region Mutators
 
         /// <summary>
-        /// Sets the specified fields.
-        /// </summary>
-        /// <param name="fields">The fields to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IBasicDbQuery WithFields(params DbField[] fields)
-        {
-            Fields = fields?.ToList();
-            return this;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         public IBasicDbQuery From(params IDbQueryFromStatement[] statements)
         {
             FromStatements = statements?.Cast<DbQueryFromStatement>().ToList();
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBasicDbQuery WithIdFields(params DbField[] fields)
-        {
-            IdFields = fields?.ToList();
             return this;
         }
 
@@ -196,6 +176,92 @@ namespace BindOpen.Framework.Data.Queries
         {
             DataTableAlias = tableAlias;
             return this;
+        }
+
+        /// <summary>
+        /// Sets the specified fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery WithFields(params DbField[] fields)
+        {
+            Fields = fields?.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the fields using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery WithFields(Func<IBasicDbQuery, DbField[]> initiliazer)
+        {
+            return WithFields(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Adds the specified fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddField(DbField field)
+        {
+            Fields?.Add(field);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the fields using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddField(Func<IBasicDbQuery, DbField> initiliazer)
+        {
+            return AddField(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Sets the specified ID fields.
+        /// </summary>
+        /// <param name="fields">The ID fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery WithIdFields(params DbField[] fields)
+        {
+            IdFields = fields?.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the ID fields using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery WithIdFields(Func<IBasicDbQuery, DbField[]> initiliazer)
+        {
+            return WithIdFields(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Adds the specified ID field.
+        /// </summary>
+        /// <param name="field">The ID field to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddIdField(DbField field)
+        {
+            IdFields?.Add(field);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the ID field using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddIdField(Func<IBasicDbQuery, DbField> initiliazer)
+        {
+            return AddIdField(initiliazer?.Invoke(this));
         }
 
         #endregion

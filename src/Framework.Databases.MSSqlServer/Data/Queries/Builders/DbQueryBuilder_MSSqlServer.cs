@@ -282,44 +282,44 @@ namespace BindOpen.Framework.Data.Queries
             return queryString;
         }
 
-        private string GetJointureSqlText(
+        private string GetJoinSqlText(
             IDbQueryFromStatement queryFrom,
             IDataElementSet parameterSet,
             IBdoScriptVariableSet scriptVariableSet,
             IBdoLog log)
         {
             string queryString = "";
-            foreach (DbQueryJointureStatement queryJointure in queryFrom.JointureStatements)
+            foreach (DbQueryJoinStatement queryJoin in queryFrom.JoinStatements)
             {
-                switch (queryJointure.Kind)
+                switch (queryJoin.Kind)
                 {
-                    case DbQueryJointureKind.Inner:
+                    case DbQueryJoinKind.Inner:
                         {
                             queryString += " inner join ";
                             break;
                         }
-                    case DbQueryJointureKind.Left:
+                    case DbQueryJoinKind.Left:
                         {
                             queryString += " left join ";
                             break;
                         }
-                    case DbQueryJointureKind.Right:
+                    case DbQueryJoinKind.Right:
                         {
                             queryString += " right join ";
                             break;
                         }
-                    case DbQueryJointureKind.Union:
+                    case DbQueryJoinKind.Union:
                         {
                             queryString += " inner join ";
                             break;
                         }
                 }
-                queryString += GetTableSqlText(queryJointure.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
+                queryString += GetTableSqlText(queryJoin.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
 
-                if (queryJointure.Kind != DbQueryJointureKind.None)
+                if (queryJoin.Kind != DbQueryJoinKind.None)
                 {
                     queryString += " on ";
-                    string expression = _scope?.Interpreter.Interprete(queryJointure.Condition, scriptVariableSet, log) ?? String.Empty;
+                    string expression = _scope?.Interpreter.Interprete(queryJoin.Condition, scriptVariableSet, log) ?? String.Empty;
                     queryString += expression;
                 }
             }

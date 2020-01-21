@@ -1,6 +1,5 @@
 ﻿using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Elements;
-using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.System.Diagnostics;
 
@@ -24,15 +23,19 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                 DbFactory.CreateField("Field2", "table"))
             .From(
                 DbFactory.CreateFromStatement(DbFactory.CreateTable(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table"))
-                    .WithJointures(
-                        DbFactory.CreateJoinStatement(DbQueryJointureKind.Left,
-                            DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"),
-                            DbFactory.CreateField("table1key", "table1"),
-                            DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
-                        DbFactory.CreateJoinStatement(DbQueryJointureKind.Left,
-                            DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"),
-                            DbFactory.CreateField("table1key", "table2"),
-                            DbFactory.CreateField("Field1", "table"))))
+                    .Join(
+                        DbFactory.CreateJoinStatement(DbQueryJoinKind.Left, DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"))
+                            .WithCondition(
+                                DbFactory.CreateJoinCondition(
+                                    DbFactory.CreateField("table1key", "table1"),
+                                    DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")).ToString()))
+                    .Join(
+                        DbFactory.CreateJoinStatement(DbQueryJoinKind.Left, DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"))
+                            .WithCondition(
+                                DbFactory.CreateJoinCondition(
+                                    DbFactory.CreateField("table1key", "table2"),
+                                    DbFactory.CreateField("Field1", "table")).ToString()))
+            )
             .Filter(
                 filterQuery,
                 log,
@@ -61,17 +64,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     DbFactory.CreateField("Field2", "table"))
                 .From(
                     DbFactory.CreateFromStatement(DbFactory.CreateTable(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table"))
-                        .WithJointures(
-                            DbFactory.CreateJoinStatement(
-                                DbQueryJointureKind.Left,
-                                DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"),
-                                DbFactory.CreateField("table1key", "table1"),
-                                DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
-                            DbFactory.CreateJoinStatement(
-                                DbQueryJointureKind.Left,
-                                DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"),
-                                DbFactory.CreateField("table1key", "table2"),
-                                DbFactory.CreateField("Field1", "table"))))
+                        .WithJoins(
+                        //DbFactory.CreateJoinStatement(
+                        //    DbQueryJoinKind.Left,
+                        //    DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"),
+                        //    DbFactory.CreateField("table1key", "table1"),
+                        //    DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
+                        //DbFactory.CreateJoinStatement(
+                        //    DbQueryJoinKind.Left,
+                        //    DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"),
+                        //    DbFactory.CreateField("table1key", "table2"),
+                        //    DbFactory.CreateField("Field1", "table"))
+                        ))
                 .WithIdFields(DbFactory.CreateFieldAsParameter(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), "name"))
                 .WithParameters(
                     DbFactory.CreateParameter("name", DataValueType.Text, name)
@@ -93,6 +97,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         public static IDbQuery UpdateMyTable(DbMyTable table, string dataModuleName = "module")
             => DbFactory.CreateBasicUpdate("UpdateMyTable", DbFactory.CreateTable(nameof(DbMyTable).Substring(2), "schema1"))
                 .WithTableAlias("u_table1")
+
                 .WithFields(
                     DbFactory.CreateField(nameof(DbMyTable.Name), table?.Name),
                     DbFactory.CreateFieldAsQuery("fieldA",
@@ -102,12 +107,15 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                             .WithIdFields(DbFactory.CreateField("name", "myname"))))
                 .From(
                     DbFactory.CreateFromStatement(DbFactory.CreateTable(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table1"))
-                        .WithJointures(
-                            DbFactory.CreateJoinStatement(DbQueryJointureKind.Left,
-                                DbFactory.CreateTable("tableA", "schema1").WithAlias("item"),
-                                DbFactory.CreateField("idA", "tableA"),
-                                DbFactory.CreateField("idA", nameof(DbMyTable).Substring(2), "schema1"),
-                                DataOperator.Lesser)))
+                        .WithJoins(
+                        //DbFactory.CreateJoinStatement(DbQueryJoinKind.Left,
+                        //    DbFactory.CreateTable("tableA", "schema1").WithAlias("item"),
+                        //    DbFactory.CreateJoinCondition(
+                        //        DbFactory.CreateField("idA", "tableA"),
+                        //        DbFactory.CreateField("idA", nameof(DbMyTable).Substring(2), "schema1"),
+                        //        DataOperator.Lesser)))
+                        )
+                )
                 .WithIdFields(
                     DbFactory.CreateFieldAsOther("fieldA", "u_item", DbFactory.CreateField("fieldA", "item")),
                     DbFactory.CreateFieldAsLiteral(nameof(DbMyTable.Name), "table1", table?.Name, DataValueType.Text),
@@ -116,10 +124,10 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         public static IDbQuery InsertMyTable(DbMyTable table, string dataModuleName = "module")
             => DbFactory.CreateBasicInsert("InsertMyTable", DbFactory.CreateTable(nameof(DbMyTable).Substring(2), null, dataModuleName), false)
                 .WithFields(
-                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.CreationDate), "$sqlGetCurrentDate()".CreateScript()),
-                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.LastModificationDate), "$sqlGetCurrentDate()".CreateScript()),
+                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.CreationDate), "$sqlGetCurrentDate()"),
+                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.LastModificationDate), "$sqlGetCurrentDate()"),
                     DbFactory.CreateFieldAsParameter(nameof(DbMyTable.Name), "name"),
-                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.rowguid), "$sqlNewGuid()".CreateScript()),
+                    DbFactory.CreateFieldAsScript(nameof(DbMyTable.rowguid), "$sqlNewGuid()"),
                     DbFactory.CreateFieldAsParameter(nameof(DbMyTable.DisplayName), "displayName"),
                     DbFactory.CreateFieldAsParameter(nameof(DbMyTable.Description), "description")
                 )

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Data.Expression;
 using BindOpen.Framework.Extensions.Carriers;
+using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Data.Queries
@@ -46,13 +47,33 @@ namespace BindOpen.Framework.Data.Queries
 
         // Mutators ---------------------------------------
 
-
         /// <summary>
         /// Sets the specified fields.
         /// </summary>
         /// <param name="fields">The fields to consider.</param>
         /// <returns>Returns this instance.</returns>
         IAdvancedDbQuery WithFields(params DbField[] fields);
+
+        /// <summary>
+        /// Sets the fields using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery WithFields(Func<IAdvancedDbQuery, DbField[]> initiliazer);
+
+        /// <summary>
+        /// Adds the specified field.
+        /// </summary>
+        /// <param name="field">The field to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery AddField(DbField field);
+
+        /// <summary>
+        /// Sets the field using an initialization function.
+        /// </summary>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer);
 
         /// <summary>
         /// 
