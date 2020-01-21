@@ -205,7 +205,6 @@ namespace BindOpen.Framework.Data.Queries
 
         private string GetTableSqlText(
             DbTable table,
-            IBdoLog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
             IBdoScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
@@ -284,6 +283,7 @@ namespace BindOpen.Framework.Data.Queries
 
         private string GetJoinSqlText(
             IDbQueryFromStatement queryFrom,
+            IDbQuery query,
             IDataElementSet parameterSet,
             IBdoScriptVariableSet scriptVariableSet,
             IBdoLog log)
@@ -314,7 +314,13 @@ namespace BindOpen.Framework.Data.Queries
                             break;
                         }
                 }
-                queryString += GetTableSqlText(queryJoin.Table, log, DbDataFieldViewMode.CompleteNameAsAlias);
+
+                if (queryJoin.Table == null || (string.IsNullOrEmpty(queryJoin.Table.Name) && string.IsNullOrEmpty(queryJoin.Table.Alias)))
+                {
+                    queryJoin.Table = DbFactory.CreateTable(query?.DataTable).WithAlias(query?.DataTableAlias);
+                }
+
+                queryString += GetTableSqlText(queryJoin.Table, DbDataFieldViewMode.CompleteNameAsAlias);
 
                 if (queryJoin.Kind != DbQueryJoinKind.None)
                 {
@@ -323,6 +329,7 @@ namespace BindOpen.Framework.Data.Queries
                     queryString += expression;
                 }
             }
+
             if (queryFrom.UnionStatement?.Query != null)
             {
                 switch (queryFrom.UnionStatement.Type)

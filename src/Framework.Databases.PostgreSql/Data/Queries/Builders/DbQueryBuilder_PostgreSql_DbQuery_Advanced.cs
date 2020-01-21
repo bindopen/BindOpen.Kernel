@@ -78,7 +78,7 @@ namespace BindOpen.Framework.Data.Queries
                             if (index > 0)
                                 queryString += ",";
 
-                            queryString += GetJoinSqlText(queryFrom, parameterSet, scriptVariableSet, log);
+                            queryString += GetJoinSqlText(queryFrom, query, parameterSet, scriptVariableSet, log);
 
                             index++;
                         }
@@ -178,7 +178,7 @@ namespace BindOpen.Framework.Data.Queries
                                 if (index > 0)
                                     queryString += ",";
 
-                                queryString += GetJoinSqlText(queryFrom, parameterSet, scriptVariableSet, log);
+                                queryString += GetJoinSqlText(queryFrom, query, parameterSet, scriptVariableSet, log);
 
                                 index++;
                             }

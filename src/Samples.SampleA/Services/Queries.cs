@@ -26,15 +26,19 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     .Join(
                         DbFactory.CreateJoinStatement(DbQueryJoinKind.Left, DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"))
                             .WithCondition(
-                                DbFactory.CreateJoinCondition(
-                                    DbFactory.CreateField("table1key", "table1"),
-                                    DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")).ToString()))
+                                DbFactory.CreateAndCondition(
+                                    DbFactory.CreateJoinCondition(
+                                        DbFactory.CreateField("table1key", "table1"),
+                                        DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
+                                    DbFactory.CreateJoinCondition(
+                                        DbFactory.CreateField("table2key", "table2"),
+                                        DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")))))
                     .Join(
                         DbFactory.CreateJoinStatement(DbQueryJoinKind.Left, DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"))
                             .WithCondition(
                                 DbFactory.CreateJoinCondition(
                                     DbFactory.CreateField("table1key", "table2"),
-                                    DbFactory.CreateField("Field1", "table")).ToString()))
+                                    DbFactory.CreateField("Field1", "table"))))
             )
             .Filter(
                 filterQuery,
@@ -63,18 +67,20 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                     DbFactory.CreateField("Field1", "table"),
                     DbFactory.CreateField("Field2", "table"))
                 .From(
-                    DbFactory.CreateFromStatement(DbFactory.CreateTable(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table"))
+                    DbFactory.CreateFromStatement()
                         .WithJoins(
-                        //DbFactory.CreateJoinStatement(
-                        //    DbQueryJoinKind.Left,
-                        //    DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"),
-                        //    DbFactory.CreateField("table1key", "table1"),
-                        //    DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
-                        //DbFactory.CreateJoinStatement(
-                        //    DbQueryJoinKind.Left,
-                        //    DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"),
-                        //    DbFactory.CreateField("table1key", "table2"),
-                        //    DbFactory.CreateField("Field1", "table"))
+                            DbFactory.CreateJoinStatement(
+                                DbQueryJoinKind.Left,
+                                DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table1"),
+                                DbFactory.CreateJoinCondition(
+                                    DbFactory.CreateField("table1key", "table1"),
+                                    DbFactory.CreateField(nameof(DbMyTable.ExecutionStatusReferenceId), "table"))),
+                            DbFactory.CreateJoinStatement(
+                                DbQueryJoinKind.Left,
+                                DbFactory.CreateTable("DbTable1".Substring(2), "schema2").WithAlias("table2"),
+                                DbFactory.CreateJoinCondition(
+                                    DbFactory.CreateField("table1key", "table2"),
+                                    DbFactory.CreateField("Field1", "table")))
                         ))
                 .WithIdFields(DbFactory.CreateFieldAsParameter(nameof(DbMyTable.Name), nameof(DbMyTable).Substring(2), "name"))
                 .WithParameters(

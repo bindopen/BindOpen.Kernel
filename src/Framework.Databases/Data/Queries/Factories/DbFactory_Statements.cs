@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new From statement.</returns>
         public static IDbQueryFromStatement CreateFromStatement(DbTable table = null)
             => new DbQueryFromStatement()
-                .Join(CreateJoinStatement(table));
+                .Join(CreateJoinStatement(DbQueryJoinKind.None, table));
 
         // Join --------------------------------
 
