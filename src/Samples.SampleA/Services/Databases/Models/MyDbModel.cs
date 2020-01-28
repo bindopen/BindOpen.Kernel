@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Data.Common;
+using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Models;
 using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Extensions.Carriers;
@@ -157,19 +158,19 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
 
                     if (!isPartialUpdate || employee?.Code?.Length > 0)
                     {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code", nameof(DbEmployee.Code))));
+                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code")));
                     }
                     if (!isPartialUpdate || employee?.ContactEmail?.Length > 0)
                     {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), p.UseParameter("contactEmail", nameof(DbEmployee.ContactEmail))));
+                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), p.UseParameter("contactEmail")));
                     }
                     if (!isPartialUpdate || employee?.FisrtName?.Length > 0)
                     {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), p.UseParameter("fisrtName", nameof(DbEmployee.FisrtName))));
+                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), p.UseParameter("fisrtName")));
                     }
                     if (!isPartialUpdate || employee?.LastName?.Length > 0)
                     {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), p.UseParameter("lastName", nameof(DbEmployee.LastName))));
+                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), p.UseParameter("lastName")));
                     }
                     //if (!isPartialUpdate || employee?.RegionalDirectorateId?.Length > 0)
                     //{
@@ -177,11 +178,16 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                     //}
                     if (!isPartialUpdate || employee?.StaffNumber?.Length > 0)
                     {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), p.UseParameter("staffNumber", nameof(DbEmployee.StaffNumber))));
+                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), p.UseParameter("staffNumber")));
                     }
 
                     return query;
-                });
+                }).UsingParameters(
+                    ElementSpecFactory.Create("code", DataValueType.Text),
+                    ElementSpecFactory.Create("contactEmail", DataValueType.Text),
+                    ElementSpecFactory.Create("fisrtName", DataValueType.Text),
+                    ElementSpecFactory.Create("lastName", DataValueType.Text),
+                    ElementSpecFactory.Create("staffNumber", DataValueType.Text));
         }
 
         /// <summary>
