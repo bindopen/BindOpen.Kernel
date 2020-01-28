@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Application.Services
         /// <param name="connector">The connector to consider.</param>
         protected BdoDbService(IBdoConnector connector)
         {
-            SetConnector(connector);
+            WithConnector(connector);
         }
     }
 }

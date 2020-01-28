@@ -12,15 +12,15 @@ namespace BindOpen.Framework.Data.Depots
     public static class BdoDatasourceExtensions
     {
         /// <summary>
-        /// Add a database queries depot into the specified data store executing the specified action.
+        /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
         /// <param name="dataStore">The data store to consider.</param>
         /// <param name="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasourceDepot(
+        public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore,
             Action<IBdoDatasourceDepot> action) =>
-            RegisterDatasourceDepot(dataStore, (d, l) => action?.Invoke(d));
+            RegisterDatasources(dataStore, (d, l) => action?.Invoke(d));
 
         /// <summary>
         /// Add a data source depot into the specified data store using the specified options.
@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Data.Depots
         /// <param name="dataStore">The data store to consider.</param>
         /// <param name="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasourceDepot(
+        public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore,
             Action<IBdoDatasourceDepot, IBdoLog> action)
         {

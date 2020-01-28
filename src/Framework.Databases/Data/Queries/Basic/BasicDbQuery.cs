@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Extensions.Carriers;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,40 @@ namespace BindOpen.Framework.Data.Queries
         // ------------------------------------------
 
         #region Accessors
+
+        /// <summary>
+        /// Gets the name of this instance.
+        /// </summary>
+        /// <returns>Returns the name of this instance.</returns>
+        /// <remarks>If the name of this instance is empty or null then the returned name is determined from this instance's properties.</remarks>
+        public override string GetName()
+        {
+            var st = base.GetName();
+
+
+            if (string.IsNullOrEmpty(st))
+            {
+                st += Schema.ConcatenateIfNotEmpty("_");
+
+                if (!string.IsNullOrEmpty(DataTableAlias) || !string.IsNullOrEmpty(DataTable))
+                {
+                    st += (DataTableAlias ?? DataTable) + "_";
+                }
+                else if (FromStatements != null && FromStatements.Count > 0
+                    && FromStatements[0].JoinStatements != null && FromStatements[0].JoinStatements.Count > 0)
+                {
+                    var table = FromStatements[0].JoinStatements[0].Table;
+                    if (!string.IsNullOrEmpty(table?.Alias) || !string.IsNullOrEmpty(table?.Name))
+                    {
+                        st += (table.Alias ?? table.Name) + "_";
+                    }
+                }
+
+                st += Kind;
+            }
+
+            return st;
+        }
 
         /// <summary>
         /// Gets the data field with the specified bound data field name.

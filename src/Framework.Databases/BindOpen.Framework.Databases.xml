@@ -1427,79 +1427,79 @@
         </member>
         <member name="T:BindOpen.Framework.Data.Queries.DbFactory">
             <summary>
-            This class represents a factory of database query.
+            This class represents a fluent factory of database query.
             </summary>
             <summary>
-            This class represents a factory of database query.
+            This class represents a fluent factory of database query.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDelete(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
-            <summary>
-            Creates a new Delete basic database query.
-            </summary>
-            <returns>Returns a new Delete basic database query</returns>
-        </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDelete(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DeleteBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Delete basic database query.
             </summary>
             <returns>Returns a new Delete basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDrop(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DeleteBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
+            <summary>
+            Creates a new Delete basic database query.
+            </summary>
+            <returns>Returns a new Delete basic database query</returns>
+        </member>
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DropBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Drop basic database query.
             </summary>
             <returns>Returns a new Drop basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDrop(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DropBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Drop basic database query.
             </summary>
             <returns>Returns a new Drop basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDuplicate(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Duplicate basic database query.
             </summary>
             <returns>Returns a new Duplicate basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicDuplicate(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Duplicate basic database query.
             </summary>
             <returns>Returns a new Duplicate basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicInsert(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Insert basic database query.
             </summary>
             <returns>Returns a new Insert basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicInsert(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Insert basic database query.
             </summary>
             <returns>Returns a new Insert basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicSelect(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.SelectBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Select basic database query.
             </summary>
             <returns>Returns a new Select basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicSelect(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.SelectBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Select basic database query.
             </summary>
             <returns>Returns a new Select basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicUpdate(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.UpdateBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Update basic database query.
             </summary>
             <returns>Returns a new Update basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateBasicUpdate(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.UpdateBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Update basic database query.
             </summary>
@@ -1529,49 +1529,49 @@
             </summary>
             <returns>Returns a new Drop advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedDuplicate(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Duplicate advanced database query.
             </summary>
             <returns>Returns a new Duplicate advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedDuplicate(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Duplicate advanced database query.
             </summary>
             <returns>Returns a new Duplicate advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedInsert(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Insert advanced database query.
             </summary>
             <returns>Returns a new Insert advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedInsert(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Insert advanced database query.
             </summary>
             <returns>Returns a new Insert advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedSelect(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.SelectAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Select advanced database query.
             </summary>
             <returns>Returns a new Select advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedSelect(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.SelectAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Select advanced database query.
             </summary>
             <returns>Returns a new Select advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedUpdate(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.UpdateAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Update advanced database query.
             </summary>
             <returns>Returns a new Update advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.CreateAdvancedUpdate(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.UpdateAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
             Creates a new Update advanced database query.
             </summary>

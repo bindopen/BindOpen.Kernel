@@ -55,26 +55,6 @@ namespace BindOpen.Framework.Extensions.Runtime
 
         #endregion
 
-        //// ------------------------------------------
-        //// MUTators
-        //// ------------------------------------------
-
-        //#region Mutators
-
-        ///// <summary>
-        ///// Updates the connection string with the specified string.
-        ///// </summary>
-        ///// <param name="connectionString">The connection string to consider.</param>
-        //new IBdoConnector WithConnectionString(string connectionString = null);
-
-        ///// <summary>
-        ///// Updates the instance considering the specified scope.
-        ///// </summary>
-        ///// <param name="scope">The scope to consider.</param>
-        //new IBdoDbConnector WithScope(IBdoScope scope);
-
-        //#endregion
-
         // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
@@ -86,15 +66,15 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
-        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <returns>Returns the built query text.</returns>
         string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
+            bool isParametersInjected = false,
             IDataElementSet parameterSet = null,
-            bool isParametersInjected = true,
             IBdoScriptVariableSet scriptVariableSet = null);
 
 
@@ -123,69 +103,42 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// </summary>
         /// <param name="query">The query to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         string CreateCommandText(
             IDbQuery query,
-            bool isParametersInjected = false,
+            bool isParametersInjected,
+            IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Gets the SQL text of the specified query.
+        /// Creates a command from the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
-        /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        string CreateCommandText(
+        /// <returns>Returns the database command.</returns>
+        IDbCommand CreateCommand(
             IDbQuery query,
-            IDataElementSet parameterSet,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 
         /// <summary>
-        /// Gets the SQL text of the specified query.
+        /// Creates a command from the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
+        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        string CreateCommandText(
-            IDbQuery query,
-            IDataElementSet parameterSet,
-            bool isParametersInjected = false,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// Creates a command from the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
         /// <returns>Returns the database command.</returns>
         IDbCommand CreateCommand(
             IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// Creates a command from the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="parameterSet">The parameter elements to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>Returns the database command.</returns>
-        IDbCommand CreateCommand(
-            IDbQuery query,
-            IDataElementSet parameterSet,
+            bool isParametersInjected,
+            IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 

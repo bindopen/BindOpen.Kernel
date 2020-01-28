@@ -5,7 +5,7 @@ namespace BindOpen.Framework.Data.Queries
     /// <summary>
     /// This class represents a stored data query.
     /// </summary>
-    public class StoredDbQuery : DbQuery, IStoredDbQuery
+    public class DbStoredQuery : DbQuery, IDbStoredQuery
     {
         // ------------------------------------------
         // PROPERTIES
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the StoredDbQuery class.
         /// </summary>
-        public StoredDbQuery()
+        public DbStoredQuery()
         {
         }
 
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="query">The query to consider.</param>
         /// <param name="name">The name of the query to consider.</param>
-        public StoredDbQuery(IDbQuery query, string name = null)
+        public DbStoredQuery(IDbQuery query, string name = null)
         {
             Query = query;
             Name = name;
@@ -62,6 +62,24 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <returns>Returns the key of the item.</returns>
         public override string Key() => Name;
+
+        /// <summary>
+        /// Gets the name of this instance.
+        /// </summary>
+        /// <returns>Returns the name of this instance.</returns>
+        /// <remarks>If the name of this instance is empty or null then the returned name is determined from this instance's properties.</remarks>
+        public override string GetName()
+        {
+            var st = base.GetName();
+
+
+            if (string.IsNullOrEmpty(st))
+            {
+                st = Query?.GetName();
+            }
+
+            return st;
+        }
 
         #endregion
     }
