@@ -1,13 +1,13 @@
 ﻿using BindOpen.Framework.Data.Items;
 using System;
 
-namespace BindOpen.Framework.Data.Queries
+namespace BindOpen.Framework.Data.Models
 {
     /// <summary>
     /// This class represents a database precompiled query attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class StoredDbQueryAttribute : DescribedDataItemAttribute
+    public class DbQueryAttribute : DescribedDataItemAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -16,17 +16,17 @@ namespace BindOpen.Framework.Data.Queries
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the PrecompiledDbQueryAttribute class.
+        /// Instantiates a new instance of the DbQueryAttribute class.
         /// </summary>
-        public StoredDbQueryAttribute() : base()
+        public DbQueryAttribute() : base()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the PrecompiledDbQueryAttribute class.
+        /// Instantiates a new instance of the DbQueryAttribute class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        public StoredDbQueryAttribute(string name) : base()
+        public DbQueryAttribute(string name) : base()
         {
             Name = name;
         }

@@ -3,6 +3,7 @@ using BindOpen.Framework.Application.Services;
 using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Extensions.References;
 using BindOpen.Framework.Samples.SampleA.Services;
+using BindOpen.Framework.Samples.SampleA.Services.Databases;
 using BindOpen.Framework.Samples.SampleA.Settings;
 using BindOpen.Framework.System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,8 +25,8 @@ namespace BindOpen.Framework.Samples.SampleA
                             .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
                             .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
                             .AddDataStore(s => s
-                                .RegisterDatasourceDepot(m => m.AddFromConfiguration(options))
-                                .RegisterDbQueryDepot((m, l) => m.AddFromAssembly<TestService>(l)))
+                                .RegisterDatasources(m => m.AddFromConfiguration(options))
+                                .RegisterDbModels((m, l) => m.AddFromAssembly<TestService>(l)))
                             .AddExtensions(q => q.AddPostgreSql())
                             .SetHostSettingsFile(false)
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
@@ -39,7 +40,9 @@ namespace BindOpen.Framework.Samples.SampleA
                                 Service_Command.Process(host, log);
                             })
                     )
-                   .AddTransientConnectedService<IBdoDbService, TestDbRepository>(host => host.CreateMSSqlServerConnector().WithConnectionString("mlmlm"))
+                   .AddTransientConnectedService<IBdoDbService, TestDbRepository>(host =>
+                        new TestDbRepository(host.GetModel<MyDbModel>())
+                            .WithConnector(host.CreateMSSqlServerConnector("mlmlm")) as TestDbRepository)
                    .AddBindOpenService<TestService, TestServiceSettings, TestAppSettings>(null, p =>
                        {
                            TestAppSettings appSettings = p as TestAppSettings;

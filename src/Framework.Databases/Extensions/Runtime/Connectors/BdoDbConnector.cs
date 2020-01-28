@@ -193,10 +193,10 @@ namespace BindOpen.Framework.Extensions.Runtime
         public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
+            bool isParametersInjected = false,
             IDataElementSet parameterSet = null,
-            bool isParametersInjected = true,
             IBdoScriptVariableSet scriptVariableSet = null)
-            => QueryBuilder?.BuildSqlText(query, log, parameterSet, isParametersInjected, scriptVariableSet);
+            => QueryBuilder?.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);
 
         // SQL commands
 
@@ -208,38 +208,9 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string CreateCommandText(
-        IDbQuery query,
-        IBdoScriptVariableSet scriptVariableSet = null,
-        IBdoLog log = null) => CreateCommandText(query, false, scriptVariableSet, log);
-
-        /// <summary>
-        /// Gets the SQL text of the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        public string CreateCommandText(
             IDbQuery query,
-            bool isParametersInjected = false,
             IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommandText(query, null, isParametersInjected, scriptVariableSet, log);
-
-        /// <summary>
-        /// Gets the SQL text of the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="parameterSet">The parameter elements to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        public string CreateCommandText(
-            IDbQuery query,
-            IDataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommandText(query, null, false, scriptVariableSet, log);
+            IBdoLog log = null) => CreateCommandText(query, false, null, scriptVariableSet, log);
 
         /// <summary>
         /// Gets the SQL text of the specified query.
@@ -252,8 +223,8 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string CreateCommandText(
             IDbQuery query,
-            IDataElementSet parameterSet,
-            bool isParametersInjected = false,
+            bool isParametersInjected,
+            IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
@@ -262,7 +233,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             if (QueryBuilder == null)
                 log.AddError("Data builder missing");
             else
-                sqlText = QueryBuilder.BuildSqlText(query, log, parameterSet, isParametersInjected, scriptVariableSet);
+                sqlText = QueryBuilder.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);
 
             return sqlText;
         }
@@ -277,19 +248,21 @@ namespace BindOpen.Framework.Extensions.Runtime
         public IDbCommand CreateCommand(
             IDbQuery query,
             IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommand(query, null, scriptVariableSet, log);
+            IBdoLog log = null) => CreateCommand(query, false, null, scriptVariableSet, log);
 
         /// <summary>
         /// Creates a command from the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
+        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the database command.</returns>
         public abstract IDbCommand CreateCommand(
             IDbQuery query,
-            IDataElementSet parameterSet,
+            bool isParametersInjected,
+            IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 

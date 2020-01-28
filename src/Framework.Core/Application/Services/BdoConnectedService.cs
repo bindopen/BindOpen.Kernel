@@ -34,16 +34,18 @@ namespace BindOpen.Framework.Application.Services
         /// <param name="connector">The connector to consider.</param>
         protected BdoConnectedService(IBdoConnector connector)
         {
-            SetConnector(connector);
+            WithConnector(connector);
         }
 
         /// <summary>
         /// Sets the specified connector.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        public void SetConnector(IBdoConnector connector)
+        public IBdoConnectedService WithConnector(IBdoConnector connector)
         {
             _connector = connector;
+
+            return this;
         }
 
         // ------------------------------------------

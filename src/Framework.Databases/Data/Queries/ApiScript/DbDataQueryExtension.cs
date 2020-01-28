@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Data.Queries
                             }
                             else
                             {
-                                if (clause.Field == null) clause.Field = DbFactory.CreateField(fieldName);
+                                if (clause.Field == null) clause.Field = DbFluent.Field(fieldName);
 
                                 if (aOperator == DataOperator.Has)
                                 {
@@ -258,7 +258,7 @@ namespace BindOpen.Framework.Data.Queries
                         }
                         else
                         {
-                            statement.Field = definition?[fieldName]?.Field ?? DbFactory.CreateField(fieldName);
+                            statement.Field = definition?[fieldName]?.Field ?? DbFluent.Field(fieldName);
                             statement.Sorting = DataSortingMode.Ascending;
 
                             if (fieldItemParams.Length > 1)

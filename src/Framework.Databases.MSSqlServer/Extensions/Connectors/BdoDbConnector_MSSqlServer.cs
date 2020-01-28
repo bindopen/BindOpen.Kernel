@@ -85,17 +85,19 @@ namespace BindOpen.Framework.Extensions.Connectors
         /// Creates a command from the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
+        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the database command.</returns>
         public override IDbCommand CreateCommand(
             IDbQuery query,
-            IDataElementSet parameterSet,
+            bool isParametersInjected,
+            IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            var command = new SqlCommand();
+            var command = new SqlCommand(CreateCommandText(query, false, parameterSet, scriptVariableSet, log));
 
             if (query.ParameterSet != null)
             {

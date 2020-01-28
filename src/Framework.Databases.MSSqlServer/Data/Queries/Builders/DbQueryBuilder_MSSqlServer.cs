@@ -317,7 +317,7 @@ namespace BindOpen.Framework.Data.Queries
 
                 if (queryJoin.Table == null || (string.IsNullOrEmpty(queryJoin.Table.Name) && string.IsNullOrEmpty(queryJoin.Table.Alias)))
                 {
-                    queryJoin.Table = DbFactory.CreateTable(query?.DataTable).WithAlias(query?.DataTableAlias);
+                    queryJoin.Table = DbFluent.Table(query?.DataTable).WithAlias(query?.DataTableAlias);
                 }
 
                 queryString += GetTableSqlText(queryJoin.Table, DbDataFieldViewMode.CompleteNameAsAlias);
@@ -340,7 +340,7 @@ namespace BindOpen.Framework.Data.Queries
                             break;
                         }
                 }
-                string subQuery = BuildSqlText(queryFrom.UnionStatement.Query, log, parameterSet, false, scriptVariableSet);
+                string subQuery = BuildSqlText(queryFrom.UnionStatement.Query, log, false, parameterSet, scriptVariableSet);
                 queryString += "(" + subQuery + ")";
             }
 

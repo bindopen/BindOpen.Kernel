@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Application.Services
             var repo = new T();
 
             var subLog = new BdoLog();
-            repo.SetConnector(initializer?.Invoke(scope, subLog));
+            repo.WithConnector(initializer?.Invoke(scope, subLog));
             subLog.AddEventsTo(log);
 
 

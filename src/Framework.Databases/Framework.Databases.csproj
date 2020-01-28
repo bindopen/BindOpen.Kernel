@@ -23,7 +23,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Models\Attributes\**" />
+    <EmbeddedResource Remove="Data\Models\Attributes\**" />
+    <None Remove="Data\Models\Attributes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="BindOpen.Extension" />
+    <None Remove="Data\Depots\DbQueries\jdd13csm.2lw~" />
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
     <None Remove="Extensions\Connectors\BindOpen.Connectors" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />

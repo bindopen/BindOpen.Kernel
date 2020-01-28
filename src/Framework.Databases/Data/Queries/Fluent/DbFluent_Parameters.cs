@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Data.Queries
     /// <summary>
     /// This static class represents a factory of data query parameter.
     /// </summary>
-    public static partial class DbFactory
+    public static partial class DbFluent
     {
         // As parameter -----
 
@@ -15,11 +15,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The data table to consider.</param>
-        public static IDataElement CreateParameter(
+        public static IDataElement Parameter(
             string name,
             object value = null)
         {
-            return DbFactory.CreateParameter(name, DataValueType.Any, value);
+            return DbFluent.Parameter(name, DataValueType.Any, value);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The data value type to consider.</param>
         /// <param name="value">The data table to consider.</param>
-        public static IDataElement CreateParameter(
+        public static IDataElement Parameter(
             string name,
             DataValueType valueType,
             object value)
@@ -41,6 +41,6 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="parameter">The parameter to consider.</param>
         /// <returns>Returns the string corresponding to the specified parameter.</returns>
-        public static string CreateParameterString(this IDataElement parameter) => "@" + parameter?.Name ?? parameter.Index.ToString();
+        internal static string CreateParameterString(this IDataElement parameter) => "@" + parameter?.Name ?? parameter.Index.ToString();
     }
 }

@@ -498,6 +498,17 @@ namespace BindOpen.Framework.Data.Helpers.Strings
         }
 
         /// <summary>
+        /// Concatenates the first string with the second only if the first one is not empty.
+        /// </summary>
+        /// <param name="st1">The first string to concatenate.</param>
+        /// <param name="st2">The second string to concatenate.</param>
+        /// <returns>Returns the concatenated string.</returns>
+        public static string ConcatenateIfNotEmpty(this string st1, string st2)
+        {
+            return string.IsNullOrEmpty(st1) ? st1 : st1 + st2;
+        }
+
+        /// <summary>
         /// Excludes the specified string items from the specified string items.
         /// </summary>
         /// <param name="stringItems">The string items to consider.</param>

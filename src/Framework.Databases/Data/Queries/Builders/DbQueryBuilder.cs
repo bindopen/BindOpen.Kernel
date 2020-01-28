@@ -78,15 +78,15 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
-        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <returns>Returns the built query text.</returns>
         public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
+            bool isParametersInjected = false,
             IDataElementSet parameterSet = null,
-            bool isParametersInjected = true,
             IBdoScriptVariableSet scriptVariableSet = null)
         {
             var queryString = "";
@@ -105,11 +105,11 @@ namespace BindOpen.Framework.Data.Queries
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
                         queryString = Build(advancedDbQuery, log, parameterSet, scriptVariableSet);
                     }
-                    else if (query is StoredDbQuery storedDbQuery)
+                    else if (query is DbStoredQuery storedDbQuery)
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            queryString = BuildSqlText(storedDbQuery.Query, log, parameterSet, false, scriptVariableSet);
+                            queryString = BuildSqlText(storedDbQuery.Query, log, false, parameterSet, scriptVariableSet);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
 

@@ -157,6 +157,16 @@ namespace BindOpen.Framework.Data.Queries
         #region Accessors
 
         /// <summary>
+        /// Gets the name of this instance.
+        /// </summary>
+        /// <returns>Returns the name of this instance.</returns>
+        /// <remarks>If the name of this instance is empty or null then the returned name is determined from this instance's properties.</remarks>
+        public virtual string GetName()
+        {
+            return Name;
+        }
+
+        /// <summary>
         /// Gets the data field with the specified bound data field name.
         /// </summary>
         /// <param name="boundFieldName">Name of the bound data field.</param>

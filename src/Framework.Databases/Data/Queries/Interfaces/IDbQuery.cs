@@ -105,6 +105,13 @@ namespace BindOpen.Framework.Data.Queries
         IDbQuery UsingParameters(params IDataElementSpec[] parameterSpecs);
 
         /// <summary>
+        /// Gets the name of this instance.
+        /// </summary>
+        /// <returns>Returns the name of this instance.</returns>
+        /// <remarks>If the name of this instance is empty or null then the returned name is determined from this instance's properties.</remarks>
+        string GetName();
+
+        /// <summary>
         /// Adds the specified parameter to this instance.
         /// </summary>
         /// <param name="name">The name to consider.</param>

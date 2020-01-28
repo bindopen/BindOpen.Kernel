@@ -17,6 +17,6 @@ namespace BindOpen.Framework.Application.Services
         /// Set the specified connector.
         /// </summary>
         /// <param name="connector">The BindOpen connector to consider.</param>
-        void SetConnector(IBdoConnector connector);
+        IBdoConnectedService WithConnector(IBdoConnector connector);
     }
 }

@@ -9,7 +9,7 @@ namespace BindOpen.Framework.Data.Queries
     /// <summary>
     /// This static class represents a factory of data field.
     /// </summary>
-    public static partial class DbFactory
+    public static partial class DbFluent
     {
         /// <summary>
         /// Creates a new instance of the DbField class.
@@ -18,7 +18,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
-        public static DbField CreateField(
+        public static DbField Field(
             string name = null,
             string tableName = null,
             string schema = null,
@@ -38,10 +38,10 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
-        public static DbField CreateField(
+        public static DbField Field(
             string name,
             DbTable table)
-            => CreateField(name, table?.Name, table?.Schema, table?.DataModule);
+            => Field(name, table?.Name, table?.Schema, table?.DataModule);
 
         // As literal -----
 
@@ -51,12 +51,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The value to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static DbField CreateFieldAsLiteral(
+        public static DbField FieldAsLiteral(
             string name,
             object value,
             DataValueType valueType = DataValueType.Any)
         {
-            return CreateFieldAsLiteral(name, null, null, null, value, valueType);
+            return FieldAsLiteral(name, null, null, null, value, valueType);
         }
 
         /// <summary>
@@ -66,13 +66,13 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsLiteral(
+        public static DbField FieldAsLiteral(
             string name,
             string tableName,
             object value,
             DataValueType valueType = DataValueType.None)
         {
-            return CreateFieldAsLiteral(name, tableName, null, null, value, valueType);
+            return FieldAsLiteral(name, tableName, null, null, value, valueType);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsLiteral(
+        public static DbField FieldAsLiteral(
             string name,
             string tableName,
             string schema,
@@ -92,7 +92,7 @@ namespace BindOpen.Framework.Data.Queries
             object value,
             DataValueType valueType = DataValueType.None)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.Text;
             if (value != null)
                 field.Value = value.ToString(valueType).CreateLiteral();
@@ -106,12 +106,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="table">The data table to consider.</param>
         /// <param name="value">The value to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static DbField CreateFieldAsLiteral(
+        public static DbField FieldAsLiteral(
             string name,
             DbTable table,
             object value,
             DataValueType valueType = DataValueType.None)
-            => CreateFieldAsLiteral(name, table?.Name, table?.Schema, table?.DataModule, value, valueType);
+            => FieldAsLiteral(name, table?.Name, table?.Schema, table?.DataModule, value, valueType);
 
         // As script -----
 
@@ -120,11 +120,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsScript(
+        public static DbField FieldAsScript(
             string name,
             string value)
         {
-            return CreateFieldAsScript(name, null, null, null, value);
+            return FieldAsScript(name, null, null, null, value);
         }
 
         /// <summary>
@@ -133,12 +133,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsScript(
+        public static DbField FieldAsScript(
             string name,
             string tableName,
             string value)
         {
-            return CreateFieldAsScript(name, tableName, null, null, value);
+            return FieldAsScript(name, tableName, null, null, value);
         }
 
         /// <summary>
@@ -149,14 +149,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsScript(
+        public static DbField FieldAsScript(
             string name,
             string tableName,
             string schema,
             string dataModule,
             string value)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.Text;
             if (value != null)
             {
@@ -171,11 +171,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public static DbField CreateFieldAsScript(
+        public static DbField FieldAsScript(
             string name,
             DbTable table,
             string value)
-            => CreateFieldAsScript(name, table?.Name, table?.Schema, table?.DataModule, value);
+            => FieldAsScript(name, table?.Name, table?.Schema, table?.DataModule, value);
 
         // As query -----
 
@@ -184,11 +184,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public static DbField CreateFieldAsQuery(
+        public static DbField FieldAsQuery(
             string name,
             IDbQuery query)
         {
-            return CreateFieldAsQuery(name, null, null, null, query);
+            return FieldAsQuery(name, null, null, null, query);
         }
 
         /// <summary>
@@ -197,12 +197,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public static DbField CreateFieldAsQuery(
+        public static DbField FieldAsQuery(
             string name,
             string tableName,
             IDbQuery query)
         {
-            return CreateFieldAsQuery(name, tableName, null, null, query);
+            return FieldAsQuery(name, tableName, null, null, query);
         }
 
         /// <summary>
@@ -213,14 +213,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public static DbField CreateFieldAsQuery(
+        public static DbField FieldAsQuery(
             string name,
             string tableName,
             string schema,
             string dataModule,
             IDbQuery query)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
             field.Query = query as DbQuery;
             return field;
@@ -232,11 +232,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public static DbField CreateFieldAsQuery(
+        public static DbField FieldAsQuery(
             string name,
             DbTable table,
             IDbQuery query)
-            => CreateFieldAsQuery(name, table?.Name, table?.Schema, table?.DataModule, query);
+            => FieldAsQuery(name, table?.Name, table?.Schema, table?.DataModule, query);
 
         // As other -----
 
@@ -245,11 +245,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="otherField">The other field to consider.</param>
-        public static DbField CreateFieldAsOther(
+        public static DbField FieldAsOther(
             string name,
             DbField otherField)
         {
-            return CreateFieldAsOther(name, null, null, null, otherField);
+            return FieldAsOther(name, null, null, null, otherField);
         }
 
         /// <summary>
@@ -258,12 +258,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="otherField">The other field to consider.</param>
-        public static DbField CreateFieldAsOther(
+        public static DbField FieldAsOther(
             string name,
             string tableName,
             DbField otherField)
         {
-            return CreateFieldAsOther(name, tableName, null, null, otherField);
+            return FieldAsOther(name, tableName, null, null, otherField);
         }
 
         /// <summary>
@@ -274,14 +274,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="otherField">The other field to consider.</param>
-        public static DbField CreateFieldAsOther(
+        public static DbField FieldAsOther(
             string name,
             string tableName,
             string schema,
             string dataModule,
             DbField otherField)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.Value = otherField.ToDataExpression();
             return field;
         }
@@ -292,11 +292,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="otherField">The other field to consider.</param>
-        public static DbField CreateFieldAsOther(
+        public static DbField FieldAsOther(
             string name,
             DbTable table,
             DbField otherField)
-            => CreateFieldAsOther(name, table?.Name, table?.Schema, table?.DataModule, otherField);
+            => FieldAsOther(name, table?.Name, table?.Schema, table?.DataModule, otherField);
 
         // As All
 
@@ -306,7 +306,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
-        public static DbField CreateFieldAsAll(
+        public static DbField FieldAsAll(
             string tableName = null,
             string schema = null,
             string dataModule = null)
@@ -323,8 +323,8 @@ namespace BindOpen.Framework.Data.Queries
         /// Creates a new instance of the DbField class.
         /// </summary>
         /// <param name="table">The data table to consider.</param>
-        public static DbField CreateFieldAsAll(DbTable table)
-            => CreateFieldAsAll(table?.Name, table?.Schema, table?.DataModule);
+        public static DbField FieldAsAll(DbTable table)
+            => FieldAsAll(table?.Name, table?.Schema, table?.DataModule);
 
         // As parameter with name -----
 
@@ -333,11 +333,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string parameterName)
         {
-            return CreateFieldAsParameter(name, null, null, null, parameterName);
+            return FieldAsParameter(name, null, null, null, parameterName);
         }
 
         /// <summary>
@@ -346,12 +346,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             string parameterName)
         {
-            return CreateFieldAsParameter(name, tableName, null, null, parameterName);
+            return FieldAsParameter(name, tableName, null, null, parameterName);
         }
 
         /// <summary>
@@ -362,14 +362,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             string schema,
             string dataModule,
             string parameterName)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
             field.Value = CreateParameterString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
             return field;
@@ -381,11 +381,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             DbTable table,
             string parameterName)
-            => CreateFieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterName);
+            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterName);
 
         // As parameter with index -----
 
@@ -394,11 +394,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             byte parameterIndex)
         {
-            return CreateFieldAsParameter(name, null, null, null, parameterIndex);
+            return FieldAsParameter(name, null, null, null, parameterIndex);
         }
 
         /// <summary>
@@ -407,12 +407,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             byte parameterIndex)
         {
-            return CreateFieldAsParameter(name, tableName, null, null, parameterIndex);
+            return FieldAsParameter(name, tableName, null, null, parameterIndex);
         }
 
         /// <summary>
@@ -423,14 +423,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             string schema,
             string dataModule,
             byte parameterIndex)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
             field.Value = CreateParameterString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
             return field;
@@ -442,11 +442,11 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             DbTable table,
             byte parameterIndex)
-            => CreateFieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterIndex);
+            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterIndex);
 
         // As parameter with parameter -----
 
@@ -455,11 +455,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="parameter">The parameter to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             IDataElement parameter)
         {
-            return CreateFieldAsParameter(name, null, null, null, parameter);
+            return FieldAsParameter(name, null, null, null, parameter);
         }
 
         /// <summary>
@@ -468,12 +468,12 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="tableName">The data table to consider.</param>
         /// <param name="parameter">The parameter to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             IDataElement parameter)
         {
-            return CreateFieldAsParameter(name, tableName, null, null, parameter);
+            return FieldAsParameter(name, tableName, null, null, parameter);
         }
 
         /// <summary>
@@ -484,14 +484,14 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="schema">The schema to consider.</param>
         /// <param name="dataModule">The data module to consider.</param>
         /// <param name="parameter">The parameter to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             string tableName,
             string schema,
             string dataModule,
             IDataElement parameter)
         {
-            var field = CreateField(name, tableName, schema, dataModule);
+            var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
             field.Value = CreateParameterString(parameter).CreateLiteral();
             return field;
@@ -503,10 +503,10 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="table">The data table to consider.</param>
         /// <param name="parameter">The parameter to consider.</param>
-        public static DbField CreateFieldAsParameter(
+        public static DbField FieldAsParameter(
             string name,
             DbTable table,
             IDataElement parameter)
-            => CreateFieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameter);
+            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameter);
     }
 }
