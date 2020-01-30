@@ -275,28 +275,28 @@
             <param name="dataTable"></param>
             <param name="log"></param>
         </member>
-        <member name="T:BindOpen.Framework.Data.Depots.BdoDbQueryDepot">
+        <member name="T:BindOpen.Framework.Data.Depots.BdoDbModel">
             <summary>
             This class represents a data queries depot.
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Depots.BdoDbQueryDepot.Queries">
+        <member name="P:BindOpen.Framework.Data.Depots.BdoDbModel.Queries">
             <summary>
             Queries of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryDepot.#ctor">
+        <member name="M:BindOpen.Framework.Data.Depots.BdoDbModel.#ctor">
             <summary>
-            Instantiates a new instance of the BdoDbQueryDepot class.
+            Instantiates a new instance of the BdoDbModel class.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryDepot.#ctor(BindOpen.Framework.Data.Queries.DbQuery[])">
+        <member name="M:BindOpen.Framework.Data.Depots.BdoDbModel.#ctor(BindOpen.Framework.Data.Queries.DbQuery[])">
             <summary>
-            Instantiates a new instance of the BdoDbQueryDepot class.
+            Instantiates a new instance of the BdoDbModel class.
             </summary>
             <param name="queries">The queries to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryDepot.GetQuery(System.String)">
+        <member name="M:BindOpen.Framework.Data.Depots.BdoDbModel.GetQuery(System.String)">
             <summary>
             Gets the database query with the specified name.
             </summary>
@@ -308,7 +308,7 @@
             This class represents an data queries factory.
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryExtensions.RegisterDbQueryDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore,System.Action{BindOpen.Framework.Data.Depots.IBdoDbQueryDepot})">
+        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryExtensions.RegisterDbModel(BindOpen.Framework.Core.Data.Stores.IBdoDataStore,System.Action{BindOpen.Framework.Data.Depots.IBdoDbModel})">
             <summary>
             Add a database queries depot into the specified data store executing the specified action.
             </summary>
@@ -316,24 +316,24 @@
             <param name="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryExtensions.GetDbQueryDepot(BindOpen.Framework.Core.Data.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.Framework.Data.Depots.BdoDbQueryExtensions.GetDbModel(BindOpen.Framework.Core.Data.Stores.IBdoDataStore)">
             <summary>
             Gets the database queries depot of the specified data store.
             </summary>
             <param name="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
-        <member name="T:BindOpen.Framework.Data.Depots.IBdoDbQueryDepot">
+        <member name="T:BindOpen.Framework.Data.Depots.IBdoDbModel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Framework.Data.Depots.IBdoDbQueryDepot.Queries">
+        <member name="P:BindOpen.Framework.Data.Depots.IBdoDbModel.Queries">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Depots.IBdoDbQueryDepot.GetQuery(System.String)">
+        <member name="M:BindOpen.Framework.Data.Depots.IBdoDbModel.GetQuery(System.String)">
             <summary>
             Gets the database query with the specified name.
             </summary>

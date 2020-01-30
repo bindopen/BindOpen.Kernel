@@ -371,7 +371,7 @@ namespace BindOpen.Framework.Data.Queries
         {
             var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
-            field.Value = CreateParameterString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
+            field.Value = CreateParameterWildString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
             return field;
         }
 
@@ -432,7 +432,7 @@ namespace BindOpen.Framework.Data.Queries
         {
             var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
-            field.Value = CreateParameterString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
+            field.Value = CreateParameterWildString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
             return field;
         }
 
@@ -493,7 +493,7 @@ namespace BindOpen.Framework.Data.Queries
         {
             var field = Field(name, tableName, schema, dataModule);
             field.ValueType = DataValueType.None;
-            field.Value = CreateParameterString(parameter).CreateLiteral();
+            field.Value = CreateParameterWildString(parameter).CreateLiteral();
             return field;
         }
 

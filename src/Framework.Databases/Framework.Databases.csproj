@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <None Remove="BindOpen.Extension" />
-    <None Remove="Data\Depots\DbQueries\jdd13csm.2lw~" />
+    <None Remove="Data\Depots\DbModels\jdd13csm.2lw~" />
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
     <None Remove="Extensions\Connectors\BindOpen.Connectors" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />

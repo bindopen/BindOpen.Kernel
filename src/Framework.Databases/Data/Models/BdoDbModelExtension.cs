@@ -22,7 +22,7 @@ namespace BindOpen.Framework.Data.Models
             if (query == null)
             {
                 var simpleQuery = intializer?.Invoke(model);
-                (new BdoDbModelBuilder(model)).AddQuery(simpleQuery, name);
+                (new BdoDbModelBuilder(model)).AddQuery(name, simpleQuery);
                 query = model.Query(name);
             }
 

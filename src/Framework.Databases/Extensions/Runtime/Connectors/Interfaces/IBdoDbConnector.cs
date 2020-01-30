@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
-            bool isParametersInjected = false,
+            bool isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null);
 

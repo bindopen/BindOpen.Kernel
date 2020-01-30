@@ -85,7 +85,7 @@ namespace BindOpen.Framework.Data.Queries
         public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
-            bool isParametersInjected = false,
+            bool isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null)
         {
@@ -112,23 +112,40 @@ namespace BindOpen.Framework.Data.Queries
                             queryString = BuildSqlText(storedDbQuery.Query, log, false, parameterSet, scriptVariableSet);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
-
-                        return queryString;
                     }
 
-                    if (isParametersInjected)
+                    if (query.ParameterSet?.Count > 0)
                     {
                         if (parameterSet == null)
                         {
                             parameterSet = query.ParameterSet;
+                        }
+                        else
+                        {
+                            parameterSet?.Update(query.ParameterSet);
+                        }
+                        parameterSet?.Update(query.ParameterSpecSet);
+
+                        if (query is DbStoredQuery storedDbQuery)
+                        {
+                            parameterSet?.Update(storedDbQuery.Query?.ParameterSet);
+                            parameterSet?.Update(storedDbQuery.Query?.ParameterSpecSet);
                         }
 
                         if (parameterSet?.Elements != null)
                         {
                             foreach (var parameter in parameterSet.Elements)
                             {
-                                queryString = queryString.Replace(parameter.CreateParameterString(),
-                                    GetValuedSqlText(parameter.GetObject(_scope, scriptVariableSet, log).ToString(), parameter.ValueType));
+                                if (isParametersInjected)
+                                {
+                                    queryString = queryString.Replace(parameter?.CreateParameterWildString(),
+                                        GetValuedSqlText(parameter?.GetObject(_scope, scriptVariableSet, log).ToString(), parameter.ValueType));
+                                }
+                                else
+                                {
+                                    queryString = queryString.Replace(parameter?.CreateParameterWildString(),
+                                        parameter?.CreateParameterString());
+                                }
                             }
                         }
                     }

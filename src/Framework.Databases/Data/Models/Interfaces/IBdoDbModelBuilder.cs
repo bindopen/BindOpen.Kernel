@@ -5,14 +5,20 @@ namespace BindOpen.Framework.Data.Models
 {
     public interface IBdoDbModelBuilder
     {
-        IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition, string name = null);
+        IBdoDbModelBuilder AddJoinCondition(string name, DbQueryJoinCondition condition);
 
-        IBdoDbModelBuilder AddTable(DbTable table, string name = null);
+        IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition);
+
+        IBdoDbModelBuilder AddTable(string name, DbTable table);
+
+        IBdoDbModelBuilder AddTable(DbTable table);
 
         IBdoDbModelBuilder AddTable<T>() where T : class;
 
-        IBdoDbModelBuilder AddTuple(DbField[] fields, string name);
+        IBdoDbModelBuilder AddTuple(string name, DbField[] fields);
 
-        IBdoDbModelBuilder AddQuery(IDbQuery query, string name = null);
+        IBdoDbModelBuilder AddQuery(string name, IDbQuery query);
+
+        IBdoDbModelBuilder AddQuery(IDbQuery query);
     }
 }

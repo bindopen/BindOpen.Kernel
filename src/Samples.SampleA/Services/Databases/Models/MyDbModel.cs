@@ -19,22 +19,23 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
         public override void OnCreating(IBdoDbModelBuilder builder)
         {
             builder
-                .AddTable(DbFluent.Table(nameof(DbEmployee).Substring(2), "Mdm"), nameof(DbEmployee).Substring(2))
-                .AddTable(DbFluent.Table(nameof(DbRegionalDirectorate).Substring(2), "Mdm"), nameof(DbRegionalDirectorate).Substring(2));
+                .AddTable(nameof(DbEmployee).Substring(2), DbFluent.Table(nameof(DbEmployee).Substring(2), "Mdm"))
+                .AddTable(nameof(DbRegionalDirectorate).Substring(2), DbFluent.Table(nameof(DbRegionalDirectorate).Substring(2), "Mdm"));
 
             builder
-                .AddJoinCondition(DbFluent.JoinCondition(
-                    DbFluent.Field(nameof(DbRegionalDirectorate.RegionalDirectorateId), Table("Employee")),
-                    DbFluent.Field(nameof(DbEmployee.EmployeeId), Table("Employee")),
-                    DataOperator.Equal), "Employee_RegionalDirectorate");
+                .AddJoinCondition("Employee_RegionalDirectorate",
+                    DbFluent.JoinCondition(
+                        DbFluent.Field(nameof(DbRegionalDirectorate.RegionalDirectorateId), Table("Employee")),
+                        DbFluent.Field(nameof(DbEmployee.EmployeeId), Table("Employee"))));
 
             builder
-                .AddTuple(new DbField[]
+                .AddTuple("Fields_SelectEmployee",
+                    new DbField[]
                     {
                         DbFluent.FieldAsAll(Table("Employee")),
                         DbFluent.Field(nameof(DbRegionalDirectorate.RegionalDirectorateId), Table("RegionalDirectorate")),
                         DbFluent.Field(nameof(DbRegionalDirectorate.Code), Table("RegionalDirectorate"))
-                    }, "Fields_SelectEmployee");
+                    });
 
             builder
                 .AddQuery(
@@ -108,18 +109,18 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
         /// <returns></returns>
         internal IDbQuery GetEmployeeWithCode(string code)
         {
-            return this.UseQuery("GetEmployeeWithCode",
-                p =>
-                {
-                    return DbFluent.SelectBasic(Table("Employee"))
-                        .From(
-                            DbFluent.From(Table("Employee"))
-                            .Join(
-                                DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
-                                    .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
-                        .WithFields(Tuple("Fields_SelectEmployee"))
-                        .AddIdField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code", code)));
-                });
+            return this.UseQuery("GetEmployeeWithCode", p =>
+                DbFluent.SelectBasic(Table("Employee"))
+                    .From(
+                        DbFluent.From(Table("Employee"))
+                        .Join(
+                            DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
+                                .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
+                    .WithFields(Tuple("Fields_SelectEmployee"))
+                    .AddIdField(DbFluent.FieldAsParameter(nameof(DbEmployee.Code), "code"))
+                    .UsingParameters(ElementSpecFactory.Create("code", DataValueType.Text)))
+                .WithParameters(
+                    ElementFactory.Create("code", code));
         }
 
         /// <summary>
@@ -156,30 +157,25 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                                 DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                                     .WithCondition(JoinCondition("Employee_RegionalDirectorate"))));
 
-                    if (!isPartialUpdate || employee?.Code?.Length > 0)
-                    {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code")));
-                    }
-                    if (!isPartialUpdate || employee?.ContactEmail?.Length > 0)
-                    {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), p.UseParameter("contactEmail")));
-                    }
-                    if (!isPartialUpdate || employee?.FisrtName?.Length > 0)
-                    {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), p.UseParameter("fisrtName")));
-                    }
-                    if (!isPartialUpdate || employee?.LastName?.Length > 0)
-                    {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), p.UseParameter("lastName")));
-                    }
-                    //if (!isPartialUpdate || employee?.RegionalDirectorateId?.Length > 0)
-                    //{
-                    //    query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.RegionalDirectorateId), p.UseParameter("regionalDirectorateId", nameof(DbEmployee.RegionalDirectorateId))));
-                    //}
-                    if (!isPartialUpdate || employee?.StaffNumber?.Length > 0)
-                    {
-                        query.AddField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), p.UseParameter("staffNumber")));
-                    }
+                    query.AddField(
+                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code")),
+                        !isPartialUpdate || employee?.Code?.Length > 0);
+
+                    query.AddField(
+                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), p.UseParameter("contactEmail")),
+                        !isPartialUpdate || employee?.ContactEmail?.Length > 0);
+
+                    query.AddField(
+                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), p.UseParameter("fisrtName")),
+                        !isPartialUpdate || employee?.FisrtName?.Length > 0);
+
+                    query.AddField(
+                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), p.UseParameter("lastName")),
+                        !isPartialUpdate || employee?.LastName?.Length > 0);
+
+                    query.AddField(
+                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), p.UseParameter("staffNumber")),
+                        !isPartialUpdate || employee?.StaffNumber?.Length > 0);
 
                     return query;
                 }).UsingParameters(

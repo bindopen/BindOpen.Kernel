@@ -20,7 +20,7 @@ namespace BindOpen.Framework.Data.Elements
             string name,
             object[] items)
         {
-            return Create(name, DataValueType.Any, null, null, items);
+            return Create(name, DataValueType.Any, null, items);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace BindOpen.Framework.Data.Elements
             string name,
             object item)
         {
-            return Create(name, DataValueType.Any, null, null, new[] { item });
+            return Create(name, DataValueType.Any, null, new[] { item });
         }
 
         /// <summary>

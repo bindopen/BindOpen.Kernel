@@ -193,7 +193,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
-            bool isParametersInjected = false,
+            bool isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null)
             => QueryBuilder?.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);

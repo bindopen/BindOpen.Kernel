@@ -14,8 +14,8 @@ namespace BindOpen.Framework.Data.Depots
     /// This class represents a database model depot.
     /// </summary>
     [Serializable()]
-    [XmlType("DbQueriesDepot", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dBQueries.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DbModelDepot", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dbModel.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoDbModelDepot : TBdoDepot<BdoDbModel>, IBdoDbModelDepot
     {
         // ------------------------------------------
