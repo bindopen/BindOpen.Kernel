@@ -27,7 +27,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
             this.UsingConnection(connection =>
             {
-                string query1 = Connector.BuildSqlText(_model.UpdateEmployee("codeA", false, employee), null, true);
+                string query1 = Connector.BuildSqlText(_model.GetEmployeeWithCode("codeA"), null, false);
                 Console.WriteLine("1- " + query1);
 
                 string query2 = Connector.BuildSqlText(_model.UpdateEmployee("codeB", false, employee));

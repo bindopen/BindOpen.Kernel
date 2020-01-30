@@ -1,5 +1,6 @@
 ﻿using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Elements;
+using BindOpen.Framework.Data.Helpers.Strings;
 
 namespace BindOpen.Framework.Data.Queries
 {
@@ -37,10 +38,19 @@ namespace BindOpen.Framework.Data.Queries
         }
 
         /// <summary>
+        /// Creates a parameter wild string from the specified parameter.
+        /// </summary>
+        /// <param name="parameter">The parameter to consider.</param>
+        /// <returns>Returns the string corresponding to the specified parameter.</returns>
+        internal static string CreateParameterWildString(this IDataElement parameter)
+            => StringHelper.__UniqueToken + (parameter?.Name ?? parameter.Index.ToString()) + StringHelper.__UniqueToken;
+
+        /// <summary>
         /// Creates a parameter string from the specified parameter.
         /// </summary>
         /// <param name="parameter">The parameter to consider.</param>
         /// <returns>Returns the string corresponding to the specified parameter.</returns>
-        internal static string CreateParameterString(this IDataElement parameter) => "@" + parameter?.Name ?? parameter.Index.ToString();
+        internal static string CreateParameterString(this IDataElement parameter)
+            => "@" + parameter?.Name ?? parameter.Index.ToString();
     }
 }

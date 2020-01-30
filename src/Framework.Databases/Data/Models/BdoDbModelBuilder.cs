@@ -22,6 +22,14 @@ namespace BindOpen.Framework.Data.Models
 
         // Tables ---------------------------------------
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoDbModelBuilder AddTable(DbTable table)
+            => AddTable(null, table);
 
         /// <summary>
         /// 
@@ -29,7 +37,7 @@ namespace BindOpen.Framework.Data.Models
         /// <param name="table"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddTable(DbTable table, string name = null)
+        public IBdoDbModelBuilder AddTable(string name, DbTable table)
         {
             if (table != null)
             {
@@ -62,7 +70,16 @@ namespace BindOpen.Framework.Data.Models
         /// <param name="condition"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition, string name = null)
+        public IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition)
+            => AddJoinCondition(null, condition);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoDbModelBuilder AddJoinCondition(string name, DbQueryJoinCondition condition)
         {
             if (condition != null)
             {
@@ -85,7 +102,7 @@ namespace BindOpen.Framework.Data.Models
         /// <param name="name"></param>
         /// <param name="fields"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddTuple(DbField[] fields, string name)
+        public IBdoDbModelBuilder AddTuple(string name, DbField[] fields)
         {
             if (fields != null)
             {
@@ -103,7 +120,16 @@ namespace BindOpen.Framework.Data.Models
         /// <param name="query"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddQuery(IDbQuery query, string name = null)
+        public IBdoDbModelBuilder AddQuery(IDbQuery query)
+            => AddQuery(null, query);
+
+        /// <summary>
+        /// Adds the specified query.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoDbModelBuilder AddQuery(string name, IDbQuery query)
         {
             if (query != null)
             {

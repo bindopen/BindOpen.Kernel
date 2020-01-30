@@ -65,15 +65,17 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the specified field.
         /// </summary>
         /// <param name="field">The field to consider.</param>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        IAdvancedDbQuery AddField(DbField field);
+        IAdvancedDbQuery AddField(DbField field, bool canBeAdded = true);
 
         /// <summary>
         /// Sets the field using an initialization function.
         /// </summary>
         /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer);
+        IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer, bool canBeAdded = true);
 
         /// <summary>
         /// 
