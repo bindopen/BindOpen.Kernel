@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.System.Processing;
-using BindOpen.Framework.Application.Settings;
+﻿using BindOpen.Framework.Application.Settings;
 using System;
 
 namespace BindOpen.Framework.Application.Services
@@ -36,20 +35,5 @@ namespace BindOpen.Framework.Application.Services
         /// The action that is executed when the instance fails.
         /// </summary>
         Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
-
-        // Process -----------------------------------
-
-        /// <summary>
-        /// Starts the service.
-        /// </summary>
-        /// <returns>Returns the service to consider.</returns>
-        ITBdoService<S> Start();
-
-        /// <summary>
-        /// Ends the process specifying the status.
-        /// </summary>
-        /// <param name="executionStatus">The execution status to apply.</param>
-        /// <returns>Returns the service to consider.</returns>
-        ITBdoService<S> End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }
 }

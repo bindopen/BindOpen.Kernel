@@ -1,12 +1,16 @@
-﻿using BindOpen.Framework.Application.Services;
-using BindOpen.Framework.Samples.SampleA.Settings;
+﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Application.Services;
 using BindOpen.Framework.System.Diagnostics;
 
 namespace BindOpen.Framework.Samples.SampleA.Services
 {
-    public class TestService : TBdoHostedService<TestServiceSettings>
+    public class TestService : BdoHostedService
     {
-        protected override ITBdoService<TestServiceSettings> Process(IBdoLog log)
+        public TestService(IBdoHost host) : base(host)
+        {
+        }
+
+        protected override IBdoService Process(IBdoLog log)
         {
             Service_Command.Process(Host, log);
 

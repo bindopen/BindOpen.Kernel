@@ -1,6 +1,8 @@
 ﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Common;
 using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Specification;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
 using System;
@@ -478,6 +480,190 @@ namespace BindOpen.Framework.Data.Elements
             elementSet._items = Elements?.Select(p => p.Clone() as DataElement).ToList();
 
             return elementSet;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // UPDATE, CHECK, REPAIR
+        // --------------------------------------------------
+
+        #region Update_Check_Repair
+
+        /// <summary>
+        /// Updates this instance.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <param name="specificationAreas">The specification areas to consider.</param>
+        /// <param name="updateModes">The update modes to consider.</param>
+        /// <returns>Log of the operation.</returns>
+        /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        public override IBdoLog Update<T1>(
+                T1 item = default,
+                string[] specificationAreas = null,
+                UpdateModes[] updateModes = null)
+        {
+            var log = new BdoLog();
+
+            if (specificationAreas == null)
+                specificationAreas = new[] { nameof(DataAreaKind.Any) };
+
+            if (updateModes == null)
+                updateModes = new[] { UpdateModes.Incremental_AddItemsMissingInTarget };
+
+            base.Update<T1>(item, specificationAreas, updateModes);
+
+            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            {
+                // we repair this instance if needed
+                Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateModes.Incremental_UpdateCommonItems));
+
+                // we update the common element values
+
+                if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
+                {
+                    if (Items != null)
+                    {
+                        foreach (var subItem in Items)
+                        {
+                            if (subItem != null)
+                            {
+                                var referenceSubItem = referenceItem.GetItem(subItem.Key());
+                                if (referenceSubItem != null)
+                                    subItem.Update(referenceSubItem, new[] { nameof(DataAreaKind.Items) });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Checks this instance.
+        /// </summary>
+        /// <param name="isExistenceChecked">Indicates whether the carrier existence is checked.</param>
+        /// <param name="item">The item to consider.</param>
+        /// <param name="specificationAreas">The specification areas to consider.</param>
+        /// <returns>Returns the check log.</returns>
+        public override IBdoLog Check<T1>(
+            bool isExistenceChecked = true,
+            T1 item = default,
+            string[] specificationAreas = null)
+        {
+            var log = new BdoLog();
+
+            if (specificationAreas == null)
+                specificationAreas = new[] { nameof(DataAreaKind.Any) };
+
+            base.Check<T1>(isExistenceChecked, item, specificationAreas);
+
+            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            {
+                // we check that all the elements in this instance are in the specified item
+
+                if (Items != null)
+                {
+                    foreach (var currentSubItem in Items)
+                    {
+                        if (!referenceItem.Items.Any(p => p.KeyEquals(currentSubItem)))
+                        {
+                            log.AddError("").ResultCode = "additionalItem:" + currentSubItem.Key();
+                        }
+                    }
+                }
+
+                // we check that all the elements in specified collections are in this instance
+
+                foreach (var referenceSubItem in referenceItem.Items)
+                {
+                    var currentSubItem = Items.Find(p => p.KeyEquals(referenceSubItem));
+
+                    if (currentSubItem == null)
+                        log.AddError("").ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
+                    else
+                        log.AddEvents(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
+                }
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// Repairs this instance with the specified definition.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <param name="specificationAreas">The specification areas to consider.</param>
+        /// <param name="updateModes">The update modes to consider.</param>
+        /// <returns>Log of the operation.</returns>
+        public override IBdoLog Repair<T1>(
+            T1 item = default,
+            string[] specificationAreas = null,
+            UpdateModes[] updateModes = null)
+        {
+            BdoLog log = null;
+
+            if (specificationAreas == null)
+                specificationAreas = new[] { nameof(DataAreaKind.Any) };
+
+            if (updateModes == null)
+                updateModes = new[] { UpdateModes.Full };
+
+            base.Repair<T1>(item, specificationAreas, updateModes);
+
+            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            {
+                // we check that all the elements in this instance are in the specified item
+
+                if (updateModes.Has(UpdateModes.Incremental_RemoveItemsMissingInSource)
+                    || updateModes.Has(UpdateModes.Incremental_UpdateCommonItems))
+                {
+                    int i = 0;
+
+                    if (Items != null)
+                    {
+                        while (i < Items.Count)
+                        {
+                            var currentSubItem = Items[i];
+
+                            var referenceSubItem = referenceItem.Items.Find(p => p.KeyEquals(currentSubItem));
+                            if (referenceSubItem == null)
+                            {
+                                if (updateModes.Has(UpdateModes.Incremental_RemoveItemsMissingInSource))
+                                {
+                                    Items.RemoveAt(i);
+                                    i--;
+                                }
+                            }
+                            else if (updateModes.Has(UpdateModes.Incremental_UpdateCommonItems))
+                            {
+                                log.AddEvents(currentSubItem.Repair(referenceSubItem, specificationAreas));
+                            }
+
+                            i++;
+                        }
+                    }
+                }
+
+                // we check that all the elements in specified item are in this instance
+
+                if (updateModes.Has(UpdateModes.Incremental_AddItemsMissingInTarget))
+                {
+                    if (referenceItem.Items != null)
+                    {
+                        foreach (var referenceSubItem in referenceItem.Items)
+                        {
+                            var currentSubItem = Items.Find(p => p.KeyEquals(referenceSubItem));
+
+                            if (currentSubItem == null)
+                                Add(ElementFactory.CreateFromSpec(referenceSubItem) as DataElement);
+                        }
+                    }
+                }
+            }
+
+            return log;
         }
 
         #endregion

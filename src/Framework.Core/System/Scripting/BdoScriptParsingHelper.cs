@@ -53,8 +53,8 @@ namespace BindOpen.Framework.System.Scripting
             }
             else
             {
-                text = text.Replace("''", "'");
-                if (text.Length > 1)
+                text = text?.Replace("''", "'");
+                if (text?.Length > 1)
                 {
                     if ((text.Substring(0, 1) == "'") && (text.Substring(text.Length - 1, 1) == "'"))
                         text = text.Substring(1, text.Length - 2);

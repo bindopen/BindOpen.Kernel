@@ -36,26 +36,6 @@ namespace BindOpen.Framework.Application.Services
         /// </summary>
         bool IsLoaded { get; }
 
-        /// <summary>
-        /// Indicates that the start of this instance completes.
-        /// </summary>
-        void StartSucceeds();
-
-        /// <summary>
-        /// Indicates that the start of this instance fails.
-        /// </summary>
-        void StartFails();
-
-        /// <summary>
-        /// Indicates that this instance execution succeeds.
-        /// </summary>
-        void ExecutionSucceedes();
-
-        /// <summary>
-        /// Indicates that this instance execution fails.
-        /// </summary>
-        void ExecutionFails();
-
         // Process -----------------------------------
 
         /// <summary>
@@ -67,5 +47,20 @@ namespace BindOpen.Framework.Application.Services
         /// The status of the current execution.
         /// </summary>
         ProcessExecutionStatus ExecutionStatus { get; set; }
+
+        // Process -----------------------------------
+
+        /// <summary>
+        /// Starts the service.
+        /// </summary>
+        /// <returns>Returns the service to consider.</returns>
+        IBdoService Start();
+
+        /// <summary>
+        /// Ends the process specifying the status.
+        /// </summary>
+        /// <param name="executionStatus">The execution status to apply.</param>
+        /// <returns>Returns the service to consider.</returns>
+        IBdoService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Data.Common;
-using BindOpen.Framework.Data.Elements;
 
 namespace BindOpen.Framework.Data.Elements
 {
@@ -9,7 +8,7 @@ namespace BindOpen.Framework.Data.Elements
     public static partial class ElementFactory
     {
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="dataValueType">The value type to consider.</param>
         public static ScalarElement CreateScalar(DataValueType dataValueType)
@@ -18,7 +17,7 @@ namespace BindOpen.Framework.Data.Elements
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         public static ScalarElement CreateScalar(string name)
@@ -27,7 +26,7 @@ namespace BindOpen.Framework.Data.Elements
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
@@ -39,7 +38,7 @@ namespace BindOpen.Framework.Data.Elements
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
@@ -51,7 +50,7 @@ namespace BindOpen.Framework.Data.Elements
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
@@ -65,7 +64,7 @@ namespace BindOpen.Framework.Data.Elements
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElement class.
+        /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
@@ -84,7 +83,8 @@ namespace BindOpen.Framework.Data.Elements
                 valueType = items.GetValueType();
             }
 
-            ScalarElement element = new ScalarElement(name, id) {
+            ScalarElement element = new ScalarElement(name, id)
+            {
                 ValueType = valueType,
                 Specification = specification as ScalarElementSpec
             };

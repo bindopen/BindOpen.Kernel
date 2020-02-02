@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\Services\TBdoHostedService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Extensions\Carriers\BindOpen.Carriers" />
     <None Remove="Extensions\Entities\BindOpen.Entities" />
     <None Remove="Extensions\Handlers\BindOpen.Handlers" />

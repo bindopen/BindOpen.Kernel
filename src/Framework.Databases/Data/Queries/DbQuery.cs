@@ -314,7 +314,7 @@ namespace BindOpen.Framework.Data.Queries
         public IDataElement UseParameter(
             string name,
             DataValueType valueType,
-            object value)
+            object value = null)
         {
             if (ParameterSet == null)
             {

@@ -99,5 +99,15 @@ namespace BindOpen.Framework.Data.Elements
 
             return element;
         }
+
+        /// <summary>
+        /// Creates a data element from the specified specification.
+        /// </summary>
+        /// <param name="elementSpec">The data element specification to consider.</param>
+        /// <returns></returns>
+        public static IDataElement CreateFromSpec(DataElementSpec elementSpec)
+        {
+            return Create(elementSpec?.Name, elementSpec?.ValueType ?? DataValueType.None, elementSpec);
+        }
     }
 }

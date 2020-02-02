@@ -117,8 +117,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                             DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                                 .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
                     .WithFields(Tuple("Fields_SelectEmployee"))
-                    .AddIdField(DbFluent.FieldAsParameter(nameof(DbEmployee.Code), "code"))
-                    .UsingParameters(ElementSpecFactory.Create("code", DataValueType.Text)))
+                    .AddIdField(q => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text))))
                 .WithParameters(
                     ElementFactory.Create("code", code));
         }
@@ -158,32 +157,32 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                                     .WithCondition(JoinCondition("Employee_RegionalDirectorate"))));
 
                     query.AddField(
-                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code")),
-                        !isPartialUpdate || employee?.Code?.Length > 0);
+                        !isPartialUpdate || employee?.Code?.Length > 0,
+                        q => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text)));
 
                     query.AddField(
-                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), p.UseParameter("contactEmail")),
-                        !isPartialUpdate || employee?.ContactEmail?.Length > 0);
+                        !isPartialUpdate || employee?.ContactEmail?.Length > 0,
+                        q => DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), q.UseParameter("contactEmail", DataValueType.Text)));
 
                     query.AddField(
-                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), p.UseParameter("fisrtName")),
-                        !isPartialUpdate || employee?.FisrtName?.Length > 0);
+                        !isPartialUpdate || employee?.FisrtName?.Length > 0,
+                        q => DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)));
 
                     query.AddField(
-                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), p.UseParameter("lastName")),
-                        !isPartialUpdate || employee?.LastName?.Length > 0);
+                        !isPartialUpdate || employee?.LastName?.Length > 0,
+                        q => DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), q.UseParameter("lastName", DataValueType.Text)));
 
                     query.AddField(
-                        p => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), p.UseParameter("staffNumber")),
-                        !isPartialUpdate || employee?.StaffNumber?.Length > 0);
+                        !isPartialUpdate || employee?.StaffNumber?.Length > 0,
+                        q => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text)));
 
                     return query;
-                }).UsingParameters(
-                    ElementSpecFactory.Create("code", DataValueType.Text),
-                    ElementSpecFactory.Create("contactEmail", DataValueType.Text),
-                    ElementSpecFactory.Create("fisrtName", DataValueType.Text),
-                    ElementSpecFactory.Create("lastName", DataValueType.Text),
-                    ElementSpecFactory.Create("staffNumber", DataValueType.Text));
+                }).WithParameters(
+                    ElementFactory.Create("code", employee.Code),
+                    ElementFactory.Create("contactEmail", employee.ContactEmail),
+                    ElementFactory.Create("fisrtName", employee.FisrtName),
+                    ElementFactory.Create("lastName", employee.LastName),
+                    ElementFactory.Create("staffNumber", employee.StaffNumber));
         }
 
         /// <summary>

@@ -103,5 +103,38 @@ namespace BindOpen.Framework.Extensions.Carriers
         }
 
         #endregion
+
+        // ------------------------------------------
+        // OPERATORS
+        // ------------------------------------------
+
+        #region Operators
+
+        /// <summary>
+        /// Returns the data expression string corresponding to this instance.
+        /// </summary>
+        /// <param name="table">The table to consider.</param>
+        public static implicit operator string(DbTable table)
+        {
+            string st = "";
+
+            if (table != null)
+            {
+                if (!string.IsNullOrEmpty(table.DataModule))
+                    st += "$SqlDatabase(\"" + table.DataModule + "\").";
+
+                if (!string.IsNullOrEmpty(table.Schema))
+                    st += "$SqlSchema(\"" + table.Schema + "\").";
+
+                if (!string.IsNullOrEmpty(table.Alias))
+                    st += "$SqlTable(\"" + table.Alias + "\").";
+                else if (!string.IsNullOrEmpty(table.Name))
+                    st += "$SqlTable(\"" + table.Name + "\").";
+            }
+
+            return st;
+        }
+
+        #endregion
     }
 }

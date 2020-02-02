@@ -184,16 +184,16 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <summary>
         /// Builds the SQL text from the specified database query.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
-        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <returns>Returns the built query text.</returns>
         public string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
-            bool isParametersInjected = true,
+            bool? isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null)
             => QueryBuilder?.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);
@@ -223,7 +223,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string CreateCommandText(
             IDbQuery query,
-            bool isParametersInjected,
+            bool? isParametersInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -261,7 +261,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the database command.</returns>
         public abstract IDbCommand CreateCommand(
             IDbQuery query,
-            bool isParametersInjected,
+            bool? isParametersInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

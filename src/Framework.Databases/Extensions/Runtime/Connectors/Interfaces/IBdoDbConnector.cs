@@ -73,7 +73,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         string BuildSqlText(
             IDbQuery query,
             IBdoLog log = null,
-            bool isParametersInjected = true,
+            bool? isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null);
 
@@ -109,7 +109,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the SQL text of the specified query.</returns>
         string CreateCommandText(
             IDbQuery query,
-            bool isParametersInjected,
+            bool? isParametersInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// <returns>Returns the database command.</returns>
         IDbCommand CreateCommand(
             IDbQuery query,
-            bool isParametersInjected,
+            bool? isParametersInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

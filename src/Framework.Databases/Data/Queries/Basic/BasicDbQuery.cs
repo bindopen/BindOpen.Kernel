@@ -238,13 +238,25 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the specified fields.
         /// </summary>
         /// <param name="fields">The fields to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IBasicDbQuery AddField(DbField field, bool canBeAdded = true)
+        public IBasicDbQuery AddField(DbField field)
+        {
+            Fields?.Add(field);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the specified fields.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddField(bool canBeAdded, DbField field)
         {
             if (canBeAdded)
             {
-                Fields?.Add(field);
+                return AddField(field);
             }
 
             return this;
@@ -254,13 +266,23 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the fields using an initialization function.
         /// </summary>
         /// <param name="initiliazer">The initiliazation function to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IBasicDbQuery AddField(Func<IBasicDbQuery, DbField> initiliazer, bool canBeAdded = true)
+        public IBasicDbQuery AddField(Func<IBasicDbQuery, DbField> initiliazer)
+        {
+            return AddField(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Adds the fields using an initialization function.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddField(bool canBeAdded, Func<IBasicDbQuery, DbField> initiliazer)
         {
             if (canBeAdded)
             {
-                return AddField(initiliazer?.Invoke(this));
+                return AddField(initiliazer);
             }
 
             return this;
@@ -291,13 +313,25 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the specified ID field.
         /// </summary>
         /// <param name="field">The ID field to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IBasicDbQuery AddIdField(DbField field, bool canBeAdded = true)
+        public IBasicDbQuery AddIdField(DbField field)
+        {
+            IdFields?.Add(field);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the specified ID field.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="field">The ID field to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddIdField(bool canBeAdded, DbField field)
         {
             if (canBeAdded)
             {
-                IdFields?.Add(field);
+                return AddIdField(field);
             }
 
             return this;
@@ -307,13 +341,23 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the ID field using an initialization function.
         /// </summary>
         /// <param name="initiliazer">The initiliazation function to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IBasicDbQuery AddIdField(Func<IBasicDbQuery, DbField> initiliazer, bool canBeAdded = true)
+        public IBasicDbQuery AddIdField(Func<IBasicDbQuery, DbField> initiliazer)
+        {
+            return AddIdField(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Adds the ID field using an initialization function.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IBasicDbQuery AddIdField(bool canBeAdded, Func<IBasicDbQuery, DbField> initiliazer)
         {
             if (canBeAdded)
             {
-                return AddIdField(initiliazer?.Invoke(this));
+                return AddIdField(initiliazer);
             }
 
             return this;

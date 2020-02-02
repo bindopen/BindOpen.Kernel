@@ -131,7 +131,7 @@ namespace BindOpen.Framework.Data.Queries
         IDataElement UseParameter(
             string name,
             DataValueType valueType,
-            object value);
+            object value = null);
 
     }
 }

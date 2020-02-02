@@ -1,6 +1,5 @@
-﻿using System;
-using BindOpen.Framework.System.Scripting;
-using BindOpen.Framework.Data.Queries;
+﻿using BindOpen.Framework.System.Scripting;
+using System;
 
 namespace BindOpen.Framework.Data.Queries
 {
@@ -18,7 +17,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_Text(string value1)
         {
-            return "'" + BdoScriptParsingHelper.GetValueFromText(value1).Replace("'", "''") + "'";
+            return "'" + BdoScriptParsingHelper.GetValueFromText(value1)?.Replace("'", "''") + "'";
         }
 
         /// <summary>
