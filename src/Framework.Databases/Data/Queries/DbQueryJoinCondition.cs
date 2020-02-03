@@ -47,10 +47,10 @@ namespace BindOpen.Framework.Data.Queries
         #endregion
 
         // ------------------------------------------
-        // PROPERTIES
+        // OPERATORS
         // ------------------------------------------
 
-        #region Properties
+        #region Operators
 
         /// <summary>
         /// Returns the data expression string corresponding to this instance.
@@ -59,7 +59,7 @@ namespace BindOpen.Framework.Data.Queries
         {
             string query = "";
 
-            if (condition !=null)
+            if (condition != null)
             {
                 if (condition.Field1 != null && condition.Field2 != null)
                 {
@@ -84,7 +84,7 @@ namespace BindOpen.Framework.Data.Queries
                             query += "$sqlLte(";
                             break;
                     }
-                    query += DbQueryBuilder.GetBdoScript(condition.Field1) +  ", " +
+                    query += DbQueryBuilder.GetBdoScript(condition.Field1) + ", " +
                         DbQueryBuilder.GetBdoScript(condition.Field2) + ")";
                 }
             }

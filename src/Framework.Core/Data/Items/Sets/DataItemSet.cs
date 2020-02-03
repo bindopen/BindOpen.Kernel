@@ -284,10 +284,8 @@ namespace BindOpen.Framework.Data.Items
             if (updateModes == null)
                 updateModes = new[] { UpdateModes.Incremental_AddItemsMissingInTarget };
 
-            if (item is IDataItemSet<T>)
+            if (item is IDataItemSet<T> referenceItem)
             {
-                IDataItemSet<T> referenceItem = item as DataItemSet<T>;
-
                 // we repair this instance if needed
                 Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateModes.Incremental_UpdateCommonItems));
 
@@ -330,10 +328,8 @@ namespace BindOpen.Framework.Data.Items
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
-            if (item is IDataItemSet<T>)
+            if (item is IDataItemSet<T> referenceItem)
             {
-                IDataItemSet<T> referenceItem = item as DataItemSet<T>;
-
                 // we check that all the elements in this instance are in the specified item
 
                 if (Items != null)
@@ -383,10 +379,8 @@ namespace BindOpen.Framework.Data.Items
             if (updateModes == null)
                 updateModes = new[] { UpdateModes.Full };
 
-            if (item is IDataItemSet<T>)
+            if (item is IDataItemSet<T> referenceItem)
             {
-                IDataItemSet<T> referenceItem = item as DataItemSet<T>;
-
                 // we check that all the elements in this instance are in the specified item
 
                 if (updateModes.Has(UpdateModes.Incremental_RemoveItemsMissingInSource)

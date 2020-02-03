@@ -11,8 +11,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
         {
             var configuration = host.Scope.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("sphere.identity", "database.mssqlserver$client");
 
-            var repo = new TestDbRepository(host?.GetModel<MyDbModel>());
-            repo.WithConnector(host.CreatePostgreSqlConnector(""));
+            var repo = new TestDbRepository(host?.GetModel<MyDbModel>(), host.CreatePostgreSqlConnector(""));
             repo.Test();
         }
     }

@@ -65,17 +65,31 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the specified field.
         /// </summary>
         /// <param name="field">The field to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        IAdvancedDbQuery AddField(DbField field, bool canBeAdded = true);
+        IAdvancedDbQuery AddField(DbField field);
+
+        /// <summary>
+        /// Adds the specified field.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="field">The field to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery AddField(bool canBeAdded, DbField field);
 
         /// <summary>
         /// Sets the field using an initialization function.
         /// </summary>
         /// <param name="initiliazer">The initiliazation function to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer, bool canBeAdded = true);
+        IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer);
+
+        /// <summary>
+        /// Sets the field using an initialization function.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery AddField(bool canBeAdded, Func<IAdvancedDbQuery, DbField> initiliazer);
 
         /// <summary>
         /// 

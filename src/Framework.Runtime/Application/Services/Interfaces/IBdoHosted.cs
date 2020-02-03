@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Framework.Application.Scopes
+﻿using BindOpen.Framework.Application.Scopes;
+
+namespace BindOpen.Framework.Application.Services
 {
     /// <summary>
     /// The interface defines a hosted item.
@@ -10,6 +12,6 @@
         /// <summary>
         /// The host of the instance.
         /// </summary>
-        IBdoHost Host { get; set; }
+        IBdoHost Host { get; }
     }
 }

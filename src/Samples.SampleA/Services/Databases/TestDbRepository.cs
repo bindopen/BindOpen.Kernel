@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Application.Services;
+using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.Samples.SampleA.Services.Databases;
 using System;
 
@@ -8,7 +9,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
     {
         MyDbModel _model;
 
-        public TestDbRepository(MyDbModel model)
+        public TestDbRepository(MyDbModel model, IBdoConnector connector) : base(connector)
         {
             _model = model;
         }
@@ -27,7 +28,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services
 
             this.UsingConnection(connection =>
             {
-                string query1 = Connector.BuildSqlText(_model.GetEmployeeWithCode("codeA"), null, false);
+                string query1 = Connector.BuildSqlText(_model.GetEmployeeWithCode("codeA"));
                 Console.WriteLine("1- " + query1);
 
                 string query2 = Connector.BuildSqlText(_model.UpdateEmployee("codeB", false, employee));

@@ -92,7 +92,7 @@ namespace BindOpen.Framework.Extensions.Connectors
         /// <returns>Returns the database command.</returns>
         public override IDbCommand CreateCommand(
             IDbQuery query,
-            bool isParametersInjected,
+            bool? isParametersInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)

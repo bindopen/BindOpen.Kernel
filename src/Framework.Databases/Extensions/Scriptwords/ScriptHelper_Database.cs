@@ -1,5 +1,4 @@
-﻿using BindOpen.Framework.Extensions.Carriers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Framework.Extensions.Scriptwords
@@ -9,28 +8,6 @@ namespace BindOpen.Framework.Extensions.Scriptwords
     /// </summary>
     public static class ScriptHelper_Database
     {
-        /// <summary>
-        /// Gets the BdO string corresponding to the specified data field.
-        /// </summary>
-        /// <param name="field">The database date field to consider.</param>
-        /// <returns>The string that allows to filter users and workgroup users.</returns>
-        private static String GetSqlDataFieldString(
-            DbField field)
-        {
-            String userFilterString = "";
-            if (field.DataModule != null)
-                userFilterString += "$SqlDatabase(\"" + field.DataModule + "\").";
-            if (field.DataTableAlias != null)
-                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
-            else if (field.DataTable != null)
-                userFilterString += "$SqlTable(\"" + field.DataTable + "\").";
-            if (field.Alias != null)
-                userFilterString += "$SqlField(\"" + field.Alias + "\")";
-            else if (field.Name != null)
-                userFilterString += "$SqlField(\"" + field.Name + "\")";
-            return userFilterString;
-        }
-
         /// <summary>
         /// Gets the BdO filter string that filters number values.
         /// </summary>

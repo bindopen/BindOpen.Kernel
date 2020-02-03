@@ -6,6 +6,13 @@
     public static partial class DbFluent
     {
         /// <summary>
+        /// Creates a BDO script representing the current date in SQL.
+        /// </summary>
+        public static string CurrentDate()
+            => "$SqlGetCurrentDate()";
+
+
+        /// <summary>
         /// Creates a BDO script representing and Sql And condition including the specified condition strings.
         /// </summary>
         /// <param name="conditions">The conditions to consider.</param>

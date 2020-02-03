@@ -1,5 +1,4 @@
 ﻿using BindOpen.Framework.Application.Options;
-using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Security;
 using BindOpen.Framework.Application.Services;
 

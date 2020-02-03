@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BindOpen.Framework.Data.Queries
+﻿namespace BindOpen.Framework.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.
@@ -25,6 +23,6 @@ namespace BindOpen.Framework.Data.Queries
         public virtual string GetSqlText_Random()
         {
             return "";
-       }
+        }
     }
 }

@@ -2,8 +2,6 @@
 using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Application.Services;
 using BindOpen.Framework.Application.Settings;
-using BindOpen.Framework.NetCore.Services;
-using BindOpen.Framework.System.Diagnostics.Loggers;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -75,105 +73,59 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        // BindOpen services --------------------------
-
-        /// <summary>
-        /// Adds a BindOpen service.
-        /// </summary>
-        /// <typeparam name="Serv"></typeparam>
-        /// <typeparam name="SServ"></typeparam>
-        /// <typeparam name="SHost"></typeparam>
-        /// <param name="services">The collection of services to populate.</param>
-        /// <param name="loggers"></param>
-        /// <param name="funcSettingsConverter"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddBindOpenService<Serv, SServ, SHost>(
-            this IServiceCollection services,
-            IBdoLogger[] loggers = null,
-            Func<SHost, SServ> funcSettingsConverter = null)
-            where Serv : ITBdoService<SServ>, IBdoHosted, new()
-            where SServ : class, IBdoSettings, new()
-            where SHost : IBdoAppSettings
-        {
-            services.AddSingleton<TBdoServiceOptions<SServ, SHost>>(_ => new TBdoServiceOptions<SServ, SHost>(loggers, funcSettingsConverter));
-            services.AddHostedService<THostedService<Serv, SServ, SHost>>();
-
-            return services;
-        }
-
         // BindOpen connected services --------------------------
 
         /// <summary>
-        /// Adds a singleton connected service.
+        /// Adds a BidnOpen connected service.
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen connected service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddSingletonConnectedService<TService, TImplementation>(
+        public static IServiceCollection AddBdoConnectedService<TService, TImplementation>(
             this IServiceCollection services,
-            Func<IBdoHost, TImplementation> setupAction = null)
+            Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoConnectedService
             where TImplementation : class, TService
-        {
-            services.AddSingleton<TService, TImplementation>(p =>
-            {
-                var host = p.GetService<IBdoHost>();
-                var repo = setupAction?.Invoke(host);
-
-                return repo;
-            });
-
-            return services;
-        }
+            => services.AddBdoConnectedService<TService, TImplementation>(ServiceLifetime.Transient, setupAction);
 
         /// <summary>
-        /// Adds a scoped connected service.
+        /// Adds a BidnOpen connected service.
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen connected service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
+        /// <param name="serviceLifetime">The service life time to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddScopedConnectedService<TService, TImplementation>(
+        public static IServiceCollection AddBdoConnectedService<TService, TImplementation>(
             this IServiceCollection services,
-            Func<IBdoHost, TImplementation> setupAction = null)
+            ServiceLifetime serviceLifetime,
+            Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoConnectedService
             where TImplementation : class, TService
         {
-            services.AddScoped<TService, TImplementation>(p =>
+            TImplementation initializer(IServiceProvider p)
             {
                 var host = p.GetService<IBdoHost>();
                 var repo = setupAction?.Invoke(host);
 
                 return repo;
-            });
+            }
 
-            return services;
-        }
-
-        /// <summary>
-        /// Adds a transient connected service.
-        /// </summary>
-        /// <typeparam name="TService">The interface of BindOpen connected service to consider.</typeparam>
-        /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
-        /// <param name="setupAction">The setup action to consider.</param>
-        /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddTransientConnectedService<TService, TImplementation>(
-            this IServiceCollection services,
-            Func<IBdoHost, TImplementation> setupAction = null)
-            where TService : class, IBdoConnectedService
-            where TImplementation : class, TService
-        {
-            services.AddTransient<TService, TImplementation>(p =>
+            switch (serviceLifetime)
             {
-                var host = p.GetService<IBdoHost>();
-                var repo = setupAction?.Invoke(host);
-
-                return repo;
-            });
+                case ServiceLifetime.Singleton:
+                    services.AddSingleton<TService, TImplementation>(initializer);
+                    break;
+                case ServiceLifetime.Scoped:
+                    services.AddScoped<TService, TImplementation>(initializer);
+                    break;
+                case ServiceLifetime.Transient:
+                    services.AddTransient<TService, TImplementation>(initializer);
+                    break;
+            }
 
             return services;
         }

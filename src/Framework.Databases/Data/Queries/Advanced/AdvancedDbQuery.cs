@@ -268,13 +268,25 @@ namespace BindOpen.Framework.Data.Queries
         /// Adds the specified field.
         /// </summary>
         /// <param name="field">The field to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IAdvancedDbQuery AddField(DbField field, bool canBeAdded = true)
+        public IAdvancedDbQuery AddField(DbField field)
+        {
+            Fields?.Add(field);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the specified field.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="field">The field to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery AddField(bool canBeAdded, DbField field)
         {
             if (canBeAdded)
             {
-                Fields?.Add(field);
+                return AddField(field);
             }
 
             return this;
@@ -284,13 +296,23 @@ namespace BindOpen.Framework.Data.Queries
         /// Sets the field using an initialization function.
         /// </summary>
         /// <param name="initiliazer">The initiliazation function to consider.</param>
-        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
         /// <returns>Returns this instance.</returns>
-        public IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer, bool canBeAdded = true)
+        public IAdvancedDbQuery AddField(Func<IAdvancedDbQuery, DbField> initiliazer)
+        {
+            return AddField(initiliazer?.Invoke(this));
+        }
+
+        /// <summary>
+        /// Sets the field using an initialization function.
+        /// </summary>
+        /// <param name="canBeAdded">Indicates whether the field can be added.</param>
+        /// <param name="initiliazer">The initiliazation function to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery AddField(bool canBeAdded, Func<IAdvancedDbQuery, DbField> initiliazer)
         {
             if (canBeAdded)
             {
-                return AddField(initiliazer?.Invoke(this));
+                return AddField(initiliazer);
             }
 
             return this;

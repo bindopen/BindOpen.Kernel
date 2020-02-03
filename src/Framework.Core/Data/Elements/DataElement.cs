@@ -275,7 +275,7 @@ namespace BindOpen.Framework.Data.Elements
             switch (ItemizationMode)
             {
                 case DataItemizationMode.Valued:
-                    return _items.Count == 0 ? null : (_items.Count == 1 ? _items[0] : _items);
+                    return _items?.Count > 0 ? (_items.Count == 1 ? _items[0] : _items) : null;
                 case DataItemizationMode.Referenced:
                     if (scope == null)
                     {
@@ -558,9 +558,14 @@ namespace BindOpen.Framework.Data.Elements
                     {
                         ItemScript = element.ItemScript;
 
-                        _items = new List<object>();
-                        foreach (object currentItem in element.Items)
-                            _items.Add(currentItem);
+                        if (element.Items != null && element.Items.Count > 0)
+                        {
+                            _items = new List<object>();
+                            foreach (object currentItem in element.Items)
+                            {
+                                _items.Add(currentItem);
+                            }
+                        }
                     }
                 }
 
