@@ -35,6 +35,12 @@ namespace BindOpen.Framework.Data.Queries
         int Top { get; set; }
 
         /// <summary>
+        /// The returned IDs of this instance.
+        /// </summary>
+        /// <remarks>This string is split with a comma.</remarks>
+        List<DbField> ReturnedIdFields { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="boundFieldName"></param>
@@ -49,6 +55,13 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="fields">The fields to consider.</param>
         /// <returns>Returns this instance.</returns>
         IBasicDbQuery WithFields(params DbField[] fields);
+
+        /// <summary>
+        /// Sets the specified returned ID fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IBasicDbQuery WithReturnedIdFields(params DbField[] fields);
 
         /// <summary>
         /// Sets the fields using an initialization function.
@@ -90,7 +103,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IBasicDbQuery From(params IDbQueryFromStatement[] statements);
+        IBasicDbQuery WithFroms(params IDbQueryFromStatement[] statements);
 
         /// <summary>
         /// Sets the specified ID fields.
@@ -154,6 +167,6 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IBasicDbQuery WithTableAlias(string tableAlias);
+        IBasicDbQuery WithTableWithAlias(string tableAlias);
     }
 }

@@ -315,30 +315,7 @@ namespace BindOpen.Framework.Extensions.Carriers
         /// </summary>
         /// <param name="field">The field to consider.</param>
         public static implicit operator string(DbField field)
-        {
-            string st = "";
-
-            if (field != null)
-            {
-                if (!string.IsNullOrEmpty(field.DataModule))
-                    st += "$SqlDatabase(\"" + field.DataModule + "\").";
-
-                if (!string.IsNullOrEmpty(field.Schema))
-                    st += "$SqlSchema(\"" + field.Schema + "\").";
-
-                if (!string.IsNullOrEmpty(field.DataTableAlias))
-                    st += "$SqlTable(\"" + field.DataTable + "\").";
-                else if (!string.IsNullOrEmpty(field.DataTable))
-                    st += "$SqlTable(\"" + field.DataTable + "\").";
-
-                if (!string.IsNullOrEmpty(field.Alias))
-                    st += "$SqlField(\"" + field.Alias + "\")";
-                else if (!string.IsNullOrEmpty(field.Name))
-                    st += "$SqlField(\"" + field.Name + "\")";
-            }
-
-            return st;
-        }
+            => DbQueryBuilder.GetBdoScript(field);
 
         #endregion
     }

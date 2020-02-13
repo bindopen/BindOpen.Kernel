@@ -33,7 +33,7 @@ namespace BindOpen.Framework.Data.Elements
         /// </summary>
         /// <param name="elementName"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object GetElementObject(
@@ -48,7 +48,7 @@ namespace BindOpen.Framework.Data.Elements
         /// <typeparam name="T"></typeparam>
         /// <param name="elementName"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T GetElementObject<T>(

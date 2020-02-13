@@ -36,9 +36,9 @@
         Insert,
 
         /// <summary>
-        /// Duplicate.
+        /// Upsert.
         /// </summary>
-        Duplicate,
+        Upsert,
 
         /// <summary>
         /// Drop.

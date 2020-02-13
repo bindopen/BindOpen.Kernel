@@ -1,4 +1,5 @@
-﻿using BindOpen.Framework.Extensions.Carriers;
+﻿using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Extensions.Carriers;
 
 namespace BindOpen.Framework.Data.Queries
 {
@@ -14,11 +15,24 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public static string GetBdoScript(DbField field)
         {
-            return "$" +
-                (string.IsNullOrEmpty(field.DataModule) ? "" : ("sqlDatabase('" + field.DataModule + "').")) +
-                (string.IsNullOrEmpty(field.Schema) ? "" : ("sqlSchema('" + field.Schema + "').")) +
-                (string.IsNullOrEmpty(field.DataTable) ? "" : ("sqlTable('" + field.DataTable + "').")) +
-                (string.IsNullOrEmpty(field.Name) ? "" : ("sqlField('" + field.Name + "')"));
+            string st = "";
+
+            if (field != null)
+            {
+                st = GetBdoScript(DbFluent.Table(field.DataTable, field.Schema, field.DataModule).WithAlias(field.DataTableAlias))
+                    .ConcatenateIfFirstNotEmpty(".");
+
+                if (!string.IsNullOrEmpty(field.Alias))
+                {
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlField('" + field.Alias + "')";
+                }
+                else if (!string.IsNullOrEmpty(field.Name))
+                {
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlField('" + field.Name + "')";
+                }
+            }
+
+            return st;
         }
 
         /// <summary>
@@ -28,10 +42,25 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public static string GetBdoScript(DbTable table)
         {
-            return "$" +
-                (string.IsNullOrEmpty(table.DataModule) ? "" : ("sqlDatabase('" + table.DataModule + "').")) +
-                (string.IsNullOrEmpty(table.Schema) ? "" : ("sqlSchema('" + table.Schema + "').")) +
-                (string.IsNullOrEmpty(table.Name) ? "" : ("sqlTable('" + table.Name + "')."));
+            string st = "";
+
+            if (table != null)
+            {
+                st.ConcatenateIf(!string.IsNullOrEmpty(table.DataModule), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlDatabase('" + table.DataModule + "').");
+
+                st.ConcatenateIf(!string.IsNullOrEmpty(table.Schema), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlSchema('" + table.Schema + "').");
+
+                if (!string.IsNullOrEmpty(table.Alias))
+                {
+                    st += st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Alias + "')";
+                }
+                else if (!string.IsNullOrEmpty(table.Name))
+                {
+                    st += st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Name + "')";
+                }
+            }
+
+            return st;
         }
     }
 }

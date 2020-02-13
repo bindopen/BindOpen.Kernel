@@ -62,9 +62,9 @@ namespace BindOpen.Framework.Application.Navigation
         Delete = 0x1 << 9,
 
         /// <summary>
-        /// Duplicate.
+        /// MergeDbQuery.
         /// </summary>
-        Duplicate = 0x1 << 10,
+        MergeDbQuery = 0x1 << 10,
 
         /// <summary>
         /// Import.

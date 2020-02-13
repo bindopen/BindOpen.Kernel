@@ -41,11 +41,11 @@ namespace BindOpen.Framework.Data.Connections
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        IBdoLog Open();
+        IBdoLog Connect();
 
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        IBdoLog Close();
+        IBdoLog Disconnect();
     }
 }

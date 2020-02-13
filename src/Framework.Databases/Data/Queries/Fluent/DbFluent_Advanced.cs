@@ -16,7 +16,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Delete advanced database query</returns>
         public static IAdvancedDbQuery DeleteAdvanced(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table);
             initAction?.Invoke(query);
 
             return query;
@@ -37,7 +37,9 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Create basic database query</returns>
         public static IAdvancedDbQuery CreateAdvanced(string name, DbTable table, bool onlyIfNotExisting = true, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Create, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Create, table);
+            query.CheckExistence(onlyIfNotExisting);
+
             initAction?.Invoke(query);
 
             return query;
@@ -58,7 +60,8 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Drop advanced database query</returns>
         public static IAdvancedDbQuery DropAdvanced(string name, DbTable table, bool onlyIfExisting = true, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name, onlyIfExisting);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Drop, table);
+            query.CheckExistence(onlyIfExisting);
             initAction?.Invoke(query);
 
             return query;
@@ -71,36 +74,16 @@ namespace BindOpen.Framework.Data.Queries
         public static IAdvancedDbQuery DropAdvanced(DbTable table, bool onlyIfExisting = true, Action<IAdvancedDbQuery> initAction = null)
             => DropAdvanced(null, table, onlyIfExisting, initAction);
 
-        // Duplicate --------------------------------
-
-        /// <summary>
-        /// Creates a new Duplicate advanced database query.
-        /// </summary>
-        /// <returns>Returns a new Duplicate advanced database query</returns>
-        public static IAdvancedDbQuery DuplicateAdvanced(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
-        {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Duplicate, table?.DataModule, table?.Schema, table?.Name);
-            initAction?.Invoke(query);
-
-            return query;
-        }
-
-        /// <summary>
-        /// Creates a new Duplicate advanced database query.
-        /// </summary>
-        /// <returns>Returns a new Duplicate advanced database query</returns>
-        public static IAdvancedDbQuery DuplicateAdvanced(DbTable table, Action<IAdvancedDbQuery> initAction = null)
-            => DuplicateAdvanced(null, table, initAction);
-
         // Insert --------------------------------
 
         /// <summary>
         /// Creates a new Insert advanced database query.
         /// </summary>
         /// <returns>Returns a new Insert advanced database query</returns>
-        public static IAdvancedDbQuery InsertAdvanced(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
+        public static IAdvancedDbQuery InsertAdvanced(string name, DbTable table, bool onlyIfNotExisting = true, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Insert, table);
+            query.CheckExistence(onlyIfNotExisting);
             initAction?.Invoke(query);
 
             return query;
@@ -110,8 +93,8 @@ namespace BindOpen.Framework.Data.Queries
         /// Creates a new Insert advanced database query.
         /// </summary>
         /// <returns>Returns a new Insert advanced database query</returns>
-        public static IAdvancedDbQuery InsertAdvanced(DbTable table, Action<IAdvancedDbQuery> initAction = null)
-            => InsertAdvanced(null, table, initAction);
+        public static IAdvancedDbQuery InsertAdvanced(DbTable table, bool onlyIfNotExisting = true, Action<IAdvancedDbQuery> initAction = null)
+            => InsertAdvanced(null, table, onlyIfNotExisting, initAction);
 
         // Select --------------------------------
 
@@ -121,7 +104,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Select advanced database query</returns>
         public static IAdvancedDbQuery SelectAdvanced(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Select, table);
             initAction?.Invoke(query);
 
             return query;
@@ -142,7 +125,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Update advanced database query</returns>
         public static IAdvancedDbQuery UpdateAdvanced(string name, DbTable table, Action<IAdvancedDbQuery> initAction = null)
         {
-            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Update, table?.DataModule, table?.Schema, table?.Name);
+            IAdvancedDbQuery query = new AdvancedDbQuery(name, DbQueryKind.Update, table);
             initAction?.Invoke(query);
 
             return query;

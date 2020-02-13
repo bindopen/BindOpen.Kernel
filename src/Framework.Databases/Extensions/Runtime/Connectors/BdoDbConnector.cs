@@ -196,7 +196,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             bool? isParametersInjected = true,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null)
-            => QueryBuilder?.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);
+            => QueryBuilder?.BuildQuery(query, isParametersInjected, parameterSet, scriptVariableSet, log);
 
         // SQL commands
 
@@ -233,7 +233,7 @@ namespace BindOpen.Framework.Extensions.Runtime
             if (QueryBuilder == null)
                 log.AddError("Data builder missing");
             else
-                sqlText = QueryBuilder.BuildSqlText(query, log, isParametersInjected, parameterSet, scriptVariableSet);
+                sqlText = QueryBuilder.BuildQuery(query, isParametersInjected, parameterSet, scriptVariableSet, log);
 
             return sqlText;
         }

@@ -127,10 +127,10 @@ namespace BindOpen.Framework.Data.Connections
         #region IBdoConnection_Methods
 
         /// <summary>
-        /// Opens this instance.
+        /// Connects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoLog Open()
+        public override IBdoLog Connect()
         {
             var log = new BdoLog();
             try
@@ -146,10 +146,10 @@ namespace BindOpen.Framework.Data.Connections
         }
 
         /// <summary>
-        /// Closes this instance.
+        /// Disconnects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoLog Close()
+        public override IBdoLog Disconnect()
         {
             var log = new BdoLog();
             try

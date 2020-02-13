@@ -74,7 +74,7 @@ namespace BindOpen.Framework.Application.Settings
         /// <param name="specificationLevels"></param>
         /// <param name="specificationSet"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="xmlSchemaSet"></param>
         /// <returns></returns>
         IBdoLog UpdateFromFile(

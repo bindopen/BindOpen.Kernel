@@ -1785,9 +1785,9 @@
             Delete.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Duplicate">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.MergeDbQuery">
             <summary>
-            Duplicate.
+            MergeDbQuery.
             </summary>
         </member>
         <member name="F:BindOpen.Framework.Runtime.Application.Navigation.ActionKinds.Import">
@@ -1860,9 +1860,9 @@
             Add an entity object.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Duplicate">
+        <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.MergeDbQuery">
             <summary>
-            Duplicate an entity object.
+            MergeDbQuery an entity object.
             </summary>
         </member>
         <member name="F:BindOpen.Framework.Runtime.Application.Navigation.NavigationActionKind.Properties">

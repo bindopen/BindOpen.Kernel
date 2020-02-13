@@ -15,12 +15,17 @@ namespace BindOpen.Framework.Data.Queries
         #region Properties
 
         /// <summary>
-        /// Union statement.
+        /// The alias of this instance.
+        /// </summary>
+        public string Alias { get; set; }
+
+        /// <summary>
+        /// The union statement of this instance.
         /// </summary>
         public DbQueryUnionStatement UnionStatement { get; set; }
 
         /// <summary>
-        /// List of join statements.
+        /// The list of join statements of this instance.
         /// </summary>
         public List<DbQueryJoinStatement> JoinStatements { get; set; } = new List<DbQueryJoinStatement>();
 
@@ -48,24 +53,24 @@ namespace BindOpen.Framework.Data.Queries
         #region Mutators
 
         /// <summary>
-        /// Sets the specified union statement.
+        /// Sets the specified alias.
         /// </summary>
-        /// <param name="statement">The union statement to consider.</param>
+        /// <param name="alias">The alias to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IDbQueryFromStatement Union(IDbQueryUnionStatement statement)
+        public IDbQueryFromStatement WithAlias(string alias)
         {
-            UnionStatement = statement as DbQueryUnionStatement;
+            Alias = alias;
             return this;
         }
 
         /// <summary>
-        /// Adds the specified join statement.
+        /// Sets the specified union statement.
         /// </summary>
-        /// <param name="statement">The join statement to consider.</param>
+        /// <param name="statement">The union statement to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IDbQueryFromStatement Join(IDbQueryJoinStatement statement)
+        public IDbQueryFromStatement WithUnion(IDbQueryUnionStatement statement)
         {
-            JoinStatements?.Add(statement as DbQueryJoinStatement);
+            UnionStatement = statement as DbQueryUnionStatement;
             return this;
         }
 

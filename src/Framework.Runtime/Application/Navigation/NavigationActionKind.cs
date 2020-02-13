@@ -36,9 +36,9 @@
         Add,
 
         /// <summary>
-        /// Duplicate an entity object.
+        /// MergeDbQuery an entity object.
         /// </summary>
-        Duplicate,
+        MergeDbQuery,
 
         /// <summary>
         /// View properties of an entity object.

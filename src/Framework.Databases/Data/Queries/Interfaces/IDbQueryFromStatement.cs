@@ -8,6 +8,11 @@ namespace BindOpen.Framework.Data.Queries
     public interface IDbQueryFromStatement
     {
         /// <summary>
+        /// The alias of this instance.
+        /// </summary>
+        string Alias { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         List<DbQueryJoinStatement> JoinStatements { get; set; }
@@ -18,18 +23,18 @@ namespace BindOpen.Framework.Data.Queries
         DbQueryUnionStatement UnionStatement { get; set; }
 
         /// <summary>
+        /// Sets the specified alias.
+        /// </summary>
+        /// <param name="alias">The alias to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQueryFromStatement WithAlias(string alias);
+
+        /// <summary>
         /// Adds the specified union statement.
         /// </summary>
         /// <param name="statement"></param>
         /// <returns></returns>
-        IDbQueryFromStatement Union(IDbQueryUnionStatement statement);
-
-        /// <summary>
-        /// Adds the specified join statement.
-        /// </summary>
-        /// <param name="statement">The join statement to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        IDbQueryFromStatement Join(IDbQueryJoinStatement statement);
+        IDbQueryFromStatement WithUnion(IDbQueryUnionStatement statement);
 
         /// <summary>
         /// Sets the specified join statement.

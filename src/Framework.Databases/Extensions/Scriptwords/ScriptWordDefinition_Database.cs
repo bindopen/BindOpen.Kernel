@@ -1,11 +1,11 @@
 ﻿using BindOpen.Framework.Application.Scopes;
+using BindOpen.Framework.Data.Depots;
 using BindOpen.Framework.Data.Helpers.Objects;
 using BindOpen.Framework.Data.Helpers.Strings;
+using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.Extensions.Runtime;
 using BindOpen.Framework.System.Scripting;
-using BindOpen.Framework.Data.Queries;
-using BindOpen.Framework.Data.Depots;
 
 namespace BindOpen.Framework.Extensions.Scriptwords
 {
@@ -797,7 +797,7 @@ namespace BindOpen.Framework.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {

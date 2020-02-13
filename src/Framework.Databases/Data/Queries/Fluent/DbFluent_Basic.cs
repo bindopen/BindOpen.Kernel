@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Delete basic database query</returns>
         public static IBasicDbQuery DeleteBasic(string name, DbTable table)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Delete, table?.DataModule, table?.Schema, table?.Name);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Delete, table);
 
             return query;
         }
@@ -35,8 +35,8 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Create basic database query</returns>
         public static IBasicDbQuery CreateBasic(string name, DbTable table, bool onlyIfNotExisting = true)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Create, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
-
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Create, table);
+            query.CheckExistence(onlyIfNotExisting);
             return query;
         }
 
@@ -55,7 +55,8 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Drop basic database query</returns>
         public static IBasicDbQuery DropBasic(string name, DbTable table, bool onlyIfExisting = true)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Drop, table?.DataModule, table?.Schema, table?.Name, onlyIfExisting);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Drop, table);
+            query.CheckExistence(onlyIfExisting);
 
             return query;
         }
@@ -67,26 +68,6 @@ namespace BindOpen.Framework.Data.Queries
         public static IBasicDbQuery DropBasic(DbTable table, bool onlyIfExisting = true)
             => DropBasic(null, table, onlyIfExisting);
 
-        // Duplicate --------------------------------
-
-        /// <summary>
-        /// Creates a new Duplicate basic database query.
-        /// </summary>
-        /// <returns>Returns a new Duplicate basic database query</returns>
-        public static IBasicDbQuery DuplicateBasic(string name, DbTable table)
-        {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Duplicate, table?.DataModule, table?.Schema, table?.Name);
-
-            return query;
-        }
-
-        /// <summary>
-        /// Creates a new Duplicate basic database query.
-        /// </summary>
-        /// <returns>Returns a new Duplicate basic database query</returns>
-        public static IBasicDbQuery DuplicateBasic(DbTable table)
-            => DuplicateBasic(null, table);
-
         // Insert --------------------------------
 
         /// <summary>
@@ -95,7 +76,8 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Insert basic database query</returns>
         public static IBasicDbQuery InsertBasic(string name, DbTable table, bool onlyIfNotExisting = true)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Insert, table?.DataModule, table?.Schema, table?.Name, onlyIfNotExisting);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Insert, table);
+            query.CheckExistence(onlyIfNotExisting);
 
             return query;
         }
@@ -115,7 +97,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Select basic database query</returns>
         public static IBasicDbQuery SelectBasic(string name, DbTable table)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Select, table?.DataModule, table?.Schema, table?.Name);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Select, table);
 
             return query;
         }
@@ -135,7 +117,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new Update basic database query</returns>
         public static IBasicDbQuery UpdateBasic(string name, DbTable table)
         {
-            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Update, table?.DataModule, table?.Schema, table?.Name);
+            IBasicDbQuery query = new BasicDbQuery(name, DbQueryKind.Update, table);
 
             return query;
         }

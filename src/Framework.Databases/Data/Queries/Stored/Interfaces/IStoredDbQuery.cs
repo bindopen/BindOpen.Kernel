@@ -6,7 +6,7 @@ namespace BindOpen.Framework.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbStoredQuery : IDbQuery, IDescribedDataItem, IIdentifiedDataItem
+    public interface IStoredDbQuery : IDbQuery, IDescribedDataItem, IIdentifiedDataItem
     {
         /// <summary>
         /// The query of this instance.

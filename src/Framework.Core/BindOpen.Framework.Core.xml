@@ -4082,25 +4082,25 @@
             </summary>
             <param name="elements">The schema elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.DuplicateElement(BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement,BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.MergeDbQueryElement(BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement,BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement)">
             <summary>
-            Duplicates the specified schema element to the specified parent schema element.
+            MergeDbQuerys the specified schema element to the specified parent schema element.
             </summary>
             <param name="aElement">The schema element to consider.</param>
             <param name="aSchemaZoneElement">The parent schema element zone to consider.</param>
             <returns>The duplicated schema element.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.DuplicateElement(BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement})">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.MergeDbQueryElement(BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement,System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement})">
             <summary>
-            Duplicates the specified schema element to the specified parents schema element.
+            MergeDbQuerys the specified schema element to the specified parents schema element.
             </summary>
             <param name="aElement">The schema element to consider.</param>
             <param name="parentElements">The parents schema element to consider.</param>
             <returns>The duplicated schema element.</returns>
         </member>
-        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.DuplicateElements(System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement},BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement)">
+        <member name="M:BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement.MergeDbQueryElements(System.Collections.Generic.List{BindOpen.Framework.Core.Data.Elements.Schema.SchemaElement},BindOpen.Framework.Core.Data.Elements.Schema.SchemaZoneElement)">
             <summary>
-            Duplicates the specified schema elements to the specified parent schema element.
+            MergeDbQuerys the specified schema elements to the specified parent schema element.
             </summary>
             <param name="elements">The schema elements to consider.</param>
             <param name="parentZoneElement">The parent schema element zone object to consider.</param>

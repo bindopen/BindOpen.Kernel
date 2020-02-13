@@ -64,7 +64,7 @@ namespace BindOpen.Framework.Data.Connections
         /// </summary>
         protected override void Dispose(bool isDisposing)
         {
-            Close();
+            Disconnect();
             base.Dispose(isDisposing);
 
             if (isDisposing)
@@ -84,14 +84,14 @@ namespace BindOpen.Framework.Data.Connections
         // Open / Close -----------------------------
 
         /// <summary>
-        /// Opens this instance.
+        /// Connects this instance.
         /// </summary>
-        public abstract IBdoLog Open();
+        public abstract IBdoLog Connect();
 
         /// <summary>
-        /// Closes this instance.
+        /// Disconnects this instance.
         /// </summary>
-        public abstract IBdoLog Close();
+        public abstract IBdoLog Disconnect();
 
         /// <summary>
         /// Updates the connector.

@@ -56,6 +56,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         public List<DbQueryOrderByStatement> OrderByStatements { get; set; } = new List<DbQueryOrderByStatement>();
 
+        /// <summary>
+        /// The returned IDs to consider.
+        /// </summary>
+        public List<DbField> ReturnedIdFields { get; set; } = new List<DbField>();
+
         #endregion
 
         // ------------------------------------------
@@ -75,16 +80,10 @@ namespace BindOpen.Framework.Data.Queries
         /// Instantiates a new instance of the AdvancedDbQuery class.
         /// </summary>
         /// <param name="kind">Type of database data query.</param>
-        /// <param name="dataModule">Name of the data module.</param>
-        /// <param name="schema">Schema of the data module.</param>
-        /// <param name="dataTable">Name of data table.</param>
-        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
+        /// <param name="table">The table to consider.</param>
         public AdvancedDbQuery(
             DbQueryKind kind,
-            string dataModule = null,
-            string schema = null,
-            string dataTable = null,
-            bool isExistenceChecked = false) : base(kind, dataModule, schema, dataTable, isExistenceChecked)
+            DbTable table = null) : base(kind, table)
         {
         }
 
@@ -93,16 +92,11 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="name">Name of the query.</param>
         /// <param name="kind">Type of database data query.</param>
-        /// <param name="dataModule">Name of the data module.</param>
-        /// <param name="schema">Schema of the data module.</param>
-        /// <param name="dataTable">Name of data table.</param>
+        /// <param name="table">The table to consider.</param>
         public AdvancedDbQuery(
-                string name,
-                DbQueryKind kind,
-                string dataModule = null,
-                string schema = null,
-                string dataTable = null,
-                bool isExistenceChecked = false) : base(name, kind, dataModule, schema, dataTable, isExistenceChecked)
+            string name,
+            DbQueryKind kind,
+            DbTable table = null) : base(name, kind, table)
         {
         }
 
@@ -127,7 +121,7 @@ namespace BindOpen.Framework.Data.Queries
 
             if (string.IsNullOrEmpty(st))
             {
-                st += Schema.ConcatenateIfNotEmpty("_");
+                st += Schema.ConcatenateIfFirstNotEmpty("_");
 
                 if (!string.IsNullOrEmpty(DataTableAlias) || !string.IsNullOrEmpty(DataTable))
                 {
@@ -162,7 +156,7 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="statements"></param>
         /// <returns></returns>
-        public IAdvancedDbQuery From(params IDbQueryFromStatement[] statements)
+        public IAdvancedDbQuery Froms(params IDbQueryFromStatement[] statements)
         {
             FromStatements = statements?.Cast<DbQueryFromStatement>().ToList();
             return this;
@@ -236,7 +230,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        public IAdvancedDbQuery WithTableAlias(string tableAlias)
+        public IAdvancedDbQuery WithTableWithAlias(string tableAlias)
         {
             DataTableAlias = tableAlias;
             return this;
@@ -250,6 +244,18 @@ namespace BindOpen.Framework.Data.Queries
         public IAdvancedDbQuery WithFields(params DbField[] fields)
         {
             Fields = fields?.ToList();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified returned ID fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IAdvancedDbQuery WithReturnedIdFields(params DbField[] fields)
+        {
+            ReturnedIdFields = fields?.ToList();
 
             return this;
         }

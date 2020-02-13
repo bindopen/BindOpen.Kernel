@@ -462,7 +462,7 @@
             <param name="clause"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.AdvancedDbQuery.WithTableAlias(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.AdvancedDbQuery.WithTableWithAlias(System.String)">
             <summary>
             
             </summary>
@@ -733,7 +733,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.BasicDbQuery.WithTableAlias(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.BasicDbQuery.WithTableWithAlias(System.String)">
             <summary>
             
             </summary>
@@ -1360,9 +1360,9 @@
             Insert.
             </summary>
         </member>
-        <member name="F:BindOpen.Framework.Data.Queries.DbQueryKind.Duplicate">
+        <member name="F:BindOpen.Framework.Data.Queries.DbQueryKind.MergeDbQuery">
             <summary>
-            Duplicate.
+            MergeDbQuery.
             </summary>
         </member>
         <member name="F:BindOpen.Framework.Data.Queries.DbQueryKind.Drop">
@@ -1457,17 +1457,17 @@
             </summary>
             <returns>Returns a new Drop basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.MergeDbQueryBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
-            Creates a new Duplicate basic database query.
+            Creates a new MergeDbQuery basic database query.
             </summary>
-            <returns>Returns a new Duplicate basic database query</returns>
+            <returns>Returns a new MergeDbQuery basic database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.MergeDbQueryBasic(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
-            Creates a new Duplicate basic database query.
+            Creates a new MergeDbQuery basic database query.
             </summary>
-            <returns>Returns a new Duplicate basic database query</returns>
+            <returns>Returns a new MergeDbQuery basic database query</returns>
         </member>
         <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertBasic(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
@@ -1529,17 +1529,17 @@
             </summary>
             <returns>Returns a new Drop advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.MergeDbQueryAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
-            Creates a new Duplicate advanced database query.
+            Creates a new MergeDbQuery advanced database query.
             </summary>
-            <returns>Returns a new Duplicate advanced database query</returns>
+            <returns>Returns a new MergeDbQuery advanced database query</returns>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.DuplicateAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
+        <member name="M:BindOpen.Framework.Data.Queries.DbFactory.MergeDbQueryAdvanced(BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
-            Creates a new Duplicate advanced database query.
+            Creates a new MergeDbQuery advanced database query.
             </summary>
-            <returns>Returns a new Duplicate advanced database query</returns>
+            <returns>Returns a new MergeDbQuery advanced database query</returns>
         </member>
         <member name="M:BindOpen.Framework.Data.Queries.DbFactory.InsertAdvanced(System.String,BindOpen.Framework.Extensions.Carriers.DbTable)">
             <summary>
@@ -1705,7 +1705,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.IAdvancedDbQuery.WithTableAlias(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.IAdvancedDbQuery.WithTableWithAlias(System.String)">
             <summary>
             
             </summary>
@@ -1779,7 +1779,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Framework.Data.Queries.IBasicDbQuery.WithTableAlias(System.String)">
+        <member name="M:BindOpen.Framework.Data.Queries.IBasicDbQuery.WithTableWithAlias(System.String)">
             <summary>
             
             </summary>

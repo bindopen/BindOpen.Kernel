@@ -18,10 +18,22 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>Returns a new From statement.</returns>
         public static IDbQueryFromStatement From(DbTable table = null)
             => new DbQueryFromStatement()
-                .Join(Join(DbQueryJoinKind.None, table));
+                .WithJoins(Join(DbQueryJoinKind.None, table));
+
+        /// <summary>
+        /// Creates a new From statement.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static IDbQueryFromStatement From(IDbQuery query)
+            => new DbQueryFromStatement()
+                .WithJoins(Join(DbQueryJoinKind.None, query));
 
         // Join --------------------------------
 
+
+        // Table
+
         /// <summary>
         /// Creates a new Join statement.
         /// </summary>
@@ -29,8 +41,8 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJoinStatement Join(DbQueryJoinKind kind, DbTable table, string conditionScript)
-            => Join(kind, table).WithCondition(conditionScript.CreateScript());
+        public static IDbQueryJoinStatement Join(DbQueryJoinKind kind, DbTable table, string conditionScript = null)
+            => new DbQueryJoinStatement() { Kind = kind, Table = table }.WithCondition(conditionScript.CreateScript());
 
         /// <summary>
         /// Creates a new Join statement.
@@ -38,25 +50,31 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJoinStatement Join(DbTable table, string conditionScript)
-            => Join(DbQueryJoinKind.Inner, table).WithCondition(conditionScript.CreateScript());
+        public static IDbQueryJoinStatement Join(DbTable table, string conditionScript = null)
+            => Join(DbQueryJoinKind.Inner, table, conditionScript);
 
-        /// <summary>
-        /// Creates a new Join statement.
-        /// </summary>
-        /// <param name="table">The table to consider.</param>
-        /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJoinStatement Join(DbTable table)
-            => Join(DbQueryJoinKind.Inner, table);
+        // Query
 
         /// <summary>
         /// Creates a new Join statement.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
-        /// <param name="table">The table to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
         /// <returns>Returns a new From statement.</returns>
-        public static IDbQueryJoinStatement Join(DbQueryJoinKind kind, DbTable table)
-            => new DbQueryJoinStatement() { Kind = kind, Table = table };
+        public static IDbQueryJoinStatement Join(DbQueryJoinKind kind, IDbQuery query, string conditionScript = null)
+            => new DbQueryJoinStatement(kind, query).WithCondition(conditionScript.CreateScript());
+
+        /// <summary>
+        /// Creates a new Join statement.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static IDbQueryJoinStatement Join(IDbQuery query, string conditionScript = null)
+            => Join(DbQueryJoinKind.Inner, query).WithCondition(conditionScript.CreateScript());
+
+        // Join condition
 
         /// <summary>
         /// Creates a new instance of the DbQueryJoinCondition class.

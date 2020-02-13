@@ -334,7 +334,7 @@ namespace BindOpen.Framework.System.Scripting
         /// <param name="parentScriptword">The parent script word to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <param name="offsetIndex">The offset index to consider.</param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="isSimulationModeOn">Indicates whether the simulation mode is on.</param>
         /// <param name="log"></param>
         /// <returns></returns>
