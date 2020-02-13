@@ -498,14 +498,37 @@ namespace BindOpen.Framework.Data.Helpers.Strings
         }
 
         /// <summary>
+        /// Concatenates the first string with the second one if the specified condition is statisfied.
+        /// </summary>
+        /// <param name="st1">The first string to concatenate.</param>
+        /// <param name="condition">The condition to consider.</param>
+        /// <param name="st2">The second string to concatenate.</param>
+        /// <returns>Returns the concatenated string.</returns>
+        public static string ConcatenateIf(this string st1, bool condition, string st2)
+        {
+            return condition ? st1 + st2 : st1;
+        }
+
+        /// <summary>
         /// Concatenates the first string with the second only if the first one is not empty.
         /// </summary>
         /// <param name="st1">The first string to concatenate.</param>
         /// <param name="st2">The second string to concatenate.</param>
         /// <returns>Returns the concatenated string.</returns>
-        public static string ConcatenateIfNotEmpty(this string st1, string st2)
+        public static string ConcatenateIfFirstNotEmpty(this string st1, string st2)
         {
             return string.IsNullOrEmpty(st1) ? st1 : st1 + st2;
+        }
+
+        /// <summary>
+        /// Concatenates the first string with the second only if the second one is not empty.
+        /// </summary>
+        /// <param name="st1">The first string to concatenate.</param>
+        /// <param name="st2">The second string to concatenate.</param>
+        /// <returns>Returns the concatenated string.</returns>
+        public static string ConcatenateIfSecondNotEmpty(this string st1, string st2)
+        {
+            return string.IsNullOrEmpty(st2) ? st1 : st1 + st2;
         }
 
         /// <summary>

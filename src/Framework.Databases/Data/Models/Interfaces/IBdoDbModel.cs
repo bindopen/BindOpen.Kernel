@@ -50,6 +50,6 @@ namespace BindOpen.Framework.Data.Models
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IDbStoredQuery Query(string name);
+        IStoredDbQuery Query(string name);
     }
 }

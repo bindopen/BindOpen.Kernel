@@ -74,20 +74,31 @@ namespace BindOpen.Framework.Data.Queries
         }
 
         /// <summary>
+        /// Updates the specified parameter set with the specified query.
+        /// </summary>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        protected void UpdateParameterSet(IDataElementSet parameterSet, IDbQuery query)
+        {
+            parameterSet?.Update(query?.ParameterSet);
+            parameterSet?.Update(query?.ParameterSpecSet);
+        }
+
+        /// <summary>
         /// Builds the SQL text from the specified database query.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
         /// <param name="query">The database data query to build.</param>
         /// <param name="isParametersInjected">The display mode of parameters to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        public string BuildSqlText(
+        public string BuildQuery(
             IDbQuery query,
-            IBdoLog log = null,
             bool? isParametersInjected = true,
             IDataElementSet parameterSet = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             var queryString = "";
 
@@ -98,32 +109,35 @@ namespace BindOpen.Framework.Data.Queries
                     if (query is BasicDbQuery basicDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = Build(basicDbQuery, log, parameterSet, scriptVariableSet);
+                        queryString = GetSqlText(basicDbQuery, parameterSet, scriptVariableSet, log);
                     }
                     else if (query is AdvancedDbQuery advancedDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = Build(advancedDbQuery, log, parameterSet, scriptVariableSet);
+                        queryString = GetSqlText(advancedDbQuery, parameterSet, scriptVariableSet, log);
                     }
-                    else if (query is DbStoredQuery storedDbQuery)
+                    else if (query is CompositeDbQuery compositeDbQuery)
+                    {
+                        (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
+                        queryString = GetSqlText(compositeDbQuery, parameterSet, scriptVariableSet, log);
+                    }
+                    else if (query is StoredDbQuery storedDbQuery)
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            queryString = BuildSqlText(storedDbQuery.Query, log, null, parameterSet, scriptVariableSet);
+                            queryString = BuildQuery(storedDbQuery.Query, null, parameterSet, scriptVariableSet, log);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
                     }
 
                     if (isParametersInjected != null)
                     {
-                        parameterSet = new DataElementSet();
-                        parameterSet?.Update(query.ParameterSet);
-                        parameterSet?.Update(query.ParameterSpecSet);
+                        parameterSet = parameterSet ?? new DataElementSet();
+                        UpdateParameterSet(parameterSet, query);
 
-                        if (query is DbStoredQuery storedDbQuery)
+                        if (query is StoredDbQuery storedDbQuery)
                         {
-                            parameterSet?.Update(storedDbQuery.Query?.ParameterSet);
-                            parameterSet?.Update(storedDbQuery.Query?.ParameterSpecSet);
+                            UpdateParameterSet(parameterSet, storedDbQuery.Query);
                         }
 
                         if (parameterSet?.Elements != null)
@@ -133,7 +147,7 @@ namespace BindOpen.Framework.Data.Queries
                                 if (isParametersInjected == true)
                                 {
                                     queryString = queryString.Replace(parameter?.CreateParameterWildString(),
-                                        GetValuedSqlText(parameter?.GetObject(_scope, scriptVariableSet, log)?.ToString(), parameter.ValueType));
+                                        GetSqlText_Value(parameter?.GetObject(_scope, scriptVariableSet, log)?.ToString(), parameter.ValueType));
                                 }
                                 else
                                 {
@@ -158,48 +172,61 @@ namespace BindOpen.Framework.Data.Queries
         // Builds simple query ----------------------
 
         /// <summary>
-        /// Builds the specified simple database data query and put the result
-        /// into the specified string MS Sql Server query.
-        /// <remarks>We assume the query already exits.</remarks>
+        /// Builds the SQL text of the specified basic query.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="log">The log to consider.</param>
+        /// <param name="query">The query to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
-        /// <param name="scriptVariableSet"></param>
-        /// <param name="queryString"></param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        protected virtual string Build(
+        protected virtual string GetSqlText(
             IBasicDbQuery query,
-            IBdoLog log = null,
             IDataElementSet parameterSet = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             return "";
         }
-
 
         // Builds advanced query ----------------------
 
         /// <summary>
-        /// Builds the specified simple database data query and put the result
-        /// into the specified string MS Sql Server query.
-        /// <remarks>We assume the query already exits.</remarks>
+        /// Builds the SQL text of the specified advanced query.
         /// </summary>
-        /// <param name="query"></param>
-        /// <param name="log">The log to consider.</param>
+        /// <param name="query">The query to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
-        /// <param name="scriptVariableSet"></param>
-        /// <param name="queryString"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        protected virtual string Build(
+        protected virtual string GetSqlText(
             IAdvancedDbQuery query,
-            IBdoLog log = null,
             IDataElementSet parameterSet = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             return "";
         }
+
+        // Builds merge query ----------------------
+
+        /// <summary>
+        /// Builds the SQL text of the specified merge query.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="parameterSet">The parameter set to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <returns>Returns the built query text.</returns>
+        protected virtual string GetSqlText(
+            ICompositeDbQuery query,
+            IDataElementSet parameterSet = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            return "";
+        }
+
+        // -------------------------------------------
 
         /// <summary>
         /// Gets the Sql string corresponding to the specified value.
@@ -207,7 +234,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="value">The value to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <returns>Returns the Sql string.</returns>
-        protected virtual string GetValuedSqlText(string value, DataValueType valueType)
+        protected virtual string GetSqlText_Value(string value, DataValueType valueType = DataValueType.Text)
         {
             switch (valueType)
             {

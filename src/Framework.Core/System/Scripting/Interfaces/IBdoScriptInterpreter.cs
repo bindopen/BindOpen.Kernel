@@ -16,7 +16,7 @@ namespace BindOpen.Framework.System.Scripting
         /// 
         /// </summary>
         /// <param name="dataExpression"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(IDataExpression dataExpression, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
@@ -26,7 +26,7 @@ namespace BindOpen.Framework.System.Scripting
         /// </summary>
         /// <param name="dataExpression"></param>
         /// <param name="resultScript"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(IDataExpression dataExpression, out string resultScript, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
@@ -35,7 +35,7 @@ namespace BindOpen.Framework.System.Scripting
         /// 
         /// </summary>
         /// <param name="script"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(string script, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
@@ -45,7 +45,7 @@ namespace BindOpen.Framework.System.Scripting
         /// </summary>
         /// <param name="script"></param>
         /// <param name="resultScript"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(string script, out string resultScript, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
@@ -57,7 +57,7 @@ namespace BindOpen.Framework.System.Scripting
         /// <param name="parentScriptword"></param>
         /// <param name="index"></param>
         /// <param name="offsetIndex"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace BindOpen.Framework.System.Scripting
         /// 
         /// </summary>
         /// <param name="dataExpression"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         string Interprete(IDataExpression dataExpression, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
@@ -76,7 +76,7 @@ namespace BindOpen.Framework.System.Scripting
         /// 
         /// </summary>
         /// <param name="script"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         string Interprete(string script, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);

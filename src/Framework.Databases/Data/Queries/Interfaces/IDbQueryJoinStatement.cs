@@ -24,6 +24,11 @@ namespace BindOpen.Framework.Data.Queries
         DbTable Table { get; set; }
 
         /// <summary>
+        /// The query of this instance.
+        /// </summary>
+        DbQuery Query { get; set; }
+
+        /// <summary>
         /// Sets the specified condition.
         /// </summary>
         /// <param name="condition">The condition to consider.</param>

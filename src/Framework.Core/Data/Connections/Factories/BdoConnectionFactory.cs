@@ -70,7 +70,7 @@ namespace BindOpen.Framework.Data.Connections
                 else
                 {
                     connection = connector.CreateConnection(log) as T;
-                    connection.Open().AddEventsTo(log);
+                    connection.Connect().AddEventsTo(log);
                 }
             }
 

@@ -5,7 +5,7 @@ namespace BindOpen.Framework.Data.Queries
     /// <summary>
     /// This class represents a stored data query.
     /// </summary>
-    public class DbStoredQuery : DbQuery, IDbStoredQuery
+    public class StoredDbQuery : DbQuery, IStoredDbQuery
     {
         // ------------------------------------------
         // PROPERTIES
@@ -34,7 +34,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the StoredDbQuery class.
         /// </summary>
-        public DbStoredQuery()
+        public StoredDbQuery()
         {
         }
 
@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         /// <param name="query">The query to consider.</param>
         /// <param name="name">The name of the query to consider.</param>
-        public DbStoredQuery(IDbQuery query, string name = null)
+        public StoredDbQuery(IDbQuery query, string name = null)
         {
             Query = query;
             Name = name;

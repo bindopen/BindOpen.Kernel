@@ -25,6 +25,11 @@ namespace BindOpen.Framework.Data.Queries
         public DbTable Table { get; set; }
 
         /// <summary>
+        /// The query of this instance.
+        /// </summary>
+        public DbQuery Query { get; set; }
+
+        /// <summary>
         /// The condition of this instance.
         /// </summary>
         public DataExpression Condition { get; set; }
@@ -42,6 +47,30 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         public DbQueryJoinStatement()
         {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DbQueryJoinStatement class.
+        /// </summary>
+        /// <param name="kind">The kind to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public DbQueryJoinStatement(DbQueryJoinKind kind, IDbQuery query)
+        {
+            Kind = kind;
+            Query = query as DbQuery;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DbQueryJoinStatement class.
+        /// </summary>
+        /// <param name="kind">The kind to consider.</param>
+        /// <param name="table">The table to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public DbQueryJoinStatement(DbQueryJoinKind kind, DbTable table)
+        {
+            Kind = kind;
+            Table = table;
         }
 
         #endregion

@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="configuration"></param>
         /// <param name="key"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(this IConfiguration configuration, string key, IBdoScope scope = null, ScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
@@ -34,7 +34,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(this IConfiguration configuration,
@@ -55,7 +55,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="type"></param>
         /// <param name="key"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static object GetBdoValue(this IConfiguration configuration, Type type, string key)
@@ -72,7 +72,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static object GetBdoValue(this IConfiguration configuration,

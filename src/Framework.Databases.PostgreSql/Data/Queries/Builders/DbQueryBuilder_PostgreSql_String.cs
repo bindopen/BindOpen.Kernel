@@ -28,7 +28,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_Like(string value1, string value2)
         {
-            return "(" + value1 + " LIKE " + value2 + ")";
+            return "(" + value1 + " like " + value2 + ")";
         }
 
         /// <summary>

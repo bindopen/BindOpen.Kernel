@@ -1,6 +1,7 @@
 ﻿using BindOpen.Framework.Application.Scopes;
 using BindOpen.Framework.Data.Elements;
 using BindOpen.Framework.Data.Expression;
+using BindOpen.Framework.Data.Helpers.Strings;
 using BindOpen.Framework.Extensions.Carriers;
 using BindOpen.Framework.System.Diagnostics;
 using BindOpen.Framework.System.Scripting;
@@ -38,15 +39,15 @@ namespace BindOpen.Framework.Data.Queries
 
         #region Basic Query Building
 
-        private string GetFieldSqlText(
+        private string GetSqlText_Field(
             DbField field,
             IDataElementSet parameterSet,
-            IBdoLog log,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
-            IBdoScriptVariableSet scriptVariableSet = null,
             string defaultDataModule = null,
             string defaultSchema = null,
-            string defaultDataTable = null)
+            string defaultDataTable = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             string queryString = "";
 
@@ -59,19 +60,18 @@ namespace BindOpen.Framework.Data.Queries
                     case DbDataFieldViewMode.CompleteNameAsAlias:
                         if (field.IsAll)
                         {
-                            string tableName = GetTableSqlText(
+                            string tableName = GetSqlText_Table(
                                 field.DataModule,
                                 field.Schema,
                                 field.DataTable,
                                 field.DataTableAlias,
                                 viewMode,
                                 defaultDataModule,
-                                defaultSchema);
+                                defaultSchema,
+                                scriptVariableSet,
+                                log);
 
-                            if (!string.IsNullOrEmpty(tableName))
-                            {
-                                queryString += tableName + ".";
-                            }
+                            queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
 
                             queryString += "*";
                         }
@@ -79,47 +79,46 @@ namespace BindOpen.Framework.Data.Queries
                         {
                             if ((viewMode != DbDataFieldViewMode.CompleteNameOrValue) || (field.Value == null))
                             {
-                                string tableName = GetTableSqlText(
+                                string tableName = GetSqlText_Table(
                                     field.DataModule,
                                     field.Schema,
                                     field.DataTable ?? defaultDataTable,
                                     field.DataTableAlias,
                                     viewMode,
                                     defaultDataModule,
-                                    defaultSchema);
+                                    defaultSchema,
+                                    scriptVariableSet,
+                                    log);
 
-                                if (!string.IsNullOrEmpty(tableName))
-                                {
-                                    queryString += tableName + ".";
-                                }
+                                queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
 
-                                queryString += GetFieldSqlText(
+                                queryString += GetSqlText_Field(
                                     field,
                                     parameterSet,
-                                    log,
                                     viewMode == DbDataFieldViewMode.CompleteNameAsAlias ?
                                         DbDataFieldViewMode.OnlyNameAsAlias :
                                         DbDataFieldViewMode.OnlyName,
-                                    scriptVariableSet,
                                     defaultDataModule,
                                     defaultSchema,
-                                    defaultDataTable);
+                                    defaultDataTable,
+                                    scriptVariableSet,
+                                    log);
                             }
                             else
                             {
-                                queryString += GetFieldSqlText(
+                                queryString += GetSqlText_Field(
                                     field,
                                     parameterSet,
-                                    log,
                                     DbDataFieldViewMode.OnlyValue,
-                                    scriptVariableSet,
                                     defaultDataModule,
                                     defaultSchema,
-                                    defaultDataTable);
+                                    defaultDataTable,
+                                    scriptVariableSet,
+                                    log);
 
-                                if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias && !string.IsNullOrEmpty(field.Alias))
+                                if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
                                 {
-                                    queryString += " as " + GetSqlText_Field(field.Alias);
+                                    queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
                                 }
                             }
                         }
@@ -149,10 +148,7 @@ namespace BindOpen.Framework.Data.Queries
                         {
                             queryString += GetSqlText_Field(field.Name);
                         }
-                        if (!string.IsNullOrEmpty(field.Alias))
-                        {
-                            queryString += " as " + GetSqlText_Field(field.Alias);
-                        }
+                        queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
@@ -162,39 +158,39 @@ namespace BindOpen.Framework.Data.Queries
                         {
                             string subQueryText = "";
                             if (field.Query is BasicDbQuery)
-                                subQueryText = Build(field.Query as BasicDbQuery, log, parameterSet, scriptVariableSet);
+                                subQueryText = GetSqlText(field.Query as BasicDbQuery, parameterSet, scriptVariableSet, log);
                             else if (field.Query is AdvancedDbQuery)
-                                subQueryText = Build(field.Query as AdvancedDbQuery, log, parameterSet, scriptVariableSet);
+                                subQueryText = GetSqlText(field.Query as AdvancedDbQuery, parameterSet, scriptVariableSet, log);
 
                             queryString += "(" + subQueryText + ")";
                         }
                         else
                         {
-                            queryString += GetValuedSqlText(value, field.ValueType);
+                            queryString += GetSqlText_Value(value, field.ValueType);
                         }
                         break;
                     case DbDataFieldViewMode.NameEqualsValue:
-                        queryString += GetFieldSqlText(
+                        queryString += GetSqlText_Field(
                             field,
                             parameterSet,
-                            log,
                             DbDataFieldViewMode.CompleteName,
-                            scriptVariableSet,
                             defaultDataModule,
                             defaultSchema,
-                            defaultDataTable);
+                            defaultDataTable,
+                            scriptVariableSet,
+                            log);
 
                         queryString += "=";
 
-                        queryString += GetFieldSqlText(
+                        queryString += GetSqlText_Field(
                             field,
                             parameterSet,
-                            log,
                             DbDataFieldViewMode.OnlyValue,
-                            scriptVariableSet,
                             defaultDataModule,
                             defaultSchema,
-                            defaultDataTable);
+                            defaultDataTable,
+                            scriptVariableSet,
+                            log);
 
                         break;
                     default:
@@ -205,35 +201,41 @@ namespace BindOpen.Framework.Data.Queries
             return queryString;
         }
 
-        private string GetTableSqlText(
+        private string GetSqlText_Table(
             DbTable table,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
             string defaultDataModule = null,
-            string defaultSchema = null)
+            string defaultSchema = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             if (table != null)
             {
-                return GetTableSqlText(
-                   table.DataModule,
-                   table.Schema,
-                   table.Name,
-                   table.Alias,
-                   viewMode,
-                   defaultDataModule,
-                   defaultSchema);
+                return GetSqlText_Table(
+                    table.DataModule,
+                    table.Schema,
+                    table.Name,
+                    table.Alias,
+                    viewMode,
+                    defaultDataModule,
+                    defaultSchema,
+                    scriptVariableSet,
+                    log);
             }
 
             return "";
         }
 
-        private string GetTableSqlText(
+        private string GetSqlText_Table(
             string tableDataModule,
             string tableSchema,
             string tableName,
             string tableAlias,
             DbDataFieldViewMode viewMode = DbDataFieldViewMode.CompleteName,
             string defaultDataModule = null,
-            string defaultSchema = null)
+            string defaultSchema = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             string queryString = "";
 
@@ -245,47 +247,41 @@ namespace BindOpen.Framework.Data.Queries
             {
                 if ((viewMode == DbDataFieldViewMode.CompleteName) || (viewMode == DbDataFieldViewMode.CompleteNameAsAlias))
                 {
+
                     if (string.IsNullOrEmpty(tableDataModule))
                         tableDataModule = defaultDataModule;
-
                     if (!string.IsNullOrEmpty(tableDataModule))
                     {
-                        string databaseName = GetDatabaseName(tableDataModule);
-                        if (databaseName?.Length > 0)
-                        {
-                            queryString += GetSqlText_Table(databaseName) + ".";
-                        }
+                        tableDataModule = GetDatabaseName(tableDataModule);
                     }
 
                     if (string.IsNullOrEmpty(tableSchema))
                     {
                         tableSchema = defaultSchema;
                     }
-
-                    if (!string.IsNullOrEmpty(tableSchema))
-                    {
-                        queryString += GetSqlText_Schema(tableSchema) + ".";
-                    }
+                    string script = DbFluent.Table(tableName, tableSchema, tableDataModule);
+                    queryString += _scope?.Interpreter.Interprete(script, scriptVariableSet, log) ?? String.Empty;
+                }
+                else
+                {
+                    queryString += GetSqlText_Table(tableName);
                 }
 
-                queryString += GetSqlText_Table(tableName);
-
-                if ((viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
-                    && (!string.IsNullOrEmpty(tableAlias)))
+                if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
                 {
-                    queryString += " as " + GetSqlText_Table(tableAlias);
+                    queryString.ConcatenateIf(!string.IsNullOrEmpty(tableAlias), " as " + GetSqlText_Table(tableAlias));
                 }
             }
 
             return queryString;
         }
 
-        private string GetJoinSqlText(
+        private string GetSqlText_From(
             IDbQueryFromStatement queryFrom,
             IDbQuery query,
             IDataElementSet parameterSet,
-            IBdoScriptVariableSet scriptVariableSet,
-            IBdoLog log)
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
         {
             string queryString = "";
             foreach (DbQueryJoinStatement queryJoin in queryFrom.JoinStatements)
@@ -314,12 +310,24 @@ namespace BindOpen.Framework.Data.Queries
                         }
                 }
 
-                if (queryJoin.Table == null || (string.IsNullOrEmpty(queryJoin.Table.Name) && string.IsNullOrEmpty(queryJoin.Table.Alias)))
+                if (queryJoin.Query != null)
                 {
-                    queryJoin.Table = DbFluent.Table(query?.DataTable).WithAlias(query?.DataTableAlias);
+                    string subQuery = BuildQuery(queryJoin.Query, false, parameterSet, scriptVariableSet: scriptVariableSet, log: log);
+                    UpdateParameterSet(query.ParameterSet, queryJoin.Query);
+                    queryString += "(" + subQuery + ")";
+                    if (!string.IsNullOrEmpty(queryJoin.Query.Alias))
+                    {
+                        queryString += " as " + queryJoin.Query.Alias;
+                    }
                 }
-
-                queryString += GetTableSqlText(queryJoin.Table, DbDataFieldViewMode.CompleteNameAsAlias);
+                else
+                {
+                    if (queryJoin.Table == null || (string.IsNullOrEmpty(queryJoin.Table.Name) && string.IsNullOrEmpty(queryJoin.Table.Alias)))
+                    {
+                        queryJoin.Table = DbFluent.Table(query?.DataTable).WithAlias(query?.DataTableAlias);
+                    }
+                    queryString += GetSqlText_Table(queryJoin.Table, DbDataFieldViewMode.CompleteNameAsAlias, scriptVariableSet: scriptVariableSet, log: log);
+                }
 
                 if (queryJoin.Kind != DbQueryJoinKind.None)
                 {
@@ -338,13 +346,76 @@ namespace BindOpen.Framework.Data.Queries
                             break;
                         }
                 }
-                string subQuery = BuildSqlText(queryFrom.UnionStatement.Query, log, false, parameterSet, scriptVariableSet);
+                string subQuery = BuildQuery(queryFrom.UnionStatement.Query, false, parameterSet, scriptVariableSet, log);
+                UpdateParameterSet(query.ParameterSet, queryFrom.UnionStatement.Query);
                 queryString += "(" + subQuery + ")";
+                queryString.ConcatenateIf(!string.IsNullOrEmpty(queryFrom.UnionStatement.Query.Alias), " as " + queryFrom.UnionStatement.Query.Alias);
             }
 
             return queryString;
         }
 
+        private string GetSqlText_Join(
+            IDbQueryJoinStatement queryJoin,
+            IDbQuery query,
+            IDataElementSet parameterSet,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            string queryString = "";
+
+            switch (queryJoin.Kind)
+            {
+                case DbQueryJoinKind.Inner:
+                    {
+                        queryString += " inner join ";
+                        break;
+                    }
+                case DbQueryJoinKind.Left:
+                    {
+                        queryString += " left join ";
+                        break;
+                    }
+                case DbQueryJoinKind.Right:
+                    {
+                        queryString += " right join ";
+                        break;
+                    }
+                case DbQueryJoinKind.Union:
+                    {
+                        queryString += " inner join ";
+                        break;
+                    }
+            }
+
+            if (queryJoin.Query != null)
+            {
+                string subQuery = BuildQuery(queryJoin.Query, false, parameterSet, scriptVariableSet, log);
+                UpdateParameterSet(query.ParameterSet, queryJoin.Query);
+                queryString += "(" + subQuery + ")";
+                if (!string.IsNullOrEmpty(queryJoin.Query.Alias))
+                {
+                    queryString += " as " + queryJoin.Query.Alias;
+                }
+            }
+            else
+            {
+                if (queryJoin.Table == null || (string.IsNullOrEmpty(queryJoin.Table.Name) && string.IsNullOrEmpty(queryJoin.Table.Alias)))
+                {
+                    queryJoin.Table = DbFluent.Table(query?.DataTable).WithAlias(query?.DataTableAlias);
+                }
+                queryString += GetSqlText_Table(queryJoin.Table, DbDataFieldViewMode.CompleteNameAsAlias, log: log, scriptVariableSet: scriptVariableSet);
+            }
+
+            if (queryJoin.Kind != DbQueryJoinKind.None)
+            {
+                queryString += " on ";
+                string expression = _scope?.Interpreter.Interprete(queryJoin.Condition, scriptVariableSet, log) ?? String.Empty;
+                queryString += expression;
+            }
+
+            return queryString;
+        }
         #endregion
     }
 }

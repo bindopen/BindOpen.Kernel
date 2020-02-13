@@ -39,10 +39,10 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
 
             builder
                 .AddQuery(
-                    new DbStoredQuery(
+                    new StoredDbQuery(
                     DbFluent.SelectBasic(Table("Employee"))
-                    .From(DbFluent.From(Table("Employee"))
-                        .Join(DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
+                    .WithFroms(DbFluent.From(Table("Employee"))
+                        .WithJoins(DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                             .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
                     .WithFields(Tuple("Fields_SelectEmployee"))
                     .AddIdField(p => DbFluent.FieldAsParameter(nameof(DbEmployee.Code), p.UseParameter("code")))));
@@ -64,9 +64,9 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                     DbFluent.FieldAsAll("table"),
                     DbFluent.Field("Field1", "table"),
                     DbFluent.Field("Field2", "table"))
-                .From(
+                .Froms(
                     DbFluent.From(DbFluent.Table(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table"))
-                        .Join(
+                        .WithJoins(
                             DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table1"))
                                 .WithCondition(
                                     DbFluent.And(
@@ -76,7 +76,7 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                                         DbFluent.JoinCondition(
                                             DbFluent.Field("table2key", "table2"),
                                             DbFluent.Field(nameof(DbMyTable.ExecutionStatusReferenceId), "table")))))
-                        .Join(
+                        .WithJoins(
                             DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table2"))
                                 .WithCondition(
                                     DbFluent.JoinCondition(
@@ -111,9 +111,9 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
         {
             return this.UseQuery("GetEmployeeWithCode", p =>
                 DbFluent.SelectBasic(Table("Employee"))
-                    .From(
+                    .WithFroms(
                         DbFluent.From(Table("Employee"))
-                        .Join(
+                        .WithJoins(
                             DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                                 .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
                     .WithFields(Tuple("Fields_SelectEmployee"))
@@ -127,15 +127,41 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
-        internal IDbQuery InsertEmployee(EmployeeDto employee)
+        internal IDbQuery UpsertEmployee(EmployeeDto employee)
         {
-            return DbFluent.InsertBasic(Table("Employee"), true)
-                .From(DbFluent.From(Table("Employee"))
-                    .Join(
-                        DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
-                            .WithCondition(JoinCondition("Employee_RegionalDirectorate"))))
-                //.WithFields(p => Fields_InsertEmployee(p, employee))
-                ;
+            return DbFluent.Upsert(Table("Employee"))
+                .Select(DbFluent.Join(
+                        DbFluent.SelectBasic(null)
+                        .WithFields(q => new[]
+                        {
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text))
+                        }).WithAlias("T"))
+                    .WithCondition(DbFluent.JoinCondition(
+                        DbFluent.Field(nameof(DbEmployee.Code), Table("Employee")),
+                        DbFluent.Field(nameof(DbEmployee.Code), Table("T")))))
+                .Matching(
+                    DbFluent.UpdateBasic(Table("Employee"))
+                    .WithFields(q => new[]
+                    {
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text)),
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), q.UseParameter("contactEmail", DataValueType.Text)),
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)),
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)),
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), q.UseParameter("lastName", DataValueType.Text)),
+                        DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text))
+                    }))
+                .NotMatching(
+                    DbFluent.InsertBasic(Table("Employee"), true)
+                    .WithFroms(DbFluent.From(Table("Employee"))
+                        .WithJoins(
+                            DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
+                                .WithCondition(JoinCondition("Employee_RegionalDirectorate")))))
+                .WithParameters(
+                    ElementFactory.Create("code", employee.Code),
+                    ElementFactory.Create("contactEmail", employee.ContactEmail),
+                    ElementFactory.Create("fisrtName", employee.FisrtName),
+                    ElementFactory.Create("lastName", employee.LastName),
+                    ElementFactory.Create("staffNumber", employee.StaffNumber));
         }
 
         /// <summary>
@@ -151,8 +177,9 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                 p =>
                 {
                     var query = DbFluent.UpdateBasic(Table("Employee"))
-                        .From(DbFluent.From()
-                            .Join(
+                        .WithFroms(
+                            DbFluent.From()
+                            .WithJoins(
                                 DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                                     .WithCondition(JoinCondition("Employee_RegionalDirectorate"))));
 
@@ -177,7 +204,8 @@ namespace BindOpen.Framework.Samples.SampleA.Services.Databases
                         q => DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text)));
 
                     return query;
-                }).WithParameters(
+                })
+                .WithParameters(
                     ElementFactory.Create("code", employee.Code),
                     ElementFactory.Create("contactEmail", employee.ContactEmail),
                     ElementFactory.Create("fisrtName", employee.FisrtName),

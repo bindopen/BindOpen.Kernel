@@ -43,7 +43,7 @@ namespace BindOpen.Framework.Data.Models
             {
                 if (string.IsNullOrEmpty(name))
                 {
-                    name = table.Schema.ConcatenateIfNotEmpty(".") + table.Name;
+                    name = table.Schema.ConcatenateIfFirstNotEmpty(".") + table.Name;
                 }
 
                 (_model as BdoDbModel).TableDictionary.Add(name, table);
@@ -117,7 +117,7 @@ namespace BindOpen.Framework.Data.Models
         /// <summary>
         /// Adds the specified query.
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="query">The query to consider.</param>
         /// <param name="name"></param>
         /// <returns></returns>
         public IBdoDbModelBuilder AddQuery(IDbQuery query)
@@ -126,7 +126,7 @@ namespace BindOpen.Framework.Data.Models
         /// <summary>
         /// Adds the specified query.
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="query">The query to consider.</param>
         /// <param name="name"></param>
         /// <returns></returns>
         public IBdoDbModelBuilder AddQuery(string name, IDbQuery query)
@@ -137,7 +137,7 @@ namespace BindOpen.Framework.Data.Models
                 {
                     name = query.GetName();
                 }
-                (_model as BdoDbModel).QueryDictionary.Add(name, new DbStoredQuery(query, name));
+                (_model as BdoDbModel).QueryDictionary.Add(name, new StoredDbQuery(query, name));
             }
             return this;
         }

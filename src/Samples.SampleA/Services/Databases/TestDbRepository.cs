@@ -26,13 +26,16 @@ namespace BindOpen.Framework.Samples.SampleA.Services
                 StaffNumber = "123"
             };
 
-            this.UsingConnection(connection =>
+            this.UsingDbConnection(connection =>
             {
                 string query1 = Connector.BuildSqlText(_model.GetEmployeeWithCode("codeA"));
                 Console.WriteLine("1- " + query1);
 
                 string query2 = Connector.BuildSqlText(_model.UpdateEmployee("codeB", false, employee));
                 Console.WriteLine("2- " + query2);
+
+                string query3 = Connector.BuildSqlText(_model.UpsertEmployee(employee));
+                Console.WriteLine("3 - " + query3);
             });
         }
     }

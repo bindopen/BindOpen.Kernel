@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// </summary>
         /// <param name="name"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace BindOpen.Framework.Extensions.Runtime
         /// </summary>
         /// <param name="log"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="runtimeMode"></param>
         void Execute(
             IBdoLog log,

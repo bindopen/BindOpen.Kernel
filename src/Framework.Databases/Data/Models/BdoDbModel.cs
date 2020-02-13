@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Data.Models
         internal Dictionary<string, DbTable> TableDictionary = new Dictionary<string, DbTable>();
         internal Dictionary<string, DbQueryJoinCondition> JoinConditionDictionary = new Dictionary<string, DbQueryJoinCondition>();
         internal Dictionary<string, DbField[]> TupleDictionary = new Dictionary<string, DbField[]>();
-        internal Dictionary<string, IDbStoredQuery> QueryDictionary = new Dictionary<string, IDbStoredQuery>();
+        internal Dictionary<string, IStoredDbQuery> QueryDictionary = new Dictionary<string, IStoredDbQuery>();
 
         /// <summary>
         /// 
@@ -87,9 +87,9 @@ namespace BindOpen.Framework.Data.Models
         /// <param name="name"></param>
         /// <param name="alias"></param>
         /// <returns></returns>
-        public IDbStoredQuery Query(string name)
+        public IStoredDbQuery Query(string name)
         {
-            QueryDictionary.TryGetValue(name, out IDbStoredQuery query);
+            QueryDictionary.TryGetValue(name, out IStoredDbQuery query);
 
             return query;
         }

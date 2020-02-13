@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.System.Diagnostics;
-using BindOpen.Framework.Extensions.Carriers;
+﻿using BindOpen.Framework.Extensions.Carriers;
 using BindOpen.Framework.Extensions.Connectors;
+using BindOpen.Framework.System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,19 +36,19 @@ namespace BindOpen.Framework.Data.Connections
         #region BdoConnection_Methods
 
         /// <summary>
-        /// Opens this instance.
+        /// Connects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoLog Open()
+        public override IBdoLog Connect()
         {
             return new BdoLog();
         }
 
         /// <summary>
-        /// Closes this instance.
+        /// Disconnects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoLog Close()
+        public override IBdoLog Disconnect()
         {
             return new BdoLog();
         }

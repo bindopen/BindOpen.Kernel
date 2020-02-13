@@ -148,14 +148,7 @@ namespace BindOpen.Framework.Data.Queries
                                 }
                                 else
                                 {
-                                    script = scriptFunction + "($"
-                                        + (!string.IsNullOrEmpty(clause.Field.DataModule) ? "sqlDataModule('" + clause.Field.DataModule + "')." : "")
-                                        + (!string.IsNullOrEmpty(clause.Field.Schema) ? "sqlSchema('" + clause.Field.Schema + "')." : "")
-                                        + (!string.IsNullOrEmpty(clause.Field.DataTableAlias) ? "sqlTable('" + clause.Field.DataTableAlias + "')." :
-                                            !string.IsNullOrEmpty(clause.Field.DataTable) ? "sqlTable('" + clause.Field.DataTable + "')." : "")
-                                        + (!string.IsNullOrEmpty(clause.Field.Alias) ? "sqlField('" + clause.Field.Alias + "')" :
-                                            !string.IsNullOrEmpty(clause.Field.Name) ? "sqlField('" + clause.Field.Name + "')" : "")
-                                        + "," + value + ")";
+                                    script = scriptFunction + clause.Field;
                                 }
                             }
                         }

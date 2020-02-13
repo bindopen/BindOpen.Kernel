@@ -15,7 +15,7 @@ namespace BindOpen.Framework.Data.Queries
     {
         // ------------------------------------------
         // VARIABLES
-        // ------------------------------------------
+        // -----------------------------------------
 
         #region Variables
 
@@ -33,6 +33,11 @@ namespace BindOpen.Framework.Data.Queries
         /// Name of this instance.
         /// </summary>
         public new string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
+
+        /// <summary>
+        /// The alias of this instance.
+        /// </summary>
+        public string Alias { get; set; }
 
         /// <summary>
         /// Name of the data module of this instance.
@@ -109,41 +114,28 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// Instantiates a new instance of the DbQuery class.
         /// </summary>
-        /// <param name="kind">Kind of database data query.</param>
-        /// <param name="dataModule">Name of the data module.</param>
-        /// <param name="schema">Schema of the data module.</param>
-        /// <param name="dataTable">Name of data table.</param>
-        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
-        protected DbQuery(
+        /// <param name="kind">Type of database data query.</param>
+        /// <param name="table">The table to consider.</param>
+        public DbQuery(
             DbQueryKind kind,
-            string dataModule = null,
-            string schema = null,
-            string dataTable = null,
-            bool isExistenceChecked = false)
+            DbTable table = null)
         {
             Kind = kind;
-            DataModule = dataModule;
-            Schema = schema;
-            DataTable = dataTable;
-            IsExistenceChecked = isExistenceChecked;
+            DataModule = table?.DataModule;
+            Schema = table?.Schema;
+            DataTable = table?.Name;
         }
 
         /// <summary>
         /// Instantiates a new instance of the DbQuery class.
         /// </summary>
         /// <param name="name">Name of the query.</param>
-        /// <param name="kind">Kind of database data query.</param>
-        /// <param name="dataModule">Name of the data module.</param>
-        /// <param name="schema">Schema of the data module.</param>
-        /// <param name="dataTable">Name of data table.</param>
-        /// <param name="isExistenceChecked">Indicates whether existence is checked.</param>
-        protected DbQuery(
+        /// <param name="kind">Type of database data query.</param>
+        /// <param name="table">The table to consider.</param>
+        public DbQuery(
             string name,
             DbQueryKind kind,
-            string dataModule = null,
-            string schema = null,
-            string dataTable = null,
-            bool isExistenceChecked = false) : this(kind, dataModule, schema, dataTable, isExistenceChecked)
+            DbTable table = null) : this(kind, table)
         {
             Name = name;
         }
@@ -202,51 +194,6 @@ namespace BindOpen.Framework.Data.Queries
             return null;
         }
 
-        /// <summary>
-        /// Gets the key data fields of this instance.
-        /// </summary>
-        /// <returns>The key data fields of this instance.</returns>
-        public List<DbField> GetKeyDataFields()
-        {
-            List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._fields)
-            {
-                if ((field.IsKey) || (field.IsForeignKey))
-                    fields.Add(field);
-            }
-            return fields;
-        }
-
-        /// <summary>
-        /// Gets the primary data fields of this instance.
-        /// </summary>
-        /// <returns>The primary data fields of this instance.</returns>
-        public List<DbField> GetPrimaryKeyDataFields()
-        {
-            List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._fields)
-            {
-                if (field.IsKey)
-                    fields.Add(field);
-            }
-            return fields;
-        }
-
-        /// <summary>
-        /// Gets the foreign data fields of this instance.
-        /// </summary>
-        /// <returns>The foreign data fields of this instance.</returns>
-        public List<DbField> GetForeignKeyDataFields()
-        {
-            List<DbField> fields = new List<DbField>();
-            foreach (DbField field in this._fields)
-            {
-                if (field.IsForeignKey)
-                    fields.Add(field);
-            }
-            return fields;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -254,6 +201,29 @@ namespace BindOpen.Framework.Data.Queries
         // ------------------------------------------
 
         #region Mutators
+
+        /// <summary>
+        /// Sets the specified alias.
+        /// </summary>
+        /// <param name="alias">The alias to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IDbQuery WithAlias(string alias)
+        {
+            Alias = alias;
+            return this;
+        }
+
+        /// <summary>
+        /// Indicates that this instance checks the existence of table or data according to the kind of queries.
+        /// </summary>
+        /// <param name="isExistenceChecked">Indicates whether this instance checks the existence of table or data.</param>
+        /// <returns>Return this instance.</returns>
+        public IDbQuery CheckExistence(bool isExistenceChecked = true)
+        {
+            IsExistenceChecked = isExistenceChecked;
+
+            return this;
+        }
 
         /// <summary>
         /// Defines the parameter specifications of this instance.

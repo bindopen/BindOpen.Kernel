@@ -1,4 +1,5 @@
 ﻿using BindOpen.Framework.Data.Items;
+using BindOpen.Framework.Data.Queries;
 using BindOpen.Framework.Extensions.Attributes;
 using BindOpen.Framework.Extensions.Runtime;
 using System.Xml.Serialization;
@@ -115,25 +116,7 @@ namespace BindOpen.Framework.Extensions.Carriers
         /// </summary>
         /// <param name="table">The table to consider.</param>
         public static implicit operator string(DbTable table)
-        {
-            string st = "";
-
-            if (table != null)
-            {
-                if (!string.IsNullOrEmpty(table.DataModule))
-                    st += "$SqlDatabase(\"" + table.DataModule + "\").";
-
-                if (!string.IsNullOrEmpty(table.Schema))
-                    st += "$SqlSchema(\"" + table.Schema + "\").";
-
-                if (!string.IsNullOrEmpty(table.Alias))
-                    st += "$SqlTable(\"" + table.Alias + "\").";
-                else if (!string.IsNullOrEmpty(table.Name))
-                    st += "$SqlTable(\"" + table.Name + "\").";
-            }
-
-            return st;
-        }
+            => DbQueryBuilder.GetBdoScript(table);
 
         #endregion
     }

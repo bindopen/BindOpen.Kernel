@@ -204,12 +204,12 @@ namespace BindOpen.Framework.Data.Elements.Schema
         // Duplication / Copy / Move -------------------------------------------
 
         /// <summary>
-        /// Duplicates the specified schema element to the specified parent schema element.
+        /// MergeDbQuerys the specified schema element to the specified parent schema element.
         /// </summary>
         /// <param name="aElement">The schema element to consider.</param>
         /// <param name="aSchemaZoneElement">The parent schema element zone to consider.</param>
         /// <returns>The duplicated schema element.</returns>
-        public SchemaElement DuplicateElement(
+        public SchemaElement MergeDbQueryElement(
             SchemaElement aElement,
             SchemaZoneElement aSchemaZoneElement = null)
         {
@@ -219,12 +219,12 @@ namespace BindOpen.Framework.Data.Elements.Schema
         }
 
         /// <summary>
-        /// Duplicates the specified schema element to the specified parents schema element.
+        /// MergeDbQuerys the specified schema element to the specified parents schema element.
         /// </summary>
         /// <param name="aElement">The schema element to consider.</param>
         /// <param name="parentElements">The parents schema element to consider.</param>
         /// <returns>The duplicated schema element.</returns>
-        public List<SchemaElement> DuplicateElement(
+        public List<SchemaElement> MergeDbQueryElement(
             SchemaElement aElement,
             List<SchemaZoneElement> parentElements)
         {
@@ -233,17 +233,17 @@ namespace BindOpen.Framework.Data.Elements.Schema
             if (aElement == null)
                 return duplicatedElements;
             foreach (SchemaZoneElement parentElement in parentElements)
-                duplicatedElements.Add(this.DuplicateElement(aElement, parentElement));
+                duplicatedElements.Add(this.MergeDbQueryElement(aElement, parentElement));
 
             return duplicatedElements;
         }
 
         /// <summary>
-        /// Duplicates the specified schema elements to the specified parent schema element.
+        /// MergeDbQuerys the specified schema elements to the specified parent schema element.
         /// </summary>
         /// <param name="elements">The schema elements to consider.</param>
         /// <param name="parentZoneElement">The parent schema element zone object to consider.</param>
-        public List<SchemaElement> DuplicateElements(
+        public List<SchemaElement> MergeDbQueryElements(
             List<SchemaElement> elements,
             SchemaZoneElement parentZoneElement = null)
         {
@@ -253,7 +253,7 @@ namespace BindOpen.Framework.Data.Elements.Schema
                 return duplicatedElements;
 
             foreach (SchemaElement currentElement in elements)
-                duplicatedElements.Add(this.DuplicateElement(currentElement, parentZoneElement));
+                duplicatedElements.Add(this.MergeDbQueryElement(currentElement, parentZoneElement));
 
             return duplicatedElements;
         }

@@ -12,6 +12,11 @@ namespace BindOpen.Framework.Data.Queries
     public interface IDbQuery : IDescribedDataItem
     {
         /// <summary>
+        /// The alias of this instance.
+        /// </summary>
+        string Alias { get; set; }
+
+        /// <summary>
         /// The name of data module of this instance.
         /// </summary>
         string DataModule { get; set; }
@@ -66,22 +71,18 @@ namespace BindOpen.Framework.Data.Queries
         DbField GetFieldWithBoundFieldName(string boundFieldName);
 
         /// <summary>
-        /// 
+        /// Indicates that this instance checks the existence of table or data according to the kind of queries.
         /// </summary>
-        /// <returns></returns>
-        List<DbField> GetForeignKeyDataFields();
+        /// <param name="isExistenceChecked">Indicates whether this instance checks the existence of table or data.</param>
+        /// <returns>Return this instance.</returns>
+        IDbQuery CheckExistence(bool isExistenceChecked = true);
 
         /// <summary>
-        /// 
+        /// Sets the specified alias.
         /// </summary>
-        /// <returns></returns>
-        List<DbField> GetKeyDataFields();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        List<DbField> GetPrimaryKeyDataFields();
+        /// <param name="alias">The alias to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQuery WithAlias(string alias);
 
         /// <summary>
         /// Defines the parameters of this instance.

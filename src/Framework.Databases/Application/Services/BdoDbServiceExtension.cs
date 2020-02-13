@@ -17,7 +17,7 @@ namespace BindOpen.Framework.Application.Services
         /// <param name="initializer"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static IBdoLog UsingConnection(
+        public static IBdoLog UsingDbConnection(
             this IBdoDbService repository,
             Action<IBdoDbConnection> action)
         {

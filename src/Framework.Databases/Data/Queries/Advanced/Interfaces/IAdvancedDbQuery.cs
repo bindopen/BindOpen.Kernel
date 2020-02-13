@@ -45,6 +45,12 @@ namespace BindOpen.Framework.Data.Queries
         /// </summary>
         DataExpression WhereClause { get; set; }
 
+        /// <summary>
+        /// The returned IDs of this instance.
+        /// </summary>
+        /// <remarks>This string is split with a comma.</remarks>
+        List<DbField> ReturnedIdFields { get; set; }
+
         // Mutators ---------------------------------------
 
         /// <summary>
@@ -53,6 +59,13 @@ namespace BindOpen.Framework.Data.Queries
         /// <param name="fields">The fields to consider.</param>
         /// <returns>Returns this instance.</returns>
         IAdvancedDbQuery WithFields(params DbField[] fields);
+
+        /// <summary>
+        /// Sets the specified returned ID fields.
+        /// </summary>
+        /// <param name="fields">The fields to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IAdvancedDbQuery WithReturnedIdFields(params DbField[] fields);
 
         /// <summary>
         /// Sets the fields using an initialization function.
@@ -94,7 +107,7 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IAdvancedDbQuery From(params IDbQueryFromStatement[] statements);
+        IAdvancedDbQuery Froms(params IDbQueryFromStatement[] statements);
 
         /// <summary>
         /// 
@@ -129,6 +142,6 @@ namespace BindOpen.Framework.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IAdvancedDbQuery WithTableAlias(string tableAlias);
+        IAdvancedDbQuery WithTableWithAlias(string tableAlias);
     }
 }
