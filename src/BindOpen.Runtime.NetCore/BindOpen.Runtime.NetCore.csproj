@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AssemblyName>BindOpen.NetCore</AssemblyName>
+    <AssemblyName>BindOpen.Runtime.NetCore</AssemblyName>
     <Authors>Sumer Team</Authors>
     <Company>BindOpen</Company>
     <Product>BindOpen.Framework</Product>
-    <PackageId>BindOpen.NetCore</PackageId>
-    <RootNamespace>BindOpen.NetCore</RootNamespace>
+    <PackageId>BindOpen.Runtime.NetCore</PackageId>
+    <RootNamespace>BindOpen.Runtime.NetCore</RootNamespace>
     <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides with .Net Core APIs.</Description>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/License</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>

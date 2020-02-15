@@ -2,7 +2,7 @@
 using BindOpen.Application.Services;
 using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Samples.SampleA.Services
+namespace Samples.SampleA.Services
 {
     public class TestService : BdoHostedService
     {

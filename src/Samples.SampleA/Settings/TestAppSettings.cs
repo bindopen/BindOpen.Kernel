@@ -2,7 +2,7 @@
 using BindOpen.Application.Settings;
 using System.Collections.Generic;
 
-namespace BindOpen.Samples.SampleA.Settings
+namespace Samples.SampleA.Settings
 {
     /// <summary>
     /// This class represents a test application settings.
