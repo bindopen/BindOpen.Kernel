@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Samples.SampleA</AssemblyName>
+    <PackageId>BindOpen.TestConsole</PackageId>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
-    <Authors>Sumer Team</Authors>
-    <PackageId>BindOpen.TestConsole</PackageId>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications.
-This package conducts on-demand tests before they are implemented in the unit test project.</Description>
     <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts on-demand tests before they are implemented in the unit test project.</Description>
+    <Authors>Sumer Team</Authors>
     <RootNamespace>Samples.SampleA</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/License</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageIcon>bdo_icon_128x128.png</PackageIcon>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
