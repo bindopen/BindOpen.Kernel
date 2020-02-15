@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<carrier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="test" definition="databases$dbField" xmlns="https://bindopen.org/xsd">
+  <scalar name="isAll" valueType="Boolean" value="true" />
+  <scalar name="dataModule" value="dataModule" />
+  <scalar name="schema" />
+  <scalar name="dataTable" value="dataTable" />
+  <scalar name="dataTableAlias" value="dataTableAlias" />
+  <scalar name="alias" value="alias" />
+  <scalar name="size" valueType="Integer" value="50" />
+  <object name="value" valueType="Object" class="BindOpen.Data.Expression.DataExpression,BindOpen.Core">
+    <items>
+      <add>
+        <scalar name="Text" value="=$bidule()" />
+        <scalar name="Kind" value="Script" />
+      </add>
+    </items>
+  </object>
+  <object name="query" valueType="Object" />
+  <scalar name="isKey" valueType="Boolean" value="true" />
+  <scalar name="isForeignKey" valueType="Boolean" value="true" />
+  <scalar name="isNameAsScript" valueType="Boolean" value="true" />
+  <scalar name="valueType" value="Boolean" />
+  <scalar name="path" />
+  <scalar name="parentPath" />
+  <scalar name="creationDate" />
+  <scalar name="flag" />
+  <scalar name="isReadOnly" valueType="Boolean" value="true" />
+  <scalar name="lastAccessDate" />
+  <scalar name="lastWriteDate" />
+</carrier>

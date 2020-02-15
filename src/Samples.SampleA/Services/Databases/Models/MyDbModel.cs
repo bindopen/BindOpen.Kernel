@@ -1,11 +1,11 @@
-﻿using BindOpen.Framework.Data.Common;
-using BindOpen.Framework.Data.Elements;
-using BindOpen.Framework.Data.Models;
-using BindOpen.Framework.Data.Queries;
-using BindOpen.Framework.Extensions.Carriers;
-using BindOpen.Framework.System.Diagnostics;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
+using BindOpen.Data.Models;
+using BindOpen.Data.Queries;
+using BindOpen.Extensions.Carriers;
+using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Framework.Samples.SampleA.Services.Databases
+namespace BindOpen.Samples.SampleA.Services.Databases
 {
     /// <summary>
     /// This class represents a database model.

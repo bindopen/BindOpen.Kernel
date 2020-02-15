@@ -1,15 +1,15 @@
-﻿using BindOpen.Framework.Application.Scopes;
-using BindOpen.Framework.Application.Services;
-using BindOpen.Framework.Data.Depots;
-using BindOpen.Framework.Extensions.References;
-using BindOpen.Framework.Samples.SampleA.Services;
-using BindOpen.Framework.Samples.SampleA.Services.Databases;
-using BindOpen.Framework.Samples.SampleA.Settings;
+﻿using BindOpen.Application.Scopes;
+using BindOpen.Application.Services;
+using BindOpen.Data.Stores;
+using BindOpen.Extensions.References;
+using BindOpen.Samples.SampleA.Services;
+using BindOpen.Samples.SampleA.Services.Databases;
+using BindOpen.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 
-namespace BindOpen.Framework.Samples.SampleA
+namespace BindOpen.Samples.SampleA
 {
     internal static class Program
     {

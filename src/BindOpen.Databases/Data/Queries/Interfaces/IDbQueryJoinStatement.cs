@@ -1,0 +1,45 @@
+﻿using BindOpen.Data.Expression;
+using BindOpen.Extensions.Carriers;
+
+namespace BindOpen.Data.Queries
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IDbQueryJoinStatement
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        DataExpression Condition { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DbQueryJoinKind Kind { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DbTable Table { get; set; }
+
+        /// <summary>
+        /// The query of this instance.
+        /// </summary>
+        DbQuery Query { get; set; }
+
+        /// <summary>
+        /// Sets the specified condition.
+        /// </summary>
+        /// <param name="condition">The condition to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQueryJoinStatement WithCondition(DataExpression condition);
+
+        /// <summary>
+        /// Sets the specified condition.
+        /// </summary>
+        /// <param name="condition">The condition to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQueryJoinStatement WithCondition(string condition);
+    }
+}

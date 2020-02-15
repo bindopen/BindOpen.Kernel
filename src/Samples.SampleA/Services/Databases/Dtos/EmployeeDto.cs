@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 
-namespace BindOpen.Framework.Samples.SampleA.Services.Databases
+namespace BindOpen.Samples.SampleA.Services.Databases
 {
     /// <summary>
     /// This class represents a  employee DTO.
