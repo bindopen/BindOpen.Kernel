@@ -22,13 +22,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Models\Attributes\**" />
-    <EmbeddedResource Remove="Data\Models\Attributes\**" />
-    <None Remove="Data\Models\Attributes\**" />
-    <None Include="..\..\docs\images\bdo_icon_128x128.pn">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
     <None Include="..\..\docs\images\bdo_icon_128x128.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
