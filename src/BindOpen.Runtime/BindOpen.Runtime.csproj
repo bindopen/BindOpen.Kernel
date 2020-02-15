@@ -11,10 +11,10 @@
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Runtime</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/License</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageIcon>bdo_icon_128x128.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
