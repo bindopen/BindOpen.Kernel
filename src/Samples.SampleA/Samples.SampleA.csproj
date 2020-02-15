@@ -16,6 +16,7 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageIcon>bdo_icon_128x128.png</PackageIcon>
     <OutputType>Exe</OutputType>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,6 +27,17 @@
     <ProjectReference Include="..\BindOpen.Databases.MSSqlServer\BindOpen.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\BindOpen.Runtime.NetCore\BindOpen.Runtime.NetCore.csproj" />
     <ProjectReference Include="..\BindOpen.Databases.PostgreSql\BindOpen.Databases.PostgreSql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\images\bdo_icon_128x128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\License.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
