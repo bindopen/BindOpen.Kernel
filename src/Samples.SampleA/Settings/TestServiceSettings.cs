@@ -2,7 +2,7 @@
 using BindOpen.Extensions.Attributes;
 using BindOpen.Application.Settings;
 
-namespace BindOpen.Samples.SampleA.Settings
+namespace Samples.SampleA.Settings
 {
     /// <summary>
     /// This class represents a test service settings.

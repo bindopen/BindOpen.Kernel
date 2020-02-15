@@ -2,14 +2,14 @@
 using BindOpen.Application.Services;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
-using BindOpen.Samples.SampleA.Services;
-using BindOpen.Samples.SampleA.Services.Databases;
-using BindOpen.Samples.SampleA.Settings;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Samples.SampleA.Services;
+using Samples.SampleA.Services.Databases;
+using Samples.SampleA.Settings;
 using System.Threading.Tasks;
 
-namespace BindOpen.Samples.SampleA
+namespace Samples.SampleA
 {
     internal static class Program
     {

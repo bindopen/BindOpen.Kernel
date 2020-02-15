@@ -1,9 +1,9 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Stores;
-using BindOpen.Samples.SampleA.Services.Databases;
+using Samples.SampleA.Services.Databases;
 using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Samples.SampleA.Services
+namespace Samples.SampleA.Services
 {
     public static class Service_Command
     {

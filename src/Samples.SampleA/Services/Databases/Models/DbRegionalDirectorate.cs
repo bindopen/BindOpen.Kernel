@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Samples.SampleA.Services.Databases
+namespace Samples.SampleA.Services.Databases
 {
     /// <summary>
     /// This class represents a regional direction in database.

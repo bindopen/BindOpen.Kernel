@@ -1,9 +1,9 @@
 ﻿using BindOpen.Application.Services;
 using BindOpen.Extensions.Runtime;
-using BindOpen.Samples.SampleA.Services.Databases;
+using Samples.SampleA.Services.Databases;
 using System;
 
-namespace BindOpen.Samples.SampleA.Services
+namespace Samples.SampleA.Services
 {
     public class TestDbRepository : BdoDbService
     {
