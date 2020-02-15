@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>BindOpen.Core</AssemblyName>
+    <PackageId>BindOpen.Core</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
+    <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Core</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Commands\**" />
+    <None Remove="Application\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Items\Attributes\ParameterAttribute.cs" />
+    <Compile Remove="Data\Items\Attributes\ScalarAttribute.cs" />
+  </ItemGroup>
+
+</Project>

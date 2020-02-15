@@ -9,7 +9,7 @@ using System;
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BindOpen.Framework.Samples.SampleA.Services
+namespace BindOpen.Samples.SampleA.Services
 {
     public partial class DbMyTable
     {

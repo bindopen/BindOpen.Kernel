@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Database -->
+<extension id="dce3ca39-f0a9-4586-95c0-1a38a1c314b4"  name="databases"
+  xmlns="https://bindopen.org/xsd" xmlns:SchemaLocation="bdo:BdoExtensionDefinition BdoExtensionDefinition.xsd" >
+  <creationDate>2010-08-05</creationDate>
+  <lastModificationDate>2016-08-24</lastModificationDate>
+  <title>
+    <add.value key="en">Databases</add.value>
+  </title>
+  <description>
+    <add.value key="en">Extension library 'Databases'.</add.value>
+  </description>
+  <assembly>BindOpen.Databases</assembly>
+  <fileName>BindOpen.Databases.dll</fileName>
+  <rootNamespace>BindOpen.Databases.Extensions</rootNamespace>
+  <indexes>
+    <add.value key="connector">.Connectors.Connectors.index</add.value>
+    <add.value key="scriptWord">.Scriptwords.Scriptwords.index</add.value>    
+  </indexes>
+</extension>

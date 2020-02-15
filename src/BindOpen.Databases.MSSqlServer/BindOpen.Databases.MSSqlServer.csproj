@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>BindOpen.Databases.MSSqlServer</AssemblyName>
+    <PackageId>BindOpen.Databases.MSSqlServer</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles MS SQL Server database connections.</Description>
+    <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Databases.MSSqlServer</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bindopen/BindOpen/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://bindopen.blob.core.windows.net/resources/pictures/logos/bdo_icon_128x128.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>BindOpen.Databases.MSSqlServer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BindOpen.Extension" />
+    <None Remove="Extensions\Connectors\BindOpen.Connectors" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="BindOpen.Extension" />
+    <EmbeddedResource Include="Extensions\Connectors\BindOpen.Connectors" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BindOpen.Databases\BindOpen.Databases.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<carriers.dictionary library="databases"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:BdoCarrierDictionary BdoCarrierDictionary.xsd">
+  
+  <creationDate>2011-07-07</creationDate>
+  <lastModificationDate>2016-09-08</lastModificationDate>
+  <definitions>
+   
+    <!-- dbField -->
+    <add.definition name="dbField">
+      <creationDate>2016-09-14</creationDate>
+      <lastModificationDate>2016-09-14</lastModificationDate>
+      <description>
+          <add.value>Database field.</add.value>
+      </description>
+      <itemClass>.Carriers.DbField</itemClass>
+      <dataSourceKind>Database</dataSourceKind>
+      <path.specification>
+        <scalar name="dataModule" valueType="Text" >
+          <title>Data module</title>
+        </scalar>
+        <scalar name="dataTable" valueType="Text" >
+          <title>Data table</title>
+        </scalar>
+        <scalar name="dataTableAlias" valueType="Text" >
+          <title>Data table alias</title>
+        </scalar>
+        <scalar name="alias" valueType="Text" >
+          <title>Alias</title>
+        </scalar>
+        <scalar name="isAll" valueType="Boolean" >
+          <title>Indicates whether it represents all the fields</title>
+        </scalar>
+        <scalar name="size" valueType="Integer" >
+          <title>Size</title>
+        </scalar>
+        <scalar name="isKey" valueType="Boolean" >
+          <title>Indicates whether it is a key field</title>
+        </scalar>
+        <scalar name="isForeignKey" valueType="Boolean" >
+          <title>Indicates whether it is a foreign key field</title>
+        </scalar>
+        <scalar name="isNameAsScript" valueType="Boolean" >
+          <title>Indicates whether the name is expressed as script</title>
+        </scalar>
+        <scalar name="valueType" valueType="Text" >
+          <title>Value type</title>
+        </scalar>
+        <object name="value">
+          <title>Value</title>
+          <class.filter>
+            <add>BindOpen.Core.Data.Expression.DataExpression,BindOpen.Core</add>
+          </class.filter>
+        </object>
+      </path.specification>
+    </add.definition>
+
+    <!-- dbTable -->
+    <add.definition name="dbTable">
+      <creationDate>2016-09-14</creationDate>
+      <lastModificationDate>2016-09-14</lastModificationDate>
+      <description>
+        <add.value>Database table.</add.value>
+      </description>
+      <itemClass>.Carriers.DbTable</itemClass>
+      <dataSourceKind>Database</dataSourceKind>
+      <path.specification>
+        <scalar name="dataModule" valueType="Text" >
+            <title>Data module</title>
+          </scalar>
+      </path.specification>
+    </add.definition>
+
+  </definitions>
+  
+</carriers.dictionary>

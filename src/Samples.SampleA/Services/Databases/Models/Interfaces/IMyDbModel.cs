@@ -1,6 +1,6 @@
-﻿using BindOpen.Framework.Data.Models;
+﻿using BindOpen.Data.Models;
 
-namespace BindOpen.Framework.Samples.SampleA.Services.Databases
+namespace BindOpen.Samples.SampleA.Services.Databases
 {
     /// <summary>
     /// 

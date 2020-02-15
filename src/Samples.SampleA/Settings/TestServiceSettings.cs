@@ -1,8 +1,8 @@
 ﻿using System.Xml.Serialization;
-using BindOpen.Framework.Extensions.Attributes;
-using BindOpen.Framework.Application.Settings;
+using BindOpen.Extensions.Attributes;
+using BindOpen.Application.Settings;
 
-namespace BindOpen.Framework.Samples.SampleA.Settings
+namespace BindOpen.Samples.SampleA.Settings
 {
     /// <summary>
     /// This class represents a test service settings.

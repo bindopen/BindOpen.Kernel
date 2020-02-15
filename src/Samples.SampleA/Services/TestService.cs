@@ -1,8 +1,8 @@
-﻿using BindOpen.Framework.Application.Scopes;
-using BindOpen.Framework.Application.Services;
-using BindOpen.Framework.System.Diagnostics;
+﻿using BindOpen.Application.Scopes;
+using BindOpen.Application.Services;
+using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Framework.Samples.SampleA.Services
+namespace BindOpen.Samples.SampleA.Services
 {
     public class TestService : BdoHostedService
     {

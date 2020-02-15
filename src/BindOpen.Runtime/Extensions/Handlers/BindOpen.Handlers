@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<handlers.dictionary library="standard"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:HandlerDictionary HandlerDictionary.xsd">
+
+  <creationDate>2014-07-12</creationDate>
+  <lastModificationDate>2016-09-10</lastModificationDate>
+
+  <definitions>
+    <add.definition name="textFromFile">
+      <callingClass>.Handlers.TextFromFile</callingClass>
+      <getFunction>Get</getFunction>
+      <postFunction>Post</postFunction>
+      <source-dataSource.specification>
+        <kind>Repository</kind>
+      </source-dataSource.specification>
+      <parameter.specification>
+        <scalar name="path" valueType="Text" />
+      </parameter.specification>
+      <target-scalar.specification valueType="Text">
+        <maximumItemNumber>1</maximumItemNumber>
+      </target-scalar.specification>
+    </add.definition>
+
+    <add.definition name="objectFromFile">
+      <callingClass>.Handlers.ObjectFromFile</callingClass>
+      <getFunction>Get</getFunction>
+      <postFunction>Post</postFunction>
+      <source-dataSource.specification>
+        <kind>Repository</kind>
+      </source-dataSource.specification>
+      <parameter.specification>
+        <scalar name="path" valueType="Text" />
+      </parameter.specification>
+      <target-scalar.specification valueType="Entity">
+        <maximumItemNumber>1</maximumItemNumber>
+      </target-scalar.specification>
+    </add.definition>
+    
+    <!--<add.definition name="textListInFile">
+      <callingClass>BindOpen.Runtime.Extensions.Handlers.TextListInFile</callingClass>
+      <source-dataSource.specification>
+        <kind>Repository</kind>
+      </source-dataSource.specification>
+      <parameter.specification>
+        <scalar name="path" valueType="Text" />
+      </parameter.specification>
+      <target-scalar.specification valueType="Text">
+        <maximumItemNumber>-1</maximumItemNumber>
+      </target-scalar.specification>
+    </add.definition>-->
+  </definitions>
+
+</handlers.dictionary>

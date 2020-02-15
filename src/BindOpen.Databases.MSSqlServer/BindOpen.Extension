@@ -1,0 +1,20 @@
+﻿<extension id="dce3ca39-f0a9-4586-95c0-1a38a1c314b4"  name="database.mssqlserver"
+  xmlns="https://bindopen.org/xsd" xmlns:SchemaLocation="bdo:BdoExtensionDefinition BdoExtensionDefinition.xsd" >
+  <creationDate>2018-09-08</creationDate>
+  <lastModificationDate>2018-09-08</lastModificationDate>
+  <title>
+    <add.value key="en">MS SQL Server Databases</add.value>
+  </title>
+  <description>
+    <add.value key="en">Extension library 'Database.MSSQLServer'.</add.value>
+  </description>
+  <assembly>BindOpen.Databases.MSSqlServer</assembly>
+  <fileName>BindOpen.Databases.MSSqlServer.dll</fileName>
+  <rootNamespace>BindOpen.Databases.MSSqlServer.Extensions</rootNamespace>
+  <indexes>
+    <add.value key="connector">.Connectors.Connectors.index</add.value>
+  </indexes>
+  <using>
+    <add>BindOpen.Databases</add>
+  </using>
+</extension>
