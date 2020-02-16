@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bdo_icon_128x128.png</PackageIcon>
     <OutputType>Exe</OutputType>
     <PackageIconUrl />
