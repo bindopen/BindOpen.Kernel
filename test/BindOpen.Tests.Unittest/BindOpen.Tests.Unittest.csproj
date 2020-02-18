@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>bdo_icon_128x128.png</PackageIcon>
+    <PackageIcon>bindopen_icon.png</PackageIcon>
     <PackageIconUrl />
   </PropertyGroup>
 
@@ -30,7 +30,7 @@
     <EmbeddedResource Remove="Data\References\**" />
     <None Remove="bdo\logs\**" />
     <None Remove="Data\References\**" />
-    <None Include="..\..\docs\images\bdo_icon_128x128.png">
+    <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

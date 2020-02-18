@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 
-namespace BindOpen.Runtime.NetCore.Data.Resolvers
+namespace BindOpen.Data.Resolvers
 {
     /// <summary>
     /// This class represents a startup helpers

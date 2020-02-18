@@ -46,17 +46,17 @@ namespace BindOpen.Data.Queries
 
             if (table != null)
             {
-                st.ConcatenateIf(!string.IsNullOrEmpty(table.DataModule), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlDatabase('" + table.DataModule + "').");
+                st = st.ConcatenateIf(!string.IsNullOrEmpty(table.DataModule), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlDatabase('" + table.DataModule + "').");
 
-                st.ConcatenateIf(!string.IsNullOrEmpty(table.Schema), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlSchema('" + table.Schema + "').");
+                st = st.ConcatenateIf(!string.IsNullOrEmpty(table.Schema), st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlSchema('" + table.Schema + "').");
 
                 if (!string.IsNullOrEmpty(table.Alias))
                 {
-                    st += st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Alias + "')";
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Alias + "')";
                 }
                 else if (!string.IsNullOrEmpty(table.Name))
                 {
-                    st += st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Name + "')";
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Name + "')";
                 }
             }
 

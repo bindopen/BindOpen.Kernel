@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Extensions.Connectors;
 using BindOpen.System.Diagnostics;
 using System;
 using System.Data;
@@ -34,7 +34,7 @@ namespace BindOpen.Data.Connections
         /// The connector of this instance.
         /// </summary>
         [XmlIgnore()]
-        public new BdoDbConnector Connector => base.Connector as BdoDbConnector;
+        public new IBdoDbConnector Connector => base.Connector as IBdoDbConnector;
 
         /// <summary>
         /// Gets the .NET database connection of this instance.

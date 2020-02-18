@@ -26,16 +26,19 @@ namespace Samples.SampleA.Services
                 StaffNumber = "123"
             };
 
-            this.UsingDbConnection(connection =>
+            this.UsingDbConnection((connection, log) =>
             {
-                string query1 = Connector.BuildSqlText(_model.GetEmployeeWithCode("codeA"));
+                string query1 = Connector.CreateCommandText(_model.GetEmployeeWithCode("codeA"));
                 Console.WriteLine("1- " + query1);
 
-                string query2 = Connector.BuildSqlText(_model.UpdateEmployee("codeB", false, employee));
+                string query2 = Connector.CreateCommandText(_model.UpdateEmployee("codeB", false, employee));
                 Console.WriteLine("2- " + query2);
 
-                string query3 = Connector.BuildSqlText(_model.UpsertEmployee(employee));
+                string query3 = Connector.CreateCommandText(_model.UpsertEmployee(employee));
                 Console.WriteLine("3 - " + query3);
+
+                string query4 = Connector.CreateCommandText(_model.DeleteEmployee("codeC"));
+                Console.WriteLine("4 - " + query4);
             });
         }
     }

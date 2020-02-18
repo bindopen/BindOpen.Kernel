@@ -71,7 +71,7 @@ namespace BindOpen.Data.Queries
                                 scriptVariableSet,
                                 log);
 
-                            queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
+                            queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
 
                             queryString += "*";
                         }
@@ -90,7 +90,7 @@ namespace BindOpen.Data.Queries
                                     scriptVariableSet,
                                     log);
 
-                                queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
+                                queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(tableName), tableName + ".");
 
                                 queryString += GetSqlText_Field(
                                     field,
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Queries
 
                                 if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
                                 {
-                                    queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
+                                    queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
                                 }
                             }
                         }
@@ -148,7 +148,7 @@ namespace BindOpen.Data.Queries
                         {
                             queryString += GetSqlText_Field(field.Name);
                         }
-                        queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
+                        queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(field.Alias), " as " + GetSqlText_Field(field.Alias));
 
                         break;
                     case DbDataFieldViewMode.OnlyValue:
@@ -269,7 +269,7 @@ namespace BindOpen.Data.Queries
 
                 if (viewMode == DbDataFieldViewMode.CompleteNameAsAlias)
                 {
-                    queryString.ConcatenateIf(!string.IsNullOrEmpty(tableAlias), " as " + GetSqlText_Table(tableAlias));
+                    queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(tableAlias), " as " + GetSqlText_Table(tableAlias));
                 }
             }
 
@@ -349,7 +349,7 @@ namespace BindOpen.Data.Queries
                 string subQuery = BuildQuery(queryFrom.UnionStatement.Query, false, parameterSet, scriptVariableSet, log);
                 UpdateParameterSet(query.ParameterSet, queryFrom.UnionStatement.Query);
                 queryString += "(" + subQuery + ")";
-                queryString.ConcatenateIf(!string.IsNullOrEmpty(queryFrom.UnionStatement.Query.Alias), " as " + queryFrom.UnionStatement.Query.Alias);
+                queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(queryFrom.UnionStatement.Query.Alias), " as " + queryFrom.UnionStatement.Query.Alias);
             }
 
             return queryString;

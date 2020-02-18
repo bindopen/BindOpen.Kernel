@@ -1,9 +1,9 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
-using BindOpen.Data.Stores;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
+using BindOpen.Data.Stores;
 using BindOpen.Extensions.Scriptwords;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -47,10 +47,10 @@ namespace BindOpen.Data.Queries
         #endregion
 
         // ------------------------------------------
-        // BASIC QUERY BUILBING
+        // QUERY BUILBING
         // ------------------------------------------
 
-        #region Basic Query Building
+        #region Query Building
 
         /// <summary>
         /// Gets the database name corresponding to the specified data module name.
