@@ -220,7 +220,7 @@ namespace Samples.SampleA.Services.Databases
         /// <returns>Returns the generated query.</returns>
         internal IDbQuery DeleteEmployee(string code)
         {
-            var query = DbFluent.InsertBasic(Table("Employee"), true)
+            var query = DbFluent.DeleteBasic(Table("Employee"))
                 .AddIdField(DbFluent.Field(code));
 
             return query;

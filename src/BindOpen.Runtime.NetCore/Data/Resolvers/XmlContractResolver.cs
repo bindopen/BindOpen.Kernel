@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace BindOpen.Runtime.NetCore.Data.Resolvers
+namespace BindOpen.Data.Resolvers
 {
     /// <summary>
     /// This class represents an application client.

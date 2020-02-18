@@ -4,13 +4,14 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Attributes;
+using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System;
 using System.Data;
 using System.Xml.Serialization;
 
-namespace BindOpen.Extensions.Runtime
+namespace BindOpen.Extensions.Connectors
 {
     /// <summary>
     /// This class defines a database connector.
@@ -181,23 +182,6 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         public new abstract IBdoDbConnection CreateConnection(IBdoLog log = null);
 
-        /// <summary>
-        /// Builds the SQL text from the specified database query.
-        /// </summary>
-        /// <param name="query">The database data query to build.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
-        /// <param name="parameterSet">The parameter set to consider.</param>
-        /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
-        /// <returns>Returns the built query text.</returns>
-        public string BuildSqlText(
-            IDbQuery query,
-            IBdoLog log = null,
-            bool? isParametersInjected = true,
-            IDataElementSet parameterSet = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
-            => QueryBuilder?.BuildQuery(query, isParametersInjected, parameterSet, scriptVariableSet, log);
-
         // SQL commands
 
         /// <summary>
@@ -231,24 +215,12 @@ namespace BindOpen.Extensions.Runtime
             string sqlText = "";
 
             if (QueryBuilder == null)
-                log.AddError("Data builder missing");
+                log?.AddError("Data builder missing");
             else
                 sqlText = QueryBuilder.BuildQuery(query, isParametersInjected, parameterSet, scriptVariableSet, log);
 
             return sqlText;
         }
-
-        /// <summary>
-        /// Creates a command from the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>Returns the database command.</returns>
-        public IDbCommand CreateCommand(
-            IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommand(query, false, null, scriptVariableSet, log);
 
         /// <summary>
         /// Creates a command from the specified query.

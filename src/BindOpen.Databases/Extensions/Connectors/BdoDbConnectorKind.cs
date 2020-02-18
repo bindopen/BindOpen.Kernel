@@ -1,6 +1,6 @@
 ﻿using BindOpen.Databases.Extensions;
 
-namespace BindOpen.Extensions.Runtime
+namespace BindOpen.Extensions.Connectors
 {
 
     /// <summary>

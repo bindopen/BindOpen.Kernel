@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Extensions.Connectors;
 using System.Data;
 
 namespace BindOpen.Data.Connections
@@ -17,6 +17,6 @@ namespace BindOpen.Data.Connections
         /// <summary>
         /// Connector of the connection.
         /// </summary>
-        new BdoDbConnector Connector { get; }
+        new IBdoDbConnector Connector { get; }
     }
 }

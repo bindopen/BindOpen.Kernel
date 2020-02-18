@@ -13,28 +13,27 @@ namespace BindOpen.Application.Services
         /// Executes the specified function.
         /// </summary>
         /// <typeparam name="Q"></typeparam>
-        /// <param name="repository">The repository to consider</param>
-        /// <param name="initializer"></param>
-        /// <param name="action"></param>
+        /// <param name="repository">The connected service to consider</param>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="log">The log to consider.</param>
         /// <returns></returns>
-        public static IBdoLog UsingDbConnection(
+        public static void UsingDbConnection(
             this IBdoDbService repository,
-            Action<IBdoDbConnection> action)
+            Action<IBdoConnection, IBdoLog> action,
+            IBdoLog log = null)
         {
-            var log = new BdoLog();
+            log = log ?? new BdoLog();
 
             if (repository != null)
             {
-                using (IBdoDbConnection connection = repository.Connector?.CreateConnection(log))
+                using (IBdoConnection connection = repository.Connector?.CreateConnection(log))
                 {
-                    if (!log.HasErrorsOrExceptions())
+                    if (!log.HasErrorsOrExceptions() && connection != null)
                     {
-                        action?.Invoke(connection);
+                        action?.Invoke(connection, log);
                     }
                 }
             }
-
-            return log;
         }
     }
 }

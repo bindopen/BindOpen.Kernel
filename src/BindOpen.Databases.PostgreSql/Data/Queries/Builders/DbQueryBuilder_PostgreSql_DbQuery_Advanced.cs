@@ -220,7 +220,7 @@ namespace BindOpen.Data.Queries
                 case DbQueryKind.Delete:
                     {
                         queryString = "delete";
-                        queryString = " from ";
+                        queryString += " from ";
                         if (query.FromStatements?.Count > 0)
                         {
                             index = 0;

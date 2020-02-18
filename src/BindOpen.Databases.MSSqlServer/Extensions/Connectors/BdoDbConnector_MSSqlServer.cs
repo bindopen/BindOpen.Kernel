@@ -107,7 +107,7 @@ namespace BindOpen.Extensions.Connectors
                 }
             }
 
-            return new SqlCommand();
+            return command;
         }
 
         #endregion

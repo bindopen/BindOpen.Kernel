@@ -1,11 +1,4 @@
-- Console logger not working
-- Exception in database.dll
-
-- Bind host config with .NET Core config
-- Bind logger with .NET Core logger
-
-- SetWebRootFolder
-
-- Simplify <TBdoHost>.UseDatasources()
-- DictionaryFactory
-- Allow mapping of names
+- Change icon name
+- Bug Delete. Pas de "Delete table"
+- Bug Insert. Pas de schema dans le nom de la table.
+- isParamaterInjected -> ParameterMode = Symboled, Scripted, ValueInjected
