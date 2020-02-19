@@ -19,6 +19,19 @@ namespace BindOpen.Application.Services
         /// <returns></returns>
         public static void UsingConnection(
             this IBdoConnectedService repository,
+            Action<IBdoConnection> action)
+            => repository.UsingConnection((c, l) => action?.Invoke(c), null);
+
+        /// <summary>
+        /// Executes the specified function.
+        /// </summary>
+        /// <typeparam name="Q"></typeparam>
+        /// <param name="repository">The connected service to consider</param>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns></returns>
+        public static void UsingConnection(
+            this IBdoConnectedService repository,
             Action<IBdoConnection, IBdoLog> action,
             IBdoLog log = null)
         {

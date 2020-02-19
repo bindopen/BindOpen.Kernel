@@ -1,5 +1,6 @@
 ﻿using BindOpen.Application.Services;
 using BindOpen.Extensions.Runtime;
+using BindOpen.System.Diagnostics;
 using Samples.SampleA.Services.Databases;
 using System;
 
@@ -26,7 +27,8 @@ namespace Samples.SampleA.Services
                 StaffNumber = "123"
             };
 
-            this.UsingDbConnection((connection, log) =>
+            var log = new BdoLog();
+            this.UsingDbConnection((c, l) =>
             {
                 string query1 = Connector.CreateCommandText(_model.GetEmployeeWithCode("codeA"));
                 Console.WriteLine("1- " + query1);
@@ -39,7 +41,7 @@ namespace Samples.SampleA.Services
 
                 string query4 = Connector.CreateCommandText(_model.DeleteEmployee("codeC"));
                 Console.WriteLine("4 - " + query4);
-            });
+            }, log);
         }
     }
 }
