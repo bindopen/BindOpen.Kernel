@@ -72,7 +72,9 @@ namespace BindOpen.Tests.Core.Application.Configuration
             var log = new BdoLog();
 
             if (_usableConfiguration1 == null || !File.Exists(_filePath1))
+            {
                 TestSaveUsableConfiguration();
+            }
 
             var configuration = ConfigurationFactory.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
 

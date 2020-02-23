@@ -19,7 +19,7 @@ namespace BindOpen.Tests.Core
                 if (_workingFolder == null)
                 {
                     _workingFolder = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\")
-                        + @"..\..\bdo\temp\".ToPath();
+                        + @"bdo\temp\".ToPath();
                 }
 
                 return _workingFolder;
