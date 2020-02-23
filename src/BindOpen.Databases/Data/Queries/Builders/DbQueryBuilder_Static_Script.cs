@@ -19,8 +19,13 @@ namespace BindOpen.Data.Queries
 
             if (field != null)
             {
-                st = GetBdoScript(DbFluent.Table(field.DataTable, field.Schema, field.DataModule).WithAlias(field.DataTableAlias))
+                if (!string.IsNullOrEmpty(field.DataTable)
+                    || !string.IsNullOrEmpty(field.Schema)
+                    || !string.IsNullOrEmpty(field.DataModule))
+                {
+                    st = GetBdoScript(DbFluent.Table(field.DataTable, field.Schema, field.DataModule).WithAlias(field.DataTableAlias))
                     .ConcatenateIfFirstNotEmpty(".");
+                }
 
                 if (!string.IsNullOrEmpty(field.Alias))
                 {
@@ -29,6 +34,10 @@ namespace BindOpen.Data.Queries
                 else if (!string.IsNullOrEmpty(field.Name))
                 {
                     st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlField('" + field.Name + "')";
+                }
+                else
+                {
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlField('<!-FIELD_MISSING-!>')";
                 }
             }
 
@@ -57,6 +66,10 @@ namespace BindOpen.Data.Queries
                 else if (!string.IsNullOrEmpty(table.Name))
                 {
                     st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('" + table.Name + "')";
+                }
+                else
+                {
+                    st = st.ConcatenateIf(string.IsNullOrEmpty(st), "$") + "sqlTable('<!-TABLE_MISSING-!>')";
                 }
             }
 

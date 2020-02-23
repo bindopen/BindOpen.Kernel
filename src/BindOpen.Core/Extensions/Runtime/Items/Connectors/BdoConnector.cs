@@ -2,7 +2,6 @@
 using BindOpen.Data.Connections;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
-using BindOpen.Extensions.Attributes;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -15,16 +14,16 @@ namespace BindOpen.Extensions.Runtime
     /// </summary>
     public abstract class BdoConnector : TBdoExtensionItem<IBdoConnectorDefinition>, IBdoConnector
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        new public IBdoConnectorConfiguration Configuration { get => base.Configuration as IBdoConnectorConfiguration; }
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        new public IBdoConnectorConfiguration Configuration { get => base.Configuration as IBdoConnectorConfiguration; }
 
         /// <summary>
         /// The connection string of this instance.
@@ -74,6 +73,12 @@ namespace BindOpen.Extensions.Runtime
 
         #endregion
 
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
         /// <summary>
         /// Returns a data element representing this instance.
         /// </summary>
@@ -84,6 +89,8 @@ namespace BindOpen.Extensions.Runtime
         {
             return ElementFactory.CreateSource(name ?? Name, base.Configuration as IBdoConnectorConfiguration);
         }
+
+        #endregion
 
         // ------------------------------------------
         // MUTATORS

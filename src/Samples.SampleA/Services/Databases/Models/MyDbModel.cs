@@ -19,14 +19,15 @@ namespace Samples.SampleA.Services.Databases
         public override void OnCreating(IBdoDbModelBuilder builder)
         {
             builder
-                .AddTable(nameof(DbEmployee).Substring(2), DbFluent.Table(nameof(DbEmployee).Substring(2), "Mdm"))
-                .AddTable(nameof(DbRegionalDirectorate).Substring(2), DbFluent.Table(nameof(DbRegionalDirectorate).Substring(2), "Mdm"));
+                .AddTable("Employee", DbFluent.Table(nameof(DbEmployee).Substring(2), "Mdm"))
+                .AddTable<DbCountry>(nameof(DbCountry).Substring(2))
+                .AddTable("RegionalDirectorate", DbFluent.Table(nameof(DbRegionalDirectorate).Substring(2), "Mdm"));
 
             builder
                 .AddJoinCondition("Employee_RegionalDirectorate",
                     DbFluent.JoinCondition(
-                        DbFluent.Field(nameof(DbRegionalDirectorate.RegionalDirectorateId), Table("Employee")),
-                        DbFluent.Field(nameof(DbEmployee.EmployeeId), Table("Employee"))));
+                        DbFluent.Field<DbEmployee, int>(p => p.EmployeeId),
+                        DbFluent.Field<DbRegionalDirectorate, int>(p => p.RegionalDirectorateId)));
 
             builder
                 .AddTuple("Fields_SelectEmployee",
@@ -61,36 +62,36 @@ namespace Samples.SampleA.Services.Databases
             => DbFluent.SelectAdvanced("GetMyTables", DbFluent.Table())
                 .AsDistinct()
                 .WithFields(
-                    DbFluent.FieldAsAll("table"),
-                    DbFluent.Field("Field1", "table"),
-                    DbFluent.Field("Field2", "table"))
+                    DbFluent.FieldAsAll(DbFluent.Table(DbFluent.Table("table"))),
+                    DbFluent.Field("Field1", DbFluent.Table(DbFluent.Table("table"))),
+                    DbFluent.Field("Field2", DbFluent.Table(DbFluent.Table("table"))))
                 .Froms(
-                    DbFluent.From(DbFluent.Table(nameof(DbMyTable).Substring(2), "schema1").WithAlias("table"))
+                    DbFluent.From(DbFluent.Table(nameof(DbCountry).Substring(2), "schema1").WithAlias(DbFluent.Table("table")))
                         .WithJoins(
-                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table1"))
+                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias(DbFluent.Table("table1")))
                                 .WithCondition(
                                     DbFluent.And(
                                         DbFluent.JoinCondition(
-                                            DbFluent.Field("table1key", "table1"),
-                                            DbFluent.Field(nameof(DbMyTable.ExecutionStatusReferenceId), "table")),
+                                            DbFluent.Field("table1key", DbFluent.Table("table1")),
+                                            DbFluent.Field(nameof(DbCountry.MyTableId), DbFluent.Table("table"))),
                                         DbFluent.JoinCondition(
-                                            DbFluent.Field("table2key", "table2"),
-                                            DbFluent.Field(nameof(DbMyTable.ExecutionStatusReferenceId), "table")))))
+                                            DbFluent.Field("table2key", DbFluent.Table("table2")),
+                                            DbFluent.Field(nameof(DbCountry.MyTableId), DbFluent.Table("table"))))))
                         .WithJoins(
-                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table2"))
+                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias(DbFluent.Table("table2")))
                                 .WithCondition(
                                     DbFluent.JoinCondition(
-                                        DbFluent.Field("table1key", "table2"),
-                                        DbFluent.Field("Field1", "table"))))
+                                        DbFluent.Field("table1key", DbFluent.Table("table2")),
+                                        DbFluent.Field("Field1", DbFluent.Table("table")))))
                 )
                 .Filter(
                     filterQuery,
                     log,
                     new ApiScriptFilteringDefinition(
-                        new ApiScriptClause("startCreationDate", DbFluent.Field("CreationDate", "table")),
-                        new ApiScriptClause("endCreationDate", DbFluent.Field("CreationDate", "table")),
-                        new ApiScriptClause("name", DbFluent.Field("Name", "table"), DataOperator.Equal)
-                    //new ApiScriptClause("table", null, DataOperator.,
+                        new ApiScriptClause("startCreationDate", DbFluent.Field("CreationDate", DbFluent.Table("table"))),
+                        new ApiScriptClause("endCreationDate", DbFluent.Field("CreationDate", DbFluent.Table("table"))),
+                        new ApiScriptClause("name", DbFluent.Field("Name", DbFluent.Table("table")), DataOperator.Equal)
+                    //new ApiScriptClause(DbFluent.Table("table"), null, DataOperator.,
                     //    new ApiScriptFilteringDefinition(
                     //        new ApiScriptClause("CreationDate", DbFieldFactory.Create("CreationDate", "MyTable", nameof(DbSchemas.Iam), null), DataOperator.GreaterOrEqual)))
                     ))
@@ -98,9 +99,9 @@ namespace Samples.SampleA.Services.Databases
                     orderByQuery,
                     log,
                     new ApiScriptSortingDefinition(
-                        new ApiScriptField("CreationDate", DbFluent.Field("CreationDate", "table"))
-                        , new ApiScriptField("Id", DbFluent.Field("Name", "table"))
-                        , new ApiScriptField("LastModificationDate", DbFluent.Field("LastModificationDate", "table"))));
+                        new ApiScriptField("CreationDate", DbFluent.Field("CreationDate", DbFluent.Table("table")))
+                        , new ApiScriptField("Id", DbFluent.Field("Name", DbFluent.Table("table")))
+                        , new ApiScriptField("LastModificationDate", DbFluent.Field("LastModificationDate", DbFluent.Table("table")))));
 
         /// <summary>
         /// 
@@ -156,6 +157,31 @@ namespace Samples.SampleA.Services.Databases
                         .WithJoins(
                             DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
                                 .WithCondition(JoinCondition("Employee_RegionalDirectorate")))))
+                .WithParameters(
+                    ElementFactory.Create("code", employee.Code),
+                    ElementFactory.Create("contactEmail", employee.ContactEmail),
+                    ElementFactory.Create("fisrtName", employee.FisrtName),
+                    ElementFactory.Create("lastName", employee.LastName),
+                    ElementFactory.Create("staffNumber", employee.StaffNumber));
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        internal IDbQuery InsertEmployee(EmployeeDto employee)
+        {
+            return DbFluent.InsertBasic(Table("Employee"))
+                .WithFields(q => new[]
+                {
+                    DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text)),
+                    DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), q.UseParameter("contactEmail", DataValueType.Text)),
+                    DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)),
+                    DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), q.UseParameter("lastName", DataValueType.Text)),
+                    DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text))
+                })
                 .WithParameters(
                     ElementFactory.Create("code", employee.Code),
                     ElementFactory.Create("contactEmail", employee.ContactEmail),

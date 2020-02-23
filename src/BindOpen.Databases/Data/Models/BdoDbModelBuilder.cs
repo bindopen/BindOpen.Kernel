@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Carriers;
+using System.Reflection;
 
 namespace BindOpen.Data.Models
 {
@@ -57,8 +58,32 @@ namespace BindOpen.Data.Models
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public virtual IBdoDbModelBuilder AddTable<T>() where T : class
+        public virtual IBdoDbModelBuilder AddTable<T>(string name = null) where T : class
         {
+            var table = new DbTable();
+
+            string schema = null;
+            string dataModuleName = null;
+
+            var type = typeof(T);
+
+            if (type.GetCustomAttribute(typeof(BdoDbTableAttribute)) is BdoDbTableAttribute tableAttribute)
+            {
+                name = string.IsNullOrEmpty(name) ? tableAttribute.Name : name;
+                schema = tableAttribute.Schema;
+                dataModuleName = tableAttribute.DataModule;
+            }
+            else
+            {
+                name = string.IsNullOrEmpty(name) ? type.Name : name;
+            }
+
+            table.Name = name;
+            table.DataModule = dataModuleName;
+            table.Schema = schema;
+
+            AddTable(table);
+
             return this;
         }
 

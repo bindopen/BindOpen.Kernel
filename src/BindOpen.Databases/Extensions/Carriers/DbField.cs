@@ -2,7 +2,6 @@
 using BindOpen.Data.Expression;
 using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
-using BindOpen.Extensions.Attributes;
 using BindOpen.Extensions.Runtime;
 using System;
 using System.Xml.Serialization;
@@ -154,34 +153,6 @@ namespace BindOpen.Extensions.Carriers
                 return Name ?? "";
         }
 
-        /// <summary>
-        /// Gets the data expression of this instance.
-        /// </summary>
-        /// <returns>Returns the data expression of this instance.</returns>
-        public DataExpression ToDataExpression()
-        {
-            string st = "$";
-
-            if (!string.IsNullOrEmpty(DataModule))
-            {
-                st += "sqlDatabase('" + DataModule + "').";
-            }
-            if (!string.IsNullOrEmpty(Schema))
-            {
-                st += "sqlSchema('" + DataModule + "').";
-            }
-            if (!string.IsNullOrEmpty(DataTable))
-            {
-                st += "sqlTable('" + DataTable + "').";
-            }
-            if (!string.IsNullOrEmpty(Name))
-            {
-                st += "sqlField('" + Name + "')";
-            }
-
-            return DataExpressionFactory.CreateScript(st);
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -299,6 +270,17 @@ namespace BindOpen.Extensions.Carriers
         public DbField WithNameAsScript()
         {
             IsNameAsScript = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies the value type of this instance.
+        /// </summary>
+        /// <param name="valueType">The value type to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public DbField WithValueType(DataValueType valueType)
+        {
+            ValueType = valueType;
             return this;
         }
 

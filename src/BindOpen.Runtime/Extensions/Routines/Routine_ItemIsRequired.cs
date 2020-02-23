@@ -2,7 +2,6 @@
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
-using BindOpen.Extensions.Attributes;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;

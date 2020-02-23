@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Common;
-using BindOpen.Extensions.Attributes;
+using BindOpen.Extensions.Runtime;
 using System.Linq;
 using System.Reflection;
 

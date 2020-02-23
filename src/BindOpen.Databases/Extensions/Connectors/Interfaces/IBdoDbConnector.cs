@@ -10,7 +10,7 @@ namespace BindOpen.Extensions.Connectors
     /// <summary>
     /// This class defines a database connector.
     /// </summary>
-    public interface IBdoDbConnector : IBdoConnector
+    public interface IBdoDbConnector : ITBdoConnector<IBdoDbConnection>
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -61,38 +61,20 @@ namespace BindOpen.Extensions.Connectors
 
         #region Accessors
 
-        /// <summary>
-        /// Creates a new database connection.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        new IBdoDbConnection CreateConnection(IBdoLog log = null);
-
         // SQL commands
 
         /// <summary>
         /// Gets the SQL text of the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        string CreateCommandText(
-            IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// Gets the SQL text of the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         string CreateCommandText(
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode = DbQueryParameterMode.ValueInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

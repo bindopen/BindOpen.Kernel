@@ -1,0 +1,18 @@
+﻿using NUnit.Framework;
+
+namespace BindOpen.Tests.Core
+{
+    /// <summary>
+    /// This class set the global settings up.
+    /// </summary>
+    [SetUpFixture]
+    public class GlobalSetUp
+    {
+        [OneTimeSetUp]
+        public void Setup()
+        {
+            // Setup variables for the first time
+            var host = GlobalVariables.AppHost;
+        }
+    }
+}

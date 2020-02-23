@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers.Objects;
-using BindOpen.Extensions.Attributes;
 using BindOpen.Extensions.Definition;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Assemblies;

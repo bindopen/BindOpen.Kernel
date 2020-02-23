@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Attributes;
+﻿using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using System;
 using System.Xml.Serialization;

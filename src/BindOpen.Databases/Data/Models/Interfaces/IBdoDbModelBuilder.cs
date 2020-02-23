@@ -13,7 +13,7 @@ namespace BindOpen.Data.Models
 
         IBdoDbModelBuilder AddTable(DbTable table);
 
-        IBdoDbModelBuilder AddTable<T>() where T : class;
+        IBdoDbModelBuilder AddTable<T>(string name = null) where T : class;
 
         IBdoDbModelBuilder AddTuple(string name, DbField[] fields);
 

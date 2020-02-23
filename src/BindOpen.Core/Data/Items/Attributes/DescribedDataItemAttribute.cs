@@ -60,7 +60,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the BdoExtensionItemAttribute class.
         /// </summary>
-        public DescribedDataItemAttribute() : base()
+        protected DescribedDataItemAttribute() : base()
         {
         }
 

@@ -3,6 +3,9 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Carriers;
+using System;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace BindOpen.Data.Queries
 {
@@ -15,35 +18,67 @@ namespace BindOpen.Data.Queries
         /// Creates a new instance of the DbField class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
+        /// <param name="table">The data table to consider.</param>
         public static DbField Field(
-            string name = null,
-            string tableName = null,
-            string schema = null,
-            string dataModule = null)
-        {
-            return new DbField()
+            string name,
+            DbTable table = null)
+            => new DbField()
             {
                 Name = name,
-                DataTable = tableName,
-                Schema = schema,
-                DataModule = dataModule
+                DataTable = table?.Name,
+                Schema = table?.Schema,
+                DataModule = table?.DataModule
             };
-        }
 
         /// <summary>
         /// Creates a new instance of the DbField class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="expr">The expression to consider.</param>
         /// <param name="table">The data table to consider.</param>
-        public static DbField Field(
-            string name,
-            DbTable table)
-            => Field(name, table?.Name, table?.Schema, table?.DataModule);
+        /// <typeparam name="T">The class to consider.</typeparam>
+        /// <typeparam name="TProperty">The class property to consider.</typeparam>
+        public static DbField Field<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table = null) where T : class
+        {
+            var memberAccess = expr.Body as MemberExpression;
+            var propertyInfo = memberAccess?.Member as PropertyInfo;
+            var name = propertyInfo?.Name;
+            var valueType = propertyInfo?.PropertyType.GetValueType() ?? DataValueType.None;
+
+            if (propertyInfo?.GetCustomAttribute(typeof(BdoDbFieldAttribute)) is BdoDbFieldAttribute fieldAttribute)
+            {
+                name = fieldAttribute.Name;
+                valueType = fieldAttribute.ValueType;
+            }
+
+            return DbFluent.Field(name, table).WithValueType(valueType);
+        }
 
         // As literal -----
+
+        /// <summary>
+        /// Updates the specified field as literal.
+        /// </summary>
+        /// <param name="field">The field to consider.</param>
+        /// <param name="value">The value to consider.</param>
+        /// <param name="valueType">The value type to consider.</param>
+        public static DbField AsLiteral(
+            this DbField field,
+            object value,
+            DataValueType valueType = DataValueType.Any)
+        {
+            if (field != null)
+            {
+                field.ValueType = valueType;
+                if (value != null)
+                {
+                    field.Value = value.ToString(field.ValueType).CreateLiteral();
+                }
+            }
+
+            return field;
+        }
 
         /// <summary>
         /// Creates a new instance of the DbField class.
@@ -56,47 +91,7 @@ namespace BindOpen.Data.Queries
             object value,
             DataValueType valueType = DataValueType.Any)
         {
-            return FieldAsLiteral(name, null, null, null, value, valueType);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsLiteral(
-            string name,
-            string tableName,
-            object value,
-            DataValueType valueType = DataValueType.None)
-        {
-            return FieldAsLiteral(name, tableName, null, null, value, valueType);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsLiteral(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            object value,
-            DataValueType valueType = DataValueType.None)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.Text;
-            if (value != null)
-                field.Value = value.ToString(valueType).CreateLiteral();
-            return field;
+            return DbFluent.FieldAsLiteral(name, null, value, valueType);
         }
 
         /// <summary>
@@ -110,57 +105,91 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             object value,
-            DataValueType valueType = DataValueType.None)
-            => FieldAsLiteral(name, table?.Name, table?.Schema, table?.DataModule, value, valueType);
+            DataValueType valueType = DataValueType.Any)
+        {
+            return DbFluent.Field(name, table).AsLiteral(value, valueType);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="value">The value to consider.</param>
+        public static DbField FieldAsLiteral<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            object value) where T : class
+        {
+            return FieldAsLiteral<T, TProperty>(expr, null, value);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="value">The value to consider.</param>
+        public static DbField FieldAsLiteral<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            object value) where T : class
+        {
+            var field = DbFluent.Field<T, TProperty>(expr, table);
+
+            return field.AsLiteral(value, field?.ValueType ?? DataValueType.None);
+        }
 
         // As script -----
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as script.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsScript(
-            string name,
-            string value)
+        /// <param name="field">The field to consider.</param>
+        /// <param name="script">The script to consider.</param>
+        public static DbField AsScript(
+            this DbField field,
+            string script)
         {
-            return FieldAsScript(name, null, null, null, value);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsScript(
-            string name,
-            string tableName,
-            string value)
-        {
-            return FieldAsScript(name, tableName, null, null, value);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsScript(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            string value)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.Text;
-            if (value != null)
+            if (field != null)
             {
-                field.Value = value.CreateScript();
+                field.ValueType = DataValueType.None;
+                if (script != null)
+                {
+                    field.Value = script.CreateScript();
+                }
+            }
+
+            return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="script">The script to consider.</param>
+        public static DbField FieldAsScript(
+            string name,
+            string script)
+        {
+            return FieldAsScript(name, null, script);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="script">The script to consider.</param>
+        public static DbField FieldAsScript(
+            string name,
+            DbTable table,
+            string script)
+        {
+            var field = DbFluent.Field(name, table);
+
+            field.ValueType = DataValueType.None;
+            if (script != null)
+            {
+                field.Value = script.CreateScript();
             }
             return field;
         }
@@ -168,62 +197,59 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// Creates a new instance of the DbField class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="script">The script to consider.</param>
+        public static DbField FieldAsScript<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            string script) where T : class
+        {
+            return FieldAsScript<T, TProperty>(expr, null, script);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
         /// <param name="table">The data table to consider.</param>
-        /// <param name="value">The value to consider.</param>
-        public static DbField FieldAsScript(
-            string name,
+        /// <param name="script">The script to consider.</param>
+        public static DbField FieldAsScript<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
             DbTable table,
-            string value)
-            => FieldAsScript(name, table?.Name, table?.Schema, table?.DataModule, value);
+            string script) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsScript(script);
+        }
 
         // As query -----
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as query.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="field">The field to consider.</param>
         /// <param name="query">The query to consider.</param>
-        public static DbField FieldAsQuery(
-            string name,
+        public static DbField AsQuery(
+            this DbField field,
             IDbQuery query)
         {
-            return FieldAsQuery(name, null, null, null, query);
-        }
+            if (field != null)
+            {
+                field.ValueType = DataValueType.None;
+                field.Query = query as DbQuery;
+            }
 
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        public static DbField FieldAsQuery(
-            string name,
-            string tableName,
-            IDbQuery query)
-        {
-            return FieldAsQuery(name, tableName, null, null, query);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="query">The query to consider.</param>
-        public static DbField FieldAsQuery(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            IDbQuery query)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.None;
-            field.Query = query as DbQuery;
             return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        public static DbField FieldAsQuery(
+            string name,
+            IDbQuery query)
+        {
+            return DbFluent.FieldAsQuery(name, null, query);
         }
 
         /// <summary>
@@ -236,54 +262,65 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             IDbQuery query)
-            => FieldAsQuery(name, table?.Name, table?.Schema, table?.DataModule, query);
+        {
+            return DbFluent.Field(name, table).AsQuery(query);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        public static DbField FieldAsQuery<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            IDbQuery query) where T : class
+        {
+            return FieldAsQuery<T, TProperty>(expr, null, query);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="query">The query to consider.</param>
+        public static DbField FieldAsQuery<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            IDbQuery query) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsQuery(query);
+        }
 
         // As other -----
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as other.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="field">The field to consider.</param>
         /// <param name="otherField">The other field to consider.</param>
-        public static DbField FieldAsOther(
-            string name,
+        public static DbField AsOther(
+            this DbField field,
             DbField otherField)
         {
-            return FieldAsOther(name, null, null, null, otherField);
-        }
+            if (field != null)
+            {
+                field.Value = ((string)otherField).CreateScript();
+            }
 
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="otherField">The other field to consider.</param>
-        public static DbField FieldAsOther(
-            string name,
-            string tableName,
-            DbField otherField)
-        {
-            return FieldAsOther(name, tableName, null, null, otherField);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="otherField">The other field to consider.</param>
-        public static DbField FieldAsOther(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            DbField otherField)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.Value = otherField.ToDataExpression();
             return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="otherField">The other field to consider.</param>
+        public static DbField FieldAsOther(
+            string name,
+            DbField otherField)
+        {
+            return DbFluent.FieldAsOther(name, null, otherField);
         }
 
         /// <summary>
@@ -296,83 +333,77 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             DbField otherField)
-            => FieldAsOther(name, table?.Name, table?.Schema, table?.DataModule, otherField);
-
-        // As All
+        {
+            return DbFluent.Field(name, table).AsOther(otherField);
+        }
 
         /// <summary>
         /// Creates a new instance of the DbField class.
         /// </summary>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        public static DbField FieldAsAll(
-            string tableName = null,
-            string schema = null,
-            string dataModule = null)
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="otherField">The other field to consider.</param>
+        public static DbField FieldAsOther<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbField otherField) where T : class
         {
-            return new DbField()
-            {
-                DataTable = tableName,
-                Schema = schema,
-                DataModule = dataModule
-            }.AsAll();
+            return FieldAsOther<T, TProperty>(expr, null, otherField);
         }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="otherField">The other field to consider.</param>
+        public static DbField FieldAsOther<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            DbField otherField) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsOther(otherField);
+        }
+
+        // As All ---------------------------------
 
         /// <summary>
         /// Creates a new instance of the DbField class.
         /// </summary>
         /// <param name="table">The data table to consider.</param>
         public static DbField FieldAsAll(DbTable table)
-            => FieldAsAll(table?.Name, table?.Schema, table?.DataModule);
-
-        // As parameter with name -----
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string parameterName)
         {
-            return FieldAsParameter(name, null, null, null, parameterName);
+            return DbFluent.Field(null, table).AsAll();
         }
 
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            string parameterName)
-        {
-            return FieldAsParameter(name, tableName, null, null, parameterName);
-        }
+        // As parameter with name -----------------
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as parameter.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
+        /// <param name="field">The field to consider.</param>
         /// <param name="parameterName">The parameter element to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
+        public static DbField AsParameter(
+            this DbField field,
             string parameterName)
         {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.None;
-            field.Value = CreateParameterWildString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
+            if (field != null)
+            {
+                field.ValueType = DataValueType.None;
+                field.Value = CreateParameterWildString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
+            }
+
             return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
+        public static DbField FieldAsParameter(
+            string name,
+            string parameterName)
+        {
+            return DbFluent.FieldAsParameter(name, null, parameterName);
         }
 
         /// <summary>
@@ -385,55 +416,66 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             string parameterName)
-            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterName);
+        {
+            return Field(name, table).AsParameter(parameterName);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            string parameterName) where T : class
+        {
+            return FieldAsParameter<T, TProperty>(expr, null, parameterName);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="parameterName">The parameter element to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            string parameterName) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsParameter(parameterName);
+        }
 
         // As parameter with index -----
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as parameter.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="field">The field to consider.</param>
         /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
+        public static DbField AsParameter(
+            this DbField field,
             byte parameterIndex)
         {
-            return FieldAsParameter(name, null, null, null, parameterIndex);
-        }
+            if (field != null)
+            {
+                field.ValueType = DataValueType.None;
+                field.Value = CreateParameterWildString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
+            }
 
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            byte parameterIndex)
-        {
-            return FieldAsParameter(name, tableName, null, null, parameterIndex);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="parameterIndex">The parameter index to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            byte parameterIndex)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.None;
-            field.Value = CreateParameterWildString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
             return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField FieldAsParameter(
+            string name,
+            byte parameterIndex)
+        {
+            return DbFluent.FieldAsParameter(name, null, parameterIndex);
         }
 
         /// <summary>
@@ -446,55 +488,66 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             byte parameterIndex)
-            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameterIndex);
+        {
+            return Field(name, table).AsParameter(parameterIndex);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            byte parameterIndex) where T : class
+        {
+            return FieldAsParameter<T, TProperty>(expr, null, parameterIndex);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="parameterIndex">The parameter index to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            byte parameterIndex) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsParameter(parameterIndex);
+        }
 
         // As parameter with parameter -----
 
         /// <summary>
-        /// Creates a new instance of the DbField class.
+        /// Updates the specified field as parameter.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param name="field">The field to consider.</param>
         /// <param name="parameter">The parameter to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
+        public static DbField AsParameter(
+            this DbField field,
             IDataElement parameter)
         {
-            return FieldAsParameter(name, null, null, null, parameter);
-        }
+            if (field != null)
+            {
+                field.ValueType = DataValueType.None;
+                field.Value = CreateParameterWildString(parameter).CreateLiteral();
+            }
 
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="parameter">The parameter to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            IDataElement parameter)
-        {
-            return FieldAsParameter(name, tableName, null, null, parameter);
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DbField class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="tableName">The data table to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="dataModule">The data module to consider.</param>
-        /// <param name="parameter">The parameter to consider.</param>
-        public static DbField FieldAsParameter(
-            string name,
-            string tableName,
-            string schema,
-            string dataModule,
-            IDataElement parameter)
-        {
-            var field = Field(name, tableName, schema, dataModule);
-            field.ValueType = DataValueType.None;
-            field.Value = CreateParameterWildString(parameter).CreateLiteral();
             return field;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="parameter">The parameter to consider.</param>
+        public static DbField FieldAsParameter(
+            string name,
+            IDataElement parameter)
+        {
+            return DbFluent.FieldAsParameter(name, null, parameter);
         }
 
         /// <summary>
@@ -507,6 +560,34 @@ namespace BindOpen.Data.Queries
             string name,
             DbTable table,
             IDataElement parameter)
-            => FieldAsParameter(name, table?.Name, table?.Schema, table?.DataModule, parameter);
+        {
+            return Field(name, table).AsParameter(parameter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="parameter">The parameter to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            IDataElement parameter) where T : class
+        {
+            return FieldAsParameter<T, TProperty>(expr, null, parameter);
+        }
+
+        /// <summary>
+        /// Creates a new instance of the DbField class.
+        /// </summary>
+        /// <param name="expr">The expression to consider.</param>
+        /// <param name="table">The data table to consider.</param>
+        /// <param name="parameter">The parameter to consider.</param>
+        public static DbField FieldAsParameter<T, TProperty>(
+            Expression<Func<T, TProperty>> expr,
+            DbTable table,
+            IDataElement parameter) where T : class
+        {
+            return DbFluent.Field<T, TProperty>(expr, table).AsParameter(parameter);
+        }
     }
 }
