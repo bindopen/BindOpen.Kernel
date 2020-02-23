@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+  <carrier name="carrier1" valueType="Carrier">
+    <definition>tests.core$dbField</definition>
+    <items>
+      <add>
+        <scalar name="path" value="file1.txt" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier2" valueType="Carrier">
+    <definition>tests.core$dbField</definition>
+    <items>
+      <add>
+        <scalar name="path" value="file2.txt" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier_637180664186315831" valueType="Carrier">
+    <definition>tests.core$dbField</definition>
+    <items>
+      <add definition="tests.core$dbField">
+        <scalar name="isAll" valueType="Boolean" value="false" />
+        <scalar name="dataModule" />
+        <scalar name="schema" />
+        <scalar name="dataTable" />
+        <scalar name="dataTableAlias" />
+        <scalar name="alias" />
+        <scalar name="size" valueType="Integer" value="0" />
+        <object name="value" valueType="Object" />
+        <scalar name="isKey" valueType="Boolean" value="false" />
+        <scalar name="isForeignKey" valueType="Boolean" value="false" />
+        <scalar name="isNameAsScript" valueType="Boolean" value="false" />
+        <scalar name="valueType" value="Any" />
+        <scalar name="path" value="file3.txt" />
+        <scalar name="parentPath" />
+        <scalar name="creationDate" />
+        <scalar name="flag" />
+        <scalar name="isReadOnly" valueType="Boolean" value="false" />
+        <scalar name="lastAccessDate" />
+        <scalar name="lastWriteDate" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier4" valueType="Carrier">
+    <definition>tests.core$dbField</definition>
+    <items>
+      <add name="carrier4" definition="tests.core$dbField">
+        <scalar name="isAll" valueType="Boolean" value="false" />
+        <scalar name="dataModule" />
+        <scalar name="schema" />
+        <scalar name="dataTable" />
+        <scalar name="dataTableAlias" />
+        <scalar name="alias" />
+        <scalar name="size" valueType="Integer" value="0" />
+        <object name="value" valueType="Object" />
+        <scalar name="isKey" valueType="Boolean" value="false" />
+        <scalar name="isForeignKey" valueType="Boolean" value="false" />
+        <scalar name="isNameAsScript" valueType="Boolean" value="false" />
+        <scalar name="valueType" value="Any" />
+        <scalar name="path" value="file4.txt" />
+        <scalar name="parentPath" />
+        <scalar name="creationDate" />
+        <scalar name="flag" />
+        <scalar name="isReadOnly" valueType="Boolean" value="false" />
+        <scalar name="lastAccessDate" />
+        <scalar name="lastWriteDate" />
+      </add>
+    </items>
+  </carrier>
+</element.set>

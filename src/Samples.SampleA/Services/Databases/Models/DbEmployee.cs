@@ -1,8 +1,11 @@
-﻿namespace Samples.SampleA.Services.Databases
+﻿using BindOpen.Extensions.Carriers;
+
+namespace Samples.SampleA.Services.Databases
 {
     /// <summary>
     /// This class represents an employee in database.
     /// </summary>
+    [BdoDbTable(nameof(DbEmployee), "Crm")]
     public class DbEmployee
     {
         #region Properties

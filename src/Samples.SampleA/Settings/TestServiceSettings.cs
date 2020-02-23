@@ -1,5 +1,5 @@
 ﻿using System.Xml.Serialization;
-using BindOpen.Extensions.Attributes;
+using BindOpen.Extensions.Runtime;
 using BindOpen.Application.Settings;
 
 namespace Samples.SampleA.Settings

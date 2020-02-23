@@ -3,7 +3,6 @@ using BindOpen.Data.Connections;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
-using BindOpen.Extensions.Attributes;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -16,7 +15,7 @@ namespace BindOpen.Extensions.Connectors
     /// <summary>
     /// This class defines a database connector.
     /// </summary>
-    public abstract class BdoDbConnector : BdoConnector, IBdoDbConnector
+    public abstract class BdoDbConnector : TBdoConnector<IBdoDbConnection>, IBdoDbConnector
     {
         /// <summary>
         /// The query builder of this instance.
@@ -176,38 +175,20 @@ namespace BindOpen.Extensions.Connectors
 
         #region Accessors
 
-        /// <summary>
-        /// Creates a new connection.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        public new abstract IBdoDbConnection CreateConnection(IBdoLog log = null);
-
         // SQL commands
 
         /// <summary>
         /// Gets the SQL text of the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>Returns the SQL text of the specified query.</returns>
-        public string CreateCommandText(
-            IDbQuery query,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null) => CreateCommandText(query, false, null, scriptVariableSet, log);
-
-        /// <summary>
-        /// Gets the SQL text of the specified query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         public string CreateCommandText(
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode = DbQueryParameterMode.ValueInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -217,7 +198,7 @@ namespace BindOpen.Extensions.Connectors
             if (QueryBuilder == null)
                 log?.AddError("Data builder missing");
             else
-                sqlText = QueryBuilder.BuildQuery(query, isParametersInjected, parameterSet, scriptVariableSet, log);
+                sqlText = QueryBuilder.BuildQuery(query, parameterMode, parameterSet, scriptVariableSet, log);
 
             return sqlText;
         }
@@ -226,14 +207,14 @@ namespace BindOpen.Extensions.Connectors
         /// Creates a command from the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the database command.</returns>
         public abstract IDbCommand CreateCommand(
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

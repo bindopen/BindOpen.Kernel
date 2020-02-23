@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+  <carrier name="carrier1" valueType="Carrier">
+    <definition>runtime$file</definition>
+    <items>
+      <add>
+        <scalar name="path" value="file1.txt" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier2" valueType="Carrier">
+    <definition>runtime$file</definition>
+    <items>
+      <add>
+        <scalar name="path" value="file2.txt" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier_637178474123981425" valueType="Carrier">
+    <definition>runtime$file</definition>
+    <items>
+      <add definition="runtime$file">
+        <scalar name="length" valueType="ULong" value="0" />
+        <scalar name="path" value="file3.txt" />
+        <scalar name="parentPath" />
+        <scalar name="creationDate" />
+        <scalar name="flag" />
+        <scalar name="isReadOnly" valueType="Boolean" value="false" />
+        <scalar name="lastAccessDate" />
+        <scalar name="lastWriteDate" />
+      </add>
+    </items>
+  </carrier>
+  <carrier name="carrier4" valueType="Carrier">
+    <definition>runtime$file</definition>
+    <items>
+      <add name="carrier4" definition="runtime$file">
+        <scalar name="length" valueType="ULong" value="0" />
+        <scalar name="path" value="file4.txt" />
+        <scalar name="parentPath" />
+        <scalar name="creationDate" />
+        <scalar name="flag" />
+        <scalar name="isReadOnly" valueType="Boolean" value="false" />
+        <scalar name="lastAccessDate" />
+        <scalar name="lastWriteDate" />
+      </add>
+    </items>
+  </carrier>
+</element.set>

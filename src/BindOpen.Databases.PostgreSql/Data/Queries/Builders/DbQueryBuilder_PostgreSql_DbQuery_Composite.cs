@@ -52,11 +52,11 @@ namespace BindOpen.Data.Queries
                         }
 
                         queryString += " when matched ";
-                        queryString += BuildQuery(query.MatchedQuery, null, parameterSet, scriptVariableSet, log);
+                        queryString += BuildQuery(query.MatchedQuery, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
                         UpdateParameterSet(query.ParameterSet, query.MatchedQuery);
 
                         queryString += " when not matched ";
-                        queryString += BuildQuery(query.NotMatchedQuery, null, parameterSet, scriptVariableSet, log);
+                        queryString += BuildQuery(query.NotMatchedQuery, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
                         queryString += ";";
                         UpdateParameterSet(query.ParameterSet, query.NotMatchedQuery);
                     }

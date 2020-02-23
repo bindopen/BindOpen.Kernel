@@ -48,6 +48,7 @@ namespace BindOpen.Data.Stores
         /// </summary>
         public BdoDbModelDepot() : base()
         {
+            Id = "dbModels";
         }
 
         /// <summary>

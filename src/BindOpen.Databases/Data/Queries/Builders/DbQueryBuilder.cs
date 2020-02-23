@@ -88,14 +88,14 @@ namespace BindOpen.Data.Queries
         /// Builds the SQL text from the specified database query.
         /// </summary>
         /// <param name="query">The database data query to build.</param>
-        /// <param name="isParametersInjected">The display mode of parameters to consider.</param>
+        /// <param name="parameterMode">The display mode of parameters to consider.</param>
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The interpretation variables to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the built query text.</returns>
         public string BuildQuery(
             IDbQuery query,
-            bool? isParametersInjected = true,
+            DbQueryParameterMode parameterMode = DbQueryParameterMode.ValueInjected,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -125,12 +125,12 @@ namespace BindOpen.Data.Queries
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
-                            queryString = BuildQuery(storedDbQuery.Query, null, parameterSet, scriptVariableSet, log);
+                            queryString = BuildQuery(storedDbQuery.Query, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
                             storedDbQuery.QueryTexts.Add(Id, queryString);
                         }
                     }
 
-                    if (isParametersInjected != null)
+                    if (parameterMode != DbQueryParameterMode.Scripted)
                     {
                         parameterSet = parameterSet ?? new DataElementSet();
                         UpdateParameterSet(parameterSet, query);
@@ -144,7 +144,7 @@ namespace BindOpen.Data.Queries
                         {
                             foreach (var parameter in parameterSet.Elements)
                             {
-                                if (isParametersInjected == true)
+                                if (parameterMode == DbQueryParameterMode.ValueInjected)
                                 {
                                     queryString = queryString.Replace(parameter?.CreateParameterWildString(),
                                         GetSqlText_Value(parameter?.GetObject(_scope, scriptVariableSet, log)?.ToString(), parameter.ValueType));

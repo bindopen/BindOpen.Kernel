@@ -312,7 +312,7 @@ namespace BindOpen.Data.Queries
 
                 if (queryJoin.Query != null)
                 {
-                    string subQuery = BuildQuery(queryJoin.Query, false, parameterSet, scriptVariableSet: scriptVariableSet, log: log);
+                    string subQuery = BuildQuery(queryJoin.Query, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet: scriptVariableSet, log: log);
                     UpdateParameterSet(query.ParameterSet, queryJoin.Query);
                     queryString += "(" + subQuery + ")";
                     if (!string.IsNullOrEmpty(queryJoin.Query.Alias))
@@ -346,7 +346,7 @@ namespace BindOpen.Data.Queries
                             break;
                         }
                 }
-                string subQuery = BuildQuery(queryFrom.UnionStatement.Query, false, parameterSet, scriptVariableSet, log);
+                string subQuery = BuildQuery(queryFrom.UnionStatement.Query, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
                 UpdateParameterSet(query.ParameterSet, queryFrom.UnionStatement.Query);
                 queryString += "(" + subQuery + ")";
                 queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(queryFrom.UnionStatement.Query.Alias), " as " + queryFrom.UnionStatement.Query.Alias);
@@ -390,7 +390,7 @@ namespace BindOpen.Data.Queries
 
             if (queryJoin.Query != null)
             {
-                string subQuery = BuildQuery(queryJoin.Query, false, parameterSet, scriptVariableSet, log);
+                string subQuery = BuildQuery(queryJoin.Query, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
                 UpdateParameterSet(query.ParameterSet, queryJoin.Query);
                 queryString += "(" + subQuery + ")";
                 if (!string.IsNullOrEmpty(queryJoin.Query.Alias))

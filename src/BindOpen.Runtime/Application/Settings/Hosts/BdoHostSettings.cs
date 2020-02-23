@@ -2,7 +2,7 @@
 using BindOpen.Application.Scopes;
 using BindOpen.Application.Services;
 using BindOpen.Data.Helpers.Strings;
-using BindOpen.Extensions.Attributes;
+using BindOpen.Extensions.Runtime;
 using BindOpen.System;
 using Newtonsoft.Json;
 using System.ComponentModel;

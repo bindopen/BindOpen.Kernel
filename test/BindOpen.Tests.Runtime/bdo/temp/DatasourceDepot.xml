@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataSource.depot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="datasource" xmlns="https://bindopen.org/xsd">
+  <dataSources>
+    <add name="smtp_default" kind="EmailServer">
+      <configuration definition="messages$smtp">
+        <scalar name="host" value="smtp.test.com" />
+        <scalar name="port" valueType="Integer" />
+        <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
+        <scalar name="isSslEnabled" valueType="Boolean" value="true" />
+        <scalar name="timeout" valueType="Integer" value="60000" />
+        <scalar name="login" value="login@test.com" />
+        <scalar name="password" value="passwordA" />
+      </configuration>
+    </add>
+  </dataSources>
+</dataSource.depot>

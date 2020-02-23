@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<connector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="connector2" definition="runtime$test" xmlns="https://bindopen.org/xsd">
+  <scalar name="host" value="myhost.com" />
+  <scalar name="isSslEnabled" valueType="Boolean" value="false" />
+  <scalar name="port" valueType="Integer" value="587" />
+  <scalar name="connectionString" />
+  <scalar name="connectionTimeOut" valueType="Integer" value="0" />
+</connector>

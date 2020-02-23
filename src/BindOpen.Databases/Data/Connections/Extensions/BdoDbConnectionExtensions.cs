@@ -34,7 +34,7 @@ namespace BindOpen.Data.Connections
         /// </summary>
         /// <param name="connection">The connection to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
@@ -42,12 +42,12 @@ namespace BindOpen.Data.Connections
         public static IDbCommand CreateCommand(
             this IBdoDbConnection connection,
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            IDbCommand command = (connection?.Connector as BdoDbConnector)?.CreateCommand(query, isParametersInjected, parameterSet, scriptVariableSet, log);
+            IDbCommand command = (connection?.Connector as BdoDbConnector)?.CreateCommand(query, parameterMode, parameterSet, scriptVariableSet, log);
             command.Connection = connection?.Native;
 
             return command;
@@ -57,20 +57,20 @@ namespace BindOpen.Data.Connections
         /// Gets the SQL text of the specified query.
         /// </summary>
         /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the SQL text of the specified query.</returns>
         public static IDbCommand CreateCommand<T>(
             this IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null) where T : BdoDbConnector, new()
         {
             T connector = new T();
-            return connector?.CreateConnection()?.CreateCommand(query, isParametersInjected, parameterSet, scriptVariableSet, log);
+            return connector?.CreateConnection()?.CreateCommand(query, parameterMode, parameterSet, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BindOpen.Data.Connections
         /// </summary>
         /// <param name="connection">The connection to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
@@ -86,14 +86,14 @@ namespace BindOpen.Data.Connections
         public static IDbCommand CreateCommand<T>(
             this IDbConnection connection,
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null) where T : BdoDbConnector, new()
         {
             T connector = new T();
             var command = connection.CreateCommand();
-            command.CommandText = connector?.CreateCommandText(query, isParametersInjected, parameterSet, scriptVariableSet, log);
+            command.CommandText = connector?.CreateCommandText(query, parameterMode, parameterSet, scriptVariableSet, log);
             return command;
         }
 
@@ -102,7 +102,7 @@ namespace BindOpen.Data.Connections
         /// </summary>
         /// <param name="transaction">The transaction to consider.</param>
         /// <param name="query">The query to consider.</param>
-        /// <param name="isParametersInjected">Indicates whether parameters are replaced.</param>
+        /// <param name="parameterMode">Indicates whether parameters are replaced.</param>
         /// <param name="parameterSet">The parameter elements to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
@@ -110,12 +110,12 @@ namespace BindOpen.Data.Connections
         public static IDbCommand CreateCommand<T>(
             this IDbTransaction transaction,
             IDbQuery query,
-            bool? isParametersInjected,
+            DbQueryParameterMode parameterMode,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null) where T : BdoDbConnector, new()
         {
-            IDbCommand command = transaction?.Connection?.CreateCommand<T>(query, isParametersInjected, parameterSet, scriptVariableSet, log);
+            IDbCommand command = transaction?.Connection?.CreateCommand<T>(query, parameterMode, parameterSet, scriptVariableSet, log);
             command.Transaction = transaction;
 
             return command;

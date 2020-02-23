@@ -45,6 +45,7 @@ namespace BindOpen.Data.Stores
         /// </summary>
         public BdoDatasourceDepot() : base()
         {
+            Id = "datasource";
         }
 
         /// <summary>

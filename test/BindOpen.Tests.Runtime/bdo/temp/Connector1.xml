@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<connector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="test" definition="database.mssqlserver$client" xmlns="https://bindopen.org/xsd">
+  <scalar name="provider" />
+  <scalar name="serverAddress" />
+  <scalar name="initialCatalog" />
+  <scalar name="integratedSecurity" />
+  <scalar name="userName" />
+  <scalar name="password" />
+  <scalar name="databaseKind" value="None" />
+  <scalar name="connectionString" value="&lt;connectionString&gt;" />
+  <scalar name="connectionTimeOut" valueType="Integer" value="0" />
+</connector>
