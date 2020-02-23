@@ -50,6 +50,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
         }
 
         [Test]
+        [Order(1)]
         public void TestSaveUsableConfiguration()
         {
             var log = new BdoLog();
@@ -67,6 +68,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
         }
 
         [Test]
+        [Order(2)]
         public void TestLoadUsableConfiguration()
         {
             var log = new BdoLog();
