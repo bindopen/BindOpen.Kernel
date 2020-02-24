@@ -21,7 +21,7 @@
   </credentials>
   
   <dataSources>  
-    <add name="sphere.identity" kind="Database">
+    <add name="db.test" kind="Database">
       <configuration definition="database.mssqlserver$client">
         <scalar name="databaseKind" value="MSSqlServer" />
         <connectionString>          

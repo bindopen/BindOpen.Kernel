@@ -45,8 +45,8 @@ namespace BindOpen.Data.Queries
                         queryString = "select ";
                         if (query.IsDistinct)
                             queryString += " distinct ";
-                        if (query.Top > -1)
-                            queryString += " top " + query.Top.ToString() + " ";
+                        if (query.Limit > -1)
+                            queryString += " top " + query.Limit.ToString() + " ";
                         index = 0;
                         if (query.Fields?.Count > 0)
                         {

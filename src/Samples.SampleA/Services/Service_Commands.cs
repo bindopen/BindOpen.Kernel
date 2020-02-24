@@ -1,7 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Stores;
-using Samples.SampleA.Services.Databases;
 using BindOpen.System.Diagnostics;
+using Samples.SampleA.Services.Databases;
 
 namespace Samples.SampleA.Services
 {
@@ -9,7 +9,7 @@ namespace Samples.SampleA.Services
     {
         public static void Process(IBdoHost host, IBdoLog log)
         {
-            var configuration = host.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("sphere.identity", "database.mssqlserver$client");
+            var configuration = host.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("db.test", "database.mssqlserver$client");
 
             var repo = new TestDbRepository(host?.GetModel<MyDbModel>(), host.CreatePostgreSqlConnector(""));
             repo.Test();

@@ -45,6 +45,10 @@ namespace Samples.SampleA.Services
 
                 string query5 = Connector.CreateCommandText(_model.InsertEmployee(employee), DbQueryParameterMode.Symboled);
                 Console.WriteLine("5 - " + query5);
+
+                string query6 = Connector.CreateCommandText(_model.ListEmployees());
+                Console.WriteLine("6- " + query6);
+
             }, log, false);
         }
     }

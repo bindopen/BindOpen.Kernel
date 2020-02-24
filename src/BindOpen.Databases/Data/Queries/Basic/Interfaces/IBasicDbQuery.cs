@@ -32,7 +32,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        int Top { get; set; }
+        int Limit { get; set; }
 
         /// <summary>
         /// The returned IDs of this instance.
@@ -162,7 +162,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IBasicDbQuery WithTop(int top);
+        IBasicDbQuery WithLimit(int limit);
 
         /// <summary>
         /// 

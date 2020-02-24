@@ -29,7 +29,7 @@ namespace BindOpen.Data.Queries
         /// database data query will return.
         /// </summary>
         /// <remarks>By default it is -1 meaning no limit.</remarks>
-        public int Top { get; set; } = -1;
+        public int Limit { get; set; } = -1;
 
         /// <summary>
         /// From clause of this instance.
@@ -210,9 +210,9 @@ namespace BindOpen.Data.Queries
         /// </summary>
         /// <param name="top"></param>
         /// <returns></returns>
-        public IAdvancedDbQuery WithTop(int top)
+        public IAdvancedDbQuery WithLimit(int limit)
         {
-            Top = top;
+            Limit = limit;
             return this;
         }
 
