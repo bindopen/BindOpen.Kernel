@@ -38,7 +38,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        int Top { get; set; }
+        int Limit { get; set; }
 
         /// <summary>
         /// 
@@ -132,7 +132,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        IAdvancedDbQuery WithTop(int top);
+        IAdvancedDbQuery WithLimit(int limit);
 
         /// <summary>
         /// 

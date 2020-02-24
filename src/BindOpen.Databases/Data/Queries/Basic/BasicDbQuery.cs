@@ -28,7 +28,7 @@ namespace BindOpen.Data.Queries
         /// database data query will return.
         /// </summary>
         /// <remarks>By default it is -1 meaning no limit.</remarks>
-        public int Top { get; set; } = -1;
+        public int Limit { get; set; } = -1;
 
         /// <summary>
         /// ID fields of this instance.
@@ -191,9 +191,9 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// 
         /// </summary>
-        public IBasicDbQuery WithTop(int top)
+        public IBasicDbQuery WithLimit(int limit)
         {
-            Top = top;
+            Limit = limit;
             return this;
         }
 

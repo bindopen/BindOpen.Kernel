@@ -49,8 +49,6 @@ namespace BindOpen.Data.Queries
                         queryString = "select ";
                         if (query.IsDistinct)
                             queryString += " distinct ";
-                        if (query.Top > -1)
-                            queryString += " top " + query.Top.ToString() + " ";
                         index = 0;
                         if (query.Fields?.Count > 0)
                         {
@@ -60,7 +58,8 @@ namespace BindOpen.Data.Queries
                                     queryString += ",";
 
                                 queryString += GetSqlText_Field(
-                                    field, parameterSet, DbDataFieldViewMode.CompleteNameAsAlias, query.DataModule, query.Schema, null, scriptVariableSet, log);
+                                    field, parameterSet, DbDataFieldViewMode.CompleteNameAsAlias,
+                                    query.DataModule, query.Schema, scriptVariableSet: scriptVariableSet, log: log);
 
                                 index++;
                             }
@@ -155,6 +154,10 @@ namespace BindOpen.Data.Queries
                                 index++;
                             }
                         }
+                        if (query.Limit > -1)
+                        {
+                            queryString += " limit " + query.Limit.ToString() + " ";
+                        }
                     }
                     break;
                 // Update
@@ -206,7 +209,7 @@ namespace BindOpen.Data.Queries
                                 if (index > 0)
                                     queryString += ", ";
                                 queryString += GetSqlText_Field(
-                                    field, parameterSet, DbDataFieldViewMode.NameEqualsValue,
+                                    field, parameterSet, DbDataFieldViewMode.CompleteNameAsAlias,
                                     query.DataModule, query.Schema, query.DataTable,
                                     scriptVariableSet: scriptVariableSet, log: log
                                 );
@@ -257,7 +260,7 @@ namespace BindOpen.Data.Queries
                                 if (index > 0)
                                     queryString += ", ";
                                 queryString += GetSqlText_Field(
-                                    field, parameterSet, DbDataFieldViewMode.NameEqualsValue,
+                                    field, parameterSet, DbDataFieldViewMode.CompleteNameAsAlias,
                                     query.DataModule, query.Schema, query.DataTable,
                                     scriptVariableSet: scriptVariableSet, log: log
                                 );
@@ -316,7 +319,7 @@ namespace BindOpen.Data.Queries
                                 if (index > 0)
                                     queryString += ", ";
                                 queryString += GetSqlText_Field(
-                                    field, parameterSet, DbDataFieldViewMode.NameEqualsValue,
+                                    field, parameterSet, DbDataFieldViewMode.CompleteNameAsAlias,
                                     query.DataModule, query.Schema, query.DataTable,
                                     scriptVariableSet: scriptVariableSet, log: log
                                 );

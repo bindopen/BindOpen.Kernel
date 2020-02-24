@@ -57,18 +57,19 @@ namespace Samples.SampleA.Services.Databases
         /// <param name="pageSize"></param>
         /// <param name="pageToken"></param>
         /// <returns></returns>
-        internal IDbQuery ListEmployees(string q, string orderBy, int? pageSize = null, int? pageToken = null,
+        internal IDbQuery ListEmployees(string q = null, string orderBy = null, int? pageSize = null, int? pageToken = null,
             IBdoLog log = null, string filterQuery = null, string orderByQuery = null)
             => DbFluent.SelectAdvanced("GetMyTables", DbFluent.Table())
+                .WithLimit(100)
                 .AsDistinct()
                 .WithFields(
-                    DbFluent.FieldAsAll(DbFluent.Table(DbFluent.Table("table"))),
-                    DbFluent.Field("Field1", DbFluent.Table(DbFluent.Table("table"))),
-                    DbFluent.Field("Field2", DbFluent.Table(DbFluent.Table("table"))))
+                    DbFluent.FieldAsAll(DbFluent.Table("table")),
+                    DbFluent.Field("Field1", DbFluent.Table("table")),
+                    DbFluent.Field("Field2", DbFluent.Table("table")))
                 .Froms(
-                    DbFluent.From(DbFluent.Table(nameof(DbCountry).Substring(2), "schema1").WithAlias(DbFluent.Table("table")))
+                    DbFluent.From(DbFluent.Table(nameof(DbCountry).Substring(2), "schema1").WithAlias("table"))
                         .WithJoins(
-                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias(DbFluent.Table("table1")))
+                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table1"))
                                 .WithCondition(
                                     DbFluent.And(
                                         DbFluent.JoinCondition(
@@ -78,7 +79,7 @@ namespace Samples.SampleA.Services.Databases
                                             DbFluent.Field("table2key", DbFluent.Table("table2")),
                                             DbFluent.Field(nameof(DbCountry.MyTableId), DbFluent.Table("table"))))))
                         .WithJoins(
-                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias(DbFluent.Table("table2")))
+                            DbFluent.Join(DbQueryJoinKind.Left, DbFluent.Table("DbTable1".Substring(2), "schema2").WithAlias("table2"))
                                 .WithCondition(
                                     DbFluent.JoinCondition(
                                         DbFluent.Field("table1key", DbFluent.Table("table2")),
@@ -132,7 +133,7 @@ namespace Samples.SampleA.Services.Databases
         {
             return DbFluent.Upsert(Table("Employee"))
                 .Select(DbFluent.Join(
-                        DbFluent.SelectBasic(null)
+                    DbFluent.SelectBasic(null)
                         .WithFields(q => new[]
                         {
                             DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text))
@@ -152,11 +153,21 @@ namespace Samples.SampleA.Services.Databases
                         DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text))
                     }))
                 .NotMatching(
-                    DbFluent.InsertBasic(Table("Employee"), true)
-                    .WithFroms(DbFluent.From(Table("Employee"))
-                        .WithJoins(
-                            DbFluent.Join(DbQueryJoinKind.Left, Table("RegionalDirectorate"))
-                                .WithCondition(JoinCondition("Employee_RegionalDirectorate")))))
+                    DbFluent.InsertBasic(Table("Employee"))
+                        .WithFields(q => new[]
+                        {
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.Code), q.UseParameter("code", DataValueType.Text)),
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.ContactEmail), q.UseParameter("contactEmail", DataValueType.Text)),
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)),
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), q.UseParameter("lastName", DataValueType.Text)),
+                            DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text))
+                        })
+                        .WithParameters(
+                            ElementFactory.Create("code", employee.Code),
+                            ElementFactory.Create("contactEmail", employee.ContactEmail),
+                            ElementFactory.Create("fisrtName", employee.FisrtName),
+                            ElementFactory.Create("lastName", employee.LastName),
+                            ElementFactory.Create("staffNumber", employee.StaffNumber)))
                 .WithParameters(
                     ElementFactory.Create("code", employee.Code),
                     ElementFactory.Create("contactEmail", employee.ContactEmail),
@@ -181,6 +192,10 @@ namespace Samples.SampleA.Services.Databases
                     DbFluent.FieldAsParameter(nameof(DbEmployee.FisrtName), q.UseParameter("fisrtName", DataValueType.Text)),
                     DbFluent.FieldAsParameter(nameof(DbEmployee.LastName), q.UseParameter("lastName", DataValueType.Text)),
                     DbFluent.FieldAsParameter(nameof(DbEmployee.StaffNumber), q.UseParameter("staffNumber", DataValueType.Text))
+                })
+                .WithReturnedIdFields(new[]
+                {
+                    DbFluent.Field<DbEmployee, int>(p=>p.EmployeeId)
                 })
                 .WithParameters(
                     ElementFactory.Create("code", employee.Code),
@@ -247,7 +262,7 @@ namespace Samples.SampleA.Services.Databases
         internal IDbQuery DeleteEmployee(string code)
         {
             var query = DbFluent.DeleteBasic(Table("Employee"))
-                .AddIdField(DbFluent.Field(code));
+                .AddIdField(DbFluent.FieldAsLiteral<DbEmployee, string>(p => p.Code, code));
 
             return query;
         }
