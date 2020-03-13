@@ -40,7 +40,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -69,7 +69,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -98,7 +98,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -129,7 +129,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -162,7 +162,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -195,7 +195,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -226,7 +226,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -255,7 +255,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -284,7 +284,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -313,7 +313,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -346,7 +346,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -378,7 +378,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -410,7 +410,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -442,7 +442,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -474,7 +474,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -506,7 +506,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -537,7 +537,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -570,7 +570,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -603,7 +603,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -635,7 +635,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -668,7 +668,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -697,7 +697,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -726,7 +726,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -759,7 +759,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text = "<DatabaseBuilderMissing>";
+                text = "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -828,7 +828,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -860,7 +860,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -892,7 +892,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -921,7 +921,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -954,7 +954,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {
@@ -984,7 +984,7 @@ namespace BindOpen.Extensions.Scriptwords
             string text = "";
             if (scriptVariableSet?.Has(ScriptVariableKey_Database.DbBuilder) != true)
             {
-                text += "<DatabaseBuilderMissing>";
+                text += "<DatabaseBuilderMissing/>";
             }
             else
             {

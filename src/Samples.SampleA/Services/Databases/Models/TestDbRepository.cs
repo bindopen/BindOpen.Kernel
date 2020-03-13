@@ -31,8 +31,11 @@ namespace Samples.SampleA.Services
             var log = new BdoLog();
             Connector?.UsingConnection((c, l) =>
             {
-                string query1 = Connector.CreateCommandText(_model.GetEmployeeWithCode("codeA"));
-                Console.WriteLine("1- " + query1);
+                string query1a = Connector.CreateCommandText(_model.GetEmployeeWithCode1("codeA"));
+                Console.WriteLine("1a- " + query1a);
+
+                string query1b = Connector.CreateCommandText(_model.GetEmployeeWithCode1("codeA"));
+                Console.WriteLine("1b- " + query1b);
 
                 string query2 = Connector.CreateCommandText(_model.UpdateEmployee("codeB", false, employee));
                 Console.WriteLine("2- " + query2);
@@ -40,7 +43,7 @@ namespace Samples.SampleA.Services
                 string query3 = Connector.CreateCommandText(_model.UpsertEmployee(employee));
                 Console.WriteLine("3 - " + query3);
 
-                string query4 = Connector.CreateCommandText(_model.DeleteEmployee("codeC"));
+                string query4 = Connector.CreateCommandText(_model.DeleteEmployee1("codeC"));
                 Console.WriteLine("4 - " + query4);
 
                 string query5 = Connector.CreateCommandText(_model.InsertEmployee(employee), DbQueryParameterMode.Symboled);
@@ -48,6 +51,10 @@ namespace Samples.SampleA.Services
 
                 string query6 = Connector.CreateCommandText(_model.ListEmployees());
                 Console.WriteLine("6- " + query6);
+
+                // Insert into ... select ....
+
+                // select tuple
 
             }, log, false);
         }

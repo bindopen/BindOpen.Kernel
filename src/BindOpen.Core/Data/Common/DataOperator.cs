@@ -21,9 +21,9 @@ namespace BindOpen.Data.Common
         None,
 
         /// <summary>
-        /// Declaration of list.
+        /// Exists.
         /// </summary>
-        ListDeclaration,
+        Exists,
 
         /// <summary>
         /// Contains.

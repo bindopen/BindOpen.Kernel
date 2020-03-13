@@ -5,7 +5,7 @@ namespace BindOpen.Data.Queries
     /// <summary>
     /// This class represents a builder of database query.
     /// </summary>
-    internal partial class DbQueryBuilder_PostgreSql : DbQueryBuilder
+    internal partial class DbQueryBuilder_PostgreSql
     {
         // Comparison
 

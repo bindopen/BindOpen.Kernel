@@ -28,7 +28,7 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        DbQueryJoinCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases);
+        DbQueryCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases);
 
         /// <summary>
         /// 
@@ -50,6 +50,6 @@ namespace BindOpen.Data.Models
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IStoredDbQuery Query(string name);
+        IDbStoredQuery Query(string name);
     }
 }

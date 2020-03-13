@@ -9,8 +9,16 @@
         /// Creates a BDO script representing the current date in SQL.
         /// </summary>
         public static string CurrentDate()
-            => "$SqlGetCurrentDate()";
+            => "$sqlGetCurrentDate()";
 
+        /// <summary>
+        /// Creates a BDO script representing a text.
+        /// </summary>
+        /// <param name="param1">The parameter to consider.</param>
+        public static string Text(string param1)
+        {
+            return "$sqlText(" + param1 + ")";
+        }
 
         /// <summary>
         /// Creates a BDO script representing and Sql And condition including the specified condition strings.
@@ -72,9 +80,16 @@
         /// <param name="condition">The condition to consider.</param>
         public static string Not(string condition)
         {
-            var query = "$sqlNot(" + condition + ")";
+            return "$sqlNot(" + condition + ")";
+        }
 
-            return query;
+        /// <summary>
+        /// Creates a BDO script representing and Sql Xor condition including the specified condition strings.
+        /// </summary>
+        /// <param name="conditions">The conditions to consider.</param>
+        public static string Like(string param1, string param2)
+        {
+            return "$sqlLike(" + param1 + ", " + param2 + ")";
         }
     }
 }
