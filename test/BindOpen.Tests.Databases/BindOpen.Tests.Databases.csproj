@@ -25,11 +25,8 @@
 
   <ItemGroup>
     <Compile Remove="bdo\logs\**" />
-    <Compile Remove="Data\References\**" />
     <EmbeddedResource Remove="bdo\logs\**" />
-    <EmbeddedResource Remove="Data\References\**" />
     <None Remove="bdo\logs\**" />
-    <None Remove="Data\References\**" />
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -56,7 +53,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="Application\Services\" />
+    <Folder Include="Application\Scoppes\" />
+    <Folder Include="Data\Models\" />
+    <Folder Include="Data\Stores\" />
+    <Folder Include="MSSqlServer\" />
+    <Folder Include="PostgreSql\Data\Queries\DbModels\" />
+    <Folder Include="PostgreSql\Data\Queries\Repositories\" />
   </ItemGroup>
 
 </Project>

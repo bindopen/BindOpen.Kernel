@@ -9,13 +9,8 @@ namespace BindOpen.Data.Queries
     /// <summary>
     /// 
     /// </summary>
-    public interface IDbQuery : IDescribedDataItem
+    public interface IDbQuery : IDescribedDataItem, IDbQueryItem
     {
-        /// <summary>
-        /// The alias of this instance.
-        /// </summary>
-        string Alias { get; set; }
-
         /// <summary>
         /// The name of data module of this instance.
         /// </summary>
@@ -57,6 +52,11 @@ namespace BindOpen.Data.Queries
         DataElementSet ParameterSet { get; set; }
 
         /// <summary>
+        /// The select join statement of this instance.
+        /// </summary>
+        List<DbTable> CTETables { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
@@ -76,13 +76,6 @@ namespace BindOpen.Data.Queries
         /// <param name="isExistenceChecked">Indicates whether this instance checks the existence of table or data.</param>
         /// <returns>Return this instance.</returns>
         IDbQuery CheckExistence(bool isExistenceChecked = true);
-
-        /// <summary>
-        /// Sets the specified alias.
-        /// </summary>
-        /// <param name="alias">The alias to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        IDbQuery WithAlias(string alias);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -133,6 +126,13 @@ namespace BindOpen.Data.Queries
             string name,
             DataValueType valueType,
             object value = null);
+
+        /// <summary>
+        /// Sets the specified CTE tables.
+        /// </summary>
+        /// <param name="tables">The CTE tables to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        IDbQuery WithCTE(params DbTable[] tables);
 
     }
 }

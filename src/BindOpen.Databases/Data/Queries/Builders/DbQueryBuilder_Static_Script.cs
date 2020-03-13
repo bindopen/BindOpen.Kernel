@@ -24,7 +24,7 @@ namespace BindOpen.Data.Queries
                     || !string.IsNullOrEmpty(field.DataModule))
                 {
                     st = GetBdoScript(DbFluent.Table(field.DataTable, field.Schema, field.DataModule).WithAlias(field.DataTableAlias))
-                    .ConcatenateIfFirstNotEmpty(".");
+                        .ConcatenateIfFirstNotEmpty(".");
                 }
 
                 if (!string.IsNullOrEmpty(field.Alias))

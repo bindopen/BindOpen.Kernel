@@ -1,10 +1,12 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Queries
 {
@@ -13,16 +15,6 @@ namespace BindOpen.Data.Queries
     /// </summary>
     public abstract class DbQuery : DescribedDataItem, IDbQuery
     {
-        // ------------------------------------------
-        // VARIABLES
-        // -----------------------------------------
-
-        #region Variables
-
-        private List<DbField> _fields = new List<DbField>();
-
-        #endregion
-
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -33,11 +25,6 @@ namespace BindOpen.Data.Queries
         /// Name of this instance.
         /// </summary>
         public new string Name { get; set; } = "dataquery_" + DateTime.Now.ToString(StringHelper.__DateFormat);
-
-        /// <summary>
-        /// The alias of this instance.
-        /// </summary>
-        public string Alias { get; set; }
 
         /// <summary>
         /// Name of the data module of this instance.
@@ -72,11 +59,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// Fields of this instance.
         /// </summary>
-        public List<DbField> Fields
-        {
-            get { return this._fields; }
-            set { this._fields = new List<DbField>(value); }
-        }
+        public List<DbField> Fields { get; set; } = new List<DbField>();
 
         /// <summary>
         /// The parameter specification set of this instance.
@@ -95,6 +78,16 @@ namespace BindOpen.Data.Queries
             get;
             set;
         }
+
+        /// <summary>
+        /// The CTE tables of this instance.
+        /// </summary>
+        public List<DbTable> CTETables { get; set; }
+
+        /// <summary>
+        /// Value of this instance.
+        /// </summary>
+        public DataExpression Value { get; set; }
 
         #endregion
 
@@ -116,7 +109,7 @@ namespace BindOpen.Data.Queries
         /// </summary>
         /// <param name="kind">Type of database data query.</param>
         /// <param name="table">The table to consider.</param>
-        public DbQuery(
+        protected DbQuery(
             DbQueryKind kind,
             DbTable table = null)
         {
@@ -132,7 +125,7 @@ namespace BindOpen.Data.Queries
         /// <param name="name">Name of the query.</param>
         /// <param name="kind">Type of database data query.</param>
         /// <param name="table">The table to consider.</param>
-        public DbQuery(
+        protected DbQuery(
             string name,
             DbQueryKind kind,
             DbTable table = null) : this(kind, table)
@@ -165,9 +158,9 @@ namespace BindOpen.Data.Queries
         /// <returns>The data field with the specified bound data field name.</returns>
         public DbField GetFieldWithBoundFieldName(string boundFieldName)
         {
-            if ((boundFieldName != null) && (this._fields != null))
+            if ((boundFieldName != null) && (this.Fields != null))
             {
-                foreach (DbField field in this._fields)
+                foreach (DbField field in this.Fields)
                 {
                     if (field.GetName().Equals(boundFieldName, StringComparison.OrdinalIgnoreCase))
                         return field;
@@ -184,7 +177,7 @@ namespace BindOpen.Data.Queries
         /// <returns>The data field with the specified data field name.</returns>
         public DbField GetDataFieldWithName(string name)
         {
-            foreach (DbField field in this._fields)
+            foreach (DbField field in this.Fields)
             {
                 if (field.Alias.Equals(name, StringComparison.OrdinalIgnoreCase))
                     return field;
@@ -201,17 +194,6 @@ namespace BindOpen.Data.Queries
         // ------------------------------------------
 
         #region Mutators
-
-        /// <summary>
-        /// Sets the specified alias.
-        /// </summary>
-        /// <param name="alias">The alias to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IDbQuery WithAlias(string alias)
-        {
-            Alias = alias;
-            return this;
-        }
 
         /// <summary>
         /// Indicates that this instance checks the existence of table or data according to the kind of queries.
@@ -304,6 +286,17 @@ namespace BindOpen.Data.Queries
             }
 
             return parameter;
+        }
+
+        /// <summary>
+        /// Sets the specified CTE tables.
+        /// </summary>
+        /// <param name="tables">The CTE tables to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public IDbQuery WithCTE(params DbTable[] tables)
+        {
+            CTETables = tables?.ToList();
+            return this;
         }
 
         #endregion

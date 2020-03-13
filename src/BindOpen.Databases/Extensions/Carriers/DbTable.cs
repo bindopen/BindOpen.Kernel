@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Runtime;
 using System.Xml.Serialization;
@@ -16,7 +17,7 @@ namespace BindOpen.Extensions.Carriers
         Description = "Database table.",
         CreationDate = "2016-09-14"
     )]
-    public class DbTable : BdoCarrier
+    public class DbTable : BdoCarrier, IDbQueryItem
     {
         // ------------------------------------------
         // PROPERTIES
@@ -27,23 +28,26 @@ namespace BindOpen.Extensions.Carriers
         /// <summary>
         /// Data module of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "dataModule")]
         public string DataModule { get; set; }
 
         /// <summary>
         /// Data module of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "schema")]
         public string Schema { get; set; }
 
         /// <summary>
         /// Alias of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "alias")]
         public string Alias { get; set; }
+
+        /// <summary>
+        /// Value of this instance.
+        /// </summary>
+        [DetailProperty(Name = "value")]
+        public DataExpression Value { get; set; }
 
         #endregion
 

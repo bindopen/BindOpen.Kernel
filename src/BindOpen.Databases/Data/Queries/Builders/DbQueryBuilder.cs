@@ -106,22 +106,22 @@ namespace BindOpen.Data.Queries
             {
                 try
                 {
-                    if (query is BasicDbQuery basicDbQuery)
+                    if (query is DbSingleQuery basicDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = GetSqlText(basicDbQuery, parameterSet, scriptVariableSet, log);
+                        queryString = GetSqlText_Query(basicDbQuery, parameterSet, scriptVariableSet, log);
                     }
-                    else if (query is AdvancedDbQuery advancedDbQuery)
+                    else if (query is DbSingleQuery advancedDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = GetSqlText(advancedDbQuery, parameterSet, scriptVariableSet, log);
+                        queryString = GetSqlText_Query(advancedDbQuery, parameterSet, scriptVariableSet, log);
                     }
-                    else if (query is CompositeDbQuery compositeDbQuery)
+                    else if (query is DbCompositeQuery compositeDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = GetSqlText(compositeDbQuery, parameterSet, scriptVariableSet, log);
+                        queryString = GetSqlText_Query(compositeDbQuery, parameterSet, scriptVariableSet, log);
                     }
-                    else if (query is StoredDbQuery storedDbQuery)
+                    else if (query is DbStoredQuery storedDbQuery)
                     {
                         if (!storedDbQuery.QueryTexts.TryGetValue(Id, out queryString))
                         {
@@ -135,7 +135,7 @@ namespace BindOpen.Data.Queries
                         parameterSet = parameterSet ?? new DataElementSet();
                         UpdateParameterSet(parameterSet, query);
 
-                        if (query is StoredDbQuery storedDbQuery)
+                        if (query is DbStoredQuery storedDbQuery)
                         {
                             UpdateParameterSet(parameterSet, storedDbQuery.Query);
                         }
@@ -169,7 +169,7 @@ namespace BindOpen.Data.Queries
             return queryString;
         }
 
-        // Builds simple query ----------------------
+        // Builds single query ----------------------
 
         /// <summary>
         /// Builds the SQL text of the specified basic query.
@@ -179,27 +179,8 @@ namespace BindOpen.Data.Queries
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        protected virtual string GetSqlText(
-            IBasicDbQuery query,
-            IDataElementSet parameterSet = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
-            IBdoLog log = null)
-        {
-            return "";
-        }
-
-        // Builds advanced query ----------------------
-
-        /// <summary>
-        /// Builds the SQL text of the specified advanced query.
-        /// </summary>
-        /// <param name="query">The query to consider.</param>
-        /// <param name="parameterSet">The parameter set to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <returns>Returns the built query text.</returns>
-        protected virtual string GetSqlText(
-            IAdvancedDbQuery query,
+        protected virtual string GetSqlText_Query(
+            IDbSingleQuery query,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -217,8 +198,8 @@ namespace BindOpen.Data.Queries
         /// <param name="parameterSet">The parameter set to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the built query text.</returns>
-        protected virtual string GetSqlText(
-            ICompositeDbQuery query,
+        protected virtual string GetSqlText_Query(
+            IDbCompositeQuery query,
             IDataElementSet parameterSet = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)

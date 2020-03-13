@@ -5,9 +5,9 @@ namespace BindOpen.Data.Models
 {
     public interface IBdoDbModelBuilder
     {
-        IBdoDbModelBuilder AddJoinCondition(string name, DbQueryJoinCondition condition);
+        IBdoDbModelBuilder AddJoinCondition(string name, DbQueryCondition condition);
 
-        IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition);
+        IBdoDbModelBuilder AddJoinCondition(DbQueryCondition condition);
 
         IBdoDbModelBuilder AddTable(string name, DbTable table);
 

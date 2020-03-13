@@ -15,11 +15,11 @@ namespace BindOpen.Data.Queries
         /// <param name="name">The name of the query to consider.</param>
         /// <param name="table">The table to consider.</param>
         /// <returns>Returns a new Upsert basic database query</returns>
-        public static ICompositeDbQuery Upsert(
+        public static IDbCompositeQuery Upsert(
             string name,
             DbTable table)
         {
-            var query = new CompositeDbQuery(name, DbQueryKind.Upsert, table);
+            var query = new DbCompositeQuery(name, DbQueryKind.Upsert, table);
 
             return query;
         }
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Queries
         /// <param name="table">The table to consider.</param>
         /// <param name="selectQuery">The select query to consider.</param>
         /// <returns>Returns a new Upsert basic database query</returns>
-        public static ICompositeDbQuery Upsert(
+        public static IDbCompositeQuery Upsert(
             DbTable table)
             => Upsert(null, table);
     }
