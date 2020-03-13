@@ -1,4 +1,6 @@
-﻿using BindOpen.Extensions.Carriers;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Extensions.Carriers;
+using System.Linq;
 
 namespace BindOpen.Data.Queries
 {
@@ -20,5 +22,44 @@ namespace BindOpen.Data.Queries
                 DataModule = dataModuleName,
                 Schema = schema,
             };
+
+        // Derived --------------------------------
+
+        /// <summary>
+        /// Creates a new instance of the DbDerivedTable class.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        public static DbDerivedTable Table(IDbQuery query)
+            => new DbDerivedTable() { Query = query as DbQuery };
+
+        // Tupled --------------------------------
+
+        /// <summary>
+        /// Creates a new instance of the DbTupledTable class.
+        /// </summary>
+        /// <param name="query">The query to consider.</param>
+        public static DbTupledTable Table(params IDbTuple[] tuples)
+            => new DbTupledTable(tuples?.Cast<DbTuple>().ToArray());
+
+        // Join --------------------------------
+
+        /// <summary>
+        /// Creates a new joined table.
+        /// </summary>
+        /// <param name="kind">The kind to consider.</param>
+        /// <param name="table">The table to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static DbJoinedTable Table(DbQueryJoinKind kind, DbTable table, string conditionScript = null)
+            => new DbJoinedTable() { Kind = kind, Table = table }.WithCondition(conditionScript.CreateScript());
+
+        /// <summary>
+        /// Creates a new joined table.
+        /// </summary>
+        /// <param name="table">The table to consider.</param>
+        /// <param name="conditionScript">The condition script to consider.</param>
+        /// <returns>Returns a new From statement.</returns>
+        public static DbJoinedTable Table(DbTable table, string conditionScript = null)
+            => Table(DbQueryJoinKind.Inner, table, conditionScript);
     }
 }

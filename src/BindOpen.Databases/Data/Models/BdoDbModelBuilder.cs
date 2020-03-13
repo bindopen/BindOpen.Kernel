@@ -95,7 +95,7 @@ namespace BindOpen.Data.Models
         /// <param name="condition"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddJoinCondition(DbQueryJoinCondition condition)
+        public IBdoDbModelBuilder AddJoinCondition(DbQueryCondition condition)
             => AddJoinCondition(null, condition);
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace BindOpen.Data.Models
         /// <param name="condition"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddJoinCondition(string name, DbQueryJoinCondition condition)
+        public IBdoDbModelBuilder AddJoinCondition(string name, DbQueryCondition condition)
         {
             if (condition != null)
             {
@@ -162,7 +162,7 @@ namespace BindOpen.Data.Models
                 {
                     name = query.GetName();
                 }
-                (_model as BdoDbModel).QueryDictionary.Add(name, new StoredDbQuery(query, name));
+                (_model as BdoDbModel).QueryDictionary.Add(name, new DbStoredQuery(query, name));
             }
             return this;
         }

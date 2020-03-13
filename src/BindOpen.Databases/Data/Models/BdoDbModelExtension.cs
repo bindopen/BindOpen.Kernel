@@ -14,7 +14,7 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="intializer"></param>
         /// <returns></returns>
-        public static IStoredDbQuery UseQuery(this BdoDbModel model, string name, Func<IBdoDbModel, IDbQuery> intializer)
+        public static IDbStoredQuery UseQuery(this BdoDbModel model, string name, Func<IBdoDbModel, IDbQuery> intializer)
         {
             if (model == null) return null;
 

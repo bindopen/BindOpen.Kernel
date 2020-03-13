@@ -13,9 +13,9 @@ namespace BindOpen.Data.Models
         // Properties ---------------------------------------
 
         internal Dictionary<string, DbTable> TableDictionary = new Dictionary<string, DbTable>();
-        internal Dictionary<string, DbQueryJoinCondition> JoinConditionDictionary = new Dictionary<string, DbQueryJoinCondition>();
+        internal Dictionary<string, DbQueryCondition> JoinConditionDictionary = new Dictionary<string, DbQueryCondition>();
         internal Dictionary<string, DbField[]> TupleDictionary = new Dictionary<string, DbField[]>();
-        internal Dictionary<string, IStoredDbQuery> QueryDictionary = new Dictionary<string, IStoredDbQuery>();
+        internal Dictionary<string, IDbStoredQuery> QueryDictionary = new Dictionary<string, IDbStoredQuery>();
 
         /// <summary>
         /// 
@@ -48,9 +48,9 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        public DbQueryJoinCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases)
+        public DbQueryCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases)
         {
-            JoinConditionDictionary.TryGetValue(name, out DbQueryJoinCondition condition);
+            JoinConditionDictionary.TryGetValue(name, out DbQueryCondition condition);
 
             return condition;
         }
@@ -87,9 +87,9 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="alias"></param>
         /// <returns></returns>
-        public IStoredDbQuery Query(string name)
+        public IDbStoredQuery Query(string name)
         {
-            QueryDictionary.TryGetValue(name, out IStoredDbQuery query);
+            QueryDictionary.TryGetValue(name, out IDbStoredQuery query);
 
             return query;
         }

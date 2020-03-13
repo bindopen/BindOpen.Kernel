@@ -16,8 +16,6 @@ namespace BindOpen.Data.Queries
         {
             switch (aOperator)
             {
-                case DataOperator.ListDeclaration:
-                    return "$sqlList";
                 case DataOperator.Contains:
                     return "$sqlLike";
                 case DataOperator.Different:
@@ -92,8 +90,9 @@ namespace BindOpen.Data.Queries
                     int k = script.Length;
                     string scriptOperator = null;
                     foreach (DataOperator currentOperator in new DataOperator[] {
-                        DataOperator.ListDeclaration,
-                        DataOperator.Contains, DataOperator.Different, DataOperator.Equal,
+                        DataOperator.Exists,
+                        DataOperator.Contains,
+                        DataOperator.Different, DataOperator.Equal,
                         DataOperator.GreaterOrEqual, DataOperator.Greater,
                         DataOperator.LesserOrEqual, DataOperator.Lesser,
                         DataOperator.Has, DataOperator.In })
@@ -162,8 +161,6 @@ namespace BindOpen.Data.Queries
         {
             switch (aOperator)
             {
-                case DataOperator.ListDeclaration:
-                    return "[";
                 case DataOperator.Contains:
                     return "constains";
                 case DataOperator.Different:
@@ -195,8 +192,8 @@ namespace BindOpen.Data.Queries
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbQuery Filter(
-            this IAdvancedDbQuery dbQuery,
+        public static IDbSingleQuery Filter(
+            this IDbSingleQuery dbQuery,
             string filterQuery,
             IBdoLog log = null,
             ApiScriptFilteringDefinition definition = null)
@@ -207,13 +204,18 @@ namespace BindOpen.Data.Queries
 
                 if (scriptText?.Length > 0)
                 {
-                    if (!string.IsNullOrEmpty(dbQuery.WhereClause?.Text))
+                    if (dbQuery.WhereClause?.Value != null && !string.IsNullOrEmpty(dbQuery.WhereClause?.Value?.Text))
                     {
-                        dbQuery.WhereClause.Text = "$sqlAnd(" + dbQuery.WhereClause.Text + "," + scriptText + ")";
+                        dbQuery.WhereClause.Value.Text = "$sqlAnd(" + dbQuery.WhereClause.Value.Text + "," + scriptText + ")";
                     }
                     else
                     {
-                        dbQuery.WhereClause = scriptText.CreateScript();
+                        if (dbQuery.WhereClause == null)
+                        {
+                            dbQuery.WhereClause = new DbQueryWhereClause();
+                        }
+
+                        dbQuery.WhereClause.Value = scriptText.CreateScript();
                     }
                 }
             }
@@ -229,18 +231,18 @@ namespace BindOpen.Data.Queries
         /// <param name="log">The log to consider.</param>
         /// <param name="definition">The definition to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbQuery Sort(
-            this IAdvancedDbQuery query,
+        public static IDbSingleQuery Sort(
+            this IDbSingleQuery query,
             string sortQuery,
             IBdoLog log = null,
             ApiScriptSortingDefinition definition = null)
         {
             if (query != null && !string.IsNullOrEmpty(sortQuery))
             {
-                query.OrderByStatements = new List<DbQueryOrderByStatement>();
+                query.OrderByClause = new DbQueryOrderByClause();
                 foreach (string fieldItem in sortQuery.Split(','))
                 {
-                    DbQueryOrderByStatement statement = new DbQueryOrderByStatement();
+                    var statement = new DbQueryOrderByStatement();
                     var fieldItemParams = fieldItem?.Trim().Split(' ');
                     if (fieldItemParams.Length > 0)
                     {
@@ -260,7 +262,7 @@ namespace BindOpen.Data.Queries
                                 if (string.Equals(direction, "desc"))
                                 {
                                     statement.Sorting = DataSortingMode.Descending;
-                                    query.OrderByStatements.Add(statement);
+                                    query.OrderByClause.Statements.Add(statement);
                                 }
                                 else if (!string.Equals(direction, "asc"))
                                 {
@@ -268,7 +270,7 @@ namespace BindOpen.Data.Queries
                                 }
                                 else
                                 {
-                                    query.OrderByStatements.Add(statement);
+                                    query.OrderByClause.Statements.Add(statement);
                                 }
                             }
                         }
@@ -288,8 +290,8 @@ namespace BindOpen.Data.Queries
         /// <param name="log">The log to consider.</param>
         /// <param name="clauseStatement">The clause statement to consider.</param>
         /// <returns>The built query.</returns>
-        public static IAdvancedDbQuery Paginate(
-            this IAdvancedDbQuery query,
+        public static IDbSingleQuery Paginate(
+            this IDbSingleQuery query,
             int? pageSize,
             string pageToken,
             IBdoLog log = null,
