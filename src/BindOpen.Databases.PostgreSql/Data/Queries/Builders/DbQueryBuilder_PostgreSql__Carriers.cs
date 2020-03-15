@@ -58,7 +58,7 @@ namespace BindOpen.Data.Queries
                         }
                         else
                         {
-                            if ((viewMode != DbFieldViewMode.CompleteNameOrValue) || (field.Value == null))
+                            if ((viewMode != DbFieldViewMode.CompleteNameOrValue) || (field.Expression == null))
                             {
                                 string tableName = GetSqlText_Table(
                                     field.DataModule,
@@ -133,7 +133,7 @@ namespace BindOpen.Data.Queries
 
                         break;
                     case DbFieldViewMode.OnlyValue:
-                        string value = _scope?.Interpreter.Interprete(field.Value, scriptVariableSet, log) ?? "";
+                        string value = _scope?.Interpreter.Interprete(field.Expression, scriptVariableSet, log) ?? "";
 
                         if (field.Query != null)
                         {
@@ -205,19 +205,10 @@ namespace BindOpen.Data.Queries
         {
             var queryString = "";
 
-            if (table?.Value != null)
+            if (table?.Expression != null)
             {
-                string expression = _scope?.Interpreter.Interprete(table.Value, scriptVariableSet, log) ?? "";
+                string expression = _scope?.Interpreter.Interprete(table.Expression, scriptVariableSet, log) ?? "";
                 queryString += expression;
-            }
-            else if (table is DbUnionTable unionTable)
-            {
-                string subQuery = BuildQuery(unionTable.Query, DbQueryParameterMode.Scripted, parameterSet, scriptVariableSet, log);
-                UpdateParameterSet(query.ParameterSet, unionTable.Query);
-                queryString += "(" + subQuery + ")";
-                queryString = queryString = queryString.ConcatenateIf(!string.IsNullOrEmpty(unionTable.Alias), " as " + unionTable.Alias);
-
-                queryString.If(!string.IsNullOrEmpty(queryString), " union " + queryString);
             }
             else if (table is DbJoinedTable joinedTable)
             {
@@ -317,7 +308,7 @@ namespace BindOpen.Data.Queries
                         tableSchema = defaultSchema;
                     }
                     string script = DbFluent.Table(tableName, tableSchema, tableDataModule);
-                    queryString += _scope?.Interpreter.Interprete(script, scriptVariableSet, log) ?? String.Empty;
+                    queryString += _scope?.Interpreter.Interprete(script, DataExpressionKind.Script, scriptVariableSet, log) ?? String.Empty;
                 }
                 else
                 {

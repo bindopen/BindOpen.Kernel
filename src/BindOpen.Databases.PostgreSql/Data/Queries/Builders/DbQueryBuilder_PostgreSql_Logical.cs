@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Queries;
-
-namespace BindOpen.Data.Queries
+﻿namespace BindOpen.Data.Queries
 {
     /// <summary>
     /// This class represents a builder of database query.
@@ -18,7 +16,7 @@ namespace BindOpen.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_If(string condition, string value1, string value2)
         {
-            return "CASE WHEN (" + condition + ") THEN " + value1 + " ELSE " + value2 + " END";
+            return "case when (" + condition + ") then " + value1 + " else " + value2 + " end";
         }
 
         /// <summary>
@@ -28,7 +26,7 @@ namespace BindOpen.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_Not(string value1)
         {
-            return "NOT (" + value1 + ")";
+            return "not (" + value1 + ")";
         }
 
         /// <summary>
@@ -39,13 +37,13 @@ namespace BindOpen.Data.Queries
         public override string GetSqlText_Or(object[] parameters)
         {
             string text = "(";
-            foreach (object object1 in parameters)
+            if (parameters.Length == 1)
             {
-                if (object1 != null)
-                {
-                    string st = object1.ToString();
-                    text += (text == "(" ? st : " OR " + st);
-                }
+                text += parameters[0];
+            }
+            else
+            {
+                text += string.Join(" or ", parameters);
             }
 
             text += ")";
@@ -61,13 +59,13 @@ namespace BindOpen.Data.Queries
         public override string GetSqlText_And(object[] parameters)
         {
             string text = "(";
-            foreach (object object1 in parameters)
+            if (parameters.Length == 1)
             {
-                if (object1 != null)
-                {
-                    string st = object1.ToString();
-                    text += (text == "(" ? st : " AND " + st);
-                }
+                text += parameters[0];
+            }
+            else
+            {
+                text += string.Join(" and ", parameters);
             }
 
             text += ")";
@@ -83,13 +81,13 @@ namespace BindOpen.Data.Queries
         public override string GetSqlText_Xor(object[] parameters)
         {
             string text = "(";
-            foreach (object object1 in parameters)
+            if (parameters.Length == 1)
             {
-                if (object1 != null)
-                {
-                    string st = object1.ToString();
-                    text += (text == "(" ? st : " XOR " + st);
-                }
+                text += parameters[0];
+            }
+            else
+            {
+                text += string.Join(" xor ", parameters);
             }
 
             text += ")";

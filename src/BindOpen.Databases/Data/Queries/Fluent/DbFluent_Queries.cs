@@ -16,7 +16,7 @@ namespace BindOpen.Data.Queries
         /// <returns>Returns a new Delete advanced database query</returns>
         public static IDbSingleQuery DeleteQuery(string name, DbTable table, Action<IDbSingleQuery> initAction = null)
         {
-            IDbSingleQuery query = new DbSingleQuery(name, DbQueryKind.Select, table);
+            IDbSingleQuery query = new DbSingleQuery(name, DbQueryKind.Delete, table);
             initAction?.Invoke(query);
 
             return query;

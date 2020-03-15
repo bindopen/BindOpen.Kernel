@@ -47,7 +47,7 @@ namespace BindOpen.Extensions.Carriers
         /// Value of this instance.
         /// </summary>
         [DetailProperty(Name = "value")]
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         #endregion
 
@@ -66,6 +66,22 @@ namespace BindOpen.Extensions.Carriers
 
         #endregion
 
+        // ------------------------------------------
+        // ACCCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this;
+        }
+
+        #endregion
 
         // ------------------------------------------
         // MUTATORS

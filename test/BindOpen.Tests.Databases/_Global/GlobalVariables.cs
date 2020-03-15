@@ -1,12 +1,14 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Helpers.Strings;
+using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Loggers;
-using BindOpen.Tests.Core.Settings;
+using BindOpen.Tests.Databases.Models;
+using BindOpen.Tests.Databases.Settings;
 using System;
 
-namespace BindOpen.Tests.Core
+namespace BindOpen.Tests.Databases
 {
     public static class GlobalVariables
     {
@@ -32,8 +34,12 @@ namespace BindOpen.Tests.Core
                 return _appHost ?? (_appHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
                             .SetModule("app.test")
-                            .SetRootFolder(@"..\..")
-                            .AddExtensions(p => p.AddMSSqlServer())
+                            .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
+                            .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
+                            .AddExtensions(p => p.AddMSSqlServer().AddPostgreSql())
+                            .AddDataStore(s => s
+                                .RegisterDatasources(m => m.AddFromConfiguration(options))
+                                .RegisterDbModels((m, l) => m.AddFromAssembly<TestDbModel>(l)))
                             .AddDefaultFileLogger()
                             .ThrowExceptionOnStartFailure()
                             .AddLoggers(

@@ -351,7 +351,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_Equal(value1, value2);
+                text += queryBuilder.GetSqlText_Eq(value1, value2);
             }
 
             return text;
@@ -383,7 +383,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_NotEqual(value1, value2);
+                text += queryBuilder.GetSqlText_Diff(value1, value2);
             }
 
             return text;
@@ -415,7 +415,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_Greater(value1, value2);
+                text += queryBuilder.GetSqlText_Gt(value1, value2);
             }
 
             return text;
@@ -447,7 +447,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_GreaterOrEqual(value1, value2);
+                text += queryBuilder.GetSqlText_Gte(value1, value2);
             }
 
             return text;
@@ -479,7 +479,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_Less(value1, value2);
+                text += queryBuilder.GetSqlText_Lt(value1, value2);
             }
 
             return text;
@@ -511,7 +511,7 @@ namespace BindOpen.Extensions.Scriptwords
             else
             {
                 DbQueryBuilder queryBuilder = (DbQueryBuilder)scriptVariableSet.GetValue(ScriptVariableKey_Database.DbBuilder);
-                text += queryBuilder.GetSqlText_LessOrEqual(value1, value2);
+                text += queryBuilder.GetSqlText_Lte(value1, value2);
             }
 
             return text;

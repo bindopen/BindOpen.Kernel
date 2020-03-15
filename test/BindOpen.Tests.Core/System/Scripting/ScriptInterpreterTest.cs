@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Serialization;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Helpers.Serialization;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using NUnit.Framework;
@@ -25,7 +26,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             string resultScript = "";
 
             var scriptVariableSet = new ScriptVariableSet();
-            resultScript = GlobalVariables.Scope.Interpreter.Interprete(_script, scriptVariableSet, log);
+            resultScript = GlobalVariables.Scope.Interpreter.Interprete(_script, DataExpressionKind.Script, scriptVariableSet, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

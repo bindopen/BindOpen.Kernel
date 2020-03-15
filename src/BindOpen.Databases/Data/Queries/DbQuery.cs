@@ -57,11 +57,6 @@ namespace BindOpen.Data.Queries
         public bool IsExistenceChecked { get; set; } = false;
 
         /// <summary>
-        /// Fields of this instance.
-        /// </summary>
-        public List<DbField> Fields { get; set; } = new List<DbField>();
-
-        /// <summary>
         /// The parameter specification set of this instance.
         /// </summary>
         public DataElementSpecSet ParameterSpecSet
@@ -87,7 +82,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         #endregion
 
@@ -151,42 +146,6 @@ namespace BindOpen.Data.Queries
             return Name;
         }
 
-        /// <summary>
-        /// Gets the data field with the specified bound data field name.
-        /// </summary>
-        /// <param name="boundFieldName">Name of the bound data field.</param>
-        /// <returns>The data field with the specified bound data field name.</returns>
-        public DbField GetFieldWithBoundFieldName(string boundFieldName)
-        {
-            if ((boundFieldName != null) && (this.Fields != null))
-            {
-                foreach (DbField field in this.Fields)
-                {
-                    if (field.GetName().Equals(boundFieldName, StringComparison.OrdinalIgnoreCase))
-                        return field;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the data field with the specified data field name.
-        /// </summary>
-        /// <param name="name">Name of the field.</param>
-        /// <returns>The data field with the specified data field name.</returns>
-        public DbField GetDataFieldWithName(string name)
-        {
-            foreach (DbField field in this.Fields)
-            {
-                if (field.Alias.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return field;
-                if (field.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                    return field;
-            }
-            return null;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -236,7 +195,7 @@ namespace BindOpen.Data.Queries
         /// </summary>
         /// <param name="parameter">The parameter to consider.</param>
         /// <returns>Return this instance.</returns>
-        public IDbQuery AddParameter(IDataElement parameter)
+        public IDbQuery AddParameter(ScalarElement parameter)
         {
             ParameterSet?.Add(parameter as DataElement);
 
@@ -249,7 +208,7 @@ namespace BindOpen.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The data table to consider.</param>
         /// <returns>Return this added parameter.</returns>
-        public IDataElement UseParameter(
+        public ScalarElement UseParameter(
             string name,
             object value = null)
         {
@@ -263,7 +222,7 @@ namespace BindOpen.Data.Queries
         /// <param name="valueType">The data value type to consider.</param>
         /// <param name="value">The data table to consider.</param>
         /// <returns>Return this added parameter.</returns>
-        public IDataElement UseParameter(
+        public ScalarElement UseParameter(
             string name,
             DataValueType valueType,
             object value = null)
@@ -273,8 +232,8 @@ namespace BindOpen.Data.Queries
                 ParameterSet = new DataElementSet();
             }
 
-            DataElement parameter;
-            if ((parameter = ParameterSet[name]) != null)
+            ScalarElement parameter;
+            if ((parameter = ParameterSet[name] as ScalarElement) != null)
             {
                 parameter.SetItem(value);
             }

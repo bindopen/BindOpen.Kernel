@@ -17,12 +17,12 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// The statements of this instance.
         /// </summary>
-        public List<DbQueryOrderByStatement> Statements { get; set; } = new List<DbQueryOrderByStatement>();
+        public List<DbQueryOrderByStatement> Statements { get; set; }
 
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         #endregion
 

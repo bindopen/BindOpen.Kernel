@@ -1,4 +1,8 @@
-﻿namespace BindOpen.Data.Queries
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Helpers.Strings;
+using System;
+
+namespace BindOpen.Data.Queries
 {
     /// <summary>
     /// This static class represents a factory of data query parameter.
@@ -8,88 +12,44 @@
         /// <summary>
         /// Creates a BDO script representing the current date in SQL.
         /// </summary>
-        public static string CurrentDate()
-            => "$sqlGetCurrentDate()";
+        public static DataExpression CurrentDate()
+            => "$sqlGetCurrentDate()".CreateScript();
 
         /// <summary>
         /// Creates a BDO script representing a text.
         /// </summary>
         /// <param name="param1">The parameter to consider.</param>
-        public static string Text(string param1)
-        {
-            return "$sqlText(" + param1 + ")";
-        }
+        public static DataExpression Text(string param1)
+            => ("$sqlText(" + param1 + ")").CreateScript();
 
         /// <summary>
-        /// Creates a BDO script representing and Sql And condition including the specified condition strings.
+        /// Creates a BDO script representing a value.
         /// </summary>
-        /// <param name="conditions">The conditions to consider.</param>
-        public static string And(params string[] conditions)
+        /// <param name="param1">The parameter to consider.</param>
+        public static DataExpression Value(object param1)
         {
-            var query = "$sqlAnd(";
-
-            if (conditions.Length > 0)
+            if (param1 is DataExpression param1DataExpression)
             {
-                query += string.Join(",", conditions);
+                if (param1DataExpression.Kind == DataExpressionKind.Auto
+                    && param1DataExpression.Text?.StartsWith("{{") == true
+                    && param1DataExpression.Text?.EndsWith("}}") == true)
+                {
+
+                    var text = param1DataExpression.Text.Substring(2);
+                    return (text.Substring(0, text.Length - 2)).CreateScript();
+                }
+                return param1DataExpression;
+            }
+            else if (param1 is string param1String)
+            {
+                return Text(param1String);
+            }
+            else if (param1 is DateTime param1DateTime)
+            {
+                return Text(param1DateTime.ToString(StringHelper.__DateFormat));
             }
 
-            query += ")";
-
-            return query;
-        }
-
-        /// <summary>
-        /// Creates a BDO script representing and Sql Or condition including the specified condition strings.
-        /// </summary>
-        /// <param name="conditions">The conditions to consider.</param>
-        public static string Or(params string[] conditions)
-        {
-            var query = "$sqlOr(";
-
-            if (conditions.Length > 0)
-            {
-                query += string.Join(",", conditions);
-            }
-
-            query += ")";
-
-            return query;
-        }
-
-        /// <summary>
-        /// Creates a BDO script representing and Sql Xor condition including the specified condition strings.
-        /// </summary>
-        /// <param name="conditions">The conditions to consider.</param>
-        public static string Xor(params string[] conditions)
-        {
-            var query = "$sqlXor(";
-
-            if (conditions.Length > 0)
-            {
-                query += string.Join(",", conditions);
-            }
-
-            query += ")";
-
-            return query;
-        }
-
-        /// <summary>
-        /// Creates a BDO script representing and Sql Not condition including the specified condition strings.
-        /// </summary>
-        /// <param name="condition">The condition to consider.</param>
-        public static string Not(string condition)
-        {
-            return "$sqlNot(" + condition + ")";
-        }
-
-        /// <summary>
-        /// Creates a BDO script representing and Sql Xor condition including the specified condition strings.
-        /// </summary>
-        /// <param name="conditions">The conditions to consider.</param>
-        public static string Like(string param1, string param2)
-        {
-            return "$sqlLike(" + param1 + ", " + param2 + ")";
+            return (param1?.ToString()).CreateScript();
         }
     }
 }

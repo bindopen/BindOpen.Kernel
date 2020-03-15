@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Expression;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System;
@@ -87,7 +88,7 @@ namespace Microsoft.Extensions.Configuration
 
             if (scope?.Interpreter != null)
             {
-                return Convert.ChangeType(scope?.Interpreter?.Evaluate(value, scriptVariableSet, log), type);
+                return Convert.ChangeType(scope?.Interpreter?.Evaluate(value, DataExpressionKind.Script, scriptVariableSet, log), type);
             }
             else if (type == typeof(string))
             {

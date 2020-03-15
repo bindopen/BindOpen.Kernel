@@ -3,7 +3,7 @@ using BindOpen.Application.Settings;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Tests.Core.Settings
+namespace BindOpen.Tests.Databases.Settings
 {
     /// <summary>
     /// This class represents a test application settings.

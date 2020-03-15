@@ -35,20 +35,22 @@ namespace BindOpen.System.Scripting
         /// 
         /// </summary>
         /// <param name="script"></param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object Evaluate(string script, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        object Evaluate(string script, DataExpressionKind expressionKind, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="script"></param>
         /// <param name="resultScript"></param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object Evaluate(string script, out string resultScript, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        object Evaluate(string script, DataExpressionKind expressionKind, out string resultScript, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -66,20 +68,22 @@ namespace BindOpen.System.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataExpression"></param>
+        /// <param name="script"></param>
+        /// <param name="expression">The expression to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        string Interprete(IDataExpression dataExpression, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        string Interprete(IDataExpression expression, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="script"></param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        string Interprete(string script, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        string Interprete(string script, DataExpressionKind expressionKind, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 

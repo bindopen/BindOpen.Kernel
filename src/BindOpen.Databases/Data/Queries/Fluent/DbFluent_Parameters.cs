@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Strings;
 
 namespace BindOpen.Data.Queries
@@ -15,7 +16,7 @@ namespace BindOpen.Data.Queries
         /// Creates a new instance of the DataElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="value">The data table to consider.</param>
+        /// <param name="value">The data table to consider.</para>
         public static IDataElement Parameter(
             string name,
             object value = null)
@@ -38,6 +39,15 @@ namespace BindOpen.Data.Queries
         }
 
         /// <summary>
+        /// Creates a new instance of the DataElement class.
+        /// </summary>
+        /// <param name="element">The element to consider.</param>
+        public static DataExpression AsScript(this ScalarElement parameter)
+        {
+            return CreateParameterWildString(parameter).CreateScript();
+        }
+
+        /// <summary>
         /// Creates a parameter wild string from the specified parameter.
         /// </summary>
         /// <param name="parameter">The parameter to consider.</param>
@@ -48,7 +58,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// Creates a parameter string from the specified parameter.
         /// </summary>
-        /// <param name="parameter">The parameter to consider.</param>
+        /// <param name="parameter">The parameter to consider.</pram>
         /// <returns>Returns the string corresponding to the specified parameter.</returns>
         internal static string CreateParameterString(this IDataElement parameter)
             => "@" + parameter?.Name ?? parameter.Index.ToString();

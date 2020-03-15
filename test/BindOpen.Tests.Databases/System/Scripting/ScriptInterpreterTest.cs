@@ -1,16 +1,17 @@
-﻿using BindOpen.Data.Helpers.Serialization;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Helpers.Serialization;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using NUnit.Framework;
 using System;
 
-namespace BindOpen.Tests.Core.System.Diagnostics
+namespace BindOpen.Tests.Databases.System.Diagnostics
 {
     [TestFixture, Order(12)]
     public class ScriptInterpreterTest
     {
         private readonly string _script = "$ISEQUAL(\"MYTABLE\", $Text(MYTABLE))";
-        private readonly string _interpretedScript = "true";
+        private readonly string _expectedResult = "true";
 
         [SetUp]
         public void Setup()
@@ -22,17 +23,17 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            string resultScript = "";
+            string result = "";
 
             var scriptVariableSet = new ScriptVariableSet();
-            resultScript = GlobalVariables.AppHost.Scope.Interpreter.Interprete(_script, scriptVariableSet, log);
+            result = GlobalVariables.AppHost.Scope.Interpreter.Interprete(_script, DataExpressionKind.Script, scriptVariableSet, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
                 xml = log.ToXml();
             }
-            Assert.That(_interpretedScript.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation. Result was '" + xml);
+            Assert.That(_expectedResult.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation. Result was '" + xml);
         }
     }
 }

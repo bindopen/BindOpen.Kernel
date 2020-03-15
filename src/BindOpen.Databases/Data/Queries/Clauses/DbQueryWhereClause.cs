@@ -23,7 +23,7 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         #endregion
 

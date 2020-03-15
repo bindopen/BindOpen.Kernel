@@ -27,11 +27,6 @@ namespace BindOpen.Data.Queries
         string DataTableAlias { get; set; }
 
         /// <summary>
-        /// The fields of this instance.
-        /// </summary>
-        List<DbField> Fields { get; set; }
-
-        /// <summary>
         /// The kind of this instance.
         /// </summary>
         DbQueryKind Kind { get; set; }
@@ -57,20 +52,6 @@ namespace BindOpen.Data.Queries
         List<DbTable> CTETables { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        DbField GetDataFieldWithName(string name);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="boundFieldName"></param>
-        /// <returns></returns>
-        DbField GetFieldWithBoundFieldName(string boundFieldName);
-
-        /// <summary>
         /// Indicates that this instance checks the existence of table or data according to the kind of queries.
         /// </summary>
         /// <param name="isExistenceChecked">Indicates whether this instance checks the existence of table or data.</param>
@@ -89,7 +70,7 @@ namespace BindOpen.Data.Queries
         /// </summary>
         /// <param name="parameter">The parameter to consider.</param>
         /// <returns>Return this instance.</returns>
-        IDbQuery AddParameter(IDataElement parameter);
+        IDbQuery AddParameter(ScalarElement parameter);
 
         /// <summary>
         /// Defines the parameter specifications of this instance.
@@ -111,7 +92,7 @@ namespace BindOpen.Data.Queries
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The data table to consider.</param>
         /// <returns>Return this added parameter.</returns>
-        IDataElement UseParameter(
+        ScalarElement UseParameter(
             string name,
             object value = null);
 
@@ -122,7 +103,7 @@ namespace BindOpen.Data.Queries
         /// <param name="valueType">The data value type to consider.</param>
         /// <param name="value">The data table to consider.</param>
         /// <returns>Return this added parameter.</returns>
-        IDataElement UseParameter(
+        ScalarElement UseParameter(
             string name,
             DataValueType valueType,
             object value = null);

@@ -73,7 +73,7 @@ namespace BindOpen.Data.Queries
                 field.ValueType = valueType;
                 if (value != null)
                 {
-                    field.Value = value.ToString(field.ValueType).CreateLiteral();
+                    field.Expression = value.ToString(field.ValueType).CreateLiteral();
                 }
             }
 
@@ -154,7 +154,7 @@ namespace BindOpen.Data.Queries
                 field.ValueType = DataValueType.None;
                 if (script != null)
                 {
-                    field.Value = script.CreateScript();
+                    field.Expression = script.CreateScript();
                 }
             }
 
@@ -189,7 +189,7 @@ namespace BindOpen.Data.Queries
             field.ValueType = DataValueType.None;
             if (script != null)
             {
-                field.Value = script.CreateScript();
+                field.Expression = script.CreateScript();
             }
             return field;
         }
@@ -305,7 +305,7 @@ namespace BindOpen.Data.Queries
         {
             if (field != null)
             {
-                field.Value = ((string)otherField).CreateScript();
+                field.Expression = ((string)otherField).CreateScript();
             }
 
             return field;
@@ -388,7 +388,7 @@ namespace BindOpen.Data.Queries
             if (field != null)
             {
                 field.ValueType = DataValueType.None;
-                field.Value = CreateParameterWildString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
+                field.Expression = CreateParameterWildString(ElementFactory.CreateScalar(parameterName)).CreateLiteral();
             }
 
             return field;
@@ -460,7 +460,7 @@ namespace BindOpen.Data.Queries
             if (field != null)
             {
                 field.ValueType = DataValueType.None;
-                field.Value = CreateParameterWildString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
+                field.Expression = CreateParameterWildString(new ScalarElement() { Index = parameterIndex }).CreateLiteral();
             }
 
             return field;
@@ -532,7 +532,7 @@ namespace BindOpen.Data.Queries
             if (field != null)
             {
                 field.ValueType = DataValueType.None;
-                field.Value = CreateParameterWildString(parameter).CreateLiteral();
+                field.Expression = CreateParameterWildString(parameter).CreateLiteral();
             }
 
             return field;

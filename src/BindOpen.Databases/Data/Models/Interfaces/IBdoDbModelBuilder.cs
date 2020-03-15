@@ -1,13 +1,12 @@
-﻿using BindOpen.Data.Queries;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Queries;
 using BindOpen.Extensions.Carriers;
 
 namespace BindOpen.Data.Models
 {
     public interface IBdoDbModelBuilder
     {
-        IBdoDbModelBuilder AddJoinCondition(string name, DbQueryCondition condition);
-
-        IBdoDbModelBuilder AddJoinCondition(DbQueryCondition condition);
+        IBdoDbModelBuilder AddJoinCondition(string name, DataExpression condition);
 
         IBdoDbModelBuilder AddTable(string name, DbTable table);
 

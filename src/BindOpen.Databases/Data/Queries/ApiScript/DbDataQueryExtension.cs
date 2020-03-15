@@ -204,9 +204,9 @@ namespace BindOpen.Data.Queries
 
                 if (scriptText?.Length > 0)
                 {
-                    if (dbQuery.WhereClause?.Value != null && !string.IsNullOrEmpty(dbQuery.WhereClause?.Value?.Text))
+                    if (dbQuery.WhereClause?.Expression != null && !string.IsNullOrEmpty(dbQuery.WhereClause?.Expression?.Text))
                     {
-                        dbQuery.WhereClause.Value.Text = "$sqlAnd(" + dbQuery.WhereClause.Value.Text + "," + scriptText + ")";
+                        dbQuery.WhereClause.Expression.Text = "$sqlAnd(" + dbQuery.WhereClause.Expression.Text + "," + scriptText + ")";
                     }
                     else
                     {
@@ -215,7 +215,7 @@ namespace BindOpen.Data.Queries
                             dbQuery.WhereClause = new DbQueryWhereClause();
                         }
 
-                        dbQuery.WhereClause.Value = scriptText.CreateScript();
+                        dbQuery.WhereClause.Expression = scriptText.CreateScript();
                     }
                 }
             }

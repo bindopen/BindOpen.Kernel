@@ -97,8 +97,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            string resultScript = "";
-            return Evaluate(dataExpression, out resultScript, scriptVariableSet, log);
+            return Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -106,12 +105,14 @@ namespace BindOpen.System.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
+        /// <param name="dataExpressionKind">The expression kind to consider.</param>
         /// <param name="resultScript">The result script to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
+            DataExpressionKind dataExpressionKind,
             out string resultScript,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -125,11 +126,13 @@ namespace BindOpen.System.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
+        /// <param name="dataExpressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
+            DataExpressionKind dataExpressionKind,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
@@ -143,6 +146,7 @@ namespace BindOpen.System.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="dataExpression">The data expression to consider.</param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
@@ -160,16 +164,18 @@ namespace BindOpen.System.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
             string script,
+            DataExpressionKind dataExpressionKind,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             string resultScript = "";
-            EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
+            EvaluateScript(script, dataExpressionKind, out resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -209,8 +215,9 @@ namespace BindOpen.System.Scripting
 
                             if ((scriptWordBeginIndex > -1) && (index > -1))
                             {
-                                string stringValue;
-                                EvaluateScript(script, DataExpressionKind.Script, out stringValue, scriptVariableSet, log);
+                                EvaluateScript(script, DataExpressionKind.Script, out string stringValue, scriptVariableSet, log);
+                                stringValue = stringValue.Substring(2);
+                                stringValue = stringValue.Substring(0, stringValue.Length - 2);
 
                                 resultScript = resultScript.Replace(
                                     resultScript.GetSubstring(scriptWordBeginIndex, index + 1), stringValue);

@@ -73,7 +73,7 @@ namespace BindOpen.Extensions.Carriers
         /// Value of this instance.
         /// </summary>
         [DetailProperty(Name = "value")]
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         /// <summary>
         /// Value of this instance.
@@ -140,6 +140,15 @@ namespace BindOpen.Extensions.Carriers
                 return Name ?? "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this;
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -154,7 +163,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="expression">Data expression value of the instance.</param>
         public void SetValue(DataExpression expression)
         {
-            Value = expression;
+            Expression = expression;
         }
 
         /// <summary>
@@ -163,7 +172,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="text">The literal value.</param>
         public void SetLiteralValue(string text)
         {
-            Value = text.CreateLiteral();
+            Expression = text.CreateLiteral();
         }
 
         /// <summary>
@@ -172,7 +181,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="text">The script value.</param>
         public void SetScriptValue(string text)
         {
-            Value = text.CreateScript();
+            Expression = text.CreateScript();
         }
 
         /// <summary>

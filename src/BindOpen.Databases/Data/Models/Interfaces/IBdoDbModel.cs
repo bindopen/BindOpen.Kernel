@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Carriers;
 
@@ -28,7 +29,7 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        DbQueryCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases);
+        DataExpression JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases);
 
         /// <summary>
         /// 

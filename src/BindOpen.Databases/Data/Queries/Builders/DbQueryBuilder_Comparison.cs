@@ -13,7 +13,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_Equal(string value1, string value2)
+        public virtual string GetSqlText_Eq(string value1, string value2)
         {
             return "";
         }
@@ -24,7 +24,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_NotEqual(string value1, string value2)
+        public virtual string GetSqlText_Diff(string value1, string value2)
         {
             return "";
         }
@@ -35,7 +35,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_Greater(string value1, string value2)
+        public virtual string GetSqlText_Gt(string value1, string value2)
         {
             return "";
         }
@@ -46,7 +46,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_GreaterOrEqual(string value1, string value2)
+        public virtual string GetSqlText_Gte(string value1, string value2)
         {
             return "";
         }
@@ -57,7 +57,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_Less(string value1, string value2)
+        public virtual string GetSqlText_Lt(string value1, string value2)
         {
             return "";
         }
@@ -68,7 +68,7 @@
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public virtual string GetSqlText_LessOrEqual(string value1, string value2)
+        public virtual string GetSqlText_Lte(string value1, string value2)
         {
             return "";
         }
