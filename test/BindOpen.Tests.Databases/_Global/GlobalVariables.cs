@@ -34,8 +34,7 @@ namespace BindOpen.Tests.Databases
                 return _appHost ?? (_appHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
                         options => options
                             .SetModule("app.test")
-                            .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
-                            .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
+                            .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..")
                             .AddExtensions(p => p.AddMSSqlServer().AddPostgreSql())
                             .AddDataStore(s => s
                                 .RegisterDatasources(m => m.AddFromConfiguration(options))
