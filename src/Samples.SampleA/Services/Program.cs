@@ -1,11 +1,8 @@
-﻿using BindOpen.Application.Scopes;
-using BindOpen.Application.Services;
-using BindOpen.Data.Stores;
+﻿using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Samples.SampleA.Services;
-using Samples.SampleA.Services.Databases;
 using Samples.SampleA.Settings;
 using System.Threading.Tasks;
 
@@ -33,9 +30,9 @@ namespace Samples.SampleA
                             .AddDefaultFileLogger("testA.txt")
                             .ThrowExceptionOnStartFailure()
                     )
-                    .AddBdoConnectedService<IBdoDbService, TestDbRepository>(
-                        ServiceLifetime.Transient,
-                        host => new TestDbRepository(host.GetModel<MyDbModel>(), host.CreateMSSqlServerConnector("mlmlm")))
+                    //.AddBdoConnectedService<IBdoDbService, TestDbRepository>(
+                    //    ServiceLifetime.Transient,
+                    //    host => new TestDbRepository(host.GetModel<MyDbModel>(), host.CreateMSSqlServerConnector("mlmlm")))
                     .AddHostedService<TestService>();
                })
                .RunConsoleAsync().ConfigureAwait(false);

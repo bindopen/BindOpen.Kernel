@@ -58,8 +58,6 @@
     <Folder Include="Data\Models\" />
     <Folder Include="Data\Stores\" />
     <Folder Include="MSSqlServer\" />
-    <Folder Include="PostgreSql\Data\Queries\DbModels\" />
-    <Folder Include="PostgreSql\Data\Queries\Repositories\" />
   </ItemGroup>
 
 </Project>

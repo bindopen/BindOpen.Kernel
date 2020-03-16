@@ -1,19 +1,21 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Items;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Carriers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Models
 {
     /// <summary>
     /// This class represents a database context.
     /// </summary>
-    public partial class BdoDbModel : IdentifiedDataItem, IBdoDbModel
+    public class BdoDbModel : IdentifiedDataItem, IBdoDbModel
     {
         // Properties ---------------------------------------
 
         internal Dictionary<string, DbTable> TableDictionary = new Dictionary<string, DbTable>();
-        internal Dictionary<string, DbQueryCondition> JoinConditionDictionary = new Dictionary<string, DbQueryCondition>();
+        internal Dictionary<string, DataExpression> JoinConditionDictionary = new Dictionary<string, DataExpression>();
         internal Dictionary<string, DbField[]> TupleDictionary = new Dictionary<string, DbField[]>();
         internal Dictionary<string, IDbStoredQuery> QueryDictionary = new Dictionary<string, IDbStoredQuery>();
 
@@ -37,7 +39,7 @@ namespace BindOpen.Data.Models
         {
             TableDictionary.TryGetValue(name, out DbTable table);
 
-            return table;
+            return table?.Clone<DbTable>();
         }
 
         // Join conditions ---------------------------------------
@@ -48,11 +50,11 @@ namespace BindOpen.Data.Models
         /// <param name="name"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        public DbQueryCondition JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases)
+        public DataExpression JoinCondition(string name, params (string fieldName, string fieldAlias)[] aliases)
         {
-            JoinConditionDictionary.TryGetValue(name, out DbQueryCondition condition);
+            JoinConditionDictionary.TryGetValue(name, out DataExpression condition);
 
-            return condition;
+            return condition?.Clone<DataExpression>();
         }
 
         // Tuples ---------------------------------------
@@ -76,7 +78,7 @@ namespace BindOpen.Data.Models
         {
             TupleDictionary.TryGetValue(name, out DbField[] fields);
 
-            return fields;
+            return fields?.Select(q => q.Clone<DbField>()).ToArray();
         }
 
         // Queries ---------------------------------------
@@ -91,7 +93,7 @@ namespace BindOpen.Data.Models
         {
             QueryDictionary.TryGetValue(name, out IDbStoredQuery query);
 
-            return query;
+            return query?.Clone<IDbStoredQuery>();
         }
     }
 }

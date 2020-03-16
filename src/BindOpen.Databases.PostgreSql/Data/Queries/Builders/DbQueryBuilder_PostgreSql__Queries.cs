@@ -61,25 +61,25 @@ namespace BindOpen.Data.Queries
 
                         queryString += GetSqlText_FromClause(query.FromClause, query, parameterSet, scriptVariableSet, log);
 
-                        if (query.WhereClause != null)
-                        {
-                            queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
-                        }
-                        if (query.GroupByClause != null)
-                        {
-                            queryString += GetSqlText_GroupByClause(query.GroupByClause, query, parameterSet, scriptVariableSet, log);
-                        }
-                        if (query.HavingClause != null)
-                        {
-                            queryString += GetSqlText_HavingClause(query.HavingClause, query, parameterSet, scriptVariableSet, log);
-                        }
-                        if (query.OrderByClause != null)
-                        {
-                            queryString += GetSqlText_OrderByClause(query.OrderByClause, query, parameterSet, scriptVariableSet, log);
-                        }
+                        queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
+
+                        queryString += GetSqlText_GroupByClause(query.GroupByClause, query, parameterSet, scriptVariableSet, log);
+
+                        queryString += GetSqlText_HavingClause(query.HavingClause, query, parameterSet, scriptVariableSet, log);
+
+                        queryString += GetSqlText_OrderByClause(query.OrderByClause, query, parameterSet, scriptVariableSet, log);
+
                         if (query.Limit > -1)
                         {
-                            queryString += " limit " + query.Limit.ToString() + " ";
+                            queryString += " limit " + query.Limit.ToString();
+                        }
+
+                        if (query.UnionClauses?.Count > 0)
+                        {
+                            foreach (var clause in query.UnionClauses)
+                            {
+                                queryString += GetSqlText_UnionClause(clause, query, parameterSet, scriptVariableSet, log);
+                            }
                         }
                     }
                     break;
@@ -110,10 +110,7 @@ namespace BindOpen.Data.Queries
                             queryString += GetSqlText_FromClause(query.FromClause, query, parameterSet, scriptVariableSet, log);
                         }
 
-                        if (query.WhereClause != null)
-                        {
-                            queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
-                        }
+                        queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
 
                         if (query.ReturnedIdFields?.Count > 0)
                         {
@@ -138,15 +135,9 @@ namespace BindOpen.Data.Queries
                     {
                         queryString = "delete";
 
-                        if (query.FromClause != null)
-                        {
-                            queryString += GetSqlText_FromClause(query.FromClause, query, parameterSet, scriptVariableSet, log);
-                        }
+                        queryString += GetSqlText_FromClause(query.FromClause, query, parameterSet, scriptVariableSet, log);
 
-                        if (query.WhereClause != null)
-                        {
-                            queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
-                        }
+                        queryString += GetSqlText_WhereClause(query.WhereClause, query, parameterSet, scriptVariableSet, log);
 
                         if (query.ReturnedIdFields?.Count > 0)
                         {

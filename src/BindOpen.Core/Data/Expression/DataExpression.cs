@@ -33,6 +33,7 @@ namespace BindOpen.Data.Expression
 
         #endregion
 
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -44,6 +45,45 @@ namespace BindOpen.Data.Expression
         /// </summary>
         public DataExpression()
         {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ACCCESSORS
+        // ------------------------------------------
+
+        #region Accessors
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // OPERATORS
+        // ------------------------------------------
+
+        #region Operators
+
+        /// <summary>
+        /// Returns the data expression string corresponding to this instance.
+        /// </summary>
+        /// <param name="field">The field to consider.</param>
+        public static implicit operator string(DataExpression expression)
+        {
+            if (expression != null)
+            {
+                return expression.Text;
+            }
+
+            return "";
         }
 
         #endregion

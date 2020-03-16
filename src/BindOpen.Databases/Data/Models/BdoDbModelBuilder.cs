@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Data.Expression;
+using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Queries;
 using BindOpen.Extensions.Carriers;
 using System.Reflection;
@@ -47,6 +48,7 @@ namespace BindOpen.Data.Models
                     name = table.Schema.ConcatenateIfFirstNotEmpty(".") + table.Name;
                 }
 
+                (_model as BdoDbModel).TableDictionary.Remove(name);
                 (_model as BdoDbModel).TableDictionary.Add(name, table);
             }
 
@@ -95,24 +97,11 @@ namespace BindOpen.Data.Models
         /// <param name="condition"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoDbModelBuilder AddJoinCondition(DbQueryCondition condition)
-            => AddJoinCondition(null, condition);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="condition"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoDbModelBuilder AddJoinCondition(string name, DbQueryCondition condition)
+        public IBdoDbModelBuilder AddJoinCondition(string name, DataExpression condition)
         {
             if (condition != null)
             {
-                name = !string.IsNullOrEmpty(name) ? name :
-                    (condition.Field1?.Schema) + "_" + (condition.Field1?.DataTableAlias ?? condition.Field1?.DataTable)
-                    + "_"
-                    + (condition.Field2?.Schema) + "_" + (condition.Field2?.DataTableAlias ?? condition.Field2?.DataTable);
-
+                (_model as BdoDbModel).JoinConditionDictionary.Remove(name);
                 (_model as BdoDbModel).JoinConditionDictionary.Add(name, condition);
             }
 
@@ -131,6 +120,7 @@ namespace BindOpen.Data.Models
         {
             if (fields != null)
             {
+                (_model as BdoDbModel).TupleDictionary.Remove(name);
                 (_model as BdoDbModel).TupleDictionary.Add(name, fields);
             }
 
@@ -162,6 +152,8 @@ namespace BindOpen.Data.Models
                 {
                     name = query.GetName();
                 }
+
+                (_model as BdoDbModel).QueryDictionary.Remove(name);
                 (_model as BdoDbModel).QueryDictionary.Add(name, new DbStoredQuery(query, name));
             }
             return this;

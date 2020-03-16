@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace BindOpen.Tests.Core
+namespace BindOpen.Tests.Databases
 {
     /// <summary>
     /// This class set the global settings up.

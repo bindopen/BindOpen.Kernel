@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Expression;
-using BindOpen.Extensions.Carriers;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Queries
@@ -16,19 +15,14 @@ namespace BindOpen.Data.Queries
         #region Properties
 
         /// <summary>
-        /// The tables of this instance.
+        /// The statements of this instance.
         /// </summary>
-        public List<DbTable> Tables { get; set; }
-
-        /// <summary>
-        /// The union clauses of this instance.
-        /// </summary>
-        public List<DbUnionTable> UnionTables { get; set; }
+        public List<DbQueryFromStatement> Statements { get; set; }
 
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        public DataExpression Value { get; set; }
+        public DataExpression Expression { get; set; }
 
         #endregion
 

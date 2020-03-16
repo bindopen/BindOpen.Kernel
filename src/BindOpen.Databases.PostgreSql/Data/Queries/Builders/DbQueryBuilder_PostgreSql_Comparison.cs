@@ -15,14 +15,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_Equal(string value1, string value2)
+        public override string GetSqlText_Eq(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + "=" + value2 + ")";
+            return value1 + "=" + value2;
         }
 
         /// <summary>
@@ -31,14 +31,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_NotEqual(string value1, string value2)
+        public override string GetSqlText_Diff(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + "<>" + value2 + ")";
+            return value1 + "<>" + value2;
         }
 
         /// <summary>
@@ -47,14 +47,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_Greater(string value1, string value2)
+        public override string GetSqlText_Gt(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + ">" + value2 + ")";
+            return value1 + ">" + value2;
         }
 
         /// <summary>
@@ -63,14 +63,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_GreaterOrEqual(string value1, string value2)
+        public override string GetSqlText_Gte(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + ">=" + value2 + ")";
+            return value1 + ">=" + value2;
         }
 
         /// <summary>
@@ -79,14 +79,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_Less(string value1, string value2)
+        public override string GetSqlText_Lt(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + "<" + value2 + ")";
+            return value1 + "<" + value2;
         }
 
         /// <summary>
@@ -95,14 +95,14 @@ namespace BindOpen.Data.Queries
         /// <param name="value1"></param>
         /// <param name="value2"></param>
         /// <returns>The interpreted string value.</returns>
-        public override string GetSqlText_LessOrEqual(string value1, string value2)
+        public override string GetSqlText_Lte(string value1, string value2)
         {
             if (string.Equals(value1, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value1 = "NULL";
             if (string.Equals(value2, "%NULL()", StringComparison.OrdinalIgnoreCase))
                 value2 = "NULL";
 
-            return "(" + value1 + "<=" + value2 + ")";
+            return value1 + "<=" + value2;
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace BindOpen.Data.Queries
         /// <returns>The interpreted string value.</returns>
         public override string GetSqlText_IsNull(string value1)
         {
-            return "(" + value1 + " IS NULL)";
+            return value1 + " IS NULL";
         }
     }
 }

@@ -10,6 +10,6 @@ namespace BindOpen.Data.Queries
         /// <summary>
         /// The value to consider.
         /// </summary>
-        DataExpression Value { get; set; }
+        DataExpression Expression { get; set; }
     }
 }

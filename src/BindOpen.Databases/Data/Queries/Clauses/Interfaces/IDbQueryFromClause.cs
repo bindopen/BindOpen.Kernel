@@ -1,5 +1,4 @@
-﻿using BindOpen.Extensions.Carriers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BindOpen.Data.Queries
 {
@@ -9,13 +8,8 @@ namespace BindOpen.Data.Queries
     public interface IDbQueryFromClause : IDbQueryItem
     {
         /// <summary>
-        /// The tables of this instance.
+        /// The statements of this instance.
         /// </summary>
-        List<DbTable> Tables { get; set; }
-
-        /// <summary>
-        /// The union tables of this instance.
-        /// </summary>
-        List<DbUnionTable> UnionTables { get; set; }
+        List<DbQueryFromStatement> Statements { get; set; }
     }
 }

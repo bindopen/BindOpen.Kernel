@@ -1,8 +1,9 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using BindOpen.Application.Navigation;
+using BindOpen.Data.Expression;
 using BindOpen.Data.Items;
 using BindOpen.System.Scripting;
-using BindOpen.Application.Navigation;
+using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Application.Rights
 {
@@ -152,9 +153,9 @@ namespace BindOpen.Application.Rights
                 }
             }
 
-            if (scriptInterpreter!=null)
+            if (scriptInterpreter != null)
             {
-                scriptInterpreter.Evaluate(this.ValueScript, out value, scriptVariableSet);
+                scriptInterpreter.Evaluate(this.ValueScript, DataExpressionKind.Script, out value, scriptVariableSet);
                 return ((value != null) && (value.ToLower().Trim() == "%true()"));
             }
 

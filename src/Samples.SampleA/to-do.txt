@@ -1,14 +1,15 @@
 - Change icon name
-- Bug Delete. Pas de "Delete table"
-- Bug Insert. Pas de schema dans le nom de la table.
-- isParamaterInjected -> ParameterMode = Symboled, Scripted, ValueInjected
 
 Databases:
-- Bug in Connection.CreateCommandText.
-- Bug in query building with Select when there is no From.
-- Bug in PgSqlServer query building: limit in select
-- Bug Update with one From and Table defined in query.
-- Bug in query build when returning fields.
+	- Clone Table, Field, Queries, Clauses
+	- Bug Delete. Pas de "Delete table"
+	- Bug Insert. Pas de schema dans le nom de la table.
+	- isParamaterInjected -> ParameterMode = Symboled, Scripted, ValueInjected
+	- Bug in Connection.CreateCommandText.
+	- Bug in query building with Select when there is no From.
+	- Bug in PgSqlServer query building: limit in select
+	- Bug Update with one From and Table defined in query.
+	- Bug in query build when returning fields.
 
 
 

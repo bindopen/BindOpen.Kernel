@@ -106,15 +106,10 @@ namespace BindOpen.Data.Queries
             {
                 try
                 {
-                    if (query is DbSingleQuery basicDbQuery)
+                    if (query is DbSingleQuery singleDbQuery)
                     {
                         (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = GetSqlText_Query(basicDbQuery, parameterSet, scriptVariableSet, log);
-                    }
-                    else if (query is DbSingleQuery advancedDbQuery)
-                    {
-                        (scriptVariableSet ?? (scriptVariableSet = new ScriptVariableSet())).SetValue(ScriptVariableKey_Database.DbBuilder, this);
-                        queryString = GetSqlText_Query(advancedDbQuery, parameterSet, scriptVariableSet, log);
+                        queryString = GetSqlText_Query(singleDbQuery, parameterSet, scriptVariableSet, log);
                     }
                     else if (query is DbCompositeQuery compositeDbQuery)
                     {
