@@ -24,9 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.Databases.MSSqlServer\BindOpen.Databases.MSSqlServer.csproj" />
     <ProjectReference Include="..\BindOpen.Runtime.NetCore\BindOpen.Runtime.NetCore.csproj" />
-    <ProjectReference Include="..\BindOpen.Databases.PostgreSql\BindOpen.Databases.PostgreSql.csproj" />
   </ItemGroup>
 
   <ItemGroup>

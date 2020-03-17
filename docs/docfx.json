@@ -1,4 +1,4 @@
-{
+﻿{
   "metadata": [
     {
       "src": [
@@ -67,7 +67,7 @@
     "dest": "_site",
     "globalMetadata": {
       "_appTitle": "BindOpen Documentation",
-      "_appFooter": "Copyright � 2010-2020 BindOpen - All rights reserved.",
+      "_appFooter": "Copyright © 2010-2020 BindOpen - All rights reserved.",
       "_appLogoPath": "images/logo_bindopen.png",
       "_appFaviconPath": "images/favicon_bdo.png",
       "_enableSearch": false,
