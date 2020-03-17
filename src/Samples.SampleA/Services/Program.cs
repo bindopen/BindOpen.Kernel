@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Stores;
-using BindOpen.Extensions.References;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Samples.SampleA.Services;
@@ -21,9 +20,7 @@ namespace Samples.SampleA
                             .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
                             .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\")
                             .AddDataStore(s => s
-                                .RegisterDatasources(m => m.AddFromConfiguration(options))
-                                .RegisterDbModels((m, l) => m.AddFromAssembly<TestService>(l)))
-                            .AddExtensions(q => q.AddPostgreSql())
+                                .RegisterDatasources(m => m.AddFromConfiguration(options)))
                             .SetHostSettingsFile(false)
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
                             .AddDefaultConsoleLogger()
