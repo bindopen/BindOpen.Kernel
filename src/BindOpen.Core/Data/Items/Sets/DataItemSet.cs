@@ -512,8 +512,7 @@ namespace BindOpen.Data.Items
         /// <param name="name">The name of the property that has changed.</param>
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler aHandler = PropertyChanged;
-            if (aHandler != null) aHandler(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

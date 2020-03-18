@@ -61,7 +61,7 @@ namespace BindOpen.Data.Elements
             }
             else
             {
-                string definitionUniqueId = null;
+                string definitionUniqueId;
                 switch (valueType)
                 {
                     case DataValueType.Carrier:

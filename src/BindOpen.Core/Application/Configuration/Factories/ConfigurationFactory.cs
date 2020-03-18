@@ -37,8 +37,7 @@ namespace BindOpen.Application.Configuration
         {
             T unionConfiguration = new T();
 
-            T topConfiguration = XmlHelper.Load<T>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, mustFileExist, isRuntimeUpdated) as T;
-            if (topConfiguration != null)
+            if (XmlHelper.Load<T>(filePath, scope, scriptVariableSet, log, xmlSchemaSet, mustFileExist, isRuntimeUpdated) is T topConfiguration)
             {
                 unionConfiguration.Update(topConfiguration);
 

@@ -398,10 +398,6 @@ namespace BindOpen.Data.Context
                 formatter.Serialize(fileStream, this);
                 isSaved = true;
             }
-            catch
-            {
-                isSaved = false;
-            }
             finally
             {
                 fileStream?.Close();

@@ -78,12 +78,10 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 TestSaveUsableConfiguration();
             }
 
-            var configuration = ConfigurationFactory.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
-
-            string xml = "";
+            _ = ConfigurationFactory.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
             if (log.HasErrorsOrExceptions())
             {
-                xml = log.ToXml();
+                string xml = log.ToXml();
             }
             //Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration loading failed. Result was '" + xml);
 

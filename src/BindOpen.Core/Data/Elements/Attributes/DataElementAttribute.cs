@@ -60,7 +60,7 @@ namespace BindOpen.Data.Elements
             }
             set
             {
-                this._aliases = value ?? new String[0];
+                this._aliases = value ?? Array.Empty<string>();
             }
         }
 
@@ -75,7 +75,7 @@ namespace BindOpen.Data.Elements
             }
             set
             {
-                this._areaSpecifications = value ?? new DataAreaSpecification[0];
+                this._areaSpecifications = value ?? Array.Empty<DataAreaSpecification>();
             }
         }
 
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Elements
             }
             set
             {
-                this._availableItemizationModes = value ?? new DataItemizationMode[0];
+                this._availableItemizationModes = value ?? Array.Empty<DataItemizationMode>();
             }
         }
 
@@ -110,7 +110,7 @@ namespace BindOpen.Data.Elements
             {
                 return this._defaultStringItems;
             }
-            set { this._defaultStringItems = value ?? new String[0]; }
+            set { this._defaultStringItems = value ?? Array.Empty<string>(); }
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                RequirementLevel itemRequirementLevel = RequirementLevel.None;
+                RequirementLevel itemRequirementLevel;
                 if (this.MaximumItemNumber == 0)
                 {
                     itemRequirementLevel = RequirementLevel.Forbidden;
@@ -152,6 +152,7 @@ namespace BindOpen.Data.Elements
                     itemRequirementLevel = RequirementLevel.Optional;
                 else
                     itemRequirementLevel = RequirementLevel.None;
+
                 return itemRequirementLevel;
             }
         }
@@ -165,7 +166,7 @@ namespace BindOpen.Data.Elements
             {
                 return this._itemSpecificationLevels;
             }
-            set { this._itemSpecificationLevels = value ?? new SpecificationLevels[0]; }
+            set { this._itemSpecificationLevels = value ?? Array.Empty<SpecificationLevels>(); }
         }
 
         #endregion
@@ -179,7 +180,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Instantiates a new instance of the DataElementAttribute class.
         /// </summary>
-        public DataElementAttribute() : base()
+        protected DataElementAttribute() : base()
         {
         }
 

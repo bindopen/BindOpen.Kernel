@@ -134,9 +134,9 @@ namespace BindOpen.System.Processing
             set
             {
                 _status = value;
-                ProcessExecutionState aProcessExecutionState = _state;
-                if (_state != (aProcessExecutionState = ProcessExecution.GetState(_status)))
-                    _state = aProcessExecutionState;
+                ProcessExecutionState processExecutionState;
+                if (_state != (processExecutionState = ProcessExecution.GetState(_status)))
+                    _state = processExecutionState;
 
                 _log?.WriteLog("execution.status", _status, BdoLoggerMode.Auto);
             }
@@ -153,8 +153,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _state = value;
-
-                ProcessExecutionStatus aProcessExecutionStatus = _status;
                 if (!ProcessExecution.GetStatuses(_state).Contains(_status))
                     _status = ProcessExecution.GetDefaultStatus(_state);
 
@@ -360,11 +358,10 @@ namespace BindOpen.System.Processing
         /// <param name="aString">The execution state string.</param>
         public static ProcessExecutionState GetState(String aString)
         {
-            ProcessExecutionState aState = ProcessExecutionState.None;
-            if (!Enum.TryParse<ProcessExecutionState>(aString, true, out aState))
-                aState = ProcessExecutionState.None;
+            if (!Enum.TryParse<ProcessExecutionState>(aString, true, out ProcessExecutionState state))
+                state = ProcessExecutionState.None;
 
-            return aState;
+            return state;
         }
 
         /// <summary>
@@ -373,8 +370,7 @@ namespace BindOpen.System.Processing
         /// <param name="aString">The execution status string.</param>
         public static ProcessExecutionStatus GetStatus(String aString)
         {
-            ProcessExecutionStatus status = ProcessExecutionStatus.None;
-            if (!Enum.TryParse<ProcessExecutionStatus>(aString, true, out status))
+            if (!Enum.TryParse<ProcessExecutionStatus>(aString, true, out ProcessExecutionStatus status))
                 status = ProcessExecutionStatus.None;
 
             return status;

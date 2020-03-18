@@ -21,9 +21,9 @@ namespace BindOpen.System.Assemblies
 
         #region Variables
 
-        private List<AppDomain> _appDomains = new List<AppDomain>();
-        private List<ResourceAllocation> _resourceAllocations = new List<ResourceAllocation>();
-        private Hashtable _resolveEventHandlerHashTable = new Hashtable();
+        private readonly List<AppDomain> _appDomains = new List<AppDomain>();
+        private readonly List<ResourceAllocation> _resourceAllocations = new List<ResourceAllocation>();
+        private readonly Hashtable _resolveEventHandlerHashTable = new Hashtable();
 
         #endregion
 

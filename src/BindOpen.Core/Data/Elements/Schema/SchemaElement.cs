@@ -309,10 +309,12 @@ namespace BindOpen.Data.Elements.Schema
             if (parentZoneElement == null)
                 return null;
 
-            SchemaZoneElement aSchemaZoneElement = new SchemaZoneElement();
-            aSchemaZoneElement.ParentZone = parentZoneElement;
-            parentZoneElement.AddSubElement(aSchemaZoneElement);
-            return aSchemaZoneElement;
+            SchemaZoneElement schemaZoneElement = new SchemaZoneElement
+            {
+                ParentZone = parentZoneElement
+            };
+            parentZoneElement.AddSubElement(schemaZoneElement);
+            return schemaZoneElement;
         }
 
         /// <summary>

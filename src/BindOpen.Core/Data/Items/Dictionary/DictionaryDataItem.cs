@@ -21,16 +21,6 @@ namespace BindOpen.Data.Items
     public class DictionaryDataItem : DataItem, IDictionaryDataItem
     {
         // --------------------------------------------------
-        // CONSTANTS
-        // --------------------------------------------------
-
-        #region Constants
-
-        private static readonly string[] __UICultureNames = new string[] { "de", "du", "en", "es", "fr", "it", "po" };
-
-        #endregion
-
-        // --------------------------------------------------
         // VARIABLES
         // --------------------------------------------------
 
