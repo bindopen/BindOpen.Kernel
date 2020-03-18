@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Stores;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
 using System;
@@ -70,7 +69,7 @@ namespace BindOpen.Data.Stores
                 return (T)Depots[typeof(T)];
             }
 
-            return default(T);
+            return default;
         }
 
         /// <summary>

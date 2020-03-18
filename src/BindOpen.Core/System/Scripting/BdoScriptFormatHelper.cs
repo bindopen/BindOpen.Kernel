@@ -19,65 +19,63 @@ namespace BindOpen.System.Scripting
         /// Formats the specified script string considering the specified number of tabulations.
         /// </summary>
         /// <param name="script">The script to format.</param>
-        /// <param name="aTabulationNumber">The number of tabulations.</param>
+        /// <param name="tabulationNumber">The number of tabulations.</param>
         /// <returns>Returns the formated script.</returns>
-        public static string Format(String script, int aTabulationNumber = 0)
+        public static string Format(String script, int tabulationNumber = 0)
         {
-            String aAlignedScript = (aTabulationNumber == 0 ?
+            String alignedScript = (tabulationNumber == 0 ?
                 BdoScriptFormatHelper.Format(BdoScriptFormatHelper.CleanScript(script), 0).Trim() :
                 script);
 
             int index = -1;
-            int aNextIndex = -1;
             int scriptWordDepth = 0;
 
-            while (index < aAlignedScript.Length)
+            while (index < alignedScript.Length)
             {
-                index = BdoScriptParsingHelper.GetIndexOfNextString(aAlignedScript, "(", index + 1);
+                index = BdoScriptParsingHelper.GetIndexOfNextString(alignedScript, "(", index + 1);
 
                 // if there is a "("
-                if (index < aAlignedScript.Length)
+                if (index < alignedScript.Length)
                 {
-                    aNextIndex = index + 1;
+                    int nextIndex = index + 1;
 
                     bool aHasSeveralParameters = false;
 
-                    while ((aNextIndex < aAlignedScript.Length) &&
-                        (aAlignedScript.Substring(aNextIndex, 1) != ")"))
+                    while ((nextIndex < alignedScript.Length) && (alignedScript.Substring(nextIndex, 1) != ")"))
                     {
-                        aNextIndex = BdoScriptParsingHelper.GetIndexOfNextString(aAlignedScript, ",", aNextIndex);
+                        nextIndex = BdoScriptParsingHelper.GetIndexOfNextString(alignedScript, ",", nextIndex);
 
                         // if the next index is not out of range
-                        if (aNextIndex < aAlignedScript.Length)
+                        if (nextIndex < alignedScript.Length)
                         {
                             // if it is the first parameter then
-                            if (aAlignedScript[index] == '(')
+                            if (alignedScript[index] == '(')
                             {
                                 // if we have a comma (meaning we have several parameters)
-                                if (aAlignedScript[aNextIndex] == ',')
+                                if (alignedScript[nextIndex] == ',')
                                 {
                                     // we add a tabulation
-                                    aTabulationNumber += 1;
+                                    tabulationNumber += 1;
 
                                     // we apply a carriage return with tab after the "("
-                                    BdoScriptFormatHelper.AddCRToScript(ref aAlignedScript, index + 1, ref index, ref aNextIndex, aTabulationNumber);
-                                    index += 1 + aTabulationNumber;
+                                    BdoScriptFormatHelper.AddCRToScript(ref alignedScript, index + 1, ref index, ref nextIndex, tabulationNumber);
+                                    index += 1 + tabulationNumber;
                                 }
                                 // else
                                 else
                                 {
-                                    String parameterValue = aAlignedScript.Substring(index + 1, aNextIndex - index - 1);
+                                    String parameterValue = alignedScript.Substring(index + 1, nextIndex - index - 1);
 
                                     //  if the parameter contains (% or $) and "(" (normally meaning it contains function or variable) then
                                     if ((parameterValue.Contains(BdoScriptParsingHelper.Symbol_Var) | parameterValue.Contains(BdoScriptParsingHelper.Symbol_Fun)) &
                                         (parameterValue.Contains("(")))
                                     {
                                         // we add a tabulation
-                                        aTabulationNumber += 1;
+                                        tabulationNumber += 1;
 
                                         // we apply a carriage return with tab after the "("
-                                        BdoScriptFormatHelper.AddCRToScript(ref aAlignedScript, index + 1, ref index, ref aNextIndex, aTabulationNumber);
-                                        index += 1 + aTabulationNumber;
+                                        BdoScriptFormatHelper.AddCRToScript(ref alignedScript, index + 1, ref index, ref nextIndex, tabulationNumber);
+                                        index += 1 + tabulationNumber;
 
                                         // we consider we have several parameters (used when we close the ")")
                                         aHasSeveralParameters = true;
@@ -86,58 +84,58 @@ namespace BindOpen.System.Scripting
                             }
 
                             // we get the parameter value and we align it
-                            String aSubScript = aAlignedScript.Substring(index + 1, aNextIndex - index - 1);
-                            String aAlignedSubScript = BdoScriptFormatHelper.Format(aSubScript.Trim(), aTabulationNumber);
-                            aAlignedScript = aAlignedScript.Remove(index + 1, aSubScript.Length);
-                            aAlignedScript = aAlignedScript.Insert(index + 1, aAlignedSubScript);
+                            string subScript = alignedScript.Substring(index + 1, nextIndex - index - 1);
+                            string alignedSubScript = BdoScriptFormatHelper.Format(subScript.Trim(), tabulationNumber);
+                            alignedScript = alignedScript.Remove(index + 1, subScript.Length);
+                            alignedScript = alignedScript.Insert(index + 1, alignedSubScript);
 
-                            aNextIndex = index + aAlignedSubScript.Length + 1;
+                            nextIndex = index + alignedSubScript.Length + 1;
 
                             // if we have a comma (meaning we have several parameters)
                             // and if it is the first parameter then
-                            if (aAlignedScript[aNextIndex] == ',')
+                            if (alignedScript[nextIndex] == ',')
                             {
                                 // we apply a carriage return
-                                BdoScriptFormatHelper.AddCRToScript(ref aAlignedScript, aNextIndex + 1, ref aNextIndex, ref index, aTabulationNumber);
-                                aNextIndex += aTabulationNumber;
+                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex + 1, ref nextIndex, ref index, tabulationNumber);
+                                nextIndex += tabulationNumber;
 
                                 // we remember we have several parameters
                                 aHasSeveralParameters = true;
                             }
                             // else if we have a ").$" then
-                            else if ((aNextIndex <= aAlignedScript.Length - (")." + BdoScriptParsingHelper.Symbol_Fun).Length) && (aAlignedScript.Substring(aNextIndex,
+                            else if ((nextIndex <= alignedScript.Length - (")." + BdoScriptParsingHelper.Symbol_Fun).Length) && (alignedScript.Substring(nextIndex,
                                 (")." + BdoScriptParsingHelper.Symbol_Fun).Length) == ")." + BdoScriptParsingHelper.Symbol_Fun))
                             {
-                                aNextIndex += 3;
+                                nextIndex += 3;
 
                                 // we add a tabulation
-                                aTabulationNumber += 1;
+                                tabulationNumber += 1;
 
                                 // we apply a carriage return with tab before the ")"
-                                BdoScriptFormatHelper.AddCRToScript(ref aAlignedScript, aNextIndex, ref index, ref aNextIndex, aTabulationNumber);
-                                aNextIndex -= 1;
+                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex, ref index, ref nextIndex, tabulationNumber);
+                                nextIndex -= 1;
                                 scriptWordDepth += 1;
                             }
                             // else if we have a ")" and we have several parameters
-                            else if ((aAlignedScript[aNextIndex] == ')') & (aHasSeveralParameters))
+                            else if ((alignedScript[nextIndex] == ')') & (aHasSeveralParameters))
                             {
                                 // we remove tabulation(s)
-                                aTabulationNumber -= 1 + scriptWordDepth;
+                                tabulationNumber -= 1 + scriptWordDepth;
 
                                 // we apply a carriage return with tab before the ")"
-                                BdoScriptFormatHelper.AddCRToScript(ref aAlignedScript, aNextIndex, ref index, ref aNextIndex, aTabulationNumber);
+                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex, ref index, ref nextIndex, tabulationNumber);
                                 scriptWordDepth = 0;
                             }
 
                             // we update indexes
-                            index = aNextIndex + 1;
-                            aNextIndex = index;
+                            index = nextIndex + 1;
+                            nextIndex = index;
                         }
                     }
                 }
             }
 
-            return aAlignedScript;
+            return alignedScript;
         }
 
         /// <summary>
@@ -185,7 +183,7 @@ namespace BindOpen.System.Scripting
             int aTabulationNumber)
         {
             // we build the carriage string
-            String aReturnString = "\n";
+            string aReturnString = "\n";
             for (int i = 0; i < aTabulationNumber; i++)
             {
                 aReturnString += "\t";

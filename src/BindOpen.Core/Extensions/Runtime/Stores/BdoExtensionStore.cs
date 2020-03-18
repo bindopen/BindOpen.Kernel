@@ -16,15 +16,14 @@ namespace BindOpen.Extensions.Runtime
 
         #region Variables
 
-        private Dictionary<string, IBdoCarrierDefinition> _carrierDefinitions = new Dictionary<string, IBdoCarrierDefinition>();
-        private Dictionary<string, IBdoConnectorDefinition> _connectorDefinitions = new Dictionary<string, IBdoConnectorDefinition>();
-        private Dictionary<string, IBdoEntityDefinition> _entityDefinitions = new Dictionary<string, IBdoEntityDefinition>();
-        private Dictionary<string, IBdoFormatDefinition> _formatDefinitions = new Dictionary<string, IBdoFormatDefinition>();
-        private Dictionary<string, IBdoHandlerDefinition> _handlerDefinitions = new Dictionary<string, IBdoHandlerDefinition>();
-        private Dictionary<string, IBdoMetricsDefinition> _metricsDefinitions = new Dictionary<string, IBdoMetricsDefinition>();
-        private Dictionary<string, IBdoRoutineDefinition> _routineDefinitions = new Dictionary<string, IBdoRoutineDefinition>();
-        private Dictionary<string, IBdoScriptwordDefinition> _scriptWordDefinitions = new Dictionary<string, IBdoScriptwordDefinition>();
-        private Dictionary<string, IBdoTaskDefinition> _taskDefinitions = new Dictionary<string, IBdoTaskDefinition>();
+        private readonly Dictionary<string, IBdoCarrierDefinition> _carrierDefinitions = new Dictionary<string, IBdoCarrierDefinition>();
+        private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDefinitions = new Dictionary<string, IBdoConnectorDefinition>();
+        private readonly Dictionary<string, IBdoEntityDefinition> _entityDefinitions = new Dictionary<string, IBdoEntityDefinition>();
+        private readonly Dictionary<string, IBdoHandlerDefinition> _handlerDefinitions = new Dictionary<string, IBdoHandlerDefinition>();
+        private readonly Dictionary<string, IBdoMetricsDefinition> _metricsDefinitions = new Dictionary<string, IBdoMetricsDefinition>();
+        private readonly Dictionary<string, IBdoRoutineDefinition> _routineDefinitions = new Dictionary<string, IBdoRoutineDefinition>();
+        private readonly Dictionary<string, IBdoScriptwordDefinition> _scriptWordDefinitions = new Dictionary<string, IBdoScriptwordDefinition>();
+        private readonly Dictionary<string, IBdoTaskDefinition> _taskDefinitions = new Dictionary<string, IBdoTaskDefinition>();
 
         #endregion
 
@@ -197,31 +196,6 @@ namespace BindOpen.Extensions.Runtime
 
             return scriptWordDefinition;
         }
-
-        private List<IBdoScriptwordDefinition> GetParentScriptwordDefinitions(
-            string definitionName,
-            IBdoScriptwordDefinition parentFeachDefinition,
-            string[] libraryNames = null)
-        {
-            List<IBdoScriptwordDefinition> parentDefinitions = new List<IBdoScriptwordDefinition>();
-
-            //if (definitionName != null)
-            //{
-            //    List<IBdoScriptwordDefinition> definitions =
-            //        (parentFeachDefinition == null ? _scriptwordDefinitions :
-            //        new List<IBdoScriptwordDefinition>(parentFeachDefinition.Children));
-            //    foreach (IBdoScriptwordDefinition currentScriptwordDefinition in definitions)
-            //    {
-            //        if (currentScriptwordDefinition.KeyEquals(definitionName) && parentFeachDefinition != null)
-            //            parentDefinitions.Add(parentFeachDefinition);
-
-            //        parentDefinitions.AddRange(GetParentScriptwordDefinitions(definitionName, currentScriptwordDefinition, libraryNames));
-            //    }
-            //}
-
-            return parentDefinitions;
-        }
-
 
         #endregion
 

@@ -58,7 +58,7 @@ namespace BindOpen.Data.Elements.Schema
                 {
                     this._SubElements = value;
                     this._SubSchemaElements = new List<SchemaElement>(this._SubElements);
-                    this.RaizePropertyChanged("SubElements");
+                    this.RaizePropertyChanged(nameof(SubElements));
                 }
             }
         }

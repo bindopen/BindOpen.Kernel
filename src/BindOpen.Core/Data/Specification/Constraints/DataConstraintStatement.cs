@@ -122,12 +122,11 @@ namespace BindOpen.Data.Specification
             object value = null,
             DataValueType dataValueType = DataValueType.Any)
         {
-            IDataElement dataElement = null;
-
             IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             if (routine?.DefinitionUniqueId.KeyEquals(definitionUniqueId) != true)
                 routine = AddConstraint(constraintName, definitionUniqueId);
 
+            IDataElement dataElement;
             if (parameterName == null && routine.Count > 0)
                 dataElement = routine[0];
             else
@@ -135,7 +134,7 @@ namespace BindOpen.Data.Specification
             if (dataElement == null)
             {
                 routine.AddElement(
-                    dataElement = ElementFactory.CreateScalar(
+                    ElementFactory.CreateScalar(
                         parameterName,
                         dataValueType == DataValueType.Any ? value.GetValueType() : dataValueType,
                         value));

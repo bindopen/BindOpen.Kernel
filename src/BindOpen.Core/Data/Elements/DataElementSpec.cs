@@ -388,9 +388,8 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns True if the default items has well been set.</returns>
         public bool SetDefaultItem(List<object> defaultItems)
         {
-            bool hasBeenSet = true;
-
             DefaultItems.Clear();
+            bool hasBeenSet;
             if (hasBeenSet = (defaultItems == null || defaultItems.Count == 0))
             {
                 foreach (object item in defaultItems)

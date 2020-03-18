@@ -29,7 +29,7 @@ namespace BindOpen.System.Scripting
 
         private readonly IBdoScope _scope = null;
 
-        private Dictionary<string, IBdoScriptwordDefinition> _definitions => _scope?.ExtensionStore?.GetItemDefinitions<IBdoScriptwordDefinition>();
+        private Dictionary<string, IBdoScriptwordDefinition> Definitions => _scope?.ExtensionStore?.GetItemDefinitions<IBdoScriptwordDefinition>();
 
         #endregion
 
@@ -97,7 +97,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
+            return Evaluate(dataExpression, out _, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -117,7 +117,6 @@ namespace BindOpen.System.Scripting
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            resultScript = "";
             return EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
         }
 
@@ -136,7 +135,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return EvaluateScript(script, DataExpressionKind.Script, out string resultScript, scriptVariableSet, log);
+            return EvaluateScript(script, DataExpressionKind.Script, out _, scriptVariableSet, log);
         }
 
         // Interpretation ------------------------------------
@@ -174,8 +173,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            string resultScript = "";
-            EvaluateScript(script, dataExpressionKind, out resultScript, scriptVariableSet, log);
+            EvaluateScript(script, dataExpressionKind, out string resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -270,7 +268,7 @@ namespace BindOpen.System.Scripting
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
-            Object evaluatedValue = resultScript = script;
+            object evaluatedValue = resultScript = script;
             if (resultScript == null)
                 resultScript = "";
 
@@ -451,22 +449,18 @@ namespace BindOpen.System.Scripting
                         {
                             // else we get the parameter value and we interprete it
                             string scriptWordParameterValue = script.Substring(index + 1, nextIndex - index - 1).Trim();
-                            if (scriptWordParameterValue != "")
+                            if (!string.IsNullOrEmpty(scriptWordParameterValue))
                             {
-                                Object parameterValue = null;
-                                string parameterText = "";
-
-                                int aSubIndex = 0;
-                                parameterValue = Interprete(
+                                int subIndex = 0;
+                                object parameterValue = Interprete(
                                     scriptWordParameterValue,
-                                    out parameterText,
-                                    ref aSubIndex,
+                                    out string parameterText,
+                                    ref subIndex,
                                     offsetIndex + index + 1,
                                     scriptVariableSet,
                                     isSimulationModeOn,
                                     log);
                                 parameterText = parameterText.Trim();
-                                //script = script.Replace(script.Substring(index + 1, nextIndex - index - 1), aEvaluatedScriptwordParameterValue);
 
                                 script = script.Remove(index + 1, nextIndex - index - 1);
                                 script = script.Insert(index + 1, parameterText);
@@ -639,7 +633,7 @@ namespace BindOpen.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        new object[0] : scriptWord.ParameterDetail?.Elements?.Select(p => p.GetObject()).ToArray());
+                        Array.Empty<object>() : scriptWord.ParameterDetail?.Elements?.Select(p => p.GetObject()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_scope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
@@ -733,7 +727,7 @@ namespace BindOpen.System.Scripting
         /// Gets the script word definitions of this instance.
         /// </summary>
         /// <returns>Returns the script word definitions of this instance.</returns>
-        public Dictionary<string, IBdoScriptwordDefinition> GetDefinitions() => _definitions;
+        public Dictionary<string, IBdoScriptwordDefinition> GetDefinitions() => Definitions;
 
         /// <summary>
         /// Returns the word definitions with the specified name.
@@ -751,7 +745,7 @@ namespace BindOpen.System.Scripting
             {
                 Dictionary<string, IBdoScriptwordDefinition> poolScriptwordDefinitions = null;
                 if (parentDefinition == null)
-                    poolScriptwordDefinitions = _definitions;
+                    poolScriptwordDefinitions = Definitions;
                 else if (parentDefinition.Children != null)
                     poolScriptwordDefinitions = parentDefinition.Children;
 
@@ -782,7 +776,7 @@ namespace BindOpen.System.Scripting
 
             Dictionary<string, IBdoScriptwordDefinition> poolScriptwordDefinitions = null;
             if (parentDefinition == null)
-                poolScriptwordDefinitions = _definitions;
+                poolScriptwordDefinitions = Definitions;
             else if (parentDefinition.Children != null)
                 poolScriptwordDefinitions = new Dictionary<string, IBdoScriptwordDefinition>(parentDefinition.Children);
 

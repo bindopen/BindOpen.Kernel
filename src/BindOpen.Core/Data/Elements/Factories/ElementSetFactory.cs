@@ -130,7 +130,7 @@ namespace BindOpen.Data.Elements
             {
                 foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
                 {
-                    if (propertyInfo.GetCustomAttribute(typeof(T)) is DetailPropertyAttribute attribute)
+                    if (propertyInfo.GetCustomAttribute(typeof(T)) is DetailPropertyAttribute)
                     {
                         string propertyName = propertyInfo.Name;
                         object propertyValue = propertyInfo.GetValue(aObject);

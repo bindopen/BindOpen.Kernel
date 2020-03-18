@@ -739,35 +739,35 @@ namespace BindOpen.Data.Helpers.Strings
             {
                 case DataValueType.Date:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
-                    DateTime dateTime = new DateTime();
+                    DateTime dateTime;
                     if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         return null;
                     return new DateTime?(dateTime);
                 case DataValueType.Time:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__TimeFormat;
-                    TimeSpan aTimeSpan = new TimeSpan();
+                    TimeSpan aTimeSpan;
                     if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out aTimeSpan))
                         return null;
                     return new TimeSpan?(aTimeSpan);
                 case DataValueType.Boolean:
                     return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
                 case DataValueType.Number:
-                    double aDouble = new double();
+                    double aDouble;
                     if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))
                         return null;
                     return new double?(aDouble);
                 case DataValueType.Integer:
-                    int aInt = new int();
+                    int aInt;
                     if (!int.TryParse(st, out aInt))
                         return null;
                     return new int?(aInt);
                 case DataValueType.Long:
-                    long aLong = new long();
+                    long aLong;
                     if (!long.TryParse(st, out aLong))
                         return null;
                     return new long?(aLong);
                 case DataValueType.ULong:
-                    ulong aULong = new ulong();
+                    ulong aULong;
                     if (!ulong.TryParse(st, out aULong))
                         return null;
                     return new ulong?(aULong);
@@ -794,7 +794,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="defaultEnum">The default enumeration to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static T ToEnum<T>(this string st, T defaultEnum = default(T)) where T : struct, IConvertible
+        public static T ToEnum<T>(this string st, T defaultEnum = default) where T : struct, IConvertible
         {
             T aEnum = defaultEnum;
             if ((st != null) && (!Enum.TryParse<T>(st, true, out aEnum)))

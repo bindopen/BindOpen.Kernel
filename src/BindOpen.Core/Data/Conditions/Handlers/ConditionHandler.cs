@@ -1,6 +1,5 @@
-﻿using System;
-using BindOpen.Data.Conditions;
-using BindOpen.System.Scripting;
+﻿using BindOpen.System.Scripting;
+using System;
 using static BindOpen.Data.Conditions.AdvancedCondition;
 
 namespace BindOpen.Data.Conditions
@@ -28,7 +27,7 @@ namespace BindOpen.Data.Conditions
             }
             else if (condition is BasicCondition basicCondition)
             {
-                return basicCondition.Evaluate(scriptInterpreter, scriptVariableSet);
+                return basicCondition.Evaluate();
             }
             else if (condition is ScriptCondition scriptCondition)
             {
@@ -78,10 +77,7 @@ namespace BindOpen.Data.Conditions
         /// <param name="scriptInterpreter">Script interpreter.</param>
         /// <param name="scriptVariableSet">The script variable set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
-        private static bool Evaluate(
-            this BasicCondition condition,
-            IBdoScriptInterpreter scriptInterpreter,
-            IBdoScriptVariableSet scriptVariableSet)
+        private static bool Evaluate(this BasicCondition condition)
         {
             if (condition == null) return false;
 

@@ -228,13 +228,13 @@ namespace BindOpen.Extensions.Definition
                     st += "<strong>Syntax</strong>";
                     st += "<br>";
 
-                    String parameterString = "";
+                    string parameterString = "";
                     if (this.IsRepeatedParameters)
                         parameterString +=
                             "<span style='color: blue;'>&lt;" + this.RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + this.MinParameterNumber.ToString() + ";Max: " + this.MaxParameterNumber.ToString() + ">";
                     else
                         foreach (DataElementSpec elementSpecification in this.ParameterSpecification.Items)
-                            parameterString += (parameterString == String.Empty ? "" : ",") +
+                            parameterString += (string.IsNullOrEmpty(parameterString) ? "" : ",") +
                                 "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
                     st += this.Name + "(" + parameterString + ")";
 

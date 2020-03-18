@@ -96,7 +96,7 @@ namespace BindOpen.System.Assemblies
         /// <param name="attributes">The attributes to consider.</param>
         public static IBdoLog CreateInstance(
             string fullyQualifiedName,
-            out Object object1,
+            out object object1,
             params object[] attributes)
         {
             var log = new BdoLog();
