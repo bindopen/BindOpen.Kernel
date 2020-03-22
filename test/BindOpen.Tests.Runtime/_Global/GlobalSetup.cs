@@ -12,7 +12,7 @@ namespace BindOpen.Tests.Core
         public void Setup()
         {
             // Setup variables for the first time
-            var host = GlobalVariables.AppHost;
+            _ = GlobalVariables.AppHost;
         }
     }
 }
