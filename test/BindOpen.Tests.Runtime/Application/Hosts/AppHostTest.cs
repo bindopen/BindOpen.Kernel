@@ -13,7 +13,7 @@ namespace BindOpen.Tests.Core.Application.Hosts
         [Test]
         public void TestLoggers()
         {
-            //GlobalVariables.AppHost.Log.AddError("This is a test");
+            Assert.That(GlobalVariables.AppHost.IsLoaded, "Application host not load failed");
         }
     }
 }

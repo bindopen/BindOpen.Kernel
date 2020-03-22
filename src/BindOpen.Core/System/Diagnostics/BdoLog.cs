@@ -787,7 +787,7 @@ namespace BindOpen.System.Diagnostics
             {
                 foreach (BdoLog childLog in SubLogs)
                 {
-                    ClearEvents(isRecursive, kinds);
+                    childLog.ClearEvents(isRecursive, kinds);
                 }
             }
         }
@@ -799,7 +799,9 @@ namespace BindOpen.System.Diagnostics
         {
             // we clear the task check points if there is no special results in load task
             if (!HasErrorsOrExceptionsOrWarnings())
+            {
                 ClearEvents(true, EventKinds.Checkpoint);
+            }
         }
 
         // Sub logs ------------------------------------
