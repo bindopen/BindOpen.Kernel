@@ -1,6 +1,4 @@
 ﻿using BindOpen.Data.Helpers.Strings;
-using System.IO;
-using System.Reflection;
 
 namespace BindOpen.Application.Scopes
 {
@@ -14,11 +12,6 @@ namespace BindOpen.Application.Scopes
         // ------------------------------------------
 
         #region Constants
-
-        /// <summary>
-        /// The default root folder
-        /// </summary>
-        public static readonly string __DefaultRootFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).GetEndedString(@"\").ToPath();
 
         /// <summary>
         /// The default host settings file name
