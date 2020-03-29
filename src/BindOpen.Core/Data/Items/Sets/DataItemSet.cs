@@ -405,7 +405,7 @@ namespace BindOpen.Data.Items
                             }
                             else if (updateModes.Has(UpdateModes.Incremental_UpdateCommonItems))
                             {
-                                log.AddEvents(currentSubItem.Repair(referenceSubItem, specificationAreas));
+                                currentSubItem.Repair(referenceSubItem, specificationAreas).AddEventsTo(log);
                             }
 
                             i++;
