@@ -1,33 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <app.config xmlns="https://bindopen.org/xsd">
-  
-  <scalar name="test.folderPath" script="$(application.folderPath) ..\app_data\test" />
 
-  <collection name="test.uris">
-    <scalar name="key1" script="url1" />
-    <scalar name="key2" script="url2" />
-  </collection>
-  
-  <credentials> 
+  <scalar name="resources.folderPath" script="G:\repos\meltingSoft.Flow\src\Flow.Resources\Flow.Resources.Repo" />
+
+  <credentials>
     <credential name="crendential1">
-      <domainId>test.com</domainId>
-      <login>userA@test.com</login>
+      <domainId>bindopen.com</domainId>
+      <login>userA@meltingsoft.com</login>
       <password>passwordC</password>
     </credential>
     <credential name="crendential2">
-      <login>userB@test.com</login>
+      <login>userB@meltingsoft.com</login>
       <password>passwordB</password>
     </credential>
   </credentials>
-  
-  <dataSources>  
-    <add name="db.test" kind="Database">
-      <configuration definition="database.mssqlserver$client">
-        <scalar name="databaseKind" value="MSSqlServer" />
-        <connectionString>          
-          <![CDATA[Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;]]>
-        </connectionString>
+
+  <dataSources>
+    <!--<add name="smtp_default"  connector="messages$smtp">
+      <detail>
+        <scalar name="host" value="smtp.googlemail.com" />
+        <scalar name="port" value="587" valueType="Integer" />
+        <scalar name="isDefaultCredentialsUsed" value="true" valueType="Boolean" />
+        <scalar name="isSslEnabled" value="true" valueType="Boolean" />
+        <scalar name="timeout" value="60000" valueType="Integer" />
+        <scalar name="login" value="login@meltingsoft.com" />
+        <scalar name="password" value="passwordA" />
+      </detail>
+    </add>-->
+    <add name="wave.db" kind="Database">
+      <configuration definition="database.postgreSql$client">
+        <scalar name="databaseKind" value="PostgreSql" />
+        <scalar name="connectionString" value="HERMES;port=5432;Database=IdentityServer;UserId=postgres;Password=p+M324v8_pXf4;" />
       </configuration>
     </add>
+
   </dataSources>
-  
+
 </app.config>
