@@ -9,3 +9,4 @@ For any additional information, please visit the Npgsql website at https://www.b
 ## License
 
 This project is licensed under the terms of the MIT LICENSE.
+
