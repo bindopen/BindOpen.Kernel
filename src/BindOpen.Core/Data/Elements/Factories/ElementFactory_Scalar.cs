@@ -80,7 +80,14 @@ namespace BindOpen.Data.Elements
         {
             if (valueType == DataValueType.Any)
             {
-                valueType = items.GetValueType();
+                if (items == null)
+                {
+                    valueType = DataValueType.None;
+                }
+                else
+                {
+                    valueType = items.GetValueType();
+                }
             }
 
             ScalarElement element = new ScalarElement(name, id)
@@ -89,8 +96,13 @@ namespace BindOpen.Data.Elements
                 Specification = specification as ScalarElementSpec
             };
 
-            foreach (object item in items)
-                element.AddItem(item);
+            if (items != null)
+            {
+                foreach (object item in items)
+                {
+                    element.AddItem(item);
+                }
+            }
 
             return element;
         }

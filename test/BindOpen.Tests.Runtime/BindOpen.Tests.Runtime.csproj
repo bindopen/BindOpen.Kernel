@@ -25,8 +25,11 @@
 
   <ItemGroup>
     <Compile Remove="bdo\logs\**" />
+    <Compile Remove="bdo\temp\**" />
     <EmbeddedResource Remove="bdo\logs\**" />
+    <EmbeddedResource Remove="bdo\temp\**" />
     <None Remove="bdo\logs\**" />
+    <None Remove="bdo\temp\**" />
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
