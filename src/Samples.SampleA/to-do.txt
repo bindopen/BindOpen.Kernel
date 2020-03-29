@@ -1,5 +1,7 @@
 - Change icon name
 
+- Update element, element spec
+
 Databases:
 	- Clone Table, Field, Queries, Clauses
 	- Bug Delete. Pas de "Delete table"

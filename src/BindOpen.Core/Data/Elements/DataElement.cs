@@ -550,10 +550,6 @@ namespace BindOpen.Data.Elements
                     Title = element.Title;
                     Description = element.Description;
                     Index = element.Index;
-                    if (ValueType == DataValueType.None)
-                    {
-                        ValueType = element.ValueType;
-                    }
                 }
 
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
@@ -645,8 +641,11 @@ namespace BindOpen.Data.Elements
         {
             var log = new BdoLog();
 
-            if (item is IDataElement)
+            if (item is IDataElement element)
             {
+                if (specificationAreas == null)
+                    specificationAreas = new[] { nameof(DataAreaKind.Any) };
+
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
                     || (specificationAreas.Contains(nameof(DataAreaKind.Constraints))))
                 {
@@ -660,6 +659,11 @@ namespace BindOpen.Data.Elements
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(DataElementAreaKind.Element))))
                 {
+                    if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
+                    {
+                        ValueType = element.ValueType;
+                    }
+
                     if (Specification != null)
                         if (Specification.AvailableItemizationModes.Count == 1)
                             ItemizationMode = Specification.AvailableItemizationModes[0];

@@ -60,6 +60,9 @@ namespace BindOpen.Tests.Core.Data.Elements
         {
             var log = new BdoLog();
 
+            var elementA = ElementFactory.CreateScalar("name1", null);
+            var elementB = ElementFactory.CreateScalar("name1", "Test1");
+            elementA.Repair(elementB);
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
 
