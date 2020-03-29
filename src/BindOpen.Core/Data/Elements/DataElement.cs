@@ -550,6 +550,10 @@ namespace BindOpen.Data.Elements
                     Title = element.Title;
                     Description = element.Description;
                     Index = element.Index;
+                    if (ValueType == DataValueType.None)
+                    {
+                        ValueType = element.ValueType;
+                    }
                 }
 
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
