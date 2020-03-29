@@ -23,8 +23,6 @@ namespace BindOpen.Tests.Core.Application.Hosts
         {
             var appHost = BdoHostFactory.CreateBindOpenDefaultHost(
                 options => options
-                    .SetRootFolder(q => q.HostSettings.Environment != "Development", @".\..\..\..")
-                    .SetRootFolder(q => q.HostSettings.Environment == "Development", @".\..\..")
                     .AddDataStore(store => store
                         .RegisterDatasources(m => m.AddFromConfiguration(options)))
                     .AddDefaultConsoleLogger()
