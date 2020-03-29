@@ -60,9 +60,23 @@ namespace BindOpen.Tests.Core.Data.Elements
         {
             var log = new BdoLog();
 
-            var elementA = ElementFactory.CreateScalar("name1", null);
-            var elementB = ElementFactory.CreateScalar("name1", "Test1");
-            elementA.Repair(elementB);
+            var elementAA = ElementFactory.CreateScalar("name1", null);
+            var elementAB = ElementFactory.CreateScalar("name1", "Test1");
+            elementAA.Repair(elementAB);
+
+            var elementSetA = ElementSetFactory.Create(elementAA, elementAB);
+
+
+            var elementBA = ElementFactory.CreateScalar("name1", "Test1");
+            var elementBB = ElementFactory.CreateScalar("name1", null);
+            elementBA.Repair(elementBB);
+
+            var elementSetB = ElementSetFactory.Create(elementBA, elementBB);
+
+            elementSetB.Add(elementBB);
+            elementSetA.Add(elementAB);
+            elementSetB.Update(elementSetA);
+
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
 

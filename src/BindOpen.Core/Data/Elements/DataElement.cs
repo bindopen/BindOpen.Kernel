@@ -557,6 +557,11 @@ namespace BindOpen.Data.Elements
                 {
                     if (element != null)
                     {
+                        if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
+                        {
+                            ValueType = element.ValueType;
+                        }
+
                         ItemScript = element.ItemScript;
 
                         if (element.Items != null && element.Items.Count > 0)
@@ -659,11 +664,6 @@ namespace BindOpen.Data.Elements
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(DataElementAreaKind.Element))))
                 {
-                    if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
-                    {
-                        ValueType = element.ValueType;
-                    }
-
                     if (Specification != null)
                         if (Specification.AvailableItemizationModes.Count == 1)
                             ItemizationMode = Specification.AvailableItemizationModes[0];
@@ -672,6 +672,10 @@ namespace BindOpen.Data.Elements
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                 {
+                    if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
+                    {
+                        ValueType = element.ValueType;
+                    }
                 }
 
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
