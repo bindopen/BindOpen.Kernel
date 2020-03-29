@@ -261,11 +261,11 @@ namespace BindOpen.Application.Scopes
             {
                 if (string.IsNullOrEmpty(_rootFolderPath))
                 {
-                    _rootFolderPath = BdoDefaultHostPaths.__DefaultRootFolderPath;
+                    _rootFolderPath = BdoHostFactory.DefaultRootFolderPath();
                 }
                 else
                 {
-                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(BdoDefaultHostPaths.__DefaultRootFolderPath).GetEndedString(@"\").ToPath();
+                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(BdoHostFactory.DefaultRootFolderPath()).GetEndedString(@"\").ToPath();
                 }
             }
 

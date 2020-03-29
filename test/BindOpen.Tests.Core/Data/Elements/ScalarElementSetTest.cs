@@ -27,6 +27,15 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
+        public void TestCreateElementWithNullValue()
+        {
+            var element1 = ElementFactory.CreateScalar("null1", null);
+
+            Assert.That(
+                element1 != null, "Bad scalar element creation");
+        }
+
+        [Test]
         public void TestCreateElementSet()
         {
             Assert.That(
