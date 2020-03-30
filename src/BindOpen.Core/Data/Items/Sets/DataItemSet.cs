@@ -421,7 +421,7 @@ namespace BindOpen.Data.Items
                     {
                         foreach (T referenceSubItem in referenceItem.Items)
                         {
-                            T currentSubItem = Items.Find(p => p.KeyEquals(referenceSubItem));
+                            T currentSubItem = Items == null ? default : Items.Find(p => p.KeyEquals(referenceSubItem));
 
                             if (currentSubItem == null)
                                 Add((T)referenceSubItem.Clone());

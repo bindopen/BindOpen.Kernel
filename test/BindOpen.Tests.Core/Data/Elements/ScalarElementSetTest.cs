@@ -77,6 +77,15 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetA.Add(elementAB);
             elementSetB.Update(elementSetA);
 
+            elementSetA.Add(null);
+            elementSetB.Add(null);
+            elementSetB.Add(ElementFactory.Create("name1", null));
+            elementSetB.Add(ElementFactory.Create("name3", null));
+            elementSetA.Add(ElementFactory.Create("name1", null));
+            elementSetA.Add(ElementFactory.Create("name2", null));
+            elementSetB.Repair(elementSetA);
+            elementSetB.Update(elementSetA);
+
             //test update
             //log = _scalarElementSetB.Update(_scalarElementSetA);
 

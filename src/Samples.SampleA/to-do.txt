@@ -1,6 +1,9 @@
 - Change icon name
 
 - Update element, element spec
+- ScriptVariableSet fluent.
+
+- Script words: surcharge de fonctions
 
 Databases:
 	- Clone Table, Field, Queries, Clauses
