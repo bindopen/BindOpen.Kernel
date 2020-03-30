@@ -281,13 +281,17 @@ namespace BindOpen.Data.Common
         public static DataValueType GetValueType(this object[] objects)
         {
             DataValueType dataValueType = DataValueType.Any;
-            foreach (object object1 in objects)
+
+            if (objects != null)
             {
-                DataValueType currentDataValueType = DataValueTypeExtension.GetValueType(object1);
-                if ((dataValueType != DataValueType.Any) && (currentDataValueType != dataValueType))
-                    return DataValueType.Any;
-                else
-                    dataValueType = currentDataValueType;
+                foreach (object object1 in objects)
+                {
+                    DataValueType currentDataValueType = DataValueTypeExtension.GetValueType(object1);
+                    if ((dataValueType != DataValueType.Any) && (currentDataValueType != dataValueType))
+                        return DataValueType.Any;
+                    else
+                        dataValueType = currentDataValueType;
+                }
             }
 
             return dataValueType;

@@ -16,7 +16,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IDataElement Create(
+        public static DataElement Create(
             string name,
             object[] items)
         {
@@ -28,7 +28,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="item">The item to consider.</param>
-        public static IDataElement Create(
+        public static DataElement Create(
             string name,
             object item)
         {
@@ -42,13 +42,13 @@ namespace BindOpen.Data.Elements
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="specification">The specification to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IDataElement Create(
+        public static DataElement Create(
             string name,
             DataValueType valueType = DataValueType.Any,
             IDataElementSpec specification = null,
             params object[] items)
         {
-            IDataElement element = null;
+            DataElement element = null;
 
             if (valueType == DataValueType.Any)
             {
@@ -105,7 +105,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="elementSpec">The data element specification to consider.</param>
         /// <returns></returns>
-        public static IDataElement CreateFromSpec(DataElementSpec elementSpec)
+        public static DataElement CreateFromSpec(DataElementSpec elementSpec)
         {
             return Create(elementSpec?.Name, elementSpec?.ValueType ?? DataValueType.None, elementSpec);
         }
