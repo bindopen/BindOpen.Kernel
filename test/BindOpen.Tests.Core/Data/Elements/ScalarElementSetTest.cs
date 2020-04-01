@@ -81,8 +81,12 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetB.Add(null);
             elementSetB.Add(ElementFactory.Create("name1", null));
             elementSetB.Add(ElementFactory.Create("name3", null));
+            elementSetB.Add(ElementFactory.Create("name4", null));
+            elementSetB.Add(ElementFactory.Create("name5", DataValueType.Text));
             elementSetA.Add(ElementFactory.Create("name1", null));
             elementSetA.Add(ElementFactory.Create("name2", null));
+            elementSetA.Add(ElementFactory.CreateScalar("name4", DataValueType.Text, null));
+            elementSetA.Add(ElementFactory.Create("name5", null));
             elementSetB.Repair(elementSetA);
             elementSetB.Update(elementSetA);
 
