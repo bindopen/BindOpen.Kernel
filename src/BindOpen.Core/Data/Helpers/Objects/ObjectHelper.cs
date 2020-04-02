@@ -9,6 +9,7 @@ using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace BindOpen.Data.Helpers.Objects
@@ -322,6 +323,29 @@ namespace BindOpen.Data.Helpers.Objects
             }
 
             return log;
+        }
+
+        /// <summary>
+        /// Gets the specified property.
+        /// </summary>
+        /// <typeparam name="T">The class to consider.</typeparam>
+        /// <param name="property">The property expression to consider.</param>
+        /// <returns>Returns the property information.</returns>
+        public static PropertyInfo GetProperty<T>(this Expression<Func<T, object>> property)
+        {
+            LambdaExpression lambda = (LambdaExpression)property;
+            MemberExpression memberExpression;
+
+            if (lambda.Body is UnaryExpression unaryExpression)
+            {
+                memberExpression = (MemberExpression)(unaryExpression.Operand);
+            }
+            else
+            {
+                memberExpression = (MemberExpression)(lambda.Body);
+            }
+
+            return (PropertyInfo)memberExpression.Member;
         }
     }
 }
