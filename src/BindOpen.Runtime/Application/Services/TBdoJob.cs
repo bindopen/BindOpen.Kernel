@@ -8,7 +8,7 @@ namespace BindOpen.Application.Services
     /// <summary>
     /// This class represents an bot.
     /// </summary>
-    public abstract class TBdoService<S> : BdoService, ITBdoService<S>, IBdoTrigeredService
+    public abstract class TBdoJob<S> : BdoJob, ITBdoJob<S>, IBdoTrigeredService
         where S : IBdoSettings, new()
     {
         // ------------------------------------------
@@ -27,22 +27,22 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// The action that the start of this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartSuccess { get; set; }
+        public Action<ITBdoJob<S>> Action_OnStartSuccess { get; set; }
 
         /// <summary>
         /// The action that the start of this instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartFailure { get; set; }
+        public Action<ITBdoJob<S>> Action_OnStartFailure { get; set; }
 
         /// <summary>
         /// The action that this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; set; }
+        public Action<ITBdoJob<S>> Action_OnExecutionSucess { get; set; }
 
         /// <summary>
         /// The action that is executed when the instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; set; }
+        public Action<ITBdoJob<S>> Action_OnExecutionFailure { get; set; }
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TBdoService class.
         /// </summary>
-        protected TBdoService(
+        protected TBdoJob(
             IBdoScope scope,
             S settings = default,
             params IBdoLogger[] loggers) : base(scope, loggers)

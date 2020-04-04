@@ -10,7 +10,7 @@ namespace BindOpen.Application.Services
     /// <summary>
     /// The interface defines the BindOpen service.
     /// </summary>
-    public interface IBdoService : IIdentifiedDataItem
+    public interface IBdoJob : IIdentifiedDataItem, IBdoScoped
     {
         /// <summary>
         /// The loggers.
@@ -54,13 +54,13 @@ namespace BindOpen.Application.Services
         /// Starts the service.
         /// </summary>
         /// <returns>Returns the service to consider.</returns>
-        IBdoService Start();
+        IBdoJob Start();
 
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
         /// <param name="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the service to consider.</returns>
-        IBdoService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
+        IBdoJob End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }
 }

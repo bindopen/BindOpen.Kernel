@@ -10,7 +10,7 @@ namespace Samples.SampleA.Services
         {
         }
 
-        protected override IBdoService Process(IBdoLog log)
+        protected override IBdoJob Process(IBdoLog log)
         {
             Service_Command.Process(Host, log);
 

@@ -12,7 +12,7 @@ namespace BindOpen.Application.Services
     /// <summary>
     /// This class represents an bot.
     /// </summary>
-    public abstract class BdoService : IdentifiedDataItem, IBdoService
+    public abstract class BdoJob : BdoService, IBdoJob
     {
         // ------------------------------------------
         // VARIABLES
@@ -25,13 +25,6 @@ namespace BindOpen.Application.Services
         /// </summary>
         /// <remarks>The value can be assigned.</remarks>
         protected bool _isLoaded = false;
-
-        // Scope ----------------------
-
-        /// <summary>
-        /// The scope of this instance.
-        /// </summary>
-        protected IBdoScope _scope = null;
 
         #endregion
 
@@ -99,12 +92,10 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Instantiates a new instance of the BdoService class.
         /// </summary>
-        protected BdoService(
+        protected BdoJob(
             IBdoScope scope,
-            params IBdoLogger[] loggers) : base("")
+            params IBdoLogger[] loggers) : base(scope)
         {
-            _scope = scope;
-
             Loggers = loggers?.ToList() ?? new List<IBdoLogger>();
 
             // we initiate the log of this instance
@@ -131,7 +122,7 @@ namespace BindOpen.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public virtual IBdoService Start()
+        public virtual IBdoJob Start()
         {
             var log = new BdoLog();
 
@@ -147,7 +138,7 @@ namespace BindOpen.Application.Services
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns true if this instance is started.</returns>
-        protected virtual IBdoService Process(IBdoLog log)
+        protected virtual IBdoJob Process(IBdoLog log)
         {
             if (ExecutionState != ProcessExecutionState.Pending)
             {
@@ -167,7 +158,7 @@ namespace BindOpen.Application.Services
         /// Indicates the application ends.
         /// </summary>
         /// <param name="executionStatus">The execution status to consider.</param>
-        public virtual IBdoService End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
+        public virtual IBdoJob End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
             Log?.End(executionStatus);
             return this;
@@ -192,27 +183,6 @@ namespace BindOpen.Application.Services
 
             _scope = BdoScopeFactory.CreateScope();
             _scope.Context.AddSystemItem("bdoHost", this);
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IDISPOSABLE METHODS
-        // ------------------------------------------
-
-        #region IDisposable_Methods
-
-        /// <summary>
-        /// Disposes this instance. 
-        /// </summary>
-        protected override void Dispose(bool isDisposing)
-        {
-            base.Dispose(isDisposing);
-
-            if (isDisposing)
-            {
-                _scope?.Dispose();
-            }
         }
 
         #endregion

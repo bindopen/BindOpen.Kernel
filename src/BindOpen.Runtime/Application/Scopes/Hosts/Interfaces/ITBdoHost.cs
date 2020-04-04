@@ -8,7 +8,7 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// The interface defines the bot.
     /// </summary>
-    public interface ITBdoHost<S> : ITBdoService<S>, IBdoHost
+    public interface ITBdoHost<S> : ITBdoJob<S>, IBdoHost
         where S : class, IBdoAppSettings, new()
     {
         // Options ---------------------------------

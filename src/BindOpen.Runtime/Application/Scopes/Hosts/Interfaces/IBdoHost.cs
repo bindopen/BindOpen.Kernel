@@ -6,7 +6,7 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// The interface defines the base bot.
     /// </summary>
-    public interface IBdoHost : IBdoService, IBdoScope, IBdoScoped
+    public interface IBdoHost : IBdoJob, IBdoScope
     {
         /// <summary>
         /// Get the specified known path.
