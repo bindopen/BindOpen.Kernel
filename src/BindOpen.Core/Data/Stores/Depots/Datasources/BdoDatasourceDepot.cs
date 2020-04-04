@@ -115,7 +115,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The specified connector.</returns>
         public IBdoConnectorConfiguration GetConnectorConfiguration(
             string sourceName,
-            string connectorDefinitionUniqueId)
+            string connectorDefinitionUniqueId = null)
         {
             IDatasource dataSource = GetItem(sourceName);
 
@@ -128,7 +128,7 @@ namespace BindOpen.Data.Stores
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId)
+        public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId = null)
         {
             IDatasource dataSource = GetItem(sourceName);
 
@@ -143,7 +143,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The connection string corresponding to the specified data module name.</returns>
         public string GetStringConnection(
             string sourceName,
-            string connectorDefinitionUniqueId)
+            string connectorDefinitionUniqueId = null)
         {
             IBdoConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
 

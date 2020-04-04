@@ -72,37 +72,67 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        // BindOpen connected services --------------------------
+        // BindOpen hosted services --------------------------
 
         /// <summary>
-        /// Adds a BidnOpen connected service.
+        /// Adds a BidnOpen hosted service as singleton.
         /// </summary>
-        /// <typeparam name="TService">The interface of BindOpen connected service to consider.</typeparam>
+        /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddBdoConnectedService<TService, TImplementation>(
+        public static IServiceCollection AddBdoSingletonService<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
-            where TService : class, IBdoConnectedService
+            where TService : class, IBdoScoped
             where TImplementation : class, TService
-            => services.AddBdoConnectedService<TService, TImplementation>(ServiceLifetime.Transient, setupAction);
+            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Singleton, setupAction);
 
         /// <summary>
-        /// Adds a BidnOpen connected service.
+        /// Adds a BidnOpen scoped service as scoped.
         /// </summary>
-        /// <typeparam name="TService">The interface of BindOpen connected service to consider.</typeparam>
+        /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
+        /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
+        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="setupAction">The setup action to consider.</param>
+        /// <returns>Returns the updated service collection.</returns>
+        public static IServiceCollection AddBdoScopedService<TService, TImplementation>(
+            this IServiceCollection services,
+            Func<IBdoHost, TImplementation> setupAction)
+            where TService : class, IBdoScoped
+            where TImplementation : class, TService
+            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Scoped, setupAction);
+
+        /// <summary>
+        /// Adds a BidnOpen scoped service as transient.
+        /// </summary>
+        /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
+        /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
+        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="setupAction">The setup action to consider.</param>
+        /// <returns>Returns the updated service collection.</returns>
+        public static IServiceCollection AddBdoTransientService<TService, TImplementation>(
+            this IServiceCollection services,
+            Func<IBdoHost, TImplementation> setupAction)
+            where TService : class, IBdoScoped
+            where TImplementation : class, TService
+            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Transient, setupAction);
+
+        /// <summary>
+        /// Adds a BidnOpen hosted service.
+        /// </summary>
+        /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <param name="serviceLifetime">The service life time to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddBdoConnectedService<TService, TImplementation>(
+        private static IServiceCollection AddBdoScopedService<TService, TImplementation>(
             this IServiceCollection services,
             ServiceLifetime serviceLifetime,
             Func<IBdoHost, TImplementation> setupAction)
-            where TService : class, IBdoConnectedService
+            where TService : class, IBdoScoped
             where TImplementation : class, TService
         {
             TImplementation initializer(IServiceProvider p)

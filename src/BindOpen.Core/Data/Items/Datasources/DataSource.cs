@@ -142,7 +142,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IBdoConnectorConfiguration GetConfiguration(string definitionName)
+        public IBdoConnectorConfiguration GetConfiguration(string definitionName = null)
         {
             return Configurations?.Find(p => definitionName == null || p.DefinitionUniqueId.KeyEquals(definitionName));
         }
@@ -152,9 +152,9 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConfiguration(string definitionName)
+        public bool HasConfiguration(string definitionName = null)
         {
-            return Configurations?.Any(p => p.DefinitionUniqueId.KeyEquals(definitionName)) == true;
+            return Configurations?.Any(p => definitionName == null || p.DefinitionUniqueId.KeyEquals(definitionName)) == true;
         }
 
         #endregion
