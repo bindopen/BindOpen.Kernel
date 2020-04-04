@@ -33,14 +33,14 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="definitionName"></param>
         /// <returns></returns>
-        IBdoConnectorConfiguration GetConfiguration(string definitionName);
+        IBdoConnectorConfiguration GetConfiguration(string definitionName = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="definitionName"></param>
         /// <returns></returns>
-        bool HasConfiguration(string definitionName);
+        bool HasConfiguration(string definitionName = null);
 
         /// <summary>
         /// 

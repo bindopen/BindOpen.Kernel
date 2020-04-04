@@ -67,24 +67,6 @@ namespace BindOpen.Data.Stores
             return dataStore;
         }
 
-
-        /// <summary>
-        /// Adds sources from BindOpen configuration.
-        /// </summary>
-        /// <param name="options">The host options to consider.</param>
-        public static IBdoDatasourceDepot AddFromConfiguration(this IBdoDatasourceDepot depot, IBdoHostOptions options)
-        {
-            if (options?.AppSettings?.AppConfiguration?.Datasources != null)
-            {
-                foreach (var dataSource in options?.AppSettings?.AppConfiguration?.Datasources)
-                {
-                    depot.Add(dataSource);
-                }
-            }
-
-            return depot;
-        }
-
         /// <summary>
         /// Gets the datasource depot of the specified data store.
         /// </summary>
