@@ -177,22 +177,22 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// The action that the start of this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartSuccess { get; internal set; }
+        public Action<ITBdoJob<S>> Action_OnStartSuccess { get; internal set; }
 
         /// <summary>
         /// The action that the start of this instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnStartFailure { get; internal set; }
+        public Action<ITBdoJob<S>> Action_OnStartFailure { get; internal set; }
 
         /// <summary>
         /// The action that this instance completes.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionSucess { get; internal set; }
+        public Action<ITBdoJob<S>> Action_OnExecutionSucess { get; internal set; }
 
         /// <summary>
         /// The action that is executed when the instance fails.
         /// </summary>
-        public Action<ITBdoService<S>> Action_OnExecutionFailure { get; internal set; }
+        public Action<ITBdoJob<S>> Action_OnExecutionFailure { get; internal set; }
 
         // Depot initialization actions ----------------------
 
@@ -505,7 +505,7 @@ namespace BindOpen.Application.Scopes
         /// <param name="action">The action to execute.</param>
         public ITBdoHostOptions<S> ExecuteOnStartSuccess(Action<ITBdoHost<S>> action)
         {
-            Action_OnStartSuccess = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
+            Action_OnStartSuccess = new Action<ITBdoJob<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -516,7 +516,7 @@ namespace BindOpen.Application.Scopes
         /// <param name="action">The action to execute.</param>
         public ITBdoHostOptions<S> ExecuteOnStartFailure(Action<ITBdoHost<S>> action)
         {
-            Action_OnStartFailure = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
+            Action_OnStartFailure = new Action<ITBdoJob<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -527,7 +527,7 @@ namespace BindOpen.Application.Scopes
         /// <param name="action">The action to execute.</param>
         public ITBdoHostOptions<S> ExecuteOnExecutionSuccess(Action<ITBdoHost<S>> action)
         {
-            Action_OnExecutionSucess = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
+            Action_OnExecutionSucess = new Action<ITBdoJob<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }
@@ -538,7 +538,7 @@ namespace BindOpen.Application.Scopes
         /// <param name="action">The action to execute.</param>
         public ITBdoHostOptions<S> ExecuteOnExecutionFailure(Action<ITBdoHost<S>> action)
         {
-            Action_OnExecutionFailure = new Action<ITBdoService<S>>(p => action?.Invoke(p as ITBdoHost<S>));
+            Action_OnExecutionFailure = new Action<ITBdoJob<S>>(p => action?.Invoke(p as ITBdoHost<S>));
 
             return this;
         }

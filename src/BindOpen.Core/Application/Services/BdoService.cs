@@ -1,12 +1,12 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Extensions.Runtime;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Application.Services
 {
     /// <summary>
-    /// This class represents a connected service.
+    /// This class represents an bot.
     /// </summary>
-    public abstract class BdoConnectedService : BdoService, IBdoConnectedService
+    public abstract class BdoService : IdentifiedDataItem, IBdoScoped
     {
         // ------------------------------------------
         // VARIABLES
@@ -17,9 +17,9 @@ namespace BindOpen.Application.Services
         // Scope ----------------------
 
         /// <summary>
-        /// The connector of this instance.
+        /// The scope of this instance.
         /// </summary>
-        protected IBdoConnector _connector = null;
+        protected IBdoScope _scope = null;
 
         #endregion
 
@@ -30,11 +30,11 @@ namespace BindOpen.Application.Services
         #region Variables
 
         /// <summary>
-        /// The connector of this instance.
+        /// The scope of this instance.
         /// </summary>
-        public IBdoConnector Connector
+        public IBdoScope Scope
         {
-            get { return _connector; }
+            get { return _scope; }
         }
 
         #endregion
@@ -46,10 +46,19 @@ namespace BindOpen.Application.Services
         #region Properties
 
         /// <summary>
-        /// Initializes a new instance of the BdoConnectedService class.
+        /// Initializes a new instance of the BdoService class.
         /// </summary>
-        protected BdoConnectedService()
+        protected BdoService()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the BdoService class.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        protected BdoService(IBdoScope scope)
+        {
+            _scope = scope;
         }
 
         #endregion
@@ -59,18 +68,6 @@ namespace BindOpen.Application.Services
         // ------------------------------------------
 
         #region Mutators
-
-        /// <summary>
-        /// Sets the specified connector.
-        /// </summary>
-        /// <param name="connector">The connector to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IBdoConnectedService WithConnector(IBdoConnector connector)
-        {
-            _connector = connector;
-
-            return this;
-        }
 
         /// <summary>
         /// Sets the specified scope.
@@ -101,10 +98,11 @@ namespace BindOpen.Application.Services
 
             if (isDisposing)
             {
-                _connector?.Dispose();
+                _scope?.Dispose();
             }
         }
 
         #endregion
+
     }
 }

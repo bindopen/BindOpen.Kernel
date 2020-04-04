@@ -24,7 +24,7 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// This class represents an application host.
     /// </summary>
-    public class TBdoHost<S> : TBdoService<S>, ITBdoHost<S>
+    public class TBdoHost<S> : TBdoJob<S>, ITBdoHost<S>
         where S : class, IBdoAppSettings, new()
     {
         // ------------------------------------------
@@ -32,11 +32,6 @@ namespace BindOpen.Application.Scopes
         // ------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// The application settings.
-        /// </summary>
-        public IBdoScope Scope => _scope;
 
         /// <summary>
         /// The options of this instance.

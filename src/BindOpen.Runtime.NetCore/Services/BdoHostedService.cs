@@ -7,7 +7,7 @@ namespace BindOpen.Application.Services
     /// <summary>
     /// This service represents a BindOpen bot service that can be hosted in generic .Net core host.
     /// </summary>
-    public class BdoHostedService : BdoService, IBdoHostedService
+    public class BdoHostedService : BdoJob, IBdoHostedService
     {
         /// <summary>
         /// The BindOpen host of this instance.

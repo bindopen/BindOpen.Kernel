@@ -6,7 +6,7 @@ namespace BindOpen.Application.Services
     /// <summary>
     /// This interfaces represents a connected service.
     /// </summary>
-    public interface IBdoConnectedService : IDisposable
+    public interface IBdoConnectedService : IBdoScoped, IDisposable
     {
         /// <summary>
         /// The connector of the service.

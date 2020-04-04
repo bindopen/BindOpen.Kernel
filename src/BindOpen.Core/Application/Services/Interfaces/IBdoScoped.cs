@@ -11,5 +11,11 @@ namespace BindOpen.Application.Services
         /// The scope of the service.
         /// </summary>
         IBdoScope Scope { get; }
+
+        /// <summary>
+        /// Sets the specified scope.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        IBdoScoped WithScope(IBdoScope scope);
     }
 }
