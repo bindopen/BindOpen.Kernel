@@ -1,8 +1,8 @@
-﻿using BindOpen.Application.Scopes;
+﻿using BindOpen.Application.Services;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Application.Services
+namespace BindOpen.Application.Scopes
 {
     /// <summary>
     /// This class represents a connected service factory.
@@ -17,7 +17,7 @@ namespace BindOpen.Application.Services
         /// <param name="log"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns>Returns the log of the operation.</returns>
-        public static T CreateConnectedService<T>(
+        public static T CreateConnected<T>(
             this IBdoScope scope,
             IBdoConnector connector,
             IBdoLog log = null)

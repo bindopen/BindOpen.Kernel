@@ -141,7 +141,7 @@ namespace BindOpen.Data.Stores
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
         /// <returns>The connection string corresponding to the specified data module name.</returns>
-        public string GetStringConnection(
+        public string GetConnectionString(
             string sourceName,
             string connectorDefinitionUniqueId = null)
         {

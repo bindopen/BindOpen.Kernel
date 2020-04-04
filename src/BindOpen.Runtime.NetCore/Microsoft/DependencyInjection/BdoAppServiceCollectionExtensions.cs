@@ -82,7 +82,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddBdoSingletonService<TService, TImplementation>(
+        public static IServiceCollection AddBdoSingleton<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped
@@ -97,7 +97,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddBdoScopedService<TService, TImplementation>(
+        public static IServiceCollection AddBdoScoped<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped
@@ -112,7 +112,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services">The collection of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        public static IServiceCollection AddBdoTransientService<TService, TImplementation>(
+        public static IServiceCollection AddBdoTransient<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped

@@ -49,7 +49,7 @@ namespace BindOpen.Data.Stores
         /// <param name="sourceName"></param>
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <returns></returns>
-        string GetStringConnection(string sourceName, string connectorDefinitionUniqueId = null);
+        string GetConnectionString(string sourceName, string connectorDefinitionUniqueId = null);
 
         /// <summary>
         /// 

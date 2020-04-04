@@ -16,6 +16,7 @@ namespace BindOpen.Extensions.Runtime
     public class BdoConnectorConfiguration
         : TBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>, IBdoConnectorConfiguration
     {
+        // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
 

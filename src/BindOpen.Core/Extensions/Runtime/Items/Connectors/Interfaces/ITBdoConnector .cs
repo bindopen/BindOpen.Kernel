@@ -23,7 +23,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="action">The action using the created connection and the current log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
-        void UsingConnection(
+        new void UsingConnection(
             Action<T> action,
             bool isAutoConnected = true);
 
@@ -36,7 +36,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
-        void UsingConnection(
+        new void UsingConnection(
             Action<T, IBdoLog> action,
             IBdoLog log,
             bool isAutoConnected = true);
