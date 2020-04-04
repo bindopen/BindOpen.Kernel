@@ -7,7 +7,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a connector.
     /// </summary>
-    public abstract class TBdoConnector<T> : BdoConnector where T : IBdoConnection
+    public abstract class TBdoConnector<T> : BdoConnector, ITBdoConnector<T>
+        where T : class, IBdoConnection
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -78,33 +79,7 @@ namespace BindOpen.Extensions.Runtime
             Action<T, IBdoLog> action,
             IBdoLog log,
             bool isAutoConnected = true)
-        {
-            log = log ?? new BdoLog();
-
-            using (T connection = CreateConnection(log))
-            {
-                if (!log.HasErrorsOrExceptions() && connection != null)
-                {
-                    if (isAutoConnected)
-                    {
-                        try
-                        {
-                            log.AddEvents(connection.Connect());
-                        }
-                        catch (Exception ex)
-                        {
-                            log.AddException("An exception occured while trying to open connection",
-                                description: ex.ToString());
-                        }
-                    }
-
-                    if (!log.HasErrorsOrExceptions())
-                    {
-                        action?.Invoke(connection, log);
-                    }
-                }
-            }
-        }
+            => base.UsingConnection((conn, l) => action?.Invoke(conn as T, l), log, isAutoConnected);
 
         #endregion
     }

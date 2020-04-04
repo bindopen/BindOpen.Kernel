@@ -3,6 +3,7 @@ using BindOpen.Data.Connections;
 using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
+using System;
 
 namespace BindOpen.Extensions.Runtime
 {
@@ -35,6 +36,32 @@ namespace BindOpen.Extensions.Runtime
         /// <returns></returns>
         /// <param name="log">The log to consider.</param>
         IBdoConnection CreateConnection(IBdoLog log = null);
+
+        /// <summary>
+        /// Executes the specified function.
+        /// </summary>
+        /// <typeparam name="Q"></typeparam>
+        /// <param name="repository">The connected service to consider.</param>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <returns></returns>
+        void UsingConnection(
+            Action<IBdoConnection> action,
+            bool isAutoConnected = true);
+
+        /// <summary>
+        /// Executes the specified function.
+        /// </summary>
+        /// <param name="repository">The connected service to consider</param>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <returns></returns>
+        void UsingConnection(
+            Action<IBdoConnection, IBdoLog> action,
+            IBdoLog log,
+            bool isAutoConnected = true);
 
         /// <summary>
         /// Updates the connection string with the specified string.

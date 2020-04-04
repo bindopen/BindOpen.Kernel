@@ -5,6 +5,7 @@ using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using System;
 using System.Linq;
 
 namespace BindOpen.Extensions.Runtime
@@ -116,6 +117,57 @@ namespace BindOpen.Extensions.Runtime
                 ConnectionString = connectionString;
 
             return this;
+        }
+
+        /// <summary>
+        /// Executes the specified function.
+        /// </summary>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <returns></returns>
+        public void UsingConnection(
+            Action<IBdoConnection> action,
+            bool isAutoConnected = true)
+            => UsingConnection((c, l) => action?.Invoke(c), null, isAutoConnected);
+
+        /// <summary>
+        /// Executes the specified function.
+        /// </summary>
+        /// <param name="action">The action using the created connection and the current log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <returns></returns>
+        public void UsingConnection(
+            Action<IBdoConnection, IBdoLog> action,
+            IBdoLog log,
+            bool isAutoConnected = true)
+        {
+            log = log ?? new BdoLog();
+
+            using (var connection = CreateConnection(log))
+            {
+                if (!log.HasErrorsOrExceptions() && connection != null)
+                {
+                    if (isAutoConnected)
+                    {
+                        try
+                        {
+                            log.AddEvents(connection.Connect());
+                        }
+                        catch (Exception ex)
+                        {
+                            log.AddException("An exception occured while trying to open connection",
+                                description: ex.ToString());
+                        }
+                    }
+
+                    if (!log.HasErrorsOrExceptions())
+                    {
+                        action?.Invoke(connection, log);
+                    }
+                }
+            }
         }
 
         #endregion

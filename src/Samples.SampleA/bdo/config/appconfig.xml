@@ -30,7 +30,7 @@
     <add name="wave.db" kind="Database">
       <configuration definition="database.postgreSql$client">
         <scalar name="databaseKind" value="PostgreSql" />
-        <scalar name="connectionString" value="HERMES;port=5432;Database=IdentityServer;UserId=postgres;Password=p+M324v8_pXf4;" />
+        <scalar name="connectionString" value="Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;" />
       </configuration>
     </add>
 
