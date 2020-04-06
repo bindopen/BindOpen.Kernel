@@ -182,10 +182,7 @@ namespace BindOpen.Extensions.Runtime
         /// Creates a new connection.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public virtual IBdoConnection CreateConnection(IBdoLog log = null)
-        {
-            return null;
-        }
+        public abstract IBdoConnection CreateConnection(IBdoLog log = null);
 
         #endregion
 

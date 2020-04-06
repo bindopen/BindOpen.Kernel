@@ -10,12 +10,6 @@ namespace BindOpen.Extensions.Runtime
     public interface ITBdoConnector<T> : IBdoConnector where T : IBdoConnection
     {
         /// <summary>
-        /// Creates a new connection.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        new T CreateConnection(IBdoLog log = null);
-
-        /// <summary>
         /// Executes the specified function.
         /// </summary>
         /// <typeparam name="Q"></typeparam>
@@ -23,7 +17,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="action">The action using the created connection and the current log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
-        new void UsingConnection(
+        void UsingConnection(
             Action<T> action,
             bool isAutoConnected = true);
 
@@ -36,7 +30,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="log">The log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
-        new void UsingConnection(
+        void UsingConnection(
             Action<T, IBdoLog> action,
             IBdoLog log,
             bool isAutoConnected = true);

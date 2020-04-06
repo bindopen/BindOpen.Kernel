@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Data.Connections;
+using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 
 namespace BindOpen.Tests.Core.Extensions.Connectors
@@ -7,7 +8,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
     /// This class represents a test connector.
     /// </summary>
     [BdoConnector(Name = "tests.core$test")]
-    public class TestConnector : TBdoConnector<TestConnection>
+    public class ConnectorFake : TBdoConnector<ConnectionFake>
     {
         /// <summary>
         /// The host of this instance.
@@ -36,7 +37,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         /// <summary>
         /// Instantiates a new instance of the TestConnector class.
         /// </summary>
-        public TestConnector() : base()
+        public ConnectorFake() : base()
         {
         }
 
@@ -52,9 +53,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         /// Creates a new connection.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public override TestConnection CreateConnection(IBdoLog log = null)
+        public override IBdoConnection CreateConnection(IBdoLog log = null)
         {
-            return new TestConnection(this);
+            return new ConnectionFake(this);
         }
 
         #endregion

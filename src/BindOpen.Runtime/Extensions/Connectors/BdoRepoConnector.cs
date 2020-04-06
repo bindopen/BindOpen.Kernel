@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Connections;
-using BindOpen.Extensions.Carriers;
+﻿using BindOpen.Extensions.Carriers;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using System;
@@ -32,20 +31,6 @@ namespace BindOpen.Extensions.Connectors
         protected BdoRepoConnector(IBdoConnectorConfiguration dto) : base(dto)
         {
         }
-
-        #endregion
-
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Creates a new connection.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        public new abstract BdoRepoConnection CreateConnection(IBdoLog log = null);
 
         #endregion
 

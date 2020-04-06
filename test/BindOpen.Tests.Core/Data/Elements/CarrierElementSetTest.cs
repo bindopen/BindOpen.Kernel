@@ -35,7 +35,7 @@ namespace BindOpen.Tests.Core.Data.Elements
                 "carrier2", "tests.core$dbField",
                 ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
 
-            _carrierElement3 = new TestCarrier("file3.txt", "myfolder")?.AsElement();
+            _carrierElement3 = new CarrierFake("file3.txt", "myfolder")?.AsElement();
 
             _carrierElement4 = GlobalVariables.Scope.CreateCarrier(
                 new BdoCarrierConfiguration(

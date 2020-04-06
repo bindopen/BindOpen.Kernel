@@ -12,7 +12,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
     [TestFixture, Order(11)]
     public class CarrierTest
     {
-        private TestCarrier _field = null;
+        private CarrierFake _field = null;
         private readonly string _filePath = GlobalVariables.WorkingFolder + "Carrier.xml";
 
         private readonly string _fieldAlias = "alias";
@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         [SetUp]
         public void Setup()
         {
-            _field = new TestCarrier
+            _field = new CarrierFake
             {
                 Name = "test",
                 Alias = _fieldAlias,
@@ -79,7 +79,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
                 TestSaveCarrier();
 
             BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, null, null, log);
-            var field = GlobalVariables.Scope.CreateCarrier<TestCarrier>(configuration, null, log);
+            var field = GlobalVariables.Scope.CreateCarrier<CarrierFake>(configuration, null, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())
@@ -91,7 +91,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             Test(field);
         }
 
-        private void Test(TestCarrier field)
+        private void Test(CarrierFake field)
         {
             Assert.That(field != null, "Field missing");
             if (field != null)

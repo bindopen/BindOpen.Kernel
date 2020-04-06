@@ -18,7 +18,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         Description = "Database field.",
         CreationDate = "2016-09-14"
     )]
-    public class TestCarrier : BdoCarrier
+    public class CarrierFake : BdoCarrier
     {
         // ------------------------------------------
         // PROPERTIES
@@ -121,7 +121,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// <summary>
         /// Instantiates a new instance of the TestCarrier class.
         /// </summary>
-        public TestCarrier() : base()
+        public CarrierFake() : base()
         {
         }
 
@@ -129,7 +129,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// Instantiates a new instance of the TestCarrier class.
         /// </summary>
         /// <param name="path">The path of the instance.</param>
-        public TestCarrier(string path) : base()
+        public CarrierFake(string path) : base()
         {
             this.Path = path;
         }
@@ -139,7 +139,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="fileName">The file name of the instance.</param>
         /// <param name="folderPath">The folder path of the instance.</param>
-        public TestCarrier(string fileName, string folderPath) : base()
+        public CarrierFake(string fileName, string folderPath) : base()
         {
             this.SetPath(fileName, folderPath);
         }
@@ -204,7 +204,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="dataModule">The data module to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithDataModule(string dataModule)
+        public CarrierFake WithDataModule(string dataModule)
         {
             DataModule = dataModule;
             return this;
@@ -215,7 +215,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="dataTable">The data table to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithDataTable(string dataTable)
+        public CarrierFake WithDataTable(string dataTable)
         {
             DataTable = dataTable;
             return this;
@@ -226,7 +226,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="schema">The schema to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithSchema(string schema)
+        public CarrierFake WithSchema(string schema)
         {
             Schema = schema;
             return this;
@@ -237,7 +237,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="alias">The alias to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithAlias(string alias)
+        public CarrierFake WithAlias(string alias)
         {
             Alias = alias;
             return this;
@@ -248,7 +248,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="size">The size to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithSize(int size)
+        public CarrierFake WithSize(int size)
         {
             Size = size;
             return this;
@@ -258,7 +258,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// Indicates that this instance represents all fields.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier AsAll()
+        public CarrierFake AsAll()
         {
             IsAll = true;
             return this;
@@ -268,7 +268,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// Indicates that this instance represents a key.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier AsKey()
+        public CarrierFake AsKey()
         {
             IsKey = true;
             return this;
@@ -278,7 +278,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// Indicates that the name of this instance is as script.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithNameAsScript()
+        public CarrierFake WithNameAsScript()
         {
             IsNameAsScript = true;
             return this;
@@ -289,7 +289,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// </summary>
         /// <param name="valueType">The value type to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public TestCarrier WithValueType(DataValueType valueType)
+        public CarrierFake WithValueType(DataValueType valueType)
         {
             ValueType = valueType;
             return this;

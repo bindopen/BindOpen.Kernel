@@ -51,12 +51,6 @@ namespace BindOpen.Extensions.Runtime
         #region Management
 
         /// <summary>
-        /// Creates a new connection.
-        /// </summary>
-        /// <param name="log">The log to consider.</param>
-        public new abstract T CreateConnection(IBdoLog log = null);
-
-        /// <summary>
         /// Executes the specified function.
         /// </summary>
         /// <param name="action">The action using the created connection and the current log to consider.</param>
