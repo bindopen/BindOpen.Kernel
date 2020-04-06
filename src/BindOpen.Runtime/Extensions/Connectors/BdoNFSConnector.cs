@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Data.Connections;
+using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
-using BindOpen.Data.Connections;
 
 namespace BindOpen.Extensions.Connectors
 {
@@ -35,7 +35,7 @@ namespace BindOpen.Extensions.Connectors
         /// Creates a new connection.
         /// </summary>
         /// <param name="log">The log to consider.</param>
-        public override BdoRepoConnection CreateConnection(IBdoLog log = null)
+        public override IBdoConnection CreateConnection(IBdoLog log = null)
         {
             return new BdoNFSConnection(this);
         }

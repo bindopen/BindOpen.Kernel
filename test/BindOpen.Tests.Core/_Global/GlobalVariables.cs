@@ -33,7 +33,7 @@ namespace BindOpen.Tests.Core
                 if (_appScope == null)
                 {
                     _appScope = BdoScopeFactory.CreateScope();
-                    _appScope.LoadExtensions(BdoExtensionReferenceFactory.CreateFrom<TestCarrier>());
+                    _appScope.LoadExtensions(BdoExtensionReferenceFactory.CreateFrom<CarrierFake>());
                 }
 
                 return _appScope;

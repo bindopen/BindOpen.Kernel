@@ -11,7 +11,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
     [TestFixture, Order(11)]
     public class ConnectorTest
     {
-        private TestConnector _connector = null;
+        private ConnectorFake _connector = null;
 
         private readonly string _filePath = GlobalVariables.WorkingFolder + "Connector.xml";
 
@@ -22,7 +22,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         [SetUp]
         public void Setup()
         {
-            _connector = GlobalVariables.Scope.CreateConnector<TestConnector>(
+            _connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(
                 new BdoConnectorConfiguration(
                     "tests.core$test",
                     ElementFactory.CreateScalar("host", _host),
@@ -64,7 +64,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
 
             string xml = "";
             BdoConnectorConfiguration configuration = XmlHelper.Load<BdoConnectorConfiguration>(_filePath, null, null, log);
-            TestConnector connector = GlobalVariables.Scope.CreateConnector<TestConnector>(configuration, null, log);
+            ConnectorFake connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(configuration, null, log);
             if (log.HasErrorsOrExceptions())
             {
                 xml = log.ToXml();
@@ -77,6 +77,8 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         public void TestCreateOpenCloseConnection()
         {
             BdoLog log = new BdoLog();
+
+            // check bad connection
 
             using (var connection = _connector?.CreateConnection(log))
             {
@@ -91,9 +93,26 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
         }
 
+        [Test, Order(4)]
+        public void TestConnectorUsingConnection()
+        {
+            BdoLog log = new BdoLog();
+
+            // check bad connection
+
+            _connector?.UsingConnection((p, l) => { }, log);
+
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = log.ToXml();
+            }
+            Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
+        }
+
         private void Test(BdoConnector connector)
         {
-            TestConnector testConnector = connector as TestConnector;
+            ConnectorFake testConnector = connector as ConnectorFake;
 
             Assert.That(testConnector != null, "Connector missing");
             if (testConnector != null)

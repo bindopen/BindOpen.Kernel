@@ -9,7 +9,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
     /// </summary>
     [XmlType("TestConnection", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "testConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class TestConnection : BdoConnection
+    public class ConnectionFake : BdoConnection
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -21,7 +21,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         /// Instantiates a new instance of the BdoDbConnection class.
         /// </summary>
         /// <param name="connector">The connector to consider.</param>
-        public TestConnection(TestConnector connector)
+        public ConnectionFake(ConnectorFake connector)
         {
             _connector = connector;
         }
