@@ -771,6 +771,9 @@ namespace BindOpen.Data.Helpers.Strings
                     if (!ulong.TryParse(st, out aULong))
                         return null;
                     return new ulong?(aULong);
+                case DataValueType.ByteArray:
+                    byte[] aByteArray = Encoding.Default.GetBytes(st);
+                    return aByteArray;
                 default:
                     return st;
             }

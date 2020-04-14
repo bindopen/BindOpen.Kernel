@@ -37,6 +37,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 {
                     ElementFactory.CreateScalar("text1", DataValueType.Text, "item1", "item2", "item3"),
                     ElementFactory.CreateScalar("integer1", DataValueType.Integer, 1, 2, 3),
+                    ElementFactory.CreateScalar("byteArray1", DataValueType.ByteArray, "ABCD"),
                 }
             );
 

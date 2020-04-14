@@ -3,6 +3,7 @@ using BindOpen.Data.Helpers.Strings;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.Tests.Core.Settings;
+using Microsoft.Extensions.Configuration;
 using System;
 
 namespace BindOpen.Tests.Core
@@ -11,6 +12,7 @@ namespace BindOpen.Tests.Core
     {
         static string _workingFolder = null;
         static IBdoHost _appHost = null;
+        static IConfiguration _netCoreConfiguration;
 
         public static string WorkingFolder
         {
@@ -38,6 +40,24 @@ namespace BindOpen.Tests.Core
                             .AddLoggers(
                                 BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto).AddConsoleOutput())
                         ));
+            }
+        }
+
+        public static IConfiguration NetCoreConfiguration
+        {
+            get
+            {
+                if (_netCoreConfiguration != null)
+                {
+                    return _netCoreConfiguration;
+                }
+
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(AppHost?.GetKnownPath(BdoHostPathKind.RootFolder))
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+                builder.AddEnvironmentVariables();
+                return _netCoreConfiguration = builder.Build();
             }
         }
     }

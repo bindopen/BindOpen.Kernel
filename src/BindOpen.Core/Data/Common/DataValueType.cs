@@ -74,6 +74,11 @@ namespace BindOpen.Data.Common
         ULong,
 
         /// <summary>
+        /// Byte array.
+        /// </summary>
+        ByteArray,
+
+        /// <summary>
         /// Number value.
         /// </summary>
         Number,
@@ -135,6 +140,7 @@ namespace BindOpen.Data.Common
                 case DataValueType.Integer:
                 case DataValueType.Number:
                 case DataValueType.Text:
+                case DataValueType.ByteArray:
                 case DataValueType.Time:
                 case DataValueType.Long:
                 case DataValueType.ULong:
@@ -189,6 +195,8 @@ namespace BindOpen.Data.Common
                     return typeof(long);
                 case DataValueType.ULong:
                     return typeof(ulong);
+                case DataValueType.ByteArray:
+                    return typeof(byte[]);
             }
 
             return typeof(Object);
@@ -258,6 +266,8 @@ namespace BindOpen.Data.Common
                 return DataValueType.Long;
             else if (type == typeof(ulong) || type == typeof(ulong?))
                 return DataValueType.ULong;
+            else if (type == typeof(byte[]))
+                return DataValueType.ByteArray;
             else
                 return DataValueType.None;
         }
