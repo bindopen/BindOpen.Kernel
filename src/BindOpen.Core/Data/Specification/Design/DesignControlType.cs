@@ -178,6 +178,9 @@ namespace BindOpen.Data.Specification
                 case DataValueType.Object:
                     return DesignControlType.ObjectEditor;
                 case DataValueType.Integer:
+                case DataValueType.Long:
+                case DataValueType.ULong:
+                case DataValueType.ByteArray:
                 case DataValueType.Number:
                 case DataValueType.Text:
                     return DesignControlType.TextBox;

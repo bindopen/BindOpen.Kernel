@@ -99,6 +99,9 @@ namespace BindOpen.Data.Helpers.Objects
                     case DataValueType.Integer:
                         stringValue = object1.ToString();
                         break;
+                    case DataValueType.ByteArray:
+                        stringValue = BitConverter.ToString(object1 as byte[]);
+                        break;
                     default:
                         stringValue = object1.ToXml();
                         break;

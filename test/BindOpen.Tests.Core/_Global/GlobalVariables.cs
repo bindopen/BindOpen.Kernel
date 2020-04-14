@@ -18,8 +18,8 @@ namespace BindOpen.Tests.Core
             {
                 if (_workingFolder == null)
                 {
-                    _workingFolder = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\")
-                        + @"bdo\temp\".ToPath();
+                    _workingFolder = (Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\")
+                        + @"bdo\temp\").ToPath();
                 }
 
                 return _workingFolder;

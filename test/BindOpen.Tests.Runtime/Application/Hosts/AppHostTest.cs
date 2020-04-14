@@ -42,20 +42,28 @@ namespace BindOpen.Tests.Core.Application.Hosts
             var appHost = BdoHostFactory.CreateBindOpenDefaultHost(
                 options => options
                     .AddDataStore(store => store
-                        .RegisterDatasources(m => m.AddFromConfiguration(options)))
+                        .RegisterDatasources(m => m
+                            .AddFromConfiguration(options)
+                            .AddFromNetCoreConfiguration(GlobalVariables.NetCoreConfiguration)))
                     .AddDefaultConsoleLogger()
                     .AddDefaultFileLogger());
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 
-            var datasource = appHost.GetDatasourceDepot()?["db.test"];
-            Assert.That(datasource?.Name == "db.test", "Bad data source loading");
+            var datasourceA = appHost.GetDatasourceDepot()?["db.testA"];
+            Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
 
-            Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.test") != StringHelper.__NoneString,
+            Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.testA") != StringHelper.__NoneString,
                 "Bad data source loading");
 
-            Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.test", "database.mssqlserver$client") != StringHelper.__NoneString,
+            Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.testA", "database.mssqlserver$client") != StringHelper.__NoneString,
                 "Bad data source loading");
+
+            var datasourceB = appHost.GetDatasourceDepot()?["db.testB"];
+            Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core configuration");
+
+            Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.testB") != StringHelper.__NoneString,
+                "Bad data source loading from .NET Core configuration");
         }
     }
 }

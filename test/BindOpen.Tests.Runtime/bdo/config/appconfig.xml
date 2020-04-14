@@ -21,7 +21,7 @@
   </credentials>
   
   <dataSources>  
-    <add name="db.test" kind="Database">
+    <add name="db.testA" kind="Database">
       <configuration definition="database.mssqlserver$client">
         <scalar name="databaseKind" value="MSSqlServer" />
         <scalar name="connectionString" value="Data Source=datasource;Initial Catalog=catalog_db;User Id=adminapp;Password=password;" />
