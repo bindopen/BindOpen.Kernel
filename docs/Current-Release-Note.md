@@ -1,0 +1,36 @@
+BindOpen.Databases __Release.Version__ Update - __Release.Date__
+====
+
+# New features
+
+## All
+...
+## BindOpen.Core
+...
+## BindOpen.Runtime
+...
+## BindOpen.Runtime.NetCore
+...
+
+# Fixes
+
+## All
+...
+## BindOpen.Core
+...
+## BindOpen.Runtime
+...
+## BindOpen.Runtime.NetCore
+...
+
+# Lifecycle News
+
+...
+
+# Downloads
+
+...
+
+# Lifecycle News
+
+...
