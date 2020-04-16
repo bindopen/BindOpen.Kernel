@@ -34,6 +34,11 @@ namespace BindOpen.Data.Common
         Carrier,
 
         /// <summary>
+        /// Connector.
+        /// </summary>
+        Connector,
+
+        /// <summary>
         /// Data source.
         /// </summary>
         Datasource,
@@ -42,6 +47,11 @@ namespace BindOpen.Data.Common
         /// Element.
         /// </summary>
         Element,
+
+        /// <summary>
+        /// Entity.
+        /// </summary>
+        Entity,
 
         /// <summary>
         /// Date.
