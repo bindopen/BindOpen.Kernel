@@ -18,3 +18,5 @@ Todo list for BindOpen
 * Automatize release note generation
 * Implement a relevant readme file
 * Simplify extension item management 
+* Add Expression data value type
+* Simplify serialization

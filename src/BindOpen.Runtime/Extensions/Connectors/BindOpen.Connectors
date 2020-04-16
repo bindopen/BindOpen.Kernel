@@ -18,7 +18,7 @@
       <description>
           <add.value>Local file.</add.value>
       </description>
-      <itemClass>.Connectors.NFSConnector</itemClass>
+      <itemClass>BindOpen.Extensions.Connectors.BdoNFSConnector</itemClass>
       <dataSource.specification>
         <detail.specification>
           <scalar name="provider" valueType="Text">

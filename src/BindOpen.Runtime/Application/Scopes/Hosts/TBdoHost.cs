@@ -303,7 +303,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns the log of the task.</returns>
         protected override void Initialize(IBdoLog log)
         {
-            log = log ?? new BdoLog();
+            log ??= new BdoLog();
 
             // we bind the trigger actions
 

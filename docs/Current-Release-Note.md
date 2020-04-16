@@ -3,7 +3,7 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # New features
 
-## All
+## General
 
 - [X] None
 
@@ -22,7 +22,7 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # Fixes
 
-## All
+## General
 
 - [X] None
 
