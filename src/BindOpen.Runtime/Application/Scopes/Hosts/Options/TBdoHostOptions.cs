@@ -571,7 +571,7 @@ namespace BindOpen.Application.Scopes
         /// <param name="action">The action to execute on the created data store.</param>
         public ITBdoHostOptions<S> AddDataStore(Action<IBdoDataStore> action = null)
         {
-            _dataStore = _dataStore ?? new BdoDataStore();
+            _dataStore ??= new BdoDataStore();
 
             action?.Invoke(_dataStore);
 

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Stores;
+﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using System;
@@ -38,7 +38,8 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
+        /// <param name="scope">The scope to append.</param>
         /// <param name="log">The log to append.</param>
-        void LoadLazy(IBdoLog log);
+        void LoadLazy(IBdoScope scope, IBdoLog log);
     }
 }

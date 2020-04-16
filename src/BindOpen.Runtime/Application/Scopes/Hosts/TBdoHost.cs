@@ -497,7 +497,7 @@ namespace BindOpen.Application.Scopes
                         }
                         else
                         {
-                            _scope.DataStore.LoadLazy(subLog);
+                            _scope.DataStore.LoadLazy(this, subLog);
 
                             if (!subLog.HasErrorsOrExceptions())
                             {

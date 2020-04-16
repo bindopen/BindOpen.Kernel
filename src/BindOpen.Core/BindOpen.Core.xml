@@ -8976,25 +8976,26 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Application.Scopes.IBdoScope,BindOpen.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
+            <param name="scope">The scope to append.</param>
             <param name="log"></param>
         </member>
-        <member name="T:BindOpen.Data.Stores.BdoDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoDataStoreExtensions">
             <summary>
             This class represents an data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore)">
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
             <param name="dataStore">The data store to consider.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoDatasourceDepot})">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoDatasourceDepot})">
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
@@ -9002,7 +9003,7 @@
             <param name="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoDatasourceDepot,BindOpen.System.Diagnostics.IBdoLog})">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoDatasourceDepot,BindOpen.System.Diagnostics.IBdoLog})">
             <summary>
             Add a data source depot into the specified data store using the specified options.
             </summary>
@@ -9010,14 +9011,14 @@
             <param name="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.GetDatasourceDepot(BindOpen.Data.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Data.Stores.IBdoDataStore)">
             <summary>
             Gets the datasource depot of the specified data store.
             </summary>
             <param name="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.GetDatasourceDepot(BindOpen.Application.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Application.Scopes.IBdoScope)">
             <summary>
             Gets the datasource depot of the specified scope.
             </summary>
@@ -9288,10 +9289,11 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.IBdoDataStore.LoadLazy(BindOpen.System.Diagnostics.IBdoLog)">
+        <member name="M:BindOpen.Data.Stores.IBdoDataStore.LoadLazy(BindOpen.Application.Scopes.IBdoScope,BindOpen.System.Diagnostics.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
+            <param name="scope">The scope to append.</param>
             <param name="log">The log to append.</param>
         </member>
         <member name="T:BindOpen.Extensions.Definition.BdoCarrierDictionaryDto">

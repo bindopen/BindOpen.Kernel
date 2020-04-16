@@ -3,7 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Loading external assemblies
+- [ ] Dynamic extension loading
 - [ ] Update/Repair/Check data items/elements/sets
 - [ ] Update element, element spec
 - [ ] ScriptVariableSet fluent
@@ -17,3 +17,4 @@ Todo list for BindOpen
 * Lighten and simplify projects
 * Automatize release note generation
 * Implement a relevant readme file
+* Simplify extension item management 
