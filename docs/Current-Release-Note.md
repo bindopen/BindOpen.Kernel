@@ -49,7 +49,7 @@ Release notes will be available soon.
 
 # Packages updated in this release
 
-| Tables                   |         Version       |
+| Packages                 |         Version       |
 |--------------------------|:---------------------:|
 | BindOpen.Core            | __Release.Version__   |
 | BindOpen.Runtime         | __Release.Version__   |
