@@ -7,7 +7,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents an data source extensions.
     /// </summary>
-    public static class BdoDatasourceExtensions
+    public static class BdoDataStoreExtensions
     {
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.

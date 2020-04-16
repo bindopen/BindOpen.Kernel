@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
 using System;
@@ -83,14 +84,16 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
+        /// <param name="scope">The scope to append.</param>
         /// <param name="log"></param>
-        public void LoadLazy(IBdoLog log)
+        public void LoadLazy(IBdoScope scope, IBdoLog log)
         {
             foreach (var depotEntry in Depots)
             {
                 var depot = depotEntry.Value;
                 if (depot != null)
                 {
+                    depot.WithScope(scope);
                     var subLog = log?.AddSubLog(title: "Loading depot '" + depot.Id + "'...", eventKind: EventKinds.Message);
                     depot.LoadLazy(subLog);
 

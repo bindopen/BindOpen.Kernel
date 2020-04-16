@@ -28,7 +28,8 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 ## BindOpen.Core
 
-- [X] None
+- [ ] None
+- [X] Scopes are now specified on data depots at host loading.
 
 ## BindOpen.Runtime
 
