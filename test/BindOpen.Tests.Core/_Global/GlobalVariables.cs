@@ -1,9 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Helpers.Strings;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Extensions.References;
 using BindOpen.Tests.Core.Extensions.Carriers;
-using System;
-using System.IO;
 
 namespace BindOpen.Tests.Core
 {
@@ -18,8 +16,7 @@ namespace BindOpen.Tests.Core
             {
                 if (_workingFolder == null)
                 {
-                    _workingFolder = (Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\")
-                        + @"bdo\temp\").ToPath();
+                    _workingFolder = (FileHelper.GetAppRootFolderPath() + @"bdo\temp\").ToPath();
                 }
 
                 return _workingFolder;

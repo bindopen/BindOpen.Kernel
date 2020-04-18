@@ -33,31 +33,31 @@ namespace BindOpen.Tests.Core.Data.Elements
 
             _carrierElement2 = ElementFactory.CreateCarrier(
                 "carrier2", "tests.core$dbField",
-                ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
+                ElementFactory.CreateSetFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
 
             _carrierElement3 = new CarrierFake("file3.txt", "myfolder")?.AsElement();
 
             _carrierElement4 = GlobalVariables.Scope.CreateCarrier(
                 new BdoCarrierConfiguration(
                     "tests.core$dbField",
-                    ElementSetFactory.CreateElementArray(new { path = "file4.txt" })),
+                    ElementFactory.CreateSetFromObject(new { path = "file4.txt" })?.ToArray()),
                 "carrier4", log)?.AsElement();
 
-            _carrierElementSetA = new DataElementSet(_carrierElement1, _carrierElement2, _carrierElement3, _carrierElement4);
+            _carrierElementSetA = ElementFactory.CreateSet(_carrierElement1, _carrierElement2, _carrierElement3, _carrierElement4);
         }
 
         [Test]
         public void TestCreateCarrierElementSet()
         {
             Assert.That(
-                ((string)_carrierElement1?.First?["path"] == "file1.txt")
-                && ((string)_carrierElement2?.First?["path"] == "file2.txt")
-                && ((string)_carrierElement3?.First?["path"] == "file3.txt")
-                && ((string)_carrierElement4?.First?["path"] == "file4.txt")
+                ((string)_carrierElement1?.First?["path"].First == "file1.txt")
+                && ((string)_carrierElement2?.First?["path"].First == "file2.txt")
+                && ((string)_carrierElement3?.First?["path"].First == "file3.txt")
+                && ((string)_carrierElement4?.First?["path"].First == "file4.txt")
                 , "Bad carrier element creation");
 
             Assert.That(
-                (string)(_carrierElementSetA[0] as CarrierElement)?.First?["path"] == "file1.txt"
+                (string)(_carrierElementSetA[0] as CarrierElement)?.First?["path"].First == "file1.txt"
                 , "Bad carrier element set indexation");
 
             Assert.That(

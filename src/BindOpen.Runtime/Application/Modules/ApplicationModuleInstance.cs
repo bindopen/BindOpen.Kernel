@@ -242,17 +242,29 @@ namespace BindOpen.Application.Modules
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _optionSet?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _optionSet?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

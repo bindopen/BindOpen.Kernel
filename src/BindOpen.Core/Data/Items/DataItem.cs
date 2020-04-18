@@ -209,11 +209,6 @@ namespace BindOpen.Data.Items
         #region IDisposable Implementation
 
         /// <summary>
-        /// Indicates whether this instance is disposed.
-        /// </summary>
-        private bool IsDisposed = false;
-
-        /// <summary>
         /// Disposes this instance.
         /// </summary>
         public void Dispose()
@@ -222,24 +217,20 @@ namespace BindOpen.Data.Items
             GC.SuppressFinalize(this);
         }
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes specifying whether this instance is disposing.
         /// </summary>
         /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (IsDisposed)
-                return;
-
-            if (isDisposing)
+            if (_isDisposed)
             {
-                // Free any other managed objects here.
-                //
+                return;
             }
 
-            // Free any unmanaged objects here.
-            //
-            IsDisposed = true;
+            _isDisposed = true;
         }
 
         #endregion

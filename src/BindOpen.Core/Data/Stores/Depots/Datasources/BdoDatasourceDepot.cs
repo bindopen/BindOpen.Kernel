@@ -3,6 +3,7 @@ using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Stores
@@ -13,7 +14,7 @@ namespace BindOpen.Data.Stores
     [Serializable()]
     [XmlType("DatasourceDepot", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class BdoDatasourceDepot : TBdoDepot<Datasource>, IBdoDatasourceDepot
+    public class BdoDatasourceDepot : TBdoDepot<IDatasource>, IBdoDatasourceDepot
     {
         // ------------------------------------------
         // PROPERTIES
@@ -22,14 +23,14 @@ namespace BindOpen.Data.Stores
         #region Properties
 
         /// <summary>
-        /// Elements of this instance.
+        /// The sources of this instance.
         /// </summary>
-        [XmlArray("dataSources")]
+        [XmlArray("datasources")]
         [XmlArrayItem("add")]
         public List<Datasource> Sources
         {
-            get { return _items; }
-            set { _items = value; }
+            get { return _items?.Select(p => p as Datasource)?.ToList(); }
+            set { _items = value?.Select(p => p as IDatasource)?.ToList(); }
         }
 
         #endregion
@@ -41,20 +42,10 @@ namespace BindOpen.Data.Stores
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DatasourceDepot class.
+        /// Instantiates a new instance of the BdoDatasourceDepot class.
         /// </summary>
         public BdoDatasourceDepot() : base()
         {
-            Id = "datasource";
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DatasourceDepot class.
-        /// </summary>
-        /// <param name="dataSources">The data sources to consider.</param>
-        public BdoDatasourceDepot(params Datasource[] dataSources) : base(dataSources)
-        {
-            Id = "datasource";
         }
 
         #endregion

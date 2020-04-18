@@ -41,4 +41,8 @@
     <Compile Remove="Data\Items\Attributes\ScalarAttribute.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Stores\Depots\Datasources\Factories\" />
+  </ItemGroup>
+
 </Project>

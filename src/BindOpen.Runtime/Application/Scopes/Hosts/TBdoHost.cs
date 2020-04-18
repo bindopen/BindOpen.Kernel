@@ -4,6 +4,7 @@ using BindOpen.Application.Services;
 using BindOpen.Application.Settings;
 using BindOpen.Data.Common;
 using BindOpen.Data.Context;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;

@@ -8,6 +8,7 @@ using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
 using BindOpen.System.Scripting;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -791,17 +792,29 @@ namespace BindOpen.Data.Elements
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _propertyDetail?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _propertyDetail?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

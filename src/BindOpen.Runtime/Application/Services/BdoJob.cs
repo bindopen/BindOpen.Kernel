@@ -1,5 +1,4 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Items;
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Loggers;
@@ -110,6 +109,24 @@ namespace BindOpen.Application.Services
 
         #endregion
 
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region MUTATORS
+
+        /// <summary>
+        /// Starts the application.
+        /// </summary>
+        /// <returns>Returns true if this instance is started.</returns>
+        public IBdoJob WithLoggers(params IBdoLogger[] loggers)
+        {
+            Loggers = loggers?.ToList();
+
+            return this;
+        }
+
+        #endregion
         // ------------------------------------------
         // PROCESSING
         // ------------------------------------------

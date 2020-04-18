@@ -94,7 +94,7 @@ namespace BindOpen.Application.Modules
         /// <param name="sections">The sections of the instance.</param>
         public AppModule(string name, params AppSection[] sections) : base(name, "module_")
         {
-            Sections = new DataItemSet<AppSection>(sections);
+            Sections = DataItemFactory.CreateItemSet<AppSection>(sections);
         }
 
         #endregion

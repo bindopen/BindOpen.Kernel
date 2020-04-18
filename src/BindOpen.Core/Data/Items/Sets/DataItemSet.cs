@@ -5,7 +5,6 @@ using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -16,7 +15,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T> where T : IIdentifiedDataItem
+    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T>
+        where T : IIdentifiedDataItem
     {
         // ------------------------------------------
         // VARIABLES
@@ -98,17 +98,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the DataItemSet class.
         /// </summary>
-        public DataItemSet()
+        public DataItemSet() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataItemSet class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public DataItemSet(params T[] items)
-        {
-            _items = items?.ToList();
         }
 
         #endregion
@@ -206,6 +197,24 @@ namespace BindOpen.Data.Items
                 keys = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
 
             return keys;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public T[] ToArray()
+        {
+            return _items?.ToArray();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<T> ToList()
+        {
+            return _items?.ToList();
         }
 
         #endregion
@@ -491,28 +500,6 @@ namespace BindOpen.Data.Items
             dataItemSet._items = _items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;
-        }
-
-        #endregion
-
-        // -----------------------------------------------------
-        // INotifyPropertyChanged IMPLEMENTATION
-        // -----------------------------------------------------
-
-        #region INotifyPropertyChanged Implementation
-
-        /// <summary>
-        /// Occures when a property of this instance has changed.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Indicates that a property has changed.
-        /// </summary>
-        /// <param name="name">The name of the property that has changed.</param>
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

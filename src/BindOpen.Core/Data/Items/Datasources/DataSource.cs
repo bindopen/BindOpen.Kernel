@@ -41,6 +41,12 @@ namespace BindOpen.Data.Items
         public string ModuleName { get; set; } = null;
 
         /// <summary>
+        /// Indicates whether this instance is default.
+        /// </summary>
+        [XmlAttribute("isDefault")]
+        public bool IsDefault { get; set; } = false;
+
+        /// <summary>
         /// Specification of the ModuleName property of this instance.
         /// </summary>
         [XmlIgnore()]
@@ -89,15 +95,8 @@ namespace BindOpen.Data.Items
         /// This instantiates a new instance of the Datasource class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configurations">The configurations to consider.</param>
-        public Datasource(
-            string name,
-            DatasourceKind kind,
-            params IBdoConnectorConfiguration[] configurations) : base(name, "dataSource_")
+        public Datasource(string name) : base(name, "dataSource_")
         {
-            Kind = kind;
-            Configurations = configurations?.Select(p => p as BdoConnectorConfiguration).ToList();
         }
 
         #endregion
@@ -109,22 +108,88 @@ namespace BindOpen.Data.Items
         #region Mutators
 
         /// <summary>
+        /// Sets the specified kind of this instance. 
+        /// </summary>
+        /// <param name="kind">The kind to consider.</param>
+        public IDatasource WithKind(DatasourceKind kind)
+        {
+            Kind = kind;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="moduleName">The module name to consider.</param>
+        public IDatasource WithModuleName(string moduleName)
+        {
+            ModuleName = moduleName;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="instanceName">The instance name to consider.</param>
+        public IDatasource WithInstanceName(string instanceName)
+        {
+            InstanceName = instanceName;
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies that this instance is the default. 
+        /// </summary>
+        public IDatasource AsDefault()
+        {
+            IsDefault = true;
+            return this;
+        }
+
+        /// <summary>
         /// Adds the specified connector configuration.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public void AddConfiguration(IBdoConnectorConfiguration config)
+        public IDatasource AddConfiguration(IBdoConnectorConfiguration config)
         {
             if (config != null)
+            {
+                if (Configurations == null)
+                {
+                    Configurations = new List<BdoConnectorConfiguration>();
+                }
+
                 Configurations.Add(config as BdoConnectorConfiguration);
+            }
+            return this;
         }
 
         /// <summary>
         /// Removes the specified connector configuration.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        public void RemoveConfiguration(string definitionName)
+        public IDatasource RemoveConfiguration(string definitionName)
         {
+            if (Configurations == null)
+            {
+                Configurations = new List<BdoConnectorConfiguration>();
+            }
+
             Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified configurations.
+        /// </summary>
+        /// <param name="configs">The configurations to consider.</param>
+        public IDatasource WithConfiguration(params IBdoConnectorConfiguration[] configs)
+        {
+            foreach (var config in configs)
+            {
+                AddConfiguration(config);
+            }
+            return this;
         }
 
         #endregion

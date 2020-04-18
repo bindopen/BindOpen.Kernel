@@ -70,4 +70,8 @@
     <ProjectReference Include="..\BindOpen.Core\BindOpen.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Modules\Factories\" />
+  </ItemGroup>
+
 </Project>

@@ -64,14 +64,14 @@ namespace BindOpen.Tests.Core.Data.Elements
             var elementAB = ElementFactory.CreateScalar("name1", "Test1");
             elementAA.Repair(elementAB);
 
-            var elementSetA = ElementSetFactory.Create(elementAA, elementAB);
+            var elementSetA = ElementFactory.CreateSet(elementAA, elementAB);
 
 
             var elementBA = ElementFactory.CreateScalar("name1", "Test1");
             var elementBB = ElementFactory.CreateScalar("name1", null);
             elementBA.Repair(elementBB);
 
-            var elementSetB = ElementSetFactory.Create(elementBA, elementBB);
+            var elementSetB = ElementFactory.CreateSet(elementBA, elementBB);
 
             elementSetB.Add(elementBB);
             elementSetA.Add(elementAB);

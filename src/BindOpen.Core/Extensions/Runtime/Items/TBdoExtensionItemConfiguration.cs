@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Configuration;
 using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -67,10 +68,10 @@ namespace BindOpen.Extensions.Runtime
             BdoExtensionItemKind kind,
             string definitionUniqueId,
             params IDataElement[] items)
-            : base(items)
         {
-            Kind = BdoExtensionItemKind.Any;
+            Kind = kind;
             DefinitionUniqueId = definitionUniqueId;
+            Items = items?.ToList();
         }
 
         #endregion

@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
-using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -77,7 +76,7 @@ namespace BindOpen.Data.References
         {
             DataHandlerUniqueName = dataHandlerUniqueName;
             SourceElement = sourceElement as DataElement;
-            PathDetail.Update(ElementSetFactory.CreateFromObject<DataElementSet>(dynamicObject));
+            PathDetail.Update(ElementFactory.CreateSetFromObject<DataElementSet>(dynamicObject));
         }
 
         /// <summary>

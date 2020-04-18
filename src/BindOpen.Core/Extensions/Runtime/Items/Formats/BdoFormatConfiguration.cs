@@ -34,7 +34,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="items">The items to consider.</param>
         public BdoFormatConfiguration(
             string definitionUniqueId,
-            params IDataElement[] items)
+            params DataElement[] items)
             : base(BdoExtensionItemKind.Format, definitionUniqueId, items)
         {
         }

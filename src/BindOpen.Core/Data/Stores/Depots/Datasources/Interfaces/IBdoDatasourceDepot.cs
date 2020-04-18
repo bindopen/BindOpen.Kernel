@@ -7,7 +7,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDatasourceDepot : ITBdoDepot<Datasource>
+    public interface IBdoDatasourceDepot : ITBdoDepot<IDatasource>
     {
         /// <summary>
         /// 

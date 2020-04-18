@@ -4,6 +4,7 @@ using BindOpen.Application.Services;
 using BindOpen.Application.Settings;
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
@@ -261,11 +262,11 @@ namespace BindOpen.Application.Scopes
             {
                 if (string.IsNullOrEmpty(_rootFolderPath))
                 {
-                    _rootFolderPath = BdoHostFactory.DefaultRootFolderPath();
+                    _rootFolderPath = FileHelper.GetAppRootFolderPath();
                 }
                 else
                 {
-                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(BdoHostFactory.DefaultRootFolderPath()).GetEndedString(@"\").ToPath();
+                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(FileHelper.GetAppRootFolderPath()).GetEndedString(@"\").ToPath();
                 }
             }
 
@@ -586,19 +587,31 @@ namespace BindOpen.Application.Scopes
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _applicationModule?.Dispose();
+            _extensionLoadOptions?.Dispose();
+            _dataStore?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _applicationModule?.Dispose();
-                _extensionLoadOptions?.Dispose();
-                _dataStore?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Elements;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Application.Configuration
@@ -63,36 +62,13 @@ namespace BindOpen.Application.Configuration
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the UsableConfiguration class.
-        /// </summary>
-        public BdoUsableConfiguration(string filePath)
-            : base(filePath)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the UsableConfiguration class.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoUsableConfiguration(string filePath, params IDataElement[] items) : this(filePath, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the UsableConfiguration class.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="usingFilePaths">The paths of the using files to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoUsableConfiguration(string filePath, string[] usingFilePaths, params IDataElement[] items)
-            : base(filePath, items)
-        {
-            this.UsingFilePaths = usingFilePaths?.ToList();
-        }
-
         #endregion
+
+        // -------------------------------------------------------------
+        // MUTATORS
+        // -------------------------------------------------------------
+
+        #region Mutators
 
         /// <summary>
         /// Adds the specified elements into the specified group.
@@ -100,6 +76,9 @@ namespace BindOpen.Application.Configuration
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="items">The items to add.</param>
         /// <returns>Returns this instance.</returns>
-        public new BdoUsableConfiguration AddGroup(string groupId, params IDataElement[] items) => base.AddGroup(groupId, items) as BdoUsableConfiguration;
+        public new BdoUsableConfiguration AddGroup(string groupId, params IDataElement[] items)
+            => base.AddGroup(groupId, items) as BdoUsableConfiguration;
+
+        #endregion
     }
 }

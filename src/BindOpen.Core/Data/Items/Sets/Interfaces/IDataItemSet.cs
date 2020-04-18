@@ -89,5 +89,15 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="keys"></param>
         void Remove(params string[] keys);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        T[] ToArray();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        List<T> ToList();
     }
 }

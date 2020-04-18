@@ -1,5 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Items;
+using System;
 
 namespace BindOpen.Application.Services
 {
@@ -89,20 +90,31 @@ namespace BindOpen.Application.Services
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _scope?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _scope?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion
-
     }
 }

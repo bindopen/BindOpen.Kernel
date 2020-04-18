@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
@@ -55,7 +54,7 @@ namespace BindOpen.Data.Elements
         /// <param name="elements">The elements to consider.</param>
         public static implicit operator DataElementSpecSet(DataElementSpec[] elements)
         {
-            return new DataElementSpecSet(elements);
+            return ElementSpecFactory.CreateSet(elements);
         }
 
         #endregion
@@ -67,25 +66,9 @@ namespace BindOpen.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new set of data specifications.
+        /// Initializes a new instance of the DataElementSpecSet class.
         /// </summary>
-        public DataElementSpecSet()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSpecSet class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public DataElementSpecSet(params DataElementSpec[] items) : base(items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="elements">The elements to consider.</param>
-        public DataElementSpecSet(params IDataElementSpec[] elements) : base(elements.Cast<DataElementSpec>().ToArray())
+        public DataElementSpecSet() : base()
         {
         }
 

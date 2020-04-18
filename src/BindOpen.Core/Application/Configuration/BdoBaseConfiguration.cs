@@ -87,26 +87,6 @@ namespace BindOpen.Application.Configuration
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the Configuration class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoBaseConfiguration(params IDataElement[] items)
-            : base(items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Configuration class.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoBaseConfiguration(string filePath, params IDataElement[] items)
-            : base(items)
-        {
-            CurrentFilePath = filePath;
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -137,6 +117,7 @@ namespace BindOpen.Application.Configuration
 
             return this;
         }
+
 
         #endregion
 

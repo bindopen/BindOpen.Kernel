@@ -36,10 +36,10 @@ namespace BindOpen.Tests.Core.Data.Elements
                 ElementFactory.CreateScalar("key23", 25),
                 ElementFactory.CreateCarrier(
                     "collection2", "tests.core$dbField",
-                    ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }))
+                    ElementFactory.CreateSetFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }))
             );
 
-            _collectionElementSetA = new DataElementSet(_collectionElement1, _collectionElement2);
+            _collectionElementSetA = ElementFactory.CreateSet(_collectionElement1, _collectionElement2);
         }
 
         [Test]

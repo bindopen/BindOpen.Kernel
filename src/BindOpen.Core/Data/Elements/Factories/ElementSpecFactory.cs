@@ -11,7 +11,7 @@ namespace BindOpen.Data.Elements
     /// </summary>
     public static partial class ElementSpecFactory
     {
-        // Static creators -------------------------
+        // Element specification -------------------------
 
         /// <summary>
         /// Creates a data element of the specified kind.
@@ -66,7 +66,7 @@ namespace BindOpen.Data.Elements
                     spec.ConstraintStatement.AddConstraint(
                        null,
                        "standard$" + KnownRoutineKind.ItemMustBeInList,
-                       new DataElementSet(
+                       ElementFactory.CreateSet(
                            ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
                 }
             }

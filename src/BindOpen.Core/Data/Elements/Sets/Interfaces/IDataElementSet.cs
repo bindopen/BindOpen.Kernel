@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using BindOpen.Application.Scopes;
+﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Elements
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataElementSet : IDataItemSet<DataElement>
+    public interface IDataElementSet : IDataItemSet<IDataElement>
     {
         /// <summary>
         /// 
@@ -104,7 +104,7 @@ namespace BindOpen.Data.Elements
         /// <param name="parameters"></param>
         /// <returns></returns>
         string GetTitleLabel(string key, string variantName = "*", string defaultVariantName = "*", string[] parameters = null);
-        
+
         /// <summary>
         /// 
         /// </summary>

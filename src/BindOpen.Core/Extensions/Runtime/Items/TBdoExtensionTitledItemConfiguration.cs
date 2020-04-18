@@ -57,7 +57,7 @@ namespace BindOpen.Extensions.Runtime
             BdoExtensionItemKind kind,
             string definitionUniqueId,
             params IDataElement[] items)
-            : base(BdoExtensionItemKind.Any, definitionUniqueId, items)
+            : base(kind, definitionUniqueId, items)
         {
         }
 

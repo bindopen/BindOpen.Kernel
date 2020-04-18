@@ -4,7 +4,6 @@ using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -56,6 +55,16 @@ namespace BindOpen.Data.Helpers.Strings
         // --------------------------------------------------
 
         #region Methods
+
+        /// <summary>
+        /// Gets the date string of this instance.
+        /// </summary>
+        /// <param name="date">The date to consider.</param>
+        /// <returns>Returns the date string of this instance.</returns>
+        public static string EmptyAsNull(this string text)
+        {
+            return text?.Length > 0 ? text : null;
+        }
 
         /// <summary>
         /// Replaces the specified text by the specified one in the specified text.
@@ -201,45 +210,15 @@ namespace BindOpen.Data.Helpers.Strings
         /// <returns></returns>
         public static string HashString(this string st, string hashName)
         {
-            HashAlgorithm aHashAlgorithm = HashAlgorithm.Create(hashName);
-            if (aHashAlgorithm == null)
-                throw new ArgumentException("Unrecognized hash name", "hashName");
+            HashAlgorithm hashAlgorithm = HashAlgorithm.Create(hashName);
+            if (hashAlgorithm == null)
+            {
+                throw new ArgumentException("Unrecognized hash name", nameof(hashName));
+            }
 
-            byte[] bytes = aHashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(st));
+            byte[] bytes = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(st));
 
             return Convert.ToBase64String(bytes);
-        }
-
-        /// <summary>
-        /// Converts the specified path according to the environment.
-        /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <returns></returns>
-        public static string ToPath(this string st)
-        {
-            return st?.Replace('\\', Path.DirectorySeparatorChar);
-        }
-
-        /// <summary>
-        /// Converts the specified path according to the environment.
-        /// </summary>
-        /// <param name="path">The path to consider.</param>
-        /// <param name="rootPath">The root path to consider.</param>
-        /// <returns></returns>
-        public static string GetConcatenatedPath(this string path, string rootPath)
-        {
-            if (path == null) return null;
-
-            if ((path?.StartsWith(@".\") == true) || (path?.StartsWith(@"./") == true))
-            {
-                path = (rootPath.GetEndedString(@"\") + path.Substring(2)).ToPath();
-            }
-            else if ((path?.StartsWith(@"..\") == true) || (path?.StartsWith(@"../") == true))
-            {
-                path = (rootPath.GetEndedString(@"\") + path).ToPath();
-            }
-
-            return path?.Replace('\\', Path.DirectorySeparatorChar);
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 
 namespace BindOpen.Data.Stores
 {
@@ -23,13 +22,11 @@ namespace BindOpen.Data.Stores
                 var sections = config.GetSection(keyName).GetChildren();
                 foreach (var section in sections)
                 {
-                    depot.Add(new Datasource(section.Key, DatasourceKind.Database)
-                    {
-                        Configurations = new List<BdoConnectorConfiguration>()
-                        {
-                            new BdoConnectorConfiguration().WithConnectionString(section.Value) as BdoConnectorConfiguration
-                        }
-                    });
+                    depot.Add(
+                        DataItemFactory.CreateDatasource(section.Key, DatasourceKind.Database)
+                            .WithConfiguration(
+                                new BdoConnectorConfiguration().WithConnectionString(section.Value) as BdoConnectorConfiguration)
+                    );
                 }
             };
 

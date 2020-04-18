@@ -36,7 +36,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="items">The items to consider.</param>
         public BdoConnectorConfiguration(
             string definitionUniqueId,
-            params IDataElement[] items)
+            params DataElement[] items)
             : base(BdoExtensionItemKind.Connector, definitionUniqueId, items)
         {
         }

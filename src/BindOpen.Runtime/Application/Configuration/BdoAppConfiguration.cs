@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Application.Security;
 using BindOpen.Data.Common;
-using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -51,15 +50,6 @@ namespace BindOpen.Application.Configuration
         /// </summary>
         public BdoAppConfiguration()
             : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the AppConfiguration class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoAppConfiguration(params IDataElement[] items)
-            : base(items)
         {
         }
 

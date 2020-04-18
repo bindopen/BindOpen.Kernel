@@ -2,9 +2,9 @@
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Data.Items;
+using BindOpen.Data.Stores;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
-using BindOpen.Data.Stores;
 using NUnit.Framework;
 using System.IO;
 
@@ -20,19 +20,18 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
         [SetUp]
         public void Setup()
         {
-            _dataSourceDepot = new BdoDatasourceDepot(
-                new Datasource(
-                    "smtp_default",
-                    DatasourceKind.EmailServer,
-                    new BdoConnectorConfiguration(
-                        "messages$smtp",
-                        ElementFactory.CreateScalar("host", "smtp.test.com"),
-                        ElementFactory.CreateScalar("port", DataValueType.Integer, "587"),
-                        ElementFactory.CreateScalar("isDefaultCredentialsUsed", DataValueType.Boolean, true),
-                        ElementFactory.CreateScalar("isSslEnabled", DataValueType.Boolean, true),
-                        ElementFactory.CreateScalar("timeout", DataValueType.Integer, 60000),
-                        ElementFactory.CreateScalar("login", "login@test.com"),
-                        ElementFactory.CreateScalar("password", "passwordA"))));
+            _dataSourceDepot = DataItemFactory.CreateSet<BdoDatasourceDepot, IDatasource>(
+                DataItemFactory.CreateDatasource("smtp_default", DatasourceKind.EmailServer)
+                    .WithConfiguration(
+                        new BdoConnectorConfiguration(
+                            "messages$smtp",
+                            ElementFactory.CreateScalar("host", "smtp.test.com"),
+                            ElementFactory.CreateScalar("port", DataValueType.Integer, "587"),
+                            ElementFactory.CreateScalar("isDefaultCredentialsUsed", DataValueType.Boolean, true),
+                            ElementFactory.CreateScalar("isSslEnabled", DataValueType.Boolean, true),
+                            ElementFactory.CreateScalar("timeout", DataValueType.Integer, 60000),
+                            ElementFactory.CreateScalar("login", "login@test.com"),
+                            ElementFactory.CreateScalar("password", "passwordA"))));
         }
 
         public void TestDatasourceDataStore(BdoDatasourceDepot depot)

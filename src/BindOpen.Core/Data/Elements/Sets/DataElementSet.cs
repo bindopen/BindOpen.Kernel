@@ -17,7 +17,7 @@ namespace BindOpen.Data.Elements
     /// </summary>
     [Serializable()]
     [XmlRoot(ElementName = "element.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataElementSet : DataItemSet<DataElement>, IDataElementSet
+    public class DataElementSet : DataItemSet<IDataElement>, IDataElementSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -38,8 +38,8 @@ namespace BindOpen.Data.Elements
         [XmlArrayElement("elements")]
         public List<DataElement> Elements
         {
-            get { return _items; }
-            set { _items = value; }
+            get { return _items?.Select(p => p as DataElement)?.ToList(); }
+            set { _items = value?.Select(p => p as IDataElement)?.ToList(); }
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BindOpen.Data.Elements
         /// <param name="elements">The elements to consider.</param>
         public static implicit operator DataElementSet(DataElement[] elements)
         {
-            return new DataElementSet(elements);
+            return ElementFactory.CreateSet(elements);
         }
 
         #endregion
@@ -77,22 +77,6 @@ namespace BindOpen.Data.Elements
         /// Instantiates a new instance of the DataElementSet class.
         /// </summary>
         public DataElementSet()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="elements">The elements to consider.</param>
-        public DataElementSet(params DataElement[] elements) : base(elements)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="elements">The elements to consider.</param>
-        public DataElementSet(params IDataElement[] elements) : base(elements.Cast<DataElement>().ToArray())
         {
         }
 
@@ -115,19 +99,7 @@ namespace BindOpen.Data.Elements
             IDataElement element,
             IDataElementSet referenceElementSet = null)
         {
-            if ((element == null) || (element.Name == null))
-                return null;
-
-            if (_items == null)
-                _items = new List<DataElement>();
-            Elements.RemoveAll(p => p.KeyEquals(element));
-
-            if (referenceElementSet?.HasItem(element.Key()) != false)
-            {
-                OnPropertyChanged("Elements");
-                Elements.Add(element as DataElement);
-                return element;
-            }
+            base.Add(element);
 
             return null;
         }
@@ -140,9 +112,6 @@ namespace BindOpen.Data.Elements
         public void RemoveElement(string key)
         {
             if (key == null || Elements == null) return;
-
-            if (Elements.RemoveAll(p => p.KeyEquals(key)) > 0)
-                OnPropertyChanged("Elements");
         }
 
         // Element items ------------------------
@@ -477,7 +446,6 @@ namespace BindOpen.Data.Elements
         public override object Clone()
         {
             DataElementSet elementSet = base.Clone() as DataElementSet;
-            elementSet._items = Elements?.Select(p => p.Clone() as DataElement).ToList();
 
             return elementSet;
         }

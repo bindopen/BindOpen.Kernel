@@ -1,20 +1,42 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Data.Items
 {
     /// <summary>
-    /// This class represents a dictionary data factory.
+    /// This class represents a data item factory.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    public static class DictionaryFactory
+    public static class DataItemFactory
     {
+        // Data sources -----------------------------
+
+        /// <summary>
+        /// Instantiates a new instance of the Datasource class.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="kind">The kind of the data source to consider.</param>
+        public static Datasource CreateDatasource(
+                string name,
+                DatasourceKind kind)
+        {
+            var datasource = new Datasource(name)
+            {
+                Kind = kind
+            };
+
+            return datasource;
+        }
+
+        // Dictionaries -----------------------------
+
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public static DictionaryDataItem Create(params (string name, string value)[] items)
+        public static DictionaryDataItem CreateDictionary(params (string name, string value)[] items)
         {
             DictionaryDataItem dictionary = new DictionaryDataItem();
             foreach (var (name, value) in items)
@@ -29,7 +51,7 @@ namespace BindOpen.Data.Items
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param name="values">The values to consider.</param>
-        public static DictionaryDataItem Create(params IDataKeyValue[] values)
+        public static DictionaryDataItem CreateDictionary(params IDataKeyValue[] values)
         {
             DictionaryDataItem item = new DictionaryDataItem();
             foreach (DataKeyValue value in values)
@@ -49,7 +71,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="dataRow">The global object/text row to consider.</param>
         /// <param name="uiCultureNames">The UI culture names to consider.</param>
-        public static DictionaryDataItem Create(DataRow dataRow, string[] uiCultureNames)
+        public static DictionaryDataItem CreateDictionary(DataRow dataRow, string[] uiCultureNames)
         {
             DictionaryDataItem item = new DictionaryDataItem();
             if (dataRow != null)
@@ -72,7 +94,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="aObject">The object to consider.</param>
         /// <param name="mappings">The mappings to consider.</param>
-        public static DictionaryDataItem Create(object aObject, (string from, string to)[] mappings)
+        public static DictionaryDataItem CreateDictionary(object aObject, (string from, string to)[] mappings)
         {
             DictionaryDataItem item = new DictionaryDataItem();
             if (aObject != null)
@@ -90,6 +112,34 @@ namespace BindOpen.Data.Items
             }
 
             return item;
+        }
+
+        // Sets -----------------------------
+
+        /// <summary>
+        /// Instantiates a new instance of the DataItemSet class.
+        /// </summary>
+        /// <param name="items">The items to consider.</param>
+        /// <typeparam name="Q">The data item set type to consider.</typeparam>
+        /// <typeparam name="T">The identified data item to consider.</typeparam>
+        public static Q CreateSet<Q, T>(params T[] items)
+            where Q : DataItemSet<T>, new()
+            where T : IIdentifiedDataItem
+        {
+            return new Q()
+            {
+                Items = items?.ToList()
+            };
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the DataItemSet class.
+        /// </summary>
+        /// <param name="items">The items to consider.</param>
+        /// <typeparam name="T">The class of the named data items.</typeparam>
+        public static DataItemSet<T> CreateItemSet<T>(params T[] items) where T : IIdentifiedDataItem
+        {
+            return CreateSet<DataItemSet<T>, T>(items);
         }
     }
 }
