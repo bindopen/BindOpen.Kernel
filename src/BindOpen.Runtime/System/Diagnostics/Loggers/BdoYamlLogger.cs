@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Helpers.Strings;
-using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
 using System;
 using System.Collections.Generic;
 
@@ -127,7 +125,7 @@ namespace BindOpen.System.Diagnostics.Loggers
                             st += indent + " detail: " + Environment.NewLine;
                             String detailName = attributeNameKey.GetSubstring(BdoLogEntries.__Detail.Length + 1);
                             if (detailName == "*")
-                                foreach (DataElement element in log.Detail.Elements)
+                                foreach (DataElement element in log.Detail.Items)
                                 {
                                     st += this.ToString(element, indent);
                                     this._CurrentNode = attributeNameKey;

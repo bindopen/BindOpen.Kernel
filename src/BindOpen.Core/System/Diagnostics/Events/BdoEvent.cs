@@ -36,6 +36,7 @@ namespace BindOpen.System.Diagnostics.Events
         /// Creation date of this instance.
         /// </summary>
         [XmlAttribute("date")]
+        [DefaultValue("")]
         public string Date
         {
             get { return base.CreationDate; }
@@ -44,12 +45,6 @@ namespace BindOpen.System.Diagnostics.Events
                 base.CreationDate = value;
             }
         }
-
-        /// <summary>
-        /// Specification of the Date property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DateSpecified => base.CreationDateSpecified;
 
         /// <summary>
         /// Creation date of this instance.
@@ -62,34 +57,16 @@ namespace BindOpen.System.Diagnostics.Events
         }
 
         /// <summary>
-        /// Specification of the CreationDate property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public new bool CreationDateSpecified => false;
-
-        /// <summary>
         /// Long description of this instance.
         /// </summary>
         [XmlElement("longDescription")]
         public DictionaryDataItem LongDescription { get; set; } = null;
 
         /// <summary>
-        /// Specification of the LongDescription property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool LongDescriptionSpecified => this.LongDescription != null && (this.LongDescription.AvailableKeysSpecified || this.LongDescription.ValuesSpecified || this.LongDescription.SingleValueSpecified);
-
-        /// <summary>
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
         public DataElementSet Detail { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Detail property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DetailSpecified => this.Detail != null && (this.Detail.ElementsSpecified);
 
         /// <summary>
         /// Criticality of this instance.
@@ -240,9 +217,9 @@ namespace BindOpen.System.Diagnostics.Events
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             Detail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

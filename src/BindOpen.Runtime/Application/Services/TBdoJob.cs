@@ -1,6 +1,4 @@
-﻿using BindOpen.Application.Scopes;
-using BindOpen.Application.Settings;
-using BindOpen.System.Diagnostics.Loggers;
+﻿using BindOpen.Application.Settings;
 using System;
 
 namespace BindOpen.Application.Services
@@ -53,14 +51,30 @@ namespace BindOpen.Application.Services
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TBdoService class.
+        /// Instantiates a new instance of the TBdoJob class.
         /// </summary>
-        protected TBdoJob(
-            IBdoScope scope,
-            S settings = default,
-            params IBdoLogger[] loggers) : base(scope, loggers)
+        protected TBdoJob() : base()
+        {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// Sets the specfied settings
+        /// </summary>
+        /// <param name="settings">The settings to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        public ITBdoJob<S> WithSettings(S settings)
         {
             Settings = settings;
+
+            return this;
         }
 
         #endregion

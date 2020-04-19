@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Helpers.Objects;
 using System;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
@@ -27,25 +28,15 @@ namespace BindOpen.Data.Items
         /// Creation date of this instance.
         /// </summary>
         [XmlElement("creationDate")]
+        [DefaultValue("")]
         public string CreationDate { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the CreationDate property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool CreationDateSpecified => !string.IsNullOrEmpty(CreationDate);
 
         /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         [XmlElement("lastModificationDate")]
+        [DefaultValue("")]
         public string LastModificationDate { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the LastModificationDate property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool LastModificationDateSpecified => !string.IsNullOrEmpty(LastModificationDate);
 
         #endregion
 

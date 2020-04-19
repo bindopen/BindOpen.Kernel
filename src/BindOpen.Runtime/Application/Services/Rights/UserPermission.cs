@@ -11,7 +11,6 @@ namespace BindOpen.Application.Rights
     /// <summary>
     /// This structure respresents an user permission.
     /// </summary>
-    [Serializable()]
     public class UserPermission : DataKeyValue
     {
         // ------------------------------------------

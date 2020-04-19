@@ -1,6 +1,6 @@
-﻿using System;
+﻿using BindOpen.Data.Items;
+using System;
 using System.Reflection;
-using BindOpen.Data.Items;
 
 namespace BindOpen.System.Assemblies
 {
@@ -8,7 +8,6 @@ namespace BindOpen.System.Assemblies
     /// <summary>
     /// This class represents an assembly resolver.
     /// </summary>
-    [Serializable()]
     public class AssemblyResolver : DataItem
     {
         // NOTE: This class includes temporary comments due to the fact
@@ -76,7 +75,7 @@ namespace BindOpen.System.Assemblies
                     String assemblyFullName = (new AssemblyName(args.Name)).FullName;
 
                     try
-                    {                        
+                    {
                         //filePath = appDomainSetup.PrivateBinPath + assemblyName + ".dll";
                         //if (!string.IsNullOrEmpty(appDomainSetup.PrivateBinPath) && (File.Exists(filePath)))
                         //    assembly = AppDomainPool.LoadAssemblyFromFile(AppDomain.CurrentDomain, filePath);

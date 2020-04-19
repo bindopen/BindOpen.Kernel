@@ -1,15 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Data.Common;
+﻿using BindOpen.Data.Common;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
 {
     /// <summary>
     /// This class represents a document element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("DocumentElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DocumentElementSpec : DataElementSpec, IDocumentElementSpec
@@ -23,7 +21,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Initializes a new document element specification.
         /// </summary>
-        public DocumentElementSpec(): base()
+        public DocumentElementSpec() : base()
         {
         }
 

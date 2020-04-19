@@ -1,7 +1,8 @@
-﻿using System;
-using System.Xml.Serialization;
-using BindOpen.Data.Common;
+﻿using BindOpen.Data.Common;
 using BindOpen.System.Diagnostics;
+using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
 {
@@ -9,7 +10,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a scalar element specification.
     /// </summary>
-    [Serializable()]
     [XmlType("ScalarElementSpec", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ScalarElementSpec : DataElementSpec, IScalarElementSpec
@@ -24,17 +24,12 @@ namespace BindOpen.Data.Elements
         /// The value type of this instance.
         /// </summary>
         [XmlAttribute("valueType")]
+        [DefaultValue(DataValueType.Any)]
         public new DataValueType ValueType
         {
             get { return base.ValueType; }
             set { base.ValueType = value; }
         }
-
-        /// <summary>
-        /// Specification of the ValueType property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ValueTypeSpecified => base.ValueType != DataValueType.Any;
 
         #endregion
 

@@ -4,6 +4,7 @@ using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -13,7 +14,7 @@ namespace BindOpen.Data.Items
     /// This class represents a data source.
     /// </summary>
     [XmlType("Datasource", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "datasource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Datasource : NamedDataItem, IDatasource
     {
         // -----------------------------------------------
@@ -26,13 +27,8 @@ namespace BindOpen.Data.Items
         /// Kind of the data module of this instance. 
         /// </summary>
         [XmlAttribute("kind")]
+        [DefaultValue(DatasourceKind.Any)]
         public DatasourceKind Kind { get; set; } = DatasourceKind.Any;
-
-        /// <summary>
-        /// Specification of the Kind property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool KindSpecified => Kind != DatasourceKind.Any;
 
         /// <summary>
         /// The module name of this instance.
@@ -44,13 +40,8 @@ namespace BindOpen.Data.Items
         /// Indicates whether this instance is default.
         /// </summary>
         [XmlAttribute("isDefault")]
+        [DefaultValue(false)]
         public bool IsDefault { get; set; } = false;
-
-        /// <summary>
-        /// Specification of the ModuleName property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ModuleNameSpecified => !string.IsNullOrEmpty(ModuleName);
 
         /// <summary>
         /// The instance name of this instance.
@@ -59,22 +50,11 @@ namespace BindOpen.Data.Items
         public string InstanceName { get; set; } = null;
 
         /// <summary>
-        /// Specification of the InstanceName property of this instance.
+        /// The configuration items for this instance.
         /// </summary>
-        [XmlIgnore()]
-        public bool InstanceNameSpecified => !string.IsNullOrEmpty(InstanceName);
-
-        /// <summary>
-        /// The connectors for this instance.
-        /// </summary>
-        [XmlElement("configuration")]
+        [XmlArray("configuration")]
+        [XmlArrayItem("add")]
         public List<BdoConnectorConfiguration> Configurations { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ConnectorConfigurations property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ConfigurationsSpecified => Configurations?.Count > 0;
 
         #endregion
 
@@ -262,9 +242,9 @@ namespace BindOpen.Data.Items
 
             if (Configurations != null)
             {
-                foreach (IBdoConnectorConfiguration connector in Configurations)
+                foreach (IBdoConnectorConfiguration configuration in Configurations)
                 {
-                    connector.UpdateStorageInfo(log);
+                    configuration.UpdateStorageInfo(log);
                 }
             }
         }
@@ -277,8 +257,6 @@ namespace BindOpen.Data.Items
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             if (Configurations != null)
             {
                 foreach (IBdoConnectorConfiguration configuration in Configurations)
@@ -286,6 +264,8 @@ namespace BindOpen.Data.Items
                     configuration.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

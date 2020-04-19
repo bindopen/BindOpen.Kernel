@@ -4,7 +4,7 @@
     /// <summary>
     /// This enumerates the possible kinds of visitor application module.
     /// </summary>
-    public enum ApplicationModuleKind
+    public enum AppModuleKind
     {
         /// <summary>
         /// None. Used when the application module is not defined.

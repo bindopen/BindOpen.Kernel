@@ -96,7 +96,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// The application module.
         /// </summary>
-        public IAppModule ApplicationModule => _applicationModule;
+        public IAppModule AppModule => _applicationModule;
 
         /// <summary>
         /// The settings.
@@ -308,7 +308,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public ITBdoHostOptions<S> SetModule(string moduleName)
         {
-            _applicationModule = new AppModule(moduleName);
+            _applicationModule = AppModuleFactory.Create(moduleName);
             return this;
         }
 
@@ -333,7 +333,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns the host option.</returns>
         public ITBdoHostOptions<S> SetRootFolder(Predicate<ITBdoHostOptions<S>> predicate, string rootFolderPath)
         {
-            _rootFolderPathDefinitions = _rootFolderPathDefinitions ?? new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
+            _rootFolderPathDefinitions ??= new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
             _rootFolderPathDefinitions.Add((predicate, rootFolderPath));
 
             return this;

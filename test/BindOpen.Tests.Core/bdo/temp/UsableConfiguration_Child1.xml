@@ -14,5 +14,7 @@
       <add>3</add>
     </values>
   </scalar>
-  <scalar name="byteArray1" valueType="ByteArray" />
+  <scalar name="byteArray1" valueType="ByteArray">
+    <values />
+  </scalar>
 </usableConfiguration>

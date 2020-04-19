@@ -51,12 +51,6 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Specification of the Items property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemsSpecified => _items?.Count > 0;
-
-        /// <summary>
         /// Returns the number of items.
         /// </summary>
         [XmlIgnore()]
@@ -456,6 +450,8 @@ namespace BindOpen.Data.Items
         /// <param name="log">The log to update.</param>
         public override void UpdateStorageInfo(IBdoLog log = null)
         {
+            base.UpdateStorageInfo(log);
+
             if (_items != null)
             {
                 foreach (T item in _items)
@@ -480,6 +476,8 @@ namespace BindOpen.Data.Items
                     item.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

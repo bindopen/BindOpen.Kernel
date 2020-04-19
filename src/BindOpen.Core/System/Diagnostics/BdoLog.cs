@@ -48,12 +48,6 @@ namespace BindOpen.System.Diagnostics
         [XmlElement("execution")]
         public ProcessExecution Execution { get; set; } = null;
 
-        /// <summary>
-        /// Specification of the Execution property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ExecutionSpecified => Execution != null;
-
         // Task ----------------------------------
 
         /// <summary>
@@ -65,12 +59,6 @@ namespace BindOpen.System.Diagnostics
             get => _task;
             set => WriteLog(_task = value, BdoLoggerMode.Auto);
         }
-
-        /// <summary>
-        /// Specification of the Task property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool TaskSpecified => _task != null;
 
         /// <summary>
         /// Function that filters event.
@@ -89,12 +77,6 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         [XmlElement("detail")]
         public DataElementSet Detail { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Detail property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DetailSpecified => Detail?.Elements.Count > 0;
 
         // Events ----------------------------------
 
@@ -124,12 +106,6 @@ namespace BindOpen.System.Diagnostics
         [XmlArray("events")]
         [XmlArrayItem("event")]
         public List<BdoLogEvent> Events { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Events property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool EventsSpecified => Events?.Count > 0;
 
         /// <summary>
         /// Errors of this instance.
@@ -1341,8 +1317,6 @@ namespace BindOpen.System.Diagnostics
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             Detail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             Execution?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
@@ -1354,6 +1328,8 @@ namespace BindOpen.System.Diagnostics
                     currentEvent?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         // Unserialization ---------------------------------

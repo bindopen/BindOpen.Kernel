@@ -12,7 +12,7 @@ namespace BindOpen.Tests.Core.Data.Items
         private IBdoScope _scope = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _scope = GlobalVariables.Scope;
         }

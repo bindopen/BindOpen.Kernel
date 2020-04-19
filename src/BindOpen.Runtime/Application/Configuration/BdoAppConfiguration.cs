@@ -84,13 +84,16 @@ namespace BindOpen.Application.Configuration
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (ApplicationCredential applicationCredential in Credentials)
+            {
                 applicationCredential.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
+            }
             foreach (Datasource dataSource in Datasources)
+            {
                 dataSource.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+            }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

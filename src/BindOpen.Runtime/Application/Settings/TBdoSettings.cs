@@ -257,7 +257,7 @@ namespace BindOpen.Application.Settings
                             .Where(p => p.SpecificationLevels?.ToArray().Has(specificationLevels) == true).ToArray()),
                     null, new[] { UpdateModes.Incremental_UpdateCommonItems });
 
-                UpdateRuntimeInfo(_scope, null, log);
+                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration, scope, scriptVariableSet);
             }
 
             return log;

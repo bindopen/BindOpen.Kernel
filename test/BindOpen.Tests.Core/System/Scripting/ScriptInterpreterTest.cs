@@ -14,7 +14,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         private readonly string _interpretedScript = "true";
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
         }
 

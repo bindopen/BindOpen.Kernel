@@ -2,7 +2,7 @@
 using BindOpen.System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BindOpen.Tests.Core.Extensions.Connectors
+namespace BindOpen.Tests.Core.Fakers
 {
     /// <summary>
     /// This class represents a database connection.

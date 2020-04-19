@@ -16,29 +16,51 @@
       </add>
     </items>
   </carrier>
-  <carrier name="carrier_637228337177698287" valueType="Carrier">
+  <carrier name="carrier_637229259697465772" valueType="Carrier">
     <definition>tests.core$dbField</definition>
     <items>
       <add definition="tests.core$dbField">
         <scalar name="isAll" valueType="Boolean" value="false" />
-        <scalar name="dataModule" />
-        <scalar name="schema" />
-        <scalar name="dataTable" />
-        <scalar name="dataTableAlias" />
-        <scalar name="alias" />
+        <scalar name="dataModule">
+          <values />
+        </scalar>
+        <scalar name="schema">
+          <values />
+        </scalar>
+        <scalar name="dataTable">
+          <values />
+        </scalar>
+        <scalar name="dataTableAlias">
+          <values />
+        </scalar>
+        <scalar name="alias">
+          <values />
+        </scalar>
         <scalar name="size" valueType="Integer" value="0" />
-        <object name="value" valueType="Object" />
+        <object name="value" valueType="Object">
+          <items />
+        </object>
         <scalar name="isKey" valueType="Boolean" value="false" />
         <scalar name="isForeignKey" valueType="Boolean" value="false" />
         <scalar name="isNameAsScript" valueType="Boolean" value="false" />
         <scalar name="valueType" value="Any" />
         <scalar name="path" value="file3.txt" />
-        <scalar name="parentPath" />
-        <scalar name="creationDate" />
-        <scalar name="flag" />
+        <scalar name="parentPath">
+          <values />
+        </scalar>
+        <scalar name="creationDate">
+          <values />
+        </scalar>
+        <scalar name="flag">
+          <values />
+        </scalar>
         <scalar name="isReadOnly" valueType="Boolean" value="false" />
-        <scalar name="lastAccessDate" />
-        <scalar name="lastWriteDate" />
+        <scalar name="lastAccessDate">
+          <values />
+        </scalar>
+        <scalar name="lastWriteDate">
+          <values />
+        </scalar>
       </add>
     </items>
   </carrier>
@@ -47,24 +69,46 @@
     <items>
       <add name="carrier4" definition="tests.core$dbField">
         <scalar name="isAll" valueType="Boolean" value="false" />
-        <scalar name="dataModule" />
-        <scalar name="schema" />
-        <scalar name="dataTable" />
-        <scalar name="dataTableAlias" />
-        <scalar name="alias" />
+        <scalar name="dataModule">
+          <values />
+        </scalar>
+        <scalar name="schema">
+          <values />
+        </scalar>
+        <scalar name="dataTable">
+          <values />
+        </scalar>
+        <scalar name="dataTableAlias">
+          <values />
+        </scalar>
+        <scalar name="alias">
+          <values />
+        </scalar>
         <scalar name="size" valueType="Integer" value="0" />
-        <object name="value" valueType="Object" />
+        <object name="value" valueType="Object">
+          <items />
+        </object>
         <scalar name="isKey" valueType="Boolean" value="false" />
         <scalar name="isForeignKey" valueType="Boolean" value="false" />
         <scalar name="isNameAsScript" valueType="Boolean" value="false" />
         <scalar name="valueType" value="Any" />
         <scalar name="path" value="file4.txt" />
-        <scalar name="parentPath" />
-        <scalar name="creationDate" />
-        <scalar name="flag" />
+        <scalar name="parentPath">
+          <values />
+        </scalar>
+        <scalar name="creationDate">
+          <values />
+        </scalar>
+        <scalar name="flag">
+          <values />
+        </scalar>
         <scalar name="isReadOnly" valueType="Boolean" value="false" />
-        <scalar name="lastAccessDate" />
-        <scalar name="lastWriteDate" />
+        <scalar name="lastAccessDate">
+          <values />
+        </scalar>
+        <scalar name="lastWriteDate">
+          <values />
+        </scalar>
       </add>
     </items>
   </carrier>

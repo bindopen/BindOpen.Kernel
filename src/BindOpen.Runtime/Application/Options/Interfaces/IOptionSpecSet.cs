@@ -9,7 +9,7 @@ namespace BindOpen.Application.Options
     /// <summary>
     /// 
     /// </summary>
-    public interface IOptionSpecSet : IDataItemSet<OptionSpec>, INamed, IIndexed
+    public interface IOptionSpecSet : IDataItemSet<IOptionSpec>, INamed, IIndexed, IGloballyDescribed
     {
         /// <summary>
         /// 
@@ -19,7 +19,7 @@ namespace BindOpen.Application.Options
         /// <summary>
         /// 
         /// </summary>
-        List<OptionSpecSet> SubSets { get; set; }
+        List<IOptionSpecSet> SubSets { get; set; }
 
         /// <summary>
         /// 

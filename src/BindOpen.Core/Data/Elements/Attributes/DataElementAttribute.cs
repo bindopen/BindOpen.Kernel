@@ -40,11 +40,6 @@ namespace BindOpen.Data.Elements
         public string GroupId { get; set; } = "";
 
         /// <summary>
-        /// Specification of the GroupId property of this instance.
-        /// </summary>
-        public bool GroupIdSpecified => !string.IsNullOrEmpty(this.GroupId);
-
-        /// <summary>
         /// The value type of this instance.
         /// </summary>
         public DataValueType ValueType { get; set; } = DataValueType.Any;

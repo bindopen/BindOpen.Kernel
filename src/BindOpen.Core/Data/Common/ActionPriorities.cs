@@ -5,7 +5,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration lists the possible kinds of actions.
     /// </summary>
-    [Serializable()]
     [Flags]
     public enum ActionPriorities
     {

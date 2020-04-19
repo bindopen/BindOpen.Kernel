@@ -78,7 +78,7 @@ namespace BindOpen.Application.Modules
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the ApplicationModuleSection class.
+        /// Initializes a new instance of the AppModuleSection class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="module">The application module of the instance.</param>

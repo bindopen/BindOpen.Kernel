@@ -4,7 +4,6 @@ using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -12,7 +11,6 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a carrier configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoCarrierConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoCarrierConfiguration

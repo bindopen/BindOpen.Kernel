@@ -15,7 +15,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [Serializable()]
     [XmlRoot(ElementName = "element.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSet : DataItemSet<IDataElement>, IDataElementSet
     {
@@ -38,15 +37,9 @@ namespace BindOpen.Data.Elements
         [XmlArrayElement("elements")]
         public List<DataElement> Elements
         {
-            get { return _items?.Select(p => p as DataElement)?.ToList(); }
-            set { _items = value?.Select(p => p as IDataElement)?.ToList(); }
+            get;
+            set;
         }
-
-        /// <summary>
-        /// Specification of the Elements property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ElementsSpecified => _items?.Count > 0;
 
         /// <summary>
         /// Returns the element with the specified key.
@@ -111,7 +104,7 @@ namespace BindOpen.Data.Elements
         /// <param name="key">The key of the element to remove.</param>
         public void RemoveElement(string key)
         {
-            if (key == null || Elements == null) return;
+            if (key == null || _items == null) return;
         }
 
         // Element items ------------------------
@@ -169,7 +162,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns true if the instance has an element with the specified name.</returns>
         public new bool HasItem(string key)
         {
-            return Elements?.Any(p => p.KeyEquals(key)) == true;
+            return _items?.Any(p => p.KeyEquals(key)) == true;
         }
 
         /// <summary>
@@ -185,9 +178,9 @@ namespace BindOpen.Data.Elements
 
             // To repair
 
-            if (elementSet.Elements != null)
+            if (elementSet.Items != null)
             {
-                foreach (IDataElement currentDataItem in elementSet.Elements)
+                foreach (IDataElement currentDataItem in elementSet.Items)
                 {
                     fieldNames = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
 
@@ -208,7 +201,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns items with the specified group ID.</returns>
         public List<IDataElement> GetElementsWithGroupId(string groupId)
         {
-            return Elements?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList<IDataElement>();
+            return _items?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList<IDataElement>();
         }
 
         /// <summary>
@@ -219,7 +212,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns the item with the specified name and group ID.</returns>
         public IDataElement GetElement(string name, string groupId = null)
         {
-            return Elements?.FirstOrDefault(p =>
+            return _items?.FirstOrDefault(p =>
                 p.Name.KeyEquals(name)
                 && (p.Specification?.GroupId.KeyEquals(groupId) != false));
         }
@@ -232,8 +225,8 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns all the element group IDs.</returns>
         public List<string> GetGroupIds()
         {
-            if (Elements == null) return new List<string>();
-            return Elements.Select(p => p.Specification?.GroupId).Distinct().ToList();
+            if (_items == null) return new List<string>();
+            return _items.Select(p => p.Specification?.GroupId).Distinct().ToList();
         }
 
         // Element items ------------------------
@@ -252,7 +245,7 @@ namespace BindOpen.Data.Elements
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            IDataElement element = (elementName != null ? GetItem(elementName) : Elements[0]);
+            IDataElement element = (elementName != null ? GetItem(elementName) : _items[0]);
             if (element != null)
                 return element.GetObject(scope, scriptVariableSet, log);
 
@@ -273,7 +266,8 @@ namespace BindOpen.Data.Elements
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return (T)GetElementObject(elementName, scope, scriptVariableSet, log);
+            var aObject = GetElementObject(elementName, scope, scriptVariableSet, log) ?? default(T);
+            return (T)aObject;
         }
 
         // General ------------------------------
@@ -288,9 +282,9 @@ namespace BindOpen.Data.Elements
             List<int> availableIndexes = new List<int>();
             for (int i = 1; i <= maxIndex; i++)
                 availableIndexes.Add(i);
-            if (Elements != null)
+            if (_items != null)
             {
-                int[] indexes = Elements.Select(q => q.Index).ToArray();
+                int[] indexes = _items.Select(q => q.Index).ToArray();
                 availableIndexes.RemoveAll(p => indexes.Contains(p));
             }
 
@@ -383,9 +377,12 @@ namespace BindOpen.Data.Elements
 
             st += indent + nodeName + "\n";
             st += "\t" + indent + nodeName + ":elements" + "\n";
-            if (Elements != null)
-                foreach (IDataElement dataItem in Elements)
+            if (_items != null)
+            {
+                foreach (IDataElement dataItem in _items)
                     st += dataItem.GetTextNode(nodeName + ":elements:element", "\t\t" + indent);
+            }
+
             return st;
         }
 
@@ -406,21 +403,21 @@ namespace BindOpen.Data.Elements
         {
             List<IDataElement> sortedDataItems = new List<IDataElement>();
 
-            if (Elements != null)
+            if (_items != null)
             {
-                foreach (IDataElement currentElement in Elements)
+                foreach (IDataElement currentElement in _items)
                 {
                     if ((groupId == null)
                        || (currentElement.Specification != null && currentElement.Specification.GroupId == groupId))
                     {
                         int currentIndex = 0;
-                        foreach (IDataElement sortedDataElement in Elements)
+                        foreach (IDataElement sortedDataElement in _items)
                         {
                             if (currentElement.Index < sortedDataElement.Index)
                                 break;
                             currentIndex++;
                         }
-                        if (currentIndex > Elements.Count - 1)
+                        if (currentIndex > _items.Count - 1)
                             sortedDataItems.Add(currentElement);
                         else
                             sortedDataItems.Insert(currentIndex, currentElement);
@@ -635,6 +632,39 @@ namespace BindOpen.Data.Elements
         }
 
         #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(IBdoLog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Elements = Items?.Cast<DataElement>().ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        {
+            Items = Elements?.Cast<IDataElement>().ToList();
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+        }
+
+        #endregion
+
     }
 }
 

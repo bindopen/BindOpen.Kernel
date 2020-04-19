@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Configuration;
 using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -35,13 +36,8 @@ namespace BindOpen.Extensions.Runtime
         /// The group of this instance.
         /// </summary>
         [XmlElement("group")]
+        [DefaultValue("")]
         public string Group { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the Group property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool GroupSpecified => !string.IsNullOrEmpty(Group);
 
         #endregion
 

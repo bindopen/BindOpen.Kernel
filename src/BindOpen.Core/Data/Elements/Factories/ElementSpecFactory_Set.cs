@@ -15,7 +15,7 @@ namespace BindOpen.Data.Elements
         {
             var elementSpecSet = new DataElementSpecSet()
             {
-                Items = elements.Cast<DataElementSpec>().ToList()
+                Items = elements?.Cast<DataElementSpec>().ToList()
             };
 
             return elementSpecSet;

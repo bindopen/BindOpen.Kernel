@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.System.Diagnostics.Events
 {
     /// <summary>
     /// This enumeration lists the possible event criticalities.
     /// </summary>
-    [Serializable()]
     [XmlType("EventCriticality", Namespace = "https://bindopen.org/xsd")]
     public enum BdoEventCriticality
     {

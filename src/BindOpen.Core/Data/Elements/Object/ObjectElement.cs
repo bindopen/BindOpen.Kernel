@@ -7,6 +7,7 @@ using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
@@ -31,25 +32,15 @@ namespace BindOpen.Data.Elements
         /// The class full name of this instance.
         /// </summary>
         [XmlAttribute("class")]
+        [DefaultValue("")]
         public string ClassFullName { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the ClassFullName property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ClassFullNameSpecified => !string.IsNullOrEmpty(ClassFullName);
 
         /// <summary>
         /// The definition unique ID of this instance.
         /// </summary>
         [XmlAttribute("definition")]
+        [DefaultValue("")]
         public string DefinitionUniqueId { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the DefinitionUniqueId property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         // --------------------------------------------------
 
@@ -63,12 +54,6 @@ namespace BindOpen.Data.Elements
             get;
             set;
         }
-
-        /// <summary>
-        /// Specification of the Objects property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ObjectsSpecified => Items.Count > 0;
 
         // Specifcation -----------------------
 
@@ -172,7 +157,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new ObjectElementSpec();
         }
@@ -266,8 +251,6 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (DataElementSet elementSet in Objects)
             {
                 AssemblyHelper.CreateInstance(ClassFullName, out object item).AddEventsTo(log);
@@ -280,6 +263,8 @@ namespace BindOpen.Data.Elements
 
                 AddItem(item);
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

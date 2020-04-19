@@ -1,13 +1,11 @@
-﻿using System;
+﻿using BindOpen.Data.Entities;
 using System.Xml.Serialization;
-using BindOpen.Data.Entities;
 
 namespace BindOpen.Application.Entities
 {
     /// <summary>
     /// This class represents an application entity.
     /// </summary>
-    [Serializable()]
     [XmlType("ApplicationEntity", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "applicationEntity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ApplicationEntity : DataEntity

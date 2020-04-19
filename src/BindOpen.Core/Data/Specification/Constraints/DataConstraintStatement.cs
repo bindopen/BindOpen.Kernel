@@ -5,7 +5,6 @@ using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Specification
@@ -13,7 +12,6 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    [Serializable()]
     [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataConstraintStatement : DataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement

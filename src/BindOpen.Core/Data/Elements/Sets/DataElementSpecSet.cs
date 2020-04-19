@@ -8,7 +8,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    [Serializable()]
     [XmlType("DataElementSpecSet", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSpecSet : DataItemSet<DataElementSpec>, IDataElementSpecSet
@@ -32,18 +31,6 @@ namespace BindOpen.Data.Elements
         {
             get { return _items; }
             set { _items = value; }
-        }
-
-        /// <summary>
-        /// Specification of the Specifications property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SpecificationsSpecified
-        {
-            get
-            {
-                return _items?.Count > 0;
-            }
         }
 
         // Conversions -----------------------------

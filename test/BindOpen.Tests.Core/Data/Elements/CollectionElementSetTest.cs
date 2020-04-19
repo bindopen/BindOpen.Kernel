@@ -18,7 +18,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         private ICollectionElement _collectionElement2 = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             BdoLog log = new BdoLog();
 
@@ -43,7 +43,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestCreateObjectElementSet()
+        public void CreateObjectElementSetTest()
         {
             //Assert.That(
             //    ((string)_collectionElement1.First?["path"] == "file1.txt")
@@ -61,7 +61,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestUpdateCheckRepair()
+        public void UpdateCheckRepairTest()
         {
             var log = new BdoLog();
 
@@ -76,7 +76,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestSaveDataElementSet()
+        public void SaveDataElementSetTest()
         {
             var log = new BdoLog();
 
@@ -91,14 +91,14 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestLoadDataElementSet()
+        public void LoadDataElementSetTest()
         {
             var log = new BdoLog();
 
             if (_collectionElementSetA == null || !File.Exists(_filePath))
-                TestSaveDataElementSet();
+                SaveDataElementSetTest();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log: log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

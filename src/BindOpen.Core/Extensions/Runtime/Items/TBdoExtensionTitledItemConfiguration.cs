@@ -26,12 +26,6 @@ namespace BindOpen.Extensions.Runtime
         [XmlElement("title")]
         public DictionaryDataItem Title { get; set; } = null;
 
-        /// <summary>
-        /// Specification of the Title property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool TitleSpecified => this.Title != null && (this.Title.AvailableKeysSpecified || this.Title.ValuesSpecified || this.Title.SingleValueSpecified);
-
         #endregion
 
         // ------------------------------------------

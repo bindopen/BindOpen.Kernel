@@ -29,7 +29,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_ApplicationModuleName(
+        public static string Var_AppModuleName(
             IBdoScope scope,
             IBdoScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
@@ -41,7 +41,7 @@ namespace BindOpen.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--BindOpen host missing-->";
 
-            return appHost?.HostOptions.ApplicationModule?.Name ?? "";
+            return appHost?.HostOptions.AppModule?.Name ?? "";
         }
 
         /// <summary>

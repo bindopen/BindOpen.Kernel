@@ -51,12 +51,6 @@ namespace BindOpen.Extensions.Runtime
         }
 
         /// <summary>
-        /// Specification of the InputSpecified property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool InputDetailSpecified => _inputDetail != null && (_inputDetail.ElementsSpecified);
-
-        /// <summary>
         /// Output detail of this instance.
         /// </summary>
         [XmlElement("outputs")]
@@ -65,12 +59,6 @@ namespace BindOpen.Extensions.Runtime
             get => _outputDetail ?? (_outputDetail = new DataElementSet());
             set => _outputDetail = value;
         }
-
-        /// <summary>
-        /// Specification of the OutputSpecified property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool OutputDetailSpecified => _outputDetail != null && (_outputDetail.ElementsSpecified);
 
         #endregion
 
@@ -122,14 +110,14 @@ namespace BindOpen.Extensions.Runtime
             List<IDataElement> dataElements = new List<IDataElement>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
-                dataElements.AddRange(_inputDetail.Elements);
+                dataElements.AddRange(_inputDetail.Items);
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
-                dataElements.AddRange(_outputDetail.Elements);
+                dataElements.AddRange(_outputDetail.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(_outputDetail.Elements.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(_outputDetail.Items.Where(p => p.ValueType.IsScalar()));
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.NonScalarOutput)))
-                dataElements.AddRange(_outputDetail.Elements.Where(p => !p.ValueType.IsScalar()));
+                dataElements.AddRange(_outputDetail.Items.Where(p => !p.ValueType.IsScalar()));
 
             return dataElements.Distinct().ToList();
         }
@@ -197,9 +185,9 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             _outputDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

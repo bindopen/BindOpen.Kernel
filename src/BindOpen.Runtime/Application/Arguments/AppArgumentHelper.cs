@@ -55,7 +55,8 @@ namespace BindOpen.Application.Arguments
                         if (optionSpecificationSet != null)
                         {
                             argumentSpecification = optionSpecificationSet.Items
-                               .Find(p => p.IsArgumentMarching(currentArgumentString, out aliasIndex));
+                               .Find(p => p.IsArgumentMarching(currentArgumentString, out aliasIndex))
+                               as OptionSpec;
                         }
 
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
@@ -129,7 +130,7 @@ namespace BindOpen.Application.Arguments
                     }
                 }
 
-                foreach (IScalarElement option in optionSet.Elements)
+                foreach (IScalarElement option in optionSet.Items)
                 {
                     if (option?.Specification != null)
                     {

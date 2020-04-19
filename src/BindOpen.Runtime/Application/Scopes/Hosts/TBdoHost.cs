@@ -55,21 +55,29 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// Instantiates a new instance of the TBdoHost class.
         /// </summary>
-        public TBdoHost() : this(null)
+        public TBdoHost() : base()
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the TBdoHost class.
+        /// Sets the specfied options
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="options">The options to consider.</param>
-        public TBdoHost(
-            IBdoScope scope = null,
-            ITBdoHostOptions<S> options = null)
-             : base(scope, options?.Settings)
+        /// <param name="options"></param>
+        /// <returns>Returns this instance.</returns>
+        public ITBdoJob<S> WithOptions(ITBdoHostOptions<S> options)
         {
             Options = options;
+            WithSettings(Settings);
+
+            return this;
         }
 
         #endregion
@@ -151,7 +159,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns the application host.</returns>
         public ITBdoHost<S> Configure(Action<ITBdoHostOptions<S>> setupOptions)
         {
-            Options = Options ?? new TBdoHostOptions<S>();
+            Options ??= new TBdoHostOptions<S>();
             setupOptions?.Invoke(Options);
 
             return this;

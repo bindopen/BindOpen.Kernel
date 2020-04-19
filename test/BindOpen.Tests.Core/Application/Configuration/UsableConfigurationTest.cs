@@ -20,7 +20,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
         private BdoUsableConfiguration _usableConfiguration21 = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _usableConfiguration1 = ConfigurationFactory.CreateUsable(
                 _filePath1,

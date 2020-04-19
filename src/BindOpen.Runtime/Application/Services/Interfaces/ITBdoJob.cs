@@ -14,6 +14,13 @@ namespace BindOpen.Application.Services
         /// </summary>
         S Settings { get; set; }
 
+        /// <summary>
+        /// Sets the specfied settings
+        /// </summary>
+        /// <param name="settings">The settings to consider.</param>
+        /// <returns>Returns this instance.</returns>
+        ITBdoJob<S> WithSettings(S settings);
+
         // Trigger actions --------------------------------------
 
         /// <summary>

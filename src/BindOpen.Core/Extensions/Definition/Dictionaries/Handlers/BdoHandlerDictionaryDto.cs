@@ -1,13 +1,10 @@
-﻿using BindOpen.Extensions.Definition;
-using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Definition
 {
     /// <summary>
     /// This class represents a handler index.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoHandlerDictionary", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "handlers.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoHandlerDictionaryDto : TBdoExtensionDictionaryDto<BdoHandlerDefinitionDto>, IBdoHandlerDictionaryDto

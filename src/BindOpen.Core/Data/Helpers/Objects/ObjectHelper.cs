@@ -238,7 +238,7 @@ namespace BindOpen.Data.Helpers.Objects
             IBdoScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
             var log = new BdoLog();
-            if (aObject == null || elementSet.Elements == null) return null;
+            if (aObject == null || elementSet.Items == null) return null;
 
             foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
             {

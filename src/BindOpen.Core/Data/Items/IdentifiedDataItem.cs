@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
@@ -20,13 +21,8 @@ namespace BindOpen.Data.Items
         /// ID of this instance.
         /// </summary>
         [XmlAttribute("id")]
+        [DefaultValue("")]
         public string Id { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ID of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool IdSpecified => !string.IsNullOrEmpty(this.Id);
 
         #endregion
 

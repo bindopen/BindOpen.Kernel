@@ -1,7 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Helpers.Files;
 using BindOpen.Extensions.References;
-using BindOpen.Tests.Core.Extensions.Carriers;
+using BindOpen.Tests.Core.Fakers;
 
 namespace BindOpen.Tests.Core
 {

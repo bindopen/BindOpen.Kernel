@@ -91,14 +91,10 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Instantiates a new instance of the BdoService class.
         /// </summary>
-        protected BdoJob(
-            IBdoScope scope,
-            params IBdoLogger[] loggers) : base(scope)
+        protected BdoJob() : base()
         {
-            Loggers = loggers?.ToList() ?? new List<IBdoLogger>();
-
             // we initiate the log of this instance
-            Log = new BdoLog(Loggers.ToArray())
+            Log = new BdoLog()
             {
                 Id = Id
             };
@@ -122,11 +118,13 @@ namespace BindOpen.Application.Services
         public IBdoJob WithLoggers(params IBdoLogger[] loggers)
         {
             Loggers = loggers?.ToList();
+            Log?.AddLoggers(loggers);
 
             return this;
         }
 
         #endregion
+
         // ------------------------------------------
         // PROCESSING
         // ------------------------------------------

@@ -21,13 +21,8 @@ namespace BindOpen.Data.Specification
         /// Control with of this instance.
         /// </summary>
         [XmlElement("controlWidth")]
+        [DefaultValue("")]
         public string ControlWidth { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the ControlWidth property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ControlWidthSpecified => !string.IsNullOrEmpty(ControlWidth);
 
         /// <summary>
         /// Control type of this instance.

@@ -25,18 +25,6 @@ namespace BindOpen.Application.Configuration
         public List<string> UsingFilePaths { get; set; } = new List<string>();
 
         /// <summary>
-        /// Specification of the UsingFilePaths property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool UsingFilePathsSpecified
-        {
-            get
-            {
-                return UsingFilePaths != null && this.UsingFilePaths.Count > 0;
-            }
-        }
-
-        /// <summary>
         /// The using configuration statement of this instance.
         /// </summary>
         [XmlIgnore()]

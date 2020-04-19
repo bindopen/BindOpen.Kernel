@@ -9,7 +9,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a document element that is an element whose items are documents.
     /// </summary>
-    [Serializable()]
     [XmlType("DocumentElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DocumentElement : DataElement, IDocumentElement
@@ -90,7 +89,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new DocumentElementSpec();
         }

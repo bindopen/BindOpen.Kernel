@@ -43,6 +43,12 @@ namespace BindOpen.Extensions.Runtime
 
         #endregion
 
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
         /// Sets the connection string with the specified string.
         /// </summary>
@@ -54,6 +60,8 @@ namespace BindOpen.Extensions.Runtime
 
             return this;
         }
+
+        #endregion
 
         // ------------------------------------------
         // CLONING

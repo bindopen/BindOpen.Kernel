@@ -39,14 +39,6 @@ namespace BindOpen.Data.Elements
             set { this._definitionFilter = value; }
         }
 
-        /// <summary>
-        /// Specification of the DefinitionFilter property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionFilterSpecified => this._definitionFilter != null
-                    && (this._definitionFilter.AddedValues == null || this._definitionFilter.AddedValues.Count > 0)
-                    && (this._definitionFilter.RemovedValues == null || this._definitionFilter.RemovedValues.Count > 0);
-
         #endregion
 
         // --------------------------------------------------

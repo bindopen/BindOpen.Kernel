@@ -15,7 +15,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         private DataElementSet _scalarElementSetA = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _scalarElementSetA = new[]
             {
@@ -36,7 +36,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestCreateElementSet()
+        public void CreateElementSetTest()
         {
             Assert.That(
                 ((string)_scalarElementSetA["text1"]?[0] == "item1")
@@ -56,10 +56,8 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestUpdateCheckRepair()
+        public void UpdateCheckRepairTest()
         {
-            var log = new BdoLog();
-
             var elementAA = ElementFactory.CreateScalar("name1", null);
             var elementAB = ElementFactory.CreateScalar("name1", "Test1");
             elementAA.Repair(elementAB);
@@ -89,19 +87,10 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetA.Add(ElementFactory.Create("name5", null));
             elementSetB.Repair(elementSetA);
             elementSetB.Update(elementSetA);
-
-            //test update
-            //log = _scalarElementSetB.Update(_scalarElementSetA);
-
-            //Assert.That(log.Errors.Count == itemsNumber, "Bad insertion of errors ({0} expected; {1} found)", itemsNumber, log.Errors.Count);
-            //Assert.That(log.Exceptions.Count == itemsNumber, "Bad insertion of exceptions ({0} expected; {1} found)", itemsNumber, log.Exceptions.Count);
-            //Assert.That(log.Messages.Count == itemsNumber, "Bad insertion of messages ({0} expected; {1} found)", itemsNumber, log.Messages.Count);
-            //Assert.That(log.Warnings.Count == itemsNumber, "Bad insertion of warnings ({0} expected; {1} found)", itemsNumber, log.Warnings.Count);
-            //Assert.That(log.SubLogs.Count == itemsNumber, "Bad insertion of sub logs ({0} expected; {1} found)", itemsNumber, log.SubLogs.Count);
         }
 
         [Test]
-        public void TestSaveDataElementSet()
+        public void SaveDataElementSetTest()
         {
             var log = new BdoLog();
 
@@ -116,14 +105,14 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestLoadDataElementSet()
+        public void LoadDataElementSetTest()
         {
             var log = new BdoLog();
 
             if (_scalarElementSetA == null || !File.Exists(_filePath))
-                TestSaveDataElementSet();
+                SaveDataElementSetTest();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log: log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())
@@ -132,7 +121,7 @@ namespace BindOpen.Tests.Core.Data.Elements
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
 
-            TestCreateElementSet();
+            CreateElementSetTest();
         }
     }
 }

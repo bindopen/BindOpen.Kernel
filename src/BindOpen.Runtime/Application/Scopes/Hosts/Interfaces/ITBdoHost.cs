@@ -25,6 +25,13 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns the bot.</returns>
         ITBdoHost<S> Configure(Action<ITBdoHostOptions<S>> setupOptions);
 
+        /// <summary>
+        /// Sets the specfied options
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns>Returns this instance.</returns>
+        ITBdoJob<S> WithOptions(ITBdoHostOptions<S> options);
+
         // Process ----------------------------------
 
         /// <summary>

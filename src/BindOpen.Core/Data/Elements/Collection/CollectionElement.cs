@@ -41,12 +41,6 @@ namespace BindOpen.Data.Elements
             set;
         }
 
-        /// <summary>
-        /// Specification of the Elements property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ElementsSpecified => Items.Count > 0;
-
         // Specifcation -----------------------
 
         /// <summary>
@@ -131,7 +125,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new CollectionElementSpec();
         }
@@ -300,13 +294,13 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (DataElement element in Elements)
             {
                 element.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 AddItem(element);
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

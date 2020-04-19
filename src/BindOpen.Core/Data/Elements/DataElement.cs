@@ -64,15 +64,10 @@ namespace BindOpen.Data.Elements
         public DataValueType ValueType { get; set; } = DataValueType.Any;
 
         /// <summary>
-        /// Specification of the ValueType property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ValueTypeSpecified => ValueType != DataValueType.Any;
-
-        /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
         [XmlElement("itemizationMode")]
+        [DefaultValue(DataItemizationMode.Valued)]
         public DataItemizationMode ItemizationMode
         {
             get
@@ -85,34 +80,17 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Specification of the ItemizationMode property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemizationModeSpecified => ItemizationMode != DataItemizationMode.Valued;
-
-        /// <summary>
         /// Item reference of this instance.
         /// </summary>
         [XmlElement("itemReference")]
         public DataReferenceDto ItemReference { get; set; } = null;
 
         /// <summary>
-        /// Specification of the ItemReference property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemReferenceSpecified => ItemReference != null;
-
-        /// <summary>
         /// The script of this instance.
         /// </summary>
         [XmlAttribute("script")]
+        [DefaultValue("")]
         public string ItemScript { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ItemScript property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemScriptSpecified => !string.IsNullOrEmpty(ItemScript);
 
         /// <summary>
         /// Items of this instance.
@@ -148,13 +126,7 @@ namespace BindOpen.Data.Elements
         /// Specification of this instance.
         /// </summary>
         [XmlIgnore()]
-        public DataElementSpec Specification { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Specification property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SpecificationSpecified => Specification != null;
+        public IDataElementSpec Specification { get; set; } = null;
 
         /// <summary>
         /// Returns the item with the specified indexed.
@@ -182,31 +154,20 @@ namespace BindOpen.Data.Elements
         [XmlElement("propertyDetail")]
         public DataElementSet PropertyDetail
         {
-            get => _propertyDetail ?? (_propertyDetail = new DataElementSet());
+            get => _propertyDetail;
             set { _propertyDetail = value; }
         }
-
-        /// <summary>
-        /// Specification of the PropertyDetail property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool PropertyDetailSpecified => _propertyDetail != null && (_propertyDetail.ElementsSpecified);
 
         /// <summary>
         /// The event kind of this instance.
         /// </summary>
         [XmlElement("eventKind")]
-        public EventKinds? EventKind
+        [DefaultValue(EventKinds.None)]
+        public EventKinds EventKind
         {
-            get => _eventKind ?? System.Diagnostics.Events.EventKinds.None;
+            get => _eventKind ?? EventKinds.None;
             set { _eventKind = value; }
         }
-
-        /// <summary>
-        /// Specification of the EventKind property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool EventKindSpecified => _eventKind != null && _eventKind == System.Diagnostics.Events.EventKinds.None;
 
         #endregion
 
@@ -346,7 +307,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification of this instance.
         /// </summary>
         /// <returns>Returns True .</returns>
-        public abstract DataElementSpec NewSpecification();
+        public abstract IDataElementSpec NewSpecification();
 
         // Set
 
@@ -743,6 +704,8 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to update.</param>
         public override void UpdateStorageInfo(IBdoLog log = null)
         {
+            base.UpdateStorageInfo(log);
+
             _propertyDetail?.UpdateStorageInfo(log);
 
             ItemReference?.UpdateStorageInfo(log);
@@ -759,6 +722,8 @@ namespace BindOpen.Data.Elements
             _propertyDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             ItemReference?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         /// <summary>

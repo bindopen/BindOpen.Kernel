@@ -121,11 +121,6 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        bool ElementsSpecified { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="elementName"></param>
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>

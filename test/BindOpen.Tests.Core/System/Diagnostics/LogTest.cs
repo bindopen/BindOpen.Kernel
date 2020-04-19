@@ -63,7 +63,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
                 TestSaveEvents();
 
             BdoLog log = new BdoLog();
-            _log = XmlHelper.Load<BdoLog>(_filePath, null, null, log);
+            _log = XmlHelper.Load<BdoLog>(_filePath, log: log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

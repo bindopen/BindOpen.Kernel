@@ -37,12 +37,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        EventKinds? EventKind { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool EventKindSpecified { get; }
+        EventKinds EventKind { get; set; }
 
         /// <summary>
         /// 
@@ -72,7 +67,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataElementSpec Specification { get; set; }
+        IDataElementSpec Specification { get; set; }
 
         /// <summary>
         /// 
@@ -166,7 +161,7 @@ namespace BindOpen.Data.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        DataElementSpec NewSpecification();
+        IDataElementSpec NewSpecification();
 
         /// <summary>
         /// 

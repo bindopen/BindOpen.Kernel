@@ -1,14 +1,11 @@
-﻿using System;
+﻿using BindOpen.Data.Items;
 using System.Xml.Serialization;
-using BindOpen.Data.Conditions;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a condition.
     /// </summary>
-    [Serializable()]
     [XmlType("Condition", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(AdvancedCondition))]
@@ -49,7 +46,7 @@ namespace BindOpen.Data.Conditions
         /// <param name="trueValue">The true value to consider.</param>
         protected Condition(bool trueValue) : base()
         {
-            this.TrueValue= trueValue;
+            this.TrueValue = trueValue;
         }
 
         #endregion

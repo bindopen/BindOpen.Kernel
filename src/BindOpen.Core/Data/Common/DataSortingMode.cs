@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Common
 {
@@ -13,7 +12,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the data sorting modes.
     /// </summary>
-    [Serializable()]
     [XmlType("DataSortingMode", Namespace = "https://bindopen.org/xsd")]
     public enum DataSortingMode
     {

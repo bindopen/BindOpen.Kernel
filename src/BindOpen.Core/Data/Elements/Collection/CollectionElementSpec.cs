@@ -27,26 +27,10 @@ namespace BindOpen.Data.Elements
         public DataValueFilter ClassFilter { get; set; } = null;
 
         /// <summary>
-        /// Specification of the ClassFilter property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ClassFilterSpecified => ClassFilter != null
-            && (ClassFilter.AddedValues == null || ClassFilter.AddedValues.Count > 0)
-            && (ClassFilter.RemovedValues == null || ClassFilter.RemovedValues.Count > 0);
-
-        /// <summary>
         /// The entity filter of this instance.
         /// </summary>
         [XmlElement("definition.filter")]
         public DataValueFilter DefinitionFilter { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ClassFilter property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionFilterSpecified => this.DefinitionFilter != null
-                    && (this.DefinitionFilter.AddedValues == null || this.DefinitionFilter.AddedValues.Count > 0)
-                    && (this.DefinitionFilter.RemovedValues == null || this.DefinitionFilter.RemovedValues.Count > 0);
 
         #endregion
 

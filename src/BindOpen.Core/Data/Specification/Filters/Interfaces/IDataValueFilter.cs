@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Specification
 {
@@ -16,17 +16,7 @@ namespace BindOpen.Data.Specification
         /// <summary>
         /// 
         /// </summary>
-        bool AddedValuesSpecified { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         List<string> RemovedValues { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool RemovedValuesSpecified { get; }
 
         /// <summary>
         /// 

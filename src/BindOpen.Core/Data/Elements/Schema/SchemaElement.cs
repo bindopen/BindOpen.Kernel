@@ -162,7 +162,7 @@ namespace BindOpen.Data.Elements.Schema
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return (Specification = new SchemaElementSpec());
         }

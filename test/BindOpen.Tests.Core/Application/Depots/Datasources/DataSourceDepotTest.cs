@@ -11,14 +11,14 @@ using System.IO;
 namespace BindOpen.Tests.Core.Application.Depots.Datasources
 {
     [TestFixture, Order(21)]
-    public class DatasourceDepotTest
+    public class DatasourceDepotTests
     {
         private readonly string _filePath = GlobalVariables.WorkingFolder + "DatasourceDepot.xml";
 
         private BdoDatasourceDepot _dataSourceDepot = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _dataSourceDepot = DataItemFactory.CreateSet<BdoDatasourceDepot, IDatasource>(
                 DataItemFactory.CreateDatasource("smtp_default", DatasourceKind.EmailServer)
@@ -44,13 +44,15 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
         }
 
         [Test]
-        public void TestCreateDatasourceDataStore()
+        [Order(1)]
+        public void CreateDatasourceDataStoreTest()
         {
             TestDatasourceDataStore(_dataSourceDepot);
         }
 
         [Test]
-        public void TestSaveDatasourceDepot()
+        [Order(2)]
+        public void SaveDatasourceDepotTest()
         {
             var log = new BdoLog();
 
@@ -65,14 +67,17 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
         }
 
         [Test]
-        public void TestLoadDatasourceDepot()
+        [Order(3)]
+        public void LoadDatasourceDepotTest()
         {
             var log = new BdoLog();
 
             if (_dataSourceDepot == null || !File.Exists(_filePath))
-                TestSaveDatasourceDepot();
+            {
+                SaveDatasourceDepotTest();
+            }
 
-            var dataSourceDepot = XmlHelper.Load<BdoDatasourceDepot>(_filePath, null, null, log);
+            var dataSourceDepot = XmlHelper.Load<BdoDatasourceDepot>(_filePath, log: log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

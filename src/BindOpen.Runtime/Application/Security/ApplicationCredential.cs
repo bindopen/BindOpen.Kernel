@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using System;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.Application.Security
@@ -19,6 +20,7 @@ namespace BindOpen.Application.Security
         /// ID of domain.
         /// </summary>
         [XmlElement("domainId")]
+        [DefaultValue("")]
         public string DomainId
         {
             get;
@@ -26,15 +28,10 @@ namespace BindOpen.Application.Security
         }
 
         /// <summary>
-        /// Specification of the DomainId property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DomainIdSpecified => !string.IsNullOrEmpty(DomainId);
-
-        /// <summary>
         /// Login.
         /// </summary>
         [XmlElement("login")]
+        [DefaultValue("")]
         public string Login
         {
             get;
@@ -42,42 +39,27 @@ namespace BindOpen.Application.Security
         }
 
         /// <summary>
-        /// Specification of the Login property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool LoginSpecified => !string.IsNullOrEmpty(Login);
-
-        /// <summary>
         /// Password.
         /// </summary>
         [XmlElement("password")]
+        [DefaultValue("")]
         public string Password
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Specification of the Password property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool PasswordSpecified => !string.IsNullOrEmpty(Password);
 
         /// <summary>
         /// Token value.
         /// </summary>
         [XmlElement("tokenValue")]
+        [DefaultValue("")]
         public string TokenValue
         {
             get;
             set;
         }
-
-        /// <summary>
-        /// Specification of the TokenValue property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool TokenValueSpecified => !string.IsNullOrEmpty(TokenValue);
 
         #endregion
 

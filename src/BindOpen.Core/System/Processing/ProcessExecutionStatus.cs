@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.System.Processing
 {
@@ -7,7 +6,6 @@ namespace BindOpen.System.Processing
     /// <summary>
     /// This enumeration represents the possible process execution statuses.
     /// </summary>
-    [Serializable()]
     [XmlType("ProcessExecutionStatus", Namespace = "https://bindopen.org/xsd")]
     public enum ProcessExecutionStatus
     {

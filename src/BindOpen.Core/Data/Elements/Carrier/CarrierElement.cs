@@ -60,12 +60,6 @@ namespace BindOpen.Data.Elements
             set;
         }
 
-        /// <summary>
-        /// Specification of the Carriers property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool CarriersSpecified => Items.Count > 0;
-
         // --------------------------------------------------
 
         /// <summary>
@@ -120,7 +114,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new CarrierElementSpec();
         }
@@ -196,13 +190,13 @@ namespace BindOpen.Data.Elements
         /// <param name="log"></param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             SetItems(Carriers?.Select(p =>
                 {
                     p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     return p;
                 }).ToArray());
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

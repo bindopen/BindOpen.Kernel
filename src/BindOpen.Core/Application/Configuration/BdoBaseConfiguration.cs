@@ -31,12 +31,6 @@ namespace BindOpen.Application.Configuration
         public DictionaryDataItem Description { get; set; } = null;
 
         /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
-
-        /// <summary>
         /// Name of this instance.
         /// </summary>
         [XmlAttribute("name")]
@@ -81,7 +75,7 @@ namespace BindOpen.Application.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Configuration class.
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         public BdoBaseConfiguration() : base()
         {

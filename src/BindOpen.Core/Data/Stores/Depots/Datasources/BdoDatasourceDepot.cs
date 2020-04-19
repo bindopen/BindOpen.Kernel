@@ -1,7 +1,9 @@
-﻿using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
-using System;
+using BindOpen.System.Diagnostics;
+using BindOpen.System.Scripting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -11,7 +13,6 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a data source depot.
     /// </summary>
-    [Serializable()]
     [XmlType("DatasourceDepot", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoDatasourceDepot : TBdoDepot<IDatasource>, IBdoDatasourceDepot
@@ -29,8 +30,8 @@ namespace BindOpen.Data.Stores
         [XmlArrayItem("add")]
         public List<Datasource> Sources
         {
-            get { return _items?.Select(p => p as Datasource)?.ToList(); }
-            set { _items = value?.Select(p => p as IDatasource)?.ToList(); }
+            get;
+            set;
         }
 
         #endregion
@@ -139,6 +140,38 @@ namespace BindOpen.Data.Stores
             IBdoConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
 
             return configuration != null ? configuration["connectionString"]?.GetObject() as string : StringHelper.__NoneString;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(IBdoLog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Sources = Items?.Cast<Datasource>().ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        {
+            Items = Sources?.Cast<IDatasource>().ToList();
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

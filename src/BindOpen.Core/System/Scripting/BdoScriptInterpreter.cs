@@ -633,7 +633,7 @@ namespace BindOpen.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        Array.Empty<object>() : scriptWord.ParameterDetail?.Elements?.Select(p => p.GetObject()).ToArray());
+                        Array.Empty<object>() : scriptWord.ParameterDetail?.Items?.Select(p => p.GetObject()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_scope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)

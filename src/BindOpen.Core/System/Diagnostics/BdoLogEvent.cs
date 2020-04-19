@@ -5,6 +5,7 @@ using BindOpen.System.Diagnostics.Events;
 using BindOpen.System.Scripting;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -72,13 +73,8 @@ namespace BindOpen.System.Diagnostics
         /// Result code of this instance.
         /// </summary>
         [XmlElement("resultCode")]
+        [DefaultValue("")]
         public string ResultCode { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ResultCode property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ResultCodeSpecified => !string.IsNullOrEmpty(ResultCode);
 
         /// <summary>
         /// Source of this instance.
@@ -87,23 +83,11 @@ namespace BindOpen.System.Diagnostics
         public string Source { get; set; } = null;
 
         /// <summary>
-        /// Specification of the Source property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SourceSpecified => !string.IsNullOrEmpty(Source);
-
-        /// <summary>
         /// Stack traces of this instance.
         /// </summary>
         [XmlArray("stack.traces")]
         [XmlArrayItem("stack.trace")]
         public List<LogEventStackTrace> StackTraces { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the stack traces of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool StackTracesSpecified => StackTraces?.Count > 0;
 
         // Tree ----------------------------------
 
@@ -305,9 +289,9 @@ namespace BindOpen.System.Diagnostics
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             Log?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

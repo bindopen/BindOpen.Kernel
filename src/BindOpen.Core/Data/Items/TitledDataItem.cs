@@ -24,12 +24,6 @@ namespace BindOpen.Data.Items
         [XmlElement("title", typeof(DictionaryDataItem))]
         public DictionaryDataItem Title { get; set; } = null;
 
-        /// <summary>
-        /// Specification of the Title property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool TitleSpecified => Title != null && (Title.AvailableKeysSpecified || Title.ValuesSpecified || Title.SingleValueSpecified);
-
         #endregion
 
         // ------------------------------------------
@@ -206,9 +200,9 @@ namespace BindOpen.Data.Items
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             Title?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

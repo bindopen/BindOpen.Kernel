@@ -302,7 +302,7 @@
         <add.value>The name of the application.</add.value>
       </description>
       <kind>Variable</kind>
-      <functionName>Var_ApplicationModuleName</functionName>
+      <functionName>Var_AppModuleName</functionName>
     </add.definition>
 
     <!-- $(applicationInstanceName) -->
