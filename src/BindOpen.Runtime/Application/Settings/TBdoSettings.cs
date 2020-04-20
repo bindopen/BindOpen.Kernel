@@ -240,7 +240,7 @@ namespace BindOpen.Application.Settings
             SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)
         {
             var log = new BdoLog();
@@ -287,7 +287,7 @@ namespace BindOpen.Application.Settings
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             if (Configuration != null)
             {

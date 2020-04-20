@@ -195,7 +195,7 @@ namespace BindOpen.Data.References
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             if (PathDetail != null)

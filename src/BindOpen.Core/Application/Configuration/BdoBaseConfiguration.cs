@@ -152,7 +152,7 @@ namespace BindOpen.Application.Configuration
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }

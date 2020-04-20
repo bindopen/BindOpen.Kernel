@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         [BdoScriptword]
         public static string Fun_Text(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -50,7 +50,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         [BdoScriptword]
         public static string Fun_IsEqual(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {

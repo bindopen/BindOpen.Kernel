@@ -71,7 +71,7 @@ namespace BindOpen.Data.Items
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
-        void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 

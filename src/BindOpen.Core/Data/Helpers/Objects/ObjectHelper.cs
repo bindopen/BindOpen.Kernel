@@ -235,7 +235,7 @@ namespace BindOpen.Data.Helpers.Objects
             this Object aObject,
             IDataElementSet elementSet,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
+            IScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
             var log = new BdoLog();
             if (aObject == null || elementSet.Items == null) return null;

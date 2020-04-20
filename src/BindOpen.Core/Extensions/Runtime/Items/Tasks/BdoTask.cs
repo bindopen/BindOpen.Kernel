@@ -58,7 +58,7 @@ namespace BindOpen.Extensions.Runtime
         public object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
@@ -186,7 +186,7 @@ namespace BindOpen.Extensions.Runtime
         public abstract void Execute(
             IBdoLog log,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         #endregion

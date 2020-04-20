@@ -23,10 +23,8 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            string resultScript = "";
-
-            var scriptVariableSet = new ScriptVariableSet();
-            resultScript = GlobalVariables.Scope.Interpreter.Interprete(_script, DataExpressionKind.Script, scriptVariableSet, log);
+            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Interprete(_script, DataExpressionKind.Script, scriptVariableSet, log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

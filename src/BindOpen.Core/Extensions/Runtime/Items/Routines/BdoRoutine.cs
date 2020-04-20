@@ -57,7 +57,7 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>The log of check log.</returns>
         public IBdoLog Execute(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
             IDataElement dataElement = null,
             params object[] objects)
@@ -78,7 +78,7 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>The log of check log.</returns>
         protected virtual IBdoLog CustomExecute(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
             IDataElement dataElement = null,
             params object[] objects)

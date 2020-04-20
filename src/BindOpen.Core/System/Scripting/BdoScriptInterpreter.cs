@@ -76,7 +76,7 @@ namespace BindOpen.System.Scripting
         public object Evaluate(
             IDataExpression dataExpression,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             resultScript = "";
@@ -94,7 +94,7 @@ namespace BindOpen.System.Scripting
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
             IDataExpression dataExpression,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return Evaluate(dataExpression, out _, scriptVariableSet, log);
@@ -114,7 +114,7 @@ namespace BindOpen.System.Scripting
             string script,
             DataExpressionKind dataExpressionKind,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
@@ -132,7 +132,7 @@ namespace BindOpen.System.Scripting
         public object Evaluate(
             string script,
             DataExpressionKind dataExpressionKind,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return EvaluateScript(script, DataExpressionKind.Script, out _, scriptVariableSet, log);
@@ -151,7 +151,7 @@ namespace BindOpen.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
             IDataExpression dataExpression,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
@@ -170,7 +170,7 @@ namespace BindOpen.System.Scripting
         public string Interprete(
             string script,
             DataExpressionKind dataExpressionKind,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             EvaluateScript(script, dataExpressionKind, out string resultScript, scriptVariableSet, log);
@@ -191,7 +191,7 @@ namespace BindOpen.System.Scripting
             string script,
             DataExpressionKind dataExpressionKind,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             Object item = null;
@@ -264,7 +264,7 @@ namespace BindOpen.System.Scripting
             out string resultScript,
             ref int index,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
@@ -348,7 +348,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
@@ -616,7 +616,7 @@ namespace BindOpen.System.Scripting
         private string EvaluateWord(
             IBdoScriptword scriptWord,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {

@@ -203,7 +203,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetValue<T>(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return (T)GetValue(scope, scriptVariableSet, log);
@@ -218,7 +218,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns the items of this instance.</returns>
         public virtual object GetValue(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             object object1 = null;
@@ -704,7 +704,7 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             _propertyDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 

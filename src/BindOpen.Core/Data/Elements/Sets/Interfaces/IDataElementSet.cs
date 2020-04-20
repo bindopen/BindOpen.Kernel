@@ -80,7 +80,7 @@ namespace BindOpen.Data.Elements
         object GetValue(
             string elementName,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace BindOpen.Data.Elements
         T GetValue<T>(
             string elementName,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
     }
 }

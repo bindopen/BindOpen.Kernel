@@ -14,7 +14,7 @@ namespace BindOpen.Extensions.Runtime
     /// </summary>
     public delegate string BdoScriptwordFunction(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters);
 

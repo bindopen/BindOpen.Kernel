@@ -126,7 +126,7 @@ namespace BindOpen.Data.References
         /// <returns>Returns the retrieved items.</returns>
         public object Get(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             //this.SetDefinition((scope== null ? null : scope.BdoExtension));

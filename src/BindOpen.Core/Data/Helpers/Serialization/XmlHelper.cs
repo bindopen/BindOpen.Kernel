@@ -136,7 +136,7 @@ namespace BindOpen.Data.Helpers.Serialization
         public static T Load<T>(
             String filePath,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true,
@@ -203,7 +203,7 @@ namespace BindOpen.Data.Helpers.Serialization
         public static T LoadFromString<T>(
             String xmlString,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : DataItem
         {

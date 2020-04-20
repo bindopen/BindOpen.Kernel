@@ -205,7 +205,7 @@ namespace BindOpen.Data.Elements
         public object GetElementObject(
             string elementName = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             IDataElement element = (elementName != null ? GetElement(elementName) : Elements[0]);
@@ -223,7 +223,7 @@ namespace BindOpen.Data.Elements
         public T GetElementObject<T>(
             string elementName = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return (T)GetElementObject(elementName, scope, scriptVariableSet, log);
@@ -238,7 +238,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns the items of this instance.</returns>
         public override object GetValue(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             switch (ItemizationMode)
@@ -292,7 +292,7 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             foreach (DataElement element in Elements)
             {

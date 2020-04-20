@@ -29,7 +29,7 @@ namespace BindOpen.Application.Configuration
         public static T Load<T>(
             string filePath,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true,
