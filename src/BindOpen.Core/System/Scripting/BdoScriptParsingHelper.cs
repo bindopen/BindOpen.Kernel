@@ -526,7 +526,7 @@ namespace BindOpen.System.Scripting
             string script,
             int index,
             bool isSuggest,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             if (scriptInterpreter == null) return new Dictionary<string, IBdoScriptwordDefinition>();
 

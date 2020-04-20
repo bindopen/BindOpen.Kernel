@@ -28,6 +28,20 @@ namespace BindOpen.Data.Items
         T this[string key] { get; }
 
         /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        T Get(string key = null);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(string key = null) where Q : class, T;
+
+        /// <summary>
         /// 
         /// </summary>
         int Count { get; }
@@ -35,13 +49,13 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
-        void Add(params T[] items);
+        void ClearItems();
 
         /// <summary>
         /// 
         /// </summary>
-        void ClearItems();
+        /// <param name="items"></param>
+        void Add(params T[] items);
 
         /// <summary>
         /// 
@@ -69,25 +83,22 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        T GetItem(string key);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        bool HasItem(string key);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        bool HasItems();
+        bool HasItem(string key = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="keys"></param>
         void Remove(params string[] keys);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        T[] ToArray();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        List<T> ToList();
     }
 }

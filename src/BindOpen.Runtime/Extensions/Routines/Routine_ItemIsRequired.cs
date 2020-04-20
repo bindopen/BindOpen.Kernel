@@ -47,7 +47,7 @@ namespace BindOpen.Extensions.Routines
         /// <returns>The log of check log.</returns>
         protected override IBdoLog CustomExecute(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
             IDataElement dataElement = null,
             params object[] objects)
@@ -58,7 +58,7 @@ namespace BindOpen.Extensions.Routines
                 log.AddError("Element missing");
             else if (dataElement.Items.Count == 0 || dataElement.Items[0] == null)
                 log.AddError("Item required").ResultCode = "ERROR_ITEMREQUIRED:" + dataElement.Key();
-            else if (dataElement.ValueType.IsScalar() && dataElement.Items.Count == 1 && dataElement.GetObject().ToNotNullString() == String.Empty)
+            else if (dataElement.ValueType.IsScalar() && dataElement.Items.Count == 1 && dataElement.GetValue().ToNotNullString() == String.Empty)
                 log.AddError("Item required").ResultCode = "ERROR_ITEMREQUIRED:" + dataElement.Key();
 
             return log;

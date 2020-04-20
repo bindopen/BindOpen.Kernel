@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Common
 {
     /// <summary>
     /// This enumeration represents the possible persistence levels.
     /// </summary>
-    [Serializable()]
     [XmlType("PersistenceLevel", Namespace = "https://bindopen.org/xsd")]
     public enum PersistenceLevel
     {

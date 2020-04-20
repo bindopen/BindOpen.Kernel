@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Data.Helpers.Files;
+using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using System;
@@ -544,17 +545,29 @@ namespace BindOpen.System.Diagnostics.Loggers
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            Log?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                Log?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

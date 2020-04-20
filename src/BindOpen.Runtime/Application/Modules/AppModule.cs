@@ -80,21 +80,10 @@ namespace BindOpen.Application.Modules
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the ApplicationModule class.
+        /// Initializes a new instance of the AppModule class.
         /// </summary>
-        /// <param name="name">The name of the instance.</param>
-        public AppModule(string name) : base(name, "module_")
+        public AppModule() : base(null, "module_")
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the ApplicationModule class.
-        /// </summary>
-        /// <param name="name">The name of the instance.</param>
-        /// <param name="sections">The sections of the instance.</param>
-        public AppModule(string name, params AppSection[] sections) : base(name, "module_")
-        {
-            Sections = new DataItemSet<AppSection>(sections);
         }
 
         #endregion

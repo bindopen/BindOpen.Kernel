@@ -12,7 +12,7 @@ namespace BindOpen.Application.Modules
     /// <summary>
     /// This class represents an application module instance accessible by a visitor.
     /// </summary>
-    public class ApplicationModuleInstance : DescribedDataItem, IApplicationModuleInstance
+    public class AppModuleInstance : DescribedDataItem, IAppModuleInstance
     {
         // ------------------------------------------
         // VARIABLES
@@ -98,12 +98,12 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// Kind of this instance.
         /// </summary>
-        public ApplicationModuleKind Kind { get; set; } = ApplicationModuleKind.None;
+        public AppModuleKind Kind { get; set; } = AppModuleKind.None;
 
         /// <summary>
         /// Sub kind of this instance.
         /// </summary>
-        public ApplicationModuleSubKind SubKind { get; set; } = ApplicationModuleSubKind.None;
+        public AppModuleSubKind SubKind { get; set; } = AppModuleSubKind.None;
 
         // Tree ------------------------------------
 
@@ -135,11 +135,11 @@ namespace BindOpen.Application.Modules
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of ApplicationModuleInstance class.
+        /// Initializes a new instance of AppModuleInstance class.
         /// </summary>
         /// <param name="module">Module to consider.</param>
         /// <param name="uri">URI to consider.</param>
-        public ApplicationModuleInstance(
+        public AppModuleInstance(
             IAppModule module,
             string uri)
         {
@@ -170,9 +170,9 @@ namespace BindOpen.Application.Modules
         {
             var log = new BdoLog();
 
-            if (item is IApplicationModuleInstance)
+            if (item is IAppModuleInstance)
             {
-                IApplicationModuleInstance moduleInstance = item as ApplicationModuleInstance;
+                IAppModuleInstance moduleInstance = item as AppModuleInstance;
                 this.Module.Update(moduleInstance.Module);
             }
 
@@ -242,17 +242,29 @@ namespace BindOpen.Application.Modules
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _optionSet?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _optionSet?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

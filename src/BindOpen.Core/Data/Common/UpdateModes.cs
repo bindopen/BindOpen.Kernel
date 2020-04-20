@@ -13,7 +13,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible update modes.
     /// </summary>
-    [Serializable()]
     [XmlType("UpdateModes", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum UpdateModes
@@ -99,7 +98,7 @@ namespace BindOpen.Data.Common
             this UpdateModes updateMode,
             params UpdateModes[] excludingUpdateModes)
         {
-            return (new [] { updateMode }).Excluding(excludingUpdateModes);
+            return (new[] { updateMode }).Excluding(excludingUpdateModes);
         }
     }
 

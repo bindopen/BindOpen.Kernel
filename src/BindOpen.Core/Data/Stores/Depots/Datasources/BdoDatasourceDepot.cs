@@ -1,8 +1,11 @@
-﻿using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
-using System;
+using BindOpen.System.Diagnostics;
+using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Stores
@@ -10,10 +13,9 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a data source depot.
     /// </summary>
-    [Serializable()]
     [XmlType("DatasourceDepot", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class BdoDatasourceDepot : TBdoDepot<Datasource>, IBdoDatasourceDepot
+    public class BdoDatasourceDepot : TBdoDepot<IDatasource>, IBdoDatasourceDepot
     {
         // ------------------------------------------
         // PROPERTIES
@@ -22,14 +24,14 @@ namespace BindOpen.Data.Stores
         #region Properties
 
         /// <summary>
-        /// Elements of this instance.
+        /// The sources of this instance.
         /// </summary>
-        [XmlArray("dataSources")]
+        [XmlArray("datasources")]
         [XmlArrayItem("add")]
         public List<Datasource> Sources
         {
-            get { return _items; }
-            set { _items = value; }
+            get;
+            set;
         }
 
         #endregion
@@ -41,20 +43,10 @@ namespace BindOpen.Data.Stores
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DatasourceDepot class.
+        /// Instantiates a new instance of the BdoDatasourceDepot class.
         /// </summary>
         public BdoDatasourceDepot() : base()
         {
-            Id = "datasource";
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DatasourceDepot class.
-        /// </summary>
-        /// <param name="dataSources">The data sources to consider.</param>
-        public BdoDatasourceDepot(params Datasource[] dataSources) : base(dataSources)
-        {
-            Id = "datasource";
         }
 
         #endregion
@@ -72,7 +64,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The module name corresponding to the specified data module name.</returns>
         public string GetModuleName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             return source != null ? source.ModuleName : StringHelper.__NoneString;
         }
@@ -84,7 +76,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             return source != null ? source.InstanceName : StringHelper.__NoneString;
         }
@@ -96,7 +88,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceOtherwiseModuleName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             string name = (source == null ?
                 StringHelper.__NoneString :
@@ -117,7 +109,7 @@ namespace BindOpen.Data.Stores
             string sourceName,
             string connectorDefinitionUniqueId = null)
         {
-            IDatasource dataSource = GetItem(sourceName);
+            IDatasource dataSource = Get(sourceName);
 
             return dataSource?.GetConfiguration(connectorDefinitionUniqueId);
         }
@@ -130,7 +122,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId = null)
         {
-            IDatasource dataSource = GetItem(sourceName);
+            IDatasource dataSource = Get(sourceName);
 
             return dataSource?.HasConfiguration(connectorDefinitionUniqueId) == true;
         }
@@ -147,7 +139,39 @@ namespace BindOpen.Data.Stores
         {
             IBdoConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
 
-            return configuration != null ? configuration["connectionString"]?.GetObject() as string : StringHelper.__NoneString;
+            return configuration != null ? configuration["connectionString"]?.GetValue() as string : StringHelper.__NoneString;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // SERIALIZATION
+        // --------------------------------------------------
+
+        #region Serialization
+
+        /// <summary>
+        /// Updates information for storage.
+        /// </summary>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateStorageInfo(IBdoLog log = null)
+        {
+            base.UpdateStorageInfo(log);
+
+            Sources = Items?.Cast<Datasource>().ToList();
+        }
+
+        /// <summary>
+        /// Updates information for runtime.
+        /// </summary>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="scriptVariableSet">The set of script variables to consider.</param>
+        /// <param name="log">The log to update.</param>
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        {
+            Items = Sources?.Cast<IDatasource>().ToList();
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

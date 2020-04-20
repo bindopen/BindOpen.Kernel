@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Common;
-using BindOpen.Data.Specification;
 using BindOpen.Extensions.Runtime;
 using System;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace BindOpen.Data.Elements
     /// </summary>
     public static partial class ElementSpecFactory
     {
-        // Static creators -------------------------
+        // Element specification -------------------------
 
         /// <summary>
         /// Creates a data element of the specified kind.
@@ -55,8 +54,6 @@ namespace BindOpen.Data.Elements
 
             if (spec != null)
             {
-                spec.DesignStatement.ControlType = type.GetDefaultControlType();
-
                 if (type.IsArray)
                 {
                     spec.MaximumItemNumber = -1;
@@ -66,7 +63,7 @@ namespace BindOpen.Data.Elements
                     spec.ConstraintStatement.AddConstraint(
                        null,
                        "standard$" + KnownRoutineKind.ItemMustBeInList,
-                       new DataElementSet(
+                       ElementFactory.CreateSet(
                            ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
                 }
             }

@@ -19,7 +19,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// The application module.
         /// </summary>
-        IAppModule ApplicationModule { get; }
+        IAppModule AppModule { get; }
 
         // Paths ----------------------
 

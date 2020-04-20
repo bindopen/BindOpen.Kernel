@@ -1,13 +1,11 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Xml.Serialization;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Items
 {
     /// <summary>
     /// This class represents indexed data item.
     /// </summary>
-    [Serializable()]
     [XmlType("IndexedDataItem", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("indexedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IndexedDataItem : DescribedDataItem, IIndexedDataItem
@@ -22,13 +20,8 @@ namespace BindOpen.Data.Items
         /// The index of this instance.
         /// </summary>
         [XmlElement("index")]
+        [DefaultValue(-1)]
         public int Index { get; set; } = -1;
-
-        /// <summary>
-        /// Specification of the Index property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool IndexSpecified => Index >= 0;
 
         #endregion
 

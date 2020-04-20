@@ -4,6 +4,7 @@ using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -13,7 +14,7 @@ namespace BindOpen.Data.Items
     /// This class represents a data source.
     /// </summary>
     [XmlType("Datasource", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "datasource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Datasource : NamedDataItem, IDatasource
     {
         // -----------------------------------------------
@@ -26,13 +27,8 @@ namespace BindOpen.Data.Items
         /// Kind of the data module of this instance. 
         /// </summary>
         [XmlAttribute("kind")]
+        [DefaultValue(DatasourceKind.Any)]
         public DatasourceKind Kind { get; set; } = DatasourceKind.Any;
-
-        /// <summary>
-        /// Specification of the Kind property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool KindSpecified => Kind != DatasourceKind.Any;
 
         /// <summary>
         /// The module name of this instance.
@@ -41,10 +37,11 @@ namespace BindOpen.Data.Items
         public string ModuleName { get; set; } = null;
 
         /// <summary>
-        /// Specification of the ModuleName property of this instance.
+        /// Indicates whether this instance is default.
         /// </summary>
-        [XmlIgnore()]
-        public bool ModuleNameSpecified => !string.IsNullOrEmpty(ModuleName);
+        [XmlAttribute("isDefault")]
+        [DefaultValue(false)]
+        public bool IsDefault { get; set; } = false;
 
         /// <summary>
         /// The instance name of this instance.
@@ -53,22 +50,11 @@ namespace BindOpen.Data.Items
         public string InstanceName { get; set; } = null;
 
         /// <summary>
-        /// Specification of the InstanceName property of this instance.
+        /// The configuration items for this instance.
         /// </summary>
-        [XmlIgnore()]
-        public bool InstanceNameSpecified => !string.IsNullOrEmpty(InstanceName);
-
-        /// <summary>
-        /// The connectors for this instance.
-        /// </summary>
-        [XmlElement("configuration")]
+        [XmlArray("configuration")]
+        [XmlArrayItem("add")]
         public List<BdoConnectorConfiguration> Configurations { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ConnectorConfigurations property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ConfigurationsSpecified => Configurations?.Count > 0;
 
         #endregion
 
@@ -89,15 +75,8 @@ namespace BindOpen.Data.Items
         /// This instantiates a new instance of the Datasource class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configurations">The configurations to consider.</param>
-        public Datasource(
-            string name,
-            DatasourceKind kind,
-            params IBdoConnectorConfiguration[] configurations) : base(name, "dataSource_")
+        public Datasource(string name) : base(name, "dataSource_")
         {
-            Kind = kind;
-            Configurations = configurations?.Select(p => p as BdoConnectorConfiguration).ToList();
         }
 
         #endregion
@@ -109,22 +88,88 @@ namespace BindOpen.Data.Items
         #region Mutators
 
         /// <summary>
+        /// Sets the specified kind of this instance. 
+        /// </summary>
+        /// <param name="kind">The kind to consider.</param>
+        public IDatasource WithKind(DatasourceKind kind)
+        {
+            Kind = kind;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="moduleName">The module name to consider.</param>
+        public IDatasource WithModuleName(string moduleName)
+        {
+            ModuleName = moduleName;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="instanceName">The instance name to consider.</param>
+        public IDatasource WithInstanceName(string instanceName)
+        {
+            InstanceName = instanceName;
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies that this instance is the default. 
+        /// </summary>
+        public IDatasource AsDefault()
+        {
+            IsDefault = true;
+            return this;
+        }
+
+        /// <summary>
         /// Adds the specified connector configuration.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public void AddConfiguration(IBdoConnectorConfiguration config)
+        public IDatasource AddConfiguration(IBdoConnectorConfiguration config)
         {
             if (config != null)
+            {
+                if (Configurations == null)
+                {
+                    Configurations = new List<BdoConnectorConfiguration>();
+                }
+
                 Configurations.Add(config as BdoConnectorConfiguration);
+            }
+            return this;
         }
 
         /// <summary>
         /// Removes the specified connector configuration.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        public void RemoveConfiguration(string definitionName)
+        public IDatasource RemoveConfiguration(string definitionName)
         {
+            if (Configurations == null)
+            {
+                Configurations = new List<BdoConnectorConfiguration>();
+            }
+
             Configurations?.RemoveAll(p => p.DefinitionUniqueId.KeyEquals(definitionName));
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified configurations.
+        /// </summary>
+        /// <param name="configs">The configurations to consider.</param>
+        public IDatasource WithConfiguration(params IBdoConnectorConfiguration[] configs)
+        {
+            foreach (var config in configs)
+            {
+                AddConfiguration(config);
+            }
+            return this;
         }
 
         #endregion
@@ -197,9 +242,9 @@ namespace BindOpen.Data.Items
 
             if (Configurations != null)
             {
-                foreach (IBdoConnectorConfiguration connector in Configurations)
+                foreach (IBdoConnectorConfiguration configuration in Configurations)
                 {
-                    connector.UpdateStorageInfo(log);
+                    configuration.UpdateStorageInfo(log);
                 }
             }
         }
@@ -210,10 +255,8 @@ namespace BindOpen.Data.Items
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             if (Configurations != null)
             {
                 foreach (IBdoConnectorConfiguration configuration in Configurations)
@@ -221,6 +264,8 @@ namespace BindOpen.Data.Items
                     configuration.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

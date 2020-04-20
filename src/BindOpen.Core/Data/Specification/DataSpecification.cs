@@ -43,13 +43,8 @@ namespace BindOpen.Data.Specification
         /// The requirement script of this instance.
         /// </summary>
         [XmlElement("requirementScript")]
+        [DefaultValue("")]
         public string RequirementScript { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the RequirementScript property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool RequirementScriptSpecified => !string.IsNullOrEmpty(RequirementScript);
 
         /// <summary>
         /// The level of inheritance of this instance.
@@ -68,12 +63,6 @@ namespace BindOpen.Data.Specification
             get => _specificationLevels ?? (_specificationLevels = new List<SpecificationLevels>());
             set { _specificationLevels = value; }
         }
-
-        /// <summary>
-        /// Specification of the SpecificationLevels property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SpecificationLevelsSpecified => _specificationLevels?.Count > 0 && !_specificationLevels.Contains(Common.SpecificationLevels.All);
 
         /// <summary>
         /// Level of accessibility of this instance.

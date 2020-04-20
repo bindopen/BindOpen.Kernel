@@ -39,12 +39,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        List<string> DefaultStringItems { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataDesignStatement DesignStatement { get; set; }
+        List<string> DtoDefaultItems { get; set; }
 
         /// <summary>
         /// 

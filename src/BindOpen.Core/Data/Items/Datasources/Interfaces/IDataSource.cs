@@ -42,16 +42,47 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         bool HasConfiguration(string definitionName = null);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="config"></param>
-        void AddConfiguration(IBdoConnectorConfiguration config);
+        // Mutators ---------------------------
 
         /// <summary>
-        /// 
+        /// Sets the specified kind of this instance. 
         /// </summary>
-        /// <param name="definitionName"></param>
-        void RemoveConfiguration(string definitionName);
+        /// <param name="kind">The kind to consider.</param>
+        IDatasource WithKind(DatasourceKind kind);
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="moduleName">The module name to consider.</param>
+        IDatasource WithModuleName(string moduleName);
+
+        /// <summary>
+        /// Sets the specified module name of this instance. 
+        /// </summary>
+        /// <param name="instanceName">The instance name to consider.</param>
+        IDatasource WithInstanceName(string instanceName);
+
+        /// <summary>
+        /// Specifies that this instance is the default. 
+        /// </summary>
+        IDatasource AsDefault();
+
+        /// <summary>
+        /// Adds the specified connector configuration.
+        /// </summary>
+        /// <param name="config">The connector to add.</param>
+        IDatasource AddConfiguration(IBdoConnectorConfiguration config);
+
+        /// <summary>
+        /// Removes the specified connector configuration.
+        /// </summary>
+        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
+        IDatasource RemoveConfiguration(string definitionName);
+
+        /// <summary>
+        /// Sets the specified configurations.
+        /// </summary>
+        /// <param name="configs">The configurations to consider.</param>
+        IDatasource WithConfiguration(params IBdoConnectorConfiguration[] configs);
     }
 }

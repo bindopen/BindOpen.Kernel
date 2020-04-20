@@ -1,10 +1,7 @@
 ﻿using BindOpen.Application.Settings;
 using BindOpen.Data.Helpers.Files;
-using BindOpen.Data.Helpers.Strings;
 using BindOpen.System.Diagnostics;
 using System;
-using System.IO;
-using System.Reflection;
 
 namespace BindOpen.Application.Scopes
 {
@@ -95,31 +92,6 @@ namespace BindOpen.Application.Scopes
             host.Configure(setupAction);
             host.Start();
             return host;
-        }
-
-        /// <summary>
-        /// Gets the path of the default root folder.
-        /// </summary>
-        /// <returns>Returns the path.</returns>
-        public static string DefaultRootFolderPath()
-        {
-            string currentFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string rootFolderPath = null;
-
-            while (string.IsNullOrEmpty(rootFolderPath) && !string.IsNullOrEmpty(currentFolderPath))
-            {
-                currentFolderPath = Path.GetDirectoryName(currentFolderPath);
-                if (string.Equals(Path.GetFileName(currentFolderPath), "bin", StringComparison.OrdinalIgnoreCase))
-                {
-                    rootFolderPath = currentFolderPath = Path.GetDirectoryName(currentFolderPath);
-                }
-            }
-            if (string.IsNullOrEmpty(rootFolderPath))
-            {
-                rootFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            }
-
-            return rootFolderPath?.GetEndedString(@"\").ToPath();
         }
     }
 }

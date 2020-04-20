@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Definition
 {
     /// <summary>
     /// This enumeration represents the possible kinds of library item viewers.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoExtensionViewerKind", Namespace = "https://bindopen.org/xsd")]
     public enum BdoExtensionViewerKind
     {

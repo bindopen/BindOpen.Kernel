@@ -25,12 +25,6 @@ namespace BindOpen.Data.Items
         [DefaultValue("")]
         public string Name { get; set; } = "";
 
-        /// <summary>
-        /// Specification of the Name property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool NameSpecified => !string.IsNullOrEmpty(Name);
-
         #endregion
 
         // ------------------------------------------

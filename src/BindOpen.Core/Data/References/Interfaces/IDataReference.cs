@@ -51,7 +51,7 @@ namespace BindOpen.Data.References
         /// <returns></returns>
         object Get(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
     }
 }

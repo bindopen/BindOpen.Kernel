@@ -20,9 +20,9 @@ namespace BindOpen.Tests.Core.Application.Configuration
         private BdoUsableConfiguration _usableConfiguration21 = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
-            _usableConfiguration1 = new BdoUsableConfiguration(
+            _usableConfiguration1 = ConfigurationFactory.CreateUsable(
                 _filePath1,
                 new[] { Path.GetFileName(_filePath20), Path.GetFileName(_filePath21) },
                 new[]
@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 }
             );
 
-            _usableConfiguration20 = new BdoUsableConfiguration(
+            _usableConfiguration20 = ConfigurationFactory.CreateUsable(
                 _filePath20,
                 new[]
                 {
@@ -41,7 +41,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 }
             );
 
-            _usableConfiguration21 = new BdoUsableConfiguration(
+            _usableConfiguration21 = ConfigurationFactory.CreateUsable(
                 _filePath21,
                 new[]
                 {

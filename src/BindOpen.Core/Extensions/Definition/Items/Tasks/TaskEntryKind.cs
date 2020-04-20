@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Definition
 {
     /// <summary>
     /// This enumeration represents the possible task entry kinds.
     /// </summary>
-    [Serializable()]
     [XmlType("TaskEntryKind", Namespace = "https://bindopen.org/xsd")]
     public enum TaskEntryKind
     {

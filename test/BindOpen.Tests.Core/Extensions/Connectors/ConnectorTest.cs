@@ -3,6 +3,7 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
+using BindOpen.Tests.Core.Fakers;
 using NUnit.Framework;
 using System.IO;
 
@@ -20,7 +21,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
         private readonly bool _isSslEnabled = false;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(
                 new BdoConnectorConfiguration(
@@ -63,7 +64,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             }
 
             string xml = "";
-            BdoConnectorConfiguration configuration = XmlHelper.Load<BdoConnectorConfiguration>(_filePath, null, null, log);
+            BdoConnectorConfiguration configuration = XmlHelper.Load<BdoConnectorConfiguration>(_filePath, log: log);
             ConnectorFake connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(configuration, null, log);
             if (log.HasErrorsOrExceptions())
             {

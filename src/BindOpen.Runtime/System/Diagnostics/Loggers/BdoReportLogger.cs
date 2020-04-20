@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data.Elements;
 using BindOpen.Extensions.Runtime;
-using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
-using BindOpen.System.Diagnostics.Loggers;
 using System;
 using System.IO;
 
@@ -147,7 +145,7 @@ namespace BindOpen.System.Diagnostics.Loggers
                     line += textDelimiterValue + "Kind" + textDelimiterValue;
                     line += aFieldDelimiterValue + textDelimiterValue;
                     line += "ResultCode" + textDelimiterValue;
-                    foreach (DataElement dataElement in log.Detail.Elements)
+                    foreach (DataElement dataElement in log.Detail.Items)
                     {
                         line += aFieldDelimiterValue;
                         line += textDelimiterValue + dataElement.Name + textDelimiterValue;
@@ -166,7 +164,7 @@ namespace BindOpen.System.Diagnostics.Loggers
                     // we retrieve the report attributes
                     if (log.Detail != null)
                     {
-                        foreach (IDataElement dataElement in log.Detail.Elements)
+                        foreach (IDataElement dataElement in log.Detail.Items)
                         {
                             line += aFieldDelimiterValue;
 

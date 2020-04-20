@@ -1,5 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Elements;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
@@ -13,7 +13,7 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// This static class provides methods to handle configurations.
     /// </summary>
-    public static class ConfigurationFactory
+    public static partial class ConfigurationFactory
     {
         /// <summary>
         /// Instantiates a new instance of Configuration class from a xml file.
@@ -29,7 +29,7 @@ namespace BindOpen.Application.Configuration
         public static T Load<T>(
             string filePath,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true,
@@ -58,19 +58,6 @@ namespace BindOpen.Application.Configuration
             unionConfiguration.CurrentFilePath = filePath;
 
             return unionConfiguration;
-        }
-
-        /// <summary>
-        /// Adds the specified elements into the specified group.
-        /// </summary>
-        /// <param name="configuration">The configuration to consider.</param>
-        /// <param name="groupId">The ID of the group.</param>
-        /// <param name="items">The items to add.</param>
-        /// <returns>Returns this instance.</returns>
-        public static T AddGroup<T>(this T configuration, string groupId, params IDataElement[] items)
-            where T : class, IBdoBaseConfiguration
-        {
-            return configuration?.AddGroup(groupId, items) as T;
         }
 
         /// <summary>

@@ -4,7 +4,6 @@ using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -12,7 +11,6 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a carrier configuration.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoCarrierConfiguration", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoCarrierConfiguration
@@ -164,7 +162,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }

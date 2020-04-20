@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Items;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Business
@@ -8,7 +7,6 @@ namespace BindOpen.Data.Business
     /// <summary>
     /// This class represents a business case.
     /// </summary>
-    [Serializable()]
     [XmlType("BusinessCase", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "businessCase", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BusinessCase : DescribedDataItem

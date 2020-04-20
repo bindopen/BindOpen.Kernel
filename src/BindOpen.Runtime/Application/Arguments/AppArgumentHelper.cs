@@ -55,14 +55,15 @@ namespace BindOpen.Application.Arguments
                         if (optionSpecificationSet != null)
                         {
                             argumentSpecification = optionSpecificationSet.Items
-                               .Find(p => p.IsArgumentMarching(currentArgumentString, out aliasIndex));
+                               .Find(p => p.IsArgumentMarching(currentArgumentString, out aliasIndex))
+                               as OptionSpec;
                         }
 
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
                         {
                             argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
                             argument.SetItem(arguments.GetStringAtIndex(index));
-                            optionSet.AddElement(argument);
+                            optionSet.Add(argument);
                         }
                         else if (argumentSpecification != null && optionSpecificationSet != null)
                         {
@@ -93,7 +94,7 @@ namespace BindOpen.Application.Arguments
                                 }
                             }
 
-                            optionSet.AddElement(argument);
+                            optionSet.Add(argument);
                         }
                     }
                     index++;
@@ -129,7 +130,7 @@ namespace BindOpen.Application.Arguments
                     }
                 }
 
-                foreach (IScalarElement option in optionSet.Elements)
+                foreach (IScalarElement option in optionSet.Items)
                 {
                     if (option?.Specification != null)
                     {

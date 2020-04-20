@@ -5,7 +5,6 @@ using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -16,7 +15,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
     [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T> where T : IIdentifiedDataItem
+    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T>
+        where T : IIdentifiedDataItem
     {
         // ------------------------------------------
         // VARIABLES
@@ -51,12 +51,6 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Specification of the Items property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemsSpecified => _items?.Count > 0;
-
-        /// <summary>
         /// Returns the number of items.
         /// </summary>
         [XmlIgnore()]
@@ -83,7 +77,8 @@ namespace BindOpen.Data.Items
         {
             get
             {
-                return GetItem(key);
+                if (key == null || _items == null) return default;
+                return _items.Find(p => p.KeyEquals(key));
             }
         }
 
@@ -98,17 +93,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the DataItemSet class.
         /// </summary>
-        public DataItemSet()
+        public DataItemSet() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataItemSet class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public DataItemSet(params T[] items)
-        {
-            _items = items?.ToList();
         }
 
         #endregion
@@ -164,34 +150,35 @@ namespace BindOpen.Data.Items
         #region Accessors
 
         /// <summary>
-        /// Returns true if this instance has any item.
-        /// </summary>
-        /// <returns>Returns true if this instance has any item.</returns>
-        public bool HasItems()
-        {
-            return _items?.Count > 0;
-        }
-
-        /// <summary>
         /// Checks if this instance has an item with the specified name.
         /// </summary>
         /// <param name="key">The key of the item to check.</param>
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
-        public bool HasItem(string key)
+        public bool HasItem(string key = null)
         {
-            if (key == null) return false;
+            if (key == null) return _items.Count > 0;
             return _items?.Any(p => p.KeyEquals(key)) == true;
         }
 
         /// <summary>
-        /// Returns the item with the specified name.
+        /// Returns the specified item of this instance.
         /// </summary>
-        /// <param name="key">The key of the item to return.</param>
-        /// <returns>Returns the item with the specified name.</returns>
-        public virtual T GetItem(string key)
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual T Get(string key = null)
         {
-            if (key == null || _items == null) return default;
-            return _items.Find(p => p.KeyEquals(key));
+            if (key == null) return this[0];
+            return this[key];
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(string key = null) where Q : class, T
+        {
+            return Get(key) as Q;
         }
 
         /// <summary>
@@ -206,6 +193,24 @@ namespace BindOpen.Data.Items
                 keys = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
 
             return keys;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public T[] ToArray()
+        {
+            return _items?.ToArray();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<T> ToList()
+        {
+            return _items?.ToList();
         }
 
         #endregion
@@ -299,7 +304,7 @@ namespace BindOpen.Data.Items
                         {
                             if (subItem != null)
                             {
-                                T referenceSubItem = referenceItem.GetItem(subItem.Key());
+                                T referenceSubItem = referenceItem[subItem.Key()];
                                 if (referenceSubItem != null)
                                     subItem.Update(referenceSubItem, new[] { nameof(DataAreaKind.Items) });
                             }
@@ -447,6 +452,8 @@ namespace BindOpen.Data.Items
         /// <param name="log">The log to update.</param>
         public override void UpdateStorageInfo(IBdoLog log = null)
         {
+            base.UpdateStorageInfo(log);
+
             if (_items != null)
             {
                 foreach (T item in _items)
@@ -462,7 +469,7 @@ namespace BindOpen.Data.Items
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             if (_items != null)
             {
@@ -471,6 +478,8 @@ namespace BindOpen.Data.Items
                     item.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion
@@ -491,28 +500,6 @@ namespace BindOpen.Data.Items
             dataItemSet._items = _items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;
-        }
-
-        #endregion
-
-        // -----------------------------------------------------
-        // INotifyPropertyChanged IMPLEMENTATION
-        // -----------------------------------------------------
-
-        #region INotifyPropertyChanged Implementation
-
-        /// <summary>
-        /// Occures when a property of this instance has changed.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Indicates that a property has changed.
-        /// </summary>
-        /// <param name="name">The name of the property that has changed.</param>
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

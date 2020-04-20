@@ -9,7 +9,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible data value types.
     /// </summary>
-    [Serializable()]
     [XmlType("DataValueType", Namespace = "https://bindopen.org/xsd")]
     public enum DataValueType
     {

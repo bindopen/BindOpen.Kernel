@@ -1,6 +1,8 @@
 ﻿using BindOpen.Application.Configuration;
 using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
+using System.ComponentModel;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -34,13 +36,8 @@ namespace BindOpen.Extensions.Runtime
         /// The group of this instance.
         /// </summary>
         [XmlElement("group")]
+        [DefaultValue("")]
         public string Group { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the Group property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool GroupSpecified => !string.IsNullOrEmpty(Group);
 
         #endregion
 
@@ -67,10 +64,10 @@ namespace BindOpen.Extensions.Runtime
             BdoExtensionItemKind kind,
             string definitionUniqueId,
             params IDataElement[] items)
-            : base(items)
         {
-            Kind = BdoExtensionItemKind.Any;
+            Kind = kind;
             DefinitionUniqueId = definitionUniqueId;
+            Items = items?.ToList();
         }
 
         #endregion

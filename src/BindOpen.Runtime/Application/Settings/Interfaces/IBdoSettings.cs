@@ -82,7 +82,7 @@ namespace BindOpen.Application.Settings
             SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null);
     }
 }

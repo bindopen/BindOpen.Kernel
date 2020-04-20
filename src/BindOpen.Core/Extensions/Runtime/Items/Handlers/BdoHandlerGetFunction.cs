@@ -19,6 +19,6 @@ namespace BindOpen.Extensions.Runtime
             IDataElement sourceElement = null,
             IDataElementSet pathDetail = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog alog = null);
 }

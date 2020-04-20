@@ -21,22 +21,11 @@ namespace BindOpen.Extensions.Definition
         /// Uri of the image representing this instance.
         /// </summary>
         [XmlElement("imageUri")]
+        [DefaultValue("")]
         public string ImageUri
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// Specification of the ImageUrl property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ImageUrlSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(this.ImageUri);
-            }
         }
 
         /// <summary>

@@ -120,7 +120,7 @@ namespace BindOpen.Application.Scopes
         public static ITBdoExtensionItemConfiguration<T> LoadConfiguration<T>(
             this IBdoScope scope,
             string xmlstring,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null) where T : IBdoExtensionItemDefinition
         {
             BdoExtensionItemKind extensionItemKind = typeof(T).GetExtensionItemKind();

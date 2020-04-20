@@ -8,23 +8,10 @@ namespace BindOpen.Data.Elements
     public interface ISourceElement : IDataElement
     {
         /// <summary>
-        /// 
+        /// The configuration of this instance.
         /// </summary>
-        /// <param name="index"></param>
         /// <returns></returns>
-        new IBdoConnectorConfiguration this[int index] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        new IBdoConnectorConfiguration this[string name] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        new IBdoConnectorConfiguration First { get; }
+        IBdoConnectorConfiguration Item();
 
         /// <summary>
         /// 

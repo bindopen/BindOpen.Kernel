@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using BindOpen.Application.Scopes;
+﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Elements
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataElementSet : IDataItemSet<DataElement>
+    public interface IDataElementSet : IDataItemSet<IDataElement>
     {
         /// <summary>
         /// 
@@ -19,28 +19,20 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="element"></param>
-        /// <param name="referenceElementSet"></param>
-        /// <returns></returns>
-        IDataElement AddElement(IDataElement element, IDataElementSet referenceElementSet = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="elementName"></param>
+        /// <param name="elementKey"></param>
         /// <param name="item"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        bool AddElementItem(string elementName, object item = null, IBdoLog log = null);
+        IDataElementSet Add(string elementKey, object item = null, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="elementName"></param>
+        /// <param name="elementKey"></param>
         /// <param name="items"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        List<object> AddElementItems(string elementName, object[] items = null, IBdoLog log = null);
+        IDataElementSet Add(string elementKey, object[] items = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -59,16 +51,6 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="variantName"></param>
-        /// <param name="defaultVariantName"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        string GetDescriptionLabel(string key, string variantName = "*", string defaultVariantName = "*", string[] parameters = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         List<string> GetGroupIds();
 
@@ -78,38 +60,7 @@ namespace BindOpen.Data.Elements
         /// <param name="name"></param>
         /// <param name="groupId"></param>
         /// <returns></returns>
-        IDataElement GetElement(string name, string groupId = null);
-
-        /// <summary>
-        /// /
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
-        List<IDataElement> GetElementsWithGroupId(string groupId);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="nodeName"></param>
-        /// <param name="indent"></param>
-        /// <returns></returns>
-        string GetTextNode(string nodeName, string indent);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="variantName"></param>
-        /// <param name="defaultVariantName"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        string GetTitleLabel(string key, string variantName = "*", string defaultVariantName = "*", string[] parameters = null);
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        void RemoveElement(string key);
+        IDataElement GetWithGroup(string name, string groupId = null);
 
         /// <summary>
         /// 
@@ -121,20 +72,15 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        bool ElementsSpecified { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="elementName"></param>
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object GetElementObject(
-            string elementName = null,
+        object GetValue(
+            string elementName,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -146,10 +92,10 @@ namespace BindOpen.Data.Elements
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        T GetElementObject<T>(
-            string elementName = null,
+        T GetValue<T>(
+            string elementName,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
     }
 }

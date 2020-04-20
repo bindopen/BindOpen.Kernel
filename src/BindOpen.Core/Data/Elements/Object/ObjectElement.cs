@@ -7,6 +7,7 @@ using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
@@ -31,25 +32,15 @@ namespace BindOpen.Data.Elements
         /// The class full name of this instance.
         /// </summary>
         [XmlAttribute("class")]
+        [DefaultValue("")]
         public string ClassFullName { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the ClassFullName property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ClassFullNameSpecified => !string.IsNullOrEmpty(ClassFullName);
 
         /// <summary>
         /// The definition unique ID of this instance.
         /// </summary>
         [XmlAttribute("definition")]
+        [DefaultValue("")]
         public string DefinitionUniqueId { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the DefinitionUniqueId property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionUniqueIdSpecified => !string.IsNullOrEmpty(DefinitionUniqueId);
 
         // --------------------------------------------------
 
@@ -63,12 +54,6 @@ namespace BindOpen.Data.Elements
             get;
             set;
         }
-
-        /// <summary>
-        /// Specification of the Objects property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ObjectsSpecified => Items.Count > 0;
 
         // Specifcation -----------------------
 
@@ -172,7 +157,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new ObjectElementSpec();
         }
@@ -186,18 +171,19 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override bool AddItem(
+        public override IDataElement AddItem(
             object item,
             IBdoLog log = null)
         {
-            bool boolean = base.AddItem(item, log);
+            base.AddItem(item, log);
             if (this[0] is DataItem)
             {
                 Assembly assembly = this[0].GetType().Assembly;
                 this.ClassFullName = this[0].GetType().FullName.ToString()
                     + (assembly == null ? "" : "," + assembly.GetName().Name);
             }
-            return boolean;
+
+            return this;
         }
 
         /// <summary>
@@ -205,10 +191,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override void SetItem(
-            object item)
+        public override IDataElement SetItem(object item)
         {
             base.SetItem(item);
+
+            return this;
         }
 
         /// <summary>
@@ -252,7 +239,7 @@ namespace BindOpen.Data.Elements
 
             Objects = Items?.Select(p =>
             {
-                DataElementSet elementSet = ElementSetFactory.CreateFromObject<DataElementSet>(p);
+                DataElementSet elementSet = ElementFactory.CreateSetFromObject<DataElementSet>(p);
                 elementSet?.UpdateStorageInfo(log);
                 return elementSet;
             }).ToList();
@@ -264,10 +251,8 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (DataElementSet elementSet in Objects)
             {
                 AssemblyHelper.CreateInstance(ClassFullName, out object item).AddEventsTo(log);
@@ -280,6 +265,8 @@ namespace BindOpen.Data.Elements
 
                 AddItem(item);
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

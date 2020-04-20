@@ -29,9 +29,9 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_ApplicationModuleName(
+        public static string Var_AppModuleName(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -41,7 +41,7 @@ namespace BindOpen.Extensions.Scriptwords
             if (appHost == null)
                 return "<!--BindOpen host missing-->";
 
-            return appHost?.HostOptions.ApplicationModule?.Name ?? "";
+            return appHost?.HostOptions.AppModule?.Name ?? "";
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Var_ApplicationInstanceName(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -79,7 +79,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_IsEmpty(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -102,7 +102,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_Text(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -121,7 +121,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_FormatText(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -142,7 +142,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_If(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -165,7 +165,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_Not(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -184,7 +184,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_Or(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -205,7 +205,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_And(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -226,7 +226,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_Xor(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -247,7 +247,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_IsEqual(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -268,7 +268,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_IsDifferent(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -289,7 +289,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_GetCurrentDateTime(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -308,7 +308,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_DateTime_Format(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -337,7 +337,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_DateTime_TimeStamp(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -363,7 +363,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_DateTime_Add(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -403,7 +403,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_DataModule(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -421,7 +421,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Fun_DataModule_Name(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -459,7 +459,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Var_GetEmpty(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -477,7 +477,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Var_Literal_Tab(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -495,7 +495,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Var_Literal_Cr(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -513,7 +513,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword]
         public static string Var_Literal_CarretPos(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -533,7 +533,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword("application.folderpath")]
         public static string Var_ApplicationFolderPath(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -557,7 +557,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword("application.roaming.folderpath")]
         public static string Var_ApplicationRoamingFolderPath(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
@@ -581,7 +581,7 @@ namespace BindOpen.Extensions.Scriptwords
         [BdoScriptword(Name = "mydocuments.folderpath")]
         public static string Var_MyDocumentsFolderPath(
             IBdoScope scope,
-            IBdoScriptVariableSet scriptVariableSet,
+            IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptWord,
             params object[] parameters)
         {

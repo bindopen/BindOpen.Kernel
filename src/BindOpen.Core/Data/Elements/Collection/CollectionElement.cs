@@ -41,12 +41,6 @@ namespace BindOpen.Data.Elements
             set;
         }
 
-        /// <summary>
-        /// Specification of the Elements property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ElementsSpecified => Items.Count > 0;
-
         // Specifcation -----------------------
 
         /// <summary>
@@ -131,7 +125,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new CollectionElementSpec();
         }
@@ -145,12 +139,11 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the elements will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override bool AddItem(
-            object item,
-            IBdoLog log = null)
+        public override IDataElement AddItem(object item, IBdoLog log = null)
         {
-            bool boolean = base.AddItem(item, log);
-            return boolean;
+            base.AddItem(item, log);
+
+            return this;
         }
 
         /// <summary>
@@ -158,10 +151,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override void SetItem(
-            object item)
+        public override IDataElement SetItem(object item)
         {
             base.SetItem(item);
+
+            return this;
         }
 
         /// <summary>
@@ -211,11 +205,11 @@ namespace BindOpen.Data.Elements
         public object GetElementObject(
             string elementName = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             IDataElement element = (elementName != null ? GetElement(elementName) : Elements[0]);
-            return element?.GetObject(scope, scriptVariableSet, log);
+            return element?.GetValue(scope, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -229,7 +223,7 @@ namespace BindOpen.Data.Elements
         public T GetElementObject<T>(
             string elementName = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return (T)GetElementObject(elementName, scope, scriptVariableSet, log);
@@ -242,9 +236,9 @@ namespace BindOpen.Data.Elements
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public override object GetObject(
+        public override object GetValue(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             switch (ItemizationMode)
@@ -256,13 +250,13 @@ namespace BindOpen.Data.Elements
                     {
                         if (item is DataElement element && !aObject.ContainsKey(element.Name))
                         {
-                            aObject.Add(element.Name, element.GetObject(scope, scriptVariableSet, log));
+                            aObject.Add(element.Name, element.GetValue(scope, scriptVariableSet, log));
                         }
                     }
                     return aObject;
                 case DataItemizationMode.Referenced:
                 case DataItemizationMode.Script:
-                    return base.GetObject(scope, scriptVariableSet, log);
+                    return base.GetValue(scope, scriptVariableSet, log);
             }
 
             return null;
@@ -298,15 +292,15 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (DataElement element in Elements)
             {
                 element.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 AddItem(element);
             }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

@@ -9,10 +9,9 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a depot.
     /// </summary>
-    [Serializable()]
     [XmlType("Depot", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public abstract class TBdoDepot<T> : DataItemSet<T>, ITBdoDepot<T> where T : IdentifiedDataItem
+    public abstract class TBdoDepot<T> : DataItemSet<T>, ITBdoDepot<T> where T : IIdentifiedDataItem
     {
         /// <summary>
         /// The scope of this instance.
@@ -49,14 +48,6 @@ namespace BindOpen.Data.Stores
         /// Instantiates a new instance of the TBdoDepot class.
         /// </summary>
         protected TBdoDepot()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the TBdoDepot class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        protected TBdoDepot(params T[] items) : base(items)
         {
         }
 

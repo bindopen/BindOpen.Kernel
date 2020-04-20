@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
 {
@@ -12,7 +11,6 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This enumeration represents the data element itemization modes.
     /// </summary>
-    [Serializable()]
     [XmlType("DataItemizationMode", Namespace = "https://bindopen.org/xsd")]
     public enum DataItemizationMode
     {

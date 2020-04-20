@@ -5,7 +5,7 @@ using BindOpen.Extensions.Runtime;
 using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Tests.Core.Extensions.Carriers
+namespace BindOpen.Tests.Core.Fakers
 {
     /// <summary>
     /// This class represents a database data field.
@@ -29,84 +29,72 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         /// <summary>
         /// Indicates wheteher this instance represents all the fields.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "isAll")]
         public Boolean IsAll { get; set; }
 
         /// <summary>
         /// Data module of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "dataModule")]
         public string DataModule { get; set; }
 
         /// <summary>
         /// Data module of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "schema")]
         public string Schema { get; set; }
 
         /// <summary>
         /// Data table of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "dataTable")]
         public string DataTable { get; set; }
 
         /// <summary>
         /// Alias of the data table of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "dataTableAlias")]
         public string DataTableAlias { get; set; }
 
         /// <summary>
         /// Alias of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "alias")]
         public string Alias { get; set; }
 
         /// <summary>
         /// Size of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "size")]
         public int Size { get; set; }
 
         /// <summary>
         /// Value of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "value")]
         public DataExpression Value { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a key.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "isKey")]
         public bool IsKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher this instance is a foreign key.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "isForeignKey")]
         public bool IsForeignKey { get; set; }
 
         /// <summary>
         /// Indicates wheteher the name of this instance can be defined by a script.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "isNameAsScript")]
         public bool IsNameAsScript { get; set; }
 
         /// <summary>
         /// Type of value of this instance.
         /// </summary>
-        [XmlIgnore()]
         [DetailProperty(Name = "valueType")]
         public DataValueType ValueType { get; set; }
 

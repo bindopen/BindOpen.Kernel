@@ -49,7 +49,7 @@ namespace BindOpen.Application.Options
         /// <param name="name">Name of the option to consider.</param>
         public object GetOptionValue(String name)
         {
-            return this.GetElementObject(name);
+            return this.Get(name);
         }
 
         #endregion
@@ -78,7 +78,7 @@ namespace BindOpen.Application.Options
                         int index = optionString.IndexOf("=");
                         String optionName = optionString.Substring(0, index);
                         String optionValue = optionString.Substring(index + 1);
-                        this.AddElementItem(optionName, optionValue, log);
+                        this.Add(optionName, optionValue, log);
                     }
                 }
             }

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers.Objects;
-using System;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -8,7 +7,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a meta data element that is a data element whose items are data elements.
     /// </summary>
-    [Serializable()]
     [XmlType("MetaDataElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "meta", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(DocumentElement))]
@@ -63,7 +61,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new specification of this instance.
         /// </summary>
         /// <returns>Returns True .</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return null;
         }

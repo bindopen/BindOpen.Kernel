@@ -4,7 +4,7 @@
     /// <summary>
     /// This enumeration lists the possible sub kinds of an application module.
     /// </summary>
-    public enum ApplicationModuleSubKind
+    public enum AppModuleSubKind
     {
         /// <summary>
         /// None.

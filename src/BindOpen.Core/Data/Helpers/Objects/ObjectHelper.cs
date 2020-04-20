@@ -235,10 +235,10 @@ namespace BindOpen.Data.Helpers.Objects
             this Object aObject,
             IDataElementSet elementSet,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
+            IScriptVariableSet scriptVariableSet = null) where T : DataElementAttribute
         {
             var log = new BdoLog();
-            if (aObject == null || elementSet.Elements == null) return null;
+            if (aObject == null || elementSet.Items == null) return null;
 
             foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())
             {
@@ -254,7 +254,7 @@ namespace BindOpen.Data.Helpers.Objects
                         {
                             if (elementSet.HasItem(name))
                             {
-                                var value = elementSet.GetElementObject(name, scope, scriptVariableSet, log);
+                                var value = elementSet.GetValue(name, scope, scriptVariableSet, log);
                                 if (value != null)
                                 {
                                     if (propertyInfo.PropertyType.IsEnum)
@@ -318,7 +318,7 @@ namespace BindOpen.Data.Helpers.Objects
                         if (string.IsNullOrEmpty(name))
                             name = propertyInfo.Name;
 
-                        elementSet.AddElement(
+                        elementSet.Add(
                             ElementFactory.Create(
                                 name, propertyInfo.PropertyType.GetValueType(), null, propertyInfo.GetValue(object1)));
                     }

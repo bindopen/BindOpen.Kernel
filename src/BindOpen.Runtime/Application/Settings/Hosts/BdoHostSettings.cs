@@ -1,6 +1,6 @@
 ﻿using BindOpen.Application.Configuration;
 using BindOpen.Application.Scopes;
-using BindOpen.Application.Services;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System;

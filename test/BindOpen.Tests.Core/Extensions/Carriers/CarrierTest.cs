@@ -4,6 +4,7 @@ using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
+using BindOpen.Tests.Core.Fakers;
 using NUnit.Framework;
 using System.IO;
 
@@ -29,7 +30,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
         private readonly DataValueType _fieldValueType = DataValueType.Boolean;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             _field = new CarrierFake
             {
@@ -78,7 +79,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             if (_field == null || !File.Exists(_filePath))
                 TestSaveCarrier();
 
-            BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, null, null, log);
+            BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, log: log);
             var field = GlobalVariables.Scope.CreateCarrier<CarrierFake>(configuration, null, log);
 
             string xml = "";
@@ -109,7 +110,6 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
                 Assert.That(field.Value?.Text == _fieldValueText, "Bad field value");
             }
         }
-
     }
 
 }

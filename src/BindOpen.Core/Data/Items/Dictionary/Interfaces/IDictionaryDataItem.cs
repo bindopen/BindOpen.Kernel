@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Items
 {
@@ -31,27 +30,12 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        bool ValuesSpecified { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         List<string> AvailableKeys { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        bool AvailableKeysSpecified { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         string SingleValue { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool SingleValueSpecified { get; }
 
         /// <summary>
         /// 

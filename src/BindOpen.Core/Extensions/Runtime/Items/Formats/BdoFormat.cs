@@ -1,5 +1,4 @@
 ﻿using BindOpen.Extensions.Definition;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -7,7 +6,6 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents an format.
     /// </summary>
-    [Serializable()]
     [XmlType("Format", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "format", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class BdoFormat : TBdoExtensionItem<BdoFormatDefinition>, IBdoFormat
