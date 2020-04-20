@@ -107,7 +107,7 @@ namespace BindOpen.Application.Settings
         /// <param name="name">The name to consider.</param>
         public T Get<T>(string name)
         {
-            return Configuration.GetElementObject<T>(name, _scope);
+            return Configuration.GetValue<T>(name, _scope);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace BindOpen.Application.Settings
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
-            return Configuration.GetElementObject(name, _scope);
+            return Configuration.GetValue(name, _scope);
         }
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace BindOpen.Application.Settings
 
             if (propertyName != null)
             {
-                IDataElement element = Configuration.GetItem(propertyName);
+                IDataElement element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _scope);
+                    return (T)Configuration.GetValue(propertyName, _scope);
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace BindOpen.Application.Settings
 
                     if (attribute is DetailPropertyAttribute)
                     {
-                        object value = Configuration.GetElementObject(attribute.Name, _scope);
+                        object value = Configuration.GetValue(attribute.Name, _scope);
                         if (value is T t)
                             return t;
                     }
@@ -166,10 +166,10 @@ namespace BindOpen.Application.Settings
 
             if (propertyName != null)
             {
-                IDataElement element = Configuration.GetItem(propertyName);
+                IDataElement element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _scope);
+                    return (T)Configuration.GetValue(propertyName, _scope);
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace BindOpen.Application.Settings
                         out DataElementAttribute attribute);
 
                     if (attribute is DetailPropertyAttribute)
-                        return (Configuration.GetElementObject(attribute.Name, _scope) as string)?.ToEnum<T>(defaultValue) ?? default;
+                        return (Configuration.GetValue(attribute.Name, _scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 
@@ -201,7 +201,7 @@ namespace BindOpen.Application.Settings
         /// <param name="value">The value to set.</param>
         public void Set(string name, object value)
         {
-            Configuration?.AddElementItem(name, value);
+            Configuration?.Add(name, value);
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace BindOpen.Application.Settings
 
                 if (attribute is DetailPropertyAttribute)
                 {
-                    Configuration.AddElement(ElementFactory.CreateScalar(attribute.Name, propertyInfo.PropertyType.GetValueType(), value));
+                    Configuration.Add(ElementFactory.CreateScalar(attribute.Name, propertyInfo.PropertyType.GetValueType(), value));
                 }
             }
         }
@@ -240,7 +240,7 @@ namespace BindOpen.Application.Settings
             SpecificationLevels[] specificationLevels = null,
             IDataElementSpecSet specificationSet = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             XmlSchemaSet xmlSchemaSet = null)
         {
             var log = new BdoLog();
@@ -252,14 +252,12 @@ namespace BindOpen.Application.Settings
                 _scope = scope;
                 Configuration?.Update(configuration);
                 Configuration?.Update(
-                    new DataElementSpecSet(
+                    ElementSpecFactory.CreateSet(
                         specificationSet?.Items?
-
-
                             .Where(p => p.SpecificationLevels?.ToArray().Has(specificationLevels) == true).ToArray()),
                     null, new[] { UpdateModes.Incremental_UpdateCommonItems });
 
-                UpdateRuntimeInfo(_scope, null, log);
+                this.UpdateFromElementSet<DetailPropertyAttribute>(Configuration, scope, scriptVariableSet);
             }
 
             return log;
@@ -289,7 +287,7 @@ namespace BindOpen.Application.Settings
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             if (Configuration != null)
             {
@@ -306,17 +304,29 @@ namespace BindOpen.Application.Settings
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _scope?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _scope?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

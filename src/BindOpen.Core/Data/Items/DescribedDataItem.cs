@@ -24,12 +24,6 @@ namespace BindOpen.Data.Items
         [XmlElement("description")]
         public DictionaryDataItem Description { get; set; } = null;
 
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => this.Description != null && (this.Description.AvailableKeysSpecified || this.Description.ValuesSpecified || this.Description.SingleValueSpecified);
-
         #endregion
 
         // ------------------------------------------
@@ -202,10 +196,11 @@ namespace BindOpen.Data.Items
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
             Description?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

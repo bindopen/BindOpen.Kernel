@@ -127,7 +127,9 @@ namespace BindOpen.Application.Options
             {
                 this.ConstraintStatement = new DataConstraintStatement();
                 this.ConstraintStatement.AddConstraint(
-                    null, "standard$" + KnownRoutineKind.ItemMustBeInList, new DataElementSet(
+                    null,
+                    "standard$" + KnownRoutineKind.ItemMustBeInList,
+                    ElementFactory.CreateSet(
                         ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
             }
         }

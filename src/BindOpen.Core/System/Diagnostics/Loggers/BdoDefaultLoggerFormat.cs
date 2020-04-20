@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.System.Diagnostics.Loggers
 {
     /// <summary>
     /// This enumeration lists the possible logger formats.
     /// </summary>
-    [Serializable()]
     [XmlType("LoggerFormat", Namespace = "https://bindopen.org/xsd")]
     public enum BdoDefaultLoggerFormat
     {

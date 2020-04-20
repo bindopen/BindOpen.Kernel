@@ -58,13 +58,13 @@ namespace BindOpen.Extensions.Runtime
         public object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
             IDataElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.GetObject(scope, scriptVariableSet, log);
+            return entry?.GetValue(scope, scriptVariableSet, log);
         }
 
         // General ---------------------------------------
@@ -186,7 +186,7 @@ namespace BindOpen.Extensions.Runtime
         public abstract void Execute(
             IBdoLog log,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             RuntimeMode runtimeMode = RuntimeMode.Normal);
 
         #endregion

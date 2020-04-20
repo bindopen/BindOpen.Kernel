@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Definition;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -50,7 +49,7 @@ namespace BindOpen.Extensions.Runtime
         public BdoEntityConfiguration(
             string definitionUniqueId,
             IDataSchema schema = null,
-            params IDataElement[] items)
+            params DataElement[] items)
             : base(BdoExtensionItemKind.Entity, definitionUniqueId, items)
         {
             Schema = schema as DataSchema;

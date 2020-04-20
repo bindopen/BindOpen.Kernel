@@ -17,24 +17,6 @@ namespace BindOpen.Data.Elements
     [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CarrierElement : DataElement, ICarrierElement
     {
-        /// <summary>
-        /// Returns the element with the specified indexed.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoCarrierConfiguration this[int index] => base[index] as BdoCarrierConfiguration;
-
-        /// <summary>
-        /// Returns the element with the specified unique name.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoCarrierConfiguration this[string name] => base[name] as BdoCarrierConfiguration;
-
-        /// <summary>
-        /// Returns the first item.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoCarrierConfiguration First => this[0];
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -59,12 +41,6 @@ namespace BindOpen.Data.Elements
             get;
             set;
         }
-
-        /// <summary>
-        /// Specification of the Carriers property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool CarriersSpecified => Items.Count > 0;
 
         // --------------------------------------------------
 
@@ -114,13 +90,22 @@ namespace BindOpen.Data.Elements
 
         #region Items
 
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IBdoCarrierConfiguration Item()
+        {
+            return this[0] as IBdoCarrierConfiguration;
+        }
+
         // Specification ---------------------
 
         /// <summary>
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new CarrierElementSpec();
         }
@@ -132,13 +117,14 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override void SetItem(
-            object item)
+        public override IDataElement SetItem(object item)
         {
             base.SetItem(item);
 
             if (this[0] is BdoCarrierConfiguration configuration && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
                 DefinitionUniqueId = configuration?.DefinitionUniqueId;
+
+            return this;
         }
 
         /// <summary>
@@ -194,15 +180,15 @@ namespace BindOpen.Data.Elements
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             SetItems(Carriers?.Select(p =>
                 {
                     p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     return p;
                 }).ToArray());
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

@@ -317,79 +317,79 @@
             Clones this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Application.Modules.ApplicationModuleInstance">
+        <member name="T:BindOpen.Application.Modules.AppModuleInstance">
             <summary>
             This class represents an application module instance accessible by a visitor.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.Module">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.Module">
             <summary>
             The module of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.ModuleName">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.ModuleName">
             <summary>
             The name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.Uri">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.Uri">
             <summary>
             The URI of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.AbsoluteUri">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.AbsoluteUri">
             <summary>
             The URI of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.ApplicationExecutionPath">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.ApplicationExecutionPath">
             <summary>
             The application execution path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.IsLocal">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.IsLocal">
             <summary>
             Indicates whether this instance is local.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.AccessibilityLevel">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.AccessibilityLevel">
             <summary>
             The accessibility level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.Indexation">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.Indexation">
             <summary>
             Indexation of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.Kind">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.SubKind">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.SubKind">
             <summary>
             Sub kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.Sections">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.Sections">
             <summary>
             The sections of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.ApplicationModuleInstance.OptionSet">
+        <member name="P:BindOpen.Application.Modules.AppModuleInstance.OptionSet">
             <summary>
             The otpions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Application.Modules.ApplicationModuleInstance.#ctor(BindOpen.Application.Modules.IAppModule,System.String)">
+        <member name="M:BindOpen.Application.Modules.AppModuleInstance.#ctor(BindOpen.Application.Modules.IAppModule,System.String)">
             <summary>
-            Initializes a new instance of ApplicationModuleInstance class.
+            Initializes a new instance of AppModuleInstance class.
             </summary>
             <param name="module">Module to consider.</param>
             <param name="uri">URI to consider.</param>
         </member>
-        <member name="M:BindOpen.Application.Modules.ApplicationModuleInstance.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
+        <member name="M:BindOpen.Application.Modules.AppModuleInstance.Update``1(``0,System.String[],BindOpen.Data.Common.UpdateModes[])">
             <summary>
             Updates this instance.
             </summary>
@@ -399,74 +399,74 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Application.Modules.ApplicationModuleInstance.GetSectionWithCompleteName(System.String)">
+        <member name="M:BindOpen.Application.Modules.AppModuleInstance.GetSectionWithCompleteName(System.String)">
             <summary>
             Returns the application section of this instance with the specified complete name.
             </summary>
             <returns>The application section of this instance with the specified complete name.</returns>
         </member>
-        <member name="M:BindOpen.Application.Modules.ApplicationModuleInstance.GetSectionWithName(System.String)">
+        <member name="M:BindOpen.Application.Modules.AppModuleInstance.GetSectionWithName(System.String)">
             <summary>
             Returns the application section of this instance with the specified name.
             </summary>
             <returns>The application section of this instance with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Application.Modules.ApplicationModuleInstance.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Application.Modules.AppModuleInstance.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
         </member>
-        <member name="T:BindOpen.Application.Modules.ApplicationModuleKind">
+        <member name="T:BindOpen.Application.Modules.AppModuleKind">
             <summary>
             This enumerates the possible kinds of visitor application module.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleKind.None">
+        <member name="F:BindOpen.Application.Modules.AppModuleKind.None">
             <summary>
             None. Used when the application module is not defined.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleKind.Website">
+        <member name="F:BindOpen.Application.Modules.AppModuleKind.Website">
             <summary>
             Website.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleKind.WebService">
+        <member name="F:BindOpen.Application.Modules.AppModuleKind.WebService">
             <summary>
             Web service.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleKind.WindowsDesktop">
+        <member name="F:BindOpen.Application.Modules.AppModuleKind.WindowsDesktop">
             <summary>
             Windows desktop.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleKind.WindowsService">
+        <member name="F:BindOpen.Application.Modules.AppModuleKind.WindowsService">
             <summary>
             Windows service.
             </summary>
         </member>
-        <member name="T:BindOpen.Application.Modules.ApplicationModuleSubKind">
+        <member name="T:BindOpen.Application.Modules.AppModuleSubKind">
             <summary>
             This enumeration lists the possible sub kinds of an application module.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleSubKind.None">
+        <member name="F:BindOpen.Application.Modules.AppModuleSubKind.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleSubKind.Parent">
+        <member name="F:BindOpen.Application.Modules.AppModuleSubKind.Parent">
             <summary>
             Parent module.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleSubKind.SubModule">
+        <member name="F:BindOpen.Application.Modules.AppModuleSubKind.SubModule">
             <summary>
             The sub module. A parent module can be composed by technical sub modules of different tiers.
             </summary>
         </member>
-        <member name="F:BindOpen.Application.Modules.ApplicationModuleSubKind.Universe">
+        <member name="F:BindOpen.Application.Modules.AppModuleSubKind.Universe">
             <summary>
             The universe. A universe is a functional subdivision of a parent module.
             </summary>
@@ -513,13 +513,13 @@
         </member>
         <member name="M:BindOpen.Application.Modules.AppModule.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the ApplicationModule class.
+            Initializes a new instance of the AppModule class.
             </summary>
             <param name="name">The name of the instance.</param>
         </member>
         <member name="M:BindOpen.Application.Modules.AppModule.#ctor(System.String,BindOpen.Application.Modules.AppSection[])">
             <summary>
-            Initializes a new instance of the ApplicationModule class.
+            Initializes a new instance of the AppModule class.
             </summary>
             <param name="name">The name of the instance.</param>
             <param name="sections">The sections of the instance.</param>
@@ -611,7 +611,7 @@
         </member>
         <member name="M:BindOpen.Application.Modules.AppSection.#ctor(System.String,BindOpen.Application.Modules.IAppModule,BindOpen.Application.Modules.IAppSection)">
             <summary>
-            Initializes a new instance of the ApplicationModuleSection class.
+            Initializes a new instance of the AppModuleSection class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="module">The application module of the instance.</param>
@@ -650,79 +650,79 @@
             <param name="key">The key of the sub application sections to return.</param>
             <returns>The sub application sections with the specified unique name.</returns>
         </member>
-        <member name="T:BindOpen.Application.Modules.IApplicationModuleInstance">
+        <member name="T:BindOpen.Application.Modules.IAppModuleInstance">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.AbsoluteUri">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.AbsoluteUri">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.AccessibilityLevel">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.AccessibilityLevel">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.ApplicationExecutionPath">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.ApplicationExecutionPath">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.Indexation">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.Indexation">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.IsLocal">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.IsLocal">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.Kind">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.Kind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.Module">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.Module">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.ModuleName">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.ModuleName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.OptionSet">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.OptionSet">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.Sections">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.Sections">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.SubKind">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.SubKind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Modules.IApplicationModuleInstance.Uri">
+        <member name="P:BindOpen.Application.Modules.IAppModuleInstance.Uri">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Application.Modules.IApplicationModuleInstance.GetSectionWithCompleteName(System.String)">
+        <member name="M:BindOpen.Application.Modules.IAppModuleInstance.GetSectionWithCompleteName(System.String)">
             <summary>
             
             </summary>
             <param name="completeName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Application.Modules.IApplicationModuleInstance.GetSectionWithName(System.String)">
+        <member name="M:BindOpen.Application.Modules.IAppModuleInstance.GetSectionWithName(System.String)">
             <summary>
             
             </summary>
@@ -1973,7 +1973,7 @@
             The interface defines the base BDO host options.
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Scopes.IBdoHostOptions.ApplicationModule">
+        <member name="P:BindOpen.Application.Scopes.IBdoHostOptions.AppModule">
             <summary>
             The application module.
             </summary>
@@ -2264,7 +2264,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Application.Scopes.TBdoHostOptions`1.ApplicationModule">
+        <member name="P:BindOpen.Application.Scopes.TBdoHostOptions`1.AppModule">
             <summary>
             The application module.
             </summary>
@@ -4725,7 +4725,7 @@
             This class represents a 'Runtime' script word definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_ApplicationModuleName(BindOpen.Application.Scopes.IBdoScope,BindOpen.System.Scripting.IBdoScriptVariableSet,BindOpen.Extensions.Runtime.IBdoScriptword,System.Object[])">
+        <member name="M:BindOpen.Extensions.Scriptwords.ScriptwordDefinition_runtime.Var_AppModuleName(BindOpen.Application.Scopes.IBdoScope,BindOpen.System.Scripting.IBdoScriptVariableSet,BindOpen.Extensions.Runtime.IBdoScriptword,System.Object[])">
             <summary>
             Evaluates the script word $(applicationModuleName).
             </summary>

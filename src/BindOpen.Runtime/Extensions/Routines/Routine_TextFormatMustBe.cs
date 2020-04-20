@@ -45,7 +45,7 @@ namespace BindOpen.Extensions.Routines
         /// <returns>The log of check log.</returns>
         protected override IBdoLog CustomExecute(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
             IDataElement dataElement = null,
             params object[] objects)

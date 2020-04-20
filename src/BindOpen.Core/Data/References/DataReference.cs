@@ -2,6 +2,7 @@
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -125,7 +126,7 @@ namespace BindOpen.Data.References
         /// <returns>Returns the retrieved items.</returns>
         public object Get(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             //this.SetDefinition((scope== null ? null : scope.BdoExtension));
@@ -175,20 +176,31 @@ namespace BindOpen.Data.References
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _item?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _item?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion
-
     }
 }

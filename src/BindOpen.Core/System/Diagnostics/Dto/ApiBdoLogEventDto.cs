@@ -42,12 +42,6 @@ namespace BindOpen.System.Diagnostics.Dto
         }
 
         /// <summary>
-        /// Specification of the Date property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DateSpecified => base.CreationDateSpecified;
-
-        /// <summary>
         /// Creation date of this instance.
         /// </summary>
         [XmlIgnore()]
@@ -56,12 +50,6 @@ namespace BindOpen.System.Diagnostics.Dto
             get => base.CreationDate;
             set => base.CreationDate = value;
         }
-
-        /// <summary>
-        /// Specification of the CreationDate property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public new bool CreationDateSpecified => false;
 
         /// <summary>
         /// Criticality of this instance.
@@ -74,35 +62,22 @@ namespace BindOpen.System.Diagnostics.Dto
         /// Result code of this instance.
         /// </summary>
         [XmlElement("resultCode")]
+        [DefaultValue("")]
         public string ResultCode { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ResultCode property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ResultCodeSpecified => !string.IsNullOrEmpty(ResultCode);
 
         /// <summary>
         /// The display name of this instance.
         /// </summary>
+        [XmlElement("displayName")]
+        [DefaultValue("")]
         public string DisplayName { get; set; }
-
-        /// <summary>
-        /// Specification of the DisplayName property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DisplayNameSpecified => !string.IsNullOrEmpty(DisplayName);
 
         /// <summary>
         /// The description of this instance.
         /// </summary>
+        [XmlElement("description")]
+        [DefaultValue("")]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => !string.IsNullOrEmpty(Description);
 
         #endregion
 

@@ -13,7 +13,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible levels of specification.
     /// </summary>
-    [Serializable()]
     [XmlType("SpecificationLevel", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum SpecificationLevels
@@ -85,7 +84,7 @@ namespace BindOpen.Data.Common
             this SpecificationLevels[] specificationLevels,
             SpecificationLevels[] referenceSpecificationLevels)
         {
-            return referenceSpecificationLevels.Any(p=>specificationLevels.Has(p));
+            return referenceSpecificationLevels.Any(p => specificationLevels.Has(p));
         }
 
         /// <summary>
@@ -100,7 +99,7 @@ namespace BindOpen.Data.Common
         {
             SpecificationLevels specificationLevel = specificationLevels.Aggregate((current, value) => current | value) & ~excludingSpecificationLevels.Aggregate((current, value) => current | value);
 
-            return Enum.GetValues(typeof(SpecificationLevels)).Cast<SpecificationLevels>().Where(p=>(p & specificationLevel) == p).ToArray();
+            return Enum.GetValues(typeof(SpecificationLevels)).Cast<SpecificationLevels>().Where(p => (p & specificationLevel) == p).ToArray();
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace BindOpen.Data.Common
             this SpecificationLevels specificationLevel,
             params SpecificationLevels[] excludingSpecificationLevels)
         {
-            return (new [] { specificationLevel }).Excluding(excludingSpecificationLevels);
+            return (new[] { specificationLevel }).Excluding(excludingSpecificationLevels);
         }
     }
 

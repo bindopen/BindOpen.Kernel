@@ -54,18 +54,6 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Specification of the SingleValue property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SingleValueSpecified
-        {
-            get
-            {
-                return _values != null && _values.Count == 1 && _values[0].Key == "*" && !AvailableKeysSpecified;
-            }
-        }
-
-        /// <summary>
         /// Available keys of this instance.
         /// </summary>
         [XmlIgnore()]
@@ -76,18 +64,6 @@ namespace BindOpen.Data.Items
             {
                 _availableKeys = value.Select(p => p.ToLower()).ToList();
                 Update<DictionaryDataItem>();
-            }
-        }
-
-        /// <summary>
-        /// Specification of the AvailableKeys property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool AvailableKeysSpecified
-        {
-            get
-            {
-                return _availableKeys?.Count > 0;
             }
         }
 
@@ -104,18 +80,6 @@ namespace BindOpen.Data.Items
             {
                 _values = new List<DataKeyValue>(value);
                 Update<DictionaryDataItem>();
-            }
-        }
-
-        /// <summary>
-        /// Specification of the Values property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ValuesSpecified
-        {
-            get
-            {
-                return _values != null && _values.Count > 0 && !SingleValueSpecified;
             }
         }
 

@@ -3,7 +3,7 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
-using BindOpen.Tests.Core.Extensions.Carriers;
+using BindOpen.Tests.Core.Fakers;
 using NUnit.Framework;
 using System.IO;
 
@@ -22,7 +22,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         private IDataElementSet _carrierElementSetA = null;
 
         [SetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             var log = new BdoLog();
 
@@ -33,31 +33,31 @@ namespace BindOpen.Tests.Core.Data.Elements
 
             _carrierElement2 = ElementFactory.CreateCarrier(
                 "carrier2", "tests.core$dbField",
-                ElementSetFactory.CreateFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
+                ElementFactory.CreateSetFromObject<BdoCarrierConfiguration>(new { path = "file2.txt" }));
 
             _carrierElement3 = new CarrierFake("file3.txt", "myfolder")?.AsElement();
 
             _carrierElement4 = GlobalVariables.Scope.CreateCarrier(
                 new BdoCarrierConfiguration(
                     "tests.core$dbField",
-                    ElementSetFactory.CreateElementArray(new { path = "file4.txt" })),
+                    ElementFactory.CreateSetFromObject(new { path = "file4.txt" })?.ToArray()),
                 "carrier4", log)?.AsElement();
 
-            _carrierElementSetA = new DataElementSet(_carrierElement1, _carrierElement2, _carrierElement3, _carrierElement4);
+            _carrierElementSetA = ElementFactory.CreateSet(_carrierElement1, _carrierElement2, _carrierElement3, _carrierElement4);
         }
 
         [Test]
-        public void TestCreateCarrierElementSet()
+        public void CreateCarrierElementSetTest()
         {
             Assert.That(
-                ((string)_carrierElement1?.First?["path"] == "file1.txt")
-                && ((string)_carrierElement2?.First?["path"] == "file2.txt")
-                && ((string)_carrierElement3?.First?["path"] == "file3.txt")
-                && ((string)_carrierElement4?.First?["path"] == "file4.txt")
+                (_carrierElement1?.Item()?.GetValue<string>("path") == "file1.txt")
+                && (_carrierElement2?.Item()?.GetValue<string>("path") == "file2.txt")
+                && (_carrierElement3?.Item()?.GetValue<string>("path") == "file3.txt")
+                && (_carrierElement4?.Item()?.GetValue<string>("path") == "file4.txt")
                 , "Bad carrier element creation");
 
             Assert.That(
-                (string)(_carrierElementSetA[0] as CarrierElement)?.First?["path"] == "file1.txt"
+                _carrierElementSetA.Get<CarrierElement>("carrier1")?.Item().GetValue<string>("path") == "file1.txt"
                 , "Bad carrier element set indexation");
 
             Assert.That(
@@ -65,7 +65,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestUpdateCheckRepair()
+        public void UpdateCheckRepairTest()
         {
             var log = new BdoLog();
 
@@ -80,7 +80,7 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestSaveDataElementSet()
+        public void SaveDataElementSetTest()
         {
             var log = new BdoLog();
 
@@ -95,14 +95,14 @@ namespace BindOpen.Tests.Core.Data.Elements
         }
 
         [Test]
-        public void TestLoadDataElementSet()
+        public void LoadDataElementSetTest()
         {
             var log = new BdoLog();
 
             if (_carrierElementSetA == null || !File.Exists(_filePath))
-                TestSaveDataElementSet();
+                SaveDataElementSetTest();
 
-            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, null, null, log);
+            var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log: log);
 
             string xml = "";
             if (log.HasErrorsOrExceptions())

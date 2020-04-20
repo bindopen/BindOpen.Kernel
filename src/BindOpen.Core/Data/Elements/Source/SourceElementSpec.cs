@@ -30,14 +30,6 @@ namespace BindOpen.Data.Elements
         [XmlElement("definition.filter")]
         public DataValueFilter DefinitionFilter { get; set; } = new DataValueFilter();
 
-        /// <summary>
-        /// Specification of the DefinitionFilter property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefinitionFilterSpecified => DefinitionFilter != null
-                    && (DefinitionFilter.AddedValues == null || DefinitionFilter.AddedValues.Count > 0) &&
-                    (DefinitionFilter.RemovedValues == null || DefinitionFilter.RemovedValues.Count > 0);
-
         #endregion
 
         // --------------------------------------------------

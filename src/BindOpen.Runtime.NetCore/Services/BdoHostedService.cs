@@ -9,17 +9,48 @@ namespace BindOpen.Application.Services
     /// </summary>
     public class BdoHostedService : BdoJob, IBdoHostedService
     {
+        // ------------------------------------------
+        // PROPERTIES
+        // ------------------------------------------
+
+        #region Properties
+
         /// <summary>
         /// The BindOpen host of this instance.
         /// </summary>
         public IBdoHost Host { get => base._scope as IBdoHost; }
 
+        #endregion
+
+        // ------------------------------------------
+        // CONSTRUCTORS
+        // ------------------------------------------
+
+        #region Constructors
+
         /// <summary>
         /// Creates a new instance of the BdoHostedService class.
         /// </summary>
-        public BdoHostedService(IBdoHost host) : base(host)
+        public BdoHostedService() : base()
         {
         }
+
+        /// <summary>
+        /// Creates a new instance of the BdoHostedService class.
+        /// </summary>
+        /// <param name="host">The host to consider.</param>
+        public BdoHostedService(IBdoHost host) : base()
+        {
+            WithScope(host);
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // METHODS
+        // ------------------------------------------
+
+        #region Methods
 
         /// <summary>
         /// Starts this instance.
@@ -44,5 +75,7 @@ namespace BindOpen.Application.Services
 
             return Task.CompletedTask;
         }
+
+        #endregion
     }
 }

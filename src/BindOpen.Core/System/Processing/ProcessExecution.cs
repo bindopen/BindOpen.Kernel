@@ -53,19 +53,8 @@ namespace BindOpen.System.Processing
         /// Detail of this instance.
         /// </summary>
         [XmlElement("detail")]
+        [DefaultValue("")]
         public DataElementSet Detail { get; set; } = new DataElementSet();
-
-        /// <summary>
-        /// Specification of the PropertyDetail property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DetailSpecified
-        {
-            get
-            {
-                return Detail != null && (Detail.ElementsSpecified);
-            }
-        }
 
         // Location -------------------------------------
 
@@ -73,19 +62,8 @@ namespace BindOpen.System.Processing
         /// Location of this instance.
         /// </summary>
         [XmlElement("location")]
+        [DefaultValue("")]
         public string Location { get; set; } = "";
-
-        /// <summary>
-        /// Specification of the Location of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool LocationSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(Location);
-            }
-        }
 
         // Progression -------------------------------------
 
@@ -164,6 +142,7 @@ namespace BindOpen.System.Processing
         /// Custom status of this instance.
         /// </summary>
         [XmlElement("customStatus")]
+        [DefaultValue("")]
         public string CustomStatus
         {
             get { return _customStatus; }
@@ -174,24 +153,13 @@ namespace BindOpen.System.Processing
             }
         }
 
-        /// <summary>
-        /// Specification of the CustomStatus of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool CustomStatusSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(_customStatus);
-            }
-        }
-
         // Time -------------------------------------
 
         /// <summary>
         /// Start date of this instance.
         /// </summary>
         [XmlElement("startDate")]
+        [DefaultValue("")]
         public string StartDate
         {
             get { return _startDate; }
@@ -203,21 +171,10 @@ namespace BindOpen.System.Processing
         }
 
         /// <summary>
-        /// Specification of the StartDate of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool StartDateSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(_startDate);
-            }
-        }
-
-        /// <summary>
         /// Re-start date of this instance.
         /// </summary>
         [XmlElement("restartDate")]
+        [DefaultValue("")]
         public string RestartDate
         {
             get { return _restartDate; }
@@ -229,21 +186,10 @@ namespace BindOpen.System.Processing
         }
 
         /// <summary>
-        /// Specification of the RestartDate of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool RestartDateSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(_restartDate);
-            }
-        }
-
-        /// <summary>
         /// End date of this instance.
         /// </summary>
         [XmlElement("endDate")]
+        [DefaultValue("")]
         public string EndDate
         {
             get { return _endDate; }
@@ -255,21 +201,10 @@ namespace BindOpen.System.Processing
         }
 
         /// <summary>
-        /// Specification of the EndDate of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool EndDateSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(EndDate);
-            }
-        }
-
-        /// <summary>
         /// End date of this instance.
         /// </summary>
         [XmlElement("duration")]
+        [DefaultValue("")]
         public string Duration
         {
             get
@@ -288,18 +223,6 @@ namespace BindOpen.System.Processing
             {
                 _duration = value;
                 _log?.WriteLog("execution.duration", _duration, BdoLoggerMode.Auto);
-            }
-        }
-
-        /// <summary>
-        /// Specification of the Duration of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DurationSpecified
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(_duration);
             }
         }
 
@@ -551,17 +474,29 @@ namespace BindOpen.System.Processing
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _log?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _log?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion   

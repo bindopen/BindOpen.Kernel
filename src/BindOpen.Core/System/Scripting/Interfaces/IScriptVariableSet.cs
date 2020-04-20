@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 
 namespace BindOpen.System.Scripting
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptVariableSet : IDataItem
+    public interface IScriptVariableSet : IDataItem
     {
         /// <summary>
         /// 
@@ -27,7 +26,7 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool SetValue(StoredDataItem item);
+        IScriptVariableSet SetValue(StoredDataItem item);
 
         /// <summary>
         /// 
@@ -35,6 +34,6 @@ namespace BindOpen.System.Scripting
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        DictionaryEntry SetValue(string name, object value);
+        IScriptVariableSet SetValue(string name, object value);
     }
 }

@@ -20,3 +20,9 @@ Todo list for BindOpen
 * Simplify extension item management 
 * Add Expression data value type
 * Simplify serialization
+* Improve AppModule management
+* Improve OptionsSet
+* Use Bogus in Tests
+
+* p.GetDatasourceDepot().GetConnectionString() -> Get the unique or default data source by default
+* Allow default data source

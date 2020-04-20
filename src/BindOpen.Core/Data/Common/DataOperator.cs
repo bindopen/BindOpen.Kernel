@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Common
 {
     /// <summary>
     /// This enumeration represents the possible data operators.
     /// </summary>
-    [Serializable()]
     [XmlType("DataOperator", Namespace = "https://bindopen.org/xsd")]
     public enum DataOperator
     {

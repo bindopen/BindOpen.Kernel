@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
@@ -9,7 +7,6 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    [Serializable()]
     [XmlType("DataElementSpecSet", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSpecSet : DataItemSet<DataElementSpec>, IDataElementSpecSet
@@ -35,18 +32,6 @@ namespace BindOpen.Data.Elements
             set { _items = value; }
         }
 
-        /// <summary>
-        /// Specification of the Specifications property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool SpecificationsSpecified
-        {
-            get
-            {
-                return _items?.Count > 0;
-            }
-        }
-
         // Conversions -----------------------------
 
         /// <summary>
@@ -55,7 +40,7 @@ namespace BindOpen.Data.Elements
         /// <param name="elements">The elements to consider.</param>
         public static implicit operator DataElementSpecSet(DataElementSpec[] elements)
         {
-            return new DataElementSpecSet(elements);
+            return ElementSpecFactory.CreateSet(elements);
         }
 
         #endregion
@@ -67,44 +52,10 @@ namespace BindOpen.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new set of data specifications.
+        /// Initializes a new instance of the DataElementSpecSet class.
         /// </summary>
-        public DataElementSpecSet()
+        public DataElementSpecSet() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSpecSet class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public DataElementSpecSet(params DataElementSpec[] items) : base(items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DataElementSet class.
-        /// </summary>
-        /// <param name="elements">The elements to consider.</param>
-        public DataElementSpecSet(params IDataElementSpec[] elements) : base(elements.Cast<DataElementSpec>().ToArray())
-        {
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Returns the item with the specified name.
-        /// </summary>
-        /// <param name="name">The name of the item to return.</param>
-        /// <returns>Returns the item with the specified name.</returns>
-        public new IDataElementSpec GetItem(String name)
-        {
-            return GetItem(name) as IDataElementSpec;
         }
 
         #endregion

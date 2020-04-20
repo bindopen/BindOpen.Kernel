@@ -31,12 +31,6 @@ namespace BindOpen.Application.Configuration
         public DictionaryDataItem Description { get; set; } = null;
 
         /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
-
-        /// <summary>
         /// Name of this instance.
         /// </summary>
         [XmlAttribute("name")]
@@ -81,30 +75,10 @@ namespace BindOpen.Application.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Configuration class.
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         public BdoBaseConfiguration() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Configuration class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoBaseConfiguration(params IDataElement[] items)
-            : base(items)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Configuration class.
-        /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoBaseConfiguration(string filePath, params IDataElement[] items)
-            : base(items)
-        {
-            CurrentFilePath = filePath;
         }
 
         #endregion
@@ -137,6 +111,7 @@ namespace BindOpen.Application.Configuration
 
             return this;
         }
+
 
         #endregion
 
@@ -177,7 +152,7 @@ namespace BindOpen.Application.Configuration
         /// <param name="scope"></param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }

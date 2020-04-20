@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Data.Helpers.Files;
 
 namespace BindOpen.Application.Scopes
 {

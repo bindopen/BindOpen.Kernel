@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.System.Diagnostics
 {
     /// <summary>
     /// This enumeration lists logger modes.
     /// </summary>
-    [Serializable()]
     [XmlType("LoggerMode", Namespace = "https://bindopen.org/xsd")]
     public enum BdoLoggerMode
     {

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Items;
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Loggers;
@@ -92,20 +91,36 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Instantiates a new instance of the BdoService class.
         /// </summary>
-        protected BdoJob(
-            IBdoScope scope,
-            params IBdoLogger[] loggers) : base(scope)
+        protected BdoJob() : base()
         {
-            Loggers = loggers?.ToList() ?? new List<IBdoLogger>();
-
             // we initiate the log of this instance
-            Log = new BdoLog(Loggers.ToArray())
+            Log = new BdoLog()
             {
                 Id = Id
             };
 
             // we instantiate the loaded extension handler and the application script interperter
             AppDomainPool = new AppDomainPool();
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region MUTATORS
+
+        /// <summary>
+        /// Starts the application.
+        /// </summary>
+        /// <returns>Returns true if this instance is started.</returns>
+        public IBdoJob WithLoggers(params IBdoLogger[] loggers)
+        {
+            Loggers = loggers?.ToList();
+            Log?.AddLoggers(loggers);
+
+            return this;
         }
 
         #endregion

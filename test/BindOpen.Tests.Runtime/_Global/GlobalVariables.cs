@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Loggers;
@@ -18,9 +19,10 @@ namespace BindOpen.Tests.Core
         {
             get
             {
-                String workingFolder = GlobalVariables._workingFolder;
+                string workingFolder = GlobalVariables._workingFolder;
                 if (workingFolder == null)
-                    GlobalVariables._workingFolder = workingFolder = ((_appHost?.GetKnownPath(BdoHostPathKind.RuntimeFolder) ?? AppDomain.CurrentDomain.BaseDirectory.GetEndedString(@"\")) + @"temp\").ToPath();
+                    GlobalVariables._workingFolder = workingFolder =
+                        ((_appHost?.GetKnownPath(BdoHostPathKind.RuntimeFolder) ?? AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\") + @"bdo\temp\").ToPath();
 
                 return workingFolder;
             }

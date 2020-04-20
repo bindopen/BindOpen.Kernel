@@ -56,7 +56,7 @@ namespace BindOpen.Extensions.Runtime
         public BdoRoutineConfiguration(
             string definitionUniqueId,
             IDataItemSet<BdoConditionalEvent> outputEventSet = null,
-            params IDataElement[] items)
+            params DataElement[] items)
             : base(BdoExtensionItemKind.Routine, definitionUniqueId, items)
         {
             //CommandSet = new DataItemSet<Command>(commandSet);

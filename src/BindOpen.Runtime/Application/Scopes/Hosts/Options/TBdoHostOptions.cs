@@ -4,6 +4,7 @@ using BindOpen.Application.Services;
 using BindOpen.Application.Settings;
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
@@ -95,7 +96,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// The application module.
         /// </summary>
-        public IAppModule ApplicationModule => _applicationModule;
+        public IAppModule AppModule => _applicationModule;
 
         /// <summary>
         /// The settings.
@@ -261,11 +262,11 @@ namespace BindOpen.Application.Scopes
             {
                 if (string.IsNullOrEmpty(_rootFolderPath))
                 {
-                    _rootFolderPath = BdoHostFactory.DefaultRootFolderPath();
+                    _rootFolderPath = FileHelper.GetAppRootFolderPath();
                 }
                 else
                 {
-                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(BdoHostFactory.DefaultRootFolderPath()).GetEndedString(@"\").ToPath();
+                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(FileHelper.GetAppRootFolderPath()).GetEndedString(@"\").ToPath();
                 }
             }
 
@@ -307,7 +308,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public ITBdoHostOptions<S> SetModule(string moduleName)
         {
-            _applicationModule = new AppModule(moduleName);
+            _applicationModule = AppModuleFactory.Create(moduleName);
             return this;
         }
 
@@ -332,7 +333,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns the host option.</returns>
         public ITBdoHostOptions<S> SetRootFolder(Predicate<ITBdoHostOptions<S>> predicate, string rootFolderPath)
         {
-            _rootFolderPathDefinitions = _rootFolderPathDefinitions ?? new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
+            _rootFolderPathDefinitions ??= new List<(Predicate<ITBdoHostOptions<S>> Predicate, string RootFolderPath)>();
             _rootFolderPathDefinitions.Add((predicate, rootFolderPath));
 
             return this;
@@ -586,19 +587,31 @@ namespace BindOpen.Application.Scopes
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _applicationModule?.Dispose();
+            _extensionLoadOptions?.Dispose();
+            _dataStore?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _applicationModule?.Dispose();
-                _extensionLoadOptions?.Dispose();
-                _dataStore?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace BindOpen.Extensions.Runtime
         /// <returns></returns>
         IBdoLog Execute(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             Object item = null,
             IDataElement dataElement = null,
             params object[] objects);

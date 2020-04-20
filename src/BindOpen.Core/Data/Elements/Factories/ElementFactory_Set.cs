@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Common;
+using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using System.Linq;
 using System.Reflection;
@@ -8,16 +9,19 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This static class provides methods to create data element set.
     /// </summary>
-    public static partial class ElementSetFactory
+    public static partial class ElementFactory
     {
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="elements">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static DataElementSet Create(params DataElement[] parameters)
+        public static DataElementSet CreateSet(params IDataElement[] elements)
         {
-            return new DataElementSet(parameters);
+            var elementSet = DataItemFactory.CreateSet<DataElementSet, IDataElement>();
+            elementSet.Items = elements?.ToList();
+
+            return elementSet;
         }
 
         /// <summary>
@@ -25,9 +29,9 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static DataElementSet Create(params (string name, object value)[] parameters)
+        public static DataElementSet CreateSet(params (string name, object value)[] parameters)
         {
-            return new DataElementSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, DataValueType.Any, p.value)).ToArray());
+            return CreateSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, DataValueType.Any, p.value)).ToArray());
         }
 
         /// <summary>
@@ -35,20 +39,20 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static DataElementSet Create(params (string name, DataValueType valueType, object value)[] parameters)
+        public static DataElementSet CreateSet(params (string name, DataValueType valueType, object value)[] parameters)
         {
-            return new DataElementSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, p.valueType, p.value)).ToArray());
+            return CreateSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, p.valueType, p.value)).ToArray());
         }
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
-        /// <param name="parameterValues">The parameters to consider.</param>
+        /// <param name="objects">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static DataElementSet Create(params object[] parameterValues)
+        public static DataElementSet CreateSetFromScalarObjects(params object[] objects)
         {
             var index = 0;
-            return new DataElementSet(parameterValues?.Select(p =>
+            return CreateSet(objects?.Select(p =>
             {
                 var scalar = ElementFactory.CreateScalar("", DataValueType.Any, p);
                 scalar.Index = ++index;
@@ -57,13 +61,19 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
+        /// Creates a data element set from a dynamic object.
+        /// </summary>
+        /// <param name="aObject">The objet to consider.</param>
+        public static DataElementSet CreateSetFromObject(object aObject) => CreateSetFromObject<DataElementSet>(aObject);
+
+        /// <summary>
         /// Creates a new instance of the IDataElementSet class.
         /// </summary>
         /// <param name="stringObject">The string to consider.</param>
         /// <returns>The collection.</returns>
-        public static DataElementSet CreateFromString(string stringObject)
+        public static DataElementSet CreateSetFromString(string stringObject)
         {
-            DataElementSet elementSet = new DataElementSet();
+            var elementSet = new DataElementSet();
             if (stringObject != null)
             {
                 foreach (string subString in stringObject.Split('|'))
@@ -83,25 +93,10 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Creates a data element array from a dynamic object.
-        /// </summary>
-        /// <param name="aObject">The objet to consider.</param>
-        public static IDataElement[] CreateElementArray(object aObject)
-        {
-            return CreateFromObject<DataElementSet>(aObject)?.Elements?.ToArray();
-        }
-
-        /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="aObject">The objet to consider.</param>
-        public static DataElementSet CreateFromObject(object aObject) => CreateFromObject<DataElementSet>(aObject);
-
-        /// <summary>
-        /// Creates a data element set from a dynamic object.
-        /// </summary>
-        /// <param name="aObject">The objet to consider.</param>
-        public static T CreateFromObject<T>(object aObject) where T : DataElementSet, new()
+        public static T CreateSetFromObject<T>(object aObject) where T : DataElementSet, new()
         {
             T elementSet = new T();
 
@@ -125,7 +120,7 @@ namespace BindOpen.Data.Elements
         /// <param name="aObject">The objet to consider.</param>
         public static DataElementSet CreateSetFromAttributes<T>(object aObject) where T : DataElementAttribute
         {
-            DataElementSet elementSet = new DataElementSet();
+            var elementSet = new DataElementSet();
             if (aObject != null)
             {
                 foreach (PropertyInfo propertyInfo in aObject.GetType().GetProperties())

@@ -29,7 +29,7 @@ namespace BindOpen.Application.Scopes
             IBdoCarrierConfiguration configuration = null,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null) where T : BdoCarrier
+            IScriptVariableSet scriptVariableSet = null) where T : BdoCarrier
         {
             return scope.CreateCarrier(configuration, name, log, scriptVariableSet) as T;
         }
@@ -48,7 +48,7 @@ namespace BindOpen.Application.Scopes
             IBdoCarrierConfiguration configuration = null,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             BdoCarrier carrier = null;
 
@@ -119,7 +119,7 @@ namespace BindOpen.Application.Scopes
             IBdoConnectorConfiguration configuration,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null) where T : class, IBdoConnector, new()
+            IScriptVariableSet scriptVariableSet = null) where T : class, IBdoConnector, new()
         {
             return scope.CreateConnector(configuration, name, log, scriptVariableSet) as T;
         }
@@ -138,7 +138,7 @@ namespace BindOpen.Application.Scopes
             IBdoConnectorConfiguration configuration = null,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             BdoConnector connector = null;
 
@@ -189,7 +189,7 @@ namespace BindOpen.Application.Scopes
             IBdoTaskConfiguration configuration = null,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null) where T : BdoTask
+            IScriptVariableSet scriptVariableSet = null) where T : BdoTask
         {
             return scope.CreateTask(configuration, name, log, scriptVariableSet) as T;
         }
@@ -208,7 +208,7 @@ namespace BindOpen.Application.Scopes
             IBdoTaskConfiguration configuration = null,
             string name = null,
             IBdoLog log = null,
-            IBdoScriptVariableSet scriptVariableSet = null)
+            IScriptVariableSet scriptVariableSet = null)
         {
             BdoTask task = null;
 

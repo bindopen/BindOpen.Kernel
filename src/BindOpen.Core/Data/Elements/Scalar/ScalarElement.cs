@@ -26,34 +26,22 @@ namespace BindOpen.Data.Elements
         /// The value of this instance.
         /// </summary>
         [XmlAttribute("value")]
-        public string Value
-        {
-            get => Items.GetObjectAtIndex(0).ToString(ValueType);
-            set => SetItem(value.ToObject(ValueType));
-        }
-
-        /// <summary>
-        /// Specification of the Value property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ValueSpecified => Items?.Count == 1;
-
-        /// <summary>
-        /// Items of this instance.
-        /// </summary>
-        [XmlArray("values")]
-        [XmlArrayItem("add")]
-        public List<string> StringScalars
+        public string DtoValue
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Specification of the Items property of this instance.
+        /// The values of this instance.
         /// </summary>
-        [XmlIgnore()]
-        public bool StringScalarsSpecified => Items?.Count > 1;
+        [XmlArray("values")]
+        [XmlArrayItem("add")]
+        public List<string> DtoValues
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// The specification of this instance.
@@ -106,7 +94,7 @@ namespace BindOpen.Data.Elements
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new ScalarElementSpec();
         }
@@ -121,7 +109,6 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
         public override bool HasItem(object indexItem, bool isCaseSensitive = false)
         {
-            //String aStringItem = GetStringFromObject(indexItem);
             return Items.Any(p => p == indexItem);
         }
 
@@ -150,7 +137,16 @@ namespace BindOpen.Data.Elements
         {
             base.UpdateStorageInfo(log);
 
-            StringScalars = Items?.Select(p => p.ToString(ValueType)).ToList();
+            if (Items?.Count == 1)
+            {
+                DtoValue = Items?.FirstOrDefault()?.ToString(ValueType);
+                DtoValues = null;
+            }
+            else
+            {
+                DtoValue = null;
+                DtoValues = Items?.Select(p => p.ToString(ValueType)).ToList();
+            }
         }
 
         /// <summary>
@@ -159,14 +155,18 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
-            if (!ValueSpecified)
+            if (DtoValue != null)
             {
-                SetItems(StringScalars?.Select(p => p.ToObject(ValueType)).ToArray());
+                SetItem(DtoValue?.ToObject(ValueType));
             }
+            else
+            {
+                SetItems(DtoValues?.Select(p => p.ToObject(ValueType)).ToArray());
+            }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

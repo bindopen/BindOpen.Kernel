@@ -2,6 +2,7 @@
 using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.System.Diagnostics.Dto
@@ -23,25 +24,15 @@ namespace BindOpen.System.Diagnostics.Dto
         /// The display name of this instance.
         /// </summary>
         [XmlElement("displayName")]
+        [DefaultValue("")]
         public string DisplayName { get; set; }
-
-        /// <summary>
-        /// Specification of the DisplayName property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DisplayNameSpecified => !string.IsNullOrEmpty(DisplayName);
 
         /// <summary>
         /// The description of this instance.
         /// </summary>
         [XmlElement("description")]
+        [DefaultValue("")]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => !string.IsNullOrEmpty(Description);
 
         /// <summary>
         /// The events of this instance.
@@ -49,12 +40,6 @@ namespace BindOpen.System.Diagnostics.Dto
         [XmlArray("events")]
         [XmlArrayItem("event")]
         public List<ApiBdoLogEventDto> Events { get; set; }
-
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool EventsSpecified => Events?.Count > 0;
 
         #endregion
 

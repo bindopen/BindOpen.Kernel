@@ -2,7 +2,7 @@
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 
-namespace BindOpen.Tests.Core.Extensions.Connectors
+namespace BindOpen.Tests.Core.Fakers
 {
     /// <summary>
     /// This class represents a test connector.

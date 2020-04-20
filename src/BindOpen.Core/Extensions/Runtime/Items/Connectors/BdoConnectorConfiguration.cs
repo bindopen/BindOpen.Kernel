@@ -36,12 +36,18 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="items">The items to consider.</param>
         public BdoConnectorConfiguration(
             string definitionUniqueId,
-            params IDataElement[] items)
+            params DataElement[] items)
             : base(BdoExtensionItemKind.Connector, definitionUniqueId, items)
         {
         }
 
         #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
 
         /// <summary>
         /// Sets the connection string with the specified string.
@@ -54,6 +60,8 @@ namespace BindOpen.Extensions.Runtime
 
             return this;
         }
+
+        #endregion
 
         // ------------------------------------------
         // CLONING
@@ -167,7 +175,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }

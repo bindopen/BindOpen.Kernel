@@ -8,7 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        string Value { get; set; }
+        string DtoValue { get; set; }
 
         /// <summary>
         /// 

@@ -29,29 +29,11 @@ namespace BindOpen.Data.Specification
         public List<string> AddedValues { get; set; } = new List<string>();
 
         /// <summary>
-        /// Specification of the AddedValues property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool AddedValuesSpecified
-        {
-            get
-            {
-                return AddedValues?.Count > 0;
-            }
-        }
-
-        /// <summary>
         /// The removed values of this instance.
         /// </summary>
         /// <remarks>If empty then no value is removed.</remarks>
         [XmlElement("remove")]
         public List<string> RemovedValues { get; set; } = new List<string>();
-
-        /// <summary>
-        /// Specification of the RemovedValues property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool RemovedValuesSpecified => RemovedValues?.Count > 0;
 
         #endregion
 

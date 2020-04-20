@@ -8,7 +8,7 @@ namespace BindOpen.Application.Modules
     /// <summary>
     /// 
     /// </summary>
-    public interface IApplicationModuleInstance : IDescribedDataItem
+    public interface IAppModuleInstance : IDescribedDataItem
     {
         /// <summary>
         /// 
@@ -38,7 +38,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        ApplicationModuleKind Kind { get; set; }
+        AppModuleKind Kind { get; set; }
 
         /// <summary>
         /// 
@@ -63,7 +63,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        ApplicationModuleSubKind SubKind { get; set; }
+        AppModuleSubKind SubKind { get; set; }
 
         /// <summary>
         /// 

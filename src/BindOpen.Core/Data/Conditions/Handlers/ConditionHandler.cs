@@ -19,7 +19,7 @@ namespace BindOpen.Data.Conditions
         public static bool Evaluate(
             this ICondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoScriptVariableSet scriptVariableSet)
+            IScriptVariableSet scriptVariableSet)
         {
             if (condition is AdvancedCondition advancedCondition)
             {
@@ -47,7 +47,7 @@ namespace BindOpen.Data.Conditions
         private static bool Evaluate(
             this AdvancedCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoScriptVariableSet scriptVariableSet)
+            IScriptVariableSet scriptVariableSet)
         {
             if (condition == null) return false;
 
@@ -114,7 +114,7 @@ namespace BindOpen.Data.Conditions
         private static bool Evaluate(
             this ScriptCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoScriptVariableSet scriptVariableSet)
+            IScriptVariableSet scriptVariableSet)
         {
             if (condition == null) return false;
 

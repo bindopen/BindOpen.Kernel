@@ -76,7 +76,7 @@ namespace BindOpen.System.Scripting
         public object Evaluate(
             IDataExpression dataExpression,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             resultScript = "";
@@ -94,7 +94,7 @@ namespace BindOpen.System.Scripting
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
             IDataExpression dataExpression,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return Evaluate(dataExpression, out _, scriptVariableSet, log);
@@ -114,7 +114,7 @@ namespace BindOpen.System.Scripting
             string script,
             DataExpressionKind dataExpressionKind,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return EvaluateScript(script, DataExpressionKind.Script, out resultScript, scriptVariableSet, log);
@@ -132,7 +132,7 @@ namespace BindOpen.System.Scripting
         public object Evaluate(
             string script,
             DataExpressionKind dataExpressionKind,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return EvaluateScript(script, DataExpressionKind.Script, out _, scriptVariableSet, log);
@@ -151,7 +151,7 @@ namespace BindOpen.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
             IDataExpression dataExpression,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
@@ -170,7 +170,7 @@ namespace BindOpen.System.Scripting
         public string Interprete(
             string script,
             DataExpressionKind dataExpressionKind,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             EvaluateScript(script, dataExpressionKind, out string resultScript, scriptVariableSet, log);
@@ -191,7 +191,7 @@ namespace BindOpen.System.Scripting
             string script,
             DataExpressionKind dataExpressionKind,
             out string resultScript,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             Object item = null;
@@ -264,7 +264,7 @@ namespace BindOpen.System.Scripting
             out string resultScript,
             ref int index,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
@@ -348,7 +348,7 @@ namespace BindOpen.System.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
@@ -478,7 +478,7 @@ namespace BindOpen.System.Scripting
                                         dataElement.Specification.MaximumItemNumber = 1;
                                     dataElement.SetItem(parameterValue);
 
-                                    scriptWord.ParameterDetail.AddElement(dataElement);
+                                    scriptWord.ParameterDetail.Add(dataElement);
                                     scriptWordParameterCount++;
                                 }
                             }
@@ -616,7 +616,7 @@ namespace BindOpen.System.Scripting
         private string EvaluateWord(
             IBdoScriptword scriptWord,
             int offsetIndex,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             bool isSimulationModeOn = false,
             IBdoLog log = null)
         {
@@ -633,7 +633,7 @@ namespace BindOpen.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        Array.Empty<object>() : scriptWord.ParameterDetail?.Elements?.Select(p => p.GetObject()).ToArray());
+                        Array.Empty<object>() : scriptWord.ParameterDetail?.Items?.Select(p => p.GetValue()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_scope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
@@ -702,7 +702,7 @@ namespace BindOpen.System.Scripting
                     if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueType.Text))
                         || ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueType.Text)))
                     {
-                        String parameterValue = (parameter.GetObject() ?? "").ToString().Trim();
+                        String parameterValue = (parameter.GetValue() ?? "").ToString().Trim();
 
                         if (parameterValue.Length < 2)
                             return false;
@@ -713,7 +713,7 @@ namespace BindOpen.System.Scripting
                     {
                         if ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueType.Any))
                         {
-                            return !parameterSpecification.CheckItem(parameter.GetObject(), parameter).HasErrorsOrExceptions();
+                            return !parameterSpecification.CheckItem(parameter.GetValue(), parameter).HasErrorsOrExceptions();
                         }
                     }
                     parameterIndex++;
@@ -798,17 +798,29 @@ namespace BindOpen.System.Scripting
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _scope?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _scope?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

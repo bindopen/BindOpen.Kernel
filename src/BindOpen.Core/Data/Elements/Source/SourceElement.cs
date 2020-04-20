@@ -18,18 +18,6 @@ namespace BindOpen.Data.Elements
     [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement
     {
-        /// <summary>
-        /// Returns the element with the specified indexed.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration this[int index] => base[index] as BdoConnectorConfiguration;
-
-        /// <summary>
-        /// Returns the element with the specified unique name.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration this[string name] => base[name] as BdoConnectorConfiguration;
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -45,12 +33,6 @@ namespace BindOpen.Data.Elements
         // --------------------------------------------------
 
         /// <summary>
-        /// Returns the first item.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration First => this[0];
-
-        /// <summary>
         /// Connectors of this instance.
         /// </summary>
         [XmlArray("items")]
@@ -60,12 +42,6 @@ namespace BindOpen.Data.Elements
             get;
             set;
         }
-
-        /// <summary>
-        /// Specification of the Connectors property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ConnectorsSpecified => Items.Count > 0;
 
         // --------------------------------------------------
 
@@ -115,13 +91,22 @@ namespace BindOpen.Data.Elements
 
         #region Items
 
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IBdoConnectorConfiguration Item()
+        {
+            return this[0] as IBdoConnectorConfiguration;
+        }
+
         // Specification ---------------------
 
         /// <summary>
         /// Creates a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public override DataElementSpec NewSpecification()
+        public override IDataElementSpec NewSpecification()
         {
             return Specification = new SourceElementSpec();
         }
@@ -199,15 +184,15 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             SetItems(Connectors?.Select(p =>
             {
                 p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 return p;
             }).ToArray());
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

@@ -15,7 +15,7 @@ namespace BindOpen.Application.Options
     /// </summary>
     [XmlType("OptionSpecSet", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("optionSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class OptionSpecSet : DataItemSet<OptionSpec>, IOptionSpecSet, IGloballyDescribed
+    public class OptionSpecSet : DataItemSet<IOptionSpec>, IOptionSpecSet
     {
         // -------------------------------------------------------------
         // PROPERTIES
@@ -27,12 +27,6 @@ namespace BindOpen.Application.Options
         /// </summary>
         [XmlElement("description")]
         public DictionaryDataItem Description { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the Description property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DescriptionSpecified => Description != null && (Description.AvailableKeysSpecified || Description.ValuesSpecified || Description.SingleValueSpecified);
 
 
         /// <summary>
@@ -53,7 +47,7 @@ namespace BindOpen.Application.Options
         /// <summary>
         /// The sub sets of this instance.
         /// </summary>
-        public List<OptionSpecSet> SubSets { get; set; } = new List<OptionSpecSet>();
+        public List<IOptionSpecSet> SubSets { get; set; } = new List<IOptionSpecSet>();
 
         #endregion
 
@@ -76,7 +70,7 @@ namespace BindOpen.Application.Options
         /// <param name="optionSpecifications">The option specifications to consider.</param>
         public OptionSpecSet(params IOptionSpec[] optionSpecifications)
         {
-            Items = optionSpecifications.Cast<OptionSpec>().ToList();
+            Items = optionSpecifications?.ToList();
         }
 
         /// <summary>
@@ -302,9 +296,9 @@ namespace BindOpen.Application.Options
         /// </summary>
         /// <param name="key">The name of the alias of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public override OptionSpec GetItem(string key)
+        public new IOptionSpec Get(string key = null)
         {
-            if (key == null) return null;
+            if (key == null) return this[0];
 
             return Items.Find(p =>
                 p.KeyEquals(key) || (p?.Aliases?.Any(q => q.KeyEquals(key)) == true));

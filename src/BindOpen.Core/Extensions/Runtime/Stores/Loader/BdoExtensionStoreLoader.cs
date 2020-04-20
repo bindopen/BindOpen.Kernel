@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Definition;
@@ -214,17 +215,29 @@ namespace BindOpen.Extensions.Runtime
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _loadOptions?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _loadOptions?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion   

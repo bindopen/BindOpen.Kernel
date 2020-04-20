@@ -11,7 +11,6 @@ namespace BindOpen.Data.Items
     /// This class represents a data item.
     /// </summary>
     /// <remarks>The data item has only an ID, a creation and a last-modification dates.</remarks>
-    [Serializable()]
     [XmlType("DataItem", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("dataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public abstract class DataItem : MarshalByRefObject, IDataItem
@@ -102,7 +101,7 @@ namespace BindOpen.Data.Items
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public virtual void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public virtual void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
         }
 
@@ -209,11 +208,6 @@ namespace BindOpen.Data.Items
         #region IDisposable Implementation
 
         /// <summary>
-        /// Indicates whether this instance is disposed.
-        /// </summary>
-        private bool IsDisposed = false;
-
-        /// <summary>
         /// Disposes this instance.
         /// </summary>
         public void Dispose()
@@ -222,24 +216,20 @@ namespace BindOpen.Data.Items
             GC.SuppressFinalize(this);
         }
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes specifying whether this instance is disposing.
         /// </summary>
         /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (IsDisposed)
-                return;
-
-            if (isDisposing)
+            if (_isDisposed)
             {
-                // Free any other managed objects here.
-                //
+                return;
             }
 
-            // Free any unmanaged objects here.
-            //
-            IsDisposed = true;
+            _isDisposed = true;
         }
 
         #endregion

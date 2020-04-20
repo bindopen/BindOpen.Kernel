@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
-using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -42,12 +41,6 @@ namespace BindOpen.Data.References
         [XmlElement("path")]
         public DataElementSet PathDetail { get; set; } = new DataElementSet();
 
-        /// <summary>
-        /// Specification of the PathDetail property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool PathDetailSpecified => PathDetail != null && (PathDetail.ElementsSpecified);
-
         #endregion
 
         // ------------------------------------------
@@ -77,7 +70,7 @@ namespace BindOpen.Data.References
         {
             DataHandlerUniqueName = dataHandlerUniqueName;
             SourceElement = sourceElement as DataElement;
-            PathDetail.Update(ElementSetFactory.CreateFromObject<DataElementSet>(dynamicObject));
+            PathDetail.Update(ElementFactory.CreateSetFromObject<DataElementSet>(dynamicObject));
         }
 
         /// <summary>
@@ -185,7 +178,7 @@ namespace BindOpen.Data.References
         {
             if (PathDetail != null)
             {
-                foreach (DataElement dataElement in PathDetail.Elements)
+                foreach (DataElement dataElement in PathDetail.Items)
                 {
                     dataElement.UpdateStorageInfo(log);
                 }
@@ -202,12 +195,12 @@ namespace BindOpen.Data.References
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             if (PathDetail != null)
             {
-                foreach (DataElement dataElement in PathDetail.Elements)
+                foreach (DataElement dataElement in PathDetail.Items)
                 {
                     dataElement.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }

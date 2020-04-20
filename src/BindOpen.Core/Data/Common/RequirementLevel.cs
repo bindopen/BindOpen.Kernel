@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Common
 {
@@ -12,7 +11,6 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
-    [Serializable()]
     [XmlType("RequirementLevel", Namespace = "https://bindopen.org/xsd")]
     public enum RequirementLevel
     {

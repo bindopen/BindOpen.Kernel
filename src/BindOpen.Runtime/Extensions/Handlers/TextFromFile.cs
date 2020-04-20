@@ -26,7 +26,7 @@ namespace BindOpen.Extensions.Handlers
             DataElement sourceElement = null,
             DataElementSet pathDetail = null,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             List<object> objects = new List<object>();
@@ -60,7 +60,7 @@ namespace BindOpen.Extensions.Handlers
             Object targetObject,
             ref DataElement sourceDataElement,
             IBdoScope scope = null,
-            IBdoScriptVariableSet scriptVariableSet = null,
+            IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             List<object> objects = new List<object>();

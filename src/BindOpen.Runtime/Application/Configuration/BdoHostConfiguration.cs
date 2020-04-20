@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Application.Configuration
 {
@@ -21,15 +20,6 @@ namespace BindOpen.Application.Configuration
         /// </summary>
         public BdoHostConfiguration()
             : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoHostConfiguration class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoHostConfiguration(params IDataElement[] items)
-            : base(items)
         {
         }
 

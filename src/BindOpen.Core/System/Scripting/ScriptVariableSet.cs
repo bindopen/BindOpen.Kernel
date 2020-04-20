@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Definition;
-using BindOpen.System.Scripting;
+using System.Collections.Generic;
 
 namespace BindOpen.System.Scripting
 {
@@ -12,7 +10,7 @@ namespace BindOpen.System.Scripting
     /// This class represents a script variable box that allows to store interpretation variables.
     /// </summary>
     /// <remarks>Interpreation variables are variables that cannot be evaluated directly though definitions. Example current objects.</remarks>
-    public class ScriptVariableSet : DataItem, IBdoScriptVariableSet
+    public class ScriptVariableSet : DataItem, IScriptVariableSet
     {
         // ------------------------------------------
         // VARIABLES
@@ -63,7 +61,7 @@ namespace BindOpen.System.Scripting
         /// <returns>Returns True if this instance has the specified variable.</returns>
         public bool Has(string variableName)
         {
-            return (variableName!=null) && (this._variables.ContainsKey(variableName.ToKey()));
+            return (variableName != null) && (this._variables.ContainsKey(variableName.ToKey()));
         }
 
         #endregion
@@ -79,28 +77,30 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="item">The item to consider.</param>
         /// <returns>Returns true if the specified item has been added.</returns>
-        public bool SetValue(StoredDataItem item)
+        public IScriptVariableSet SetValue(StoredDataItem item)
         {
-            DictionaryEntry entry = new DictionaryEntry();
-            if (item!=null)
+            if (item != null)
             {
                 switch (item.GetType().GetExtensionItemKind())
                 {
                     case BdoExtensionItemKind.Task:
-                        entry = this.SetValue("currentTask", item);
-                        break;
+                        return SetValue("currentTask", item);
                     default:
                         break;
                 }
             }
 
             if (item is DataElement)
-                entry = this.SetValue("currentElement", item);
+            {
+                return SetValue("currentElement", item);
+            }
 
             if (item is DataItem)
-                entry = this.SetValue("currentItem", item);
+            {
+                return SetValue("currentItem", item);
+            }
 
-            return entry.Key != null;
+            return this;
         }
 
         /// <summary>
@@ -108,13 +108,14 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="value">The value to consider.</param>
-        public DictionaryEntry SetValue(string name, object value)
+        public IScriptVariableSet SetValue(string name, object value)
         {
             if (this.Has(name))
                 this._variables.Remove(name.ToKey());
-            
+
             this._variables.Add(name.ToKey(), value);
-            return new DictionaryEntry(name.ToKey(), value);
+
+            return this;
         }
 
         #endregion

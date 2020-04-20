@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Application.Security;
 using BindOpen.Data.Common;
-using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -54,15 +53,6 @@ namespace BindOpen.Application.Configuration
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the AppConfiguration class.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoAppConfiguration(params IDataElement[] items)
-            : base(items)
-        {
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -92,15 +82,18 @@ namespace BindOpen.Application.Configuration
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The set of script variables to consider.</param>
         /// <param name="log">The log to update.</param>
-        public override void UpdateRuntimeInfo(IBdoScope scope = null, IBdoScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
+        public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
             foreach (ApplicationCredential applicationCredential in Credentials)
+            {
                 applicationCredential.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-
+            }
             foreach (Datasource dataSource in Datasources)
+            {
                 dataSource.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+            }
+
+            base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
         }
 
         #endregion

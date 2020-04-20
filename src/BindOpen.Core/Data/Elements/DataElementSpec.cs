@@ -4,6 +4,7 @@ using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -68,10 +69,6 @@ namespace BindOpen.Data.Elements
 
         private DataConstraintStatement _constraintStatement = null;
 
-        // Design -----------------------------
-
-        private DataDesignStatement _designStatement = null;
-
         #endregion
 
         // --------------------------------------------------
@@ -86,17 +83,12 @@ namespace BindOpen.Data.Elements
         /// ID of the group of this instance.
         /// </summary>
         [XmlElement("groupId")]
+        [DefaultValue("")]
         public string GroupId
         {
             get => _groupId ?? "";
             set { _groupId = value; }
         }
-
-        /// <summary>
-        /// Specification of the GroupId property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool GroupIdSpecified => !string.IsNullOrEmpty(_groupId);
 
         /// <summary>
         /// The value type of this instance.
@@ -119,12 +111,6 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Specification of the Aliases property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool AliasesSpecified => _aliases?.Count > 1;
-
-        /// <summary>
         /// The area specifications of this instance.
         /// </summary>
         [XmlElement("areaSpecifications")]
@@ -138,23 +124,11 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Specification of the AreaSpecifications property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool AreaSpecificationsSpecified => _areaSpecifications?.Count > 1;
-
-        /// <summary>
         /// Indicates whether the instance can be allocated.
         /// </summary>
         [XmlElement("isAllocatable")]
         [DefaultValue(false)]
         public bool IsAllocatable { get; set; } = false;
-
-        /// <summary>
-        /// Specification of the IsAllocatable property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool IsAllocatableSpecified => IsAllocatable;
 
         // Items ---------------------------------
 
@@ -162,13 +136,8 @@ namespace BindOpen.Data.Elements
         /// The script of this instance.
         /// </summary>
         [XmlAttribute("script")]
+        [DefaultValue("")]
         public string ItemScript { get; set; } = null;
-
-        /// <summary>
-        /// Specification of the ItemScript property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemScriptSpecified => !string.IsNullOrEmpty(ItemScript);
 
         /// <summary>
         /// The available itemization modes of this instance.
@@ -188,27 +157,15 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Specification of the AvailableItemizationModes property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool AvailableItemizationModesSpecified => _availableItemizationModes?.Count > 0;
-
-        /// <summary>
         /// Default string items of this instance.
         /// </summary>
         [XmlArray("defaultStringItems")]
         [XmlArrayItem("item")]
-        public List<string> DefaultStringItems
+        public List<string> DtoDefaultItems
         {
             get => _defaultStringItems ?? (_defaultStringItems = new List<string>());
             set { _defaultStringItems = value; }
         }
-
-        /// <summary>
-        /// Specification of the DefaultStringItems property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DefaultStringItemsSpecified => _defaultStringItems?.Count > 0;
 
         /// <summary>
         /// Default items of this instance.
@@ -278,12 +235,6 @@ namespace BindOpen.Data.Elements
             set { _itemSpecificationLevels = value; }
         }
 
-        /// <summary>
-        /// Specification of the SpecificationLevels property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ItemSpecificationLevelsSpecified => _itemSpecificationLevels?.Count > 0 && !_itemSpecificationLevels.Contains(Common.SpecificationLevels.All);
-
         // Constraints ---------------------------
 
         /// <summary>
@@ -295,30 +246,6 @@ namespace BindOpen.Data.Elements
             get => _constraintStatement ?? (_constraintStatement = new DataConstraintStatement());
             set { _constraintStatement = value; }
         }
-
-        /// <summary>
-        /// Specification of the ConstraintStatement property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool ConstraintStatementSpecified => _constraintStatement?.Count > 0;
-
-        // Design ----------------------------------
-
-        /// <summary>
-        /// Design statement of this instance.
-        /// </summary>
-        [XmlElement("design.statement")]
-        public DataDesignStatement DesignStatement
-        {
-            get => _designStatement ?? (_designStatement = new DataDesignStatement());
-            set { _designStatement = value; }
-        }
-
-        /// <summary>
-        /// Specification of the DesignStatement property of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public bool DesignStatementSpecified => _designStatement != null;
 
         #endregion
 
@@ -665,8 +592,7 @@ namespace BindOpen.Data.Elements
                 dataElementSpec.Aliases = new List<string>(_aliases);
             if (ConstraintStatement != null)
                 dataElementSpec.ConstraintStatement = ConstraintStatement.Clone() as DataConstraintStatement;
-            if (DesignStatement != null)
-                dataElementSpec.DesignStatement = DesignStatement.Clone() as DataDesignStatement;
+
             return dataElementSpec;
         }
 
@@ -678,18 +604,29 @@ namespace BindOpen.Data.Elements
 
         #region IDisposable_Methods
 
+        private bool _isDisposed = false;
+
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
+        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
-            base.Dispose(isDisposing);
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _constraintStatement?.Dispose();
+
+            _isDisposed = true;
 
             if (isDisposing)
             {
-                _constraintStatement?.Dispose();
-                _designStatement?.Dispose();
+                GC.SuppressFinalize(this);
             }
+
+            base.Dispose(isDisposing);
         }
 
         #endregion

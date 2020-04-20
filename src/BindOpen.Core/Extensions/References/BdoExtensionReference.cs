@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Assemblies.References;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.References
@@ -7,7 +6,6 @@ namespace BindOpen.Extensions.References
     /// <summary>
     /// This class represents the BindOpen extension reference.
     /// </summary>
-    [Serializable()]
     [XmlType("BdoExtensionReference", Namespace = "https://bindopen.org/xsd")]
     public class BdoExtensionReference : BdoAssemblyReference, IBdoExtensionReference
     {

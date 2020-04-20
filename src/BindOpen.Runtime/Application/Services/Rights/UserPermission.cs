@@ -11,7 +11,6 @@ namespace BindOpen.Application.Rights
     /// <summary>
     /// This structure respresents an user permission.
     /// </summary>
-    [Serializable()]
     public class UserPermission : DataKeyValue
     {
         // ------------------------------------------
@@ -137,7 +136,7 @@ namespace BindOpen.Application.Rights
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public Boolean GetValue(IBdoScriptInterpreter scriptInterpreter = null, IBdoScriptVariableSet scriptVariableSet = null)
+        public Boolean GetValue(IBdoScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
             String value = this.ValueScript?.Trim();
 

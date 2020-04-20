@@ -1,12 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Application.Entities
 {
     /// <summary>
     /// This enumeration represents the possible application entity scopes.
     /// </summary>
-    [Serializable()]
     [XmlType("ApplicationEntityScope", Namespace = "https://bindopen.org/xsd")]
     public enum ApplicationEntityScope
     {
