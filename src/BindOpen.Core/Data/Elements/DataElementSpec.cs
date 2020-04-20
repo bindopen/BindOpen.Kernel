@@ -69,10 +69,6 @@ namespace BindOpen.Data.Elements
 
         private DataConstraintStatement _constraintStatement = null;
 
-        // Design -----------------------------
-
-        private DataDesignStatement _designStatement = null;
-
         #endregion
 
         // --------------------------------------------------
@@ -249,18 +245,6 @@ namespace BindOpen.Data.Elements
         {
             get => _constraintStatement ?? (_constraintStatement = new DataConstraintStatement());
             set { _constraintStatement = value; }
-        }
-
-        // Design ----------------------------------
-
-        /// <summary>
-        /// Design statement of this instance.
-        /// </summary>
-        [XmlElement("design.statement")]
-        public DataDesignStatement DesignStatement
-        {
-            get => _designStatement ?? (_designStatement = new DataDesignStatement());
-            set { _designStatement = value; }
         }
 
         #endregion
@@ -608,8 +592,7 @@ namespace BindOpen.Data.Elements
                 dataElementSpec.Aliases = new List<string>(_aliases);
             if (ConstraintStatement != null)
                 dataElementSpec.ConstraintStatement = ConstraintStatement.Clone() as DataConstraintStatement;
-            if (DesignStatement != null)
-                dataElementSpec.DesignStatement = DesignStatement.Clone() as DataDesignStatement;
+
             return dataElementSpec;
         }
 
@@ -635,7 +618,6 @@ namespace BindOpen.Data.Elements
             }
 
             _constraintStatement?.Dispose();
-            _designStatement?.Dispose();
 
             _isDisposed = true;
 

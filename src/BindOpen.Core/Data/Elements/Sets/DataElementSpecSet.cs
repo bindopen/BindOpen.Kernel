@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -57,24 +56,6 @@ namespace BindOpen.Data.Elements
         /// </summary>
         public DataElementSpecSet() : base()
         {
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Returns the item with the specified name.
-        /// </summary>
-        /// <param name="name">The name of the item to return.</param>
-        /// <returns>Returns the item with the specified name.</returns>
-        public new IDataElementSpec GetItem(String name)
-        {
-            return GetItem(name) as IDataElementSpec;
         }
 
         #endregion

@@ -18,18 +18,6 @@ namespace BindOpen.Data.Elements
     [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement
     {
-        /// <summary>
-        /// Returns the element with the specified indexed.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration this[int index] => base[index] as BdoConnectorConfiguration;
-
-        /// <summary>
-        /// Returns the element with the specified unique name.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration this[string name] => base[name] as BdoConnectorConfiguration;
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -43,12 +31,6 @@ namespace BindOpen.Data.Elements
         public string DefinitionUniqueId { get; set; } = "";
 
         // --------------------------------------------------
-
-        /// <summary>
-        /// Returns the first item.
-        /// </summary>
-        [XmlIgnore()]
-        public new IBdoConnectorConfiguration First => this[0];
 
         /// <summary>
         /// Connectors of this instance.
@@ -108,6 +90,15 @@ namespace BindOpen.Data.Elements
         // --------------------------------------------------
 
         #region Items
+
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IBdoConnectorConfiguration Item()
+        {
+            return this[0] as IBdoConnectorConfiguration;
+        }
 
         // Specification ---------------------
 

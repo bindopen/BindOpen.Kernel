@@ -171,18 +171,19 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override bool AddItem(
+        public override IDataElement AddItem(
             object item,
             IBdoLog log = null)
         {
-            bool boolean = base.AddItem(item, log);
+            base.AddItem(item, log);
             if (this[0] is DataItem)
             {
                 Assembly assembly = this[0].GetType().Assembly;
                 this.ClassFullName = this[0].GetType().FullName.ToString()
                     + (assembly == null ? "" : "," + assembly.GetName().Name);
             }
-            return boolean;
+
+            return this;
         }
 
         /// <summary>
@@ -190,10 +191,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override void SetItem(
-            object item)
+        public override IDataElement SetItem(object item)
         {
             base.SetItem(item);
+
+            return this;
         }
 
         /// <summary>

@@ -117,8 +117,14 @@ namespace BindOpen.Data.Elements
         /// <param name="element">The element to consider.</param>
         public static explicit operator string(DataElement element)
         {
-            return element?.GetObject() as string;
+            return element?.GetValue() as string;
         }
+
+        /// <summary>
+        /// Returns the item with the specified indexed.
+        /// </summary>
+        [XmlIgnore()]
+        public object this[int index] => _items == null ? null : (index >= 0 && index < _items.Count ? _items[index] : null);
 
         // Specification -------------------------------
 
@@ -127,24 +133,6 @@ namespace BindOpen.Data.Elements
         /// </summary>
         [XmlIgnore()]
         public IDataElementSpec Specification { get; set; } = null;
-
-        /// <summary>
-        /// Returns the item with the specified indexed.
-        /// </summary>
-        [XmlIgnore()]
-        public object this[int index] => index >= 0 && index < _items.Count ? _items[index] : null;
-
-        /// <summary>
-        /// Returns the item with the specified unique name.
-        /// </summary>
-        [XmlIgnore()]
-        public object this[string name] => _items.Find(p => p.KeyEquals(name));
-
-        /// <summary>
-        /// Returns the first item.
-        /// </summary>
-        [XmlIgnore()]
-        public object First => this[0];
 
         // Properties -------------------------------
 
@@ -213,12 +201,12 @@ namespace BindOpen.Data.Elements
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetObject<T>(
+        public virtual object GetValue<T>(
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return (T)GetObject(scope, scriptVariableSet, log);
+            return (T)GetValue(scope, scriptVariableSet, log);
         }
 
         /// <summary>
@@ -228,7 +216,7 @@ namespace BindOpen.Data.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetObject(
+        public virtual object GetValue(
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -296,9 +284,11 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Clears items of this instance.
         /// </summary>
-        public void ClearItems()
+        public IDataElement ClearItems()
         {
             _items = new List<object>();
+
+            return this;
         }
 
         // New
@@ -316,11 +306,12 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public virtual void SetItem(
-            object item)
+        public virtual IDataElement SetItem(object item)
         {
             ClearItems();
             AddItem(item);
+
+            return this;
         }
 
         /// <summary>
@@ -328,10 +319,12 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public void SetItems(object[] items)
+        public IDataElement SetItems(object[] items)
         {
             ClearItems();
             AddItems(items);
+
+            return this;
         }
 
         // Add
@@ -343,12 +336,8 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public virtual bool AddItem(
-            object item,
-            IBdoLog log = null)
+        public virtual IDataElement AddItem(object item, IBdoLog log = null)
         {
-            bool isAdded = false;
-
             if (item != null)
             {
                 if ((item.GetType().IsArray || item is IList) && item is IEnumerable)
@@ -369,12 +358,11 @@ namespace BindOpen.Data.Elements
                         }
 
                         (_items ?? (_items = new List<object>())).Add(item);
-                        isAdded = true;
                     }
                 }
             }
 
-            return isAdded;
+            return this;
         }
 
         /// <summary>
@@ -383,9 +371,7 @@ namespace BindOpen.Data.Elements
         /// <param name="items">The items of this instance.</param>
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        public void AddItems(
-            object[] items,
-            IBdoLog log = null)
+        public IDataElement AddItems(object[] items, IBdoLog log = null)
         {
             if (items != null)
             {
@@ -394,6 +380,8 @@ namespace BindOpen.Data.Elements
                     AddItem(item, log);
                 }
             }
+
+            return this;
         }
 
         // Switch
@@ -403,7 +391,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="value1">The first single value to switch.</param>
         /// <param name="value2">The second single value to switch.</param>
-        public void SwitchItems(object value1, object value2)
+        public IDataElement SwitchItems(object value1, object value2)
         {
             object aTempValue = value1;
 
@@ -412,6 +400,8 @@ namespace BindOpen.Data.Elements
                 _items[_items.IndexOf(value1)] = value2;
                 _items[_items.IndexOf(value2)] = aTempValue;
             }
+
+            return this;
         }
 
         /// <summary>
@@ -419,10 +409,14 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The item to consider.</param>
         /// <param name="aNewItem">The new item.</param>
-        public void UpdateItem(object item, object aNewItem)
+        public IDataElement UpdateItem(object item, object aNewItem)
         {
             if (_items.Contains(item))
+            {
                 _items[_items.IndexOf(item)] = aNewItem;
+            }
+
+            return this;
         }
 
         // Remove
@@ -431,21 +425,14 @@ namespace BindOpen.Data.Elements
         /// Removes the specified item.
         /// </summary>
         /// <param name="item">The item </param>
-        public bool RemoveItem(object item)
+        public IDataElement RemoveItem(object item)
         {
-            return _items.RemoveAll(p => p == item) > 0;
+            _items.RemoveAll(p => p == item);
+
+            return this;
         }
 
         // Accessors --------------------------
-
-        /// <summary>
-        /// Gets the default control type of this instance.
-        /// </summary>
-        /// <returns>Returns the default control type of this instance.</returns>
-        public virtual DesignControlType GetDefaultControlType()
-        {
-            return DesignControlType.None;
-        }
 
         /// <summary>
         /// Indicates whether this instance contains the specified scalar item or the specified entity name.
@@ -724,29 +711,6 @@ namespace BindOpen.Data.Elements
             ItemReference?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-        }
-
-        /// <summary>
-        /// Gets a text node representing this instance.
-        /// </summary>
-        /// <param name="nodeName">Name of the tex node.</param>
-        /// <param name="indent">Tabulation indent to include in the text.</param>
-        /// <returns>Returns the text node.</returns>
-        public string GetTextNode(string nodeName, string indent)
-        {
-            string st = "";
-
-            st += indent + nodeName + "\n";
-            st += "\t" + indent + nodeName + ":name=\"" + Key() + "\"\n";
-            st += "\t" + indent + nodeName + ":valueType=\"" + ValueType.ToString() + "\"\n";
-            if (Items.Count > 0)
-            {
-                st += "\t" + indent + nodeName + ":items\n";
-                foreach (string aItemstring in Items)
-                    st += "\t\t" + indent + nodeName + ":items:item=\"" + aItemstring + "\"\n";
-            }
-
-            return st;
         }
 
         #endregion

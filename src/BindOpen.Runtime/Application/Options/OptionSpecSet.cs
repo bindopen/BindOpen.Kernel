@@ -296,9 +296,9 @@ namespace BindOpen.Application.Options
         /// </summary>
         /// <param name="key">The name of the alias of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public override IOptionSpec GetItem(string key)
+        public new IOptionSpec Get(string key = null)
         {
-            if (key == null) return null;
+            if (key == null) return this[0];
 
             return Items.Find(p =>
                 p.KeyEquals(key) || (p?.Aliases?.Any(q => q.KeyEquals(key)) == true));

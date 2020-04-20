@@ -478,7 +478,7 @@ namespace BindOpen.System.Scripting
                                         dataElement.Specification.MaximumItemNumber = 1;
                                     dataElement.SetItem(parameterValue);
 
-                                    scriptWord.ParameterDetail.AddElement(dataElement);
+                                    scriptWord.ParameterDetail.Add(dataElement);
                                     scriptWordParameterCount++;
                                 }
                             }
@@ -633,7 +633,7 @@ namespace BindOpen.System.Scripting
                 try
                 {
                     object[] parameters = (scriptWord.ParameterDetail == null ?
-                        Array.Empty<object>() : scriptWord.ParameterDetail?.Items?.Select(p => p.GetObject()).ToArray());
+                        Array.Empty<object>() : scriptWord.ParameterDetail?.Items?.Select(p => p.GetValue()).ToArray());
                     resultString = scriptWord.Definition.RuntimeFunction(_scope, scriptVariableSet, scriptWord, parameters);
                 }
                 catch (Exception ex)
@@ -702,7 +702,7 @@ namespace BindOpen.System.Scripting
                     if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueType.Text))
                         || ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueType.Text)))
                     {
-                        String parameterValue = (parameter.GetObject() ?? "").ToString().Trim();
+                        String parameterValue = (parameter.GetValue() ?? "").ToString().Trim();
 
                         if (parameterValue.Length < 2)
                             return false;
@@ -713,7 +713,7 @@ namespace BindOpen.System.Scripting
                     {
                         if ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueType.Any))
                         {
-                            return !parameterSpecification.CheckItem(parameter.GetObject(), parameter).HasErrorsOrExceptions();
+                            return !parameterSpecification.CheckItem(parameter.GetValue(), parameter).HasErrorsOrExceptions();
                         }
                     }
                     parameterIndex++;

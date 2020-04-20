@@ -63,7 +63,7 @@ namespace BindOpen.Application.Arguments
                         {
                             argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
                             argument.SetItem(arguments.GetStringAtIndex(index));
-                            optionSet.AddElement(argument);
+                            optionSet.Add(argument);
                         }
                         else if (argumentSpecification != null && optionSpecificationSet != null)
                         {
@@ -94,7 +94,7 @@ namespace BindOpen.Application.Arguments
                                 }
                             }
 
-                            optionSet.AddElement(argument);
+                            optionSet.Add(argument);
                         }
                     }
                     index++;

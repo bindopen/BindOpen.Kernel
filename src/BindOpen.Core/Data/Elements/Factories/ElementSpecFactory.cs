@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Common;
-using BindOpen.Data.Specification;
 using BindOpen.Extensions.Runtime;
 using System;
 using System.Linq;
@@ -55,8 +54,6 @@ namespace BindOpen.Data.Elements
 
             if (spec != null)
             {
-                spec.DesignStatement.ControlType = type.GetDefaultControlType();
-
                 if (type.IsArray)
                 {
                     spec.MaximumItemNumber = -1;

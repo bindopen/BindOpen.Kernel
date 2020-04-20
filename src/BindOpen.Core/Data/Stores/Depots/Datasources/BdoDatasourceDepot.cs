@@ -64,7 +64,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The module name corresponding to the specified data module name.</returns>
         public string GetModuleName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             return source != null ? source.ModuleName : StringHelper.__NoneString;
         }
@@ -76,7 +76,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             return source != null ? source.InstanceName : StringHelper.__NoneString;
         }
@@ -88,7 +88,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The instance name corresponding to the specified data module name.</returns>
         public string GetInstanceOtherwiseModuleName(string sourceName)
         {
-            IDatasource source = GetItem(sourceName);
+            IDatasource source = Get(sourceName);
 
             string name = (source == null ?
                 StringHelper.__NoneString :
@@ -109,7 +109,7 @@ namespace BindOpen.Data.Stores
             string sourceName,
             string connectorDefinitionUniqueId = null)
         {
-            IDatasource dataSource = GetItem(sourceName);
+            IDatasource dataSource = Get(sourceName);
 
             return dataSource?.GetConfiguration(connectorDefinitionUniqueId);
         }
@@ -122,7 +122,7 @@ namespace BindOpen.Data.Stores
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId = null)
         {
-            IDatasource dataSource = GetItem(sourceName);
+            IDatasource dataSource = Get(sourceName);
 
             return dataSource?.HasConfiguration(connectorDefinitionUniqueId) == true;
         }
@@ -139,7 +139,7 @@ namespace BindOpen.Data.Stores
         {
             IBdoConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
 
-            return configuration != null ? configuration["connectionString"]?.GetObject() as string : StringHelper.__NoneString;
+            return configuration != null ? configuration["connectionString"]?.GetValue() as string : StringHelper.__NoneString;
         }
 
         #endregion

@@ -107,7 +107,7 @@ namespace BindOpen.Application.Settings
         /// <param name="name">The name to consider.</param>
         public T Get<T>(string name)
         {
-            return Configuration.GetElementObject<T>(name, _scope);
+            return Configuration.GetValue<T>(name, _scope);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace BindOpen.Application.Settings
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
-            return Configuration.GetElementObject(name, _scope);
+            return Configuration.GetValue(name, _scope);
         }
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace BindOpen.Application.Settings
 
             if (propertyName != null)
             {
-                IDataElement element = Configuration.GetItem(propertyName);
+                IDataElement element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _scope);
+                    return (T)Configuration.GetValue(propertyName, _scope);
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace BindOpen.Application.Settings
 
                     if (attribute is DetailPropertyAttribute)
                     {
-                        object value = Configuration.GetElementObject(attribute.Name, _scope);
+                        object value = Configuration.GetValue(attribute.Name, _scope);
                         if (value is T t)
                             return t;
                     }
@@ -166,10 +166,10 @@ namespace BindOpen.Application.Settings
 
             if (propertyName != null)
             {
-                IDataElement element = Configuration.GetItem(propertyName);
+                IDataElement element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetElementObject(propertyName, _scope);
+                    return (T)Configuration.GetValue(propertyName, _scope);
                 }
                 else
                 {
@@ -179,7 +179,7 @@ namespace BindOpen.Application.Settings
                         out DataElementAttribute attribute);
 
                     if (attribute is DetailPropertyAttribute)
-                        return (Configuration.GetElementObject(attribute.Name, _scope) as string)?.ToEnum<T>(defaultValue) ?? default;
+                        return (Configuration.GetValue(attribute.Name, _scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 
@@ -201,7 +201,7 @@ namespace BindOpen.Application.Settings
         /// <param name="value">The value to set.</param>
         public void Set(string name, object value)
         {
-            Configuration?.AddElementItem(name, value);
+            Configuration?.Add(name, value);
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace BindOpen.Application.Settings
 
                 if (attribute is DetailPropertyAttribute)
                 {
-                    Configuration.AddElement(ElementFactory.CreateScalar(attribute.Name, propertyInfo.PropertyType.GetValueType(), value));
+                    Configuration.Add(ElementFactory.CreateScalar(attribute.Name, propertyInfo.PropertyType.GetValueType(), value));
                 }
             }
         }

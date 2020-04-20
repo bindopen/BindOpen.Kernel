@@ -34,12 +34,12 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
                             ElementFactory.CreateScalar("password", "passwordA"))));
         }
 
-        public void TestDatasourceDataStore(BdoDatasourceDepot depot)
+        public static void TestDatasourceDataStore(BdoDatasourceDepot depot)
         {
             Assert.That(
                 depot.HasItem("smtp_default")
-                && depot.GetItem("smtp_default")?.Configurations?.Count == 1
-                && depot.GetItem("smtp_default")?.Configurations[0]?.GetElementObject<int>("timeout") == 60000
+                && depot.Get("smtp_default")?.Configurations?.Count == 1
+                && depot.Get("smtp_default")?.Configurations[0]?.GetValue<int>("timeout") == 60000
                 , "Bad data source depot");
         }
 

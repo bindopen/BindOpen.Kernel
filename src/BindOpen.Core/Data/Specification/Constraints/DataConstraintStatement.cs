@@ -95,7 +95,7 @@ namespace BindOpen.Data.Specification
                     dataElement = routine[parameterName];
                 if (dataElement == null)
                 {
-                    routine.AddElement(dataElement = ElementFactory.CreateScalar(
+                    routine.Add(dataElement = ElementFactory.CreateScalar(
                        parameterName,
                        dataValueType == DataValueType.Any ? dataValueType.GetValueType() : dataValueType));
                 }
@@ -131,7 +131,7 @@ namespace BindOpen.Data.Specification
                 dataElement = routine[parameterName];
             if (dataElement == null)
             {
-                routine.AddElement(
+                routine.Add(
                     ElementFactory.CreateScalar(
                         parameterName,
                         dataValueType == DataValueType.Any ? value.GetValueType() : dataValueType,
@@ -160,7 +160,7 @@ namespace BindOpen.Data.Specification
         /// <returns>Returns the item with the specified name.</returns>
         public IBdoRoutineConfiguration GetConstraint(string name)
         {
-            return GetItem(name) as BdoRoutineConfiguration;
+            return Get(name) as BdoRoutineConfiguration;
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace BindOpen.Data.Specification
             string parameterName = null)
         {
             IBdoRoutineConfiguration routine = GetConstraint(constraintName);
-            return routine?.GetElementObject(parameterName);
+            return routine?.Get(parameterName);
         }
 
         #endregion

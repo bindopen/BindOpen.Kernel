@@ -41,15 +41,9 @@ namespace BindOpen.Data.Elements
             set;
         }
 
-        /// <summary>
-        /// Returns the element with the specified key.
-        /// </summary>
-        [XmlIgnore()]
-        public new DataElement this[string key] => GetItem(key) as DataElement;
-
         // Conversions -----------------------------
 
-        /// <summary>
+        /// <summary><<                    
         /// Converts from data element array.
         /// </summary>
         /// <param name="elements">The elements to consider.</param>
@@ -88,7 +82,7 @@ namespace BindOpen.Data.Elements
         /// <param name="referenceElementSet">The reference set of elements to consider.</param>
         /// <returns>Returns the new element that has been added. Returns null if the element has not been added.</returns>
         /// <remarks>The new element must have a name.</remarks>
-        public IDataElement AddElement(
+        public IDataElementSet AddElement(
             IDataElement element,
             IDataElementSet referenceElementSet = null)
         {
@@ -102,9 +96,14 @@ namespace BindOpen.Data.Elements
         /// Removes the element with the specified name.
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
-        public void RemoveElement(string key)
+        public IDataElementSet RemoveElement(string key)
         {
-            if (key == null || _items == null) return;
+            if (key != null && _items != null)
+            {
+                _items.RemoveAll(p => p.KeyEquals(key));
+            }
+
+            return this;
         }
 
         // Element items ------------------------
@@ -112,37 +111,40 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Returns the item of this instance.
         /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
+        /// <param name="elementKey">The element key to consider.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Indicates whether the item has been set.</returns>
-        public virtual bool AddElementItem(
-            string elementName,
+        public virtual IDataElementSet Add(
+            string elementKey,
             object item = null,
             IBdoLog log = null)
         {
-            IDataElement element = GetItem(elementName);
+            IDataElement element = Get(elementKey);
             if (element != null)
-                return element.AddItem(item, log);
+            {
+                element.AddItem(item, log);
+            }
 
-            return false;
+            return this;
         }
 
         /// <summary>
         /// Returns the items of this instance.
         /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
+        /// <param name="elementKey">The element key to consider.</param>
         /// <param name="items">The items to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<object> AddElementItems(
-            string elementName,
+        public virtual IDataElementSet Add(
+            string elementKey,
             object[] items = null,
             IBdoLog log = null)
         {
-            IDataElement element = GetItem(elementName);
+            IDataElement element = Get(elementKey);
             element?.AddItems(items, log);
-            return new List<object>();
+
+            return this;
         }
 
         #endregion
@@ -154,16 +156,6 @@ namespace BindOpen.Data.Elements
         #region Accessors
 
         // Elements -----------------------------
-
-        /// <summary>
-        /// Checks if this instance has an element with the specified key.
-        /// </summary>
-        /// <param name="key">The key of the element to check.</param>
-        /// <returns>Returns true if the instance has an element with the specified name.</returns>
-        public new bool HasItem(string key)
-        {
-            return _items?.Any(p => p.KeyEquals(key)) == true;
-        }
 
         /// <summary>
         /// Gets the common keys with the specified set of elements.
@@ -195,26 +187,16 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Gets the items with the specified group ID.
-        /// </summary>
-        /// <param name="groupId">The ID of the item group.</param>
-        /// <returns>Returns items with the specified group ID.</returns>
-        public List<IDataElement> GetElementsWithGroupId(string groupId)
-        {
-            return _items?.Where(p => p.Specification?.GroupId.KeyEquals(groupId) == true).ToList<IDataElement>();
-        }
-
-        /// <summary>
         /// Returns the item with the specified name and group ID.
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <param name="groupId">The ID of the group of the item to return.</param>
         /// <returns>Returns the item with the specified name and group ID.</returns>
-        public IDataElement GetElement(string name, string groupId = null)
+        public IDataElement GetWithGroup(string name = null, string groupId = null)
         {
             return _items?.FirstOrDefault(p =>
-                p.Name.KeyEquals(name)
-                && (p.Specification?.GroupId.KeyEquals(groupId) != false));
+                (name == null || p.Name.KeyEquals(name))
+                && (groupId == null || p.Specification?.GroupId.KeyEquals(groupId) != false));
         }
 
         // Groups -------------------------------
@@ -234,20 +216,22 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
+        /// <param name="elementKey">The element key to consider.</param>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetElementObject(
-            string elementName = null,
+        public virtual object GetValue(
+            string elementKey,
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            IDataElement element = (elementName != null ? GetItem(elementName) : _items[0]);
+            IDataElement element = Get(elementKey);
             if (element != null)
-                return element.GetObject(scope, scriptVariableSet, log);
+            {
+                return element.GetValue(scope, scriptVariableSet, log);
+            }
 
             return null;
         }
@@ -255,18 +239,18 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="elementName">The element name to consider.</param>
+        /// <param name="elementKey">The element key to consider.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual T GetElementObject<T>(
-            string elementName = null,
+        public virtual T GetValue<T>(
+            string elementKey,
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            var aObject = GetElementObject(elementName, scope, scriptVariableSet, log) ?? default(T);
+            var aObject = GetValue(elementKey, scope, scriptVariableSet, log) ?? default(T);
             return (T)aObject;
         }
 
@@ -289,101 +273,6 @@ namespace BindOpen.Data.Elements
             }
 
             return availableIndexes;
-        }
-
-        /// <summary>
-        /// Gets the specified title.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="variantName">The variant variant name to consider.</param>
-        /// <param name="defaultVariantName">The default variant name to consider.</param>
-        /// <param name="parameters">The parameters to consider.</param>
-        /// <returns>Returns the specified label.</returns>
-        public string GetTitleLabel(
-            string key,
-            string variantName = "*",
-            string defaultVariantName = "*",
-            string[] parameters = null)
-        {
-            string label = "";
-
-            IDataElement element = GetItem(key);
-            if (element != null)
-            {
-                label = element.GetTitle(variantName, defaultVariantName);
-                if (parameters != null)
-                {
-                    for (int k = 0; k < parameters.Length; k++)
-                    {
-                        label = label.Replace("{" + k + "}", parameters[k]);
-                    }
-                }
-            }
-
-            return label;
-        }
-
-        /// <summary>
-        /// Gets the specified description.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="variantName">The variant variant name to consider.</param>
-        /// <param name="defaultVariantName">The default variant name to consider.</param>
-        /// <param name="parameters">The parameters to consider.</param>
-        /// <returns>Returns the specified label.</returns>
-        public string GetDescriptionLabel(
-            string key,
-            string variantName = "*",
-            string defaultVariantName = "*",
-            string[] parameters = null)
-        {
-            string label = "";
-
-            IDataElement element = GetItem(key);
-            if (element != null)
-            {
-                label = element.GetDescription(variantName, defaultVariantName);
-                if (parameters != null)
-                {
-                    for (int k = 0; k < parameters.Length; k++)
-                    {
-                        label = label.Replace("{" + k + "}", parameters[k]);
-                    }
-                }
-            }
-
-            return label;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // EXPORTING
-        // --------------------------------------------------
-
-        #region Exporting
-
-        /// <summary>
-        /// Returns a text node representing this instance.
-        /// </summary>
-        /// <param name="nodeName">Name of the text node.</param>
-        /// <param name="indent">Tabulation indent to include in the text.</param>
-        /// <returns></returns>
-        public string GetTextNode(
-            string nodeName,
-            string indent)
-        {
-            string st = "";
-
-            st += indent + nodeName + "\n";
-            st += "\t" + indent + nodeName + ":elements" + "\n";
-            if (_items != null)
-            {
-                foreach (IDataElement dataItem in _items)
-                    st += dataItem.GetTextNode(nodeName + ":elements:element", "\t\t" + indent);
-            }
-
-            return st;
         }
 
         #endregion
@@ -493,7 +382,7 @@ namespace BindOpen.Data.Elements
                         {
                             if (subItem != null)
                             {
-                                var referenceSubItem = referenceItem.GetItem(subItem.Key());
+                                var referenceSubItem = referenceItem.Get(subItem.Key());
                                 if (referenceSubItem != null)
                                     subItem.Update(referenceSubItem, new[] { nameof(DataAreaKind.Items) });
                             }

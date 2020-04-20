@@ -8,23 +8,10 @@ namespace BindOpen.Data.Elements
     public interface ICarrierElement : IDataElement
     {
         /// <summary>
-        /// 
+        /// The configuration of this instance.
         /// </summary>
-        /// <param name="index"></param>
         /// <returns></returns>
-        new IBdoCarrierConfiguration this[int index] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        new IBdoCarrierConfiguration this[string name] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        new IBdoCarrierConfiguration First { get; }
+        IBdoCarrierConfiguration Item();
 
         /// <summary>
         /// 

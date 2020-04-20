@@ -64,7 +64,7 @@ namespace BindOpen.Extensions.Runtime
         {
             IDataElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.GetObject(scope, scriptVariableSet, log);
+            return entry?.GetValue(scope, scriptVariableSet, log);
         }
 
         // General ---------------------------------------

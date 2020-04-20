@@ -77,7 +77,8 @@ namespace BindOpen.Data.Items
         {
             get
             {
-                return GetItem(key);
+                if (key == null || _items == null) return default;
+                return _items.Find(p => p.KeyEquals(key));
             }
         }
 
@@ -149,34 +150,35 @@ namespace BindOpen.Data.Items
         #region Accessors
 
         /// <summary>
-        /// Returns true if this instance has any item.
-        /// </summary>
-        /// <returns>Returns true if this instance has any item.</returns>
-        public bool HasItems()
-        {
-            return _items?.Count > 0;
-        }
-
-        /// <summary>
         /// Checks if this instance has an item with the specified name.
         /// </summary>
         /// <param name="key">The key of the item to check.</param>
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
-        public bool HasItem(string key)
+        public bool HasItem(string key = null)
         {
-            if (key == null) return false;
+            if (key == null) return _items.Count > 0;
             return _items?.Any(p => p.KeyEquals(key)) == true;
         }
 
         /// <summary>
-        /// Returns the item with the specified name.
+        /// Returns the specified item of this instance.
         /// </summary>
-        /// <param name="key">The key of the item to return.</param>
-        /// <returns>Returns the item with the specified name.</returns>
-        public virtual T GetItem(string key)
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual T Get(string key = null)
         {
-            if (key == null || _items == null) return default;
-            return _items.Find(p => p.KeyEquals(key));
+            if (key == null) return this[0];
+            return this[key];
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(string key = null) where Q : class, T
+        {
+            return Get(key) as Q;
         }
 
         /// <summary>
@@ -302,7 +304,7 @@ namespace BindOpen.Data.Items
                         {
                             if (subItem != null)
                             {
-                                T referenceSubItem = referenceItem.GetItem(subItem.Key());
+                                T referenceSubItem = referenceItem[subItem.Key()];
                                 if (referenceSubItem != null)
                                     subItem.Update(referenceSubItem, new[] { nameof(DataAreaKind.Items) });
                             }

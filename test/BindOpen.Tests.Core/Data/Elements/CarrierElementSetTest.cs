@@ -50,14 +50,14 @@ namespace BindOpen.Tests.Core.Data.Elements
         public void CreateCarrierElementSetTest()
         {
             Assert.That(
-                ((string)_carrierElement1?.First?["path"].First == "file1.txt")
-                && ((string)_carrierElement2?.First?["path"].First == "file2.txt")
-                && ((string)_carrierElement3?.First?["path"].First == "file3.txt")
-                //&& ((string)_carrierElement4?.First?["path"].First == "file4.txt")
+                (_carrierElement1?.Item()?.GetValue<string>("path") == "file1.txt")
+                && (_carrierElement2?.Item()?.GetValue<string>("path") == "file2.txt")
+                && (_carrierElement3?.Item()?.GetValue<string>("path") == "file3.txt")
+                && (_carrierElement4?.Item()?.GetValue<string>("path") == "file4.txt")
                 , "Bad carrier element creation");
 
             Assert.That(
-                (string)(_carrierElementSetA[0] as CarrierElement)?.First?["path"].First == "file1.txt"
+                _carrierElementSetA.Get<CarrierElement>("carrier1")?.Item().GetValue<string>("path") == "file1.txt"
                 , "Bad carrier element set indexation");
 
             Assert.That(

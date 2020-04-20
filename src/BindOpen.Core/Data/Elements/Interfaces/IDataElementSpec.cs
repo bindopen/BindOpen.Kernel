@@ -44,11 +44,6 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataDesignStatement DesignStatement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         string GroupId { get; set; }
 
         /// <summary>

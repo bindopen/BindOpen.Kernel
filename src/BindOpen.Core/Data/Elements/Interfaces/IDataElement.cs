@@ -2,7 +2,6 @@
 using BindOpen.Data.Common;
 using BindOpen.Data.Items;
 using BindOpen.Data.References;
-using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
 using BindOpen.System.Scripting;
@@ -21,18 +20,6 @@ namespace BindOpen.Data.Elements
         /// <param name="index"></param>
         /// <returns></returns>
         object this[int index] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        object this[string name] { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        object First { get; }
 
         /// <summary>
         /// 
@@ -81,19 +68,19 @@ namespace BindOpen.Data.Elements
         /// <param name="item"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        bool AddItem(object item, IBdoLog log = null);
+        IDataElement AddItem(object item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <param name="log"></param>
-        void AddItems(object[] items, IBdoLog log = null);
+        IDataElement AddItems(object[] items, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
-        void ClearItems();
+        IDataElement ClearItems();
 
         /// <summary>
         /// 
@@ -101,20 +88,6 @@ namespace BindOpen.Data.Elements
         /// <param name="elementSpecificationAreas"></param>
         /// <returns></returns>
         object Clone(string[] elementSpecificationAreas = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        DesignControlType GetDefaultControlType();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="nodeName"></param>
-        /// <param name="indent"></param>
-        /// <returns></returns>
-        string GetTextNode(string nodeName, string indent);
 
         /// <summary>
         /// 
@@ -129,33 +102,33 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool RemoveItem(object item);
+        IDataElement RemoveItem(object item);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="item"></param>
-        void SetItem(object item);
+        IDataElement SetItem(object item);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        void SetItems(object[] items);
+        IDataElement SetItems(object[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value1"></param>
         /// <param name="value2"></param>
-        void SwitchItems(object value1, object value2);
+        IDataElement SwitchItems(object value1, object value2);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="item"></param>
         /// <param name="aNewItem"></param>
-        void UpdateItem(object item, object aNewItem);
+        IDataElement UpdateItem(object item, object aNewItem);
 
         /// <summary>
         /// 
@@ -170,7 +143,20 @@ namespace BindOpen.Data.Elements
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object GetObject(
+        object GetValue(
+            IBdoScope scope = null,
+            IBdoScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="scope"></param>
+        /// <param name="scriptVariableSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        object GetValue<T>(
             IBdoScope scope = null,
             IBdoScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

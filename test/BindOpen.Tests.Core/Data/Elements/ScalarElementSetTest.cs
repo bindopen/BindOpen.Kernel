@@ -75,8 +75,8 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetA.Add(elementAB);
             elementSetB.Update(elementSetA);
 
-            elementSetA.Add(null);
-            elementSetB.Add(null);
+            elementSetA.Add((IDataElement[])null);
+            elementSetB.Add((IDataElement[])null);
             elementSetB.Add(ElementFactory.Create("name1", null));
             elementSetB.Add(ElementFactory.Create("name3", null));
             elementSetB.Add(ElementFactory.Create("name4", null));
