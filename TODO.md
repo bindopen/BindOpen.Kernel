@@ -21,3 +21,4 @@ Todo list for BindOpen
 * Add Expression data value type
 * Simplify serialization
 * Improve AppModule management (DbFluent mode)
+
