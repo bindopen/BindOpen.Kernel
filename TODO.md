@@ -3,8 +3,6 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [X] Publish XSD files
-- [X] The default data source is the first declared as default or the first data source otherwise
 - [ ] Dynamic extension loading
 - [ ] Update/Repair/Check data items/elements/sets
 - [ ] Update element, element spec
