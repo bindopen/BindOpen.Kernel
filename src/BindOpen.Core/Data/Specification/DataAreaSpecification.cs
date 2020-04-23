@@ -69,9 +69,9 @@ namespace BindOpen.Data.Specification
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataAreaSpecification dataAreaSpecification = base.Clone() as DataAreaSpecification;
+            DataAreaSpecification dataAreaSpecification = base.Clone(areas) as DataAreaSpecification;
             return dataAreaSpecification;
         }
 

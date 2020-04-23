@@ -64,7 +64,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Initializes a new instance of the ScalarElement class.
         /// </summary>
-        public ScalarElement() : this(null, null)
+        public ScalarElement() : this(null)
         {
         }
 
@@ -73,10 +73,8 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        public ScalarElement(
-            string name = null,
-            string id = null)
-            : base(name, "scalar_", id)
+        public ScalarElement(string name = null, string id = null)
+            : base(name, "scalarElem_", id)
         {
         }
 
@@ -100,17 +98,6 @@ namespace BindOpen.Data.Elements
         }
 
         // Items ----------------------------
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            return Items.Any(p => p == indexItem);
-        }
 
         /// <summary>
         /// Returns a text node representing this instance.
@@ -159,11 +146,11 @@ namespace BindOpen.Data.Elements
         {
             if (DtoValue != null)
             {
-                SetItem(DtoValue?.ToObject(ValueType));
+                WithItems(DtoValue?.ToObject(ValueType));
             }
             else
             {
-                SetItems(DtoValues?.Select(p => p.ToObject(ValueType)).ToArray());
+                WithItems(DtoValues?.Select(p => p.ToObject(ValueType)).ToArray());
             }
 
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
@@ -181,9 +168,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ScalarElement scalarElement = base.Clone() as ScalarElement;
+            ScalarElement scalarElement = base.Clone(areas) as ScalarElement;
             return scalarElement;
         }
 

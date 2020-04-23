@@ -139,7 +139,7 @@ namespace BindOpen.Data.Specification
             }
             else
             {
-                dataElement.SetItem(value);
+                dataElement.WithItems(value);
             }
 
             return true;
@@ -228,9 +228,9 @@ namespace BindOpen.Data.Specification
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataConstraintStatement dataConstraintStatement = base.Clone() as DataConstraintStatement;
+            DataConstraintStatement dataConstraintStatement = base.Clone(areas) as DataConstraintStatement;
             return dataConstraintStatement;
         }
 

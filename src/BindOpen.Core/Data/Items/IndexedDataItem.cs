@@ -52,5 +52,24 @@ namespace BindOpen.Data.Items
         }
 
         #endregion
+
+        // --------------------------------------------------
+        // MUTATORS
+        // --------------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public IIndexedDataItem WithIndex(int index)
+        {
+            Index = index;
+            return this;
+        }
+
+        #endregion
     }
 }

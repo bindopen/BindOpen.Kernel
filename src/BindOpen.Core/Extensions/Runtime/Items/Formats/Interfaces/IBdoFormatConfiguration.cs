@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Definition;
+﻿using BindOpen.Data.Elements;
+using BindOpen.Extensions.Definition;
 
 namespace BindOpen.Extensions.Runtime
 {
@@ -7,5 +8,17 @@ namespace BindOpen.Extensions.Runtime
     /// </summary>
     public interface IBdoFormatConfiguration : ITBdoExtensionTitledItemConfiguration<BdoFormatDefinition>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoFormatConfiguration Add(params IDataElement[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoFormatConfiguration WithItems(params IDataElement[] items);
+
     }
 }

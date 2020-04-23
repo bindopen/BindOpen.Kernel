@@ -82,9 +82,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ITBdoExtensionItemConfiguration<T> appExtensionItem = base.Clone() as TBdoExtensionItemConfiguration<T>;
+            ITBdoExtensionItemConfiguration<T> appExtensionItem = base.Clone(areas) as TBdoExtensionItemConfiguration<T>;
 
             return appExtensionItem;
         }

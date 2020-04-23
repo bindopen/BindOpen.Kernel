@@ -118,11 +118,6 @@ namespace BindOpen.Application.Services
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

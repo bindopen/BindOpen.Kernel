@@ -25,17 +25,9 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Task class.
+        /// Instantiates a new instance of the BdoTask class.
         /// </summary>
         protected BdoTask() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Task class.
-        /// </summary>
-        /// <param name="config">The configuration of this instance.</param>
-        protected BdoTask(IBdoTaskConfiguration config) : base(config)
         {
         }
 

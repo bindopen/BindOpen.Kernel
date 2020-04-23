@@ -65,7 +65,17 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public virtual object Clone()
+        public object Clone()
+        {
+            return Clone(Array.Empty<string>());
+        }
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <param name="areas">The areas to consider.</param>
+        /// <returns>Returns a cloned instance.</returns>
+        public virtual object Clone(params string[] areas)
         {
             return MemberwiseClone();
         }
@@ -73,10 +83,11 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clones this instance.
         /// </summary>
+        /// <param name="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public T Clone<T>() where T : class
+        public T Clone<T>(params string[] areas) where T : class
         {
-            return Clone() as T;
+            return Clone(areas) as T;
         }
 
         #endregion

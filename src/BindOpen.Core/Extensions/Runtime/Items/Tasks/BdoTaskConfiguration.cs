@@ -69,22 +69,38 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TaskConfiguration class.
+        /// Instantiates a new instance of the BdoTaskConfiguration class.
         /// </summary>
-        public BdoTaskConfiguration() : base()
+        public BdoTaskConfiguration() : base(BdoExtensionItemKind.Task, null)
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the TaskConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoTaskConfiguration(
-            string definitionUniqueId,
-            params DataElement[] items)
-            : base(BdoExtensionItemKind.Task, definitionUniqueId, items)
+        /// <param name="items"></param>
+        public new IBdoTaskConfiguration Add(params IDataElement[] items)
         {
+            base.Add(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoTaskConfiguration WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items);
+            return this;
         }
 
         #endregion
@@ -145,9 +161,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            BdoTaskConfiguration task = base.Clone() as BdoTaskConfiguration;
+            BdoTaskConfiguration task = base.Clone(areas) as BdoTaskConfiguration;
 
             if (_inputDetail != null)
                 task.InputDetail = _inputDetail.Clone() as DataElementSet;
@@ -295,11 +311,6 @@ namespace BindOpen.Extensions.Runtime
             _outputDetail?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

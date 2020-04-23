@@ -214,9 +214,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            Datasource dataSource = base.Clone() as Datasource;
+            Datasource dataSource = base.Clone(areas) as Datasource;
 
             if (Configurations != null)
                 dataSource.Configurations = Configurations?.Select(p => p.Clone() as BdoConnectorConfiguration).ToList();

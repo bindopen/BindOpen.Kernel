@@ -49,33 +49,19 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataElementSet PropertyDetail { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IDataElementSpec Specification { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         DataValueType ValueType { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        IDataElement AddItem(object item, IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        /// <param name="log"></param>
-        IDataElement AddItems(object[] items, IBdoLog log = null);
+        IDataElement Add(params object[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        IDataElement WithItems(params object[] items);
 
         /// <summary>
         /// 
@@ -85,56 +71,25 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="elementSpecificationAreas"></param>
-        /// <returns></returns>
-        object Clone(string[] elementSpecificationAreas = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="indexItem"></param>
-        /// <param name="isCaseSensitive"></param>
-        /// <returns></returns>
-        bool HasItem(object indexItem, bool isCaseSensitive = false);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        IDataElement RemoveItem(object item);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        IDataElement SetItem(object item);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="items"></param>
-        IDataElement SetItems(object[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value1"></param>
-        /// <param name="value2"></param>
-        IDataElement SwitchItems(object value1, object value2);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="aNewItem"></param>
-        IDataElement UpdateItem(object item, object aNewItem);
+        /// <returns></returns>
+        IDataElement Remove(params object[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         IDataElementSpec NewSpecification();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IDataElementSpec Specification { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DataElementSet PropertyDetail { get; set; }
 
         /// <summary>
         /// 

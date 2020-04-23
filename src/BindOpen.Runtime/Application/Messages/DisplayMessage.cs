@@ -158,9 +158,9 @@ namespace BindOpen.Application.Messages
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DisplayMessage aDisplayMessage = base.Clone() as DisplayMessage;
+            DisplayMessage aDisplayMessage = base.Clone(areas) as DisplayMessage;
             aDisplayMessage.DisplayCondition = this.DisplayCondition.Clone() as ScriptCondition;
             aDisplayMessage.DisplayedLabel = this.DisplayedLabel.Clone() as DictionaryDataItem;
             return aDisplayMessage;

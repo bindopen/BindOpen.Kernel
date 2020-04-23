@@ -107,9 +107,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ObjectElementSpec specification = base.Clone() as ObjectElementSpec;
+            ObjectElementSpec specification = base.Clone(areas) as ObjectElementSpec;
             if (ClassFilter != null)
                 specification.ClassFilter = ClassFilter.Clone() as DataValueFilter;
             //if (FormatUniqueNameFilter != null)

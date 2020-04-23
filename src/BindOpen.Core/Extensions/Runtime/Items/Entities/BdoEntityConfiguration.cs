@@ -34,25 +34,38 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the EntityConfiguration class.
+        /// Instantiates a new instance of the BdoEntityConfiguration class.
         /// </summary>
-        public BdoEntityConfiguration() : base()
+        public BdoEntityConfiguration() : base(BdoExtensionItemKind.Entity, null)
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the EntityConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="schema">The schema to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoEntityConfiguration(
-            string definitionUniqueId,
-            IDataSchema schema = null,
-            params DataElement[] items)
-            : base(BdoExtensionItemKind.Entity, definitionUniqueId, items)
+        /// <param name="items"></param>
+        public new IBdoEntityConfiguration Add(params IDataElement[] items)
         {
-            Schema = schema as DataSchema;
+            base.Add(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoEntityConfiguration WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items);
+            return this;
         }
 
         #endregion
@@ -67,9 +80,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            BdoEntityConfiguration configuration = base.Clone() as BdoEntityConfiguration;
+            BdoEntityConfiguration configuration = base.Clone(areas) as BdoEntityConfiguration;
             if (this.Schema != null)
                 configuration.Schema = this.Schema.Clone() as DataSchema;
 

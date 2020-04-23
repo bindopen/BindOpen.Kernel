@@ -357,14 +357,6 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="variantName"></param>
-        /// <param name="defaultVariantName"></param>
-        /// <returns></returns>
-        new string GetTitle(string variantName = "*", string defaultVariantName = "*");
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="isRecursive"></param>
         /// <returns></returns>
         bool HasErrors(bool isRecursive = true);
@@ -517,12 +509,12 @@ namespace BindOpen.System.Diagnostics
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param name="parent"></param>
-        IBdoLog Clone(IBdoLog parent = null);
+        IBdoLog Clone(IBdoLog parent, params string[] areas);
 
         /// <summary>
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param name="parent"></param>
-        T Clone<T>(IBdoLog parent = null) where T : class;
+        T Clone<T>(IBdoLog parent, params string[] areas) where T : class;
     }
 }

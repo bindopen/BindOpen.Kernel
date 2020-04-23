@@ -112,8 +112,8 @@ namespace BindOpen.System.Diagnostics.Events
 
             this.Kind = kind;
             this.Criticality = criticality;
-            this.Title = string.IsNullOrEmpty(title) ? null : new DictionaryDataItem(title);
-            this.Description = string.IsNullOrEmpty(description) ? null : new DictionaryDataItem(description);
+            this.Title = string.IsNullOrEmpty(title) ? null : ItemFactory.CreateDictionary(title);
+            this.Description = string.IsNullOrEmpty(description) ? null : ItemFactory.CreateDictionary(description);
         }
 
         /// <summary>
@@ -130,16 +130,16 @@ namespace BindOpen.System.Diagnostics.Events
             string id = null) : this()
         {
             this.Id = (id ?? this.Id);
-            this.CreationDate = ObjectHelper.ToString((date ?? global::System.DateTime.Now));
+            this.CreationDate = ObjectHelper.ToString((date ?? DateTime.Now));
 
             this.Kind = EventKinds.Exception;
             this.Criticality = criticality;
 
             if (exception != null)
             {
-                this.SetTitle(exception.Message);
-                this.SetDescription(exception.ToString());
-                this.LongDescription = new DictionaryDataItem(exception.ToString());
+                WithTitle(exception.Message);
+                WithDescription(exception.ToString());
+                LongDescription = ItemFactory.CreateDictionary(exception.ToString());
             }
         }
 
@@ -155,9 +155,9 @@ namespace BindOpen.System.Diagnostics.Events
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            var cloned = base.Clone() as BdoEvent;
+            var cloned = base.Clone(areas) as BdoEvent;
 
             cloned.Detail = Detail?.Clone<DataElementSet>();
 

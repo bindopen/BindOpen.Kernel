@@ -259,11 +259,6 @@ namespace BindOpen.Application.Modules
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

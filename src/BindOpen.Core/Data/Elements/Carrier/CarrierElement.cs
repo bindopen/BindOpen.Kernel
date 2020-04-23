@@ -1,6 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
-using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -65,7 +64,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Initializes a new instance of the CarrierElement class.
         /// </summary>
-        public CarrierElement() : this(null, null)
+        public CarrierElement() : this(null)
         {
         }
 
@@ -74,10 +73,8 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        public CarrierElement(
-            string name = null,
-            string id = null)
-            : base(name, "carrier_", id)
+        public CarrierElement(string name = null, string id = null)
+            : base(name, "carrierElem_", id)
         {
             ValueType = DataValueType.Carrier;
         }
@@ -89,6 +86,18 @@ namespace BindOpen.Data.Elements
         // --------------------------------------------------
 
         #region Items
+
+        /// <summary>
+        /// Sets the specified configuration.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public ICarrierElement WithConfiguration(IBdoCarrierConfiguration configuration)
+        {
+            WithItems(configuration);
+
+            return this;
+        }
 
         /// <summary>
         /// The configuration of this instance.
@@ -113,32 +122,22 @@ namespace BindOpen.Data.Elements
         // Items ----------------------------
 
         /// <summary>
-        /// Sets the specified single item of this instance.
+        /// Adds a new single item of this instance.
         /// </summary>
-        /// <param name="item">The item to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override IDataElement SetItem(object item)
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        protected override void Add(object item)
         {
-            base.SetItem(item);
-
-            if (this[0] is BdoCarrierConfiguration configuration && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
-                DefinitionUniqueId = configuration?.DefinitionUniqueId;
-
-            return this;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            if (indexItem is string)
-                return Items.Any(p => p.KeyEquals(indexItem));
-
-            return false;
+            if (item != null)
+            {
+                base.Add(item);
+                if (this[0] is BdoCarrierConfiguration configuration
+                    && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
+                {
+                    DefinitionUniqueId = configuration?.DefinitionUniqueId;
+                }
+            }
         }
 
         /// <summary>
@@ -182,7 +181,7 @@ namespace BindOpen.Data.Elements
         /// <param name="log"></param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            SetItems(Carriers?.Select(p =>
+            WithItems(Carriers?.Select(p =>
                 {
                     p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                     return p;
@@ -203,9 +202,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            CarrierElement dataCarrierElement = base.Clone() as CarrierElement;
+            CarrierElement dataCarrierElement = base.Clone(areas) as CarrierElement;
             return dataCarrierElement;
         }
 

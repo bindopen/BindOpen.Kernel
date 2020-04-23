@@ -141,12 +141,6 @@ namespace BindOpen.Data.Items
             if (this.IsDisposed)
                 return;
 
-            if (isDisposing)
-            {
-                // Free any other managed objects here.
-                //
-            }
-
             // Free any unmanaged objects here.
             //
             this.IsDisposed = true;

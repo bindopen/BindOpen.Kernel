@@ -1,16 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
-  <collection name="collection1" valueType="Object">
-    <scalar name="key11" value="value11" />
-    <scalar name="key12" value="value12" />
-    <scalar name="key13" value="value13" />
+  <collection name="collection1" valueType="Element">
+    <scalar name="Future-proofed" valueType="Number" value="0.7519549716971605" />
+    <scalar name="Communications" valueType="Number" value="0.25897152501110526" />
+    <scalar name="lavender" valueType="Number" value="0.8109877662784363" />
+    <scalar name="withdrawal" valueType="Number" value="0.8827719012660775" />
+    <scalar name="Avon" valueType="Number" value="0.25488202099450025" />
+    <scalar name="Sleek Granite Bike" valueType="Number" value="0.697019725896893" />
+    <scalar name="portals" valueType="Number" value="0.2709091535168277" />
+    <scalar name="info-mediaries" valueType="Number" value="0.7190538000869815" />
+    <scalar name="Sleek Cotton Shoes" valueType="Number" value="0.6139818465402266" />
+    <scalar name="Industrial &amp; Clothing" valueType="Number" value="0.7086015053599148" />
   </collection>
-  <collection name="collection2" valueType="Object">
-    <scalar name="key21" value="value21" />
-    <scalar name="key22" value="value22" />
-    <scalar name="key23" valueType="Integer" value="25" />
-    <carrier name="collection2" valueType="Carrier">
-      <definition>tests.core$dbField</definition>
+  <collection name="collection2" valueType="Element">
+    <scalar name="Florida" valueType="Number" value="0.34555697829721355" />
+    <scalar name="indexing" valueType="Number" value="0.9818814140660136" />
+    <scalar name="Security" valueType="Number" value="0.03243370495384266" />
+    <scalar name="AI" valueType="Number" value="0.08716045184394365" />
+    <scalar name="Squares" valueType="Number" value="0.1944368845757269" />
+    <scalar name="Gateway" valueType="Number" value="0.3791063811532717" />
+    <scalar name="systematic" valueType="Number" value="0.07758540011829948" />
+    <scalar name="Lodge" valueType="Number" value="0.8997893179300192" />
+    <scalar name="Handcrafted" valueType="Number" value="0.5972067050622807" />
+    <scalar name="analyzer" valueType="Number" value="0.33001917895396204" />
+    <carrier id="tests.core$testCarrier" name="collection2" valueType="Carrier">
       <items>
         <add>
           <scalar name="path" value="file2.txt" />

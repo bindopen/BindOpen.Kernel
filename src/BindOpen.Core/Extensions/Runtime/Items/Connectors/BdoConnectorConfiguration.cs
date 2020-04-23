@@ -23,21 +23,9 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ConnectorConfiguration class.
+        /// Instantiates a new instance of the BdoConnectorConfiguration class.
         /// </summary>
-        public BdoConnectorConfiguration() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the ConnectorConfiguration class.
-        /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoConnectorConfiguration(
-            string definitionUniqueId,
-            params DataElement[] items)
-            : base(BdoExtensionItemKind.Connector, definitionUniqueId, items)
+        public BdoConnectorConfiguration() : base(BdoExtensionItemKind.Connector, null)
         {
         }
 
@@ -50,13 +38,33 @@ namespace BindOpen.Extensions.Runtime
         #region Mutators
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoConnectorConfiguration Add(params IDataElement[] items)
+        {
+            base.Add(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoConnectorConfiguration WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items);
+            return this;
+        }
+
+        /// <summary>
         /// Sets the connection string with the specified string.
         /// </summary>
         /// <param name="connectionString">The connection string to consider.</param>
         /// <returns>Returns a clone of this instance.</returns>
         public virtual IBdoConnectorConfiguration WithConnectionString(string connectionString = null)
         {
-            AddElement(ElementFactory.CreateScalar("connectionString", DataValueType.Text, connectionString));
+            Add(ElementFactory.CreateScalar("connectionString", DataValueType.Text, connectionString));
 
             return this;
         }
@@ -73,9 +81,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>A cloned connector of this instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            BdoConnectorConfiguration configuration = base.Clone() as BdoConnectorConfiguration;
+            BdoConnectorConfiguration configuration = base.Clone(areas) as BdoConnectorConfiguration;
 
             return configuration;
         }

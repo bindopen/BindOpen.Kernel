@@ -100,7 +100,7 @@ namespace BindOpen.Data.Elements
             {
                 foreach (object item in items)
                 {
-                    element.AddItem(item);
+                    element.Add(item);
                 }
             }
 

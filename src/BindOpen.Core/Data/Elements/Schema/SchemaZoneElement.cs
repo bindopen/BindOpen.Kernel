@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -13,7 +12,7 @@ namespace BindOpen.Data.Elements.Schema
     /// </summary>
     [XmlType("SchemaZoneElement", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot("element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class SchemaZoneElement : SchemaElement, INotifyPropertyChanged
+    public class SchemaZoneElement : SchemaElement
     {
         //------------------------------------------
         // VARIABLES
@@ -21,7 +20,7 @@ namespace BindOpen.Data.Elements.Schema
 
         #region Variables
 
-        private ObservableCollection<SchemaElement> _SubElements = new ObservableCollection<SchemaElement>();
+        private ObservableCollection<SchemaElement> _subElements = new ObservableCollection<SchemaElement>();
 
         #endregion
 
@@ -50,15 +49,14 @@ namespace BindOpen.Data.Elements.Schema
         {
             get
             {
-                return this._SubElements;
+                return _subElements;
             }
             set
             {
-                if (this._SubElements != value)
+                if (_subElements != value)
                 {
-                    this._SubElements = value;
-                    this._SubSchemaElements = new List<SchemaElement>(this._SubElements);
-                    this.RaizePropertyChanged(nameof(SubElements));
+                    _subElements = value;
+                    _SubSchemaElements = new List<SchemaElement>(_subElements);
                 }
             }
         }
@@ -89,10 +87,10 @@ namespace BindOpen.Data.Elements.Schema
             params object[] items)
             : base(name, "schemaZoneElement_")
         {
-            this.Specification = new SchemaElementSpec();
+            Specification = new SchemaElementSpec();
 
             foreach (object item in items)
-                this.AddItem(item);
+                Add(item);
         }
 
         #endregion
@@ -108,13 +106,13 @@ namespace BindOpen.Data.Elements.Schema
         /// </summary>
         public virtual void BuildTree()
         {
-            this._SubElements = new ObservableCollection<SchemaElement>();
+            _subElements = new ObservableCollection<SchemaElement>();
 
-            if (this._SubSchemaElements != null)
-                foreach (SchemaElement aSchemaElement in this._SubSchemaElements)
+            if (_SubSchemaElements != null)
+                foreach (SchemaElement aSchemaElement in _SubSchemaElements)
                 {
                     aSchemaElement.ParentZone = this;
-                    this._SubElements.Add(aSchemaElement);
+                    _subElements.Add(aSchemaElement);
 
                     if (aSchemaElement is SchemaZoneElement)
                         ((SchemaZoneElement)aSchemaElement).BuildTree();
@@ -129,10 +127,10 @@ namespace BindOpen.Data.Elements.Schema
         {
             if (aSchemaElement != null)
             {
-                this.SubElements.Add(aSchemaElement);
-                if (this.SubElements != null)
-                    this.SubElements = new ObservableCollection<SchemaElement>(
-                        (this.SubElements.OrderBy(p => (p is SchemaZoneElement ? "A_" : "B_") + p.Name)));
+                SubElements.Add(aSchemaElement);
+                if (SubElements != null)
+                    SubElements = new ObservableCollection<SchemaElement>(
+                        (SubElements.OrderBy(p => (p is SchemaZoneElement ? "A_" : "B_") + p.Name)));
             }
         }
 
@@ -164,7 +162,7 @@ namespace BindOpen.Data.Elements.Schema
 
             if (parentSchemaElement is SchemaZoneElement)
                 foreach (SchemaElement aSubSchemaElement in ((SchemaZoneElement)parentSchemaElement).SubElements)
-                    if ((aSchemaElement = this.GetElementWithId(id, aSubSchemaElement)) != null)
+                    if ((aSchemaElement = GetElementWithId(id, aSubSchemaElement)) != null)
                         break;
 
             return aSchemaElement;
@@ -181,28 +179,23 @@ namespace BindOpen.Data.Elements.Schema
         /// <summary>
         /// Clones this instance.
         /// </summary>
+        /// <param name="parent">The parent schema element group to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(SchemaZoneElement parent, params string[] areas)
         {
-            return this.Clone(null);
-        }
+            if (parent == null)
+            {
+                parent = ParentZone;
+            }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <param name="parentZoneElement">The parent schema element group to consider.</param>
-        /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(SchemaZoneElement parentZoneElement)
-        {
-            if (parentZoneElement == null)
-                parentZoneElement = this.ParentZone;
+            SchemaZoneElement element = base.Clone(parent, areas) as SchemaZoneElement;
 
-            SchemaZoneElement aSchemaZoneElement = base.Clone(parentZoneElement) as SchemaZoneElement;
+            foreach (SchemaElement subElement in SubElements)
+            {
+                element.AddSubElement(subElement.Clone(element) as SchemaElement);
+            }
 
-            foreach (SchemaElement aSubSchemaElement in this.SubElements)
-                aSchemaZoneElement.AddSubElement(aSubSchemaElement.Clone(aSchemaZoneElement) as SchemaElement);
-
-            return aSchemaZoneElement;
+            return element;
         }
 
         #endregion

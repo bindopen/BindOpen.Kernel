@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
-using System;
 using System.Data;
 using System.Xml.Serialization;
 
@@ -76,11 +75,6 @@ namespace BindOpen.Data.Connections
             _connector?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

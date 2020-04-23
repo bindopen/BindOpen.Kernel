@@ -26,7 +26,7 @@ namespace BindOpen.Application.Configuration
         public static T Create<T>(string filePath, params DataElement[] items)
             where T : BdoBaseConfiguration, new()
         {
-            var config = DataItemFactory.CreateSet<T, IDataElement>(items);
+            var config = ItemFactory.CreateSet<T, IDataElement>(items);
             config.CurrentFilePath = filePath;
             return config;
         }

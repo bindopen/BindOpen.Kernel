@@ -152,9 +152,9 @@ namespace BindOpen.Data.References
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataReferenceDto dto = base.Clone() as DataReferenceDto;
+            DataReferenceDto dto = base.Clone(areas) as DataReferenceDto;
             if (SourceElement != null)
                 dto.SourceElement = SourceElement.Clone() as DataElement;
             if (PathDetail != null)

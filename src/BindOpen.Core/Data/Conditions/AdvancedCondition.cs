@@ -100,7 +100,8 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override object Clone()
+        /// <param name="areas">The areas to consider.</param>
+        public override object Clone(params string[] areas)
         {
             AdvancedCondition aAdvancedBusinessCondition = new AdvancedCondition();
             aAdvancedBusinessCondition.Conditions.AddRange(this.Conditions.Select(p => p.Clone() as Condition));

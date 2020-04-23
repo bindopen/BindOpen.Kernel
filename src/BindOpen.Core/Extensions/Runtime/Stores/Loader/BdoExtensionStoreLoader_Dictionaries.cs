@@ -52,6 +52,9 @@ namespace BindOpen.Extensions.Runtime
                     return LoadScripwordDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Task:
                     return LoadTaskDictionaryFromAssembly(assembly, extensionDefinition, log);
+                case BdoExtensionItemKind.Any:
+                case BdoExtensionItemKind.None:
+                    break;
             }
             return -1;
         }
@@ -124,8 +127,6 @@ namespace BindOpen.Extensions.Runtime
                     return "BindOpen.Carriers";
                 case BdoExtensionItemKind.Connector:
                     return "BindOpen.Connectors";
-                case BdoExtensionItemKind.ContextExtension:
-                    return "BindOpen.Context";
                 case BdoExtensionItemKind.Entity:
                     return "BindOpen.Entities";
                 case BdoExtensionItemKind.Format:
@@ -188,8 +189,8 @@ namespace BindOpen.Extensions.Runtime
             definition.Name = attribute.Name?.IndexOf("$") > 0 ?
                 attribute.Name.Substring(attribute.Name.IndexOf("$") + 1) : attribute.Name;
 
-            definition.Title = new DictionaryDataItem(attribute.Title);
-            definition.Description = new DictionaryDataItem(attribute.Description);
+            definition.Title = ItemFactory.CreateDictionary(attribute.Title);
+            definition.Description = ItemFactory.CreateDictionary(attribute.Description);
             definition.CreationDate = attribute.CreationDate;
             definition.LastModificationDate = attribute.LastModificationDate;
             definition.Index = attribute.Index;

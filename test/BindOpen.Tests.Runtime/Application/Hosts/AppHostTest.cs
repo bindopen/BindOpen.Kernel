@@ -8,7 +8,7 @@ namespace BindOpen.Tests.Core.Application.Hosts
     [TestFixture]
     public class AppHostTest
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
         }
@@ -64,6 +64,10 @@ namespace BindOpen.Tests.Core.Application.Hosts
 
             Assert.That(appHost.GetDatasourceDepot()?.GetConnectionString("db.testB") != StringHelper.__NoneString,
                 "Bad data source loading from .NET Core configuration");
+
+            Assert.That(appHost.GetDatasourceDepot().Get()?.Name == "db.testA", "Bad data source loading");
+
+            Assert.That(appHost.GetDatasourceDepot().GetConnectionString() != StringHelper.__NoneString, "Bad data source loading");
         }
     }
 }

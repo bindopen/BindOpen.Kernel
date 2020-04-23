@@ -17,5 +17,17 @@ namespace BindOpen.Data.Elements
         /// 
         /// </summary>
         string DefinitionUniqueId { get; set; }
+
+        /// <summary>
+        /// Sets the specified configuration.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        ISourceElement WithConfiguration(IBdoConnectorConfiguration configuration);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        new SourceElementSpec Specification { get; set; }
     }
 }

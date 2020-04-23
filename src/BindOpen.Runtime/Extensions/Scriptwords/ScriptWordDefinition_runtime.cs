@@ -14,12 +14,6 @@ namespace BindOpen.Extensions.Scriptwords
     [BdoScriptwordDefinition]
     public static class ScriptwordDefinition_runtime
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
         /// <summary>
         /// Evaluates the script word $(applicationModuleName).
         /// </summary>
@@ -37,8 +31,7 @@ namespace BindOpen.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
-            if (appHost == null)
+            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.AppModule?.Name ?? "";
@@ -61,8 +54,7 @@ namespace BindOpen.Extensions.Scriptwords
         {
             if (scope == null || scope.Context == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
-            if (appHost == null)
+            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? "";
@@ -85,7 +77,7 @@ namespace BindOpen.Extensions.Scriptwords
         {
             string value1 = parameters.GetStringAtIndex(0);
 
-            if ((value1 == "\"\"") | (value1 == String.Empty))
+            if ((value1 == "\"\"") | (string.IsNullOrEmpty(value1)))
                 return "true";
             else
                 return "false";
@@ -106,7 +98,7 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            String value1 = parameters.GetStringAtIndex(0);
+            string value1 = parameters.GetStringAtIndex(0);
             return "\"" + value1 + "\"";
         }
 
@@ -125,10 +117,10 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            String textValue = parameters.GetStringAtIndex(0);
-            String aFormatText = parameters.GetStringAtIndex(1);
+            string textValue = parameters.GetStringAtIndex(0);
+            string formatText = parameters.GetStringAtIndex(1);
 
-            return String.Format(textValue, aFormatText);
+            return string.Format(textValue, formatText);
         }
 
         /// <summary>
@@ -146,9 +138,9 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            String aCondition = parameters.GetStringAtIndex(0);
+            string condition = parameters.GetStringAtIndex(0);
 
-            if (string.Equals(aCondition, "true", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(condition, "true", StringComparison.OrdinalIgnoreCase))
                 return parameters.GetStringAtIndex(1);
             else
                 return parameters.GetStringAtIndex(2);
@@ -188,8 +180,8 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            Boolean b = false;
-            foreach (String st in parameters)
+            bool b = false;
+            foreach (string st in parameters)
                 b = (b | (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
             return (b ? "true" : "false");
         }
@@ -209,8 +201,8 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            Boolean b = true;
-            foreach (String st in parameters)
+            bool b = true;
+            foreach (string st in parameters)
                 b &= (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase));
             return (b ? "true" : "false");
         }
@@ -230,8 +222,8 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            Boolean b = true;
-            foreach (String st in parameters)
+            bool b = true;
+            foreach (string st in parameters)
                 b = (b ^ (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
             return (b ? "true" : "false");
         }
@@ -251,8 +243,8 @@ namespace BindOpen.Extensions.Scriptwords
             IBdoScriptword scriptWord,
             params object[] parameters)
         {
-            String value1 = parameters.GetStringAtIndex(0);
-            String value2 = parameters.GetStringAtIndex(1);
+            string value1 = parameters.GetStringAtIndex(0);
+            string value2 = parameters.GetStringAtIndex(1);
 
             return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "true" : "false");
         }
@@ -440,14 +432,6 @@ namespace BindOpen.Extensions.Scriptwords
             return text;
         }
 
-        #endregion
-
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
         /// <summary>
         /// Evaluates the script word $(EMPTY).
         /// </summary>
@@ -587,7 +571,5 @@ namespace BindOpen.Extensions.Scriptwords
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");
         }
-
-        #endregion
     }
 }

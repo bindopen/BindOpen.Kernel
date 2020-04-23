@@ -134,9 +134,9 @@ namespace BindOpen.Data.Elements.Schema
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            SchemaElementSpec aSchemaElementSpec = base.Clone() as SchemaElementSpec;
+            SchemaElementSpec aSchemaElementSpec = base.Clone(areas) as SchemaElementSpec;
             if (this.SchemuniqueNameFilter != null)
                 aSchemaElementSpec.SchemuniqueNameFilter = this.SchemuniqueNameFilter.Clone() as DataValueFilter;
             if (this.FormatUniqueNameFilter != null)

@@ -19,22 +19,38 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the FormatConfiguration class.
+        /// Instantiates a new instance of the BdoFormatConfiguration class.
         /// </summary>
-        public BdoFormatConfiguration() : this(null, null)
+        public BdoFormatConfiguration() : base(BdoExtensionItemKind.Format, null)
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the FormatConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoFormatConfiguration(
-            string definitionUniqueId,
-            params DataElement[] items)
-            : base(BdoExtensionItemKind.Format, definitionUniqueId, items)
+        /// <param name="items"></param>
+        public new IBdoFormatConfiguration Add(params IDataElement[] items)
         {
+            base.Add(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoFormatConfiguration WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items);
+            return this;
         }
 
         #endregion
@@ -49,9 +65,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            BdoFormatConfiguration dataFormat = base.Clone() as BdoFormatConfiguration;
+            BdoFormatConfiguration dataFormat = base.Clone(areas) as BdoFormatConfiguration;
 
             return dataFormat;
         }

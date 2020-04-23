@@ -2,7 +2,6 @@
 using BindOpen.Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements.Schema
@@ -40,11 +39,10 @@ namespace BindOpen.Data.Elements.Schema
         [XmlIgnore()]
         public SchemaZoneElement ParentZone
         {
-            get { return this._parentZone; }
+            get { return _parentZone; }
             set
             {
-                this._parentZone = value;
-                this.RaizePropertyChanged(nameof(ParentZone));
+                _parentZone = value;
             }
         }
 
@@ -54,11 +52,10 @@ namespace BindOpen.Data.Elements.Schema
         [XmlElement("imageFileName")]
         public string ImageFileName
         {
-            get { return this._imageFileName; }
+            get { return _imageFileName; }
             set
             {
-                this._imageFileName = value;
-                this.RaizePropertyChanged(nameof(ImageFileName));
+                _imageFileName = value;
             }
         }
 
@@ -78,12 +75,11 @@ namespace BindOpen.Data.Elements.Schema
         [XmlIgnore()]
         public DataEntity Entity
         {
-            get { return this._entity; }
+            get { return _entity; }
             set
             {
-                this._entity = value;
-                this.EntityUniqueName = _entity?.Id;
-                this.RaizePropertyChanged(nameof(Entity));
+                _entity = value;
+                EntityUniqueName = _entity?.Id;
             }
         }
 
@@ -123,11 +119,11 @@ namespace BindOpen.Data.Elements.Schema
             params object[] items)
             : base(name, "schemaElement_")
         {
-            this.ValueType = DataValueType.Schema;
-            this.Specification = new SchemaElementSpec();
+            ValueType = DataValueType.Schema;
+            Specification = new SchemaElementSpec();
 
             foreach (object item in items)
-                this.AddItem(item);
+                Add(item);
         }
 
         #endregion
@@ -146,7 +142,7 @@ namespace BindOpen.Data.Elements.Schema
         public bool IsDescendantOf(
             SchemaZoneElement parentZoneElement)
         {
-            SchemaElement currentSchemaZoneElement = this._parentZone;
+            SchemaElement currentSchemaZoneElement = _parentZone;
             while (currentSchemaZoneElement != null)
             {
                 if (currentSchemaZoneElement == parentZoneElement)
@@ -198,7 +194,7 @@ namespace BindOpen.Data.Elements.Schema
                 return;
 
             foreach (SchemaElement currentElement in elements)
-                this.DeleteElement(currentElement);
+                DeleteElement(currentElement);
         }
 
         // Duplication / Copy / Move -------------------------------------------
@@ -233,7 +229,7 @@ namespace BindOpen.Data.Elements.Schema
             if (aElement == null)
                 return duplicatedElements;
             foreach (SchemaZoneElement parentElement in parentElements)
-                duplicatedElements.Add(this.MergeDbQueryElement(aElement, parentElement));
+                duplicatedElements.Add(MergeDbQueryElement(aElement, parentElement));
 
             return duplicatedElements;
         }
@@ -253,7 +249,7 @@ namespace BindOpen.Data.Elements.Schema
                 return duplicatedElements;
 
             foreach (SchemaElement currentElement in elements)
-                duplicatedElements.Add(this.MergeDbQueryElement(currentElement, parentZoneElement));
+                duplicatedElements.Add(MergeDbQueryElement(currentElement, parentZoneElement));
 
             return duplicatedElements;
         }
@@ -293,7 +289,7 @@ namespace BindOpen.Data.Elements.Schema
                 return;
 
             foreach (SchemaElement currentElement in elements)
-                this.MoveElement(currentElement, parentZoneElement);
+                MoveElement(currentElement, parentZoneElement);
         }
 
         // Adding -------------------------------------------
@@ -391,51 +387,32 @@ namespace BindOpen.Data.Elements.Schema
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            return this.Clone(null);
+            return Clone(null, Array.Empty<string>());
         }
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="parentZoneElement">The parent schema element zone to consider.</param>
+        /// <param name="parent">The parent schema element zone to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public virtual Object Clone(SchemaZoneElement parentZoneElement)
+        public virtual object Clone(SchemaZoneElement parent, params string[] areas)
         {
-            if (parentZoneElement == null)
-                parentZoneElement = this.ParentZone;
+            if (parent == null)
+            {
+                parent = ParentZone;
+            }
 
-            SchemaZoneElement aSchemaElement = base.Clone() as SchemaZoneElement;
-            aSchemaElement.Entity = this._entity;
-            aSchemaElement.ParentZone = parentZoneElement;
-            if (parentZoneElement != null)
-                parentZoneElement.SubElements.Add(aSchemaElement);
+            SchemaZoneElement element = base.Clone(areas) as SchemaZoneElement;
+            element.Entity = _entity;
+            element.ParentZone = parent;
+            if (parent != null)
+            {
+                parent.SubElements.Add(element);
+            }
 
-            return aSchemaElement;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // INOTIFY IMPLEMENTATION
-        // ------------------------------------------
-
-        #region INotify Implementation
-
-        /// <summary>
-        /// The event corresponding to a property that has changed.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Occures when a property changes.
-        /// </summary>
-        /// <param name="propertyName">The name of the property that has changed.</param>
-        protected void RaizePropertyChanged(String propertyName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            return element;
         }
 
         #endregion
@@ -463,11 +440,6 @@ namespace BindOpen.Data.Elements.Schema
             _entity?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

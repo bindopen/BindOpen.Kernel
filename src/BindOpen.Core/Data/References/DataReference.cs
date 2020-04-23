@@ -2,7 +2,6 @@
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -160,9 +159,9 @@ namespace BindOpen.Data.References
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataReference dataReference = base.Clone() as DataReference;
+            DataReference dataReference = base.Clone(areas) as DataReference;
             dataReference.SetDto(Dto.Clone() as DataReferenceDto);
 
             return dataReference;
@@ -192,11 +191,6 @@ namespace BindOpen.Data.References
             _item?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

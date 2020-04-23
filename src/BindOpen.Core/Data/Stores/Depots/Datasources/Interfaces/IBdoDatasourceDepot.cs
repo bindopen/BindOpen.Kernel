@@ -27,29 +27,21 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param name="sourceName"></param>
         /// <returns></returns>
-        string GetInstanceName(string sourceName);
+        string GetInstanceName(string sourceName = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sourceName"></param>
         /// <returns></returns>
-        string GetInstanceOtherwiseModuleName(string sourceName);
+        string GetInstanceOtherwiseModuleName(string sourceName = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sourceName"></param>
         /// <returns></returns>
-        string GetModuleName(string sourceName);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sourceName"></param>
-        /// <param name="connectorDefinitionUniqueId"></param>
-        /// <returns></returns>
-        string GetConnectionString(string sourceName, string connectorDefinitionUniqueId = null);
+        string GetModuleName(string sourceName = null);
 
         /// <summary>
         /// 
@@ -57,6 +49,14 @@ namespace BindOpen.Data.Stores
         /// <param name="sourceName"></param>
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <returns></returns>
-        bool HasConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId = null);
+        string GetConnectionString(string sourceName = null, string connectorDefinitionUniqueId = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceName"></param>
+        /// <param name="connectorDefinitionUniqueId"></param>
+        /// <returns></returns>
+        bool HasConnectorConfiguration(string sourceName = null, string connectorDefinitionUniqueId = null);
     }
 }

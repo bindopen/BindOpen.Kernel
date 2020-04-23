@@ -15,7 +15,7 @@
   <fileName>BindOpen.Runtime.dll</fileName>
   <rootNamespace>BindOpen.Runtime.Extensions</rootNamespace>
   <indexes>
-    <add.value key="connector">.Connectors.Connectors.index</add.value>
-    <add.value key="scriptWord">.Scriptwords.Scriptwords.index</add.value>
+    <add.value key="connector">.Connectors.BindOpen.Connectors</add.value>
+    <add.value key="scriptWord">.Scriptwords.BindOpen.Scriptwords</add.value>
   </indexes>
 </extension>

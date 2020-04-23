@@ -102,6 +102,17 @@ namespace BindOpen.Extensions.Runtime
             return SubScriptword == null ? this : SubScriptword.Last();
         }
 
+        /// <summary>
+        /// Returns a data element representing this instance.
+        /// </summary>
+        /// <param name="name">The name of the element to create.</param>
+        /// <param name="log">The log of the operation.</param>
+        /// <returns>Retuns the data element that represents this instace.</returns>
+        public override IDataElement AsElement(string name = null)
+        {
+            return null;
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -114,9 +125,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            IBdoScriptword scriptWord = base.Clone() as BdoScriptword;
+            IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
             if (ParameterDetail != null)
                 scriptWord.ParameterDetail = ParameterDetail.Clone() as DataElementSet;

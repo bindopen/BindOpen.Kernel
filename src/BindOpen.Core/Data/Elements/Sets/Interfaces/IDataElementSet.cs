@@ -14,16 +14,11 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        List<DataElement> Elements { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="elementKey"></param>
         /// <param name="item"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IDataElementSet Add(string elementKey, object item = null, IBdoLog log = null);
+        IDataElementSet AddValue(string elementKey, object item = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -32,21 +27,7 @@ namespace BindOpen.Data.Elements
         /// <param name="items"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IDataElementSet Add(string elementKey, object[] items = null, IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="maxIndex"></param>
-        /// <returns></returns>
-        List<int> GetAvailableIndexes(int maxIndex);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="elementSet"></param>
-        /// <returns></returns>
-        List<string> GetCommonItemKeys(IDataElementSet elementSet);
+        IDataElementSet AddValue(string elementKey, object[] items = null, IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -61,13 +42,6 @@ namespace BindOpen.Data.Elements
         /// <param name="groupId"></param>
         /// <returns></returns>
         IDataElement GetWithGroup(string name, string groupId = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="groupId"></param>
-        /// <returns></returns>
-        List<IDataElement> Sort(string groupId = null);
 
         /// <summary>
         /// 

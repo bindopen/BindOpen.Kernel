@@ -21,6 +21,11 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
+        bool IsDefault { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         DatasourceKind Kind { get; set; }
 
         /// <summary>

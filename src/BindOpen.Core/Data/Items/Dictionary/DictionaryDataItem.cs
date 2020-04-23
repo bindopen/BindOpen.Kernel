@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Helpers.Objects;
-using BindOpen.Data.Helpers.Strings;
 using BindOpen.System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +37,11 @@ namespace BindOpen.Data.Items
         #region Properties
 
         /// <summary>
+        /// The ID of this instance.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
         /// The single '*' value to consider.
         /// </summary>
         [XmlText()]
@@ -49,7 +53,7 @@ namespace BindOpen.Data.Items
             }
             set
             {
-                SetValue(value);
+                Set(value);
             }
         }
 
@@ -92,7 +96,7 @@ namespace BindOpen.Data.Items
         public string this[string key]
         {
             get { return GetContent(key); }
-            set { AddValue(key, value); }
+            set { Add(key, value); }
         }
 
         /// <summary>
@@ -121,27 +125,6 @@ namespace BindOpen.Data.Items
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class
-        /// specifying the text for the default key.
-        /// </summary>
-        /// <param name="text">The text to consider</param>
-        public DictionaryDataItem(string text)
-        {
-            AddValue("*", text);
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class
-        /// specifying the text for the default user interface language ID.
-        /// </summary>
-        /// <param name="key">The variant name to consider.</param>
-        /// <param name="text">The text to consider.</param>
-        public DictionaryDataItem(string key, string text)
-        {
-            AddValue(key, text);
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -155,11 +138,15 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Adds a new value to this instance.
         /// </summary>
-        /// <param name="dataKeyValue">The value to add.</param>
-        public void AddValue(IDataKeyValue dataKeyValue)
+        /// <param name="values">The value to add.</param>
+        public IDictionaryDataItem Add(params IDataKeyValue[] values)
         {
-            if (dataKeyValue != null)
-                AddValue(dataKeyValue.Key, dataKeyValue.Content);
+            foreach (var value in values)
+            {
+                Add(value.Key, value.Content);
+            }
+
+            return this;
         }
 
         /// <summary>
@@ -167,9 +154,9 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public IDataKeyValue AddValue(string text)
+        public IDictionaryDataItem Add(string text)
         {
-            return AddValue("*", text);
+            return Add("*", text);
         }
 
         /// <summary>
@@ -178,26 +165,40 @@ namespace BindOpen.Data.Items
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public IDataKeyValue AddValue(string key, string text)
+        public IDictionaryDataItem Add(string key, string text)
         {
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return null;
 
-            RemoveValue(key);
-
-            DataKeyValue dataKeyValue = null;
+            Remove(key);
             if (_availableKeys == null || _availableKeys.Count == 0 || AvailableKeys.Contains(key.ToLower()))
-                _values.Add(dataKeyValue = new DataKeyValue(key, text));
+            {
+                _values.Add(new DataKeyValue(key, text));
+            }
 
-            return dataKeyValue;
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a new value to this instance.
+        /// </summary>
+        /// <param name="values">The value to add.</param>
+        public IDictionaryDataItem Set(params IDataKeyValue[] values)
+        {
+            Clear();
+            Add(values);
+
+            return this;
         }
 
         /// <summary>
         /// Sets the text of the default value.
         /// </summary>
         /// <param name="text">The text of the value to add.</param>
-        public void SetValue(string text)
+        public IDictionaryDataItem Set(string text)
         {
-            SetValue("*", text);
+            Set("*", text);
+
+            return this;
         }
 
         /// <summary>
@@ -205,18 +206,34 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key of the value to add.</param>
         /// <param name="text">The text of the value to add.</param>
-        public void SetValue(string key, string text)
+        public IDictionaryDataItem Set(string key, string text)
         {
             Clear();
-            AddValue(text);
+            Add(text);
+
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IIdentifiedDataItem WithId(string id)
+        {
+            Id = id;
+
+            return this;
         }
 
         /// <summary>
         /// Clears this instance.
         /// </summary>
-        public void Clear()
+        public IDictionaryDataItem Clear()
         {
             _values = new List<DataKeyValue>();
+
+            return this;
         }
 
         // Remove -------------------------------
@@ -225,43 +242,14 @@ namespace BindOpen.Data.Items
         /// Removes the value with the specified key.
         /// </summary>
         /// <param name="key">The key to consider.</param>
-        public void RemoveValue(string key)
+        public IDictionaryDataItem Remove(params string[] keys)
         {
-            if (key == null) return;
+            foreach (var key in keys)
+            {
+                Values.RemoveAll(p => key.KeyEquals(p));
+            }
 
-            Values.RemoveAll(p => key.KeyEquals(p));
-        }
-
-        /// <summary>
-        /// Removes the specified value.
-        /// </summary>
-        /// <param name="dataKeyValue">The value to remove.</param>
-        public void RemoveValue(IDataKeyValue dataKeyValue)
-        {
-            if (dataKeyValue == null) return;
-            Values.RemoveAll(p => dataKeyValue.KeyEquals(p));
-        }
-
-        /// <summary>
-        /// Removes the values of this instance whose keys are not in the specified list.
-        /// </summary>
-        /// <param name="keys">The keys to consider.</param>
-        public void RemoveValues(List<string> keys)
-        {
-            Values.RemoveAll(p => keys?.Contains(p.Key) != false);
-        }
-
-        // Keys -------------------------------
-
-        /// <summary>
-        /// Updates the key of a global value.
-        /// </summary>
-        /// <param name="oldKey">The old name of the global value.</param>
-        /// <param name="newKey">The new name of the global value.</param>
-        public void UpdateKey(string oldKey, string newKey)
-        {
-            DataKeyValue dataKeyValue = GetValue(oldKey);
-            if (dataKeyValue != null) dataKeyValue.Key = newKey;
+            return this;
         }
 
         #endregion
@@ -273,12 +261,21 @@ namespace BindOpen.Data.Items
         #region Accessors
 
         /// <summary>
+        /// The key of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public string Key()
+        {
+            return Id;
+        }
+
+        /// <summary>
         /// Converts from string.
         /// </summary>
         /// <param name="st">The string to consider.</param>
         public static implicit operator DictionaryDataItem(string st)
         {
-            return new DictionaryDataItem(st);
+            return ItemFactory.CreateDictionary(st);
         }
 
         /// <summary>
@@ -288,20 +285,6 @@ namespace BindOpen.Data.Items
         public static implicit operator string(DictionaryDataItem item)
         {
             return item?.GetContent();
-        }
-
-        /// <summary>
-        /// Creates a new instance of the DictionaryDataItem class.
-        /// </summary>
-        /// <param name="stringObject">The string to consider.</param>
-        /// <returns>The collection.</returns>
-        public static DictionaryDataItem Create(string stringObject)
-        {
-            DictionaryDataItem item = new DictionaryDataItem();
-            if (stringObject != null)
-                item.Values = stringObject.GetKeyValues();
-
-            return item;
         }
 
         // Values -------------------------------
@@ -428,13 +411,17 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DictionaryDataItem item = base.Clone() as DictionaryDataItem;
+            DictionaryDataItem item = base.Clone(areas) as DictionaryDataItem;
+
             item._availableKeys = new List<string>(_availableKeys);
             item._values = new List<DataKeyValue>();
             foreach (DataKeyValue dataKeyValue in _values)
-                item.AddValue(dataKeyValue.Clone() as DataKeyValue);
+            {
+                item.Add(dataKeyValue.Clone() as DataKeyValue);
+            }
+
             return item;
         }
 

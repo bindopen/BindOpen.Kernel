@@ -15,7 +15,6 @@
   <fileName>BindOpen.Tests.Core.dll</fileName>
   <rootNamespace>BindOpen.Tests.Core.Extensions</rootNamespace>
   <indexes>
-    <add.value key="connector">.Connectors.Connectors.index</add.value>
-    <add.value key="scriptWord">.Scriptwords.Scriptwords.index</add.value>    
+    <add.value key="scriptWord">BindOpen.Tests.Core.Fakers.BindOpen.Scriptwords</add.value>    
   </indexes>
 </extension>

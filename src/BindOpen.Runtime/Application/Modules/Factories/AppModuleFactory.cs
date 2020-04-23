@@ -18,7 +18,7 @@ namespace BindOpen.Application.Modules
             return new AppModule()
             {
                 Name = name,
-                Sections = DataItemFactory.CreateItemSet<AppSection>(sections.Cast<AppSection>().ToArray())
+                Sections = ItemFactory.CreateItemSet<AppSection>(sections.Cast<AppSection>().ToArray())
             };
         }
     }

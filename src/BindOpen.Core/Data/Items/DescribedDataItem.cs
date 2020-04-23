@@ -69,9 +69,14 @@ namespace BindOpen.Data.Items
             : base(name, namePreffix, id)
         {
             if (title != null)
-                this.Title = new DictionaryDataItem(title);
+            {
+                Title = ItemFactory.CreateDictionary(title);
+            }
+
             if (description != null)
-                this.Description = new DictionaryDataItem(description);
+            {
+                Description = ItemFactory.CreateDictionary(description);
+            }
         }
 
         #endregion
@@ -81,6 +86,29 @@ namespace BindOpen.Data.Items
         // --------------------------------------------------
 
         #region Mutators
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public IDescribedDataItem WithDescription(string text)
+        {
+            this.WithDescription("*", text);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        public IDescribedDataItem WithDescription(string key = "*", string text = "*")
+        {
+            (this.Description ?? (this.Description = new DictionaryDataItem())).Set(key, text);
+
+            return this;
+        }
 
         /// <summary>
         /// Updates this instance with the base object.
@@ -93,7 +121,7 @@ namespace BindOpen.Data.Items
                 base.Update(updateBaseObject);
 
                 if (updateBaseObject.Description != null)
-                    this.Description = new DictionaryDataItem(updateBaseObject.Description);
+                    this.Description = ItemFactory.CreateDictionary(updateBaseObject.Description);
             }
         }
 
@@ -103,9 +131,11 @@ namespace BindOpen.Data.Items
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddDescription(string text)
+        public IDescribedDataItem AddDescription(string text)
         {
             this.AddDescription("*", text);
+
+            return this;
         }
 
         /// <summary>
@@ -113,28 +143,11 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddDescription(string key, string text)
+        public IDescribedDataItem AddDescription(string key, string text)
         {
-            (this.Description ?? (this.Description = new DictionaryDataItem())).AddValue(key, text);
-        }
+            (this.Description ?? (this.Description = new DictionaryDataItem())).Add(key, text);
 
-        /// <summary>
-        /// Sets the title text.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        public void SetDescription(string text)
-        {
-            this.SetDescription("*", text);
-        }
-
-        /// <summary>
-        /// Sets the title text.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="text">The text to consider.</param>
-        public void SetDescription(string key = "*", string text = "*")
-        {
-            (this.Description ?? (this.Description = new DictionaryDataItem())).SetValue(key, text);
+            return this;
         }
 
         #endregion
@@ -163,9 +176,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            var item = base.Clone() as DescribedDataItem;
+            var item = base.Clone(areas) as DescribedDataItem;
             if (this.Description != null)
                 item.Description = this.Description.Clone<DictionaryDataItem>();
 

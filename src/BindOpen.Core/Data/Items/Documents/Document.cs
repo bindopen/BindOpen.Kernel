@@ -114,9 +114,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            Document dataEntityItem = base.Clone() as Document;
+            Document dataEntityItem = base.Clone(areas) as Document;
             if (this.Container != null)
                 dataEntityItem.Container = this.Container.Clone() as BdoCarrierConfiguration;
             if (this.Content != null)

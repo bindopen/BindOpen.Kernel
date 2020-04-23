@@ -69,9 +69,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            SourceElementSpec specification = base.Clone() as SourceElementSpec;
+            SourceElementSpec specification = base.Clone(areas) as SourceElementSpec;
             if (DefinitionFilter != null)
                 specification.DefinitionFilter = DefinitionFilter.Clone() as DataValueFilter;
             return specification;

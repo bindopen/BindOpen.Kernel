@@ -946,18 +946,26 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="parent">The parent to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public IBdoLog Clone(IBdoLog parent = null)
+        public override object Clone(params string[] areas)
         {
-            var cloned = base.Clone() as BdoLog;
+            return Clone(null, Array.Empty<string>());
+        }
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <param name="parent">The log to consider.</param>
+        /// <returns>Returns a cloned instance.</returns>
+        public IBdoLog Clone(IBdoLog parent, params string[] areas)
+        {
+            var cloned = base.Clone(areas) as BdoLog;
 
             cloned.Parent = parent;
             cloned.Task = Task?.Clone<BdoTaskConfiguration>();
             cloned.Detail = Detail?.Clone<DataElementSet>();
             cloned.Events = Events?.Select(p => p.Clone<BdoLogEvent>(cloned)).ToList();
             cloned.Execution = Execution?.Clone<ProcessExecution>();
-
 
             return cloned;
         }
@@ -967,9 +975,9 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="parent">The parent to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public T Clone<T>(IBdoLog parent = null) where T : class
+        public T Clone<T>(IBdoLog parent, params string[] areas) where T : class
         {
-            return Clone(parent) as T;
+            return Clone(parent, areas) as T;
         }
 
         /// <summary>
@@ -1417,11 +1425,6 @@ namespace BindOpen.System.Diagnostics
             _task?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

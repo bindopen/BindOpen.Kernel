@@ -3,10 +3,11 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [X] Publish XSD files
+- [X] The default data source is the first declared as default or the first data source otherwise
 - [ ] Dynamic extension loading
 - [ ] Update/Repair/Check data items/elements/sets
 - [ ] Update element, element spec
-- [ ] ScriptVariableSet fluent
 - [ ] Script words: Adding overloading
 - [ ] Integrate .net core logging
 - [ ] Integrate .net core configuration
@@ -14,15 +15,9 @@ Todo list for BindOpen
 
 ## Stuff to check out later on
 
-* Lighten and simplify projects
-* Automatize release note generation
+* Simplify extension item management
+* Improve OptionsSet 
 * Implement a relevant readme file
-* Simplify extension item management 
 * Add Expression data value type
 * Simplify serialization
-* Improve AppModule management
-* Improve OptionsSet
-* Use Bogus in Tests
-
-* p.GetDatasourceDepot().GetConnectionString() -> Get the unique or default data source by default
-* Allow default data source
+* Improve AppModule management (DbFluent mode)

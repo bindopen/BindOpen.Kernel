@@ -1,6 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
-using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -66,7 +65,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Initializes a new instance of the SourceElement class.
         /// </summary>
-        public SourceElement() : this(null, null)
+        public SourceElement() : base()
         {
         }
 
@@ -75,9 +74,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        public SourceElement(
-            string name = null,
-            string id = null)
+        public SourceElement(string name = null, string id = null)
             : base(name, "source_", id)
         {
             ValueType = DataValueType.Datasource;
@@ -90,6 +87,18 @@ namespace BindOpen.Data.Elements
         // --------------------------------------------------
 
         #region Items
+
+        /// <summary>
+        /// Sets the specified configuration.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public ISourceElement WithConfiguration(IBdoConnectorConfiguration configuration)
+        {
+            WithItems(configuration);
+
+            return this;
+        }
 
         /// <summary>
         /// The configuration of this instance.
@@ -114,20 +123,6 @@ namespace BindOpen.Data.Elements
         // Items ----------------------------
 
         /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            if (indexItem is string)
-                return this.Items.Any(p => p.KeyEquals(indexItem));
-
-            return false;
-        }
-
-        /// <summary>
         /// Returns a text node representing this instance.
         /// </summary>
         /// <returns></returns>
@@ -148,9 +143,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            SourceElement dataSourceElement = base.Clone() as SourceElement;
+            SourceElement dataSourceElement = base.Clone(areas) as SourceElement;
             return dataSourceElement;
         }
 
@@ -186,7 +181,7 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            SetItems(Connectors?.Select(p =>
+            WithItems(Connectors?.Select(p =>
             {
                 p.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 return p;

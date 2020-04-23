@@ -60,6 +60,20 @@ namespace BindOpen.Data.Items
         #endregion
 
         // --------------------------------------------------
+        // MUTATORS
+        // --------------------------------------------------
+
+        #region Mutators
+
+        public INamedDataItem WithName(string name)
+        {
+            Name = name;
+            return this;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
 
@@ -87,9 +101,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            NamedDataItem item = base.Clone() as NamedDataItem;
+            NamedDataItem item = base.Clone(areas) as NamedDataItem;
             item.Name = Name;// NamedDataItem.GetClonedName(this.Name, this.NamePreffix);
             if (this.CreationDate != null)
                 item.CreationDate = ObjectHelper.ToString(DateTime.Now);
@@ -97,6 +111,6 @@ namespace BindOpen.Data.Items
             return item;
         }
 
-        #endregion       
+        #endregion
     }
 }

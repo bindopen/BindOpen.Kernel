@@ -19,6 +19,13 @@ namespace BindOpen.Data.Elements
         string DefinitionUniqueId { get; set; }
 
         /// <summary>
+        /// Sets the specified configuration.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        ICarrierElement WithConfiguration(IBdoCarrierConfiguration configuration);
+
+        /// <summary>
         /// 
         /// </summary>
         new CarrierElementSpec Specification { get; set; }

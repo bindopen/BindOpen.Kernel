@@ -41,26 +41,38 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the RoutineConfiguration class.
+        /// Instantiates a new instance of the BdoRoutineConfiguration class.
         /// </summary>
-        public BdoRoutineConfiguration() : base()
+        public BdoRoutineConfiguration() : base(BdoExtensionItemKind.Routine, null)
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the RoutineConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="outputEventSet">The output event set to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoRoutineConfiguration(
-            string definitionUniqueId,
-            IDataItemSet<BdoConditionalEvent> outputEventSet = null,
-            params DataElement[] items)
-            : base(BdoExtensionItemKind.Routine, definitionUniqueId, items)
+        /// <param name="items"></param>
+        public new IBdoRoutineConfiguration Add(params IDataElement[] items)
         {
-            //CommandSet = new DataItemSet<Command>(commandSet);
-            outputEventSet = outputEventSet ?? new DataItemSet<BdoConditionalEvent>();
+            base.Add(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        public new IBdoRoutineConfiguration WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items);
+            return this;
         }
 
         #endregion
@@ -101,9 +113,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            IBdoRoutineConfiguration routine = base.Clone() as BdoRoutineConfiguration;
+            IBdoRoutineConfiguration routine = base.Clone(areas) as BdoRoutineConfiguration;
             //if (this.CommandSet != null)
             //    routine.CommandSet = this.CommandSet.Clone() as DataItemSet<Command>;
             if (this.OutputEventSet != null)

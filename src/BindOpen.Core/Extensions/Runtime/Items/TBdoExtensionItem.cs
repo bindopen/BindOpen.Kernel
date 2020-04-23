@@ -16,7 +16,6 @@ namespace BindOpen.Extensions.Runtime
         /// The configuration of this instance.
         /// </summary>
         protected ITBdoExtensionItemConfiguration<T> _configuration;
-        private T _definition;
 
         // -----------------------------------------------
         // PROPERTIES
@@ -40,7 +39,7 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// The definition of this instance.
         /// </summary>
-        public T Definition => _definition;
+        public T Definition { get; private set; }
 
         #endregion
 
@@ -53,18 +52,8 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// Instantiates a new instance of the TBdoExtensionItem class.
         /// </summary>
-        protected TBdoExtensionItem() : base()
+        protected TBdoExtensionItem() : base("")
         {
-            Id = IdentifiedDataItem.NewGuid();
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the TBdoExtensionItem class.
-        /// </summary>
-        /// <param name="config">The configuration to consider.</param>
-        protected TBdoExtensionItem(ITBdoExtensionItemConfiguration<T> config = default) : this()
-        {
-            _configuration = config;
         }
 
         #endregion
@@ -85,7 +74,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="definition">The definition to consider.</param>
         public void SetDefinition(T definition)
         {
-            _definition = definition;
+            Definition = definition;
         }
     }
 }

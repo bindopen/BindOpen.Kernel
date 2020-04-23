@@ -188,11 +188,6 @@ namespace BindOpen.Extensions.Definition
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

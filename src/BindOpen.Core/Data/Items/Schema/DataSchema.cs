@@ -51,7 +51,7 @@ namespace BindOpen.Data.Items
         /// <param name="name">The name of this instance.</param>
         public DataSchema(string name) : base(name, "schema_")
         {
-            SetTitle("My schema");
+            WithTitle("My schema");
         }
 
         #endregion

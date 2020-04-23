@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
-using BindOpen.Extensions.Runtime;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
@@ -94,7 +93,7 @@ namespace BindOpen.Extensions.Runtime
             }
             set
             {
-                this.SetPath(null, value);
+                this.WithPath(null, value);
             }
         }
 
@@ -107,31 +106,19 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Carrier class.
+        /// Instantiates a new instance of the BdoCarrier class.
         /// </summary>
         protected BdoCarrier() : base()
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the Carrier class.
-        /// </summary>
-        /// <param name="config">The configuration of this instance.</param>
-        protected BdoCarrier(IBdoCarrierConfiguration config) : base(config)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Connector class.
-        /// </summary>
-        /// <param name="path">The path to consider.</param>
-        /// <param name="relativePath">The path to consider.</param>
-        protected BdoCarrier(string path, string relativePath = null) : base()
-        {
-            SetPath(path, relativePath);
-        }
-
         #endregion
+
+        // ------------------------------------------
+        // ACCESSORS
+        // ------------------------------------------
+
+        #region Accessors
 
         /// <summary>
         /// Returns a data element representing this instance.
@@ -142,8 +129,12 @@ namespace BindOpen.Extensions.Runtime
         public ICarrierElement AsElement(string name = null, IBdoLog log = null)
         {
             UpdateStorageInfo(log);
-            return ElementFactory.CreateCarrier(name ?? Name, Configuration as IBdoCarrierConfiguration);
+
+            return ElementFactory.CreateCarrier(name ?? Name)
+                .WithConfiguration(Configuration);
         }
+
+        #endregion
 
         //// ------------------------------------------
         //// MUTATORS
@@ -157,20 +148,23 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="path">The new path to consider. Null to update the existing one.</param>
         /// <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
-        public virtual void SetPath(string path = null, string relativePath = null)
+        public virtual void WithPath(string path = null, string relativePath = null)
         {
             string absolutePath = (path ?? Path);
 
             if (!string.IsNullOrEmpty(relativePath))
+            {
                 this._relativePath = relativePath;
+            }
 
             if ((!string.IsNullOrEmpty(this._relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
             {
-                string relativeFolder = this._relativePath.ToLower();
-                absolutePath = absolutePath.ToLower();
+                string relativeFolder = this._relativePath;
 
                 if (absolutePath.StartsWith(relativeFolder))
+                {
                     absolutePath = absolutePath.Substring(relativeFolder.Length);
+                }
             }
 
             Path = absolutePath;
@@ -200,7 +194,9 @@ namespace BindOpen.Extensions.Runtime
             }
             Configuration.UpdateStorageInfo(log);
             if (string.IsNullOrEmpty(Configuration.Name))
+            {
                 Configuration.Name = Name;
+            }
         }
 
         /// <summary>

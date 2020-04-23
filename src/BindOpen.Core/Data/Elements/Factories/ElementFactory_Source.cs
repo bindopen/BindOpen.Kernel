@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Extensions.Runtime;
 
 namespace BindOpen.Data.Elements
 {
@@ -12,36 +11,30 @@ namespace BindOpen.Data.Elements
         /// Initializes a new source element.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="id">The ID to consider.</param>
+        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static SourceElement CreateSource(
             string name,
-            params IBdoConnectorConfiguration[] items)
+            string id = null,
+            string definitionUniqueId = null)
         {
-            return CreateSource(name, null, null, null, items);
-        }
-
-        /// <summary>
-        /// Initializes a new source element.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public static SourceElement CreateSource(
-            params IBdoConnectorConfiguration[] items)
-        {
-            return CreateSource(null, null, null, null, items);
+            var element = new SourceElement(name, id)
+            {
+                DefinitionUniqueId = definitionUniqueId,
+            };
+            return element;
         }
 
         /// <summary>
         /// Initializes a new source element.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="item">The items to consider.</param>
         public static SourceElement CreateSource(
             string name,
-            string definitionUniqueId,
-            params IBdoConnectorConfiguration[] items)
+            IBdoConnectorConfiguration item)
         {
-            return CreateSource(name, null, definitionUniqueId, null, items);
+            return CreateSource(name, null, item);
         }
 
         /// <summary>
@@ -49,22 +42,14 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="item">The items to consider.</param>
         public static SourceElement CreateSource(
             string name,
             string id,
-            string definitionUniqueId,
-            ISourceElementSpec specification,
-            params IBdoConnectorConfiguration[] items)
+            IBdoConnectorConfiguration item)
         {
-            SourceElement element = new SourceElement(name, id)
-            {
-                DefinitionUniqueId = definitionUniqueId,
-                Specification = specification as SourceElementSpec
-            };
-            element.SetItem(items);
+            var element = CreateSource(name, id, item?.DefinitionUniqueId);
+            element.WithItems(item);
 
             return element;
         }

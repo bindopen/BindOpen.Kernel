@@ -254,30 +254,33 @@ namespace BindOpen.Data.Helpers.Objects
                         {
                             if (elementSet.HasItem(name))
                             {
+                                var type = propertyInfo.PropertyType;
                                 var value = elementSet.GetValue(name, scope, scriptVariableSet, log);
                                 if (value != null)
                                 {
-                                    if (propertyInfo.PropertyType.IsEnum)
+                                    if (type.IsEnum)
                                     {
-                                        if (Enum.IsDefined(propertyInfo.PropertyType, value))
-                                            value = Enum.Parse(propertyInfo.PropertyType, value as string);
-                                    }
-                                    else if (value.GetType() == typeof(Dictionary<string, object>)
-                                        && propertyInfo.PropertyType.IsGenericType
-                                        && propertyInfo.PropertyType.GetGenericTypeDefinition() == typeof(Dictionary<,>)
-                                        && propertyInfo.PropertyType != typeof(Dictionary<string, object>))
-                                    {
-                                        Type itemType = propertyInfo.PropertyType.GetGenericArguments()[0];
-
-                                        var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
-                                        var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
-
-                                        foreach (var item in (value as Dictionary<string, object>))
+                                        if (!value.GetType().IsEnum && Enum.IsDefined(type, value))
                                         {
-                                            method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                            value = Enum.Parse(type, value as string);
                                         }
-                                        value = dictionary;
                                     }
+                                }
+                                else if (value.GetType() == typeof(Dictionary<string, object>)
+                                    && type.IsGenericType
+                                    && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+                                    && type != typeof(Dictionary<string, object>))
+                                {
+                                    Type itemType = type.GetGenericArguments()[0];
+
+                                    var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                    var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+
+                                    foreach (var item in (value as Dictionary<string, object>))
+                                    {
+                                        method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                    }
+                                    value = dictionary;
                                 }
 
                                 propertyInfo.SetValue(aObject, value);
@@ -320,7 +323,7 @@ namespace BindOpen.Data.Helpers.Objects
 
                         elementSet.Add(
                             ElementFactory.Create(
-                                name, propertyInfo.PropertyType.GetValueType(), null, propertyInfo.GetValue(object1)));
+                                name, propertyInfo.PropertyType.GetValueType(), propertyInfo.GetValue(object1)));
                     }
                 }
             }

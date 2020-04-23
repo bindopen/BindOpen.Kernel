@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Common;
 
 namespace BindOpen.Data.Items
 {
@@ -12,5 +12,31 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="updateBaseObject"></param>
         void Update(IDescribedDataItem updateBaseObject);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        IDescribedDataItem AddDescription(string text);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="text"></param>
+        IDescribedDataItem AddDescription(string key, string text);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="text"></param>
+        IDescribedDataItem WithDescription(string key = "*", string text = "*");
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        IDescribedDataItem WithDescription(string text);
     }
 }

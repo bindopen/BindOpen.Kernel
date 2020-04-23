@@ -23,7 +23,7 @@ namespace BindOpen.Data.Stores
                 foreach (var section in sections)
                 {
                     depot.Add(
-                        DataItemFactory.CreateDatasource(section.Key, DatasourceKind.Database)
+                        ItemFactory.CreateDatasource(section.Key, DatasourceKind.Database)
                             .WithConfiguration(
                                 new BdoConnectorConfiguration().WithConnectionString(section.Value) as BdoConnectorConfiguration)
                     );

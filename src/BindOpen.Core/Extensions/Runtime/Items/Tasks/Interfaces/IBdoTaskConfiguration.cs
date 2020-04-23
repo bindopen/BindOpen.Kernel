@@ -34,5 +34,16 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
         IDataElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoTaskConfiguration Add(params IDataElement[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoTaskConfiguration WithItems(params IDataElement[] items);
     }
 }

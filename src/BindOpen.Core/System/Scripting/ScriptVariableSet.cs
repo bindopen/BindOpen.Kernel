@@ -130,9 +130,9 @@ namespace BindOpen.System.Scripting
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ScriptVariableSet scriptVariableSet = base.Clone() as ScriptVariableSet;
+            ScriptVariableSet scriptVariableSet = base.Clone(areas) as ScriptVariableSet;
             scriptVariableSet._variables = this._variables;
             return scriptVariableSet;
         }

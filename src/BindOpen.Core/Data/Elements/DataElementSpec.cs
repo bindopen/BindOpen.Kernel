@@ -584,9 +584,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataElementSpec dataElementSpec = base.Clone() as DataElementSpec;
+            DataElementSpec dataElementSpec = base.Clone(areas) as DataElementSpec;
 
             if (_aliases != null)
                 dataElementSpec.Aliases = new List<string>(_aliases);
@@ -620,11 +620,6 @@ namespace BindOpen.Data.Elements
             _constraintStatement?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

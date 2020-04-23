@@ -21,17 +21,9 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Entity class.
+        /// Instantiates a new instance of the BdoEntity class.
         /// </summary>
         protected BdoEntity() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Entity class.
-        /// </summary>
-        /// <param name="config">The configuration of this instance.</param>
-        protected BdoEntity(IBdoEntityConfiguration config) : base(config)
         {
         }
 

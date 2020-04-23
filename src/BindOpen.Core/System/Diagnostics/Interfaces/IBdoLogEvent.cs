@@ -46,7 +46,7 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        List<BdoLogEvent.LogEventStackTrace> StackTraces { get; set; }
+        List<LogEventStackTrace> StackTraces { get; set; }
 
         /// <summary>
         /// 
@@ -60,12 +60,12 @@ namespace BindOpen.System.Diagnostics
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param name="parent"></param>
-        IBdoLogEvent Clone(IBdoLog parent = null);
+        IBdoLogEvent Clone(IBdoLog parent, params string[] areas);
 
         /// <summary>
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param name="parent"></param>
-        T Clone<T>(IBdoLog parent = null) where T : class;
+        T Clone<T>(IBdoLog parent, params string[] areas) where T : class;
     }
 }

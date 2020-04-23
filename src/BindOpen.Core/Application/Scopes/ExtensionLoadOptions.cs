@@ -13,10 +13,6 @@ namespace BindOpen.Application.Scopes
     [XmlType("ExtensionLoadOptions", Namespace = "https://bindopen.org/xsd")]
     public class ExtensionLoadOptions : DataItem, IExtensionLoadOptions
     {
-        string _libraryFolderPath;
-        string _remoteServerUri;
-        List<DatasourceKind> _sourceKinds;
-
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
@@ -27,20 +23,20 @@ namespace BindOpen.Application.Scopes
         /// The path of the library folder of this instance.
         /// </summary>
         [XmlElement("libraryFolderPath")]
-        public string LibraryFolderPath => _libraryFolderPath;
+        public string LibraryFolderPath { get; private set; }
 
         /// <summary>
         /// The URI of the remote server of this instance.
         /// </summary>
         [XmlElement("remoteServerUri")]
-        public string RemoteServerUri => _remoteServerUri;
+        public string RemoteServerUri { get; private set; }
 
         /// <summary>
         /// The source kinds of this instance.
         /// </summary>
         [XmlArray("sourceKinds")]
         [XmlArrayItem("add")]
-        public List<DatasourceKind> SourceKinds => _sourceKinds;
+        public List<DatasourceKind> SourceKinds { get; private set; }
 
         #endregion
 
@@ -72,7 +68,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithLibraryFolderPath(string folderPath)
         {
-            _libraryFolderPath = folderPath;
+            LibraryFolderPath = folderPath;
             return this;
         }
 
@@ -83,7 +79,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithRemoteServerUri(string uri)
         {
-            _remoteServerUri = uri;
+            RemoteServerUri = uri;
             return this;
         }
 
@@ -94,7 +90,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithSourceKinds(params DatasourceKind[] sourceKinds)
         {
-            _sourceKinds = sourceKinds?.ToList();
+            SourceKinds = sourceKinds?.ToList();
             return this;
         }
 

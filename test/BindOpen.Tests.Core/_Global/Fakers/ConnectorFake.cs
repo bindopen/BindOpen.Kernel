@@ -7,7 +7,7 @@ namespace BindOpen.Tests.Core.Fakers
     /// <summary>
     /// This class represents a test connector.
     /// </summary>
-    [BdoConnector(Name = "tests.core$test")]
+    [BdoConnector(Name = "tests.core$testConnector")]
     public class ConnectorFake : TBdoConnector<ConnectionFake>
     {
         /// <summary>

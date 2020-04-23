@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Common;
 
 namespace BindOpen.Data.Items
 {
@@ -7,5 +7,10 @@ namespace BindOpen.Data.Items
     /// </summary>
     public interface IIndexedDataItem : IDescribedDataItem, IIndexed
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        IIndexedDataItem WithIndex(int index);
     }
 }

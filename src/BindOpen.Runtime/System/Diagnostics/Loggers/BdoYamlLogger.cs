@@ -111,13 +111,13 @@ namespace BindOpen.System.Diagnostics.Loggers
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Title))
                                         && (log.Title != null))
                         {
-                            st += indent + " title: " + log.GetTitle(this.UICulture) + Environment.NewLine;
+                            st += indent + " title: " + log.WithTitle(this.UICulture) + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Description))
                                             && (log.Description != null))
                         {
-                            st += indent + " description: " + log.GetDescription(this.UICulture) + Environment.NewLine;
+                            st += indent + " description: " + log.WithDescription(this.UICulture) + Environment.NewLine;
                             this._CurrentNode = attributeNameKey;
                         }
                         if ((attributeNameKey.StartsWith(BdoLogEntries.__Detail + ".")) && (log.Detail != null))

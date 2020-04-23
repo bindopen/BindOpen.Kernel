@@ -27,7 +27,6 @@ namespace BindOpen.Data.Elements
     [XmlInclude(typeof(SourceElement))]
     [XmlInclude(typeof(DocumentElement))]
     [XmlInclude(typeof(ObjectElement))]
-    [XmlInclude(typeof(MetaDataElement))]
     [XmlInclude(typeof(ScalarElement))]
     public abstract class DataElement : IndexedDataItem, IDataElement
     {
@@ -39,11 +38,6 @@ namespace BindOpen.Data.Elements
 
         private DataItemizationMode _itemizationMode = DataItemizationMode.Any;
 
-        private List<object> _items = null;
-
-        // Properties ---------------------------------------
-
-        private DataElementSet _propertyDetail = null;
         private EventKinds? _eventKind = null;
 
         #endregion
@@ -96,11 +90,7 @@ namespace BindOpen.Data.Elements
         /// Items of this instance.
         /// </summary>
         [XmlIgnore()]
-        public List<object> Items
-        {
-            get => _items ?? (_items = new List<object>());
-            set => _items = value;
-        }
+        public List<object> Items { get; set; } = null;
 
         /// <summary>
         /// Converts from string.
@@ -124,7 +114,7 @@ namespace BindOpen.Data.Elements
         /// Returns the item with the specified indexed.
         /// </summary>
         [XmlIgnore()]
-        public object this[int index] => _items == null ? null : (index >= 0 && index < _items.Count ? _items[index] : null);
+        public object this[int index] => Items == null ? null : (index >= 0 && index < Items.Count ? Items[index] : null);
 
         // Specification -------------------------------
 
@@ -140,11 +130,7 @@ namespace BindOpen.Data.Elements
         /// Property detail of this instance.
         /// </summary>
         [XmlElement("propertyDetail")]
-        public DataElementSet PropertyDetail
-        {
-            get => _propertyDetail;
-            set { _propertyDetail = value; }
-        }
+        public DataElementSet PropertyDetail { get; set; } = null;
 
         /// <summary>
         /// The event kind of this instance.
@@ -226,7 +212,7 @@ namespace BindOpen.Data.Elements
             switch (ItemizationMode)
             {
                 case DataItemizationMode.Valued:
-                    return _items?.Count > 0 ? (_items.Count == 1 ? _items[0] : _items) : null;
+                    return Items?.Count > 0 ? (Items.Count == 1 ? Items[0] : Items) : null;
                 case DataItemizationMode.Referenced:
                     if (scope == null)
                     {
@@ -286,7 +272,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         public IDataElement ClearItems()
         {
-            _items = new List<object>();
+            Items = new List<object>();
 
             return this;
         }
@@ -304,25 +290,12 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Sets the specified single item of this instance.
         /// </summary>
-        /// <param name="item">The item to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public virtual IDataElement SetItem(object item)
-        {
-            ClearItems();
-            AddItem(item);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public IDataElement SetItems(object[] items)
+        public IDataElement WithItems(params object[] items)
         {
             ClearItems();
-            AddItems(items);
+            Add(items);
 
             return this;
         }
@@ -336,29 +309,13 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public virtual IDataElement AddItem(object item, IBdoLog log = null)
+        public virtual IDataElement Add(params object[] items)
         {
-            if (item != null)
+            if (items != null)
             {
-                if ((item.GetType().IsArray || item is IList) && item is IEnumerable)
+                foreach (object item in items)
                 {
-                    foreach (object subItem in (item as IEnumerable))
-                        AddItem(subItem);
-                }
-                else if (Specification == null
-                    || (Specification.MaximumItemNumber == -1)
-                    || (_items.Count < Specification.MaximumItemNumber))
-                {
-                    if (Specification == null
-                        && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
-                    {
-                        if (this is CollectionElement)
-                        {
-                            _items?.RemoveAll(p => p.KeyEquals(item));
-                        }
-
-                        (_items ?? (_items = new List<object>())).Add(item);
-                    }
+                    Add(item);
                 }
             }
 
@@ -366,22 +323,36 @@ namespace BindOpen.Data.Elements
         }
 
         /// <summary>
-        /// Adds items to this instance.
+        /// Adds a new single item of this instance.
         /// </summary>
-        /// <param name="items">The items of this instance.</param>
-        /// <param name="log">The log to populate.</param>
+        /// <param name="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        public IDataElement AddItems(object[] items, IBdoLog log = null)
+        /// <returns>Returns True if the specified has been well added.</returns>
+        protected virtual void Add(object item)
         {
-            if (items != null)
+            if (item != null)
             {
-                foreach (object item in items)
+                if ((item.GetType().IsArray || item is IList) && item is IEnumerable)
                 {
-                    AddItem(item, log);
+                    foreach (object subItem in (item as IEnumerable))
+                        Add(subItem);
+                }
+                else if (Specification == null
+                    || (Specification.MaximumItemNumber == -1)
+                    || (Items.Count < Specification.MaximumItemNumber))
+                {
+                    if (Specification == null
+                        && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
+                    {
+                        if (this is CollectionElement)
+                        {
+                            Items?.RemoveAll(p => p.KeyEquals(item));
+                        }
+
+                        (Items ?? (Items = new List<object>())).Add(item);
+                    }
                 }
             }
-
-            return this;
         }
 
         // Switch
@@ -395,10 +366,10 @@ namespace BindOpen.Data.Elements
         {
             object aTempValue = value1;
 
-            if ((_items.IndexOf(value1) > -1) && (_items.IndexOf(value2) > -1))
+            if ((Items.IndexOf(value1) > -1) && (Items.IndexOf(value2) > -1))
             {
-                _items[_items.IndexOf(value1)] = value2;
-                _items[_items.IndexOf(value2)] = aTempValue;
+                Items[Items.IndexOf(value1)] = value2;
+                Items[Items.IndexOf(value2)] = aTempValue;
             }
 
             return this;
@@ -411,9 +382,9 @@ namespace BindOpen.Data.Elements
         /// <param name="aNewItem">The new item.</param>
         public IDataElement UpdateItem(object item, object aNewItem)
         {
-            if (_items.Contains(item))
+            if (Items.Contains(item))
             {
-                _items[_items.IndexOf(item)] = aNewItem;
+                Items[Items.IndexOf(item)] = aNewItem;
             }
 
             return this;
@@ -424,26 +395,21 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Removes the specified item.
         /// </summary>
-        /// <param name="item">The item </param>
-        public IDataElement RemoveItem(object item)
+        /// <param name="items">The items to delete.</param>
+        public IDataElement Remove(params object[] items)
         {
-            _items.RemoveAll(p => p == item);
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    Items.RemoveAll(p => p == item);
+                }
+            }
 
             return this;
         }
 
         // Accessors --------------------------
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public virtual bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            return false;
-        }
 
         /// <summary>
         /// Returns a text node representing this instance.
@@ -515,10 +481,10 @@ namespace BindOpen.Data.Elements
 
                         if (element.Items != null && element.Items.Count > 0)
                         {
-                            _items = new List<object>();
+                            Items = new List<object>();
                             foreach (object currentItem in element.Items)
                             {
-                                _items.Add(currentItem);
+                                Items.Add(currentItem);
                             }
                         }
                     }
@@ -648,31 +614,23 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            return Clone(null);
-        }
+            if (areas == null)
+            {
+                areas = new[] { nameof(DataAreaKind.Any) };
+            }
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <param name="elementSpecificationAreas">The data element areas to consider.</param>
-        /// <returns>Returns a cloned instance.</returns>
-        public virtual object Clone(string[] elementSpecificationAreas = null)
-        {
-            if (elementSpecificationAreas == null)
-                elementSpecificationAreas = new[] { nameof(DataAreaKind.Any) };
-
-            DataElement cloneDataElement = base.Clone() as DataElement;
+            DataElement cloneDataElement = base.Clone(areas) as DataElement;
 
             if (ItemReference != null)
                 cloneDataElement.ItemReference = ItemReference.Clone() as DataReferenceDto;
             if (Specification != null)
                 cloneDataElement.Specification = Specification.Clone() as DataElementSpec;
 
-            if (_propertyDetail != null)
-                if (elementSpecificationAreas.Contains(nameof(DataAreaKind.Any)) || elementSpecificationAreas.Contains(nameof(DataAreaKind.Properties)))
-                    cloneDataElement.PropertyDetail = _propertyDetail.Clone() as DataElementSet;
+            if (PropertyDetail != null)
+                if (areas.Contains(nameof(DataAreaKind.Any)) || areas.Contains(nameof(DataAreaKind.Properties)))
+                    cloneDataElement.PropertyDetail = PropertyDetail.Clone() as DataElementSet;
 
             return cloneDataElement;
         }
@@ -693,7 +651,7 @@ namespace BindOpen.Data.Elements
         {
             base.UpdateStorageInfo(log);
 
-            _propertyDetail?.UpdateStorageInfo(log);
+            PropertyDetail?.UpdateStorageInfo(log);
 
             ItemReference?.UpdateStorageInfo(log);
         }
@@ -706,7 +664,7 @@ namespace BindOpen.Data.Elements
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            _propertyDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
+            PropertyDetail?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
             ItemReference?.UpdateRuntimeInfo(scope, scriptVariableSet, log);
 
@@ -734,14 +692,9 @@ namespace BindOpen.Data.Elements
                 return;
             }
 
-            _propertyDetail?.Dispose();
+            PropertyDetail?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

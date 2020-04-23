@@ -21,14 +21,6 @@ namespace BindOpen.Extensions.Carriers
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the RepositoryItem class.
-        /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected RepositoryItem(IBdoCarrierConfiguration dto) : base(dto)
-        {
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -43,9 +35,9 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="path">The new path to consider. Null to update the existing one.</param>
         /// <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
-        public override void SetPath(string path = null, string relativePath = null)
+        public override void WithPath(string path = null, string relativePath = null)
         {
-            base.SetPath(path, relativePath.GetEndedString(@"\"));
+            base.WithPath(path, relativePath.GetEndedString(@"\"));
         }
 
         #endregion

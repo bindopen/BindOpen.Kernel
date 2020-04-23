@@ -5,7 +5,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// 
     /// </summary>
-    public interface IDictionaryDataItem : IDataItem
+    public interface IDictionaryDataItem : IIdentifiedDataItem
     {
         /// <summary>
         /// 
@@ -35,20 +35,15 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        string SingleValue { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="dataKeyValue"></param>
-        void AddValue(IDataKeyValue dataKeyValue);
+        IDictionaryDataItem Add(params IDataKeyValue[] dataKeyValue);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        IDataKeyValue AddValue(string text);
+        IDictionaryDataItem Add(string text);
 
         /// <summary>
         /// 
@@ -56,12 +51,37 @@ namespace BindOpen.Data.Items
         /// <param name="key"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        IDataKeyValue AddValue(string key, string text);
+        IDictionaryDataItem Add(string key, string text);
 
         /// <summary>
         /// 
         /// </summary>
-        void Clear();
+        IDictionaryDataItem Clear();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keys"></param>
+        IDictionaryDataItem Remove(params string[] keys);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataKeyValue"></param>
+        IDictionaryDataItem Set(params IDataKeyValue[] dataKeyValue);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        IDictionaryDataItem Set(string text);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="text"></param>
+        IDictionaryDataItem Set(string key, string text);
 
         /// <summary>
         /// 
@@ -91,43 +111,5 @@ namespace BindOpen.Data.Items
         /// <param name="key"></param>
         /// <returns></returns>
         bool HasKey(string key);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataKeyValue"></param>
-        void RemoveValue(IDataKeyValue dataKeyValue);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        void RemoveValue(string key);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="keys"></param>
-        void RemoveValues(List<string> keys);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text"></param>
-        void SetValue(string text);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="text"></param>
-        void SetValue(string key, string text);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="oldKey"></param>
-        /// <param name="newKey"></param>
-        void UpdateKey(string oldKey, string newKey);
     }
 }

@@ -23,32 +23,38 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the CarrierConfiguration class.
+        /// Instantiates a new instance of the BdoCarrierConfiguration class.
         /// </summary>
         public BdoCarrierConfiguration() : base(BdoExtensionItemKind.Carrier, null)
         {
         }
 
+        #endregion
+
+        // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
         /// <summary>
-        /// Instantiates a new instance of the CarrierConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public BdoCarrierConfiguration(
-            params IDataElement[] items)
-            : base(BdoExtensionItemKind.Carrier, null, items)
+        /// <param name="items"></param>
+        public new IBdoCarrierConfiguration Add(params IDataElement[] items)
         {
+            base.Add(items);
+            return this;
         }
 
         /// <summary>
-        /// Instantiates a new instance of the CarrierConfiguration class.
+        /// 
         /// </summary>
-        /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public BdoCarrierConfiguration(
-            string definitionUniqueId,
-            params IDataElement[] items)
-            : base(BdoExtensionItemKind.Carrier, definitionUniqueId, items)
+        /// <param name="items"></param>
+        public new IBdoCarrierConfiguration WithItems(params IDataElement[] items)
         {
+            base.WithItems(items);
+            return this;
         }
 
         #endregion
@@ -133,9 +139,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            BdoCarrierConfiguration configuration = base.Clone() as BdoCarrierConfiguration;
+            BdoCarrierConfiguration configuration = base.Clone(areas) as BdoCarrierConfiguration;
             return configuration;
         }
 

@@ -133,14 +133,18 @@ namespace BindOpen.Application.Configuration
                 {
                     Credentials = new List<ApplicationCredential>();
                     foreach (ApplicationCredential applicationCredential in configuration.Credentials)
+                    {
                         Credentials.Add(applicationCredential.Clone() as ApplicationCredential);
+                    }
                 }
 
                 if (configuration.Datasources != null)
                 {
                     Datasources = new List<Datasource>();
                     foreach (Datasource dataSource in configuration.Datasources)
+                    {
                         Datasources.Add(dataSource.Clone() as Datasource);
+                    }
                 }
             }
 

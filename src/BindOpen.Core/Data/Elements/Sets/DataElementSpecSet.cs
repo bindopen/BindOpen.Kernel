@@ -18,7 +18,7 @@ namespace BindOpen.Data.Elements
         #region Properties
 
         /// <summary>
-        /// Specifications of this instance.
+        /// The DTO items of this instance.
         /// </summary>
         [XmlElement("carrier", typeof(CarrierElementSpec))]
         [XmlElement("document", typeof(DocumentElementSpec))]
@@ -26,10 +26,10 @@ namespace BindOpen.Data.Elements
         [XmlElement("scalar", typeof(ScalarElementSpec))]
         [XmlElement("source", typeof(SourceElementSpec))]
         [XmlElement("specification")]
-        public new List<DataElementSpec> Items
+        public List<DataElementSpec> DtoItems
         {
-            get { return _items; }
-            set { _items = value; }
+            get { return Items; }
+            set { Items = value; }
         }
 
         // Conversions -----------------------------
@@ -70,7 +70,7 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
             return base.Clone();
         }

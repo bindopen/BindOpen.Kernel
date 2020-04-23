@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Extensions.Runtime;
+﻿using BindOpen.Extensions.Runtime;
 
 namespace BindOpen.Data.Elements
 {
@@ -12,36 +11,31 @@ namespace BindOpen.Data.Elements
         /// Initializes a new carrier element.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="id">The ID to consider.</param>
+        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static CarrierElement CreateCarrier(
             string name,
-            params IBdoCarrierConfiguration[] items)
+            string id = null,
+            string definitionUniqueId = null)
         {
-            return CreateCarrier(name, null, null, null, items);
-        }
+            var element = new CarrierElement(name, id)
+            {
+                DefinitionUniqueId = definitionUniqueId,
+            };
 
-        /// <summary>
-        /// Initializes a new carrier element.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public static CarrierElement CreateCarrier(
-            params IBdoCarrierConfiguration[] items)
-        {
-            return CreateCarrier(null, null, null, null, items);
+            return element;
         }
 
         /// <summary>
         /// Initializes a new carrier element.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="item">The items to consider.</param>
         public static CarrierElement CreateCarrier(
             string name,
-            string definitionUniqueId,
-            params IBdoCarrierConfiguration[] items)
+            IBdoCarrierConfiguration item)
         {
-            return CreateCarrier(name, null, definitionUniqueId, null, items);
+            return CreateCarrier(name, null, item);
         }
 
         /// <summary>
@@ -49,22 +43,14 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="item">The items to consider.</param>
         public static CarrierElement CreateCarrier(
             string name,
             string id,
-            string definitionUniqueId,
-            ICarrierElementSpec specification,
-            params IBdoCarrierConfiguration[] items)
+            IBdoCarrierConfiguration item)
         {
-            CarrierElement element = new CarrierElement(name, id)
-            {
-                DefinitionUniqueId = definitionUniqueId,
-                Specification = specification as CarrierElementSpec
-            };
-            element.SetItem(items);
+            var element = CreateCarrier(name, id, item?.DefinitionUniqueId);
+            element.WithItems(item);
 
             return element;
         }

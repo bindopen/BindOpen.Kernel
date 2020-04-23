@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Common;
 
 namespace BindOpen.Data.Items
 {
@@ -7,5 +7,11 @@ namespace BindOpen.Data.Items
     /// </summary>
     public interface INamedDataItem : IStoredDataItem, INamed
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        INamedDataItem WithName(string name);
+
     }
 }

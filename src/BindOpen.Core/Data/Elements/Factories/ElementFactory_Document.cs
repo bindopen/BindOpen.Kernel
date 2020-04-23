@@ -19,8 +19,8 @@
             IObjectElement contentElement = null)
         {
             DocumentElement element = new DocumentElement(name, id);
-            element.AddItem(containerElement ?? new CarrierElement());
-            element.AddItem(contentElement ?? new ObjectElement());
+            element.Add(containerElement ?? new CarrierElement());
+            element.Add(contentElement ?? new ObjectElement());
             return element;
         }
     }

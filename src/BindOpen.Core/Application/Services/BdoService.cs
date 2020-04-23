@@ -1,6 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Items;
-using System;
 
 namespace BindOpen.Application.Services
 {
@@ -106,11 +105,6 @@ namespace BindOpen.Application.Services
             _scope?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

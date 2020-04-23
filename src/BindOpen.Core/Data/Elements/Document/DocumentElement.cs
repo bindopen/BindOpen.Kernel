@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Items;
-using System;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
@@ -94,22 +92,6 @@ namespace BindOpen.Data.Elements
             return Specification = new DocumentElementSpec();
         }
 
-        // Items ----------------------------
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The scalar item or the entity name to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            if (indexItem is string)
-                return Items.Any(p => p is Document && string.Equals((p as Document)?.Name ?? "", indexItem.ToString(), StringComparison.OrdinalIgnoreCase));
-
-            return false;
-        }
-
         #endregion
 
         // --------------------------------------------------
@@ -131,9 +113,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            Document document = base.Clone() as Document;
+            Document document = base.Clone(areas) as Document;
             return document;
         }
 

@@ -30,7 +30,6 @@ namespace BindOpen.Data.Elements
         [XmlElement("carrier", typeof(CarrierElement))]
         [XmlElement("document", typeof(DocumentElement))]
         [XmlElement("object", typeof(ObjectElement))]
-        [XmlElement("meta", typeof(MetaDataElement))]
         [XmlElement("scalar", typeof(ScalarElement))]
         [XmlElement("source", typeof(SourceElement))]
         [XmlElement("collection", typeof(CollectionElement))]
@@ -53,6 +52,20 @@ namespace BindOpen.Data.Elements
             set { base.Specification = value; }
         }
 
+        // IDataElementSet -----------------------
+
+        List<IDataElement> IDataItemSet<IDataElement>.Items
+        {
+            get => base.Items.Cast<IDataElement>().ToList();
+            set { base.Items = value?.Cast<object>().ToList(); }
+        }
+
+        public int Count => base.Items.Count;
+
+        public IDataElement this[string key] => Get(key);
+
+        IDataElement IDataItemSet<IDataElement>.this[int index] => base[index] as IDataElement;
+
         #endregion
 
         // --------------------------------------------------
@@ -62,53 +75,21 @@ namespace BindOpen.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new catalog element.
+        /// Initializes a new instance of the CollectionElement class.
         /// </summary>
-        public CollectionElement()
-            : base(null, "CatalogElement_")
+        public CollectionElement() : this(null)
         {
         }
 
         /// <summary>
-        /// Initializes a new data catalog element.
+        /// Initializes a new instance of the CollectionElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        /// <param name="elements">The elements to consider.</param>
-        public CollectionElement(
-            string name,
-            string id,
-            ICollectionElementSpec specification,
-            params IDataElement[] elements)
-            : base(name, "CatalogElement_", id)
+        public CollectionElement(string name = null, string id = null)
+            : base(name, "collectionElem_", id)
         {
-            ValueType = DataValueType.Object;
-            Specification = specification as CollectionElementSpec;
-
-            SetItem(elements);
-        }
-
-        /// <summary>
-        /// Initializes a new data catalog element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="elements">The elements to consider.</param>
-        public CollectionElement(
-            string name,
-            params IDataElement[] elements)
-            : this(name, null, null, elements)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new data catalog element.
-        /// </summary>
-        /// <param name="elements">The elements to consider.</param>
-        public CollectionElement(
-            params IDataElement[] elements)
-            : this(null, null, null, elements)
-        {
+            ValueType = DataValueType.Element;
         }
 
         #endregion
@@ -131,46 +112,6 @@ namespace BindOpen.Data.Elements
         }
 
         // Items ----------------------------
-
-        /// <summary>
-        /// Adds a new single item of this instance.
-        /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the elements will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public override IDataElement AddItem(object item, IBdoLog log = null)
-        {
-            base.AddItem(item, log);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param name="item">The item to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override IDataElement SetItem(object item)
-        {
-            base.SetItem(item);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified catalog name.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified catalog name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            if (indexItem is string)
-                return Items.Any(p => p.KeyEquals(indexItem));
-
-            return false;
-        }
 
         /// <summary>
         /// Returns a text node representing this instance.
@@ -297,7 +238,7 @@ namespace BindOpen.Data.Elements
             foreach (DataElement element in Elements)
             {
                 element.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-                AddItem(element);
+                Add(element);
             }
 
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
@@ -315,13 +256,252 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            CollectionElement aCatalogElement = base.Clone() as CollectionElement;
-            //if (DataSchemreference != null)
-            //    aCatalogElement.DataSchemreference = DataSchemreference.Clone() as DataHandler;
+            var element = base.Clone(areas) as CollectionElement;
 
-            return aCatalogElement;
+            return element;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IDATAELEMENT IMPLEMENTATION
+        // --------------------------------------------------
+
+        #region IDataElement Implementation
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public IDataItemSet<IDataElement> WithItems(params IDataElement[] items)
+        {
+            base.WithItems(items?.Cast<object>().ToArray());
+
+            return this;
+        }
+
+        // Element items ------------------------
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public IDataItemSet<IDataElement> Add(params IDataElement[] items)
+        {
+            if (items != null)
+            {
+                foreach (IDataElement item in items)
+                {
+                    var key = item?.Key();
+                    if (key != null)
+                    {
+                        if (Items == null)
+                        {
+                            Items = new List<object>();
+                        }
+                        else
+                        {
+                            Remove(key);
+                        }
+
+                        Items.Add(item);
+                    }
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the item with the specified name.
+        /// </summary>
+        /// <param name="keys">The keys of the item to remove.</param>
+        public IDataItemSet<IDataElement> Remove(params string[] keys)
+        {
+            Items?.RemoveAll(p => keys.Any(q => p.KeyEquals(q)));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the item of this instance.
+        /// </summary>
+        /// <param name="elementKey">The element key to consider.</param>
+        /// <param name="item">The item to consider.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <returns>Indicates whether the item has been set.</returns>
+        public IDataElementSet AddValue(
+            string elementKey,
+            object item = null,
+            IBdoLog log = null)
+        {
+            IDataElement element = Get(elementKey);
+            element?.Add(item, log);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the items of this instance.
+        /// </summary>
+        /// <param name="elementKey">The element key to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public IDataElementSet AddValue(
+            string elementKey,
+            object[] items = null,
+            IBdoLog log = null)
+        {
+            IDataElement element = Get(elementKey);
+            element?.Add(items, log);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Clears the items of this instance.
+        /// </summary>
+        /// <returns>Returns this instance.</returns>
+        IDataItemSet<IDataElement> IDataItemSet<IDataElement>.ClearItems()
+        {
+            return base.ClearItems() as IDataItemSet<IDataElement>;
+        }
+
+        // Elements -----------------------------
+
+        /// <summary>
+        /// Returns the item with the specified name and group ID.
+        /// </summary>
+        /// <param name="name">The name of the item to return.</param>
+        /// <param name="groupId">The ID of the group of the item to return.</param>
+        /// <returns>Returns the item with the specified name and group ID.</returns>
+        public IDataElement GetWithGroup(string name = null, string groupId = null)
+        {
+            return Items?.Cast<IDataElement>().FirstOrDefault(p =>
+                (name == null || p.Name.KeyEquals(name))
+                && (groupId == null || p.Specification?.GroupId.KeyEquals(groupId) != false));
+        }
+
+        // Groups -------------------------------
+
+        /// <summary>
+        /// Gets all the element groups IDs.
+        /// </summary>
+        /// <returns>Returns all the element group IDs.</returns>
+        public List<string> GetGroupIds()
+        {
+            if (Items == null) return new List<string>();
+            return Items.Cast<IDataElement>().Select(p => p.Specification?.GroupId).Distinct().ToList();
+        }
+
+        // Element items ------------------------
+
+        /// <summary>
+        /// Checks if this instance has an item with the specified name.
+        /// </summary>
+        /// <param name="key">The key of the item to check.</param>
+        /// <returns>Returns true if the instance has an item with the specified name.</returns>
+        public bool HasItem(string key = null)
+        {
+            if (key == null) return Items.Count > 0;
+            return Items?.Any(p => p.KeyEquals(key)) == true;
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IDataElement Get(string key = null)
+        {
+            if (key == null) return this[0] as IDataElement;
+            return this[key];
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public Q Get<Q>(string key = null) where Q : class, IDataElement
+        {
+            return Get(key) as Q;
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public Q Get<Q>(int index) where Q : class, IDataElement
+        {
+            return this[index] as Q;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IDataElement[] ToArray()
+        {
+            return Items.Cast<IDataElement>()?.ToArray();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<IDataElement> ToList()
+        {
+            return Items.Cast<IDataElement>()?.ToList();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="elementKey">The element key to consider.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual object GetValue(
+            string elementKey,
+            IBdoScope scope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            IDataElement element = Get(elementKey);
+            if (element != null)
+            {
+                return element.GetValue(scope, scriptVariableSet, log);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="elementKey">The element key to consider.</param>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual T GetValue<T>(
+            string elementKey,
+            IBdoScope scope = null,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            var aObject = GetValue(elementKey, scope, scriptVariableSet, log) ?? default(T);
+            return (T)aObject;
         }
 
         #endregion

@@ -201,7 +201,7 @@ namespace BindOpen.Application.Settings
         /// <param name="value">The value to set.</param>
         public void Set(string name, object value)
         {
-            Configuration?.Add(name, value);
+            Configuration?.AddValue(name, value);
         }
 
         /// <summary>
@@ -320,11 +320,6 @@ namespace BindOpen.Application.Settings
             _scope?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

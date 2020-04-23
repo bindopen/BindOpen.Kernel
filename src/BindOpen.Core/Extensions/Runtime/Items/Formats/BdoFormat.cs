@@ -22,17 +22,9 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Format class.
+        /// Instantiates a new instance of the BdoFormat class.
         /// </summary>
         protected BdoFormat() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Format class.
-        /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected BdoFormat(IBdoFormatConfiguration dto)
         {
         }
 

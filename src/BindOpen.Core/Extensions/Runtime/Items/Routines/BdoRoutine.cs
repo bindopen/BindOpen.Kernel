@@ -24,17 +24,9 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Routine class.
+        /// Instantiates a new instance of the BdoRoutine class.
         /// </summary>
         protected BdoRoutine() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Routine class.
-        /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected BdoRoutine(IBdoRoutineConfiguration dto)
         {
         }
 

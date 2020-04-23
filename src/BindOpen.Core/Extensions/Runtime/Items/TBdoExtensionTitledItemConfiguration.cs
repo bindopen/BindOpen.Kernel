@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.Extensions.Definition;
 using System.Xml.Serialization;
 
@@ -35,23 +34,20 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoExtensionTitledItemConfiguration class.
+        /// Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
         /// </summary>
         protected TBdoExtensionTitledItemConfiguration() : this(BdoExtensionItemKind.Any, null)
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BdoExtensionTitledItemConfiguration class.
+        /// Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
         /// </summary>
         /// <param name="kind">The kind to consider.</param>
         /// <param name="definitionUniqueId">The definition unique ID to consider.</param>
-        /// <param name="items">The items to consider.</param>
         protected TBdoExtensionTitledItemConfiguration(
             BdoExtensionItemKind kind,
-            string definitionUniqueId,
-            params IDataElement[] items)
-            : base(kind, definitionUniqueId, items)
+            string definitionUniqueId) : base(kind, definitionUniqueId)
         {
         }
 
@@ -81,7 +77,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddTitleText(string key, string text)
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).AddValue(key, text);
+            (this.Title ?? (this.Title = new DictionaryDataItem())).Add(key, text);
         }
 
         /// <summary>
@@ -101,7 +97,7 @@ namespace BindOpen.Extensions.Runtime
         public void SetTitleText(string key = "*", string text = "*")
         {
             if (this.Title == null) this.Title = new DictionaryDataItem();
-            this.Title.SetValue(key, text);
+            this.Title.Set(key, text);
         }
 
         // Description -------------------------------
@@ -123,7 +119,7 @@ namespace BindOpen.Extensions.Runtime
         public void AddDescriptionText(string key, string text)
         {
             if (this.Description == null) this.Description = new DictionaryDataItem();
-            this.Description.AddValue(key, text);
+            this.Description.Add(key, text);
         }
 
         /// <summary>
@@ -142,7 +138,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetDescriptionText(string key = "*", string text = "*")
         {
-            (this.Description ?? (this.Description = new DictionaryDataItem())).SetValue(key, text);
+            (this.Description ?? (this.Description = new DictionaryDataItem())).Set(key, text);
         }
 
         #endregion
@@ -195,9 +191,9 @@ namespace BindOpen.Extensions.Runtime
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned metrics definition.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ITBdoExtensionTitledItemConfiguration<T> dto = base.Clone() as TBdoExtensionTitledItemConfiguration<T>;
+            ITBdoExtensionTitledItemConfiguration<T> dto = base.Clone(areas) as TBdoExtensionTitledItemConfiguration<T>;
             if (this.Title != null)
                 dto.Title = this.Title.Clone() as DictionaryDataItem;
 
@@ -228,7 +224,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddTitle(string key, string text)
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).AddValue(key, text);
+            (this.Title ?? (this.Title = new DictionaryDataItem())).Add(key, text);
         }
 
         /// <summary>
@@ -247,7 +243,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetTitle(string key = "*", string text = "*")
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).SetValue(key, text);
+            (this.Title ?? (this.Title = new DictionaryDataItem())).Set(key, text);
         }
 
         /// <summary>

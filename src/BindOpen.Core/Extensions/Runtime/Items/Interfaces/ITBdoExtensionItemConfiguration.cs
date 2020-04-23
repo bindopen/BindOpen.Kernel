@@ -1,5 +1,5 @@
 ﻿using BindOpen.Application.Configuration;
-using BindOpen.Data.Items;
+using BindOpen.Data.Common;
 using BindOpen.Extensions.Definition;
 
 namespace BindOpen.Extensions.Runtime

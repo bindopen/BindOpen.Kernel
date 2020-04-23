@@ -44,6 +44,26 @@ namespace BindOpen.Data.Items
         #endregion
 
         // --------------------------------------------------
+        // MUTATORS
+        // --------------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public IIdentifiedDataItem WithId(string id)
+        {
+            Id = id;
+
+            return this;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
 
@@ -68,15 +88,16 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clones this instance.
         /// </summary>
+        /// <param name="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            IdentifiedDataItem item = base.Clone() as IdentifiedDataItem;
+            IdentifiedDataItem item = base.Clone(areas) as IdentifiedDataItem;
             if (this.Id != null)
                 item.Id = IdentifiedDataItem.NewGuid();
             return item;
         }
 
-        #endregion       
+        #endregion
     }
 }

@@ -2,19 +2,18 @@
 <usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
   <scalar name="text1">
     <values>
-      <add>item1</add>
-      <add>item2</add>
-      <add>item3</add>
+      <add>sit</add>
+      <add>tenetur</add>
+      <add>ut</add>
+      <add>voluptatem</add>
+      <add>nostrum</add>
+      <add>deserunt</add>
+      <add>dolorem</add>
+      <add>dolor</add>
+      <add>ad</add>
+      <add>aspernatur</add>
     </values>
   </scalar>
-  <scalar name="integer1" valueType="Integer">
-    <values>
-      <add>1</add>
-      <add>2</add>
-      <add>3</add>
-    </values>
-  </scalar>
-  <scalar name="byteArray1" valueType="ByteArray">
-    <values />
-  </scalar>
+  <scalar name="integer1" valueType="Integer" />
+  <scalar name="byteArray1" valueType="ByteArray" />
 </usableConfiguration>

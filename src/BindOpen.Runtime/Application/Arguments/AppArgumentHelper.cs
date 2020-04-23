@@ -62,7 +62,7 @@ namespace BindOpen.Application.Arguments
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
                         {
                             argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
-                            argument.SetItem(arguments.GetStringAtIndex(index));
+                            argument.WithItems(arguments.GetStringAtIndex(index));
                             optionSet.Add(argument);
                         }
                         else if (argumentSpecification != null && optionSpecificationSet != null)
@@ -84,13 +84,13 @@ namespace BindOpen.Application.Arguments
                                     else if (aliasIndex > -1)
                                         valueIndex = argumentSpecification.Aliases[aliasIndex].IndexOf(StringHelper.__PatternEmptyValue);
 
-                                    argument.SetItem(valueIndex < 0 ? "" : currentArgumentString.GetSubstring(valueIndex));
+                                    argument.WithItems(valueIndex < 0 ? "" : currentArgumentString.GetSubstring(valueIndex));
                                 }
                                 else
                                 {
                                     index++;
                                     if (index < arguments.Length)
-                                        argument.SetItem(arguments.GetStringAtIndex(index));
+                                        argument.WithItems(arguments.GetStringAtIndex(index));
                                 }
                             }
 
@@ -119,7 +119,7 @@ namespace BindOpen.Application.Arguments
         {
             var log = new BdoLog();
 
-            if (optionSet?.Elements != null && optionSpecificationSet != null)
+            if (optionSet?.Items != null && optionSpecificationSet != null)
             {
                 if (!allowMissingItems)
                 {

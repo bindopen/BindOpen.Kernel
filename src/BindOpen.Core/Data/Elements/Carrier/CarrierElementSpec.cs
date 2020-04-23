@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Specification;
 using BindOpen.System.Diagnostics;
-using System;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Elements
@@ -112,9 +111,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            CarrierElementSpec dataCarrierElementSpec = base.Clone() as CarrierElementSpec;
+            CarrierElementSpec dataCarrierElementSpec = base.Clone(areas) as CarrierElementSpec;
             if (this.DefinitionFilter != null)
                 dataCarrierElementSpec.DefinitionFilter = this.DefinitionFilter.Clone() as DataValueFilter;
             return dataCarrierElementSpec;
@@ -144,11 +143,6 @@ namespace BindOpen.Data.Elements
             _definitionFilter?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

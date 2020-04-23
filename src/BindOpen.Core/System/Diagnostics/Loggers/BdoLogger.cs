@@ -562,11 +562,6 @@ namespace BindOpen.System.Diagnostics.Loggers
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

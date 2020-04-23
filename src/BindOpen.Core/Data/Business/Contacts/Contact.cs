@@ -71,9 +71,9 @@ namespace BindOpen.Data.Business
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns the cloned object.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            return base.Clone() as Contact;
+            return base.Clone(areas) as Contact;
         }
 
         #endregion

@@ -18,17 +18,9 @@ namespace BindOpen.Extensions.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the RepositoryConnector class.
+        /// Instantiates a new instance of the BdoRepoConnector class.
         /// </summary>
         protected BdoRepoConnector() : base()
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the RepositoryConnector class.
-        /// </summary>
-        /// <param name="dto">The DTO item of this instance.</param>
-        protected BdoRepoConnector(IBdoConnectorConfiguration dto) : base(dto)
         {
         }
 

@@ -328,7 +328,7 @@ namespace BindOpen.Application.Options
         /// <param name="text">The text to consider.</param>
         public void AddDescription(string key, string text)
         {
-            (Description ?? (Description = new DictionaryDataItem())).AddValue(key, text);
+            (Description ?? (Description = new DictionaryDataItem())).Add(key, text);
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace BindOpen.Application.Options
         /// <param name="text">The text to consider.</param>
         public void SetDescription(string key = "*", string text = "*")
         {
-            (Description ?? (Description = new DictionaryDataItem())).SetValue(key, text);
+            (Description ?? (Description = new DictionaryDataItem())).Set(key, text);
         }
 
         /// <summary>

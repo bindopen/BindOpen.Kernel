@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="folderPath">The folder path of the instance.</param>
         public RepositoryFile(string fileName, string folderPath) : base()
         {
-            this.SetPath(fileName, folderPath);
+            this.WithPath(fileName, folderPath);
         }
 
         #endregion

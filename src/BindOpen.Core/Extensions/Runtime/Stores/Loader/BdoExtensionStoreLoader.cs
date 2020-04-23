@@ -232,11 +232,6 @@ namespace BindOpen.Extensions.Runtime
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

@@ -67,7 +67,9 @@ namespace BindOpen.Data.Items
             : base(name, namePreffix, id)
         {
             if (title != null)
-                Title = new DictionaryDataItem(title);
+            {
+                Title = ItemFactory.CreateDictionary(title);
+            }
         }
 
         #endregion
@@ -79,15 +81,25 @@ namespace BindOpen.Data.Items
         #region Mutators
 
         /// <summary>
+        /// Sets the title text.
+        /// </summary>
+        /// <param name="text">The text to consider.</param>
+        public ITitledDataItem WithTitle(string text)
+        {
+            WithTitle("*", text);
+
+            return this;
+        }
+
+        /// <summary>
         /// Updates this instance with the base object.
         /// </summary>
         /// <param name="updateBaseObject">The update base object to consider.</param>
         public void Update(ITitledDataItem updateBaseObject)
         {
-            if (updateBaseObject != null)
+            if (updateBaseObject != null && updateBaseObject.Title != null)
             {
-                if (updateBaseObject.Title != null)
-                    Title = new DictionaryDataItem(updateBaseObject.Title);
+                Title = ItemFactory.CreateDictionary(updateBaseObject.Title);
             }
         }
 
@@ -97,9 +109,11 @@ namespace BindOpen.Data.Items
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddTitle(string text)
+        public ITitledDataItem AddTitle(string text)
         {
             AddTitle("*", text);
+
+            return this;
         }
 
         /// <summary>
@@ -107,18 +121,11 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddTitle(string key, string text)
+        public ITitledDataItem AddTitle(string key, string text)
         {
-            (Title ?? (Title = new DictionaryDataItem())).AddValue(key, text);
-        }
+            (Title ?? (Title = new DictionaryDataItem())).Add(key, text);
 
-        /// <summary>
-        /// Sets the title text.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        public void SetTitle(string text)
-        {
-            SetTitle("*", text);
+            return this;
         }
 
         /// <summary>
@@ -126,9 +133,11 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetTitle(string key = "*", string text = "*")
+        public ITitledDataItem WithTitle(string key = "*", string text = "*")
         {
-            (Title ?? (Title = new DictionaryDataItem())).SetValue(key, text);
+            (Title ?? (Title = new DictionaryDataItem())).Set(key, text);
+
+            return this;
         }
 
         #endregion
@@ -165,9 +174,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            var item = base.Clone() as TitledDataItem;
+            var item = base.Clone(areas) as TitledDataItem;
             if (Title != null)
                 item.Title = Title.Clone<DictionaryDataItem>();
 

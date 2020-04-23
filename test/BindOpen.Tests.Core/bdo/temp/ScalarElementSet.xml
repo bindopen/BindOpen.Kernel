@@ -1,25 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
-  <scalar name="float1" valueType="Number" value="10" />
+  <scalar name="float1" valueType="Number">
+    <values>
+      <add>0.4594813252144872</add>
+      <add>0.502778186696944</add>
+      <add>0.4364298700524633</add>
+      <add>0.5462805156345855</add>
+      <add>0.6180025663310674</add>
+      <add>0.3183808346830219</add>
+      <add>0.12786131125309566</add>
+      <add>0.3863125282276014</add>
+      <add>0.22370769000784851</add>
+      <add>0.43223288116614933</add>
+    </values>
+  </scalar>
   <scalar name="text1">
     <values>
-      <add>item1</add>
-      <add>item2</add>
-      <add>item3</add>
+      <add>channels</add>
+      <add>maximized</add>
+      <add>approach</add>
+      <add>Awesome Plastic Keyboard</add>
+      <add>protocol</add>
+      <add>bus</add>
+      <add>Checking Account</add>
+      <add>Cayman Islands Dollar</add>
+      <add>transmit</add>
+      <add>expedite</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer">
     <values>
-      <add>1</add>
-      <add>2</add>
-      <add>3</add>
+      <add>-59043715</add>
+      <add>-908972123</add>
+      <add>-1397433285</add>
+      <add>397224922</add>
+      <add>-711821461</add>
+      <add>-333716150</add>
+      <add>-911397628</add>
+      <add>377607041</add>
+      <add>-1247389422</add>
+      <add>-1402801428</add>
     </values>
   </scalar>
   <scalar name="float2" valueType="Number">
     <values>
-      <add>1.1</add>
-      <add>1.2</add>
-      <add>1.3</add>
+      <add>0.0161543563083533</add>
+      <add>0.8991313846312143</add>
+      <add>0.5861229671100727</add>
+      <add>0.4152971303161686</add>
+      <add>0.7712415087834193</add>
+      <add>0.5666650047370535</add>
+      <add>0.91526441039297</add>
+      <add>0.5114934069623674</add>
+      <add>0.6141563964142261</add>
+      <add>0.6820936508859012</add>
     </values>
   </scalar>
 </element.set>

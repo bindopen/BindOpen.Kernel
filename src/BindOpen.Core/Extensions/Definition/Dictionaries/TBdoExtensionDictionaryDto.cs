@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Extensions.Definition;
 using BindOpen.Extensions.Runtime;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -12,7 +11,8 @@ namespace BindOpen.Extensions.Definition
     /// <typeparam name="T">The class of extension item definition to consider.</typeparam>
     [XmlType("TBdoExtensionDictionaryDto", Namespace = "https://bindopen.org/xsd")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class TBdoExtensionDictionaryDto<T> : StoredDataItem, ITBdoExtensionDictionaryDto<T> where T : BdoExtensionItemDefinitionDto
+    public class TBdoExtensionDictionaryDto<T> : StoredDataItem, ITBdoExtensionDictionaryDto<T>
+        where T : BdoExtensionItemDefinitionDto
     {
         // ------------------------------------------
         // VARIABLES

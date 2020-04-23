@@ -19,19 +19,6 @@ namespace BindOpen.Data.Items
         where T : IIdentifiedDataItem
     {
         // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        /// <summary>
-        /// The items of this instance.
-        /// </summary>
-        protected List<T> _items = null;
-
-        #endregion
-
-        // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
@@ -41,14 +28,7 @@ namespace BindOpen.Data.Items
         /// Items of this instance.
         /// </summary>
         [XmlIgnore()]
-        public List<T> Items
-        {
-            get => _items ?? (_items = new List<T>());
-            set
-            {
-                _items = value;
-            }
-        }
+        public List<T> Items { get; set; }
 
         /// <summary>
         /// Returns the number of items.
@@ -58,7 +38,7 @@ namespace BindOpen.Data.Items
         {
             get
             {
-                return _items?.Count ?? 0;
+                return Items?.Count ?? 0;
             }
         }
 
@@ -67,7 +47,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [XmlIgnore()]
         public T this[int index]
-            => _items != null && index >= 0 && index < _items.Count ? _items[index] : default;
+            => Items != null && index >= 0 && index < Items.Count ? Items[index] : default;
 
         /// <summary>
         /// Returns the element with the specified key.
@@ -77,8 +57,8 @@ namespace BindOpen.Data.Items
         {
             get
             {
-                if (key == null || _items == null) return default;
-                return _items.Find(p => p.KeyEquals(key));
+                if (key == null || Items == null) return default;
+                return Items.Find(p => p.KeyEquals(key));
             }
         }
 
@@ -108,9 +88,11 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clears the items of this instance.
         /// </summary>
-        public void ClearItems()
+        public IDataItemSet<T> ClearItems()
         {
-            _items = null;
+            Items = null;
+
+            return this;
         }
 
         /// <summary>
@@ -120,25 +102,54 @@ namespace BindOpen.Data.Items
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public virtual void Add(params T[] items)
+        public virtual IDataItemSet<T> Add(params T[] items)
         {
             if (items != null)
             {
-                foreach (T dataItem in items)
+                foreach (T item in items)
                 {
-                    Add(dataItem);
+                    var key = item?.Key();
+                    if (key != null)
+                    {
+                        if (Items == null)
+                        {
+                            Items = new List<T>();
+                        }
+                        else
+                        {
+                            Remove(key);
+                        }
+
+                        Items.Add(item);
+                    }
                 }
             }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public IDataItemSet<T> WithItems(params T[] items)
+        {
+            ClearItems();
+            Add(items);
+
+            return this;
         }
 
         /// <summary>
         /// Removes the item with the specified name.
         /// </summary>
         /// <param name="keys">The keys of the item to remove.</param>
-        public virtual void Remove(params string[] keys)
+        public virtual IDataItemSet<T> Remove(params string[] keys)
         {
-            if (keys == null || _items == null) return;
-            _items.RemoveAll(p => keys.Any(q => p.KeyEquals(q)));
+            Items?.RemoveAll(p => keys.Any(q => p.KeyEquals(q)));
+
+            return this;
         }
 
         #endregion
@@ -156,8 +167,8 @@ namespace BindOpen.Data.Items
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
         public bool HasItem(string key = null)
         {
-            if (key == null) return _items.Count > 0;
-            return _items?.Any(p => p.KeyEquals(key)) == true;
+            if (key == null) return Items.Count > 0;
+            return Items?.Any(p => p.KeyEquals(key)) == true;
         }
 
         /// <summary>
@@ -182,17 +193,13 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Gets the common keys with the specified set of elements.
+        /// Returns the specified item of this instance.
         /// </summary>
-        /// <param name="itemSet">The set of items to consider.</param>
-        /// <returns>The names of the common object items with the specified set of elements.</returns>
-        public virtual List<string> GetCommonItemKeys(IDataItemSet<T> itemSet)
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(int index) where Q : class, T
         {
-            List<string> keys = new List<string>();
-            if (itemSet != null && _items != null)
-                keys = _items.Where(p => HasItem(p.Key())).Select(p => p.Key()).Distinct().ToList();
-
-            return keys;
+            return this[index] as Q;
         }
 
         /// <summary>
@@ -201,7 +208,7 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         public T[] ToArray()
         {
-            return _items?.ToArray();
+            return Items?.ToArray();
         }
 
         /// <summary>
@@ -210,54 +217,7 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         public List<T> ToList()
         {
-            return _items?.ToList();
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// Adds a new item.
-        /// </summary>
-        /// <param name="item">The new item to add.</param>
-        /// <param name="referenceCollection">The reference collection to consider.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public virtual void Add(
-            T item,
-            IDataItemSet<T> referenceCollection = null)
-        {
-            if ((item == null) || (item.Key() == null))
-                return;
-            if (_items == null)
-                _items = new List<T>();
-            else
-                _items.RemoveAll(p => p.KeyEquals(item));
-
-            if (referenceCollection == null)
-                _items.Add(item);
-            else if (referenceCollection.HasItem(item.Key()))
-                _items.Add(item);
-        }
-
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param name="items">The items of the item to add.</param>
-        /// <param name="referenceCollection">The reference collection to consider.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public virtual void Add(
-            List<T> items,
-            IDataItemSet<T> referenceCollection = null)
-        {
+            return Items?.ToList();
         }
 
         #endregion
@@ -454,9 +414,9 @@ namespace BindOpen.Data.Items
         {
             base.UpdateStorageInfo(log);
 
-            if (_items != null)
+            if (Items != null)
             {
-                foreach (T item in _items)
+                foreach (T item in Items)
                 {
                     item.UpdateStorageInfo(log);
                 }
@@ -471,9 +431,9 @@ namespace BindOpen.Data.Items
         /// <param name="log">The log to update.</param>
         public override void UpdateRuntimeInfo(IBdoScope scope = null, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null)
         {
-            if (_items != null)
+            if (Items != null)
             {
-                foreach (T item in _items)
+                foreach (T item in Items)
                 {
                     item.UpdateRuntimeInfo(scope, scriptVariableSet, log);
                 }
@@ -494,10 +454,10 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DataItemSet<T> dataItemSet = base.Clone() as DataItemSet<T>;
-            dataItemSet._items = _items?.Select(p => (T)p.Clone()).ToList();
+            DataItemSet<T> dataItemSet = base.Clone(areas) as DataItemSet<T>;
+            dataItemSet.Items = Items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;
         }

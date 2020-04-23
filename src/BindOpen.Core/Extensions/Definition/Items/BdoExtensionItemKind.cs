@@ -36,11 +36,6 @@ namespace BindOpen.Extensions.Definition
         Connector,
 
         /// <summary>
-        /// Context extension.
-        /// </summary>
-        ContextExtension,
-
-        /// <summary>
         /// Entity.
         /// </summary>
         Entity,

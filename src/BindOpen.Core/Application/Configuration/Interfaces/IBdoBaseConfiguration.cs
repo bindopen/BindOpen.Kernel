@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 
 namespace BindOpen.Application.Configuration
@@ -6,7 +7,7 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoBaseConfiguration : IDataElementSet, INamed, IIdentifiedDataItem, ISavable, IGloballyDescribed
+    public interface IBdoBaseConfiguration : IDataElementSet, INamed, ISavable, IGloballyDescribed, IIdentifiedDataItem
     {
         /// <summary>
         /// 

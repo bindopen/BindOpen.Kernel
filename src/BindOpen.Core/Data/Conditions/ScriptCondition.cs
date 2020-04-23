@@ -58,7 +58,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
             ScriptCondition condition = new ScriptCondition
             {

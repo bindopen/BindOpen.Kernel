@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Diagnostics.Loggers
@@ -87,8 +85,9 @@ namespace BindOpen.System.Diagnostics.Loggers
             indent += indent;
             indent += indent;
 
-            string st = logEvent.Date + " " + indent + (logEvent.Log != null ? "o " : "- ") + logEvent.Kind.ToString() + ": " + logEvent.GetTitle(UICulture)
-                + (logEvent.Description != null ? " | " + logEvent.GetDescription(UICulture) : "") + Environment.NewLine;
+            string st = logEvent.Date + " " + indent + (logEvent.Log != null ? "o " : "- ")
+                + logEvent.Kind.ToString() + ": " + logEvent.WithTitle(UICulture)
+                + (logEvent.Description != null ? " | " + logEvent.WithDescription(UICulture) : "") + Environment.NewLine;
 
             if (logEvent?.Log != null)
                 st += ToString(logEvent?.Log);

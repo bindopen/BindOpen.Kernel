@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Elements;
-
-namespace BindOpen.Data.Elements
+﻿namespace BindOpen.Data.Elements
 {
     /// <summary>
     /// This static class provides methods to create data elements.
@@ -49,21 +47,18 @@ namespace BindOpen.Data.Elements
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
         /// <param name="classFullName">The class full name to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
         /// <param name="items">The items to consider.</param>
         public static ObjectElement CreateObject(
             string name,
             string id,
             string classFullName,
-            IObjectElementSpec specification,
             params object[] items)
         {
             ObjectElement element = new ObjectElement(name, id)
             {
                 ClassFullName = classFullName,
-                Specification = specification as ObjectElementSpec
             };
-            element.SetItem(items);
+            element.WithItems(items);
 
             return element;
         }

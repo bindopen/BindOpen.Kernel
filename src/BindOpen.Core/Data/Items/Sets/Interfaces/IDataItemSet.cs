@@ -42,6 +42,13 @@ namespace BindOpen.Data.Items
         Q Get<Q>(string key = null) where Q : class, T;
 
         /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(int index) where Q : class, T;
+
+        /// <summary>
         /// 
         /// </summary>
         int Count { get; }
@@ -49,34 +56,19 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        void ClearItems();
+        IDataItemSet<T> ClearItems();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        void Add(params T[] items);
+        IDataItemSet<T> Add(params T[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        /// <param name="referenceCollection"></param>
-        void Add(List<T> items, IDataItemSet<T> referenceCollection = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <param name="referenceCollection"></param>
-        void Add(T item, IDataItemSet<T> referenceCollection = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="itemSet"></param>
-        /// <returns></returns>
-        List<string> GetCommonItemKeys(IDataItemSet<T> itemSet);
+        IDataItemSet<T> WithItems(params T[] items);
 
         /// <summary>
         /// 
@@ -89,7 +81,7 @@ namespace BindOpen.Data.Items
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        void Remove(params string[] keys);
+        IDataItemSet<T> Remove(params string[] keys);
 
         /// <summary>
         /// 

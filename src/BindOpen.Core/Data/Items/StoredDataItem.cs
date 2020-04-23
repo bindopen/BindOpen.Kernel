@@ -94,9 +94,9 @@ namespace BindOpen.Data.Items
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            StoredDataItem item = base.Clone() as StoredDataItem;
+            StoredDataItem item = base.Clone(areas) as StoredDataItem;
             if (CreationDate != null)
                 item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;

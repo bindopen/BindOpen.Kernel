@@ -99,9 +99,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            DocumentElementSpec aDocumentElementSpec = base.Clone() as DocumentElementSpec;
+            DocumentElementSpec aDocumentElementSpec = base.Clone(areas) as DocumentElementSpec;
             return aDocumentElementSpec;
         }
 

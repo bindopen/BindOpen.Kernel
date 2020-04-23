@@ -44,7 +44,7 @@ namespace BindOpen.Extensions.Runtime
         /// </summary>
         /// <param name="path"></param>
         /// <param name="relativePath"></param>
-        void SetPath(string path = null, string relativePath = null);
+        void WithPath(string path = null, string relativePath = null);
 
         /// <summary>
         /// 

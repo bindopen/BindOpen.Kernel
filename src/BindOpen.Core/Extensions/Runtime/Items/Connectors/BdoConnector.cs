@@ -47,29 +47,10 @@ namespace BindOpen.Extensions.Runtime
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the Connector class.
+        /// Instantiates a new instance of the BdoConnector class.
         /// </summary>
         protected BdoConnector() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Connector class.
-        /// </summary>
-        /// <param name="config">The configuration of this instance.</param>
-        protected BdoConnector(IBdoConnectorConfiguration config)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Connector class.
-        /// </summary>
-        /// <param name="name">The name of this instance.</param>
-        /// <param name="connectionString">The connection string to consider.</param>
-        protected BdoConnector(string name, string connectionString = null) : base()
-        {
-            Name = name;
-            ConnectionString = connectionString;
         }
 
         #endregion

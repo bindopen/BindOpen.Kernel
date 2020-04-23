@@ -78,7 +78,7 @@ namespace BindOpen.Application.Options
                         int index = optionString.IndexOf("=");
                         String optionName = optionString.Substring(0, index);
                         String optionValue = optionString.Substring(index + 1);
-                        this.Add(optionName, optionValue, log);
+                        this.AddValue(optionName, optionValue, log);
                     }
                 }
             }

@@ -3,7 +3,7 @@
 namespace BindOpen.Application.Scopes
 {
     /// <summary>
-    /// This class represents an application scope helper.
+    /// This class represents an scope factory.
     /// </summary>
     public static class BdoScopeFactory
     {

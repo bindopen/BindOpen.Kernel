@@ -1,5 +1,4 @@
 ﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Common;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
@@ -76,70 +75,19 @@ namespace BindOpen.Data.Elements
         #region Constructors
 
         /// <summary>
-        /// Initializes a new entity element.
+        /// Initializes a new instance of the ObjectElement class.
         /// </summary>
-        public ObjectElement()
-            : base(null, "ObjectElement_")
+        public ObjectElement() : this(null)
         {
         }
 
         /// <summary>
-        /// Initializes a new data entity element.
+        /// Initializes a new instance of the ObjectElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="id">The ID to consider.</param>
-        /// <param name="classFullName">The class full name to consider.</param>
-        /// <param name="specification">The specification to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public ObjectElement(
-            string name,
-            string id,
-            string classFullName,
-            IObjectElementSpec specification,
-            params IDataItem[] items)
-            : base(name, "ObjectElement_", id)
-        {
-            this.ValueType = DataValueType.Object;
-            this.Specification = specification as ObjectElementSpec;
-
-            this.SetItem(items);
-            if (!string.IsNullOrEmpty(classFullName))
-                this.ClassFullName = classFullName;
-        }
-
-        /// <summary>
-        /// Initializes a new data entity element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="classFullName">The entity unique name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public ObjectElement(
-            string name,
-            string classFullName,
-            params IDataItem[] items)
-            : this(name, null, classFullName, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new data entity element.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public ObjectElement(
-            string name,
-            params IDataItem[] items)
-            : this(name, null, null, null, items)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new data entity element.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public ObjectElement(
-            params IDataItem[] items)
-            : this(null, null, null, null, items)
+        public ObjectElement(string name = null, string id = null)
+            : base(name, "objectElem_", id)
         {
         }
 
@@ -168,48 +116,20 @@ namespace BindOpen.Data.Elements
         /// Adds a new single item of this instance.
         /// </summary>
         /// <param name="item">The string item of this instance.</param>
-        /// <param name="log">The log to populate.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override IDataElement AddItem(
-            object item,
-            IBdoLog log = null)
+        protected override void Add(object item)
         {
-            base.AddItem(item, log);
-            if (this[0] is DataItem)
+            if (item != null)
             {
-                Assembly assembly = this[0].GetType().Assembly;
-                this.ClassFullName = this[0].GetType().FullName.ToString()
-                    + (assembly == null ? "" : "," + assembly.GetName().Name);
+                base.Add(item);
+                if (this[0] is DataItem)
+                {
+                    Assembly assembly = this[0].GetType().Assembly;
+                    this.ClassFullName = this[0].GetType().FullName.ToString()
+                        + (assembly == null ? "" : "," + assembly.GetName().Name);
+                }
             }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param name="item">The item to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public override IDataElement SetItem(object item)
-        {
-            base.SetItem(item);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance contains the specified scalar item or the specified entity name.
-        /// </summary>
-        /// <param name="indexItem">The index item to consider.</param>
-        /// <param name="isCaseSensitive">Indicates whether the verification is case sensitive.</param>
-        /// <returns>Returns true if this instance contains the specified scalar item or the specified entity name.</returns>
-        public override bool HasItem(object indexItem, bool isCaseSensitive = false)
-        {
-            if (indexItem is string)
-                return this.Items.Any(p => p.KeyEquals(indexItem));
-
-            return false;
         }
 
         /// <summary>
@@ -263,7 +183,7 @@ namespace BindOpen.Data.Elements
                     item.UpdateFromElementSet<DetailPropertyAttribute>(elementSet, scope, scriptVariableSet);
                 }
 
-                AddItem(item);
+                Add(item);
             }
 
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
@@ -281,9 +201,9 @@ namespace BindOpen.Data.Elements
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
+        public override object Clone(params string[] areas)
         {
-            ObjectElement aObjectElement = base.Clone() as ObjectElement;
+            ObjectElement aObjectElement = base.Clone(areas) as ObjectElement;
             //if (this.DataSchemreference != null)
             //    aObjectElement.DataSchemreference = this.DataSchemreference.Clone() as DataHandler;
 

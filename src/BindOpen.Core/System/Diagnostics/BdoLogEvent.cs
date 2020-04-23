@@ -19,51 +19,6 @@ namespace BindOpen.System.Diagnostics
     public class BdoLogEvent : BdoEvent, IBdoLogEvent
     {
         // ------------------------------------------
-        // STRUCTURES
-        // ------------------------------------------
-
-        #region Structures
-
-        /// <summary>
-        /// This structures defines the stack trace of a task result.
-        /// </summary>
-        [XmlType("LogEventStackTrace", Namespace = "https://bindopen.org/xsd")]
-        public struct LogEventStackTrace
-        {
-            /// <summary>
-            /// The name of the full class.
-            /// </summary>
-            [XmlElement("fullClassName")]
-            public string FullClassName;
-
-            /// <summary>
-            /// The name of the called method.
-            /// </summary>
-            [XmlElement("methodName")]
-            public string MethodName;
-
-            /// <summary>
-            /// Parameters of the called method.
-            /// </summary>
-            [XmlElement("methodParams")]
-            public string MethodParams;
-
-            /// <summary>
-            /// Path of the called file.
-            /// </summary>
-            [XmlElement("filePath")]
-            public string FilePath;
-
-            /// <summary>
-            /// Called line number.
-            /// </summary>
-            [XmlElement("lineNumber")]
-            public string LineNumber;
-        }
-
-        #endregion
-
-        // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
@@ -214,11 +169,20 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// Clones this instance.
         /// </summary>
+        /// <returns>Returns a cloned instance.</returns>
+        public override object Clone(params string[] areas)
+        {
+            return Clone(null, Array.Empty<string>());
+        }
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
         /// <param name="parent">The log to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public IBdoLogEvent Clone(IBdoLog parent = null)
+        public IBdoLogEvent Clone(IBdoLog parent, params string[] areas)
         {
-            var cloned = base.Clone() as BdoLogEvent;
+            var cloned = base.Clone(areas) as BdoLogEvent;
 
             cloned.Parent = parent;
             cloned.Log = Log?.Clone(parent) as BdoLog;
@@ -233,9 +197,9 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="parent">The parent to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public T Clone<T>(IBdoLog parent = null) where T : class
+        public T Clone<T>(IBdoLog parent, params string[] areas) where T : class
         {
-            return Clone(parent) as T;
+            return Clone(parent, areas) as T;
         }
 
         /// <summary>

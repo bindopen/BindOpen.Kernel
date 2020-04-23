@@ -58,11 +58,6 @@ namespace BindOpen.Data.Common
         Date,
 
         /// <summary>
-        /// Dictionary.
-        /// </summary>
-        Dictionary,
-
-        /// <summary>
         /// Document.
         /// </summary>
         Document,
@@ -106,11 +101,6 @@ namespace BindOpen.Data.Common
         /// Schema zone.
         /// </summary>
         SchemaZone,
-
-        /// <summary>
-        /// Schema.
-        /// </summary>
-        StringValued,
 
         /// <summary>
         /// Text.
@@ -186,8 +176,6 @@ namespace BindOpen.Data.Common
                     return typeof(Datasource);
                 case DataValueType.Date:
                     return typeof(DateTime);
-                case DataValueType.Dictionary:
-                    return typeof(DictionaryDataItem);
                 case DataValueType.Document:
                     return typeof(Document);
                 case DataValueType.Integer:
@@ -245,7 +233,7 @@ namespace BindOpen.Data.Common
             if (type.IsArray)
                 type = type.GetElementType();
 
-            if (type == typeof(Boolean) || type == typeof(Boolean?))
+            if (type == typeof(bool) || type == typeof(bool?))
                 return DataValueType.Boolean;
             else if (type == typeof(DateTime) || type == typeof(DateTime?))
                 return DataValueType.Date;
@@ -257,10 +245,8 @@ namespace BindOpen.Data.Common
                 return DataValueType.Text;
             else if (type == typeof(TimeSpan) || type == typeof(TimeSpan?))
                 return DataValueType.Time;
-            else if (type == typeof(String))
+            else if (type == typeof(string))
                 return DataValueType.Text;
-            else if (type == typeof(DictionaryDataItem))
-                return DataValueType.Dictionary;
             else if (typeof(IDocument).IsAssignableFrom(type))
                 return DataValueType.Document;
             else if (typeof(IBdoCarrier).IsAssignableFrom(type) || typeof(IBdoCarrierConfiguration).IsAssignableFrom(type))

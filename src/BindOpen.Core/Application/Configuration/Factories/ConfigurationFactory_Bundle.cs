@@ -71,7 +71,7 @@ namespace BindOpen.Application.Configuration
             {
                 if (value != null)
                 {
-                    bundle.AddValue(value.Key, value.Content);
+                    bundle.Add(value.Key, value.Content);
                 }
             }
 

@@ -606,11 +606,6 @@ namespace BindOpen.Application.Scopes
 
             _isDisposed = true;
 
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
-
             base.Dispose(isDisposing);
         }
 

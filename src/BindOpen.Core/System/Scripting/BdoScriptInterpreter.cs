@@ -360,7 +360,7 @@ namespace BindOpen.System.Scripting
                     title: "Syntax error: Function named '" + parentScriptword.Name + "' not defined. Position " + (index + offsetIndex),
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
                     logEvent.Detail = new DataElementSet();
-                    logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                    logEvent.Detail.Add(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                 }
                 return null;
             }
@@ -416,7 +416,7 @@ namespace BindOpen.System.Scripting
                                 title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
                             logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                            logEvent.Detail.Add(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
@@ -441,7 +441,7 @@ namespace BindOpen.System.Scripting
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR");
                                 logEvent.Detail = new DataElementSet();
-                                logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                                logEvent.Detail.Add(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                             }
                             return null;
                         }
@@ -476,7 +476,7 @@ namespace BindOpen.System.Scripting
                                 {
                                     if (dataElement.Specification != null)
                                         dataElement.Specification.MaximumItemNumber = 1;
-                                    dataElement.SetItem(parameterValue);
+                                    dataElement.WithItems(parameterValue);
 
                                     scriptWord.ParameterDetail.Add(dataElement);
                                     scriptWordParameterCount++;
@@ -500,8 +500,8 @@ namespace BindOpen.System.Scripting
                             IBdoLogEvent logEvent = log.AddError(
                                 title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR");
-                            logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                            logEvent.Detail = ElementFactory.CreateSet(
+                                ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
@@ -532,8 +532,8 @@ namespace BindOpen.System.Scripting
                                     (parentScriptword == null ? "" : " for parent function '" + parentScriptword.Name + "'") +
                                     ". Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_NOTEXISTINGWORD");
-                            logEvent.Detail = new DataElementSet();
-                            logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                            logEvent.Detail = ElementFactory.CreateSet(
+                                ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                         }
                         return null;
                     }
@@ -558,8 +558,8 @@ namespace BindOpen.System.Scripting
                                     title: "Invalid arguments: Function called '" + scriptWord.Name + "' has invalid parameters. Either the number of parameters does not match or their value types. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_INVALIDARGUMENT"
                                     );
-                                logEvent.Detail = new DataElementSet();
-                                logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                                logEvent.Detail = ElementFactory.CreateSet(
+                                    ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                             }
                             return null;
                         }
@@ -573,8 +573,8 @@ namespace BindOpen.System.Scripting
                                     IBdoLogEvent logEvent = log.AddError(
                                         title: "Invalid definition: Method not defined for function called '" + scriptWord.Name + "'. Position " + (index + offsetIndex),
                                         resultCode: "SCRIPT_DEFINITION");
-                                    logEvent.Detail = new DataElementSet();
-                                    logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
+                                    logEvent.Detail = ElementFactory.CreateSet(
+                                            ElementFactory.CreateScalar("Position", (index + offsetIndex).ToString()));
                                 }
                                 return null;
                             }
@@ -649,8 +649,8 @@ namespace BindOpen.System.Scripting
                             ". Position " + (offsetIndex) + ".",
                             "SCRIPT_EVALUATION"
                             );
-                        logEvent.Detail = new DataElementSet();
-                        logEvent.Detail.AddElement(ElementFactory.CreateScalar("Position", offsetIndex.ToString()));
+                        logEvent.Detail = ElementFactory.CreateSet(
+                            ElementFactory.CreateScalar("Position", offsetIndex.ToString()));
                     }
                 }
             }
@@ -814,11 +814,6 @@ namespace BindOpen.System.Scripting
             _scope?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }

@@ -462,7 +462,7 @@ namespace BindOpen.System.Processing
         /// <param name="value">The value of the attribute to set.</param>
         public void AddDetail(string name, object value)
         {
-            Detail.AddElement(ElementFactory.CreateScalar(name, DataValueType.Text, (value ?? "").ToString()));
+            Detail.Add(ElementFactory.CreateScalar(name, DataValueType.Text, (value ?? "").ToString()));
             _log?.WriteLog(name, value, BdoLoggerMode.Auto);
         }
 
@@ -490,11 +490,6 @@ namespace BindOpen.System.Processing
             _log?.Dispose();
 
             _isDisposed = true;
-
-            if (isDisposing)
-            {
-                GC.SuppressFinalize(this);
-            }
 
             base.Dispose(isDisposing);
         }
