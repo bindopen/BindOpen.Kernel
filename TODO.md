@@ -15,6 +15,7 @@ Todo list for BindOpen
 
 ## Stuff to check out later on
 
+### v.1.1
 * Simplify extension item management
 * Improve OptionsSet 
 * Implement a relevant readme file
