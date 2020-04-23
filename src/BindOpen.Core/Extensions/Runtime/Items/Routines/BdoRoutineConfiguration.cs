@@ -9,8 +9,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a routine configuration.
     /// </summary>
-    [XmlType("RoutineConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("routine", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("RoutineConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot("routine", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoRoutineConfiguration
         : TBdoExtensionTitledItemConfiguration<BdoRoutineDefinition>, IBdoRoutineConfiguration
     {
@@ -30,7 +30,7 @@ namespace BindOpen.Extensions.Runtime
         /// The output event set of this instance.
         /// </summary>
         [XmlElement("outputEventSet")]
-        public DataItemSet<BdoConditionalEvent> OutputEventSet { get; set; } = new DataItemSet<BdoConditionalEvent>();
+        public TDataItemSet<BdoConditionalEvent> OutputEventSet { get; set; } = new TDataItemSet<BdoConditionalEvent>();
 
         #endregion
 
@@ -96,9 +96,9 @@ namespace BindOpen.Extensions.Runtime
         /// Gets the output event set of this instance and instantiates it if it is null.
         /// </summary>
         /// <returns>Returns the detail of this instance.</returns>
-        public IDataItemSet<BdoConditionalEvent> NewOutputEventSet()
+        public ITDataItemSet<BdoConditionalEvent> NewOutputEventSet()
         {
-            return this.OutputEventSet = this.OutputEventSet ?? new DataItemSet<BdoConditionalEvent>();
+            return this.OutputEventSet = this.OutputEventSet ?? new TDataItemSet<BdoConditionalEvent>();
         }
 
         #endregion
@@ -119,7 +119,7 @@ namespace BindOpen.Extensions.Runtime
             //if (this.CommandSet != null)
             //    routine.CommandSet = this.CommandSet.Clone() as DataItemSet<Command>;
             if (this.OutputEventSet != null)
-                routine.OutputEventSet = this.OutputEventSet.Clone() as DataItemSet<BdoConditionalEvent>;
+                routine.OutputEventSet = this.OutputEventSet.Clone() as TDataItemSet<BdoConditionalEvent>;
             return routine;
         }
 

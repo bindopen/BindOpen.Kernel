@@ -5,7 +5,7 @@ namespace BindOpen.System.Diagnostics.Events
     /// <summary>
     /// This enumeration lists the possible event criticalities.
     /// </summary>
-    [XmlType("EventCriticality", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("EventCriticality", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     public enum BdoEventCriticality
     {
         /// <summary>

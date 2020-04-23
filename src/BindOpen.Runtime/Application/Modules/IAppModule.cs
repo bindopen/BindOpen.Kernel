@@ -26,7 +26,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        IDataItemSet<ApplicationLanguage> Languages { get; set; }
+        ITDataItemSet<ApplicationLanguage> Languages { get; set; }
 
         /// <summary>
         /// 
@@ -36,7 +36,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        IDataItemSet<AppSection> Sections { get; set; }
+        ITDataItemSet<AppSection> Sections { get; set; }
 
         /// <summary>
         /// 

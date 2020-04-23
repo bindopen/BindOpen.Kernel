@@ -3,18 +3,20 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # New features
 
-- [X] Publish XSD files
-- [X] The default data source is the first declared as default or the first data source otherwise
+- [X] Updating all the XSD files (location, include statements...).
+- [X] DataItemSet becomes TDataItemSet class.
+- [X] Only Add(item) method is virtual in TDataItemSet class.
 
 
 # Fixes
 
-- [X] Scopes are now specified on data depots at host loading.
+- [X] None.
 
 
 # Lifecycle news
 
-Release notes will be available soon.
+- [X] Documentation website will be available soon at [docs.bindopen.org](https://docs.bindopen.org).
+- [X] Release note history will be available soon.
 
 
 # Downloads
@@ -34,7 +36,6 @@ Release notes will be available soon.
 | BindOpen.Core            | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Release.Version__.zip) |
 | BindOpen.Runtime         | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__Release.Version__.zip) |
 | BindOpen.Runtime.NetCore | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__Release.Version__.zip) |
-
 
 
 # Packages updated in this release

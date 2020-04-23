@@ -15,8 +15,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlRoot(ElementName = "element.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataElementSet : DataItemSet<IDataElement>, IDataElementSet
+    [XmlRoot(ElementName = "element.set", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    public class DataElementSet : TDataItemSet<IDataElement>, IDataElementSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -240,7 +240,7 @@ namespace BindOpen.Data.Elements
 
             base.Update<T1>(item, specificationAreas, updateModes);
 
-            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            if (item is ITDataItemSet<DataElementSpec> referenceItem)
             {
                 // we repair this instance if needed
                 Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateModes.Incremental_UpdateCommonItems));
@@ -286,7 +286,7 @@ namespace BindOpen.Data.Elements
 
             base.Check<T1>(isExistenceChecked, item, specificationAreas);
 
-            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            if (item is ITDataItemSet<DataElementSpec> referenceItem)
             {
                 // we check that all the elements in this instance are in the specified item
 
@@ -339,7 +339,7 @@ namespace BindOpen.Data.Elements
 
             base.Repair<T1>(item, specificationAreas, updateModes);
 
-            if (item is IDataItemSet<DataElementSpec> referenceItem)
+            if (item is ITDataItemSet<DataElementSpec> referenceItem)
             {
                 // we check that all the elements in this instance are in the specified item
 

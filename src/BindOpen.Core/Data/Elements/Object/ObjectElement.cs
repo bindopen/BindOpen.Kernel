@@ -17,8 +17,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a object element that is an element whose items are entities.
     /// </summary>
-    [XmlType("ObjectElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "object", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ObjectElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "object", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class ObjectElement : DataElement, IObjectElement
     {
         // --------------------------------------------------

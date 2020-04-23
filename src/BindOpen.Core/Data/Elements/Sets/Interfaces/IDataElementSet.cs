@@ -9,7 +9,7 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataElementSet : IDataItemSet<IDataElement>
+    public interface IDataElementSet : ITDataItemSet<IDataElement>
     {
         /// <summary>
         /// 

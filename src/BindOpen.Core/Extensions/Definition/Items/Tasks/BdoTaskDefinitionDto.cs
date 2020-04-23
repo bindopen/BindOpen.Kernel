@@ -18,8 +18,8 @@ namespace BindOpen.Extensions.Definition
     /// This class represents a task definition.
     /// </summary>
     /// <seealso cref="BdoTaskConfiguration"/>
-    [XmlType("BdoTaskDefinition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "task.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoTaskDefinition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoTaskDefinitionDto : BdoExtensionItemDefinitionDto, IBdoTaskDefinitionDto
     {
         // ------------------------------------------

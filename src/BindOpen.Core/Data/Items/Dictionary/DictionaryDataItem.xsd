@@ -3,7 +3,7 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/items/DataItem.xsd" />
+  <xs:include schemaLocation="DataItem.xsd" />
   <xs:include schemaLocation="DataKeyValue.xsd" />
   
   <xs:complexType name="DictionaryDataItem">

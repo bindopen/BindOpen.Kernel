@@ -7,8 +7,8 @@ namespace BindOpen.Data.Business
     /// <summary>
     /// This class represents a business case.
     /// </summary>
-    [XmlType("BusinessCase", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "businessCase", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BusinessCase", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "businessCase", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BusinessCase : DescribedDataItem
     {
         // ------------------------------------------

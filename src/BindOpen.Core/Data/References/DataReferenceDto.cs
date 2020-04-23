@@ -12,8 +12,8 @@ namespace BindOpen.Data.References
     /// <summary>
     /// This class represents a data reference configuration.
     /// </summary>
-    [XmlType("DataReference", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "data.reference", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataReference", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "data.reference", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class DataReferenceDto : DataItem, IDataReferenceDto
     {
         // ------------------------------------------

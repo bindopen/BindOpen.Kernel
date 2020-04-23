@@ -13,8 +13,8 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a data source depot.
     /// </summary>
-    [XmlType("DatasourceDepot", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DatasourceDepot", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoDatasourceDepot : TBdoDepot<IDatasource>, IBdoDatasourceDepot
     {
         // ------------------------------------------

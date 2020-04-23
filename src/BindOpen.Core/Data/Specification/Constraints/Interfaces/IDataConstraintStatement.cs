@@ -10,7 +10,7 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataConstraintStatement : IDataItemSet<BdoRoutineConfiguration>
+    public interface IDataConstraintStatement : ITDataItemSet<BdoRoutineConfiguration>
     {
         /// <summary>
         /// 
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Specification
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
-            IDataItemSet<BdoConditionalEvent> outputEventSet = null);
+            ITDataItemSet<BdoConditionalEvent> outputEventSet = null);
 
         /// <summary>
         /// 

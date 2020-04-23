@@ -13,7 +13,7 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible levels of specification.
     /// </summary>
-    [XmlType("SpecificationLevel", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("SpecificationLevel", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     [Flags]
     public enum SpecificationLevels
     {

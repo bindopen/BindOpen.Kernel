@@ -3,9 +3,9 @@
   xmlns:dkm="http://www.w3.org/2001/dkm.xsd"
   elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/dkm.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../extensions/items/routines/Routine.xsd" />
-  <xs:include schemaLocation="../../../data/items/dictionary/DictionaryDataItem.xsd" />
-  <xs:include schemaLocation="../../../system/diagnostics/events/ConditionalEvent.xsd" />
+  <xs:include schemaLocation="Routine.xsd" />
+  <xs:include schemaLocation="DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="ConditionalEvent.xsd" />
 
   <xs:complexType name="DataConstraint" abstract="true">
     <xs:complexContent mixed="false">

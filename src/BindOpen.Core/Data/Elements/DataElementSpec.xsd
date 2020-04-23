@@ -3,14 +3,14 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../data/specification/DataSpecification.xsd" />
-  <xs:include schemaLocation="../../data/common/DataValueType.xsd" />
-  <xs:include schemaLocation="../../data/items/DataItemizationMode.xsd" />
-  <xs:include schemaLocation="../../data/common/RequirementLevel.xsd" />
-  <xs:include schemaLocation="../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../data/specification/constraints/DataConstraintStatement.xsd" />
-  <xs:include schemaLocation="../../data/specification/design/DataElementDesignStatement.xsd" />
-  <xs:include schemaLocation="../../data/elements/sets/DataElementSpecSet.xsd" />
+  <xs:include schemaLocation="DataSpecification.xsd" />
+  <xs:include schemaLocation="DataValueType.xsd" />
+  <xs:include schemaLocation="DataItemizationMode.xsd" />
+  <xs:include schemaLocation="RequirementLevel.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation="DataConstraintStatement.xsd" />
+  <xs:include schemaLocation="DataElementDesignStatement.xsd" />
+  <xs:include schemaLocation="DataElementSpecSet.xsd" />
 
   <xs:complexType name="DataElementSpec" abstract="true">
     <xs:complexContent mixed="false">

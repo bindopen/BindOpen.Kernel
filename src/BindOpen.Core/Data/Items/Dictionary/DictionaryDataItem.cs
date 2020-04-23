@@ -15,8 +15,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="DataKeyValue"/>
-    [XmlType("DictionaryDataItem", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "item", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DictionaryDataItem", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "item", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class DictionaryDataItem : DataItem, IDictionaryDataItem
     {
         // --------------------------------------------------

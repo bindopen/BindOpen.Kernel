@@ -6,9 +6,9 @@
   <xs:include schemaLocation="SpecificationLevel.xsd" />
   <xs:include schemaLocation="../items/DescribedDataItem.xsd" />
   <xs:include schemaLocation="../items/dictionary/DataKeyValue.xsd" />
-  <xs:include schemaLocation="../specification/DataAreaSpecification.xsd" />
+  <xs:include schemaLocation="DataAreaSpecification.xsd" />
   <xs:include schemaLocation="../../application/commands/Command.xsd" />
-  <xs:include schemaLocation="../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="connectors/ConnectorConfiguration.xsd" />
   <xs:include schemaLocation="../items/source/Datasource.xsd" />
 
   <xs:complexType name="ArrayOfString">

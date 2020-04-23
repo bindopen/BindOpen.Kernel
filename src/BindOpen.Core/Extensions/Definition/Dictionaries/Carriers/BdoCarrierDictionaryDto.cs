@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO carrier dictionary.
     /// </summary>
-    [XmlType("BdoCarrierDictionary", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "carriers.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoCarrierDictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "carriers.dictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoCarrierDictionaryDto : TBdoExtensionDictionaryDto<BdoCarrierDefinitionDto>, IBdoCarrierDictionaryDto
     {
         // ------------------------------------------
