@@ -20,6 +20,7 @@ Todo list for BindOpen
 * Improve OptionsSet 
 * Implement a relevant readme file
 * Add Expression data value type
-* Simplify serialization
+* Optimize serialization
 * Improve AppModule management (DbFluent mode)
-
+### v.1.2
+* Integrate .net core logging/configuration
