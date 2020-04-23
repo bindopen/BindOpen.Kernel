@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<scriptWords.dictionary library="runtime"
+  xmlns="https://bindopen.org/xsd"
+  xmlns:SchemaLocation="bdo:BdoScriptwordDictionary BdoScriptwordDictionary.xsd">
+  <creationDate>2010-08-05</creationDate>
+  <lastModificationDate>2016-08-19</lastModificationDate>
+  <definitions>
+
+    <!-- Functions -->
+
+    <!-- $TEXT(value) -->
+    <add.definition name="TEXT">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns the parameter into text value.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Text</functionName>
+      <parameter.specification>
+        <scalar name="value" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+    
+    <!-- $ISEQUAL(value1, value2) -->
+    <add.definition name="ISEQUAL">
+      <creationDate>2010-08-05</creationDate>
+      <lastModificationDate>2011-06-05</lastModificationDate>
+      <description>
+        <add.value>Returns TRUE if the first parameter equals to the second one.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_IsEqual</functionName>
+      <parameter.specification>
+        <scalar name="boolean1" valueType="Any" />
+        <scalar name="boolean2" valueType="Any" />
+      </parameter.specification>
+    </add.definition>
+  </definitions>
+  
+  <definitionClass>.Scriptwords.ScriptwordDefinition_runtime</definitionClass>
+
+</scriptWords.dictionary>

@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>BindOpen.Tests.Runtime</AssemblyName>
+    <PackageId>BindOpen.Tests.Runtime</PackageId>
+    <Product>BindOpen.Framework</Product>
+    <Company>BindOpen</Company>
+    <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Runtime libraries.</Description>
+    <Authors>Sumer Team</Authors>
+    <RootNamespace>BindOpen.Tests.Runtime</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>bindopen_icon.png</PackageIcon>
+    <PackageIconUrl />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bdo\logs\**" />
+    <Compile Remove="bdo\temp\**" />
+    <EmbeddedResource Remove="bdo\logs\**" />
+    <EmbeddedResource Remove="bdo\temp\**" />
+    <None Remove="bdo\logs\**" />
+    <None Remove="bdo\temp\**" />
+    <None Include="..\..\docs\images\bindopen_icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BindOpen.Runtime.NetCore\BindOpen.Runtime.NetCore.csproj" />
+  </ItemGroup>
+
+</Project>

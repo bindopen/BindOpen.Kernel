@@ -1,0 +1,104 @@
+﻿using System.Collections.Generic;
+
+namespace BindOpen.Data.Items
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IDataItemSet<T> : IIdentifiedDataItem where T : IIdentifiedDataItem
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        List<T> Items { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        T this[int index] { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        T this[string key] { get; }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        T Get(string key = null);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(string key = null) where Q : class, T;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        int Count { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void ClearItems();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        void Add(params T[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="referenceCollection"></param>
+        void Add(List<T> items, IDataItemSet<T> referenceCollection = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="referenceCollection"></param>
+        void Add(T item, IDataItemSet<T> referenceCollection = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemSet"></param>
+        /// <returns></returns>
+        List<string> GetCommonItemKeys(IDataItemSet<T> itemSet);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool HasItem(string key = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keys"></param>
+        void Remove(params string[] keys);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        T[] ToArray();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        List<T> ToList();
+    }
+}

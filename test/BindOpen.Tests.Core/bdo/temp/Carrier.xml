@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<carrier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="test" definition="tests.core$dbField" xmlns="https://bindopen.org/xsd">
+  <scalar name="isAll" valueType="Boolean" value="true" />
+  <scalar name="dataModule" value="dataModule" />
+  <scalar name="schema">
+    <values />
+  </scalar>
+  <scalar name="dataTable" value="dataTable" />
+  <scalar name="dataTableAlias" value="dataTableAlias" />
+  <scalar name="alias" value="alias" />
+  <scalar name="size" valueType="Integer" value="50" />
+  <object name="value" valueType="Object" class="BindOpen.Data.Expression.DataExpression,BindOpen.Core">
+    <items>
+      <add>
+        <scalar name="Text" value="=$bidule()" />
+        <scalar name="Kind" value="Script" />
+      </add>
+    </items>
+  </object>
+  <scalar name="isKey" valueType="Boolean" value="true" />
+  <scalar name="isForeignKey" valueType="Boolean" value="true" />
+  <scalar name="isNameAsScript" valueType="Boolean" value="true" />
+  <scalar name="valueType" value="Boolean" />
+  <scalar name="path">
+    <values />
+  </scalar>
+  <scalar name="parentPath">
+    <values />
+  </scalar>
+  <scalar name="creationDate">
+    <values />
+  </scalar>
+  <scalar name="flag">
+    <values />
+  </scalar>
+  <scalar name="isReadOnly" valueType="Boolean" value="true" />
+  <scalar name="lastAccessDate">
+    <values />
+  </scalar>
+  <scalar name="lastWriteDate">
+    <values />
+  </scalar>
+</carrier>
