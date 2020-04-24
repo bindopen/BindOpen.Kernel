@@ -4,18 +4,18 @@
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
-        <scalar name="path" value="Forint_1.txt" />
+        <scalar name="path" value="schemas_1.txt" />
       </add>
     </items>
   </carrier>
   <carrier id="tests.core$testCarrier" name="carrier2" valueType="Carrier">
     <items>
       <add>
-        <scalar name="path" value="24/7_2.txt" />
+        <scalar name="path" value="circuit_2.txt" />
       </add>
     </items>
   </carrier>
-  <carrier name="carrierElem_637232919924357403" valueType="Carrier">
+  <carrier name="carrierElem_637232957105543495" valueType="Carrier">
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
@@ -23,7 +23,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="Incredible_3.txt" />
+        <scalar name="path" value="monitor_3.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />
@@ -41,7 +41,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="neural_4.txt" />
+        <scalar name="path" value="Handmade Plastic Chair_4.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />

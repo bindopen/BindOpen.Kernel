@@ -10,12 +10,6 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="updateBaseObject"></param>
-        void Update(IDescribedDataItem updateBaseObject);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="text"></param>
         IDescribedDataItem AddDescription(string text);
 
@@ -38,5 +32,12 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="text"></param>
         IDescribedDataItem WithDescription(string text);
+
+        /// <summary>
+        /// Returns the description label.
+        /// </summary>
+        /// <param name="variantName">The variant variant name to consider.</param>
+        /// <param name="defaultVariantName">The default variant name to consider.</param>
+        string GetDescriptionText(string variantName = "*", string defaultVariantName = "*");
     }
 }

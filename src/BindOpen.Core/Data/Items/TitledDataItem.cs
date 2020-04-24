@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Common;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System.Xml.Serialization;
@@ -92,15 +93,28 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Updates this instance with the base object.
+        /// Updates this instance.
         /// </summary>
-        /// <param name="updateBaseObject">The update base object to consider.</param>
-        public void Update(ITitledDataItem updateBaseObject)
+        /// <param name="item">The item to consider.</param>
+        /// <param name="specificationAreas">The specification areas to consider.</param>
+        /// <param name="updateModes">The update modes to consider.</param>
+        /// <returns>Log of the operation.</returns>
+        /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        public override IBdoLog Update<T1>(
+            T1 item = default,
+            string[] specificationAreas = null,
+            UpdateModes[] updateModes = null)
         {
-            if (updateBaseObject != null && updateBaseObject.Title != null)
+            var log = new BdoLog();
+
+            base.Update(item, specificationAreas, updateModes);
+
+            if (item is TitledDataItem titledDataItem)
             {
-                Title = ItemFactory.CreateDictionary(updateBaseObject.Title);
+                Title = ItemFactory.CreateDictionary(titledDataItem.Title);
             }
+
+            return log;
         }
 
         // Title -------------------------------
@@ -153,7 +167,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public virtual string GetTitle(string variantName = "*", string defaultVariantName = "*")
+        public virtual string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
             if (Title == null) return "";
 

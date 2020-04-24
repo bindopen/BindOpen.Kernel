@@ -9,7 +9,7 @@ namespace BindOpen.Extensions.Runtime
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITBdoExtensionTitledItemConfiguration<T>
-        : ITBdoExtensionItemConfiguration<T>, IGloballyTitled, INamed, IIdentifiedDataItem, ISavable
+        : ITBdoExtensionItemConfiguration<T>, ITitledDataItem, IIdentifiedDataItem, ISavable
         where T : IBdoExtensionItemDefinition
     {
     }

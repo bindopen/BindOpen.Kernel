@@ -985,12 +985,12 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override string GetTitle(string variantName = "*", string defaultVariantName = "*")
+        public override string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
             if (Title == null && Task != null)
                 return Task.GetTitle(variantName, defaultVariantName);
             else
-                return base.GetTitle(variantName, defaultVariantName);
+                return base.GetTitleText(variantName, defaultVariantName);
         }
 
         /// <summary>
@@ -998,12 +998,12 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="variantName">The variant variant name to consider.</param>
         /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override string GetDescription(string variantName = "*", string defaultVariantName = "*")
+        public override string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
         {
             if (Description == null && Task != null)
                 return Task.GetDescription(variantName, defaultVariantName);
             else
-                return base.GetDescription(variantName, defaultVariantName);
+                return base.GetDescriptionText(variantName, defaultVariantName);
         }
 
         // Events --------------------------------
