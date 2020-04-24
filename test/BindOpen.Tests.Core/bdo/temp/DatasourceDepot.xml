@@ -4,13 +4,13 @@
     <add name="smtp_default" kind="EmailServer">
       <configuration>
         <add definition="messages$smtp">
-          <scalar name="host" value="117.92.45.73" />
-          <scalar name="port" valueType="Integer" value="1053334226" />
+          <scalar name="host" value="111.113.71.114" />
+          <scalar name="port" valueType="Integer" value="399091308" />
           <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="false" />
           <scalar name="isSslEnabled" valueType="Boolean" value="false" />
-          <scalar name="timeout" valueType="Integer" value="1119543197" />
-          <scalar name="login" value="Madeline.Mertz@hotmail.com" />
-          <scalar name="password" value="reiciendis" />
+          <scalar name="timeout" valueType="Integer" value="187587049" />
+          <scalar name="login" value="Kenneth.Macejkovic@yahoo.com" />
+          <scalar name="password" value="corrupti" />
         </add>
       </configuration>
     </add>

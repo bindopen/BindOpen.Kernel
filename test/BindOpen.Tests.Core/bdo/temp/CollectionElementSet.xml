@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <collection name="collection1" valueType="Element">
-    <scalar name="pixel" valueType="Number" value="0.8643974782267574" />
-    <scalar name="Licensed" valueType="Number" value="0.34701798593020905" />
-    <scalar name="cutting-edge" valueType="Number" value="0.4240145899467238" />
-    <scalar name="EXE" valueType="Number" value="0.6805805613662026" />
-    <scalar name="Representative" valueType="Number" value="0.5216325314350577" />
-    <scalar name="Inlet" valueType="Number" value="0.5888956727408318" />
-    <scalar name="Avenue" valueType="Number" value="0.5490634937533473" />
-    <scalar name="Unbranded" valueType="Number" value="0.7251563466736843" />
-    <scalar name="Investor" valueType="Number" value="0.3221362318481022" />
-    <scalar name="Village" valueType="Number" value="0.14561158052906933" />
+    <scalar name="Investment Account" valueType="Number" value="0.02763810801675455" />
+    <scalar name="withdrawal" valueType="Number" value="0.32848459218092474" />
+    <scalar name="salmon" valueType="Number" value="0.5597858324459688" />
+    <scalar name="program" valueType="Number" value="0.44488902131323194" />
+    <scalar name="Turnpike" valueType="Number" value="0.828952245800268" />
+    <scalar name="1080p" valueType="Number" value="0.19584191785931676" />
+    <scalar name="intermediate" valueType="Number" value="0.06010766190481729" />
+    <scalar name="calculating" valueType="Number" value="0.7843712222689628" />
+    <scalar name="Plastic" valueType="Number" value="0.31462045307952" />
+    <scalar name="Toys, Industrial &amp; Clothing" valueType="Number" value="0.9512942465726725" />
   </collection>
   <collection name="collection2" valueType="Element">
-    <scalar name="attitude" valueType="Number" value="0.7978519749817681" />
-    <scalar name="Forward" valueType="Number" value="0.5001521019731425" />
-    <scalar name="magenta" valueType="Number" value="0.6250683137332408" />
-    <scalar name="portals" valueType="Number" value="0.0492999842619989" />
-    <scalar name="wireless" valueType="Number" value="0.06271577349990409" />
-    <scalar name="moderator" valueType="Number" value="0.6053659369262708" />
-    <scalar name="digital" valueType="Number" value="0.8765084826743735" />
-    <scalar name="Ergonomic Plastic Pants" valueType="Number" value="0.6323744033614054" />
-    <scalar name="Belize Dollar" valueType="Number" value="0.1738998643932398" />
-    <scalar name="red" valueType="Number" value="0.9065688079719286" />
+    <scalar name="Orchestrator" valueType="Number" value="0.7185066131495436" />
+    <scalar name="Luxembourg" valueType="Number" value="0.7748702139476641" />
+    <scalar name="Implementation" valueType="Number" value="0.9365670974070984" />
+    <scalar name="override" valueType="Number" value="0.24584639875490516" />
+    <scalar name="Parkway" valueType="Number" value="0.9582169283918184" />
+    <scalar name="Guyana" valueType="Number" value="0.7591229387368648" />
+    <scalar name="digital" valueType="Number" value="0.3740187321668578" />
+    <scalar name="neural" valueType="Number" value="0.7341704511708442" />
+    <scalar name="Optional" valueType="Number" value="0.9955154736505428" />
+    <scalar name="Kids" valueType="Number" value="0.005057902077705553" />
     <carrier id="tests.core$testCarrier" name="collection2" valueType="Carrier">
       <items>
         <add>
