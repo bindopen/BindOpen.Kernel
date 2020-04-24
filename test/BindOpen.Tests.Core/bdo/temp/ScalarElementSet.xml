@@ -2,58 +2,58 @@
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="float1" valueType="Number">
     <values>
-      <add>0.7858427519844112</add>
-      <add>0.15043220117242645</add>
-      <add>0.4935947747405594</add>
-      <add>0.4732345242394295</add>
-      <add>0.27938465461106254</add>
-      <add>0.11044563265072443</add>
-      <add>0.26483695314491024</add>
-      <add>0.2628327758344043</add>
-      <add>0.4209717039116527</add>
-      <add>0.32276447598019825</add>
+      <add>0.27888529853843397</add>
+      <add>0.5491197116436063</add>
+      <add>0.06861482889792642</add>
+      <add>0.3611340594296968</add>
+      <add>0.40800608899817153</add>
+      <add>0.31869429644136427</add>
+      <add>0.8484244713785241</add>
+      <add>0.8805917491580321</add>
+      <add>0.5879411881733412</add>
+      <add>0.0500243944348881</add>
     </values>
   </scalar>
   <scalar name="text1">
     <values>
-      <add>innovative</add>
-      <add>Awesome Granite Tuna</add>
-      <add>cross-platform</add>
-      <add>Moldova</add>
-      <add>digital</add>
-      <add>Borders</add>
-      <add>Refined Frozen Ball</add>
-      <add>Accounts</add>
-      <add>Program</add>
-      <add>product</add>
+      <add>Plains</add>
+      <add>Manager</add>
+      <add>Handmade</add>
+      <add>Handcrafted Soft Salad</add>
+      <add>Belarus</add>
+      <add>Paradigm</add>
+      <add>redefine</add>
+      <add>Programmable</add>
+      <add>e-business</add>
+      <add>hack</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer">
     <values>
-      <add>836838943</add>
-      <add>-2064205877</add>
-      <add>-1457781209</add>
-      <add>223962034</add>
-      <add>-818160037</add>
-      <add>-62587506</add>
-      <add>-1545234533</add>
-      <add>1513422053</add>
-      <add>-446000956</add>
-      <add>1394962612</add>
+      <add>603493039</add>
+      <add>-395291707</add>
+      <add>1154705176</add>
+      <add>1099205607</add>
+      <add>-366611622</add>
+      <add>-336306082</add>
+      <add>-378479300</add>
+      <add>-749399217</add>
+      <add>225461976</add>
+      <add>1069990987</add>
     </values>
   </scalar>
   <scalar name="float2" valueType="Number">
     <values>
-      <add>0.20945291044630712</add>
-      <add>0.589685235912765</add>
-      <add>0.6756994946280958</add>
-      <add>0.9163192603347448</add>
-      <add>0.29802335207258507</add>
-      <add>0.449115363158805</add>
-      <add>0.1261094706720251</add>
-      <add>0.9757506255878837</add>
-      <add>0.304983377598684</add>
-      <add>0.6416169636145314</add>
+      <add>0.43386880282027124</add>
+      <add>0.9015194079380107</add>
+      <add>0.5835660326218074</add>
+      <add>0.1982577905050748</add>
+      <add>0.5979257536111053</add>
+      <add>0.7538159209088496</add>
+      <add>0.98124556847906</add>
+      <add>0.43275176893582185</add>
+      <add>0.07684462753908924</add>
+      <add>0.18098543592774563</add>
     </values>
   </scalar>
 </element.set>

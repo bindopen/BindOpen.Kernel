@@ -38,7 +38,7 @@ namespace BindOpen.Data.Items
         /// <param name="id">The ID to consider.</param>
         public IdentifiedDataItem(string id = null) : base()
         {
-            this.Id = id?.Length == 0 ? IdentifiedDataItem.NewGuid() : id;
+            Id = id?.Length == 0 ? IdentifiedDataItem.NewGuid() : id;
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         public virtual string Key()
         {
-            return this.Id;
+            return Id;
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             IdentifiedDataItem item = base.Clone(areas) as IdentifiedDataItem;
-            if (this.Id != null)
+            if (Id != null)
                 item.Id = IdentifiedDataItem.NewGuid();
             return item;
         }

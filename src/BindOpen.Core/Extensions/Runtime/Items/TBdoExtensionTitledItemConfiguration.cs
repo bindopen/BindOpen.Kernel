@@ -67,7 +67,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddTitleText(string text)
         {
-            this.AddTitleText("*", text);
+            AddTitleText("*", text);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddTitleText(string key, string text)
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).Add(key, text);
+            (Title ?? (Title = new DictionaryDataItem())).Add(key, text);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetTitleText(string text)
         {
-            this.SetTitleText("*", text);
+            SetTitleText("*", text);
         }
 
         /// <summary>
@@ -96,8 +96,8 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetTitleText(string key = "*", string text = "*")
         {
-            if (this.Title == null) this.Title = new DictionaryDataItem();
-            this.Title.Set(key, text);
+            if (Title == null) Title = new DictionaryDataItem();
+            Title.Set(key, text);
         }
 
         // Description -------------------------------
@@ -108,7 +108,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddDescriptionText(string text)
         {
-            this.AddDescriptionText("*", text);
+            AddDescriptionText("*", text);
         }
 
         /// <summary>
@@ -118,8 +118,8 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void AddDescriptionText(string key, string text)
         {
-            if (this.Description == null) this.Description = new DictionaryDataItem();
-            this.Description.Add(key, text);
+            if (Description == null) Description = new DictionaryDataItem();
+            Description.Add(key, text);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetDescriptionText(string text)
         {
-            this.SetDescriptionText("*", text);
+            SetDescriptionText("*", text);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="text">The text to consider.</param>
         public void SetDescriptionText(string key = "*", string text = "*")
         {
-            (this.Description ?? (this.Description = new DictionaryDataItem())).Set(key, text);
+            (Description ?? (Description = new DictionaryDataItem())).Set(key, text);
         }
 
         #endregion
@@ -156,12 +156,12 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
-            if (this.Title == null) return "";
-            string label = this.Title.GetContent(variantName);
+            if (Title == null) return "";
+            string label = Title.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
-                label = this.Title.GetContent(defaultVariantName);
+                label = Title.GetContent(defaultVariantName);
             if (string.IsNullOrEmpty(label))
-                label = this.Name;
+                label = Name;
             return label ?? "";
         }
 
@@ -172,10 +172,10 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
         {
-            if (this.Description == null) return "";
-            string label = this.Description.GetContent(variantName);
+            if (Description == null) return "";
+            string label = Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
-                label = this.Description.GetContent(defaultVariantName);
+                label = Description.GetContent(defaultVariantName);
             return label ?? "";
         }
 
@@ -194,8 +194,8 @@ namespace BindOpen.Extensions.Runtime
         public override object Clone(params string[] areas)
         {
             ITBdoExtensionTitledItemConfiguration<T> dto = base.Clone(areas) as TBdoExtensionTitledItemConfiguration<T>;
-            if (this.Title != null)
-                dto.Title = this.Title.Clone() as DictionaryDataItem;
+            if (Title != null)
+                dto.Title = Title.Clone() as DictionaryDataItem;
 
             return dto;
         }
@@ -209,12 +209,26 @@ namespace BindOpen.Extensions.Runtime
         #region ITitledDataItem Implementation
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public INamedDataItem WithName(string name)
+        {
+            Name = name;
+
+            return this;
+        }
+
+        /// <summary>
         /// Adds the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void AddTitle(string text)
+        public ITitledDataItem AddTitle(string text)
         {
-            this.AddTitle("*", text);
+            AddTitle("*", text);
+
+            return this;
         }
 
         /// <summary>
@@ -222,18 +236,22 @@ namespace BindOpen.Extensions.Runtime
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void AddTitle(string key, string text)
+        public ITitledDataItem AddTitle(string key, string text)
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).Add(key, text);
+            (Title ?? (Title = new DictionaryDataItem())).Add(key, text);
+
+            return this;
         }
 
         /// <summary>
         /// Sets the title text.
         /// </summary>
         /// <param name="text">The text to consider.</param>
-        public void SetTitle(string text)
+        public ITitledDataItem WithTitle(string text)
         {
-            this.SetTitle("*", text);
+            WithTitle("*", text);
+
+            return this;
         }
 
         /// <summary>
@@ -241,9 +259,11 @@ namespace BindOpen.Extensions.Runtime
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="text">The text to consider.</param>
-        public void SetTitle(string key = "*", string text = "*")
+        public ITitledDataItem WithTitle(string key = "*", string text = "*")
         {
-            (this.Title ?? (this.Title = new DictionaryDataItem())).Set(key, text);
+            (Title ?? (Title = new DictionaryDataItem())).Set(key, text);
+
+            return this;
         }
 
         /// <summary>
@@ -253,16 +273,16 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public virtual string GetTitle(string variantName = "*", string defaultVariantName = "*")
         {
-            if (this.Title == null) return "";
+            if (Title == null) return "";
 
-            string label = this.Title.GetContent(variantName);
+            string label = Title.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
             {
-                label = this.Title.GetContent(defaultVariantName);
+                label = Title.GetContent(defaultVariantName);
             }
             if (string.IsNullOrEmpty(label))
             {
-                label = this.Name;
+                label = Name;
             }
 
             return label ?? "";

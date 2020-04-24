@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <collection name="collection1" valueType="Element">
-    <scalar name="Investment Account" valueType="Number" value="0.02763810801675455" />
-    <scalar name="withdrawal" valueType="Number" value="0.32848459218092474" />
-    <scalar name="salmon" valueType="Number" value="0.5597858324459688" />
-    <scalar name="program" valueType="Number" value="0.44488902131323194" />
-    <scalar name="Turnpike" valueType="Number" value="0.828952245800268" />
-    <scalar name="1080p" valueType="Number" value="0.19584191785931676" />
-    <scalar name="intermediate" valueType="Number" value="0.06010766190481729" />
-    <scalar name="calculating" valueType="Number" value="0.7843712222689628" />
-    <scalar name="Plastic" valueType="Number" value="0.31462045307952" />
-    <scalar name="Toys, Industrial &amp; Clothing" valueType="Number" value="0.9512942465726725" />
+    <scalar name="Money Market Account" valueType="Number" value="0.19935795953467395" />
+    <scalar name="Handmade" valueType="Number" value="0.10145956561968641" />
+    <scalar name="Gorgeous" valueType="Number" value="0.13992327504787747" />
+    <scalar name="lime" valueType="Number" value="0.5572793076547232" />
+    <scalar name="Malagasy Ariary" valueType="Number" value="0.32379630129961123" />
+    <scalar name="View" valueType="Number" value="0.6941311213626206" />
+    <scalar name="Credit Card Account" valueType="Number" value="0.012135521048743055" />
+    <scalar name="out-of-the-box" valueType="Number" value="0.5713762503915356" />
+    <scalar name="programming" valueType="Number" value="0.9913985310082317" />
+    <scalar name="calculating" valueType="Number" value="0.07130844614995105" />
   </collection>
   <collection name="collection2" valueType="Element">
-    <scalar name="Orchestrator" valueType="Number" value="0.7185066131495436" />
-    <scalar name="Luxembourg" valueType="Number" value="0.7748702139476641" />
-    <scalar name="Implementation" valueType="Number" value="0.9365670974070984" />
-    <scalar name="override" valueType="Number" value="0.24584639875490516" />
-    <scalar name="Parkway" valueType="Number" value="0.9582169283918184" />
-    <scalar name="Guyana" valueType="Number" value="0.7591229387368648" />
-    <scalar name="digital" valueType="Number" value="0.3740187321668578" />
-    <scalar name="neural" valueType="Number" value="0.7341704511708442" />
-    <scalar name="Optional" valueType="Number" value="0.9955154736505428" />
-    <scalar name="Kids" valueType="Number" value="0.005057902077705553" />
+    <scalar name="compressing" valueType="Number" value="0.23858501121335896" />
+    <scalar name="quantifying" valueType="Number" value="0.73585511312627" />
+    <scalar name="facilitate" valueType="Number" value="0.07644057044593644" />
+    <scalar name="Investment Account" valueType="Number" value="0.9368615774143774" />
+    <scalar name="Rapid" valueType="Number" value="0.91986358767369" />
+    <scalar name="Health" valueType="Number" value="0.7445459103884855" />
+    <scalar name="application" valueType="Number" value="0.44703923186615074" />
+    <scalar name="rich" valueType="Number" value="0.18026285813202284" />
+    <scalar name="knowledge user" valueType="Number" value="0.6279817091431383" />
+    <scalar name="Secured" valueType="Number" value="0.11006103461145472" />
     <carrier id="tests.core$testCarrier" name="collection2" valueType="Carrier">
       <items>
         <add>

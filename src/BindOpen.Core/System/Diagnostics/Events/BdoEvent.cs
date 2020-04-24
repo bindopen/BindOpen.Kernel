@@ -187,7 +187,7 @@ namespace BindOpen.System.Diagnostics.Events
         /// <param name="aEvent">The event to consider.</param>
         public static implicit operator string(BdoEvent aEvent)
         {
-            return aEvent?.GetTitle();
+            return aEvent?.GetTitleText();
         }
 
         #endregion

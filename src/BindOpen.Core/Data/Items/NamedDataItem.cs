@@ -53,8 +53,8 @@ namespace BindOpen.Data.Items
             string id = null,
             DateTime? creationDate = null) : base(id, creationDate)
         {
-            this.NamePreffix = namePreffix;
-            this.Name = (name ?? this.NamePreffix + DateTime.Now.Ticks.ToString());
+            NamePreffix = namePreffix;
+            Name = (name ?? NamePreffix + DateTime.Now.Ticks.ToString());
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         public override string Key()
         {
-            return this.Name;
+            return Name;
         }
 
         /// <summary>
@@ -104,8 +104,8 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             NamedDataItem item = base.Clone(areas) as NamedDataItem;
-            item.Name = Name;// NamedDataItem.GetClonedName(this.Name, this.NamePreffix);
-            if (this.CreationDate != null)
+            item.Name = Name;// NamedDataItem.GetClonedName(Name, NamePreffix);
+            if (CreationDate != null)
                 item.CreationDate = ObjectHelper.ToString(DateTime.Now);
             item.LastModificationDate = null;
             return item;

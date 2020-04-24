@@ -81,7 +81,9 @@ namespace BindOpen.Extensions.Runtime
             var log = new BdoLog();
 
             if (item is BdoCarrierConfiguration configuration)
-                log.AddEvents(base.Update(configuration));
+            {
+                log.AddEvents(base.Update(configuration, specificationAreas, updateModes));
+            }
 
             return log;
         }
@@ -102,7 +104,7 @@ namespace BindOpen.Extensions.Runtime
 
             if (item is BdoCarrierConfiguration configuration)
             {
-                log.AddEvents(Check(isExistenceChecked, configuration, specificationAreas));
+                log.AddEvents(base.Check(isExistenceChecked, configuration, specificationAreas));
             }
             return log;
         }
