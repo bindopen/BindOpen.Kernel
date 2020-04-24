@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:bdo="https://bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:bdo="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../security/ApplicationCredential.xsd" />
-  <xs:include schemaLocation="../../../bdo.core/data/common/Arrays.xsd" />
+  <xs:include schemaLocation="ApplicationCredential.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
   
   <xs:element name="app.config" type="bdo:AppConfiguration" />
   <xs:complexType name="AppConfiguration">

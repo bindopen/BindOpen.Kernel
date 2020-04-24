@@ -110,7 +110,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// The sections of this instance.
         /// </summary>
-        public IDataItemSet<AppSection> Sections
+        public ITDataItemSet<AppSection> Sections
         {
             get;
             set;

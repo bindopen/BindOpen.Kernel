@@ -3,7 +3,7 @@
   xmlns:bdo="http://meltingsoft.com/bindopen/xsd"
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../data/items/DescribedDataItem.xsd" />
+  <xs:include schemaLocation="DescribedDataItem.xsd" />
   <xs:include schemaLocation="CommandKind.xsd" />
 
   <xs:complexType name="Command">

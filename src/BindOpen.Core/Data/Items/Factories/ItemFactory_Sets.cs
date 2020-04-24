@@ -15,7 +15,7 @@ namespace BindOpen.Data.Items
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
         public static Q CreateSet<Q, T>(params T[] items)
-            where Q : DataItemSet<T>, new()
+            where Q : TDataItemSet<T>, new()
             where T : IIdentifiedDataItem
         {
             return new Q()
@@ -29,9 +29,9 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
-        public static DataItemSet<T> CreateItemSet<T>(params T[] items) where T : IIdentifiedDataItem
+        public static TDataItemSet<T> CreateItemSet<T>(params T[] items) where T : IIdentifiedDataItem
         {
-            return CreateSet<DataItemSet<T>, T>(items);
+            return CreateSet<TDataItemSet<T>, T>(items);
         }
     }
 }

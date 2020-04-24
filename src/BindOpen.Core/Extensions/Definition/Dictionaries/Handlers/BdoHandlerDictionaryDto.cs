@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a handler index.
     /// </summary>
-    [XmlType("BdoHandlerDictionary", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "handlers.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoHandlerDictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "handlers.dictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoHandlerDictionaryDto : TBdoExtensionDictionaryDto<BdoHandlerDefinitionDto>, IBdoHandlerDictionaryDto
     {
         // ------------------------------------------

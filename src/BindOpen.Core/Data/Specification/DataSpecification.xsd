@@ -3,11 +3,11 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../data/items/IndexedDataItem.xsd" />
-  <xs:include schemaLocation="../../data/common/RequirementLevel.xsd" />
-  <xs:include schemaLocation="../../data/common/InheritanceLevel.xsd" />
-  <xs:include schemaLocation="../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../data/common/AccessibilityLevel.xsd" />
+  <xs:include schemaLocation="IndexedDataItem.xsd" />
+  <xs:include schemaLocation="RequirementLevel.xsd" />
+  <xs:include schemaLocation="InheritanceLevel.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation="AccessibilityLevel.xsd" />
 
   <xs:complexType name="DataSpecification" abstract="true">
     <xs:complexContent mixed="false">

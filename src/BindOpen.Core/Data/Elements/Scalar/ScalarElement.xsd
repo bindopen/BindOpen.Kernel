@@ -3,9 +3,9 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/common/DataValueType.xsd" />
-  <xs:include schemaLocation="../../../data/elements/DataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/scalar/ScalarElementSpec.xsd" />
+  <xs:include schemaLocation="DataValueType.xsd" />
+  <xs:include schemaLocation="DataElement.xsd" />
+  <xs:include schemaLocation="ScalarElementSpec.xsd" />
 
   <xs:complexType name="ScalarElement">
     <xs:complexContent mixed="false">

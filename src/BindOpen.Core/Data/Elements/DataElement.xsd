@@ -3,13 +3,13 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../data/items/IndexedDataItem.xsd" />
-  <xs:include schemaLocation="../../data/items/DataItemizationMode.xsd" />
-  <xs:include schemaLocation="../../data/references/DataReferenceDto.xsd" />
-  <xs:include schemaLocation="../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../data/elements/DataElementSpec.xsd" />
-  <xs:include schemaLocation="../../data/elements/sets/DataElementSet.xsd" />
-  <xs:include schemaLocation="../../system/diagnostics/events/EventKind.xsd" />
+  <xs:include schemaLocation="IndexedDataItem.xsd" />
+  <xs:include schemaLocation="DataItemizationMode.xsd" />
+  <xs:include schemaLocation="DataReferenceDto.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation="DataElementSpec.xsd" />
+  <xs:include schemaLocation="DataElementSet.xsd" />
+  <xs:include schemaLocation="EventKind.xsd" />
 
   <xs:complexType name="DataElement" abstract="true">
     <xs:complexContent mixed="false">

@@ -14,8 +14,8 @@ namespace BindOpen.Data.Items
     /// This class represents a data item set.
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
-    [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataItemSet<T> : IdentifiedDataItem, IDataItemSet<T>
+    [XmlRoot(ElementName = "item.set", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    public class TDataItemSet<T> : IdentifiedDataItem, ITDataItemSet<T>
         where T : IIdentifiedDataItem
     {
         // ------------------------------------------
@@ -73,7 +73,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the DataItemSet class.
         /// </summary>
-        public DataItemSet() : base()
+        public TDataItemSet() : base()
         {
         }
 
@@ -88,7 +88,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clears the items of this instance.
         /// </summary>
-        public IDataItemSet<T> ClearItems()
+        public ITDataItemSet<T> ClearItems()
         {
             Items = null;
 
@@ -102,26 +102,13 @@ namespace BindOpen.Data.Items
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public virtual IDataItemSet<T> Add(params T[] items)
+        public ITDataItemSet<T> Add(params T[] items)
         {
             if (items != null)
             {
                 foreach (T item in items)
                 {
-                    var key = item?.Key();
-                    if (key != null)
-                    {
-                        if (Items == null)
-                        {
-                            Items = new List<T>();
-                        }
-                        else
-                        {
-                            Remove(key);
-                        }
-
-                        Items.Add(item);
-                    }
+                    Add(item);
                 }
             }
 
@@ -129,11 +116,33 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="item">The item of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public virtual void Add(T item)
+        {
+            var key = item?.Key();
+            if (key != null)
+            {
+                if (Items == null)
+                {
+                    Items = new List<T>();
+                }
+
+                Remove(key);
+                Items.Add(item);
+            }
+        }
+
+        /// <summary>
         /// Sets the specified single item of this instance.
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public IDataItemSet<T> WithItems(params T[] items)
+        public ITDataItemSet<T> WithItems(params T[] items)
         {
             ClearItems();
             Add(items);
@@ -145,7 +154,7 @@ namespace BindOpen.Data.Items
         /// Removes the item with the specified name.
         /// </summary>
         /// <param name="keys">The keys of the item to remove.</param>
-        public virtual IDataItemSet<T> Remove(params string[] keys)
+        public virtual ITDataItemSet<T> Remove(params string[] keys)
         {
             Items?.RemoveAll(p => keys.Any(q => p.KeyEquals(q)));
 
@@ -249,7 +258,7 @@ namespace BindOpen.Data.Items
             if (updateModes == null)
                 updateModes = new[] { UpdateModes.Incremental_AddItemsMissingInTarget };
 
-            if (item is IDataItemSet<T> referenceItem)
+            if (item is ITDataItemSet<T> referenceItem)
             {
                 // we repair this instance if needed
                 Repair(referenceItem, specificationAreas, updateModes.Excluding(UpdateModes.Incremental_UpdateCommonItems));
@@ -293,7 +302,7 @@ namespace BindOpen.Data.Items
             if (specificationAreas == null)
                 specificationAreas = new[] { nameof(DataAreaKind.Any) };
 
-            if (item is IDataItemSet<T> referenceItem)
+            if (item is ITDataItemSet<T> referenceItem)
             {
                 // we check that all the elements in this instance are in the specified item
 
@@ -344,7 +353,7 @@ namespace BindOpen.Data.Items
             if (updateModes == null)
                 updateModes = new[] { UpdateModes.Full };
 
-            if (item is IDataItemSet<T> referenceItem)
+            if (item is ITDataItemSet<T> referenceItem)
             {
                 // we check that all the elements in this instance are in the specified item
 
@@ -456,7 +465,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            DataItemSet<T> dataItemSet = base.Clone(areas) as DataItemSet<T>;
+            TDataItemSet<T> dataItemSet = base.Clone(areas) as TDataItemSet<T>;
             dataItemSet.Items = Items?.Select(p => (T)p.Clone()).ToList();
 
             return dataItemSet;

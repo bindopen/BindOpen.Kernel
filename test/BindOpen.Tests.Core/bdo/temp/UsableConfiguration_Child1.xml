@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+<usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="text1">
     <values>
-      <add>sit</add>
-      <add>tenetur</add>
-      <add>ut</add>
-      <add>voluptatem</add>
-      <add>nostrum</add>
-      <add>deserunt</add>
-      <add>dolorem</add>
-      <add>dolor</add>
-      <add>ad</add>
+      <add>assumenda</add>
+      <add>nesciunt</add>
+      <add>rerum</add>
+      <add>qui</add>
+      <add>qui</add>
       <add>aspernatur</add>
+      <add>vero</add>
+      <add>rerum</add>
+      <add>iusto</add>
+      <add>praesentium</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer" />

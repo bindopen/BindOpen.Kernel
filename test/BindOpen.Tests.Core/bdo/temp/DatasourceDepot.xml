@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataSource.depot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+<dataSource.depot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <datasources>
     <add name="smtp_default" kind="EmailServer">
       <configuration>
         <add definition="messages$smtp">
-          <scalar name="host" value="94.99.225.168" />
-          <scalar name="port" valueType="Integer" value="1378985899" />
-          <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
-          <scalar name="isSslEnabled" valueType="Boolean" value="true" />
-          <scalar name="timeout" valueType="Integer" value="35852996" />
-          <scalar name="login" value="Felix69@gmail.com" />
-          <scalar name="password" value="ducimus" />
+          <scalar name="host" value="117.92.45.73" />
+          <scalar name="port" valueType="Integer" value="1053334226" />
+          <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="false" />
+          <scalar name="isSslEnabled" valueType="Boolean" value="false" />
+          <scalar name="timeout" valueType="Integer" value="1119543197" />
+          <scalar name="login" value="Madeline.Mertz@hotmail.com" />
+          <scalar name="password" value="reiciendis" />
         </add>
       </configuration>
     </add>

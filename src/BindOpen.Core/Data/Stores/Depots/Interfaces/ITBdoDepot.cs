@@ -6,7 +6,7 @@ namespace BindOpen.Data.Stores
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ITBdoDepot<T> : IDataItemSet<T>, IBdoDepot where T : IIdentifiedDataItem
+    public interface ITBdoDepot<T> : ITDataItemSet<T>, IBdoDepot where T : IIdentifiedDataItem
     {
     }
 }

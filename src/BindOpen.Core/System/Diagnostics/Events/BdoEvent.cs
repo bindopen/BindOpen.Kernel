@@ -14,8 +14,8 @@ namespace BindOpen.System.Diagnostics.Events
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    [XmlType("Event", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Event", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEvent))]
     public class BdoEvent : DescribedDataItem, BdoIEvent
     {

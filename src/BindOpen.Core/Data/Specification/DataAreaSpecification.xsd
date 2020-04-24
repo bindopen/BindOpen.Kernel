@@ -3,7 +3,7 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../specification/DataSpecification.xsd" />
+  <xs:include schemaLocation="DataSpecification.xsd" />
 
   <xs:complexType name="DataAreaSpecification" abstract="true">
     <xs:complexContent mixed="false">

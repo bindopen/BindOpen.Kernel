@@ -35,7 +35,7 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// 
         /// </summary>
-        DataItemSet<AppSection> SubSections { get; set; }
+        TDataItemSet<AppSection> SubSections { get; set; }
 
         /// <summary>
         /// 

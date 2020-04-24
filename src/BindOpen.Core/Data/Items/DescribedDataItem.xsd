@@ -4,7 +4,7 @@
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="StoredDataItem.xsd" />
-  <xs:include schemaLocation="dictionary/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="DictionaryDataItem.xsd" />
   
   <xs:complexType name="DescribedDataItem">
     <xs:complexContent mixed="false">

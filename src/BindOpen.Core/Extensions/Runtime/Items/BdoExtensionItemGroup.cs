@@ -8,8 +8,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    [XmlType("BdoExtensionItemGroup", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoExtensionItemGroup", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoExtensionItemGroup : DescribedDataItem, IBdoExtensionItemGroup
     {
         // ------------------------------------------

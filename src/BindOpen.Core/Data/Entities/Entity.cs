@@ -7,8 +7,8 @@ namespace BindOpen.Data.Entities
     /// <summary>
     /// This class represents the data entity.
     /// </summary>
-    [XmlType("DataEntity", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataEntity", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "entity", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class DataEntity : DescribedDataItem
     {
         // ------------------------------------------

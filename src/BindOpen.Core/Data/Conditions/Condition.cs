@@ -6,8 +6,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents a condition.
     /// </summary>
-    [XmlType("Condition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Condition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(AdvancedCondition))]
     [XmlInclude(typeof(BasicCondition))]
     [XmlInclude(typeof(ScriptCondition))]

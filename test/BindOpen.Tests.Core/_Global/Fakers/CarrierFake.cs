@@ -8,8 +8,8 @@ namespace BindOpen.Tests.Core.Fakers
     /// <summary>
     /// This class represents a database data field.
     /// </summary>
-    [XmlType("DbField", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "testCarrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DbField", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "testCarrier", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     [BdoCarrier(
         Name = "tests.core$testCarrier",
         DatasourceKind = DatasourceKind.Database,

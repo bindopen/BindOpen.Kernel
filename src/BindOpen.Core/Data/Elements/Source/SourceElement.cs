@@ -13,8 +13,8 @@ namespace BindOpen.Data.Elements
     /// This class represents a data source element.
     /// </summary>
     /// <remarks>A data source element can only have one item maximum.</remarks>
-    [XmlType("SourceElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("SourceElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "dataSource", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement
     {
         // --------------------------------------------------

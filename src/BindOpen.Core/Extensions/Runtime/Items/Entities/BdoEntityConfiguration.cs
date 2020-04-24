@@ -8,8 +8,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents an entity configuration.
     /// </summary>
-    [XmlType("BdoEntityConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "entity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoEntityConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "entity", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoEntityConfiguration
         : TBdoExtensionTitledItemConfiguration<BdoEntityDefinition>, IBdoEntityConfiguration
     {

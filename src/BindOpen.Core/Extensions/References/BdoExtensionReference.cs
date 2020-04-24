@@ -6,7 +6,7 @@ namespace BindOpen.Extensions.References
     /// <summary>
     /// This class represents the BindOpen extension reference.
     /// </summary>
-    [XmlType("BdoExtensionReference", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("BdoExtensionReference", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     public class BdoExtensionReference : BdoAssemblyReference, IBdoExtensionReference
     {
         // --------------------------------------------------

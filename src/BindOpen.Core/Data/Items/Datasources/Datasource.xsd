@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen"
+  elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/items/StoredDataItem.xsd" />
+  <xs:include schemaLocation="StoredDataItem.xsd" />
   <xs:include schemaLocation="DatasourceKind.xsd" />
-  <xs:include schemaLocation="../../../data/elements/sets/DataElementSet.xsd" />
-  <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
-  <xs:include schemaLocation="../../../extensions/configuration/connectors/ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="DataElementSet.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation="ConnectorConfiguration.xsd" />
 
   <xs:complexType name="Datasource">
     <xs:complexContent mixed="false">

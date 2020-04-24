@@ -12,7 +12,7 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the data sorting modes.
     /// </summary>
-    [XmlType("DataSortingMode", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("DataSortingMode", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     public enum DataSortingMode
     {
         /// <summary>

@@ -13,8 +13,8 @@ namespace BindOpen.Application.Options
     /// <summary>
     /// This class represents an option specification.
     /// </summary>
-    [XmlType("OptionSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("optionSpec", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("OptionSpec", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot("optionSpec", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class OptionSpec : ScalarElementSpec, IOptionSpec
     {
         // -------------------------------------------------------------
