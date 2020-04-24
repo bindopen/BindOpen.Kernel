@@ -9,8 +9,8 @@ namespace BindOpen.Extensions.Definition
     /// This class represents a BindOpen extension dictionary.
     /// </summary>
     /// <typeparam name="T">The class of extension item definition to consider.</typeparam>
-    [XmlType("TBdoExtensionDictionaryDto", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("TBdoExtensionDictionaryDto", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class TBdoExtensionDictionaryDto<T> : StoredDataItem, ITBdoExtensionDictionaryDto<T>
         where T : BdoExtensionItemDefinitionDto
     {

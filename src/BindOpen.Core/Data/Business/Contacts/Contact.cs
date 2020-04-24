@@ -7,8 +7,8 @@ namespace BindOpen.Data.Business
     /// <summary>
     /// This class represents a contact.
     /// </summary>
-    [XmlType("Contact", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "contact", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("Contact", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "contact", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class Contact : NamedDataItem
     {
         // ------------------------------------------

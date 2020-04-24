@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This enumeration represents the possible kinds of library items.
     /// </summary>
-    [XmlType("BdoExtensionItemKind", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("BdoExtensionItemKind", Namespace = "https://bindopen.org/xsd")]
     public enum BdoExtensionItemKind
     {
         /// <summary>

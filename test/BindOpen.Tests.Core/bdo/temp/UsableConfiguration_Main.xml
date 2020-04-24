@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
+<usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
   <scalar name="float1" valueType="Number" value="10" />
   <usingFilePaths>
     <add>UsableConfiguration_Child1.xml</add>

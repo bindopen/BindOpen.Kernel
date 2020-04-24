@@ -8,8 +8,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a stored data item.
     /// </summary>
-    [XmlType("StoredDataItem", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot("storedDataItem", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("StoredDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("storedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class StoredDataItem : IdentifiedDataItem, IStoredDataItem
     {
         // ------------------------------------------

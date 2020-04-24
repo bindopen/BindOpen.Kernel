@@ -6,8 +6,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents a data area specification.
     /// </summary>
-    [XmlType("DataAreaSpecification", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "areaSpecification", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataAreaSpecification", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "areaSpecification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataAreaSpecification : DataSpecification, IDataAreaSpecification
     {
         // --------------------------------------------------

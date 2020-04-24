@@ -6,8 +6,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents indexed data item.
     /// </summary>
-    [XmlType("IndexedDataItem", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot("indexedDataItem", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("IndexedDataItem", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("indexedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class IndexedDataItem : DescribedDataItem, IIndexedDataItem
     {
         // ------------------------------------------

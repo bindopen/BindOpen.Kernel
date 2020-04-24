@@ -14,8 +14,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are entities.
     /// </summary>
-    [XmlType("CatalogElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "catalog", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("CatalogElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "catalog", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CollectionElement : DataElement, ICollectionElement
     {
         // --------------------------------------------------

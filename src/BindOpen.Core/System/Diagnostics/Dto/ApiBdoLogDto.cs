@@ -11,8 +11,8 @@ namespace BindOpen.System.Diagnostics.Dto
     /// <summary>
     /// This class represents a log.
     /// </summary>
-    [XmlType("ApiBdoLogDto", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "log", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("ApiBdoLogDto", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "log", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class ApiBdoLogDto : NamedDataItem, IDisplayNamed, IDescribed
     {
         // ------------------------------------------

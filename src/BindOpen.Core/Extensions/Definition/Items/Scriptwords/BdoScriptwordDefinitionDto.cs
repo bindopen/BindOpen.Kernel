@@ -12,8 +12,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("BdoScriptwordDefinitionDto", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoScriptwordDefinitionDto", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDefinitionDto : BdoExtensionItemDefinitionDto, IBdoScriptwordDefinitionDto
     {
         // ------------------------------------------

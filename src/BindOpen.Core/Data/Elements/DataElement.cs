@@ -21,8 +21,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    [XmlType("DataElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "element", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElement))]
     [XmlInclude(typeof(SourceElement))]
     [XmlInclude(typeof(DocumentElement))]

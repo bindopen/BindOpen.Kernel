@@ -5,7 +5,7 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This enumeration represents the possible task entry kinds.
     /// </summary>
-    [XmlType("TaskEntryKind", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("TaskEntryKind", Namespace = "https://bindopen.org/xsd")]
     public enum TaskEntryKind
     {
         /// <summary>
