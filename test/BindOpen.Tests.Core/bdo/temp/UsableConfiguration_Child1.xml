@@ -2,16 +2,16 @@
 <usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="text1">
     <values>
-      <add>assumenda</add>
-      <add>nesciunt</add>
-      <add>rerum</add>
-      <add>qui</add>
-      <add>qui</add>
-      <add>aspernatur</add>
-      <add>vero</add>
-      <add>rerum</add>
-      <add>iusto</add>
-      <add>praesentium</add>
+      <add>odio</add>
+      <add>voluptates</add>
+      <add>dolor</add>
+      <add>dolor</add>
+      <add>in</add>
+      <add>et</add>
+      <add>consectetur</add>
+      <add>et</add>
+      <add>quis</add>
+      <add>dolor</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer" />

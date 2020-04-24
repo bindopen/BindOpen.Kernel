@@ -2,58 +2,58 @@
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="float1" valueType="Number">
     <values>
-      <add>0.9185115857601686</add>
-      <add>0.2784030094176545</add>
-      <add>0.5663850929431548</add>
-      <add>0.4110443729027381</add>
-      <add>0.8827285863844345</add>
-      <add>0.07508278129393364</add>
-      <add>0.1281791320667505</add>
-      <add>0.021480429461915244</add>
-      <add>0.24275983601937062</add>
-      <add>0.6712682729918827</add>
+      <add>0.7858427519844112</add>
+      <add>0.15043220117242645</add>
+      <add>0.4935947747405594</add>
+      <add>0.4732345242394295</add>
+      <add>0.27938465461106254</add>
+      <add>0.11044563265072443</add>
+      <add>0.26483695314491024</add>
+      <add>0.2628327758344043</add>
+      <add>0.4209717039116527</add>
+      <add>0.32276447598019825</add>
     </values>
   </scalar>
   <scalar name="text1">
     <values>
-      <add>Directives</add>
-      <add>Investment Account</add>
-      <add>hack</add>
-      <add>payment</add>
-      <add>Assurance</add>
-      <add>Auto Loan Account</add>
-      <add>bifurcated</add>
-      <add>Toys &amp; Games</add>
-      <add>primary</add>
-      <add>Isle of Man</add>
+      <add>innovative</add>
+      <add>Awesome Granite Tuna</add>
+      <add>cross-platform</add>
+      <add>Moldova</add>
+      <add>digital</add>
+      <add>Borders</add>
+      <add>Refined Frozen Ball</add>
+      <add>Accounts</add>
+      <add>Program</add>
+      <add>product</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer">
     <values>
-      <add>856940390</add>
-      <add>-280865949</add>
-      <add>-515975600</add>
-      <add>913296904</add>
-      <add>1024750859</add>
-      <add>-2012925191</add>
-      <add>-395866270</add>
-      <add>-1406799415</add>
-      <add>1886830290</add>
-      <add>1023921401</add>
+      <add>836838943</add>
+      <add>-2064205877</add>
+      <add>-1457781209</add>
+      <add>223962034</add>
+      <add>-818160037</add>
+      <add>-62587506</add>
+      <add>-1545234533</add>
+      <add>1513422053</add>
+      <add>-446000956</add>
+      <add>1394962612</add>
     </values>
   </scalar>
   <scalar name="float2" valueType="Number">
     <values>
-      <add>0.23729848174252477</add>
-      <add>0.3081114591602755</add>
-      <add>0.2878682102485878</add>
-      <add>0.15591792490143233</add>
-      <add>0.009299911562958691</add>
-      <add>0.42014547876089137</add>
-      <add>0.3926774702932115</add>
-      <add>0.3748781994799516</add>
-      <add>0.5216084688536862</add>
-      <add>0.9537652968213732</add>
+      <add>0.20945291044630712</add>
+      <add>0.589685235912765</add>
+      <add>0.6756994946280958</add>
+      <add>0.9163192603347448</add>
+      <add>0.29802335207258507</add>
+      <add>0.449115363158805</add>
+      <add>0.1261094706720251</add>
+      <add>0.9757506255878837</add>
+      <add>0.304983377598684</add>
+      <add>0.6416169636145314</add>
     </values>
   </scalar>
 </element.set>

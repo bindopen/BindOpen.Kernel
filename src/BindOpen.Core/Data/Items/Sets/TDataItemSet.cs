@@ -122,7 +122,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public virtual void Add(T item)
+        protected virtual void Add(T item)
         {
             var key = item?.Key();
             if (key != null)

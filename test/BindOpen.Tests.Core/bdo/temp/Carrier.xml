@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <carrier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="connector" definition="tests.core$testCarrier" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="boolValue" valueType="Boolean" value="true" />
-  <scalar name="stringValue" value="neque" />
-  <scalar name="intValue" valueType="Integer" value="386349620" />
+  <scalar name="stringValue" value="vel" />
+  <scalar name="intValue" valueType="Integer" value="662016096" />
   <scalar name="enumValue" value="High" />
   <scalar name="path" />
   <scalar name="parentPath" />
