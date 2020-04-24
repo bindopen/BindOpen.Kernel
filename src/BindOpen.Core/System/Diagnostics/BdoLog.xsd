@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen"
+  elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../data/items/DescribedDataItem.xsd" />
-  <xs:include schemaLocation="../../system/processing/ProcessExecution.xsd" />
-  <xs:include schemaLocation="../../extensions/configuration/tasks/TaskConfiguration.xsd" />
-  <xs:include schemaLocation="../../data/elements/sets/DataElementSet.xsd" />
-  <xs:include schemaLocation="../../system/diagnostics/events/Event.xsd" />
+  <xs:include schemaLocation="DescribedDataItem.xsd" />
+  <xs:include schemaLocation="ProcessExecution.xsd" />
+  <xs:include schemaLocation="TaskConfiguration.xsd" />
+  <xs:include schemaLocation="DataElementSet.xsd" />
+  <xs:include schemaLocation="Event.xsd" />
   <xs:include schemaLocation="LogEvent.xsd" />
 
   <xs:complexType name="Log">

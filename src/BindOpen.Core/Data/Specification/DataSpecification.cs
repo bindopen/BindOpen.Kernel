@@ -12,8 +12,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This abstract class represents a data specification.
     /// </summary>
-    [XmlType("DataSpecification", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataSpecification", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public abstract class DataSpecification : IndexedDataItem, IDataSpecification
     {
         // --------------------------------------------------

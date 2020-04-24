@@ -6,8 +6,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents an basic condition.
     /// </summary>
-    [XmlType("BasicBusinessCondition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "basic.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BasicBusinessCondition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "basic.condition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BasicCondition : Condition, IBasicCondition
     {
         // ------------------------------------------

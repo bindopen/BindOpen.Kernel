@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <carriers.dictionary library="standard"
-  xmlns="https://bindopen.org/xsd"
+  xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen"
   xmlns:SchemaLocation="bdo:BdoCarrierDictionary BdoCarrierDictionary.xsd">
   
   <creationDate>2011-07-07</creationDate>

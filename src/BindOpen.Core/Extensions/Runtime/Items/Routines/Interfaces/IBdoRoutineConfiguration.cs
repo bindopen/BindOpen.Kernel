@@ -26,6 +26,6 @@ namespace BindOpen.Extensions.Runtime
         /// 
         /// </summary>
 
-        DataItemSet<BdoConditionalEvent> OutputEventSet { get; set; }
+        TDataItemSet<BdoConditionalEvent> OutputEventSet { get; set; }
     }
 }

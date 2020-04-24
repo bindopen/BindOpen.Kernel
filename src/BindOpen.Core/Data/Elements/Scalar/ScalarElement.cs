@@ -12,8 +12,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.
     /// </summary>
-    [XmlType("ScalarElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scalar", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScalarElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "scalar", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class ScalarElement : DataElement, IScalarElement
     {
         // --------------------------------------------------

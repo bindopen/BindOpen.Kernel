@@ -14,8 +14,8 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// This class represents a log event.
     /// </summary>
-    [XmlType("LogEvent", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "logEvent", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("LogEvent", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "logEvent", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoLogEvent : BdoEvent, IBdoLogEvent
     {
         // ------------------------------------------

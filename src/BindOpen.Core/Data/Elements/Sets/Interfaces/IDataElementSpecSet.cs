@@ -5,7 +5,7 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataElementSpecSet : IDataItemSet<DataElementSpec>
+    public interface IDataElementSpecSet : ITDataItemSet<DataElementSpec>
     {
     }
 }

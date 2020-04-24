@@ -3,9 +3,9 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/elements/DataElementSpec.xsd" />
-  <xs:include schemaLocation="../../../data/specification/filters/DataValueFilter.xsd" />
-  <xs:include schemaLocation="../../../data/common/Arrays.xsd" />
+  <xs:include schemaLocation="DataElementSpec.xsd" />
+  <xs:include schemaLocation="DataValueFilter.xsd" />
+  <xs:include schemaLocation="Arrays.xsd" />
 
   <xs:complexType name="CarrierElementSpec">
     <xs:complexContent mixed="false">

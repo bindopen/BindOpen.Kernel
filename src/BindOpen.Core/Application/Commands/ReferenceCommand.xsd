@@ -4,7 +4,7 @@
   elementFormDefault="qualified" targetNamespace="http://meltingsoft.com/bindopen/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="Command.xsd" />
-  <xs:include schemaLocation="../../data/references/DataReference.xsd" />
+  <xs:include schemaLocation="DataReference.xsd" />
 
   <xs:complexType name="ReferenceCommand">
     <xs:complexContent mixed="false">

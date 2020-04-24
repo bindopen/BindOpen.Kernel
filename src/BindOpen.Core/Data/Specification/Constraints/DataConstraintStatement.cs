@@ -12,9 +12,9 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class DataConstraintStatement : DataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement
+    [XmlType("DataConstraintStatement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    public class DataConstraintStatement : TDataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -59,7 +59,7 @@ namespace BindOpen.Data.Specification
             string name,
             string definitionUniqueId,
             IDataElementSet parameterDetail = null,
-            IDataItemSet<BdoConditionalEvent> outputEventSet = null)
+            ITDataItemSet<BdoConditionalEvent> outputEventSet = null)
         {
             IBdoRoutineConfiguration routine = null; // new RoutineConfiguration(null, definitionUniqueId, commandSet, outputEventSet, parameterDetail?.Elements?.ToArray());
             Add(routine as BdoRoutineConfiguration);

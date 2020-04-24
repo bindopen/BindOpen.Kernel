@@ -13,9 +13,9 @@ namespace BindOpen.Application.Options
     /// <summary>
     /// This class represents a option specification set.
     /// </summary>
-    [XmlType("OptionSpecSet", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("optionSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public class OptionSpecSet : DataItemSet<IOptionSpec>, IOptionSpecSet
+    [XmlType("OptionSpecSet", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot("optionSpecSet", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    public class OptionSpecSet : TDataItemSet<IOptionSpec>, IOptionSpecSet
     {
         // -------------------------------------------------------------
         // PROPERTIES

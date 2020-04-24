@@ -1,4 +1,4 @@
-<bindopen xmlns="https://bindopen.org/xsd">
+<bindopen xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
 
   <scalar name="applicationInstanceName" value="test.console" />
 

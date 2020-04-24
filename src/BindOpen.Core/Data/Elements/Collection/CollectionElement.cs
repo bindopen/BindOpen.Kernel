@@ -14,8 +14,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are entities.
     /// </summary>
-    [XmlType("CatalogElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "catalog", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("CatalogElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "catalog", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class CollectionElement : DataElement, ICollectionElement
     {
         // --------------------------------------------------
@@ -54,7 +54,7 @@ namespace BindOpen.Data.Elements
 
         // IDataElementSet -----------------------
 
-        List<IDataElement> IDataItemSet<IDataElement>.Items
+        List<IDataElement> ITDataItemSet<IDataElement>.Items
         {
             get => base.Items.Cast<IDataElement>().ToList();
             set { base.Items = value?.Cast<object>().ToList(); }
@@ -64,7 +64,7 @@ namespace BindOpen.Data.Elements
 
         public IDataElement this[string key] => Get(key);
 
-        IDataElement IDataItemSet<IDataElement>.this[int index] => base[index] as IDataElement;
+        IDataElement ITDataItemSet<IDataElement>.this[int index] => base[index] as IDataElement;
 
         #endregion
 
@@ -276,7 +276,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public IDataItemSet<IDataElement> WithItems(params IDataElement[] items)
+        public ITDataItemSet<IDataElement> WithItems(params IDataElement[] items)
         {
             base.WithItems(items?.Cast<object>().ToArray());
 
@@ -292,7 +292,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public IDataItemSet<IDataElement> Add(params IDataElement[] items)
+        public ITDataItemSet<IDataElement> Add(params IDataElement[] items)
         {
             if (items != null)
             {
@@ -322,7 +322,7 @@ namespace BindOpen.Data.Elements
         /// Removes the item with the specified name.
         /// </summary>
         /// <param name="keys">The keys of the item to remove.</param>
-        public IDataItemSet<IDataElement> Remove(params string[] keys)
+        public ITDataItemSet<IDataElement> Remove(params string[] keys)
         {
             Items?.RemoveAll(p => keys.Any(q => p.KeyEquals(q)));
 
@@ -369,9 +369,9 @@ namespace BindOpen.Data.Elements
         /// Clears the items of this instance.
         /// </summary>
         /// <returns>Returns this instance.</returns>
-        IDataItemSet<IDataElement> IDataItemSet<IDataElement>.ClearItems()
+        ITDataItemSet<IDataElement> ITDataItemSet<IDataElement>.ClearItems()
         {
-            return base.ClearItems() as IDataItemSet<IDataElement>;
+            return base.ClearItems() as ITDataItemSet<IDataElement>;
         }
 
         // Elements -----------------------------

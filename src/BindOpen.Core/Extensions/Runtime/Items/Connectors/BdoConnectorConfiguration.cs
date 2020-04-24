@@ -11,8 +11,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a connector configuration.
     /// </summary>
-    [XmlType("BdoConnectorConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connector", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoConnectorConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "connector", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class BdoConnectorConfiguration
         : TBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>, IBdoConnectorConfiguration
     {

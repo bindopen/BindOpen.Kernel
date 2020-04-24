@@ -9,9 +9,9 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a depot.
     /// </summary>
-    [XmlType("Depot", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
-    public abstract class TBdoDepot<T> : DataItemSet<T>, ITBdoDepot<T> where T : IIdentifiedDataItem
+    [XmlType("Depot", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "depot", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    public abstract class TBdoDepot<T> : TDataItemSet<T>, ITBdoDepot<T> where T : IIdentifiedDataItem
     {
         /// <summary>
         /// The scope of this instance.

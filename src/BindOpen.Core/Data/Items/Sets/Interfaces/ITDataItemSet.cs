@@ -6,7 +6,7 @@ namespace BindOpen.Data.Items
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDataItemSet<T> : IIdentifiedDataItem where T : IIdentifiedDataItem
+    public interface ITDataItemSet<T> : IIdentifiedDataItem where T : IIdentifiedDataItem
     {
         /// <summary>
         /// 
@@ -56,19 +56,19 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IDataItemSet<T> ClearItems();
+        ITDataItemSet<T> ClearItems();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IDataItemSet<T> Add(params T[] items);
+        ITDataItemSet<T> Add(params T[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IDataItemSet<T> WithItems(params T[] items);
+        ITDataItemSet<T> WithItems(params T[] items);
 
         /// <summary>
         /// 
@@ -81,7 +81,7 @@ namespace BindOpen.Data.Items
         /// 
         /// </summary>
         /// <param name="keys"></param>
-        IDataItemSet<T> Remove(params string[] keys);
+        ITDataItemSet<T> Remove(params string[] keys);
 
         /// <summary>
         /// 

@@ -36,7 +36,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         [XmlArray("subSections")]
         [XmlArrayItem("section")]
-        public DataItemSet<AppSection> SubSections { get; set; } = new DataItemSet<AppSection>();
+        public TDataItemSet<AppSection> SubSections { get; set; } = new TDataItemSet<AppSection>();
 
         // Visibility ------------------------------
 
@@ -108,7 +108,7 @@ namespace BindOpen.Application.Modules
         public void AddSection(IAppSection section)
         {
 
-            (this.SubSections ?? (this.SubSections = new DataItemSet<AppSection>())).Add(section as AppSection);
+            (this.SubSections ?? (this.SubSections = new TDataItemSet<AppSection>())).Add(section as AppSection);
             section.Parent = this;
             section.Module = this.Module;
         }

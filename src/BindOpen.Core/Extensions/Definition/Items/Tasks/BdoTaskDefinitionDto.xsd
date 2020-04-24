@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen"
+  elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../extensions/definition/BdoExtensionItemDefinitionDto.xsd" />
-  <xs:include schemaLocation="../../../data/elements/sets/DataElementSpecSet.xsd" />
+  <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="DataElementSpecSet.xsd" />
 
   <xs:complexType name="TaskDefinition">
     <xs:complexContent mixed="false">

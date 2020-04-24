@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
+<element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <carrier id="tests.core$testCarrier" name="carrier1" valueType="Carrier">
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
-        <scalar name="path" value="Plastic_1.txt" />
+        <scalar name="path" value="reboot_1.txt" />
       </add>
     </items>
   </carrier>
   <carrier id="tests.core$testCarrier" name="carrier2" valueType="Carrier">
     <items>
       <add>
-        <scalar name="path" value="strategy_2.txt" />
+        <scalar name="path" value="Guernsey_2.txt" />
       </add>
     </items>
   </carrier>
-  <carrier name="carrierElem_637231764668224947" valueType="Carrier">
+  <carrier name="carrierElem_637232908066343119" valueType="Carrier">
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
@@ -23,7 +23,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="deliverables_3.txt" />
+        <scalar name="path" value="South Carolina_3.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />
@@ -41,7 +41,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="Checking Account_4.txt" />
+        <scalar name="path" value="moratorium_4.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />

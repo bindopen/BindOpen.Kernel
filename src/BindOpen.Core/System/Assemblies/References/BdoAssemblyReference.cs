@@ -6,7 +6,7 @@ namespace BindOpen.System.Assemblies.References
     /// <summary>
     /// This class represents the BindOpen library reference.
     /// </summary>
-    [XmlType("BdoAssemblyReference", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("BdoAssemblyReference", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     public class BdoAssemblyReference : DataItem, IBdoAssemblyReference
     {
         // --------------------------------------------------

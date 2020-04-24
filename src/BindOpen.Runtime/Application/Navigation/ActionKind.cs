@@ -6,7 +6,7 @@ namespace BindOpen.Application.Navigation
     /// <summary>
     /// This enumerates the possible kinds of action.
     /// </summary>
-    [XmlType("ActionKinds", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("ActionKinds", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
     [Flags]
     public enum ActionKinds
     {

@@ -54,7 +54,7 @@ namespace BindOpen.Application.Modules
         /// The sub sections of this instance.
         /// </summary>
         [XmlElement("sections")]
-        public IDataItemSet<AppSection> Sections { get; set; } = null;
+        public ITDataItemSet<AppSection> Sections { get; set; } = null;
 
         // Languages ------------------------------------
 
@@ -62,7 +62,7 @@ namespace BindOpen.Application.Modules
         /// The languages of this instance.
         /// </summary>
         [XmlElement("languages")]
-        public IDataItemSet<ApplicationLanguage> Languages { get; set; } = null;
+        public ITDataItemSet<ApplicationLanguage> Languages { get; set; } = null;
 
         /// <summary>
         /// The default UI culture name of this instance.
@@ -170,7 +170,7 @@ namespace BindOpen.Application.Modules
         {
             if (section != null)
             {
-                (this.Sections ?? (this.Sections = new DataItemSet<AppSection>())).Add(section as AppSection);
+                (this.Sections ?? (this.Sections = new TDataItemSet<AppSection>())).Add(section as AppSection);
                 section.Module = this;
             }
 

@@ -13,8 +13,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    [XmlType("Datasource", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "datasource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Datasource", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlRoot(ElementName = "datasource", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
     public class Datasource : NamedDataItem, IDatasource
     {
         // -----------------------------------------------

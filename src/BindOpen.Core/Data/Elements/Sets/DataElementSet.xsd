@@ -3,15 +3,15 @@
   xmlns:bdo="https://bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="../../../data/items/StoredDataItem.xsd" />
-  <xs:include schemaLocation="../../../data/elements/carrier/CarrierElement.xsd" />
-  <!--<xs:include schemaLocation="../../../data/elements/document/DocumentElement.xsd" />-->
-  <xs:include schemaLocation="../../../data/elements/entity/EntityElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/meta/MetaDataElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/object/ObjectElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/scalar/ScalarElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/schema/SchemaElement.xsd" />
-  <xs:include schemaLocation="../../../data/elements/source/SourceElement.xsd" />
+  <xs:include schemaLocation="StoredDataItem.xsd" />
+  <xs:include schemaLocation="CarrierElement.xsd" />
+  <!--<xs:include schemaLocation="DocumentElement.xsd" />-->
+  <xs:include schemaLocation="EntityElement.xsd" />
+  <xs:include schemaLocation="MetaDataElement.xsd" />
+  <xs:include schemaLocation="ObjectElement.xsd" />
+  <xs:include schemaLocation="ScalarElement.xsd" />
+  <xs:include schemaLocation="SchemaElement.xsd" />
+  <xs:include schemaLocation="SourceElement.xsd" />
 
   <xs:complexType name="DataElementSet">
     <xs:complexContent mixed="false">
