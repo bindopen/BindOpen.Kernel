@@ -11,7 +11,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This enumeration represents the data element itemization modes.
     /// </summary>
-    [XmlType("DataItemizationMode", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("DataItemizationMode", Namespace = "https://bindopen.org/xsd")]
     public enum DataItemizationMode
     {
         /// <summary>

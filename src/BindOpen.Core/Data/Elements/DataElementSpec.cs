@@ -15,8 +15,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("DataElementSpec", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataElementSpec", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElementSpec))]
     [XmlInclude(typeof(DocumentElementSpec))]
     [XmlInclude(typeof(ObjectElementSpec))]

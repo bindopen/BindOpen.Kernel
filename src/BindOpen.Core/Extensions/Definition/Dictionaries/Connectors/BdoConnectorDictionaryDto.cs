@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO connector dictionary.
     /// </summary>
-    [XmlType("BdoConnectorDictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "connectors.dictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoConnectorDictionary", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "connectors.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoConnectorDictionaryDto : TBdoExtensionDictionaryDto<BdoConnectorDefinitionDto>, IBdoConnectorDictionaryDto
     {
         // ------------------------------------------

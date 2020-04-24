@@ -11,8 +11,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    [XmlType("DataValueFilter", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "value.filter", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataValueFilter", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "value.filter", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataValueFilter : DataItem, IDataValueFilter
     {
         // ------------------------------------------

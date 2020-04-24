@@ -7,8 +7,8 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// This class represents an usable configuration.
     /// </summary>
-    [XmlType("UsableConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot("usableConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("UsableConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("usableConfiguration", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoUsableConfiguration : BdoBaseConfiguration, IBdoUsableConfigurationDto
     {
         // -------------------------------------------------------

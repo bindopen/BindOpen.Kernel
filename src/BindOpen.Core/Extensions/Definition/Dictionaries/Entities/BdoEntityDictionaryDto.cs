@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO entity dictionary.
     /// </summary>
-    [XmlType("BdoEntityDictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "entities.dictionary", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoEntityDictionary", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "entities.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoEntityDictionaryDto : TBdoExtensionDictionaryDto<BdoEntityDefinitionDto>, IBdoEntityDictionaryDto
     {
         // ------------------------------------------

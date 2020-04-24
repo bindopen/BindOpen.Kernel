@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    [XmlType("BdoExtensionItemDefinition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("BdoExtensionItemDefinition", Namespace = "https://bindopen.org/xsd")]
     public abstract class BdoExtensionItemDefinitionDto : IndexedDataItem, IBdoExtensionItemDefinitionDto
     {
         // --------------------------------------------------

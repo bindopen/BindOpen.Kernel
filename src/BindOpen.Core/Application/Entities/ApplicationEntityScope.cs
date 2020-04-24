@@ -5,7 +5,7 @@ namespace BindOpen.Application.Entities
     /// <summary>
     /// This enumeration represents the possible application entity scopes.
     /// </summary>
-    [XmlType("ApplicationEntityScope", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("ApplicationEntityScope", Namespace = "https://bindopen.org/xsd")]
     public enum ApplicationEntityScope
     {
         /// <summary>
