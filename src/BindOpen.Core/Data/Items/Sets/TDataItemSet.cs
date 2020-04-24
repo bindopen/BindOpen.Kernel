@@ -108,17 +108,7 @@ namespace BindOpen.Data.Items
             {
                 foreach (T item in items)
                 {
-                    var key = item?.Key();
-                    if (key != null)
-                    {
-                        if (Items == null)
-                        {
-                            Items = new List<T>();
-                        }
-
-                        Remove(key);
-                        Add(item);
-                    }
+                    Add(item);
                 }
             }
 
@@ -134,8 +124,15 @@ namespace BindOpen.Data.Items
         /// <remarks>The new item must have a name.</remarks>
         public virtual void Add(T item)
         {
-            if (item != null)
+            var key = item?.Key();
+            if (key != null)
             {
+                if (Items == null)
+                {
+                    Items = new List<T>();
+                }
+
+                Remove(key);
                 Items.Add(item);
             }
         }

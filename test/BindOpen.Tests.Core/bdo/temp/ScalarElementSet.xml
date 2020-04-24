@@ -2,58 +2,58 @@
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen">
   <scalar name="float1" valueType="Number">
     <values>
-      <add>0.4594813252144872</add>
-      <add>0.502778186696944</add>
-      <add>0.4364298700524633</add>
-      <add>0.5462805156345855</add>
-      <add>0.6180025663310674</add>
-      <add>0.3183808346830219</add>
-      <add>0.12786131125309566</add>
-      <add>0.3863125282276014</add>
-      <add>0.22370769000784851</add>
-      <add>0.43223288116614933</add>
+      <add>0.9185115857601686</add>
+      <add>0.2784030094176545</add>
+      <add>0.5663850929431548</add>
+      <add>0.4110443729027381</add>
+      <add>0.8827285863844345</add>
+      <add>0.07508278129393364</add>
+      <add>0.1281791320667505</add>
+      <add>0.021480429461915244</add>
+      <add>0.24275983601937062</add>
+      <add>0.6712682729918827</add>
     </values>
   </scalar>
   <scalar name="text1">
     <values>
-      <add>channels</add>
-      <add>maximized</add>
-      <add>approach</add>
-      <add>Awesome Plastic Keyboard</add>
-      <add>protocol</add>
-      <add>bus</add>
-      <add>Checking Account</add>
-      <add>Cayman Islands Dollar</add>
-      <add>transmit</add>
-      <add>expedite</add>
+      <add>Directives</add>
+      <add>Investment Account</add>
+      <add>hack</add>
+      <add>payment</add>
+      <add>Assurance</add>
+      <add>Auto Loan Account</add>
+      <add>bifurcated</add>
+      <add>Toys &amp; Games</add>
+      <add>primary</add>
+      <add>Isle of Man</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer">
     <values>
-      <add>-59043715</add>
-      <add>-908972123</add>
-      <add>-1397433285</add>
-      <add>397224922</add>
-      <add>-711821461</add>
-      <add>-333716150</add>
-      <add>-911397628</add>
-      <add>377607041</add>
-      <add>-1247389422</add>
-      <add>-1402801428</add>
+      <add>856940390</add>
+      <add>-280865949</add>
+      <add>-515975600</add>
+      <add>913296904</add>
+      <add>1024750859</add>
+      <add>-2012925191</add>
+      <add>-395866270</add>
+      <add>-1406799415</add>
+      <add>1886830290</add>
+      <add>1023921401</add>
     </values>
   </scalar>
   <scalar name="float2" valueType="Number">
     <values>
-      <add>0.0161543563083533</add>
-      <add>0.8991313846312143</add>
-      <add>0.5861229671100727</add>
-      <add>0.4152971303161686</add>
-      <add>0.7712415087834193</add>
-      <add>0.5666650047370535</add>
-      <add>0.91526441039297</add>
-      <add>0.5114934069623674</add>
-      <add>0.6141563964142261</add>
-      <add>0.6820936508859012</add>
+      <add>0.23729848174252477</add>
+      <add>0.3081114591602755</add>
+      <add>0.2878682102485878</add>
+      <add>0.15591792490143233</add>
+      <add>0.009299911562958691</add>
+      <add>0.42014547876089137</add>
+      <add>0.3926774702932115</add>
+      <add>0.3748781994799516</add>
+      <add>0.5216084688536862</add>
+      <add>0.9537652968213732</add>
     </values>
   </scalar>
 </element.set>
