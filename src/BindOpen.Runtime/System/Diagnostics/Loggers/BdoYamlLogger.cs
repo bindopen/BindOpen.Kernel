@@ -86,7 +86,7 @@ namespace BindOpen.System.Diagnostics.Loggers
 
             if (log != null)
             {
-                if (log.Id.KeyEquals(this._CurrentLogId))
+                if (log.Id.KeyEquals(_CurrentLogId))
                     st +=
                         indent + "log:\n" +
                         indent + '\t' + "id: " + log.Id + Environment.NewLine;
@@ -100,25 +100,25 @@ namespace BindOpen.System.Diagnostics.Loggers
                             && !string.IsNullOrEmpty(log.Id))
                         {
                             st += indent + " id: " + log.Name + Environment.NewLine;
-                            this._CurrentNode = attributeNameKey;
+                            _CurrentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Name))
                             && !string.IsNullOrEmpty(log.Name))
                         {
                             st += indent + " name: " + log.Name + Environment.NewLine;
-                            this._CurrentNode = attributeNameKey;
+                            _CurrentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Title))
                                         && (log.Title != null))
                         {
-                            st += indent + " title: " + log.WithTitle(this.UICulture) + Environment.NewLine;
-                            this._CurrentNode = attributeNameKey;
+                            st += indent + " title: " + log.GetTitleText(UICulture) + Environment.NewLine;
+                            _CurrentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Description))
                                             && (log.Description != null))
                         {
-                            st += indent + " description: " + log.WithDescription(this.UICulture) + Environment.NewLine;
-                            this._CurrentNode = attributeNameKey;
+                            st += indent + " description: " + log.GetDescriptionText(UICulture) + Environment.NewLine;
+                            _CurrentNode = attributeNameKey;
                         }
                         if ((attributeNameKey.StartsWith(BdoLogEntries.__Detail + ".")) && (log.Detail != null))
                         {
@@ -127,18 +127,18 @@ namespace BindOpen.System.Diagnostics.Loggers
                             if (detailName == "*")
                                 foreach (DataElement element in log.Detail.Items)
                                 {
-                                    st += this.ToString(element, indent);
-                                    this._CurrentNode = attributeNameKey;
+                                    st += ToString(element, indent);
+                                    _CurrentNode = attributeNameKey;
                                 }
                         }
 
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Events))
                                 && (log.Events != null))
                             foreach (BdoLogEvent logEvent in log.Events)
-                                st += this.ToString(logEvent, attributeNames);
+                                st += ToString(logEvent, attributeNames);
                     }
 
-                this._CurrentLogId = log.Id;
+                _CurrentLogId = log.Id;
             }
 
             return st;
@@ -183,7 +183,7 @@ namespace BindOpen.System.Diagnostics.Loggers
         //        indent + '\t' + "id: " + log.Id + Environment.NewLine;
 
         //    foreach (String attributeKey in attributeNames)
-        //        st += this.ToString(attributeKey, indent);
+        //        st += ToString(attributeKey, indent);
 
         //    return st;
         //}

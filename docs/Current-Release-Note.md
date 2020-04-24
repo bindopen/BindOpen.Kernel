@@ -3,14 +3,12 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # New features
 
-- [X] Updating all the XSD files (location, include statements...).
-- [X] DataItemSet becomes TDataItemSet class.
-- [X] Only Add(item) method is virtual in TDataItemSet class.
+- [X] None.
 
 
 # Fixes
 
-- [X] None.
+- [X] Fixing bug with GetTitle and GetDescription methods in TitledDataItem and DescribedDataItem classes.
 
 
 # Lifecycle news

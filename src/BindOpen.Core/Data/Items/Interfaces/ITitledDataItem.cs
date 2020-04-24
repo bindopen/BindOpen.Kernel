@@ -10,12 +10,6 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="updateBaseObject"></param>
-        void Update(ITitledDataItem updateBaseObject);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="text"></param>
         ITitledDataItem AddTitle(string text);
 
@@ -38,5 +32,12 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="text"></param>
         ITitledDataItem WithTitle(string text);
+
+        /// <summary>
+        /// Returns the title label.
+        /// </summary>
+        /// <param name="variantName">The variant variant name to consider.</param>
+        /// <param name="defaultVariantName">The default variant name to consider.</param>
+        string GetTitleText(string variantName = "*", string defaultVariantName = "*");
     }
 }

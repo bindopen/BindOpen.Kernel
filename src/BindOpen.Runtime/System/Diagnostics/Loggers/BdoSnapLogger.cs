@@ -86,8 +86,8 @@ namespace BindOpen.System.Diagnostics.Loggers
             indent += indent;
 
             string st = logEvent.Date + " " + indent + (logEvent.Log != null ? "o " : "- ")
-                + logEvent.Kind.ToString() + ": " + logEvent.WithTitle(UICulture)
-                + (logEvent.Description != null ? " | " + logEvent.WithDescription(UICulture) : "") + Environment.NewLine;
+                + logEvent.Kind.ToString() + ": " + logEvent.GetTitleText(UICulture)
+                + (logEvent.Description != null ? " | " + logEvent.GetDescriptionText(UICulture) : "") + Environment.NewLine;
 
             if (logEvent?.Log != null)
                 st += ToString(logEvent?.Log);
