@@ -3,11 +3,11 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Simplify Xsd URI to docs.bindopen.org/xsd
+- [X] XSD location URI updated to docs.bindopen.org/xsd
 - [ ] Dynamic extension loading
 - [ ] Update/Repair/Check data items/elements/sets
 - [ ] Update element, element spec
-- [ ] Script words: Adding overloading
+- [ ] Script words: Adding overloading. Optimize 
 - [ ] Integrate .net core logging. Improve existing logger management (logs in memory)
 - [ ] Integrate .net core configuration
 - [ ] Handle application option tree
