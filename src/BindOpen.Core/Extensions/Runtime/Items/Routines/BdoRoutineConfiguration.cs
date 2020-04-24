@@ -9,8 +9,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a routine configuration.
     /// </summary>
-    [XmlType("RoutineConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot("routine", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("RoutineConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("routine", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoRoutineConfiguration
         : TBdoExtensionTitledItemConfiguration<BdoRoutineDefinition>, IBdoRoutineConfiguration
     {

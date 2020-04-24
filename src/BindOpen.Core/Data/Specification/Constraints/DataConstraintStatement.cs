@@ -12,8 +12,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    [XmlType("DataConstraintStatement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataConstraintStatement : TDataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement
     {
         // ------------------------------------------

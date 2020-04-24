@@ -8,8 +8,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [XmlType("DataKeyValue", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "add.value", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("DataKeyValue", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "add.value", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataKeyValue : MarshalByRefObject, IDataKeyValue
     {
         // --------------------------------------------------

@@ -7,8 +7,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents an advanced condition.
     /// </summary>
-    [XmlType("AdvancedBusinessCondition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("AdvancedBusinessCondition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class AdvancedCondition : Condition, IAdvancedCondition
     {
         // --------------------------------------------------

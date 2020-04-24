@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents an format configuration.
     /// </summary>
-    [XmlType("BdoFormatConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "format", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoFormatConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "format", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoFormatConfiguration
         : TBdoExtensionTitledItemConfiguration<BdoFormatDefinition>, IBdoFormatConfiguration
     {

@@ -12,8 +12,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a carrier element.
     /// </summary>
-    [XmlType("CarrierElement", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "carrier", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("CarrierElement", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class CarrierElement : DataElement, ICarrierElement
     {
         // --------------------------------------------------

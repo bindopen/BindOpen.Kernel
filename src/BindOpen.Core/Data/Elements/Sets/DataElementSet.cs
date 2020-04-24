@@ -15,7 +15,7 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlRoot(ElementName = "element.set", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlRoot(ElementName = "element.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class DataElementSet : TDataItemSet<IDataElement>, IDataElementSet
     {
         // ------------------------------------------

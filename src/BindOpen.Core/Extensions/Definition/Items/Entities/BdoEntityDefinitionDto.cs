@@ -10,8 +10,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents the entity definition.
     /// </summary>
-    [XmlType("BdoEntityDefinition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot(ElementName = "entity.definition", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoEntityDefinition", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot(ElementName = "entity.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoEntityDefinitionDto : BdoExtensionItemDefinitionDto, IBdoEntityDefinitionDto
     {
         // --------------------------------------------------

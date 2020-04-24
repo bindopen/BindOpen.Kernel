@@ -5,8 +5,8 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// This class represents a BindOpen host application configuration.
     /// </summary>
-    [XmlType("BdoHostConfiguration", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
-    [XmlRoot("bindopen", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen", IsNullable = false)]
+    [XmlType("BdoHostConfiguration", Namespace = "https://bindopen.org/xsd")]
+    [XmlRoot("bindopen", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
     public class BdoHostConfiguration : BdoBaseConfiguration, IBdoHostConfiguration
     {
         // -------------------------------------------------------------

@@ -13,7 +13,7 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible update modes.
     /// </summary>
-    [XmlType("UpdateModes", Namespace = "https://storage.bindopen.org/pgrkhpym/docs/code/xsd/bindopen")]
+    [XmlType("UpdateModes", Namespace = "https://bindopen.org/xsd")]
     [Flags]
     public enum UpdateModes
     {
