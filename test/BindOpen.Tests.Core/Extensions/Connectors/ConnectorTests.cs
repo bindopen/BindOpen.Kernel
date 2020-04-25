@@ -133,6 +133,17 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
                 xml = ". Result was '" + log.ToXml();
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
+
+            // check bad connection
+
+            _connector?.UsingConnection((p, l) => { string toto = null; int i = toto.Length; }, log);
+
+            xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml();
+            }
+            Assert.That(log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
         }
     }
 }

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 
 namespace BindOpen.Data.Helpers.Objects
 {
@@ -91,16 +92,14 @@ namespace BindOpen.Data.Helpers.Objects
                         if (object1 is TimeSpan timeSpan)
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
                         break;
-                    case DataValueType.Text:
-                        stringValue = object1?.ToString();
+                    case DataValueType.ByteArray:
+                        stringValue = Convert.ToBase64String(object1 as byte[]);
                         break;
+                    case DataValueType.Text:
                     case DataValueType.ULong:
                     case DataValueType.Long:
                     case DataValueType.Integer:
                         stringValue = object1.ToString();
-                        break;
-                    case DataValueType.ByteArray:
-                        stringValue = BitConverter.ToString(object1 as byte[]);
                         break;
                     default:
                         stringValue = object1.ToXml();
@@ -352,6 +351,31 @@ namespace BindOpen.Data.Helpers.Objects
             }
 
             return (PropertyInfo)memberExpression.Member;
+        }
+
+        /// <summary>
+        /// Creates a byte array from the string, using the 
+        /// System.Text.Encoding.Default encoding unless another is specified.
+        /// </summary>
+        public static byte[] ToByteArray(this string str, Encoding encoding = null)
+        {
+            return (encoding ?? Encoding.Default).GetBytes(str);
+        }
+
+        /// <summary>
+        /// Gets the fields of the specified enumeration.
+        /// </summary>
+        /// <typeparam name="type">The enumeration type to consider.</typeparam>
+        /// <returns>Returns the string array.</returns>
+        public static string[] GetEnumFields(this Type type)
+        {
+            List<string> fieldNames = new List<string>();
+            foreach (var field in Enum.GetValues(type))
+            {
+                fieldNames.Add(field?.ToString());
+            }
+
+            return fieldNames.ToArray();
         }
     }
 }

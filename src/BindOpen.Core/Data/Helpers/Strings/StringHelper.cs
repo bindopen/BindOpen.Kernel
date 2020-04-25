@@ -216,7 +216,7 @@ namespace BindOpen.Data.Helpers.Strings
                 throw new ArgumentException("Unrecognized hash name", nameof(hashName));
             }
 
-            byte[] bytes = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(st));
+            byte[] bytes = hashAlgorithm.ComputeHash(st.ToByteArray(Encoding.UTF8));
 
             return Convert.ToBase64String(bytes);
         }
@@ -709,6 +709,11 @@ namespace BindOpen.Data.Helpers.Strings
         /// <returns>Returns the object corresponding to the specified string.</returns>
         public static object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
         {
+            if (st == null)
+            {
+                return null;
+            }
+
             if (valueType == DataValueType.Any)
             {
                 return st.GuessObjectValueFromString();
@@ -751,7 +756,7 @@ namespace BindOpen.Data.Helpers.Strings
                         return null;
                     return new ulong?(aULong);
                 case DataValueType.ByteArray:
-                    byte[] aByteArray = Encoding.Default.GetBytes(st);
+                    byte[] aByteArray = Convert.FromBase64String(st);
                     return aByteArray;
                 default:
                     return st;
