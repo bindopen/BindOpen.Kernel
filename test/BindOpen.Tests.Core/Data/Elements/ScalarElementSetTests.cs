@@ -27,16 +27,16 @@ namespace BindOpen.Tests.Core.Data.Elements
                 arrayNumber1 = Enumerable.Range(0, 10).Select(p => f.Random.Double()).ToArray(),
                 arrayString2 = Enumerable.Range(0, 10).Select(p => f.Random.Word()).ToArray(),
                 arrayInteger3 = Enumerable.Range(0, 10).Select(p => f.Random.Int()).ToArray(),
-                arrayNumber4 = Enumerable.Range(0, 10).Select(p => f.Random.Double()).ToArray()
+                arrayArrayByte4 = Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()
             };
         }
 
         private void Test(IDataElementSet elementSet)
         {
             var scalarElement1 = elementSet.Get<IScalarElement>("float1");
-            var scalarElement2 = elementSet.Get<IScalarElement>("text1");
+            var scalarElement2 = elementSet.Get<IScalarElement>("text2");
             var scalarElement3 = elementSet.Get<IScalarElement>(2);
-            var scalarElement4 = elementSet.Get<IScalarElement>("float2");
+            var scalarElement4 = elementSet.Get<IScalarElement>("byteArray4");
 
             Assert.That(
                 _scalarElementSet.Count == 4, "Bad scalar element set - Count");
@@ -54,7 +54,8 @@ namespace BindOpen.Tests.Core.Data.Elements
                 , "Bad scalar element - Set3");
 
             Assert.That(
-                scalarElement4.Items.Cast<double>().Intersect(_testData.arrayNumber4 as double[]).Count() > 0
+                (scalarElement4.Items?[0] as byte[])?.Cast<byte>().Intersect(_testData.arrayArrayByte4[0] as byte[]).Count() > 0
+                && (scalarElement4.Items?[1] as byte[])?.Cast<byte>().Intersect(_testData.arrayArrayByte4[1] as byte[]).Count() > 0
                 , "Bad scalar element - Set4");
         }
 
@@ -70,12 +71,12 @@ namespace BindOpen.Tests.Core.Data.Elements
         [Test, Order(2)]
         public void CreateElementSetTest()
         {
-            _scalarElementSet = ElementFactory.CreateSet(
-                ElementFactory.CreateScalar("float1", DataValueType.Number, _testData.arrayNumber1),
-                ElementFactory.CreateScalar("text1", DataValueType.Text, _testData.arrayString2),
-                ElementFactory.CreateScalar("integer1", DataValueType.Integer, _testData.arrayInteger3),
-                ElementFactory.CreateScalar("float2", DataValueType.Number, _testData.arrayNumber4)
-            );
+            var element1 = ElementFactory.CreateScalar("float1", DataValueType.Number, _testData.arrayNumber1);
+            var element2 = ElementFactory.CreateScalar("text2", DataValueType.Text, _testData.arrayString2);
+            var element3 = ElementFactory.CreateScalar("integer3", DataValueType.Integer, _testData.arrayInteger3);
+            var element4 = ElementFactory.CreateScalar("byteArray4", DataValueType.ByteArray, _testData.arrayArrayByte4);
+
+            _scalarElementSet = ElementFactory.CreateSet(element1, element2, element3, element4);
 
             Test(_scalarElementSet);
         }

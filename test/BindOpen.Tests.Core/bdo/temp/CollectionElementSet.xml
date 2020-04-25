@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <element.set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
   <collection name="collection1" valueType="Element">
-    <scalar name="Money Market Account" valueType="Number" value="0.19935795953467395" />
-    <scalar name="Handmade" valueType="Number" value="0.10145956561968641" />
-    <scalar name="Gorgeous" valueType="Number" value="0.13992327504787747" />
-    <scalar name="lime" valueType="Number" value="0.5572793076547232" />
-    <scalar name="Malagasy Ariary" valueType="Number" value="0.32379630129961123" />
-    <scalar name="View" valueType="Number" value="0.6941311213626206" />
-    <scalar name="Credit Card Account" valueType="Number" value="0.012135521048743055" />
-    <scalar name="out-of-the-box" valueType="Number" value="0.5713762503915356" />
-    <scalar name="programming" valueType="Number" value="0.9913985310082317" />
-    <scalar name="calculating" valueType="Number" value="0.07130844614995105" />
+    <scalar name="feed" valueType="Number" value="0.6655970875479268" />
+    <scalar name="Iraqi Dinar" valueType="Number" value="0.29611412356426664" />
+    <scalar name="Unbranded Wooden Gloves" valueType="Number" value="0.5064361987199802" />
+    <scalar name="Small" valueType="Number" value="0.7954785040558682" />
+    <scalar name="withdrawal" valueType="Number" value="0.23511266067396508" />
+    <scalar name="Norwegian Krone" valueType="Number" value="0.18609855658658714" />
+    <scalar name="empower" valueType="Number" value="0.10773451351920818" />
+    <scalar name="Saint Kitts and Nevis" valueType="Number" value="0.00349610112770279" />
+    <scalar name="Technician" valueType="Number" value="0.7007679686419517" />
+    <scalar name="models" valueType="Number" value="0.6030238529681339" />
   </collection>
   <collection name="collection2" valueType="Element">
-    <scalar name="compressing" valueType="Number" value="0.23858501121335896" />
-    <scalar name="quantifying" valueType="Number" value="0.73585511312627" />
-    <scalar name="facilitate" valueType="Number" value="0.07644057044593644" />
-    <scalar name="Investment Account" valueType="Number" value="0.9368615774143774" />
-    <scalar name="Rapid" valueType="Number" value="0.91986358767369" />
-    <scalar name="Health" valueType="Number" value="0.7445459103884855" />
-    <scalar name="application" valueType="Number" value="0.44703923186615074" />
-    <scalar name="rich" valueType="Number" value="0.18026285813202284" />
-    <scalar name="knowledge user" valueType="Number" value="0.6279817091431383" />
-    <scalar name="Secured" valueType="Number" value="0.11006103461145472" />
+    <scalar name="Solomon Islands Dollar" valueType="Number" value="0.7020718952184878" />
+    <scalar name="Checking Account" valueType="Number" value="0.7939935008967265" />
+    <scalar name="Response" valueType="Number" value="0.15653340479197606" />
+    <scalar name="Bedfordshire" valueType="Number" value="0.8967021959352783" />
+    <scalar name="Books &amp; Music" valueType="Number" value="0.7650831457064874" />
+    <scalar name="Object-based" valueType="Number" value="0.6346119105045739" />
+    <scalar name="leading edge" valueType="Number" value="0.40129251703680147" />
+    <scalar name="Path" valueType="Number" value="0.1511495100106809" />
+    <scalar name="Identity" valueType="Number" value="0.31946156095688305" />
+    <scalar name="communities" valueType="Number" value="0.7193623472560953" />
     <carrier id="tests.core$testCarrier" name="collection2" valueType="Carrier">
       <items>
         <add>

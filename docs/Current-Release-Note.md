@@ -8,13 +8,13 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # Fixes
 
-- [X] Fixing bug with GetTitle and GetDescription methods in TitledDataItem and DescribedDataItem classes.
+- [X] Fixing bug in the management of byte array value type.
 
 
 # Lifecycle news
 
-- [X] Documentation website will be available soon at [docs.bindopen.org](https://docs.bindopen.org).
-- [X] Release note history will be available soon.
+- [X] Documentation website is now opened at [docs.bindopen.org](https://docs.bindopen.org).
+- [X] Release note history will be available soon at [docs.bindopen.org/notes/release](https://docs.bindopen.org/notes/release).
 
 
 # Downloads

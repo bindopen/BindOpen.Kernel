@@ -1,7 +1,8 @@
 ﻿using BindOpen.Data.Common;
+using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Runtime;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Elements
 {
@@ -61,10 +62,10 @@ namespace BindOpen.Data.Elements
                 else if (type.IsEnum)
                 {
                     spec.ConstraintStatement.AddConstraint(
-                       null,
-                       "standard$" + KnownRoutineKind.ItemMustBeInList,
-                       ElementFactory.CreateSet(
-                           ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
+                        null,
+                        "standard$" + KnownRoutineKind.ItemMustBeInList,
+                        ElementFactory.CreateSet(
+                            ElementFactory.CreateScalar(DataValueType.Text, type.GetEnumFields())));
                 }
             }
 
