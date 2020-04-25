@@ -380,7 +380,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Start()
         {
-            _startDate = ObjectHelper.ToString(DateTime.Now);
+            _startDate = DateTime.Now.ToString(DataValueType.Date);
             _restartDate = "";
             _endDate = "";
             _state = ProcessExecutionState.Pending;
@@ -398,7 +398,7 @@ namespace BindOpen.System.Processing
         {
             if (!ProcessExecution.GetStatuses(ProcessExecutionState.Ended).Contains(status)) return;
 
-            _endDate = ObjectHelper.ToString(DateTime.Now);
+            _endDate = DateTime.Now.ToString(DataValueType.Date);
             _state = ProcessExecutionState.Ended;
             _status = status;
 
@@ -432,7 +432,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Restart()
         {
-            _restartDate = ObjectHelper.ToString(DateTime.Now);
+            _restartDate = DateTime.Now.ToString(DataValueType.Date);
             _endDate = "";
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
@@ -446,7 +446,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Resume()
         {
-            _restartDate = ObjectHelper.ToString(DateTime.Now);
+            _restartDate = DateTime.Now.ToString(DataValueType.Date);
             _endDate = "";
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;

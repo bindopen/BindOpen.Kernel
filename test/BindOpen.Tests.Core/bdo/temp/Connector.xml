@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <connector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="connector" definition="tests.core$testConnector" xmlns="https://bindopen.org/xsd">
-  <scalar name="host" value="226.11.136.143" />
-  <scalar name="isSslEnabled" valueType="Boolean" value="false" />
-  <scalar name="port" valueType="Integer" value="616151483" />
+  <scalar name="host" value="29.63.84.122" />
+  <scalar name="isSslEnabled" valueType="Boolean" value="true" />
+  <scalar name="port" valueType="Integer" value="185202810" />
   <scalar name="connectionString" />
   <scalar name="connectionTimeOut" valueType="Integer" value="0" />
 </connector>
