@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Objects;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Helpers.Objects;
 using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -79,7 +80,7 @@ namespace BindOpen.Data.Items
         public virtual void DeclareUpdate()
         {
             // we update the modification date
-            LastModificationDate = ObjectHelper.ToString(DateTime.Now);
+            LastModificationDate = DateTime.Now.ToString(DataValueType.Date);
         }
 
         #endregion
@@ -98,7 +99,7 @@ namespace BindOpen.Data.Items
         {
             StoredDataItem item = base.Clone(areas) as StoredDataItem;
             if (CreationDate != null)
-                item.CreationDate = ObjectHelper.ToString(DateTime.Now);
+                item.CreationDate = DateTime.Now.ToString(DataValueType.Date);
             item.LastModificationDate = null;
             return item;
         }

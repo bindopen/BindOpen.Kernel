@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Scopes;
+using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Helpers.Strings;
@@ -130,7 +131,7 @@ namespace BindOpen.System.Diagnostics.Events
             string id = null) : this()
         {
             this.Id = (id ?? this.Id);
-            this.CreationDate = ObjectHelper.ToString((date ?? DateTime.Now));
+            this.CreationDate = (date ?? DateTime.Now).ToString(DataValueType.Date);
 
             this.Kind = EventKinds.Exception;
             this.Criticality = criticality;

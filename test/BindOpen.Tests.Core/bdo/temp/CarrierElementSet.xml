@@ -4,18 +4,18 @@
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
-        <scalar name="path" value="Cape Verde_1.txt" />
+        <scalar name="path" value="Missouri_1.txt" />
       </add>
     </items>
   </carrier>
   <carrier id="tests.core$testCarrier" name="carrier2" valueType="Carrier">
     <items>
       <add>
-        <scalar name="path" value="Avon_2.txt" />
+        <scalar name="path" value="aggregate_2.txt" />
       </add>
     </items>
   </carrier>
-  <carrier name="carrierElem_637234560191348897" valueType="Carrier">
+  <carrier name="carrierElem_637234589381398541" valueType="Carrier">
     <definition>tests.core$testCarrier</definition>
     <items>
       <add definition="tests.core$testCarrier">
@@ -23,7 +23,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="24/365_3.txt" />
+        <scalar name="path" value="hybrid_3.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />
@@ -41,7 +41,7 @@
         <scalar name="stringValue" />
         <scalar name="intValue" valueType="Integer" value="0" />
         <scalar name="enumValue" value="None" />
-        <scalar name="path" value="Consultant_4.txt" />
+        <scalar name="path" value="capability_4.txt" />
         <scalar name="parentPath" />
         <scalar name="creationDate" />
         <scalar name="flag" />

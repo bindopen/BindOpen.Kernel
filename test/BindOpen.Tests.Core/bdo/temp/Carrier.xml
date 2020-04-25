@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <carrier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="connector" definition="tests.core$testCarrier" xmlns="https://bindopen.org/xsd">
-  <scalar name="boolValue" valueType="Boolean" value="false" />
-  <scalar name="stringValue" value="deserunt" />
-  <scalar name="intValue" valueType="Integer" value="534199510" />
+  <scalar name="boolValue" valueType="Boolean" value="true" />
+  <scalar name="stringValue" value="corrupti" />
+  <scalar name="intValue" valueType="Integer" value="15309303" />
   <scalar name="enumValue" value="High" />
   <scalar name="path" />
   <scalar name="parentPath" />
