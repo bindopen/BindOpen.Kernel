@@ -130,7 +130,7 @@ namespace BindOpen.Application.Options
                     null,
                     "standard$" + KnownRoutineKind.ItemMustBeInList,
                     ElementFactory.CreateSet(
-                        ElementFactory.CreateScalar(DataValueType.Text, type.GetFields().Select(p => p.Name).ToList().Cast<Object>())));
+                        ElementFactory.CreateScalar(DataValueType.Text, type.GetEnumFields())));
             }
         }
 

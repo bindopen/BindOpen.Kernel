@@ -332,24 +332,31 @@ namespace BindOpen.Data.Elements
         {
             if (item != null)
             {
-                if ((item.GetType().IsArray || item is IList) && item is IEnumerable)
+                if ((item.GetType().IsArray || item is IList) && item is IEnumerable && !(item is byte[]))
                 {
                     foreach (object subItem in (item as IEnumerable))
+                    {
                         Add(subItem);
+                    }
                 }
                 else if (Specification == null
                     || (Specification.MaximumItemNumber == -1)
-                    || (Items.Count < Specification.MaximumItemNumber))
+                    || ((Items?.Count ?? 0) < Specification.MaximumItemNumber))
                 {
                     if (Specification == null
                         && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
                     {
+                        if (Items == null)
+                        {
+                            Items = new List<object>();
+                        }
+
                         if (this is CollectionElement)
                         {
                             Items?.RemoveAll(p => p.KeyEquals(item));
                         }
 
-                        (Items ?? (Items = new List<object>())).Add(item);
+                        Items.Add(item);
                     }
                 }
             }

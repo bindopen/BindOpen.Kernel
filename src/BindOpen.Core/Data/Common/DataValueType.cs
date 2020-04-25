@@ -230,7 +230,9 @@ namespace BindOpen.Data.Common
         {
             if (type == null) return DataValueType.None;
 
-            if (type.IsArray)
+            if (type == typeof(byte[]))
+                return DataValueType.ByteArray;
+            else if (type.IsArray)
                 type = type.GetElementType();
 
             if (type == typeof(bool) || type == typeof(bool?))
@@ -261,8 +263,6 @@ namespace BindOpen.Data.Common
                 return DataValueType.Long;
             else if (type == typeof(ulong) || type == typeof(ulong?))
                 return DataValueType.ULong;
-            else if (type == typeof(byte[]))
-                return DataValueType.ByteArray;
             else
                 return DataValueType.None;
         }

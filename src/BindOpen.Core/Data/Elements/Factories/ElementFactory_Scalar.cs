@@ -98,10 +98,7 @@ namespace BindOpen.Data.Elements
 
             if (items != null)
             {
-                foreach (object item in items)
-                {
-                    element.Add(item);
-                }
+                element.Add(items);
             }
 
             return element;

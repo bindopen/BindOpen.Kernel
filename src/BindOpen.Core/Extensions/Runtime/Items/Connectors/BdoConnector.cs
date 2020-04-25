@@ -124,28 +124,34 @@ namespace BindOpen.Extensions.Runtime
             IBdoLog log,
             bool isAutoConnected = true)
         {
-            log = log ?? new BdoLog();
+            log ??= new BdoLog();
 
-            using (var connection = CreateConnection(log))
+            using var connection = CreateConnection(log);
+            if (!log.HasErrorsOrExceptions() && connection != null)
             {
-                if (!log.HasErrorsOrExceptions() && connection != null)
+                if (isAutoConnected)
                 {
-                    if (isAutoConnected)
+                    try
                     {
-                        try
-                        {
-                            log.AddEvents(connection.Connect());
-                        }
-                        catch (Exception ex)
-                        {
-                            log.AddException("An exception occured while trying to open connection",
-                                description: ex.ToString());
-                        }
+                        log.AddEvents(connection.Connect());
                     }
+                    catch (Exception ex)
+                    {
+                        log.AddException("An exception occured while trying to open connection",
+                            description: ex.ToString());
+                    }
+                }
 
-                    if (!log.HasErrorsOrExceptions())
+                if (!log.HasErrorsOrExceptions())
+                {
+                    try
                     {
                         action?.Invoke(connection, log);
+                    }
+                    catch (Exception ex)
+                    {
+                        log.AddException("An exception occured while daeling with the connection",
+                            description: ex.ToString());
                     }
                 }
             }
