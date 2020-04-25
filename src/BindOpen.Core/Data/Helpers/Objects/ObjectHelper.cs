@@ -68,9 +68,9 @@ namespace BindOpen.Data.Helpers.Objects
         /// <returns>The result string.</returns>
         public static string ToString(
             this object object1,
-            DataValueType valueType = DataValueType.Any)
+            DataValueType valueType)
         {
-            string stringValue = "";
+            string stringValue = null;
             if (valueType == DataValueType.Any)
                 valueType = object1.GetValueType();
 
@@ -93,16 +93,22 @@ namespace BindOpen.Data.Helpers.Objects
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
                         break;
                     case DataValueType.ByteArray:
-                        stringValue = Convert.ToBase64String(object1 as byte[]);
+                        if (object1 is byte[] byteArray)
+                            stringValue = Convert.ToBase64String(byteArray);
                         break;
-                    case DataValueType.Text:
-                    case DataValueType.ULong:
-                    case DataValueType.Long:
-                    case DataValueType.Integer:
-                        stringValue = object1.ToString();
+                    case DataValueType.Carrier:
+                    case DataValueType.Connector:
+                    case DataValueType.Datasource:
+                    case DataValueType.Document:
+                    case DataValueType.Element:
+                    case DataValueType.Entity:
+                    case DataValueType.Object:
+                    case DataValueType.Schema:
+                    case DataValueType.SchemaZone:
+                        stringValue = object1.ToXml();
                         break;
                     default:
-                        stringValue = object1.ToXml();
+                        stringValue = object1.ToString();
                         break;
                 }
             }

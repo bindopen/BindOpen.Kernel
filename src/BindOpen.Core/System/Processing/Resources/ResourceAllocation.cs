@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Objects;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using System;
 
@@ -57,7 +58,7 @@ namespace BindOpen.System.Processing
             String aAllocatedResourceId,
             String aOwnerId = null)
         {
-            this.CreationDate = ObjectHelper.ToString(DateTime.Now);
+            this.CreationDate = DateTime.Now.ToString(DataValueType.Date);
             this.AllocatedResourceId = aAllocatedResourceId;
             this.OwnerId = aOwnerId;
         }

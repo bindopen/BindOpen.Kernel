@@ -2,16 +2,16 @@
 <usableConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="https://bindopen.org/xsd">
   <scalar name="text1">
     <values>
-      <add>qui</add>
-      <add>sed</add>
+      <add>laborum</add>
+      <add>asperiores</add>
+      <add>sapiente</add>
+      <add>est</add>
+      <add>quasi</add>
+      <add>vitae</add>
+      <add>ut</add>
       <add>voluptatem</add>
-      <add>impedit</add>
-      <add>possimus</add>
-      <add>sint</add>
-      <add>aut</add>
-      <add>veniam</add>
-      <add>et</add>
-      <add>odit</add>
+      <add>sit</add>
+      <add>minima</add>
     </values>
   </scalar>
   <scalar name="integer1" valueType="Integer" />

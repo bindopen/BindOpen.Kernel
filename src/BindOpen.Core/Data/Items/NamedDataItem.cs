@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers.Objects;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Helpers.Objects;
 using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
@@ -106,7 +107,7 @@ namespace BindOpen.Data.Items
             NamedDataItem item = base.Clone(areas) as NamedDataItem;
             item.Name = Name;// NamedDataItem.GetClonedName(Name, NamePreffix);
             if (CreationDate != null)
-                item.CreationDate = ObjectHelper.ToString(DateTime.Now);
+                item.CreationDate = DateTime.Now.ToString(DataValueType.Date);
             item.LastModificationDate = null;
             return item;
         }
