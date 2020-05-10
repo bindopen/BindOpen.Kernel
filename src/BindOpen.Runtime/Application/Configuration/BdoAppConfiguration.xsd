@@ -1,34 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="ApplicationCredential.xsd" />
-  <xs:import schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation ="https://docs.bindopen.org/xsd/ApplicationCredential.xsd" />
+  <xs:include schemaLocation ="https://docs.bindopen.org/xsd/Arrays.xsd" />
+  <xs:include schemaLocation ="https://docs.bindopen.org/xsd/UsableConfiguration.xsd" />
   
-  <xs:element name="app.config" type="AppConfiguration" />
-  <xs:complexType name="AppConfiguration">
+  <xs:element name="app.config" type="BdoAppConfiguration" />
+  
+  <xs:complexType name="BdoAppConfiguration">
     <xs:complexContent mixed="false">
       <xs:extension base="UsableConfiguration">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="credentials" type="ArrayOfApplicationCredential" />
           <xs:element minOccurs="0" maxOccurs="1" name="dataSources" type="ArrayOfDatasources" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="UsableConfiguration">
-    <xs:complexContent mixed="false">
-      <xs:extension base="Configuration">
-        <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="usingFilePaths" type="ArrayOfString" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="Configuration">
-    <xs:complexContent mixed="false">
-      <xs:extension base="DataElementSet">
-        <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="creationDate" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="lastModificationDate" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

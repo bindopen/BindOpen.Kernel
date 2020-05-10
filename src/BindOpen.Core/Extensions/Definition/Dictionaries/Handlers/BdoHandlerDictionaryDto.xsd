@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="HandlerDefinitionDto.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/HandlerDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="handlers.dictionary" type="HandlerDictionary" />
+  <xs:element name="handlers.dictionary" type="BdoHandlerDictionaryDto" />
 
-  <xs:complexType name="BdoHandlerDictionary">
+  <xs:complexType name="BdoHandlerDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_DataHandler" />
     </xs:complexContent>
@@ -27,7 +27,7 @@
 
   <xs:complexType name="ArrayOfHandlerDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="HandlerDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoHandlerDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 

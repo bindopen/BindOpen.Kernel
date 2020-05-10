@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataElement.xsd" />
-  <xs:include schemaLocation="SourceElementSpec.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/SourceElementSpec.xsd" />
 
   <xs:complexType name="SourceElement">
     <xs:complexContent mixed="false">

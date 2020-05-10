@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataElementSpec.xsd" />
-  <xs:include schemaLocation="DataValueFilter.xsd" />
-  <xs:include schemaLocation="RequirementLevel.xsd" />
-  <xs:include schemaLocation="Arrays.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSpec.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataValueFilter.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/RequirementLevel.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Arrays.xsd" />
 
   <xs:complexType name="SchemaElementSpec">
     <xs:complexContent mixed="false">

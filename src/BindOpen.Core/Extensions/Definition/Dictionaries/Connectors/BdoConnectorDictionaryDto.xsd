@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="connectors/ConnectorDefinitionDto.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/connectors/ConnectorDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="connectors.dictionary" type="BdoConnectorDictionary" />
+  <xs:element name="connectors.dictionary" type="BdoConnectorDictionaryDto" />
 
-  <xs:complexType name="BdoConnectorDictionary">
+  <xs:complexType name="BdoConnectorDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_Connector" />
     </xs:complexContent>
@@ -26,7 +26,7 @@
 
   <xs:complexType name="ArrayOfConnectorDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="ConnectorDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoConnectorDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 

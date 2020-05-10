@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="metrics/BdoMetricsDefinitionDto.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/metrics/BdoMetricsDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="metrics.dictionary" type="MetricsDictionary" />
+  <xs:element name="metrics.dictionary" type="BdoMetricsDictionaryDto" />
 
-  <xs:complexType name="BdoMetricsDictionary">
+  <xs:complexType name="BdoMetricsDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_Metrics" />
     </xs:complexContent>

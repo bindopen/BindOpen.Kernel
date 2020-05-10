@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers.Objects;
-using BindOpen.Extensions.Definition;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -9,7 +8,7 @@ namespace BindOpen.Extensions.Definition
     /// This class represents a DTO script word dictionary.
     /// </summary>
     [XmlType("BdoScriptwordDictionaryDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptWords.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "scriptwords.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDictionaryDto : TBdoExtensionDictionaryDto<BdoScriptwordDefinitionDto>, IBdoScriptwordDictionaryDto
     {
         // ------------------------------------------

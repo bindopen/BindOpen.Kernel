@@ -1,9 +1,9 @@
 ﻿<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataElementSet.xsd" />
-  <xs:include schemaLocation="DictionaryDataItem.xsd" />
-  <xs:include schemaLocation="StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/StoredDataItem.xsd" />
 
-  <xs:complexType name="ConnectorConfiguration">
+  <xs:complexType name="BdoConnectorConfiguration">
     <xs:complexContent mixed="false">
       <xs:extension base="BdoExtensionTitledItemOfConnectorDefinition">
         <xs:sequence>
