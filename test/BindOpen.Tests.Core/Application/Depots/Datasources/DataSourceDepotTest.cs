@@ -56,10 +56,10 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
                 BdoExtensionFactory.CreateConnectorConfiguration("messages$smtp")
                     .WithItems(
                         ElementFactory.CreateScalar("host", _testData.host),
-                        ElementFactory.CreateScalar("port", DataValueType.Integer, _testData.port),
-                        ElementFactory.CreateScalar("isDefaultCredentialsUsed", DataValueType.Boolean, _testData.isDefaultCredentialsUsed),
-                        ElementFactory.CreateScalar("isSslEnabled", DataValueType.Boolean, _testData.isSslEnabled),
-                        ElementFactory.CreateScalar("timeout", DataValueType.Integer, _testData.timeout),
+                        ElementFactory.CreateScalar("port", DataValueTypes.Integer, _testData.port),
+                        ElementFactory.CreateScalar("isDefaultCredentialsUsed", DataValueTypes.Boolean, _testData.isDefaultCredentialsUsed),
+                        ElementFactory.CreateScalar("isSslEnabled", DataValueTypes.Boolean, _testData.isSslEnabled),
+                        ElementFactory.CreateScalar("timeout", DataValueTypes.Integer, _testData.timeout),
                         ElementFactory.CreateScalar("login", _testData.login),
                         ElementFactory.CreateScalar("password", _testData.password));
 

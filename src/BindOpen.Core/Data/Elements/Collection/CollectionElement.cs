@@ -14,8 +14,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are entities.
     /// </summary>
-    [XmlType("CatalogElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "catalog", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("CatalogElement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "catalog", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class CollectionElement : DataElement, ICollectionElement
     {
         // --------------------------------------------------
@@ -89,7 +89,7 @@ namespace BindOpen.Data.Elements
         public CollectionElement(string name = null, string id = null)
             : base(name, "collectionElem_", id)
         {
-            ValueType = DataValueType.Element;
+            ValueType = DataValueTypes.Element;
         }
 
         #endregion

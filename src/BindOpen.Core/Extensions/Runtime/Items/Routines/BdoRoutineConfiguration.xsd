@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="DataElementSet.xsd" />
   <xs:include schemaLocation="DictionaryDataItem.xsd" />
@@ -11,29 +9,29 @@
 
   <xs:complexType name="RoutineConfiguration" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:BdoExtensionTitledItemOfRoutineConfigurationDefinition">
+      <xs:extension base="BdoExtensionTitledItemOfRoutineConfigurationDefinition">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="parameterDetail" type="bdo:DataElementSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="commmandSet" type="bdo:DataItemSetOfCommand" />
-          <xs:element minOccurs="0" maxOccurs="1" name="outputEventSet" type="bdo:DataItemSetOfDescribedDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameterDetail" type="DataElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="commmandSet" type="DataItemSetOfCommand" />
+          <xs:element minOccurs="0" maxOccurs="1" name="outputEventSet" type="DataItemSetOfDescribedDataItem" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="BdoExtensionTitledItemOfRoutineConfigurationDefinition" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:TBdoExtensionItemOfRoutineConfigurationDefinition">
+      <xs:extension base="TBdoExtensionItemOfRoutineConfigurationDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="uniqueName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="title" type="bdo:DictionaryDataItem" />
-          <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="title" type="DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="TBdoExtensionItemOfRoutineConfigurationDefinition" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:StoredDataItem">
+      <xs:extension base="StoredDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="group" type="xs:string" />
         </xs:sequence>
@@ -43,14 +41,14 @@
   </xs:complexType>
   <xs:complexType name="DataItemSetOfCommand">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
-      <xs:element minOccurs="0" maxOccurs="1" name="items" type="bdo:ArrayOfCommand" />
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfCommand" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DataItemSetOfDescribedDataItem">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
-      <xs:element minOccurs="0" maxOccurs="1" name="items" type="bdo:ArrayOfDescribedDataItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfDescribedDataItem" />
     </xs:sequence>
   </xs:complexType>
 

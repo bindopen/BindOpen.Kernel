@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO metrics dictionary.
     /// </summary>
-    [XmlType("BdoMetricsDictionary", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "metrics.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoMetricsDictionary", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "metrics.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoMetricsDictionaryDto : TBdoExtensionDictionaryDto<BdoMetricsDefinitionDto>, IBdoMetricsDictionaryDto
     {
         // ------------------------------------------

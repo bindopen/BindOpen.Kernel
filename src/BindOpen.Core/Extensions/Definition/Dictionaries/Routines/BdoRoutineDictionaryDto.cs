@@ -5,8 +5,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO routine dictionary.
     /// </summary>
-    [XmlType("BdoRoutineDictionary", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "routines.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoRoutineDictionary", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "routines.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoRoutineDictionaryDto : TBdoExtensionDictionaryDto<BdoRoutineDefinitionDto>, IBdoRoutineDictionaryDto
     {
         // ------------------------------------------

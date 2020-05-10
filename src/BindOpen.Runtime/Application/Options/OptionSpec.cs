@@ -13,8 +13,8 @@ namespace BindOpen.Application.Options
     /// <summary>
     /// This class represents an option specification.
     /// </summary>
-    [XmlType("OptionSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("optionSpec", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("OptionSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("optionSpec", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class OptionSpec : ScalarElementSpec, IOptionSpec
     {
         // -------------------------------------------------------------
@@ -46,7 +46,7 @@ namespace BindOpen.Application.Options
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
             OptionNameKind nameKind,
-            params string[] aliases) : this(DataValueType.Text, RequirementLevel.Optional, OptionNameKind.OnlyName, aliases)
+            params string[] aliases) : this(DataValueTypes.Text, RequirementLevels.Optional, OptionNameKind.OnlyName, aliases)
         {
         }
 
@@ -57,9 +57,9 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
-            DataValueType dataValueType,
+            DataValueTypes dataValueType,
             OptionNameKind nameKind,
-            params string[] aliases) : this(dataValueType, RequirementLevel.Required, OptionNameKind.OnlyName, aliases)
+            params string[] aliases) : this(dataValueType, RequirementLevels.Required, OptionNameKind.OnlyName, aliases)
         {
         }
 
@@ -69,9 +69,9 @@ namespace BindOpen.Application.Options
         /// <param name="requirementLevel">The requirement level of the entry to add.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             params string[] aliases) : this(
-                DataValueType.Text,
+                DataValueTypes.Text,
                 requirementLevel,
                 aliases.Any(p => p?.Contains(StringHelper.__PatternEmptyValue) == true) ? OptionNameKind.NameWithValue : OptionNameKind.OnlyName,
                 aliases)
@@ -85,9 +85,9 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
-            params string[] aliases) : this(DataValueType.Text, requirementLevel, nameKind, aliases)
+            params string[] aliases) : this(DataValueTypes.Text, requirementLevel, nameKind, aliases)
         {
         }
 
@@ -99,8 +99,8 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
-            DataValueType dataValueType,
-            RequirementLevel requirementLevel,
+            DataValueTypes dataValueType,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
             params string[] aliases) : base()
         {
@@ -119,7 +119,7 @@ namespace BindOpen.Application.Options
         /// <param name="aliases">Aliases of the option to add.</param>
         public OptionSpec(
             Type type,
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
             params string[] aliases) : this(type.GetValueType(), requirementLevel, nameKind, aliases)
         {
@@ -130,7 +130,7 @@ namespace BindOpen.Application.Options
                     null,
                     "standard$" + KnownRoutineKind.ItemMustBeInList,
                     ElementFactory.CreateSet(
-                        ElementFactory.CreateScalar(DataValueType.Text, type.GetEnumFields())));
+                        ElementFactory.CreateScalar(DataValueTypes.Text, type.GetEnumFields())));
             }
         }
 

@@ -7,8 +7,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    [XmlType("DataElementSpecSet", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataElementSpecSet", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataElementSpecSet", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DataElementSpecSet : TDataItemSet<DataElementSpec>, IDataElementSpecSet
     {
         // ------------------------------------------

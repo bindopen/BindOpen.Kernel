@@ -12,8 +12,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("BdoScriptwordDefinitionDto", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoScriptwordDefinitionDto", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDefinitionDto : BdoExtensionItemDefinitionDto, IBdoScriptwordDefinitionDto
     {
         // ------------------------------------------
@@ -66,7 +66,7 @@ namespace BindOpen.Extensions.Definition
         /// The return value type of this instance.
         /// </summary>
         [XmlElement("returnValueType")]
-        public DataValueType ReturnValueType { get; set; } = DataValueType.Text;
+        public DataValueTypes ReturnValueType { get; set; } = DataValueTypes.Text;
 
         /// <summary>
         /// Parameter specification of this instance.
@@ -99,7 +99,7 @@ namespace BindOpen.Extensions.Definition
         /// <seealso cref="IsRepeatedParameters"/>
         /// <seealso cref="RepeatedParameterName"/>
         [XmlElement("repeatedParameterValueType")]
-        public DataValueType RepeatedParameterValueType { get; set; }
+        public DataValueTypes RepeatedParameterValueType { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

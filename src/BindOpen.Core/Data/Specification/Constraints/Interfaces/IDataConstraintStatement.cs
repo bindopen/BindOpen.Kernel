@@ -40,7 +40,7 @@ namespace BindOpen.Data.Specification
         /// <param name="parameterName"></param>
         /// <param name="dataValueType"></param>
         /// <returns></returns>
-        IDataElement AddConstraintParameter(string constraintName, string definitionUniqueId = null, string parameterName = null, DataValueType dataValueType = DataValueType.Any);
+        IDataElement AddConstraintParameter(string constraintName, string definitionUniqueId = null, string parameterName = null, DataValueTypes dataValueType = DataValueTypes.Any);
 
         /// <summary>
         /// 
@@ -74,7 +74,7 @@ namespace BindOpen.Data.Specification
         /// <param name="value"></param>
         /// <param name="dataValueType"></param>
         /// <returns></returns>
-        bool SetConstraintParameterValue(string constraintName, string definitionUniqueId = null, string parameterName = null, object value = null, DataValueType dataValueType = DataValueType.Any);
+        bool SetConstraintParameterValue(string constraintName, string definitionUniqueId = null, string parameterName = null, object value = null, DataValueTypes dataValueType = DataValueTypes.Any);
 
         /// <summary>
         /// 

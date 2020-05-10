@@ -1,36 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+﻿<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataElementSet.xsd" />
   <xs:include schemaLocation="DictionaryDataItem.xsd" />
   <xs:include schemaLocation="StoredDataItem.xsd" />
 
   <xs:complexType name="ConnectorConfiguration">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:BdoExtensionTitledItemOfConnectorDefinition">
+      <xs:extension base="BdoExtensionTitledItemOfConnectorDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="connectionString" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail" type="DataElementSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="BdoExtensionTitledItemOfConnectorDefinition" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:TBdoExtensionItemOfConnectorDefinition">
+      <xs:extension base="TBdoExtensionItemOfConnectorDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="uniqueName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="title" type="bdo:DictionaryDataItem" />
-          <xs:element minOccurs="0" maxOccurs="1" name="description" type="bdo:DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="title" type="DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="TBdoExtensionItemOfConnectorDefinition" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:StoredDataItem">
+      <xs:extension base="StoredDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="group" type="xs:string" />
         </xs:sequence>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<app.config xmlns="https://bindopen.org/xsd">
+<app.config xmlns="https://docs.bindopen.org/xsd">
   
   <scalar name="test.folderPath" script="$(application.folderPath) ..\app_data\test" />
 

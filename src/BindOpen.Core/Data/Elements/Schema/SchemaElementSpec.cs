@@ -9,8 +9,8 @@ namespace BindOpen.Data.Elements.Schema
     /// <summary>
     /// This class represents a schema element specification.
     /// </summary>
-    [XmlType("SchemaElementSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("SchemaElementSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class SchemaElementSpec : DataElementSpec
     {
         // --------------------------------------------------
@@ -31,7 +31,7 @@ namespace BindOpen.Data.Elements.Schema
         /// Schema requirement level of this instance.
         /// </summary>
         [XmlElement("entityRequirementLevel")]
-        public RequirementLevel SchemaRequirementLevel { get; set; } = RequirementLevel.None;
+        public RequirementLevels SchemaRequirementLevel { get; set; } = RequirementLevels.None;
 
         /// <summary>
         /// The specification levels for entity specification of this instance.
@@ -52,7 +52,7 @@ namespace BindOpen.Data.Elements.Schema
         /// Format requirement level of this instance.
         /// </summary>
         [XmlElement("formatRequirementLevel")]
-        public RequirementLevel FormatRequirementLevel { get; set; } = RequirementLevel.Optional;
+        public RequirementLevels FormatRequirementLevel { get; set; } = RequirementLevels.Optional;
 
         /// <summary>
         /// The specification levels for format specification of this instance.

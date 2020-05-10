@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
   <xs:include schemaLocation="ScriptItemKind.xsd" />
   <xs:include schemaLocation="DataElementSpecSet.xsd" />
@@ -11,20 +8,20 @@
 
   <xs:complexType name="ScriptwordDefinition">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="kind" type="bdo:ScriptItemKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="kind" type="ScriptItemKind" />
           <xs:element minOccurs="0" maxOccurs="1" name="functionName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="bdo:DataElementSpecSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="returnValueType" type="bdo:DataValueType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="DataElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="returnValueType" type="DataValueType" />
           <xs:element minOccurs="0" maxOccurs="1" name="isRepeatedParameters" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterValueType" type="bdo:DataValueType" />
-          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterDescription" type="bdo:DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterValueType" type="DataValueType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterDescription" type="DictionaryDataItem" />
           <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterName" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="maxParameterNumber" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="minParameterNumber" type="xs:int" />
-          <xs:element minOccurs="0" maxOccurs="1" name="children" type="bdo:ArrayOfScriptwordDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="children" type="ArrayOfScriptwordDefinition" />
         </xs:sequence>
         <xs:attribute name="referenceUniqueName" type="xs:string" />
       </xs:extension>
@@ -33,7 +30,7 @@
 
   <xs:complexType name="ArrayOfScriptwordDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="bdo:ScriptwordDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="ScriptwordDefinition" />
     </xs:sequence>
   </xs:complexType>
 

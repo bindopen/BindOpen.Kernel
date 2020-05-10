@@ -21,8 +21,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    [XmlType("DataElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "element", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataElement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "element", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElement))]
     [XmlInclude(typeof(SourceElement))]
     [XmlInclude(typeof(DocumentElement))]
@@ -54,8 +54,8 @@ namespace BindOpen.Data.Elements
         /// The value type of this instance.
         /// </summary>
         [XmlAttribute("valueType")]
-        [DefaultValue(DataValueType.Text)]
-        public DataValueType ValueType { get; set; } = DataValueType.Any;
+        [DefaultValue(DataValueTypes.Text)]
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -98,7 +98,7 @@ namespace BindOpen.Data.Elements
         /// <param name="st">The string to consider.</param>
         public static explicit operator DataElement(string st)
         {
-            return ElementFactory.CreateScalar(DataValueType.Any, st);
+            return ElementFactory.CreateScalar(DataValueTypes.Any, st);
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace BindOpen.Data.Elements
                     || ((Items?.Count ?? 0) < Specification.MaximumItemNumber))
                 {
                     if (Specification == null
-                        && (ValueType == DataValueType.Any || item.GetValueType().IsCompatibleWith(ValueType)))
+                        && (ValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(ValueType)))
                     {
                         if (Items == null)
                         {
@@ -479,7 +479,7 @@ namespace BindOpen.Data.Elements
                 {
                     if (element != null)
                     {
-                        if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
+                        if (ValueType == DataValueTypes.None || ValueType == DataValueTypes.Any)
                         {
                             ValueType = element.ValueType;
                         }
@@ -594,7 +594,7 @@ namespace BindOpen.Data.Elements
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                 {
-                    if (ValueType == DataValueType.None || ValueType == DataValueType.Any)
+                    if (ValueType == DataValueTypes.None || ValueType == DataValueTypes.Any)
                     {
                         ValueType = element.ValueType;
                     }

@@ -1,13 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-  <xs:simpleType name="DataValueType">
+﻿<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="DataValueTypes">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Any" />
+      <xs:enumeration value="Undefined" />
       <xs:enumeration value="None" />
+      <xs:enumeration value="Any" />
       <xs:enumeration value="Boolean" />
+      <xs:enumeration value="ByteArray" />
       <xs:enumeration value="CarrierConfiguration" />
       <xs:enumeration value="Datasource" />
       <xs:enumeration value="Date" />
@@ -15,12 +13,15 @@
       <xs:enumeration value="Document" />
       <xs:enumeration value="Entity" />
       <xs:enumeration value="Integer" />
+      <xs:enumeration value="Long" />
       <xs:enumeration value="Number" />
+      <xs:enumeration value="Object" />
       <xs:enumeration value="Schema" />
       <xs:enumeration value="SchemaZone" />
       <xs:enumeration value="StringValued" />
       <xs:enumeration value="Text" />
       <xs:enumeration value="Time" />
+      <xs:enumeration value="ULong" />
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

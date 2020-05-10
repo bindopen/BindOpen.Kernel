@@ -1,20 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
   <xs:include schemaLocation="DataElementSpecSet.xsd" />
 
   <xs:complexType name="TaskDefinition">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="groupName" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="isExecutable" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="bdo:DataElementSpecSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="bdo:DataElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="DataElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="DataElementSpecSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

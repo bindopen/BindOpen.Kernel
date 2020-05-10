@@ -13,8 +13,8 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a data source depot.
     /// </summary>
-    [XmlType("DatasourceDepot", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DatasourceDepot", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource.depot", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoDatasourceDepot : TBdoDepot<IDatasource>, IBdoDatasourceDepot
     {
         // ------------------------------------------
@@ -64,7 +64,7 @@ namespace BindOpen.Data.Stores
         /// <returns>Returns the item of this instance.</returns>
         public override IDatasource Get(string key = null)
         {
-            if (key == null) return Items.FirstOrDefault(p => p.IsDefault) ?? this[0];
+            if (key == null) return Items?.FirstOrDefault(p => p.IsDefault) ?? this[0];
             return this[key];
         }
 

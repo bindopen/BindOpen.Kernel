@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataItem.xsd" />  
   <xs:include schemaLocation="DataElement.xsd" />
   <xs:include schemaLocation="DataElementSet.xsd" />
 
   <xs:complexType name="DataReference">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataItem">
+      <xs:extension base="DataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="dataHandlerUniqueName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="sourceElement" type="bdo:DataElement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="pathDetail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="sourceElement" type="DataElement" />
+          <xs:element minOccurs="0" maxOccurs="1" name="pathDetail" type="DataElementSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

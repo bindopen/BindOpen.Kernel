@@ -36,7 +36,7 @@ namespace BindOpen.Data.Context
         /// <param name="item"></param>
         /// <param name="contextSectionName"></param>
         /// <param name="persistenceLevel"></param>
-        void AddItem(string name, object item, string contextSectionName = null, PersistenceLevel persistenceLevel = PersistenceLevel.Singleton);
+        void AddItem(string name, object item, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
@@ -78,7 +78,7 @@ namespace BindOpen.Data.Context
         /// 
         /// </summary>
         /// <param name="persistenceLevel"></param>
-        void ClearItems(PersistenceLevel persistenceLevel = PersistenceLevel.Singleton);
+        void ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace BindOpen.Data.Context
         /// <param name="contextSectionName"></param>
         /// <param name="persistenceLevel"></param>
         /// <returns></returns>
-        object GetItem(string name, string contextSectionName = null, PersistenceLevel persistenceLevel = PersistenceLevel.Any);
+        object GetItem(string name, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Any);
 
         /// <summary>
         /// 
@@ -131,7 +131,7 @@ namespace BindOpen.Data.Context
         /// </summary>
         /// <param name="contextSectionName"></param>
         /// <param name="persistenceLevel"></param>
-        void RemoveItems(string contextSectionName = null, PersistenceLevel persistenceLevel = PersistenceLevel.Singleton);
+        void RemoveItems(string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 

@@ -15,8 +15,8 @@ Todo list for BindOpen
 ## Stuff to check out later on
 
 ### v.1.1
+* Handle expcetions correctly.
 * Simplify extension item management
-* Implement Equals function for DictionaryDataItem
 * Improve OptionsSet 
 * Implement a relevant readme file
 * Add Expression data value type

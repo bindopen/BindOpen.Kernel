@@ -58,7 +58,7 @@ namespace BindOpen.System.Processing
             String aAllocatedResourceId,
             String aOwnerId = null)
         {
-            this.CreationDate = DateTime.Now.ToString(DataValueType.Date);
+            this.CreationDate = DateTime.Now.ToString(DataValueTypes.Date);
             this.AllocatedResourceId = aAllocatedResourceId;
             this.OwnerId = aOwnerId;
         }

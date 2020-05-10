@@ -471,7 +471,7 @@ namespace BindOpen.System.Scripting
 
                                 IDataElement dataElement = ElementFactory.CreateScalar(
                                     "Parameter" + scriptWordParameterCount.ToString(),
-                                    parameterValue == null ? DataValueType.Text : parameterValue.GetValueType());
+                                    parameterValue == null ? DataValueTypes.Text : parameterValue.GetValueType());
                                 if (dataElement != null)
                                 {
                                     if (dataElement.Specification != null)
@@ -699,8 +699,8 @@ namespace BindOpen.System.Scripting
                     IScalarElement parameter = scriptWord.ParameterDetail[parameterIndex] as IScalarElement;
 
                     // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
-                    if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueType.Text))
-                        || ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueType.Text)))
+                    if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueTypes.Text))
+                        || ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType == DataValueTypes.Text)))
                     {
                         String parameterValue = (parameter.GetValue() ?? "").ToString().Trim();
 
@@ -711,7 +711,7 @@ namespace BindOpen.System.Scripting
                     }
                     else
                     {
-                        if ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueType.Any))
+                        if ((!definitionDto.IsRepeatedParameters) && (parameterSpecification.ValueType != DataValueTypes.Any))
                         {
                             return !parameterSpecification.CheckItem(parameter.GetValue(), parameter).HasErrorsOrExceptions();
                         }

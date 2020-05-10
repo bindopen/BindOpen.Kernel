@@ -18,8 +18,8 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// This class represents a logger of tasks.
     /// </summary>
-    [XmlType("BdoLog", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "log", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoLog", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoLog : DescribedDataItem, IBdoLog
     {
         // ------------------------------------------

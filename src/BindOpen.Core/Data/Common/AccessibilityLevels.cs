@@ -7,7 +7,7 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumerates the possible levels of accesibility.
     /// </summary>
-    [XmlType("AccessibilityLevel", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("AccessibilityLevels", Namespace = "https://docs.bindopen.org/xsd")]
     [Flags]
     public enum AccessibilityLevels
     {
@@ -40,6 +40,11 @@ namespace BindOpen.Data.Common
         /// Only people who bought for it can access.
         /// </summary>
         Payable = 0x1 << 4,
+
+        /// <summary>
+        /// Any accessibility level.
+        /// </summary>
+        Any = Inherited | Public | Private | Restricted | Payable
     }
 
 
