@@ -5,7 +5,7 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// This enumeration lists logger modes.
     /// </summary>
-    [XmlType("LoggerMode", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("LoggerMode", Namespace = "https://docs.bindopen.org/xsd")]
     public enum BdoLoggerMode
     {
         /// <summary>

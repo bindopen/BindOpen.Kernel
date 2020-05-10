@@ -11,8 +11,8 @@ namespace BindOpen.Data.Items
     /// This class represents a data item.
     /// </summary>
     /// <remarks>The data item has only an ID, a creation and a last-modification dates.</remarks>
-    [XmlType("DataItem", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("dataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataItem", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("dataItem", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public abstract class DataItem : MarshalByRefObject, IDataItem
     {
         // ------------------------------------------

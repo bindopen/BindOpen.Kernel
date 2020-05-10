@@ -9,7 +9,7 @@ namespace BindOpen.System.Diagnostics.Events
     /// This enumeration lists the possible event kinds.
     /// </summary>
     [Flags()]
-    [XmlType("EventKinds", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("EventKinds", Namespace = "https://docs.bindopen.org/xsd")]
     public enum EventKinds
     {
         /// <summary>

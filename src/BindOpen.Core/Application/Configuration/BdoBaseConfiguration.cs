@@ -14,8 +14,8 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// This class represents a configuration.
     /// </summary>
-    [XmlType("Configuration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Configuration", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("config", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoBaseConfiguration : DataElementSet, IBdoBaseConfiguration
     {
         // -------------------------------------------------------

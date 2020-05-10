@@ -7,8 +7,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This interface specifies the value filter statement.
     /// </summary>
-    [XmlType("DataValueFilterStatement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "value.filter.statement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataValueFilterStatement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "value.filter.statement", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DataValueFilterStatement : DataItem, IDataValueFilterStatement
     {
         // ------------------------------------------

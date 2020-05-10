@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="SchemaElement.xsd" />
 
   <xs:complexType name="SchemaZoneElement">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:SchemaElement">
+      <xs:extension base="SchemaElement">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="subElements" type="bdo:ArrayOfSchemaElement" />
+          <xs:element minOccurs="0" maxOccurs="1" name="subElements" type="ArrayOfSchemaElement" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -17,7 +14,7 @@
 
   <xs:complexType name="ArrayOfSchemaElement">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="subElement" nillable="true" type="bdo:SchemaElement" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="subElement" nillable="true" type="SchemaElement" />
     </xs:sequence>
   </xs:complexType>
 

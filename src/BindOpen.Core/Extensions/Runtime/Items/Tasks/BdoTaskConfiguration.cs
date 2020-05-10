@@ -15,8 +15,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a task configuration.
     /// </summary>
-    [XmlType("BdoTaskConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "task", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoTaskConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "task", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoTaskConfiguration
         : TBdoExtensionTitledItemConfiguration<BdoTaskDefinition>, IBdoTaskConfiguration
     {

@@ -1,4 +1,4 @@
-<bindopen xmlns="https://bindopen.org/xsd">
+<bindopen xmlns="https://docs.bindopen.org/xsd">
   
   <scalar name="applicationInstanceName" value="test.console" />
 

@@ -5,8 +5,8 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This class represents a DTO item result.
     /// </summary>
-    [XmlType("ItemResultDto", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("itemResultDto", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ItemResultDto", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("itemResultDto", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ItemResultDto
     {
         /// <summary>

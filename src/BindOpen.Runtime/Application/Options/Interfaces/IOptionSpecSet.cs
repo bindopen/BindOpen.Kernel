@@ -28,7 +28,7 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        IOptionSpecSet AddOption(DataValueType dataValueType, OptionNameKind nameKind, params string[] aliases);
+        IOptionSpecSet AddOption(DataValueTypes dataValueType, OptionNameKind nameKind, params string[] aliases);
 
         /// <summary>
         /// 
@@ -38,7 +38,7 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        IOptionSpecSet AddOption(DataValueType dataValueType, RequirementLevel requirementLevel, OptionNameKind nameKind, params string[] aliases);
+        IOptionSpecSet AddOption(DataValueTypes dataValueType, RequirementLevels requirementLevel, OptionNameKind nameKind, params string[] aliases);
 
         /// <summary>
         /// 
@@ -62,7 +62,7 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        IOptionSpecSet AddOption(RequirementLevel requirementLevel, OptionNameKind nameKind, params string[] aliases);
+        IOptionSpecSet AddOption(RequirementLevels requirementLevel, OptionNameKind nameKind, params string[] aliases);
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace BindOpen.Application.Options
         /// <param name="requirementLevel"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        IOptionSpecSet AddOption(RequirementLevel requirementLevel, params string[] aliases);
+        IOptionSpecSet AddOption(RequirementLevels requirementLevel, params string[] aliases);
 
         /// <summary>
         /// 
@@ -80,7 +80,7 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind"></param>
         /// <param name="aliases"></param>
         /// <returns></returns>
-        IOptionSpecSet AddOption(Type type, RequirementLevel requirementLevel, OptionNameKind nameKind, params string[] aliases);
+        IOptionSpecSet AddOption(Type type, RequirementLevels requirementLevel, OptionNameKind nameKind, params string[] aliases);
 
         /// <summary>
         /// 

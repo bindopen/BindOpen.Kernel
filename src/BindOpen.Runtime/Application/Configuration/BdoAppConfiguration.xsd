@@ -1,32 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:bdo="https://bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-  <xs:include schemaLocation="ApplicationCredential.xsd" />
-  <xs:include schemaLocation="Arrays.xsd" />
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="ApplicationCredential.xsd" />
+  <xs:import schemaLocation="Arrays.xsd" />
   
-  <xs:element name="app.config" type="bdo:AppConfiguration" />
+  <xs:element name="app.config" type="AppConfiguration" />
   <xs:complexType name="AppConfiguration">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:UsableConfiguration">
+      <xs:extension base="UsableConfiguration">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="credentials" type="bdo:ArrayOfApplicationCredential" />
-          <xs:element minOccurs="0" maxOccurs="1" name="dataSources" type="bdo:ArrayOfDatasources" />
+          <xs:element minOccurs="0" maxOccurs="1" name="credentials" type="ArrayOfApplicationCredential" />
+          <xs:element minOccurs="0" maxOccurs="1" name="dataSources" type="ArrayOfDatasources" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="UsableConfiguration">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:Configuration">
+      <xs:extension base="Configuration">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="usingFilePaths" type="bdo:ArrayOfString" />
+          <xs:element minOccurs="0" maxOccurs="1" name="usingFilePaths" type="ArrayOfString" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="Configuration">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataElementSet">
+      <xs:extension base="DataElementSet">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="creationDate" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="lastModificationDate" type="xs:string" />
@@ -37,7 +36,7 @@
 
   <xs:complexType name="ArrayOfApplicationCredential">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="credential" nillable="true" type="bdo:ApplicationCredential" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="credential" nillable="true" type="ApplicationCredential" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

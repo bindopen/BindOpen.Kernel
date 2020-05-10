@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <scriptWords.dictionary library="runtime"
-  xmlns="https://bindopen.org/xsd"
+  xmlns="https://docs.bindopen.org/xsd"
   xmlns:SchemaLocation="bdo:BdoScriptwordDictionary BdoScriptwordDictionary.xsd">
   <creationDate>2010-08-05</creationDate>
   <lastModificationDate>2016-08-19</lastModificationDate>

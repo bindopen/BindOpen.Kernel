@@ -59,12 +59,12 @@ namespace BindOpen.Extensions.Definition
         /// <summary>
         /// 
         /// </summary>
-        DataValueType RepeatedParameterValueType { get; set; }
+        DataValueTypes RepeatedParameterValueType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DataValueType ReturnValueType { get; set; }
+        DataValueTypes ReturnValueType { get; set; }
 
         /// <summary>
         /// 

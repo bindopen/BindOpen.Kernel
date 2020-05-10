@@ -9,8 +9,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a named data item.
     /// </summary>
-    [XmlType("NamedDataItem", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("namedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("NamedDataItem", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("namedDataItem", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class NamedDataItem : StoredDataItem, INamedDataItem
     {
         // ------------------------------------------
@@ -107,7 +107,7 @@ namespace BindOpen.Data.Items
             NamedDataItem item = base.Clone(areas) as NamedDataItem;
             item.Name = Name;// NamedDataItem.GetClonedName(Name, NamePreffix);
             if (CreationDate != null)
-                item.CreationDate = DateTime.Now.ToString(DataValueType.Date);
+                item.CreationDate = DateTime.Now.ToString(DataValueTypes.Date);
             item.LastModificationDate = null;
             return item;
         }

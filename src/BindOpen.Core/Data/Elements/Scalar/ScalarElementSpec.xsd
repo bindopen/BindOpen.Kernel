@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataValueType.xsd" />
   <xs:include schemaLocation="DataElementSpec.xsd" />
 
   <xs:complexType name="ScalarElementSpec">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataElementSpec">
-        <xs:attribute use="optional" name="valueType" type="bdo:DataValueType" />
+      <xs:extension base="DataElementSpec">
+        <xs:attribute use="optional" name="valueType" type="DataValueType" />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>

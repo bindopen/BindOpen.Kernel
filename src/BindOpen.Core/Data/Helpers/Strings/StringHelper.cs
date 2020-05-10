@@ -670,22 +670,22 @@ namespace BindOpen.Data.Helpers.Strings
 
             if (st != null)
             {
-                object1 = st.ToObject(DataValueType.Integer);
+                object1 = st.ToObject(DataValueTypes.Integer);
                 if (object1 == null)
                 {
-                    object1 = st.ToObject(DataValueType.Long);
+                    object1 = st.ToObject(DataValueTypes.Long);
                     if (object1 == null)
                     {
-                        object1 = st.ToObject(DataValueType.ULong);
+                        object1 = st.ToObject(DataValueTypes.ULong);
                         if (object1 == null)
                         {
-                            object1 = st.ToObject(DataValueType.Number);
+                            object1 = st.ToObject(DataValueTypes.Number);
                             if (object1 == null)
                             {
-                                object1 = st.ToObject(DataValueType.Date);
+                                object1 = st.ToObject(DataValueTypes.Date);
                                 if (object1 == null)
                                 {
-                                    object1 = st.ToObject(DataValueType.Time);
+                                    object1 = st.ToObject(DataValueTypes.Time);
                                     if (object1 == null)
                                     {
                                         object1 = st;
@@ -707,55 +707,55 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static object ToObject(this string st, DataValueType valueType = DataValueType.Any, string textFormat = null)
+        public static object ToObject(this string st, DataValueTypes valueType = DataValueTypes.Any, string textFormat = null)
         {
             if (st == null)
             {
                 return null;
             }
 
-            if (valueType == DataValueType.Any)
+            if (valueType == DataValueTypes.Any)
             {
                 return st.GuessObjectValueFromString();
             }
 
             switch (valueType)
             {
-                case DataValueType.Date:
+                case DataValueTypes.Date:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
                     DateTime dateTime;
                     if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         return null;
                     return new DateTime?(dateTime);
-                case DataValueType.Time:
+                case DataValueTypes.Time:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__TimeFormat;
                     TimeSpan aTimeSpan;
                     if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out aTimeSpan))
                         return null;
                     return new TimeSpan?(aTimeSpan);
-                case DataValueType.Boolean:
+                case DataValueTypes.Boolean:
                     return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
-                case DataValueType.Number:
+                case DataValueTypes.Number:
                     double aDouble;
                     if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))
                         return null;
                     return new double?(aDouble);
-                case DataValueType.Integer:
+                case DataValueTypes.Integer:
                     int aInt;
                     if (!int.TryParse(st, out aInt))
                         return null;
                     return new int?(aInt);
-                case DataValueType.Long:
+                case DataValueTypes.Long:
                     long aLong;
                     if (!long.TryParse(st, out aLong))
                         return null;
                     return new long?(aLong);
-                case DataValueType.ULong:
+                case DataValueTypes.ULong:
                     ulong aULong;
                     if (!ulong.TryParse(st, out aULong))
                         return null;
                     return new ulong?(aULong);
-                case DataValueType.ByteArray:
+                case DataValueTypes.ByteArray:
                     byte[] aByteArray = Convert.FromBase64String(st);
                     return aByteArray;
                 default:
@@ -771,7 +771,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <returns>Returns the object corresponding to the specified string.</returns>
         public static DateTime? ToDateTime(this string st, string textFormat = null)
         {
-            return st.ToObject(DataValueType.Date, textFormat) as DateTime?;
+            return st.ToObject(DataValueTypes.Date, textFormat) as DateTime?;
         }
 
         /// <summary>

@@ -61,14 +61,14 @@ namespace BindOpen.Application.Arguments
 
                         if (optionSpecificationSet == null || (argumentSpecification == null && allowMissingItems))
                         {
-                            argument = ElementFactory.CreateScalar(currentArgumentString, DataValueType.Text);
+                            argument = ElementFactory.CreateScalar(currentArgumentString, DataValueTypes.Text);
                             argument.WithItems(arguments.GetStringAtIndex(index));
                             optionSet.Add(argument);
                         }
                         else if (argumentSpecification != null && optionSpecificationSet != null)
                         {
-                            if (argumentSpecification.ValueType == DataValueType.Any)
-                                argumentSpecification.ValueType = DataValueType.Text;
+                            if (argumentSpecification.ValueType == DataValueTypes.Any)
+                                argumentSpecification.ValueType = DataValueTypes.Text;
                             argument = ElementFactory.CreateScalar(argumentSpecification.Name, null, argumentSpecification.ValueType, argumentSpecification);
 
                             argument.Specification = argumentSpecification;
@@ -123,7 +123,7 @@ namespace BindOpen.Application.Arguments
             {
                 if (!allowMissingItems)
                 {
-                    foreach (IDataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevel.Required))
+                    foreach (IDataSpecification optionSpecification in optionSpecificationSet.Items.Where(p => p.RequirementLevel == RequirementLevels.Required))
                     {
                         if (!optionSet.HasItem(optionSpecification.Name))
                             log.AddError("Option '" + optionSpecification.Name + "' missing");
@@ -136,11 +136,11 @@ namespace BindOpen.Application.Arguments
                     {
                         switch (option.Specification.ItemRequirementLevel)
                         {
-                            case RequirementLevel.Required:
+                            case RequirementLevels.Required:
                                 if (string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' requires value");
                                 break;
-                            case RequirementLevel.Forbidden:
+                            case RequirementLevels.Forbidden:
                                 if (!string.IsNullOrEmpty(option.Items[0] as string))
                                     log.AddError("Option '" + option.Name + "' does not allow value");
                                 break;

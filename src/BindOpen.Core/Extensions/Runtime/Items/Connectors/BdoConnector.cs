@@ -142,18 +142,7 @@ namespace BindOpen.Extensions.Runtime
                     }
                 }
 
-                if (!log.HasErrorsOrExceptions())
-                {
-                    try
-                    {
-                        action?.Invoke(connection, log);
-                    }
-                    catch (Exception ex)
-                    {
-                        log.AddException("An exception occured while daeling with the connection",
-                            description: ex.ToString());
-                    }
-                }
+                action?.Invoke(connection, log);
             }
         }
 

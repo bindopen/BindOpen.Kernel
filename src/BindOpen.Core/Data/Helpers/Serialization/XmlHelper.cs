@@ -269,7 +269,7 @@ namespace BindOpen.Data.Helpers.Serialization
             foreach (string currentXsdResource in xsdResources)
             {
                 stream = assembly.GetManifestResourceStream(currentXsdResource);
-                xmlSchemaSet.Add("https://bindopen.org/xsd", XmlReader.Create(new StreamReader(stream)));
+                xmlSchemaSet.Add("https://docs.bindopen.org/xsd", XmlReader.Create(new StreamReader(stream)));
             }
             return xmlSchemaSet;
         }

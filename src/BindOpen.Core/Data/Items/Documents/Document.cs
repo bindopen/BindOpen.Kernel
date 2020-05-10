@@ -8,8 +8,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a document item.
     /// </summary>
-    [XmlType("Document", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Document", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class Document : NamedDataItem, IDocument
     {
         // ------------------------------------------

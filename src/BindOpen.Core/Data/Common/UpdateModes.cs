@@ -13,38 +13,49 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible update modes.
     /// </summary>
-    [XmlType("UpdateModes", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("UpdateModes", Namespace = "https://docs.bindopen.org/xsd")]
     [Flags]
     public enum UpdateModes
     {
         /// <summary>
+        /// Undefined.
+        /// </summary>
+        Undefined = 0,
+
+        /// <summary>
         /// None.
         /// </summary>
-        None = 0,
+        None = 0x01 << 0,
 
         /// <summary>
         /// Adds Source items that are not in Target.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
-        Incremental_AddItemsMissingInTarget = 1 << 0,
+        Incremental_AddItemsMissingInTarget = 0x01 << 1,
 
         /// <summary>
         /// Removes Target items that are not in Source.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
-        Incremental_RemoveItemsMissingInSource = 1 << 1,
+        Incremental_RemoveItemsMissingInSource = 0x01 << 2,
 
         /// <summary>
         /// Updates Target items that are in Source.
         /// </summary>
         /// <remarks>Used in incremental update.</remarks>
-        Incremental_UpdateCommonItems = 1 << 2,
+        Incremental_UpdateCommonItems = 0x01 << 3,
 
         /// <summary>
-        /// Source fully replaces Target.
+        /// Any update mode.
         /// </summary>
         /// <remarks>Used in full update.</remarks>
-        Full = Incremental_AddItemsMissingInTarget | Incremental_RemoveItemsMissingInSource | Incremental_UpdateCommonItems
+        Any = Incremental_AddItemsMissingInTarget | Incremental_RemoveItemsMissingInSource | Incremental_UpdateCommonItems,
+
+        /// <summary>
+        /// All the update modes.
+        /// </summary>
+        /// <remarks>Used in full update.</remarks>
+        Full = Incremental_AddItemsMissingInTarget & Incremental_RemoveItemsMissingInSource & Incremental_UpdateCommonItems
     }
 
     #endregion

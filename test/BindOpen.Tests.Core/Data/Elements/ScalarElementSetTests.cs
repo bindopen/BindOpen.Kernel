@@ -71,10 +71,10 @@ namespace BindOpen.Tests.Core.Data.Elements
         [Test, Order(2)]
         public void CreateElementSetTest()
         {
-            var element1 = ElementFactory.CreateScalar("float1", DataValueType.Number, _testData.arrayNumber1);
-            var element2 = ElementFactory.CreateScalar("text2", DataValueType.Text, _testData.arrayString2);
-            var element3 = ElementFactory.CreateScalar("integer3", DataValueType.Integer, _testData.arrayInteger3);
-            var element4 = ElementFactory.CreateScalar("byteArray4", DataValueType.ByteArray, _testData.arrayArrayByte4);
+            var element1 = ElementFactory.CreateScalar("float1", DataValueTypes.Number, _testData.arrayNumber1);
+            var element2 = ElementFactory.CreateScalar("text2", DataValueTypes.Text, _testData.arrayString2);
+            var element3 = ElementFactory.CreateScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3);
+            var element4 = ElementFactory.CreateScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4);
 
             _scalarElementSet = ElementFactory.CreateSet(element1, element2, element3, element4);
 
@@ -146,10 +146,10 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetB.Add(ElementFactory.Create("name1", null));
             elementSetB.Add(ElementFactory.Create("name3", null));
             elementSetB.Add(ElementFactory.Create("name4", null));
-            elementSetB.Add(ElementFactory.Create("name5", DataValueType.Text));
+            elementSetB.Add(ElementFactory.Create("name5", DataValueTypes.Text));
             elementSetA.Add(ElementFactory.Create("name1", null));
             elementSetA.Add(ElementFactory.Create("name2", null));
-            elementSetA.Add(ElementFactory.CreateScalar("name4", DataValueType.Text, null));
+            elementSetA.Add(ElementFactory.CreateScalar("name4", DataValueTypes.Text, null));
             elementSetA.Add(ElementFactory.Create("name5", null));
             elementSetB.Repair(elementSetA);
             elementSetB.Update(elementSetA);

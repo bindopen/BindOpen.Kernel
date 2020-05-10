@@ -9,8 +9,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a stored data item.
     /// </summary>
-    [XmlType("StoredDataItem", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("storedDataItem", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("StoredDataItem", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("storedDataItem", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class StoredDataItem : IdentifiedDataItem, IStoredDataItem
     {
         // ------------------------------------------
@@ -80,7 +80,7 @@ namespace BindOpen.Data.Items
         public virtual void DeclareUpdate()
         {
             // we update the modification date
-            LastModificationDate = DateTime.Now.ToString(DataValueType.Date);
+            LastModificationDate = DateTime.Now.ToString(DataValueTypes.Date);
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace BindOpen.Data.Items
         {
             StoredDataItem item = base.Clone(areas) as StoredDataItem;
             if (CreationDate != null)
-                item.CreationDate = DateTime.Now.ToString(DataValueType.Date);
+                item.CreationDate = DateTime.Now.ToString(DataValueTypes.Date);
             item.LastModificationDate = null;
             return item;
         }

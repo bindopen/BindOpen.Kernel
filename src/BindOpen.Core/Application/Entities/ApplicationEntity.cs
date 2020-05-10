@@ -6,8 +6,8 @@ namespace BindOpen.Application.Entities
     /// <summary>
     /// This class represents an application entity.
     /// </summary>
-    [XmlType("ApplicationEntity", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "applicationEntity", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ApplicationEntity", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "applicationEntity", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ApplicationEntity : DataEntity
     {
         // ------------------------------------------

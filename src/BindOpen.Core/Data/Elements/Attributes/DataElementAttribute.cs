@@ -42,7 +42,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueType ValueType { get; set; } = DataValueType.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The aliases of the entry.
@@ -132,21 +132,21 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public RequirementLevel ItemRequirementLevel
+        public RequirementLevels ItemRequirementLevel
         {
             get
             {
-                RequirementLevel itemRequirementLevel;
+                RequirementLevels itemRequirementLevel;
                 if (this.MaximumItemNumber == 0)
                 {
-                    itemRequirementLevel = RequirementLevel.Forbidden;
+                    itemRequirementLevel = RequirementLevels.Forbidden;
                 }
                 else if (this.MinimumItemNumber > 0)
-                    itemRequirementLevel = RequirementLevel.Required;
+                    itemRequirementLevel = RequirementLevels.Required;
                 else if (this.MinimumItemNumber <= 0)
-                    itemRequirementLevel = RequirementLevel.Optional;
+                    itemRequirementLevel = RequirementLevels.Optional;
                 else
-                    itemRequirementLevel = RequirementLevel.None;
+                    itemRequirementLevel = RequirementLevels.None;
 
                 return itemRequirementLevel;
             }

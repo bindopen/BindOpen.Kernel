@@ -9,8 +9,8 @@ namespace BindOpen.Data.Elements.Schema
     /// <summary>
     /// This class represents a schema element.
     /// </summary>
-    [XmlType("SchemaElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("schema", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("SchemaElement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("schema", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(SchemaZoneElement))]
     public class SchemaElement : DataElement
     {
@@ -119,7 +119,7 @@ namespace BindOpen.Data.Elements.Schema
             params object[] items)
             : base(name, "schemaElement_")
         {
-            ValueType = DataValueType.Schema;
+            ValueType = DataValueTypes.Schema;
             Specification = new SchemaElementSpec();
 
             foreach (object item in items)

@@ -13,39 +13,49 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible levels of specification.
     /// </summary>
-    [XmlType("SpecificationLevel", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("SpecificationLevels", Namespace = "https://docs.bindopen.org/xsd")]
     [Flags]
     public enum SpecificationLevels
     {
         /// <summary>
+        /// Undefined.
+        /// </summary>
+        Undefined = 0,
+
+        /// <summary>
         /// None.
         /// </summary>
-        None = 0,
+        None = 0x01 << 0,
 
         /// <summary>
         /// Definition.
         /// </summary>
-        Definition = 1 << 0,
+        Definition = 0x01 << 1,
 
         /// <summary>
         /// Design.
         /// </summary>
-        Design = 1 << 1,
+        Design = 0x01 << 2,
 
         /// <summary>
         /// Configuration.
         /// </summary>
-        Configuration = 1 << 2,
+        Configuration = 0x01 << 3,
 
         /// <summary>
         /// Runtime.
         /// </summary>
-        Runtime = 1 << 3,
+        Runtime = 0x01 << 4,
 
         /// <summary>
-        /// All the information specification levels.
+        /// All the specification levels.
         /// </summary>
-        All = Definition | Design | Configuration | Runtime
+        Any = Definition | Design | Configuration | Runtime,
+
+        /// <summary>
+        /// All the specification levels.
+        /// </summary>
+        All = Definition & Design & Configuration & Runtime
     }
 
     #endregion

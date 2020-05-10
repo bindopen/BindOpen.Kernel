@@ -14,7 +14,7 @@ namespace BindOpen.Data.Items
     /// This class represents a data item set.
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
-    [XmlRoot(ElementName = "item.set", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "item.set", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class TDataItemSet<T> : IdentifiedDataItem, ITDataItemSet<T>
         where T : IIdentifiedDataItem
     {

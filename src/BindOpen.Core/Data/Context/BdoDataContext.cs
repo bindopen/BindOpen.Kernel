@@ -134,17 +134,17 @@ namespace BindOpen.Data.Context
             string name,
             object item,
             string contextSectionName = null,
-            PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
+            PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
             switch (persistenceLevel)
             {
-                case PersistenceLevel.Singleton:
+                case PersistenceLevels.Singleton:
                     this.AddSingletonItem(name, item, contextSectionName);
                     break;
-                case PersistenceLevel.Scoped:
+                case PersistenceLevels.Scoped:
                     this.AddScopedItem(name, item, contextSectionName);
                     break;
-                case PersistenceLevel.Transient:
+                case PersistenceLevels.Transient:
                     this.AddTransientItem(name, item, contextSectionName);
                     break;
             }
@@ -217,20 +217,20 @@ namespace BindOpen.Data.Context
         /// Clears the specified items of this instance.
         /// </summary>
         /// <param name="persistenceLevel">Persistence level of the item to add.</param>
-        public void ClearItems(PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
+        public void ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
             switch (persistenceLevel)
             {
-                case PersistenceLevel.Singleton:
+                case PersistenceLevels.Singleton:
                     this.SingletonItems.Clear();
                     break;
-                case PersistenceLevel.Scoped:
+                case PersistenceLevels.Scoped:
                     this.ScopedItems.Clear();
                     break;
-                case PersistenceLevel.Transient:
+                case PersistenceLevels.Transient:
                     this.TransientItems.Clear();
                     break;
-                case PersistenceLevel.Any:
+                case PersistenceLevels.Any:
                     this.SingletonItems.Clear();
                     this.ScopedItems.Clear();
                     this.TransientItems.Clear();
@@ -245,9 +245,9 @@ namespace BindOpen.Data.Context
         /// <param name="persistenceLevel">The persistence level to consider.</param>
         public void RemoveItems(
             string contextSectionName = null,
-            PersistenceLevel persistenceLevel = PersistenceLevel.Singleton)
+            PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
-            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Singleton))
+            if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Singleton))
             {
                 var items = this.SingletonItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
@@ -257,7 +257,7 @@ namespace BindOpen.Data.Context
                     this.SingletonItems.Remove(key);
                 }
             }
-            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Scoped))
+            if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Scoped))
             {
                 var items = this.ScopedItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
@@ -267,7 +267,7 @@ namespace BindOpen.Data.Context
                     this.ScopedItems.Remove(key);
                 }
             }
-            if ((persistenceLevel == PersistenceLevel.Any) || (persistenceLevel == PersistenceLevel.Transient))
+            if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Transient))
             {
                 var items = this.TransientItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
@@ -349,9 +349,9 @@ namespace BindOpen.Data.Context
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetItem(string name,
             string contextSectionName = null,
-            PersistenceLevel persistenceLevel = PersistenceLevel.Any)
+            PersistenceLevels persistenceLevel = PersistenceLevels.Any)
         {
-            if (persistenceLevel == PersistenceLevel.Any)
+            if (persistenceLevel == PersistenceLevels.Any)
             {
                 return (this.GetSingletonItem(name, contextSectionName)
                 ?? this.GetScopedItem(name, contextSectionName))
@@ -361,11 +361,11 @@ namespace BindOpen.Data.Context
             {
                 switch (persistenceLevel)
                 {
-                    case PersistenceLevel.Singleton:
+                    case PersistenceLevels.Singleton:
                         return this.GetSingletonItem(name, contextSectionName);
-                    case PersistenceLevel.Scoped:
+                    case PersistenceLevels.Scoped:
                         return this.GetScopedItem(name, contextSectionName);
-                    case PersistenceLevel.Transient:
+                    case PersistenceLevels.Transient:
                         return this.GetTransientItem(name, contextSectionName);
                 }
             }

@@ -5,7 +5,7 @@ namespace BindOpen.System.Diagnostics.Loggers
     /// <summary>
     /// This enumeration lists the possible logger formats.
     /// </summary>
-    [XmlType("LoggerFormat", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("LoggerFormat", Namespace = "https://docs.bindopen.org/xsd")]
     public enum BdoDefaultLoggerFormat
     {
         /// <summary>

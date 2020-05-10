@@ -7,8 +7,8 @@ namespace BindOpen.Tests.Core.Fakers
     /// <summary>
     /// This class represents a database connection.
     /// </summary>
-    [XmlType("TestConnection", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "testConnection", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("TestConnection", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "testConnection", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ConnectionFake : BdoConnection
     {
         // ------------------------------------------

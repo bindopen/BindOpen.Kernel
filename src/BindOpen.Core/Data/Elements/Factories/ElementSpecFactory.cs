@@ -18,7 +18,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static DataElementSpec Create(string name, DataValueType valueType)
+        public static DataElementSpec Create(string name, DataValueTypes valueType)
         {
             if (valueType.IsScalar())
             {
@@ -28,13 +28,13 @@ namespace BindOpen.Data.Elements
             {
                 switch (valueType)
                 {
-                    case DataValueType.Carrier:
+                    case DataValueTypes.Carrier:
                         return new CarrierElementSpec() { Name = name };
-                    case DataValueType.Document:
+                    case DataValueTypes.Document:
                         return new DocumentElementSpec() { Name = name };
-                    case DataValueType.Object:
+                    case DataValueTypes.Object:
                         return new ObjectElementSpec() { Name = name };
-                    case DataValueType.Datasource:
+                    case DataValueTypes.Datasource:
                         return new SourceElementSpec() { Name = name };
                 }
             }
@@ -65,7 +65,7 @@ namespace BindOpen.Data.Elements
                         null,
                         "standard$" + KnownRoutineKind.ItemMustBeInList,
                         ElementFactory.CreateSet(
-                            ElementFactory.CreateScalar(DataValueType.Text, type.GetEnumFields())));
+                            ElementFactory.CreateScalar(DataValueTypes.Text, type.GetEnumFields())));
                 }
             }
 

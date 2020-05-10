@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataElementSpec.xsd" />
   <xs:include schemaLocation="DataValueFilter.xsd" />
   <xs:include schemaLocation="RequirementLevel.xsd" />
@@ -10,14 +7,14 @@
 
   <xs:complexType name="SchemaElementSpec">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataElementSpec">
+      <xs:extension base="DataElementSpec">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="entityUniqueNameFilter" type="bdo:DataValueFilter" />
-          <xs:element minOccurs="0" maxOccurs="1" name="entityRequirementLevel" type="bdo:RequirementLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="entitySpecificationLevels" type="bdo:ArrayOfSpecificationLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="formatUniqueNameFilter" type="bdo:DataValueFilter" />
-          <xs:element minOccurs="0" maxOccurs="1" name="formatRequirementLevel" type="bdo:RequirementLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="formatSpecificationLevels" type="bdo:ArrayOfSpecificationLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="entityUniqueNameFilter" type="DataValueFilter" />
+          <xs:element minOccurs="0" maxOccurs="1" name="entityRequirementLevel" type="RequirementLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="entitySpecificationLevels" type="ArrayOfSpecificationLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="formatUniqueNameFilter" type="DataValueFilter" />
+          <xs:element minOccurs="0" maxOccurs="1" name="formatRequirementLevel" type="RequirementLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="formatSpecificationLevels" type="ArrayOfSpecificationLevel" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

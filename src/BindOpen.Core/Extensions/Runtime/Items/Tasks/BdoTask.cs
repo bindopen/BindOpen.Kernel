@@ -179,7 +179,7 @@ namespace BindOpen.Extensions.Runtime
             IBdoLog log,
             IBdoScope scope = null,
             IScriptVariableSet scriptVariableSet = null,
-            RuntimeMode runtimeMode = RuntimeMode.Normal);
+            RuntimeModes runtimeMode = RuntimeModes.Normal);
 
         #endregion
     }

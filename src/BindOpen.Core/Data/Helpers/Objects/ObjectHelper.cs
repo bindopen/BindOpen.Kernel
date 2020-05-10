@@ -68,43 +68,43 @@ namespace BindOpen.Data.Helpers.Objects
         /// <returns>The result string.</returns>
         public static string ToString(
             this object object1,
-            DataValueType valueType)
+            DataValueTypes valueType)
         {
             string stringValue = null;
-            if (valueType == DataValueType.Any)
+            if (valueType == DataValueTypes.Any)
                 valueType = object1.GetValueType();
 
             if (object1 != null)
             {
                 switch (valueType)
                 {
-                    case DataValueType.Boolean:
-                        stringValue = (object1 as Boolean?) == true ? "true" : "false";
+                    case DataValueTypes.Boolean:
+                        stringValue = (object1 as bool?) == true ? "true" : "false";
                         break;
-                    case DataValueType.Date:
+                    case DataValueTypes.Date:
                         if (object1 is DateTime dateTime)
                             stringValue = (dateTime).ToString(StringHelper.__DateFormat);
                         break;
-                    case DataValueType.Number:
+                    case DataValueTypes.Number:
                         stringValue = object1.ToString().Replace(",", ".");
                         break;
-                    case DataValueType.Time:
+                    case DataValueTypes.Time:
                         if (object1 is TimeSpan timeSpan)
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
                         break;
-                    case DataValueType.ByteArray:
+                    case DataValueTypes.ByteArray:
                         if (object1 is byte[] byteArray)
                             stringValue = Convert.ToBase64String(byteArray);
                         break;
-                    case DataValueType.Carrier:
-                    case DataValueType.Connector:
-                    case DataValueType.Datasource:
-                    case DataValueType.Document:
-                    case DataValueType.Element:
-                    case DataValueType.Entity:
-                    case DataValueType.Object:
-                    case DataValueType.Schema:
-                    case DataValueType.SchemaZone:
+                    case DataValueTypes.Carrier:
+                    case DataValueTypes.Connector:
+                    case DataValueTypes.Datasource:
+                    case DataValueTypes.Document:
+                    case DataValueTypes.Element:
+                    case DataValueTypes.Entity:
+                    case DataValueTypes.Object:
+                    case DataValueTypes.Schema:
+                    case DataValueTypes.SchemaZone:
                         stringValue = object1.ToXml();
                         break;
                     default:

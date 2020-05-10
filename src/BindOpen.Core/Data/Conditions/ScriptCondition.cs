@@ -6,8 +6,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents a script condition.
     /// </summary>
-    [XmlType("ScriptBusinessCondition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "script.condition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptBusinessCondition", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "script.condition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ScriptCondition : Condition, IScriptCondition
     {
         // ------------------------------------------

@@ -15,8 +15,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="DataKeyValue"/>
-    [XmlType("DictionaryDataItem", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "item", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DictionaryDataItem", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "item", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DictionaryDataItem : DataItem, IDictionaryDataItem
     {
         // --------------------------------------------------
@@ -259,6 +259,27 @@ namespace BindOpen.Data.Items
         // --------------------------------------------------
 
         #region Accessors
+
+        /// <summary>
+        /// Indicates whether this intance equals the specified dictionary.
+        /// </summary>
+        /// <param name="dictionary">The dictionar to consider.</param>
+        /// <returns>Returns true if this instance equals the specified dictionary. False otherwise.</returns>
+        public bool Equals(DictionaryDataItem dictionary)
+        {
+            if (dictionary == null || Values.Count != dictionary.Values.Count)
+            {
+                return false;
+            }
+
+            var isEqual = true;
+            foreach (var value in Values)
+            {
+                isEqual &= value.Content == dictionary[value.Key];
+            }
+
+            return isEqual;
+        }
 
         /// <summary>
         /// The key of this instance.

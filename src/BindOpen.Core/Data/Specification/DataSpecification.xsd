@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="IndexedDataItem.xsd" />
   <xs:include schemaLocation="RequirementLevel.xsd" />
   <xs:include schemaLocation="InheritanceLevel.xsd" />
@@ -11,12 +8,12 @@
 
   <xs:complexType name="DataSpecification" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:IndexedDataItem">
+      <xs:extension base="IndexedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="requirementLevel" type="bdo:RequirementLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="inheritanceLevel" type="bdo:InheritanceLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="specificationLevels" type="bdo:ArrayOfSpecificationLevel" />
-          <xs:element minOccurs="0" maxOccurs="1" name="accessibilityLevel" type="bdo:AccessibilityLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="requirementLevel" type="RequirementLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="inheritanceLevel" type="InheritanceLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specificationLevels" type="ArrayOfSpecificationLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="accessibilityLevel" type="AccessibilityLevel" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

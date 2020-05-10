@@ -15,8 +15,8 @@ namespace BindOpen.System.Diagnostics.Events
     /// <summary>
     /// This class represents an event.
     /// </summary>
-    [XmlType("Event", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "event", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Event", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEvent))]
     public class BdoEvent : DescribedDataItem, BdoIEvent
     {
@@ -131,7 +131,7 @@ namespace BindOpen.System.Diagnostics.Events
             string id = null) : this()
         {
             this.Id = (id ?? this.Id);
-            this.CreationDate = (date ?? DateTime.Now).ToString(DataValueType.Date);
+            this.CreationDate = (date ?? DateTime.Now).ToString(DataValueTypes.Date);
 
             this.Kind = EventKinds.Exception;
             this.Criticality = criticality;
