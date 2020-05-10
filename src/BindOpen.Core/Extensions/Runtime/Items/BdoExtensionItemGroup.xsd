@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DescribedDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DescribedDataItem.xsd" />
 
-  <xs:complexType name="TBdoExtensionItemGroup">
+  <xs:complexType name="BdoExtensionItemGroup">
     <xs:complexContent mixed="false">
       <xs:extension base="DescribedDataItem">
         <xs:sequence>
@@ -14,7 +14,7 @@
 
   <xs:complexType name="ArrayOfBdoExtensionItemGroup">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="group" nillable="true" type="TBdoExtensionItemGroup" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="group" nillable="true" type="BdoExtensionItemGroup" />
     </xs:sequence>
   </xs:complexType>
 

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="StoredDataItem.xsd" />
-  <xs:include schemaLocation="CarrierElement.xsd" />
-  <!--<xs:include schemaLocation="DocumentElement.xsd" />-->
-  <xs:include schemaLocation="EntityElement.xsd" />
-  <xs:include schemaLocation="MetaDataElement.xsd" />
-  <xs:include schemaLocation="ObjectElement.xsd" />
-  <xs:include schemaLocation="ScalarElement.xsd" />
-  <xs:include schemaLocation="SchemaElement.xsd" />
-  <xs:include schemaLocation="SourceElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/CarrierElement.xsd" />
+  <!--<xs:include schemaLocation="https://docs.bindopen.org/xsd/DocumentElement.xsd" />-->
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/EntityElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/MetaDataElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ObjectElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ScalarElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/SchemaElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/SourceElement.xsd" />
 
   <xs:complexType name="DataElementSet">
     <xs:complexContent mixed="false">

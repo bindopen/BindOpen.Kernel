@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="DescribedDataItem.xsd" />
-  <xs:include schemaLocation="ProcessExecution.xsd" />
-  <xs:include schemaLocation="TaskConfiguration.xsd" />
-  <xs:include schemaLocation="DataElementSet.xsd" />
-  <xs:include schemaLocation="Event.xsd" />
-  <xs:include schemaLocation="LogEvent.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DescribedDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ProcessExecution.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/TaskConfiguration.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Event.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/LogEvent.xsd" />
 
-  <xs:complexType name="Log">
+  <xs:complexType name="BdoLog">
     <xs:complexContent mixed="false">
       <xs:extension base="DescribedDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="execution" type="ProcessExecution" />
-          <xs:element minOccurs="0" maxOccurs="1" name="task" type="TaskConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="1" name="task" type="BdoTaskConfiguration" />
           <xs:element minOccurs="0" maxOccurs="1" name="detail" type="DataElementSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="parent" type="Log" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parent" type="BdoLog" />
           <xs:element minOccurs="0" maxOccurs="1" name="children" type="ArrayOfLog_Log" />
           <xs:element minOccurs="0" maxOccurs="1" name="events" type="ArrayOfLogEvent_Log" />
         </xs:sequence>
@@ -24,12 +24,12 @@
   </xs:complexType>
   <xs:complexType name="ArrayOfLog_Log">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="child" nillable="true" type="Log" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="child" nillable="true" type="BdoLog" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ArrayOfLogEvent_Log">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="event" nillable="true" type="LogEvent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BdoEvent" nillable="true" type="BdoLogEvent" />
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="LoggerMode">

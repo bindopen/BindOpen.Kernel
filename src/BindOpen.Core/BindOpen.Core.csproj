@@ -45,4 +45,13 @@
     <Folder Include="Data\Stores\Depots\Datasources\Factories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Application\Configuration\BdoConfigurationBundle.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Application\Configuration\BdoBaseConfiguration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+
 </Project>

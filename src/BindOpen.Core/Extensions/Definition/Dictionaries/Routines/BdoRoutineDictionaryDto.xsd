@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="RoutineDefinitionDto.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/RoutineDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
   <xs:element name="routines.dictionary" type="BdoRoutineDictionary" />
 
@@ -26,7 +26,7 @@
 
   <xs:complexType name="ArrayOfRoutineDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="RoutineDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoRoutineDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 

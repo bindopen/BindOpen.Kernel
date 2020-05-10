@@ -3,12 +3,12 @@
   xmlns:bdo="https://docs.bindopen.org/xsd"
   elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
-  <xs:include schemaLocation="SourceElementSpec.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/SourceElementSpec.xsd" />
 
-  <xs:complexType name="ConnectorDefinition">
+  <xs:complexType name="BdoConnectorDefinitionDto">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinitionDto">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="dataSource.specification" type="SourceElementSpec" />

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="Routine.xsd" />
-  <xs:include schemaLocation="DictionaryDataItem.xsd" />
-  <xs:include schemaLocation="ConditionalEvent.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Routine.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ConditionalEvent.xsd" />
 
   <xs:complexType name="DataConstraint" abstract="true">
     <xs:complexContent mixed="false">
@@ -23,7 +23,7 @@
 
   <xs:complexType name="ArrayOfConditionalEvent1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="ConditionalEvent" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="BdoConditionalEvent" />
     </xs:sequence>
   </xs:complexType>
 

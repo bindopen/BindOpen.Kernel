@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
-  <xs:include schemaLocation="DataElementSpecSet.xsd" />
-  <xs:include schemaLocation="DataElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSet.xsd" />
 
-  <xs:complexType name="HandlerDefinition">
+  <xs:complexType name="BdoHandlerDefinitionDto">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinitionDto">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="getFunction" type="xs:string" />

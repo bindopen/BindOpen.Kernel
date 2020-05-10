@@ -1,5 +1,5 @@
-<bindopen xmlns="https://docs.bindopen.org/xsd">
-
+<bindopen xmlns="https://docs.bindopen.org/xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://docs.bindopen.org/xsd BdoHostConfiguration.xsd">
   <scalar name="applicationInstanceName" value="test.console" />
 
   <scalar name="logs.fileName" script="testB_$(id).txt" />

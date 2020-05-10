@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataElementSet.xsd" />
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="tasks/TaskDefinitionDto.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/tasks/TaskDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="tasks.dictionary" type="TaskDictionary" />
+  <xs:element name="tasks.dictionary" type="BdoTaskDictionaryDto" />
 
-  <xs:complexType name="TaskDictionary">
+  <xs:complexType name="BdoTaskDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_Task" />
     </xs:complexContent>
@@ -27,7 +27,7 @@
 
   <xs:complexType name="ArrayOfTaskDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="TaskDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoTaskDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 
