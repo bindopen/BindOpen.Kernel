@@ -12,8 +12,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    [XmlType("DataConstraintStatement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataConstraintStatement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DataConstraintStatement : TDataItemSet<BdoRoutineConfiguration>, IDataConstraintStatement
     {
         // ------------------------------------------
@@ -79,7 +79,7 @@ namespace BindOpen.Data.Specification
             string constraintName,
             string definitionUniqueId = null,
             string parameterName = null,
-            DataValueType dataValueType = DataValueType.Any)
+            DataValueTypes dataValueType = DataValueTypes.Any)
         {
             IDataElement dataElement = null;
 
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Specification
                 {
                     routine.Add(dataElement = ElementFactory.CreateScalar(
                        parameterName,
-                       dataValueType == DataValueType.Any ? dataValueType.GetValueType() : dataValueType));
+                       dataValueType == DataValueTypes.Any ? dataValueType.GetValueType() : dataValueType));
                 }
             }
 
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Specification
             string definitionUniqueId = null,
             string parameterName = null,
             object value = null,
-            DataValueType dataValueType = DataValueType.Any)
+            DataValueTypes dataValueType = DataValueTypes.Any)
         {
             IBdoRoutineConfiguration routine = GetConstraint(constraintName);
             if (routine?.DefinitionUniqueId.KeyEquals(definitionUniqueId) != true)
@@ -134,7 +134,7 @@ namespace BindOpen.Data.Specification
                 routine.Add(
                     ElementFactory.CreateScalar(
                         parameterName,
-                        dataValueType == DataValueType.Any ? value.GetValueType() : dataValueType,
+                        dataValueType == DataValueTypes.Any ? value.GetValueType() : dataValueType,
                         value));
             }
             else

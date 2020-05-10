@@ -9,108 +9,116 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This enumeration represents the possible data value types.
     /// </summary>
-    [XmlType("DataValueType", Namespace = "https://bindopen.org/xsd")]
-    public enum DataValueType
+    [XmlType("DataValueTypes", Namespace = "https://docs.bindopen.org/xsd")]
+    [Flags]
+    public enum DataValueTypes
     {
         /// <summary>
         /// Undefined.
         /// </summary>
-        Any,
+        Undefined = 0,
 
         /// <summary>
         /// None.
         /// </summary>
-        None,
+        None = 0x01 << 0,
 
         /// <summary>
         /// Boolean.
         /// </summary>
-        Boolean,
+        Boolean = 0x01 << 1,
 
         /// <summary>
         /// Data carrier.
         /// </summary>
-        Carrier,
+        Carrier = 0x01 << 2,
 
         /// <summary>
         /// Connector.
         /// </summary>
-        Connector,
+        Connector = 0x01 << 3,
 
         /// <summary>
         /// Data source.
         /// </summary>
-        Datasource,
+        Datasource = 0x01 << 4,
 
         /// <summary>
         /// Element.
         /// </summary>
-        Element,
+        Element = 0x01 << 5,
 
         /// <summary>
         /// Entity.
         /// </summary>
-        Entity,
+        Entity = 0x01 << 6,
 
         /// <summary>
         /// Date.
         /// </summary>
-        Date,
+        Date = 0x01 << 7,
 
         /// <summary>
         /// Document.
         /// </summary>
-        Document,
+        Document = 0x01 << 8,
 
         /// <summary>
         /// Integer.
         /// </summary>
-        Integer,
+        Integer = 0x01 << 9,
 
         /// <summary>
         /// Long.
         /// </summary>
-        Long,
+        Long = 0x01 << 10,
 
         /// <summary>
         /// Ultra long.
         /// </summary>
-        ULong,
+        ULong = 0x01 << 11,
 
         /// <summary>
         /// Byte array.
         /// </summary>
-        ByteArray,
+        ByteArray = 0x01 << 12,
 
         /// <summary>
         /// Number value.
         /// </summary>
-        Number,
+        Number = 0x01 << 13,
 
         /// <summary>
         /// Object.
         /// </summary>
-        Object,
+        Object = 0x01 << 14,
 
         /// <summary>
         /// Schema.
         /// </summary>
-        Schema,
+        Schema = 0x01 << 15,
 
         /// <summary>
         /// Schema zone.
         /// </summary>
-        SchemaZone,
+        SchemaZone = 0x01 << 16,
 
         /// <summary>
         /// Text.
         /// </summary>
-        Text,
+        Text = 0x01 << 17,
 
         /// <summary>
         /// Time.
         /// </summary>
-        Time,
+        Time = 0x01 << 18,
+
+        /// <summary>
+        /// Any data operator.
+        /// </summary>
+        Any = Boolean | Carrier | Connector | Datasource | Element | Entity | Date | Document | Integer | Long
+            | ULong | ByteArray | Number | Object | Schema | SchemaZone | Text | Time
+
     }
 
 
@@ -130,19 +138,19 @@ namespace BindOpen.Data.Common
         /// </summary>
         /// <param name="valueType">The object to consider.</param>
         /// <returns>The result object.</returns>
-        public static bool IsScalar(this DataValueType valueType)
+        public static bool IsScalar(this DataValueTypes valueType)
         {
             switch (valueType)
             {
-                case DataValueType.Boolean:
-                case DataValueType.Date:
-                case DataValueType.Integer:
-                case DataValueType.Number:
-                case DataValueType.Text:
-                case DataValueType.ByteArray:
-                case DataValueType.Time:
-                case DataValueType.Long:
-                case DataValueType.ULong:
+                case DataValueTypes.Boolean:
+                case DataValueTypes.Date:
+                case DataValueTypes.Integer:
+                case DataValueTypes.Number:
+                case DataValueTypes.Text:
+                case DataValueTypes.ByteArray:
+                case DataValueTypes.Time:
+                case DataValueTypes.Long:
+                case DataValueTypes.ULong:
                     return true;
             }
 
@@ -164,35 +172,35 @@ namespace BindOpen.Data.Common
         /// </summary>
         /// <param name="dataValueType">The value type to consider.</param>
         /// <returns>The result object.</returns>
-        public static Type GetObjectType(this DataValueType dataValueType)
+        public static Type GetObjectType(this DataValueTypes dataValueType)
         {
             switch (dataValueType)
             {
-                case DataValueType.Boolean:
+                case DataValueTypes.Boolean:
                     return typeof(Boolean);
-                case DataValueType.Carrier:
+                case DataValueTypes.Carrier:
                     return typeof(BdoCarrierConfiguration);
-                case DataValueType.Datasource:
+                case DataValueTypes.Datasource:
                     return typeof(Datasource);
-                case DataValueType.Date:
+                case DataValueTypes.Date:
                     return typeof(DateTime);
-                case DataValueType.Document:
+                case DataValueTypes.Document:
                     return typeof(Document);
-                case DataValueType.Integer:
+                case DataValueTypes.Integer:
                     return typeof(int);
-                case DataValueType.Number:
+                case DataValueTypes.Number:
                     return typeof(float);
-                case DataValueType.Schema:
+                case DataValueTypes.Schema:
                     return typeof(String);
-                case DataValueType.Text:
+                case DataValueTypes.Text:
                     return typeof(String);
-                case DataValueType.Time:
+                case DataValueTypes.Time:
                     return typeof(TimeSpan);
-                case DataValueType.Long:
+                case DataValueTypes.Long:
                     return typeof(long);
-                case DataValueType.ULong:
+                case DataValueTypes.ULong:
                     return typeof(ulong);
-                case DataValueType.ByteArray:
+                case DataValueTypes.ByteArray:
                     return typeof(byte[]);
             }
 
@@ -205,15 +213,15 @@ namespace BindOpen.Data.Common
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="refValueType">The value type to consider.</param>
         /// <returns>The result object.</returns>
-        public static bool IsCompatibleWith(this DataValueType valueType, DataValueType refValueType)
+        public static bool IsCompatibleWith(this DataValueTypes valueType, DataValueTypes refValueType)
         {
             if (valueType == refValueType)
             {
                 return true;
             }
-            else if (refValueType == DataValueType.Number
-                && (valueType == DataValueType.Integer
-                || valueType == DataValueType.Long))
+            else if (refValueType == DataValueTypes.Number
+                && (valueType == DataValueTypes.Integer
+                || valueType == DataValueTypes.Long))
             {
                 return true;
             }
@@ -226,45 +234,45 @@ namespace BindOpen.Data.Common
         /// </summary>
         /// <param name="type">The type to consider.</param>
         /// <returns>The result object.</returns>
-        public static DataValueType GetValueType(this Type type)
+        public static DataValueTypes GetValueType(this Type type)
         {
-            if (type == null) return DataValueType.None;
+            if (type == null) return DataValueTypes.None;
 
             if (type == typeof(byte[]))
-                return DataValueType.ByteArray;
+                return DataValueTypes.ByteArray;
             else if (type.IsArray)
                 type = type.GetElementType();
 
             if (type == typeof(bool) || type == typeof(bool?))
-                return DataValueType.Boolean;
+                return DataValueTypes.Boolean;
             else if (type == typeof(DateTime) || type == typeof(DateTime?))
-                return DataValueType.Date;
+                return DataValueTypes.Date;
             else if (type == typeof(int) || type == typeof(int?))
-                return DataValueType.Integer;
+                return DataValueTypes.Integer;
             else if (type == typeof(float) || type == typeof(float?) || (type == typeof(double)) || (type == typeof(double?)))
-                return DataValueType.Number;
+                return DataValueTypes.Number;
             else if (type.IsEnum)
-                return DataValueType.Text;
+                return DataValueTypes.Text;
             else if (type == typeof(TimeSpan) || type == typeof(TimeSpan?))
-                return DataValueType.Time;
+                return DataValueTypes.Time;
             else if (type == typeof(string))
-                return DataValueType.Text;
+                return DataValueTypes.Text;
             else if (typeof(IDocument).IsAssignableFrom(type))
-                return DataValueType.Document;
+                return DataValueTypes.Document;
             else if (typeof(IBdoCarrier).IsAssignableFrom(type) || typeof(IBdoCarrierConfiguration).IsAssignableFrom(type))
-                return DataValueType.Carrier;
+                return DataValueTypes.Carrier;
             else if (typeof(IDatasource).IsAssignableFrom(type) || typeof(IBdoConnectorConfiguration).IsAssignableFrom(type))
-                return DataValueType.Datasource;
+                return DataValueTypes.Datasource;
             else if (typeof(ICollectionElement).IsAssignableFrom(type))
-                return DataValueType.Element;
+                return DataValueTypes.Element;
             else if (typeof(IDataItem).IsAssignableFrom(type))
-                return DataValueType.Object;
+                return DataValueTypes.Object;
             else if (type == typeof(long) || type == typeof(long?))
-                return DataValueType.Long;
+                return DataValueTypes.Long;
             else if (type == typeof(ulong) || type == typeof(ulong?))
-                return DataValueType.ULong;
+                return DataValueTypes.ULong;
             else
-                return DataValueType.None;
+                return DataValueTypes.None;
         }
 
         /// <summary>
@@ -272,10 +280,10 @@ namespace BindOpen.Data.Common
         /// </summary>
         /// <param name="object1">The object to consider.</param>
         /// <returns>The result object.</returns>
-        public static DataValueType GetValueType(this Object object1)
+        public static DataValueTypes GetValueType(this Object object1)
         {
             var objectType = object1?.GetType();
-            return objectType == null ? DataValueType.None : objectType.GetValueType();
+            return objectType == null ? DataValueTypes.None : objectType.GetValueType();
         }
 
         /// <summary>
@@ -283,17 +291,17 @@ namespace BindOpen.Data.Common
         /// </summary>
         /// <param name="objects">The objects to consider.</param>
         /// <returns>The result object.</returns>
-        public static DataValueType GetValueType(this object[] objects)
+        public static DataValueTypes GetValueType(this object[] objects)
         {
-            DataValueType dataValueType = DataValueType.Any;
+            DataValueTypes dataValueType = DataValueTypes.Any;
 
             if (objects != null)
             {
                 foreach (object object1 in objects)
                 {
-                    DataValueType currentDataValueType = DataValueTypeExtension.GetValueType(object1);
-                    if ((dataValueType != DataValueType.Any) && (currentDataValueType != dataValueType))
-                        return DataValueType.Any;
+                    DataValueTypes currentDataValueType = DataValueTypeExtension.GetValueType(object1);
+                    if ((dataValueType != DataValueTypes.Any) && (currentDataValueType != dataValueType))
+                        return DataValueTypes.Any;
                     else
                         dataValueType = currentDataValueType;
                 }

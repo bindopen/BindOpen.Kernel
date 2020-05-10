@@ -13,8 +13,8 @@ namespace BindOpen.Application.Configuration
     /// <summary>
     /// This class represents a BindOpen application configuration.
     /// </summary>
-    [XmlType("BdoAppConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("app.config", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoAppConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("app.config", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoAppConfiguration : BdoBaseConfiguration, IBdoAppConfiguration
     {
         // -------------------------------------------------------

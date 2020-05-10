@@ -10,8 +10,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a scalar element specification.
     /// </summary>
-    [XmlType("ScalarElementSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScalarElementSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ScalarElementSpec : DataElementSpec, IScalarElementSpec
     {
         // --------------------------------------------------
@@ -24,8 +24,8 @@ namespace BindOpen.Data.Elements
         /// The value type of this instance.
         /// </summary>
         [XmlAttribute("valueType")]
-        [DefaultValue(DataValueType.Any)]
-        public new DataValueType ValueType
+        [DefaultValue(DataValueTypes.Any)]
+        public new DataValueTypes ValueType
         {
             get { return base.ValueType; }
             set { base.ValueType = value; }
@@ -67,7 +67,7 @@ namespace BindOpen.Data.Elements
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public ScalarElementSpec(
             String name,
-            DataValueType dataValueType = DataValueType.Text,
+            DataValueTypes dataValueType = DataValueTypes.Text,
             AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
             SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)

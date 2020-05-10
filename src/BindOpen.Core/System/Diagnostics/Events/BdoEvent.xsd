@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DescribedDataItem.xsd"  />
   <xs:include schemaLocation="DictionaryDataItem.xsd" />
   <xs:include schemaLocation="DataElementSet.xsd" />
@@ -11,13 +8,13 @@
 
   <xs:complexType name="Event">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DescribedDataItem">
+      <xs:extension base="DescribedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="longDescription" type="bdo:DictionaryDataItem" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail" type="bdo:DataElementSet" />
-          <xs:element minOccurs="1" maxOccurs="1" name="criticality" type="bdo:EventCriticality" />
+          <xs:element minOccurs="0" maxOccurs="1" name="longDescription" type="DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail" type="DataElementSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="criticality" type="EventCriticality" />
         </xs:sequence>
-        <xs:attribute name="kind" type="bdo:EventKind" use="required" />
+        <xs:attribute name="kind" type="EventKind" use="required" />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>

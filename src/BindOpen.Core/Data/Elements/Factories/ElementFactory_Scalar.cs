@@ -11,7 +11,7 @@ namespace BindOpen.Data.Elements
         /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="dataValueType">The value type to consider.</param>
-        public static ScalarElement CreateScalar(DataValueType dataValueType)
+        public static ScalarElement CreateScalar(DataValueTypes dataValueType)
         {
             return CreateScalar(null, null, dataValueType, null);
         }
@@ -22,7 +22,7 @@ namespace BindOpen.Data.Elements
         /// <param name="name">The name to consider.</param>
         public static ScalarElement CreateScalar(string name)
         {
-            return CreateScalar(name, null, DataValueType.Any, null);
+            return CreateScalar(name, null, DataValueTypes.Any, null);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace BindOpen.Data.Elements
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
         public static ScalarElement CreateScalar(
-            DataValueType valueType,
+            DataValueTypes valueType,
             params object[] items)
         {
             return CreateScalar(null, null, valueType, null, items);
@@ -46,7 +46,7 @@ namespace BindOpen.Data.Elements
             string name,
             params object[] items)
         {
-            return CreateScalar(name, null as string, DataValueType.Any, null, items);
+            return CreateScalar(name, null as string, DataValueTypes.Any, null, items);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace BindOpen.Data.Elements
         /// <param name="items">The items to consider.</param>
         public static ScalarElement CreateScalar(
             string name,
-            DataValueType valueType,
+            DataValueTypes valueType,
             params object[] items)
         {
             return CreateScalar(name, null as string, valueType, null, items);
@@ -74,15 +74,15 @@ namespace BindOpen.Data.Elements
         public static ScalarElement CreateScalar(
             string name,
             string id,
-            DataValueType valueType,
+            DataValueTypes valueType,
             IScalarElementSpec specification,
             params object[] items)
         {
-            if (valueType == DataValueType.Any)
+            if (valueType == DataValueTypes.Any)
             {
                 if (items == null)
                 {
-                    valueType = DataValueType.None;
+                    valueType = DataValueTypes.None;
                 }
                 else
                 {

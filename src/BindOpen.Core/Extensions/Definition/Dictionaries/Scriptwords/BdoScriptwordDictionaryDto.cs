@@ -8,8 +8,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO script word dictionary.
     /// </summary>
-    [XmlType("BdoScriptwordDictionaryDto", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptWords.dictionary", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoScriptwordDictionaryDto", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "scriptWords.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDictionaryDto : TBdoExtensionDictionaryDto<BdoScriptwordDefinitionDto>, IBdoScriptwordDictionaryDto
     {
         // ------------------------------------------

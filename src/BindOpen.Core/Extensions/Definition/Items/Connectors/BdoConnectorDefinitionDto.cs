@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    [XmlType("BdoConnectorDefinition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connector.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoConnectorDefinition", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "connector.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoConnectorDefinitionDto : BdoExtensionItemDefinitionDto, IBdoConnectorDefinitionDto
     {
         // --------------------------------------------------

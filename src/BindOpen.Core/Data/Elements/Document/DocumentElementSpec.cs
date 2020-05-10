@@ -8,8 +8,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a document element specification.
     /// </summary>
-    [XmlType("DocumentElementSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DocumentElementSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DocumentElementSpec : DataElementSpec, IDocumentElementSpec
     {
         // --------------------------------------------------

@@ -1,19 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="Event.xsd" />
   <xs:include schemaLocation="Log.xsd" />
 
   <xs:complexType name="LogEvent">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:Event">
+      <xs:extension base="Event">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="resultCode" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="source" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="stack.traces" type="bdo:ArrayOfLogEventStackTrace" />
-          <xs:element minOccurs="0" maxOccurs="1" name="log" type="bdo:Log" />
+          <xs:element minOccurs="0" maxOccurs="1" name="stack.traces" type="ArrayOfLogEventStackTrace" />
+          <xs:element minOccurs="0" maxOccurs="1" name="log" type="Log" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -21,7 +19,7 @@
 
   <xs:complexType name="ArrayOfLogEventStackTrace">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="stack.trace" type="bdo:LogEventStackTrace" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stack.trace" type="LogEventStackTrace" />
     </xs:sequence>
   </xs:complexType>
 

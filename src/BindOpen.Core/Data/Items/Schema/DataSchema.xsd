@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DescribedDataItem.xsd" />
   <xs:include schemaLocation="SchemaZoneElement.xsd" />
   <!--<xs:include schemaLocation="DataHandler.xsd" />-->
 
   <xs:complexType name="DataSchema">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DescribedDataItem">
+      <xs:extension base="DescribedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="rootZone" type="bdo:SchemaZoneElement" />
-          <!--<xs:element minOccurs="0" maxOccurs="1" name="metaSchema.reference" type="bdo:DataHandler" />-->
+          <xs:element minOccurs="0" maxOccurs="1" name="rootZone" type="SchemaZoneElement" />
+          <!--<xs:element minOccurs="0" maxOccurs="1" name="metaSchema.reference" type="DataHandler" />-->
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

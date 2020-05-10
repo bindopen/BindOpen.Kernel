@@ -6,6 +6,7 @@ using BindOpen.System.Diagnostics;
 using BindOpen.Tests.Core.Fakers;
 using Bogus;
 using NUnit.Framework;
+using System;
 using System.IO;
 
 namespace BindOpen.Tests.Core.Extensions.Connectors
@@ -136,7 +137,14 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
 
             // check bad connection
 
-            _connector?.UsingConnection((p, l) => { string toto = null; int i = toto.Length; }, log);
+            try
+            {
+                _connector?.UsingConnection((p, l) => { string toto = null; int i = toto.Length; }, log);
+            }
+            catch(NullReferenceException ex)
+            {
+                log.AddException(ex);
+            }
 
             xml = "";
             if (log.HasErrorsOrExceptions())

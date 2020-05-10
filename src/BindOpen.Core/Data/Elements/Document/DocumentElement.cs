@@ -7,8 +7,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a document element that is an element whose items are documents.
     /// </summary>
-    [XmlType("DocumentElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "document", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DocumentElement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "document", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DocumentElement : DataElement, IDocumentElement
     {
         // --------------------------------------------------
@@ -70,7 +70,7 @@ namespace BindOpen.Data.Elements
             string id = null)
             : base(name, "document_", id)
         {
-            ValueType = DataValueType.Document;
+            ValueType = DataValueTypes.Document;
         }
 
         #endregion

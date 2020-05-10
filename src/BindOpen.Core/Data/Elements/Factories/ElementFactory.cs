@@ -17,7 +17,7 @@ namespace BindOpen.Data.Elements
         /// <param name="items">The items to consider.</param>
         public static DataElement Create(string name, params object[] items)
         {
-            return Create(name, DataValueType.Any, items);
+            return Create(name, DataValueTypes.Any, items);
         }
 
         /// <summary>
@@ -25,11 +25,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static DataElement Create(string name, DataValueType valueType, params object[] items)
+        public static DataElement Create(string name, DataValueTypes valueType, params object[] items)
         {
             DataElement element = null;
 
-            if (valueType == DataValueType.Any || valueType == DataValueType.None)
+            if (valueType == DataValueTypes.Any || valueType == DataValueTypes.None)
             {
                 valueType = items.GetValueType();
             }
@@ -43,18 +43,18 @@ namespace BindOpen.Data.Elements
                 string definitionUniqueId;
                 switch (valueType)
                 {
-                    case DataValueType.Carrier:
+                    case DataValueTypes.Carrier:
                         definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IBdoCarrierConfiguration)?.DefinitionUniqueId;
                         element = CreateCarrier(name, null, definitionUniqueId);
                         break;
-                    case DataValueType.Datasource:
+                    case DataValueTypes.Datasource:
                         definitionUniqueId = ((items.Length > 0 ? items[0] : null) as IBdoConnectorConfiguration)?.DefinitionUniqueId;
                         element = CreateSource(name, null, definitionUniqueId);
                         break;
-                    case DataValueType.Document:
+                    case DataValueTypes.Document:
                         element = CreateDocument(name, null);
                         break;
-                    case DataValueType.Object:
+                    case DataValueTypes.Object:
                         element = CreateObject(name, items);
                         break;
                 }

@@ -1,26 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataElementSet.xsd" />
   <xs:include schemaLocation="DataItem.xsd" />
   <xs:include schemaLocation="carriers/CarrierDefinitionDto.xsd" />
   <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="carriers.dictionary" type="bdo:BdoCarrierDictionary" />
+  <xs:element name="carriers.dictionary" type="BdoCarrierDictionary" />
 
   <xs:complexType name="BdoCarrierDictionary">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:TBdoExtensionDictionary_Carrier" />
+      <xs:extension base="TBdoExtensionDictionary_Carrier" />
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="TBdoExtensionDictionary_Carrier">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:StoredDataItem">
+      <xs:extension base="StoredDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="bdo:ArrayOfCarrierDefinition" />
-          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="bdo:ArrayOfBdoExtensionItemGroup" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfCarrierDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionItemGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
         <xs:attribute name="library" type="xs:string" />
@@ -30,7 +27,7 @@
 
   <xs:complexType name="ArrayOfCarrierDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="bdo:CarrierDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="CarrierDefinition" />
     </xs:sequence>
   </xs:complexType>
 

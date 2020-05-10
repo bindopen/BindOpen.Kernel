@@ -42,7 +42,7 @@ namespace BindOpen.Data.Elements
         /// <returns>Return this instance.</returns>
         public static DataElementSet CreateSet(params (string name, object value)[] parameters)
         {
-            return CreateSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, DataValueType.Any, p.value)).ToArray());
+            return CreateSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, DataValueTypes.Any, p.value)).ToArray());
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="parameters">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static DataElementSet CreateSet(params (string name, DataValueType valueType, object value)[] parameters)
+        public static DataElementSet CreateSet(params (string name, DataValueTypes valueType, object value)[] parameters)
         {
             return CreateSet(parameters?.Select(p => ElementFactory.CreateScalar(p.name, p.valueType, p.value)).ToArray());
         }
@@ -65,7 +65,7 @@ namespace BindOpen.Data.Elements
             var index = 0;
             return CreateSet(objects?.Select(p =>
             {
-                var scalar = ElementFactory.CreateScalar("", DataValueType.Any, p);
+                var scalar = ElementFactory.CreateScalar("", DataValueTypes.Any, p);
                 scalar.Index = ++index;
                 return scalar;
             }).ToArray());
@@ -95,7 +95,7 @@ namespace BindOpen.Data.Elements
                         elementSet.Add(
                             ElementFactory.CreateScalar(
                                 subString.Substring(0, i),
-                                DataValueType.Text,
+                                DataValueTypes.Text,
                                 subString.Substring(i + 1)));
                     }
                 }
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Elements
                     string propertyName = updatePropertyInfo.Name;
                     object propertyValue = updatePropertyInfo.GetValue(aObject);
 
-                    elementSet.Add(ElementFactory.CreateScalar(propertyName, DataValueType.Any, propertyValue));
+                    elementSet.Add(ElementFactory.CreateScalar(propertyName, DataValueTypes.Any, propertyValue));
                 }
             }
 
@@ -141,7 +141,7 @@ namespace BindOpen.Data.Elements
                         string propertyName = propertyInfo.Name;
                         object propertyValue = propertyInfo.GetValue(aObject);
 
-                        elementSet.Add(ElementFactory.CreateScalar(propertyName, DataValueType.Any, propertyValue));
+                        elementSet.Add(ElementFactory.CreateScalar(propertyName, DataValueTypes.Any, propertyValue));
                     }
                 }
             }

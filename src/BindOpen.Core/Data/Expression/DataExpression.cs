@@ -7,8 +7,8 @@ namespace BindOpen.Data.Expression
     /// <summary>
     /// This class represents a data expression that can contain a literal and script texts.
     /// </summary>
-    [XmlType("DataExpression", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataExpression", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataExpression", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataExpression", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DataExpression : DataItem, IDataExpression
     {
         // ------------------------------------------

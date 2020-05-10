@@ -6,8 +6,8 @@ namespace BindOpen.Extensions.Definition
     /// <summary>
     /// This class represents a handler definition.
     /// </summary>
-    [XmlType("BdoHandlerDefinition", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataHandler.definition", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoHandlerDefinition", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataHandler.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoHandlerDefinitionDto : BdoExtensionItemDefinitionDto, IBdoHandlerDefinitionDto
     {
         // --------------------------------------------------

@@ -19,12 +19,12 @@ namespace BindOpen.Data.Specification
         /// <summary>
         /// 
         /// </summary>
-        InheritanceLevel InheritanceLevel { get; set; }
+        InheritanceLevels InheritanceLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevel RequirementLevel { get; set; }
+        RequirementLevels RequirementLevel { get; set; }
 
         /// <summary>
         /// 

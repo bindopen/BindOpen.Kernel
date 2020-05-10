@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  xmlns:bdo="https://docs.bindopen.org/xsd"
+  elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="InheritanceLevels">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="Heritable" />
+      <xs:enumeration value="Inherited" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

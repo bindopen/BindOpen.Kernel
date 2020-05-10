@@ -8,8 +8,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a catalog element specification.
     /// </summary>
-    [XmlType("CatalogElementSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("CatalogElementSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class CollectionElementSpec : DataElementSpec, ICollectionElementSpec
     {
         // --------------------------------------------------

@@ -49,7 +49,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataValueType ValueType { get; set; }
+        DataValueTypes ValueType { get; set; }
 
         /// <summary>
         /// 

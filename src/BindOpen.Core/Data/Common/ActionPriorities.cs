@@ -9,29 +9,39 @@ namespace BindOpen.Data.Common
     public enum ActionPriorities
     {
         /// <summary>
-        /// None.
+        /// None can access.
         /// </summary>
-        None = 0,
+        None = 0x0,
+
+        /// <summary>
+        /// Inherited.
+        /// </summary>
+        Inherited = 0x1 << 0,
 
         /// <summary>
         /// Low.
         /// </summary>
-        Low = 0x01,
+        Low = 0x01 << 1,
 
         /// <summary>
         /// Medium.
         /// </summary>
-        Medium = 0x02,
+        Medium = 0x01 << 2,
 
         /// <summary>
         /// High.
         /// </summary>
-        High = 0x04,
+        High = 0x01 << 3,
 
         /// <summary>
         /// Very high.
         /// </summary>
-        VeryHigh = 0x08
+        VeryHigh = 0x01 << 4,
+
+        /// <summary>
+        /// Any action priority.
+        /// </summary>
+        Any = Low | Medium | High | VeryHigh
     }
 
 }

@@ -15,8 +15,8 @@ namespace BindOpen.Data.Elements
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("DataElementSpec", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataElementSpec", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(CarrierElementSpec))]
     [XmlInclude(typeof(DocumentElementSpec))]
     [XmlInclude(typeof(ObjectElementSpec))]
@@ -94,7 +94,7 @@ namespace BindOpen.Data.Elements
         /// The value type of this instance.
         /// </summary>
         [XmlIgnore()]
-        public DataValueType ValueType { get; set; } = DataValueType.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The aliases of the entry.
@@ -201,25 +201,25 @@ namespace BindOpen.Data.Elements
         /// The item requirement level of this instance.
         /// </summary>
         [XmlIgnore()]
-        public RequirementLevel ItemRequirementLevel
+        public RequirementLevels ItemRequirementLevel
         {
             get
             {
                 if (MaximumItemNumber == 0)
                 {
-                    return RequirementLevel.Forbidden;
+                    return RequirementLevels.Forbidden;
                 }
                 else if (MinimumItemNumber > 0)
                 {
-                    return RequirementLevel.Required;
+                    return RequirementLevels.Required;
                 }
                 else if (MinimumItemNumber <= 0)
                 {
-                    return RequirementLevel.Optional;
+                    return RequirementLevels.Optional;
                 }
                 else
                 {
-                    return RequirementLevel.None;
+                    return RequirementLevels.None;
                 }
             }
         }
@@ -470,19 +470,19 @@ namespace BindOpen.Data.Elements
 
                             switch (GetAreaSpecification("item").RequirementLevel)
                             {
-                                case RequirementLevel.OptionalExclusively:
+                                case RequirementLevels.OptionalExclusively:
                                     if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
                                         log.AddError(
                                             title: "Item script and items forbidden with reference",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Forbidden:
+                                case RequirementLevels.Forbidden:
                                     if (dataElement.ItemReference != null)
                                         log.AddWarning(
                                             title: "Item reference forbidden",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Required:
+                                case RequirementLevels.Required:
                                     if (dataElement.ItemReference == null)
                                         log.AddError(
                                             title: "Item reference required",
@@ -498,19 +498,19 @@ namespace BindOpen.Data.Elements
 
                             switch (GetAreaSpecification("item").RequirementLevel)
                             {
-                                case RequirementLevel.OptionalExclusively:
+                                case RequirementLevels.OptionalExclusively:
                                     if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
                                         log.AddError(
                                             title: "Item script and items forbidden forbidden with reference",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Forbidden:
+                                case RequirementLevels.Forbidden:
                                     if (dataElement.ItemReference != null)
                                         log.AddWarning(
                                             title: "Item reference forbidden",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Required:
+                                case RequirementLevels.Required:
                                     if (dataElement.ItemReference == null)
                                         log.AddError(
                                             title: "Item reference required",
@@ -526,19 +526,19 @@ namespace BindOpen.Data.Elements
 
                             switch (GetAreaSpecification("item").RequirementLevel)
                             {
-                                case RequirementLevel.OptionalExclusively:
+                                case RequirementLevels.OptionalExclusively:
                                     if ((string.IsNullOrEmpty(dataElement.ItemScript)) || (dataElement.Items.Count > 0))
                                         log.AddError(
                                             title: "Item script and items forbidden forbidden with reference",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Forbidden:
+                                case RequirementLevels.Forbidden:
                                     if (dataElement.ItemReference != null)
                                         log.AddWarning(
                                             title: "Item specification allows reference forbidden",
                                             description: "No item reference.");
                                     break;
-                                case RequirementLevel.Required:
+                                case RequirementLevels.Required:
                                     if ((dataElement.Items == null) || (dataElement.Items.Count == 0))
                                         log.AddError(
                                             title: "Items required",

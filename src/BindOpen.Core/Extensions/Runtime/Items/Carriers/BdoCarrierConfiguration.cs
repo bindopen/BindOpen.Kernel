@@ -11,8 +11,8 @@ namespace BindOpen.Extensions.Runtime
     /// <summary>
     /// This class represents a carrier configuration.
     /// </summary>
-    [XmlType("BdoCarrierConfiguration", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "carrier", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoCarrierConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "carrier", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoCarrierConfiguration
         : TBdoExtensionTitledItemConfiguration<IBdoCarrierDefinition>, IBdoCarrierConfiguration
     {

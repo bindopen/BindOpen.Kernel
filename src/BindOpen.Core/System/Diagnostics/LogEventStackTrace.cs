@@ -5,7 +5,7 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// This structures defines the stack trace of a task result.
     /// </summary>
-    [XmlType("LogEventStackTrace", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("LogEventStackTrace", Namespace = "https://docs.bindopen.org/xsd")]
     public class LogEventStackTrace
     {
         /// <summary>

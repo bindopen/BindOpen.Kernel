@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataSpecification.xsd" />
   <xs:include schemaLocation="DataValueType.xsd" />
   <xs:include schemaLocation="DataItemizationMode.xsd" />
@@ -14,7 +11,7 @@
 
   <xs:complexType name="DataElementSpec" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataSpecification">
+      <xs:extension base="DataSpecification">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="groupId" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="aliases" >
@@ -24,10 +21,10 @@
               </xs:sequence>
             </xs:complexType>
           </xs:element>
-          <xs:element minOccurs="0" maxOccurs="1" name="areaSpecifications" type="bdo:ArrayOfDataAreaSpecification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="areaSpecifications" type="ArrayOfDataAreaSpecification" />
           <xs:element minOccurs="0" maxOccurs="1" name="isAllocatable" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="availableItemizationModes" type="bdo:ArrayOfDataItemizationMode" />
-          <xs:element minOccurs="0" maxOccurs="1" name="itemSpecificationLevels" type="bdo:ArrayOfSpecificationLevel" />
+          <xs:element minOccurs="0" maxOccurs="1" name="availableItemizationModes" type="ArrayOfDataItemizationMode" />
+          <xs:element minOccurs="0" maxOccurs="1" name="itemSpecificationLevels" type="ArrayOfSpecificationLevel" />
           <xs:element minOccurs="0" maxOccurs="1" name="defaultStringItems">
             <xs:complexType>
               <xs:sequence>
@@ -38,9 +35,9 @@
           <xs:element minOccurs="0" maxOccurs="1" name="minimumItemNumber" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="maximumItemNumber" type="xs:int" />
 
-          <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="bdo:DataConstraintStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="bdo:DataElementDesignStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="bdo:DataElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="DataConstraintStatement" />
+          <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="DataElementDesignStatement" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.specification" type="DataElementSpecSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

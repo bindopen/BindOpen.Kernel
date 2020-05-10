@@ -13,8 +13,8 @@ namespace BindOpen.Application.Options
     /// <summary>
     /// This class represents a option specification set.
     /// </summary>
-    [XmlType("OptionSpecSet", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot("optionSpecSet", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("OptionSpecSet", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("optionSpecSet", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class OptionSpecSet : TDataItemSet<IOptionSpec>, IOptionSpecSet
     {
         // -------------------------------------------------------------
@@ -184,7 +184,7 @@ namespace BindOpen.Application.Options
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return AddOption(DataValueType.Text, RequirementLevel.Optional, OptionNameKind.OnlyValue, aliases);
+            return AddOption(DataValueTypes.Text, RequirementLevels.Optional, OptionNameKind.OnlyValue, aliases);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace BindOpen.Application.Options
         /// <param name="requirementLevel">The requirement level of the entry to add.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             params string[] aliases)
         {
             Add(new OptionSpec(requirementLevel, aliases));
@@ -207,11 +207,11 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(
-            DataValueType dataValueType,
+            DataValueTypes dataValueType,
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return AddOption(dataValueType, RequirementLevel.Required, OptionNameKind.OnlyValue, aliases);
+            return AddOption(dataValueType, RequirementLevels.Required, OptionNameKind.OnlyValue, aliases);
         }
 
         /// <summary>
@@ -221,11 +221,11 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
             params string[] aliases)
         {
-            return AddOption(DataValueType.Text, requirementLevel, nameKind, aliases);
+            return AddOption(DataValueTypes.Text, requirementLevel, nameKind, aliases);
         }
 
         /// <summary>
@@ -236,8 +236,8 @@ namespace BindOpen.Application.Options
         /// <param name="nameKind">The name kind to consider.</param>
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(
-            DataValueType dataValueType,
-            RequirementLevel requirementLevel,
+            DataValueTypes dataValueType,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
             params string[] aliases)
         {
@@ -254,7 +254,7 @@ namespace BindOpen.Application.Options
         /// <param name="aliases">Aliases of the option to add.</param>
         public IOptionSpecSet AddOption(
             Type type,
-            RequirementLevel requirementLevel,
+            RequirementLevels requirementLevel,
             OptionNameKind nameKind,
             params string[] aliases)
         {

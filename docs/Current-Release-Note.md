@@ -3,12 +3,14 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # New features
 
-- [X] None.
+- [ ] None
+- [X] XSD location updated
+- [X] Equals function for DictionaryDataItem implemented
 
 
 # Fixes
 
-- [X] Fixing bug in the management of byte array value type.
+- [ ] None
 
 
 # Lifecycle news

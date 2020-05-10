@@ -17,8 +17,8 @@ namespace BindOpen.System.Processing
     /// <summary>
     /// This class represents the process execution.
     /// </summary>
-    [XmlType("ProcessExecution", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "processExecution", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ProcessExecution", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "processExecution", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class ProcessExecution : DataItem, IProcessExecution
     {
         // ------------------------------------------
@@ -380,7 +380,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Start()
         {
-            _startDate = DateTime.Now.ToString(DataValueType.Date);
+            _startDate = DateTime.Now.ToString(DataValueTypes.Date);
             _restartDate = "";
             _endDate = "";
             _state = ProcessExecutionState.Pending;
@@ -398,7 +398,7 @@ namespace BindOpen.System.Processing
         {
             if (!ProcessExecution.GetStatuses(ProcessExecutionState.Ended).Contains(status)) return;
 
-            _endDate = DateTime.Now.ToString(DataValueType.Date);
+            _endDate = DateTime.Now.ToString(DataValueTypes.Date);
             _state = ProcessExecutionState.Ended;
             _status = status;
 
@@ -432,7 +432,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Restart()
         {
-            _restartDate = DateTime.Now.ToString(DataValueType.Date);
+            _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
             _endDate = "";
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
@@ -446,7 +446,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         public void Resume()
         {
-            _restartDate = DateTime.Now.ToString(DataValueType.Date);
+            _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
             _endDate = "";
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
@@ -462,7 +462,7 @@ namespace BindOpen.System.Processing
         /// <param name="value">The value of the attribute to set.</param>
         public void AddDetail(string name, object value)
         {
-            Detail.Add(ElementFactory.CreateScalar(name, DataValueType.Text, (value ?? "").ToString()));
+            Detail.Add(ElementFactory.CreateScalar(name, DataValueTypes.Text, (value ?? "").ToString()));
             _log?.WriteLog(name, value, BdoLoggerMode.Auto);
         }
 

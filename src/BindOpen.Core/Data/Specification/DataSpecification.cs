@@ -12,8 +12,8 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This abstract class represents a data specification.
     /// </summary>
-    [XmlType("DataSpecification", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataSpecification", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public abstract class DataSpecification : IndexedDataItem, IDataSpecification
     {
         // --------------------------------------------------
@@ -36,8 +36,8 @@ namespace BindOpen.Data.Specification
         /// The requirement level of this instance.
         /// </summary>
         [XmlAttribute("requirementLevel")]
-        [DefaultValue(RequirementLevel.None)]
-        public RequirementLevel RequirementLevel { get; set; } = RequirementLevel.None;
+        [DefaultValue(RequirementLevels.None)]
+        public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
 
         /// <summary>
         /// The requirement script of this instance.
@@ -50,8 +50,8 @@ namespace BindOpen.Data.Specification
         /// The level of inheritance of this instance.
         /// </summary>
         [XmlElement("inheritanceLevel")]
-        [DefaultValue(Common.InheritanceLevel.None)]
-        public Common.InheritanceLevel InheritanceLevel { get; set; } = Common.InheritanceLevel.None;
+        [DefaultValue(Common.InheritanceLevels.None)]
+        public Common.InheritanceLevels InheritanceLevel { get; set; } = Common.InheritanceLevels.None;
 
         /// <summary>
         /// Levels of specification of this instance.

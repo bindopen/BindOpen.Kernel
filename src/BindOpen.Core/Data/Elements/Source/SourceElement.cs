@@ -13,8 +13,8 @@ namespace BindOpen.Data.Elements
     /// This class represents a data source element.
     /// </summary>
     /// <remarks>A data source element can only have one item maximum.</remarks>
-    [XmlType("SourceElement", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataSource", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("SourceElement", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "dataSource", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class SourceElement : DataElement, ISourceElement
     {
         // --------------------------------------------------
@@ -77,7 +77,7 @@ namespace BindOpen.Data.Elements
         public SourceElement(string name = null, string id = null)
             : base(name, "source_", id)
         {
-            ValueType = DataValueType.Datasource;
+            ValueType = DataValueTypes.Datasource;
         }
 
         #endregion

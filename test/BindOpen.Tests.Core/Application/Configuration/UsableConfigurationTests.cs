@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 new[] { Path.GetFileName(_filePath20), Path.GetFileName(_filePath21) },
                 new[]
                 {
-                    ElementFactory.CreateScalar("float1", DataValueType.Number, 10),
+                    ElementFactory.CreateScalar("float1", DataValueTypes.Number, 10),
                 }
             );
 
@@ -39,9 +39,9 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 _filePath20,
                 new[]
                 {
-                    ElementFactory.CreateScalar("text1", DataValueType.Text, f.Lorem.Words(10)),
-                    ElementFactory.CreateScalar("integer1", DataValueType.Integer, Enumerable.Range(0, 10).Select(p=>f.Random.Int(5000))),
-                    ElementFactory.CreateScalar("byteArray1", DataValueType.ByteArray, Enumerable.Range(0, 100).Select(p=>f.PickRandom<byte>())),
+                    ElementFactory.CreateScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
+                    ElementFactory.CreateScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p=>f.Random.Int(5000))),
+                    ElementFactory.CreateScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(0, 100).Select(p=>f.PickRandom<byte>())),
                 }
             );
 
@@ -49,7 +49,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
                 _filePath21,
                 new[]
                 {
-                    ElementFactory.CreateScalar("float2", DataValueType.Number, 1.1, 1.2, 1.3)
+                    ElementFactory.CreateScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3)
                 }
             );
         }

@@ -1,25 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="ScriptItemKind.xsd" />
   <xs:include schemaLocation="DataElementSet.xsd" />
   <xs:include schemaLocation="StoredDataItem.xsd" />
 
   <xs:complexType name="Scriptword">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:TBdoExtensionItemOfScriptwordDefinition">
+      <xs:extension base="TBdoExtensionItemOfScriptwordDefinition">
         <xs:sequence>
-          <xs:element minOccurs="1" maxOccurs="1" name="Kind" type="bdo:ScriptItemKind" />
-          <xs:element minOccurs="0" maxOccurs="1" name="parameter.detail" type="bdo:DataElementSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Kind" type="ScriptItemKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.detail" type="DataElementSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="TBdoExtensionItemOfScriptwordDefinition" abstract="true">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:StoredDataItem">
+      <xs:extension base="StoredDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="group" type="xs:string" />
         </xs:sequence>

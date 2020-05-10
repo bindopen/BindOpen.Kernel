@@ -1,17 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataItem.xsd" />
   <xs:include schemaLocation="scriptwords/ScriptwordDefinition.xsd" />
   <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="scriptWords.dictionary" type="bdo:BdoScriptwordDictionary" />
+  <xs:element name="scriptWords.dictionary" type="BdoScriptwordDictionary" />
 
   <xs:complexType name="BdoScriptwordDictionary">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:TBdoExtensionDictionary_Script">
+      <xs:extension base="TBdoExtensionDictionary_Script">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="definitionClass" type="xs:string" />
         </xs:sequence>
@@ -20,10 +17,10 @@
   </xs:complexType>
   <xs:complexType name="TBdoExtensionDictionary_Script">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:StoredDataItem">
+      <xs:extension base="StoredDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="bdo:ArrayOfScriptwordDefinition1" />
-          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="bdo:ArrayOfBdoExtensionItemGroup" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfScriptwordDefinition1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionItemGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
         <xs:attribute name="library" type="xs:string" />
@@ -33,7 +30,7 @@
 
   <xs:complexType name="ArrayOfScriptwordDefinition1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="bdo:ScriptwordDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="ScriptwordDefinition" />
     </xs:sequence>
   </xs:complexType>
 

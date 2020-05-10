@@ -12,8 +12,8 @@ namespace BindOpen.Data.References
     /// <summary>
     /// This class represents a data reference configuration.
     /// </summary>
-    [XmlType("DataReference", Namespace = "https://bindopen.org/xsd")]
-    [XmlRoot(ElementName = "data.reference", Namespace = "https://bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataReference", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot(ElementName = "data.reference", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class DataReferenceDto : DataItem, IDataReferenceDto
     {
         // ------------------------------------------
@@ -109,13 +109,13 @@ namespace BindOpen.Data.References
         /// Gets the value type of the primary source of this instance.
         /// </summary>
         /// <returns>Returns the value type of the primary source of this instance.</returns>
-        public DataValueType GetPrimarySourceValueType()
+        public DataValueTypes GetPrimarySourceValueType()
         {
             IStoredDataItem storedDataItem = GetPrimarySource();
             if (storedDataItem != null)
                 return storedDataItem.GetValueType();
 
-            return DataValueType.None;
+            return DataValueTypes.None;
         }
 
         /// <summary>

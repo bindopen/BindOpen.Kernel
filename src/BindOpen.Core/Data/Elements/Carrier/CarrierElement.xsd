@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema
-  xmlns:bdo="https://bindopen.org/xsd"
-  elementFormDefault="qualified" targetNamespace="https://bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+<xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="DataElement.xsd" />
   <xs:include schemaLocation="CarrierElementSpec.xsd" />
 
   <xs:complexType name="CarrierElement">
     <xs:complexContent mixed="false">
-      <xs:extension base="bdo:DataElement">
+      <xs:extension base="DataElement">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="bdo:CarrierElementSpec" />
+          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="CarrierElementSpec" />
         </xs:sequence>
         <xs:attribute name="definition" type="xs:string" use="required" />
       </xs:extension>

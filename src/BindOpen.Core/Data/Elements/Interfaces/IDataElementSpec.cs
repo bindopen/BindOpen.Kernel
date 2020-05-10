@@ -59,7 +59,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevel ItemRequirementLevel { get; }
+        RequirementLevels ItemRequirementLevel { get; }
 
         /// <summary>
         /// 
@@ -84,7 +84,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataValueType ValueType { get; set; }
+        DataValueTypes ValueType { get; set; }
 
         /// <summary>
         /// 

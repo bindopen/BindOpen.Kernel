@@ -10,7 +10,7 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// This class represents the extension loading options.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://bindopen.org/xsd")]
+    [XmlType("ExtensionLoadOptions", Namespace = "https://docs.bindopen.org/xsd")]
     public class ExtensionLoadOptions : DataItem, IExtensionLoadOptions
     {
         // --------------------------------------------------
