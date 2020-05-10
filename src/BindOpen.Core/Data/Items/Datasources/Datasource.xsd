@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="StoredDataItem.xsd" />
-  <xs:include schemaLocation="DatasourceKind.xsd" />
-  <xs:include schemaLocation="DataElementSet.xsd" />
-  <xs:include schemaLocation="Arrays.xsd" />
-  <xs:include schemaLocation="ConnectorConfiguration.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DatasourceKind.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Arrays.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ConnectorConfiguration.xsd" />
 
   <xs:complexType name="Datasource">
     <xs:complexContent mixed="false">
       <xs:extension base="NamedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="ConnectorConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="BdoConnectorConfiguration" />
         </xs:sequence>
         <xs:attribute name="kind" type="DatasourceKind" use="required" />
         <xs:attribute name="moduleName" type="xs:string" use="optional" />

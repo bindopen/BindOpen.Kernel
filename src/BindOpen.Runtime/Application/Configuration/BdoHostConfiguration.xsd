@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemDefinitionDto.xsd" />
-  
-  <xs:complexType name="MetricsDefinition">
+  <xs:include schemaLocation ="https://docs.bindopen.org/xsd/BdoBaseConfiguration.xsd" />
+
+  <xs:element name="bindopen" type="BdoHostConfiguration" />
+  <xs:complexType name="BdoHostConfiguration">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinitionDto">
+      <xs:extension base="BdoBaseConfiguration">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="unitCode" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
 </xs:schema>

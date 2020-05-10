@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataItem.xsd" />
-  <xs:include schemaLocation="scriptwords/ScriptwordDefinition.xsd" />
-  <xs:include schemaLocation="BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/scriptwords/ScriptwordDefinition.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="scriptWords.dictionary" type="BdoScriptwordDictionary" />
+  <xs:element name="scriptwords.dictionary" type="BdoScriptwordDictionaryDto" />
 
-  <xs:complexType name="BdoScriptwordDictionary">
+  <xs:complexType name="BdoScriptwordDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_Script">
         <xs:sequence>
@@ -30,7 +30,7 @@
 
   <xs:complexType name="ArrayOfScriptwordDefinition1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="ScriptwordDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoScriptwordDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 

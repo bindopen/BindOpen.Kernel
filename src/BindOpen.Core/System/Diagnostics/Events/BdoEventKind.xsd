@@ -8,7 +8,7 @@
       <xs:enumeration value="Warning" />
       <xs:enumeration value="Exception" />
       <xs:enumeration value="Checkpoint" />
-      <xs:enumeration value="Log" />
+      <xs:enumeration value="BdoLog" />
       <xs:enumeration value="Other" />
     </xs:restriction>
   </xs:simpleType>

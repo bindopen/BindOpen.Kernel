@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataSpecification.xsd" />
-  <xs:include schemaLocation="DataValueType.xsd" />
-  <xs:include schemaLocation="DataItemizationMode.xsd" />
-  <xs:include schemaLocation="RequirementLevel.xsd" />
-  <xs:include schemaLocation="Arrays.xsd" />
-  <xs:include schemaLocation="DataConstraintStatement.xsd" />
-  <xs:include schemaLocation="DataElementDesignStatement.xsd" />
-  <xs:include schemaLocation="DataElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataSpecification.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataValueType.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataItemizationMode.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/RequirementLevel.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/Arrays.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataConstraintStatement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementDesignStatement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSpecSet.xsd" />
 
   <xs:complexType name="DataElementSpec" abstract="true">
     <xs:complexContent mixed="false">

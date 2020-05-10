@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
-  <xs:include schemaLocation="DataElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElementSpecSet.xsd" />
 
-  <xs:complexType name="TaskDefinition">
+  <xs:complexType name="BdoTaskDefinitionDto">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinitionDto">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="groupName" type="xs:string" />

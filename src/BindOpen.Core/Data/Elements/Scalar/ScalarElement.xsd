@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DataValueType.xsd" />
-  <xs:include schemaLocation="DataElement.xsd" />
-  <xs:include schemaLocation="ScalarElementSpec.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataValueType.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataElement.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/ScalarElementSpec.xsd" />
 
   <xs:complexType name="ScalarElement">
     <xs:complexContent mixed="false">

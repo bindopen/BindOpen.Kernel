@@ -2,7 +2,7 @@
 
 <tasks.dictionary library="standard"
   xmlns="https://docs.bindopen.org/xsd"
-  xmlns:SchemaLocation="bdo:TaskDictionary TaskDictionary.xsd">
+  xmlns:SchemaLocation="TaskDictionary TaskDictionary.xsd">
   
   <creationDate>2011-07-07</creationDate>
   <lastModificationDate>2016-10-15</lastModificationDate>

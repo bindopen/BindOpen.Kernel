@@ -2,7 +2,7 @@
 
 <carriers.dictionary library="standard"
   xmlns="https://docs.bindopen.org/xsd"
-  xmlns:SchemaLocation="bdo:BdoCarrierDictionary BdoCarrierDictionary.xsd">
+  xmlns:SchemaLocation="BdoCarrierDictionary BdoCarrierDictionary.xsd">
   
   <creationDate>2011-07-07</creationDate>
   <lastModificationDate>2016-09-08</lastModificationDate>

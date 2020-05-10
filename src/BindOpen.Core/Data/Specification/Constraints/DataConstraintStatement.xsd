@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="DictionaryDataItem.xsd" />
-  <xs:include schemaLocation="RoutineConfiguration.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DictionaryDataItem.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/RoutineConfiguration.xsd" />
 
   <xs:complexType name="DataConstraintStatement">
     <xs:complexContent mixed="false">
@@ -18,7 +18,7 @@
 
   <xs:complexType name="ArrayOfRoutineConfiguration1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="RoutineConfiguration" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" nillable="true" type="BdoRoutineConfiguration" />
     </xs:sequence>
   </xs:complexType>
 

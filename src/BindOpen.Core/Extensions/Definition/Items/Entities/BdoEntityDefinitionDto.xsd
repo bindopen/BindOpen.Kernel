@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://docs.bindopen.org/xsd" elementFormDefault="qualified" targetNamespace="https://docs.bindopen.org/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="BdoExtensionItemDefinitionDto.xsd" />
-  <xs:include schemaLocation="EntityKind.xsd" />
-  <xs:include schemaLocation="formats/FormatDefinitionDto.xsd" />
-  <xs:include schemaLocation="DataSchema.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/EntityKind.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/formats/FormatDefinitionDto.xsd" />
+  <xs:include schemaLocation="https://docs.bindopen.org/xsd/DataSchema.xsd" />
 
-  <xs:complexType name="EntityDefinition">
+  <xs:complexType name="BdoEntityDefinitionDto">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionItemDefinitionDto">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="kind" type="EntityKind" />
@@ -22,7 +22,7 @@
 
   <xs:complexType name="ArrayOfFormatDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="format" nillable="true" type="FormatDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="format" nillable="true" type="BdoFormatDefinitionDto" />
     </xs:sequence>
   </xs:complexType>
 
