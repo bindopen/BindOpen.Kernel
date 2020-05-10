@@ -1106,10 +1106,12 @@ namespace BindOpen.System.Diagnostics
 
             bool hasEvents = Events.ToList<IBdoLogEvent>().Has(kinds);
 
-            if (!hasEvents && isRecursive)
+            if (!hasEvents && isRecursive && SubLogs != null)
+            {
                 foreach (BdoLog childLog in SubLogs)
                     if (hasEvents = childLog.HasEvent(isRecursive, kinds))
                         return true;
+            }
 
             return hasEvents;
         }
