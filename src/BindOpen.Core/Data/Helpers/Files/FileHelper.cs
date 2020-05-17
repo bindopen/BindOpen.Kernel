@@ -29,7 +29,7 @@ namespace BindOpen.Data.Helpers.Files
                 }
                 isExisting = true;
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 log?.AddException(ex);
             }

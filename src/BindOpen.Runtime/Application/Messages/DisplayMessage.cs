@@ -94,11 +94,11 @@ namespace BindOpen.Application.Messages
         {
             get
             {
-                return this._DisplayOption;
+                return _DisplayOption;
             }
             set
             {
-                this._DisplayOption = value;
+                _DisplayOption = value;
             }
         }
 
@@ -161,8 +161,8 @@ namespace BindOpen.Application.Messages
         public override object Clone(params string[] areas)
         {
             DisplayMessage aDisplayMessage = base.Clone(areas) as DisplayMessage;
-            aDisplayMessage.DisplayCondition = this.DisplayCondition.Clone() as ScriptCondition;
-            aDisplayMessage.DisplayedLabel = this.DisplayedLabel.Clone() as DictionaryDataItem;
+            aDisplayMessage.DisplayCondition = DisplayCondition.Clone() as ScriptCondition;
+            aDisplayMessage.DisplayedLabel = DisplayedLabel.Clone() as DictionaryDataItem;
             return aDisplayMessage;
         }
 

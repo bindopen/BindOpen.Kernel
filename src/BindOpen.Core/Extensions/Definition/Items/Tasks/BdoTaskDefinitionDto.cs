@@ -83,10 +83,10 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("input.specification")]
         public DataElementSpecSet InputSpecification
         {
-            get => this._inputSpecification ?? (this._inputSpecification = new DataElementSpecSet());
+            get => _inputSpecification ?? (_inputSpecification = new DataElementSpecSet());
             set
             {
-                this._inputSpecification = value;
+                _inputSpecification = value;
             }
         }
 
@@ -97,10 +97,10 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("output.specification")]
         public DataElementSpecSet OutputSpecification
         {
-            get => this._outputSpecification ?? (this._outputSpecification = new DataElementSpecSet());
+            get => _outputSpecification ?? (_outputSpecification = new DataElementSpecSet());
             set
             {
-                this._outputSpecification = value;
+                _outputSpecification = value;
             }
         }
 
@@ -127,8 +127,8 @@ namespace BindOpen.Extensions.Definition
         /// <param name="id">The ID to consider.</param>
         public BdoTaskDefinitionDto(string name, string preffix, string id) : base(name, preffix, id)
         {
-            this.IsIndexed = false;
-            this.IsExecutable = false;
+            IsIndexed = false;
+            IsExecutable = false;
         }
 
         #endregion
@@ -154,13 +154,13 @@ namespace BindOpen.Extensions.Definition
             List<IDataElementSpec> dataElements = new List<IDataElementSpec>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
-                dataElements.AddRange(this._inputSpecification.Items);
+                dataElements.AddRange(_inputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
-                dataElements.AddRange(this._outputSpecification.Items);
+                dataElements.AddRange(_outputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(_outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(this._outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
+                dataElements.AddRange(_outputSpecification.Items.Where(p => p.ValueType.IsScalar()));
 
             return dataElements;
         }
@@ -173,7 +173,7 @@ namespace BindOpen.Extensions.Definition
         /// <returns>Returns the input with the specified name.</returns>
         public IDataElementSpec GetEntryWithName(String key, params TaskEntryKind[] taskEntryKinds)
         {
-            return this.GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
+            return GetEntries(taskEntryKinds).Find(p => p.KeyEquals(key));
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace BindOpen.Extensions.Definition
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IDataElementSpec entry = this.GetEntryWithName(name, taskEntryKinds);
+            IDataElementSpec entry = GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetDefaultItemObject(log);
         }
@@ -218,14 +218,14 @@ namespace BindOpen.Extensions.Definition
             if (taskDefinition != null)
             {
                 if (taskDefinition.Title != null)
-                    this.Title = taskDefinition.Title.Clone() as DictionaryDataItem;
+                    Title = taskDefinition.Title.Clone() as DictionaryDataItem;
                 if (taskDefinition.Description != null)
-                    this.Description = taskDefinition.Description.Clone() as DictionaryDataItem;
+                    Description = taskDefinition.Description.Clone() as DictionaryDataItem;
 
-                this._inputSpecification.Repair(
+                _inputSpecification.Repair(
                     taskDefinition.InputSpecification,
                     DataElementSpec.__Arenames.ToList().Excluding(new[] { nameof(DataAreaKind.Items) }).ToArray());
-                this._outputSpecification.Repair(
+                _outputSpecification.Repair(
                     taskDefinition.OutputSpecification,
                     DataElementSpec.__Arenames.ToList().Excluding(new[] { nameof(DataAreaKind.Items) }).ToArray());
             }

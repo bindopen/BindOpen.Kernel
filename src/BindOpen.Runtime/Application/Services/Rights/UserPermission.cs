@@ -89,8 +89,8 @@ namespace BindOpen.Application.Rights
         /// <param name="valueScript">The value script to consider.</param>
         public UserPermission(String actionName, String valueScript)
         {
-            this.ActionName = actionName;
-            this.ValueScript = valueScript;
+            ActionName = actionName;
+            ValueScript = valueScript;
         }
 
         /// <summary>
@@ -109,8 +109,8 @@ namespace BindOpen.Application.Rights
         /// <param name="value">The boolean value to consider.</param>
         public UserPermission(String actionName, Boolean? value)
         {
-            this.ActionName = actionName;
-            this.Value = value;
+            ActionName = actionName;
+            Value = value;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace BindOpen.Application.Rights
         /// <returns>Returns the value of this instance.</returns>
         public Boolean GetValue(IBdoScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
-            String value = this.ValueScript?.Trim();
+            string value = ValueScript?.Trim();
 
             if (value != null)
             {
@@ -154,7 +154,7 @@ namespace BindOpen.Application.Rights
 
             if (scriptInterpreter != null)
             {
-                scriptInterpreter.Evaluate(this.ValueScript, DataExpressionKind.Script, out value, scriptVariableSet);
+                scriptInterpreter.Evaluate(ValueScript, DataExpressionKind.Script, out value, scriptVariableSet);
                 return ((value != null) && (value.ToLower().Trim() == "%true()"));
             }
 

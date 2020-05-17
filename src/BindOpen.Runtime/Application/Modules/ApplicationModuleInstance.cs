@@ -46,7 +46,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public string ModuleName
         {
-            get { return this.Module?.Name; }
+            get { return Module?.Name; }
         }
 
         // Location ---------------------------------
@@ -56,7 +56,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public string Uri
         {
-            get { return this._uri; }
+            get { return _uri; }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public string AbsoluteUri
         {
-            get { return this._absoluteUri; }
+            get { return _absoluteUri; }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public string ApplicationExecutionPath
         {
-            get { return this._applicationExecutionPath; }
+            get { return _applicationExecutionPath; }
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public bool IsLocal
         {
-            get { return this._isLocal; }
+            get { return _isLocal; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public IOptionSet OptionSet
         {
-            get { return this._optionSet; }
+            get { return _optionSet; }
         }
 
         #endregion
@@ -143,8 +143,8 @@ namespace BindOpen.Application.Modules
             IAppModule module,
             string uri)
         {
-            this.Module = module;
-            this._uri = uri;
+            Module = module;
+            _uri = uri;
         }
 
         #endregion
@@ -173,7 +173,7 @@ namespace BindOpen.Application.Modules
             if (item is IAppModuleInstance)
             {
                 IAppModuleInstance moduleInstance = item as AppModuleInstance;
-                this.Module.Update(moduleInstance.Module);
+                Module.Update(moduleInstance.Module);
             }
 
             return log;
@@ -205,7 +205,7 @@ namespace BindOpen.Application.Modules
                 if (!string.IsNullOrEmpty(name))
                 {
                     if (moduleSection == null)
-                        moduleSection = this.GetSectionWithName(name);
+                        moduleSection = GetSectionWithName(name);
                     else
                         moduleSection = moduleSection.GetSubSectionWithName(name);
                 }
@@ -220,9 +220,9 @@ namespace BindOpen.Application.Modules
         /// <returns>The application section of this instance with the specified name.</returns>
         public IAppSection GetSectionWithName(string name)
         {
-            if (this.Sections != null)
+            if (Sections != null)
             {
-                foreach (IAppSection moduleSection in this.Sections.Items)
+                foreach (IAppSection moduleSection in Sections.Items)
                 {
                     if (moduleSection.Name.KeyEquals(name.ToUpper()))
                     {

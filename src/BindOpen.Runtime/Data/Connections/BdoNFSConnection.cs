@@ -423,7 +423,7 @@ namespace BindOpen.Data.Connections
             IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
-            foreach (RepositoryItem item in this.GetFiles(
+            foreach (RepositoryItem item in GetFiles(
                 folderUri, filter, isRecursive, log, fileKind))
             {
                 if (item.LastWriteDate != null)

@@ -16,7 +16,7 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// The default resource file name for library definition.
         /// </summary>
-        private static readonly string __DefaultResourceFileName = "BindOpen.Extension";
+        private const string __DefaultResourceFileName = "BindOpen.Extension";
 
         /// <summary>
         /// Extract extension definition from the specified assembly.

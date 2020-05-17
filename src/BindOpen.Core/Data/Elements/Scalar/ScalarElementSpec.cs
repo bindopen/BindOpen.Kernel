@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.System.Diagnostics;
-using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -66,14 +65,14 @@ namespace BindOpen.Data.Elements
         /// <param name="accessibilityLevel">The accessibilty level of this instance.</param>
         /// <param name="specificationLevels">The specification levels of this instance.</param>
         public ScalarElementSpec(
-            String name,
+            string name,
             DataValueTypes dataValueType = DataValueTypes.Text,
             AccessibilityLevels accessibilityLevel = AccessibilityLevels.Public,
             SpecificationLevels[] specificationLevels = null)
             : base(accessibilityLevel, specificationLevels)
         {
-            this.Name = name;
-            this.ValueType = dataValueType;
+            Name = name;
+            ValueType = dataValueType;
         }
 
         #endregion

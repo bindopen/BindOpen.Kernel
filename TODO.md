@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] ScriptVariableSet fluent
 - [X] XSD location URI updated to docs.bindopen.org/xsd
 - [ ] Dynamic extension loading
 - [ ] Update/Repair/Check data items/elements/sets
@@ -22,5 +23,6 @@ Todo list for BindOpen
 * Add Expression data value type
 * Optimize serialization
 * Improve AppModule management (DbFluent mode)
+* Make XSD files work
 ### v.1.2
 * Integrate .net core logging/configuration

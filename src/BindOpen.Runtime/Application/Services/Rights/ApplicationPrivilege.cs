@@ -68,7 +68,7 @@ namespace BindOpen.Application.Rights
         {
             get
             {
-                return (this.EntityKind.ToString() + "#" + (this.EntityName ?? "")).ToLower();
+                return (EntityKind.ToString() + "#" + (EntityName ?? "")).ToLower();
             }
         }
 
@@ -101,11 +101,11 @@ namespace BindOpen.Application.Rights
         {
             set
             {
-                this._DefaultPermissions = value;
+                _DefaultPermissions = value;
             }
             get
             {
-                return this._DefaultPermissions;
+                return _DefaultPermissions;
             }
         }
 
@@ -136,9 +136,9 @@ namespace BindOpen.Application.Rights
             String entityName,
             params UserPermission[] defaultPermissions)
         {
-            this.EntityKind = entityKind;
-            this.EntityName = entityName;
-            this.DefaultPermissions = (defaultPermissions == null ? new List<UserPermission>() : defaultPermissions.ToList());
+            EntityKind = entityKind;
+            EntityName = entityName;
+            DefaultPermissions = (defaultPermissions == null ? new List<UserPermission>() : defaultPermissions.ToList());
         }
 
         #endregion
@@ -159,8 +159,8 @@ namespace BindOpen.Application.Rights
         {
             // we add the action
             if (permission == null) return;
-            this.DefaultPermissions.RemoveAll(p => string.Equals(p.ActionName, permission.ActionName, StringComparison.OrdinalIgnoreCase));
-            this.DefaultPermissions.Add(permission);
+            DefaultPermissions.RemoveAll(p => string.Equals(p.ActionName, permission.ActionName, StringComparison.OrdinalIgnoreCase));
+            DefaultPermissions.Add(permission);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace BindOpen.Application.Rights
             String actionName,
             Boolean value)
         {
-            this.SetDefaultPermission(new UserPermission(actionName, value));
+            SetDefaultPermission(new UserPermission(actionName, value));
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace BindOpen.Application.Rights
             String actionName,
             String stringValue)
         {
-            this.SetDefaultPermission(new UserPermission(actionName, stringValue));
+            SetDefaultPermission(new UserPermission(actionName, stringValue));
         }
 
         #endregion
@@ -205,7 +205,7 @@ namespace BindOpen.Application.Rights
         {
             // we build the complete entity name
             if (actionName == null) return null;
-            return this.DefaultPermissions.FirstOrDefault(p => p.KeyEquals(actionName));
+            return DefaultPermissions.FirstOrDefault(p => p.KeyEquals(actionName));
         }
 
         #endregion

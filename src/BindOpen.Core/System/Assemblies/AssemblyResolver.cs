@@ -42,7 +42,7 @@ namespace BindOpen.System.Assemblies
         {
             if (appDomain != null)
             {
-                ResolveEventHandler aResolveEventHandler = this.BuildResolveEventHandler();
+                ResolveEventHandler aResolveEventHandler = BuildResolveEventHandler();
                 appDomain.AssemblyResolve += aResolveEventHandler;
 
                 return aResolveEventHandler;
@@ -56,7 +56,7 @@ namespace BindOpen.System.Assemblies
         {
             if (appDomain != null)
             {
-                ResolveEventHandler aResolveEventHandler = this.BuildResolveEventHandler();
+                ResolveEventHandler aResolveEventHandler = BuildResolveEventHandler();
                 appDomain.AssemblyResolve += aResolveEventHandler;
             }
         }

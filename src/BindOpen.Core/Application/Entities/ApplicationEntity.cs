@@ -36,7 +36,7 @@ namespace BindOpen.Application.Entities
         /// <param name="scope">The entity scope to consider.</param>
         public ApplicationEntity(ApplicationEntityScope scope) : base()
         {
-            this.Scope = scope;
+            Scope = scope;
         }
 
         #endregion

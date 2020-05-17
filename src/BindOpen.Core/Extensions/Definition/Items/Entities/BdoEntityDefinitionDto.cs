@@ -68,7 +68,7 @@ namespace BindOpen.Extensions.Definition
         {
             get
             {
-                return this._formatDefinitions ?? (this._formatDefinitions = new List<BdoFormatDefinitionDto>());
+                return _formatDefinitions ?? (_formatDefinitions = new List<BdoFormatDefinitionDto>());
             }
         }
 
@@ -81,7 +81,7 @@ namespace BindOpen.Extensions.Definition
         {
             get
             {
-                return this._possibleMetaSchemas ?? (this._possibleMetaSchemas = new List<DataSchema>());
+                return _possibleMetaSchemas ?? (_possibleMetaSchemas = new List<DataSchema>());
             }
         }
 
@@ -125,7 +125,7 @@ namespace BindOpen.Extensions.Definition
         {
             if (uniqueName == null) return null;
 
-            return (IBdoFormatDefinitionDto)this.FormatDefinitions.Find(p => p.KeyEquals(uniqueName));
+            return (IBdoFormatDefinitionDto)FormatDefinitions.Find(p => p.KeyEquals(uniqueName));
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace BindOpen.Extensions.Definition
         {
             if (name == null) return null;
 
-            return (IBdoFormatDefinitionDto)this.FormatDefinitions.Find(p => p.KeyEquals(name));
+            return (IBdoFormatDefinitionDto)FormatDefinitions.Find(p => p.KeyEquals(name));
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace BindOpen.Extensions.Definition
         {
             if (id == null) return null;
 
-            return (IBdoFormatDefinitionDto)this.FormatDefinitions.Find(p => p.Id.KeyEquals(id));
+            return (IBdoFormatDefinitionDto)FormatDefinitions.Find(p => p.Id.KeyEquals(id));
         }
 
         #endregion

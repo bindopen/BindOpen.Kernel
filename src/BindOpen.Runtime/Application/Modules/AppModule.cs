@@ -103,9 +103,9 @@ namespace BindOpen.Application.Modules
         {
             IAppSection section = null;
 
-            if (this.Sections != null)
+            if (Sections != null)
             {
-                foreach (IAppSection moduleSection in this.Sections.Items)
+                foreach (IAppSection moduleSection in Sections.Items)
                 {
                     if ((section = moduleSection.GetSubSectionWithName(name)) != null)
                     {
@@ -126,9 +126,9 @@ namespace BindOpen.Application.Modules
         {
             IAppSection section = null;
 
-            if (this.Sections != null)
+            if (Sections != null)
             {
-                foreach (IAppSection moduleSection in this.Sections.Items)
+                foreach (IAppSection moduleSection in Sections.Items)
                 {
                     if ((section = moduleSection.GetSubSectionWithUniqueName(completeName)) != null)
                     {
@@ -149,7 +149,7 @@ namespace BindOpen.Application.Modules
         /// <returns>The language to return.</returns>
         public IApplicationLanguage GetLanguageWithUICulture(string uiCulureName)
         {
-            return this.Languages?.Items?.FirstOrDefault(p => p.UICultureName.KeyEquals(uiCulureName));
+            return Languages?.Items?.FirstOrDefault(p => p.UICultureName.KeyEquals(uiCulureName));
         }
 
         #endregion
@@ -170,7 +170,7 @@ namespace BindOpen.Application.Modules
         {
             if (section != null)
             {
-                (this.Sections ?? (this.Sections = new TDataItemSet<AppSection>())).Add(section as AppSection);
+                (Sections ?? (Sections = new TDataItemSet<AppSection>())).Add(section as AppSection);
                 section.Module = this;
             }
 
@@ -186,7 +186,7 @@ namespace BindOpen.Application.Modules
         {
             foreach (IAppSection section in sections)
             {
-                this.AddSection(section);
+                AddSection(section);
             }
 
             return this;
@@ -210,7 +210,7 @@ namespace BindOpen.Application.Modules
             if (item is IAppModule)
             {
                 IAppModule module = item as AppModule;
-                log.AddEvents(this.Sections.Update(
+                log.AddEvents(Sections.Update(
                     module.Sections,
                     null,
                     new[] { UpdateModes.Incremental_AddItemsMissingInTarget }));

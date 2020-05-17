@@ -117,10 +117,10 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             Document dataEntityItem = base.Clone(areas) as Document;
-            if (this.Container != null)
-                dataEntityItem.Container = this.Container.Clone() as BdoCarrierConfiguration;
-            if (this.Content != null)
-                dataEntityItem.Content = this.Content.Clone() as BdoEntityConfiguration;
+            if (Container != null)
+                dataEntityItem.Container = Container.Clone() as BdoCarrierConfiguration;
+            if (Content != null)
+                dataEntityItem.Content = Content.Clone() as BdoEntityConfiguration;
 
             return dataEntityItem;
         }

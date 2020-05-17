@@ -69,7 +69,7 @@ namespace BindOpen.Tests.Core.Fakers
         /// <param name="path">The path of the instance.</param>
         public CarrierFake(string path) : base()
         {
-            this.Path = path;
+            Path = path;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace BindOpen.Tests.Core.Fakers
         /// <param name="folderPath">The folder path of the instance.</param>
         public CarrierFake(string fileName, string folderPath) : base()
         {
-            this.WithPath(fileName, folderPath);
+            WithPath(fileName, folderPath);
         }
 
         #endregion

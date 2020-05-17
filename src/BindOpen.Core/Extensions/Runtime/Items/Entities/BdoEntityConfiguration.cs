@@ -83,8 +83,8 @@ namespace BindOpen.Extensions.Runtime
         public override object Clone(params string[] areas)
         {
             BdoEntityConfiguration configuration = base.Clone(areas) as BdoEntityConfiguration;
-            if (this.Schema != null)
-                configuration.Schema = this.Schema.Clone() as DataSchema;
+            if (Schema != null)
+                configuration.Schema = Schema.Clone() as DataSchema;
 
             return configuration;
         }

@@ -34,8 +34,8 @@ namespace BindOpen.Data.Elements
         [XmlElement("definition.filter")]
         public DataValueFilter DefinitionFilter
         {
-            get => this._definitionFilter ?? (this._definitionFilter = new DataValueFilter());
-            set { this._definitionFilter = value; }
+            get => _definitionFilter ?? (_definitionFilter = new DataValueFilter());
+            set { _definitionFilter = value; }
         }
 
         #endregion
@@ -114,8 +114,8 @@ namespace BindOpen.Data.Elements
         public override object Clone(params string[] areas)
         {
             CarrierElementSpec dataCarrierElementSpec = base.Clone(areas) as CarrierElementSpec;
-            if (this.DefinitionFilter != null)
-                dataCarrierElementSpec.DefinitionFilter = this.DefinitionFilter.Clone() as DataValueFilter;
+            if (DefinitionFilter != null)
+                dataCarrierElementSpec.DefinitionFilter = DefinitionFilter.Clone() as DataValueFilter;
             return dataCarrierElementSpec;
         }
 

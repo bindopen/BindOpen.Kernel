@@ -14,6 +14,8 @@ namespace BindOpen.Application.Services
 
         #region Variables
 
+        private bool _isDisposed = false;
+
         // Scope ----------------------
 
         /// <summary>
@@ -24,10 +26,10 @@ namespace BindOpen.Application.Services
         #endregion
 
         // ------------------------------------------
-        // VARIABLES
+        // PROPERTIES   
         // ------------------------------------------
 
-        #region Variables
+        #region Properties
 
         /// <summary>
         /// The scope of this instance.
@@ -88,8 +90,6 @@ namespace BindOpen.Application.Services
         // ------------------------------------------
 
         #region IDisposable_Methods
-
-        private bool _isDisposed = false;
 
         /// <summary>
         /// Disposes this instance. 

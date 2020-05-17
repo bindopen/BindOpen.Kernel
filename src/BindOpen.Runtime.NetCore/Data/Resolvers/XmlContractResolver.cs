@@ -24,7 +24,7 @@ namespace BindOpen.Data.Resolvers
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
-            this.ConfigureProperty(member, property);
+            ConfigureProperty(member, property);
             return property;
         }
 

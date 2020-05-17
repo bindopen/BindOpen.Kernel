@@ -75,7 +75,7 @@ namespace BindOpen.Data.Conditions
         /// <param name="conditions">The conditions to consider.</param>
         public AdvancedCondition(params ICondition[] conditions)
         {
-            this.Conditions = conditions?.ToList();
+            Conditions = conditions?.ToList();
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace BindOpen.Data.Conditions
         /// <param name="conditions">The conditions to consider.</param>
         public AdvancedCondition(bool trueValue, params ICondition[] conditions)
         {
-            this.TrueValue = trueValue;
-            this.Conditions = conditions?.ToList();
+            TrueValue = trueValue;
+            Conditions = conditions?.ToList();
         }
 
         #endregion
@@ -103,10 +103,10 @@ namespace BindOpen.Data.Conditions
         /// <param name="areas">The areas to consider.</param>
         public override object Clone(params string[] areas)
         {
-            AdvancedCondition aAdvancedBusinessCondition = new AdvancedCondition();
-            aAdvancedBusinessCondition.Conditions.AddRange(this.Conditions.Select(p => p.Clone() as Condition));
+            AdvancedCondition advancedBusinessCondition = new AdvancedCondition();
+            advancedBusinessCondition.Conditions.AddRange(Conditions.Select(p => p.Clone() as Condition));
 
-            return aAdvancedBusinessCondition;
+            return advancedBusinessCondition;
         }
 
         #endregion
