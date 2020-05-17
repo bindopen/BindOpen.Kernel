@@ -88,8 +88,8 @@ namespace BindOpen.Application.Modules
             IAppModule module = null,
             IAppSection parent = null) : base(name, "section_")
         {
-            this.Module = module;
-            this.Parent = parent;
+            Module = module;
+            Parent = parent;
         }
 
         #endregion
@@ -108,9 +108,9 @@ namespace BindOpen.Application.Modules
         public void AddSection(IAppSection section)
         {
 
-            (this.SubSections ?? (this.SubSections = new TDataItemSet<AppSection>())).Add(section as AppSection);
+            (SubSections ?? (SubSections = new TDataItemSet<AppSection>())).Add(section as AppSection);
             section.Parent = this;
-            section.Module = this.Module;
+            section.Module = Module;
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace BindOpen.Application.Modules
         public IAppSection AddSections(params AppSection[] sections)
         {
             foreach (IAppSection section in sections)
-                this.AddSection(section);
+                AddSection(section);
             return this;
         }
 
@@ -138,7 +138,7 @@ namespace BindOpen.Application.Modules
         /// </summary>
         public override string Key()
         {
-            return (this.Parent == null ? this.Module?.Name + "$" : this.Parent.Name + "$" + this.Name).ToUpper();
+            return (Parent == null ? Module?.Name + "$" : Parent.Name + "$" + Name).ToUpper();
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace BindOpen.Application.Modules
         /// <returns>The sub application section with the specified name.</returns>
         public IAppSection GetSubSectionWithName(String name)
         {
-            if (this.Name.KeyEquals(name))
+            if (Name.KeyEquals(name))
             {
                 return this;
             }
@@ -156,9 +156,9 @@ namespace BindOpen.Application.Modules
             {
                 IAppSection section = null;
 
-                if (this.SubSections != null)
+                if (SubSections != null)
                 {
-                    foreach (IAppSection moduleSection in this.SubSections.Items)
+                    foreach (IAppSection moduleSection in SubSections.Items)
                     {
                         if ((section = moduleSection.GetSubSectionWithName(name)) != null)
                         {
@@ -185,9 +185,9 @@ namespace BindOpen.Application.Modules
             {
                 IAppSection section = null;
 
-                if (this.SubSections != null)
+                if (SubSections != null)
                 {
-                    foreach (var moduleSection in this.SubSections.Items)
+                    foreach (var moduleSection in SubSections.Items)
                     {
                         if ((section = moduleSection.GetSubSectionWithUniqueName(key)) != null)
                         {

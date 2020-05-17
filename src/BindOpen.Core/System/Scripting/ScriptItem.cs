@@ -61,9 +61,9 @@ namespace BindOpen.System.Scripting
             String name,
             int index)
         {
-            this.Kind = kind;
-            this.Name = name;
-            this.Index = index;
+            Kind = kind;
+            Name = name;
+            Index = index;
         }
 
         #endregion

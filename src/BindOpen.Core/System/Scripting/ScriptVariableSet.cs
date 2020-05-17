@@ -51,7 +51,7 @@ namespace BindOpen.System.Scripting
         public object GetValue(string variableName)
         {
             string key = variableName.ToKey();
-            return this._variables.ContainsKey(key) ? this._variables[key] : null;
+            return _variables.ContainsKey(key) ? _variables[key] : null;
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace BindOpen.System.Scripting
         /// <returns>Returns True if this instance has the specified variable.</returns>
         public bool Has(string variableName)
         {
-            return (variableName != null) && (this._variables.ContainsKey(variableName.ToKey()));
+            return (variableName != null) && (_variables.ContainsKey(variableName.ToKey()));
         }
 
         #endregion
@@ -110,10 +110,10 @@ namespace BindOpen.System.Scripting
         /// <param name="value">The value to consider.</param>
         public IScriptVariableSet SetValue(string name, object value)
         {
-            if (this.Has(name))
-                this._variables.Remove(name.ToKey());
+            if (Has(name))
+                _variables.Remove(name.ToKey());
 
-            this._variables.Add(name.ToKey(), value);
+            _variables.Add(name.ToKey(), value);
 
             return this;
         }
@@ -133,7 +133,7 @@ namespace BindOpen.System.Scripting
         public override object Clone(params string[] areas)
         {
             ScriptVariableSet scriptVariableSet = base.Clone(areas) as ScriptVariableSet;
-            scriptVariableSet._variables = this._variables;
+            scriptVariableSet._variables = _variables;
             return scriptVariableSet;
         }
 

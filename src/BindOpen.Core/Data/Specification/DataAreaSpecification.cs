@@ -43,7 +43,7 @@ namespace BindOpen.Data.Specification
         /// <param name="arename">The name of the area to consider.</param>
         public DataAreaSpecification(string arename)
         {
-            this.AreaName = arename;
+            AreaName = arename;
         }
 
         /// <summary>

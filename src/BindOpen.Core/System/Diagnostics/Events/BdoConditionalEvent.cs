@@ -49,34 +49,34 @@ namespace BindOpen.System.Diagnostics.Events
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
         public BdoConditionalEvent(
-            String conditionScript,
+            string conditionScript,
             EventKinds kind,
-            String title = "",
+            string title = "",
             BdoEventCriticality criticality = BdoEventCriticality.None,
-            String description = "",
+            string description = "",
             DateTime? date = null,
-            String id = null) : base(kind, title, criticality, description, date, id)
+            string id = null) : base(kind, title, criticality, description, date, id)
         {
-            this.ConditionScript = conditionScript;
+            ConditionScript = conditionScript;
         }
 
         /// <summary>
         /// Instantiates a new instance of the ConditionalEvent class.
         /// </summary>
-        /// <param name="aConditionScript">The condition script of this instance.</param>
+        /// <param name="conditionScript">The condition script of this instance.</param>
         /// <param name="exception">The exception to consider.</param>
         /// <param name="criticality">The criticality to consider.</param>
         /// <param name="date">The date of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
         public BdoConditionalEvent(
-            String aConditionScript,
+            string conditionScript,
             Exception exception,
             BdoEventCriticality criticality = BdoEventCriticality.None,
             DateTime? date = null,
-            String id = null)
+            string id = null)
             : base(exception, criticality, date, id)
         {
-            this.ConditionScript = aConditionScript;
+            ConditionScript = conditionScript;
         }
 
         #endregion

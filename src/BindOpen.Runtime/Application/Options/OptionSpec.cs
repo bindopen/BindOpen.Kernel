@@ -104,10 +104,10 @@ namespace BindOpen.Application.Options
             OptionNameKind nameKind,
             params string[] aliases) : base()
         {
-            this.Aliases = (aliases ?? new string[1] { "{{*}}" }).ToList();
-            this.MinimumItemNumber = nameKind.HasValue() ? 1 : 0;
-            this.MaximumItemNumber = nameKind.HasName() ? 0 : 1;
-            this.RequirementLevel = requirementLevel;
+            Aliases = (aliases ?? new string[1] { "{{*}}" }).ToList();
+            MinimumItemNumber = nameKind.HasValue() ? 1 : 0;
+            MaximumItemNumber = nameKind.HasName() ? 0 : 1;
+            RequirementLevel = requirementLevel;
         }
 
         /// <summary>
@@ -125,8 +125,8 @@ namespace BindOpen.Application.Options
         {
             if (type?.IsEnum == true)
             {
-                this.ConstraintStatement = new DataConstraintStatement();
-                this.ConstraintStatement.AddConstraint(
+                ConstraintStatement = new DataConstraintStatement();
+                ConstraintStatement.AddConstraint(
                     null,
                     "standard$" + KnownRoutineKind.ItemMustBeInList,
                     ElementFactory.CreateSet(
@@ -153,15 +153,15 @@ namespace BindOpen.Application.Options
             aliasIndex = -2;
             if (argumentstring != null)
             {
-                if (this.IsNameMatching(this.Name, argumentstring))
+                if (IsNameMatching(Name, argumentstring))
                 {
                     aliasIndex = -1;
                 }
-                else if (this.Aliases != null)
+                else if (Aliases != null)
                 {
-                    for (int i = 0; i < this.Aliases.Count; i++)
+                    for (int i = 0; i < Aliases.Count; i++)
                     {
-                        if (this.IsNameMatching(this.Aliases[i], argumentstring))
+                        if (IsNameMatching(Aliases[i], argumentstring))
                         {
                             aliasIndex = i;
                             break;
@@ -181,7 +181,7 @@ namespace BindOpen.Application.Options
         public bool IsArgumentMarching(string argumentstring)
         {
             int i = -2;
-            return this.IsArgumentMarching(argumentstring, out i);
+            return IsArgumentMarching(argumentstring, out i);
         }
 
         private bool IsNameMatching(string name1, string name2)

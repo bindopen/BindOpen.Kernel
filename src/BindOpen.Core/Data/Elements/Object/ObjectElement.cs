@@ -126,7 +126,7 @@ namespace BindOpen.Data.Elements
                 if (this[0] is DataItem)
                 {
                     Assembly assembly = this[0].GetType().Assembly;
-                    this.ClassFullName = this[0].GetType().FullName.ToString()
+                    ClassFullName = this[0].GetType().FullName.ToString()
                         + (assembly == null ? "" : "," + assembly.GetName().Name);
                 }
             }
@@ -138,7 +138,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", this.Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
         }
 
         #endregion
@@ -204,8 +204,8 @@ namespace BindOpen.Data.Elements
         public override object Clone(params string[] areas)
         {
             ObjectElement aObjectElement = base.Clone(areas) as ObjectElement;
-            //if (this.DataSchemreference != null)
-            //    aObjectElement.DataSchemreference = this.DataSchemreference.Clone() as DataHandler;
+            //if (DataSchemreference != null)
+            //    aObjectElement.DataSchemreference = DataSchemreference.Clone() as DataHandler;
 
             return aObjectElement;
         }

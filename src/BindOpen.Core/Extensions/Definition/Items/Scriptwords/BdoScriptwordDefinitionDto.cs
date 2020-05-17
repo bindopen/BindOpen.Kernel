@@ -76,11 +76,11 @@ namespace BindOpen.Extensions.Definition
         {
             get
             {
-                return this._parameterSpecification ?? (this._parameterSpecification = new DataElementSpecSet());
+                return _parameterSpecification ?? (_parameterSpecification = new DataElementSpecSet());
             }
             set
             {
-                this._parameterSpecification = value;
+                _parameterSpecification = value;
             }
         }
 
@@ -138,11 +138,11 @@ namespace BindOpen.Extensions.Definition
         {
             get
             {
-                return this._children ?? (this._children = new List<BdoScriptwordDefinitionDto>());
+                return _children ?? (_children = new List<BdoScriptwordDefinitionDto>());
             }
             set
             {
-                this._children = value;
+                _children = value;
             }
         }
 
@@ -175,7 +175,7 @@ namespace BindOpen.Extensions.Definition
         public string GetDefaultRuntimeFunctionName()
         {
             String functionName = "";
-            switch (this.Kind)
+            switch (Kind)
             {
                 case ScriptItemKinds.Function:
                     functionName += "Fun_";
@@ -184,7 +184,7 @@ namespace BindOpen.Extensions.Definition
                     functionName += "Var_";
                     break;
             };
-            functionName += this.Name;
+            functionName += Name;
 
             return functionName;
         }
@@ -196,12 +196,12 @@ namespace BindOpen.Extensions.Definition
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetRepeatedParameterDescriptionText(String variantName = "*", String defaultVariantName = "*")
         {
-            if (this.RepeatedParameterDescription == null) return "";
-            String label = this.RepeatedParameterDescription.GetContent(variantName);
+            if (RepeatedParameterDescription == null) return "";
+            String label = RepeatedParameterDescription.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
-                label = this.RepeatedParameterDescription.GetContent(defaultVariantName);
+                label = RepeatedParameterDescription.GetContent(defaultVariantName);
             if (string.IsNullOrEmpty(label))
-                label = this.Name;
+                label = Name;
             return label ?? "";
         }
 
@@ -217,26 +217,26 @@ namespace BindOpen.Extensions.Definition
             switch (logFormat)
             {
                 case BdoDefaultLoggerFormat.Xml:
-                    st += "<span style='color: blue;' >" + this.Name + "</span> (" + this.Kind.ToString() + ")<br>";
+                    st += "<span style='color: blue;' >" + Name + "</span> (" + Kind.ToString() + ")<br>";
                     st += "<br>";
-                    st += "Modified: " + this.LastModificationDate + "<br>";
+                    st += "Modified: " + LastModificationDate + "<br>";
                     st += "<br>";
-                    st += this.Description.GetContent(uiCulture);
+                    st += Description.GetContent(uiCulture);
                     st += "<br>";
-                    st += "<strong>Library: " + this.LibraryId + "</strong>";
+                    st += "<strong>Library: " + LibraryId + "</strong>";
                     st += "<br>";
                     st += "<strong>Syntax</strong>";
                     st += "<br>";
 
                     string parameterString = "";
-                    if (this.IsRepeatedParameters)
+                    if (IsRepeatedParameters)
                         parameterString +=
-                            "<span style='color: blue;'>&lt;" + this.RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + this.MinParameterNumber.ToString() + ";Max: " + this.MaxParameterNumber.ToString() + ">";
+                            "<span style='color: blue;'>&lt;" + RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + MinParameterNumber.ToString() + ";Max: " + MaxParameterNumber.ToString() + ">";
                     else
-                        foreach (DataElementSpec elementSpecification in this.ParameterSpecification.Items)
+                        foreach (DataElementSpec elementSpecification in ParameterSpecification.Items)
                             parameterString += (string.IsNullOrEmpty(parameterString) ? "" : ",") +
                                 "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
-                    st += this.Name + "(" + parameterString + ")";
+                    st += Name + "(" + parameterString + ")";
 
                     break;
             }

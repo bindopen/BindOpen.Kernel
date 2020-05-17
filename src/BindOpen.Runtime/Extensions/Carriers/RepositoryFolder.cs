@@ -28,7 +28,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="path">The path of the instance.</param>
         public RepositoryFolder(string path) : base()
         {
-            this.Path = path;
+            Path = path;
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace BindOpen.Extensions.Carriers
         {
             IBdoLog log = base.Check<T>(isExistenceChecked);
 
-            if (string.IsNullOrEmpty(this.Path))
+            if (string.IsNullOrEmpty(Path))
                 log.AddError("Folder path missing");
 
             return log;

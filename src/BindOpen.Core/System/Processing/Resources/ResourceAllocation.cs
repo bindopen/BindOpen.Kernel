@@ -52,15 +52,15 @@ namespace BindOpen.System.Processing
         /// <summary>
         /// Instantiates a new instance of ResourceAllocation class.
         /// </summary>
-        /// <param name="aAllocatedResourceId">Allocated resource ID to consider.</param>
-        /// <param name="aOwnerId">The owner ID to consider.</param>
+        /// <param name="allocatedResourceId">Allocated resource ID to consider.</param>
+        /// <param name="ownerId">The owner ID to consider.</param>
         public ResourceAllocation(
-            String aAllocatedResourceId,
-            String aOwnerId = null)
+            string allocatedResourceId,
+            string ownerId = null)
         {
-            this.CreationDate = DateTime.Now.ToString(DataValueTypes.Date);
-            this.AllocatedResourceId = aAllocatedResourceId;
-            this.OwnerId = aOwnerId;
+            CreationDate = DateTime.Now.ToString(DataValueTypes.Date);
+            AllocatedResourceId = allocatedResourceId;
+            OwnerId = ownerId;
         }
 
         #endregion

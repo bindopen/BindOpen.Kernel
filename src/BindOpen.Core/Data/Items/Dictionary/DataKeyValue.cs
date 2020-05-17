@@ -128,7 +128,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -138,12 +138,12 @@ namespace BindOpen.Data.Items
         /// <param name="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             // Free any unmanaged objects here.
             //
-            this.IsDisposed = true;
+            IsDisposed = true;
         }
 
         #endregion

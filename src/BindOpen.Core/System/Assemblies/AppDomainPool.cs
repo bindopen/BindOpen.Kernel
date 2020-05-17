@@ -38,7 +38,7 @@ namespace BindOpen.System.Assemblies
         /// </summary>
         public AppDomainPool()
         {
-            this._appDomains = new List<AppDomain>();
+            _appDomains = new List<AppDomain>();
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace BindOpen.System.Assemblies
             if (appDomainId == null)
                 return null;
 
-            return this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
+            return _appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
         }
 
         ///// <summary>
@@ -92,26 +92,26 @@ namespace BindOpen.System.Assemblies
             if (appDomainId == null)
                 return null;
 
-            AppDomain appDomain = this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
+            AppDomain appDomain = _appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
             if (appDomain == null)
             {
                 //Evidence aBaseEvidence = AppDomain.CurrentDomain.Evidence;
                 //Evidence aEvidence = new Evidence(aBaseEvidence);
-                this._appDomains.Add(appDomain = AppDomain.CreateDomain(appDomainId));
+                _appDomains.Add(appDomain = AppDomain.CreateDomain(appDomainId));
 
                 //if (appDomainSetup != null)
                 //{
-                //    if (this._ResolveEventHandlerHashTable.ContainsKey(appDomainId))
-                //        this._ResolveEventHandlerHashTable.Remove(appDomainId);
-                //    //this._ResolveEventHandlerHashTable.Add(appDomainId, AssemblyResolver.Resolve(AppDomain.CurrentDomain, appDomainSetup));
+                //    if (_ResolveEventHandlerHashTable.ContainsKey(appDomainId))
+                //        _ResolveEventHandlerHashTable.Remove(appDomainId);
+                //    //_ResolveEventHandlerHashTable.Add(appDomainId, AssemblyResolver.Resolve(AppDomain.CurrentDomain, appDomainSetup));
                 //    AssemblyResolver.Resolve(appDomain, appDomainSetup);
                 //}
             }
 
-            this._resourceAllocations.RemoveAll(p =>
+            _resourceAllocations.RemoveAll(p =>
                     ((p.AllocatedResourceId != null) && (p.AllocatedResourceId == appDomainId))
                     & ((ownerId == p.OwnerId) | ((ownerId != null) && (p.OwnerId != null) && (string.Equals(ownerId, p.OwnerId, StringComparison.OrdinalIgnoreCase)))));
-            this._resourceAllocations.Add(new ResourceAllocation(appDomainId, ownerId));
+            _resourceAllocations.Add(new ResourceAllocation(appDomainId, ownerId));
 
             return appDomain;
         }
@@ -126,26 +126,26 @@ namespace BindOpen.System.Assemblies
             if (appDomainId == null)
                 return false;
 
-            this._resourceAllocations.RemoveAll(p =>
+            _resourceAllocations.RemoveAll(p =>
                 ((p.AllocatedResourceId != null) && (string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))) &
                 (((p.OwnerId == ownerId) & (ownerId == null)) || ((p.OwnerId != null) && (string.Equals(p.OwnerId, ownerId, StringComparison.OrdinalIgnoreCase)))));
 
-            if (!this._resourceAllocations.Any(p => (p.AllocatedResourceId != null) && (string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))))
+            if (!_resourceAllocations.Any(p => (p.AllocatedResourceId != null) && (string.Equals(p.AllocatedResourceId, appDomainId, StringComparison.OrdinalIgnoreCase))))
             {
                 // we retrieve the application domain
-                AppDomain appDomain = this._appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
+                AppDomain appDomain = _appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
                 if ((appDomain != null) && (appDomain != AppDomain.CurrentDomain))
                 {
                     // we remove the resolve event handler from the main domain
-                    ResolveEventHandler aResolveEventHandler = (ResolveEventHandler)this._resolveEventHandlerHashTable[appDomainId];
+                    ResolveEventHandler aResolveEventHandler = (ResolveEventHandler)_resolveEventHandlerHashTable[appDomainId];
                     if (aResolveEventHandler != null)
                     {
                         AppDomain.CurrentDomain.AssemblyResolve -= aResolveEventHandler;
-                        this._resolveEventHandlerHashTable.Remove(appDomainId);
+                        _resolveEventHandlerHashTable.Remove(appDomainId);
                     }
 
                     // we remove the application domain from list
-                    this._appDomains.Remove(appDomain);
+                    _appDomains.Remove(appDomain);
                     AppDomain.Unload(appDomain);
 
                     GC.Collect();

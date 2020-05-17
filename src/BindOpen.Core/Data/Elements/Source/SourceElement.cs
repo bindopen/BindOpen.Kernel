@@ -128,7 +128,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", this.Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? "").ToArray());
         }
 
         #endregion

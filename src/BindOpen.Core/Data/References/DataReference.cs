@@ -128,21 +128,21 @@ namespace BindOpen.Data.References
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            //this.SetDefinition((scope== null ? null : scope.BdoExtension));
-            //log.AddEvents(this.Check());
+            //SetDefinition((scope== null ? null : scope.BdoExtension));
+            //log.AddEvents(Check());
 
             List<object> dataItems = new List<object>();
             //parameterDetail = (parameterDetail ?? new DataElementSet());
 
             //if (!log.HasErrorsOrExceptions())
-            //    if (this.Definition == null)
+            //    if (Definition == null)
             //        log.AddError(title: "Definition not found");
-            //    else if (this.Definition.RuntimeFunction_Get == null)
+            //    else if (Definition.RuntimeFunction_Get == null)
             //        log.AddError(title: "Calling function missing");
             //    else if (aSourceElement == null)
             //        log.AddError(title: "Source element missing");
             //    else
-            //        dataItems.AddRange(this.Definition.RuntimeFunction_Get(aSourceElement, parameterDetail, scope, scriptVariableSet, log));
+            //        dataItems.AddRange(Definition.RuntimeFunction_Get(aSourceElement, parameterDetail, scope, scriptVariableSet, log));
 
             return dataItems;
         }

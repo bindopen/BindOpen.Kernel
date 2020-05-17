@@ -126,7 +126,7 @@ namespace BindOpen.Application.Configuration
         /// </summary>
         public override string Key()
         {
-            return this.Id;
+            return Id;
         }
 
         #endregion

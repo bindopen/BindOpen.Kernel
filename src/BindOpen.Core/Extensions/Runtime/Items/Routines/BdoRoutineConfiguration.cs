@@ -89,7 +89,7 @@ namespace BindOpen.Extensions.Runtime
         ///// <returns>Returns the detail of this instance.</returns>
         //public IDataItemSet<Command> NewCommandSet()
         //{
-        //    return this.CommandSet = this.CommandSet ?? new DataItemSet<ICommand>();
+        //    return CommandSet = CommandSet ?? new DataItemSet<ICommand>();
         //}
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>Returns the detail of this instance.</returns>
         public ITDataItemSet<BdoConditionalEvent> NewOutputEventSet()
         {
-            return this.OutputEventSet = this.OutputEventSet ?? new TDataItemSet<BdoConditionalEvent>();
+            return OutputEventSet = OutputEventSet ?? new TDataItemSet<BdoConditionalEvent>();
         }
 
         #endregion
@@ -116,10 +116,10 @@ namespace BindOpen.Extensions.Runtime
         public override object Clone(params string[] areas)
         {
             IBdoRoutineConfiguration routine = base.Clone(areas) as BdoRoutineConfiguration;
-            //if (this.CommandSet != null)
-            //    routine.CommandSet = this.CommandSet.Clone() as DataItemSet<Command>;
-            if (this.OutputEventSet != null)
-                routine.OutputEventSet = this.OutputEventSet.Clone() as TDataItemSet<BdoConditionalEvent>;
+            //if (CommandSet != null)
+            //    routine.CommandSet = CommandSet.Clone() as DataItemSet<Command>;
+            if (OutputEventSet != null)
+                routine.OutputEventSet = OutputEventSet.Clone() as TDataItemSet<BdoConditionalEvent>;
             return routine;
         }
 
