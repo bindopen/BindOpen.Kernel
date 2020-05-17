@@ -344,7 +344,7 @@ namespace BindOpen.Data.Elements
         public object GetDefaultItemObject(
             IBdoLog log = null)
         {
-            return !IsValueList ? this.DefaultItems.FirstOrDefault() : this.DefaultItems;
+            return !IsValueList ? DefaultItems.FirstOrDefault() : DefaultItems;
         }
 
         // Elements -----------------------------------------

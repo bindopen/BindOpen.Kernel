@@ -53,9 +53,9 @@ namespace BindOpen.Data.Context
         /// </summary>
         public BdoDataContext()
         {
-            this.ScopedItems = new Dictionary<string, object>();
-            this.SingletonItems = new Dictionary<string, object>();
-            this.TransientItems = new Dictionary<string, object>();
+            ScopedItems = new Dictionary<string, object>();
+            SingletonItems = new Dictionary<string, object>();
+            TransientItems = new Dictionary<string, object>();
         }
 
         #endregion
@@ -87,25 +87,25 @@ namespace BindOpen.Data.Context
             {
                 foreach (KeyValuePair<string, object> entry in dataContext.SingletonItems)
                 {
-                    if (!this.SingletonItems.ContainsKey(entry.Key))
+                    if (!SingletonItems.ContainsKey(entry.Key))
                     {
-                        this.SingletonItems.Add(entry.Key, entry.Value);
+                        SingletonItems.Add(entry.Key, entry.Value);
                     }
                 }
 
                 foreach (KeyValuePair<string, object> entry in dataContext.ScopedItems)
                 {
-                    if (!this.ScopedItems.ContainsKey(entry.Key))
+                    if (!ScopedItems.ContainsKey(entry.Key))
                     {
-                        this.ScopedItems.Add(entry.Key, entry.Value);
+                        ScopedItems.Add(entry.Key, entry.Value);
                     }
                 }
 
                 foreach (KeyValuePair<string, object> entry in dataContext.TransientItems)
                 {
-                    if (!this.TransientItems.ContainsKey(entry.Key))
+                    if (!TransientItems.ContainsKey(entry.Key))
                     {
-                        this.TransientItems.Add(entry.Key, entry.Value);
+                        TransientItems.Add(entry.Key, entry.Value);
                     }
                 }
             }
@@ -116,9 +116,9 @@ namespace BindOpen.Data.Context
         /// </summary>
         public void Clear()
         {
-            this.SingletonItems.Clear();
-            this.ScopedItems.Clear();
-            this.TransientItems.Clear();
+            SingletonItems.Clear();
+            ScopedItems.Clear();
+            TransientItems.Clear();
         }
 
         // Items ------------------------------------
@@ -139,13 +139,13 @@ namespace BindOpen.Data.Context
             switch (persistenceLevel)
             {
                 case PersistenceLevels.Singleton:
-                    this.AddSingletonItem(name, item, contextSectionName);
+                    AddSingletonItem(name, item, contextSectionName);
                     break;
                 case PersistenceLevels.Scoped:
-                    this.AddScopedItem(name, item, contextSectionName);
+                    AddScopedItem(name, item, contextSectionName);
                     break;
                 case PersistenceLevels.Transient:
-                    this.AddTransientItem(name, item, contextSectionName);
+                    AddTransientItem(name, item, contextSectionName);
                     break;
             }
         }
@@ -159,7 +159,7 @@ namespace BindOpen.Data.Context
             string name,
             Object item)
         {
-            this.AddSingletonItem(name, item, "#system");
+            AddSingletonItem(name, item, "#system");
         }
 
         /// <summary>
@@ -175,8 +175,8 @@ namespace BindOpen.Data.Context
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
 
-            this.SingletonItems.Remove(itemName);
-            this.SingletonItems.Add(itemName, item);
+            SingletonItems.Remove(itemName);
+            SingletonItems.Add(itemName, item);
         }
 
         /// <summary>
@@ -192,8 +192,8 @@ namespace BindOpen.Data.Context
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
 
-            this.ScopedItems.Remove(itemName);
-            this.ScopedItems.Add(name, item);
+            ScopedItems.Remove(itemName);
+            ScopedItems.Add(name, item);
         }
 
         /// <summary>
@@ -209,8 +209,8 @@ namespace BindOpen.Data.Context
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
 
-            this.TransientItems.Remove(itemName);
-            this.TransientItems.Add(itemName, item);
+            TransientItems.Remove(itemName);
+            TransientItems.Add(itemName, item);
         }
 
         /// <summary>
@@ -222,18 +222,18 @@ namespace BindOpen.Data.Context
             switch (persistenceLevel)
             {
                 case PersistenceLevels.Singleton:
-                    this.SingletonItems.Clear();
+                    SingletonItems.Clear();
                     break;
                 case PersistenceLevels.Scoped:
-                    this.ScopedItems.Clear();
+                    ScopedItems.Clear();
                     break;
                 case PersistenceLevels.Transient:
-                    this.TransientItems.Clear();
+                    TransientItems.Clear();
                     break;
                 case PersistenceLevels.Any:
-                    this.SingletonItems.Clear();
-                    this.ScopedItems.Clear();
-                    this.TransientItems.Clear();
+                    SingletonItems.Clear();
+                    ScopedItems.Clear();
+                    TransientItems.Clear();
                     break;
             }
         }
@@ -249,32 +249,32 @@ namespace BindOpen.Data.Context
         {
             if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Singleton))
             {
-                var items = this.SingletonItems.Keys.Where(p =>
+                var items = SingletonItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this.SingletonItems.Remove(key);
+                    SingletonItems.Remove(key);
                 }
             }
             if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Scoped))
             {
-                var items = this.ScopedItems.Keys.Where(p =>
+                var items = ScopedItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this.ScopedItems.Remove(key);
+                    ScopedItems.Remove(key);
                 }
             }
             if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Transient))
             {
-                var items = this.TransientItems.Keys.Where(p =>
+                var items = TransientItems.Keys.Where(p =>
                     (string.IsNullOrEmpty(contextSectionName))
                     || (p?.ToString().ToLower().StartsWith(contextSectionName.ToLower() + "$") == true));
                 foreach (string key in items)
                 {
-                    this.TransientItems.Remove(key);
+                    TransientItems.Remove(key);
                 }
             }
         }
@@ -301,7 +301,7 @@ namespace BindOpen.Data.Context
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetSystemItem(string name)
         {
-            return this.GetSingletonItem(name, "#system");
+            return GetSingletonItem(name, "#system");
         }
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace BindOpen.Data.Context
         public object GetSingletonItem(string name, string contextSectionName = null)
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
-            return this.SingletonItems.ContainsKey(itemName) ? this.SingletonItems[itemName] : null;
+            return SingletonItems.ContainsKey(itemName) ? SingletonItems[itemName] : null;
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace BindOpen.Data.Context
         public object GetScopedItem(string name, string contextSectionName = null)
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
-            return ScopedItems.ContainsKey(itemName) ? this.ScopedItems[itemName] : null;
+            return ScopedItems.ContainsKey(itemName) ? ScopedItems[itemName] : null;
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace BindOpen.Data.Context
         public object GetTransientItem(string name, string contextSectionName = null)
         {
             string itemName = BdoDataContext.GetItemUniqueName(name, contextSectionName);
-            return this.TransientItems.ContainsKey(itemName) ? this.TransientItems[itemName] : null;
+            return TransientItems.ContainsKey(itemName) ? TransientItems[itemName] : null;
         }
 
         /// <summary>
@@ -353,20 +353,20 @@ namespace BindOpen.Data.Context
         {
             if (persistenceLevel == PersistenceLevels.Any)
             {
-                return (this.GetSingletonItem(name, contextSectionName)
-                ?? this.GetScopedItem(name, contextSectionName))
-                ?? this.GetTransientItem(name, contextSectionName);
+                return (GetSingletonItem(name, contextSectionName)
+                ?? GetScopedItem(name, contextSectionName))
+                ?? GetTransientItem(name, contextSectionName);
             }
             else
             {
                 switch (persistenceLevel)
                 {
                     case PersistenceLevels.Singleton:
-                        return this.GetSingletonItem(name, contextSectionName);
+                        return GetSingletonItem(name, contextSectionName);
                     case PersistenceLevels.Scoped:
-                        return this.GetScopedItem(name, contextSectionName);
+                        return GetScopedItem(name, contextSectionName);
                     case PersistenceLevels.Transient:
-                        return this.GetTransientItem(name, contextSectionName);
+                        return GetTransientItem(name, contextSectionName);
                 }
             }
 
@@ -421,7 +421,7 @@ namespace BindOpen.Data.Context
                 BinaryFormatter formatter = new BinaryFormatter();
                 dataContext = (BdoDataContext)formatter.Deserialize(fileStream);
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
                 log.AddException(exception);
             }

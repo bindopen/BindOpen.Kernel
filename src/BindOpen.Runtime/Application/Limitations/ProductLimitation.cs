@@ -22,8 +22,8 @@ namespace BindOpen.Application.Limitations
 
         #region Variables
 
-        private string _RegistrationMode = ProductRegistrationMode.Registered.ToString();
-        private List<DataReference> _TargetElementReferences = new List<DataReference>();
+        private string _registrationMode = ProductRegistrationMode.Registered.ToString();
+        private List<DataReference> _targetElementReferences = new List<DataReference>();
 
         #endregion
 
@@ -42,11 +42,11 @@ namespace BindOpen.Application.Limitations
         {
             get
             {
-                return (this._RegistrationMode ?? "");
+                return (_registrationMode ?? "");
             }
             set
             {
-                this._RegistrationMode = value;
+                _registrationMode = value;
             }
         }
 
@@ -151,11 +151,11 @@ namespace BindOpen.Application.Limitations
         {
             get
             {
-                return this._TargetElementReferences;
+                return _targetElementReferences;
             }
             set
             {
-                this._TargetElementReferences = value;
+                _targetElementReferences = value;
             }
         }
 

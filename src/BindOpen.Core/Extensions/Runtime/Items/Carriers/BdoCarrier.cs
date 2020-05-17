@@ -89,11 +89,11 @@ namespace BindOpen.Extensions.Runtime
         {
             get
             {
-                return this._relativePath;
+                return _relativePath;
             }
             set
             {
-                this.WithPath(null, value);
+                WithPath(null, value);
             }
         }
 
@@ -154,12 +154,12 @@ namespace BindOpen.Extensions.Runtime
 
             if (!string.IsNullOrEmpty(relativePath))
             {
-                this._relativePath = relativePath;
+                _relativePath = relativePath;
             }
 
-            if ((!string.IsNullOrEmpty(this._relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
+            if ((!string.IsNullOrEmpty(_relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
             {
-                string relativeFolder = this._relativePath;
+                string relativeFolder = _relativePath;
 
                 if (absolutePath.StartsWith(relativeFolder))
                 {

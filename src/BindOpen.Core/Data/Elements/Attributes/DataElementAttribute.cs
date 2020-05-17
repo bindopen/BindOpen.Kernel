@@ -51,11 +51,11 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return this._aliases;
+                return _aliases;
             }
             set
             {
-                this._aliases = value ?? Array.Empty<string>();
+                _aliases = value ?? Array.Empty<string>();
             }
         }
 
@@ -66,11 +66,11 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return this._areaSpecifications;
+                return _areaSpecifications;
             }
             set
             {
-                this._areaSpecifications = value ?? Array.Empty<DataAreaSpecification>();
+                _areaSpecifications = value ?? Array.Empty<DataAreaSpecification>();
             }
         }
 
@@ -88,11 +88,11 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return this._availableItemizationModes;
+                return _availableItemizationModes;
             }
             set
             {
-                this._availableItemizationModes = value ?? Array.Empty<DataItemizationMode>();
+                _availableItemizationModes = value ?? Array.Empty<DataItemizationMode>();
             }
         }
 
@@ -103,9 +103,9 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return this._defaultStringItems;
+                return _defaultStringItems;
             }
-            set { this._defaultStringItems = value ?? Array.Empty<string>(); }
+            set { _defaultStringItems = value ?? Array.Empty<string>(); }
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return (this.MaximumItemNumber == -1) | (this.MaximumItemNumber > 1);
+                return (MaximumItemNumber == -1) | (MaximumItemNumber > 1);
             }
         }
 
@@ -137,13 +137,13 @@ namespace BindOpen.Data.Elements
             get
             {
                 RequirementLevels itemRequirementLevel;
-                if (this.MaximumItemNumber == 0)
+                if (MaximumItemNumber == 0)
                 {
                     itemRequirementLevel = RequirementLevels.Forbidden;
                 }
-                else if (this.MinimumItemNumber > 0)
+                else if (MinimumItemNumber > 0)
                     itemRequirementLevel = RequirementLevels.Required;
-                else if (this.MinimumItemNumber <= 0)
+                else if (MinimumItemNumber <= 0)
                     itemRequirementLevel = RequirementLevels.Optional;
                 else
                     itemRequirementLevel = RequirementLevels.None;
@@ -159,9 +159,9 @@ namespace BindOpen.Data.Elements
         {
             get
             {
-                return this._itemSpecificationLevels;
+                return _itemSpecificationLevels;
             }
-            set { this._itemSpecificationLevels = value ?? Array.Empty<SpecificationLevels>(); }
+            set { _itemSpecificationLevels = value ?? Array.Empty<SpecificationLevels>(); }
         }
 
         #endregion

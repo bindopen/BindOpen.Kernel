@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Extensions.Definition;
 using System;
 
 namespace BindOpen.Extensions.Definition
@@ -92,7 +91,7 @@ namespace BindOpen.Extensions.Definition
         //        switch (logFormat)
         //        {
         //            case BdoLoggerFormat.Xml:
-        //                st += "<span style='color: blue;' >" + this.Key() + "</span> (" + Dto?.DatasourceKind.ToString() + ")<br>";
+        //                st += "<span style='color: blue;' >" + Key() + "</span> (" + Dto?.DatasourceKind.ToString() + ")<br>";
         //                st += "<br>";
         //                st += "Modified: " + Dto?.LastModificationDate + "<br>";
         //                st += "<br>";
@@ -102,7 +101,7 @@ namespace BindOpen.Extensions.Definition
         //                st += "<br>";
         //                st += "<strong>Path</strong>";
         //                st += "<br>";
-        //                //foreach (DataElement dataElement in this._PathStatement.Elements)
+        //                //foreach (DataElement dataElement in _PathStatement.Elements)
         //                //    parameterstring += (parameterstring == String.Empty ? "" : ",") +
         //                //        "<span style='color: blue;'>&lt;" + dataElement.ValueType.ToString() + "&gt;</span> " + dataElement.Name + ",";
         //                break;

@@ -108,13 +108,13 @@ namespace BindOpen.System.Diagnostics.Events
             DateTime? date = null,
             string id = null) : this()
         {
-            this.Id = (id ?? this.Id);
-            this.CreationDate = (date ?? DateTime.Now).ToString(StringHelper.__DateFormat);
+            Id = (id ?? Id);
+            CreationDate = (date ?? DateTime.Now).ToString(StringHelper.__DateFormat);
 
-            this.Kind = kind;
-            this.Criticality = criticality;
-            this.Title = string.IsNullOrEmpty(title) ? null : ItemFactory.CreateDictionary(title);
-            this.Description = string.IsNullOrEmpty(description) ? null : ItemFactory.CreateDictionary(description);
+            Kind = kind;
+            Criticality = criticality;
+            Title = string.IsNullOrEmpty(title) ? null : ItemFactory.CreateDictionary(title);
+            Description = string.IsNullOrEmpty(description) ? null : ItemFactory.CreateDictionary(description);
         }
 
         /// <summary>
@@ -130,11 +130,11 @@ namespace BindOpen.System.Diagnostics.Events
             DateTime? date = null,
             string id = null) : this()
         {
-            this.Id = (id ?? this.Id);
-            this.CreationDate = (date ?? DateTime.Now).ToString(DataValueTypes.Date);
+            Id = (id ?? Id);
+            CreationDate = (date ?? DateTime.Now).ToString(DataValueTypes.Date);
 
-            this.Kind = EventKinds.Exception;
-            this.Criticality = criticality;
+            Kind = EventKinds.Exception;
+            Criticality = criticality;
 
             if (exception != null)
             {
@@ -207,7 +207,7 @@ namespace BindOpen.System.Diagnostics.Events
         {
             base.UpdateStorageInfo(log);
 
-            this.Detail?.UpdateStorageInfo(log);
+            Detail?.UpdateStorageInfo(log);
         }
 
         /// <summary>

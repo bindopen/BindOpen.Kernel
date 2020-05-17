@@ -49,7 +49,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="path">The path of the instance.</param>
         public RepositoryFile(string path) : base()
         {
-            this.Path = path;
+            Path = path;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Carriers
         /// <param name="folderPath">The folder path of the instance.</param>
         public RepositoryFile(string fileName, string folderPath) : base()
         {
-            this.WithPath(fileName, folderPath);
+            WithPath(fileName, folderPath);
         }
 
         #endregion
@@ -84,7 +84,7 @@ namespace BindOpen.Extensions.Carriers
         {
             IBdoLog log = base.Check<T>(isExistenceChecked);
 
-            if (string.IsNullOrEmpty(this.Path))
+            if (string.IsNullOrEmpty(Path))
                 log.AddError("File path missing");
 
             return log;

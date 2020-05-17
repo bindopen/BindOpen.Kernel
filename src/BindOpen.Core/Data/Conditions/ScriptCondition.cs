@@ -31,20 +31,20 @@ namespace BindOpen.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BusinessScriptCondition class.
+        /// Instantiates a new instance of the ScriptCondition class.
         /// </summary>
         public ScriptCondition()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BusinessScriptCondition class.
+        /// Instantiates a new instance of the ScriptCondition class.
         /// </summary>
         /// <param name="trueValue">The true value to consider.</param>
         /// <param name="expression">The expression to consider.</param>
         public ScriptCondition(bool trueValue, IDataExpression expression) : base(trueValue)
         {
-            this.Expression = expression as DataExpression;
+            Expression = expression as DataExpression;
         }
 
         #endregion
@@ -62,7 +62,7 @@ namespace BindOpen.Data.Conditions
         {
             ScriptCondition condition = new ScriptCondition
             {
-                Expression = this.Expression.Clone() as DataExpression
+                Expression = Expression.Clone() as DataExpression
             };
 
             return condition;
