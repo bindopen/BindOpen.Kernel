@@ -481,7 +481,7 @@ namespace BindOpen.Application.Scopes
         {
             _defaultLoggerOutputKinds.Add(DatasourceKind.Repository);
 
-            HostSettings = HostSettings ?? new BdoHostSettings();
+            HostSettings ??= new BdoHostSettings();
             HostSettings?.WithLogsFileName(logFileName);
 
             return this;

@@ -20,13 +20,7 @@ namespace BindOpen.Application.Modules
 
         #region Variables
 
-        private string _uri = null;
-        private string _absoluteUri = null;
-        private string _applicationExecutionPath = null;
-
-        private bool _isLocal = false;
-
-        private OptionSet _optionSet = null;
+        private readonly OptionSet _optionSet = null;
 
         #endregion
 
@@ -54,34 +48,22 @@ namespace BindOpen.Application.Modules
         /// <summary>
         /// The URI of this instance.
         /// </summary>
-        public string Uri
-        {
-            get { return _uri; }
-        }
+        public string Uri { get; } = null;
 
         /// <summary>
         /// The URI of this instance.
         /// </summary>
-        public string AbsoluteUri
-        {
-            get { return _absoluteUri; }
-        }
+        public string AbsoluteUri { get; } = null;
 
         /// <summary>
         /// The application execution path of this instance.
         /// </summary>
-        public string ApplicationExecutionPath
-        {
-            get { return _applicationExecutionPath; }
-        }
+        public string ApplicationExecutionPath { get; } = null;
 
         /// <summary>
         /// Indicates whether this instance is local.
         /// </summary>
-        public bool IsLocal
-        {
-            get { return _isLocal; }
-        }
+        public bool IsLocal { get; } = false;
 
         /// <summary>
         /// The accessibility level of this instance.
@@ -144,7 +126,7 @@ namespace BindOpen.Application.Modules
             string uri)
         {
             Module = module;
-            _uri = uri;
+            Uri = uri;
         }
 
         #endregion

@@ -337,7 +337,7 @@ namespace BindOpen.System.Diagnostics.Loggers
                             Directory.CreateDirectory(folderPath);
                         File.Move(oldFilePath, newFilePath);
                     }
-                    catch
+                    catch (IOException)
                     {
                     }
                 }

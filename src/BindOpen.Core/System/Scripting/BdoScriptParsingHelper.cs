@@ -57,7 +57,9 @@ namespace BindOpen.System.Scripting
                 if (text?.Length > 1)
                 {
                     if ((text.Substring(0, 1) == "'") && (text.Substring(text.Length - 1, 1) == "'"))
-                        text = text.Substring(1, text.Length - 2);
+                    {
+                        text = text[1..^1];
+                    }
                 }
             }
             return text;
@@ -185,7 +187,7 @@ namespace BindOpen.System.Scripting
                     if (lastNoneIndex != index)
                     {
                         // we declare this something as a none-kind script item
-                        scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                        scriptItemName = script[lastNoneIndex..index];
                         if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                         {
                             scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -223,7 +225,7 @@ namespace BindOpen.System.Scripting
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                            scriptItemName = script[lastNoneIndex..index];
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -256,7 +258,7 @@ namespace BindOpen.System.Scripting
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                            scriptItemName = script[lastNoneIndex..index];
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -298,7 +300,7 @@ namespace BindOpen.System.Scripting
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                            scriptItemName = script[lastNoneIndex..index];
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -340,7 +342,7 @@ namespace BindOpen.System.Scripting
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
-                            string scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                            string scriptItemName = script[lastNoneIndex..index];
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
                                 scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -376,7 +378,7 @@ namespace BindOpen.System.Scripting
             if (lastNoneIndex != index)
             {
                 // we declare this something as a none-kind script item
-                string scriptItemName = script.Substring(lastNoneIndex, index - lastNoneIndex);
+                string scriptItemName = script[lastNoneIndex..index];
                 if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                 {
                     scriptItems[scriptItems.Count - 1].Name += scriptItemName;
@@ -413,20 +415,20 @@ namespace BindOpen.System.Scripting
                 scriptItem.Name = name;
             }
             // else if it is a variable
-            else if ((name.Length >= 2) && ((name.Substring(0, 1) == BdoScriptParsingHelper.Symbol_Fun) & (name[name.Length - 1] == '(')))
+            else if ((name.Length >= 2) && ((name.Substring(0, 1) == BdoScriptParsingHelper.Symbol_Fun) & (name[^1] == '(')))
             {
                 // we check that the name has only letters, numbers and underscore
                 bool isGood = false;
-                foreach (char aChar in name.Substring(1, name.Length - 2))
+                foreach (char ch in name[1..^1])
                 {
-                    isGood = char.IsLetter(aChar) || char.IsNumber(aChar) || (aChar == '_');
+                    isGood = char.IsLetter(ch) || char.IsNumber(ch) || (ch == '_');
                     if (!isGood)
                         break;
                 }
                 if (isGood)
                 {
                     scriptItem.Index = index;
-                    scriptItem.Name = name.Substring(0, name.Length - 1);
+                    scriptItem.Name = name[0..^1];
                     // we indentify the literal script functions
                     if (scriptItem.Name.ToUpper().Substring(0, "$LITERAL_".Length) == "$LITERAL_")
                         scriptItem.Kind = ScriptItemKinds.Literal;
@@ -435,13 +437,13 @@ namespace BindOpen.System.Scripting
                 }
             }
             // else if it is a function
-            else if ((name.Length >= 2) && ((name[0] == '#') && (name[name.Length - 1] == '(')))
+            else if ((name.Length >= 2) && ((name[0] == '#') && (name[^1] == '(')))
             {
                 // we check that the name has only letters, numbers and underscore
                 bool isGood = false;
-                foreach (char aChar in name.Substring(1, name.Length - 2))
+                foreach (char ch in name[1..^1])
                 {
-                    isGood = char.IsLetter(aChar) || char.IsNumber(aChar) || (aChar == '_');
+                    isGood = char.IsLetter(ch) || char.IsNumber(ch) || (ch == '_');
                     if (!isGood)
                         break;
                 }
@@ -449,7 +451,7 @@ namespace BindOpen.System.Scripting
                 {
                     scriptItem.Index = index;
                     scriptItem.Kind = ScriptItemKinds.Function;
-                    scriptItem.Name = name.Substring(0, name.Length - 1);
+                    scriptItem.Name = name[0..^1];
                 }
             }
             // else if it is a syntax item

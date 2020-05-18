@@ -82,27 +82,6 @@ namespace BindOpen.Tests.Core.Application.Configuration
             }
 
             _ = ConfigurationFactory.Load<BdoUsableConfiguration>(_filePath1, null, null, log);
-            if (log.HasErrorsOrExceptions())
-            {
-                string xml = ". Result was '" + log.ToXml();
-            }
-            //Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration loading failed. Result was '" + xml);
-
-            //Assert.That(
-            //    ((string)configuration["text1"]?[0] == "item1")
-            //    && ((string)configuration["text1"]?[1] == "item2")
-            //    && ((string)configuration["text1"]?[2] == "item3"), "Bad usable configuration loading");
-            //Assert.That(
-            //    ((int)configuration["integer1"]?[0] == 1)
-            //    && ((int)configuration["integer1"]?[1] == 2)
-            //    && ((int)configuration["integer1"]?[2] == 3), "Bad usable configuration loading");
-            //Assert.That(
-            //    ((double)configuration["float2"]?[0] == 1.1)
-            //    && ((double)configuration["float2"]?[1] == 1.2)
-            //    && ((double)configuration["float2"]?[2] == 1.3), "Bad usable configuration loading");
-
-            //Assert.That(
-            //    configuration.Count == 4, "Bad usable configuration loading");
         }
     }
 }

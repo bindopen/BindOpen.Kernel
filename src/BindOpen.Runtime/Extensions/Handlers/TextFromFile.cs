@@ -1,8 +1,8 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Elements;
+using BindOpen.Extensions.Carriers;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
-using BindOpen.Extensions.Carriers;
 using System;
 using System.Collections.Generic;
 
@@ -35,12 +35,9 @@ namespace BindOpen.Extensions.Handlers
                 log?.AddError("Source element missing");
             else
             {
-                RepositoryFile file = sourceElement.Items[0] as RepositoryFile;
-                if (file == null)
-                    log?.AddError("Source file missing");
-                else
+                if (!(sourceElement.Items[0] is RepositoryFile file))
                 {
-
+                    log?.AddError("Source file missing");
                 }
             }
 

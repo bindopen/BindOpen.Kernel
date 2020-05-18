@@ -52,7 +52,7 @@ namespace BindOpen.System.Assemblies
         /// <summary>
         /// Gets the specified application domain.
         /// </summary>
-        public AppDomain GetAppDomain(String appDomainId)
+        public AppDomain GetAppDomain(string appDomainId)
         {
             if (appDomainId == null)
                 return null;
@@ -86,8 +86,8 @@ namespace BindOpen.System.Assemblies
         /// <param name="appDomainId">The ID of the application domain to consider.</param>
         /// <param name="ownerId">The ID of the owner.</param>
         public AppDomain Allocate(
-            String appDomainId = null,
-            String ownerId = null)
+            string appDomainId = null,
+            string ownerId = null)
         {
             if (appDomainId == null)
                 return null;
@@ -95,17 +95,7 @@ namespace BindOpen.System.Assemblies
             AppDomain appDomain = _appDomains.FirstOrDefault(p => p.FriendlyName.KeyEquals(appDomainId));
             if (appDomain == null)
             {
-                //Evidence aBaseEvidence = AppDomain.CurrentDomain.Evidence;
-                //Evidence aEvidence = new Evidence(aBaseEvidence);
                 _appDomains.Add(appDomain = AppDomain.CreateDomain(appDomainId));
-
-                //if (appDomainSetup != null)
-                //{
-                //    if (_ResolveEventHandlerHashTable.ContainsKey(appDomainId))
-                //        _ResolveEventHandlerHashTable.Remove(appDomainId);
-                //    //_ResolveEventHandlerHashTable.Add(appDomainId, AssemblyResolver.Resolve(AppDomain.CurrentDomain, appDomainSetup));
-                //    AssemblyResolver.Resolve(appDomain, appDomainSetup);
-                //}
             }
 
             _resourceAllocations.RemoveAll(p =>
@@ -121,7 +111,7 @@ namespace BindOpen.System.Assemblies
         /// </summary>
         /// <param name="appDomainId">The ID of the application domain to consider.</param>
         /// <param name="ownerId">The ID of the owner.</param>
-        public bool Deallocate(String appDomainId, String ownerId = null)
+        public bool Deallocate(string appDomainId, string ownerId = null)
         {
             if (appDomainId == null)
                 return false;
@@ -176,20 +166,20 @@ namespace BindOpen.System.Assemblies
         /// <param name="filePath">Path of the file to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, String filePath, IBdoLog log = null)
+        public static Assembly LoadAssemblyFromFile(AppDomain appDomain, string filePath, IBdoLog log = null)
         {
             Assembly assembly = null;
 
             if (((appDomain != null) & (!string.IsNullOrEmpty(filePath)))
-                && (global::System.IO.File.Exists(filePath)))
+                && (File.Exists(filePath)))
             {
-                String assemblyName = Path.GetFileNameWithoutExtension(filePath);
+                string assemblyName = Path.GetFileNameWithoutExtension(filePath);
                 foreach (global::System.Reflection.Assembly currentAssembly in appDomain.GetAssemblies())
                 {
                     if (!currentAssembly.IsDynamic)
                     {
-                        String assemblyCodeBasePath = currentAssembly.CodeBase.ToLower();
-                        String assemblyFilePath = filePath.ToLower().Replace(@"\", "/");
+                        string assemblyCodeBasePath = currentAssembly.CodeBase.ToLower();
+                        string assemblyFilePath = filePath.ToLower().Replace(@"\", "/");
 
                         if (assemblyCodeBasePath.Contains(assemblyFilePath))
                         {
@@ -203,8 +193,7 @@ namespace BindOpen.System.Assemblies
                 {
                     try
                     {
-                        //Byte[] bytes = File.ReadAllBytes(filePath);
-                        assembly = Assembly.LoadFrom(filePath);// appDomain.Load(bytes);
+                        assembly = Assembly.LoadFrom(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +214,7 @@ namespace BindOpen.System.Assemblies
         /// <param name="assemblyName">The assembly name to use.</param>
         /// <param name="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
-        public static Assembly LoadAssembly(AppDomain appDomain, String assemblyName, IBdoLog log = null)
+        public static Assembly LoadAssembly(AppDomain appDomain, string assemblyName, IBdoLog log = null)
         {
             Assembly assembly = null;
 

@@ -170,15 +170,15 @@ namespace BindOpen.Data.Elements.Schema
         /// <summary>
         /// Deletes the specified schema element.
         /// </summary>
-        /// <param name="aElement">The schema element to consider.</param>
+        /// <param name="element">The schema element to consider.</param>
         /// <returns>True if the operation has succeded ; false otherwise.</returns>
-        public bool DeleteElement(SchemaElement aElement)
+        public bool DeleteElement(SchemaElement element)
         {
-            if (aElement == null) return true;
+            if (element == null) return true;
 
             // we delete the object
-            if (aElement.ParentZone != null)
-                return aElement.ParentZone.SubElements.Remove(aElement);
+            if (element.ParentZone != null)
+                return element.ParentZone.SubElements.Remove(element);
             else
                 return false;
         }
@@ -324,10 +324,12 @@ namespace BindOpen.Data.Elements.Schema
             if (parentZoneElement == null)
                 return null;
 
-            SchemaElement aElement = new SchemaElement();
-            aElement.ParentZone = parentZoneElement;
-            parentZoneElement.AddSubElement(aElement);
-            return aElement;
+            SchemaElement element = new SchemaElement
+            {
+                ParentZone = parentZoneElement
+            };
+            parentZoneElement.AddSubElement(element);
+            return element;
         }
 
         /// <summary>

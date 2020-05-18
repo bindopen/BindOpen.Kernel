@@ -14112,7 +14112,7 @@
             Instantiates a new instance of Log class from a xml file.
             </summary>
             <param name="filePath">The path of the Xml file to load.</param>
-            <param name="isCheckXml">Indicates whether the file must be checked.</param>
+            <param name="isXmlChecked">Indicates whether the file must be checked.</param>
             <param name="loadLog">The output log of the load task.</param>
             <param name="mustFileExist">Indicates whether the file must exist.</param>
             <returns>The load log.</returns>
@@ -14122,7 +14122,7 @@
             Instantiates a new instance of Log class from a xml string.
             </summary>
             <param name="xmlString">The Xml string to load.</param>
-            <param name="isCheckXml">Indicates whether the file must be checked.</param>
+            <param name="isXmlChecked">Indicates whether the file must be checked.</param>
             <param name="loadLog">The output log of the load task.</param>
             <returns>The log defined in the Xml file.</returns>
         </member>

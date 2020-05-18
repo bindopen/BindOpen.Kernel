@@ -125,7 +125,8 @@ namespace BindOpen.Application.Encryption
                         aCryptoStream.Close();
                 }
                 catch
-                { }
+                {
+                }
             }
 
             return bytes;

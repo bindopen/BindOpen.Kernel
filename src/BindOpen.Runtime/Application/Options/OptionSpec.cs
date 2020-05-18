@@ -180,8 +180,7 @@ namespace BindOpen.Application.Options
         /// <returns>Returns True if the specified matches this instance.</returns>
         public bool IsArgumentMarching(string argumentstring)
         {
-            int i = -2;
-            return IsArgumentMarching(argumentstring, out i);
+            return IsArgumentMarching(argumentstring, out _);
         }
 
         private bool IsNameMatching(string name1, string name2)

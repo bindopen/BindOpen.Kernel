@@ -154,12 +154,11 @@ namespace BindOpen.Application.Modules
             }
             else
             {
-                IAppSection section = null;
-
                 if (SubSections != null)
                 {
                     foreach (IAppSection moduleSection in SubSections.Items)
                     {
+                        IAppSection section;
                         if ((section = moduleSection.GetSubSectionWithName(name)) != null)
                         {
                             return section;
@@ -183,12 +182,11 @@ namespace BindOpen.Application.Modules
             }
             else
             {
-                IAppSection section = null;
-
                 if (SubSections != null)
                 {
                     foreach (var moduleSection in SubSections.Items)
                     {
+                        IAppSection section;
                         if ((section = moduleSection.GetSubSectionWithUniqueName(key)) != null)
                         {
                             return section;

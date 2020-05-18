@@ -33,20 +33,10 @@ namespace BindOpen.Tests.Core.Data.Elements
 
         private void Test(IDataElementSet elementSet)
         {
-            var collectionElement1 = elementSet.Get<ICarrierElement>("collection1");
-            var collectionElement2 = elementSet.Get<ICarrierElement>(1);
+            _ = elementSet.Get<ICarrierElement>("collection1");
+            _ = elementSet.Get<ICarrierElement>(1);
 
             Assert.That(elementSet?.Count == 2, "Bad collection element set - Count");
-
-            //(((string Key, string Value)[])_testData.collectionStringValues1).All(
-            //    p => collectionElement1.GetI[p.Key].Get)
-            //Assert.That(
-            //    collectionElement1.Items.Cast<double>().Intersect(_testData.collectionStringValues1 as double[]).Count() > 0
-            //    , "Bad scalar element - Set1");
-
-            //Assert.That(
-            //    collectionElement2.Items.Cast<double>().Intersect(_testData.collectionStringValues2 as double[]).Count() > 0
-            //    , "Bad scalar element - Set2");
         }
 
         [Test, Order(1)]

@@ -78,7 +78,7 @@ namespace BindOpen.System.Versioning
                 }
                 else
                 {
-                    version += (version == String.Empty ? "" : ".") + numbers[i].ToString();
+                    version += (string.IsNullOrEmpty(version) ? "" : ".") + numbers[i].ToString();
 
                     // if the rest of digits are all 0, we stop
                     bool isTheRestZero = true;
@@ -88,14 +88,16 @@ namespace BindOpen.System.Versioning
                     if (isTheRestZero)
                     {
                         if (i == 0)
-                            version += (version == String.Empty ? "" : ".") + "0";
+                        {
+                            version += (string.IsNullOrEmpty(version) ? "" : ".") + "0";
+                        }
                         break;
                     }
                 }
 
             return version;
         }
-        
+
         /// <summary>
         /// Gets the specified version.
         /// </summary>
@@ -103,7 +105,7 @@ namespace BindOpen.System.Versioning
         /// <returns></returns>
         public static string GetVersion(params string[] numbers)
         {
-            return VersioningHelper.GetVersion(numbers.Select(p=> { int i; if (!int.TryParse(p, out i)) return 0; return i; }).ToArray());
+            return VersioningHelper.GetVersion(numbers.Select(p => { if (!int.TryParse(p, out int i)) return 0; return i; }).ToArray());
         }
 
         /// <summary>
@@ -118,9 +120,9 @@ namespace BindOpen.System.Versioning
         {
             majorUpdateLevel = (majorUpdateLevel < 0 ? 0 : (majorUpdateLevel > 3 ? 3 : majorUpdateLevel));
             int[] newVersionElements = newVersion.Split('.')
-                .Select(p => { int i = 0; int.TryParse(p, out i); return i; }).ToArray();
+                .Select(p => { int.TryParse(p, out int i); return i; }).ToArray();
             int[] currentVersionElements = currentVersion.Split('.')
-                .Select(p => { int i = 0; int.TryParse(p, out i); return i; }).ToArray();
+                .Select(p => { int.TryParse(p, out int i); return i; }).ToArray();
 
             Boolean? isMajor = null;
             int index = -1;
@@ -162,10 +164,10 @@ namespace BindOpen.System.Versioning
                 }
             if (index > 0)
             {
-                Boolean? isVersionMajor= VersioningHelper.IsVersionMajor(currentVersion, historicVersion, index - 1);
+                Boolean? isVersionMajor = VersioningHelper.IsVersionMajor(currentVersion, historicVersion, index - 1);
                 if ((isVersionMajor != null) && (isVersionMajor.Value))
                 {
-                    newVersion = VersioningHelper.GetVersion(currentVersion, index-1);
+                    newVersion = VersioningHelper.GetVersion(currentVersion, index - 1);
                     for (int j = index; j < versionParts_Format.Length; j++)
                         newVersion += ".0";
                 }
