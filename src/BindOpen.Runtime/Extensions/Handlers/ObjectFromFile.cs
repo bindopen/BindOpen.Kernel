@@ -1,9 +1,8 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Elements;
+using BindOpen.Extensions.Carriers;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
-using BindOpen.Extensions.Carriers;
-using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Handlers
@@ -35,12 +34,9 @@ namespace BindOpen.Extensions.Handlers
                 log?.AddError("Source element missing");
             else
             {
-                RepositoryFile file = sourceElement.Items[0] as RepositoryFile;
-                if (file == null)
-                    log?.AddError("Source file missing");
-                else
+                if (!(sourceElement.Items[0] is RepositoryFile file))
                 {
-
+                    log?.AddError("Source file missing");
                 }
             }
 
@@ -57,7 +53,7 @@ namespace BindOpen.Extensions.Handlers
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns the source object.</returns>
         public static List<object> Post(
-            Object targetObject,
+            object targetObject,
             ref DataElement sourceDataElement,
             IBdoScope scope = null,
             IScriptVariableSet scriptVariableSet = null,

@@ -294,16 +294,15 @@ namespace BindOpen.Data.Helpers.Strings
             if (indexStringIndex > -1)
             {
                 string stringToReplace = indexString;
-                string newString = "";
-
                 int startIndex = StringHelper.GetIndexOfLastString(st, "{", indexStringIndex - 1);
+                string newString;
                 if (startIndex > -1)
                 {
                     int aEndIndex = StringHelper.GetIndexOfNextString(st, "}", indexStringIndex + indexString.Length);
                     if (aEndIndex > -1)
                         stringToReplace = st.Substring(startIndex, aEndIndex - startIndex + 1);
 
-                    newString = wholeReplaceString ?? stringToReplace.Substring(1, stringToReplace.Length - 2).Replace(indexString, replaceString)
+                    newString = wholeReplaceString ?? stringToReplace[1..^1].Replace(indexString, replaceString)
 ;
                 }
                 else
@@ -653,7 +652,7 @@ namespace BindOpen.Data.Helpers.Strings
             var quoteString = quoteChar.ToString();
 
             if (st.Length > 2 && st.StartsWith(quoteString) && st.EndsWith(quoteString))
-                st = st.Substring(1, st.Length - 2);
+                st = st[1..^1];
             return st;
         }
 

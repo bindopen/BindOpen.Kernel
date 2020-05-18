@@ -7,6 +7,7 @@ using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace BindOpen.Extensions.Runtime
 {
@@ -135,7 +136,7 @@ namespace BindOpen.Extensions.Runtime
                     {
                         log.AddEvents(connection.Connect());
                     }
-                    catch (Exception ex)
+                    catch (ExternalException ex)
                     {
                         log.AddException("An exception occured while trying to open connection",
                             description: ex.ToString());

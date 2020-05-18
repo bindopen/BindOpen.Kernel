@@ -53,19 +53,14 @@ namespace BindOpen.Extensions.Definition
         /// <returns>The result object.</returns>
         public static string GetTitle(this TaskEntryKind taskEntryKind)
         {
-            switch (taskEntryKind)
+            return taskEntryKind switch
             {
-                case TaskEntryKind.Input:
-                    return "input";
-                case TaskEntryKind.Output:
-                    return "output";
-                case TaskEntryKind.ScalarOutput:
-                    return "scalar output";
-                case TaskEntryKind.NonScalarOutput:
-                    return "non-scalar output";
-            }
-
-            return "";
+                TaskEntryKind.Input => "input",
+                TaskEntryKind.Output => "output",
+                TaskEntryKind.ScalarOutput => "scalar output",
+                TaskEntryKind.NonScalarOutput => "non-scalar output",
+                _ => "",
+            };
         }
 
     }

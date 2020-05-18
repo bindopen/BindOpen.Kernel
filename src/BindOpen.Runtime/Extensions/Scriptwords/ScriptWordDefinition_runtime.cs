@@ -523,8 +523,8 @@ namespace BindOpen.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
-            if (appHost == null)
+
+            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost.GetKnownPath(BdoHostPathKind.RootFolder);
@@ -547,8 +547,7 @@ namespace BindOpen.Extensions.Scriptwords
         {
             if (scope == null)
                 return "<!--Application scope missing-->";
-            IBdoHost appHost = scope.Context.GetSystemItem("bdoHost") as IBdoHost;
-            if (appHost == null)
+            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder);

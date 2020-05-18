@@ -215,7 +215,7 @@ namespace BindOpen.System.Scripting
                             {
                                 EvaluateScript(script, DataExpressionKind.Script, out string stringValue, scriptVariableSet, log);
                                 stringValue = stringValue.Substring(2);
-                                stringValue = stringValue.Substring(0, stringValue.Length - 2);
+                                stringValue = stringValue[0..^2];
 
                                 resultScript = resultScript.Replace(
                                     resultScript.GetSubstring(scriptWordBeginIndex, index + 1), stringValue);

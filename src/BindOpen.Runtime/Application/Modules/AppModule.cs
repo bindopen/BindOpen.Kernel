@@ -101,12 +101,11 @@ namespace BindOpen.Application.Modules
         /// <returns>The sub application section with the specified name.</returns>
         public IAppSection GetSubSectionWithName(string name)
         {
-            IAppSection section = null;
-
             if (Sections != null)
             {
                 foreach (IAppSection moduleSection in Sections.Items)
                 {
+                    IAppSection section;
                     if ((section = moduleSection.GetSubSectionWithName(name)) != null)
                     {
                         return section;
@@ -124,12 +123,11 @@ namespace BindOpen.Application.Modules
         /// <returns>The sub application sections with the specified unique name.</returns>
         public IAppSection GetSubSectionWithUniqueName(string completeName)
         {
-            IAppSection section = null;
-
             if (Sections != null)
             {
                 foreach (IAppSection moduleSection in Sections.Items)
                 {
+                    IAppSection section;
                     if ((section = moduleSection.GetSubSectionWithUniqueName(completeName)) != null)
                     {
                         return section;

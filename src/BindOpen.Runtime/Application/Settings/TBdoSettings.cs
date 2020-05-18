@@ -137,7 +137,7 @@ namespace BindOpen.Application.Settings
                 }
                 else
                 {
-                    PropertyInfo propertyInfo = GetType().GetPropertyInfo(
+                    _ = GetType().GetPropertyInfo(
                         propertyName,
                         new Type[] { typeof(DetailPropertyAttribute) },
                         out DataElementAttribute attribute);
@@ -173,7 +173,7 @@ namespace BindOpen.Application.Settings
                 }
                 else
                 {
-                    PropertyInfo propertyInfo = GetType().GetPropertyInfo(
+                    _ = GetType().GetPropertyInfo(
                         propertyName,
                         new Type[] { typeof(DetailPropertyAttribute) },
                         out DataElementAttribute attribute);
