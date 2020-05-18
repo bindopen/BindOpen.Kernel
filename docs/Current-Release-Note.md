@@ -3,7 +3,8 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 # New features
 
-- [X] None
+- [ ] None
+- [X] Contact class implemented
 
 
 # Fixes
