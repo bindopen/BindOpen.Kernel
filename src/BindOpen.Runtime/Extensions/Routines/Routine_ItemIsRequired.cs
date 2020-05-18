@@ -55,11 +55,17 @@ namespace BindOpen.Extensions.Routines
             var log = new BdoLog();
 
             if (dataElement == null)
+            {
                 log.AddError("Element missing");
+            }
             else if (dataElement.Items.Count == 0 || dataElement.Items[0] == null)
+            {
                 log.AddError("Item required").ResultCode = "ERROR_ITEMREQUIRED:" + dataElement.Key();
-            else if (dataElement.ValueType.IsScalar() && dataElement.Items.Count == 1 && dataElement.GetValue().ToNotNullString() == String.Empty)
+            }
+            else if (dataElement.ValueType.IsScalar() && dataElement.Items.Count == 1 && string.IsNullOrEmpty(dataElement.GetValue().ToNotNullString()))
+            {
                 log.AddError("Item required").ResultCode = "ERROR_ITEMREQUIRED:" + dataElement.Key();
+            }
 
             return log;
         }

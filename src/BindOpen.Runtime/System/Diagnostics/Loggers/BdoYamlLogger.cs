@@ -17,8 +17,8 @@ namespace BindOpen.System.Diagnostics.Loggers
 
         #region Variables
 
-        private string _CurrentLogId = null;
-        private string _CurrentNode = null;
+        private string _currentLogId = null;
+        private string _currentNode = null;
 
         #endregion
 
@@ -75,8 +75,8 @@ namespace BindOpen.System.Diagnostics.Loggers
         {
             if (log == null) return "";
 
-            String st = "";
-            String indent = new string('\t', log.Level);
+            string st = "";
+            string indent = new string('\t', log.Level);
 
             if (attributeNames == null)
             {
@@ -86,49 +86,49 @@ namespace BindOpen.System.Diagnostics.Loggers
 
             if (log != null)
             {
-                if (log.Id.KeyEquals(_CurrentLogId))
+                if (log.Id.KeyEquals(_currentLogId))
                     st +=
                         indent + "log:\n" +
                         indent + '\t' + "id: " + log.Id + Environment.NewLine;
 
-                foreach (String attributeName in attributeNames)
+                foreach (string attributeName in attributeNames)
                     if (attributeName != null)
                     {
-                        String attributeNameKey = attributeName.ToLower();
+                        string attributeNameKey = attributeName.ToLower();
 
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Id))
                             && !string.IsNullOrEmpty(log.Id))
                         {
                             st += indent + " id: " + log.Name + Environment.NewLine;
-                            _CurrentNode = attributeNameKey;
+                            _currentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Name))
                             && !string.IsNullOrEmpty(log.Name))
                         {
                             st += indent + " name: " + log.Name + Environment.NewLine;
-                            _CurrentNode = attributeNameKey;
+                            _currentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Title))
                                         && (log.Title != null))
                         {
                             st += indent + " title: " + log.GetTitleText(UICulture) + Environment.NewLine;
-                            _CurrentNode = attributeNameKey;
+                            _currentNode = attributeNameKey;
                         }
                         if (((attributeNameKey == "*") || (attributeNameKey == BdoLogEntries.__Description))
                                             && (log.Description != null))
                         {
                             st += indent + " description: " + log.GetDescriptionText(UICulture) + Environment.NewLine;
-                            _CurrentNode = attributeNameKey;
+                            _currentNode = attributeNameKey;
                         }
                         if ((attributeNameKey.StartsWith(BdoLogEntries.__Detail + ".")) && (log.Detail != null))
                         {
                             st += indent + " detail: " + Environment.NewLine;
-                            String detailName = attributeNameKey.GetSubstring(BdoLogEntries.__Detail.Length + 1);
+                            string detailName = attributeNameKey.GetSubstring(BdoLogEntries.__Detail.Length + 1);
                             if (detailName == "*")
                                 foreach (DataElement element in log.Detail.Items)
                                 {
                                     st += ToString(element, indent);
-                                    _CurrentNode = attributeNameKey;
+                                    _currentNode = attributeNameKey;
                                 }
                         }
 
@@ -138,15 +138,15 @@ namespace BindOpen.System.Diagnostics.Loggers
                                 st += ToString(logEvent, attributeNames);
                     }
 
-                _CurrentLogId = log.Id;
+                _currentLogId = log.Id;
             }
 
             return st;
         }
 
-        private string ToString(DataElement element, String indent = "")
+        private string ToString(DataElement element, string indent = "")
         {
-            String st = "";
+            string st = "";
             if (element != null)
             {
                 st += indent + element.Key() + ":" + Environment.NewLine;
@@ -176,13 +176,13 @@ namespace BindOpen.System.Diagnostics.Loggers
         //{
         //    if (log == null) return "";
 
-        //    String indent = new string('\t', log.Level);
+        //    string indent = new string('\t', log.Level);
 
-        //    String st =
+        //    string st =
         //        indent + "log:\n" +
         //        indent + '\t' + "id: " + log.Id + Environment.NewLine;
 
-        //    foreach (String attributeKey in attributeNames)
+        //    foreach (string attributeKey in attributeNames)
         //        st += ToString(attributeKey, indent);
 
         //    return st;

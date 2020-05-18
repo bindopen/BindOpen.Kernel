@@ -83,9 +83,9 @@ namespace BindOpen.Data.Connections
 
                 File.Copy(remoteFileUri, localUri, canOverwrite);
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
-                IBdoLogEvent logEvent = log?.AddException(exception);
+                log?.AddException(exception);
             }
         }
 
@@ -136,9 +136,9 @@ namespace BindOpen.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <param name="canOverwrite">Indicates whether the remote file can be overwritten.</param>
         public override void Push(
-           String localFileUri,
-           String remotePathUri,
-           Boolean canOverwrite,
+           string localFileUri,
+           string remotePathUri,
+           bool canOverwrite,
             IBdoLog log = null)
         {
             try
@@ -148,7 +148,7 @@ namespace BindOpen.Data.Connections
 
                 File.Copy(localFileUri, remotePathUri, canOverwrite);
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
                 log?.AddException(exception);
             }
@@ -201,7 +201,7 @@ namespace BindOpen.Data.Connections
         /// <param name="log">The log to consider.</param>
         /// <returns>Returns true if the file is available. False otherwise.</returns>
         public static bool WaitForFile(
-            String path,
+            string path,
             int aSecondNumber = 4,
             IBdoLog log = null)
         {
@@ -243,13 +243,13 @@ namespace BindOpen.Data.Connections
         /// <param name="fileKind">The kind of files to consider.</param>
         /// <returns>Lists of elements of the remote folder.</returns>
         public override List<RepositoryItem> GetFiles(
-           String folderUri,
-           String filter,
-           Boolean isRecursive,
+           string folderUri,
+           string filter,
+           bool isRecursive,
            IBdoLog log = null,
            CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
-            Boolean isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith("/")));
+            bool isRegularExpression = ((!string.IsNullOrEmpty(filter)) && (filter.StartsWith("/")));
             Regex regex = null;
 
             List<RepositoryItem> files = new List<RepositoryItem>();
@@ -258,8 +258,7 @@ namespace BindOpen.Data.Connections
                 if ((fileKind == CarrierKind_standard.File) |
                     (fileKind == CarrierKind_standard.Any))
                 {
-                    FileInfo[] fileInfos = null;
-
+                    FileInfo[] fileInfos;
                     if (!isRegularExpression)
                         fileInfos = (new DirectoryInfo(folderUri)).GetFiles((filter ?? "*.*"), (isRecursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
                     else
@@ -278,7 +277,7 @@ namespace BindOpen.Data.Connections
 
                     foreach (FileInfo fileInfo in fileInfos)
                     {
-                        Boolean isFound = !isRegularExpression;
+                        bool isFound = !isRegularExpression;
                         if ((isRegularExpression) & (regex != null))
                             isFound = regex.IsMatch(fileInfo.Name);
 
@@ -301,8 +300,7 @@ namespace BindOpen.Data.Connections
                 if ((fileKind == CarrierKind_standard.Folder) |
                     (fileKind == CarrierKind_standard.Any))
                 {
-                    DirectoryInfo[] directoryInfos = null;
-
+                    DirectoryInfo[] directoryInfos;
                     if (!isRegularExpression)
                         directoryInfos = (new DirectoryInfo(folderUri)).GetDirectories((filter ?? "*.*"), (isRecursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
                     else
@@ -321,7 +319,7 @@ namespace BindOpen.Data.Connections
 
                     foreach (DirectoryInfo directoryInfo in directoryInfos)
                     {
-                        Boolean isFound = !isRegularExpression;
+                        bool isFound = !isRegularExpression;
                         if (isRegularExpression & (regex != null))
                             isFound = regex.IsMatch(directoryInfo.Name);
 
@@ -362,7 +360,7 @@ namespace BindOpen.Data.Connections
         /// <param name="localFileUri">The local Uri to consider.</param>
         /// <param name="log">The log to consider.</param>
         public static void DeleteFile(
-            String localFileUri,
+            string localFileUri,
             IBdoLog log = null)
         {
             try
@@ -375,7 +373,7 @@ namespace BindOpen.Data.Connections
                 else
                     log?.AddError("Could not delete file '" + localFileUri + "'");
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
                 log?.AddException(exception);
             }
@@ -387,7 +385,7 @@ namespace BindOpen.Data.Connections
         /// <param name="localfolderUri">The local Uri to consider.</param>
         /// <param name="log">The log to consider.</param>
         public static void DeleteFolder(
-            String localfolderUri,
+            string localfolderUri,
             IBdoLog log = null)
         {
             try
@@ -400,7 +398,7 @@ namespace BindOpen.Data.Connections
                 else
                     log?.AddError("Could not delete folder '" + localfolderUri + "'");
             }
-            catch (Exception exception)
+            catch (IOException exception)
             {
                 log?.AddException("Could not delete folder '" + localfolderUri + "'", description: exception.ToString());
             }
@@ -416,10 +414,10 @@ namespace BindOpen.Data.Connections
         /// <param name="isRecursive">Indicates whether the search is folder recursive.</param>
         /// <param name="fileKind">The kind of elements to consider.</param>
         public override void DeleteItems(
-            String folderUri,
-            String filter,
+            string folderUri,
+            string filter,
             DateTime timeLimit,
-            Boolean isRecursive,
+            bool isRecursive,
             IBdoLog log = null,
             CarrierKind_standard fileKind = CarrierKind_standard.Any)
         {
@@ -428,14 +426,19 @@ namespace BindOpen.Data.Connections
             {
                 if (item.LastWriteDate != null)
                 {
-                    DateTime lastWriteDateTime;
                     if ((timeLimit == null) ||
-                        ((DateTime.TryParse(item.LastWriteDate, out lastWriteDateTime)) &&
+                        ((DateTime.TryParse(item.LastWriteDate, out DateTime lastWriteDateTime)) &&
                         (DateTime.Now.Subtract(lastWriteDateTime).Ticks > timeLimit.Ticks)))
+                    {
                         if (item is RepositoryFolder)
+                        {
                             BdoNFSConnection.DeleteFolder(item.Path, log);
+                        }
                         else if (item is RepositoryFile)
+                        {
                             BdoNFSConnection.DeleteFile(item.Path, log);
+                        }
+                    }
                 }
             }
         }

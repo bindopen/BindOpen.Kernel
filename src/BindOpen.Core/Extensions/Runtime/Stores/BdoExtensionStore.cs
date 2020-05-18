@@ -63,29 +63,19 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>The item words of specified library names.</returns>
         public Dictionary<string, T> GetItemDefinitions<T>() where T : IBdoExtensionItemDefinition
         {
-            switch (typeof(T).GetExtensionItemKind())
+            return (typeof(T).GetExtensionItemKind()) switch
             {
-                case BdoExtensionItemKind.Carrier:
-                    return _carrierDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Connector:
-                    return _connectorDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Entity:
-                    return _entityDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Format:
-                    return _entityDefinitions.SelectMany(p => p.Value?.Dto?.FormatDefinitions).Distinct().ToList() as Dictionary<string, T>;
-                case BdoExtensionItemKind.Handler:
-                    return _handlerDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Metrics:
-                    return _metricsDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Routine:
-                    return _routineDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Scriptword:
-                    return _scriptWordDefinitions as Dictionary<string, T>;
-                case BdoExtensionItemKind.Task:
-                    return _taskDefinitions as Dictionary<string, T>;
-            }
-
-            return new Dictionary<string, T>();
+                BdoExtensionItemKind.Carrier => _carrierDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Connector => _connectorDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Entity => _entityDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Format => _entityDefinitions.SelectMany(p => p.Value?.Dto?.FormatDefinitions).Distinct().ToList() as Dictionary<string, T>,
+                BdoExtensionItemKind.Handler => _handlerDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Metrics => _metricsDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Routine => _routineDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Scriptword => _scriptWordDefinitions as Dictionary<string, T>,
+                BdoExtensionItemKind.Task => _taskDefinitions as Dictionary<string, T>,
+                _ => new Dictionary<string, T>(),
+            };
         }
 
         /// <summary>

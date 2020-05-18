@@ -98,7 +98,7 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>Returns the detail of this instance.</returns>
         public ITDataItemSet<BdoConditionalEvent> NewOutputEventSet()
         {
-            return OutputEventSet = OutputEventSet ?? new TDataItemSet<BdoConditionalEvent>();
+            return OutputEventSet ??= new TDataItemSet<BdoConditionalEvent>();
         }
 
         #endregion

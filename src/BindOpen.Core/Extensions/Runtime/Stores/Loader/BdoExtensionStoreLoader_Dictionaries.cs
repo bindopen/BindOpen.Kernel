@@ -121,29 +121,19 @@ namespace BindOpen.Extensions.Runtime
         {
             BdoExtensionItemKind itemKind = typeof(T).GetExtensionItemKind();
 
-            switch (itemKind)
+            return itemKind switch
             {
-                case BdoExtensionItemKind.Carrier:
-                    return "BindOpen.Carriers";
-                case BdoExtensionItemKind.Connector:
-                    return "BindOpen.Connectors";
-                case BdoExtensionItemKind.Entity:
-                    return "BindOpen.Entities";
-                case BdoExtensionItemKind.Format:
-                    return "BindOpen.Formats";
-                case BdoExtensionItemKind.Handler:
-                    return "BindOpen.Handlers";
-                case BdoExtensionItemKind.Metrics:
-                    return "BindOpen.Metrics";
-                case BdoExtensionItemKind.Routine:
-                    return "BindOpen.Routines";
-                case BdoExtensionItemKind.Scriptword:
-                    return "BindOpen.Scriptwords";
-                case BdoExtensionItemKind.Task:
-                    return "BindOpen.Tasks";
-            }
-
-            return null;
+                BdoExtensionItemKind.Carrier => "BindOpen.Carriers",
+                BdoExtensionItemKind.Connector => "BindOpen.Connectors",
+                BdoExtensionItemKind.Entity => "BindOpen.Entities",
+                BdoExtensionItemKind.Format => "BindOpen.Formats",
+                BdoExtensionItemKind.Handler => "BindOpen.Handlers",
+                BdoExtensionItemKind.Metrics => "BindOpen.Metrics",
+                BdoExtensionItemKind.Routine => "BindOpen.Routines",
+                BdoExtensionItemKind.Scriptword => "BindOpen.Scriptwords",
+                BdoExtensionItemKind.Task => "BindOpen.Tasks",
+                _ => null,
+            };
         }
 
         /// <summary>
@@ -154,27 +144,19 @@ namespace BindOpen.Extensions.Runtime
         {
             BdoExtensionItemKind itemKind = typeof(T).GetExtensionItemKind();
 
-            switch (itemKind)
+            return itemKind switch
             {
-                case BdoExtensionItemKind.Carrier:
-                    return typeof(BdoCarrierDictionaryDto);
-                case BdoExtensionItemKind.Connector:
-                    return typeof(BdoConnectorDictionaryDto);
-                case BdoExtensionItemKind.Entity:
-                    return typeof(BdoEntityDictionaryDto);
-                case BdoExtensionItemKind.Handler:
-                    return typeof(BdoHandlerDictionaryDto);
-                case BdoExtensionItemKind.Metrics:
-                    return typeof(BdoMetricsDictionaryDto);
-                case BdoExtensionItemKind.Routine:
-                    return typeof(BdoRoutineDictionaryDto);
-                case BdoExtensionItemKind.Scriptword:
-                    return typeof(BdoScriptwordDictionaryDto);
-                case BdoExtensionItemKind.Task:
-                    return typeof(BdoTaskDictionaryDto);
-            }
-
-            return null;
+                BdoExtensionItemKind.Carrier => typeof(BdoCarrierDictionaryDto),
+                BdoExtensionItemKind.Connector => typeof(BdoConnectorDictionaryDto),
+                BdoExtensionItemKind.Format => null,
+                BdoExtensionItemKind.Entity => typeof(BdoEntityDictionaryDto),
+                BdoExtensionItemKind.Handler => typeof(BdoHandlerDictionaryDto),
+                BdoExtensionItemKind.Metrics => typeof(BdoMetricsDictionaryDto),
+                BdoExtensionItemKind.Routine => typeof(BdoRoutineDictionaryDto),
+                BdoExtensionItemKind.Scriptword => typeof(BdoScriptwordDictionaryDto),
+                BdoExtensionItemKind.Task => typeof(BdoTaskDictionaryDto),
+                _ => null,
+            };
         }
 
         /// <summary>

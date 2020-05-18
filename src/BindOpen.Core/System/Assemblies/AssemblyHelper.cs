@@ -10,30 +10,6 @@ namespace BindOpen.System.Assemblies
     public static class AssemblyHelper
     {
         // --------------------------------------------------
-        // ENUMERATIONS
-        // --------------------------------------------------
-
-        #region Enumerations
-
-        /// <summary>
-        /// This structure represents an class reference.
-        /// </summary>
-        public struct ClassReference
-        {
-            /// <summary>
-            /// Library name.
-            /// </summary>
-            public string AssemblyName;
-
-            /// <summary>
-            /// Class name.
-            /// </summary>
-            public string ClassName;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
         // ACCESSORS
         // --------------------------------------------------
 

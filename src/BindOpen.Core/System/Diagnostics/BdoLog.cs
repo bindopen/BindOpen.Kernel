@@ -1211,12 +1211,11 @@ namespace BindOpen.System.Diagnostics
         {
             if (Id.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return this;
-            IBdoLog log = null;
             if (isRecursive)
             {
                 foreach (BdoLog currentChildLog in SubLogs)
                 {
-                    log = currentChildLog.GetSubLogWithId(id);
+                    IBdoLog log = currentChildLog.GetSubLogWithId(id);
                     if (log != null) return log;
                 }
             }
@@ -1277,7 +1276,7 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         public void Start()
         {
-            Execution = Execution ?? new ProcessExecution();
+            Execution ??= new ProcessExecution();
             Execution.Start();
         }
 
@@ -1287,7 +1286,7 @@ namespace BindOpen.System.Diagnostics
         /// <param name="status">The new status to consider.</param>
         public void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
         {
-            Execution = Execution ?? new ProcessExecution();
+            Execution ??= new ProcessExecution();
             Execution.End(status);
         }
 

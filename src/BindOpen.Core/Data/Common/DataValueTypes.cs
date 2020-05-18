@@ -174,37 +174,23 @@ namespace BindOpen.Data.Common
         /// <returns>The result object.</returns>
         public static Type GetObjectType(this DataValueTypes dataValueType)
         {
-            switch (dataValueType)
+            return dataValueType switch
             {
-                case DataValueTypes.Boolean:
-                    return typeof(Boolean);
-                case DataValueTypes.Carrier:
-                    return typeof(BdoCarrierConfiguration);
-                case DataValueTypes.Datasource:
-                    return typeof(Datasource);
-                case DataValueTypes.Date:
-                    return typeof(DateTime);
-                case DataValueTypes.Document:
-                    return typeof(Document);
-                case DataValueTypes.Integer:
-                    return typeof(int);
-                case DataValueTypes.Number:
-                    return typeof(float);
-                case DataValueTypes.Schema:
-                    return typeof(String);
-                case DataValueTypes.Text:
-                    return typeof(String);
-                case DataValueTypes.Time:
-                    return typeof(TimeSpan);
-                case DataValueTypes.Long:
-                    return typeof(long);
-                case DataValueTypes.ULong:
-                    return typeof(ulong);
-                case DataValueTypes.ByteArray:
-                    return typeof(byte[]);
-            }
-
-            return typeof(Object);
+                DataValueTypes.Boolean => typeof(Boolean),
+                DataValueTypes.Carrier => typeof(BdoCarrierConfiguration),
+                DataValueTypes.Datasource => typeof(Datasource),
+                DataValueTypes.Date => typeof(DateTime),
+                DataValueTypes.Document => typeof(Document),
+                DataValueTypes.Integer => typeof(int),
+                DataValueTypes.Number => typeof(float),
+                DataValueTypes.Schema => typeof(String),
+                DataValueTypes.Text => typeof(String),
+                DataValueTypes.Time => typeof(TimeSpan),
+                DataValueTypes.Long => typeof(long),
+                DataValueTypes.ULong => typeof(ulong),
+                DataValueTypes.ByteArray => typeof(byte[]),
+                _ => typeof(Object),
+            };
         }
 
         /// <summary>

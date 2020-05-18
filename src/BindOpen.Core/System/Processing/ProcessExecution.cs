@@ -302,13 +302,12 @@ namespace BindOpen.System.Processing
         /// <summary>
         /// Get the process execution statuses corresponding to the specified state.
         /// </summary>
-        /// <param name="aState">The state to consider.</param>
-        public static List<ProcessExecutionStatus> GetStatuses(ProcessExecutionState aState)
+        /// <param name="state">The state to consider.</param>
+        public static List<ProcessExecutionStatus> GetStatuses(ProcessExecutionState state)
         {
-            switch (aState)
+            return state switch
             {
-                case ProcessExecutionState.Ended:
-                    return new List<ProcessExecutionStatus>()
+                ProcessExecutionState.Ended => new List<ProcessExecutionStatus>()
                     {
                         ProcessExecutionStatus.Completed,
                         ProcessExecutionStatus.NothingDone,
@@ -316,33 +315,29 @@ namespace BindOpen.System.Processing
                         ProcessExecutionStatus.Stopped_Error,
                         ProcessExecutionStatus.Stopped_Exception,
                         ProcessExecutionStatus.Stopped_User
-                    };
-                case ProcessExecutionState.Pending:
-                    return new List<ProcessExecutionStatus>()
+                    },
+                ProcessExecutionState.Pending => new List<ProcessExecutionStatus>()
                     {
                         ProcessExecutionStatus.Processing,
                         ProcessExecutionStatus.Queueing,
                         ProcessExecutionStatus.Waiting
-                    };
-                default:
-                    return new List<ProcessExecutionStatus>();
-            }
+                    },
+                _ => new List<ProcessExecutionStatus>(),
+            };
         }
 
         /// <summary>
         /// Gets the default status of the specified state.
         /// </summary>
-        /// <param name="aProcessExecutionState">The state to consider.</param>
-        public static ProcessExecutionStatus GetDefaultStatus(ProcessExecutionState aProcessExecutionState)
+        /// <param name="state">The state to consider.</param>
+        public static ProcessExecutionStatus GetDefaultStatus(ProcessExecutionState state)
         {
-            switch (aProcessExecutionState)
+            return state switch
             {
-                case ProcessExecutionState.Pending:
-                    return ProcessExecutionStatus.Processing;
-                case ProcessExecutionState.Ended:
-                    return ProcessExecutionStatus.Stopped;
-            }
-            return ProcessExecutionStatus.NothingDone;
+                ProcessExecutionState.Pending => ProcessExecutionStatus.Processing,
+                ProcessExecutionState.Ended => ProcessExecutionStatus.Stopped,
+                _ => ProcessExecutionStatus.NothingDone,
+            };
         }
 
         /// <summary>
