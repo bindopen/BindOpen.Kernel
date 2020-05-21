@@ -1,15 +1,14 @@
-BindOpen __PubAssemblyVersion__ Update - __Release.Date__
+BindOpen __Release.Version__ Update - __Release.Date__
 ====
 
 # New features
 
-- [ ] None
-- [X] Microsoft.Extensions.Hosting package updated
+- [X] None
 
 
 # Fixes
 
-- [X] None
+- [X] Fixing bug in release note: bad release version
 
 
 # Lifecycle news
@@ -25,22 +24,22 @@ BindOpen __PubAssemblyVersion__ Update - __Release.Date__
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
 | BindOpen.Core            | Install-Package BindOpen.Core -Version __PubAssemblyVersion__              |
-| BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __PubAssemblyVersion__           |
-| BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __PubAssemblyVersion__   |
+| BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __Release.Version__           |
+| BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __Release.Version__   |
 
 ## Directly
 
 | Packages                 |                                      Command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Core            | [v__PubAssemblyVersion__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__PubAssemblyVersion__.zip) |
-| BindOpen.Runtime         | [v__PubAssemblyVersion__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__PubAssemblyVersion__.zip) |
-| BindOpen.Runtime.NetCore | [v__PubAssemblyVersion__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__PubAssemblyVersion__.zip) |
+| BindOpen.Core            | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Release.Version__.zip) |
+| BindOpen.Runtime         | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__Release.Version__.zip) |
+| BindOpen.Runtime.NetCore | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__Release.Version__.zip) |
 
 
 # Packages updated in this release
 
 | Packages                 |         Version       |
 |--------------------------|:---------------------:|
-| BindOpen.Core            | __PubAssemblyVersion__   |
-| BindOpen.Runtime         | __PubAssemblyVersion__   |
-| BindOpen.Runtime.NetCore | __PubAssemblyVersion__   |
+| BindOpen.Core            | __Release.Version__   |
+| BindOpen.Runtime         | __Release.Version__   |
+| BindOpen.Runtime.NetCore | __Release.Version__   |
