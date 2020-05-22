@@ -44,4 +44,3 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/bindOpen/issues). 
 
-
