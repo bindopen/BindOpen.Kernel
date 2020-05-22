@@ -1,20 +1,20 @@
-BindOpen __Release.Version__ Update - __Release.Date__
+BindOpen __Publication.Version__ Update - __Publication.Date__
 ====
 
 # New features
 
-- [X] None
+- [x] None
 
 
 # Fixes
 
-- [X] Fixing bug in release note: bad release version
+- [x] Fixing bug in release note: bad release version
 
 
 # Lifecycle news
 
-- [X] Documentation website is now opened at [docs.bindopen.org](https://docs.bindopen.org).
-- [X] Release note history will be available soon at [docs.bindopen.org/notes/release](https://docs.bindopen.org/notes/release).
+- [x] Documentation website is now opened at [docs.bindopen.org](https://docs.bindopen.org).
+- [x] Release note history will be available soon at [docs.bindopen.org/notes/release](https://docs.bindopen.org/notes/release).
 
 
 # Downloads
@@ -23,23 +23,23 @@ BindOpen __Release.Version__ Update - __Release.Date__
 
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Core            | Install-Package BindOpen.Core -Version __PubAssemblyVersion__              |
-| BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __Release.Version__           |
-| BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __Release.Version__   |
+| BindOpen.Core            | Install-Package BindOpen.Core -Version __Publication.Version__              |
+| BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __Publication.Version__           |
+| BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __Publication.Version__   |
 
 ## Directly
 
 | Packages                 |                                      Command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Core            | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Release.Version__.zip) |
-| BindOpen.Runtime         | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__Release.Version__.zip) |
-| BindOpen.Runtime.NetCore | [v__Release.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__Release.Version__.zip) |
+| BindOpen.Core            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Publication.Version__.zip) |
+| BindOpen.Runtime         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__Publication.Version__.zip) |
+| BindOpen.Runtime.NetCore | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__Publication.Version__.zip) |
 
 
 # Packages updated in this release
 
 | Packages                 |         Version       |
 |--------------------------|:---------------------:|
-| BindOpen.Core            | __Release.Version__   |
-| BindOpen.Runtime         | __Release.Version__   |
-| BindOpen.Runtime.NetCore | __Release.Version__   |
+| BindOpen.Core            | __Publication.Version__   |
+| BindOpen.Runtime         | __Publication.Version__   |
+| BindOpen.Runtime.NetCore | __Publication.Version__   |

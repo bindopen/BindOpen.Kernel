@@ -9,11 +9,11 @@ using System.Xml.Serialization;
 namespace BindOpen.System.Diagnostics.Dto
 {
     /// <summary>
-    /// This class represents a log.
+    /// This class represents a Api log DTO.
     /// </summary>
-    [XmlType("ApiBdoLogDto", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("BdoApiLogDto", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class ApiBdoLogDto : NamedDataItem, IDisplayNamed, IDescribed
+    public class BdoApiLogDto : NamedDataItem, IDisplayNamed, IDescribed
     {
         // ------------------------------------------
         // PROPERTIES
@@ -40,7 +40,7 @@ namespace BindOpen.System.Diagnostics.Dto
         /// </summary>
         [XmlArray("events")]
         [XmlArrayItem("event")]
-        public List<ApiBdoLogEventDto> Events { get; set; }
+        public List<BdoApiLogEventDto> Events { get; set; }
 
         #endregion
 
@@ -51,21 +51,21 @@ namespace BindOpen.System.Diagnostics.Dto
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ApiLogDto class.
+        /// Instantiates a new instance of the BdoApiLogDto class.
         /// </summary>
-        public ApiBdoLogDto() : base()
+        public BdoApiLogDto() : base()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ApiLogDto class.
+        /// Instantiates a new instance of the BdoApiLogDto class.
         /// </summary>
         /// <param name="displayName"></param>
         /// <param name="description"></param>
         /// <param name="date"></param>
         /// <param name="name"></param>
         /// <param name="id"></param>
-        public ApiBdoLogDto(
+        public BdoApiLogDto(
             string displayName = null,
             string description = null,
             DateTime? date = null,
