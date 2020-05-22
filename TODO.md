@@ -16,6 +16,8 @@ Todo list for BindOpen
 ## Stuff to check out later on
 
 ### v.1.1
+* Add Getting Help + Contributors sections in README.md
+
 * Handle expcetions correctly.
 * Simplify extension item management
 * Improve OptionsSet 
