@@ -3,9 +3,9 @@
 namespace BindOpen.System.Diagnostics.Dto
 {
     /// <summary>
-    /// This class represents a factory for API logs.
+    /// This class represents a factory for API log DTOs.
     /// </summary>
-    public static class ApiBdoLogDtoFactory
+    public static class BdoApiLogDtoFactory
     {
         /// <summary>
         /// Converts the specified log to the Api log DTO.
@@ -14,8 +14,8 @@ namespace BindOpen.System.Diagnostics.Dto
         /// <param name="key">The key to consider.</param>
         /// <param name="alternateKey">The alternate key to consider.</param>
         /// <returns>Returns the Api log DTO.</returns>
-        public static ApiBdoLogDto ToApiDto(this IBdoLog log, string key = "*", string alternateKey = null)
-            => log == null ? null : new ApiBdoLogDto()
+        public static BdoApiLogDto ToApiDto(this IBdoLog log, string key = "*", string alternateKey = null)
+            => log == null ? null : new BdoApiLogDto()
             {
                 CreationDate = log.CreationDate,
                 Description = log.Description?.GetContent(key, alternateKey),
@@ -29,24 +29,24 @@ namespace BindOpen.System.Diagnostics.Dto
         /// <summary>
         /// Converts the specified log to the Api log DTO.
         /// </summary>
-        /// <param name="aEvent">The log to consider.</param>
+        /// <param name="ev">The log to consider.</param>
         /// <param name="key">The key to consider.</param>
         /// <param name="alternateKey">The alternate key to consider.</param>
         /// <returns>Returns the Api log DTO.</returns>
-        public static ApiBdoLogEventDto ToApiDto(this IBdoLogEvent aEvent, string key = "*", string alternateKey = null)
+        public static BdoApiLogEventDto ToApiDto(this IBdoLogEvent ev, string key = "*", string alternateKey = null)
         {
-            return aEvent == null ? null : new ApiBdoLogEventDto()
+            return ev == null ? null : new BdoApiLogEventDto()
             {
-                CreationDate = aEvent.CreationDate,
-                Criticality = aEvent.Criticality,
-                Date = aEvent.Date,
-                Description = aEvent.Description?.GetContent(key, alternateKey),
-                DisplayName = aEvent.Title?.GetContent(key, alternateKey),
-                Id = aEvent.Id,
-                Kind = aEvent.Kind,
-                LastModificationDate = aEvent.LastModificationDate,
-                Name = aEvent.Name,
-                ResultCode = aEvent.ResultCode
+                CreationDate = ev.CreationDate,
+                Criticality = ev.Criticality,
+                Date = ev.Date,
+                Description = ev.Description?.GetContent(key, alternateKey),
+                DisplayName = ev.Title?.GetContent(key, alternateKey),
+                Id = ev.Id,
+                Kind = ev.Kind,
+                LastModificationDate = ev.LastModificationDate,
+                Name = ev.Name,
+                ResultCode = ev.ResultCode
             };
         }
     }

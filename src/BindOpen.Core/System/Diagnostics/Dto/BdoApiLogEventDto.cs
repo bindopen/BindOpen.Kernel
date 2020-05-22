@@ -10,11 +10,11 @@ using System.Xml.Serialization;
 namespace BindOpen.System.Diagnostics.Dto
 {
     /// <summary>
-    /// This class represents a log event.
+    /// This class represents a Api log event DTO.
     /// </summary>
     [XmlType("ApiLogEventDto", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class ApiBdoLogEventDto : NamedDataItem, IDisplayNamed, IDescribed
+    public class BdoApiLogEventDto : NamedDataItem, IDisplayNamed, IDescribed
     {
         // ------------------------------------------
         // PROPERTIES
@@ -91,7 +91,7 @@ namespace BindOpen.System.Diagnostics.Dto
         /// <summary>
         /// Instantiates a new instance of the ApiLogEventDto class.
         /// </summary>
-        public ApiBdoLogEventDto() : base()
+        public BdoApiLogEventDto() : base()
         {
         }
 
@@ -106,7 +106,7 @@ namespace BindOpen.System.Diagnostics.Dto
         /// <param name="date">The date of this instance.</param>
         /// <param name="name">The name of this instance.</param>
         /// <param name="id">The ID of this instance.</param>
-        public ApiBdoLogEventDto(
+        public BdoApiLogEventDto(
             EventKinds kind,
             string displayName = null,
             BdoEventCriticality criticality = BdoEventCriticality.None,
