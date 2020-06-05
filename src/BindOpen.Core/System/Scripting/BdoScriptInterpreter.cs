@@ -437,7 +437,7 @@ namespace BindOpen.System.Scripting
                         {
                             if (log != null)
                             {
-                                BdoIEvent logEvent = log.AddError(
+                                IBdoEvent logEvent = log.AddError(
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR");
                                 logEvent.Detail = new DataElementSet();
