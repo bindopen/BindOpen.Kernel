@@ -4,8 +4,7 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
-using BindOpen.System.Diagnostics.Loggers;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Application.Scopes
 {
@@ -71,15 +70,9 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// The output kinds of the default logger.
+        /// The logger factory.
         /// </summary>
-        /// <remarks>If there is none then we do not have any default logger.</remarks>
-        HashSet<DatasourceKind> DefaultLoggerOutputKinds { get; }
-
-        /// <summary>
-        /// The loggers.
-        /// </summary>
-        IList<IBdoLogger> Loggers { get; }
+        ILoggerFactory LoggerFactory { get; }
 
         /// <summary>
         /// Get the settings as the specified host settings class.

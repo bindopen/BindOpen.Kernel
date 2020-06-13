@@ -1,9 +1,8 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Processing;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Application.Services
 {
@@ -13,9 +12,9 @@ namespace BindOpen.Application.Services
     public interface IBdoJob : IIdentifiedDataItem, IBdoScoped
     {
         /// <summary>
-        /// The loggers.
+        /// The logger.
         /// </summary>
-        List<IBdoLogger> Loggers { get; set; }
+        ILogger Logger { get; set; }
 
         // Execution ---------------------------------
 

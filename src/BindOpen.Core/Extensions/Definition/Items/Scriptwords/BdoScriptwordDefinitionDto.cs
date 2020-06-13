@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Scripting;
 using System;
 using System.Collections.Generic;
@@ -206,40 +205,33 @@ namespace BindOpen.Extensions.Definition
         }
 
         /// <summary>
-        /// Returns a text summarizing this instance.
+        /// Converts this instance to Html.
         /// </summary>
-        /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public override string GetText(BdoDefaultLoggerFormat logFormat = BdoDefaultLoggerFormat.Xml, String uiCulture = "*")
+        public override string ToHtml(string uiCulture = "*")
         {
-            String st = "";
-            switch (logFormat)
-            {
-                case BdoDefaultLoggerFormat.Xml:
-                    st += "<span style='color: blue;' >" + Name + "</span> (" + Kind.ToString() + ")<br>";
-                    st += "<br>";
-                    st += "Modified: " + LastModificationDate + "<br>";
-                    st += "<br>";
-                    st += Description.GetContent(uiCulture);
-                    st += "<br>";
-                    st += "<strong>Library: " + LibraryId + "</strong>";
-                    st += "<br>";
-                    st += "<strong>Syntax</strong>";
-                    st += "<br>";
+            string st = "";
+            st += "<span style='color: blue;' >" + Name + "</span> (" + Kind.ToString() + ")<br>";
+            st += "<br>";
+            st += "Modified: " + LastModificationDate + "<br>";
+            st += "<br>";
+            st += Description.GetContent(uiCulture);
+            st += "<br>";
+            st += "<strong>Library: " + LibraryId + "</strong>";
+            st += "<br>";
+            st += "<strong>Syntax</strong>";
+            st += "<br>";
 
-                    string parameterString = "";
-                    if (IsRepeatedParameters)
-                        parameterString +=
-                            "<span style='color: blue;'>&lt;" + RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + MinParameterNumber.ToString() + ";Max: " + MaxParameterNumber.ToString() + ">";
-                    else
-                        foreach (DataElementSpec elementSpecification in ParameterSpecification.Items)
-                            parameterString += (string.IsNullOrEmpty(parameterString) ? "" : ",") +
-                                "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
-                    st += Name + "(" + parameterString + ")";
-
-                    break;
-            }
+            string parameterString = "";
+            if (IsRepeatedParameters)
+                parameterString +=
+                    "<span style='color: blue;'>&lt;" + RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + MinParameterNumber.ToString() + ";Max: " + MaxParameterNumber.ToString() + ">";
+            else
+                foreach (DataElementSpec elementSpecification in ParameterSpecification.Items)
+                    parameterString += (string.IsNullOrEmpty(parameterString) ? "" : ",") +
+                        "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
+            st += Name + "(" + parameterString + ")";
 
             return st;
         }

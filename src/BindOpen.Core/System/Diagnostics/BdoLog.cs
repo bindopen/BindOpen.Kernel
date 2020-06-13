@@ -4,9 +4,9 @@ using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics.Events;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Processing;
 using BindOpen.System.Scripting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace BindOpen.System.Diagnostics
 
         #region Variables
 
-        // Execution ----------------------------------
+        private ILogger _logger = null;
 
         private BdoTaskConfiguration _task = null;
 
@@ -39,6 +39,11 @@ namespace BindOpen.System.Diagnostics
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The logger of this instance.
+        /// </summary>
+        public ILogger Logger => _logger;
 
         // Execution ----------------------------------
 
@@ -57,7 +62,7 @@ namespace BindOpen.System.Diagnostics
         public BdoTaskConfiguration Task
         {
             get => _task;
-            set => WriteLog(_task = value, BdoLoggerMode.Auto);
+            set => _task = value;
         }
 
         /// <summary>
@@ -202,14 +207,6 @@ namespace BindOpen.System.Diagnostics
         [XmlIgnore()]
         public int Level => Parent == null ? 0 : Parent.Level + 1;
 
-        // Logger ----------------------------------
-
-        /// <summary>
-        /// Loggers of this instance.
-        /// </summary>
-        [XmlIgnore()]
-        public List<IBdoLogger> Loggers { get; set; } = null;
-
         #endregion
 
         // ------------------------------------------
@@ -228,9 +225,8 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// Instantiates a new instance of the Log class.
         /// </summary>
-        /// <param name="loggers">The loggers to consider.</param>
-        public BdoLog(
-            params IBdoLogger[] loggers) : this(null, loggers)
+        /// <param name="logger">The logger to consider.</param>
+        public BdoLog(ILogger logger) : this(null, logger)
         {
         }
 
@@ -238,15 +234,13 @@ namespace BindOpen.System.Diagnostics
         /// Instantiates a new instance of the Log class.
         /// </summary>
         /// <param name="eventFilter">The function that filters events.</param>
-        /// <param name="loggers">The loggers to consider.</param>
+        /// <param name="logger">The logger to consider.</param>
         public BdoLog(
-            Predicate<IBdoLogEvent> eventFilter = null,
-            params IBdoLogger[] loggers) : this()
+            Predicate<IBdoLogEvent> eventFilter,
+            ILogger logger) : this()
         {
             SubLogEventPredicate = eventFilter;
-            Loggers = loggers.Where(p => p != null).ToList();
-            foreach (IBdoLogger logger in Loggers)
-                logger.SetLog(this);
+            _logger = logger;
         }
 
         /// <summary>
@@ -254,12 +248,12 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="task">The task to consider.</param>
         /// <param name="eventFilter">The function that filters events.</param>
-        /// <param name="loggers">The loggers to consider.</param>
+        /// <param name="logger">The logger to consider.</param>
         public BdoLog(
             IBdoTaskConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null,
-            params IBdoLogger[] loggers)
-            : this(eventFilter, loggers)
+            ILogger logger = null)
+            : this(eventFilter, logger)
         {
             _task = task as BdoTaskConfiguration;
         }
@@ -274,7 +268,7 @@ namespace BindOpen.System.Diagnostics
             IBdoLog parentLog,
             IBdoTaskConfiguration task = null,
             Predicate<IBdoLogEvent> eventFilter = null)
-            : this(eventFilter, (parentLog != null ? parentLog.Loggers.ToArray() : Array.Empty<BdoLogger>()))
+            : this(eventFilter, parentLog?.Logger)
         {
             _task = task as BdoTaskConfiguration;
             if (parentLog != null)
@@ -294,95 +288,12 @@ namespace BindOpen.System.Diagnostics
         // Logging ----------------------------------------
 
         /// <summary>
-        /// Adds the specified loggers.
+        /// Sets the specified logger.
         /// </summary>
-        /// <param name="loggers">The loggers to add.</param>
-        public void AddLoggers(params IBdoLogger[] loggers)
+        /// <param name="logger">The logger to add.</param>
+        public void SetLogger(ILogger logger)
         {
-            if (loggers != null)
-            {
-                if (Loggers == null)
-                    Loggers = new List<IBdoLogger>();
-
-                foreach (IBdoLogger logger in loggers)
-                {
-                    if (logger != null)
-                    {
-                        Loggers.Add(logger);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Logs the specified task.
-        /// </summary>
-        /// <param name="task">The task to log.</param>
-        /// <param name="mode">The mode to log.</param>
-        public void WriteLog(IBdoTaskConfiguration task, BdoLoggerMode mode = BdoLoggerMode.Auto)
-        {
-            if (Loggers != null)
-            {
-                foreach (IBdoLogger logger in Loggers)
-                {
-                    if ((logger.Mode != BdoLoggerMode.Off && mode == BdoLoggerMode.Any) || (logger.Mode == mode))
-                    {
-                        logger.WriteTask(this, task);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Logs the specified event.
-        /// </summary>
-        /// <param name="logEvent">The event to log.</param>
-        /// <param name="mode">The mode to log.</param>
-        public void WriteLog(IBdoLogEvent logEvent, BdoLoggerMode mode = BdoLoggerMode.Auto)
-        {
-            if (Loggers != null)
-            {
-                foreach (IBdoLogger logger in Loggers)
-                {
-                    if ((logger.Mode != BdoLoggerMode.Off && mode == BdoLoggerMode.Any) || (logger.Mode == mode))
-                    {
-                        logger.WriteEvent(logEvent);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Logs the specified element.
-        /// </summary>
-        /// <param name="elementName">The element name to log.</param>
-        /// <param name="elementValue">The element value to log.</param>
-        /// <param name="mode">The mode to log.</param>
-        public void WriteLog(string elementName, object elementValue, BdoLoggerMode mode = BdoLoggerMode.Auto)
-        {
-            foreach (IBdoLogger logger in Loggers)
-            {
-                if ((logger.Mode != BdoLoggerMode.Off && mode == BdoLoggerMode.Any) || (logger.Mode == mode))
-                {
-                    logger.WriteDetailElement(this, elementName, elementValue);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Logs the specified child log.
-        /// </summary>
-        /// <param name="childLog">The child log to consider.</param>
-        /// <param name="mode">The mode to log.</param>
-        public void WriteLog(IBdoLog childLog, BdoLoggerMode mode = BdoLoggerMode.Auto)
-        {
-            foreach (IBdoLogger logger in Loggers)
-            {
-                if ((logger.Mode != BdoLoggerMode.Off && mode == BdoLoggerMode.Any) || (logger.Mode == mode))
-                {
-                    logger.WriteChildLog(this, childLog);
-                }
-            }
+            _logger = logger;
         }
 
         // Events ------------------------------------
@@ -409,18 +320,14 @@ namespace BindOpen.System.Diagnostics
                         if (logEvent.Description == null && childLog.Description != null) logEvent.Description = childLog.Description.Clone() as DictionaryDataItem;
                         if (logEvent.Kind == EventKinds.Any) logEvent.Kind = childLog.GetMaxEventKind();
                         childLog.Parent = this;
-                        childLog.Loggers = Loggers;
+                        childLog.SetLogger(_logger);
                         logEvent.Log = childLog;
                     }
 
-                    if (Loggers?.Any(q => q.IsHistoryRequired()) != false
-                        || (SubLogEventPredicate == null || SubLogEventPredicate.Invoke(logEvent)))
+                    if (SubLogEventPredicate == null || SubLogEventPredicate.Invoke(logEvent))
                     {
-                        (Events ?? (Events = new List<BdoLogEvent>())).Add(logEvent as BdoLogEvent);
-
+                        (Events ??= new List<BdoLogEvent>()).Add(logEvent as BdoLogEvent);
                         logEvent.Parent = this;
-                        WriteLog(logEvent, BdoLoggerMode.Auto);
-
                         _event = logEvent;
                     }
                 }
@@ -864,7 +771,7 @@ namespace BindOpen.System.Diagnostics
         //    AddSubLog(childLog = new Log(task)
         //    {
         //        Parent = this,
-        //        Loggers= new List<ILogger>(_Loggers)
+        //        Logger= new List<ILogger>(_Logger)
         //    });
         //    return childLog;
         //}
@@ -898,41 +805,6 @@ namespace BindOpen.System.Diagnostics
                 }
 
             return isRemoved;
-        }
-
-        // Loggers ---------------------------------------------
-
-        /// <summary>
-        /// Gets the logger with the specified name.
-        /// </summary>
-        /// <param name="name">The name of the logger to consider.</param>
-        /// <returns>Returns the logger with the specified name.</returns>
-        public IBdoLogger GetLogger(string name = null)
-        {
-            if (name == null)
-                return Loggers.Count > 0 ? Loggers[0] : null;
-            else
-                return Loggers.Find(p => p.KeyEquals(name));
-        }
-
-        /// <summary>
-        /// Gets the logger with the specified format.
-        /// </summary>
-        /// <param name="format">The name of the format to consider.</param>
-        /// <returns>Returns the logger with the specified format.</returns>
-        public IBdoLogger GetLogger(BdoDefaultLoggerFormat format)
-        {
-            return Loggers.Find(p => p.DefaultFormat == format);
-        }
-
-        /// <summary>
-        /// Gets the loggers with the specified formats.
-        /// </summary>
-        /// <param name="formats">The log formats to consider.</param>
-        /// <returns>The loggers with the specified formats.</returns>
-        public List<IBdoLogger> GetLoggers(params BdoDefaultLoggerFormat[] formats)
-        {
-            return Loggers.Where(p => formats.Contains(p.DefaultFormat)).ToList();
         }
 
         #endregion
@@ -1257,21 +1129,6 @@ namespace BindOpen.System.Diagnostics
         #region Mutators
 
         /// <summary>
-        /// Executes the specified action on loggers of this instance.
-        /// </summary>
-        /// <param name="action">The action to consider.</param>
-        public void ForLoggers(Action<IBdoLogger> action)
-        {
-            if (action != null)
-            {
-                foreach (IBdoLogger logger in Loggers)
-                {
-                    action?.Invoke(logger);
-                }
-            }
-        }
-
-        /// <summary>
         /// Starts this instance.
         /// </summary>
         public void Start()
@@ -1339,67 +1196,6 @@ namespace BindOpen.System.Diagnostics
             }
 
             base.UpdateRuntimeInfo(scope, scriptVariableSet, log);
-        }
-
-        // Unserialization ---------------------------------
-
-        /// <summary>
-        /// Instantiates a new instance of Log class from a xml file.
-        /// </summary>
-        /// <param name="filePath">The path of the Xml file to load.</param>
-        /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
-        /// <param name="loadLog">The output log of the load task.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
-        /// <returns>The load log.</returns>
-        public static IBdoLog Load<T>(
-            string filePath,
-            bool isCheckXml,
-            IBdoLog loadLog,
-            bool mustFileExist = true) where T : IBdoLogger, new()
-        {
-            IBdoLog log = (new T()).LoadLog(filePath, loadLog, mustFileExist);
-            log?.BuildTree();
-            return log;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of Log class from a xml string.
-        /// </summary>
-        /// <param name="xmlString">The Xml string to load.</param>
-        /// <param name="isCheckXml">Indicates whether the file must be checked.</param>
-        /// <param name="loadLog">The output log of the load task.</param>
-        /// <returns>The log defined in the Xml file.</returns>
-        public static IBdoLog LoadFromString<T>(
-            string xmlString,
-            bool isCheckXml,
-            IBdoLog loadLog = null) where T : IBdoLogger, new()
-        {
-            IBdoLog log = (new T()).LoadLogFromString(xmlString, loadLog);
-            log?.BuildTree();
-            return log;
-        }
-
-        // Serialization ---------------------------------
-
-        /// <summary>
-        /// Saves this instance in the specified log file.
-        /// </summary>
-        /// <param name="logFilePath">The path of the log file to save.</param>
-        /// <returns>Returns the saving log.</returns>
-        public bool Save<T>(string logFilePath)
-            where T : IBdoLogger, new()
-        {
-            return (new T()).Save(this, logFilePath);
-        }
-
-        /// <summary>
-        /// Gets the xml string of this instance.
-        /// </summary>
-        /// <returns>The Xml string of this instance.</returns>
-        public string ToString<T>()
-             where T : IBdoLogger, new()
-        {
-            return (new T()).ToString(this);
         }
 
         #endregion

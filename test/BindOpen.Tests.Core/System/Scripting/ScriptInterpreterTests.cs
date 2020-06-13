@@ -29,7 +29,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(_interpretedScript.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation. Result was '" + xml);
         }

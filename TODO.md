@@ -27,5 +27,7 @@ Todo list for BindOpen
 * Improve AppModule management (DbFluent mode)
 * Make XSD files work
 * ToApiDto: Use standard Result class
+* SetConfiguration ExtensionItem
+
 ### v.1.2
 * Integrate .net core logging/configuration

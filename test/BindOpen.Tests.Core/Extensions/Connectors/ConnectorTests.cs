@@ -72,7 +72,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed. Result was '" + xml);
         }
@@ -92,7 +92,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             ConnectorFake connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(configuration, null, log);
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + xml);
 
@@ -114,7 +114,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
         }
@@ -131,7 +131,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
 
@@ -149,7 +149,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
         }

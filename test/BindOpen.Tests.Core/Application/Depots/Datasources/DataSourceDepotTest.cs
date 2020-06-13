@@ -85,7 +85,7 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Data source depots saving failed. Result was '" + xml);
         }
@@ -105,7 +105,7 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + xml);
 

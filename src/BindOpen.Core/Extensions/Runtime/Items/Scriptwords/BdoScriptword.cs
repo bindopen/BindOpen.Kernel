@@ -129,10 +129,11 @@ namespace BindOpen.Extensions.Runtime
         {
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
-            if (ParameterDetail != null)
-                scriptWord.ParameterDetail = ParameterDetail.Clone() as DataElementSet;
+            scriptWord.SetDefinition(Definition);
+            //scriptWord.SetConfigurtion(Configuration);
+            scriptWord.ParameterDetail = ParameterDetail?.Clone<DataElementSet>();
             scriptWord.Parent = Parent;
-            scriptWord.SubScriptword = (SubScriptword == null ? null : SubScriptword.Clone() as BdoScriptword);
+            scriptWord.SubScriptword = SubScriptword?.Clone<BdoScriptword>();
             scriptWord.Item = Item;
 
             return scriptWord;

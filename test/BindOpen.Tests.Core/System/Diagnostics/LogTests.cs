@@ -63,7 +63,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Log saving failed. Result was '" + xml);
         }
@@ -82,7 +82,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + xml);
 

@@ -10,7 +10,7 @@ using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
 using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +42,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// 
         /// </summary>
-        protected IList<IBdoLogger> _loggers = null;
+        protected ILogger _logger = null;
 
 
         /// <summary>
@@ -141,15 +141,9 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// The loggers of this instance.
+        /// The logger factory of this instance.
         /// </summary>
-        public IList<IBdoLogger> Loggers { get; }
-
-        /// <summary>
-        /// The output kinds of the default logger.
-        /// </summary>
-        /// <remarks>If there is none then we do not have any default logger.</remarks>
-        public HashSet<DatasourceKind> DefaultLoggerOutputKinds => _defaultLoggerOutputKinds;
+        public ILoggerFactory LoggerFactory { get; }
 
         // Settings ----------------------
 
@@ -460,29 +454,13 @@ namespace BindOpen.Application.Scopes
         // Logs -------------------------------------------
 
         /// <summary>
-        /// Adds the specified settings specification.
+        /// Sets the specified logger.
         /// </summary>
-        /// <param name="loggers">The loggers to consider.</param>
+        /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddLoggers(params IBdoLogger[] loggers)
+        public ITBdoHostOptions<S> SetLogger(ILogger logger)
         {
-            if (_loggers == null) _loggers = new List<IBdoLogger>();
-            loggers?.ToList().ForEach(p => _loggers.Add(p));
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds the default file logger.
-        /// </summary>
-        /// <param name="logFileName">The log file name to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddDefaultFileLogger(string logFileName = null)
-        {
-            _defaultLoggerOutputKinds.Add(DatasourceKind.Repository);
-
-            HostSettings ??= new BdoHostSettings();
-            HostSettings?.WithLogsFileName(logFileName);
+            _logger = logger;
 
             return this;
         }

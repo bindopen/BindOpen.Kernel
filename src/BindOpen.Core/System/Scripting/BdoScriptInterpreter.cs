@@ -65,54 +65,58 @@ namespace BindOpen.System.Scripting
 
         // Evaluation ------------------------------------
 
+        // Expression
+
         /// <summary>
         /// Evaluates the specified data expression.
         /// </summary>
-        /// <param name="dataExpression">The data expression to consider.</param>
+        /// <param name="expression">The data expression to consider.</param>
         /// <param name="resultScript">The result script to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
-            IDataExpression dataExpression,
+            IDataExpression expression,
             out string resultScript,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             resultScript = "";
-            if (dataExpression != null)
-                return EvaluateScript(dataExpression.Text, dataExpression.Kind, out resultScript, scriptVariableSet, log);
+            if (expression != null)
+                return EvaluateScript(expression.Text, expression.Kind, out resultScript, scriptVariableSet, log);
             return null;
         }
 
         /// <summary>
         /// Evaluates the specified data expression.
         /// </summary>
-        /// <param name="dataExpression">The data expression to consider.</param>
+        /// <param name="expression">The data expression to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
-            IDataExpression dataExpression,
+            IDataExpression expression,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return Evaluate(dataExpression, out _, scriptVariableSet, log);
+            return Evaluate(expression, out _, scriptVariableSet, log);
         }
+
+        // String
 
         /// <summary>
         /// Evaluates the specified script using the defined script words of this instance
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
-        /// <param name="dataExpressionKind">The expression kind to consider.</param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="resultScript">The result script to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
-            DataExpressionKind dataExpressionKind,
+            DataExpressionKind expressionKind,
             out string resultScript,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
@@ -125,17 +129,35 @@ namespace BindOpen.System.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
-        /// <param name="dataExpressionKind">The expression kind to consider.</param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
-            DataExpressionKind dataExpressionKind,
+            DataExpressionKind expressionKind,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
             return EvaluateScript(script, DataExpressionKind.Script, out _, scriptVariableSet, log);
+        }
+
+        // Script word
+
+        /// <summary>
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
+        /// </summary>
+        /// <param name="scriptword">The script word to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        public object Evaluate(
+            IBdoScriptword scriptword,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            return EvaluateScriptword(scriptword, scriptVariableSet, log);
         }
 
         // Interpretation ------------------------------------
@@ -144,17 +166,17 @@ namespace BindOpen.System.Scripting
         /// Interprets the specified script using the defined script words of this instance
         /// of the specified libraries.
         /// </summary>
-        /// <param name="dataExpression">The data expression to consider.</param>
+        /// <param name="expression">The data expression to consider.</param>
         /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
-            IDataExpression dataExpression,
+            IDataExpression expression,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            Evaluate(dataExpression, out string resultScript, scriptVariableSet, log);
+            Evaluate(expression, out string resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -169,11 +191,11 @@ namespace BindOpen.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public string Interprete(
             string script,
-            DataExpressionKind dataExpressionKind,
+            DataExpressionKind expressionKind,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            EvaluateScript(script, dataExpressionKind, out string resultScript, scriptVariableSet, log);
+            EvaluateScript(script, expressionKind, out string resultScript, scriptVariableSet, log);
             return resultScript;
         }
 
@@ -183,25 +205,25 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="script">The script to consider.</param>
         /// <param name="resultScript">The result script to consider.</param>
-        /// <param name="dataExpressionKind">The expression kind to consider.</param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         private object EvaluateScript(
             string script,
-            DataExpressionKind dataExpressionKind,
+            DataExpressionKind expressionKind,
             out string resultScript,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            Object item = null;
+            object item = null;
 
             resultScript = script ?? "";
 
             int index;
             int scriptWordBeginIndex;
 
-            switch (dataExpressionKind)
+            switch (expressionKind)
             {
                 case DataExpressionKind.Auto:
                     if (script != null)
@@ -298,7 +320,7 @@ namespace BindOpen.System.Scripting
                         // we replace the script word by its value
                         string evaluatedString = "";
                         evaluatedValue = scriptWord.Item = EvaluateWord(
-                            scriptWord, index + offsetIndex, scriptVariableSet, isSimulationModeOn, log);
+                            scriptWord, scriptVariableSet, log, index + offsetIndex, isSimulationModeOn);
                         if (evaluatedValue != null)
                             evaluatedString = evaluatedValue.ToString();
                         //we retrieve the index of the root script word
@@ -478,6 +500,11 @@ namespace BindOpen.System.Scripting
                                         dataElement.Specification.MaximumItemNumber = 1;
                                     dataElement.WithItems(parameterValue);
 
+                                    if (scriptWord.ParameterDetail == null)
+                                    {
+                                        scriptWord.ParameterDetail = new DataElementSet();
+                                    }
+
                                     scriptWord.ParameterDetail.Add(dataElement);
                                     scriptWordParameterCount++;
                                 }
@@ -585,8 +612,7 @@ namespace BindOpen.System.Scripting
                             if (script.GetSubstring(nextIndex + 1, nextIndex + 1) == ".")
                             {
                                 // we evaluate the variable value
-                                scriptWord.Item = EvaluateWord(
-                                    scriptWord, index, scriptVariableSet, isSimulationModeOn, log);
+                                scriptWord.Item = EvaluateWord(scriptWord, scriptVariableSet, log, index, isSimulationModeOn);
 
                                 nextIndex++;
                                 scriptWord = FindNextScriptword(
@@ -612,13 +638,52 @@ namespace BindOpen.System.Scripting
             return scriptWord;
         }
 
+        /// <summary>
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
+        /// </summary>
+        /// <param name="scriptword">The script word to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        private object EvaluateScriptword(
+            IBdoScriptword scriptword,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null)
+        {
+            if (scriptword == null) return null;
+
+            var cloned = new BdoScriptword();
+            cloned.SetDefinition(scriptword.Definition);
+            //cloned.SetConfiguration(scriptword.Configuration);
+
+            if (scriptword.ParameterDetail?.Count > 0)
+            {
+                cloned.ParameterDetail = new DataElementSet();
+                foreach (var param in scriptword.ParameterDetail.Items)
+                {
+                    if (param is IBdoScriptword scriptwordParam)
+                    {
+                        var paramObject = EvaluateScriptword(scriptwordParam, scriptVariableSet, log);
+                        cloned.ParameterDetail.AddValue(param.Name, paramObject);
+                    }
+                    else
+                    {
+                        cloned.ParameterDetail.Add(param);
+                    }
+                }
+            }
+
+            return EvaluateWord(cloned, scriptVariableSet, log);
+        }
+
         // Returns the result of the script word scriptWord with the specified parameter values
         private string EvaluateWord(
             IBdoScriptword scriptWord,
-            int offsetIndex,
             IScriptVariableSet scriptVariableSet = null,
-            bool isSimulationModeOn = false,
-            IBdoLog log = null)
+            IBdoLog log = null,
+            int offsetIndex = 0,
+            bool isSimulationModeOn = false)
         {
             if (_scope == null) return null;
             if ((scriptWord == null) || (scriptWord.Definition == null)) return null;
@@ -696,7 +761,7 @@ namespace BindOpen.System.Scripting
             {
                 foreach (IDataElementSpec parameterSpecification in definitionDto.ParameterSpecification.Items)
                 {
-                    IScalarElement parameter = scriptWord.ParameterDetail[parameterIndex] as IScalarElement;
+                    IScalarElement parameter = scriptWord.ParameterDetail?[parameterIndex] as IScalarElement;
 
                     // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
                     if (((definitionDto.IsRepeatedParameters) && (definitionDto.RepeatedParameterValueType == DataValueTypes.Text))

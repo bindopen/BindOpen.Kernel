@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8879AC0E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.Core", "src\BindOpen.Core\BindOpen.Core.csproj", "{CF327845-E333-4F48-A675-CF70BEC66A28}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.Runtime", "src\BindOpen.Runtime\BindOpen.Runtime.csproj", "{30983F88-56A8-48CF-ADC4-F632E0934D0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.Runtime.Logging", "src\BindOpen.Runtime.Logging\BindOpen.Runtime.Logging.csproj", "{30983F88-56A8-48CF-ADC4-F632E0934D0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.Runtime.NetCore", "src\BindOpen.Runtime.NetCore\BindOpen.Runtime.NetCore.csproj", "{21AE937B-02C7-4989-99E2-17603D91407E}"
 EndProject

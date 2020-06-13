@@ -90,7 +90,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Carrier saving failed. Result was '" + xml);
         }
@@ -110,7 +110,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Carrier loading failed" + xml);
 

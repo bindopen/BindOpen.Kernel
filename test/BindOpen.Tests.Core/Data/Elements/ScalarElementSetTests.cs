@@ -95,7 +95,7 @@ namespace BindOpen.Tests.Core.Data.Elements
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + xml);
         }
@@ -114,7 +114,7 @@ namespace BindOpen.Tests.Core.Data.Elements
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
 
