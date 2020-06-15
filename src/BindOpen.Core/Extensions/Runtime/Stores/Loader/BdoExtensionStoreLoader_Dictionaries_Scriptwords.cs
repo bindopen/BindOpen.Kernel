@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
-using BindOpen.Extensions.Runtime;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using System;
@@ -84,7 +83,6 @@ namespace BindOpen.Extensions.Runtime
                                     {
                                         itemDefinition.RuntimeFunction += methodInfo.CreateDelegate(
                                             typeof(BdoScriptwordFunction), itemDefinition.RuntimeFunction) as BdoScriptwordFunction;
-
 
                                         scriptwordDefinitions.Add(itemDefinition);
 

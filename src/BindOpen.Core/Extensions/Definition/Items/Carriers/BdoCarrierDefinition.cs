@@ -27,7 +27,7 @@ namespace BindOpen.Extensions.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary>
-        public string UniqueId { get => ExtensionDefinition?.Dto.Name + "$" + Dto?.Name; set { } }
+        public string UniqueId { get => ExtensionDefinition?.Dto.Name + "$" + Dto?.Name; }
 
         /// <summary>
         /// The runtime type of this instance.

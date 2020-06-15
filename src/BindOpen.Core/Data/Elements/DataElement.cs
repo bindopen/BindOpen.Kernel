@@ -181,6 +181,16 @@ namespace BindOpen.Data.Elements
         #region Items
 
         /// <summary>
+        /// Indicates whether this instance is compatible with the specified item.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <returns></returns>
+        public bool IsCompatibleWithItem(object item)
+        {
+            return (ValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(ValueType));
+        }
+
+        /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
@@ -343,8 +353,7 @@ namespace BindOpen.Data.Elements
                     || (Specification.MaximumItemNumber == -1)
                     || ((Items?.Count ?? 0) < Specification.MaximumItemNumber))
                 {
-                    if (Specification == null
-                        && (ValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(ValueType)))
+                    if (Specification == null && IsCompatibleWithItem(item))
                     {
                         if (Items == null)
                         {

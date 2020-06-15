@@ -548,7 +548,6 @@ namespace BindOpen.System.Scripting
                 ref aTempIndex,
                 0,
                 scriptVariableSet,
-                false,
                 log);
 
             // if it is not null

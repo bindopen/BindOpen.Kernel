@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using BindOpen.Data.Common;
+﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Specification
 {
@@ -48,7 +48,7 @@ namespace BindOpen.Data.Specification
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        bool IsCompatibleWith(IDataItem item);
+        bool IsCompatibleWithItem(object item);
 
         /// <summary>
         /// 

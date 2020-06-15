@@ -112,7 +112,7 @@ namespace BindOpen.Data.Specification
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public virtual bool IsCompatibleWith(IDataItem item)
+        public virtual bool IsCompatibleWithItem(object item)
         {
             if (item == null)
                 return true;

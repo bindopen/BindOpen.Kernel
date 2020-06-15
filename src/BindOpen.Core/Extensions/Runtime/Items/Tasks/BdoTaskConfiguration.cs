@@ -46,7 +46,7 @@ namespace BindOpen.Extensions.Runtime
         [XmlElement("inputs")]
         public DataElementSet InputDetail
         {
-            get => _inputDetail ?? (_inputDetail = new DataElementSet());
+            get => _inputDetail ??= new DataElementSet();
             set => _inputDetail = value;
         }
 
@@ -56,7 +56,7 @@ namespace BindOpen.Extensions.Runtime
         [XmlElement("outputs")]
         public DataElementSet OutputDetail
         {
-            get => _outputDetail ?? (_outputDetail = new DataElementSet());
+            get => _outputDetail ??= new DataElementSet();
             set => _outputDetail = value;
         }
 
@@ -100,6 +100,50 @@ namespace BindOpen.Extensions.Runtime
         public new IBdoTaskConfiguration WithItems(params IDataElement[] items)
         {
             base.WithItems(items);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputs"></param>
+        public IBdoTaskConfiguration AddInputs(params IDataElement[] inputs)
+        {
+            if (InputDetail == null) InputDetail = new DataElementSet();
+            InputDetail.Add(inputs);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputs"></param>
+        public IBdoTaskConfiguration WithInputs(params IDataElement[] inputs)
+        {
+            if (InputDetail == null) InputDetail = new DataElementSet();
+            InputDetail.WithItems(inputs);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="outputs"></param>
+        public IBdoTaskConfiguration AddOutputs(params IDataElement[] outputs)
+        {
+            if (OutputDetail == null) OutputDetail = new DataElementSet();
+            OutputDetail.Add(outputs);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="outputs"></param>
+        public IBdoTaskConfiguration WithOutputs(params IDataElement[] outputs)
+        {
+            if (OutputDetail == null) OutputDetail = new DataElementSet();
+            OutputDetail.WithItems(outputs);
             return this;
         }
 

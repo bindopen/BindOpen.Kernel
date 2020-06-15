@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.Tests.Core.Fakers;

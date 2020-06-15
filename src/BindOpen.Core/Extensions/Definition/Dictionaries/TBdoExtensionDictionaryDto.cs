@@ -54,7 +54,7 @@ namespace BindOpen.Extensions.Definition
         /// </summary>
         [XmlArray("groups")]
         [XmlArrayItem("group")]
-        public List<BdoExtensionItemGroup> Groups => _groups ?? (_groups = new List<BdoExtensionItemGroup>());
+        public List<BdoExtensionItemGroup> Groups => _groups ??= new List<BdoExtensionItemGroup>();
 
         #endregion
 

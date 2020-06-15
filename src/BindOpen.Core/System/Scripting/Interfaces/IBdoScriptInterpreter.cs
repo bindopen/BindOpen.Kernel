@@ -63,7 +63,7 @@ namespace BindOpen.System.Scripting
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IBdoScriptword FindNextScriptword(ref string script, IBdoScriptword parentScriptword, ref int index, int offsetIndex, IScriptVariableSet scriptVariableSet = null, bool isSimulationModeOn = false, IBdoLog log = null);
+        IBdoScriptword FindNextScriptword(ref string script, IBdoScriptword parentScriptword, ref int index, int offsetIndex, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
