@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.Tests.Core.Fakers;
@@ -100,9 +101,9 @@ namespace BindOpen.Tests.Core.Data.Elements
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set saving failed" + xml);
 
             Test(_carrierElementSet);
         }
@@ -121,9 +122,9 @@ namespace BindOpen.Tests.Core.Data.Elements
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Element set loading failed" + xml);
 
             Test(elementSet);
         }

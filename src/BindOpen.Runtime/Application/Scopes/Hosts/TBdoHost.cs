@@ -7,13 +7,11 @@ using BindOpen.Data.Context;
 using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Helpers.Strings;
-using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Diagnostics.Events;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Processing;
 using BindOpen.System.Scripting;
 using System;
@@ -341,25 +339,25 @@ namespace BindOpen.Application.Scopes
 
             // we initialize logging
 
-            IBdoLogger primaryLogger = null;
-            if (Options?.DefaultLoggerOutputKinds?.Count > 0)
-            {
-                primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(BdoLogger.__DefaultName, BdoLoggerMode.Auto);
+            //IBdoLogger primaryLogger = null;
+            //if (Options?.DefaultLoggerOutputKinds?.Count > 0)
+            //{
+            //    primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(BdoLogger.__DefaultName, BdoLoggerMode.Auto);
 
-                if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Repository))
-                {
-                    primaryLogger.AddFileOutput(GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
-                }
+            //    if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Repository))
+            //    {
+            //        primaryLogger.AddFileOutput(GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
+            //    }
 
-                if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Console))
-                {
-                    primaryLogger.AddConsoleOutput();
-                }
+            //    if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Console))
+            //    {
+            //        primaryLogger.AddConsoleOutput();
+            //    }
 
-                Log.AddLoggers(primaryLogger);
-            }
+            //    Log.AddLoggers(primaryLogger);
+            //}
 
-            Log.AddLoggers(Options?.Loggers?.ToArray());
+            //Log.AddLoggers(Options?.Loggers?.ToArray());
 
             // we launch the standard initialization of service
 
@@ -480,21 +478,21 @@ namespace BindOpen.Application.Scopes
                             subLog.AddMessage(title: "No configuration loaded");
                         }
 
-                        // we delete expired primary logs
+                        //// we delete expired primary logs
 
-                        int logsExpirationDayNumber = Options?.HostSettings?.LogsExpirationDayNumber ?? -1;
-                        primaryLogger?.DeleteExpiredLogs(logsExpirationDayNumber, BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + "*.txt");
+                        //int logsExpirationDayNumber = Options?.HostSettings?.LogsExpirationDayNumber ?? -1;
+                        //primaryLogger?.DeleteExpiredLogs(logsExpirationDayNumber, BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + "*.txt");
 
-                        // we update the log folder path
+                        //// we update the log folder path
 
-                        Log.ForLoggers(p => p.AddFileOutput(GetKnownPath(BdoHostPathKind.LogsFolder), Options?.HostSettings?.LogsFileName, true));
+                        //Log.ForLoggers(p => p.AddFileOutput(GetKnownPath(BdoHostPathKind.LogsFolder), Options?.HostSettings?.LogsFileName, true));
 
-                        // we delete expired logs in the logs folder
+                        //// we delete expired logs in the logs folder
 
-                        foreach (var logger in Log.Loggers)
-                        {
-                            logger?.DeleteExpiredLogs(logsExpirationDayNumber);
-                        }
+                        //foreach (var logger in Log.Logger)
+                        //{
+                        //    logger?.DeleteExpiredLogs(logsExpirationDayNumber);
+                        //}
 
                         // we load the data store
 

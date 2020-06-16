@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Common;
-using BindOpen.Data.Items;
 using BindOpen.System.Diagnostics;
 using System.Xml.Serialization;
 
@@ -50,13 +49,9 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public override bool IsCompatibleWith(IDataItem item)
+        public override bool IsCompatibleWithItem(object item)
         {
-            bool isCompatible = base.IsCompatibleWith(item);
-
-            if (isCompatible)
-            {
-            }
+            bool isCompatible = base.IsCompatibleWithItem(item);
 
             return isCompatible;
         }

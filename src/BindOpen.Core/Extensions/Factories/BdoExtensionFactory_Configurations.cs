@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Elements;
+using BindOpen.Extensions.Runtime;
 
-namespace BindOpen.Extensions.Runtime
+namespace BindOpen.Extensions
 {
     /// <summary>
     /// This static class provides methods to create objects.
@@ -10,7 +11,7 @@ namespace BindOpen.Extensions.Runtime
         // Carriers ------------------------------------------------
 
         /// <summary>
-        /// Creates the instance of the specified definition.
+        /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoCarrierConfiguration CreateCarrierConfiguration(
@@ -29,7 +30,7 @@ namespace BindOpen.Extensions.Runtime
         // Connectors ------------------------------------------------
 
         /// <summary>
-        /// Creates the instance of the specified definition.
+        /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoConnectorConfiguration CreateConnectorConfiguration(
@@ -48,7 +49,7 @@ namespace BindOpen.Extensions.Runtime
         // Entities ------------------------------------------------
 
         /// <summary>
-        /// Creates the instance of the specified definition.
+        /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoEntityConfiguration CreateEntityConfiguration(
@@ -67,7 +68,7 @@ namespace BindOpen.Extensions.Runtime
         // Tasks ------------------------------------------------
 
         /// <summary>
-        /// Creates the instance of the specified definition.
+        /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoTaskConfiguration CreateTaskConfiguration(

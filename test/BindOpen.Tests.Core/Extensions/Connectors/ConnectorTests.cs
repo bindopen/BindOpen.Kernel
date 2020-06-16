@@ -72,9 +72,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector saving failed" + xml);
         }
 
         [Test, Order(3)]
@@ -92,9 +92,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             ConnectorFake connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(configuration, null, log);
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Connector loading failed" + xml);
 
             Test(connector);
         }
@@ -114,9 +114,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed" + xml);
         }
 
         [Test, Order(4)]
@@ -131,9 +131,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Connection creation failed" + xml);
 
             // check bad connection
 
@@ -141,7 +141,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             {
                 _connector?.UsingConnection((p, l) => { string toto = null; int i = toto.Length; }, log);
             }
-            catch(NullReferenceException ex)
+            catch (NullReferenceException ex)
             {
                 log.AddException(ex);
             }
@@ -149,9 +149,9 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(log.HasErrorsOrExceptions(), "Connection creation failed. Result was '" + xml);
+            Assert.That(log.HasErrorsOrExceptions(), "Connection creation failed" + xml);
         }
     }
 }

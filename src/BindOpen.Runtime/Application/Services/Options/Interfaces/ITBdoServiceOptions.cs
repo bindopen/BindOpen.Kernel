@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Settings;
-using BindOpen.System.Diagnostics.Loggers;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Application.Services
 {
@@ -14,9 +13,9 @@ namespace BindOpen.Application.Services
         where SHost : IBdoAppSettings
     {
         /// <summary>
-        /// Loggers.
+        /// Logger.
         /// </summary>
-        List<IBdoLogger> Loggers { get; }
+        ILogger Logger { get; }
 
         /// <summary>
         /// Functional settings.

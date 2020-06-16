@@ -10,7 +10,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
     [TestFixture, Order(401)]
     public class ScriptInterpreterTests
     {
-        private readonly string _script = "$ISEQUAL(\"MYTABLE\", $Text(MYTABLE))";
+        private readonly string _script = "$isEqual('MYTABLE', $text('MYTABLE'))";
         private readonly string _interpretedScript = "true";
 
         [OneTimeSetUp]
@@ -19,19 +19,44 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         }
 
         [Test, Order(1)]
-        public void InterpreteTest()
+        public void LoadInterpreterTest()
+        {
+            var interpreter = GlobalVariables.Scope.Interpreter;
+            Assert.That(interpreter.GetDefinitions().Count > 0, "Bad interpreter loading");
+        }
+
+        [Test, Order(2)]
+        public void InterpreteWordTest()
         {
             var log = new BdoLog();
 
             var scriptVariableSet = ScriptingFactory.CreateVariableSet();
-            var resultScript = GlobalVariables.Scope.Interpreter.Interprete(_script, DataExpressionKind.Script, scriptVariableSet, log);
+            var scriptword = ScriptingFactory.Function("isEqual", "MYTABLE",
+                ScriptingFactory.Function("text", "mytable"));
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate(scriptword.CreateExpression(), scriptVariableSet, log)?.ToString();
 
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(_interpretedScript.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation. Result was '" + xml);
+            Assert.That(_interpretedScript.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
+        }
+
+        [Test, Order(3)]
+        public void InterpreteScriptTest()
+        {
+            var log = new BdoLog();
+
+            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate(_script, DataExpressionKind.Script, scriptVariableSet, log)?.ToString();
+
+            string xml = "";
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml() + "'";
+            }
+            Assert.That(_interpretedScript.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
         }
     }
 }

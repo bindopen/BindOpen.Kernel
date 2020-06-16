@@ -16,8 +16,10 @@ Todo list for BindOpen
 ## Stuff to check out later on
 
 ### v.1.1
-* Add Getting Help + Contributors sections in README.md
 
+* Improve extension handling
+* Make logging work again
+* Add Getting Help + Contributors sections in README.md
 * Handle expcetions correctly.
 * Simplify extension item management
 * Improve OptionsSet 
@@ -27,5 +29,7 @@ Todo list for BindOpen
 * Improve AppModule management (DbFluent mode)
 * Make XSD files work
 * ToApiDto: Use standard Result class
+* SetConfiguration ExtensionItem
+
 ### v.1.2
 * Integrate .net core logging/configuration

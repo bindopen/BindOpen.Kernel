@@ -1,8 +1,6 @@
 ﻿using BindOpen.Application.Settings;
-using BindOpen.System.Diagnostics.Loggers;
+using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Application.Services
 {
@@ -21,9 +19,9 @@ namespace BindOpen.Application.Services
         #region Properties
 
         /// <summary>
-        /// The loggers of this instance.
+        /// The logger of this instance.
         /// </summary>
-        public List<IBdoLogger> Loggers { get; }
+        public ILogger Logger { get; }
 
         /// <summary>
         /// The settings function of this instance.
@@ -41,13 +39,13 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Instantiates a new instance of the TBdoHostServiceOptions class.
         /// </summary>
-        /// <param name="loggers">The loggers to consider.</param>
+        /// <param name="logger">The logger to consider.</param>
         /// <param name="funcSettingsConverter">The settings converter function to consider.</param>
         public TBdoServiceOptions(
-            IBdoLogger[] loggers = null,
+            ILogger logger = null,
             Func<SHost, SServ> funcSettingsConverter = null)
         {
-            Loggers = loggers?.ToList();
+            Logger = logger;
             FuncSettingsConverter = funcSettingsConverter;
         }
 

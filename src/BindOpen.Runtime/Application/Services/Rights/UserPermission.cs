@@ -136,26 +136,18 @@ namespace BindOpen.Application.Rights
         /// <param name="scriptInterpreter">The script interpreter to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <returns>Returns the value of this instance.</returns>
-        public Boolean GetValue(IBdoScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
+        public bool GetValue(IBdoScriptInterpreter scriptInterpreter = null, IScriptVariableSet scriptVariableSet = null)
         {
-            string value = ValueScript?.Trim();
+            string valueString = ValueScript?.Trim();
 
-            if (value != null)
+            if (valueString?.Trim().Equals("true", StringComparison.OrdinalIgnoreCase) == true)
             {
-                if (value.ToLower().Trim() == "%true()")
-                {
-                    return true;
-                }
-                else if (value.ToLower().Trim() == "%false()")
-                {
-                    return false;
-                }
+                return true;
             }
 
             if (scriptInterpreter != null)
             {
-                scriptInterpreter.Evaluate(ValueScript, DataExpressionKind.Script, out value, scriptVariableSet);
-                return ((value != null) && (value.ToLower().Trim() == "%true()"));
+                return scriptInterpreter.Evaluate(valueString, DataExpressionKind.Script, scriptVariableSet) as bool? == true;
             }
 
             return false;

@@ -6,7 +6,7 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLogEvent : BdoIEvent
+    public interface IBdoLogEvent : IBdoEvent
     {
         /// <summary>
         /// 

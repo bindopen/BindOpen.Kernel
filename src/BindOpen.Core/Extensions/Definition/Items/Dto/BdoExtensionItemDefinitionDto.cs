@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.System.Diagnostics.Loggers;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -84,12 +83,11 @@ namespace BindOpen.Extensions.Definition
         #region Accessors
 
         /// <summary>
-        /// Returns a text summarizing this instance.
+        /// Converts this instance to Html.
         /// </summary>
-        /// <param name="logFormat">The log format to consider.</param>
         /// <param name="uiCulture">The UI culture to consider.</param>
         /// <returns>A text summarizing this instance.</returns>
-        public virtual string GetText(BdoDefaultLoggerFormat logFormat = BdoDefaultLoggerFormat.Xml, string uiCulture = "*")
+        public virtual string ToHtml(string uiCulture = "*")
         {
             return "";
         }

@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Stores;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Core.Application.Hosts
@@ -24,8 +25,14 @@ namespace BindOpen.Tests.Core.Application.Hosts
         {
             var appHost = BdoHostFactory.CreateBindOpenDefaultHost(
                 options => options
-                    .AddDefaultConsoleLogger()
-                    .AddDefaultFileLogger());
+                    .SetLogger(builder =>
+                    {
+                        builder
+                            .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                            .AddBindOpenFileLogger(options)
+                            .AddConsole();
+                    })
+                    .AddDefaultConsoleLogger());
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 
@@ -45,8 +52,14 @@ namespace BindOpen.Tests.Core.Application.Hosts
                         .RegisterDatasources(m => m
                             .AddFromConfiguration(options)
                             .AddFromNetCoreConfiguration(GlobalVariables.NetCoreConfiguration)))
-                    .AddDefaultConsoleLogger()
-                    .AddDefaultFileLogger());
+                        .SetLogger(builder =>
+                        {
+                            builder
+                                .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                                .AddBindOpenFileLogger(options)
+                                .AddConsole();
+                        })
+                        .AddDefaultConsoleLogger());
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 

@@ -50,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\BindOpen.Runtime.Logging\BindOpen.Runtime.Logging.csproj" />
     <ProjectReference Include="..\..\src\BindOpen.Runtime.NetCore\BindOpen.Runtime.NetCore.csproj" />
   </ItemGroup>
 

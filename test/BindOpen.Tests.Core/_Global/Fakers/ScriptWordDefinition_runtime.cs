@@ -1,8 +1,5 @@
-﻿using BindOpen.Application.Scopes;
-using BindOpen.Data.Helpers.Objects;
-using BindOpen.Data.Helpers.Strings;
+﻿using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Runtime;
-using BindOpen.System.Scripting;
 using System;
 
 namespace BindOpen.Tests.Core.Fakers
@@ -22,39 +19,24 @@ namespace BindOpen.Tests.Core.Fakers
         /// <summary>
         /// Evaluates the script word $TEXT.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_Text(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_Text(BdoScriptwordFunctionVariable variable)
         {
-            String value1 = parameters.GetStringAtIndex(0);
-            return "\"" + value1 + "\"";
+            return variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
         }
 
         /// <summary>
         /// Evaluates the script word $ISEQUAL.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_IsEqual(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_IsEqual(BdoScriptwordFunctionVariable variable)
         {
-            string value1 = parameters.GetStringAtIndex(0);
-            string value2 = parameters.GetStringAtIndex(1);
+            string value1 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+            string value2 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
 
             return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "true" : "false");
         }

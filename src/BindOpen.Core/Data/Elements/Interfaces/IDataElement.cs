@@ -115,5 +115,12 @@ namespace BindOpen.Data.Elements
             IBdoScope scope = null,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);
+
+        /// <summary>
+        /// Indicates whether this instance is compatible with the specified item.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <returns></returns>
+        bool IsCompatibleWithItem(object item);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Scripting;
-using System;
 using static BindOpen.Data.Conditions.AdvancedCondition;
 
 namespace BindOpen.Data.Conditions
@@ -121,11 +120,9 @@ namespace BindOpen.Data.Conditions
             if (condition.Expression == null)
                 return false;
 
-            string st = scriptInterpreter.Interprete(condition.Expression, scriptVariableSet);
+            bool? b = scriptInterpreter.Evaluate(condition.Expression, scriptVariableSet) as bool?;
 
-            return condition.TrueValue ?
-                string.Compare(st, "%true()", StringComparison.OrdinalIgnoreCase) == 0 :
-                string.Compare(st, "%false()", StringComparison.OrdinalIgnoreCase) == 0;
+            return condition.TrueValue ? (b ?? false) : !(b ?? true);
         }
     }
 }

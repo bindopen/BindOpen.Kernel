@@ -18,7 +18,7 @@ namespace BindOpen.System.Diagnostics.Events
     [XmlType("Event", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEvent))]
-    public class BdoEvent : DescribedDataItem, BdoIEvent
+    public class BdoEvent : DescribedDataItem, IBdoEvent
     {
         // ------------------------------------------
         // PROPERTIES

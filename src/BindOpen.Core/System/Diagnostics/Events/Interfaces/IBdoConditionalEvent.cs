@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoConditionalEvent : BdoIEvent
+    public interface IBdoConditionalEvent : IBdoEvent
     {
         /// <summary>
         /// 

@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
-using BindOpen.Extensions.Runtime;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Diagnostics;
 using System;
@@ -83,14 +82,13 @@ namespace BindOpen.Extensions.Runtime
                                     try
                                     {
                                         itemDefinition.RuntimeFunction += methodInfo.CreateDelegate(
-                                            typeof(BdoScriptwordFunction), itemDefinition.RuntimeFunction) as BdoScriptwordFunction;
-
+                                            typeof(BdoScriptwordFunction)) as BdoScriptwordFunction;
 
                                         scriptwordDefinitions.Add(itemDefinition);
 
                                         count++;
                                     }
-                                    catch
+                                    catch (ArgumentException)
                                     {
                                         log?.AddError(
                                                 title: "Incompatible function ('" + methodInfo.Name + "')",

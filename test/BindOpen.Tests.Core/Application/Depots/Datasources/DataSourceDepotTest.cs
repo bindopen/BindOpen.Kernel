@@ -3,7 +3,7 @@ using BindOpen.Data.Elements;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
-using BindOpen.Extensions.Runtime;
+using BindOpen.Extensions;
 using BindOpen.System.Diagnostics;
 using Bogus;
 using NUnit.Framework;
@@ -85,9 +85,9 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Data source depots saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Data source depots saving failed" + xml);
         }
 
         [Test, Order(3)]
@@ -105,9 +105,9 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
             string xml = "";
             if (log.HasErrorsOrExceptions())
             {
-                xml = ". Result was '" + log.ToXml();
+                xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Data source depot loading failed" + xml);
 
             TestDatasourceDataStore(datasourceDepot);
         }
