@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Extensions.Definition;
+﻿using BindOpen.Extensions.Definition;
 using BindOpen.System.Scripting;
+using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Runtime
 {
@@ -27,17 +27,12 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// 
         /// </summary>
-        IDataElementSet ParameterDetail { get; set; }
+        List<object> Parameters { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         object Item { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string StringItem { get; }
 
         /// <summary>
         /// 
@@ -50,5 +45,10 @@ namespace BindOpen.Extensions.Runtime
         /// </summary>
         /// <returns></returns>
         IBdoScriptword Root();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IBdoScriptword AddParameter(object value);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers.Serialization;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Definition;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;

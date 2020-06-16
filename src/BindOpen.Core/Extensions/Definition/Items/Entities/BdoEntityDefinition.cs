@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Extensions.Definition;
 using System;
 
 namespace BindOpen.Extensions.Definition

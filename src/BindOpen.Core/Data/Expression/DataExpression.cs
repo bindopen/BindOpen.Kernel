@@ -20,19 +20,25 @@ namespace BindOpen.Data.Expression
         /// <summary>
         /// The value of this instance.
         /// </summary>
-        [XmlElement("value")]
         [DetailPropertyAttribute]
+        [XmlElement("text")]
         public string Text { get; set; }
 
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        [XmlElement("kind")]
         [DetailPropertyAttribute]
+        [XmlElement("kind")]
         public DataExpressionKind Kind { get; set; } = DataExpressionKind.Auto;
 
-        #endregion
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        [DetailPropertyAttribute]
+        [XmlElement("word")]
+        public BdoScriptword Word { get; set; }
 
+        #endregion
 
         // ------------------------------------------
         // CONSTRUCTORS

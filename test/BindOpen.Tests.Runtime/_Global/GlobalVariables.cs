@@ -1,10 +1,9 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Helpers.Files;
 using BindOpen.Data.Helpers.Strings;
-using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.Tests.Core.Settings;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace BindOpen.Tests.Core
@@ -32,16 +31,22 @@ namespace BindOpen.Tests.Core
         {
             get
             {
-                return _appHost ?? (_appHost = BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
-                        options => options
-                            .SetModule("app.test")
-                            //.SetRootFolder(q => q.HostSettings.Environment != "Development", @"..\..\..")
-                            //.SetRootFolder(q => q.HostSettings.Environment == "Development", @"..\..")
-                            .AddDefaultFileLogger()
-                            .ThrowExceptionOnStartFailure()
-                            .AddLoggers(
-                                BdoLoggerFactory.Create<BdoSnapLogger>(null, BdoLoggerMode.Auto).AddConsoleOutput())
-                        ));
+                return _appHost ??= BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
+                    options => options
+                        .SetModule("app.test")
+                        //.SetRootFolder(q => q.HostSettings.Environment != "Development", @"..\..\..")
+                        //.SetRootFolder(q => q.HostSettings.Environment == "Development", @"..\..")
+                        //.AddDefaultFileLogger()
+                        .ThrowExceptionOnStartFailure()
+                        //.SetLogger(Logger)
+                        .SetLogger(builder =>
+                        {
+                            builder
+                                .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                                .AddBindOpenFileLogger(options)
+                                .AddConsole();
+                        })
+                        .AddDefaultConsoleLogger());
             }
         }
 

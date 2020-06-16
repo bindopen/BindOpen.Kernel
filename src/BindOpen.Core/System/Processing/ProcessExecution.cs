@@ -79,7 +79,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _progressIndex = value;
-                _log?.WriteLog("execution.progressIndex", _progressIndex, BdoLoggerMode.Auto);
             }
         }
 
@@ -95,7 +94,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _progressMax = value;
-                _log?.WriteLog("execution.progressMax", _progressMax, BdoLoggerMode.Auto);
             }
         }
 
@@ -115,8 +113,6 @@ namespace BindOpen.System.Processing
                 ProcessExecutionState processExecutionState;
                 if (_state != (processExecutionState = ProcessExecution.GetState(_status)))
                     _state = processExecutionState;
-
-                _log?.WriteLog("execution.status", _status, BdoLoggerMode.Auto);
             }
         }
 
@@ -133,8 +129,6 @@ namespace BindOpen.System.Processing
                 _state = value;
                 if (!ProcessExecution.GetStatuses(_state).Contains(_status))
                     _status = ProcessExecution.GetDefaultStatus(_state);
-
-                _log?.WriteLog("execution.state", _state, BdoLoggerMode.Auto);
             }
         }
 
@@ -149,7 +143,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _customStatus = value;
-                _log?.WriteLog("execution.customStatus", _customStatus, BdoLoggerMode.Auto);
             }
         }
 
@@ -166,7 +159,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _startDate = value;
-                _log?.WriteLog("execution.startDate", _startDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -181,7 +173,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _restartDate = value;
-                _log?.WriteLog("execution.restartDate", _restartDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -196,7 +187,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _endDate = value;
-                _log?.WriteLog("execution.endDate", _endDate, BdoLoggerMode.Auto);
             }
         }
 
@@ -222,7 +212,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _duration = value;
-                _log?.WriteLog("execution.duration", _duration, BdoLoggerMode.Auto);
             }
         }
 
@@ -240,7 +229,6 @@ namespace BindOpen.System.Processing
             set
             {
                 _resultLevel = value;
-                _log?.WriteLog("execution.resultLevel", _resultLevel, BdoLoggerMode.Auto);
             }
         }
 
@@ -458,7 +446,6 @@ namespace BindOpen.System.Processing
         public void AddDetail(string name, object value)
         {
             Detail.Add(ElementFactory.CreateScalar(name, DataValueTypes.Text, (value ?? "").ToString()));
-            _log?.WriteLog(name, value, BdoLoggerMode.Auto);
         }
 
         #endregion

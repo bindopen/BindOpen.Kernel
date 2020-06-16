@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>BindOpen.Core</AssemblyName>
-    <PackageId>BindOpen.Core</PackageId>
+    <AssemblyName>BindOpen.Runtime.Logging</AssemblyName>
+    <PackageId>BindOpen.Runtime.Logging</PackageId>
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Core</RootNamespace>
+    <RootNamespace>BindOpen.Runtime.Logging</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,12 +20,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Core.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Runtime.Logging.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Application\Commands\**" />
+    <Compile Remove="Data\**" />
+    <Compile Remove="System\Diagnostics\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="System\Diagnostics\**" />
     <None Remove="Application\Commands\**" />
+    <None Remove="Data\**" />
+    <None Remove="System\Diagnostics\**" />
+    <Compile Include="System\Diagnostics\Loggers\LoggerFactoryExtension.cs" />
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -37,16 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Items\Attributes\ParameterAttribute.cs" />
-    <Compile Remove="Data\Items\Attributes\ScalarAttribute.cs" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Stores\Depots\Datasources\Factories\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.4" />
+    <ProjectReference Include="..\BindOpen.Runtime\BindOpen.Runtime.csproj" />
   </ItemGroup>
 
   <ItemGroup>

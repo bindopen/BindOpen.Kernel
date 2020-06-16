@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Scripting
+﻿using BindOpen.Extensions.Runtime;
+
+namespace BindOpen.System.Scripting
 {
     /// <summary>
     /// This static class provides methods to create data elements.
@@ -22,6 +24,45 @@
             }
 
             return variableSet;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static BdoScriptword Function(string name, params object[] parameters)
+        {
+            var scriptword = new BdoScriptword
+            {
+                Name = name,
+                Kind = ScriptItemKinds.Function
+            };
+            var index = 0;
+            foreach (var param in parameters)
+            {
+                scriptword.AddParameter(param);
+                index++;
+            }
+
+            return scriptword;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static BdoScriptword Variable(string name)
+        {
+            var scriptword = new BdoScriptword
+            {
+                Name = name,
+                Kind = ScriptItemKinds.Variable
+            };
+            return scriptword;
         }
     }
 }

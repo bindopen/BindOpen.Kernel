@@ -2,8 +2,8 @@
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics.Events;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Processing;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +14,11 @@ namespace BindOpen.System.Diagnostics
     /// </summary>
     public interface IBdoLog : IDescribedDataItem
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        ILogger Logger { get; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -82,11 +87,6 @@ namespace BindOpen.System.Diagnostics
         /// 
         /// </summary>
         List<IBdoLog> SubLogs { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<IBdoLogger> Loggers { get; set; }
 
         /// <summary>
         /// 
@@ -179,8 +179,8 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="loggers"></param>
-        void AddLoggers(params IBdoLogger[] loggers);
+        /// <param name="logger"></param>
+        void SetLogger(ILogger logger);
 
         /// <summary>
         /// 
@@ -320,27 +320,6 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        IBdoLogger GetLogger(string name = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="format"></param>
-        /// <returns></returns>
-        IBdoLogger GetLogger(BdoDefaultLoggerFormat format);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="formats"></param>
-        /// <returns></returns>
-        List<IBdoLogger> GetLoggers(params BdoDefaultLoggerFormat[] formats);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="isRecursive"></param>
         /// <param name="kinds"></param>
         /// <returns></returns>
@@ -442,57 +421,7 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="logFilePath"></param>
-        /// <returns></returns>
-        bool Save<T>(string logFilePath) where T : IBdoLogger, new();
-
-        /// <summary>
-        /// Executes the specified action on loggers of this instance.
-        /// </summary>
-        /// <param name="action">The action to consider.</param>
-        void ForLoggers(Action<IBdoLogger> action);
-
-        /// <summary>
-        /// 
-        /// </summary>
         void Start();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        string ToString<T>() where T : IBdoLogger, new();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="childLog"></param>
-        /// <param name="mode"></param>
-        void WriteLog(IBdoLog childLog, BdoLoggerMode mode = BdoLoggerMode.Auto);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="logEvent"></param>
-        /// <param name="mode"></param>
-        void WriteLog(IBdoLogEvent logEvent, BdoLoggerMode mode = BdoLoggerMode.Auto);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="elementName"></param>
-        /// <param name="elementValue"></param>
-        /// <param name="mode"></param>
-        void WriteLog(string elementName, object elementValue, BdoLoggerMode mode = BdoLoggerMode.Auto);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="task"></param>
-        /// <param name="mode"></param>
-        void WriteLog(IBdoTaskConfiguration task, BdoLoggerMode mode = BdoLoggerMode.Auto);
 
         /// <summary>
         /// 

@@ -17,21 +17,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(applicationModuleName).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_AppModuleName(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_AppModuleName(BdoScriptwordFunctionVariable variable)
         {
-            if (scope == null)
+            if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
-            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
+            if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.AppModule?.Name ?? "";
@@ -40,21 +33,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(applicationInstanceName).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_ApplicationInstanceName(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_ApplicationInstanceName(BdoScriptwordFunctionVariable variable)
         {
-            if (scope == null || scope.Context == null)
+            if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
-            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
+            if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
             return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? "";
@@ -63,62 +49,39 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $ISEMPTY.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_IsEmpty(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_IsEmpty(BdoScriptwordFunctionVariable variable)
         {
-            string value1 = parameters.GetStringAtIndex(0);
+            string value = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            if ((value1 == "\"\"") | (string.IsNullOrEmpty(value1)))
-                return "true";
-            else
-                return "false";
+            return string.IsNullOrEmpty(value);
         }
 
         /// <summary>
         /// Evaluates the script word $TEXT.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_Text(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_Text(BdoScriptwordFunctionVariable variable)
         {
-            string value1 = parameters.GetStringAtIndex(0);
-            return "\"" + value1 + "\"";
+            string value = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+
+            return "'" + value + "'";
         }
 
         /// <summary>
         /// Evaluates the script word $FORMAT.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_FormatText(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_FormatText(BdoScriptwordFunctionVariable variable)
         {
-            string textValue = parameters.GetStringAtIndex(0);
-            string formatText = parameters.GetStringAtIndex(1);
+            string textValue = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+            string formatText = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
 
             return string.Format(textValue, formatText);
         }
@@ -126,125 +89,90 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $IF.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_If(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_If(BdoScriptwordFunctionVariable variable)
         {
-            string condition = parameters.GetStringAtIndex(0);
+            string condition = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            if (string.Equals(condition, "true", StringComparison.OrdinalIgnoreCase))
-                return parameters.GetStringAtIndex(1);
-            else
-                return parameters.GetStringAtIndex(2);
+            return string.Equals(condition, "true", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
         /// Evaluates the script word $NOT.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_Not(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_Not(BdoScriptwordFunctionVariable variable)
         {
-            String value1 = parameters.GetStringAtIndex(0);
-            return (!string.Equals(value1, "true", StringComparison.OrdinalIgnoreCase) ? "true" : "false");
+            string condition = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+
+            return !string.Equals(condition, "true", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
         /// Evaluates the script word $OR.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_Or(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_Or(BdoScriptwordFunctionVariable variable)
         {
             bool b = false;
-            foreach (string st in parameters)
-                b = (b | (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
-            return (b ? "true" : "false");
+            foreach (var param in variable?.Scriptword?.Parameters)
+            {
+                b |= string.Equals(param?.ToString(), "true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            return b;
         }
 
         /// <summary>
         /// Evaluates the script word $AND.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_And(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_And(BdoScriptwordFunctionVariable variable)
         {
             bool b = true;
-            foreach (string st in parameters)
-                b &= (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase));
-            return (b ? "true" : "false");
+            foreach (var param in variable?.Scriptword?.Parameters)
+            {
+                b &= string.Equals(param?.ToString(), "true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            return b;
         }
 
         /// <summary>
         /// Evaluates the script word $XOR.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_Xor(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_Xor(BdoScriptwordFunctionVariable variable)
         {
             bool b = true;
-            foreach (string st in parameters)
-                b = (b ^ (string.Equals(st, "true", StringComparison.OrdinalIgnoreCase)));
-            return (b ? "true" : "false");
+            foreach (var param in variable?.Scriptword?.Parameters)
+            {
+                b ^= string.Equals(param?.ToString(), "true", StringComparison.OrdinalIgnoreCase);
+            }
+
+            return b;
         }
 
         /// <summary>
         /// Evaluates the script word $ISEQUAL.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_IsEqual(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_IsEqual(BdoScriptwordFunctionVariable variable)
         {
-            string value1 = parameters.GetStringAtIndex(0);
-            string value2 = parameters.GetStringAtIndex(1);
+            string value1 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+            string value2 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
 
             return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "true" : "false");
         }
@@ -252,20 +180,13 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $ISDIFFERENT.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_IsDifferent(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_IsDifferent(BdoScriptwordFunctionVariable variable)
         {
-            String value1 = parameters.GetStringAtIndex(0);
-            String value2 = parameters.GetStringAtIndex(1);
+            string value1 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+            string value2 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
 
             return (value1.Equals(value2, StringComparison.OrdinalIgnoreCase) ? "false" : "true");
         }
@@ -273,17 +194,10 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(GETCURRENTDATETIME).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_GetCurrentDateTime(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_GetCurrentDateTime(BdoScriptwordFunctionVariable variable)
         {
             return DateTime.Now.ToString();
         }
@@ -292,52 +206,38 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $GETCURRENTDATE().FORMAT(aFormat).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_DateTime_Format(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_DateTime_Format(BdoScriptwordFunctionVariable variable)
         {
-            String aFormat = parameters.GetStringAtIndex(0);
+            string format = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            aFormat = BdoScriptParsingHelper.GetValueFromText(aFormat);
+            format = BdoScriptParsingHelper.GetValueFromText(format);
             DateTime dateTime = DateTime.Now;
 
-            if ((scriptWord.Parent != null) && (scriptWord.Parent.StringItem != null))
+            if ((variable?.Scriptword.Parent != null) && (variable?.Scriptword.Parent.Item != null))
             {
-                if (!DateTime.TryParse(scriptWord.Parent.StringItem.ToString(), out dateTime))
+                if (!DateTime.TryParse(variable?.Scriptword.Parent.Item.ToString(), out dateTime))
                     dateTime = DateTime.Now;
             }
 
-            return dateTime.ToString(aFormat);
+            return dateTime.ToString(format);
         }
 
         /// <summary>
         /// Evaluates the script word $GETCURRENTDATE().TIMESTAMP().
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_DateTime_TimeStamp(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_DateTime_TimeStamp(BdoScriptwordFunctionVariable variable)
         {
             DateTime dateTime = DateTime.Now;
 
-            if ((scriptWord.Parent != null) && (scriptWord.Parent.StringItem != null))
+            if ((variable?.Scriptword.Parent != null) && (variable?.Scriptword.Parent.Item != null))
             {
-                if (!DateTime.TryParse(scriptWord.Parent.StringItem.ToString(), out dateTime))
+                if (!DateTime.TryParse(variable?.Scriptword.Parent.Item.ToString(), out dateTime))
                     dateTime = DateTime.Now;
             }
 
@@ -347,30 +247,23 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $GETCURRENTDATE().SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_DateTime_Add(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_DateTime_Add(BdoScriptwordFunctionVariable variable)
         {
-            String year = parameters.GetStringAtIndex(0);
-            String month = parameters.GetStringAtIndex(1);
-            String day = parameters.GetStringAtIndex(2);
-            String hour = parameters.GetStringAtIndex(3);
-            String minute = parameters.GetStringAtIndex(4);
-            String second = parameters.GetStringAtIndex(5);
+            string year = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
+            string month = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
+            string day = variable?.Scriptword?.Parameters?.GetObjectAtIndex(2)?.ToString();
+            string hour = variable?.Scriptword?.Parameters?.GetObjectAtIndex(3)?.ToString();
+            string minute = variable?.Scriptword?.Parameters?.GetObjectAtIndex(4)?.ToString();
+            string second = variable?.Scriptword?.Parameters?.GetObjectAtIndex(5)?.ToString();
 
             DateTime dateTime = DateTime.Now;
 
-            if ((scriptWord.Parent != null) && (scriptWord.Parent.StringItem != null))
+            if ((variable?.Scriptword.Parent != null) && (variable?.Scriptword.Parent.Item != null))
             {
-                if (DateTime.TryParse(scriptWord.Parent.StringItem.ToString(), out dateTime))
+                if (DateTime.TryParse(variable?.Scriptword.Parent.Item.ToString(), out dateTime))
                 {
                     dateTime = dateTime.AddYears(int.Parse(year));
                     dateTime = dateTime.AddMonths(int.Parse(month));
@@ -387,45 +280,33 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word %DATAMODULE.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_DataModule(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_DataModule(BdoScriptwordFunctionVariable variable)
         {
-            return parameters.GetStringAtIndex(0);
+            return variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
         }
 
         /// <summary>
         /// Evaluates the script word %DATAMODULE.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Fun_DataModule_Name(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Fun_DataModule_Name(BdoScriptwordFunctionVariable variable)
         {
-            String text = parameters.GetStringAtIndex(0);
+            string text = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            if (scriptWord.Parent?.StringItem != null)
+            if (variable?.Scriptword.Parent?.Item != null)
             {
-                if (scope?.Context != null)
+                if (variable.Scope?.Context != null)
                 {
-                    Hashtable dataModuleInstances = (Hashtable)scope.Context.GetSystemItem("DatabaseNames");
-                    if (dataModuleInstances?.Contains(scriptWord.Parent.StringItem.ToUpper()) == true)
-                        text += dataModuleInstances[scriptWord.Parent.StringItem.ToUpper()];
+                    var datamoduleName = variable?.Scriptword.Parent.Item.ToString().ToUpper();
+
+                    Hashtable dataModuleInstances = (Hashtable)variable.Scope.Context.GetSystemItem("DatabaseNames");
+                    if (dataModuleInstances?.Contains(datamoduleName) == true)
+                        text += dataModuleInstances[datamoduleName];
                 }
             }
 
@@ -435,35 +316,21 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(EMPTY).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_GetEmpty(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_GetEmpty(BdoScriptwordFunctionVariable variable)
         {
-            return "\"\"";
+            return "''";
         }
 
         /// <summary>
         /// Evaluates the script word $(LITERAL_TAB).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_Literal_Tab(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_Literal_Tab(BdoScriptwordFunctionVariable variable)
         {
             return "\t";
         }
@@ -471,17 +338,10 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(LITERAL_CR).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_Literal_Cr(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_Literal_Cr(BdoScriptwordFunctionVariable variable)
         {
             return "\n";
         }
@@ -489,17 +349,10 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(LITERAL_CARRETPOS).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static string Var_Literal_CarretPos(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_Literal_CarretPos(BdoScriptwordFunctionVariable variable)
         {
             return "%LITERAL_CARRETPOS()";
         }
@@ -509,64 +362,42 @@ namespace BindOpen.Extensions.Scriptwords
         /// <summary>
         /// Evaluates the script word $(application.folderPath).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword("application.folderpath")]
-        public static string Var_ApplicationFolderPath(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_ApplicationFolderPath(BdoScriptwordFunctionVariable variable)
         {
-            if (scope == null)
+            if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
-
-            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
+            if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost.GetKnownPath(BdoHostPathKind.RootFolder);
+            return appHost.GetKnownPath(BdoHostPathKind.RootFolder) ?? "";
         }
 
         /// <summary>
         /// Evaluates the script word $(roaming.folderPath).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword("application.roaming.folderpath")]
-        public static string Var_ApplicationRoamingFolderPath(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_ApplicationRoamingFolderPath(BdoScriptwordFunctionVariable variable)
         {
-            if (scope == null)
+            if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
-            if (!(scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
+            if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder);
+            return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder) ?? "";
         }
 
         /// <summary>
         /// Evaluates the script word $(myDocuments.folderPath).
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="scriptVariableSet">The set of variables that can be used for interpretation.</param>
-        /// <param name="scriptWord">The script word to evaluate.</param>
-        /// <param name="parameters">The parameters to consider.</param>
+        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(Name = "mydocuments.folderpath")]
-        public static string Var_MyDocumentsFolderPath(
-            IBdoScope scope,
-            IScriptVariableSet scriptVariableSet,
-            IBdoScriptword scriptWord,
-            params object[] parameters)
+        public static object Var_MyDocumentsFolderPath(BdoScriptwordFunctionVariable variable)
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");
         }

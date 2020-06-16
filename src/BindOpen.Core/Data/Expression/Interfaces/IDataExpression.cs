@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Runtime;
 
 namespace BindOpen.Data.Expression
 {
@@ -10,11 +11,16 @@ namespace BindOpen.Data.Expression
         /// <summary>
         /// The kind.
         /// </summary>
-        DataExpressionKind Kind { get; set; }
+        DataExpressionKind Kind { get; }
 
         /// <summary>
         /// The text.
         /// </summary>
-        string Text { get; set; }
+        string Text { get; }
+
+        /// <summary>
+        /// The script word.
+        /// </summary>
+        BdoScriptword Word { get; }
     }
 }

@@ -16,7 +16,7 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// 
         /// </summary>
-        new public IBdoTaskConfiguration Configuration { get => base.Configuration as IBdoTaskConfiguration; }
+        public new IBdoTaskConfiguration Configuration { get => base.Configuration as IBdoTaskConfiguration; }
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -84,7 +84,7 @@ namespace BindOpen.Extensions.Runtime
                     IDataElementSpec dataElementSpec = dataElementSpecSet[entry.Key()];
                     if (dataElementSpec != null)
                     {
-                        bool isCompatible = dataElementSpec.IsCompatibleWith(entry);
+                        bool isCompatible = dataElementSpec.IsCompatibleWithItem(entry);
                         if (!isCompatible) return false;
                     }
                 }

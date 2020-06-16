@@ -16,6 +16,11 @@
         Script,
 
         /// <summary>
+        /// Script word is considered as default.
+        /// </summary>
+        Word,
+
+        /// <summary>
         /// Literal expression that can be script if it begins by "=".
         /// </summary>
         Auto

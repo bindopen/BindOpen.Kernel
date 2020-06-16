@@ -1,9 +1,8 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
-using BindOpen.System.Diagnostics.Loggers;
 using BindOpen.System.Processing;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 
 namespace BindOpen.Application.Services
@@ -42,9 +41,9 @@ namespace BindOpen.Application.Services
         }
 
         /// <summary>
-        /// The runtime folder path.
+        /// The logger of this instance.
         /// </summary>
-        public List<IBdoLogger> Loggers { get; set; }
+        public ILogger Logger { get; set; }
 
         // Execution ----------------------
 
@@ -115,10 +114,10 @@ namespace BindOpen.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public IBdoJob WithLoggers(params IBdoLogger[] loggers)
+        public IBdoJob WithLoggers(ILogger logger)
         {
-            Loggers = loggers?.ToList();
-            Log?.AddLoggers(loggers);
+            Logger = logger;
+            Log?.SetLogger(logger);
 
             return this;
         }

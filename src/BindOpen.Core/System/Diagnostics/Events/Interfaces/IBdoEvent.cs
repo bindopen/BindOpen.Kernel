@@ -6,7 +6,7 @@ namespace BindOpen.System.Diagnostics.Events
     /// <summary>
     /// 
     /// </summary>
-    public interface BdoIEvent : IDescribedDataItem
+    public interface IBdoEvent : IDescribedDataItem
     {
         /// <summary>
         /// 

@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Elements;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Scripting;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -25,9 +26,9 @@ namespace BindOpen.Extensions.Runtime
         // Values ----------------------------------
 
         /// <summary>
-        /// Parameter detail of this instance.
+        /// Parameters of this instance.
         /// </summary>
-        public IDataElementSet ParameterDetail { get; set; } = new DataElementSet();
+        public List<object> Parameters { get; set; } = new List<object>();
 
         // Tree ----------------------------------
 
@@ -51,15 +52,6 @@ namespace BindOpen.Extensions.Runtime
         [XmlIgnore()]
         public object Item { get; set; }
 
-        /// <summary>
-        /// The item of this instance as a string.
-        /// </summary>
-        [XmlIgnore()]
-        public string StringItem
-        {
-            get { return (Item ?? "").ToString(); }
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -78,11 +70,31 @@ namespace BindOpen.Extensions.Runtime
         #endregion
 
         // ------------------------------------------
+        // MUTATORS
+        // ------------------------------------------
+
+        #region Mutators
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IBdoScriptword AddParameter(object value)
+        {
+            if (Parameters == null) Parameters = new List<object>();
+            Parameters.Add(value);
+
+            return this;
+        }
+
+        #endregion
+
+        // ------------------------------------------
         // ACCESSORS
         // ------------------------------------------
 
         #region Accessors
-
 
         /// <summary>
         /// Get the root script word of this instance.
@@ -129,10 +141,18 @@ namespace BindOpen.Extensions.Runtime
         {
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
-            if (ParameterDetail != null)
-                scriptWord.ParameterDetail = ParameterDetail.Clone() as DataElementSet;
+            scriptWord.SetDefinition(Definition);
+            //scriptWord.SetConfiguration(Configuration);
+            if (Parameters != null)
+            {
+                foreach (var paramValue in Parameters)
+                {
+                    scriptWord.AddParameter(paramValue);
+                }
+            }
+
             scriptWord.Parent = Parent;
-            scriptWord.SubScriptword = (SubScriptword == null ? null : SubScriptword.Clone() as BdoScriptword);
+            scriptWord.SubScriptword = SubScriptword?.Clone<BdoScriptword>();
             scriptWord.Item = Item;
 
             return scriptWord;

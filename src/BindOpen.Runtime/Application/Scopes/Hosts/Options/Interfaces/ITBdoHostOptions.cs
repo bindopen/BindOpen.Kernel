@@ -3,7 +3,7 @@ using BindOpen.Application.Settings;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
-using BindOpen.System.Diagnostics.Loggers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -112,24 +112,18 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// Adds the default file logger.
-        /// </summary>
-        /// <param name="logFileName">The log file name to consider.</param>
-        /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddDefaultFileLogger(string logFileName = null);
-
-        /// <summary>
-        /// Adds the default file logger.
+        /// Adds the default console logger.
         /// </summary>
         /// <returns>Returns the host option.</returns>
         ITBdoHostOptions<S> AddDefaultConsoleLogger();
 
         /// <summary>
-        /// Adds the specified loggers.
+        /// Adds the specified logger.
         /// </summary>
-        /// <param name="loggers">The loggers to consider.</param>
+        /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddLoggers(params IBdoLogger[] loggers);
+        ITBdoHostOptions<S> SetLogger(ILogger logger);
+
 
         // Modules -------------------------------------------
 
