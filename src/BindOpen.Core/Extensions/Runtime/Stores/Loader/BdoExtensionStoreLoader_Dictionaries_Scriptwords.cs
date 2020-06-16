@@ -82,13 +82,13 @@ namespace BindOpen.Extensions.Runtime
                                     try
                                     {
                                         itemDefinition.RuntimeFunction += methodInfo.CreateDelegate(
-                                            typeof(BdoScriptwordFunction), itemDefinition.RuntimeFunction) as BdoScriptwordFunction;
+                                            typeof(BdoScriptwordFunction)) as BdoScriptwordFunction;
 
                                         scriptwordDefinitions.Add(itemDefinition);
 
                                         count++;
                                     }
-                                    catch
+                                    catch (ArgumentException)
                                     {
                                         log?.AddError(
                                                 title: "Incompatible function ('" + methodInfo.Name + "')",

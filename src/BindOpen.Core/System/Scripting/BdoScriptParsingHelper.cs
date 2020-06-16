@@ -543,7 +543,7 @@ namespace BindOpen.System.Scripting
             var log = new BdoLog();
             int aTempIndex = 0;
             IBdoScriptword rootScriptword = scriptInterpreter.FindNextScriptword(
-                ref stringBlockToParse,
+                stringBlockToParse,
                 null,
                 ref aTempIndex,
                 0,

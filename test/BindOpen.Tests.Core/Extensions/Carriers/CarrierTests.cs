@@ -92,7 +92,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             {
                 xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Carrier saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Carrier saving failed" + xml);
         }
 
         [Test, Order(3)]

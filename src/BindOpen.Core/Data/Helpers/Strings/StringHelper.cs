@@ -733,7 +733,7 @@ namespace BindOpen.Data.Helpers.Strings
                         return null;
                     return new TimeSpan?(aTimeSpan);
                 case DataValueTypes.Boolean:
-                    return st.Equals("$TRUE()", StringComparison.OrdinalIgnoreCase) || st.Equals("TRUE", StringComparison.OrdinalIgnoreCase);
+                    return st.Equals("true", StringComparison.OrdinalIgnoreCase);
                 case DataValueTypes.Number:
                     double aDouble;
                     if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))

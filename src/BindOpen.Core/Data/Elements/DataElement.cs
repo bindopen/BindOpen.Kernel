@@ -261,7 +261,7 @@ namespace BindOpen.Data.Elements
                     }
                     else
                     {
-                        object1 = scope.Interpreter.Interprete(ItemScript, DataExpressionKind.Script, scriptVariableSet, log);
+                        object1 = scope.Interpreter.Evaluate(ItemScript, DataExpressionKind.Script, scriptVariableSet, log);
                         if (object1 != null)
                         {
                             return object1.GetType().IsArray ? object1 as List<object> : object1;

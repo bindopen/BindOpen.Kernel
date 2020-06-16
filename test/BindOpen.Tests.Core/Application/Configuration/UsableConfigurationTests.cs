@@ -68,7 +68,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
             {
                 xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Usable configuration saving failed" + xml);
         }
 
         [Test, Order(2)]

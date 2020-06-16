@@ -65,7 +65,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             {
                 xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Log saving failed. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Log saving failed" + xml);
         }
 
         [Test, Order(3)]
@@ -84,7 +84,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             {
                 xml = ". Result was '" + log.ToXml() + "'";
             }
-            Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log. Result was '" + xml);
+            Assert.That(!log.HasErrorsOrExceptions(), "Error while loading log" + xml);
 
             Test(_log);
         }

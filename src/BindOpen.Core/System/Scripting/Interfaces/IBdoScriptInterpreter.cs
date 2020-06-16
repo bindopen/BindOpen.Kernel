@@ -24,16 +24,6 @@ namespace BindOpen.System.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataExpression"></param>
-        /// <param name="resultScript"></param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object Evaluate(IDataExpression dataExpression, out string resultScript, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="script"></param>
         /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
@@ -42,15 +32,17 @@ namespace BindOpen.System.Scripting
         object Evaluate(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
-        /// 
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
         /// </summary>
-        /// <param name="script"></param>
-        /// <param name="resultScript"></param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object Evaluate(string script, DataExpressionKind expressionKind, out string resultScript, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        /// <param name="scriptword">The script word to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        object Evaluate(
+            BdoScriptword scriptword,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -63,27 +55,7 @@ namespace BindOpen.System.Scripting
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IBdoScriptword FindNextScriptword(ref string script, IBdoScriptword parentScriptword, ref int index, int offsetIndex, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <param name="expression">The expression to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        string Interprete(IDataExpression expression, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        string Interprete(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        IBdoScriptword FindNextScriptword(string script, IBdoScriptword parentScriptword, ref int index, int offsetIndex, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// 
