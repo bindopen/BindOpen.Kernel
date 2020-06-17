@@ -21,7 +21,7 @@ namespace BindOpen.System.Diagnostics.Events
         /// Condition script of this instance.
         /// </summary>
         [XmlElement("conditionScript")]
-        public string ConditionScript { get; set; } = "";
+        public string ConditionScript { get; set; } = string.Empty;
 
         #endregion
 

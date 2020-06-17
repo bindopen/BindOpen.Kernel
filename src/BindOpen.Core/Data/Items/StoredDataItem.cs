@@ -50,7 +50,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the StoredDataItem class.
         /// </summary>
-        public StoredDataItem() : this("")
+        public StoredDataItem() : this(string.Empty)
         {
         }
 

@@ -24,12 +24,31 @@ namespace BindOpen.System.Scripting
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="dataExpression"></param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        T Evaluate<T>(IDataExpression dataExpression, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="script"></param>
         /// <param name="expressionKind">The expression kind to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="script"></param>
+        /// <param name="expressionKind">The expression kind to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        T Evaluate<T>(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
@@ -40,6 +59,19 @@ namespace BindOpen.System.Scripting
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         object Evaluate(
+            BdoScriptword scriptword,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
+        /// </summary>
+        /// <param name="scriptword">The script word to consider.</param>
+        /// <param name="scriptVariableSet">The script variable set to use.</param>
+        /// <param name="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        T Evaluate<T>(
             BdoScriptword scriptword,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null);

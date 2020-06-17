@@ -82,7 +82,7 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
 
             _datasourceDepot.SaveXml(_filePath, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -102,7 +102,7 @@ namespace BindOpen.Tests.Core.Application.Depots.Datasources
 
             var datasourceDepot = XmlHelper.Load<BdoDatasourceDepot>(_filePath, log: log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

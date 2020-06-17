@@ -45,7 +45,7 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("groupName")]
         public string GroupName
         {
-            get => _groupName ?? "";
+            get => _groupName ?? string.Empty;
             set { _groupName = value; }
         }
 
@@ -55,7 +55,7 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("assembly")]
         public string AssemblyName
         {
-            get => _assemblyName ?? "";
+            get => _assemblyName ?? string.Empty;
             set { _assemblyName = value; }
         }
 
@@ -65,7 +65,7 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("rootNamespace")]
         public string RootNamespace
         {
-            get => _rootNamespace ?? "";
+            get => _rootNamespace ?? string.Empty;
             set { _rootNamespace = value; }
         }
 
@@ -77,7 +77,7 @@ namespace BindOpen.Extensions.Definition
         [XmlElement("fileName")]
         public string FileName
         {
-            get => _fileName ?? "";
+            get => _fileName ?? string.Empty;
             set { _fileName = value; }
         }
 
@@ -138,7 +138,7 @@ namespace BindOpen.Extensions.Definition
         /// <returns>Returns the root namspace.</returns>
         public string GetRootNamespace()
         {
-            return !string.IsNullOrEmpty(_rootNamespace) ? _rootNamespace : _assemblyName.GetEndedString(".") + "extension";
+            return !string.IsNullOrEmpty(_rootNamespace) ? _rootNamespace : _assemblyName.EndingWith(".") + "extension";
         }
 
         #endregion
@@ -158,7 +158,7 @@ namespace BindOpen.Extensions.Definition
             {
                 foreach (DataKeyValue dataKeyValue in _itemIndexFullNameDictionary.Values)
                 {
-                    dataKeyValue.Content = _rootNamespace.GetEndedString(".").Concatenate(dataKeyValue.Content, ".");
+                    dataKeyValue.Content = _rootNamespace.EndingWith(".").Concatenate(dataKeyValue.Content, ".");
                 }
             }
         }

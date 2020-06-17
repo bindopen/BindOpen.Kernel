@@ -291,7 +291,7 @@ namespace BindOpen.Data.Context
 
         private static string GetItemUniqueName(string name, string contextSectionName = null)
         {
-            return ((contextSectionName ?? "") + "$" + (name ?? "")).ToLower();
+            return ((contextSectionName ?? string.Empty) + "$" + (name ?? string.Empty)).ToLower();
         }
 
         /// <summary>

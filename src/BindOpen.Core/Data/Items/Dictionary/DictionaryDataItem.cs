@@ -365,7 +365,7 @@ namespace BindOpen.Data.Items
                 return dataKeyValue.Content;
             else if (alternateKey != null)
                 return GetContent(alternateKey);
-            return "";
+            return string.Empty;
         }
 
         #endregion
@@ -411,7 +411,7 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         public string GetTextNode(string nodeName, string indent)
         {
-            string st = "";
+            string st = string.Empty;
 
             st += indent + nodeName + "\n";
             st += "\t" + indent + nodeName + ":values\n";

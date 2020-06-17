@@ -433,7 +433,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return "";
+            return string.Empty;
         }
 
         #endregion

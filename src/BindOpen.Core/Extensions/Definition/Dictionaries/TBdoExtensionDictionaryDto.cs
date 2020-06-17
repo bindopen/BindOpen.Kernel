@@ -34,13 +34,13 @@ namespace BindOpen.Extensions.Definition
         /// ID of the library of this instance.
         /// </summary>
         [XmlAttribute("libraryId")]
-        public string LibraryId { get; set; } = "";
+        public string LibraryId { get; set; } = string.Empty;
 
         /// <summary>
         /// Name of the library of this instance.
         /// </summary>
         [XmlAttribute("library")]
-        public string LibraryName { get; set; } = "";
+        public string LibraryName { get; set; } = string.Empty;
 
         /// <summary>
         /// Definitions of this instance.

@@ -37,7 +37,7 @@ namespace BindOpen.Extensions.Carriers
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
         public override void WithPath(string path = null, string relativePath = null)
         {
-            base.WithPath(path, relativePath.GetEndedString(@"\"));
+            base.WithPath(path, relativePath.EndingWith(@"\"));
         }
 
         #endregion

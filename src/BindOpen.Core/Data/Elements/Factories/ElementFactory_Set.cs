@@ -65,7 +65,7 @@ namespace BindOpen.Data.Elements
             var index = 0;
             return CreateSet(objects?.Select(p =>
             {
-                var scalar = ElementFactory.CreateScalar("", DataValueTypes.Any, p);
+                var scalar = ElementFactory.CreateScalar(string.Empty, DataValueTypes.Any, p);
                 scalar.Index = ++index;
                 return scalar;
             }).ToArray());

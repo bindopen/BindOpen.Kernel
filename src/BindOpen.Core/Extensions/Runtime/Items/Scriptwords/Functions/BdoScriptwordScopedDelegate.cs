@@ -7,9 +7,9 @@
     #region Delegates
 
     /// <summary>
-    /// This delegate represents a script word function.
+    /// This delegate represents a script word function delegate.
     /// </summary>
-    public delegate object BdoScriptwordFunction(BdoScriptwordFunctionVariable variable);
+    public delegate object BdoScriptwordScopedDelegate(BdoScriptwordFunctionScope variable);
 
     #endregion
 

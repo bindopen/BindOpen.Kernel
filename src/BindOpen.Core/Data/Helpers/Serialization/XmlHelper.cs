@@ -36,9 +36,9 @@ namespace BindOpen.Data.Helpers.Serialization
         /// <returns>The Xml string of this instance.</returns>
         public static string ToXml(this Object object1, IBdoLog log = null)
         {
-            if (object1 == null) return "";
+            if (object1 == null) return string.Empty;
 
-            string st = "";
+            string st = string.Empty;
             StringWriter streamWriter = null;
             try
             {

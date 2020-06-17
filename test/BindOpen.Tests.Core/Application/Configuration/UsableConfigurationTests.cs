@@ -63,7 +63,7 @@ namespace BindOpen.Tests.Core.Application.Configuration
             _usableConfiguration20.SaveXml(_filePath20, log);
             _usableConfiguration21.SaveXml(_filePath21, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

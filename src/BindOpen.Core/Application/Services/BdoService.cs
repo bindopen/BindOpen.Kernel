@@ -50,7 +50,7 @@ namespace BindOpen.Application.Services
         /// <summary>
         /// Initializes a new instance of the BdoService class.
         /// </summary>
-        protected BdoService() : base("")
+        protected BdoService() : base(string.Empty)
         {
         }
 

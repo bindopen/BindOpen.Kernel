@@ -20,7 +20,7 @@ namespace BindOpen.Data.Specification
         /// The name of the area of this instance.
         /// </summary>
         [XmlAttribute("area")]
-        public string AreaName { get; set; } = "";
+        public string AreaName { get; set; } = string.Empty;
 
         #endregion
 

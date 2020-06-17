@@ -59,11 +59,11 @@ namespace BindOpen.Data.Helpers.Files
 
             if ((path?.StartsWith(@".\") == true) || (path?.StartsWith(@"./") == true))
             {
-                path = (rootPath.GetEndedString(@"\") + path.Substring(2)).ToPath();
+                path = (rootPath.EndingWith(@"\") + path.Substring(2)).ToPath();
             }
             else if ((path?.StartsWith(@"..\") == true) || (path?.StartsWith(@"../") == true))
             {
-                path = (rootPath.GetEndedString(@"\") + path).ToPath();
+                path = (rootPath.EndingWith(@"\") + path).ToPath();
             }
 
             return path?.Replace('\\', Path.DirectorySeparatorChar);
@@ -91,7 +91,7 @@ namespace BindOpen.Data.Helpers.Files
                 rootFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             }
 
-            return rootFolderPath?.GetEndedString(@"\").ToPath();
+            return rootFolderPath?.EndingWith(@"\").ToPath();
         }
 
     }

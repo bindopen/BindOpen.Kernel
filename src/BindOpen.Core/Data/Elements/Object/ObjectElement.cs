@@ -32,14 +32,14 @@ namespace BindOpen.Data.Elements
         /// </summary>
         [XmlAttribute("class")]
         [DefaultValue("")]
-        public string ClassFullName { get; set; } = "";
+        public string ClassFullName { get; set; } = string.Empty;
 
         /// <summary>
         /// The definition unique ID of this instance.
         /// </summary>
         [XmlAttribute("definition")]
         [DefaultValue("")]
-        public string DefinitionUniqueId { get; set; } = "";
+        public string DefinitionUniqueId { get; set; } = string.Empty;
 
         // --------------------------------------------------
 
@@ -127,7 +127,7 @@ namespace BindOpen.Data.Elements
                 {
                     Assembly assembly = this[0].GetType().Assembly;
                     ClassFullName = this[0].GetType().FullName.ToString()
-                        + (assembly == null ? "" : "," + assembly.GetName().Name);
+                        + (assembly == null ? string.Empty : "," + assembly.GetName().Name);
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => (p as NamedDataItem).Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as NamedDataItem).Key() ?? string.Empty).ToArray());
         }
 
         #endregion

@@ -121,7 +121,7 @@ namespace BindOpen.System.Diagnostics.Dto
             Criticality = criticality;
             Description = description;
             ResultCode = resultCode;
-            CreationDate = date.GetString();
+            CreationDate = StringHelper.ToString(date);
             Name = name;
             Id = id;
         }

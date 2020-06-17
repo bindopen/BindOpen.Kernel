@@ -53,13 +53,13 @@ namespace BindOpen.Extensions.Definition
         /// Name of the runtime function.
         /// </summary>
         [XmlElement("functionName")]
-        public string RuntimeFunctionName { get; set; } = "";
+        public string RuntimeFunctionName { get; set; } = string.Empty;
 
         /// <summary>
         /// Reference unique ID of this instance.
         /// </summary>
         [XmlAttribute("referenceUniqueName")]
-        public string ReferenceUniqueName { get; set; } = "";
+        public string ReferenceUniqueName { get; set; } = string.Empty;
 
         /// <summary>
         /// The return value type of this instance.
@@ -173,7 +173,7 @@ namespace BindOpen.Extensions.Definition
         /// </summary>
         public string GetDefaultRuntimeFunctionName()
         {
-            String functionName = "";
+            String functionName = string.Empty;
             switch (Kind)
             {
                 case ScriptItemKinds.Function:
@@ -195,13 +195,13 @@ namespace BindOpen.Extensions.Definition
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetRepeatedParameterDescriptionText(String variantName = "*", String defaultVariantName = "*")
         {
-            if (RepeatedParameterDescription == null) return "";
+            if (RepeatedParameterDescription == null) return string.Empty;
             String label = RepeatedParameterDescription.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = RepeatedParameterDescription.GetContent(defaultVariantName);
             if (string.IsNullOrEmpty(label))
                 label = Name;
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace BindOpen.Extensions.Definition
         /// <returns>A text summarizing this instance.</returns>
         public override string ToHtml(string uiCulture = "*")
         {
-            string st = "";
+            string st = string.Empty;
             st += "<span style='color: blue;' >" + Name + "</span> (" + Kind.ToString() + ")<br>";
             st += "<br>";
             st += "Modified: " + LastModificationDate + "<br>";
@@ -223,13 +223,13 @@ namespace BindOpen.Extensions.Definition
             st += "<strong>Syntax</strong>";
             st += "<br>";
 
-            string parameterString = "";
+            string parameterString = string.Empty;
             if (IsRepeatedParameters)
                 parameterString +=
                     "<span style='color: blue;'>&lt;" + RepeatedParameterValueType.ToString() + "&gt;</span> parameter1 ... <Min: " + MinParameterNumber.ToString() + ";Max: " + MaxParameterNumber.ToString() + ">";
             else
                 foreach (DataElementSpec elementSpecification in ParameterSpecification.Items)
-                    parameterString += (string.IsNullOrEmpty(parameterString) ? "" : ",") +
+                    parameterString += (string.IsNullOrEmpty(parameterString) ? string.Empty : ",") +
                         "<span style='color: blue;'>&lt;" + elementSpecification.ValueType.ToString() + "&gt;</span> " + elementSpecification.Name + ",";
             st += Name + "(" + parameterString + ")";
 

@@ -60,7 +60,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             var log = new BdoLog();
             _log?.SaveXml(_filePath, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -79,7 +79,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             BdoLog log = new BdoLog();
             _log = XmlHelper.Load<BdoLog>(_filePath, log: log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

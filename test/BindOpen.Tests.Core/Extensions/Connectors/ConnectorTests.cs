@@ -69,7 +69,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
             var log = new BdoLog();
             _connector.SaveXml(_filePath, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -87,7 +87,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
                 SaveConnectorTest();
             }
 
-            string xml = "";
+            string xml = string.Empty;
             BdoConnectorConfiguration configuration = XmlHelper.Load<BdoConnectorConfiguration>(_filePath, log: log);
             ConnectorFake connector = GlobalVariables.Scope.CreateConnector<ConnectorFake>(configuration, null, log);
             if (log.HasErrorsOrExceptions())
@@ -111,7 +111,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
                 connection.Disconnect();
             }
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -128,7 +128,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
 
             _connector?.UsingConnection((p, l) => { }, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -146,7 +146,7 @@ namespace BindOpen.Tests.Core.Extensions.Connectors
                 log.AddException(ex);
             }
 
-            xml = "";
+            xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

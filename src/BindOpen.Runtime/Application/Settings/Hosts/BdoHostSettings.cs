@@ -172,7 +172,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithRuntimeFolder(string runtimeFolderPath = "")
         {
-            RuntimeFolderPath = runtimeFolderPath?.GetEndedString(@"\").ToPath();
+            RuntimeFolderPath = runtimeFolderPath?.EndingWith(@"\").ToPath();
 
             return this;
         }
@@ -185,7 +185,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns the host option.</returns>
         public IBdoHostSettings WithAppConfigFile(string appConfigurationFolderPath, bool? isRequired = false)
         {
-            AppConfigurationFolderPath = appConfigurationFolderPath?.GetEndedString(@"\").ToPath();
+            AppConfigurationFolderPath = appConfigurationFolderPath?.EndingWith(@"\").ToPath();
             return WithAppConfigFileRequired(isRequired);
         }
 
@@ -208,7 +208,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithLibraryFolder(string libraryFolderPath = null)
         {
-            LibraryFolderPath = libraryFolderPath?.GetEndedString(@"\").ToPath();
+            LibraryFolderPath = libraryFolderPath?.EndingWith(@"\").ToPath();
 
             return this;
         }
@@ -220,7 +220,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithLogsFolder(string logsFolderPath = null)
         {
-            LogsFolderPath = logsFolderPath?.GetEndedString(@"\").ToPath();
+            LogsFolderPath = logsFolderPath?.EndingWith(@"\").ToPath();
 
             return this;
         }
@@ -232,7 +232,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithPackagesFolder(string packagesFolderPath = null)
         {
-            PackagesFolderPath = packagesFolderPath?.GetEndedString(@"\").ToPath();
+            PackagesFolderPath = packagesFolderPath?.EndingWith(@"\").ToPath();
 
             return this;
         }
@@ -244,7 +244,7 @@ namespace BindOpen.Application.Settings
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithProjectsFolder(string projectsFolderPath = null)
         {
-            ProjectsFolderPath = projectsFolderPath?.GetEndedString(@"\").ToPath();
+            ProjectsFolderPath = projectsFolderPath?.EndingWith(@"\").ToPath();
 
             return this;
         }

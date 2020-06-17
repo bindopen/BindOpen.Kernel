@@ -156,13 +156,13 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetTitleText(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Title == null) return "";
+            if (Title == null) return string.Empty;
             string label = Title.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = Title.GetContent(defaultVariantName);
             if (string.IsNullOrEmpty(label))
                 label = Name;
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         /// <summary>
@@ -172,11 +172,11 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Description == null) return "";
+            if (Description == null) return string.Empty;
             string label = Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = Description.GetContent(defaultVariantName);
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         #endregion
@@ -273,7 +273,7 @@ namespace BindOpen.Extensions.Runtime
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public virtual string GetTitle(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Title == null) return "";
+            if (Title == null) return string.Empty;
 
             string label = Title.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
@@ -285,7 +285,7 @@ namespace BindOpen.Extensions.Runtime
                 label = Name;
             }
 
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         #endregion

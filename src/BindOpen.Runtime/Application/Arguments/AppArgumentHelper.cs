@@ -76,7 +76,7 @@ namespace BindOpen.Application.Arguments
                             {
                                 if (argumentSpecification.Name.Contains(StringHelper.__PatternEmptyValue))
                                 {
-                                    argument.Name = argumentSpecification.Name.GetSubstring(0, argumentSpecification.Name.Length - StringHelper.__PatternEmptyValue.Length - 2);
+                                    argument.Name = argumentSpecification.Name.ToSubstring(0, argumentSpecification.Name.Length - StringHelper.__PatternEmptyValue.Length - 2);
 
                                     int valueIndex = -1;
                                     if (aliasIndex == -1)
@@ -84,7 +84,7 @@ namespace BindOpen.Application.Arguments
                                     else if (aliasIndex > -1)
                                         valueIndex = argumentSpecification.Aliases[aliasIndex].IndexOf(StringHelper.__PatternEmptyValue);
 
-                                    argument.WithItems(valueIndex < 0 ? "" : currentArgumentString.GetSubstring(valueIndex));
+                                    argument.WithItems(valueIndex < 0 ? string.Empty : currentArgumentString.ToSubstring(valueIndex));
                                 }
                                 else
                                 {
