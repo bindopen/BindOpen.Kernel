@@ -63,7 +63,7 @@ namespace BindOpen.System.Processing
         /// </summary>
         [XmlElement("location")]
         [DefaultValue("")]
-        public string Location { get; set; } = "";
+        public string Location { get; set; } = string.Empty;
 
         // Progression -------------------------------------
 
@@ -207,7 +207,7 @@ namespace BindOpen.System.Processing
                     }
                 }
 
-                return "";
+                return string.Empty;
             }
             set
             {
@@ -364,8 +364,8 @@ namespace BindOpen.System.Processing
         public void Start()
         {
             _startDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _restartDate = "";
-            _endDate = "";
+            _restartDate = string.Empty;
+            _endDate = string.Empty;
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
@@ -416,7 +416,7 @@ namespace BindOpen.System.Processing
         public void Restart()
         {
             _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _endDate = "";
+            _endDate = string.Empty;
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
@@ -430,7 +430,7 @@ namespace BindOpen.System.Processing
         public void Resume()
         {
             _restartDate = DateTime.Now.ToString(DataValueTypes.Date);
-            _endDate = "";
+            _endDate = string.Empty;
             _state = ProcessExecutionState.Pending;
             _status = ProcessExecutionStatus.Processing;
             _progressIndex = 0;
@@ -445,7 +445,7 @@ namespace BindOpen.System.Processing
         /// <param name="value">The value of the attribute to set.</param>
         public void AddDetail(string name, object value)
         {
-            Detail.Add(ElementFactory.CreateScalar(name, DataValueTypes.Text, (value ?? "").ToString()));
+            Detail.Add(ElementFactory.CreateScalar(name, DataValueTypes.Text, (value ?? string.Empty).ToString()));
         }
 
         #endregion

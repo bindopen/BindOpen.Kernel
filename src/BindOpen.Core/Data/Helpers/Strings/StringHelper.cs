@@ -57,41 +57,6 @@ namespace BindOpen.Data.Helpers.Strings
         #region Methods
 
         /// <summary>
-        /// Gets the date string of this instance.
-        /// </summary>
-        /// <param name="date">The date to consider.</param>
-        /// <returns>Returns the date string of this instance.</returns>
-        public static string EmptyAsNull(this string text)
-        {
-            return text?.Length > 0 ? text : null;
-        }
-
-        /// <summary>
-        /// Replaces the specified text by the specified one in the specified text.
-        /// </summary>
-        /// <param name="text">The text to consider.</param>
-        /// <param name="textToFind">The text to find.</param>
-        /// <param name="textToReplace">The text to replace.</param>
-        /// <param name="isCaseMatched">Indicates whether the case must be considered.</param>
-        /// <param name="isReplacedOnce">Indicates whether the text to find is to be replaced once.</param>
-        /// <returns></returns>
-        public static string Replace(this string text, string textToFind, string textToReplace, bool isCaseMatched, bool isReplacedOnce = false)
-        {
-            StringComparison sc = isCaseMatched ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
-
-            int pos;
-            while ((pos = text.IndexOf(textToFind, sc)) > -1)
-            {
-                text = text.Remove(pos, textToFind.Length);
-                text = text.Insert(pos, textToReplace);
-
-                if (isReplacedOnce) break;
-            }
-
-            return text;
-        }
-
-        /// <summary>
         /// Generates a password.
         /// </summary>
         /// <param name="charNumber">The character number to consider.</param>
@@ -99,32 +64,8 @@ namespace BindOpen.Data.Helpers.Strings
         public static string GeneratePassword(int charNumber)
         {
             return Guid.NewGuid().ToString().ToLower()
-                .Replace("-", "").Replace("l", "").Replace("1", "").Replace("o", "").Replace("0", "")
+                .Replace("-", string.Empty).Replace("l", string.Empty).Replace("1", string.Empty).Replace("o", string.Empty).Replace("0", string.Empty)
                 .Substring(0, charNumber);
-        }
-
-        /// <summary>
-        /// Gets the number of occurences of a specfied character in the specified string.
-        /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="character">The character to consider.</param>
-        /// <returns>The number of occurences of a specfied character in the specified string.</returns>
-        public static int CountOccurences(this string st, char character)
-        {
-            int count = 0;
-            int index = 0;
-            if (!string.IsNullOrEmpty(st))
-            {
-                if (st[0] == character) count++;
-                while (
-                    (index >= 0
-                    & index < st.Length)
-                    && (index = st.IndexOf(character, index + 1)) > 0)
-                {
-                    count++;
-                }
-            }
-            return count;
         }
 
         /// <summary>
@@ -176,30 +117,12 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="charNumber">The number of characters to consider.</param>
         /// <param name="addedString">Indicates whether dots are added.</param>
         /// <returns>Returns the specified string shorten.</returns>
-        public static string GetShortString(this string st, int charNumber, string addedString = "...")
+        public static string ToShortString(this string st, int charNumber, string addedString = "...")
         {
-            string shortString = "";
+            string shortString = string.Empty;
             if (st != null)
-                shortString = (st.Length > charNumber ? st.GetSubstring(0, charNumber - 4) + addedString : st);
+                shortString = (st.Length > charNumber ? st.ToSubstring(0, charNumber - 4) + addedString : st);
             return shortString;
-        }
-
-        /// <summary>
-        /// Gets the sub string contained between the specified characters in the specified string.
-        /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="character">The character to consider.</param>
-        /// <returns>Returns the sub string.</returns>
-        public static string GetStringBetween(this string st, Char character)
-        {
-            string subString = "";
-            int index1 = st.IndexOf(character);
-            int index2 = (index1 == -1 ? -1 : st.IndexOf(character, index1 + 1));
-
-            if ((index1 > -1) & (index2 > -1))
-                subString = st.Substring(index1 + 1, index2 - index1 - 1);
-
-            return subString;
         }
 
         /// <summary>
@@ -228,28 +151,15 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="startIndex">The start index to consider.</param>
         /// <param name="endIndex">The end index to consider.</param>
         /// <returns>The formated path.</returns>
-        public static string GetSubstring(this string st, int startIndex, int endIndex = -1)
+        public static string ToSubstring(this string st, int startIndex, int endIndex = -1)
         {
             if (st == null) return null;
 
             if (startIndex < 0) startIndex = 0;
             if (endIndex == -1 || endIndex >= st.Length) endIndex = st.Length - 1;
-            if ((st?.Length == 0) || (startIndex >= st.Length) || (endIndex < startIndex)) return "";
+            if ((st?.Length == 0) || (startIndex >= st.Length) || (endIndex < startIndex)) return string.Empty;
 
             return st.Substring(startIndex, endIndex - startIndex + 1);
-        }
-
-        /// <summary>
-        /// Gets the minimum index from the specified ones.
-        /// </summary>
-        /// <param name="indexes">The indexes to consider.</param>
-        /// <returns>Returns the minimum index.</returns>
-        public static int GetMinimumIndex(params int[] indexes)
-        {
-            int i = int.MaxValue;
-            foreach (int index in indexes)
-                if ((index > -1) && (index < i)) i = index;
-            return i;
         }
 
         /// <summary>
@@ -257,14 +167,11 @@ namespace BindOpen.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <param name="startingString">The starting string to consider.</param>
-        /// <param name="containingString">The string con</param>
         /// <returns>The formated path.</returns>
-        public static string GetStartedString(this string st, string startingString, string containingString = null)
+        public static string StartingWith(this string st, string startingString)
         {
-            return string.IsNullOrEmpty(st) ? "" :
-                ((containingString == null || st.Contains(containingString))
-                && (startingString != null && st.StartsWith(startingString)) ?
-                st : startingString + st);
+            return string.IsNullOrEmpty(st) ? string.Empty :
+                (startingString != null && st.StartsWith(startingString) ? st : startingString + st);
         }
 
         /// <summary>
@@ -273,9 +180,10 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="st">The string to consider.</param>
         /// <param name="endingString">The ending string to consider.</param>
         /// <returns>The formated path.</returns>
-        public static string GetEndedString(this string st, string endingString)
+        public static string EndingWith(this string st, string endingString)
         {
-            return (string.IsNullOrEmpty(st) ? "" : (st.EndsWith(endingString) ? st : st + endingString));
+            return string.IsNullOrEmpty(st) ? string.Empty :
+                (endingString != null && st.EndsWith(endingString) ? st : st + endingString);
         }
 
         /// <summary>
@@ -287,20 +195,22 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="wholeReplaceString">The whole replacement string to consider.</param>
         /// <example>The string should be formated this way: {0} {1} or { .. {0} .. } { .. {1} .. } and so on.</example>
         /// <returns>The formated string.</returns>
-        public static string GetFormatString(this string st, int index, string replaceString, string wholeReplaceString = null)
+        public static string ToFormatedString(this string st, int index, string replaceString, string wholeReplaceString = null)
         {
             string indexString = "{" + index.ToString() + "}";
             int indexStringIndex = st.IndexOf(indexString);
             if (indexStringIndex > -1)
             {
                 string stringToReplace = indexString;
-                int startIndex = StringHelper.GetIndexOfLastString(st, "{", indexStringIndex - 1);
+                int startIndex = st.IndexOfLastString("{", indexStringIndex - 1);
                 string newString;
                 if (startIndex > -1)
                 {
-                    int aEndIndex = StringHelper.GetIndexOfNextString(st, "}", indexStringIndex + indexString.Length);
-                    if (aEndIndex > -1)
-                        stringToReplace = st.Substring(startIndex, aEndIndex - startIndex + 1);
+                    int endIndex = st.IndexOfNextString("}", indexStringIndex + indexString.Length);
+                    if (endIndex > -1)
+                    {
+                        stringToReplace = st.Substring(startIndex, endIndex - startIndex + 1);
+                    }
 
                     newString = wholeReplaceString ?? stringToReplace[1..^1].Replace(indexString, replaceString)
 ;
@@ -323,9 +233,9 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="stv">The string to search.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
-        public static void GetIndexOfLastString(this string st, string stv, ref int startIndex)
+        public static void IndexOfLastString(this string st, string stv, ref int startIndex)
         {
-            startIndex = StringHelper.GetIndexOfLastString(st, stv, startIndex);
+            startIndex = st.IndexOfLastString(stv, startIndex);
         }
 
         /// <summary>
@@ -335,23 +245,38 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="stv">The string to search.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
-        public static int GetIndexOfLastString(this string st, string stv, int startIndex)
+        public static int IndexOfLastString(this string st, string stv, int startIndex)
         {
             int index = startIndex;
             bool b = false;
             while ((index >= 0) && !b)
             {
                 if ((st.Substring(index, 1) == "\"") && (stv != "\""))
-                    index = GetIndexOfLastString(st, "\"", index - 1) - 1;
+                {
+                    index = st.IndexOfLastString("\"", index - 1) - 1;
+                }
+                if ((st.Substring(index, 1) == "'") && (stv != "'"))
+                {
+                    index = st.IndexOfLastString("'", index - 1) - 1;
+                }
                 else if ((st.Substring(index, 1) == ")") && (stv == "("))
-                    index = GetIndexOfLastString(st, "(", index - 1) - 1;
+                {
+                    index = st.IndexOfLastString("(", index - 1) - 1;
+                }
                 else if ((st.Substring(index, 1) == "}") && (stv == "{"))
-                    index = GetIndexOfLastString(st, "{", index - 1) - 1;
+                {
+                    index = st.IndexOfLastString("{", index - 1) - 1;
+                }
                 else if (st.Substring(index, 1) == stv)
+                {
                     b = true;
+                }
                 else
+                {
                     index--;
+                }
             }
+
             return index;
         }
 
@@ -362,9 +287,21 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="stv">The string to search.</param>
         /// <param name="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
-        public static void GetIndexOfNextString(this string st, string stv, ref int startIndex)
+        public static void IndexOfNextString(this string st, string stv, ref int startIndex)
         {
-            startIndex = StringHelper.GetIndexOfNextString(st, stv, startIndex);
+            startIndex = st.IndexOfNextString(stv, startIndex);
+        }
+
+
+        /// <summary>
+        /// Sanitizes the specified string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
+        /// <returns>The formated string.</returns>
+        public static string Sanitize(this string st)
+        {
+            return st?.Replace((char)13, '\0')
+                .Replace((char)10, '\0');
         }
 
         /// <summary>
@@ -375,10 +312,12 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="startIndex">The start index to consider.</param>
         /// <param name="stringComparison">The string comparison to consider.</param>
         /// <returns>The formated string.</returns>
-        public static int GetIndexOfNextString(this string st, string stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
+        public static int IndexOfNextString(this string st, string stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
         {
             if (st == null || stv == null)
+            {
                 return -1;
+            }
 
             int index = startIndex;
             bool b = false;
@@ -387,19 +326,33 @@ namespace BindOpen.Data.Helpers.Strings
             while ((index < st_l) && index > -1 && !b)
             {
                 if ((st.Substring(index, 1) == "\"") && (stv != "\""))
-                    index = GetIndexOfNextString(st, "\"", index + 1) + 1;
+                {
+                    index = st.IndexOfNextString("\"", index + 1) + 1;
+                }
                 else if ((st.Substring(index, 1) == "'") && (stv == "'"))
-                    index = GetIndexOfNextString(st, "'", index + 1) + 1;
+                {
+                    index = st.IndexOfNextString("'", index + 1) + 1;
+                }
                 else if ((st.Substring(index, 1) == "(") && (stv == ")"))
-                    index = GetIndexOfNextString(st, ")", index + 1) + 1;
-                else if ((st.GetSubstring(index, index + 1) == "{{") && (stv == "}}"))
-                    index = GetIndexOfNextString(st, "}}", index + 1) + 2;
+                {
+                    index = st.IndexOfNextString(")", index + 1) + 1;
+                }
+                else if ((st.ToSubstring(index, index + 1) == "{{") && (stv == "}}"))
+                {
+                    index = st.IndexOfNextString("}}", index + 1) + 2;
+                }
                 else if ((st.Substring(index, 1) == "{") && (stv == "}"))
-                    index = GetIndexOfNextString(st, "}", index + 1) + 1;
+                {
+                    index = st.IndexOfNextString("}", index + 1) + 1;
+                }
                 else if ((index <= st_l - stv_l) && (string.Equals(st.Substring(index, stv_l), stv, stringComparison)))
+                {
                     b = true;
+                }
                 else
+                {
                     index++;
+                }
             }
             return index;
         }
@@ -409,7 +362,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// </summary>
         /// <param name="date">The date to consider.</param>
         /// <returns>Returns the date string of this instance.</returns>
-        public static string GetString(this DateTime? date)
+        public static string ToString(this DateTime? date)
         {
             return date?.ToString(StringHelper.__DateFormat);
         }
@@ -419,7 +372,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// </summary>
         /// <param name="date">The date to consider.</param>
         /// <returns>Returns the date string of this instance.</returns>
-        public static string GetString(this DateTime date)
+        public static string ToString(this DateTime date)
         {
             return date.ToString(StringHelper.__DateFormat);
         }
@@ -430,7 +383,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="st">The string to normalize.</param>
         /// <returns>Returns the normalized string.</returns>
         /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
-        public static string GetNormalizedName(this string st)
+        public static string ToNormalizedName(this string st)
         {
             return Regex.Replace(st, "[^0-9a-zA-Z_]", "_");
         }
@@ -441,7 +394,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="st">The string to normalize.</param>
         /// <returns>Returns the normalized string.</returns>
         /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
-        public static string GetTitleCasedName(string st)
+        public static string ToTitleCasedName(string st)
         {
             return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(st);
         }
@@ -454,7 +407,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <returns>Returns the normalized string.</returns>
         public static string GetStringAtIndex(this List<string> strings, int index)
         {
-            return strings != null && strings.Count > index && strings[index] != null ? strings[index] : "";
+            return strings != null && strings.Count > index && strings[index] != null ? strings[index] : string.Empty;
         }
 
         /// <summary>
@@ -467,12 +420,16 @@ namespace BindOpen.Data.Helpers.Strings
         /// <remarks>If the leading char is null then the two strings are always concatenated.</remarks>
         public static string Concatenate(this string st1, string st2, string charString = null)
         {
-            st1 = (st1 ?? "");
-            st2 = (st2 ?? "");
-            if ((charString == null) || (st2.StartsWith(charString)))
+            st1 ??= string.Empty;
+            st2 ??= string.Empty;
+            if (charString == null || st2.StartsWith(charString))
+            {
                 return st1 + st2.Substring(1);
+            }
             else
+            {
                 return st2;
+            }
         }
 
         /// <summary>
@@ -613,7 +570,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to consider.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<DataKeyValue> GetKeyValues(this string st)
+        public static List<DataKeyValue> ToKeyValues(this string st)
         {
             List<DataKeyValue> dataKeyValues = new List<DataKeyValue>();
             foreach (string subString in st.Split('|'))
@@ -634,9 +591,9 @@ namespace BindOpen.Data.Helpers.Strings
         /// </summary>
         /// <param name="st">The string to normalize.</param>
         /// <returns>Returns the quoted string.</returns>
-        public static string GetQuotedString(this string st)
+        public static string ToQuoted(this string st)
         {
-            return "'" + (st ?? "").Replace("''", "''") + "'";
+            return "'" + (st ?? string.Empty).Replace("''", "''") + "'";
         }
 
         /// <summary>
@@ -645,59 +602,16 @@ namespace BindOpen.Data.Helpers.Strings
         /// <param name="st">The string to normalize.</param>
         /// <param name="quoteChar">The quote character to consider.</param>
         /// <returns>Returns the quoted string.</returns>
-        public static string GetUnquotedString(this string st, char quoteChar = '\'')
+        public static string ToUnquoted(this string st, char quoteChar = '\'')
         {
             if (st == null) return null;
 
-            var quoteString = quoteChar.ToString();
-
-            if (st.Length > 2 && st.StartsWith(quoteString) && st.EndsWith(quoteString))
+            if (st.Length > 2 && st.StartsWith(quoteChar) && st.EndsWith(quoteChar))
                 st = st[1..^1];
             return st;
         }
 
         // string conversions --------------------------
-
-        /// <summary>
-        /// Gets the object from the specified string.
-        /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <returns>Returns the object corresponding to the specified string.</returns>
-        public static object GuessObjectValueFromString(this string st)
-        {
-            object object1 = null;
-
-            if (st != null)
-            {
-                object1 = st.ToObject(DataValueTypes.Integer);
-                if (object1 == null)
-                {
-                    object1 = st.ToObject(DataValueTypes.Long);
-                    if (object1 == null)
-                    {
-                        object1 = st.ToObject(DataValueTypes.ULong);
-                        if (object1 == null)
-                        {
-                            object1 = st.ToObject(DataValueTypes.Number);
-                            if (object1 == null)
-                            {
-                                object1 = st.ToObject(DataValueTypes.Date);
-                                if (object1 == null)
-                                {
-                                    object1 = st.ToObject(DataValueTypes.Time);
-                                    if (object1 == null)
-                                    {
-                                        object1 = st;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return object1;
-        }
 
         /// <summary>
         /// Gets the object from the specified string.
@@ -713,13 +627,40 @@ namespace BindOpen.Data.Helpers.Strings
                 return null;
             }
 
-            if (valueType == DataValueTypes.Any)
-            {
-                return st.GuessObjectValueFromString();
-            }
-
             switch (valueType)
             {
+                case DataValueTypes.Any:
+                    object object1 = null;
+
+                    if (st != null)
+                    {
+                        object1 = st.ToObject(DataValueTypes.Integer);
+                        if (object1 == null)
+                        {
+                            object1 = st.ToObject(DataValueTypes.Long);
+                            if (object1 == null)
+                            {
+                                object1 = st.ToObject(DataValueTypes.ULong);
+                                if (object1 == null)
+                                {
+                                    object1 = st.ToObject(DataValueTypes.Number);
+                                    if (object1 == null)
+                                    {
+                                        object1 = st.ToObject(DataValueTypes.Date);
+                                        if (object1 == null)
+                                        {
+                                            object1 = st.ToObject(DataValueTypes.Time);
+                                            if (object1 == null)
+                                            {
+                                                object1 = st;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return object1;
                 case DataValueTypes.Date:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
                     DateTime dateTime;
@@ -804,7 +745,7 @@ namespace BindOpen.Data.Helpers.Strings
                    { "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-" };
             }
 
-            string st = "";
+            string st = string.Empty;
             Random rd = new Random();
 
             string currentMatch = pattern;
@@ -821,20 +762,6 @@ namespace BindOpen.Data.Helpers.Strings
             }
 
             return st;
-        }
-
-        /// <summary>
-        /// Returns the current time stamp.
-        /// </summary>
-        /// <returns>The current time stamp</returns>
-        public static string GetCurrentTimeStamp()
-        {
-            return DateTime.Now.Year +
-                (DateTime.Now.Month < 10 ? "0" + DateTime.Now.Month.ToString() : DateTime.Now.Month.ToString()) +
-                (DateTime.Now.Day < 10 ? "0" + DateTime.Now.Day.ToString() : DateTime.Now.Day.ToString()) +
-                (DateTime.Now.Hour < 10 ? "0" + DateTime.Now.Hour.ToString() : DateTime.Now.Hour.ToString()) +
-                (DateTime.Now.Minute < 10 ? "0" + DateTime.Now.Minute.ToString() : DateTime.Now.Minute.ToString()) +
-                (DateTime.Now.Second < 10 ? "0" + DateTime.Now.Second.ToString() : DateTime.Now.Second.ToString());
         }
 
         #endregion

@@ -86,7 +86,7 @@ namespace BindOpen.Data.Elements
         [DefaultValue("")]
         public string GroupId
         {
-            get => _groupId ?? "";
+            get => _groupId ?? string.Empty;
             set { _groupId = value; }
         }
 

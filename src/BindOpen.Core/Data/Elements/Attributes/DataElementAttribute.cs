@@ -37,7 +37,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// ID of the group of this instance.
         /// </summary>
-        public string GroupId { get; set; } = "";
+        public string GroupId { get; set; } = string.Empty;
 
         /// <summary>
         /// The value type of this instance.

@@ -120,7 +120,7 @@ namespace BindOpen.Data.Conditions
             if (condition.Expression == null)
                 return false;
 
-            bool? b = scriptInterpreter.Evaluate(condition.Expression, scriptVariableSet) as bool?;
+            var b = scriptInterpreter.Evaluate<bool?>(condition.Expression, scriptVariableSet);
 
             return condition.TrueValue ? (b ?? false) : !(b ?? true);
         }

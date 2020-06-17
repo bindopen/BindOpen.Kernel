@@ -31,7 +31,7 @@ namespace BindOpen.Extensions.Definition
         /// Business library ID of this instance.
         /// </summary>
         [XmlIgnore()]
-        public string LibraryId { get; set; } = "";
+        public string LibraryId { get; set; } = string.Empty;
 
         /// <summary>
         /// Indicates whether this instance is editable.
@@ -89,7 +89,7 @@ namespace BindOpen.Extensions.Definition
         /// <returns>A text summarizing this instance.</returns>
         public virtual string ToHtml(string uiCulture = "*")
         {
-            return "";
+            return string.Empty;
         }
 
         #endregion

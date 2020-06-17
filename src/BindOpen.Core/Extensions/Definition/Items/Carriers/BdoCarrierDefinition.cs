@@ -85,7 +85,7 @@ namespace BindOpen.Extensions.Definition
         ///// <returns>A text summarizing this instance.</returns>
         //public override string GetText(BdoLoggerFormat logFormat = BdoLoggerFormat.Xml, string uiCulture = "*")
         //{
-        //    string st = "";
+        //    string st = string.Empty;
         //    if (Dto!=null)
         //    {
         //        switch (logFormat)
@@ -102,7 +102,7 @@ namespace BindOpen.Extensions.Definition
         //                st += "<strong>Path</strong>";
         //                st += "<br>";
         //                //foreach (DataElement dataElement in _PathStatement.Elements)
-        //                //    parameterstring += (parameterstring == String.Empty ? "" : ",") +
+        //                //    parameterstring += (parameterstring == string.Empty ? string.Empty : ",") +
         //                //        "<span style='color: blue;'>&lt;" + dataElement.ValueType.ToString() + "&gt;</span> " + dataElement.Name + ",";
         //                break;
         //        }

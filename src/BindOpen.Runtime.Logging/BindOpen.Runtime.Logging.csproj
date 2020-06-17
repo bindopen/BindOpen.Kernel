@@ -7,7 +7,7 @@
     <Product>BindOpen.Framework</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2020</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides classes to handle logging.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Runtime.Logging</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen</PackageProjectUrl>

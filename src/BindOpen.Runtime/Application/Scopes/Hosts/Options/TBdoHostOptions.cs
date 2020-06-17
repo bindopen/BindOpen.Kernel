@@ -260,7 +260,7 @@ namespace BindOpen.Application.Scopes
                 }
                 else
                 {
-                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(FileHelper.GetAppRootFolderPath()).GetEndedString(@"\").ToPath();
+                    _rootFolderPath = _rootFolderPath.GetConcatenatedPath(FileHelper.GetAppRootFolderPath()).EndingWith(@"\").ToPath();
                 }
             }
 
@@ -269,12 +269,12 @@ namespace BindOpen.Application.Scopes
                 _hostConfigFilePath = _hostConfigFilePath.GetConcatenatedPath(_rootFolderPath).ToPath();
 
                 HostSettings?.UpdateRuntimeInfo(null, null, log);
-                HostSettings?.WithRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
-                HostSettings?.WithProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).GetEndedString(@"\").ToPath());
+                HostSettings?.WithRuntimeFolder(HostSettings?.RuntimeFolderPath.GetConcatenatedPath(_rootFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
 
                 ExtensionLoadOptions?.WithLibraryFolderPath(HostSettings?.LibraryFolderPath);
             }
@@ -340,7 +340,7 @@ namespace BindOpen.Application.Scopes
         /// <returns>Returns this instance.</returns>
         public ITBdoHostOptions<S> SetRootFolder(string path)
         {
-            _rootFolderPath = path?.GetEndedString(@"\").ToPath();
+            _rootFolderPath = path?.EndingWith(@"\").ToPath();
 
             return this;
         }

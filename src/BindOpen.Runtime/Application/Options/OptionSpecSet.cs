@@ -103,7 +103,7 @@ namespace BindOpen.Application.Options
             foreach (DataElementSpec aElementSpec in Items)
             {
                 foreach (String aAlias in aElementSpec.Aliases)
-                    helpText += (helpText?.Length == 0 ? "" : ", ") + aAlias;
+                    helpText += (helpText?.Length == 0 ? string.Empty : ", ") + aAlias;
                 helpText += ": " + aElementSpec.Description.GetContent(uiCulture) + "\r\n";
             }
 
@@ -357,11 +357,11 @@ namespace BindOpen.Application.Options
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Description == null) return "";
+            if (Description == null) return string.Empty;
             string label = Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = Description.GetContent(defaultVariantName);
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         #endregion

@@ -54,14 +54,14 @@ namespace BindOpen.Extensions.Routines
 
             //if (item!=null && ParameterDetail!=null)
             //{
-            //    String aFormat = (ParameterDetail.GetElementItem() as string ?? "");
-            //    String aString = ((item as string) ?? "");
+            //    String aFormat = (ParameterDetail.GetElementItem() as string ?? string.Empty);
+            //    String aString = ((item as string) ?? string.Empty);
 
             //    if (!string.IsNullOrEmpty(aFormat))
             //    {
             //        if (!String.Format(aString, aFormat).KeyEquals(aString))
             //        {
-            //            log.AddError("Bad format").ResultCode = "ERROR_FORMAT:" + (dataElement != null ? dataElement.Key() : "");
+            //            log.AddError("Bad format").ResultCode = "ERROR_FORMAT:" + (dataElement != null ? dataElement.Key() : string.Empty);
             //        }
             //    }
             //}

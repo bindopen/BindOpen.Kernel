@@ -74,7 +74,7 @@ namespace BindOpen.System.Diagnostics.Dto
         {
             DisplayName = displayName;
             Description = description;
-            CreationDate = date.GetString();
+            CreationDate = StringHelper.ToString(date);
             Name = name;
             Id = id;
         }

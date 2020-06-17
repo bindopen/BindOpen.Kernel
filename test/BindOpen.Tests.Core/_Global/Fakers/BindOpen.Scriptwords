@@ -9,6 +9,17 @@
 
     <!-- Functions -->
 
+    <!-- $CONSTANT() -->
+    <add.definition name="CONSTANT">
+      <creationDate>2020-06-17</creationDate>
+      <lastModificationDate>2020-06-17</lastModificationDate>
+      <description>
+        <add.value>Returns the test constant.</add.value>
+      </description>
+      <kind>Variable</kind>
+      <functionName>Var_Constant</functionName>
+    </add.definition>
+
     <!-- $TEXT(value) -->
     <add.definition name="TEXT">
       <creationDate>2010-08-05</creationDate>
@@ -22,7 +33,7 @@
         <scalar name="value" valueType="Any" />
       </parameter.specification>
     </add.definition>
-    
+
     <!-- $ISEQUAL(value1, value2) -->
     <add.definition name="ISEQUAL">
       <creationDate>2010-08-05</creationDate>
@@ -36,6 +47,36 @@
         <scalar name="boolean1" valueType="Any" />
         <scalar name="boolean2" valueType="Any" />
       </parameter.specification>
+    </add.definition>
+
+    <!-- $FUNC1(value1, value2) -->
+    <add.definition name="FUNC1">
+      <creationDate>2020-06-17</creationDate>
+      <lastModificationDate>2020-06-17</lastModificationDate>
+      <description>
+        <add.value>The test function 1.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Func1</functionName>
+      <parameter.specification>
+        <scalar name="value1" valueType="Any" />
+        <scalar name="value2" valueType="Any" />
+      </parameter.specification>
+      <children>
+        <!-- $FUNC1(value1, value2).FUNC2(value1) -->
+        <add.definition name="FUNC2">
+          <creationDate>2020-06-17</creationDate>
+          <lastModificationDate>2020-06-17</lastModificationDate>
+          <description>
+            <add.value>The test function 2.</add.value>
+          </description>
+          <kind>Function</kind>
+          <functionName>Fun_Func2</functionName>
+          <parameter.specification>
+            <scalar name="value1" valueType="Text" />
+          </parameter.specification>
+        </add.definition>
+      </children>
     </add.definition>
   </definitions>
   

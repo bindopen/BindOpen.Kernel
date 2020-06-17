@@ -105,7 +105,7 @@ namespace BindOpen.System.Assemblies
         /// <returns>Returns the root namspace.</returns>
         public static string GetClassNameWithoutAssembly(this string className)
         {
-            return className == null ? "" : (className.Contains(",") ? className.Substring(0, className.IndexOf(",")) : className);
+            return className == null ? string.Empty : (className.Contains(",") ? className.Substring(0, className.IndexOf(",")) : className);
         }
 
         #endregion

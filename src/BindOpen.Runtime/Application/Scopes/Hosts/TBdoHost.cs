@@ -252,7 +252,7 @@ namespace BindOpen.Application.Scopes
                     path = GetKnownPath(BdoHostPathKind.RuntimeFolder) + BdoDefaultHostPaths.__DefaultLogsFolderPath;
                     break;
                 case BdoHostPathKind.RoamingFolder:
-                    path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).GetEndedString(@"\");
+                    path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).EndingWith(@"\");
                     break;
                 case BdoHostPathKind.RuntimeFolder:
                     path = Options?.HostSettings?.RuntimeFolderPath;

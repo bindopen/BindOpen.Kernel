@@ -21,7 +21,7 @@ namespace BindOpen.Extensions.Definition
         /// The definition class of this instance.
         /// </summary>
         [XmlElement("definitionClass")]
-        public string DefinitionClass { get; set; } = "";
+        public string DefinitionClass { get; set; } = string.Empty;
 
         #endregion
 

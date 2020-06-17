@@ -42,7 +42,7 @@ namespace BindOpen.Application.Limitations
         {
             get
             {
-                return (_registrationMode ?? "");
+                return (_registrationMode ?? string.Empty);
             }
             set
             {

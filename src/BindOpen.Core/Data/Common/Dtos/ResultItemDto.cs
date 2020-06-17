@@ -5,9 +5,9 @@ namespace BindOpen.Data.Common
     /// <summary>
     /// This class represents a DTO item result.
     /// </summary>
-    [XmlType("ItemResultDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot("itemResultDto", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class ItemResultDto
+    [XmlType("ResultItemDto", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlRoot("resultItemDto", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    public class ResultItemDto
     {
         /// <summary>
         /// The key of this instance.
@@ -22,18 +22,18 @@ namespace BindOpen.Data.Common
         public ResourceStatus Status { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the ItemResultDto class.
+        /// Initializes a new instance of the ResultItemDto class.
         /// </summary>
-        public ItemResultDto() : this(null)
+        public ResultItemDto() : this(null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the ItemResultDto class.
+        /// Initializes a new instance of the ResultItemDto class.
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="status">The status to consider.</param>
-        public ItemResultDto(string key, ResourceStatus status = ResourceStatus.None)
+        public ResultItemDto(string key, ResourceStatus status = ResourceStatus.None)
         {
             Key = key;
             Status = status;

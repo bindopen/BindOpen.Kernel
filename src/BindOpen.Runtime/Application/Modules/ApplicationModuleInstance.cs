@@ -178,7 +178,7 @@ namespace BindOpen.Application.Modules
             if (completeName.Contains("$"))
                 completeName = completeName.Substring(completeName.IndexOf('$') + 1);
             else
-                completeName = "";
+                completeName = string.Empty;
             string[] names = completeName.Split(new char[] { '$' });
 
             IAppSection moduleSection = null;

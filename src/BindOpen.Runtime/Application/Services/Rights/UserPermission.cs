@@ -27,7 +27,7 @@ namespace BindOpen.Application.Rights
         {
             set
             {
-                base.Key = value?.ToLower().Trim() ?? "";
+                base.Key = value?.ToLower().Trim() ?? string.Empty;
             }
             get
             {
@@ -43,7 +43,7 @@ namespace BindOpen.Application.Rights
         {
             set
             {
-                base.Content = value?.ToString().ToLower() ?? "";
+                base.Content = value?.ToString().ToLower() ?? string.Empty;
             }
             get
             {

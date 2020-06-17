@@ -89,7 +89,7 @@ namespace BindOpen.Data.Expression
                 return expression.Text;
             }
 
-            return "";
+            return string.Empty;
         }
 
         #endregion

@@ -52,7 +52,7 @@ namespace BindOpen.Extensions.Runtime
         /// <summary>
         /// Instantiates a new instance of the TBdoExtensionItem class.
         /// </summary>
-        protected TBdoExtensionItem() : base("")
+        protected TBdoExtensionItem() : base(string.Empty)
         {
         }
 

@@ -109,7 +109,7 @@ namespace BindOpen.Extensions.Runtime
                                     fileName = libraryReference.Name + ".dll";
                                 }
 
-                                string filePath = _loadOptions.LibraryFolderPath.GetEndedString(@"\").ToPath() + fileName;
+                                string filePath = _loadOptions.LibraryFolderPath.EndingWith(@"\").ToPath() + fileName;
                                 if (!File.Exists(filePath))
                                 {
                                     subLog?.AddError("Could not find the assembly file path '" + filePath + "'");

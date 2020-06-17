@@ -76,7 +76,7 @@ namespace BindOpen.Tests.Core.Data.Elements
             var log = new BdoLog();
             _collectionElementSet.SaveXml(_filePath, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -96,7 +96,7 @@ namespace BindOpen.Tests.Core.Data.Elements
 
             var elementSet = XmlHelper.Load<DataElementSet>(_filePath, log: log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

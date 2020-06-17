@@ -119,7 +119,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => (p as NamedDataItem)?.Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as NamedDataItem)?.Key() ?? string.Empty).ToArray());
         }
 
         /// <summary>

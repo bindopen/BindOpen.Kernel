@@ -20,14 +20,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_AppModuleName(BdoScriptwordFunctionVariable variable)
+        public static object Var_AppModuleName(BdoScriptwordFunctionScope variable)
         {
             if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
             if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost?.HostOptions.AppModule?.Name ?? "";
+            return appHost?.HostOptions.AppModule?.Name ?? string.Empty;
         }
 
         /// <summary>
@@ -36,14 +36,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_ApplicationInstanceName(BdoScriptwordFunctionVariable variable)
+        public static object Var_ApplicationInstanceName(BdoScriptwordFunctionScope variable)
         {
             if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
             if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? "";
+            return appHost?.HostOptions.HostSettings?.ApplicationInstanceName ?? string.Empty;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_IsEmpty(BdoScriptwordFunctionVariable variable)
+        public static object Fun_IsEmpty(BdoScriptwordFunctionScope variable)
         {
             string value = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
@@ -65,11 +65,11 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_Text(BdoScriptwordFunctionVariable variable)
+        public static object Fun_Text(BdoScriptwordFunctionScope variable)
         {
             string value = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            return "'" + value + "'";
+            return value.ToQuoted();
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_FormatText(BdoScriptwordFunctionVariable variable)
+        public static object Fun_FormatText(BdoScriptwordFunctionScope variable)
         {
             string textValue = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
             string formatText = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
@@ -92,7 +92,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_If(BdoScriptwordFunctionVariable variable)
+        public static object Fun_If(BdoScriptwordFunctionScope variable)
         {
             string condition = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
@@ -105,7 +105,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_Not(BdoScriptwordFunctionVariable variable)
+        public static object Fun_Not(BdoScriptwordFunctionScope variable)
         {
             string condition = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
@@ -118,7 +118,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_Or(BdoScriptwordFunctionVariable variable)
+        public static object Fun_Or(BdoScriptwordFunctionScope variable)
         {
             bool b = false;
             foreach (var param in variable?.Scriptword?.Parameters)
@@ -135,7 +135,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_And(BdoScriptwordFunctionVariable variable)
+        public static object Fun_And(BdoScriptwordFunctionScope variable)
         {
             bool b = true;
             foreach (var param in variable?.Scriptword?.Parameters)
@@ -152,7 +152,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_Xor(BdoScriptwordFunctionVariable variable)
+        public static object Fun_Xor(BdoScriptwordFunctionScope variable)
         {
             bool b = true;
             foreach (var param in variable?.Scriptword?.Parameters)
@@ -169,7 +169,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_IsEqual(BdoScriptwordFunctionVariable variable)
+        public static object Fun_IsEqual(BdoScriptwordFunctionScope variable)
         {
             string value1 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
             string value2 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
@@ -183,7 +183,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_IsDifferent(BdoScriptwordFunctionVariable variable)
+        public static object Fun_IsDifferent(BdoScriptwordFunctionScope variable)
         {
             string value1 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
             string value2 = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
@@ -197,19 +197,18 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_GetCurrentDateTime(BdoScriptwordFunctionVariable variable)
+        public static object Var_GetCurrentDateTime()
         {
             return DateTime.Now.ToString();
         }
 
-
         /// <summary>
-        /// Evaluates the script word $GETCURRENTDATE().FORMAT(aFormat).
+        /// Evaluates the script word $(GETCURRENTDATE).FORMAT(aFormat).
         /// </summary>
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_DateTime_Format(BdoScriptwordFunctionVariable variable)
+        public static object Fun_DateTime_Format(BdoScriptwordFunctionScope variable)
         {
             string format = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
@@ -226,12 +225,12 @@ namespace BindOpen.Extensions.Scriptwords
         }
 
         /// <summary>
-        /// Evaluates the script word $GETCURRENTDATE().TIMESTAMP().
+        /// Evaluates the script word $(GETCURRENTDATE).TIMESTAMP().
         /// </summary>
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_DateTime_TimeStamp(BdoScriptwordFunctionVariable variable)
+        public static object Fun_DateTime_TimeStamp(BdoScriptwordFunctionScope variable)
         {
             DateTime dateTime = DateTime.Now;
 
@@ -245,12 +244,12 @@ namespace BindOpen.Extensions.Scriptwords
         }
 
         /// <summary>
-        /// Evaluates the script word $GETCURRENTDATE().SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
+        /// Evaluates the script word $(GETCURRENTDATE).SUBSTRACT(aYear, aMonth, aDay, aHour, aMinute, aSecond).
         /// </summary>
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_DateTime_Add(BdoScriptwordFunctionVariable variable)
+        public static object Fun_DateTime_Add(BdoScriptwordFunctionScope variable)
         {
             string year = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
             string month = variable?.Scriptword?.Parameters?.GetObjectAtIndex(1)?.ToString();
@@ -283,7 +282,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_DataModule(BdoScriptwordFunctionVariable variable)
+        public static object Fun_DataModule(BdoScriptwordFunctionScope variable)
         {
             return variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
         }
@@ -294,7 +293,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Fun_DataModule_Name(BdoScriptwordFunctionVariable variable)
+        public static object Fun_DataModule_Name(BdoScriptwordFunctionScope variable)
         {
             string text = variable?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
@@ -319,7 +318,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_GetEmpty(BdoScriptwordFunctionVariable variable)
+        public static object Var_GetEmpty()
         {
             return "''";
         }
@@ -330,7 +329,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_Literal_Tab(BdoScriptwordFunctionVariable variable)
+        public static object Var_Literal_Tab()
         {
             return "\t";
         }
@@ -341,7 +340,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_Literal_Cr(BdoScriptwordFunctionVariable variable)
+        public static object Var_Literal_Cr()
         {
             return "\n";
         }
@@ -352,7 +351,7 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
-        public static object Var_Literal_CarretPos(BdoScriptwordFunctionVariable variable)
+        public static object Var_Literal_CarretPos()
         {
             return "%LITERAL_CARRETPOS()";
         }
@@ -365,14 +364,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword("application.folderpath")]
-        public static object Var_ApplicationFolderPath(BdoScriptwordFunctionVariable variable)
+        public static object Var_ApplicationFolderPath(BdoScriptwordFunctionScope variable)
         {
             if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
             if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost.GetKnownPath(BdoHostPathKind.RootFolder) ?? "";
+            return appHost.GetKnownPath(BdoHostPathKind.RootFolder) ?? string.Empty;
         }
 
         /// <summary>
@@ -381,14 +380,14 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword("application.roaming.folderpath")]
-        public static object Var_ApplicationRoamingFolderPath(BdoScriptwordFunctionVariable variable)
+        public static object Var_ApplicationRoamingFolderPath(BdoScriptwordFunctionScope variable)
         {
             if (variable?.Scope?.Context == null)
                 return "<!--Application scope missing-->";
             if (!(variable?.Scope.Context.GetSystemItem("bdoHost") is IBdoHost appHost))
                 return "<!--BindOpen host missing-->";
 
-            return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder) ?? "";
+            return appHost.GetKnownPath(BdoHostPathKind.RoamingFolder) ?? string.Empty;
         }
 
         /// <summary>
@@ -397,9 +396,9 @@ namespace BindOpen.Extensions.Scriptwords
         /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(Name = "mydocuments.folderpath")]
-        public static object Var_MyDocumentsFolderPath(BdoScriptwordFunctionVariable variable)
+        public static object Var_MyDocumentsFolderPath()
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).GetEndedString(@"\");
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).EndingWith(@"\");
         }
     }
 }

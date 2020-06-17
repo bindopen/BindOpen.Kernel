@@ -26,7 +26,7 @@ namespace BindOpen.Data.Elements
         /// The definition unique ID of this instance.
         /// </summary>
         [XmlElement("definition")]
-        public string DefinitionUniqueId { get; set; } = "";
+        public string DefinitionUniqueId { get; set; } = string.Empty;
 
         // --------------------------------------------------
 
@@ -146,7 +146,7 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? "").ToArray());
+            return string.Join("|", Items.Select(p => (p as BdoEntityConfiguration)?.Key() ?? string.Empty).ToArray());
         }
 
         #endregion

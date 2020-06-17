@@ -48,7 +48,7 @@ namespace BindOpen.Application.Configuration
                     {
                         string completeUsingFilePath = (usingFilePath.Contains(":") ?
                             usingFilePath :
-                            Path.GetDirectoryName(filePath).GetEndedString(@"\") + usingFilePath).ToPath();
+                            Path.GetDirectoryName(filePath).EndingWith(@"\") + usingFilePath).ToPath();
                         if (Load<T>(completeUsingFilePath, scope, scriptVariableSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
                             unionConfiguration.Update(usingConfiguration);
                     }

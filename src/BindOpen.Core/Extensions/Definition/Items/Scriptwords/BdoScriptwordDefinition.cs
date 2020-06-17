@@ -31,9 +31,14 @@ namespace BindOpen.Extensions.Definition
         public string UniqueId { get => ExtensionDefinition?.Dto?.Name + "$" + Dto?.Name; }
 
         /// <summary>
-        /// The runtime function of this instance.
+        /// The runtime scoped function of this instance.
         /// </summary>
-        public BdoScriptwordFunction RuntimeFunction { get; set; }
+        public BdoScriptwordScopedDelegate RuntimeScopedFunction { get; set; }
+
+        /// <summary>
+        /// The runtime basic function of this instance.
+        /// </summary>
+        public BdoScriptwordBasicDelegare RuntimeBasicFunction { get; set; }
 
         /// <summary>
         /// The parent of this instance.
