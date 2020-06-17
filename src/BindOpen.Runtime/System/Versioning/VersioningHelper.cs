@@ -69,16 +69,16 @@ namespace BindOpen.System.Versioning
         /// <returns></returns>
         public static string GetVersion(params int[] numbers)
         {
-            string version = "";
+            string version = string.Empty;
             for (int i = 0; i < numbers.Length; i++)
                 if (numbers[i] < 0)
                 {
-                    version += (i == 0 ? "" : " ") + "Beta";
+                    version += (i == 0 ? string.Empty : " ") + "Beta";
                     break;
                 }
                 else
                 {
-                    version += (string.IsNullOrEmpty(version) ? "" : ".") + numbers[i].ToString();
+                    version += (string.IsNullOrEmpty(version) ? string.Empty : ".") + numbers[i].ToString();
 
                     // if the rest of digits are all 0, we stop
                     bool isTheRestZero = true;
@@ -89,7 +89,7 @@ namespace BindOpen.System.Versioning
                     {
                         if (i == 0)
                         {
-                            version += (string.IsNullOrEmpty(version) ? "" : ".") + "0";
+                            version += (string.IsNullOrEmpty(version) ? string.Empty : ".") + "0";
                         }
                         break;
                     }
@@ -150,7 +150,7 @@ namespace BindOpen.System.Versioning
             String versioningFormat,
             String historicVersion = null)
         {
-            String newVersion = "";
+            String newVersion = string.Empty;
             if (string.IsNullOrEmpty(historicVersion))
                 historicVersion = currentVersion;
 

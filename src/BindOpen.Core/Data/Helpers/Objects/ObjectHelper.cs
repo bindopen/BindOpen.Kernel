@@ -57,7 +57,7 @@ namespace BindOpen.Data.Helpers.Objects
         /// <returns></returns>
         public static string ToNotNullString(this object object1)
         {
-            return (object1 == null ? "" : object1.ToString());
+            return (object1 == null ? string.Empty : object1.ToString());
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace BindOpen.Data.Helpers.Objects
         /// <returns>Returns the normalized string.</returns>
         public static string GetStringAtIndex(this object[] objects, int index)
         {
-            return objects != null && objects.Length > index && objects[index] != null ? objects[index].ToString() : "";
+            return objects != null && objects.Length > index && objects[index] != null ? objects[index].ToString() : string.Empty;
         }
 
         /// <summary>

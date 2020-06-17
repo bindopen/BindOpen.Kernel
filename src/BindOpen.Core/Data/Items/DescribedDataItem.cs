@@ -176,11 +176,11 @@ namespace BindOpen.Data.Items
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public virtual string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Description == null) return "";
+            if (Description == null) return string.Empty;
             string label = Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = Description.GetContent(defaultVariantName);
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         /// <summary>

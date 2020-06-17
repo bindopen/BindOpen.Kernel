@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Definition
                 TaskEntryKind.Output => "output",
                 TaskEntryKind.ScalarOutput => "scalar output",
                 TaskEntryKind.NonScalarOutput => "non-scalar output",
-                _ => "",
+                _ => string.Empty,
             };
         }
 

@@ -35,7 +35,7 @@ namespace BindOpen.Application.Configuration
         /// </summary>
         [XmlAttribute("name")]
         [DefaultValue("")]
-        public string Name { get; set; } = "";
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Current file path of this instance.
@@ -229,11 +229,11 @@ namespace BindOpen.Application.Configuration
         /// <param name="defaultVariantName">The default variant name to consider.</param>
         public virtual string GetDescription(string variantName = "*", string defaultVariantName = "*")
         {
-            if (Description == null) return "";
+            if (Description == null) return string.Empty;
             string label = Description.GetContent(variantName);
             if (string.IsNullOrEmpty(label))
                 label = Description.GetContent(defaultVariantName);
-            return label ?? "";
+            return label ?? string.Empty;
         }
 
         #endregion

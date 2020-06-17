@@ -46,7 +46,7 @@ namespace BindOpen.System.Assemblies.References
         {
             return references.GroupBy(l =>
                 !string.IsNullOrEmpty(l.FileName) ?
-                    (l.FileName + "", "") : ("", l.Name + StringHelper.__UniqueToken + l.Version),
+                    (l.FileName + string.Empty, string.Empty) : (string.Empty, l.Name + StringHelper.__UniqueToken + l.Version),
                 (key, l) => l.FirstOrDefault()).ToList();
         }
     }

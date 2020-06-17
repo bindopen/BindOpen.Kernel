@@ -21,7 +21,7 @@ namespace BindOpen.Tests.Core
                 string workingFolder = GlobalVariables._workingFolder;
                 if (workingFolder == null)
                     GlobalVariables._workingFolder = workingFolder =
-                        ((_appHost?.GetKnownPath(BdoHostPathKind.RuntimeFolder) ?? AppDomain.CurrentDomain.BaseDirectory).GetEndedString(@"\") + @"bdo\temp\").ToPath();
+                        ((_appHost?.GetKnownPath(BdoHostPathKind.RuntimeFolder) ?? AppDomain.CurrentDomain.BaseDirectory).EndingWith(@"\") + @"bdo\temp\").ToPath();
 
                 return workingFolder;
             }

@@ -22,7 +22,7 @@ namespace BindOpen.Extensions.Common
         /// <returns>The result object.</returns>
         public static string GetUniqueName_standard(this String uniqueName)
         {
-            return uniqueName.GetStartedString("runtime$");
+            return uniqueName.StartingWith("runtime$");
         }
     }
 

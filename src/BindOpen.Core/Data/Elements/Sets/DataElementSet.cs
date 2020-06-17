@@ -296,7 +296,7 @@ namespace BindOpen.Data.Elements
                     {
                         if (!referenceItem.Items.Any(p => p.KeyEquals(currentSubItem)))
                         {
-                            log.AddError("").ResultCode = "additionalItem:" + currentSubItem.Key();
+                            log.AddError(string.Empty).ResultCode = "additionalItem:" + currentSubItem.Key();
                         }
                     }
                 }
@@ -308,7 +308,7 @@ namespace BindOpen.Data.Elements
                     var currentSubItem = Items.Find(p => p.KeyEquals(referenceSubItem));
 
                     if (currentSubItem == null)
-                        log.AddError("").ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
+                        log.AddError(string.Empty).ResultCode = "MISSINGATTRIBUTE:" + referenceSubItem.Key();
                     else
                         log.AddEvents(currentSubItem.Check(isExistenceChecked, referenceSubItem, specificationAreas));
                 }

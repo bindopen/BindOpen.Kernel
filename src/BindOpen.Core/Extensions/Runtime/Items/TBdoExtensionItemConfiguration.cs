@@ -37,7 +37,7 @@ namespace BindOpen.Extensions.Runtime
         /// </summary>
         [XmlElement("group")]
         [DefaultValue("")]
-        public string Group { get; set; } = "";
+        public string Group { get; set; } = string.Empty;
 
         #endregion
 

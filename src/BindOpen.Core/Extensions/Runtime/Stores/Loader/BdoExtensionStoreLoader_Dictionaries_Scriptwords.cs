@@ -81,8 +81,16 @@ namespace BindOpen.Extensions.Runtime
 
                                     try
                                     {
-                                        itemDefinition.RuntimeFunction += methodInfo.CreateDelegate(
-                                            typeof(BdoScriptwordFunction)) as BdoScriptwordFunction;
+                                        if (methodInfo.GetParameters().Length == 0)
+                                        {
+                                            itemDefinition.RuntimeBasicFunction += methodInfo.CreateDelegate(
+                                                typeof(BdoScriptwordBasicDelegare)) as BdoScriptwordBasicDelegare;
+                                        }
+                                        else
+                                        {
+                                            itemDefinition.RuntimeScopedFunction += methodInfo.CreateDelegate(
+                                                typeof(BdoScriptwordScopedDelegate)) as BdoScriptwordScopedDelegate;
+                                        }
 
                                         scriptwordDefinitions.Add(itemDefinition);
 

@@ -165,7 +165,7 @@
         <add.value>Returns the current date time.</add.value>
       </description>
       <kind>Variable</kind>
-      <functionName>Fun_GetCurrentDateTime</functionName>
+      <functionName>Var_GetCurrentDateTime</functionName>
       <returnValueType>Date</returnValueType>
       <children>
 

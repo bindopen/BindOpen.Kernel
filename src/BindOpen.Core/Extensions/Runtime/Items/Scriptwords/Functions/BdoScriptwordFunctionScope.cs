@@ -4,9 +4,9 @@ using BindOpen.System.Scripting;
 namespace BindOpen.Extensions.Runtime
 {
     /// <summary>
-    /// This class represents the script word function variable.
+    /// This class represents the script word function scope.
     /// </summary>
-    public class BdoScriptwordFunctionVariable
+    public class BdoScriptwordFunctionScope
     {
         /// <summary>
         /// The scope of this instance.
@@ -24,12 +24,12 @@ namespace BindOpen.Extensions.Runtime
         public IBdoScriptword Scriptword { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the BdoScriptwordFunctionVariable class.
+        /// Initializes a new instance of the BdoScriptwordFunctionScope class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="scriptword">The script word to consider.</param>
-        public BdoScriptwordFunctionVariable(
+        public BdoScriptwordFunctionScope(
             IBdoScope scope,
             IScriptVariableSet scriptVariableSet,
             IBdoScriptword scriptword)

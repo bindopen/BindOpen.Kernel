@@ -191,8 +191,8 @@ namespace BindOpen.Application.Options
             int i = name1.IndexOf(StringHelper.__PatternEmptyValue);
             if (i > -1)
             {
-                name1 = name1.GetSubstring(0, i - 1);
-                name2 = name2.GetSubstring(0, i - 1);
+                name1 = name1.ToSubstring(0, i - 1);
+                name2 = name2.ToSubstring(0, i - 1);
             }
             return name1.KeyEquals(name2);
         }

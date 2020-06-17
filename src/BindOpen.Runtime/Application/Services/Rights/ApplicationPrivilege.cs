@@ -68,7 +68,7 @@ namespace BindOpen.Application.Rights
         {
             get
             {
-                return (EntityKind.ToString() + "#" + (EntityName ?? "")).ToLower();
+                return (EntityKind.ToString() + "#" + (EntityName ?? string.Empty)).ToLower();
             }
         }
 

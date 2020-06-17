@@ -49,7 +49,7 @@ namespace BindOpen.System.Scripting
         {
             if (text == "''")
             {
-                text = "";
+                text = string.Empty;
             }
             else
             {
@@ -565,7 +565,7 @@ namespace BindOpen.System.Scripting
                 {
                     string currentScriptwordString = stringBlock.Contains(".")
                         ? stringBlock.Substring(stringBlock.IndexOf(".") + 1, stringBlock.Length - stringBlock.IndexOf(".") - 1)
-                            .Replace(BdoScriptParsingHelper.Symbol_Fun, "")
+                            .Replace(BdoScriptParsingHelper.Symbol_Fun, string.Empty)
                         : stringBlock;
                     return scriptInterpreter.GetDefinitionsWithApproximativeName(currentScriptwordString, lastChildScriptword.Definition);
                 }

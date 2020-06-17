@@ -21,6 +21,11 @@ namespace BindOpen.Extensions.Definition
         /// <summary>
         /// 
         /// </summary>
-        BdoScriptwordFunction RuntimeFunction { get; set; }
+        BdoScriptwordScopedDelegate RuntimeScopedFunction { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        BdoScriptwordBasicDelegare RuntimeBasicFunction { get; set; }
     }
 }

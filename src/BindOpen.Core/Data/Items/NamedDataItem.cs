@@ -24,7 +24,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [XmlAttribute("name")]
         [DefaultValue("")]
-        public string Name { get; set; } = "";
+        public string Name { get; set; } = string.Empty;
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the NamedDataItem class.
         /// </summary>
-        public NamedDataItem() : this("")
+        public NamedDataItem() : this(string.Empty)
         {
         }
 
@@ -94,7 +94,7 @@ namespace BindOpen.Data.Items
         public static string GetClonedName(string name, string namePreffix = null)
         {
             return string.IsNullOrEmpty(name) ?
-                (namePreffix != null ? namePreffix + "_" : "") + DateTime.Now.Ticks.ToString() :
+                (namePreffix != null ? namePreffix + "_" : string.Empty) + DateTime.Now.Ticks.ToString() :
                 "copy_" + name;
         }
 

@@ -67,7 +67,7 @@ namespace BindOpen.System.Assemblies
                 (object sender, ResolveEventArgs args) =>
                 {
                     Assembly assembly = null;
-                    //string filePath = "";
+                    //string filePath = string.Empty;
 
                     String assemblyName = (new AssemblyName(args.Name)).Name;
                     if ((assemblyName.EndsWith(".resources")) | (assemblyName.EndsWith(".XmlSerializers")))

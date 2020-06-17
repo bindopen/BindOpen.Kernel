@@ -10,7 +10,7 @@ namespace Samples.SampleA.Services
         {
             _ = host.DataStore.GetDatasourceDepot()?.GetConnectorConfiguration("db.test", "database.mssqlserver$client");
 
-            //var repo = new TestDbRepository(host?.GetModel<MyDbModel>(), host.CreatePostgreSqlConnector(""));
+            //var repo = new TestDbRepository(host?.GetModel<MyDbModel>(), host.CreatePostgreSqlConnector(string.Empty));
             //repo.Test();
         }
     }

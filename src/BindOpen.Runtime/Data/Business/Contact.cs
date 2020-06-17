@@ -21,19 +21,19 @@ namespace BindOpen.Data.Business
         /// Email of this instance.
         /// </summary>
         [XmlElement("email")]
-        public string Email { get; set; } = "";
+        public string Email { get; set; } = string.Empty;
 
         /// <summary>
         /// Sms phone of this instance.
         /// </summary>
         [XmlElement("smsPhone")]
-        public string SmsPhone { get; set; } = "";
+        public string SmsPhone { get; set; } = string.Empty;
 
         /// <summary>
         /// Vocal phone of this instance.
         /// </summary>
         [XmlElement("vocalPhone")]
-        public string VocalPhone { get; set; } = "";
+        public string VocalPhone { get; set; } = string.Empty;
 
         #endregion
 

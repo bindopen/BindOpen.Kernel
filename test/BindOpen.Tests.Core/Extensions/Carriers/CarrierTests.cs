@@ -87,7 +87,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             var log = new BdoLog();
             _carrier.SaveXml(_filePath, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";
@@ -107,7 +107,7 @@ namespace BindOpen.Tests.Core.Extensions.Carriers
             BdoCarrierConfiguration configuration = XmlHelper.Load<BdoCarrierConfiguration>(_filePath, log: log);
             var field = GlobalVariables.Scope.CreateCarrier<CarrierFake>(configuration, null, log);
 
-            string xml = "";
+            string xml = string.Empty;
             if (log.HasErrorsOrExceptions())
             {
                 xml = ". Result was '" + log.ToXml() + "'";

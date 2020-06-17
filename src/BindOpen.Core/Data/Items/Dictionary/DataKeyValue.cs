@@ -31,7 +31,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [DataMember(Name = "content")]
         [XmlText]
-        public string Content { get; set; } = "";
+        public string Content { get; set; } = string.Empty;
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         public string GetTextNode(string nodeName, string indent)
         {
-            string st = "";
+            string st = string.Empty;
 
             st += indent + nodeName + ":globalValue\n";
             st += "\t" + indent + nodeName + ":globalValue:key=\"" + Key + "\"\n";
