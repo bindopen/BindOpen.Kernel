@@ -17,6 +17,8 @@ Todo list for BindOpen
 
 ### v.1.1
 
+* ScriptingFactory -> BdoScript
+* Simplify script interpretation
 * Improve extension handling
 * Make logging work again
 * Add Getting Help + Contributors sections in README.md
