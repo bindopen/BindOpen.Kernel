@@ -16,6 +16,8 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         private readonly string _interpretedScript2 = "false:ijk";
         private readonly string _script3 = "$isEqual($(constant), 'const')";
         private readonly string _interpretedScript3 = "true";
+        private readonly string _script4 = "abc{{$isEqual($(constant), 'const')}}defg";
+        private readonly string _interpretedScript4 = "abctruedefg";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -34,9 +36,9 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
-            var scriptword = ScriptingFactory.Function("isEqual", "MYTABLE",
-                ScriptingFactory.Function("text", "mytable"));
+            var scriptVariableSet = BdoScript.CreateVariableSet();
+            var scriptword = BdoScript.Function("isEqual", "MYTABLE",
+                BdoScript.Function("text", "mytable"));
             var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<bool?>(scriptword, scriptVariableSet, log)?.ToString();
 
             string xml = string.Empty;
@@ -52,7 +54,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
+            var scriptVariableSet = BdoScript.CreateVariableSet();
             var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<bool?>(_script1, DataExpressionKind.Script, scriptVariableSet, log)?.ToString();
 
             string xml = string.Empty;
@@ -68,7 +70,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
+            var scriptVariableSet = BdoScript.CreateVariableSet();
             var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<string>(_script2, DataExpressionKind.Script, scriptVariableSet, log);
 
             string xml = string.Empty;
@@ -84,7 +86,7 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         {
             var log = new BdoLog();
 
-            var scriptVariableSet = ScriptingFactory.CreateVariableSet();
+            var scriptVariableSet = BdoScript.CreateVariableSet();
             var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<bool?>(_script3, DataExpressionKind.Script, scriptVariableSet, log)?.ToString();
 
             string xml = string.Empty;
@@ -93,6 +95,22 @@ namespace BindOpen.Tests.Core.System.Diagnostics
                 xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(_interpretedScript3.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
+        }
+
+        [Test, Order(6)]
+        public void InterpreteScript4Test()
+        {
+            var log = new BdoLog();
+
+            var scriptVariableSet = BdoScript.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<string>(_script4, DataExpressionKind.Auto, scriptVariableSet, log);
+
+            string xml = string.Empty;
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml() + "'";
+            }
+            Assert.That(_interpretedScript4.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
         }
     }
 }

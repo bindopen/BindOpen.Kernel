@@ -3,9 +3,9 @@
 namespace BindOpen.System.Scripting
 {
     /// <summary>
-    /// This static class provides methods to create data elements.
+    /// This static class provides methods to create script elements.
     /// </summary>
-    public static partial class ScriptingFactory
+    public static partial class BdoScript
     {
         // Static creators -------------------------
 

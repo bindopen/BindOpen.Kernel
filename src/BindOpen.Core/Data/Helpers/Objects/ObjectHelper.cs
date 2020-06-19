@@ -271,7 +271,7 @@ namespace BindOpen.Data.Helpers.Objects
                                         }
                                     }
                                 }
-                                else if (value.GetType() == typeof(Dictionary<string, object>)
+                                else if (value?.GetType() == typeof(Dictionary<string, object>)
                                     && type.IsGenericType
                                     && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
                                     && type != typeof(Dictionary<string, object>))
