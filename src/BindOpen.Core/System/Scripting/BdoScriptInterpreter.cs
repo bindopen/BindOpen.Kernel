@@ -179,7 +179,7 @@ namespace BindOpen.System.Scripting
                             }
                         }
 
-                        return null;
+                        return resultScript;
                     }
                     break;
                 case DataExpressionKind.Script:

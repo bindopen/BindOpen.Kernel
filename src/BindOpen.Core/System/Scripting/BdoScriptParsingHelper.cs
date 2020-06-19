@@ -241,7 +241,7 @@ namespace BindOpen.System.Scripting
 
                         // we record the script item
                         if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == scriptItem.Kind))
-                            scriptItems[scriptItems.Count - 1].Name += scriptItem.Name;
+                            scriptItems[^1].Name += scriptItem.Name;
                         else
                             scriptItems.Add(scriptItem);
                         index = nextIndex;
@@ -303,7 +303,7 @@ namespace BindOpen.System.Scripting
                             scriptItemName = script[lastNoneIndex..index];
                             if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
                             {
-                                scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                                scriptItems[^1].Name += scriptItemName;
                             }
                             else
                             {
@@ -316,8 +316,8 @@ namespace BindOpen.System.Scripting
                         }
 
                         // we record the script item
-                        if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == scriptItem.Kind))
-                            scriptItems[scriptItems.Count - 1].Name += scriptItem.Name;
+                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
+                            scriptItems[^1].Name += scriptItem.Name;
                         else
                             scriptItems.Add(scriptItem);
                         index = nextIndex;
@@ -343,9 +343,9 @@ namespace BindOpen.System.Scripting
                         {
                             // we declare this something as a none-kind script item
                             string scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
                             {
-                                scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                                scriptItems[^1].Name += scriptItemName;
                             }
                             else
                             {
@@ -358,8 +358,8 @@ namespace BindOpen.System.Scripting
                         }
 
                         scriptItem = BdoScriptParsingHelper.FindScriptItem(currentChar, index);
-                        if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == scriptItem.Kind))
-                            scriptItems[scriptItems.Count - 1].Name += scriptItem.Name;
+                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
+                            scriptItems[^1].Name += scriptItem.Name;
                         else
                             scriptItems.Add(scriptItem);
 
@@ -379,9 +379,9 @@ namespace BindOpen.System.Scripting
             {
                 // we declare this something as a none-kind script item
                 string scriptItemName = script[lastNoneIndex..index];
-                if ((scriptItems.Count > 0) && (scriptItems[scriptItems.Count - 1].Kind == ScriptItemKinds.None))
+                if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
                 {
-                    scriptItems[scriptItems.Count - 1].Name += scriptItemName;
+                    scriptItems[^1].Name += scriptItemName;
                 }
                 else
                 {
