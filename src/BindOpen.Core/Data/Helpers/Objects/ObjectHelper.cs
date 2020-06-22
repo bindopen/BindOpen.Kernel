@@ -65,10 +65,12 @@ namespace BindOpen.Data.Helpers.Objects
         /// </summary>
         /// <param name="object1">The object value to convert.</param>
         /// <param name="valueType">The value type to consider.</param>
+        /// <param name="isScriptMode">Indicates whether the script mode is activated.</param>
         /// <returns>The result string.</returns>
         public static string ToString(
             this object object1,
-            DataValueTypes valueType)
+            DataValueTypes valueType,
+            bool isScriptMode = false)
         {
             string stringValue = null;
             if (valueType == DataValueTypes.Any)
@@ -80,21 +82,52 @@ namespace BindOpen.Data.Helpers.Objects
                 {
                     case DataValueTypes.Boolean:
                         stringValue = (object1 as bool?) == true ? "true" : "false";
+
+                        if (isScriptMode)
+                        {
+                            stringValue = stringValue.ToQuoted();
+                        }
                         break;
                     case DataValueTypes.Date:
                         if (object1 is DateTime dateTime)
+                        {
                             stringValue = (dateTime).ToString(StringHelper.__DateFormat);
+
+                            if (isScriptMode)
+                            {
+                                stringValue = stringValue.ToQuoted();
+                            }
+                        }
                         break;
                     case DataValueTypes.Number:
                         stringValue = object1.ToString().Replace(",", ".");
+
+                        if (isScriptMode)
+                        {
+                            stringValue = stringValue.ToQuoted();
+                        }
                         break;
                     case DataValueTypes.Time:
                         if (object1 is TimeSpan timeSpan)
+                        {
                             stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
+
+                            if (isScriptMode)
+                            {
+                                stringValue = stringValue.ToQuoted();
+                            }
+                        }
                         break;
                     case DataValueTypes.ByteArray:
                         if (object1 is byte[] byteArray)
+                        {
                             stringValue = Convert.ToBase64String(byteArray);
+
+                            if (isScriptMode)
+                            {
+                                stringValue = stringValue.ToQuoted();
+                            }
+                        }
                         break;
                     case DataValueTypes.Carrier:
                     case DataValueTypes.Connector:
@@ -106,9 +139,19 @@ namespace BindOpen.Data.Helpers.Objects
                     case DataValueTypes.Schema:
                     case DataValueTypes.SchemaZone:
                         stringValue = object1.ToXml();
+
+                        if (isScriptMode)
+                        {
+                            stringValue = stringValue.ToQuoted();
+                        }
                         break;
                     default:
                         stringValue = object1.ToString();
+
+                        if (isScriptMode)
+                        {
+                            stringValue = stringValue.ToQuoted();
+                        }
                         break;
                 }
             }
