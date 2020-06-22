@@ -171,7 +171,7 @@ namespace BindOpen.System.Scripting
                             if ((scriptwordBeginIndex > -1) && (index > -1))
                             {
                                 var subScript = script.Substring(2)[0..^2];
-                                subScript = Evaluate(DataExpressionFactory.CreateScript(script), scriptVariableSet, log)?.ToString();
+                                subScript = Evaluate(DataExpressionFactory.CreateExpAsScript(script), scriptVariableSet, log)?.ToString();
 
                                 resultScript = resultScript.Replace(
                                     resultScript.ToSubstring(scriptwordBeginIndex, index + 1), subScript);
@@ -221,13 +221,12 @@ namespace BindOpen.System.Scripting
                             case ScriptItemKinds.Function:
                                 if (expression.Word.Parameters?.Count > 0)
                                 {
-                                    //ICI: Update result string
                                     cloned.Parameters = new List<object>();
                                     foreach (var paramValue in expression.Word.Parameters)
                                     {
                                         if (paramValue is BdoScriptword scriptwordParam)
                                         {
-                                            var paramObject = Evaluate(scriptwordParam.CreateExpression(), scriptVariableSet, log);
+                                            var paramObject = Evaluate(scriptwordParam.CreateExp(), scriptVariableSet, log);
                                             cloned.Parameters.Add(paramObject);
                                         }
                                         else
@@ -279,7 +278,7 @@ namespace BindOpen.System.Scripting
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return Evaluate(DataExpressionFactory.Create(expressionKind, script), scriptVariableSet, log);
+            return Evaluate(DataExpressionFactory.CreateExp(expressionKind, script), scriptVariableSet, log);
         }
 
         /// <summary>
@@ -297,7 +296,7 @@ namespace BindOpen.System.Scripting
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return (T)Evaluate(DataExpressionFactory.Create(expressionKind, script), scriptVariableSet, log);
+            return (T)Evaluate(DataExpressionFactory.CreateExp(expressionKind, script), scriptVariableSet, log);
         }
 
         // Script word
@@ -315,7 +314,7 @@ namespace BindOpen.System.Scripting
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return Evaluate(scriptword.CreateExpression(), scriptVariableSet, log);
+            return Evaluate(scriptword.CreateExp(), scriptVariableSet, log);
         }
 
         /// <summary>
@@ -331,7 +330,7 @@ namespace BindOpen.System.Scripting
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
-            return (T)Evaluate(scriptword.CreateExpression(), scriptVariableSet, log);
+            return (T)Evaluate(scriptword.CreateExp(), scriptVariableSet, log);
         }
 
         #endregion
@@ -447,13 +446,13 @@ namespace BindOpen.System.Scripting
             }
             else
             {
-                int nextFuncIndex = script.IndexOf(BdoScriptParsingHelper.Symbol_Fun, index);
+                int nextFuncIndex = script.IndexOf(BdoScriptHelper.Symbol_Fun, index);
 
                 // if a potential function or variable was found
                 if (nextFuncIndex > -1)
                 {
                     if (nextFuncIndex < script.Length - 1 &&
-                        script.Substring(nextFuncIndex, 2) == BdoScriptParsingHelper.Symbol_Var)
+                        script.Substring(nextFuncIndex, 2) == BdoScriptHelper.Symbol_Var)
                     {
                         index = nextFuncIndex + 2;
                         scriptItemKind = ScriptItemKinds.Variable;
@@ -476,7 +475,7 @@ namespace BindOpen.System.Scripting
                 if (scriptItemKind == ScriptItemKinds.Function)
                 {
                     // we look for the next "(" character.
-                    nextIndex = BdoScriptParsingHelper.GetIndexOfNextString(script, "(", index);
+                    nextIndex = script.IndexOfFromScript("(", index);
                     if (nextIndex >= script.Length)
                     {
                         if (log != null)
@@ -501,7 +500,7 @@ namespace BindOpen.System.Scripting
                     int scriptwordParameterCount = 0;
                     while ((script.Substring(nextIndex, 1) != ")") && (nextIndex < script.Length))
                     {
-                        nextIndex = BdoScriptParsingHelper.GetIndexOfNextString(script, ",", nextIndex + 1);
+                        nextIndex = script.IndexOfFromScript(",", nextIndex + 1);
 
                         // if the next index is out of range
                         if (nextIndex >= script.Length)
@@ -546,7 +545,7 @@ namespace BindOpen.System.Scripting
                 else if (scriptItemKind == ScriptItemKinds.Variable)
                 {
                     // we look for the next ")" character.
-                    nextIndex = BdoScriptParsingHelper.GetIndexOfNextString(script, ")", index + 2);
+                    nextIndex = script.IndexOfFromScript(")", index + 2);
                     if (nextIndex >= script.Length)
                     {
                         if (log != null)

@@ -13,7 +13,7 @@ namespace BindOpen.Data.Expression
         /// <param name="text">The text to consider.</param>
         /// <param name="kind">The kind of expression to consider.</param>
         /// <returns>Returns the created expression.</returns>
-        public static DataExpression Create(DataExpressionKind kind, string text = null)
+        public static DataExpression CreateExp(DataExpressionKind kind, string text = null)
             => new DataExpression()
             {
                 Kind = kind,
@@ -25,33 +25,33 @@ namespace BindOpen.Data.Expression
         /// </summary>
         /// <param name="text">The script text to consider.</param>
         /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateAuto(this string text)
-            => Create(DataExpressionKind.Auto, text);
+        public static DataExpression CreateExpAsAuto(this string text)
+            => CreateExp(DataExpressionKind.Auto, text);
 
         /// <summary>
         /// Creates a new script expression.
         /// </summary>
         /// <param name="text">The script text to consider.</param>
         /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateScript(this string text)
-            => Create(DataExpressionKind.Script, text);
+        public static DataExpression CreateExpAsScript(this string text)
+            => CreateExp(DataExpressionKind.Script, text);
 
         /// <summary>
         /// Creates a new literal expression.
         /// </summary>
         /// <param name="text">The literal text to consider.</param>
         /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateLiteral(this string text)
-            => Create(DataExpressionKind.Literal, text);
+        public static DataExpression CreateExpAsLiteral(this string text)
+            => CreateExp(DataExpressionKind.Literal, text);
 
         /// <summary>
         /// Creates a new word expression.
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
         /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateExpression(this BdoScriptword scriptword)
+        public static DataExpression CreateExp(this BdoScriptword scriptword)
         {
-            var expression = Create(DataExpressionKind.Word);
+            var expression = CreateExp(DataExpressionKind.Word);
             expression.Word = scriptword;
             return expression;
         }

@@ -261,28 +261,6 @@
       <functionName>Var_GetEmpty</functionName>
     </add.definition>
 
-    <!-- $(LITERAL_TAB) -->
-    <add.definition name="LITERAL_TAB">
-      <creationDate>2010-08-05</creationDate>
-      <lastModificationDate>2011-06-05</lastModificationDate>
-      <description>
-        <add.value>Represents the tabulation character (ASCII code - 9).</add.value>
-      </description>
-      <kind>Variable</kind>
-      <functionName>Var_Literal_Tab</functionName>
-    </add.definition>
-
-    <!-- $(LITERAL_CR) -->
-    <add.definition name="LITERAL_CR">
-      <creationDate>2010-08-05</creationDate>
-      <lastModificationDate>2011-06-05</lastModificationDate>
-      <description>
-        <add.value>Represents the carriage return character (ASCII code - 13).</add.value>
-      </description>
-      <kind>Variable</kind>
-      <functionName>Var_Literal_Cr</functionName>
-    </add.definition>
-
     <!-- $(applicationModuleName) -->
     <add.definition name="applicationname">
       <creationDate>2017-11-01</creationDate>
