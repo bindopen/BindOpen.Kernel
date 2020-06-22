@@ -212,7 +212,7 @@ namespace BindOpen.Extensions.Scriptwords
         {
             string format = scope?.Scriptword?.Parameters?.GetObjectAtIndex(0)?.ToString();
 
-            format = BdoScriptParsingHelper.GetValueFromText(format);
+            format = format.GetValueFromScript();
             DateTime dateTime = DateTime.Now;
 
             if ((scope?.Scriptword.Parent != null) && (scope?.Scriptword.Parent.Item != null))
@@ -320,26 +320,6 @@ namespace BindOpen.Extensions.Scriptwords
         public static object Var_GetEmpty()
         {
             return "''";
-        }
-
-        /// <summary>
-        /// Evaluates the script word $(LITERAL_TAB).
-        /// </summary>
-        /// <returns>The interpreted string value.</returns>
-        [BdoScriptword]
-        public static object Var_Literal_Tab()
-        {
-            return "\t";
-        }
-
-        /// <summary>
-        /// Evaluates the script word $(LITERAL_CR).
-        /// </summary>
-        /// <returns>The interpreted string value.</returns>
-        [BdoScriptword]
-        public static object Var_Literal_Cr()
-        {
-            return "\n";
         }
 
         // Folders -------------------------------------------

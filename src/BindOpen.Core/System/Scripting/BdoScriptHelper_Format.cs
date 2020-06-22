@@ -6,9 +6,8 @@ namespace BindOpen.System.Scripting
     /// <summary>
     /// This class represents a script format helper.
     /// </summary>
-    public static class BdoScriptFormatHelper
+    public static partial class BdoScriptHelper
     {
-
         // ------------------------------------------
         // FORMAT
         // ------------------------------------------
@@ -21,10 +20,10 @@ namespace BindOpen.System.Scripting
         /// <param name="script">The script to format.</param>
         /// <param name="tabulationNumber">The number of tabulations.</param>
         /// <returns>Returns the formated script.</returns>
-        public static string Format(String script, int tabulationNumber = 0)
+        public static string FormatScript(this string script, int tabulationNumber = 0)
         {
-            String alignedScript = (tabulationNumber == 0 ?
-                BdoScriptFormatHelper.Format(BdoScriptFormatHelper.CleanScript(script), 0).Trim() :
+            string alignedScript = (tabulationNumber == 0 ?
+                script.CleanScript().FormatScript(0).Trim() :
                 script);
 
             int index = -1;
@@ -32,7 +31,7 @@ namespace BindOpen.System.Scripting
 
             while (index < alignedScript.Length)
             {
-                index = BdoScriptParsingHelper.GetIndexOfNextString(alignedScript, "(", index + 1);
+                index = alignedScript.IndexOfFromScript("(", index + 1);
 
                 // if there is a "("
                 if (index < alignedScript.Length)
@@ -43,7 +42,7 @@ namespace BindOpen.System.Scripting
 
                     while ((nextIndex < alignedScript.Length) && (alignedScript.Substring(nextIndex, 1) != ")"))
                     {
-                        nextIndex = BdoScriptParsingHelper.GetIndexOfNextString(alignedScript, ",", nextIndex);
+                        nextIndex = alignedScript.IndexOfFromScript(",", nextIndex);
 
                         // if the next index is not out of range
                         if (nextIndex < alignedScript.Length)
@@ -58,7 +57,7 @@ namespace BindOpen.System.Scripting
                                     tabulationNumber += 1;
 
                                     // we apply a carriage return with tab after the "("
-                                    BdoScriptFormatHelper.AddCRToScript(ref alignedScript, index + 1, ref index, ref nextIndex, tabulationNumber);
+                                    alignedScript = alignedScript.AddCR(index + 1, ref index, ref nextIndex, tabulationNumber);
                                     index += 1 + tabulationNumber;
                                 }
                                 // else
@@ -67,14 +66,14 @@ namespace BindOpen.System.Scripting
                                     String parameterValue = alignedScript.Substring(index + 1, nextIndex - index - 1);
 
                                     //  if the parameter contains (% or $) and "(" (normally meaning it contains function or variable) then
-                                    if ((parameterValue.Contains(BdoScriptParsingHelper.Symbol_Var) | parameterValue.Contains(BdoScriptParsingHelper.Symbol_Fun)) &
+                                    if ((parameterValue.Contains(BdoScriptHelper.Symbol_Var) || parameterValue.Contains(BdoScriptHelper.Symbol_Fun)) &
                                         (parameterValue.Contains("(")))
                                     {
                                         // we add a tabulation
                                         tabulationNumber += 1;
 
                                         // we apply a carriage return with tab after the "("
-                                        BdoScriptFormatHelper.AddCRToScript(ref alignedScript, index + 1, ref index, ref nextIndex, tabulationNumber);
+                                        alignedScript = alignedScript.AddCR(index + 1, ref index, ref nextIndex, tabulationNumber);
                                         index += 1 + tabulationNumber;
 
                                         // we consider we have several parameters (used when we close the ")")
@@ -85,7 +84,7 @@ namespace BindOpen.System.Scripting
 
                             // we get the parameter value and we align it
                             string subScript = alignedScript.Substring(index + 1, nextIndex - index - 1);
-                            string alignedSubScript = BdoScriptFormatHelper.Format(subScript.Trim(), tabulationNumber);
+                            string alignedSubScript = subScript.Trim().FormatScript(tabulationNumber);
                             alignedScript = alignedScript.Remove(index + 1, subScript.Length);
                             alignedScript = alignedScript.Insert(index + 1, alignedSubScript);
 
@@ -96,15 +95,15 @@ namespace BindOpen.System.Scripting
                             if (alignedScript[nextIndex] == ',')
                             {
                                 // we apply a carriage return
-                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex + 1, ref nextIndex, ref index, tabulationNumber);
+                                alignedScript = alignedScript.AddCR(nextIndex + 1, ref nextIndex, ref index, tabulationNumber);
                                 nextIndex += tabulationNumber;
 
                                 // we remember we have several parameters
                                 aHasSeveralParameters = true;
                             }
                             // else if we have a ").$" then
-                            else if ((nextIndex <= alignedScript.Length - (")." + BdoScriptParsingHelper.Symbol_Fun).Length) && (alignedScript.Substring(nextIndex,
-                                (")." + BdoScriptParsingHelper.Symbol_Fun).Length) == ")." + BdoScriptParsingHelper.Symbol_Fun))
+                            else if ((nextIndex <= alignedScript.Length - (")." + BdoScriptHelper.Symbol_Fun).Length) && (alignedScript.Substring(nextIndex,
+                                (")." + BdoScriptHelper.Symbol_Fun).Length) == ")." + BdoScriptHelper.Symbol_Fun))
                             {
                                 nextIndex += 3;
 
@@ -112,7 +111,7 @@ namespace BindOpen.System.Scripting
                                 tabulationNumber += 1;
 
                                 // we apply a carriage return with tab before the ")"
-                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex, ref index, ref nextIndex, tabulationNumber);
+                                alignedScript = alignedScript.AddCR(nextIndex, ref index, ref nextIndex, tabulationNumber);
                                 nextIndex -= 1;
                                 scriptWordDepth += 1;
                             }
@@ -123,7 +122,7 @@ namespace BindOpen.System.Scripting
                                 tabulationNumber -= 1 + scriptWordDepth;
 
                                 // we apply a carriage return with tab before the ")"
-                                BdoScriptFormatHelper.AddCRToScript(ref alignedScript, nextIndex, ref index, ref nextIndex, tabulationNumber);
+                                alignedScript = alignedScript.AddCR(nextIndex, ref index, ref nextIndex, tabulationNumber);
                                 scriptWordDepth = 0;
                             }
 
@@ -143,7 +142,7 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="script">The script to literalize.</param>
         /// <returns>The specified script literalized.</returns>
-        public static string LiteralizeScript(String script)
+        public static string LiteralizeScript(this string script)
         {
             // we convert the \n and \t into script functions
             script = script.Replace("\n", "$LITERAL_CR()");
@@ -156,7 +155,7 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="script">The script to deliteralize.</param>
         /// <returns>The specified script deliteralized.</returns>
-        public static string DeliteralizeScript(String script)
+        public static string DeliteralizeScript(this string script)
         {
             // we convert the literal script functions to \n and \t
             script = script.Replace("$LITERAL_CR()", "\n");
@@ -165,7 +164,7 @@ namespace BindOpen.System.Scripting
         }
 
         // cleans the script from any CHAR 13 - CHAR 7 - CHAR 10
-        private static String CleanScript(String script)
+        private static string CleanScript(this string script)
         {
             // we remove the carriage return (char 10 / char 13) and tabulation (char 9)
             script = script.Replace(Convert.ToChar(10), ' ');
@@ -175,26 +174,32 @@ namespace BindOpen.System.Scripting
         }
 
         // Adds a carriage return with aTabulationNumber tabulations. updates the index.
-        private static void AddCRToScript(
-            ref String script,
+        private static string AddCR(
+            this string script,
             int index,
             ref int indexToUpdate1,
             ref int indexToUpdate2,
-            int aTabulationNumber)
+            int tabulationNumber)
         {
             // we build the carriage string
-            string aReturnString = "\n";
-            for (int i = 0; i < aTabulationNumber; i++)
+            string returnString = "\n";
+            for (int i = 0; i < tabulationNumber; i++)
             {
-                aReturnString += "\t";
+                returnString += "\t";
             }
 
             // we add it            
-            script = script.Insert(index, aReturnString);
+            script = script.Insert(index, returnString);
             if (indexToUpdate1 >= index)
-                indexToUpdate1 += aReturnString.Length;
-            if (indexToUpdate2 >= index)
-                indexToUpdate2 += aReturnString.Length;
+            {
+                indexToUpdate1 += returnString.Length;
+            }
+            else if (indexToUpdate2 >= index)
+            {
+                indexToUpdate2 += returnString.Length;
+            }
+
+            return script;
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
+using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
@@ -122,7 +124,49 @@ namespace BindOpen.Extensions.Runtime
         /// <returns>Retuns the data element that represents this instace.</returns>
         public override IDataElement AsElement(string name = null)
         {
-            return null;
+            var element = ElementFactory.Create(name);
+            element.ItemScript = ToString();
+
+            return element;
+        }
+
+        /// <summary>
+        /// Returns a string that represents this instance.
+        /// </summary>
+        /// <returns>Retuns the string that represents this instance.</returns>
+        public override string ToString()
+        {
+            switch (Kind)
+            {
+                case ScriptItemKinds.Function:
+                    var script = "";
+                    foreach (var param in Parameters)
+                    {
+                        if (!string.IsNullOrEmpty(script))
+                        {
+                            script += ", ";
+                        }
+                        if (param is BdoScriptword scriptword)
+                        {
+                            script += scriptword.ToString();
+                        }
+                        else
+                        {
+                            script += param.ToString(DataValueTypes.Any, true);
+                        }
+                    }
+                    return BdoScriptHelper.Symbol_Fun + Name + "(" + script + ")";
+                case ScriptItemKinds.Variable:
+                    return BdoScriptHelper.Symbol_Var + Name + ")";
+                case ScriptItemKinds.None:
+                    return null;
+                case ScriptItemKinds.Text:
+                case ScriptItemKinds.Syntax:
+                case ScriptItemKinds.Literal:
+                case ScriptItemKinds.Any:
+                default:
+                    return Name;
+            }
         }
 
         #endregion
