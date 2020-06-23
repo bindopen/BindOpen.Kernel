@@ -229,6 +229,11 @@ namespace BindOpen.System.Scripting
                                             var paramObject = Evaluate(scriptwordParam.CreateExp(), scriptVariableSet, log);
                                             cloned.Parameters.Add(paramObject);
                                         }
+                                        else if (paramValue is DataExpression expressionParam)
+                                        {
+                                            var paramObject = Evaluate(expressionParam, scriptVariableSet, log);
+                                            cloned.Parameters.Add(paramObject);
+                                        }
                                         else
                                         {
                                             cloned.Parameters.Add(paramValue);
