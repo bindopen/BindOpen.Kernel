@@ -1,6 +1,7 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
@@ -138,11 +139,22 @@ namespace BindOpen.Data.Helpers.Objects
                     case DataValueTypes.Object:
                     case DataValueTypes.Schema:
                     case DataValueTypes.SchemaZone:
-                        stringValue = object1.ToXml();
-
-                        if (isScriptMode)
+                        if (object1 is BdoScriptword scriptword)
                         {
-                            stringValue = stringValue.ToQuoted();
+                            stringValue = scriptword.ToString();
+                        }
+                        else if (object1 is DataExpression expression)
+                        {
+                            stringValue = expression.ToString();
+                        }
+                        else
+                        {
+                            stringValue = object1.ToXml();
+
+                            if (isScriptMode)
+                            {
+                                stringValue = stringValue.ToQuoted();
+                            }
                         }
                         break;
                     default:
