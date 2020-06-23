@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
+using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Scripting;
@@ -146,14 +147,8 @@ namespace BindOpen.Extensions.Runtime
                         {
                             script += ", ";
                         }
-                        if (param is BdoScriptword scriptword)
-                        {
-                            script += scriptword.ToString();
-                        }
-                        else
-                        {
-                            script += param.ToString(DataValueTypes.Any, true);
-                        }
+
+                        script += param.ToString(DataValueTypes.Any, true);
                     }
                     return BdoScriptHelper.Symbol_Fun + Name + "(" + script + ")";
                 case ScriptItemKinds.Variable:

@@ -67,7 +67,17 @@ namespace BindOpen.Data.Expression
         /// <returns></returns>
         public override string ToString()
         {
-            return this;
+            switch (Kind)
+            {
+                case DataExpressionKind.Auto:
+                case DataExpressionKind.Literal:
+                case DataExpressionKind.Script:
+                    return Text;
+                case DataExpressionKind.Word:
+                    return Word.ToString();
+            }
+
+            return null;
         }
 
         #endregion
