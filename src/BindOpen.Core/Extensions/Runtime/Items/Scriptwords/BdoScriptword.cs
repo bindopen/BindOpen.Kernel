@@ -1,10 +1,10 @@
 ﻿using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
-using BindOpen.Data.Expression;
 using BindOpen.Data.Helpers.Objects;
 using BindOpen.Extensions.Definition;
 using BindOpen.System.Scripting;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Runtime
@@ -140,16 +140,8 @@ namespace BindOpen.Extensions.Runtime
             switch (Kind)
             {
                 case ScriptItemKinds.Function:
-                    var script = "";
-                    foreach (var param in Parameters)
-                    {
-                        if (!string.IsNullOrEmpty(script))
-                        {
-                            script += ", ";
-                        }
+                    var script = string.Join(", ", Parameters?.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
 
-                        script += param.ToString(DataValueTypes.Any, true);
-                    }
                     return BdoScriptHelper.Symbol_Fun + Name + "(" + script + ")";
                 case ScriptItemKinds.Variable:
                     return BdoScriptHelper.Symbol_Var + Name + ")";

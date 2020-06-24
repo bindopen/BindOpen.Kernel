@@ -71,13 +71,13 @@ namespace BindOpen.Application.Options
 
             if (!string.IsNullOrEmpty(stringValue))
             {
-                foreach (String optionString in stringValue.Split(';'))
+                foreach (string optionString in stringValue.Split(';'))
                 {
                     if (optionString.Contains("="))
                     {
                         int index = optionString.IndexOf("=");
-                        String optionName = optionString.Substring(0, index);
-                        String optionValue = optionString.Substring(index + 1);
+                        string optionName = optionString.Substring(0, index);
+                        string optionValue = optionString.Substring(index + 1);
                         this.AddValue(optionName, optionValue, log);
                     }
                 }
