@@ -72,7 +72,7 @@ namespace BindOpen.Data.Helpers.Serialization
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveXml(this Object object1, String filePath, IBdoLog log = null)
+        public static bool SaveXml(this object object1, string filePath, IBdoLog log = null)
         {
             if (object1 == null) return false;
 
