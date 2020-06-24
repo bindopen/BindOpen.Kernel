@@ -94,12 +94,7 @@ namespace BindOpen.Data.Expression
         /// <param name="field">The field to consider.</param>
         public static implicit operator string(DataExpression expression)
         {
-            if (expression != null)
-            {
-                return expression.Text;
-            }
-
-            return string.Empty;
+            return expression?.ToString();
         }
 
         #endregion
