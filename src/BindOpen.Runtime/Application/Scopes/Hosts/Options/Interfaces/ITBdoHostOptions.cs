@@ -12,7 +12,8 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// The interface defines the host options.
     /// </summary>
-    public interface ITBdoHostOptions<S> : IBdoHostOptions where S : class, IBdoAppSettings, new()
+    public interface ITBdoHostOptions<S> : IBdoHostOptions
+        where S : class, IBdoAppSettings, new()
     {
         /// <summary>
         /// The root folder path.
@@ -112,18 +113,25 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// Adds the default console logger.
+        /// Adds the specified logger.
         /// </summary>
+        /// <param name="loggerFactory">The logger factory to consider.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> AddDefaultConsoleLogger();
+        ITBdoHostOptions<S> SetLoggerAtStartup(ILoggerFactory loggerFactory);
 
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param name="logger">The logger to consider.</param>
+        /// <param name="loggerFactory">The logger factory to consider.</param>
         /// <returns>Returns the host option.</returns>
-        ITBdoHostOptions<S> SetLogger(ILogger logger);
+        ITBdoHostOptions<S> SetLogger(ILoggerFactory loggerFactory);
 
+        /// <summary>
+        /// Adds the specified logger.
+        /// </summary>
+        /// <param name="initLogger">The logger initialization to consider.</param>
+        /// <returns>Returns the host option.</returns>
+        ITBdoHostOptions<S> SetLogger(Func<IBdoHost, ILogger> initLogger);
 
         // Modules -------------------------------------------
 

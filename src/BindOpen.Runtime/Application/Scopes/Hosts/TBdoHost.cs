@@ -337,27 +337,9 @@ namespace BindOpen.Application.Scopes
 
             Options.Update();
 
-            // we initialize logging
+            // we initialize the logger
 
-            //IBdoLogger primaryLogger = null;
-            //if (Options?.DefaultLoggerOutputKinds?.Count > 0)
-            //{
-            //    primaryLogger = BdoLoggerFactory.Create<BdoSnapLogger>(BdoLogger.__DefaultName, BdoLoggerMode.Auto);
-
-            //    if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Repository))
-            //    {
-            //        primaryLogger.AddFileOutput(GetKnownPath(BdoHostPathKind.PrimaryLogsFolder), BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + Id + ".txt");
-            //    }
-
-            //    if (Options.DefaultLoggerOutputKinds.Contains(DatasourceKind.Console))
-            //    {
-            //        primaryLogger.AddConsoleOutput();
-            //    }
-
-            //    Log.AddLoggers(primaryLogger);
-            //}
-
-            //Log.AddLoggers(Options?.Loggers?.ToArray());
+            Log.SetLogger(Options.StartUpLogger);
 
             // we launch the standard initialization of service
 
@@ -478,21 +460,9 @@ namespace BindOpen.Application.Scopes
                             subLog.AddMessage(title: "No configuration loaded");
                         }
 
-                        //// we delete expired primary logs
+                        // we set the logger
 
-                        //int logsExpirationDayNumber = Options?.HostSettings?.LogsExpirationDayNumber ?? -1;
-                        //primaryLogger?.DeleteExpiredLogs(logsExpirationDayNumber, BdoDefaultHostPaths.__DefaultPrimaryLogsFileNamePreffix + "*.txt");
-
-                        //// we update the log folder path
-
-                        //Log.ForLoggers(p => p.AddFileOutput(GetKnownPath(BdoHostPathKind.LogsFolder), Options?.HostSettings?.LogsFileName, true));
-
-                        //// we delete expired logs in the logs folder
-
-                        //foreach (var logger in Log.Logger)
-                        //{
-                        //    logger?.DeleteExpiredLogs(logsExpirationDayNumber);
-                        //}
+                        Log.SetLogger(Options.LoggerInit?.Invoke(this));
 
                         // we load the data store
 

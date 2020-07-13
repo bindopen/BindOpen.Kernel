@@ -5,6 +5,7 @@ using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.References;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace BindOpen.Application.Scopes
 {
@@ -70,9 +71,16 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// The logger factory.
+        /// The statup logger.
         /// </summary>
-        ILoggerFactory LoggerFactory { get; }
+        ILogger StartUpLogger { get; }
+
+        /// <summary>
+        /// The logger.
+        /// </summary>
+        Func<IBdoHost, ILogger> LoggerInit { get; }
+
+        // Settings ----------------------
 
         /// <summary>
         /// Get the settings as the specified host settings class.

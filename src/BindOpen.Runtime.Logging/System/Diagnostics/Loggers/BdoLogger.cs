@@ -394,48 +394,6 @@ namespace BindOpen.System.Diagnostics.Loggers
         }
 
         /// <summary>
-        /// Delete the logs older than the specified day number.
-        /// </summary>
-        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
-        /// <param name="fileFormat">The file format to consider.</param>
-        /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
-        public IBdoLogger DeleteExpiredLogs(int expirationDayNumber, string fileFormat = null)
-        {
-            if (expirationDayNumber > -1 && Directory.Exists(_folderPath))
-            {
-                if (fileFormat == null)
-                {
-                    fileFormat = _fileNameFormat;
-                }
-                fileFormat = fileFormat.Replace("$(id)", "*", false).Replace("$(timestamp)", "*", false);
-
-                string[] files = Directory.GetFiles(_folderPath, fileFormat);
-
-                string logFilePath = Filepath;
-
-                foreach (string file in files)
-                {
-                    FileInfo fileInfo = new FileInfo(file);
-                    if (fileInfo.LastAccessTime < DateTime.Now.AddDays(-expirationDayNumber))
-                    {
-                        if (!string.Equals(fileInfo.FullName, logFilePath, StringComparison.OrdinalIgnoreCase))
-                        {
-                            try
-                            {
-                                fileInfo.Delete();
-                            }
-                            catch
-                            {
-                            }
-                        }
-                    }
-                }
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// Sets the name of the file of this instance.
         /// </summary>
         /// <param name="fileName">The name of the file to consider.</param>

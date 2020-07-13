@@ -25,14 +25,8 @@ namespace BindOpen.Tests.Core.Application.Hosts
         {
             var appHost = BdoHostFactory.CreateBindOpenDefaultHost(
                 options => options
-                    .SetLogger(builder =>
-                    {
-                        builder
-                            .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
-                            .AddBindOpenFileLogger(options)
-                            .AddConsole();
-                    })
-                    .AddDefaultConsoleLogger());
+                    .SetConsoleLoggerAtStartup()
+                    .SetLogger(p => p.AddFile(options)));
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 
@@ -52,14 +46,8 @@ namespace BindOpen.Tests.Core.Application.Hosts
                         .RegisterDatasources(m => m
                             .AddFromConfiguration(options)
                             .AddFromNetCoreConfiguration(GlobalVariables.NetCoreConfiguration)))
-                        .SetLogger(builder =>
-                        {
-                            builder
-                                .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
-                                .AddBindOpenFileLogger(options)
-                                .AddConsole();
-                        })
-                        .AddDefaultConsoleLogger());
+                        .SetLogger(p => p.AddFile(options).AddConsole())
+                        .SetConsoleLoggerAtStartup());
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 

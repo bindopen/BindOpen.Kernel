@@ -135,7 +135,7 @@ namespace BindOpen.Application.Settings
         /// Sets the log file name.
         /// </summary>
         /// <param name="logFileName">The log file name to consider.</param>
-        IBdoHostSettings WithLogsFileName(string logFileName);
+        IBdoHostSettings WithLogsFileName(string logFileName = null);
 
         /// <summary>
         /// Sets the expiration day number for logs.

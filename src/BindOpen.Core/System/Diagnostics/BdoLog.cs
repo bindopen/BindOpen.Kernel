@@ -28,7 +28,7 @@ namespace BindOpen.System.Diagnostics
 
         #region Variables
 
-        private ILogger _logger = null;
+        private BdoLogger _logger = null;
 
         private BdoTaskConfiguration _task = null;
 
@@ -43,7 +43,7 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// The logger of this instance.
         /// </summary>
-        public ILogger Logger => _logger;
+        public BdoLogger Logger => _logger;
 
         // Execution ----------------------------------
 
@@ -226,7 +226,7 @@ namespace BindOpen.System.Diagnostics
         /// Instantiates a new instance of the Log class.
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
-        public BdoLog(ILogger logger) : this(null, logger)
+        public BdoLog(BdoLogger logger) : this(null, logger)
         {
         }
 
@@ -237,7 +237,7 @@ namespace BindOpen.System.Diagnostics
         /// <param name="logger">The logger to consider.</param>
         public BdoLog(
             Predicate<IBdoLogEvent> eventFilter,
-            ILogger logger) : this()
+            BdoLogger logger) : this()
         {
             SubLogEventPredicate = eventFilter;
             _logger = logger;
@@ -252,7 +252,7 @@ namespace BindOpen.System.Diagnostics
         public BdoLog(
             IBdoTaskConfiguration task,
             Predicate<IBdoLogEvent> eventFilter = null,
-            ILogger logger = null)
+            BdoLogger logger = null)
             : this(eventFilter, logger)
         {
             _task = task as BdoTaskConfiguration;
@@ -288,12 +288,25 @@ namespace BindOpen.System.Diagnostics
         // Logging ----------------------------------------
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        public IBdoLog SetLogger(BdoLogger logger)
+        {
+            _logger = logger;
+
+            return this;
+        }
+
+        /// <summary>
         /// Sets the specified logger.
         /// </summary>
         /// <param name="logger">The logger to add.</param>
-        public void SetLogger(ILogger logger)
+        public IBdoLog SetLogger(ILogger logger)
         {
-            _logger = logger;
+            _logger = BdoLoggerFactory.Create(logger);
+
+            return this;
         }
 
         // Events ------------------------------------
@@ -328,6 +341,7 @@ namespace BindOpen.System.Diagnostics
                     {
                         (Events ??= new List<BdoLogEvent>()).Add(logEvent as BdoLogEvent);
                         logEvent.Parent = this;
+                        Logger?.Log(logEvent);
                         _event = logEvent;
                     }
                 }
