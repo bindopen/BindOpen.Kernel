@@ -24,16 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Application\Commands\**" />
-    <Compile Remove="Data\**" />
-    <Compile Remove="System\Diagnostics\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <EmbeddedResource Remove="System\Diagnostics\**" />
-    <None Remove="Application\Commands\**" />
-    <None Remove="Data\**" />
-    <None Remove="System\Diagnostics\**" />
-    <Compile Include="System\Diagnostics\Loggers\LoggerFactoryExtension.cs" />
-    <None Include="..\..\docs\images\bindopen_icon.png" Link="obj\bindopen_icon.png">
+    <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -52,14 +43,4 @@
   <ItemGroup>
     <ProjectReference Include="..\BindOpen.Runtime\BindOpen.Runtime.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Application\Configuration\BdoConfigurationBundle.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="Application\Configuration\BdoBaseConfiguration.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-
 </Project>

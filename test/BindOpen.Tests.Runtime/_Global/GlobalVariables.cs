@@ -37,8 +37,7 @@ namespace BindOpen.Tests.Core
                         .AddFilter("Microsoft", LogLevel.Warning)
                         .AddFilter("System", LogLevel.Warning)
                         .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
-                        .AddConsole()
-                        .AddEventLog();
+                        .AddConsole();
                 });
 
                 return _appHost ??= BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
