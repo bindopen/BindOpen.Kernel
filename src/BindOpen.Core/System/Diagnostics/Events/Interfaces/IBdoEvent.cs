@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 
 namespace BindOpen.System.Diagnostics.Events
@@ -6,7 +7,7 @@ namespace BindOpen.System.Diagnostics.Events
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoEvent : IDescribedDataItem
+    public interface IBdoEvent : INamedDataItem, IDisplayNamed, IDescribed
     {
         /// <summary>
         /// 
@@ -31,6 +32,6 @@ namespace BindOpen.System.Diagnostics.Events
         /// <summary>
         /// 
         /// </summary>
-        DictionaryDataItem LongDescription { get; set; }
+        string LongDescription { get; set; }
     }
 }

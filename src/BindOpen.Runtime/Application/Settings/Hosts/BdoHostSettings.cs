@@ -5,6 +5,7 @@ using BindOpen.Data.Helpers.Strings;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System;
 using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -252,10 +253,18 @@ namespace BindOpen.Application.Settings
         /// <summary>
         /// Sets the log file name.
         /// </summary>
-        /// <param name="logFileName">The log file name to consider.</param>
-        public IBdoHostSettings WithLogsFileName(string logFileName)
+        /// <param name="logsFileName">The log file name to consider.</param>
+        public IBdoHostSettings WithLogsFileName(string logsFileName = null)
         {
-            LogsFileName = logFileName;
+            if (string.IsNullOrEmpty(logsFileName))
+            {
+                logsFileName = LogsFileName;
+            }
+
+            logsFileName = (string.IsNullOrEmpty(logsFileName) ? "log_$(timeStamp).log" : logsFileName);
+            logsFileName = logsFileName.Replace("$(timeStamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), StringComparison.OrdinalIgnoreCase);
+            logsFileName = logsFileName.Replace("$(guid)", Guid.NewGuid().ToString(), StringComparison.OrdinalIgnoreCase);
+            LogsFileName = logsFileName;
 
             return this;
         }

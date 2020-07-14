@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics.Events;
@@ -12,12 +13,12 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLog : IDescribedDataItem
+    public interface IBdoLog : INamedDataItem, IDisplayNamed, IDescribed
     {
         /// <summary>
         /// 
         /// </summary>
-        ILogger Logger { get; }
+        BdoLogger Logger { get; }
 
         /// <summary>
         /// 
@@ -180,7 +181,13 @@ namespace BindOpen.System.Diagnostics
         /// 
         /// </summary>
         /// <param name="logger"></param>
-        void SetLogger(ILogger logger);
+        IBdoLog SetLogger(ILogger logger);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        IBdoLog SetLogger(BdoLogger logger);
 
         /// <summary>
         /// 

@@ -24,6 +24,8 @@ namespace BindOpen.System.Diagnostics
 
         #region Properties
 
+        // ----------------------------------
+
         /// <summary>
         /// Result code of this instance.
         /// </summary>
@@ -150,11 +152,8 @@ namespace BindOpen.System.Diagnostics
             if (event1 != null)
             {
                 Criticality = event1.Criticality;
-                Description = event1.Description?.Clone() as DictionaryDataItem;
                 Detail = event1.Detail?.Clone() as DataElementSet;
                 Kind = event1.Kind;
-                LongDescription = event1.LongDescription?.Clone() as DictionaryDataItem;
-                Title = event1.Title?.Clone() as DictionaryDataItem;
             }
         }
 

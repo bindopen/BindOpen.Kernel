@@ -18,13 +18,27 @@ namespace BindOpen.System.Diagnostics.Events
     [XmlType("Event", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "event", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     [XmlInclude(typeof(BdoConditionalEvent))]
-    public class BdoEvent : DescribedDataItem, IBdoEvent
+    public class BdoEvent : NamedDataItem, IBdoEvent
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        // General ----------------------------------
+
+        /// <summary>
+        /// The display name of this instance.
+        /// </summary>
+        [XmlElement("displayName")]
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// The description of this instance.
+        /// </summary>
+        [XmlElement("description")]
+        public string Description { get; set; }
 
         /// <summary>
         /// Kind of this instance.
@@ -61,7 +75,7 @@ namespace BindOpen.System.Diagnostics.Events
         /// Long description of this instance.
         /// </summary>
         [XmlElement("longDescription")]
-        public DictionaryDataItem LongDescription { get; set; } = null;
+        public string LongDescription { get; set; } = null;
 
         /// <summary>
         /// Detail of this instance.
@@ -113,8 +127,8 @@ namespace BindOpen.System.Diagnostics.Events
 
             Kind = kind;
             Criticality = criticality;
-            Title = string.IsNullOrEmpty(title) ? null : ItemFactory.CreateDictionary(title);
-            Description = string.IsNullOrEmpty(description) ? null : ItemFactory.CreateDictionary(description);
+            DisplayName = title;
+            Description = description;
         }
 
         /// <summary>
@@ -138,8 +152,8 @@ namespace BindOpen.System.Diagnostics.Events
 
             if (exception != null)
             {
-                WithTitle(exception.Message);
-                WithDescription(exception.ToString());
+                DisplayName = exception.Message;
+                Description = exception.ToString();
                 LongDescription = ItemFactory.CreateDictionary(exception.ToString());
             }
         }
@@ -188,7 +202,7 @@ namespace BindOpen.System.Diagnostics.Events
         /// <param name="aEvent">The event to consider.</param>
         public static implicit operator string(BdoEvent aEvent)
         {
-            return aEvent?.GetTitleText();
+            return aEvent?.DisplayName;
         }
 
         #endregion

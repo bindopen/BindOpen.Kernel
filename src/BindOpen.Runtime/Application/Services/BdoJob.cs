@@ -3,7 +3,6 @@ using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Processing;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 
 namespace BindOpen.Application.Services
 {
@@ -114,7 +113,7 @@ namespace BindOpen.Application.Services
         /// Starts the application.
         /// </summary>
         /// <returns>Returns true if this instance is started.</returns>
-        public IBdoJob WithLoggers(ILogger logger)
+        public IBdoJob WithLogger(ILogger logger)
         {
             Logger = logger;
             Log?.SetLogger(logger);
