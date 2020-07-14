@@ -84,7 +84,7 @@ namespace BindOpen.Extensions.Runtime
 
                     // first we load the assembly
 
-                    IBdoLog firstLog = new BdoLog() { Title = "Loading library '" + libraryReference.Name + "'" };
+                    IBdoLog firstLog = new BdoLog() { DisplayName = "Loading library '" + libraryReference.Name + "'" };
 
                     foreach (DatasourceKind dataSourceKind in _loadOptions?.SourceKinds)
                     {

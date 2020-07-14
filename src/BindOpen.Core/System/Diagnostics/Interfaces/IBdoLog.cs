@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Common;
+using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics.Events;
@@ -12,7 +13,7 @@ namespace BindOpen.System.Diagnostics
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLog : IDescribedDataItem
+    public interface IBdoLog : INamedDataItem, IDisplayNamed, IDescribed
     {
         /// <summary>
         /// 

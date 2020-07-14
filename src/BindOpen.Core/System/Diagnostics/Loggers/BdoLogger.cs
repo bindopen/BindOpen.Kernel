@@ -33,8 +33,8 @@ namespace BindOpen.System.Diagnostics
                 string indent = new string(' ', (level < 0 ? 0 : level - 1) * 2);
 
                 string st = indent + (ev.Log != null ? "o " : "- ")
-                   + ev.GetTitleText()
-                   + (ev.Description != null ? " | " + ev.GetDescriptionText() : "");
+                   + ev.DisplayName
+                   + (!string.IsNullOrEmpty(ev.Description) ? " | " + ev.Description : "");
 
                 switch (ev?.Kind ?? Events.EventKinds.None)
                 {

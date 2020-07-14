@@ -20,7 +20,7 @@ namespace BindOpen.System.Diagnostics
     /// </summary>
     [XmlType("BdoLog", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
-    public class BdoLog : DescribedDataItem, IBdoLog
+    public class BdoLog : NamedDataItem, IBdoLog
     {
         // ------------------------------------------
         // VARIABLES
@@ -39,6 +39,20 @@ namespace BindOpen.System.Diagnostics
         // ------------------------------------------
 
         #region Properties
+
+        // General ----------------------------------
+
+        /// <summary>
+        /// The display name of this instance.
+        /// </summary>
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// The description of this instance.
+        /// </summary>
+        public string Description { get; set; }
+
+        // Logger ----------------------------------
 
         /// <summary>
         /// The logger of this instance.
@@ -329,8 +343,8 @@ namespace BindOpen.System.Diagnostics
                 {
                     if (childLog != null)
                     {
-                        if (logEvent.Title == null && childLog.Title != null) logEvent.Title = childLog.Title.Clone() as DictionaryDataItem;
-                        if (logEvent.Description == null && childLog.Description != null) logEvent.Description = childLog.Description.Clone() as DictionaryDataItem;
+                        if (logEvent.DisplayName == null && childLog.DisplayName != null) logEvent.DisplayName = childLog.DisplayName;
+                        if (logEvent.Description == null && childLog.Description != null) logEvent.Description = childLog.Description;
                         if (logEvent.Kind == EventKinds.Any) logEvent.Kind = childLog.GetMaxEventKind();
                         childLog.Parent = this;
                         childLog.SetLogger(_logger);
@@ -377,7 +391,7 @@ namespace BindOpen.System.Diagnostics
             AddEvent(
                 logEvent = new BdoLogEvent(
                     kind,
-                    title ?? childLog?.Title,
+                    title ?? childLog?.DisplayName,
                     criticality,
                     description,
                     resultCode,
@@ -864,32 +878,6 @@ namespace BindOpen.System.Diagnostics
         public T Clone<T>(IBdoLog parent, params string[] areas) where T : class
         {
             return Clone(parent, areas) as T;
-        }
-
-        /// <summary>
-        /// Returns the title label.
-        /// </summary>
-        /// <param name="variantName">The variant variant name to consider.</param>
-        /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override string GetTitleText(string variantName = "*", string defaultVariantName = "*")
-        {
-            if (Title == null && Task != null)
-                return Task.GetTitle(variantName, defaultVariantName);
-            else
-                return base.GetTitleText(variantName, defaultVariantName);
-        }
-
-        /// <summary>
-        /// Returns the description label.
-        /// </summary>
-        /// <param name="variantName">The variant variant name to consider.</param>
-        /// <param name="defaultVariantName">The default variant name to consider.</param>
-        public override string GetDescriptionText(string variantName = "*", string defaultVariantName = "*")
-        {
-            if (Description == null && Task != null)
-                return Task.GetDescription(variantName, defaultVariantName);
-            else
-                return base.GetDescriptionText(variantName, defaultVariantName);
         }
 
         // Events --------------------------------
