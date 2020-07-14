@@ -2,7 +2,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://docs.bindopen.org/xsd BdoHostConfiguration.xsd">
   <scalar name="applicationInstanceName" value="test.console" />
 
-  <scalar name="logs.fileName" script="testB_$(id).txt" />
+  <scalar name="logs.fileName" script="testB_$(guid).txt" />
   <scalar name="logs.expirationDayNumber" value="1" />
   <!--<scalar name="runtime.folderPath" script=".\bdo-a" />-->
 
@@ -12,7 +12,7 @@
   <scalar name="configuration.folderPath" script="$(runtime.folderPath) \config" />
   <scalar name="library.folderPath" script="$(runtime.folderPath) \lib" />
   <scalar name="logs.folderPath" script="$(runtime.folderPath) \logs" />
-  <scalar name="logs.fileName" script="log_$(timestamp)_$(id).xt" />
+  <scalar name="logs.fileName" script="log_$(timestamp)_$(guid).xt" />
   <scalar name="logs.exirationDayNumber" value="10" />
   <scalar name="packages.filePath" script="$(runtime.folderPath) \packages" />
   -->

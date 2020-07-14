@@ -42,8 +42,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// 
         /// </summary>
-        protected ILogger _logger = null;
-
+        protected Func<IBdoHost, ILogger> _loggerInit = null;
 
         /// <summary>
         /// The output kinds of the default loggers.
@@ -141,9 +140,14 @@ namespace BindOpen.Application.Scopes
         // Loggers ----------------------
 
         /// <summary>
-        /// The logger factory of this instance.
+        /// The logger of this instance.
         /// </summary>
-        public ILoggerFactory LoggerFactory { get; }
+        public Func<IBdoHost, ILogger> LoggerInit => _loggerInit;
+
+        /// <summary>
+        /// The startup logger of this instance.
+        /// </summary>
+        public ILogger StartUpLogger { get; internal set; }
 
         // Settings ----------------------
 
@@ -273,6 +277,7 @@ namespace BindOpen.Application.Scopes
                 HostSettings?.WithAppConfigFile(HostSettings?.AppConfigurationFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
                 HostSettings?.WithLibraryFolder(HostSettings?.LibraryFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
                 HostSettings?.WithLogsFolder(HostSettings?.LogsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
+                HostSettings?.WithLogsFileName(null);
                 HostSettings?.WithPackagesFolder(HostSettings?.PackagesFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
                 HostSettings?.WithProjectsFolder(HostSettings?.ProjectsFolderPath.GetConcatenatedPath(HostSettings?.RuntimeFolderPath).EndingWith(@"\").ToPath());
 
@@ -454,24 +459,37 @@ namespace BindOpen.Application.Scopes
         // Logs -------------------------------------------
 
         /// <summary>
-        /// Sets the specified logger.
+        /// Adds the specified logger.
         /// </summary>
-        /// <param name="logger">The logger to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> SetLogger(ILogger logger)
+        /// <param name="factory">The logger factory to consider.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> SetLoggerAtStartup(ILoggerFactory factory)
         {
-            _logger = logger;
+            StartUpLogger = factory.CreateLogger<IBdoHost>();
 
             return this;
         }
 
         /// <summary>
-        /// Adds the default console logger.
+        /// Adds the specified logger.
         /// </summary>
-        /// <returns>Returns this instance.</returns>
-        public ITBdoHostOptions<S> AddDefaultConsoleLogger()
+        /// <param name="factory">The logger factory to consider.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> SetLogger(ILoggerFactory factory)
         {
-            _defaultLoggerOutputKinds.Add(DatasourceKind.Console);
+            _loggerInit = _ => factory.CreateLogger<IBdoHost>();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the specified logger.
+        /// </summary>
+        /// <param name="initLogger">The logger initialization to consider.</param>
+        /// <returns>Returns the host option.</returns>
+        public ITBdoHostOptions<S> SetLogger(Func<IBdoHost, ILogger> initLogger)
+        {
+            _loggerInit = initLogger;
 
             return this;
         }

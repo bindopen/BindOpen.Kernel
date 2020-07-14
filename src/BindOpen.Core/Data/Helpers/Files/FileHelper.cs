@@ -94,5 +94,49 @@ namespace BindOpen.Data.Helpers.Files
             return rootFolderPath?.EndingWith(@"\").ToPath();
         }
 
+
+        /// <summary>
+        /// Delete the files that are older than the specified day number.
+        /// </summary>
+        /// <param name="folderPath">The folder path to consider.</param>
+        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
+        /// <param name="fileFormat">The file format to consider.</param>
+        /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
+        public static int DeleteExpiredFiles(
+            string folderPath,
+            int expirationDayNumber,
+            string fileFormat)
+        {
+            int i = 0;
+            if (expirationDayNumber > -1 && Directory.Exists(folderPath))
+            {
+                if (fileFormat == null)
+                {
+                    fileFormat = "*.*";
+                }
+                fileFormat = fileFormat.Replace("$(guid)", "*", StringComparison.OrdinalIgnoreCase)
+                    .Replace("$(timestamp)", "*", StringComparison.OrdinalIgnoreCase);
+
+                string[] files = Directory.GetFiles(folderPath, fileFormat);
+
+                foreach (string file in files)
+                {
+                    FileInfo fileInfo = new FileInfo(file);
+                    if (fileInfo.LastAccessTime < DateTime.Now.AddDays(-expirationDayNumber))
+                    {
+                        try
+                        {
+                            fileInfo.Delete();
+                            i++;
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
+            }
+
+            return i;
+        }
     }
 }

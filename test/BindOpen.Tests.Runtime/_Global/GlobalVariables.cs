@@ -31,6 +31,15 @@ namespace BindOpen.Tests.Core
         {
             get
             {
+                var loggerFactory = LoggerFactory.Create(builder =>
+                {
+                    builder
+                        .AddFilter("Microsoft", LogLevel.Warning)
+                        .AddFilter("System", LogLevel.Warning)
+                        .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                        .AddConsole();
+                });
+
                 return _appHost ??= BdoHostFactory.CreateBindOpenHost<TestAppSettings>(
                     options => options
                         .SetModule("app.test")
@@ -38,15 +47,7 @@ namespace BindOpen.Tests.Core
                         //.SetRootFolder(q => q.HostSettings.Environment == "Development", @"..\..")
                         //.AddDefaultFileLogger()
                         .ThrowExceptionOnStartFailure()
-                        //.SetLogger(Logger)
-                        .SetLogger(builder =>
-                        {
-                            builder
-                                .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
-                                .AddBindOpenFileLogger(options)
-                                .AddConsole();
-                        })
-                        .AddDefaultConsoleLogger());
+                        .SetLogger(loggerFactory));
             }
         }
 

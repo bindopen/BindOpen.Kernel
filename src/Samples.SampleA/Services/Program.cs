@@ -23,7 +23,6 @@ namespace Samples.SampleA
                                 .RegisterDatasources(m => m.AddFromConfiguration(options)))
                             .SetHostSettingsFile(false)
                             .SetHostSettings(p => p.WithAppConfigFileRequired(false))
-                            .AddDefaultConsoleLogger()
                             .ThrowExceptionOnStartFailure()
                     )
                     //.AddBdoConnectedService<IBdoDbService, TestDbRepository>(
