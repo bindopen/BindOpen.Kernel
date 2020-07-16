@@ -12,29 +12,6 @@ namespace BindOpen.Application.Scopes
     public static class LoggerFactoryExtension
     {
         /// <summary>
-        /// Sets the console logger at startup.
-        /// </summary>
-        /// <param name="options">The BindOpen host options to consider.</param>
-        /// <param name="initBuilder">The logger builder action to consider.</param>
-        /// <returns></returns>
-        public static ITBdoHostOptions<S> SetConsoleLoggerAtStartup<S>(
-            this ITBdoHostOptions<S> options)
-            where S : class, IBdoAppSettings, new()
-        {
-            options.SetLogger(h =>
-            {
-                var config = new LoggerConfiguration();
-                config.WriteTo.Console();
-
-                var loggerFactory = new LoggerFactory();
-                loggerFactory.AddSerilog(config.CreateLogger());
-                return loggerFactory.CreateLogger<IBdoHost>();
-            });
-
-            return options;
-        }
-
-        /// <summary>
         /// Sets the logger.
         /// </summary>
         /// <param name="options">The BindOpen host options to consider.</param>
@@ -42,7 +19,8 @@ namespace BindOpen.Application.Scopes
         /// <returns></returns>
         public static ITBdoHostOptions<S> SetLogger<S>(
             this ITBdoHostOptions<S> options,
-            Func<LoggerConfiguration, LoggerConfiguration> initLoggerConfig)
+            Func<LoggerConfiguration, LoggerConfiguration> initLoggerConfig,
+            bool isTraceLoggerAtStartup = false)
             where S : class, IBdoAppSettings, new()
         {
             options.SetLogger(h =>
@@ -55,19 +33,30 @@ namespace BindOpen.Application.Scopes
                 return loggerFactory.CreateLogger<IBdoHost>();
             });
 
+            if (isTraceLoggerAtStartup)
+            {
+                var config = new LoggerConfiguration();
+                config.WriteTo.Trace();
+
+                var loggerFactory = new LoggerFactory();
+                loggerFactory.AddSerilog(config.CreateLogger());
+
+                options.SetLoggerAtStartup(loggerFactory);
+            }
+
             return options;
         }
 
         /// <summary>
-        /// Add a BindOpen console logger.
+        /// Add a BindOpen trace logger.
         /// </summary>
         /// <param name="builder">The logging builder to consider.</param>
         /// <param name="options">The BindOpen host options to consider.</param>
         /// <returns></returns>
-        public static LoggerConfiguration AddConsole(
+        public static LoggerConfiguration AddTrace(
             this LoggerConfiguration config)
         {
-            config?.WriteTo.Console();
+            config?.WriteTo.Trace();
             return config;
         }
 
@@ -82,10 +71,14 @@ namespace BindOpen.Application.Scopes
             ITBdoHostOptions<S> options)
             where S : class, IBdoAppSettings, new()
         {
+            int? expirationDayNumber = options?.HostSettings?.LogsExpirationDayNumber < 0 ?
+                null : options?.HostSettings?.LogsExpirationDayNumber;
+
             config?.WriteTo.File(
                 (options?.HostSettings?.LogsFolderPath + options?.HostSettings?.LogsFileName).ToPath(),
                 rollingInterval: RollingInterval.Day,
-                retainedFileCountLimit: options?.HostSettings?.LogsExpirationDayNumber);
+                retainedFileCountLimit: expirationDayNumber);
+
             return config;
         }
     }
