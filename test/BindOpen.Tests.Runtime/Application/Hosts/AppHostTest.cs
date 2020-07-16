@@ -1,7 +1,6 @@
 ﻿using BindOpen.Application.Scopes;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Stores;
-using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Core.Application.Hosts
@@ -25,8 +24,7 @@ namespace BindOpen.Tests.Core.Application.Hosts
         {
             var appHost = BdoHostFactory.CreateBindOpenDefaultHost(
                 options => options
-                    .SetConsoleLoggerAtStartup()
-                    .SetLogger(p => p.AddFile(options)));
+                    .SetLogger(p => p.AddFile(options), true));
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 
@@ -46,8 +44,7 @@ namespace BindOpen.Tests.Core.Application.Hosts
                         .RegisterDatasources(m => m
                             .AddFromConfiguration(options)
                             .AddFromNetCoreConfiguration(GlobalVariables.NetCoreConfiguration)))
-                        .SetLogger(p => p.AddFile(options).AddConsole())
-                        .SetConsoleLoggerAtStartup());
+                        .SetLogger(p => p.AddFile(options).AddTrace(), true));
 
             Assert.That(appHost.IsLoaded, "Application host not load failed");
 

@@ -45,7 +45,7 @@ namespace BindOpen.Tests.Core
                         .SetModule("app.test")
                         //.SetRootFolder(q => q.HostSettings.Environment != "Development", @"..\..\..")
                         //.SetRootFolder(q => q.HostSettings.Environment == "Development", @"..\..")
-                        //.AddDefaultFileLogger()
+                        .SetLogger(p => p.AddTrace(), true)//.AddFile(options))
                         .ThrowExceptionOnStartFailure()
                         .SetLogger(loggerFactory));
             }
