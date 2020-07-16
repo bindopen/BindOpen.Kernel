@@ -22,7 +22,8 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Action<ITBdoHostOptions<BdoDefaultAppSettings>> setupAction = null)
         {
-            services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenDefaultHost(setupAction));
+            var host = BdoHostFactory.CreateBindOpenDefaultHost(setupAction);
+            services.AddSingleton<IBdoHost>(_ => host);
 
             return services;
         }
@@ -48,7 +49,8 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<ITBdoHostOptions<S>> setupAction = null)
             where S : class, IBdoAppSettings, new()
         {
-            services.AddSingleton<IBdoHost>(_ => BdoHostFactory.CreateBindOpenHost<S>(setupAction));
+            var host = BdoHostFactory.CreateBindOpenHost<S>(setupAction);
+            services.AddSingleton<IBdoHost>(_ => host);
 
             return services;
         }
@@ -67,7 +69,8 @@ namespace Microsoft.Extensions.DependencyInjection
             where SHost : TBdoHost<S>, new()
             where S : class, IBdoAppSettings, new()
         {
-            services.AddSingleton<IBdoHost, SHost>(_ => BdoHostFactory.CreateBindOpenHost<SHost, S>(setupAction));
+            var host = BdoHostFactory.CreateBindOpenHost<SHost, S>(setupAction);
+            services.AddSingleton<IBdoHost, SHost>(_ => host);
 
             return services;
         }

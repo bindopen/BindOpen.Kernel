@@ -17,6 +17,9 @@ Todo list for BindOpen
 
 ### v.1.1
 
+* Instantiate host with AddBindOpen method
+* See whether startup logger makes sense
+* SetLogger must be guessed automatically
 * ScriptingFactory -> BdoScript
 * Simplify script interpretation
 * Improve extension handling

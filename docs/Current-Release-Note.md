@@ -3,12 +3,18 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 # New features
 
-- [x] None
+- [ ] None
+
+## BindOpen.Runtime.NetCore
+
+- [x] BindOpen host service starts automatically when registering it.
 
 
 # Fixes
 
-- [x] Fixing bug in release note: bad release version
+- [ ] None
+- [x] Console logger becomes trace logger.
+- [x] Fixing bug with at-startup logger.
 
 
 # Lifecycle news
