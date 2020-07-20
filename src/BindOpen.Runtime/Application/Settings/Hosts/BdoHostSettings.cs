@@ -261,9 +261,10 @@ namespace BindOpen.Application.Settings
                 logsFileName = LogsFileName;
             }
 
-            logsFileName = (string.IsNullOrEmpty(logsFileName) ? "log_$(timeStamp).log" : logsFileName);
-            logsFileName = logsFileName.Replace("$(timeStamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), StringComparison.OrdinalIgnoreCase);
-            logsFileName = logsFileName.Replace("$(guid)", Guid.NewGuid().ToString(), StringComparison.OrdinalIgnoreCase);
+            logsFileName = (string.IsNullOrEmpty(logsFileName) ? BdoDefaultHostPaths.__DefaultLogsFileName : logsFileName);
+            logsFileName = logsFileName.Replace("$(timestamp)", DateTime.Now.ToString("yyyyMMddHHmmss"), StringComparison.OrdinalIgnoreCase);
+            logsFileName = logsFileName.Replace("$(guid)", StringHelper.NewGuid(), StringComparison.OrdinalIgnoreCase);
+            logsFileName = logsFileName.Replace("$(shortid)", StringHelper.NewShortId(), StringComparison.OrdinalIgnoreCase);
             LogsFileName = logsFileName;
 
             return this;
