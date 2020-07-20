@@ -56,12 +56,7 @@ namespace BindOpen.Application.Scopes
         /// <summary>
         /// The default log file name.
         /// </summary>
-        public static readonly string __DefaultLogsFileName = __DefaultPrimaryLogsFileNamePreffix + @"$(guid).txt";
-
-        /// <summary>
-        /// The preffix of the default primary logs file name.
-        /// </summary>
-        public static readonly string __DefaultPrimaryLogsFileNamePreffix = @"log_$(timestamp)_";
+        public static readonly string __DefaultLogsFileName = $"log_$(timestamp)_$(shortid).txt";
 
         /// <summary>
         /// Maximum number of minutes : authentication 

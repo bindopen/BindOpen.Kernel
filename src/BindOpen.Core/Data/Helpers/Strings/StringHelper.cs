@@ -63,7 +63,7 @@ namespace BindOpen.Data.Helpers.Strings
         /// <returns>Returns the generated password.</returns>
         public static string GeneratePassword(int charNumber)
         {
-            return Guid.NewGuid().ToString().ToLower()
+            return StringHelper.NewGuid()
                 .Replace("-", string.Empty).Replace("l", string.Empty).Replace("1", string.Empty).Replace("o", string.Empty).Replace("0", string.Empty)
                 .Substring(0, charNumber);
         }
@@ -278,6 +278,24 @@ namespace BindOpen.Data.Helpers.Strings
             }
 
             return index;
+        }
+
+        /// <summary>
+        /// Generates a new short ID.
+        /// </summary>
+        /// <returns>Returns a new short ID.</returns>
+        public static string NewGuid()
+        {
+            return Guid.NewGuid().ToString().ToLower();
+        }
+
+        /// <summary>
+        /// Generates a new short ID.
+        /// </summary>
+        /// <returns>Returns a new short ID.</returns>
+        public static string NewShortId()
+        {
+            return Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
         }
 
         /// <summary>
