@@ -76,7 +76,7 @@ namespace BindOpen.Application.Scopes
 
             config?.WriteTo.File(
                 (options?.HostSettings?.LogsFolderPath + options?.HostSettings?.LogsFileName).ToPath(),
-                rollingInterval: RollingInterval.Day,
+                rollingInterval: RollingInterval.Infinite,
                 retainedFileCountLimit: expirationDayNumber);
 
             return config;
