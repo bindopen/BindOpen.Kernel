@@ -1,20 +1,41 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BindOpen.Data.Items;
+using Microsoft.Extensions.Logging;
 
 namespace BindOpen.System.Diagnostics
 {
     /// <summary>
     /// This class represents a logger.
     /// </summary>
-    public class BdoLogger
+    public class TBdoLogger<T> : DataItem, ITBdoLogger<T>
+        where T : IBdoLoggerFormater, new()
     {
         protected ILogger _nativeLogger;
+        protected T _formater;
+
+        /// <summary>
+        /// The native logger.
+        /// </summary>
+        public ILogger NativeLogger => _nativeLogger;
+
+        /// <summary>
+        /// Initializes a new instance of the BdoLogger class.
+        /// </summary>
+        public T Formater => _formater;
+
+        /// <summary>
+        /// Initializes a new instance of the BdoLogger class.
+        /// </summary>
+        public TBdoLogger()
+        {
+            _formater = new T();
+        }
 
         /// <summary>
         /// Sets the native logger.
         /// </summary>
         /// <param name="nativeLogger">The native logger to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public BdoLogger SetNative(ILogger nativeLogger)
+        public IBdoLogger SetNative(ILogger nativeLogger)
         {
             _nativeLogger = nativeLogger;
 
@@ -29,12 +50,7 @@ namespace BindOpen.System.Diagnostics
         {
             if (ev != null && _nativeLogger != null)
             {
-                int level = ev.Level;
-                string indent = new string(' ', (level < 0 ? 0 : level - 1) * 2);
-
-                string st = indent + (ev.Log != null ? "o " : "- ")
-                   + ev.DisplayName
-                   + (!string.IsNullOrEmpty(ev.Description) ? " | " + ev.Description : "");
+                string st = _formater?.ToString(ev);
 
                 switch (ev?.Kind ?? Events.EventKinds.None)
                 {
