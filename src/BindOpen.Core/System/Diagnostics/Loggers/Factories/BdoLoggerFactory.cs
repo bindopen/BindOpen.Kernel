@@ -12,9 +12,10 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
-        public static BdoLogger Create(ILogger logger)
+        public static TBdoLogger<T> Create<T>(ILogger logger)
+            where T : IBdoLoggerFormater, new()
         {
-            var bdoLogger = new BdoLogger();
+            var bdoLogger = new TBdoLogger<T>();
             bdoLogger.SetNative(logger);
             return bdoLogger;
         }

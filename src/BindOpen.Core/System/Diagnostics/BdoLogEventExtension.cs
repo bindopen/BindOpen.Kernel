@@ -170,5 +170,17 @@ namespace BindOpen.System.Diagnostics
         {
             return logEvents.Has(EventKinds.Warning, EventKinds.Error, EventKinds.Exception);
         }
+
+        /// <summary>
+        /// Converts the specified event to string.
+        /// </summary>
+        /// <param name="ev">The event to consider.</param>
+        /// <returns>The string corresponding to the specified event using the specified formater.</returns>
+        public static string ToString<T>(this IBdoLogEvent ev)
+            where T : IBdoLoggerFormater, new()
+        {
+            var formater = new T();
+            return formater.ToString(ev);
+        }
     }
 }
