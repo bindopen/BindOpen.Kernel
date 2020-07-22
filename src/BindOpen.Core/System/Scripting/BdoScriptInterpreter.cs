@@ -156,7 +156,7 @@ namespace BindOpen.System.Scripting
             int scriptwordBeginIndex;
 
             var script = expression?.Text ?? string.Empty;
-            switch (expression.Kind)
+            switch (expression?.Kind)
             {
                 case DataExpressionKind.Auto:
                     if (!string.IsNullOrEmpty(script))

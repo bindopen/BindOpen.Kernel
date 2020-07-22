@@ -35,6 +35,22 @@ namespace BindOpen.Tests.Core.System.Diagnostics
             Assert.That(interpreter.GetDefinitions().Count > 0, "Bad interpreter loading");
         }
 
+        [Test, Order(11)]
+        public void InterpreteScriptNullTest()
+        {
+            var log = new BdoLog();
+
+            var scriptVariableSet = BdoScript.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<bool?>(null as DataExpression, scriptVariableSet, log)?.ToString();
+
+            string xml = string.Empty;
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml() + "'";
+            }
+            Assert.That(resultScript == null, "Bad script interpretation" + xml);
+        }
+
         [Test, Order(101)]
         public void InterpreteWord1Test()
         {
