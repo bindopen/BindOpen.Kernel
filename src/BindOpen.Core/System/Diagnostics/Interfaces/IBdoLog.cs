@@ -18,7 +18,7 @@ namespace BindOpen.System.Diagnostics
         /// <summary>
         /// 
         /// </summary>
-        BdoLogger Logger { get; }
+        IBdoLogger Logger { get; }
 
         /// <summary>
         /// 
@@ -187,7 +187,7 @@ namespace BindOpen.System.Diagnostics
         /// 
         /// </summary>
         /// <param name="logger"></param>
-        IBdoLog SetLogger(BdoLogger logger);
+        IBdoLog SetLogger(IBdoLogger logger);
 
         /// <summary>
         /// 
