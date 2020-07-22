@@ -1,9 +1,9 @@
 ﻿namespace BindOpen.System.Diagnostics
 {
     /// <summary>
-    /// This class represents a logger formater.
+    /// This class represents a logger format.
     /// </summary>
-    public class BdoLoggerFormater_Snap : IBdoLoggerFormater
+    public class BdoSnapLoggerFormat : IBdoLoggerFormater
     {
         /// <summary>
         /// Converts the log to the string.

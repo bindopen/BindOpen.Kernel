@@ -318,7 +318,7 @@ namespace BindOpen.System.Diagnostics
         /// <param name="logger">The logger to add.</param>
         public IBdoLog SetLogger(ILogger logger)
         {
-            _logger = BdoLoggerFactory.Create<BdoLoggerFormater_Snap>(logger);
+            _logger = BdoLoggerFactory.Create<BdoSnapLoggerFormat>(logger);
 
             return this;
         }
