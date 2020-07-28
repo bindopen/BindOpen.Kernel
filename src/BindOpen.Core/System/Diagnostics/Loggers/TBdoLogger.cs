@@ -7,7 +7,7 @@ namespace BindOpen.System.Diagnostics
     /// This class represents a logger.
     /// </summary>
     public class TBdoLogger<T> : DataItem, ITBdoLogger<T>
-        where T : IBdoLoggerFormater, new()
+        where T : IBdoLoggerFormat, new()
     {
         protected ILogger _nativeLogger;
         protected T _formater;
