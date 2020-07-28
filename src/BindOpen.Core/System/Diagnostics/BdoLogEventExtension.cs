@@ -177,7 +177,7 @@ namespace BindOpen.System.Diagnostics
         /// <param name="ev">The event to consider.</param>
         /// <returns>The string corresponding to the specified event using the specified formater.</returns>
         public static string ToString<T>(this IBdoLogEvent ev)
-            where T : IBdoLoggerFormater, new()
+            where T : IBdoLoggerFormat, new()
         {
             var formater = new T();
             return formater.ToString(ev);
