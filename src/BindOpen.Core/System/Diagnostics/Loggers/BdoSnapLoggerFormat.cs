@@ -1,9 +1,11 @@
-﻿namespace BindOpen.System.Diagnostics
+﻿using System;
+
+namespace BindOpen.System.Diagnostics
 {
     /// <summary>
     /// This class represents a logger format.
     /// </summary>
-    public class BdoSnapLoggerFormat : IBdoLoggerFormater
+    public class BdoSnapLoggerFormat : IBdoLoggerFormat
     {
         /// <summary>
         /// Converts the log to the string.
@@ -15,10 +17,13 @@
             if (log != null)
             {
                 var st = log.DisplayName
-                   + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description : "");
-                foreach (var ev in log.Events)
+                   + (!string.IsNullOrEmpty(log.Description) ? " | " + log.Description + Environment.NewLine : "");
+                if (log.Events != null)
                 {
-                    st += ToString(ev);
+                    foreach (var ev in log.Events)
+                    {
+                        st += ToString(ev) + Environment.NewLine;
+                    }
                 }
                 return st;
             }

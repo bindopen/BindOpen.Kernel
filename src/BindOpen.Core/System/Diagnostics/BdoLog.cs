@@ -328,7 +328,7 @@ namespace BindOpen.System.Diagnostics
         /// </summary>
         /// <param name="logger">The logger to add.</param>
         public IBdoLog SetLogger<T>(ILogger logger)
-            where T : IBdoLoggerFormater, new()
+            where T : IBdoLoggerFormat, new()
         {
             _logger = BdoLoggerFactory.Create<T>(logger);
 

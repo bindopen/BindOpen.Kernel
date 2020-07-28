@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLoggerFormater
+    public interface IBdoLoggerFormat
     {
         /// <summary>
         /// Converts the log to the string.

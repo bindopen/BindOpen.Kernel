@@ -13,7 +13,7 @@ namespace BindOpen.System.Diagnostics
         /// <param name="logger">The logger to consider.</param>
         /// <returns>Returns the created BDO logger.</returns>
         public static TBdoLogger<T> Create<T>(ILogger logger)
-            where T : IBdoLoggerFormater, new()
+            where T : IBdoLoggerFormat, new()
         {
             var bdoLogger = new TBdoLogger<T>();
             bdoLogger.SetNative(logger);
