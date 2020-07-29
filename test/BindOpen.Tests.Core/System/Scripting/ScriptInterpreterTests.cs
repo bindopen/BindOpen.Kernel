@@ -3,6 +3,7 @@ using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using BindOpen.Tests.Core.Fakers;
 using NUnit.Framework;
 using System;
 
@@ -19,9 +20,13 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         private readonly string _interpretedScript3 = "true";
         private readonly string _script4 = "abc{{$isEqual($(constant), 'const')}}defg";
         private readonly string _interpretedScript4 = "abctruedefg";
+        private readonly string _interpretedScript5 = "true";
 
         private readonly BdoScriptword _scriptword1 =
             BdoScript.Function("isEqual", "MYTABLE", BdoScript.Function("text", "mytable"));
+
+        private readonly BdoScriptword _scriptword5 =
+            BdoScript.Function("isEqual", "mypath", BdoScript.Function("text", new CarrierFake("mypath")));
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -144,6 +149,22 @@ namespace BindOpen.Tests.Core.System.Diagnostics
                 xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(_interpretedScript4.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
+        }
+
+        [Test, Order(205)]
+        public void InterpreteScript5Test()
+        {
+            var log = new BdoLog();
+
+            var scriptVariableSet = BdoScript.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<bool?>(_scriptword5.CreateExp(), scriptVariableSet, log)?.ToString();
+
+            string xml = string.Empty;
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml() + "'";
+            }
+            Assert.That(_interpretedScript5.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
         }
     }
 }

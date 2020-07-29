@@ -2,7 +2,6 @@
 using BindOpen.Data.Common;
 using BindOpen.Data.Elements;
 using BindOpen.Data.Expression;
-using BindOpen.Data.Helpers.Serialization;
 using BindOpen.Data.Helpers.Strings;
 using BindOpen.Data.Items;
 using BindOpen.Extensions.Runtime;
@@ -149,7 +148,7 @@ namespace BindOpen.Data.Helpers.Objects
                         }
                         else
                         {
-                            stringValue = object1.ToXml();
+                            stringValue = object1.ToString();
 
                             if (isScriptMode)
                             {
