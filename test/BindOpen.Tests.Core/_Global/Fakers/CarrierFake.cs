@@ -57,14 +57,14 @@ namespace BindOpen.Tests.Core.Fakers
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TestCarrier class.
+        /// Instantiates a new instance of the CarrierFake class.
         /// </summary>
         public CarrierFake() : base()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the TestCarrier class.
+        /// Instantiates a new instance of the CarrierFake class.
         /// </summary>
         /// <param name="path">The path of the instance.</param>
         public CarrierFake(string path) : base()
@@ -83,5 +83,14 @@ namespace BindOpen.Tests.Core.Fakers
         }
 
         #endregion
+
+        /// <summary>
+        /// Converts this instance to string.
+        /// </summary>
+        /// <returns>Returns this instance to string.</returns>
+        public override string ToString()
+        {
+            return Path;
+        }
     }
 }
