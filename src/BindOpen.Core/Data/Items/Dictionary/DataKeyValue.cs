@@ -24,7 +24,7 @@ namespace BindOpen.Data.Items
         [DataMember(Name = "key")]
         [XmlAttribute("key")]
         [DefaultValue("*")]
-        public string Key { get; set; } = "en";
+        public string Key { get; set; } = "*";
 
         /// <summary>
         /// Content of this instance.
