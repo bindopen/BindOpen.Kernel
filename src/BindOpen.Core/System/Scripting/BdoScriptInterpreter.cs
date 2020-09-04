@@ -315,7 +315,7 @@ namespace BindOpen.System.Scripting
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
-            BdoScriptword scriptword,
+            IBdoScriptword scriptword,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
@@ -331,7 +331,7 @@ namespace BindOpen.System.Scripting
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public T Evaluate<T>(
-            BdoScriptword scriptword,
+            IBdoScriptword scriptword,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
