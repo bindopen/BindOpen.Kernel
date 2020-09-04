@@ -279,7 +279,7 @@ namespace BindOpen.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
-            DataExpressionKind expressionKind,
+            DataExpressionKind expressionKind = DataExpressionKind.Auto,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
@@ -297,7 +297,7 @@ namespace BindOpen.System.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public T Evaluate<T>(
             string script,
-            DataExpressionKind expressionKind,
+            DataExpressionKind expressionKind = DataExpressionKind.Auto,
             IScriptVariableSet scriptVariableSet = null,
             IBdoLog log = null)
         {
