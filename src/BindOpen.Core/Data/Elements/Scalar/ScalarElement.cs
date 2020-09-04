@@ -105,7 +105,8 @@ namespace BindOpen.Data.Elements
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Join("|", Items.Select(p => p == null ? string.Empty : p.ToString()).ToArray());
+            return Items == null ? null :
+                    string.Join("|", Items?.Select(p => p == null ? string.Empty : p.ToString()).ToArray());
         }
 
         #endregion

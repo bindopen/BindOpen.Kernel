@@ -154,5 +154,18 @@ namespace BindOpen.Tests.Core.Data.Elements
             elementSetB.Repair(elementSetA);
             elementSetB.Update(elementSetA);
         }
+
+        [Test, Order(6)]
+        public void ElementToStringTest()
+        {
+            if (_scalarElementSet == null)
+            {
+                CreateElementSetTest();
+            }
+
+            var element = ElementFactory.CreateScalar("scalar");
+            var st = element.ToString();
+            Assert.That(st == null, "Bad scalar element - ToString");
+        }
     }
 }
