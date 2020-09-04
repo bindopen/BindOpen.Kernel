@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using System.Collections.Generic;
 
 namespace BindOpen.System.Scripting
 {
@@ -7,6 +8,11 @@ namespace BindOpen.System.Scripting
     /// </summary>
     public interface IScriptVariableSet : IDataItem
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Dictionary<string, object> Variables { get; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -26,7 +32,7 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        IScriptVariableSet SetValue(StoredDataItem item);
+        IScriptVariableSet SetValue(IStoredDataItem item);
 
         /// <summary>
         /// 

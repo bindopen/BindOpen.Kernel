@@ -1,7 +1,5 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Helpers.Objects;
+﻿using BindOpen.Data.Helpers.Objects;
 using BindOpen.Data.Items;
-using BindOpen.Extensions.Definition;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Scripting
@@ -19,6 +17,16 @@ namespace BindOpen.System.Scripting
         #region Variables
 
         private Dictionary<string, object> _variables = new Dictionary<string, object>();
+
+        #endregion
+
+        // ------------------------------------------
+        // PROPERTIES
+        // ------------------------------------------
+
+        #region Properties
+
+        public Dictionary<string, object> Variables => _variables;
 
         #endregion
 
@@ -77,30 +85,9 @@ namespace BindOpen.System.Scripting
         /// </summary>
         /// <param name="item">The item to consider.</param>
         /// <returns>Returns true if the specified item has been added.</returns>
-        public IScriptVariableSet SetValue(StoredDataItem item)
+        public IScriptVariableSet SetValue(IStoredDataItem item)
         {
-            if (item != null)
-            {
-                switch (item.GetType().GetExtensionItemKind())
-                {
-                    case BdoExtensionItemKind.Task:
-                        return SetValue("currentTask", item);
-                    default:
-                        break;
-                }
-            }
-
-            if (item is DataElement)
-            {
-                return SetValue("currentElement", item);
-            }
-
-            if (item is DataItem)
-            {
-                return SetValue("currentItem", item);
-            }
-
-            return this;
+            return SetValue(item.Key(), item);
         }
 
         /// <summary>
