@@ -49,10 +49,10 @@ namespace BindOpen.Data.Expression
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
         /// <returns>Returns the script expression.</returns>
-        public static DataExpression CreateExp(this BdoScriptword scriptword)
+        public static DataExpression CreateExp(this IBdoScriptword scriptword)
         {
             var expression = CreateExp(DataExpressionKind.Word);
-            expression.Word = scriptword;
+            expression.Word = scriptword as BdoScriptword;
             return expression;
         }
     }
