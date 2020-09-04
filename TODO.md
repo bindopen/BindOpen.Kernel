@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] ToString() data elements
 - [ ] Simplify DataItem (avoid Update/Repair/Check methods)
 - [ ] ScriptVariableSet fluent
 - [x] XSD location URI updated to docs.bindopen.org/xsd
