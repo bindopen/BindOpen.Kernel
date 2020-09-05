@@ -194,7 +194,7 @@ namespace BindOpen.System.Scripting
                         // we get the next function or variable
                         var result = Evaluate(script, ref index, 0, scriptVariableSet, subLog);
 
-                        if (subLog.AddEvents(log).HasErrorsOrExceptions())
+                        if (log.AddEvents(subLog).HasErrorsOrExceptions())
                         {
                             log?.AddError(
                                 title: "Error occured while interpreting script",
@@ -503,7 +503,7 @@ namespace BindOpen.System.Scripting
 
                     // we retrieve the function parameters
                     int scriptwordParameterCount = 0;
-                    while ((script.Substring(nextIndex, 1) != ")") && (nextIndex < script.Length))
+                    while ((nextIndex < script.Length) && (script.Substring(nextIndex, 1) != ")"))
                     {
                         nextIndex = script.IndexOfFromScript(",", nextIndex + 1);
 
@@ -533,17 +533,16 @@ namespace BindOpen.System.Scripting
                                     offsetIndex + index + 1,
                                     scriptVariableSet,
                                     log);
-                                nextIndex = index + 1 + subScript.Length;
-
-                                index = nextIndex;
+                                //nextIndex = index + subIndex + 1; // index + 1 + subScript.Length;
 
                                 scriptword.Parameters.Add(parameterValue);
                                 scriptwordParameterCount++;
                             }
-                            else
-                            {
-                                index = nextIndex = index + 1;
-                            }
+                            //else
+                            //{
+                            //    nextIndex = ++index; // index = nextIndex = index + 1;
+                            //}
+                            index = nextIndex;
                         }
                     }
                 }

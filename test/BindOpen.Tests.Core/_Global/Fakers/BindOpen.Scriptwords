@@ -78,6 +78,21 @@
         </add.definition>
       </children>
     </add.definition>
+
+    <!-- $FUNC3(value1, value2, value3) -->
+    <add.definition name="FUNC3">
+      <creationDate>2020-09-05</creationDate>
+      <lastModificationDate>2021-09-05</lastModificationDate>
+      <description>
+        <add.value>The test function 3.</add.value>
+      </description>
+      <kind>Function</kind>
+      <functionName>Fun_Func3</functionName>
+      <returnValueType>Text</returnValueType>
+      <isRepeatedParameters>true</isRepeatedParameters>
+      <repeatedParameterValueType>Any</repeatedParameterValueType>
+      <repeatedParameterName>value</repeatedParameterName>
+    </add.definition>
   </definitions>
   
   <definitionClass>.Scriptwords.ScriptwordDefinition_runtime</definitionClass>
