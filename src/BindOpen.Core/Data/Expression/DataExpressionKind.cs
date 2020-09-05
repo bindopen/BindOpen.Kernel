@@ -6,6 +6,11 @@
     public enum DataExpressionKind
     {
         /// <summary>
+        /// Literal expression that can be script if it begins by "=".
+        /// </summary>
+        Auto,
+
+        /// <summary>
         /// Literal expression is considered as default. A literal mode can then be applied.
         /// </summary>
         Literal,
@@ -18,12 +23,7 @@
         /// <summary>
         /// Script word is considered as default.
         /// </summary>
-        Word,
-
-        /// <summary>
-        /// Literal expression that can be script if it begins by "=".
-        /// </summary>
-        Auto
+        Word
     }
 
 }

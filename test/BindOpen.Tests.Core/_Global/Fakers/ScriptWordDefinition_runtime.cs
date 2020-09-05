@@ -80,6 +80,17 @@ namespace BindOpen.Tests.Core.Fakers
             return parentValue + ":" + value;
         }
 
+        /// <summary>
+        /// Evaluates the script word $Func3.
+        /// </summary>
+        /// <param name="variable">The script word function variable to consider.</param>
+        /// <returns>The interpreted string value.</returns>
+        [BdoScriptword]
+        public static object Fun_Func3(BdoScriptwordFunctionScope variable)
+        {
+            return string.Join('-', variable?.Scriptword?.Parameters);
+        }
+
         #endregion
     }
 }
