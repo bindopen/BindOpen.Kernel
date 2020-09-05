@@ -21,6 +21,8 @@ namespace BindOpen.Tests.Core.System.Diagnostics
         private readonly string _script4 = "abc{{$isEqual($(constant), 'const')}}defg";
         private readonly string _interpretedScript4 = "abctruedefg";
         private readonly string _interpretedScript5 = "true";
+        private readonly string _script6 = "{{$func3($isEqual($(constant), 'const'), $isEqual($(constant), 'const'), 'toto', 'titi')}}";
+        private readonly string _interpretedScript6 = "true-true-toto-titi";
 
         private readonly BdoScriptword _scriptword1 =
             BdoScript.Function("isEqual", "MYTABLE", BdoScript.Function("text", "mytable"));
@@ -165,6 +167,23 @@ namespace BindOpen.Tests.Core.System.Diagnostics
                 xml = ". Result was '" + log.ToXml() + "'";
             }
             Assert.That(_interpretedScript5.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
+        }
+
+        [Test, Order(206)]
+        public void InterpreteScript6Test()
+        {
+            var log = new BdoLog();
+
+            var scriptVariableSet = BdoScript.CreateVariableSet();
+            var resultScript = GlobalVariables.Scope.Interpreter.Evaluate<string>(
+                _script6, default, scriptVariableSet, log)?.ToString();
+
+            string xml = string.Empty;
+            if (log.HasErrorsOrExceptions())
+            {
+                xml = ". Result was '" + log.ToXml() + "'";
+            }
+            Assert.That(_interpretedScript6.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation" + xml);
         }
     }
 }

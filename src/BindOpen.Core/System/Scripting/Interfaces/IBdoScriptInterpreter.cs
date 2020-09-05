@@ -19,7 +19,10 @@ namespace BindOpen.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object Evaluate(IDataExpression dataExpression, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        object Evaluate(
+            IDataExpression dataExpression,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -28,7 +31,10 @@ namespace BindOpen.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        T Evaluate<T>(IDataExpression dataExpression, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        T Evaluate<T>(
+            IDataExpression dataExpression,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -38,7 +44,11 @@ namespace BindOpen.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object Evaluate(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        object Evaluate(
+            string script,
+            DataExpressionKind expressionKind = DataExpressionKind.Auto,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -48,7 +58,10 @@ namespace BindOpen.System.Scripting
         /// <param name="scriptVariableSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
-        T Evaluate<T>(string script, DataExpressionKind expressionKind, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        T Evaluate<T>
+            (string script,
+            DataExpressionKind expressionKind = DataExpressionKind.Auto,
+            IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
@@ -87,7 +100,13 @@ namespace BindOpen.System.Scripting
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IBdoScriptword FindNextScriptword(string script, IBdoScriptword parentScriptword, ref int index, int offsetIndex, IScriptVariableSet scriptVariableSet = null, IBdoLog log = null);
+        IBdoScriptword FindNextScriptword(
+            string script,
+            IBdoScriptword parentScriptword,
+            ref int index,
+            int offsetIndex,
+            IScriptVariableSet scriptVariableSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -95,7 +114,9 @@ namespace BindOpen.System.Scripting
         /// <param name="scriptWord"></param>
         /// <param name="scriptWordDefinition"></param>
         /// <returns></returns>
-        bool IsWordMatching(IBdoScriptword scriptWord, IBdoScriptwordDefinition scriptWordDefinition);
+        bool IsWordMatching(
+            IBdoScriptword scriptWord,
+            IBdoScriptwordDefinition scriptWordDefinition);
 
         /// <summary>
         /// 
@@ -103,7 +124,9 @@ namespace BindOpen.System.Scripting
         /// <param name="name"></param>
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
-        Dictionary<string, IBdoScriptwordDefinition> GetDefinitionsWithApproximativeName(string name, IBdoScriptwordDefinition parentDefinition = null);
+        Dictionary<string, IBdoScriptwordDefinition> GetDefinitionsWithApproximativeName(
+            string name,
+            IBdoScriptwordDefinition parentDefinition = null);
 
         /// <summary>
         /// 
@@ -111,7 +134,9 @@ namespace BindOpen.System.Scripting
         /// <param name="name"></param>
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
-        Dictionary<string, IBdoScriptwordDefinition> GetDefinitionsWithExactName(string name, IBdoScriptwordDefinition parentDefinition = null);
+        Dictionary<string, IBdoScriptwordDefinition> GetDefinitionsWithExactName(
+            string name,
+            IBdoScriptwordDefinition parentDefinition = null);
 
         /// <summary>
         /// 

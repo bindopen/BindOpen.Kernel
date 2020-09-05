@@ -3,6 +3,8 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Fix bug with repeated parameter script function
+- [ ] BdoDataContext -> ScriptVariableSet
 - [ ] ToString() data elements
 - [ ] Simplify DataItem (avoid Update/Repair/Check methods)
 - [ ] ScriptVariableSet fluent
