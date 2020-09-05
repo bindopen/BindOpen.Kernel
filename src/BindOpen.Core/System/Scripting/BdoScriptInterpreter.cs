@@ -194,7 +194,7 @@ namespace BindOpen.System.Scripting
                         // we get the next function or variable
                         var result = Evaluate(script, ref index, 0, scriptVariableSet, subLog);
 
-                        if (log.AddEvents(subLog).HasErrorsOrExceptions())
+                        if (log?.AddEvents(subLog).HasErrorsOrExceptions() == true)
                         {
                             log?.AddError(
                                 title: "Error occured while interpreting script",
