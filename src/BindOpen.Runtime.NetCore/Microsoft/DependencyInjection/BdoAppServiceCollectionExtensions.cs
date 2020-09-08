@@ -90,7 +90,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped
             where TImplementation : class, TService
-            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Singleton, setupAction);
+            => services.AddBdoService<TService, TImplementation>(ServiceLifetime.Singleton, setupAction);
 
         /// <summary>
         /// Adds a BidnOpen scoped service as scoped.
@@ -105,7 +105,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped
             where TImplementation : class, TService
-            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Scoped, setupAction);
+            => services.AddBdoService<TService, TImplementation>(ServiceLifetime.Scoped, setupAction);
 
         /// <summary>
         /// Adds a BidnOpen scoped service as transient.
@@ -120,7 +120,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Func<IBdoHost, TImplementation> setupAction)
             where TService : class, IBdoScoped
             where TImplementation : class, TService
-            => services.AddBdoScopedService<TService, TImplementation>(ServiceLifetime.Transient, setupAction);
+            => services.AddBdoService<TService, TImplementation>(ServiceLifetime.Transient, setupAction);
 
         /// <summary>
         /// Adds a BidnOpen hosted service.
@@ -131,7 +131,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="setupAction">The setup action to consider.</param>
         /// <param name="serviceLifetime">The service life time to consider.</param>
         /// <returns>Returns the updated service collection.</returns>
-        private static IServiceCollection AddBdoScopedService<TService, TImplementation>(
+        private static IServiceCollection AddBdoService<TService, TImplementation>(
             this IServiceCollection services,
             ServiceLifetime serviceLifetime,
             Func<IBdoHost, TImplementation> setupAction)
