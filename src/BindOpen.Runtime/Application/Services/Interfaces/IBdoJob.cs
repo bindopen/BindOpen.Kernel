@@ -2,7 +2,6 @@
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Processing;
-using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Application.Services
 {
@@ -11,11 +10,6 @@ namespace BindOpen.Application.Services
     /// </summary>
     public interface IBdoJob : IIdentifiedDataItem, IBdoScoped
     {
-        /// <summary>
-        /// The logger.
-        /// </summary>
-        ILogger Logger { get; set; }
-
         // Execution ---------------------------------
 
         /// <summary>

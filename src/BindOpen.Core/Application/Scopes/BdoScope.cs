@@ -1,5 +1,4 @@
-﻿using BindOpen.Application.Services;
-using BindOpen.Data.Common;
+﻿using BindOpen.Data.Common;
 using BindOpen.Data.Context;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
@@ -7,6 +6,7 @@ using BindOpen.Extensions.References;
 using BindOpen.Extensions.Runtime;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Scripting;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace BindOpen.Application.Scopes
@@ -46,6 +46,11 @@ namespace BindOpen.Application.Scopes
         /// The data store of this instance.
         /// </summary>
         public IBdoDataStore DataStore { get; set; } = null;
+
+        /// <summary>
+        /// The logger of this instance.
+        /// </summary>
+        public ILogger Logger { get; set; } = null;
 
         #endregion
 

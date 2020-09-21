@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] GetValue<T> for scriptVariableSet
 - [ ] Fix bug with repeated parameter script function
 - [ ] BdoDataContext -> ScriptVariableSet
 - [ ] ToString() data elements
