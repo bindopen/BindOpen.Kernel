@@ -7,8 +7,24 @@ namespace BindOpen.Application.Scopes
     /// <summary>
     /// This class represents a connected service factory.
     /// </summary>
-    public static class ConnectedServiceFactory
+    public static class BdoServiceFactory
     {
+        /// <summary>
+        /// Creates a new service.
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Returns the log of the operation.</returns>
+        public static T CreateService<T>(
+            this IBdoScope scope)
+            where T : IBdoConnectedService, new()
+        {
+            var service = new T();
+            service.WithScope(scope);
+
+            return service;
+        }
+
         /// <summary>
         /// Creates a new connected service.
         /// </summary>
@@ -23,8 +39,7 @@ namespace BindOpen.Application.Scopes
             IBdoLog log = null)
             where T : IBdoConnectedService, new()
         {
-            var service = new T();
-            service.WithScope(scope);
+            var service = scope.CreateService<T>();
 
             var subLog = new BdoLog();
             service.WithConnector(connector);
