@@ -2,7 +2,6 @@
 using BindOpen.System.Assemblies;
 using BindOpen.System.Diagnostics;
 using BindOpen.System.Processing;
-using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Application.Services
 {
@@ -38,11 +37,6 @@ namespace BindOpen.Application.Services
         {
             get { return _isLoaded; }
         }
-
-        /// <summary>
-        /// The logger of this instance.
-        /// </summary>
-        public ILogger Logger { get; set; }
 
         // Execution ----------------------
 
@@ -109,17 +103,17 @@ namespace BindOpen.Application.Services
 
         #region MUTATORS
 
-        /// <summary>
-        /// Starts the application.
-        /// </summary>
-        /// <returns>Returns true if this instance is started.</returns>
-        public IBdoJob WithLogger(ILogger logger)
-        {
-            Logger = logger;
-            Log?.SetLogger(logger);
+        ///// <summary>
+        ///// Starts the application.
+        ///// </summary>
+        ///// <returns>Returns true if this instance is started.</returns>
+        //public IBdoJob WithLogger(ILogger logger)
+        //{
+        //    Logger = logger;
+        //    Log?.SetLogger(logger);
 
-            return this;
-        }
+        //    return this;
+        //}
 
         #endregion
 

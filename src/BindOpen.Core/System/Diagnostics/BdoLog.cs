@@ -681,7 +681,7 @@ namespace BindOpen.System.Diagnostics
 
             if ((log?.Events != null) && (logFinder?.Invoke(log) != false))
             {
-                events = Events.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<IBdoLogEvent>();
+                events = Events?.Where(p => kinds.Length == 0 || kinds.Contains(p.Kind)).ToList<IBdoLogEvent>();
                 if (events != null)
                 {
                     foreach (IBdoLogEvent currentEvent in events)

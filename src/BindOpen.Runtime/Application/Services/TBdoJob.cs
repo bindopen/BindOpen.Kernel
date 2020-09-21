@@ -1,4 +1,5 @@
 ﻿using BindOpen.Application.Settings;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace BindOpen.Application.Services
@@ -19,6 +20,15 @@ namespace BindOpen.Application.Services
         /// The settings of this instance.
         /// </summary>
         public S Settings { get; set; }
+
+        /// <summary>
+        /// The logger of this instance.
+        /// </summary>
+        public ILogger Logger
+        {
+            get => Scope.Logger;
+            set { Scope.Logger = value; }
+        }
 
         // Trigger actions --------------------------------------
 
