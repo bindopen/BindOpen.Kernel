@@ -7,7 +7,7 @@
     <Product>BindOpen.Runtime</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>The core abstractions of BindOpen Runtime.</Description>
+    <Description>The core abstractions of BindOpen.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Abstractions</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>
