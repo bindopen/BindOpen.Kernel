@@ -5,7 +5,11 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 - [ ] None
 
+<<<<<<< HEAD
 ## BindOpen.Runtime.NetCore
+=======
+## BindOpen.Framework.Runtime.NetCore
+>>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 
 - [x] BindOpen host service starts automatically when registering it.
 
@@ -29,23 +33,41 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Core            | Install-Package BindOpen.Core -Version __Publication.Version__              |
+<<<<<<< HEAD
+| BindOpen.Runtime            | Install-Package BindOpen.Runtime -Version __Publication.Version__              |
 | BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __Publication.Version__           |
 | BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __Publication.Version__   |
+=======
+| BindOpen.Core            | Install-Package BindOpen.Core -Version __Publication.Version__              |
+| BindOpen.Framework.Runtime         | Install-Package BindOpen.Framework.Runtime -Version __Publication.Version__           |
+| BindOpen.Framework.Runtime.NetCore | Install-Package BindOpen.Framework.Runtime.NetCore -Version __Publication.Version__   |
+>>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 
 ## Directly
 
 | Packages                 |                                      Command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Core            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Publication.Version__.zip) |
+<<<<<<< HEAD
+| BindOpen.Runtime            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Runtime-__Publication.Version__.zip) |
 | BindOpen.Runtime         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Runtime-__Publication.Version__.zip) |
 | BindOpen.Runtime.NetCore | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Runtime.NetCore-__Publication.Version__.zip) |
+=======
+| BindOpen.Core            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.core/BindOpen.Core-__Publication.Version__.zip) |
+| BindOpen.Framework.Runtime         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime/BindOpen.Framework.Runtime-__Publication.Version__.zip) |
+| BindOpen.Framework.Runtime.NetCore | [v__Publication.Version__ (zip)](https://storage.bindopen.org/pgrkhpym/releases/bindopen.runtime.netocore/BindOpen.Framework.Runtime.NetCore-__Publication.Version__.zip) |
+>>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 
 
 # Packages updated in this release
 
 | Packages                 |         Version       |
 |--------------------------|:---------------------:|
-| BindOpen.Core            | __Publication.Version__   |
+<<<<<<< HEAD
+| BindOpen.Runtime            | __Publication.Version__   |
 | BindOpen.Runtime         | __Publication.Version__   |
 | BindOpen.Runtime.NetCore | __Publication.Version__   |
+=======
+| BindOpen.Core            | __Publication.Version__   |
+| BindOpen.Framework.Runtime         | __Publication.Version__   |
+| BindOpen.Framework.Runtime.NetCore | __Publication.Version__   |
+>>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa

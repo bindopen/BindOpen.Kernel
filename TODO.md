@@ -3,19 +3,24 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] GetValue<T> for scriptVariableSet
+<<<<<<< HEAD
+- [ ] Optimization of items
+- [ ] Configuration bundle
+- [ ] BdoElement/BdoElementSpec : Update/Repair/Check methods
+- [ ] BdoElement/BdoElementSpec sets : Update/Repair/Check methods
+- [ ] Scope loading
+
 - [ ] Fix bug with repeated parameter script function
-- [ ] BdoDataContext -> ScriptVariableSet
 - [ ] ToString() data elements
-- [ ] Simplify DataItem (avoid Update/Repair/Check methods)
-- [ ] ScriptVariableSet fluent
+=======
+- [ ] Configuration bundle
+
+- [ ] Fix bug with repeated parameter script function
+- [ ] ToString() data elements
+- [ ] BdoElement/BdoElementSpec : Update/Repair/Check methods
+>>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 - [x] XSD location URI updated to docs.bindopen.org/xsd
-- [ ] Dynamic extension loading
-- [ ] Update/Repair/Check data items/elements/sets
-- [ ] Update element, element spec
-- [ ] Script words: Adding overloading. Optimize 
-- [ ] Integrate .net core logging. Improve existing logger management (logs in memory)
-- [ ] Integrate .net core configuration
+- [ ] Scope loadingDynamic extension loading
 - [ ] Handle application option tree
 
 ## Stuff to check out later on
@@ -43,3 +48,4 @@ Todo list for BindOpen
 
 ### v.1.2
 * Integrate .net core logging/configuration
+

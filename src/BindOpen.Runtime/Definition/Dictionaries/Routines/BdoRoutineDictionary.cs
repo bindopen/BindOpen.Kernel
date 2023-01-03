@@ -1,0 +1,23 @@
+﻿namespace BindOpen.Runtime.Definition
+{
+    /// <summary>
+    /// This class represents a DTO routine dictionary.
+    /// </summary>
+    public class BdoRoutineDictionary : TBdoExtensionDictionary<IBdoRoutineDefinition>, IBdoRoutineDictionary
+    {
+        // ------------------------------------------
+        // CONSTRUCTORS
+        // ------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoRoutineDictionary class.
+        /// </summary>
+        public BdoRoutineDictionary()
+        {
+        }
+
+        #endregion
+    }
+}

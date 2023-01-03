@@ -8,6 +8,20 @@ BindOpen is a framework that allows you to build widely-extended applications.
 
 For any additional information, please visit the BindOpen website at https://www.bindopen.org.
 
+## Solution
+
+The solution layers are structured as followed:
+
+
+| *BindOpen.Runtime*  |  *BindOpen.IO*   |
+|------------------------||-----------------|
+| *BindOpen.Extensions* ||                 |
+| || *BindOpen.Dtos* |
+| *BindOpen.MetaData* |||
+| *BindOpen.Abstractions* |||
+
+Each layer is a different solution project.
+
 ## License
 
 This project is licensed under the terms of the [MIT LICENSE](https://github.com/bindopen/BindOpen/blob/master/LICENSE).
@@ -32,9 +46,9 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to build your database queries easily.
 
-[BindOpen.Docs](https://github.com/bindopen/BindOpen.Docs) contains BindOpen's documentation. 
+[BindOpen.Docs](https://github.com/bindopen/BindOpen.Docs) contains BindOpen's documentation.
 
-A [full list of all the repos](https://github.com/BindOpen) is available as well.
+A [full list of all the repos](https://github.com/bindopen) is available as well.
 
 ## NuGet Packages by the BindOpen team
 
@@ -42,5 +56,5 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 ## Feedback
 
-If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/bindOpen/issues). 
+If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen/issues). 
 
