@@ -1,4 +1,4 @@
-![NuGet logo](https://www.bindopen.org/images/logo_bindopen.png)
+![BindOpen logo](https://storage.bindopen.org/org/logos/logo_bindopen.png)
 
 -----
 
@@ -12,13 +12,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 The solution layers are structured as followed:
 
-
-| *BindOpen.Runtime*  |  *BindOpen.IO*   |
-|------------------------||-----------------|
-| *BindOpen.Extensions* ||                 |
-| || *BindOpen.Dtos* |
-| *BindOpen.MetaData* |||
-| *BindOpen.Abstractions* |||
+![BindOpen architecture](https://storage.bindopen.org/docs/bindopen/images/bindopen_architecture.png)
 
 Each layer is a different solution project.
 
@@ -30,13 +24,13 @@ This project is licensed under the terms of the [MIT LICENSE](https://github.com
 
 ### [BindOpen Docs](https://docs.bindopen.org/)
 
-The BindOpen Docs are the ideal place to start if you are new to NuGet. They are categorized in 3 broader topics:
+The BindOpen Docs are the ideal place to start if you are new to BindOpen. They are categorized in 3 broader topics:
 
 * [Articles](https://docs.bindopen.org/articles) to learn how to use BindOpen;
 * [Notes](https://docs.bindopen.org/notes) to follow our releases;
 * [Api](https://docs.bindopen.org/api) to have an overview of BindOpen APIs.
 
-### [NuGet Blog](https://docs.bindopen.org/blog)
+### [BindOpen Blog](https://www.bindopen.org/blog)
 
 The BindOpen Blog is where we announce new features, write engineering blog posts, demonstrate proof-of-concepts and features under development.
 
@@ -44,9 +38,13 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen](https://github.com/bindopen/BindOpen) contains the base BindOpen framework packages.
 
-[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to build your database queries easily.
+[BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
 
-[BindOpen.Docs](https://github.com/bindopen/BindOpen.Docs) contains BindOpen's documentation.
+[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+
+[BindOpen.Forms](https://github.com/bindopen/BindOpen.Forms) allows you to manage forms.
+
+[BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) allows you to track your processes from basic methods to advanced workflows.
 
 A [full list of all the repos](https://github.com/bindopen) is available as well.
 
