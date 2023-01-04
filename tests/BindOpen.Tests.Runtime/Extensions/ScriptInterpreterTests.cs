@@ -7,6 +7,9 @@ using System;
 
 namespace BindOpen.Tests.Mango.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestFixture, Order(401)]
     public class ScriptInterpreterTests
     {

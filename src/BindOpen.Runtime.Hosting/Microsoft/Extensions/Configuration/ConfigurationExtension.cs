@@ -1,6 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 
@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="configuration"></param>
         /// <param name="key"></param>
         /// <param name="scope"></param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
+        /// <param name="varElementSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(

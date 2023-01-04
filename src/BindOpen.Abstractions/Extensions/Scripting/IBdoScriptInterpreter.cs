@@ -1,6 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
+using BindOpen.Logging;
 using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Scripting
@@ -13,24 +13,24 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataExpression"></param>
+        /// <param name="expression"></param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(
-            IBdoExpression dataExpression,
+            IBdoExpression expression,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataExpression"></param>
+        /// <param name="expression"></param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T Evaluate<T>(
-            IBdoExpression dataExpression,
+            IBdoExpression expression,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null);
 
@@ -124,12 +124,12 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scriptWord"></param>
-        /// <param name="scriptWordDefinition"></param>
+        /// <param name="scriptword"></param>
+        /// <param name="scriptwordDefinition"></param>
         /// <returns></returns>
         bool IsWordMatching(
-            IBdoScriptword scriptWord,
-            IBdoScriptwordDefinition scriptWordDefinition);
+            IBdoScriptword scriptword,
+            IBdoScriptwordDefinition scriptwordDefinition);
 
         /// <summary>
         /// 
