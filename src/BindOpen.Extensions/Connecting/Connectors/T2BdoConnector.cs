@@ -1,6 +1,6 @@
-﻿using BindOpen.Runtime.Scopes;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
 using System;
-using BindOpen.Logging;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -97,7 +97,6 @@ namespace BindOpen.Extensions.Connecting
         /// <param name="action">The action using the created connection and the current log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
         public new T UsingConnection(
             Action<TConnection, IBdoLog> action,

@@ -19,7 +19,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $Constant.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(
             Name = "CONSTANT",
@@ -34,7 +33,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $TEXT.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(
             Name = "Func1",
@@ -49,7 +47,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $ISEQUAL.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(
             Name = "Func2",
@@ -69,7 +66,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $Func1.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword(
             Name = "Func3",
@@ -86,7 +82,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $Func2.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         [BdoScriptword]
         public static object Fun_Func4(IBdoScriptwordDomain domain)
@@ -100,7 +95,6 @@ namespace BindOpen.Tests.Mango.Extensions.Scripting
         /// <summary>
         /// Evaluates the script word $Func5.
         /// </summary>
-        /// <param name="variable">The script word function variable to consider.</param>
         /// <returns>The interpreted string value.</returns>
         public static object Fun_Func5(
             IBdoScriptwordDomain domain,

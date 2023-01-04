@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Elements;
+using BindOpen.Extensions.Connecting;
 
 namespace BindOpen.Extensions
 {
@@ -29,12 +29,13 @@ namespace BindOpen.Extensions
         /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+        /// <param name="elements">The configuration elements of the definition to consider.</param>
         public static BdoConnectorConfiguration NewConnectorConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] items)
+            params IBdoElement[] elements)
         {
             var config = new BdoConnectorConfiguration(definitionUniqueId);
-            config.WithItems(items);
+            config.WithItems(elements);
 
             return config;
         }

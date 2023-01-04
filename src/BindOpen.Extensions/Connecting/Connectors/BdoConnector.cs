@@ -121,7 +121,6 @@ namespace BindOpen.Extensions.Connecting
         /// Executes the specified function.
         /// </summary>
         /// <param name="action">The action using the created connection and the current log to consider.</param>
-        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>

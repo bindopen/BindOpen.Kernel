@@ -129,7 +129,7 @@ namespace BindOpen.Runtime.Services
         /// </summary>
         public ProcessExecutionState ExecutionState
         {
-            get => Log.Execution?.State ?? ProcessExecutionState.None;
+            get => Log?.Execution?.State ?? ProcessExecutionState.None;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace BindOpen.Runtime.Services
         /// </summary>
         public ProcessExecutionStatus ExecutionStatus
         {
-            get => Log.Execution?.Status ?? ProcessExecutionStatus.None;
+            get => Log?.Execution?.Status ?? ProcessExecutionStatus.None;
         }
 
         // Loading information ----------------------
@@ -173,7 +173,10 @@ namespace BindOpen.Runtime.Services
         public IBdoJob WithExecutionState(ProcessExecutionState state)
         {
             var execution = Log?.Execution;
-            execution.State = execution?.State ?? ProcessExecutionState.None;
+            if (execution != null)
+            {
+                execution.State = execution?.State ?? ProcessExecutionState.None;
+            }
 
             return this;
         }
@@ -186,7 +189,10 @@ namespace BindOpen.Runtime.Services
         public IBdoJob WithExecutionStatus(ProcessExecutionStatus status)
         {
             var execution = Log?.Execution;
-            execution.Status = execution?.Status ?? ProcessExecutionStatus.None;
+            if (execution != null)
+            {
+                execution.Status = execution?.Status ?? ProcessExecutionStatus.None;
+            }
 
             return this;
         }

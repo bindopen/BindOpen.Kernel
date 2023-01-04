@@ -1,28 +1,32 @@
-﻿using System.Xml.Serialization;
-
-namespace BindOpen.Runtime.References
+﻿namespace BindOpen.Runtime.References
 {
     /// <summary>
     /// This structure represents an class reference.
     /// </summary>
-    public struct ClassReference
+    public class ClassReference
     {
         /// <summary>
         /// Library name.
         /// </summary>
-        public string AssemblyName;
+        public readonly string AssemblyName;
 
         /// <summary>
         /// Class name.
         /// </summary>
-        public string ClassName;
+        public readonly string ClassName;
+
+        public ClassReference(string assemblyName, string className)
+        {
+            AssemblyName = assemblyName;
+            ClassName = className;
+        }
 
         public override bool Equals(object obj)
         {
-            var reference = obj as ClassReference?;
+            var reference = obj as ClassReference;
             if (reference == null) return false;
 
-            return AssemblyName.Equals(reference.Value.AssemblyName) && ClassName.Equals(reference.Value.ClassName);
+            return AssemblyName.Equals(reference.AssemblyName) && ClassName.Equals(reference.ClassName);
         }
 
         public override int GetHashCode()

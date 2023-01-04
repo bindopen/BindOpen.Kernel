@@ -50,6 +50,11 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public string LibraryName { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="libraryName"></param>
+        /// <returns></returns>
         public ITBdoExtensionDictionary<T> WithLibraryName(string libraryName)
         {
             LibraryName = libraryName;

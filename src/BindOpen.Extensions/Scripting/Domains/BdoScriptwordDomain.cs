@@ -39,19 +39,35 @@ namespace BindOpen.Extensions.Scripting
             Scriptword = scriptword;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <returns></returns>
         public IBdoScriptwordDomain WithScope(IBdoScope scope)
         {
             Scope = scope;
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="variableSet"></param>
+        /// <returns></returns>
         public IBdoScriptwordDomain WithScriptVariableSet(IBdoElementSet variableSet)
         {
             ScriptVariableSet = variableSet;
             return this;
         }
 
-        public IBdoScriptwordDomain WithScriptword(IBdoScriptword word)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public IBdoScriptwordDomain WithScriptword(
+            IBdoScriptword word)
         {
             Scriptword = word;
             return this;

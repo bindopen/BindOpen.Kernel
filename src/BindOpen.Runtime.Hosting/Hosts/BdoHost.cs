@@ -285,7 +285,7 @@ namespace BindOpen.Runtime.Hosts
                         //        null, _scope, null).AddEventsTo(log);
                         if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
-                            subLog.AddMessage("Host configuration loaded");
+                            subLog?.AddMessage("Host configuration loaded");
                         }
                     }
 
@@ -316,7 +316,7 @@ namespace BindOpen.Runtime.Hosts
 
                         if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
-                            subLog.AddMessage("Extensions loaded");
+                            subLog?.AddMessage("Extensions loaded");
                         }
                     }
 
@@ -352,7 +352,7 @@ namespace BindOpen.Runtime.Hosts
                 }
                 catch (Exception ex)
                 {
-                    log.AddException(ex);
+                    log?.AddException(ex);
                 }
                 finally
                 {

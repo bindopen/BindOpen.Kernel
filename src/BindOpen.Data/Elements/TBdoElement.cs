@@ -1,8 +1,8 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
-using BindOpen.Logging;
 
 namespace BindOpen.Data.Elements
 {
@@ -196,7 +196,7 @@ namespace BindOpen.Data.Elements
             IBdoScope scope = null,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null)
-            => (TItem)GetFirstItem(scope, varElementSet, log);
+            => GetItemList(scope, varElementSet, log)?.FirstOrDefault();
 
         #endregion
     }
