@@ -739,7 +739,7 @@ namespace BindOpen.Extensions.Scripting
         /// Determines whether the specified script word corresponds to the specified definition.
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
-        /// <param name="scriptwordDefinition">The script word definition to consider.</param>
+        /// <param name="definition">The script word definition to consider.</param>
         /// <returns></returns>
         public bool IsWordMatching(IBdoScriptword scriptword, IBdoScriptwordDefinition definition)
         {

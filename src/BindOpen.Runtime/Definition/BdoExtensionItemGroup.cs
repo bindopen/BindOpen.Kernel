@@ -166,6 +166,11 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public IBdoDictionary Title { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public IBdoExtensionItemGroup AddTitle(KeyValuePair<string, string> item)
         {
             Title ??= BdoItems.NewDictionary();
@@ -197,6 +202,11 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public IBdoDictionary Description { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public IBdoExtensionItemGroup AddDescription(KeyValuePair<string, string> item)
         {
             Description ??= BdoItems.NewDictionary();
@@ -210,6 +220,12 @@ namespace BindOpen.Runtime.Definition
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="defaultKey"></param>
+        /// <returns></returns>
         public string GetDescriptionText(string key = "*", string defaultKey = "*")
         {
             return Description?[key, defaultKey];

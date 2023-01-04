@@ -1,5 +1,5 @@
-﻿using BindOpen.Runtime.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting
 {
@@ -13,9 +13,9 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Creates a data element with specified items.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public static BdoScriptInterpreter CreateInterpreter(params IBdoScriptwordDefinition[] definitions)
+        /// <param name="definitions">The definitions to consider.</param>
+        public static BdoScriptInterpreter CreateInterpreter(
+            params IBdoScriptwordDefinition[] definitions)
         {
             return new BdoScriptInterpreter(definitions);
         }
@@ -24,7 +24,8 @@ namespace BindOpen.Extensions.Scripting
         /// Creates a data element with specified items.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        public static BdoScriptInterpreter CreateInterpreter(this IBdoScope scope)
+        public static BdoScriptInterpreter CreateInterpreter(
+            this IBdoScope scope)
         {
             return new BdoScriptInterpreter(scope);
         }
@@ -32,7 +33,8 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="script"></param>
+        /// <param name="log"></param>
         /// <returns></returns>
         public static BdoScriptword CreateWord(
             string script,
@@ -48,7 +50,9 @@ namespace BindOpen.Extensions.Scripting
         /// <param name="name"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static BdoScriptword Function(string name, params object[] parameters)
+        public static BdoScriptword Function(
+            string name,
+            params object[] parameters)
         {
             var scriptword = new BdoScriptword(ScriptItemKinds.Function);
             scriptword.WithName(name);
@@ -67,7 +71,6 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="parameters"></param>
         /// <returns></returns>
         public static BdoScriptword Variable(string name)
         {
@@ -80,6 +83,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="word"></param>
         /// <param name="name"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>

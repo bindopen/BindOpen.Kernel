@@ -43,9 +43,9 @@ namespace BindOpen.Extensions.Scripting
         #region Converters
 
         /// <summary>
-        /// Converts from string.
+        /// Converts from word.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param name="word">The word to consider.</param>
         public static explicit operator string(BdoScriptword word)
         {
             return word?.ToString();
@@ -90,6 +90,11 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         public IBdoScriptword Parent { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scriptword"></param>
+        /// <returns></returns>
         public IBdoScriptword WithParent(IBdoScriptword scriptword)
         {
             Parent = scriptword;
@@ -142,7 +147,13 @@ namespace BindOpen.Extensions.Scripting
             return this;
         }
 
-        public IBdoScriptword WithParameters(params object[] objects)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objects"></param>
+        /// <returns></returns>
+        public IBdoScriptword WithParameters(
+            params object[] objects)
         {
             Parameters = objects.ToList();
 
@@ -201,7 +212,7 @@ namespace BindOpen.Extensions.Scripting
                     }
                     return script;
                 case ScriptItemKinds.None:
-                    return null;
+                    return string.Empty;
                 case ScriptItemKinds.Text:
                 case ScriptItemKinds.Syntax:
                 case ScriptItemKinds.Literal:

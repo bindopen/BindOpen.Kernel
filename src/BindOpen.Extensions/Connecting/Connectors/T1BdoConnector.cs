@@ -66,10 +66,11 @@ namespace BindOpen.Extensions.Connecting
         }
 
         /// <summary>
-        /// Executes the specified function.
+        /// 
         /// </summary>
-        /// <param name="action">The action using the created connection and the current log to consider.</param>
-        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
+        /// <param name="action"></param>
+        /// <param name="isAutoConnected"></param>
+        /// <param name="log"></param>
         /// <returns></returns>
         public ITBdoConnector<TConnection> UsingConnection(
             Action<TConnection> action,
@@ -84,7 +85,6 @@ namespace BindOpen.Extensions.Connecting
         /// <param name="action">The action using the created connection and the current log to consider.</param>
         /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
         public ITBdoConnector<TConnection> UsingConnection(
             Action<TConnection, IBdoLog> action,

@@ -227,6 +227,12 @@ namespace BindOpen.Runtime.Definition
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="defaultKey"></param>
+        /// <returns></returns>
         public string GetTitleText(string key = "*", string defaultKey = "*")
         {
             return Title?[key, defaultKey];

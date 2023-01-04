@@ -15,15 +15,15 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Sets the specified definition of this instance.
         /// </summary>
-        /// <param name="definition">The definition to consider.</param>
-        T WithDefinition(D definition);
+        /// <param name="def">The definition to consider.</param>
+        T WithDefinition(D def);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="config"></param>
         /// <returns></returns>
-        T WithConfiguration(C configuration);
+        T WithConfiguration(C config);
     }
 }
 

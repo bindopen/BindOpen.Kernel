@@ -80,7 +80,6 @@ namespace BindOpen.Data.Elements
             params object[] items)
         {
             var type = typeof(T);
-            if (type == null) return null;
 
             var valueType = type.GetValueType();
             var el = NewElement(name, valueType, items);

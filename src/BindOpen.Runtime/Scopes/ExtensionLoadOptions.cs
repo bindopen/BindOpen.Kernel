@@ -1,6 +1,4 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -95,8 +93,6 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="item"></param>
-        /// <param name="specificationAreas"></param>
-        /// <param name="updateModes"></param>
         /// <returns></returns>
         public void Update<T>(T item = default)
         {
