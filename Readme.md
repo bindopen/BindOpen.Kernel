@@ -1,4 +1,4 @@
-![BindOpen logo](https://storage.bindopen.org/org/logos/logo_bindopen.png)
+![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
 -----
 
@@ -12,7 +12,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 The solution layers are structured as followed:
 
-![BindOpen architecture](https://storage.bindopen.org/docs/bindopen/images/bindopen_architecture.png)
+![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/images/bindopen/bindopen_architecture.png)
 
 Each layer is a different solution project.
 
