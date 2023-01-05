@@ -99,6 +99,13 @@
             
             </summary>
         </member>
+        <member name="M:BindOpen.Data.Conditions.ICondition.AsTrue(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Data.Conditions.IScriptCondition">
             <summary>
             
@@ -514,7 +521,6 @@
             <summary>
             
             </summary>
-            <param name="items"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.IBdoElement.WithItem(System.Object[])">
@@ -685,7 +691,7 @@
             <summary>
             
             </summary>
-            <param name="level"></param>
+            <param name="script"></param>
         </member>
         <member name="P:BindOpen.Data.Elements.IBdoElementSpec.ItemSpecificationLevels">
             <summary>
@@ -756,14 +762,13 @@
             <summary>
             
             </summary>
-            <param name="items"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.ITBdoElement`3.WithItem(`2[])">
             <summary>
             
             </summary>
-            <param name="item"></param>
+            <param name="objs"></param>
         </member>
         <member name="M:BindOpen.Data.Elements.ITBdoElement`3.WithItemizationMode(BindOpen.Data.Items.DataItemizationMode)">
             <summary>
@@ -2105,125 +2110,6 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.ITDetailedPoco`1">
-            <summary>
-            This interface represents a named data.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITDetailedPoco`1.WithDetail(BindOpen.Data.Elements.IBdoElementSet)">
-            <summary>
-            
-            </summary>
-            <param name="detail"></param>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITDetailedPoco`1.WithDetail(BindOpen.Data.Elements.IBdoElement[])">
-            <summary>
-            
-            </summary>
-            <param name="detail"></param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITGloballyDescribedPoco`1">
-            <summary>
-            This interface represents an described data item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyDescribedPoco`1.AddDescription(System.Collections.Generic.KeyValuePair{System.String,System.String})">
-            <summary>
-            
-            </summary>
-            <param name="key"></param>
-            <param name="text"></param>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyDescribedPoco`1.WithDescription(BindOpen.Data.Items.IBdoDictionary)">
-            <summary>
-            
-            </summary>
-            <param name="title"></param>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyDescribedPoco`1.GetDescriptionText(System.String,System.String)">
-            <summary>
-            Returns the description label.
-            </summary>
-            <param name="key">The key to consider.</param>
-            <param name="defaultKey">The default variant name to consider.</param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITGloballyTitledPoco`1">
-            <summary>
-            This interface represents an described data item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyTitledPoco`1.AddTitle(System.Collections.Generic.KeyValuePair{System.String,System.String})">
-            <summary>
-            
-            </summary>
-            <param name="key"></param>
-            <param name="text"></param>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyTitledPoco`1.WithTitle(BindOpen.Data.Items.IBdoDictionary)">
-            <summary>
-            
-            </summary>
-            <param name="title"></param>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITGloballyTitledPoco`1.GetTitleText(System.String,System.String)">
-            <summary>
-            Returns the description label.
-            </summary>
-            <param name="key">The key to consider.</param>
-            <param name="defaultKey">The default variant name to consider.</param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITIdentifiedPoco`1">
-            <summary>
-            This interface represents an identified data item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITIdentifiedPoco`1.WithId(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="id"></param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITIndexedPoco`1">
-            <summary>
-            This interface represents a indexed data.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITIndexedPoco`1.WithIndex(System.Nullable{System.Int32})">
-            <summary>
-            
-            </summary>
-            <param name="index"></param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITNamedPoco`1">
-            <summary>
-            This interface represents an named data item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITNamedPoco`1.WithName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="T:BindOpen.Data.Items.ITStorablePoco`1">
-            <summary>
-            This interface defines a storable data item.
-            </summary>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITStorablePoco`1.WithCreationDate(System.Nullable{System.DateTime})">
-            <summary>
-            
-            </summary>
-            <param name="date"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Data.Items.ITStorablePoco`1.WithLastModificationDate(System.Nullable{System.DateTime})">
-            <summary>
-            
-            </summary>
-            <param name="date"></param>
-            <returns></returns>
-        </member>
         <member name="T:BindOpen.Data.Specification.IDataConstraintStatement">
             <summary>
             
@@ -2576,6 +2462,11 @@
             </summary>
             <param name="scope">The scope to append.</param>
             <param name="log">The log to append.</param>
+        </member>
+        <member name="T:BindOpen.Data.IBdoDto">
+            <summary>
+            This interface represents a DTO.
+            </summary>
         </member>
         <member name="T:BindOpen.Data.AccessibilityLevels">
             <summary>
@@ -3581,6 +3472,135 @@
             <param name="areas"></param>
             <param name="updateModes"></param>
             <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.ITBdoPoco`1">
+            <summary>
+            This interface represents a POCO based on a DTO.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Data.ITBdoPoco`1.Dto">
+            <summary>
+            The DTO of this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.ITDetailedPoco`1">
+            <summary>
+            This interface represents a named data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITDetailedPoco`1.WithDetail(BindOpen.Data.Elements.IBdoElementSet)">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+        </member>
+        <member name="M:BindOpen.Data.ITDetailedPoco`1.WithDetail(BindOpen.Data.Elements.IBdoElement[])">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+        </member>
+        <member name="T:BindOpen.Data.ITGloballyDescribedPoco`1">
+            <summary>
+            This interface represents an described data item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyDescribedPoco`1.AddDescription(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyDescribedPoco`1.WithDescription(BindOpen.Data.Items.IBdoDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="dictionary"></param>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyDescribedPoco`1.GetDescriptionText(System.String,System.String)">
+            <summary>
+            Returns the description label.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="defaultKey">The default variant name to consider.</param>
+        </member>
+        <member name="T:BindOpen.Data.ITGloballyTitledPoco`1">
+            <summary>
+            This interface represents an described data item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyTitledPoco`1.AddTitle(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyTitledPoco`1.WithTitle(BindOpen.Data.Items.IBdoDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="M:BindOpen.Data.ITGloballyTitledPoco`1.GetTitleText(System.String,System.String)">
+            <summary>
+            Returns the description label.
+            </summary>
+            <param name="key">The key to consider.</param>
+            <param name="defaultKey">The default variant name to consider.</param>
+        </member>
+        <member name="T:BindOpen.Data.ITIdentifiedPoco`1">
+            <summary>
+            This interface represents an identified data item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITIdentifiedPoco`1.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:BindOpen.Data.ITIndexedPoco`1">
+            <summary>
+            This interface represents a indexed data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITIndexedPoco`1.WithIndex(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="T:BindOpen.Data.ITNamedPoco`1">
+            <summary>
+            This interface represents an named data item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITNamedPoco`1.WithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:BindOpen.Data.ITStorablePoco`1">
+            <summary>
+            This interface defines a storable data item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ITStorablePoco`1.WithCreationDate(System.Nullable{System.DateTime})">
+            <summary>
+            
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.ITStorablePoco`1.WithLastModificationDate(System.Nullable{System.DateTime})">
+            <summary>
+            
+            </summary>
+            <param name="date"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Extensions.Connecting.IBdoConnection">
@@ -5479,6 +5499,13 @@
             <summary>
             ID of library.
             </summary>
+        </member>
+        <member name="M:BindOpen.Runtime.Definition.ITBdoExtensionDictionary`1.WithLibraryId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="libraryId"></param>
+            <returns></returns>
         </member>
         <member name="P:BindOpen.Runtime.Definition.ITBdoExtensionDictionary`1.LibraryName">
             <summary>

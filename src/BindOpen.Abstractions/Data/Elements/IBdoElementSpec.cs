@@ -101,7 +101,7 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
+        /// <param name="script"></param>
         IBdoElementSpec WithItemScript(string script);
 
         /// <summary>

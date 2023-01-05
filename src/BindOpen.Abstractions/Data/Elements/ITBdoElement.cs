@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
-using BindOpen.Logging;
 
 namespace BindOpen.Data.Elements
 {
@@ -32,14 +32,13 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
         /// <returns></returns>
         new TElement ClearItem();
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="objs"></param>
         TElement WithItem(params TItem[] objs);
 
         /// <summary>

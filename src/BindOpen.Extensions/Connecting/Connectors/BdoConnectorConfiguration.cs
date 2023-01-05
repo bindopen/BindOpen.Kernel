@@ -8,7 +8,8 @@ namespace BindOpen.Extensions.Connecting
     /// This class represents a connector configuration.
     /// </summary>
     public class BdoConnectorConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>, IBdoConnectorConfiguration
+        : TBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>,
+        IBdoConnectorConfiguration
     {
         // ------------------------------------------
         // CONSTRUCTORS

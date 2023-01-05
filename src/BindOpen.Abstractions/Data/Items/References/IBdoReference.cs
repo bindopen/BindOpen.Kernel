@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Elements;
-using BindOpen.Runtime.Scopes;
 using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Items
 {

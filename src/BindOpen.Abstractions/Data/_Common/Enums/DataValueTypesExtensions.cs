@@ -1,7 +1,7 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Extensions.Modeling;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
+using BindOpen.Extensions.Connecting;
+using BindOpen.Extensions.Modeling;
 using System;
 using System.Collections;
 

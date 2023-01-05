@@ -1,8 +1,8 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
-using BindOpen.Logging;
 
 namespace BindOpen.Data.Stores
 {
