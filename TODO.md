@@ -3,22 +3,10 @@ Todo list for BindOpen
 
 ## Next tasks
 
-<<<<<<< HEAD
-- [ ] Optimization of items
 - [ ] Configuration bundle
-- [ ] BdoElement/BdoElementSpec : Update/Repair/Check methods
-- [ ] BdoElement/BdoElementSpec sets : Update/Repair/Check methods
-- [ ] Scope loading
-
-- [ ] Fix bug with repeated parameter script function
-- [ ] ToString() data elements
-=======
-- [ ] Configuration bundle
-
 - [ ] Fix bug with repeated parameter script function
 - [ ] ToString() data elements
 - [ ] BdoElement/BdoElementSpec : Update/Repair/Check methods
->>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 - [x] XSD location URI updated to docs.bindopen.org/xsd
 - [ ] Scope loadingDynamic extension loading
 - [ ] Handle application option tree
