@@ -12,7 +12,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 The solution layers are structured as followed:
 
-![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/images/bindopen/bindopen_architecture.png)
+![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/docs/images/bindopen/bindopen_architecture.png)
 
 Each layer is a different solution project.
 
@@ -46,7 +46,7 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) allows you to track your processes from basic methods to advanced workflows.
 
-A [full list of all the repos](https://github.com/bindopen) is available as well.
+A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
 
 ## NuGet Packages by the BindOpen team
 
