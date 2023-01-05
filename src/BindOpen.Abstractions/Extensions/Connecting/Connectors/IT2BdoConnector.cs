@@ -21,7 +21,7 @@ namespace BindOpen.Extensions.Connecting
         new T WithConnectionTimeOut(int timeOut);
 
         /// <summary>
-
+        /// 
         /// <summary>
         /// Executes the specified function.
         /// </summary>

@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Processing;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Data.Elements;
 using BindOpen.Data.Items;
+using BindOpen.Extensions.Processing;
 
 namespace BindOpen.Data.Specification
 {

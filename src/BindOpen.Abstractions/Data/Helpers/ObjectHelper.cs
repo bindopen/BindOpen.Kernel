@@ -274,7 +274,8 @@ namespace BindOpen.Data
         /// <typeparam name="T">A type deriving from data item.</typeparam>
         /// <param name="item">The item to use.</param>
         /// <param name="action">The action to execute.</param>
-        public static void Using<T>(this T item, Action<T> action) where T : IBdoItem
+        public static void Using<T>(this T item, Action<T> action)
+            where T : IBdoItem
         {
             if (item != null)
                 using (item)

@@ -32,6 +32,11 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         string LibraryId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="libraryId"></param>
+        /// <returns></returns>
         ITBdoExtensionDictionary<T> WithLibraryId(string libraryId);
 
         /// <summary>

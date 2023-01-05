@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Scripting

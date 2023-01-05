@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Specification
 {

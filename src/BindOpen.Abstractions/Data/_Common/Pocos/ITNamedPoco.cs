@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data.Items
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents an named data item.

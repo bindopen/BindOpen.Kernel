@@ -1,8 +1,9 @@
-﻿namespace BindOpen.Data.Dtos
+﻿namespace BindOpen.Data
 {
-    public interface IResultItemDto
+    public interface IResultItemDto : IBdoDto
     {
         string Key { get; set; }
+
         ResourceStatus Status { get; set; }
     }
 }

@@ -7,7 +7,8 @@ namespace BindOpen.Extensions.Modeling
     /// This class represents a carrier configuration.
     /// </summary>
     public class BdoCarrierConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoCarrierDefinition>, IBdoCarrierConfiguration
+        : TBdoExtensionTitledItemConfiguration<IBdoCarrierDefinition>,
+        IBdoCarrierConfiguration
     {
         // ------------------------------------------
         // CONSTRUCTORS
