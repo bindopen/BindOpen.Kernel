@@ -1,5 +1,5 @@
-﻿using BindOpen.Logging;
-using BindOpen.Extensions.Modeling;
+﻿using BindOpen.Extensions.Modeling;
+using BindOpen.Logging;
 
 namespace BindOpen.Data.Items
 {

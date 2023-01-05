@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Items;
+using System.Collections.Generic;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents an described data item.

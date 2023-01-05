@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Connecting;
 
 namespace BindOpen.Data.Stores
 {

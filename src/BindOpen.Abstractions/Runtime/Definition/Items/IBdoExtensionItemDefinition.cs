@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Runtime.Definition
 {

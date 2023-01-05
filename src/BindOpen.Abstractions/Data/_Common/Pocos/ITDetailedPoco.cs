@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Elements;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a named data.

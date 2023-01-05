@@ -27,7 +27,7 @@ namespace BindOpen.Extensions.Connecting
         new TConnection NewConnection(IBdoLog log = null);
 
         /// <summary>
-
+        /// 
         /// <summary>
         /// Executes the specified function.
         /// </summary>

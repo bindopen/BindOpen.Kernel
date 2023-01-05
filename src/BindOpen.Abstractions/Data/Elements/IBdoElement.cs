@@ -85,7 +85,6 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
         /// <returns></returns>
         IBdoElement ClearItem();
 
