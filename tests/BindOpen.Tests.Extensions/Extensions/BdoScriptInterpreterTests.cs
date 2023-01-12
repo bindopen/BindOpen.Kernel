@@ -19,7 +19,8 @@ namespace BindOpen.Runtime.Tests.Extensions
         private readonly string _script2 = "$('workflow').input('input1')";
 
         private readonly BdoScriptword _scriptword2 =
-            BdoScript.Variable("workflow").Func("input", "input1");
+            BdoScript.Variable("workflow")
+            .Func("input", "input1");
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
