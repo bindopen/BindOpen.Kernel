@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 
 namespace BindOpen.Logging
 {

@@ -1,10 +1,10 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Meta;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Specification
+namespace BindOpen.Meta.Specification
 {
     /// <summary>
     /// This abstract class represents a data specification.

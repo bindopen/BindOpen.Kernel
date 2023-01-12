@@ -2,10 +2,10 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
-    /// This class represents a data expression that can contain a literal and script texts.
+    /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
     [XmlType("DataExpression", Namespace = "https://docs.bindopen.org/xsd")]
     [XmlRoot(ElementName = "dataExpression", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]

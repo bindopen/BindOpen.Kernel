@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO carrier dictionary.
+    /// This class represents a DTO carrier dico.
     /// </summary>
     public class BdoCarrierDictionary : TBdoExtensionDictionary<IBdoCarrierDefinition>, IBdoCarrierDictionary
     {

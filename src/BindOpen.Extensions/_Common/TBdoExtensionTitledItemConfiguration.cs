@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 
@@ -71,14 +72,14 @@ namespace BindOpen.Extensions
 
         public ITBdoExtensionTitledItemConfiguration<T> AddTitle(KeyValuePair<string, string> item)
         {
-            Title ??= BdoItems.NewDictionary();
+            Title ??= BdoMeta.NewDictionary();
             Title.Add(item);
             return this;
         }
 
-        public ITBdoExtensionTitledItemConfiguration<T> WithTitle(IBdoDictionary dictionary)
+        public ITBdoExtensionTitledItemConfiguration<T> WithTitle(IBdoDictionary dico)
         {
-            Title = dictionary;
+            Title = dico;
             return this;
         }
 

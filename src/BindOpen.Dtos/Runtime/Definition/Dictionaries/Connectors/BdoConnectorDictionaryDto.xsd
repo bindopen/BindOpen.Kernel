@@ -4,7 +4,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/connectors/ConnectorDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="connectors.dictionary" type="BdoConnectorDictionaryDto" />
+  <xs:element name="connectors.dico" type="BdoConnectorDictionaryDto" />
 
   <xs:complexType name="BdoConnectorDictionaryDto">
     <xs:complexContent mixed="false">

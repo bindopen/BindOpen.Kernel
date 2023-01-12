@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using BindOpen.Extensions.Connecting;
 using Microsoft.Extensions.Configuration;
 
-namespace BindOpen.Data.Stores
+namespace BindOpen.Meta.Stores
 {
     /// <summary>
     /// This class represents an data source extensions.
@@ -23,7 +23,7 @@ namespace BindOpen.Data.Stores
                 foreach (var section in sections)
                 {
                     depot.Add(
-                        BdoItems.NewDatasource(section.Key, DatasourceKind.Database)
+                        BdoMeta.NewDatasource(section.Key, DatasourceKind.Database)
                             .WithConfiguration(
                                 new BdoConnectorConfiguration().WithConnectionString(section.Value) as BdoConnectorConfiguration)
                     );

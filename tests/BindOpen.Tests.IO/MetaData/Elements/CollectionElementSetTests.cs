@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions.Modeling;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests;
 using Bogus;
 using NUnit.Framework;
@@ -33,8 +33,8 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
 
         private static void Test(IBdoElementSet elementSet)
         {
-            _ = elementSet.GetItem<ICarrierElement>("collection1");
-            _ = elementSet.Get<ICarrierElement>(1);
+            _ = elementSet.GetItem<IBdoMetaCarrier>("collection1");
+            _ = elementSet.Get<IBdoMetaCarrier>(1);
 
             Assert.That(elementSet?.Count == 2, "Bad collection element set - Count");
         }
@@ -42,25 +42,25 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(1)]
         public void CreateCollectionElementSetTest()
         {
-            var collectionElement1 = BdoElements.NewCollection(
+            var collectionElement1 = BdoMeta.NewCollection(
                 "collection1",
-                (((string Key, string Value)[])_testData.collectionStringValues1).Select(p => BdoElements.NewScalar(p.Key, p.Value)).ToArray()
+                (((string Key, string Value)[])_testData.collectionStringValues1).Select(p => BdoMeta.NewScalar(p.Key, p.Value)).ToArray()
             );
             collectionElement1.Add(
-                (((string Key, double Value)[])_testData.collectionDoubleValues1).Select(p => BdoElements.NewScalar(p.Key, p.Value)).ToArray());
+                (((string Key, double Value)[])_testData.collectionDoubleValues1).Select(p => BdoMeta.NewScalar(p.Key, p.Value)).ToArray());
 
-            var collectionElement2 = BdoElements.NewCollection(
+            var collectionElement2 = BdoMeta.NewCollection(
                 "collection2",
-                (((string Key, string Value)[])_testData.collectionStringValues2).Select(p => BdoElements.NewScalar(p.Key, p.Value)).ToArray()
+                (((string Key, string Value)[])_testData.collectionStringValues2).Select(p => BdoMeta.NewScalar(p.Key, p.Value)).ToArray()
             );
             collectionElement2.Add(
-                (((string Key, double Value)[])_testData.collectionDoubleValues2).Select(p => BdoElements.NewScalar(p.Key, p.Value)).ToArray());
+                (((string Key, double Value)[])_testData.collectionDoubleValues2).Select(p => BdoMeta.NewScalar(p.Key, p.Value)).ToArray());
             collectionElement2.Add(
-                BdoElements.NewCarrier("collection2", "tests.core$testCarrier")
+                BdoMeta.NewCarrier("collection2", "tests.core$testCarrier")
                     .WithItem(
                         (new { path = "file2.txt" }).AsElementSet<BdoCarrierConfiguration>()));
 
-            _collectionElementSet = BdoElements.NewSet(collectionElement1, collectionElement2);
+            _collectionElementSet = BdoMeta.NewSet(collectionElement1, collectionElement2);
 
             Test(_collectionElementSet);
         }

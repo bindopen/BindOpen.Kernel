@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Tests;
 using NUnit.Framework;
 using System.IO;
@@ -12,7 +12,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Dictionary.xml";
         private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Dictionary.json";
         dynamic _valueSet;
-        private IBdoDictionary _dictionary = null;
+        private IBdoDictionary _dico = null;
 
 
         [OneTimeSetUp]
@@ -21,35 +21,35 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
             _valueSet = new { value1 = "toto", value2 = "totomax" };
         }
 
-        private void Test(IBdoDictionary dictionary)
+        private void Test(IBdoDictionary dico)
         {
             Assert.That(
-                dictionary["value1"] == _valueSet.value1
-                && dictionary["value2"] == _valueSet.value2, "Bad dictionary creation");
+                dico["value1"] == _valueSet.value1
+                && dico["value2"] == _valueSet.value2, "Bad dictionary creation");
         }
 
         [Test, Order(1)]
         public void CreateTest()
         {
-            _dictionary = BdoItems.NewDictionary(
+            _dico = BdoMeta.NewDictionary(
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2));
 
-            Test(_dictionary);
+            Test(_dico);
         }
 
         [Test, Order(2)]
         public void EqualsTest()
         {
-            var dictionary1 = BdoItems.NewDictionary(
+            var dico1 = BdoMeta.NewDictionary(
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2));
-            var dictionary2 = BdoItems.NewDictionary(
-                BdoItems.NewKeyPair("value1", _valueSet.value1),
-                BdoItems.NewKeyPair("value2", _valueSet.value2));
+            var dico2 = BdoMeta.NewDictionary(
+                BdoMeta.NewKeyPair("value1", _valueSet.value1),
+                BdoMeta.NewKeyPair("value2", _valueSet.value2));
 
             Assert.That(
-                dictionary1.Equals(dictionary2), "Bad dictionary equal funtion");
+                dico1.Equals(dico2), "Bad dictionary equal funtion");
         }
 
         // Xml
@@ -57,12 +57,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         [Test, Order(3)]
         public void SaveXmlTest()
         {
-            if (_dictionary == null)
+            if (_dico == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _dictionary.ToDto().SaveXml(_filePath_xml);
+            var isSaved = _dico.ToDto().SaveXml(_filePath_xml);
 
             Assert.That(isSaved, "Element set saving failed");
         }
@@ -70,7 +70,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         [Test, Order(4)]
         public void LoadXmlTest()
         {
-            if (_dictionary == null || !File.Exists(_filePath_xml))
+            if (_dico == null || !File.Exists(_filePath_xml))
             {
                 SaveXmlTest();
             }
@@ -85,12 +85,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         [Test, Order(5)]
         public void SaveJsonTest()
         {
-            if (_dictionary == null)
+            if (_dico == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _dictionary.ToDto().SaveJson(_filePath_json);
+            var isSaved = _dico.ToDto().SaveJson(_filePath_json);
 
             Assert.That(isSaved, "Element set saving failed");
         }
@@ -98,7 +98,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         [Test, Order(6)]
         public void LoadJsonTest()
         {
-            if (_dictionary == null || !File.Exists(_filePath_json))
+            if (_dico == null || !File.Exists(_filePath_json))
             {
                 SaveJsonTest();
             }

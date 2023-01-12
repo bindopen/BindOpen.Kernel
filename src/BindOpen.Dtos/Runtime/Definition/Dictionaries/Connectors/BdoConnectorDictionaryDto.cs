@@ -8,10 +8,10 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO connector dictionary.
+    /// This class represents a DTO connector dico.
     /// </summary>
     [XmlType("ConnectorDictionary", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connectors.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoConnectorDictionaryDto
         : TBdoExtensionDictionaryDto<BdoConnectorDefinitionDto>
     {

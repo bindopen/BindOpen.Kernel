@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.References;
+﻿using BindOpen.Meta.References;
 
-namespace BindOpen.Data.Elements
+namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -12,7 +12,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static CollectionElementDto ToDto(this ICollectionElement poco)
+        public static CollectionElementDto ToDto(this IBdoMetaCollection poco)
         {
             if (poco == null) return null;
 
@@ -36,11 +36,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ICollectionElement ToPoco(this CollectionElementDto dto)
+        public static IBdoMetaCollection ToPoco(this CollectionElementDto dto)
         {
             if (dto == null) return null;
 
-            CollectionElement poco = new()
+            BdoMetaCollection poco = new()
             {
             };
 

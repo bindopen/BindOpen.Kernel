@@ -1,5 +1,5 @@
 ﻿using BindOpen.Runtime.Definition;
-using BindOpen.Data.Elements;
+using BindOpen.Meta.Elements;
 using BindOpen.Extensions;
 
 namespace BindOpen.Extensions.Modeling
@@ -13,13 +13,13 @@ namespace BindOpen.Extensions.Modeling
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoFormatConfiguration Add(params IBdoElement[] items);
+        new IBdoFormatConfiguration Add(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoFormatConfiguration WithItems(params IBdoElement[] items);
+        new IBdoFormatConfiguration WithItems(params IBdoMetaElement[] items);
 
     }
 }

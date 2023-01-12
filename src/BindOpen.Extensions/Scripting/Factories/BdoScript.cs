@@ -48,6 +48,22 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="name"></param>
+        /// <returns></returns>
+        public static BdoScriptword Variable(string name)
+        {
+            var scriptword = new BdoScriptword(ScriptItemKinds.Variable);
+            scriptword.WithName(name);
+
+            return scriptword;
+        }
+
+        public static BdoScriptword Var(string name)
+            => Variable(name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         public static BdoScriptword Function(
@@ -67,18 +83,10 @@ namespace BindOpen.Extensions.Scripting
             return scriptword;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static BdoScriptword Variable(string name)
-        {
-            var scriptword = new BdoScriptword(ScriptItemKinds.Variable);
-            scriptword.WithName(name);
-
-            return scriptword;
-        }
+        public static BdoScriptword Func(
+            string name,
+            params object[] parameters)
+            => Function(name, parameters);
 
         /// <summary>
         /// 
@@ -100,5 +108,12 @@ namespace BindOpen.Extensions.Scripting
 
             return word;
         }
+
+        public static BdoScriptword Func(
+            this BdoScriptword word,
+            string name,
+            params object[] parameters)
+            => word.Function(name, parameters);
+
     }
 }

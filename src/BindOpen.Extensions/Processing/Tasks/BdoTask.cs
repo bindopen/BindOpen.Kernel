@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Processing
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IBdoElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
+            IBdoMetaElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
 
             return entry?.GetItem(scope, varElementSet, log);
         }
@@ -75,9 +75,9 @@ namespace BindOpen.Extensions.Processing
             }
             else
             {
-                foreach (IBdoElement entry in Configuration.GetEntries(taskEntryKind))
+                foreach (IBdoMetaElement entry in Configuration.GetEntries(taskEntryKind))
                 {
-                    IBdoElementSpec dataElementSpec = dataElementSpecSet[entry.Key()];
+                    IBdoMetaElementSpec dataElementSpec = dataElementSpecSet[entry.Key()];
                     if (dataElementSpec != null)
                     {
                         bool isCompatible = dataElementSpec.IsCompatibleWithItem(entry);
@@ -95,7 +95,7 @@ namespace BindOpen.Extensions.Processing
         /// <returns>True if this instance is configurable.</returns>
         public bool IsConfigurable(SpecificationLevels specificationLevel = SpecificationLevels.Runtime)
         {
-            var elements = new List<IBdoElement>();
+            var elements = new List<IBdoMetaElement>();
             elements.AddRange(Configuration?.GetEntries(TaskEntryKind.Input));
             elements.AddRange(Configuration?.GetEntries(TaskEntryKind.ScalarOutput));
 

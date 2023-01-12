@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Extensions.Connecting;
 
 namespace BindOpen.Extensions
@@ -20,7 +20,7 @@ namespace BindOpen.Extensions
         {
             T connector = new();
             connector.WithConfiguration(config);
-            connector.UpdateFromElementSet<BdoElementAttribute>(config);
+            connector.UpdateFromElementSet<BdoMetaAttribute>(config);
 
             return connector;
         }
@@ -32,7 +32,7 @@ namespace BindOpen.Extensions
         /// <param name="elements">The configuration elements of the definition to consider.</param>
         public static BdoConnectorConfiguration NewConnectorConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] elements)
+            params IBdoMetaElement[] elements)
         {
             var config = new BdoConnectorConfiguration(definitionUniqueId);
             config.WithItems(elements);

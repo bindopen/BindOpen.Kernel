@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 
@@ -18,13 +18,13 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IBdoTaskConfiguration AddInputs(params IBdoElement[] inputs);
+        IBdoTaskConfiguration AddInputs(params IBdoMetaElement[] inputs);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IBdoTaskConfiguration WithInputs(params IBdoElement[] inputs);
+        IBdoTaskConfiguration WithInputs(params IBdoMetaElement[] inputs);
 
         /// <summary>
         /// The output detail.
@@ -35,20 +35,20 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IBdoTaskConfiguration AddOutputs(params IBdoElement[] outputs);
+        IBdoTaskConfiguration AddOutputs(params IBdoMetaElement[] outputs);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        IBdoTaskConfiguration WithOutputs(params IBdoElement[] outputs);
+        IBdoTaskConfiguration WithOutputs(params IBdoMetaElement[] outputs);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        List<IBdoElement> GetEntries(params TaskEntryKind[] taskEntryKinds);
+        List<IBdoMetaElement> GetEntries(params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 
@@ -56,18 +56,18 @@ namespace BindOpen.Extensions.Processing
         /// <param name="key"></param>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        IBdoElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
+        IBdoMetaElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoTaskConfiguration Add(params IBdoElement[] items);
+        new IBdoTaskConfiguration Add(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoTaskConfiguration WithItems(params IBdoElement[] items);
+        new IBdoTaskConfiguration WithItems(params IBdoMetaElement[] items);
     }
 }

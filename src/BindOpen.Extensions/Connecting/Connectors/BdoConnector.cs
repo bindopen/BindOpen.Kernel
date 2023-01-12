@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
@@ -51,7 +51,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoElement("connectionString")]
+        [BdoMeta("connectionString")]
         public string ConnectionString { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoElement("connectionTimeOut")]
+        [BdoMeta("connectionTimeOut")]
         public int ConnectionTimeOut { get; set; }
 
         /// <summary>

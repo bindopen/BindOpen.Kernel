@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 using System;
 using System.ComponentModel;
@@ -48,7 +48,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// Path of this instance.
         /// </summary>
-        [BdoElement("path")]
+        [BdoMeta("path")]
         public string Path { get; set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// The creation date of this instance.
         /// </summary>
-        [BdoElement("creationDate")]
+        [BdoMeta("creationDate")]
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// The information flag of this instance.
         /// </summary>
-        [BdoElement("flag")]
+        [BdoMeta("flag")]
         public string Flag { get; set; }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// Indicates whether this instance is read only.
         /// </summary>
-        [BdoElement("isReadOnly")]
+        [BdoMeta("isReadOnly")]
         [DefaultValue(false)]
         public bool IsReadonly { get; set; }
 
@@ -155,7 +155,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// The date of last access of this instance.
         /// </summary>
-        [BdoElement("lastAccessDate")]
+        [BdoMeta("lastAccessDate")]
         public DateTime? LastAccessDate { get; set; }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// The parent path of this instance.
         /// </summary>
-        [BdoElement("parentPath")]
+        [BdoMeta("parentPath")]
         public string ParentPath { get; set; }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace BindOpen.Extensions.Modeling
         /// <summary>
         /// The date of last write of this instance.
         /// </summary>
-        [BdoElement("lastWriteDate")]
+        [BdoMeta("lastWriteDate")]
         public DateTime? LastWriteDate { get; set; }
 
         public IBdoCarrier WithLastWriteDate(DateTime? date)

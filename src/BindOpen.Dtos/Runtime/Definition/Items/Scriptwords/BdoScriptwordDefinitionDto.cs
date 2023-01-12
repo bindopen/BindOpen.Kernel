@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;

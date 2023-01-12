@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -138,22 +138,22 @@ namespace BindOpen.Extensions.Scripting
         // Expression
 
         /// <summary>
-        /// Evaluates the specified data expression.
+        /// Evaluates the specified data exp.
         /// </summary>
-        /// <param name="expression">The data expression to consider.</param>
+        /// <param name="exp">The data exp to consider.</param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
-            IBdoExpression expression,
+            IBdoExpression exp,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null)
         {
             int index;
             int scriptwordBeginIndex;
 
-            var script = expression?.Text ?? string.Empty;
-            switch (expression?.Kind)
+            var script = exp?.Text ?? string.Empty;
+            switch (exp?.Kind)
             {
                 case BdoExpressionKind.Auto:
                     if (!string.IsNullOrEmpty(script))
@@ -208,19 +208,19 @@ namespace BindOpen.Extensions.Scripting
                     }
                     break;
                 case BdoExpressionKind.Word:
-                    if (expression.Word != null)
+                    if (exp.Word != null)
                     {
-                        var cloned = new BdoScriptword(expression.Word.Kind)
-                            .WithName(expression.Word.Definition?.Name)
-                            .WithDefinition(expression.Word.Definition);
+                        var cloned = new BdoScriptword(exp.Word.Kind)
+                            .WithName(exp.Word.Definition?.Name)
+                            .WithDefinition(exp.Word.Definition);
 
-                        switch (expression.Word.Kind)
+                        switch (exp.Word.Kind)
                         {
                             case ScriptItemKinds.Function:
-                                if (expression.Word.Parameters?.Count > 0)
+                                if (exp.Word.Parameters?.Count > 0)
                                 {
                                     cloned.WithParameters(new List<object>());
-                                    foreach (var paramValue in expression.Word.Parameters)
+                                    foreach (var paramValue in exp.Word.Parameters)
                                     {
                                         if (paramValue is IBdoScriptword scriptwordParam)
                                         {
@@ -230,9 +230,9 @@ namespace BindOpen.Extensions.Scripting
                                                 log);
                                             cloned.Parameters.Add(paramObject);
                                         }
-                                        else if (paramValue is IBdoExpression expressionParam)
+                                        else if (paramValue is IBdoExpression expParam)
                                         {
-                                            var paramObject = Evaluate(expressionParam, varElementSet, log);
+                                            var paramObject = Evaluate(expParam, varElementSet, log);
                                             cloned.Parameters.Add(paramObject);
                                         }
                                         else
@@ -249,22 +249,22 @@ namespace BindOpen.Extensions.Scripting
                     break;
             }
 
-            return expression?.Text;
+            return exp?.Text;
         }
 
         /// <summary>
-        /// Evaluates the specified data expression.
+        /// Evaluates the specified data exp.
         /// </summary>
-        /// <param name="expression">The data expression to consider.</param>
+        /// <param name="exp">The data exp to consider.</param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public T Evaluate<T>(
-            IBdoExpression expression,
+            IBdoExpression exp,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null)
         {
-            return (T)Evaluate(expression, varElementSet, log);
+            return (T)Evaluate(exp, varElementSet, log);
         }
 
         // String
@@ -274,18 +274,18 @@ namespace BindOpen.Extensions.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
+        /// <param name="expKind">The exp kind to consider.</param>
         /// <param name="varElementSet">The variable element set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             string script,
-            BdoExpressionKind expressionKind = BdoExpressionKind.Auto,
+            BdoExpressionKind expKind = BdoExpressionKind.Auto,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return Evaluate(
-                script.AsExpression(expressionKind),
+                script.AsExpression(expKind),
                 varElementSet,
                 log);
         }
@@ -295,18 +295,18 @@ namespace BindOpen.Extensions.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="script">The script to consider.</param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
+        /// <param name="expKind">The exp kind to consider.</param>
         /// <param name="varElementSet">The variable element set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         public T Evaluate<T>(
             string script,
-            BdoExpressionKind expressionKind = BdoExpressionKind.Auto,
+            BdoExpressionKind expKind = BdoExpressionKind.Auto,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return (T)Evaluate(
-                script.AsExpression(expressionKind),
+                script.AsExpression(expKind),
                 varElementSet,
                 log);
         }
@@ -452,7 +452,7 @@ namespace BindOpen.Extensions.Scripting
                     title: "Syntax error: Function named '" + parentScriptword.Definition?.Name + "' not defined. Position " + (index + offsetIndex),
                     resultCode: "SCRIPT_NOTEXISTINGWORD")
                         .WithDetail(
-                            BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                            BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                 return null;
             }
@@ -516,7 +516,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -539,7 +539,7 @@ namespace BindOpen.Extensions.Scripting
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
-                                        BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                                        BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                                 return null;
                             }
@@ -573,7 +573,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -636,7 +636,7 @@ namespace BindOpen.Extensions.Scripting
                             ". Position " + (index + offsetIndex),
                         resultCode: "SCRIPT_NOTEXISTINGWORD")
                         .WithDetail(
-                            BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                            BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                 }
                 else
                 {
@@ -658,7 +658,7 @@ namespace BindOpen.Extensions.Scripting
                             resultCode: "SCRIPT_INVALIDARGUMENT"
                             )
                             .WithDetail(
-                                BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                                BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                     }
                     else
                     {
@@ -670,7 +670,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Invalid definition: Method not defined for function called '" + scriptword.Definition?.Name + "'. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_DEFINITION")
                                 .WithDetail(
-                                    BdoElements.NewScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                         }
                         scriptword.WithDefinition(scriptwordDefinition);
 
@@ -724,7 +724,7 @@ namespace BindOpen.Extensions.Scripting
                             "SCRIPT_EVALUATION"
                             )
                             .WithDetail(
-                                BdoElements.NewScalar("Position", offsetIndex.ToString()));
+                                BdoMeta.NewScalar("Position", offsetIndex.ToString()));
                     }
                     break;
                 case ScriptItemKinds.Variable:

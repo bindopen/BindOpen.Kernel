@@ -4,7 +4,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/RoutineDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="routines.dictionary" type="BdoRoutineDictionary" />
+  <xs:element name="routines.dico" type="BdoRoutineDictionary" />
 
   <xs:complexType name="BdoRoutineDictionary">
     <xs:complexContent mixed="false">

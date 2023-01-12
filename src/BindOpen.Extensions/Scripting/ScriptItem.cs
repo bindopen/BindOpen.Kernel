@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using System;
 
 namespace BindOpen.Extensions.Scripting
@@ -77,7 +78,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         public IScriptItem WithName(string name)
         {
-            Name = BdoItems.NewName(name, "spec_");
+            Name = BdoMeta.NewName(name, "spec_");
             return this;
         }
 

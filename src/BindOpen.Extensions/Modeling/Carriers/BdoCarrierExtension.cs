@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 
 namespace BindOpen.Extensions.Modeling
 {
@@ -13,11 +14,11 @@ namespace BindOpen.Extensions.Modeling
         /// <param name="carrier">The carrier to consider.</param>
         /// <param name="name">The name of the element to create.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public static ICarrierElement AsElement(
+        public static IBdoMetaCarrier AsMeta(
             this IBdoCarrier carrier,
             string name = null)
         {
-            return BdoElements.NewCarrier(name)
+            return BdoMeta.NewCarrier(name)
                 .WithItem(carrier?.Configuration);
         }
     }

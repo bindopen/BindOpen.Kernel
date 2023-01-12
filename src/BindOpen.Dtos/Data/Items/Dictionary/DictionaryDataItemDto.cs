@@ -2,10 +2,10 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
-    /// This class represents a dictionary data item.
+    /// This class represents a dico data item.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="DataKeyValue"/>

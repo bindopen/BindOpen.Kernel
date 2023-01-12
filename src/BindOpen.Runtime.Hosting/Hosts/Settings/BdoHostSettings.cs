@@ -1,8 +1,9 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Settings;
 using BindOpen.Runtime.Scopes;
 using System.Text.Json.Serialization;
+using BindOpen.Abstractions.Meta.Configuration;
 
 namespace BindOpen.Runtime.Hosts
 {
@@ -22,7 +23,7 @@ namespace BindOpen.Runtime.Hosts
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
-        [BdoElement(Name = "library.folderPath")]
+        [BdoMeta(Name = "library.folderPath")]
         [JsonPropertyName("library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 

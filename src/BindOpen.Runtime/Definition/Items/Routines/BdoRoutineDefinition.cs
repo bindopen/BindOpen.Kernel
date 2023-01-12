@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System;
 using System.Collections.Generic;
 
@@ -30,7 +30,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter statement of this instance.
         /// </summary>
-        public IBdoElementSet ParameterStatement { get; set; } = new BdoElementSet();
+        public IBdoElementSet ParameterStatement { get; set; } = new BdoMetaElementSet();
 
         /// <summary>
         /// The runtime type of this instance.

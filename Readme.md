@@ -40,7 +40,7 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
 
-[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+[BindOpen.Metabases](https://github.com/bindopen/BindOpen.Metabases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
 
 [BindOpen.Forms](https://github.com/bindopen/BindOpen.Forms) allows you to manage forms.
 

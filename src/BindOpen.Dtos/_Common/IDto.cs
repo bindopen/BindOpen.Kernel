@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Meta
 {
     public interface IDto
     {

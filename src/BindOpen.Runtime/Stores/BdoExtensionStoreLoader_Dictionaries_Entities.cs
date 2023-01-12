@@ -1,7 +1,8 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
-using BindOpen.Extensions.Modeling;
+﻿using BindOpen.Extensions.Modeling;
 using BindOpen.Logging;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace BindOpen.Runtime.Stores
     internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the entity dictionary from the specified assembly.
+        /// Loads the entity dico from the specified assembly.
         /// </summary>
         /// <param name="assembly">The assembly to consider.</param>
         /// <param name="extensionDefinition">The extension definition to consider.</param>
@@ -31,9 +32,9 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the entity dictionary from the assembly
+            // we load the entity dico from the assembly
 
-            var dictionary = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
+            var dico = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
 
 
             // we feach entity classes
@@ -54,14 +55,14 @@ namespace BindOpen.Runtime.Stores
                     UpdateDictionary(definition, entityAttribute);
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoElementAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
                 {
-                    definition.DetailSpec.Add(BdoElements.NewSpec(property.Name, property.PropertyType));
+                    definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition
 
-                if (dictionary != null)
+                if (dico != null)
                 {
                     // retrieve the definition index
 

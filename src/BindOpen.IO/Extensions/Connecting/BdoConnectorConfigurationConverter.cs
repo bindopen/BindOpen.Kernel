@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using BindOpen.Extensions.Connecting;
 using System.Linq;
 
@@ -29,7 +29,7 @@ namespace BindOpen.Extensions.Connecting
                 Id = poco.Id,
                 LastModificationDate = poco.LastModificationDate.ToString(DataValueTypes.Date),
                 Name = poco.Name,
-                ScalarElements = poco.Items?.Where(q => q is ScalarElement).Cast<ScalarElement>().Select(q => q?.ToDto()).ToList(),
+                ScalarElements = poco.Items?.Where(q => q is BdoMetaScalar).Cast<BdoMetaScalar>().Select(q => q?.ToDto()).ToList(),
                 Title = poco.Title?.ToDto()
             };
 
@@ -56,7 +56,7 @@ namespace BindOpen.Extensions.Connecting
                 Title = dto.Title?.ToPoco()
             };
             poco.WithId(dto.Id)
-                .WithItems(dto.ScalarElements?.Select(q => q?.ToPoco()).Cast<IBdoElement>().ToArray());
+                .WithItems(dto.ScalarElements?.Select(q => q?.ToPoco()).Cast<IBdoMetaElement>().ToArray());
 
             return poco;
         }

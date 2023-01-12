@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Abstractions.Meta.Configuration;
+using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Runtime.CompilerServices;
