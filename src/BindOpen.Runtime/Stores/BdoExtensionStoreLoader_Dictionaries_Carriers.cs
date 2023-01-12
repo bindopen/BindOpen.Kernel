@@ -1,11 +1,12 @@
 ﻿using BindOpen.Extensions.Modeling;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+using BindOpen.Logging;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -15,7 +16,7 @@ namespace BindOpen.Runtime.Stores
     internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the carrier dictionary from the specified assembly.
+        /// Loads the carrier dico from the specified assembly.
         /// </summary>
         /// <param name="assembly">The assembly to consider.</param>
         /// <param name="extensionDefinition">The extension definition to consider.</param>
@@ -31,9 +32,9 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the carrier dictionary from the assembly
+            // we load the carrier dico from the assembly
 
-            var dictionary = ExtractDictionaryFromAssembly<IBdoCarrierDefinition>(assembly, log);
+            var dico = ExtractDictionaryFromAssembly<IBdoCarrierDefinition>(assembly, log);
 
             // we feach carrier classes
 
@@ -55,15 +56,15 @@ namespace BindOpen.Runtime.Stores
 
                 // we create the detail specification from detail property attributes
 
-                definition.DetailSpec = BdoElements.NewSpecSet();
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoElementAttribute)).Any()))
+                definition.DetailSpec = BdoMeta.NewSpecSet();
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
                 {
-                    definition.DetailSpec.Add(BdoElements.NewSpec(property.Name, property.PropertyType));
+                    definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition
 
-                if (dictionary != null)
+                if (dico != null)
                 {
                     // retrieve the definition index
 

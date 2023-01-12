@@ -3,7 +3,7 @@
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO connector dictionary.
+    /// This class represents a DTO connector dico.
     /// </summary>
     public class BdoConnectorDictionary : TBdoExtensionDictionary<IBdoConnectorDefinition>, IBdoConnectorDictionary
     {

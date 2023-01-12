@@ -1,7 +1,7 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,12 +103,12 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<IBdoElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IBdoMetaElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            var dataElements = new List<IBdoElementSpec>();
+            var dataElements = new List<IBdoMetaElementSpec>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
                 dataElements.AddRange(InputSpecification.Items);
@@ -128,7 +128,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public IBdoElementSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
+        public IBdoMetaElementSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
             return GetEntries(taskEntryKinds).Find(p => p.BdoKeyEquals(key));
         }
@@ -144,7 +144,7 @@ namespace BindOpen.Runtime.Definition
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IBdoElementSpec entry = GetEntryWithName(name, taskEntryKinds);
+            IBdoMetaElementSpec entry = GetEntryWithName(name, taskEntryKinds);
 
             return entry?.DefaultItem;
         }

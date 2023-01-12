@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
-using BindOpen.Data.Stores;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
+using BindOpen.Meta.Stores;
 using BindOpen.Runtime.Tests;
 using Bogus;
 using NUnit.Framework;
@@ -52,19 +52,19 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Stores
         [Test, Order(1)]
         public void CreateBdoDatasourceDepotTest()
         {
-            _datasourceDepot = BdoItems.NewDatasourceDepot(
-                BdoItems.NewDatasource(
+            _datasourceDepot = Meta.BdoMeta.NewDatasourceDepot(
+                Meta.BdoMeta.NewDatasource(
                     "smtp_default",
                     DatasourceKind.EmailServer,
                     BdoExtensions.NewConnectorConfiguration(
                         "messages$smtp",
-                        BdoElements.NewScalar("host", _testData.host),
-                        BdoElements.NewScalar("port", DataValueTypes.Integer, _testData.port),
-                        BdoElements.NewScalar("isDefaultCredentialsUsed", DataValueTypes.Boolean, _testData.isDefaultCredentialsUsed),
-                        BdoElements.NewScalar("isSslEnabled", DataValueTypes.Boolean, _testData.isSslEnabled),
-                        BdoElements.NewScalar("timeout", DataValueTypes.Integer, _testData.timeout),
-                        BdoElements.NewScalar("login", _testData.login),
-                        BdoElements.NewScalar("password", _testData.password))));
+                        BdoMeta.NewScalar("host", _testData.host),
+                        BdoMeta.NewScalar("port", DataValueTypes.Integer, _testData.port),
+                        BdoMeta.NewScalar("isDefaultCredentialsUsed", DataValueTypes.Boolean, _testData.isDefaultCredentialsUsed),
+                        BdoMeta.NewScalar("isSslEnabled", DataValueTypes.Boolean, _testData.isSslEnabled),
+                        BdoMeta.NewScalar("timeout", DataValueTypes.Integer, _testData.timeout),
+                        BdoMeta.NewScalar("login", _testData.login),
+                        BdoMeta.NewScalar("password", _testData.password))));
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }

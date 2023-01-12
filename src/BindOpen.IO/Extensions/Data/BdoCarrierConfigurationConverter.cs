@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System.Linq;
 
 namespace BindOpen.Extensions.Modeling
@@ -22,7 +22,7 @@ namespace BindOpen.Extensions.Modeling
 
             BdoCarrierConfigurationDto dto = new()
             {
-                CarrierElements = poco.Items?.Where(q => q is CarrierElement).Cast<CarrierElement>().Select(q => q?.ToDto()).ToList(),
+                CarrierElements = poco.Items?.Where(q => q is BdoMetaCarrier).Cast<BdoMetaCarrier>().Select(q => q?.ToDto()).ToList(),
                 CreationDate = poco.CreationDate.ToString(DataValueTypes.Date),
                 DefinitionUniqueId = poco.DefinitionUniqueId,
                 Description = poco.Description?.ToDto(),
@@ -57,7 +57,7 @@ namespace BindOpen.Extensions.Modeling
             };
             poco
                 .WithId(dto.Id)
-                .WithItems(dto.CarrierElements?.Select(q => q?.ToPoco()).Cast<IBdoElement>().ToArray());
+                .WithItems(dto.CarrierElements?.Select(q => q?.ToPoco()).Cast<IBdoMetaElement>().ToArray());
 
             return poco;
         }

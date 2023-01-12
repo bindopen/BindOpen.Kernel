@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data.Elements
+﻿namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ObjectElementSpecDto ToDto(this IObjectElementSpec poco)
+        public static ObjectElementSpecDto ToDto(this IBdoMetaObjectSpec poco)
         {
             if (poco == null) return null;
 
@@ -26,11 +26,11 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IObjectElementSpec ToPoco(this ObjectElementSpecDto dto)
+        public static IBdoMetaObjectSpec ToPoco(this ObjectElementSpecDto dto)
         {
             if (dto == null) return null;
 
-            ObjectElementSpec poco = new()
+            BdoMetaObjectSpec poco = new()
             {
             };
 

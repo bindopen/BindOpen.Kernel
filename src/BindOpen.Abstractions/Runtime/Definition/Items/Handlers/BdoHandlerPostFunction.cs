@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using BindOpen.Logging;
@@ -16,7 +16,7 @@ namespace BindOpen.Runtime.Definition
     /// <returns>Returns the source object.</returns>
     public delegate List<object> BdoHandlerPostFunction(
             object targetObject,
-            ref IBdoElement sourceBdoElement,
+            ref IBdoMetaElement sourceBdoElement,
             IBdoScope scope = null,
             IBdoElementSet varElementSet = null,
             IBdoLog alog = null);

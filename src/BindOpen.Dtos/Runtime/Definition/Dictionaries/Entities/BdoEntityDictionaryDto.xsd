@@ -4,7 +4,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/entities/EntityDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
   
-  <xs:element name="entities.dictionary" type="BdoEntityDictionaryDto" />
+  <xs:element name="entities.dico" type="BdoEntityDictionaryDto" />
 
   <xs:complexType name="BdoEntityDictionaryDto">
     <xs:complexContent mixed="false">

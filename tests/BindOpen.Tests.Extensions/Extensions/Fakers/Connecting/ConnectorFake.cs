@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Data.Elements;
+using BindOpen.Meta.Elements;
 using BindOpen.Extensions.Connecting;
 
 namespace BindOpen.Runtime.Tests.Extensions.Connecting
@@ -13,19 +13,19 @@ namespace BindOpen.Runtime.Tests.Extensions.Connecting
         /// <summary>
         /// The host of this instance.
         /// </summary>
-        [BdoElement(Name = "host")]
+        [BdoMeta(Name = "host")]
         public string Host { get; set; }
 
         /// <summary>
         /// Indicates whether this instance enables SSL.
         /// </summary>
-        [BdoElement(Name = "isSslEnabled")]
+        [BdoMeta(Name = "isSslEnabled")]
         public bool? IsSslEnabled { get; set; }
 
         /// <summary>
         /// The port of this instance.
         /// </summary>
-        [BdoElement(Name = "port")]
+        [BdoMeta(Name = "port")]
         public int? Port { get; set; }
 
         // ------------------------------------------

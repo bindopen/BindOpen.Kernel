@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO metrics dictionary.
+    /// This class represents a DTO metrics dico.
     /// </summary>
     public class BdoMetricsDictionary : TBdoExtensionDictionary<IBdoMetricsDefinition>, IBdoMetricsDictionary
     {

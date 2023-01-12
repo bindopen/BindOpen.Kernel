@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO task dictionary.
+    /// This class represents a DTO task dico.
     /// </summary>
     public class BdoTaskDictionary : TBdoExtensionDictionary<IBdoTaskDefinition>, IBdoTaskDictionary
     {

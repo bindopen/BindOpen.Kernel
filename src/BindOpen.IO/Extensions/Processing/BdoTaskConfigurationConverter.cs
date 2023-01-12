@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System.Linq;
 
 namespace BindOpen.Extensions.Processing
@@ -21,8 +21,8 @@ namespace BindOpen.Extensions.Processing
 
             BdoTaskConfigurationDto dto = new()
             {
-                CarrierElements = poco.Items?.Where(q => q is CarrierElement).Cast<CarrierElement>().Select(q => q?.ToDto()).ToList(),
-                CollectionElements = poco.Items?.Where(q => q is CollectionElement).Cast<CollectionElement>().Select(q => q?.ToDto()).ToList(),
+                CarrierElements = poco.Items?.Where(q => q is BdoMetaCarrier).Cast<BdoMetaCarrier>().Select(q => q?.ToDto()).ToList(),
+                CollectionElements = poco.Items?.Where(q => q is BdoMetaCollection).Cast<BdoMetaCollection>().Select(q => q?.ToDto()).ToList(),
                 CreationDate = poco.CreationDate.ToString(DataValueTypes.Date),
                 DefinitionUniqueId = poco.DefinitionUniqueId,
                 Description = poco.Description?.ToDto(),
@@ -31,10 +31,10 @@ namespace BindOpen.Extensions.Processing
                 InputDetail = poco.InputDetail?.ToDto(),
                 LastModificationDate = poco.LastModificationDate.ToString(DataValueTypes.Date),
                 Name = poco.Name,
-                ObjectElements = poco.Items?.Where(q => q is ObjectElement).Cast<ObjectElement>().Select(q => q?.ToDto()).ToList(),
+                ObjectElements = poco.Items?.Where(q => q is BdoMetaObject).Cast<BdoMetaObject>().Select(q => q?.ToDto()).ToList(),
                 OutputDetail = poco.OutputDetail?.ToDto(),
-                ScalarElements = poco.Items?.Where(q => q is ScalarElement).Cast<ScalarElement>().Select(q => q?.ToDto()).ToList(),
-                SourceElements = poco.Items?.Where(q => q is SourceElement).Cast<SourceElement>().Select(q => q?.ToDto()).ToList(),
+                ScalarElements = poco.Items?.Where(q => q is BdoMetaScalar).Cast<BdoMetaScalar>().Select(q => q?.ToDto()).ToList(),
+                SourceElements = poco.Items?.Where(q => q is BdoMetaSource).Cast<BdoMetaSource>().Select(q => q?.ToDto()).ToList(),
                 Title = poco.Title?.ToDto()
             };
 

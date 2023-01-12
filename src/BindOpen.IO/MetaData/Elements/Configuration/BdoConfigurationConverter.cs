@@ -1,4 +1,7 @@
-﻿namespace BindOpen.Data.Elements
+﻿using BindOpen.Abstractions.Meta.Configuration;
+using BindOpen.Meta.Configuration;
+
+namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.

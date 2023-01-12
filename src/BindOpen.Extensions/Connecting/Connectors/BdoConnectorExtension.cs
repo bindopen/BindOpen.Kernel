@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -13,11 +14,11 @@ namespace BindOpen.Extensions.Connecting
         /// <param name="connector">The connector to consider.</param>
         /// <param name="name">The name of the element to create.</param>
         /// <returns>Retuns the data element that represents this instace.</returns>
-        public static ISourceElement AsElement(
+        public static IBdoMetaSource AsMeta(
             this IBdoConnector connector,
             string name = null)
         {
-            return BdoElements.NewSource(name, connector?.Configuration);
+            return BdoMeta.NewSource(name, connector?.Configuration);
         }
     }
 }

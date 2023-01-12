@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;

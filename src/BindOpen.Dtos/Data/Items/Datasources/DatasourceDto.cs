@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
     /// This class represents a data source.

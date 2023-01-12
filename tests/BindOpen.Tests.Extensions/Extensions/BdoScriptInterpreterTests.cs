@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
+using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using NUnit.Framework;
 using System;
 
@@ -19,7 +19,8 @@ namespace BindOpen.Runtime.Tests.Extensions
         private readonly string _script2 = "$('workflow').input('input1')";
 
         private readonly BdoScriptword _scriptword2 =
-            BdoScript.Variable("workflow").Function("input", "input1");
+            BdoScript.Variable("workflow")
+            .Func("input", "input1");
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -38,7 +39,7 @@ namespace BindOpen.Runtime.Tests.Extensions
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varElementSet = BdoElements.NewSet(
+            var varElementSet = BdoMeta.NewSet(
                 ("var1", "sample1"),
                 ("var2", 4.55));
 

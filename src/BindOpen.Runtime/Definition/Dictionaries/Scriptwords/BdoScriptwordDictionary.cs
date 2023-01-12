@@ -1,10 +1,10 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Meta;
 using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO script word dictionary.
+    /// This class represents a DTO script word dico.
     /// </summary>
     public class BdoScriptwordDictionary : TBdoExtensionDictionary<IBdoScriptwordDefinition>, IBdoScriptwordDictionary
     {

@@ -4,72 +4,72 @@
         <name>BindOpen.Dtos</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Data.Apis.BdoApiLogDto">
+        <member name="T:BindOpen.Meta.Apis.BdoApiLogDto">
             <summary>
             This class represents a Api log DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogDto.DisplayName">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogDto.DisplayName">
             <summary>
             The display name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogDto.Description">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogDto.Description">
             <summary>
             The description of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogDto.Events">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogDto.Events">
             <summary>
             The events of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Apis.BdoApiLogDto.#ctor">
+        <member name="M:BindOpen.Meta.Apis.BdoApiLogDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoApiLogDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Apis.BdoApiLogEventDto">
+        <member name="T:BindOpen.Meta.Apis.BdoApiLogEventDto">
             <summary>
             This class represents a Api log event DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.Kind">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.Date">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.Date">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.Criticality">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.Criticality">
             <summary>
             Criticality of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.ResultCode">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.ResultCode">
             <summary>
             Result code of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.DisplayName">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.DisplayName">
             <summary>
             The display name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.BdoApiLogEventDto.Description">
+        <member name="P:BindOpen.Meta.Apis.BdoApiLogEventDto.Description">
             <summary>
             The description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Apis.BdoApiLogEventDto.#ctor">
+        <member name="M:BindOpen.Meta.Apis.BdoApiLogEventDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoApiLogEventDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Apis.BdoApiLogEventDto.WithDisplayName(System.String)">
+        <member name="M:BindOpen.Meta.Apis.BdoApiLogEventDto.WithDisplayName(System.String)">
             <summary>
             
             </summary>
@@ -77,85 +77,85 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:BindOpen.Data.Apis.ResultItemDto">
+        <member name="T:BindOpen.Meta.Apis.ResultItemDto">
             <summary>
             This class represents a DTO item result.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.ResultItemDto.Key">
+        <member name="P:BindOpen.Meta.Apis.ResultItemDto.Key">
             <summary>
             The key of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Apis.ResultItemDto.Status">
+        <member name="P:BindOpen.Meta.Apis.ResultItemDto.Status">
             <summary>
             The status of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Apis.ResultItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Apis.ResultItemDto.#ctor">
             <summary>
             Initializes a new instance of the ResultItemDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Apis.ResultItemDto.#ctor(System.String,BindOpen.Data.ResourceStatus)">
+        <member name="M:BindOpen.Meta.Apis.ResultItemDto.#ctor(System.String,BindOpen.Meta.ResourceStatus)">
             <summary>
             Initializes a new instance of the ResultItemDto class.
             </summary>
             <param name="key">The key to consider.</param>
             <param name="status">The status to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Conditions.AdvancedConditionDto">
+        <member name="T:BindOpen.Meta.Conditions.AdvancedConditionDto">
             <summary>
             This class represents an advanced condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.AdvancedConditionDto.Kind">
+        <member name="P:BindOpen.Meta.Conditions.AdvancedConditionDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.AdvancedConditionDto.Conditions">
+        <member name="P:BindOpen.Meta.Conditions.AdvancedConditionDto.Conditions">
             <summary>
             Conditions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.AdvancedConditionDto.#ctor">
+        <member name="M:BindOpen.Meta.Conditions.AdvancedConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Conditions.BasicConditionDto">
+        <member name="T:BindOpen.Meta.Conditions.BasicConditionDto">
             <summary>
             This class represents a basic condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.BasicConditionDto.Argument1">
+        <member name="P:BindOpen.Meta.Conditions.BasicConditionDto.Argument1">
             <summary>
             The arugment 1 of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.BasicConditionDto.Operator">
+        <member name="P:BindOpen.Meta.Conditions.BasicConditionDto.Operator">
             <summary>
             The operator of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.BasicConditionDto.Argument2">
+        <member name="P:BindOpen.Meta.Conditions.BasicConditionDto.Argument2">
             <summary>
             The arugment 2 of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor(System.Boolean)">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionDto.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
             <param name="trueValue">The value that expresses that the condition is satisfied.</param>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor(System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionDto.#ctor(System.String,BindOpen.Meta.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
@@ -163,7 +163,7 @@
             <param name="ope">The operator to consider.</param>
             <param name="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor(System.Boolean,System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionDto.#ctor(System.Boolean,System.String,BindOpen.Meta.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
@@ -172,923 +172,923 @@
             <param name="ope">The operator to consider.</param>
             <param name="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ConditionDto">
+        <member name="T:BindOpen.Meta.Conditions.ConditionDto">
             <summary>
             This class represents a condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.ConditionDto.TrueValue">
+        <member name="P:BindOpen.Meta.Conditions.ConditionDto.TrueValue">
             <summary>
             The value that expresses that the condition is satisfied.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ConditionDto.#ctor">
+        <member name="M:BindOpen.Meta.Conditions.ConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ConditionDto.#ctor(System.Boolean)">
+        <member name="M:BindOpen.Meta.Conditions.ConditionDto.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ScriptConditionDto">
+        <member name="T:BindOpen.Meta.Conditions.ScriptConditionDto">
             <summary>
             This class represents a script condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.ScriptConditionDto.Expression">
+        <member name="P:BindOpen.Meta.Conditions.ScriptConditionDto.Expression">
             <summary>
-            Data expression DTO representing the condition.
+            Data exp DTO representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptConditionDto.#ctor">
+        <member name="M:BindOpen.Meta.Conditions.ScriptConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the ScriptConditionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.CarrierElementDto">
+        <member name="T:BindOpen.Meta.Elements.CarrierElementDto">
             <summary>
             This class represents a carrier element.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CarrierElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Meta.Elements.CarrierElementDto.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CarrierElementDto.Carriers">
+        <member name="P:BindOpen.Meta.Elements.CarrierElementDto.Carriers">
             <summary>
             Carriers of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CarrierElementDto.Specification">
+        <member name="P:BindOpen.Meta.Elements.CarrierElementDto.Specification">
             <summary>
             The specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementDto.#ctor">
             <summary>
             Initializes a new instance of the CarrierElementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.CarrierElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.CarrierElementSpecDto">
             <summary>
             This class represents a carrier element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CarrierElementSpecDto.DefinitionFilter">
+        <member name="P:BindOpen.Meta.Elements.CarrierElementSpecDto.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CarrierElementSpecDto.DefaultItems">
+        <member name="P:BindOpen.Meta.Elements.CarrierElementSpecDto.DefaultItems">
             <summary>
             Default items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the CarrierElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.CollectionElementDto">
+        <member name="T:BindOpen.Meta.Elements.CollectionElementDto">
             <summary>
             This class represents a catalog element that is an element whose elements are entities.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.CarrierElements">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.CarrierElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.ObjectElements">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.ObjectElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.ScalarElements">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.ScalarElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.SourceElements">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.SourceElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.CollectionElements">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.CollectionElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementDto.Specification">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementDto.Specification">
             <summary>
             The specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementDto.#ctor">
             <summary>
             Initializes a new instance of the CollectionElementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.CollectionElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.CollectionElementSpecDto">
             <summary>
             This class represents a catalog element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.CarrierElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.CarrierElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.ObjectElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.ObjectElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.ScalarElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.ScalarElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.SourceElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.SourceElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.CollectionElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.CollectionElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.ClassFilter">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.ClassFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.CollectionElementSpecDto.DefinitionFilter">
+        <member name="P:BindOpen.Meta.Elements.CollectionElementSpecDto.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the CollectionElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoConfigurationDto">
+        <member name="T:BindOpen.Meta.Elements.BdoConfigurationDto">
             <summary>
             This class represents a configuration DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.CreationDate">
+        <member name="P:BindOpen.Meta.Elements.BdoConfigurationDto.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.Description">
+        <member name="P:BindOpen.Meta.Elements.BdoConfigurationDto.Description">
             <summary>
             The description DTO of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.LastModificationDate">
+        <member name="P:BindOpen.Meta.Elements.BdoConfigurationDto.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.Name">
+        <member name="P:BindOpen.Meta.Elements.BdoConfigurationDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.UsingFilePaths">
+        <member name="P:BindOpen.Meta.Elements.BdoConfigurationDto.UsingFilePaths">
             <summary>
             The using file paths of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoConfigurationDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.BdoConfigurationDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoBaseConfigurationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementDto">
+        <member name="T:BindOpen.Meta.Elements.BdoElementDto">
             <summary>
             This class represents a data element.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Elements.BdoElementDto.ItemizationMode">
+        <member name="F:BindOpen.Meta.Elements.BdoElementDto.ItemizationMode">
             <summary>
             The itemization mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementDto.ItemReference">
+        <member name="P:BindOpen.Meta.Elements.BdoElementDto.ItemReference">
             <summary>
             Item reference of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementDto.ItemScript">
+        <member name="P:BindOpen.Meta.Elements.BdoElementDto.ItemScript">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementDto.ValueType">
+        <member name="P:BindOpen.Meta.Elements.BdoElementDto.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementDto.Detail">
+        <member name="P:BindOpen.Meta.Elements.BdoElementDto.Detail">
             <summary>
             Property detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementDto.Index">
+        <member name="P:BindOpen.Meta.Elements.BdoElementDto.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.BdoElementDto.#ctor">
             <summary>
             Initializes a new DTO data element.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.BdoElementSpecDto">
             <summary>
             This class represents a data element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.ValueType">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.GroupId">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.GroupId">
             <summary>
             ID of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.Aliases">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.Aliases">
             <summary>
             The aliases of the entry.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AreaSpecifications">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.AreaSpecifications">
             <summary>
             The area specifications for this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.IsAllocatable">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.IsAllocatable">
             <summary>
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.ItemScript">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.ItemScript">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AvailableItemizationModes">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.AvailableItemizationModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MinimumItemNumber">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.MinimumItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MaximumItemNumber">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.MaximumItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.ItemSpecificationLevels">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.ItemSpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.ConstraintStatement">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecDto.ConstraintStatement">
             <summary>
             Constraint statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the BdoElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.ObjectElementDto">
+        <member name="T:BindOpen.Meta.Elements.ObjectElementDto">
             <summary>
             This class represents a object element that is an element whose items are entities.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.ClassFullName">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementDto.ClassFullName">
             <summary>
             The class full name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementDto.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.Objects">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementDto.Objects">
             <summary>
             Objects of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.Specification">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementDto.Specification">
             <summary>
             Object element specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementDto.#ctor">
             <summary>
             Initializes a new instance of the ObjectElementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.ObjectElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.ObjectElementSpecDto">
             <summary>
             This class represents an object element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementSpecDto.ClassFilter">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementSpecDto.ClassFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementSpecDto.DefinitionFilter">
+        <member name="P:BindOpen.Meta.Elements.ObjectElementSpecDto.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the ObjectElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.ScalarElementDto">
+        <member name="T:BindOpen.Meta.Elements.ScalarElementDto">
             <summary>
             This class represents a scalar element that is an element whose items are scalars.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ScalarElementDto.Item">
+        <member name="P:BindOpen.Meta.Elements.ScalarElementDto.Item">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ScalarElementDto.Items">
+        <member name="P:BindOpen.Meta.Elements.ScalarElementDto.Items">
             <summary>
             The values of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ScalarElementDto.Specification">
+        <member name="P:BindOpen.Meta.Elements.ScalarElementDto.Specification">
             <summary>
             The specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementDto.#ctor">
             <summary>
             Initializes a new instance of the ScalarElementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.ScalarElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.ScalarElementSpecDto">
             <summary>
             This class represents a scalar element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ScalarElementSpecDto.DefaultItems">
+        <member name="P:BindOpen.Meta.Elements.ScalarElementSpecDto.DefaultItems">
             <summary>
             Default items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the ScalarElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementSetDto">
+        <member name="T:BindOpen.Meta.Elements.BdoElementSetDto">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.Id">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.Id">
             <summary>
             The identifier of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.CarrierElements">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.CarrierElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.CarrierElementsSpecified">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.CarrierElementsSpecified">
             <summary>
             Indicates whether the carriers property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.ObjectElements">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.ObjectElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.ObjectElementsSpecified">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.ObjectElementsSpecified">
             <summary>
             Indicates whether the objects property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.ScalarElements">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.ScalarElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.ScalarElementsSpecified">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.ScalarElementsSpecified">
             <summary>
             Indicates whether the scalars property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.SourceElements">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.SourceElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.SourceElementsSpecified">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.SourceElementsSpecified">
             <summary>
             Indicates whether the sources property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.CollectionElements">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.CollectionElements">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSetDto.CollectionElementsSpecified">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSetDto.CollectionElementsSpecified">
             <summary>
             Indicates whether the collections property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSetDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSetDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoElementSetDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementSpecSetDto">
+        <member name="T:BindOpen.Meta.Elements.BdoElementSpecSetDto">
             <summary>
             This class represents a set of data element specifications.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecSetDto.CarrierElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecSetDto.CarrierElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecSetDto.ObjectElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecSetDto.ObjectElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecSetDto.ScalarElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecSetDto.ScalarElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecSetDto.SourceElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecSetDto.SourceElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecSetDto.CollectionElementSpecs">
+        <member name="P:BindOpen.Meta.Elements.BdoElementSpecSetDto.CollectionElementSpecs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSpecSetDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSpecSetDto.#ctor">
             <summary>
             Initializes a new instance of the BdoElementSpecSetDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.SourceElementDto">
+        <member name="T:BindOpen.Meta.Elements.SourceElementDto">
             <summary>
             This class represents a data source element.
             </summary>
             <remarks>A data source element can only have one item maximum.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Meta.Elements.SourceElementDto.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementDto.Connectors">
+        <member name="P:BindOpen.Meta.Elements.SourceElementDto.Connectors">
             <summary>
             Connectors of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementDto.Specification">
+        <member name="P:BindOpen.Meta.Elements.SourceElementDto.Specification">
             <summary>
             The specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.SourceElementDto.#ctor">
             <summary>
             Initializes a new instance of the SourceElementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Elements.SourceElementSpecDto">
+        <member name="T:BindOpen.Meta.Elements.SourceElementSpecDto">
             <summary>
             This class represents a data source element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementSpecDto.DatasourceKind">
+        <member name="P:BindOpen.Meta.Elements.SourceElementSpecDto.DatasourceKind">
             <summary>
             The data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementSpecDto.DefinitionFilter">
+        <member name="P:BindOpen.Meta.Elements.SourceElementSpecDto.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementSpecDto.#ctor">
+        <member name="M:BindOpen.Meta.Elements.SourceElementSpecDto.#ctor">
             <summary>
             Initializes a new instance of the SourceElementSpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DatasourceDto">
+        <member name="T:BindOpen.Meta.Items.DatasourceDto">
             <summary>
             This class represents a data source.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DatasourceDto.Configurations">
+        <member name="P:BindOpen.Meta.Items.DatasourceDto.Configurations">
             <summary>
             The configuration items for this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DatasourceDto.Kind">
+        <member name="P:BindOpen.Meta.Items.DatasourceDto.Kind">
             <summary>
             Kind of the data module of this instance. 
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DatasourceDto.InstanceName">
+        <member name="P:BindOpen.Meta.Items.DatasourceDto.InstanceName">
             <summary>
             The instance name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DatasourceDto.IsDefault">
+        <member name="P:BindOpen.Meta.Items.DatasourceDto.IsDefault">
             <summary>
             Indicates whether this instance is default.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DatasourceDto.ModuleName">
+        <member name="P:BindOpen.Meta.Items.DatasourceDto.ModuleName">
             <summary>
             The module name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DatasourceDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.DatasourceDto.#ctor">
             <summary>
             This instantiates a new instance of the DatasourceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DescribedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.DescribedDataItemDto">
             <summary>
             This class represents described data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DescribedDataItemDto.Description">
+        <member name="P:BindOpen.Meta.Items.DescribedDataItemDto.Description">
             <summary>
             Description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DescribedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.DescribedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the DescribedDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DataKeyValueDto">
+        <member name="T:BindOpen.Meta.Items.DataKeyValueDto">
             <summary>
             This class represents a data key value.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DataKeyValueDto.Key">
+        <member name="P:BindOpen.Meta.Items.DataKeyValueDto.Key">
             <summary>
             Key of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DataKeyValueDto.Content">
+        <member name="P:BindOpen.Meta.Items.DataKeyValueDto.Content">
             <summary>
             Content of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DataKeyValueDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.DataKeyValueDto.#ctor">
             <summary>
             Instantiates a new instance of DataKeyValueDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DictionaryDataItemDto">
+        <member name="T:BindOpen.Meta.Items.DictionaryDataItemDto">
             <summary>
-            This class represents a dictionary data item.
+            This class represents a dico data item.
             </summary>
             <example>Titles, Descriptions.</example>
             <seealso cref="!:DataKeyValue"/>
         </member>
-        <member name="P:BindOpen.Data.Items.DictionaryDataItemDto.Id">
+        <member name="P:BindOpen.Meta.Items.DictionaryDataItemDto.Id">
             <summary>
             The ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DictionaryDataItemDto.Values">
+        <member name="P:BindOpen.Meta.Items.DictionaryDataItemDto.Values">
             <summary>
             Values of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DictionaryDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.DictionaryDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the DictionaryDataItemDto class. 
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DataExpressionDto">
+        <member name="T:BindOpen.Meta.Items.DataExpressionDto">
             <summary>
-            This class represents a data expression that can contain a literal and script texts.
+            This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DataExpressionDto.Text">
+        <member name="P:BindOpen.Meta.Items.DataExpressionDto.Text">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DataExpressionDto.Kind">
+        <member name="P:BindOpen.Meta.Items.DataExpressionDto.Kind">
             <summary>
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.DataExpressionDto.Word">
+        <member name="P:BindOpen.Meta.Items.DataExpressionDto.Word">
             <summary>
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DataExpressionDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.DataExpressionDto.#ctor">
             <summary>
             Instantiates a new instance of DataExpressionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IdentifiedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.IdentifiedDataItemDto">
             <summary>
             This class represents an identified data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IdentifiedDataItemDto.Id">
+        <member name="P:BindOpen.Meta.Items.IdentifiedDataItemDto.Id">
             <summary>
             ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IdentifiedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.IdentifiedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the IdentifiedDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IdentifiedNamedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.IdentifiedNamedDataItemDto">
             <summary>
             This class represents an identified data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IdentifiedNamedDataItemDto.Name">
+        <member name="P:BindOpen.Meta.Items.IdentifiedNamedDataItemDto.Name">
             <summary>
             ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IdentifiedNamedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.IdentifiedNamedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the IdentifiedNamedDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IdentifiedNamedTitledDataItemDto">
+        <member name="T:BindOpen.Meta.Items.IdentifiedNamedTitledDataItemDto">
             <summary>
             This class represents an identified data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IdentifiedNamedTitledDataItemDto.Title">
+        <member name="P:BindOpen.Meta.Items.IdentifiedNamedTitledDataItemDto.Title">
             <summary>
             The title of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IdentifiedNamedTitledDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.IdentifiedNamedTitledDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the IdentifiedNamedTitledDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IdentifiedNamedTitledDescribedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.IdentifiedNamedTitledDescribedDataItemDto">
             <summary>
             This class represents an identified data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IdentifiedNamedTitledDescribedDataItemDto.Description">
+        <member name="P:BindOpen.Meta.Items.IdentifiedNamedTitledDescribedDataItemDto.Description">
             <summary>
             The description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IdentifiedNamedTitledDescribedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.IdentifiedNamedTitledDescribedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the IdentifiedNamedTitledDescribedDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IndexedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.IndexedDataItemDto">
             <summary>
             This class represents indexed data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IndexedDataItemDto.Index">
+        <member name="P:BindOpen.Meta.Items.IndexedDataItemDto.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IndexedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.IndexedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the IndexedDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.NamedDataItemDto">
+        <member name="T:BindOpen.Meta.Items.NamedDataItemDto">
             <summary>
             This class represents a named data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.NamedDataItemDto.Name">
+        <member name="P:BindOpen.Meta.Items.NamedDataItemDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.NamedDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.NamedDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the NamedDataItem class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.StoredDataItemDto">
+        <member name="T:BindOpen.Meta.Items.StoredDataItemDto">
             <summary>
             This class represents a stored data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.StoredDataItemDto.CreationDate">
+        <member name="P:BindOpen.Meta.Items.StoredDataItemDto.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.StoredDataItemDto.LastModificationDate">
+        <member name="P:BindOpen.Meta.Items.StoredDataItemDto.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.StoredDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.StoredDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the StoredDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.TitledDataItemDto">
+        <member name="T:BindOpen.Meta.Items.TitledDataItemDto">
             <summary>
             This class represents titled data item.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.TitledDataItemDto.Title">
+        <member name="P:BindOpen.Meta.Items.TitledDataItemDto.Title">
             <summary>
             Title of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TitledDataItemDto.#ctor">
+        <member name="M:BindOpen.Meta.Items.TitledDataItemDto.#ctor">
             <summary>
             Instantiates a new instance of the TitledDataItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.References.DataReferenceDto">
+        <member name="T:BindOpen.Meta.References.DataReferenceDto">
             <summary>
             This class represents a data reference DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.References.DataReferenceDto.DataHandlerUniqueName">
+        <member name="P:BindOpen.Meta.References.DataReferenceDto.DataHandlerUniqueName">
             <summary>
             The data handler unique name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.References.DataReferenceDto.PathDetail">
+        <member name="P:BindOpen.Meta.References.DataReferenceDto.PathDetail">
             <summary>
             The path detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.References.DataReferenceDto.CarrierElement">
+        <member name="P:BindOpen.Meta.References.DataReferenceDto.CarrierElement">
             <summary>
             Source element of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.References.DataReferenceDto.SourceElement">
+        <member name="P:BindOpen.Meta.References.DataReferenceDto.SourceElement">
             <summary>
             Source element of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceDto.#ctor">
+        <member name="M:BindOpen.Meta.References.DataReferenceDto.#ctor">
             <summary>
             Instantiates a new instance of the DataReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataConstraintStatementDto">
+        <member name="T:BindOpen.Meta.Specification.DataConstraintStatementDto">
             <summary>
             This class represents the data constraint statement.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatementDto.#ctor">
+        <member name="M:BindOpen.Meta.Specification.DataConstraintStatementDto.#ctor">
             <summary>
             Instantiates a new instance of the DataConstraintStatementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataSpecificationDto">
+        <member name="T:BindOpen.Meta.Specification.DataSpecificationDto">
             <summary>
             This abstract class represents a data specification.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataSpecificationDto.AccessibilityLevel">
+        <member name="P:BindOpen.Meta.Specification.DataSpecificationDto.AccessibilityLevel">
             <summary>
             Level of accessibility of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataSpecificationDto.InheritanceLevel">
+        <member name="P:BindOpen.Meta.Specification.DataSpecificationDto.InheritanceLevel">
             <summary>
             The level of inheritance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataSpecificationDto.RequirementLevel">
+        <member name="P:BindOpen.Meta.Specification.DataSpecificationDto.RequirementLevel">
             <summary>
             The requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataSpecificationDto.RequirementScript">
+        <member name="P:BindOpen.Meta.Specification.DataSpecificationDto.RequirementScript">
             <summary>
             The requirement script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataSpecificationDto.SpecificationLevels">
+        <member name="P:BindOpen.Meta.Specification.DataSpecificationDto.SpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecificationDto.#ctor">
+        <member name="M:BindOpen.Meta.Specification.DataSpecificationDto.#ctor">
             <summary>
             Initializes a new insance of the DataSpecificationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterDto">
+        <member name="T:BindOpen.Meta.Specification.DataValueFilterDto">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterDto.AddedValues">
+        <member name="P:BindOpen.Meta.Specification.DataValueFilterDto.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterDto.RemovedValues">
+        <member name="P:BindOpen.Meta.Specification.DataValueFilterDto.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterDto.#ctor">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterDto.#ctor">
             <summary>
             Instantiates a new instance of the DataValueFilterDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterStatementDto">
+        <member name="T:BindOpen.Meta.Specification.DataValueFilterStatementDto">
             <summary>
             This interface specifies the value filter statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterStatementDto.Filters">
+        <member name="P:BindOpen.Meta.Specification.DataValueFilterStatementDto.Filters">
             <summary>
             Filters of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterStatementDto.#ctor">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterStatementDto.#ctor">
             <summary>
             Instantiates a new instance of the DataValueFilterStatementDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Stores.BdoDatasourceDepotDto">
+        <member name="T:BindOpen.Meta.Stores.BdoDatasourceDepotDto">
             <summary>
             This class represents a datasource depot.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Stores.BdoDatasourceDepotDto.Id">
+        <member name="P:BindOpen.Meta.Stores.BdoDatasourceDepotDto.Id">
             <summary>
             The sources of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Stores.BdoDatasourceDepotDto.Sources">
+        <member name="P:BindOpen.Meta.Stores.BdoDatasourceDepotDto.Sources">
             <summary>
             The sources of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDatasourceDepotDto.#ctor">
+        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepotDto.#ctor">
             <summary>
             Initializes a new instance of the DatasourceDepotDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.JsonHelper.ToJson``1(``0,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.JsonHelper.ToJson``1(``0,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves the JSON string of this instance.
             </summary>
@@ -1096,7 +1096,7 @@
             <param name="log">The saving log to consider.</param>
             <returns>The Json string of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.JsonHelper.SaveJson``1(``0,System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.JsonHelper.SaveJson``1(``0,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified file path.
             </summary>
@@ -1105,7 +1105,7 @@
             <param name="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Data.JsonHelper.LoadJson``1(System.String,BindOpen.Logging.IBdoLog,System.Boolean)">
+        <member name="M:BindOpen.Meta.JsonHelper.LoadJson``1(System.String,BindOpen.Logging.IBdoLog,System.Boolean)">
             <summary>
             Loads a data item from the specified file path.
             </summary>
@@ -1115,7 +1115,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.Data.JsonHelper.LoadJsonFromString``1(System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.JsonHelper.LoadJsonFromString``1(System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the data item from the specified file path.
             </summary>
@@ -1125,7 +1125,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.Data.XmlHelper.ToXml(BindOpen.Data.IDto,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.XmlHelper.ToXml(BindOpen.Meta.IDto,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves the XML string of this instance.
             </summary>
@@ -1133,7 +1133,7 @@
             <param name="log">The saving log to consider.</param>
             <returns>The Xml string of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.XmlHelper.SaveXml(BindOpen.Data.IDto,System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Meta.XmlHelper.SaveXml(BindOpen.Meta.IDto,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified XML file path.
             </summary>
@@ -1142,7 +1142,7 @@
             <param name="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Data.XmlHelper.LoadXml``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Meta.XmlHelper.LoadXml``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Loads a data item from the specified XML file path.
             </summary>
@@ -1153,7 +1153,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.Data.XmlHelper.LoadXmlFromString``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Meta.XmlHelper.LoadXmlFromString``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the data item from the specified XML file path.
             </summary>
@@ -1164,7 +1164,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.Data.XmlHelper.LoadXmlSchemaSet(System.Xml.Schema.XmlSchemaSet,System.Reflection.Assembly,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Meta.XmlHelper.LoadXmlSchemaSet(System.Xml.Schema.XmlSchemaSet,System.Reflection.Assembly,System.Collections.Generic.List{System.String})">
             <summary>
             Loads the specified XML schema set.
             </summary>
@@ -1178,7 +1178,7 @@
             This static class provides methods to handle configurations.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions.LoadXml``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Runtime.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions.LoadXml``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Instantiates a new instance of Configuration class from a xml file.
             </summary>
@@ -1248,7 +1248,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoCarrierDictionaryDto">
             <summary>
-            This class represents a DTO carrier dictionary.
+            This class represents a DTO carrier dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoCarrierDictionaryDto.Definitions">
@@ -1263,7 +1263,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoConnectorDictionaryDto">
             <summary>
-            This class represents a DTO connector dictionary.
+            This class represents a DTO connector dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoConnectorDictionaryDto.Definitions">
@@ -1278,7 +1278,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoEntityDictionaryDto">
             <summary>
-            This class represents a DTO entity dictionary.
+            This class represents a DTO entity dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoEntityDictionaryDto.Definitions">
@@ -1308,7 +1308,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoMetricsDictionaryDto">
             <summary>
-            This class represents a DTO metrics dictionary.
+            This class represents a DTO metrics dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoMetricsDictionaryDto.Definitions">
@@ -1323,7 +1323,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoRoutineDictionaryDto">
             <summary>
-            This class represents a DTO routine dictionary.
+            This class represents a DTO routine dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoRoutineDictionaryDto.Definitions">
@@ -1338,7 +1338,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoScriptwordDictionaryDto">
             <summary>
-            This class represents a DTO script word dictionary.
+            This class represents a DTO script word dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoScriptwordDictionaryDto.DefinitionClass">
@@ -1358,7 +1358,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoTaskDictionaryDto">
             <summary>
-            This class represents a DTO task dictionary.
+            This class represents a DTO task dico.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoTaskDictionaryDto.Definitions">
@@ -1373,7 +1373,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Definition.TBdoExtensionDictionaryDto`1">
             <summary>
-            This class represents a BindOpen extension dictionary.
+            This class represents a BindOpen extension dico.
             </summary>
             <typeparam name="T">The class of extension item definition to consider.</typeparam>
         </member>

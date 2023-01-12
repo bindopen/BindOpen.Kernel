@@ -1,7 +1,7 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.Stores;
+﻿using BindOpen.Meta.Items;
+using BindOpen.Meta.Stores;
 
-namespace BindOpen.Data.Stores
+namespace BindOpen.Meta.Stores
 {
     /// <summary>
     /// This class represents a runtime data source extensions.
@@ -15,7 +15,7 @@ namespace BindOpen.Data.Stores
         /// <param name="datasource">The datasource to consider.</param>
         public static IBdoSourceDepot AddDatasource(
             this IBdoSourceDepot depot,
-            BdoSource datasource)
+            BdoDatasource datasource)
         {
             depot?.Add(datasource);
 

@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using System;
 
 namespace BindOpen.Runtime.Definition
@@ -23,7 +23,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
-        public IBdoElementSpecSet DatasourceDetailSpec { get; set; } = new BdoElementSpecSet();
+        public IBdoElementSpecSet DatasourceDetailSpec { get; set; } = new BdoMetaElementSpecSet();
 
         /// <summary>
         /// Item class of this instance.

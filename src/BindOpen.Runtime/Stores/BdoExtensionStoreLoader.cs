@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Definition;

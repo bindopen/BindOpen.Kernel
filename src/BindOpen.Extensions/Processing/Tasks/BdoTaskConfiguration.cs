@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Collections.Generic;
@@ -65,7 +65,7 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoTaskConfiguration Add(params IBdoElement[] items)
+        public new IBdoTaskConfiguration Add(params IBdoMetaElement[] items)
         {
             base.Add(items);
             return this;
@@ -75,7 +75,7 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoTaskConfiguration WithItems(params IBdoElement[] items)
+        public new IBdoTaskConfiguration WithItems(params IBdoMetaElement[] items)
         {
             base.WithItems(items);
             return this;
@@ -85,9 +85,9 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="inputs"></param>
-        public IBdoTaskConfiguration AddInputs(params IBdoElement[] inputs)
+        public IBdoTaskConfiguration AddInputs(params IBdoMetaElement[] inputs)
         {
-            if (InputDetail == null) InputDetail = new BdoElementSet();
+            if (InputDetail == null) InputDetail = new BdoMetaElementSet();
             InputDetail.Add(inputs);
             return this;
         }
@@ -96,9 +96,9 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="inputs"></param>
-        public IBdoTaskConfiguration WithInputs(params IBdoElement[] inputs)
+        public IBdoTaskConfiguration WithInputs(params IBdoMetaElement[] inputs)
         {
-            if (InputDetail == null) InputDetail = new BdoElementSet();
+            if (InputDetail == null) InputDetail = new BdoMetaElementSet();
             InputDetail.WithItems(inputs);
             return this;
         }
@@ -107,9 +107,9 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="outputs"></param>
-        public IBdoTaskConfiguration AddOutputs(params IBdoElement[] outputs)
+        public IBdoTaskConfiguration AddOutputs(params IBdoMetaElement[] outputs)
         {
-            if (OutputDetail == null) OutputDetail = new BdoElementSet();
+            if (OutputDetail == null) OutputDetail = new BdoMetaElementSet();
             OutputDetail.Add(outputs);
             return this;
         }
@@ -118,9 +118,9 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="outputs"></param>
-        public IBdoTaskConfiguration WithOutputs(params IBdoElement[] outputs)
+        public IBdoTaskConfiguration WithOutputs(params IBdoMetaElement[] outputs)
         {
-            if (OutputDetail == null) OutputDetail = new BdoElementSet();
+            if (OutputDetail == null) OutputDetail = new BdoMetaElementSet();
             OutputDetail.WithItems(outputs);
             return this;
         }
@@ -140,12 +140,12 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<IBdoElement> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IBdoMetaElement> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            var elements = new List<IBdoElement>();
+            var elements = new List<IBdoMetaElement>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
             {
@@ -168,7 +168,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public IBdoElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
+        public IBdoMetaElement GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
             return GetEntries(taskEntryKinds).Find(p => p.BdoKeyEquals(key));
         }
@@ -191,12 +191,12 @@ namespace BindOpen.Extensions.Processing
 
             if (InputDetail != null)
             {
-                task.InputDetail = InputDetail.Clone() as BdoElementSet;
+                task.InputDetail = InputDetail.Clone() as BdoMetaElementSet;
             }
 
             if (OutputDetail != null)
             {
-                task.OutputDetail = OutputDetail.Clone() as BdoElementSet;
+                task.OutputDetail = OutputDetail.Clone() as BdoMetaElementSet;
             }
 
             return task;

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<scriptwords.dictionary library="runtime"
+<scriptwords.dico library="runtime"
   xmlns="https://docs.bindopen.org/xsd"
   xmlns:SchemaLocation="BdoScriptwordDictionary https://docs.bindopen.org/xsd/BdoScriptwordDictionary.xsd">
   <creationDate>2010-08-05</creationDate>
@@ -83,4 +83,4 @@
   
   <definitionClass>.Scriptwords.ScriptwordDefinition_runtime</definitionClass>
 
-</scriptwords.dictionary>
+</scriptwords.dico>

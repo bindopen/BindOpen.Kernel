@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Meta;
 using Bogus;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;

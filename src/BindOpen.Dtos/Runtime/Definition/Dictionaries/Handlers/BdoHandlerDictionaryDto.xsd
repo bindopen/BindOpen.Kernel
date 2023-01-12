@@ -5,7 +5,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/HandlerDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="handlers.dictionary" type="BdoHandlerDictionaryDto" />
+  <xs:element name="handlers.dico" type="BdoHandlerDictionaryDto" />
 
   <xs:complexType name="BdoHandlerDictionaryDto">
     <xs:complexContent mixed="false">

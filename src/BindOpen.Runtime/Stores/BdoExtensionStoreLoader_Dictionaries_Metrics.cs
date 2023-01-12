@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using BindOpen.Runtime.Definition;
 using System.Reflection;
 using BindOpen.Logging;
@@ -11,7 +11,7 @@ namespace BindOpen.Runtime.Stores
     internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the metrics dictionary from the specified assembly.
+        /// Loads the metrics dico from the specified assembly.
         /// </summary>
         /// <param name="assembly">The assembly to consider.</param>
         /// <param name="extensionDefinition">The extension definition to consider.</param>

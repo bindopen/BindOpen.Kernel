@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -34,7 +34,7 @@ namespace BindOpen.Data.Items
         {
             if (dto == null) return null;
 
-            BdoDictionary poco = BdoItems.NewDictionary(dto.Values?.Select(q => q.ToPoco()).ToArray());
+            BdoDictionary poco = BdoMeta.NewDictionary(dto.Values?.Select(q => q.ToPoco()).ToArray());
             poco.WithId(dto.Id);
 
             return poco;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
     /// This class represents a Xml helper.

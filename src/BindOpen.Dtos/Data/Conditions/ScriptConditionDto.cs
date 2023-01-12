@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Conditions
+namespace BindOpen.Meta.Conditions
 {
     /// <summary>
     /// This class represents a script condition DTO.
@@ -18,10 +18,10 @@ namespace BindOpen.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// Data expression DTO representing the condition.
+        /// Data exp DTO representing the condition.
         /// </summary>
-        [JsonPropertyName("expression")]
-        [XmlElement("expression")]
+        [JsonPropertyName("exp")]
+        [XmlElement("exp")]
         public DataExpressionDto Expression { get; set; }
 
         #endregion

@@ -1,7 +1,7 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 
-namespace BindOpen.Data.References
+namespace BindOpen.Meta.References
 {
     /// <summary>
     /// This static class represents a data reference converter.
@@ -19,10 +19,10 @@ namespace BindOpen.Data.References
 
             DataReferenceDto dto = new()
             {
-                CarrierElement = poco.SourceElement is ICarrierElement ? (poco.SourceElement as ICarrierElement)?.ToDto() : null,
+                CarrierElement = poco.SourceElement is IBdoMetaCarrier ? (poco.SourceElement as IBdoMetaCarrier)?.ToDto() : null,
                 DataHandlerUniqueName = poco.DataHandlerUniqueName,
                 PathDetail = poco.PathDetail?.ToDto(),
-                SourceElement = poco.SourceElement is ISourceElement ? (poco.SourceElement as ISourceElement)?.ToDto() : null
+                SourceElement = poco.SourceElement is IBdoMetaSource ? (poco.SourceElement as IBdoMetaSource)?.ToDto() : null
             };
 
             return dto;

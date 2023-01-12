@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Data.Elements
+namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a carrier element converter.
@@ -12,7 +12,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static CarrierElementDto ToDto(this ICarrierElement poco)
+        public static CarrierElementDto ToDto(this IBdoMetaCarrier poco)
         {
             if (poco == null) return null;
 
@@ -28,11 +28,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static ICarrierElement ToPoco(this CarrierElementDto dto)
+        public static IBdoMetaCarrier ToPoco(this CarrierElementDto dto)
         {
             if (dto == null) return null;
 
-            CarrierElement poco = new()
+            BdoMetaCarrier poco = new()
             {
             };
 

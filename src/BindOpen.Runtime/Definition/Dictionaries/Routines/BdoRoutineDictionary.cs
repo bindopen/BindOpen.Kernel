@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO routine dictionary.
+    /// This class represents a DTO routine dico.
     /// </summary>
     public class BdoRoutineDictionary : TBdoExtensionDictionary<IBdoRoutineDefinition>, IBdoRoutineDictionary
     {

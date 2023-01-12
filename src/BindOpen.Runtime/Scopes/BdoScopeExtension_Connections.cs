@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -19,7 +19,7 @@ namespace BindOpen.Runtime.Scopes
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoSource dataSource,
+            IBdoDataSource dataSource,
             string connectorDefinitionUniqueId,
             IBdoLog log = null)
             where T : class, IBdoConnection

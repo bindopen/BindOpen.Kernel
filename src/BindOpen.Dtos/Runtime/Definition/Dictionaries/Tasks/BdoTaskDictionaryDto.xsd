@@ -5,7 +5,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/tasks/TaskDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="tasks.dictionary" type="BdoTaskDictionaryDto" />
+  <xs:element name="tasks.dico" type="BdoTaskDictionaryDto" />
 
   <xs:complexType name="BdoTaskDictionaryDto">
     <xs:complexContent mixed="false">

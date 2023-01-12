@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Data.Conditions
+namespace BindOpen.Meta.Conditions
 {
     /// <summary>
     /// This class represents a Xml helper.

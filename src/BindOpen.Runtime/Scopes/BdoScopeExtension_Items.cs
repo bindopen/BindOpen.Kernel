@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
@@ -68,7 +68,7 @@ namespace BindOpen.Runtime.Scopes
                     if (item != null)
                     {
                         carrier = item as BdoCarrier;
-                        carrier.UpdateFromElementSet<BdoElementAttribute>(configuration, scope, varElementSet);
+                        carrier.UpdateFromElementSet<BdoMetaAttribute>(configuration, scope, varElementSet);
                     }
                 }
             }
@@ -127,7 +127,7 @@ namespace BindOpen.Runtime.Scopes
                     if (item != null)
                     {
                         var connector = item as IBdoConnector;
-                        connector.UpdateFromElementSet<BdoElementAttribute>(configuration, scope, varElementSet);
+                        connector.UpdateFromElementSet<BdoMetaAttribute>(configuration, scope, varElementSet);
                     }
                 }
             }

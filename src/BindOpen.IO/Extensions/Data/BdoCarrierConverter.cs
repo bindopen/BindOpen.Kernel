@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Meta;
 
 namespace BindOpen.Extensions.Modeling
 {

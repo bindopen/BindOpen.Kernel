@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using Bogus;
 using NUnit.Framework;
 
@@ -8,7 +9,7 @@ namespace BindOpen.Runtime.Tests.MetaData.Items
     public class BdoDictionaryTests
     {
         dynamic _valueSet;
-        private BdoDictionary _dictionary = null;
+        private BdoDictionary _dico = null;
 
 
         [OneTimeSetUp]
@@ -24,75 +25,75 @@ namespace BindOpen.Runtime.Tests.MetaData.Items
             };
         }
 
-        public void Test(IBdoDictionary dictionary)
+        public void Test(IBdoDictionary dico)
         {
             Assert.That(
-                dictionary["value1"] == _valueSet.value1
-                && dictionary["value2"] == _valueSet.value2
-                && dictionary["value3"] == _valueSet.value3, "Bad dictionary creation");
+                dico["value1"] == _valueSet.value1
+                && dico["value2"] == _valueSet.value2
+                && dico["value3"] == _valueSet.value3, "Bad dictionary creation");
         }
 
         [Test, Order(1)]
         public void Create1Test()
         {
-            _dictionary = BdoItems.NewDictionary(
+            _dico = BdoMeta.NewDictionary(
                 ("value1", _valueSet.value1),
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2),
                 ("value3", _valueSet.value3));
 
-            Test(_dictionary);
+            Test(_dico);
         }
 
         [Test, Order(2)]
         public void Create2Test()
         {
-            _dictionary = new[] {
+            _dico = new[] {
                 ("value1", _valueSet.value1 as string),
                 ("value2", _valueSet.value2 as string),
                 ("value3", _valueSet.value3 as string) };
 
-            Test(_dictionary);
+            Test(_dico);
         }
 
         [Test, Order(3)]
         public void Create3Test()
         {
-            _dictionary = _valueSet.valueStar as string;
+            _dico = _valueSet.valueStar as string;
 
             Assert.That(
-                _dictionary["*"] == _valueSet.valueStar as string, "Bad dictionary creation");
+                _dico["*"] == _valueSet.valueStar as string, "Bad dictionary creation");
             Assert.That(
-                _dictionary.Get() == _valueSet.valueStar as string, "Bad dictionary creation");
+                _dico.Get() == _valueSet.valueStar as string, "Bad dictionary creation");
         }
 
         [Test, Order(4)]
         public void EqualsTest()
         {
-            var dictionary1 = BdoItems.NewDictionary(
+            var dico1 = BdoMeta.NewDictionary(
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2),
                 ("value3", _valueSet.value3));
 
             Assert.That(
-                dictionary1.Equals(dictionary1), "Bad dictionary equal funtion");
+                dico1.Equals(dico1), "Bad dictionary equal funtion");
         }
 
         [Test, Order(5)]
         public void Create5Test()
         {
-            _dictionary = new[] {
+            _dico = new[] {
                 ("*", _valueSet.valueStar as string),
                 ("value1", _valueSet.value1 as string),
                 ("value2", _valueSet.value2 as string),
                 ("value3", _valueSet.value3 as string) };
 
-            var valueStar = _dictionary["*"];
-            var value1 = _dictionary["value1"];
-            var value2 = _dictionary["value2"];
-            var value3 = _dictionary["value3"];
-            var value4 = _dictionary["value4"];
-            var value5 = _dictionary["value5", "*"];
+            var valueStar = _dico["*"];
+            var value1 = _dico["value1"];
+            var value2 = _dico["value2"];
+            var value3 = _dico["value3"];
+            var value4 = _dico["value4"];
+            var value5 = _dico["value5", "*"];
 
             Assert.That(
                 valueStar == _valueSet.valueStar as string, "Bad dictionary creation");

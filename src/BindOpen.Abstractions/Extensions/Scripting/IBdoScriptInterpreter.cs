@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 using BindOpen.Logging;
 using System.Collections.Generic;
 
@@ -13,24 +13,24 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="exp"></param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(
-            IBdoExpression expression,
+            IBdoExpression exp,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="exp"></param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T Evaluate<T>(
-            IBdoExpression expression,
+            IBdoExpression exp,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null);
 
@@ -38,13 +38,13 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="script"></param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
+        /// <param name="expKind">The exp kind to consider.</param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(
             string script,
-            BdoExpressionKind expressionKind = BdoExpressionKind.Auto,
+            BdoExpressionKind expKind = BdoExpressionKind.Auto,
             IBdoElementSet varElementSet = null,
             IBdoLog log = null);
 
@@ -52,13 +52,13 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="script"></param>
-        /// <param name="expressionKind">The expression kind to consider.</param>
+        /// <param name="expKind">The exp kind to consider.</param>
         /// <param name="varElementSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T Evaluate<T>(
             string script,
-            BdoExpressionKind expressionKind = BdoExpressionKind.Auto,
+            BdoExpressionKind expKind = BdoExpressionKind.Auto,
             IBdoElementSet varElementSet = null, IBdoLog log = null);
 
         /// <summary>

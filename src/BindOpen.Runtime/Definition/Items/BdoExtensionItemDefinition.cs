@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using System;
 using System.Collections.Generic;
 
@@ -197,7 +198,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public IBdoExtensionItemDefinition WithName(string name)
         {
-            Name = BdoItems.NewName(name, _preffix);
+            Name = BdoMeta.NewName(name, _preffix);
             return this;
         }
 
@@ -216,14 +217,14 @@ namespace BindOpen.Runtime.Definition
 
         public IBdoExtensionItemDefinition AddTitle(KeyValuePair<string, string> item)
         {
-            Title ??= BdoItems.NewDictionary();
+            Title ??= BdoMeta.NewDictionary();
             Title.Add(item);
             return this;
         }
 
-        public IBdoExtensionItemDefinition WithTitle(IBdoDictionary dictionary)
+        public IBdoExtensionItemDefinition WithTitle(IBdoDictionary dico)
         {
-            Title = dictionary;
+            Title = dico;
             return this;
         }
 
@@ -253,14 +254,14 @@ namespace BindOpen.Runtime.Definition
 
         public IBdoExtensionItemDefinition AddDescription(KeyValuePair<string, string> item)
         {
-            Description ??= BdoItems.NewDictionary();
+            Description ??= BdoMeta.NewDictionary();
             Description.Add(item);
             return this;
         }
 
-        public IBdoExtensionItemDefinition WithDescription(IBdoDictionary dictionary)
+        public IBdoExtensionItemDefinition WithDescription(IBdoDictionary dico)
         {
-            Description = dictionary;
+            Description = dico;
             return this;
         }
 

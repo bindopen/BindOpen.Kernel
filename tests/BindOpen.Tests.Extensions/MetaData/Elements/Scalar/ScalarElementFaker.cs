@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace BindOpen.Runtime.Tests.MetaData.Elements.Scalar
             };
         }
 
-        public static void AssertFake(IScalarElement element, IScalarElement reference)
+        public static void AssertFake(IBdoMetaScalar element, IBdoMetaScalar reference)
         {
             Assert.That(element?.Name == reference?.Name, "Name different");
         }

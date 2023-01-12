@@ -5,10 +5,10 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO script word dictionary.
+    /// This class represents a DTO script word dico.
     /// </summary>
     [XmlType("ScriptwordDictionaryDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptwords.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoScriptwordDictionaryDto
         : TBdoExtensionDictionaryDto<BdoScriptwordDefinitionDto>
     {
