@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.Meta\Meta.csproj" />
+    <ProjectReference Include="..\BindOpen.MetaData\MetaData.csproj" />
   </ItemGroup>
 
 </Project>

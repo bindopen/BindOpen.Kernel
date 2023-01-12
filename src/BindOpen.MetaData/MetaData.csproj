@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>BindOpen.Dtos</AssemblyName>
-    <PackageId>BindOpen.Dtos</PackageId>
+    <AssemblyName>BindOpen.MetaData</AssemblyName>
+    <PackageId>BindOpen.MetaData</PackageId>
     <Product>BindOpen.Runtime</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>The classes of data transfer objects for BindOpen Runtime.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Runtime.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Dtos</RootNamespace>
+    <RootNamespace>BindOpen.MetaData</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,17 +21,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Dtos.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.MetaData.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
     </None>
     <None Include="..\..\Readme.md">
       <Pack>True</Pack>
@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.MetaData\MetaData.csproj" />
+    <ProjectReference Include="..\BindOpen.Abstractions\Abstractions.csproj" />
   </ItemGroup>
+
 </Project>
