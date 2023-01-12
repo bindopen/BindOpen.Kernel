@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -277,7 +277,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         public IBdoScriptword WithName(string name)
         {
-            Name = BdoItems.NewName(name, "word_");
+            Name = BdoMeta.NewName(name, "word_");
             return this;
         }
 

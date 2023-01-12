@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO entity dictionary.
+    /// This class represents a DTO entity dico.
     /// </summary>
     public class BdoEntityDictionary : TBdoExtensionDictionary<IBdoEntityDefinition>, IBdoEntityDictionary
     {

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Connecting
@@ -18,13 +18,13 @@ namespace BindOpen.Extensions.Connecting
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoConnectorConfiguration Add(params IBdoElement[] items);
+        new IBdoConnectorConfiguration Add(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoConnectorConfiguration WithItems(params IBdoElement[] items);
+        new IBdoConnectorConfiguration WithItems(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 

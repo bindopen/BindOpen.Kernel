@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using BindOpen.Logging;
@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Definition
     /// <param name="alog">The log to consider.</param>
     /// <returns>Returns the target objects.</returns>
     public delegate List<object> BdoHandlerGetFunction(
-            IBdoElement sourceElement = null,
+            IBdoMetaElement sourceElement = null,
             IBdoElementSet pathDetail = null,
             IBdoScope scope = null,
             IBdoElementSet varElementSet = null,

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Modeling
@@ -12,13 +12,13 @@ namespace BindOpen.Extensions.Modeling
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoEntityConfiguration Add(params IBdoElement[] items);
+        new IBdoEntityConfiguration Add(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoEntityConfiguration WithItems(params IBdoElement[] items);
+        new IBdoEntityConfiguration WithItems(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data.Items;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Stores
     internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the script word dictionary from the specified assembly.
+        /// Loads the script word dico from the specified assembly.
         /// </summary>
         /// <param name="assembly">The assembly to consider.</param>
         /// <param name="extensionDefinition">The extension definition to consider.</param>
@@ -31,17 +31,17 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the carrier dictionary from the assembly
+            // we load the carrier dico from the assembly
 
-            var dictionary = ExtractDictionaryFromAssembly<IBdoScriptwordDefinition>(assembly, log) as BdoScriptwordDictionary;
+            var dico = ExtractDictionaryFromAssembly<IBdoScriptwordDefinition>(assembly, log) as BdoScriptwordDictionary;
 
             // we define definitions
 
             int count = 0;
 
-            if (dictionary == null)
+            if (dico == null)
             {
-                log?.AddWarning(title: "No script word dictionary was found");
+                log?.AddWarning(title: "No script word dico was found");
             }
             else
             {
@@ -60,15 +60,15 @@ namespace BindOpen.Runtime.Stores
 
                             string definitionName = scriptWordAttribute.Name;
 
-                            // we update the definition with the dictionary if there is one
+                            // we update the definition with the dico if there is one
 
-                            if (dictionary != null)
+                            if (dico != null)
                             {
-                                var definition = dictionary.GetDefinition(definitionName, methodInfo.Name);
+                                var definition = dico.GetDefinition(definitionName, methodInfo.Name);
 
                                 if (definition == null)
                                 {
-                                    log?.AddError(title: "Script word '" + methodInfo.Name + "' not found in dictionary");
+                                    log?.AddError(title: "Script word '" + methodInfo.Name + "' not found in dico");
                                 }
                                 else
                                 {
@@ -110,7 +110,7 @@ namespace BindOpen.Runtime.Stores
 
                 // we recursively retrieve the sub script words
 
-                foreach (IBdoScriptwordDefinition definition in dictionary.Definitions)
+                foreach (IBdoScriptwordDefinition definition in dico.Definitions)
                 {
                     _store.Add<IBdoScriptwordDefinition>(definition);
                 }

@@ -4,7 +4,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/scriptwords/ScriptwordDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="scriptwords.dictionary" type="BdoScriptwordDictionaryDto" />
+  <xs:element name="scriptwords.dico" type="BdoScriptwordDictionaryDto" />
 
   <xs:complexType name="BdoScriptwordDictionaryDto">
     <xs:complexContent mixed="false">

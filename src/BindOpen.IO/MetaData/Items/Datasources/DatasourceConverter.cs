@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Connecting;
 using System.Linq;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Meta.Items
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -13,7 +13,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static DatasourceDto ToDto(this IBdoSource poco)
+        public static DatasourceDto ToDto(this IBdoDataSource poco)
         {
             if (poco == null) return null;
 
@@ -36,9 +36,9 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoSource ToPoco(this DatasourceDto dto)
+        public static IBdoDataSource ToPoco(this DatasourceDto dto)
         {
-            var poco = BdoItems.NewDatasource(
+            var poco = BdoMeta.NewDatasource(
                 dto.Name,
                 dto.Kind,
                 dto.Configurations?.Select(q => q?.ToPoco()).ToArray())

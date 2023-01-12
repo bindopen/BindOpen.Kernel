@@ -1,5 +1,6 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using Bogus;
 using NUnit.Framework;
 
@@ -9,7 +10,7 @@ namespace BindOpen.Runtime.Tests.MetaData.Items
     public class BdoExpressionTests
     {
         dynamic _valueSet;
-        private BdoExpression _expression = null;
+        private IBdoExpression _exp = null;
 
 
         [OneTimeSetUp]
@@ -24,18 +25,18 @@ namespace BindOpen.Runtime.Tests.MetaData.Items
             };
         }
 
-        public void Test(IBdoExpression expression)
+        public void Test(IBdoExpression exp)
         {
-            switch (expression.Kind)
+            switch (exp.Kind)
             {
                 case BdoExpressionKind.Literal:
-                    Assert.That(expression.Text == _valueSet.Literal);
+                    Assert.That(exp.Text == _valueSet.Literal);
                     break;
                 case BdoExpressionKind.Script:
-                    Assert.That(expression.Text == _valueSet.Script);
+                    Assert.That(exp.Text == _valueSet.Script);
                     break;
                 case BdoExpressionKind.Word:
-                    Assert.That(expression.Word?.Name.Equals(_valueSet.ScriptwordName));
+                    Assert.That(exp.Word?.Name.Equals(_valueSet.ScriptwordName));
                     break;
             }
         }
@@ -43,30 +44,31 @@ namespace BindOpen.Runtime.Tests.MetaData.Items
         [Test, Order(1)]
         public void Create1Test()
         {
-            _expression = BdoItems.NewExpression(
-                BdoExpressionKind.Literal,
-                _valueSet.Literal as string);
+            _exp = BdoMeta.NewExpression(
+                _valueSet.Literal as string,
+                BdoExpressionKind.Literal);
 
-            Test(_expression);
+            Test(_exp);
         }
 
         [Test, Order(2)]
         public void Create2Test()
         {
-            _expression = BdoItems.NewExpression(
-                BdoExpressionKind.Script,
-                _valueSet.Script as string);
+            _exp = BdoMeta.NewExpression(
+                _valueSet.Script as string).AsScript();
 
-            Test(_expression);
+            Test(_exp);
+
+
         }
 
         [Test, Order(3)]
         public void Create3Test()
         {
-            _expression = BdoItems.NewExpression(
+            _exp = BdoMeta.NewExpression(
                 BdoScript.Function(_valueSet.ScriptwordName as string));
 
-            Test(_expression);
+            Test(_exp);
         }
     }
 }

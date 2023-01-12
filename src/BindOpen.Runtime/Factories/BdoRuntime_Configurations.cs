@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
@@ -18,7 +18,7 @@ namespace BindOpen.Runtime
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoCarrierConfiguration NewCarrierConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] items)
+            params IBdoMetaElement[] items)
         {
             var config = new BdoCarrierConfiguration(definitionUniqueId);
             config.WithItems(items);
@@ -34,7 +34,7 @@ namespace BindOpen.Runtime
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoConnectorConfiguration NewConnectorConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] items)
+            params IBdoMetaElement[] items)
         {
             var config = new BdoConnectorConfiguration(definitionUniqueId);
             config.WithItems(items);
@@ -50,7 +50,7 @@ namespace BindOpen.Runtime
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoTaskConfiguration NewTaskConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] items)
+            params IBdoMetaElement[] items)
         {
             var config = new BdoTaskConfiguration(definitionUniqueId);
             config.WithItems(items);

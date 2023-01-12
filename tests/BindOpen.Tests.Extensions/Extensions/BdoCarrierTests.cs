@@ -1,6 +1,7 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests.Extensions.Data;
 using NUnit.Framework;
 
@@ -31,10 +32,10 @@ namespace BindOpen.Runtime.Tests.Extensions
             IBdoCarrierConfiguration config =
                 BdoExtensions.NewCarrierConfiguration("tests.core$testCarrier")
                 .WithItems(
-                    BdoElements.NewScalar("boolValue", data.boolValue),
-                    BdoElements.NewScalar("enumValue", data.enumValue),
-                    BdoElements.NewScalar("intValue", data.intValue),
-                    BdoElements.NewScalar("stringValue", data.stringValue));
+                    BdoMeta.NewScalar("boolValue", data.boolValue),
+                    BdoMeta.NewScalar("enumValue", data.enumValue),
+                    BdoMeta.NewScalar("intValue", data.intValue),
+                    BdoMeta.NewScalar("stringValue", data.stringValue));
 
             return BdoExtensions.NewCarrier<CarrierFake>(config);
         }

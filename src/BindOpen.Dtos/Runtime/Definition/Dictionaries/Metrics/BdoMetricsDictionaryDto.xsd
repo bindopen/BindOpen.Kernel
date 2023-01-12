@@ -5,7 +5,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/metrics/BdoMetricsDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="metrics.dictionary" type="BdoMetricsDictionaryDto" />
+  <xs:element name="metrics.dico" type="BdoMetricsDictionaryDto" />
 
   <xs:complexType name="BdoMetricsDictionaryDto">
     <xs:complexContent mixed="false">

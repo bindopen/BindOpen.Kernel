@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data.Context;
-using BindOpen.Data.Items;
-using BindOpen.Data.Stores;
+using BindOpen.Meta.Context;
+using BindOpen.Meta.Items;
+using BindOpen.Meta.Stores;
 using BindOpen.Runtime.References;
 using BindOpen.Runtime.Stores;
 using System;

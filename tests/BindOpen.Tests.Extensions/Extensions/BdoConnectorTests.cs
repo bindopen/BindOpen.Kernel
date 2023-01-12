@@ -1,6 +1,7 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests.Extensions.Connecting;
 using NUnit.Framework;
 
@@ -29,9 +30,9 @@ namespace BindOpen.Runtime.Tests.Extensions
             IBdoConnectorConfiguration config =
                 BdoExtensions.NewConnectorConfiguration("tests.core$testConnector")
                 .WithItems(
-                    BdoElements.NewScalar("host", data.host),
-                    BdoElements.NewScalar("port", data.port),
-                    BdoElements.NewScalar("isSslEnabled", data.isSslEnabled));
+                    BdoMeta.NewScalar("host", data.host),
+                    BdoMeta.NewScalar("port", data.port),
+                    BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled));
 
             return BdoExtensions.NewConnector<ConnectorFake>(config);
         }

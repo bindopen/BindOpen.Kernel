@@ -118,513 +118,513 @@
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.AdvancedConditionConverter">
+        <member name="T:BindOpen.Meta.Conditions.AdvancedConditionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.AdvancedConditionConverter.ToDto(BindOpen.Data.Conditions.IAdvancedCondition)">
+        <member name="M:BindOpen.Meta.Conditions.AdvancedConditionConverter.ToDto(BindOpen.Meta.Conditions.IAdvancedCondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Conditions.AdvancedConditionConverter.ToPoco(BindOpen.Data.Conditions.AdvancedConditionDto)">
+        <member name="M:BindOpen.Meta.Conditions.AdvancedConditionConverter.ToPoco(BindOpen.Meta.Conditions.AdvancedConditionDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.BasicConditionConverter">
+        <member name="T:BindOpen.Meta.Conditions.BasicConditionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionConverter.ToDto(BindOpen.Data.Conditions.IBasicCondition)">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionConverter.ToDto(BindOpen.Meta.Conditions.IBasicCondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BasicConditionConverter.ToPoco(BindOpen.Data.Conditions.BasicConditionDto)">
+        <member name="M:BindOpen.Meta.Conditions.BasicConditionConverter.ToPoco(BindOpen.Meta.Conditions.BasicConditionDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ConditionConverter">
+        <member name="T:BindOpen.Meta.Conditions.ConditionConverter">
             <summary>
             This static class represents a converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ConditionConverter.ToDto(BindOpen.Data.Conditions.ICondition)">
+        <member name="M:BindOpen.Meta.Conditions.ConditionConverter.ToDto(BindOpen.Meta.Conditions.ICondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ConditionConverter.ToPoco(BindOpen.Data.Conditions.ConditionDto)">
+        <member name="M:BindOpen.Meta.Conditions.ConditionConverter.ToPoco(BindOpen.Meta.Conditions.ConditionDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The dto to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ScriptConditionConverter">
+        <member name="T:BindOpen.Meta.Conditions.ScriptConditionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptConditionConverter.ToDto(BindOpen.Data.Conditions.IScriptCondition)">
+        <member name="M:BindOpen.Meta.Conditions.ScriptConditionConverter.ToDto(BindOpen.Meta.Conditions.IScriptCondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptConditionConverter.ToPoco(BindOpen.Data.Conditions.ScriptConditionDto)">
+        <member name="M:BindOpen.Meta.Conditions.ScriptConditionConverter.ToPoco(BindOpen.Meta.Conditions.ScriptConditionDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The dto to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.CarrierElementConverter">
+        <member name="T:BindOpen.Meta.Elements.CarrierElementConverter">
             <summary>
             This class represents a carrier element converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementConverter.ToDto(BindOpen.Data.Elements.ICarrierElement)">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaCarrier)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementConverter.ToPoco(BindOpen.Data.Elements.CarrierElementDto)">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementConverter.ToPoco(BindOpen.Meta.Elements.CarrierElementDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The dto to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.CarrierElementSpecConverter">
+        <member name="T:BindOpen.Meta.Elements.CarrierElementSpecConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementSpecConverter.ToDto(BindOpen.Data.Elements.ICarrierElementSpec)">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementSpecConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaCarrierSpec)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.CarrierElementSpecConverter.ToPoco(BindOpen.Data.Elements.CarrierElementSpecDto)">
+        <member name="M:BindOpen.Meta.Elements.CarrierElementSpecConverter.ToPoco(BindOpen.Meta.Elements.CarrierElementSpecDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.CollectionElementConverter">
+        <member name="T:BindOpen.Meta.Elements.CollectionElementConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementConverter.ToDto(BindOpen.Data.Elements.ICollectionElement)">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaCollection)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementConverter.ToPoco(BindOpen.Data.Elements.CollectionElementDto)">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementConverter.ToPoco(BindOpen.Meta.Elements.CollectionElementDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.CollectionElementSpecConverter">
+        <member name="T:BindOpen.Meta.Elements.CollectionElementSpecConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementSpecConverter.ToDto(BindOpen.Data.Elements.ICollectionElementSpec)">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementSpecConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaCollectionSpec)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.CollectionElementSpecConverter.ToPoco(BindOpen.Data.Elements.CollectionElementSpecDto)">
+        <member name="M:BindOpen.Meta.Elements.CollectionElementSpecConverter.ToPoco(BindOpen.Meta.Elements.CollectionElementSpecDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoConfigurationConverter">
+        <member name="T:BindOpen.Meta.Elements.BdoConfigurationConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoConfigurationConverter.ToDto(BindOpen.Data.Elements.IBdoConfiguration)">
+        <member name="M:BindOpen.Meta.Elements.BdoConfigurationConverter.ToDto(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoConfigurationConverter.ToPoco(BindOpen.Data.Elements.BdoConfigurationDto)">
+        <member name="M:BindOpen.Meta.Elements.BdoConfigurationConverter.ToPoco(BindOpen.Meta.Elements.BdoConfigurationDto)">
             <summary>
             Converts to POCO.
             </summary>
             <param name="dto">The dto to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.ObjectElementConverter">
+        <member name="T:BindOpen.Meta.Elements.ObjectElementConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementConverter.ToDto(BindOpen.Data.Elements.IObjectElement)">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaObject)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementConverter.ToPoco(BindOpen.Data.Elements.ObjectElementDto)">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementConverter.ToPoco(BindOpen.Meta.Elements.ObjectElementDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.ObjectElementSpecConverter">
+        <member name="T:BindOpen.Meta.Elements.ObjectElementSpecConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementSpecConverter.ToDto(BindOpen.Data.Elements.IObjectElementSpec)">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementSpecConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaObjectSpec)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.ObjectElementSpecConverter.ToPoco(BindOpen.Data.Elements.ObjectElementSpecDto)">
+        <member name="M:BindOpen.Meta.Elements.ObjectElementSpecConverter.ToPoco(BindOpen.Meta.Elements.ObjectElementSpecDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.ScalarElementConverter">
+        <member name="T:BindOpen.Meta.Elements.ScalarElementConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementConverter.ToDto(BindOpen.Data.Elements.IScalarElement)">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaScalar)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementConverter.ToPoco(BindOpen.Data.Elements.ScalarElementDto)">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementConverter.ToPoco(BindOpen.Meta.Elements.ScalarElementDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.ScalarElementSpecConverter">
+        <member name="T:BindOpen.Meta.Elements.ScalarElementSpecConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementSpecConverter.ToDto(BindOpen.Data.Elements.IScalarElementSpec)">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementSpecConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaScalarSpec)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.ScalarElementSpecConverter.ToPoco(BindOpen.Data.Elements.ScalarElementSpecDto)">
+        <member name="M:BindOpen.Meta.Elements.ScalarElementSpecConverter.ToPoco(BindOpen.Meta.Elements.ScalarElementSpecDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementSetConverter">
+        <member name="T:BindOpen.Meta.Elements.BdoElementSetConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSetConverter.ToDto(BindOpen.Data.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSetConverter.ToDto(BindOpen.Meta.Elements.IBdoElementSet)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSetConverter.ToPoco(BindOpen.Data.Elements.BdoElementSetDto)">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSetConverter.ToPoco(BindOpen.Meta.Elements.BdoElementSetDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoElementSpecSetConverter">
+        <member name="T:BindOpen.Meta.Elements.BdoElementSpecSetConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSpecSetConverter.ToDto(BindOpen.Data.Elements.IBdoElementSpecSet)">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSpecSetConverter.ToDto(BindOpen.Meta.Elements.IBdoElementSpecSet)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoElementSpecSetConverter.ToPoco(BindOpen.Data.Elements.BdoElementSpecSetDto)">
+        <member name="M:BindOpen.Meta.Elements.BdoElementSpecSetConverter.ToPoco(BindOpen.Meta.Elements.BdoElementSpecSetDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.SourceElementConverter">
+        <member name="T:BindOpen.Meta.Elements.SourceElementConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementConverter.ToDto(BindOpen.Data.Elements.ISourceElement)">
+        <member name="M:BindOpen.Meta.Elements.SourceElementConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaSource)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementConverter.ToPoco(BindOpen.Data.Elements.SourceElementDto)">
+        <member name="M:BindOpen.Meta.Elements.SourceElementConverter.ToPoco(BindOpen.Meta.Elements.SourceElementDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.SourceElementSpecConverter">
+        <member name="T:BindOpen.Meta.Elements.SourceElementSpecConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementSpecConverter.ToDto(BindOpen.Data.Elements.ISourceElementSpec)">
+        <member name="M:BindOpen.Meta.Elements.SourceElementSpecConverter.ToDto(BindOpen.Meta.Elements.IBdoMetaSourceSpec)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.SourceElementSpecConverter.ToPoco(BindOpen.Data.Elements.SourceElementSpecDto)">
+        <member name="M:BindOpen.Meta.Elements.SourceElementSpecConverter.ToPoco(BindOpen.Meta.Elements.SourceElementSpecDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DatasourceConverter">
+        <member name="T:BindOpen.Meta.Items.DatasourceConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DatasourceConverter.ToDto(BindOpen.Data.Items.IBdoSource)">
+        <member name="M:BindOpen.Meta.Items.DatasourceConverter.ToDto(BindOpen.Meta.Items.IBdoDataSource)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DatasourceConverter.ToPoco(BindOpen.Data.Items.DatasourceDto)">
+        <member name="M:BindOpen.Meta.Items.DatasourceConverter.ToPoco(BindOpen.Meta.Items.DatasourceDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.KeyValuePairConverter">
+        <member name="T:BindOpen.Meta.Items.KeyValuePairConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.KeyValuePairConverter.ToDto(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+        <member name="M:BindOpen.Meta.Items.KeyValuePairConverter.ToDto(System.Collections.Generic.KeyValuePair{System.String,System.String})">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.KeyValuePairConverter.ToPoco(BindOpen.Data.Items.DataKeyValueDto)">
+        <member name="M:BindOpen.Meta.Items.KeyValuePairConverter.ToPoco(BindOpen.Meta.Items.DataKeyValueDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DictionaryDataItemConverter">
+        <member name="T:BindOpen.Meta.Items.DictionaryDataItemConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DictionaryDataItemConverter.ToDto(BindOpen.Data.Items.IBdoDictionary)">
+        <member name="M:BindOpen.Meta.Items.DictionaryDataItemConverter.ToDto(BindOpen.Meta.Items.IBdoDictionary)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DictionaryDataItemConverter.ToPoco(BindOpen.Data.Items.DictionaryDataItemDto)">
+        <member name="M:BindOpen.Meta.Items.DictionaryDataItemConverter.ToPoco(BindOpen.Meta.Items.DictionaryDataItemDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DataExpressionConverter">
+        <member name="T:BindOpen.Meta.Items.DataExpressionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DataExpressionConverter.ToDto(BindOpen.Data.Items.IBdoExpression)">
+        <member name="M:BindOpen.Meta.Items.DataExpressionConverter.ToDto(BindOpen.Meta.Items.IBdoExpression)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DataExpressionConverter.ToPoco(BindOpen.Data.Items.DataExpressionDto)">
+        <member name="M:BindOpen.Meta.Items.DataExpressionConverter.ToPoco(BindOpen.Meta.Items.DataExpressionDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.References.DataReferenceConverter">
+        <member name="T:BindOpen.Meta.References.DataReferenceConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToDto(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Meta.References.DataReferenceConverter.ToDto(BindOpen.Meta.Items.IBdoReference)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToPoco(BindOpen.Data.References.DataReferenceDto)">
+        <member name="M:BindOpen.Meta.References.DataReferenceConverter.ToPoco(BindOpen.Meta.References.DataReferenceDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Stores.DatasourceDepotConverter">
+        <member name="T:BindOpen.Meta.Stores.DatasourceDepotConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.DatasourceDepotConverter.ToDto(BindOpen.Data.Stores.IBdoSourceDepot)">
+        <member name="M:BindOpen.Meta.Stores.DatasourceDepotConverter.ToDto(BindOpen.Meta.Stores.IBdoSourceDepot)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.DatasourceDepotConverter.ToPoco(BindOpen.Data.Stores.BdoDatasourceDepotDto)">
+        <member name="M:BindOpen.Meta.Stores.DatasourceDepotConverter.ToPoco(BindOpen.Meta.Stores.BdoDatasourceDepotDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataConstraintStatementConverter">
+        <member name="T:BindOpen.Meta.Specification.DataConstraintStatementConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatementConverter.ToDto(BindOpen.Data.Specification.IDataConstraintStatement)">
+        <member name="M:BindOpen.Meta.Specification.DataConstraintStatementConverter.ToDto(BindOpen.Meta.Specification.IDataConstraintStatement)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatementConverter.ToPoco(BindOpen.Data.Specification.DataConstraintStatementDto)">
+        <member name="M:BindOpen.Meta.Specification.DataConstraintStatementConverter.ToPoco(BindOpen.Meta.Specification.DataConstraintStatementDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataSpecificationConverter">
+        <member name="T:BindOpen.Meta.Specification.DataSpecificationConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecificationConverter.ToDto(BindOpen.Data.Specification.IDataSpecification)">
+        <member name="M:BindOpen.Meta.Specification.DataSpecificationConverter.ToDto(BindOpen.Meta.Specification.IDataSpecification)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecificationConverter.ToPoco(BindOpen.Data.Specification.DataSpecificationDto)">
+        <member name="M:BindOpen.Meta.Specification.DataSpecificationConverter.ToPoco(BindOpen.Meta.Specification.DataSpecificationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterConverter">
+        <member name="T:BindOpen.Meta.Specification.DataValueFilterConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterConverter.ToDto(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterConverter.ToDto(BindOpen.Meta.Specification.IDataValueFilter)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterConverter.ToPoco(BindOpen.Data.Specification.DataValueFilterDto)">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterConverter.ToPoco(BindOpen.Meta.Specification.DataValueFilterDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterStatementConverter">
+        <member name="T:BindOpen.Meta.Specification.DataValueFilterStatementConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterStatementConverter.ToDto(BindOpen.Data.Specification.IDataValueFilterStatement)">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterStatementConverter.ToDto(BindOpen.Meta.Specification.IDataValueFilterStatement)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterStatementConverter.ToPoco(BindOpen.Data.Specification.DataValueFilterStatementDto)">
+        <member name="M:BindOpen.Meta.Specification.DataValueFilterStatementConverter.ToPoco(BindOpen.Meta.Specification.DataValueFilterStatementDto)">
             <summary>
             Converts to DTO.
             </summary>

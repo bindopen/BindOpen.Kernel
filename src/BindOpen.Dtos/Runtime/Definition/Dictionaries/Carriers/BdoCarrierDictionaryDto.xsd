@@ -5,7 +5,7 @@
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/carriers/CarrierDefinition.xsd" />
   <xs:include schemaLocation="https://docs.bindopen.org/xsd/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="carriers.dictionary" type="BdoCarrierDictionary" />
+  <xs:element name="carriers.dico" type="BdoCarrierDictionary" />
 
   <xs:complexType name="BdoCarrierDictionary">
     <xs:complexContent mixed="false">

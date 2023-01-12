@@ -1,6 +1,7 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests.Extensions.Data;
 using Bogus;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace BindOpen.Runtime.Tests.MetaData.Elements.Carrier
     {
         private dynamic _testData;
 
-        private IBdoElementSet _carrierElementSet = null;
+        private IBdoElementSet _metaCarrierSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -30,52 +31,52 @@ namespace BindOpen.Runtime.Tests.MetaData.Elements.Carrier
 
         public void Test(IBdoElementSet elementSet)
         {
-            var carrierElement1 = elementSet.GetItem<ICarrierElement>("carrier1");
-            var carrierElement2 = elementSet.GetItem<ICarrierElement>("carrier2");
-            var carrierElement3 = elementSet.Get<ICarrierElement>(2);
-            var carrierElement4 = elementSet.GetItem<ICarrierElement>("carrier4");
+            var metaCarrier1 = elementSet.GetItem<IBdoMetaCarrier>("carrier1");
+            var metaCarrier2 = elementSet.GetItem<IBdoMetaCarrier>("carrier2");
+            var metaCarrier3 = elementSet.Get<IBdoMetaCarrier>(2);
+            var metaCarrier4 = elementSet.GetItem<IBdoMetaCarrier>("carrier4");
 
             Assert.That(elementSet?.Count == 4, "Bad carrier element set - Count");
 
             Assert.That(
-                carrierElement1?.GetFirstItem().GetItem<string>("path") == _testData.path1
+                metaCarrier1?.GetFirstItem().GetItem<string>("path") == _testData.path1
                 , "Bad carrier element - Set1");
 
             Assert.That(
-                carrierElement2?.GetFirstItem()?.GetItem<string>("path") == _testData.path2
+                metaCarrier2?.GetFirstItem()?.GetItem<string>("path") == _testData.path2
                 , "Bad carrier element - Set2");
 
             Assert.That(
-                carrierElement3?.GetFirstItem()?.GetItem<string>("path") == _testData.path3
+                metaCarrier3?.GetFirstItem()?.GetItem<string>("path") == _testData.path3
                 , "Bad carrier element - Set3");
 
             Assert.That(
-                carrierElement4?.GetFirstItem()?.GetItem<string>("path") == _testData.path4
+                metaCarrier4?.GetFirstItem()?.GetItem<string>("path") == _testData.path4
                 , "Bad carrier element - Set4");
         }
 
         [Test, Order(1)]
         public void CreateCarrierElementSetTest()
         {
-            var carrierElement1 = BdoElements.NewCarrier(
+            var metaCarrier1 = BdoMeta.NewCarrier(
                 "carrier1",
                 BdoExtensions.NewCarrierConfiguration(
                     "tests.core$testCarrier",
-                    BdoElements.NewScalar("path", _testData.path1)));
+                    BdoMeta.NewScalar("path", _testData.path1)));
 
-            var carrierElement2 = BdoElements.NewCarrier("carrier2", "tests.core$testCarrier")
+            var metaCarrier2 = BdoMeta.NewCarrier("carrier2", "tests.core$testCarrier")
                 .WithItem((new { path = _testData.path2 }).AsElementSet<BdoCarrierConfiguration>());
 
-            var carrierElement3 = new CarrierFake(_testData.path3, _testData.folderPath3)?.AsElement();
+            var metaCarrier3 = new CarrierFake(_testData.path3, _testData.folderPath3)?.AsMeta();
 
-            var carrierElement4 = BdoExtensions.NewCarrier<CarrierFake>(
+            var metaCarrier4 = BdoExtensions.NewCarrier<CarrierFake>(
                 BdoExtensions.NewCarrierConfiguration("tests.core$testCarrier")
-                    .WithItems((new { path = _testData.path4 }).AsElementSet()?.ToArray()))?.AsElement();
+                    .WithItems((new { path = _testData.path4 }).AsElementSet()?.ToArray()))?.AsMeta();
 
-            _carrierElementSet = BdoElements.NewSet(
-                carrierElement1, carrierElement2, carrierElement3, carrierElement4);
+            _metaCarrierSet = BdoMeta.NewSet(
+                metaCarrier1, metaCarrier2, metaCarrier3, metaCarrier4);
 
-            Test(_carrierElementSet);
+            Test(_metaCarrierSet);
         }
     }
 }

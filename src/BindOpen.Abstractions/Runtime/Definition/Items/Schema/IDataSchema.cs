@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements.Schema;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements.Schema;
+using BindOpen.Meta.Items;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -21,7 +21,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        ISchemaZoneElement RootZone { get; set; }
+        IBdoMetaSchemaZone RootZone { get; set; }
 
         /// <summary>
         /// 
@@ -29,6 +29,6 @@ namespace BindOpen.Runtime.Definition
         /// <param name="id"></param>
         /// <param name="parentMetobject1"></param>
         /// <returns></returns>
-        ISchemaElement GetElementWithId(string id, ISchemaElement parentMetobject1 = null);
+        IBdoMetaSchema GetElementWithId(string id, IBdoMetaSchema parentMetobject1 = null);
     }
 }

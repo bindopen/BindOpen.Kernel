@@ -1,7 +1,7 @@
-﻿using BindOpen.Data.Specification;
+﻿using BindOpen.Meta.Specification;
 using System.Linq;
 
-namespace BindOpen.Data.Elements
+namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -13,7 +13,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ScalarElementSpecDto ToDto(this IScalarElementSpec poco)
+        public static ScalarElementSpecDto ToDto(this IBdoMetaScalarSpec poco)
         {
             if (poco == null) return null;
 
@@ -43,11 +43,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IScalarElementSpec ToPoco(this ScalarElementSpecDto dto)
+        public static IBdoMetaScalarSpec ToPoco(this ScalarElementSpecDto dto)
         {
             if (dto == null) return null;
 
-            ScalarElementSpec poco = new()
+            BdoMetaScalarSpec poco = new()
             {
                 //AccessibilityLevel = dto.AccessibilityLevel,
                 //Aliases = dto.Aliases?.ToList(),

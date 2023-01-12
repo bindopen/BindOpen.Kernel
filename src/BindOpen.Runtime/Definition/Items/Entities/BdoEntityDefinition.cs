@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +20,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        public IBdoElementSpecSet DetailSpec { get; set; } = new BdoElementSpecSet();
+        public IBdoElementSpecSet DetailSpec { get; set; } = new BdoMetaElementSpecSet();
 
         /// <summary>
         /// Formats of this instance.

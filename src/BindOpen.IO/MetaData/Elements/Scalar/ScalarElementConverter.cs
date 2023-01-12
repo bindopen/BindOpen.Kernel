@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.References;
+﻿using BindOpen.Meta.Items;
+using BindOpen.Meta.References;
 using System.Linq;
 
-namespace BindOpen.Data.Elements
+namespace BindOpen.Meta.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -14,7 +14,7 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ScalarElementDto ToDto(this IScalarElement poco)
+        public static ScalarElementDto ToDto(this IBdoMetaScalar poco)
         {
             if (poco == null) return null;
 
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Elements
                 Title = poco.Title?.ToDto(),
                 ValueType = poco.ValueType
             };
-            poco.WithSpecifications(poco.Specs.Select(q => q?.ToDto()).Cast<IBdoElementSpec>().ToArray());
+            poco.WithSpecifications(poco.Specs.Select(q => q?.ToDto()).Cast<IBdoMetaElementSpec>().ToArray());
 
             if (poco.ItemizationMode == DataItemizationMode.Valued)
             {
@@ -53,11 +53,11 @@ namespace BindOpen.Data.Elements
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IScalarElement ToPoco(this ScalarElementDto dto)
+        public static IBdoMetaScalar ToPoco(this ScalarElementDto dto)
         {
             if (dto == null) return null;
 
-            ScalarElement poco = new();
+            BdoMetaScalar poco = new();
 
             poco
                 .WithName(dto.Name)

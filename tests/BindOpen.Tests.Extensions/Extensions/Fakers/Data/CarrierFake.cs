@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
+using BindOpen.Meta.Items;
 
 namespace BindOpen.Runtime.Tests.Extensions.Data
 {
@@ -26,33 +26,33 @@ namespace BindOpen.Runtime.Tests.Extensions.Data
         /// <summary>
         /// The boolean value of this instance.
         /// </summary>
-        [BdoElement(Name = "boolValue")]
+        [BdoMeta(Name = "boolValue")]
         public bool BoolValue { get; set; }
 
         /// <summary>
         /// The string value of this instance.
         /// </summary>
-        [BdoElement(Name = "stringValue")]
+        [BdoMeta(Name = "stringValue")]
         public string StringValue { get; set; }
 
         /// <summary>
         /// The integer value of this instance.
         /// </summary>
-        [BdoElement(Name = "intValue")]
+        [BdoMeta(Name = "intValue")]
         public int IntValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoElement(Name = "enumValue")]
+        [BdoMeta(Name = "enumValue")]
         public ActionPriorities EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoElement(Name = "inputs")]
+        [BdoMeta(Name = "inputs")]
         [BdoScriptword(Name = "input")]
-        public BdoElementSet Inputs { get; set; }
+        public BdoMetaElementSet Inputs { get; set; }
 
         #endregion
 

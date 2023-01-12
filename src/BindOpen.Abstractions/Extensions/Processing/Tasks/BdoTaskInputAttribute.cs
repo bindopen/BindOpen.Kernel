@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using System;
 
 namespace BindOpen.Extensions.Processing
@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Processing
     /// This class represents a input property attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class BdoTaskInputAttribute : BdoElementAttribute
+    public class BdoTaskInputAttribute : BdoMetaAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

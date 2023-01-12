@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Conditions
+namespace BindOpen.Meta.Conditions
 {
 
     /// <summary>

@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Context;
-using BindOpen.Data.Stores;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Context;
+using BindOpen.Meta.Stores;
 using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
 using BindOpen.Runtime.References;

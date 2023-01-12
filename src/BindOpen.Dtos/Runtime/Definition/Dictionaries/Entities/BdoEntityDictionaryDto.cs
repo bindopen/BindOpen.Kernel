@@ -5,10 +5,10 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a DTO entity dictionary.
+    /// This class represents a DTO entity dico.
     /// </summary>
     [XmlType("EntityDictionary", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "entities.dictionary", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlRoot(ElementName = "entities.dico", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
     public class BdoEntityDictionaryDto
         : TBdoExtensionDictionaryDto<BdoEntityDefinitionDto>
     {

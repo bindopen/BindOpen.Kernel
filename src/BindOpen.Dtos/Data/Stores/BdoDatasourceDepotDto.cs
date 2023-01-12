@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Stores
+namespace BindOpen.Meta.Stores
 {
     /// <summary>
     /// This class represents a datasource depot.

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Processing
@@ -12,12 +12,12 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoRoutineConfiguration Add(params IBdoElement[] items);
+        new IBdoRoutineConfiguration Add(params IBdoMetaElement[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoRoutineConfiguration WithItems(params IBdoElement[] items);
+        new IBdoRoutineConfiguration WithItems(params IBdoMetaElement[] items);
     }
 }

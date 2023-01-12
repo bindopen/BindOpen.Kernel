@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions;
-using BindOpen.Data;
-using BindOpen.Data.Items;
+using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using BindOpen.Runtime.Tests;
 using NUnit.Framework;
 using System.IO;
@@ -10,7 +10,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
     [TestFixture, Order(210)]
     public class DatasourceTests
     {
-        private IBdoSource _datasource;
+        private IBdoDataSource _datasource;
         private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Datasource.xml";
         private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Datasource.json";
 
@@ -22,7 +22,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         [Test, Order(1)]
         public void CreateDatasourceTest()
         {
-            _datasource = BdoItems.NewDatasource("name", DatasourceKind.Database)
+            _datasource = BdoMeta.NewDatasource("name", DatasourceKind.Database)
                 .WithConfiguration(
                     BdoExtensions.NewConnectorConfiguration("tests.core$test")
                         ?.WithConnectionString("connectionString"));
@@ -31,7 +31,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
                 _datasource != null, "Bad data source creation");
         }
 
-        private void Test(IBdoSource source)
+        private void Test(IBdoDataSource source)
         {
             Assert.That(
                 source.GetConfiguration("tests.core$test") != null, "Datasource - Configuration not found");

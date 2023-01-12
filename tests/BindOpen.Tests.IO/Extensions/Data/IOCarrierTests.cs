@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests;
 using BindOpen.Runtime.Tests.Extensions;
 using BindOpen.Runtime.Tests.Extensions.Data;

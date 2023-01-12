@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a BindOpen extension dictionary.
+    /// This class represents a BindOpen extension dico.
     /// </summary>
     /// <typeparam name="T">The class of extension item definition to consider.</typeparam>
     public class TBdoExtensionDictionaryDto<T> : StoredDataItemDto

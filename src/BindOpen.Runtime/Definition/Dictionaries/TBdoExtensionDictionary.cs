@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq;
 namespace BindOpen.Runtime.Definition
 {
     /// <summary>
-    /// This class represents a BindOpen extension dictionary.
+    /// This class represents a BindOpen extension dico.
     /// </summary>
     /// <typeparam name="T">The class of extension item definition to consider.</typeparam>
     public class TBdoExtensionDictionary<T> : BdoItem,
@@ -190,7 +191,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public IBdoExtensionDictionary WithName(string name)
         {
-            Name = BdoItems.NewName(name, "spec_");
+            Name = BdoMeta.NewName(name, "spec_");
             return this;
         }
 
@@ -209,14 +210,14 @@ namespace BindOpen.Runtime.Definition
 
         public IBdoExtensionDictionary AddTitle(KeyValuePair<string, string> item)
         {
-            Title ??= BdoItems.NewDictionary();
+            Title ??= BdoMeta.NewDictionary();
             Title.Add(item);
             return this;
         }
 
-        public IBdoExtensionDictionary WithTitle(IBdoDictionary dictionary)
+        public IBdoExtensionDictionary WithTitle(IBdoDictionary dico)
         {
-            Title = dictionary;
+            Title = dico;
             return this;
         }
 
@@ -240,14 +241,14 @@ namespace BindOpen.Runtime.Definition
 
         public IBdoExtensionDictionary AddDescription(KeyValuePair<string, string> item)
         {
-            Description ??= BdoItems.NewDictionary();
+            Description ??= BdoMeta.NewDictionary();
             Description.Add(item);
             return this;
         }
 
-        public IBdoExtensionDictionary WithDescription(IBdoDictionary dictionary)
+        public IBdoExtensionDictionary WithDescription(IBdoDictionary dico)
         {
-            Description = dictionary;
+            Description = dico;
             return this;
         }
 

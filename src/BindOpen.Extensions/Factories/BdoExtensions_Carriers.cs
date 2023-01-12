@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions.Modeling;
-using BindOpen.Data;
-using BindOpen.Data.Elements;
+using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 
 namespace BindOpen.Extensions
 {
@@ -20,7 +20,7 @@ namespace BindOpen.Extensions
         {
             T carrier = new();
             carrier.WithConfiguration(config);
-            carrier.UpdateFromElementSet<BdoElementAttribute>(config);
+            carrier.UpdateFromElementSet<BdoMetaAttribute>(config);
 
             return carrier;
         }
@@ -31,7 +31,7 @@ namespace BindOpen.Extensions
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoCarrierConfiguration NewCarrierConfiguration(
             string definitionUniqueId,
-            params IBdoElement[] items)
+            params IBdoMetaElement[] items)
         {
             var config = new BdoCarrierConfiguration(definitionUniqueId);
             config.WithItems(items);

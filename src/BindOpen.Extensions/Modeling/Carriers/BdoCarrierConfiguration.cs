@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Elements;
+﻿using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Modeling
@@ -43,7 +43,7 @@ namespace BindOpen.Extensions.Modeling
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoCarrierConfiguration Add(params IBdoElement[] items)
+        public new IBdoCarrierConfiguration Add(params IBdoMetaElement[] items)
         {
             base.Add(items);
             return this;
@@ -53,7 +53,7 @@ namespace BindOpen.Extensions.Modeling
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoCarrierConfiguration WithItems(params IBdoElement[] items)
+        public new IBdoCarrierConfiguration WithItems(params IBdoMetaElement[] items)
         {
             base.WithItems(items);
             return this;

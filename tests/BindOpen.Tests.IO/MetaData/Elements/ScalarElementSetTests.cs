@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Elements;
+﻿using BindOpen.Meta;
+using BindOpen.Meta.Elements;
 using BindOpen.Runtime.Tests;
 using Bogus;
 using NUnit.Framework;
@@ -33,10 +33,10 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
 
         private void Test(IBdoElementSet elementSet)
         {
-            var scalarElement1 = elementSet.Get<IScalarElement>("float1");
-            var scalarElement2 = elementSet.Get<IScalarElement>("text2");
-            var scalarElement3 = elementSet.Get<IScalarElement>(2);
-            var scalarElement4 = elementSet.Get<IScalarElement>("byteArray4");
+            var scalarElement1 = elementSet.Get<IBdoMetaScalar>("float1");
+            var scalarElement2 = elementSet.Get<IBdoMetaScalar>("text2");
+            var scalarElement3 = elementSet.Get<IBdoMetaScalar>(2);
+            var scalarElement4 = elementSet.Get<IBdoMetaScalar>("byteArray4");
 
             Assert.That(
                 _elementSet.Count == 4, "Bad scalar element set - Count");
@@ -67,7 +67,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(1)]
         public void TestCreateElementWithNullValue()
         {
-            var element1 = BdoElements.NewScalar("null1", null);
+            var element1 = BdoMeta.NewScalar("null1", null);
 
             Assert.That(
                 element1 != null, "Bad scalar element creation");
@@ -76,12 +76,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(2)]
         public void CreateElementSetTest()
         {
-            var element1 = BdoElements.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1);
-            var element2 = BdoElements.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2);
-            var element3 = BdoElements.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3);
-            var element4 = BdoElements.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4);
+            var element1 = BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1);
+            var element2 = BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2);
+            var element3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3);
+            var element4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4);
 
-            _elementSet = BdoElements.NewSet(element1, element2, element3, element4);
+            _elementSet = BdoMeta.NewSet(element1, element2, element3, element4);
 
             Test(_elementSet);
         }
@@ -89,18 +89,18 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(3)]
         public void UpdateCheckRepairTest()
         {
-            var elementAA = BdoElements.NewScalar("name1", null);
-            var elementAB = BdoElements.NewScalar("name1", "Test1");
+            var elementAA = BdoMeta.NewScalar("name1", null);
+            var elementAB = BdoMeta.NewScalar("name1", "Test1");
             elementAA.Repair(elementAB);
 
-            var elementSetA = BdoElements.NewSet(elementAA, elementAB);
+            var elementSetA = BdoMeta.NewSet(elementAA, elementAB);
 
 
-            var elementBA = BdoElements.NewScalar("name1", "Test1");
-            var elementBB = BdoElements.NewScalar("name1", null);
+            var elementBA = BdoMeta.NewScalar("name1", "Test1");
+            var elementBB = BdoMeta.NewScalar("name1", null);
             elementBA.Repair(elementBB);
 
-            var elementSetB = BdoElements.NewSet(elementBA, elementBB);
+            var elementSetB = BdoMeta.NewSet(elementBA, elementBB);
 
             elementSetB.Add(elementBB);
             elementSetA.Add(elementAB);
@@ -108,14 +108,14 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
 
             elementSetA.Add(null);
             elementSetB.Add(null);
-            elementSetB.Add(BdoElements.NewElement("name1", null));
-            elementSetB.Add(BdoElements.NewElement("name3", null));
-            elementSetB.Add(BdoElements.NewElement("name4", null));
-            elementSetB.Add(BdoElements.NewElement("name5", DataValueTypes.Text));
-            elementSetA.Add(BdoElements.NewElement("name1", null));
-            elementSetA.Add(BdoElements.NewElement("name2", null));
-            elementSetA.Add(BdoElements.NewScalar("name4", DataValueTypes.Text, null));
-            elementSetA.Add(BdoElements.NewElement("name5", null));
+            elementSetB.Add(BdoMeta.NewElement("name1", null));
+            elementSetB.Add(BdoMeta.NewElement("name3", null));
+            elementSetB.Add(BdoMeta.NewElement("name4", null));
+            elementSetB.Add(BdoMeta.NewElement("name5", DataValueTypes.Text));
+            elementSetA.Add(BdoMeta.NewElement("name1", null));
+            elementSetA.Add(BdoMeta.NewElement("name2", null));
+            elementSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
+            elementSetA.Add(BdoMeta.NewElement("name5", null));
             elementSetB.Repair(elementSetA);
             elementSetB.Update(elementSetA);
         }
@@ -123,11 +123,11 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(4)]
         public void ElementToStringTest()
         {
-            var el = BdoElements.NewScalar(DataValueTypes.Text, _testData.arrayString2[0]);
+            var el = BdoMeta.NewScalar(DataValueTypes.Text, _testData.arrayString2[0]);
             var st = el.ToString();
             Assert.That(st == _testData.arrayString2[0], "Bad scalar element - ToString");
 
-            el = BdoElements.NewScalar(DataValueTypes.Text, _testData.arrayInteger3[0]);
+            el = BdoMeta.NewScalar(DataValueTypes.Text, _testData.arrayInteger3[0]);
             st = el.ToString();
             Assert.That(st == _testData.arrayInteger3[0].ToString(), "Bad scalar element - ToString");
         }
