@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 

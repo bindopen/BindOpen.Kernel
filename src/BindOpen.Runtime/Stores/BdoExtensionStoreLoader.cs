@@ -1,12 +1,13 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Runtime.Stores
@@ -53,6 +54,11 @@ namespace BindOpen.Runtime.Stores
 
             var loaded = true;
 
+            if (references?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
+            {
+                references = _appDomain.GetAssemblies().Select(q => BdoRtm.Assembly(q)).ToArray();
+            }
+
             foreach (IBdoAssemblyReference reference in references)
             {
                 if (reference != null)
@@ -91,19 +97,24 @@ namespace BindOpen.Runtime.Stores
 
                     // first we load the assembly
 
-                    IBdoLog firstLog = log?.NewLog()
-                        .WithDisplayName("Loading library '" + libraryReference.Name + "'") as IBdoLog;
+                    IBdoLog newLog = log?.NewLog()
+                        .WithDisplayName("Loading library '" + libraryReference.Name + "'");
 
                     foreach (DatasourceKind dataSourceKind in _loadOptions?.SourceKinds)
                     {
-                        IBdoLog subLog = firstLog?.AddSubLog(title: "Loading assembly from '" + dataSourceKind.ToString() + "'", eventKind: EventKinds.Message);
+                        IBdoLog subLog = newLog?.AddSubLog(
+                            title: "Loading assembly from '" + dataSourceKind.ToString() + "'",
+                            eventKind: EventKinds.Message);
 
                         switch (dataSourceKind)
                         {
                             case DatasourceKind.Memory:
                                 if (!string.IsNullOrEmpty(libraryReference.Name))
                                 {
-                                    assembly = AppDomainPool.LoadAssembly(_appDomain, libraryReference.Name, subLog);
+                                    assembly = AppDomainPool.LoadAssembly(
+                                        _appDomain,
+                                        libraryReference.Name,
+                                        subLog);
                                 }
                                 else
                                 {
@@ -154,7 +165,7 @@ namespace BindOpen.Runtime.Stores
 
                     if (assembly == null)
                     {
-                        log?.AddSubLog(firstLog, p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
+                        log?.AddSubLog(newLog, p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
                         loaded = false;
                     }
                     else
@@ -177,7 +188,7 @@ namespace BindOpen.Runtime.Stores
                                 {
                                     fileName += ".dll";
                                 }
-                                IBdoAssemblyReference reference = BdoRuntime.Assembly(st).WithFileName(fileName);
+                                IBdoAssemblyReference reference = BdoRtm.Assembly(st).WithFileName(fileName);
 
                                 IBdoLog subSubLog = log?.NewLog()
                                     .WithDisplayName("Loading using extensions...") as IBdoLog;

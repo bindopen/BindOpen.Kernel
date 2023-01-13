@@ -1,10 +1,10 @@
-﻿using BindOpen.Meta.Conditions;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Specification;
+﻿using BindOpen.MetaData.Conditions;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Specification;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element specification.

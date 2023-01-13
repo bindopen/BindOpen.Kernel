@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This class represents the data constraint statement.

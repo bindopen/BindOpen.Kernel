@@ -1,7 +1,7 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta.Configuration;
+using BindOpen.MetaData.Configuration;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.

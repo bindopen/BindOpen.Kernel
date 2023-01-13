@@ -1,6 +1,6 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Runtime.CompilerServices;

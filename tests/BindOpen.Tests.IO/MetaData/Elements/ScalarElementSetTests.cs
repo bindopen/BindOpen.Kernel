@@ -1,12 +1,11 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Runtime.Tests;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(202)]
     public class ScalarElementSetTests
@@ -16,7 +15,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
 
         private dynamic _testData;
 
-        private IBdoElementSet _elementSet = null;
+        private IBdoElementSet _elemSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -31,15 +30,15 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
             };
         }
 
-        private void Test(IBdoElementSet elementSet)
+        private void Test(IBdoElementSet elemSet)
         {
-            var scalarElement1 = elementSet.Get<IBdoMetaScalar>("float1");
-            var scalarElement2 = elementSet.Get<IBdoMetaScalar>("text2");
-            var scalarElement3 = elementSet.Get<IBdoMetaScalar>(2);
-            var scalarElement4 = elementSet.Get<IBdoMetaScalar>("byteArray4");
+            var scalarElement1 = elemSet.Get<IBdoMetaScalar>("float1");
+            var scalarElement2 = elemSet.Get<IBdoMetaScalar>("text2");
+            var scalarElement3 = elemSet.Get<IBdoMetaScalar>(2);
+            var scalarElement4 = elemSet.Get<IBdoMetaScalar>("byteArray4");
 
             Assert.That(
-                _elementSet.Count == 4, "Bad scalar element set - Count");
+                _elemSet.Count == 4, "Bad scalar element set - Count");
 
             var scalar1 = scalarElement1.GetItemList<double>();
             var scalar2 = scalarElement2.GetItemList<string>();
@@ -81,9 +80,9 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
             var element3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3);
             var element4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4);
 
-            _elementSet = BdoMeta.NewSet(element1, element2, element3, element4);
+            _elemSet = BdoMeta.NewSet(element1, element2, element3, element4);
 
-            Test(_elementSet);
+            Test(_elemSet);
         }
 
         [Test, Order(3)]
@@ -93,31 +92,31 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
             var elementAB = BdoMeta.NewScalar("name1", "Test1");
             elementAA.Repair(elementAB);
 
-            var elementSetA = BdoMeta.NewSet(elementAA, elementAB);
+            var elemSetA = BdoMeta.NewSet(elementAA, elementAB);
 
 
             var elementBA = BdoMeta.NewScalar("name1", "Test1");
             var elementBB = BdoMeta.NewScalar("name1", null);
             elementBA.Repair(elementBB);
 
-            var elementSetB = BdoMeta.NewSet(elementBA, elementBB);
+            var elemSetB = BdoMeta.NewSet(elementBA, elementBB);
 
-            elementSetB.Add(elementBB);
-            elementSetA.Add(elementAB);
-            elementSetB.Update(elementSetA);
+            elemSetB.Add(elementBB);
+            elemSetA.Add(elementAB);
+            elemSetB.Update(elemSetA);
 
-            elementSetA.Add(null);
-            elementSetB.Add(null);
-            elementSetB.Add(BdoMeta.NewElement("name1", null));
-            elementSetB.Add(BdoMeta.NewElement("name3", null));
-            elementSetB.Add(BdoMeta.NewElement("name4", null));
-            elementSetB.Add(BdoMeta.NewElement("name5", DataValueTypes.Text));
-            elementSetA.Add(BdoMeta.NewElement("name1", null));
-            elementSetA.Add(BdoMeta.NewElement("name2", null));
-            elementSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
-            elementSetA.Add(BdoMeta.NewElement("name5", null));
-            elementSetB.Repair(elementSetA);
-            elementSetB.Update(elementSetA);
+            elemSetA.Add(null);
+            elemSetB.Add(null);
+            elemSetB.Add(BdoMeta.NewElement("name1", null));
+            elemSetB.Add(BdoMeta.NewElement("name3", null));
+            elemSetB.Add(BdoMeta.NewElement("name4", null));
+            elemSetB.Add(BdoMeta.NewElement("name5", DataValueTypes.Text));
+            elemSetA.Add(BdoMeta.NewElement("name1", null));
+            elemSetA.Add(BdoMeta.NewElement("name2", null));
+            elemSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
+            elemSetA.Add(BdoMeta.NewElement("name5", null));
+            elemSetB.Repair(elemSetA);
+            elemSetB.Update(elemSetA);
         }
 
         [Test, Order(4)]
@@ -137,12 +136,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(5)]
         public void SaveXmlBdoElementSetTest()
         {
-            if (_elementSet == null)
+            if (_elemSet == null)
             {
                 CreateElementSetTest();
             }
 
-            var isSaved = _elementSet.ToDto().SaveXml(_filePath_xml);
+            var isSaved = _elemSet.ToDto().SaveXml(_filePath_xml);
 
             Assert.That(isSaved, "Element set saving failed. ");
         }
@@ -150,14 +149,14 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(6)]
         public void LoadXmlBdoElementSetTest()
         {
-            if (_elementSet == null || !File.Exists(_filePath_xml))
+            if (_elemSet == null || !File.Exists(_filePath_xml))
             {
                 SaveXmlBdoElementSetTest();
             }
 
-            var elementSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath_xml).ToPoco();
+            var elemSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath_xml).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
 
         // Json
@@ -165,12 +164,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(7)]
         public void SaveJsonBdoElementSetTest()
         {
-            if (_elementSet == null)
+            if (_elemSet == null)
             {
                 CreateElementSetTest();
             }
 
-            var isSaved = _elementSet.ToDto().SaveJson(_filePath_json);
+            var isSaved = _elemSet.ToDto().SaveJson(_filePath_json);
 
             Assert.That(isSaved, "Element set saving failed. ");
         }
@@ -178,14 +177,14 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         [Test, Order(8)]
         public void LoadJsonBdoElementSetTest()
         {
-            if (_elementSet == null || !File.Exists(_filePath_json))
+            if (_elemSet == null || !File.Exists(_filePath_json))
             {
                 SaveJsonBdoElementSetTest();
             }
 
-            var elementSet = JsonHelper.LoadJson<BdoElementSetDto>(_filePath_json).ToPoco();
+            var elemSet = JsonHelper.LoadJson<BdoElementSetDto>(_filePath_json).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
     }
 }

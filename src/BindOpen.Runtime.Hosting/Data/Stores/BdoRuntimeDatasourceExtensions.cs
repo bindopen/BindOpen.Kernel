@@ -1,7 +1,7 @@
-﻿using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
+﻿using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 
-namespace BindOpen.Meta.Stores
+namespace BindOpen.MetaData.Stores
 {
     /// <summary>
     /// This class represents a runtime data source extensions.

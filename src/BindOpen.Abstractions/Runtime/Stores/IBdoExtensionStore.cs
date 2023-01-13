@@ -1,5 +1,5 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Meta;
+using BindOpen.MetaData;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 

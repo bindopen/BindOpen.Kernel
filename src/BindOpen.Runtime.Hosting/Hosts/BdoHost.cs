@@ -1,8 +1,8 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Context;
-using BindOpen.Meta.Stores;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Context;
+using BindOpen.MetaData.Stores;
 using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Runtime.Services;
@@ -394,9 +394,13 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="references">The extension references to consider.</param>
         /// <param name="log">The log to consider.</param>
         public bool LoadExtensions(
-            IBdoExtensionReference[] references,
+            IBdoAssemblyReference[] references,
             IBdoLog log = null)
             => Scope?.LoadExtensions(references, log) ?? false;
+
+        public bool LoadExtensions(
+            params IBdoAssemblyReference[] references)
+            => LoadExtensions(references, null);
 
         /// <summary>
         /// Loads the specified extensions.
@@ -406,9 +410,14 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="log">The log to consider.</param>
         public bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            IBdoExtensionReference[] references,
+            IBdoAssemblyReference[] references,
             IBdoLog log = null)
             => Scope?.LoadExtensions(loadOptionsAction, references, log) ?? false;
+
+        public bool LoadExtensions(
+            Func<IExtensionLoadOptions, bool> loadOptionsAction,
+            params IBdoAssemblyReference[] references)
+            => LoadExtensions(loadOptionsAction, references, null);
 
         /// <summary>
         /// Clears this instance.

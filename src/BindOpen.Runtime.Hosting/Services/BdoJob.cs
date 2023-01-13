@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Scopes;
@@ -249,7 +249,7 @@ namespace BindOpen.Runtime.Services
         {
             // we initialize the application scope
 
-            Scope = BdoRuntime.NewScope();
+            Scope = BdoRtm.NewScope();
             Scope.Context.AddSystemItem("bdoHost", this);
 
             _isLoaded = true;

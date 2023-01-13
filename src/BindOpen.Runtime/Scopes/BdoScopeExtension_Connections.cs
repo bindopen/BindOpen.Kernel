@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -26,10 +26,10 @@ namespace BindOpen.Runtime.Scopes
         {
             if (dataSource == null)
                 log?.AddError("Data source missing");
-            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId) && dataSource.HasConfiguration(connectorDefinitionUniqueId))
+            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId) && dataSource.HasConfig(connectorDefinitionUniqueId))
                 log?.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
-                return scope.Open<T>(dataSource.GetConfiguration(connectorDefinitionUniqueId), log);
+                return scope.Open<T>(dataSource.GetConfig(connectorDefinitionUniqueId), log);
             else if (dataSource.Configurations.Count > 0)
                 return scope.Open<T>(dataSource.Configurations[0], log);
 

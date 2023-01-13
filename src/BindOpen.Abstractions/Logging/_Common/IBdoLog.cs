@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta;
+﻿using BindOpen.MetaData;
 using BindOpen.Extensions.Processing;
 using System;
 using System.Collections.Generic;

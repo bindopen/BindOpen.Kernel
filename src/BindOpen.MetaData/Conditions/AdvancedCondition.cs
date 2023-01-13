@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Conditions
+namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This class represents an advanced condition.

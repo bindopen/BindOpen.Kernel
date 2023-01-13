@@ -1,10 +1,9 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
-using BindOpen.Runtime.Tests;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Items
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(210)]
     public class DictionaryTests
@@ -75,9 +74,9 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
                 SaveXmlTest();
             }
 
-            var elementSet = XmlHelper.LoadXml<DictionaryDataItemDto>(_filePath_xml).ToPoco();
+            var elemSet = XmlHelper.LoadXml<DictionaryDataItemDto>(_filePath_xml).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
 
         // Json
@@ -103,9 +102,9 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
                 SaveJsonTest();
             }
 
-            var elementSet = JsonHelper.LoadJson<DictionaryDataItemDto>(_filePath_json).ToPoco();
+            var elemSet = JsonHelper.LoadJson<DictionaryDataItemDto>(_filePath_json).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
 
     }

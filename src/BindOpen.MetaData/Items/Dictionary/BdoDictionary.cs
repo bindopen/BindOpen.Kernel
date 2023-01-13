@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a dico data item.
@@ -56,7 +56,7 @@ namespace BindOpen.Meta.Items
         public static implicit operator BdoDictionary(string text)
         {
             var dico = BdoMeta.NewDictionary();
-            dico.Set("*", text);
+            dico.Set(StringHelper.__Star, text);
 
             return dico;
         }
@@ -111,7 +111,7 @@ namespace BindOpen.Meta.Items
         /// <returns>Returns the added data key value.</returns>
         public IBdoDictionary Add(string text)
         {
-            return Add("*", text);
+            return Add(StringHelper.__Star, text);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace BindOpen.Meta.Items
         /// <param name="text">The text of the value to add.</param>
         public IBdoDictionary Set(string text)
         {
-            Set("*", text);
+            Set(StringHelper.__Star, text);
 
             return this;
         }
@@ -176,7 +176,7 @@ namespace BindOpen.Meta.Items
         /// <param name="key"></param>
         /// <param name="alternateKey"></param>
         /// <returns></returns>
-        public string Get(string key = "*", string alternateKey = null)
+        public string Get(string key = StringHelper.__Star, string alternateKey = null)
         {
             if (key == null) return default;
 
@@ -248,7 +248,7 @@ namespace BindOpen.Meta.Items
         /// <param name="alternateKey">The alternate key to used if the key is not found.</param>
         /// <returns>Returns the text corresponding to the specified user interface language ID.
         /// Returns empty if there is none.</returns>
-        private string GetValue(string key = "*", string alternateKey = null)
+        private string GetValue(string key = StringHelper.__Star, string alternateKey = null)
         {
             TryGetValue(key, out string value);
             if (value != null)

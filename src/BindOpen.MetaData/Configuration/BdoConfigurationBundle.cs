@@ -1,7 +1,7 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta.Configuration
+namespace BindOpen.MetaData.Configuration
 {
     /// <summary>
     /// This class represents a configuration.

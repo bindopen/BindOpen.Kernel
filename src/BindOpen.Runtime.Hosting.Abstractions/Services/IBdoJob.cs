@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using Microsoft.Extensions.Logging;

@@ -1,8 +1,8 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This abstract class represents a data specification.
@@ -276,7 +276,7 @@ namespace BindOpen.Meta.Specification
             return this;
         }
 
-        public string GetTitleText(string key = "*", string defaultKey = "*")
+        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Title?[key, defaultKey];
         }
@@ -307,7 +307,7 @@ namespace BindOpen.Meta.Specification
             return this;
         }
 
-        public string GetDescriptionText(string key = "*", string defaultKey = "*")
+        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Description?[key, defaultKey];
         }

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Meta.Elements;
+using BindOpen.MetaData.Elements;
 
-namespace BindOpen.Meta.Conditions
+namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

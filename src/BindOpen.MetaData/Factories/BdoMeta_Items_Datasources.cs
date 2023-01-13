@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 
-namespace BindOpen.Meta
+namespace BindOpen.MetaData
 {
     /// <summary>
     /// This class represents a data item factory.
@@ -23,7 +23,7 @@ namespace BindOpen.Meta
             var datasource = new BdoDatasource();
             datasource
                 .WithKind(kind)
-                .WithConfiguration(configs);
+                .WithConfig(configs);
 
             return datasource;
         }
@@ -42,7 +42,7 @@ namespace BindOpen.Meta
             var datasource = new BdoDatasource(name);
             datasource
                 .WithKind(kind)
-                .WithConfiguration(configs);
+                .WithConfig(configs);
 
             return datasource;
         }

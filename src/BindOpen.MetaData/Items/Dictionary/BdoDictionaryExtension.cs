@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a dico data item extension.

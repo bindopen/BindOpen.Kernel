@@ -1,4 +1,5 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 
 namespace BindOpen.Runtime.References
 {
@@ -55,6 +56,17 @@ namespace BindOpen.Runtime.References
             Name = name;
             Version = version;
         }
+
+        #endregion
+
+        // --------------------------------------------------
+        // ACCESSORS
+        // --------------------------------------------------
+
+        #region Accessors
+
+        public string Key()
+            => Name == StringHelper.__Star ? StringHelper.__Star : Name + "$" + Version;
 
         #endregion
 

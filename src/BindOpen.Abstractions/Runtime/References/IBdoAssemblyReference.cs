@@ -1,11 +1,12 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 
 namespace BindOpen.Runtime.References
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoAssemblyReference : IBdoItem
+    public interface IBdoAssemblyReference : IBdoItem, IReferenced
     {
         /// <summary>
         /// The library name of this instance.

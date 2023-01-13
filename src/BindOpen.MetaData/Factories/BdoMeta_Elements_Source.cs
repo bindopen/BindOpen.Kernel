@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Meta.Elements;
+using BindOpen.MetaData.Elements;
 
-namespace BindOpen.Meta
+namespace BindOpen.MetaData
 {
     /// <summary>
     /// This static class provides methods to create data els.

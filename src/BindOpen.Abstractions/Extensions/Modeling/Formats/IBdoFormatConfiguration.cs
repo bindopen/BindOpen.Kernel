@@ -1,5 +1,5 @@
 ﻿using BindOpen.Runtime.Definition;
-using BindOpen.Meta.Elements;
+using BindOpen.MetaData.Elements;
 using BindOpen.Extensions;
 
 namespace BindOpen.Extensions.Modeling

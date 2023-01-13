@@ -1,7 +1,7 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System.Collections.Generic;
 
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This interface specifies the value filter statement.

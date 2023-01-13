@@ -1,8 +1,8 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Meta.Specification;
+using BindOpen.MetaData.Specification;
 using System.Reflection;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element set.
@@ -23,7 +23,7 @@ namespace BindOpen.Meta.Elements
         public static T AsElementSet<T>(this object obj)
             where T : class, IBdoElementSet, new()
         {
-            T elementSet = new();
+            T elemSet = new();
 
             if (obj != null)
             {
@@ -37,11 +37,11 @@ namespace BindOpen.Meta.Elements
                         propertyName = attribute.Name;
                     }
 
-                    elementSet.Add(BdoMeta.NewScalar(propertyName, DataValueTypes.Any, propertyValue));
+                    elemSet.Add(BdoMeta.NewScalar(propertyName, DataValueTypes.Any, propertyValue));
                 }
             }
 
-            return elementSet;
+            return elemSet;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace BindOpen.Meta.Elements
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoElementSet elementSet,
+            this IBdoElementSet elemSet,
             IBdoElementSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -75,7 +75,7 @@ namespace BindOpen.Meta.Elements
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoElementSet elementSet,
+            this IBdoElementSet elemSet,
             IBdoElementSpecSet refElementSpecSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -96,7 +96,7 @@ namespace BindOpen.Meta.Elements
         /// <param name="specAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this IBdoElementSet elementSet,
+            this IBdoElementSet elemSet,
             IBdoElementSet refElementSet = null,
             string[] specAreas = null,
             bool isExistenceChecked = true,
@@ -114,7 +114,7 @@ namespace BindOpen.Meta.Elements
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         public static void Repair(
-            this IBdoElementSet elementSet,
+            this IBdoElementSet elemSet,
             IBdoElementSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -137,16 +137,16 @@ namespace BindOpen.Meta.Elements
 
                     if (refElementSet.Items != null)
                     {
-                        while (i < elementSet.Items.Count)
+                        while (i < elemSet.Items.Count)
                         {
-                            var currentSubItem = elementSet.Items[i];
+                            var currentSubItem = elemSet.Items[i];
 
                             var referenceSubItem = refElementSet.Items.Find(p => p.BdoKeyEquals(currentSubItem));
                             if (referenceSubItem == null)
                             {
                                 if (updateModes.Has(UpdateModes.Incremental_RemoveMissingInSource))
                                 {
-                                    elementSet.Items.RemoveAt(i);
+                                    elemSet.Items.RemoveAt(i);
                                     i--;
                                 }
                             }
@@ -168,7 +168,7 @@ namespace BindOpen.Meta.Elements
                     {
                         foreach (var referenceSubItem in refElementSet.Items)
                         {
-                            var currentSubItem = elementSet.Items.Find(p => p.BdoKeyEquals(referenceSubItem));
+                            var currentSubItem = elemSet.Items.Find(p => p.BdoKeyEquals(referenceSubItem));
 
                             //if (currentSubItem == null)
                             //    Add(ElementFactory.CreateFromSpec(referenceSubItem) as BdoElement);

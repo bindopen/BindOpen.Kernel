@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a data item set.

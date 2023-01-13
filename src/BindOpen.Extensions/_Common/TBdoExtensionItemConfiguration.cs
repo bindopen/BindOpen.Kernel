@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta.Configuration;
-using BindOpen.Meta.Elements;
+﻿using BindOpen.MetaData.Configuration;
+using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions

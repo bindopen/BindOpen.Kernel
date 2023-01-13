@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a data key value.
@@ -22,8 +22,8 @@ namespace BindOpen.Meta.Items
         /// </summary>
         [JsonPropertyName("key")]
         [XmlAttribute("key")]
-        [DefaultValue("*")]
-        public string Key { get; set; } = "*";
+        [DefaultValue(StringHelper.__Star)]
+        public string Key { get; set; } = StringHelper.__Star;
 
         /// <summary>
         /// Content of this instance.

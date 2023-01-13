@@ -1,5 +1,5 @@
 ﻿
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This class represents a Xml helper.

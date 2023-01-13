@@ -1,11 +1,11 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using BindOpen.Logging;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Apis
+namespace BindOpen.MetaData.Apis
 {
     /// <summary>
     /// This class represents a Api log event DTO.

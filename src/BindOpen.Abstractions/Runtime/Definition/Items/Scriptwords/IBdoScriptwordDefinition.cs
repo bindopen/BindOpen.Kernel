@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Scripting
@@ -92,7 +92,7 @@ namespace BindOpen.Extensions.Scripting
         /// <param name="key"></param>
         /// <param name="defaultKey"></param>
         /// <returns></returns>
-        string GetRepeatedParameterDescriptionText(string key = "*", string defaultKey = "*");
+        string GetRepeatedParameterDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star);
 
     }
 }

@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element set.

@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta.References;
+﻿using BindOpen.MetaData.References;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.

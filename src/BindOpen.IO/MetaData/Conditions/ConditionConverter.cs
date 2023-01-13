@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta.Conditions
+﻿namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This static class represents a converter.

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a carrier element converter.

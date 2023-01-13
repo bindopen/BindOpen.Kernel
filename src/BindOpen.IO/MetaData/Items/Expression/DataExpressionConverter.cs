@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta.Items
+﻿namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a Xml helper.

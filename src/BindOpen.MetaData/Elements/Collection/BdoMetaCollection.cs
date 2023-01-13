@@ -1,9 +1,9 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
