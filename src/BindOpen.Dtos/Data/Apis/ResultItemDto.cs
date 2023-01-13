@@ -1,8 +1,8 @@
-﻿using BindOpen.Meta;
+﻿using BindOpen.MetaData;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Apis
+namespace BindOpen.MetaData.Apis
 {
     /// <summary>
     /// This class represents a DTO item result.

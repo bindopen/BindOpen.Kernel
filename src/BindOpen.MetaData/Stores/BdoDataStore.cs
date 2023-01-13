@@ -1,10 +1,10 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Meta.Stores
+namespace BindOpen.MetaData.Stores
 {
     /// <summary>
     /// This class represents a set of depots.

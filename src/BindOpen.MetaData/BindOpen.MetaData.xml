@@ -4,77 +4,77 @@
         <name>BindOpen.MetaData</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Meta.Conditions.AdvancedCondition">
+        <member name="T:BindOpen.MetaData.Conditions.AdvancedCondition">
             <summary>
             This class represents an advanced condition.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.AdvancedCondition.Kind">
+        <member name="P:BindOpen.MetaData.Conditions.AdvancedCondition.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.AdvancedCondition.Conditions">
+        <member name="P:BindOpen.MetaData.Conditions.AdvancedCondition.Conditions">
             <summary>
             Conditions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.AdvancedCondition.#ctor">
+        <member name="M:BindOpen.MetaData.Conditions.AdvancedCondition.#ctor">
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.AdvancedCondition.#ctor(BindOpen.Meta.Conditions.ICondition[])">
+        <member name="M:BindOpen.MetaData.Conditions.AdvancedCondition.#ctor(BindOpen.MetaData.Conditions.ICondition[])">
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
             <param name="conditions">The conditions to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.AdvancedCondition.#ctor(System.Boolean,BindOpen.Meta.Conditions.ICondition[])">
+        <member name="M:BindOpen.MetaData.Conditions.AdvancedCondition.#ctor(System.Boolean,BindOpen.MetaData.Conditions.ICondition[])">
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
             <param name="conditions">The conditions to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.AdvancedCondition.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Conditions.AdvancedCondition.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <param name="areas">The areas to consider.</param>
         </member>
-        <member name="T:BindOpen.Meta.Conditions.BasicCondition">
+        <member name="T:BindOpen.MetaData.Conditions.BasicCondition">
             <summary>
             This class represents an basic condition.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.BasicCondition.Argument1">
+        <member name="P:BindOpen.MetaData.Conditions.BasicCondition.Argument1">
             <summary>
             The arugment 1 of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.BasicCondition.Operator">
+        <member name="P:BindOpen.MetaData.Conditions.BasicCondition.Operator">
             <summary>
             The operator of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.BasicCondition.Argument2">
+        <member name="P:BindOpen.MetaData.Conditions.BasicCondition.Argument2">
             <summary>
             The arugment 2 of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.BasicCondition.#ctor">
+        <member name="M:BindOpen.MetaData.Conditions.BasicCondition.#ctor">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.BasicCondition.#ctor(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Conditions.BasicCondition.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
             <param name="trueValue">The value that expresses that the condition is satisfied.</param>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.BasicCondition.#ctor(System.String,BindOpen.Meta.Conditions.ConditionOperator,System.String)">
+        <member name="M:BindOpen.MetaData.Conditions.BasicCondition.#ctor(System.String,BindOpen.MetaData.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
@@ -82,7 +82,7 @@
             <param name="ope">The operator to consider.</param>
             <param name="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.BasicCondition.#ctor(System.Boolean,System.String,BindOpen.Meta.Conditions.ConditionOperator,System.String)">
+        <member name="M:BindOpen.MetaData.Conditions.BasicCondition.#ctor(System.Boolean,System.String,BindOpen.MetaData.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
@@ -91,33 +91,33 @@
             <param name="ope">The operator to consider.</param>
             <param name="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="T:BindOpen.Meta.Conditions.Condition">
+        <member name="T:BindOpen.MetaData.Conditions.Condition">
             <summary>
             This class represents a condition.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.Condition.TrueValue">
+        <member name="P:BindOpen.MetaData.Conditions.Condition.TrueValue">
             <summary>
             The value that expresses that the condition is satisfied.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.Condition.#ctor">
+        <member name="M:BindOpen.MetaData.Conditions.Condition.#ctor">
             <summary>
             Instantiates a new instance of the Condition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.Condition.#ctor(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Conditions.Condition.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the Condition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
         </member>
-        <member name="T:BindOpen.Meta.Conditions.ConditionsExtensions">
+        <member name="T:BindOpen.MetaData.Conditions.ConditionsExtensions">
             <summary>
             This static class provides methods to handle conditions.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ConditionsExtensions.Evaluate(BindOpen.Meta.Conditions.ICondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Meta.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.MetaData.Conditions.ConditionsExtensions.Evaluate(BindOpen.MetaData.Conditions.ICondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.MetaData.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -126,7 +126,7 @@
             <param name="varElementSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ConditionsExtensions.Evaluate(BindOpen.Meta.Conditions.IAdvancedCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Meta.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.MetaData.Conditions.ConditionsExtensions.Evaluate(BindOpen.MetaData.Conditions.IAdvancedCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.MetaData.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -135,7 +135,7 @@
             <param name="varElementSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ConditionsExtensions.Evaluate(BindOpen.Meta.Conditions.IBasicCondition)">
+        <member name="M:BindOpen.MetaData.Conditions.ConditionsExtensions.Evaluate(BindOpen.MetaData.Conditions.IBasicCondition)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -144,7 +144,7 @@
             <param name="varElementSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ConditionsExtensions.Evaluate(BindOpen.Meta.Conditions.IScriptCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Meta.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.MetaData.Conditions.ConditionsExtensions.Evaluate(BindOpen.MetaData.Conditions.IScriptCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.MetaData.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -153,34 +153,34 @@
             <param name="varElementSet">The variable element set used to evaluate.</param>
             <returns>True if the business script value is the true value.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Conditions.ScriptCondition">
+        <member name="T:BindOpen.MetaData.Conditions.ScriptCondition">
             <summary>
             This class represents a script condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ScriptCondition.#ctor">
+        <member name="M:BindOpen.MetaData.Conditions.ScriptCondition.#ctor">
             <summary>
             Instantiates a new instance of the ScriptCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ScriptCondition.#ctor(System.Boolean,BindOpen.Meta.Items.IBdoExpression)">
+        <member name="M:BindOpen.MetaData.Conditions.ScriptCondition.#ctor(System.Boolean,BindOpen.MetaData.Items.IBdoExpression)">
             <summary>
             Instantiates a new instance of the ScriptCondition class.
             </summary>
             <param name="trueValue">The true value to consider.</param>
             <param name="exp">The exp to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ScriptCondition.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Conditions.ScriptCondition.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Conditions.ScriptCondition.Expression">
+        <member name="P:BindOpen.MetaData.Conditions.ScriptCondition.Expression">
             <summary>
             Expression script representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Conditions.ScriptCondition.WithExpression(BindOpen.Meta.Items.IBdoExpression)">
+        <member name="M:BindOpen.MetaData.Conditions.ScriptCondition.WithExpression(BindOpen.MetaData.Items.IBdoExpression)">
             <summary>
             
             </summary>
@@ -188,126 +188,126 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:BindOpen.Meta.Configuration.BdoConfiguration">
+        <member name="T:BindOpen.MetaData.Configuration.BdoConfiguration">
             <summary>
             This class represents a configuration.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.#ctor">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.UsedItemIds">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.UsedItemIds">
             <summary>
             The using file paths of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.UsingConfiguration">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.UsingConfiguration">
             <summary>
             The using configuration statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.Using(System.String[])">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.Using(System.String[])">
             <summary>
             Sets the file paths of this instance.
             </summary>
             <param name="filePaths">The file paths to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.Key">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.CreationDate">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.LastModificationDate">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.WithLastModificationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.WithLastModificationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.Name">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfiguration.WithName(System.String)">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfiguration.WithName(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Configuration.BdoConfiguration.Description">
+        <member name="P:BindOpen.MetaData.Configuration.BdoConfiguration.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Meta.Configuration.BdoConfigurationBundle">
+        <member name="T:BindOpen.MetaData.Configuration.BdoConfigurationBundle">
             <summary>
             This class represents a configuration.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Configuration.BdoConfigurationBundle.#ctor">
+        <member name="M:BindOpen.MetaData.Configuration.BdoConfigurationBundle.#ctor">
             <summary>
             Instantiates a new instance of the BdoConfigurationBundle class.
             </summary>
         </member>
-        <member name="T:BindOpen.Meta.Context.BdoDataContext">
+        <member name="T:BindOpen.MetaData.Context.BdoDataContext">
             <summary>
             This class represents a data context. A data context contains all the data related to a user session.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Context.BdoDataContext.SingletonItems">
+        <member name="P:BindOpen.MetaData.Context.BdoDataContext.SingletonItems">
             <summary>
             Singletons.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Context.BdoDataContext.ScopedItems">
+        <member name="P:BindOpen.MetaData.Context.BdoDataContext.ScopedItems">
             <summary>
             Scoped items.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Context.BdoDataContext.TransientItems">
+        <member name="P:BindOpen.MetaData.Context.BdoDataContext.TransientItems">
             <summary>
             Transient items.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Context.BdoDataContext.Id">
+        <member name="P:BindOpen.MetaData.Context.BdoDataContext.Id">
             <summary>
             ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.#ctor">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.#ctor">
             <summary>
             Instantiates a new instance of DataContext class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.Merge(BindOpen.Meta.Context.IBdoDataContext)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.Merge(BindOpen.MetaData.Context.IBdoDataContext)">
             <summary>
             Merges this instance with the specified data context.
             </summary>
             <param name="dataContext">The data context to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.Clear">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.Clear">
             <summary>
             Clears all the data of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.AddItem(System.String,System.Object,System.String,BindOpen.Meta.PersistenceLevels)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.AddItem(System.String,System.Object,System.String,BindOpen.MetaData.PersistenceLevels)">
             <summary>
             Adds a new item to this instance.
             </summary>
@@ -316,14 +316,14 @@
             <param name="contextSectionName">Name of the context section to consider.</param>
             <param name="persistenceLevel">Persistence level of the item to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.AddSystemItem(System.String,System.Object)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.AddSystemItem(System.String,System.Object)">
             <summary>
             Adds a new system item to this instance.
             </summary>
             <param name="name">Name of the item to add.</param>
             <param name="item">The item to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.AddSingletonItem(System.String,System.Object,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.AddSingletonItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new singleton item to this instance.
             </summary>
@@ -331,7 +331,7 @@
             <param name="item">The item to consider.</param>
             <param name="contextSectionName">Name of the context section to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.AddScopedItem(System.String,System.Object,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.AddScopedItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new scoped item to this instance.
             </summary>
@@ -339,7 +339,7 @@
             <param name="item">The item to consider.</param>
             <param name="contextSectionName">Name of the context section to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.AddTransientItem(System.String,System.Object,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.AddTransientItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new transient item to this instance.
             </summary>
@@ -347,27 +347,27 @@
             <param name="item">The item to consider.</param>
             <param name="contextSectionName">Name of the context section to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.ClearItems(BindOpen.Meta.PersistenceLevels)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.ClearItems(BindOpen.MetaData.PersistenceLevels)">
             <summary>
             Clears the specified items of this instance.
             </summary>
             <param name="persistenceLevel">Persistence level of the item to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.RemoveItems(System.String,BindOpen.Meta.PersistenceLevels)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.RemoveItems(System.String,BindOpen.MetaData.PersistenceLevels)">
             <summary>
             Removes the singleton items of a specific type.
             </summary>
             <param name="contextSectionName">Name of the context section to consider.</param>
             <param name="persistenceLevel">The persistence level to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.GetSystemItem(System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.GetSystemItem(System.String)">
             <summary>
             Returns a specific system item.
             </summary>
             <param name="name">Name of the dynamic item to return.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.GetSingletonItem(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.GetSingletonItem(System.String,System.String)">
             <summary>
             Returns a specific singleton item.
             </summary>
@@ -375,7 +375,7 @@
             <param name="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.GetScopedItem(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.GetScopedItem(System.String,System.String)">
             <summary>
             Returns a specific scoped item.
             </summary>
@@ -383,7 +383,7 @@
             <param name="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.GetTransientItem(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.GetTransientItem(System.String,System.String)">
             <summary>
             Returns a specific transient item.
             </summary>
@@ -391,7 +391,7 @@
             <param name="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Context.BdoDataContext.GetItem(System.String,System.String,BindOpen.Meta.PersistenceLevels)">
+        <member name="M:BindOpen.MetaData.Context.BdoDataContext.GetItem(System.String,System.String,BindOpen.MetaData.PersistenceLevels)">
             <summary>
             Returns a specific item.
             </summary>
@@ -400,17 +400,17 @@
             <param name="persistenceLevel">The persistence level to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElement">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElement">
             <summary>
             This class represents a data element.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.#ctor">
             <summary>
             Initializes a new data element.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.#ctor(System.String,System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.#ctor(System.String,System.String,System.String)">
             <summary>
             Initializes a new data element.
             </summary>
@@ -418,50 +418,50 @@
             <param name="namePreffix">The name preffix to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="F:BindOpen.Meta.Elements.BdoMetaElement._item">
+        <member name="F:BindOpen.MetaData.Elements.BdoMetaElement._item">
             <summary>
             The item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.ValueType">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.ItemizationMode">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.ItemizationMode">
             <summary>
             The itemization mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.ItemReference">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.ItemReference">
             <summary>
             Item reference of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.ItemScript">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.ItemScript">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Specs">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Specs">
             <summary>
             Specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.NewSpecification">
             <summary>
             Gets a new specification.
             </summary>
             <returns>Returns the new specifcation.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.IsCompatibleWithItem(System.Object)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.IsCompatibleWithItem(System.Object)">
             <summary>
             Indicates whether this instance is compatible with the specified item.
             </summary>
             <param name="item">The item to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.GetItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.GetItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -470,7 +470,7 @@
             <param name="varElementSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.GetItem``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.GetItem``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -480,44 +480,44 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithItemizationMode(BindOpen.Meta.Items.DataItemizationMode)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithItemizationMode(BindOpen.MetaData.Items.DataItemizationMode)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithItemReference(BindOpen.Meta.Items.IBdoReference)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithItemReference(BindOpen.MetaData.Items.IBdoReference)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithItemScript(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithItemScript(System.String)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithValueType(BindOpen.Meta.DataValueTypes)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithValueType(BindOpen.MetaData.DataValueTypes)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.GetSpecification(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.GetSpecification(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithSpecifications(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithSpecifications(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.ClearItem">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.ClearItem">
             <summary>
             Clears the item of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithItem(System.Object[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithItem(System.Object[])">
             <summary>
             Sets the item of this instance.
             </summary>
@@ -525,99 +525,99 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Index">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithIndex(System.Nullable{System.Int32})">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithIndex(System.Nullable{System.Int32})">
             <summary>
             
             </summary>
             <param name="index"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.Key">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Id">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Name">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Detail">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithDetail(BindOpen.Meta.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithName(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.WithDetail(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Detail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithDetail(BindOpen.MetaData.Elements.IBdoElementSet)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.WithDetail(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             
             </summary>
             <param name="detail"></param>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Title">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Title">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElement.Description">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElement.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElement.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElement.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElementExtension">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElementExtension">
             <summary>
             This class represents a data 
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementExtension.Update(BindOpen.Meta.Elements.IBdoMetaElement,BindOpen.Meta.Elements.IBdoMetaElement,System.String[],BindOpen.Meta.UpdateModes[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementExtension.Update(BindOpen.MetaData.Elements.IBdoMetaElement,BindOpen.MetaData.Elements.IBdoMetaElement,System.String[],BindOpen.MetaData.UpdateModes[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -627,7 +627,7 @@
             <returns>ILog of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementExtension.Check(BindOpen.Meta.Elements.IBdoMetaElement,BindOpen.Meta.Elements.IBdoMetaElement,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementExtension.Check(BindOpen.MetaData.Elements.IBdoMetaElement,BindOpen.MetaData.Elements.IBdoMetaElement,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
             <summary>
             Checks this instance.
             </summary>
@@ -636,7 +636,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementExtension.Repair(BindOpen.Meta.Elements.IBdoMetaElement,BindOpen.Meta.Elements.IBdoMetaElement,System.String[],BindOpen.Meta.UpdateModes[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementExtension.Repair(BindOpen.MetaData.Elements.IBdoMetaElement,BindOpen.MetaData.Elements.IBdoMetaElement,System.String[],BindOpen.MetaData.UpdateModes[],BindOpen.Logging.IBdoLog)">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -645,212 +645,212 @@
             <param name="updateModes">The update modes to consider.</param>
             <returns>ILog of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElementSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElementSpec">
             <summary>
             This class represents a data element specification.
             </summary>
         </member>
-        <member name="F:BindOpen.Meta.Elements.BdoMetaElementSpec.__AreaNames">
+        <member name="F:BindOpen.MetaData.Elements.BdoMetaElementSpec.__AreaNames">
             <summary>
             Names of the attribute areas of the TBdoElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.#ctor">
             <summary>
             Initializes a new instance of the BdoElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.Condition">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.Condition">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithCondition(BindOpen.Meta.Conditions.ICondition)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithCondition(BindOpen.MetaData.Conditions.ICondition)">
             <summary>
             
             </summary>
             <param name="condition"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.Aliases">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.Aliases">
             <summary>
             The aliases of the entry.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithAliases(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithAliases(System.String[])">
             <summary>
             
             </summary>
             <param name="aliases"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.IsAllocatable">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.IsAllocatable">
             <summary>
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.AsAllocatable(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.AsAllocatable(System.Boolean)">
             <summary>
             
             </summary>
             <param name="isAllocatable"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.ItemScript">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.ItemScript">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithItemScript(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithItemScript(System.String)">
             <summary>
             
             </summary>
             <param name="script"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.AvailableItemizationModes">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.AvailableItemizationModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithAvailableItemizationModes(BindOpen.Meta.Items.DataItemizationMode[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithAvailableItemizationModes(BindOpen.MetaData.Items.DataItemizationMode[])">
             <summary>
             
             </summary>
             <param name="modes"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.DefaultItem">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.DefaultItem">
             <summary>
             The default item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.MinimumItemNumber">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.MinimumItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithMaximumItemNumber(System.Int32)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithMaximumItemNumber(System.Int32)">
             <summary>
             
             </summary>
             <param name="number"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.MaximumItemNumber">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.MaximumItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithMinimumItemNumber(System.Int32)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithMinimumItemNumber(System.Int32)">
             <summary>
             
             </summary>
             <param name="number"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.IsValueList">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.IsValueList">
             <summary>
             Indicates whether the value of this instance is a list.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.ItemRequirementLevel">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.ItemRequirementLevel">
             <summary>
             The item requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.ItemSpecificationLevels">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.ItemSpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithItemSpecificationLevels(BindOpen.Meta.SpecificationLevels[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithItemSpecificationLevels(BindOpen.MetaData.SpecificationLevels[])">
             <summary>
             
             </summary>
             <param name="levels"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.ConstraintStatement">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.ConstraintStatement">
             <summary>
             Data constraint statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithConstraintStatement(BindOpen.Meta.Specification.IDataConstraintStatement)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithConstraintStatement(BindOpen.MetaData.Specification.IDataConstraintStatement)">
             <summary>
             
             </summary>
             <param name="statement"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaElementSpec.SubSpecs">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaElementSpec.SubSpecs">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithSubSpecs(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
-            <summary>
-            
-            </summary>
-            <param name="specs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.AddSubSpecs(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithSubSpecs(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
             <summary>
             
             </summary>
             <param name="specs"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.GetSubSpec(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.AddSubSpecs(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
+            <summary>
+            
+            </summary>
+            <param name="specs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.GetSubSpec(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.WithDefaultItem(System.Object)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.WithDefaultItem(System.Object)">
             <summary>
             
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpec.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpec.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaCarrier">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaCarrier">
             <summary>
             This class represents a carrier el.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.#ctor">
             <summary>
             Initializes a new instance of the CarrierElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the CarrierElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCarrier.DefinitionUniqueId">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCarrier.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.WithDefinitionUniqueId(System.String)">
             <summary>
             
             </summary>
@@ -858,7 +858,7 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.WithItem(BindOpen.Extensions.Modeling.IBdoCarrierConfiguration[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.WithItem(BindOpen.Extensions.Modeling.IBdoCarrierConfiguration[])">
             <summary>
             Sets a new single item of this instance.
             </summary>
@@ -866,46 +866,46 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.BindOpen#Meta#Elements#IBdoMetaElement#NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.BindOpen#MetaData#Elements#IBdoMetaElement#NewSpecification">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrier.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrier.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaCarrierSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaCarrierSpec">
             <summary>
             This class represents a carrier element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrierSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrierSpec.#ctor">
             <summary>
             Initializes a new instance of the CarrierElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrierSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrierSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCarrierSpec.DefinitionFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCarrierSpec.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrierSpec.WithDefinitionFilter(BindOpen.Meta.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrierSpec.WithDefinitionFilter(BindOpen.MetaData.Specification.IDataValueFilter)">
             <summary>
             
             </summary>
@@ -913,190 +913,190 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCarrierSpec.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCarrierSpec.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaCollection">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaCollection">
             <summary>
             This class represents a catalog el that is an el whose els are entities.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCollection.Item(System.Int32)">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCollection.Item(System.Int32)">
             <summary>
             Returns the el with the specified indexed.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCollection.Item(System.String)">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCollection.Item(System.String)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCollection.Count">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCollection.Count">
             <summary>
             Returns the number of items.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.#ctor">
             <summary>
             Initializes a new instance of the CollectionElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the CollectionElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.BindOpen#Meta#Elements#IBdoMetaElement#NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.BindOpen#MetaData#Elements#IBdoMetaElement#NewSpecification">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.Get(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.Get``1(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.Get``1(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.Get``1(System.Int32)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.Get``1(System.Int32)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="index">The index to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.ToArray">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.ToArray">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.ToList">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.ToList">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.GetEnumerator">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollection.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollection.System#Collections#IEnumerable#GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaCollectionSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaCollectionSpec">
             <summary>
             This class represents a catalog element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollectionSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.#ctor">
             <summary>
             Initializes a new instance of the CollectionElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollectionSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCollectionSpec.ClassFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.ClassFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollectionSpec.WithClassFilter(BindOpen.Meta.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.WithClassFilter(BindOpen.MetaData.Specification.IDataValueFilter)">
             <summary>
             
             </summary>
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaCollectionSpec.DefinitionFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaCollectionSpec.WithDefinitionFilter(BindOpen.Meta.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaCollectionSpec.WithDefinitionFilter(BindOpen.MetaData.Specification.IDataValueFilter)">
             <summary>
             
             </summary>
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaObject">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaObject">
             <summary>
             This class represents a object element that is an element whose items are entities.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.#ctor">
             <summary>
             Initializes a new instance of the ObjectElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the ObjectElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaObject.DefinitionUniqueId">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaObject.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaObject.ClassFullName">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaObject.ClassFullName">
             <summary>
             The class full name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.BindOpen#Meta#Elements#IBdoMetaElement#NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.BindOpen#MetaData#Elements#IBdoMetaElement#NewSpecification">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.WithItem(System.Object[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.WithItem(System.Object[])">
             <summary>
             Adds a new single item of this instance.
             </summary>
@@ -1104,127 +1104,127 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObject.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObject.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaObjectSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaObjectSpec">
             <summary>
             This class represents an object element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObjectSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObjectSpec.#ctor">
             <summary>
             Initializes a new instance of the ObjectElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObjectSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObjectSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaObjectSpec.ClassFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaObjectSpec.ClassFilter">
             <summary>
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObjectSpec.WithClassFilter(BindOpen.Meta.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObjectSpec.WithClassFilter(BindOpen.MetaData.Specification.IDataValueFilter)">
             <summary>
             
             </summary>
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaObjectSpec.DefinitionFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaObjectSpec.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaObjectSpec.WithDefinitionFilter(BindOpen.Meta.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaObjectSpec.WithDefinitionFilter(BindOpen.MetaData.Specification.IDataValueFilter)">
             <summary>
             
             </summary>
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaScalar">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaScalar">
             <summary>
             This class represents a scalar element that is an element whose items are scalars.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.op_Explicit(System.String)~BindOpen.Meta.Elements.BdoMetaScalar">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.op_Explicit(System.String)~BindOpen.MetaData.Elements.BdoMetaScalar">
             <summary>
             Converts from string.
             </summary>
             <param name="st">The string to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.op_Explicit(BindOpen.Meta.Elements.BdoMetaScalar)~System.String">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.op_Explicit(BindOpen.MetaData.Elements.BdoMetaScalar)~System.String">
             <summary>
             Converts to string.
             </summary>
             <param name="element">The element to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.#ctor">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalar.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalar.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaScalarSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaScalarSpec">
             <summary>
             This class represents a scalar element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalarSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalarSpec.#ctor">
             <summary>
             Initializes a new instance of the ScalarElementSpec class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaScalarSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaScalarSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElementSet">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElementSet">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:BindOpen.Meta.Elements.BdoMetaElementSet.op_Implicit(BindOpen.Meta.Elements.IBdoMetaElement[])~BindOpen.Meta.Elements.BdoMetaElementSet" -->
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.#ctor">
+        <!-- Badly formed XML comment ignored for member "M:BindOpen.MetaData.Elements.BdoMetaElementSet.op_Implicit(BindOpen.MetaData.Elements.IBdoMetaElement[])~BindOpen.MetaData.Elements.BdoMetaElementSet" -->
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.#ctor">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.Get(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.Get(System.String,System.String)">
             <summary>
             Returns the item with the specified name and group ID.
             </summary>
@@ -1232,13 +1232,13 @@
             <param name="groupId">The ID of the group of the item to return.</param>
             <returns>Returns the item with the specified name and group ID.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.GetSpecIds">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.GetSpecIds">
             <summary>
             Gets all the element groups IDs.
             </summary>
             <returns>Returns all the element group IDs.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.GetItem(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.GetItem(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1248,7 +1248,7 @@
             <param name="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.GetItem``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.GetItem``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1258,7 +1258,7 @@
             <param name="varElementSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.GetItemList(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.GetItemList(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1268,7 +1268,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.GetItemList``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.GetItemList``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1279,30 +1279,30 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSet.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSet.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElementSetExtension">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElementSetExtension">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.AsElementSet(System.Object)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.AsElementSet(System.Object)">
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
             <param name="obj">The objet to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.AsElementSet``1(System.Object)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.AsElementSet``1(System.Object)">
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
             <param name="obj">The objet to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.Update(BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.Update(BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -1312,7 +1312,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.Update(BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.Elements.IBdoElementSpecSet,BindOpen.Meta.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.Update(BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.Elements.IBdoElementSpecSet,BindOpen.MetaData.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -1322,7 +1322,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.Check(BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.Elements.IBdoElementSet,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.Check(BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.Elements.IBdoElementSet,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
             <summary>
             Checks this instance.
             </summary>
@@ -1331,7 +1331,7 @@
             <param name="specAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSetExtension.Repair(BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Meta.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSetExtension.Repair(BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
@@ -1340,59 +1340,59 @@
             <param name="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaElementSpecSet">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaElementSpecSet">
             <summary>
             This class represents a set of data element specifications.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpecSet.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpecSet.#ctor">
             <summary>
             Initializes a new instance of the BdoElementSpecSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaElementSpecSet.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaElementSpecSet.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaSource">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaSource">
             <summary>
             This class represents a data source element.
             </summary>
             <remarks>A data source element can only have one item maximum.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.#ctor">
             <summary>
             Initializes a new instance of the SourceElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the SourceElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaSource.DefinitionUniqueId">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaSource.DefinitionUniqueId">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.WithDefinitionUniqueId(System.String)">
             <summary>
             
             </summary>
             <param name="definitionUniqueId"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.BindOpen#Meta#Elements#IBdoMetaElement#NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.BindOpen#MetaData#Elements#IBdoMetaElement#NewSpecification">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.WithItem(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.WithItem(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Sets a new single item of this instance.
             </summary>
@@ -1400,55 +1400,55 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.ToString">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.ToString">
             <summary>
             Returns a text node representing this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSource.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSource.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Elements.BdoMetaSourceSpec">
+        <member name="T:BindOpen.MetaData.Elements.BdoMetaSourceSpec">
             <summary>
             This class represents a data source element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSourceSpec.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSourceSpec.#ctor">
             <summary>
             Initializes a new data source element specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.BdoMetaSourceSpec.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Elements.BdoMetaSourceSpec.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaSourceSpec.DatasourceKind">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaSourceSpec.DatasourceKind">
             <summary>
             The data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Elements.BdoMetaSourceSpec.DefinitionFilter">
+        <member name="P:BindOpen.MetaData.Elements.BdoMetaSourceSpec.DefinitionFilter">
             <summary>
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Meta.Elements.TBdoMetaElement`3">
+        <member name="T:BindOpen.MetaData.Elements.TBdoMetaElement`3">
             <summary>
             This class represents a data element.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.#ctor">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.#ctor">
             <summary>
             Initializes a new instance of the TBdoElement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.#ctor(System.String,System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.#ctor(System.String,System.String,System.String)">
             <summary>
             Initializes a new data element.
             </summary>
@@ -1456,73 +1456,73 @@
             <param name="namePreffix">The name preffix to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Elements.TBdoMetaElement`3.Specs">
+        <member name="P:BindOpen.MetaData.Elements.TBdoMetaElement`3.Specs">
             <summary>
             Data constraint statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.GetSpecification(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.GetSpecification(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.NewSpecification">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.NewSpecification">
             <summary>
             Gets a new specification.
             </summary>
             <returns>Returns the new specifcation.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.ClearItem">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.ClearItem">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithIndex(System.Nullable{System.Int32})">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithIndex(System.Nullable{System.Int32})">
             <summary>
             
             </summary>
             <param name="index"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithItemizationMode(BindOpen.Meta.Items.DataItemizationMode)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithItemizationMode(BindOpen.MetaData.Items.DataItemizationMode)">
             <summary>
             
             </summary>
             <param name="mode"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithItemReference(BindOpen.Meta.Items.IBdoReference)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithItemReference(BindOpen.MetaData.Items.IBdoReference)">
             <summary>
             
             </summary>
             <param name="reference"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithItemScript(System.String)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithItemScript(System.String)">
             <summary>
             
             </summary>
             <param name="script"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithValueType(BindOpen.Meta.DataValueTypes)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithValueType(BindOpen.MetaData.DataValueTypes)">
             <summary>
             
             </summary>
             <param name="valueType"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithSpecifications(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithSpecifications(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
             <summary>
             
             </summary>
             <param name="spec"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.WithItem(`2[])">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.WithItem(`2[])">
             <summary>
             Sets the item of this instance.
             </summary>
@@ -1530,7 +1530,7 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.GetItemList(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.GetItemList(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1539,7 +1539,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Elements.TBdoMetaElement`3.GetFirstItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Elements.TBdoMetaElement`3.GetFirstItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1548,7 +1548,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Meta.BdoMeta">
+        <member name="T:BindOpen.MetaData.BdoMeta">
             <summary>
             This static class provides methods to handle configurations.
             </summary>
@@ -1599,81 +1599,81 @@
             </summary>
             <example>Titles, Descriptions.</example>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfigurationBundle(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfigBundle(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the BdoConfigurationBundle class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration(System.String,BindOpen.Meta.Elements.IBdoMetaElement[])">
-            <summary>
-            Instantiates a new instance of the BdoBaseConfiguration class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration(System.String,System.String[],BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration``1(System.String,BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig(System.String,System.String[],BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration``1(BindOpen.Meta.Elements.IBdoMetaElement[])">
-            <summary>
-            Instantiates a new instance of the BdoBaseConfiguration class.
-            </summary>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewConfiguration``1(System.String,System.String[],BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig``1(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewElement(System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig``1(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+            <summary>
+            Instantiates a new instance of the BdoBaseConfiguration class.
+            </summary>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewConfig``1(System.String,System.String[],BindOpen.MetaData.Elements.IBdoMetaElement[])">
+            <summary>
+            Instantiates a new instance of the BdoBaseConfiguration class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewElement(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewElement(System.String,BindOpen.Meta.DataValueTypes,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewElement(System.String,BindOpen.MetaData.DataValueTypes,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewElement``1(System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewElement``1(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpec(System.String,BindOpen.Meta.DataValueTypes)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpec(System.String,BindOpen.MetaData.DataValueTypes)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpec(System.String,System.Type)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpec(System.String,System.Type)">
             <summary>
             
             </summary>
@@ -1681,89 +1681,89 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpec``1(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpec``1(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpec``2(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpec``2(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="type">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpec``1(System.String,System.Type)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpec``1(System.String,System.Type)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="type">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalarSpec``1(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalarSpec``1(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpecSet(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpecSet(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
             <param name="specs">The elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSpecSet``1(BindOpen.Meta.Elements.IBdoMetaElementSpec[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSpecSet``1(BindOpen.MetaData.Elements.IBdoMetaElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
             <param name="elements">The elements to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCarrier(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCarrier(System.String,System.String)">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCarrier(System.String,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCarrier(System.String,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration)">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCarrier``1(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCarrier``1(System.String,System.String)">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCarrier``1(System.String,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCarrier``1(System.String,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration)">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection(BindOpen.Meta.Elements.IBdoMetaElement[][])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection(BindOpen.MetaData.Elements.IBdoMetaElement[][])">
             <summary>
             Initializes a new carrier el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection(System.String,BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Initializes a new carrier el.
             </summary>
@@ -1771,7 +1771,7 @@
             <param name="id">The ID to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection(System.String,BindOpen.Meta.Elements.IBdoMetaElement[][])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[][])">
             <summary>
             Initializes a new carrier el.
             </summary>
@@ -1779,46 +1779,46 @@
             <param name="id">The ID to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection``1(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection``1(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Initializes a new collection el.
             </summary>
             <param name="elems">The elems to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection``1(BindOpen.Meta.Elements.IBdoMetaElement[][])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection``1(BindOpen.MetaData.Elements.IBdoMetaElement[][])">
             <summary>
             Initializes a new collection el.
             </summary>
             <param name="elems">The elems to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection``1(System.String,BindOpen.Meta.Elements.IBdoMetaElement[])">
-            <summary>
-            Initializes a new collection el.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="elems">The elems to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewCollection``1(System.String,BindOpen.Meta.Elements.IBdoMetaElement[][])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection``1(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Initializes a new collection el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="elems">The elems to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject(System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewCollection``1(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[][])">
+            <summary>
+            Initializes a new collection el.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="elems">The elems to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject(System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject(System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject(System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject(System.String,System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject(System.String,System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
@@ -1826,20 +1826,20 @@
             <param name="classFullName">The class full name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject``1(System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject``1(System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject``1(System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject``1(System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewObject``1(System.String,System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewObject``1(System.String,System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
@@ -1848,48 +1848,27 @@
             <param name="classFullName">The class full name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar(System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar(System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar(BindOpen.Meta.DataValueTypes,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar(BindOpen.MetaData.DataValueTypes,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
             <param name="valueType">The value type to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar(System.String,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar(System.String,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar(System.String,BindOpen.Meta.DataValueTypes,System.Object[])">
-            <summary>
-            Creates a new instance of the ScalarElement class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar``1(System.Object[])">
-            <summary>
-            Creates a new instance of the ScalarElement class.
-            </summary>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar``1(System.String,System.Object[])">
-            <summary>
-            Creates a new instance of the ScalarElement class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewScalar``1(System.String,BindOpen.Meta.DataValueTypes,System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar(System.String,BindOpen.MetaData.DataValueTypes,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
@@ -1897,89 +1876,110 @@
             <param name="valueType">The value type to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar``1(System.Object[])">
+            <summary>
+            Creates a new instance of the ScalarElement class.
+            </summary>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar``1(System.String,System.Object[])">
+            <summary>
+            Creates a new instance of the ScalarElement class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewScalar``1(System.String,BindOpen.MetaData.DataValueTypes,System.Object[])">
+            <summary>
+            Creates a new instance of the ScalarElement class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="valueType">The value type to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="elems">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet(System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet(System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet(System.ValueTuple{System.String,BindOpen.Meta.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet(System.ValueTuple{System.String,BindOpen.MetaData.DataValueTypes,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet(System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet(System.Object[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="objects">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet(System.String)">
             <summary>
             Creates a new instance of the IBdoElementSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
             <returns>The collection.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1(BindOpen.Meta.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1(BindOpen.MetaData.Elements.IBdoMetaElement[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="elems">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1(System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1(System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1(System.ValueTuple{System.String,BindOpen.Meta.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1(System.ValueTuple{System.String,BindOpen.MetaData.DataValueTypes,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1(System.Object[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1(System.Object[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="objects">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSet``1(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSet``1(System.String)">
             <summary>
             Creates a new instance of the IBdoElementSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
             <returns>The collection.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource(System.String,System.String,System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource(System.String,System.String,System.String)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -1987,14 +1987,14 @@
             <param name="id">The ID to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -2002,7 +2002,7 @@
             <param name="id">The ID to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource``1(System.String,System.String,System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource``1(System.String,System.String,System.String)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -2010,14 +2010,14 @@
             <param name="id">The ID to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewSource``1(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewSource``1(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -2025,14 +2025,14 @@
             <param name="id">The ID to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.ToKeyValues(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.ToKeyValues(System.String)">
             <summary>
             Get the key values from the specified string.
             </summary>
             <param name="st">The string to consider.</param>
             <returns>Returns the added string items.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewName(System.String,System.String,System.Boolean)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewName(System.String,System.String,System.Boolean)">
             <summary>
             
             </summary>
@@ -2041,7 +2041,7 @@
             <param name="asClone"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDatasource(BindOpen.Meta.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDatasource(BindOpen.MetaData.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
@@ -2049,7 +2049,7 @@
             <param name="kind">The kind of the data source to consider.</param>
             <param name="configs">The configuration items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDatasource(System.String,BindOpen.Meta.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDatasource(System.String,BindOpen.MetaData.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
@@ -2057,43 +2057,43 @@
             <param name="kind">The kind of the data source to consider.</param>
             <param name="configs">The configuration items to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDatasourceDepot(BindOpen.Meta.Items.IBdoDataSource[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDatasourceDepot(BindOpen.MetaData.Items.IBdoDataSource[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="kind">The kind of the data source to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDictionary">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDictionary">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDictionary(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
-            <summary>
-            Instantiates a new instance of the DictionaryDataItem class specifying the values.
-            </summary>
-            <param name="values">The values to consider.</param>
-        </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDictionary(System.ValueTuple{System.String,System.String}[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDictionary(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
             <param name="values">The values to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewDictionary(System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDictionary(System.ValueTuple{System.String,System.String}[])">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
             <param name="values">The values to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewKeyPair(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewDictionary(System.String)">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
             <param name="values">The values to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewExpression(System.String,BindOpen.Meta.Items.BdoExpressionKind)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewKeyPair(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the DictionaryDataItem class specifying the values.
+            </summary>
+            <param name="values">The values to consider.</param>
+        </member>
+        <member name="M:BindOpen.MetaData.BdoMeta.NewExpression(System.String,BindOpen.MetaData.Items.BdoExpressionKind)">
             <summary>
             Creates the exp.
             </summary>
@@ -2101,14 +2101,14 @@
             <param name="text">The text to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Creates the exp.
             </summary>
             <param name="word">The word of exp to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewItemSet``2(``1[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewItemSet``2(``1[])">
             <summary>
             Instantiates a new instance of the DataItemSet class.
             </summary>
@@ -2116,222 +2116,222 @@
             <typeparam name="Q">The data item set type to consider.</typeparam>
             <typeparam name="T">The identified data item to consider.</typeparam>
         </member>
-        <member name="M:BindOpen.Meta.BdoMeta.NewItemSet``1(``0[])">
+        <member name="M:BindOpen.MetaData.BdoMeta.NewItemSet``1(``0[])">
             <summary>
             Instantiates a new instance of the DataItemSet class.
             </summary>
             <param name="items">The items to consider.</param>
             <typeparam name="T">The class of the named data items.</typeparam>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoItem">
+        <member name="T:BindOpen.MetaData.Items.BdoItem">
             <summary>
             This class represents a data item.
             </summary>
             <remarks>The data item has only an ID, a creation and a last-modification dates.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.#ctor">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.#ctor">
             <summary>
             Instantiates a new instance of the DataItem class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.Finalize">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.Finalize">
             <summary>
             Disposes this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <param name="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.Clone``1(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.Clone``1(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <param name="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.Dispose">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.Dispose">
             <summary>
             Disposes this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoItem.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Items.BdoItem.Dispose(System.Boolean)">
             <summary>
             Disposes specifying whether this instance is disposing.
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoDatasource">
+        <member name="T:BindOpen.MetaData.Items.BdoDatasource">
             <summary>
             This class represents a data source.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.#ctor">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.#ctor">
             <summary>
             This instantiates a new instance of the Datasource class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.#ctor(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.#ctor(System.String)">
             <summary>
             This instantiates a new instance of the Datasource class.
             </summary>
             <param name="name">The name to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a clone of this instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.Kind">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.Kind">
             <summary>
             Kind of the data module of this instance. 
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithKind(BindOpen.Meta.Items.DatasourceKind)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithKind(BindOpen.MetaData.Items.DatasourceKind)">
             <summary>
             Sets the specified kind of this instance. 
             </summary>
             <param name="kind">The kind to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.ModuleName">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.ModuleName">
             <summary>
             The module name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithModuleName(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithModuleName(System.String)">
             <summary>
             Sets the specified module name of this instance. 
             </summary>
             <param name="moduleName">The module name to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.IsDefault">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.IsDefault">
             <summary>
             Indicates whether this instance is default.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.AsDefault(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.AsDefault(System.Boolean)">
             <summary>
             Specifies that this instance is the default. 
             </summary>
             <param name="isDefault"></param>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.InstanceName">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.InstanceName">
             <summary>
             The instance name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithInstanceName(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithInstanceName(System.String)">
             <summary>
             Sets the specified module name of this instance. 
             </summary>
             <param name="instanceName">The instance name to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.Configuration">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.Configuration">
             <summary>
             Description of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.Configurations">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.Configurations">
             <summary>
             Description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.AddConfiguration(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.AddConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
             <summary>
             Adds the specified connector configuration.
             </summary>
             <param name="config">The connector to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.RemoveConfiguration(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.RemoveConfig(System.String)">
             <summary>
             Removes the specified connector configuration.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithConfiguration(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
             <summary>
             Sets the specified configurations.
             </summary>
             <param name="configs">The configurations to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.GetConfiguration(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.GetConfig(System.String)">
             <summary>
             Gets the specified connector configuration.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.HasConfiguration(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.HasConfig(System.String)">
             <summary>
             Indicates whether this instance has the specified connector configuration.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.Key">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.Id">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDatasource.Name">
+        <member name="P:BindOpen.MetaData.Items.BdoDatasource.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDatasource.WithName(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDatasource.WithName(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:BindOpen.Meta.Items.BdoDictionary" -->
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.#ctor">
+        <!-- Badly formed XML comment ignored for member "T:BindOpen.MetaData.Items.BdoDictionary" -->
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.#ctor">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class. 
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.op_Implicit(System.ValueTuple{System.String,System.String}[])~BindOpen.Meta.Items.BdoDictionary">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.op_Implicit(System.ValueTuple{System.String,System.String}[])~BindOpen.MetaData.Items.BdoDictionary">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.op_Implicit(System.String)~BindOpen.Meta.Items.BdoDictionary">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.op_Implicit(System.String)~BindOpen.MetaData.Items.BdoDictionary">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDictionary.Id">
+        <member name="P:BindOpen.MetaData.Items.BdoDictionary.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDictionary.Item(System.String)">
+        <member name="P:BindOpen.MetaData.Items.BdoDictionary.Item(System.String)">
             <summary>
             Text of the specified key.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the specified text.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoDictionary.Item(System.String,System.String)">
+        <member name="P:BindOpen.MetaData.Items.BdoDictionary.Item(System.String,System.String)">
             <summary>
             Text of the specified key.
             </summary>
@@ -2339,20 +2339,20 @@
             <param name="defaultKey">The default key to consider.</param>
             <returns>Returns the specified text.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Add(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Add(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param name="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Add(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Add(System.String)">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param name="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Add(System.String,System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Add(System.String,System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
@@ -2361,26 +2361,26 @@
             <param name="availableKeys">The available keys to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Set(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Set(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param name="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Set(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Set(System.String)">
             <summary>
             Sets the text of the default value.
             </summary>
             <param name="text">The text of the value to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Set(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Set(System.String,System.String)">
             <summary>
             Sets the text of the default value.
             </summary>
             <param name="key">The key of the value to add.</param>
             <param name="text">The text of the value to add.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Get(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Get(System.String,System.String)">
             <summary>
             
             </summary>
@@ -2388,26 +2388,26 @@
             <param name="alternateKey"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Remove(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Remove(System.String[])">
             <summary>
             Removes the value with the specified key.
             </summary>
             <param name="key">The key to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Equals(BindOpen.Meta.Items.IBdoDictionary)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Equals(BindOpen.MetaData.Items.IBdoDictionary)">
             <summary>
             Indicates whether this intance equals the specified dico.
             </summary>
             <param name="dico">The dictionar to consider.</param>
             <returns>Returns true if this instance equals the specified dico. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.GetCultureInfoItems">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.GetCultureInfoItems">
             <summary>
             Returns the culture information sets.
             </summary>
             <returns>Returns information about all the UI cultures.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.GetValue(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.GetValue(System.String,System.String)">
             <summary>
             Returns the content corresponding to the specified key.
             </summary>
@@ -2416,44 +2416,44 @@
             <returns>Returns the text corresponding to the specified user interface language ID.
             Returns empty if there is none.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Clone``1(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Clone``1(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <param name="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Dispose">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Dispose">
             <summary>
             Disposes this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.Dispose(System.Boolean)">
             <summary>
             Disposes specifying whether this instance is disposing.
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionary.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionary.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="text"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoDictionaryExtension">
+        <member name="T:BindOpen.MetaData.Items.BdoDictionaryExtension">
             <summary>
             This class represents a dico data item extension.
             </summary>
             <example>Titles, Descriptions.</example>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoDictionaryExtension.AsDictionary(System.Object,System.ValueTuple{System.String,System.String}[])">
+        <member name="M:BindOpen.MetaData.Items.BdoDictionaryExtension.AsDictionary(System.Object,System.ValueTuple{System.String,System.String}[])">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class
             from an object.
@@ -2461,109 +2461,109 @@
             <param name="obj">The object to consider.</param>
             <param name="mappings">The mappings to consider.</param>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoExpression">
+        <member name="T:BindOpen.MetaData.Items.BdoExpression">
             <summary>
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoExpression.Text">
+        <member name="P:BindOpen.MetaData.Items.BdoExpression.Text">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoExpression.Kind">
+        <member name="P:BindOpen.MetaData.Items.BdoExpression.Kind">
             <summary>
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoExpression.Word">
+        <member name="P:BindOpen.MetaData.Items.BdoExpression.Word">
             <summary>
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoExpression.#ctor">
+        <member name="M:BindOpen.MetaData.Items.BdoExpression.#ctor">
             <summary>
             Instantiates a new instance of DataExpression class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoExpression.op_Explicit(BindOpen.Meta.Items.BdoExpression)~System.String">
+        <member name="M:BindOpen.MetaData.Items.BdoExpression.op_Explicit(BindOpen.MetaData.Items.BdoExpression)~System.String">
             <summary>
             Converts from string.
             </summary>
             <param name="st">The string to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoExpression.ToString">
+        <member name="M:BindOpen.MetaData.Items.BdoExpression.ToString">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoExpressionExtension">
+        <member name="T:BindOpen.MetaData.Items.BdoExpressionExtension">
             <summary>
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoExpressionExtension.AsExpression(System.String,BindOpen.Meta.Items.BdoExpressionKind)">
+        <member name="M:BindOpen.MetaData.Items.BdoExpressionExtension.AsExpression(System.String,BindOpen.MetaData.Items.BdoExpressionKind)">
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
             <param name="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoExpressionExtension.AsExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
+        <member name="M:BindOpen.MetaData.Items.BdoExpressionExtension.AsExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Creates a new word exp.
             </summary>
             <param name="scriptword">The script word to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Items.BdoReference">
+        <member name="T:BindOpen.MetaData.Items.BdoReference">
             <summary>
             This class represents a data reference.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoReference.SourceElement">
+        <member name="P:BindOpen.MetaData.Items.BdoReference.SourceElement">
             <summary>
             Source element of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoReference.SourceObject">
+        <member name="P:BindOpen.MetaData.Items.BdoReference.SourceObject">
             <summary>
             Source item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoReference.TargetObject">
+        <member name="P:BindOpen.MetaData.Items.BdoReference.TargetObject">
             <summary>
             Target item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoReference.DataHandlerUniqueName">
+        <member name="P:BindOpen.MetaData.Items.BdoReference.DataHandlerUniqueName">
             <summary>
             The data handler unique name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.BdoReference.PathDetail">
+        <member name="P:BindOpen.MetaData.Items.BdoReference.PathDetail">
             <summary>
             The path detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.#ctor">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.#ctor">
             <summary>
             Instantiates a new instance of the DataReference class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.RootElement">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.RootElement">
             <summary>
             The root element of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.GetDatasource">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.GetDatasource">
             <summary>
             Gets the initial data source of this instance.
             </summary>
             <returns>Returns the initial data source of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Meta.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the items from the source of this instance and update the target items.
             </summary>
@@ -2572,68 +2572,68 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the retrieved items.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.BdoReference.Dispose(System.Boolean)">
+        <member name="M:BindOpen.MetaData.Items.BdoReference.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Meta.Items.TBdoItemSet`1">
+        <member name="T:BindOpen.MetaData.Items.TBdoItemSet`1">
             <summary>
             This class represents a data item set.
             </summary>
             <typeparam name="T">The class of the named data items.</typeparam>
         </member>
-        <member name="F:BindOpen.Meta.Items.TBdoItemSet`1._items">
+        <member name="F:BindOpen.MetaData.Items.TBdoItemSet`1._items">
             <summary>
             The items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.#ctor">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.#ctor">
             <summary>
             Instantiates a new instance of the DataItemSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.op_Implicit(`0[])~BindOpen.Meta.Items.TBdoItemSet{`0}">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.op_Implicit(`0[])~BindOpen.MetaData.Items.TBdoItemSet{`0}">
             <summary>
             Converts from string.
             </summary>
             <param name="st">The string to consider.</param>
         </member>
-        <member name="P:BindOpen.Meta.Items.TBdoItemSet`1.Items">
+        <member name="P:BindOpen.MetaData.Items.TBdoItemSet`1.Items">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Items.TBdoItemSet`1.Count">
+        <member name="P:BindOpen.MetaData.Items.TBdoItemSet`1.Count">
             <summary>
             Returns the number of items.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.TBdoItemSet`1.Item(System.Int32)">
+        <member name="P:BindOpen.MetaData.Items.TBdoItemSet`1.Item(System.Int32)">
             <summary>
             Returns the element with the specified indexed.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Items.TBdoItemSet`1.Item(System.String)">
+        <member name="P:BindOpen.MetaData.Items.TBdoItemSet`1.Item(System.String)">
             <summary>
             Returns the element with the specified key.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.ClearItems">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.ClearItems">
             <summary>
             Clears the items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Add(`0[])">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Add(`0[])">
             <summary>
             Adds the specified item.
             </summary>
@@ -2642,7 +2642,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Insert(`0)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Insert(`0)">
             <summary>
             Adds the specified item.
             </summary>
@@ -2651,107 +2651,107 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.WithItems(`0[])">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.WithItems(`0[])">
             <summary>
             Sets the specified single item of this instance.
             </summary>
             <param name="items">The items to apply to this instance.</param>
             <remarks>_items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Remove(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Remove(System.String[])">
             <summary>
             Removes the item with the specified name.
             </summary>
             <param name="keys">The keys of the item to remove.</param>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.HasItem(System.String)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.HasItem(System.String)">
             <summary>
             Checks if this instance has an item with the specified name.
             </summary>
             <param name="key">The key of the item to check.</param>
             <returns>Returns true if the instance has an item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Get(System.String)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Get``1(System.String)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Get``1(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Get``1(System.Int32)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Get``1(System.Int32)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="index">The index to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.ToArray">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.ToArray">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.ToList">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.ToList">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.GetEnumerator">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.System#Collections#IEnumerable#GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Items.TBdoItemSet`1.Id">
+        <member name="P:BindOpen.MetaData.Items.TBdoItemSet`1.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Items.TBdoItemSet`1.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Items.TBdoItemSet`1.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Specification.DataConstraintStatement">
+        <member name="T:BindOpen.MetaData.Specification.DataConstraintStatement">
             <summary>
             This class represents the data constraint statement.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataConstraintStatement.#ctor">
+        <member name="M:BindOpen.MetaData.Specification.DataConstraintStatement.#ctor">
             <summary>
             Instantiates a new instance of the DataConstraintStatement class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataConstraintStatement.GetConstraint(System.String)">
+        <member name="M:BindOpen.MetaData.Specification.DataConstraintStatement.GetConstraint(System.String)">
             <summary>
             Returns the constraint with the specified name.
             </summary>
             <param name="name">The name of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataConstraintStatement.GetConstraintParameter(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Specification.DataConstraintStatement.GetConstraintParameter(System.String,System.String)">
             <summary>
             Returns the constraint parameter.
             </summary>
@@ -2759,7 +2759,7 @@
             <param name="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataConstraintStatement.GetConstraintParameterValue(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Specification.DataConstraintStatement.GetConstraintParameterValue(System.String,System.String)">
             <summary>
             Returns the constraint parameter value.
             </summary>
@@ -2767,103 +2767,103 @@
             <param name="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataConstraintStatement.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Specification.DataConstraintStatement.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Specification.DataSpecification">
+        <member name="T:BindOpen.MetaData.Specification.DataSpecification">
             <summary>
             This abstract class represents a data specification.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.#ctor">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.#ctor">
             <summary>
             Initializes a new insance of the DataSpecification class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.IsCompatibleWithItem(System.Object)">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.IsCompatibleWithItem(System.Object)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
             <param name="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.ValueType">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.WithValueType(BindOpen.Meta.DataValueTypes)">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.WithValueType(BindOpen.MetaData.DataValueTypes)">
             <summary>
             
             </summary>
             <param name="valueType"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.RequirementLevel">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.RequirementLevel">
             <summary>
             The requirement level of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.WithRequirementLevel(BindOpen.Meta.RequirementLevels)">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.WithRequirementLevel(BindOpen.MetaData.RequirementLevels)">
             <summary>
             
             </summary>
             <param name="level"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.AsOptional">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.AsOptional">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.AsRequired">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.AsRequired">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.AsForbidden">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.AsForbidden">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.RequirementScript">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.RequirementScript">
             <summary>
             The requirement script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.InheritanceLevel">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.InheritanceLevel">
             <summary>
             The level of inheritance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.SpecificationLevels">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.SpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.AccessibilityLevel">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.AccessibilityLevel">
             <summary>
             Level of accessibility of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.Index">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.WithIndex(System.Nullable{System.Int32})">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.WithIndex(System.Nullable{System.Int32})">
             <summary>
             
             </summary>
@@ -2871,82 +2871,82 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.Key">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.Id">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.Name">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataSpecification.WithName(System.String)">
+        <member name="M:BindOpen.MetaData.Specification.DataSpecification.WithName(System.String)">
             <summary>
             
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.Title">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.Title">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataSpecification.Description">
+        <member name="P:BindOpen.MetaData.Specification.DataSpecification.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Meta.Specification.DataValueFilter">
+        <member name="T:BindOpen.MetaData.Specification.DataValueFilter">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataValueFilter.AddedValues">
+        <member name="P:BindOpen.MetaData.Specification.DataValueFilter.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataValueFilter.RemovedValues">
+        <member name="P:BindOpen.MetaData.Specification.DataValueFilter.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.#ctor">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.#ctor">
             <summary>
             Instantiates a new instance of the DataValueFilter class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
             <summary>
             Instantiates a new instance of the DataValueFilter class specifying the action kind.
             </summary>
             <param name="addedValues">The allowed values to consider.</param>
             <param name="removedValues">The forbidden values to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.GetValues(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.GetValues(System.Collections.Generic.List{System.String})">
             <summary>
             Gets the values allowed by this instance.
             </summary>
             <param name="allValues">All the values to consider.</param>
             <returns>Returns all the values allowed by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Indicates whether the value is allowed by this instance.
             </summary>
@@ -2954,49 +2954,49 @@
             <param name="allValues">All the values to consider.</param>
             <returns>Returns True if the specified is validated by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.Repair(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.Repair(System.Collections.Generic.List{System.String})">
             <summary>
             Repairs this instance.
             </summary>
             <param name="allValues">All the values to consider.</param>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilter.Clone(System.String[])">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilter.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Specification.DataValueFilterStatement">
+        <member name="T:BindOpen.MetaData.Specification.DataValueFilterStatement">
             <summary>
             This interface specifies the value filter statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Specification.DataValueFilterStatement.Filters">
+        <member name="P:BindOpen.MetaData.Specification.DataValueFilterStatement.Filters">
             <summary>
             Output detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Specification.DataValueFilterStatement.#ctor">
+        <member name="M:BindOpen.MetaData.Specification.DataValueFilterStatement.#ctor">
             <summary>
             Instantiates a new instance of the DataValueFilterStatement class.
             </summary>
         </member>
-        <member name="T:BindOpen.Meta.Stores.BdoDataStore">
+        <member name="T:BindOpen.MetaData.Stores.BdoDataStore">
             <summary>
             This class represents a set of depots.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Stores.BdoDataStore.Depots">
+        <member name="P:BindOpen.MetaData.Stores.BdoDataStore.Depots">
             <summary>
             The set of depots of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStore.#ctor">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStore.#ctor">
             <summary>
             Instantiates a new instance of the BdoDataStore class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStore.Add``1(``0,System.Action{``0})">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStore.Add``1(``0,System.Action{``0})">
             <summary>
             Adds the specified depot executing the specified action.
             </summary>
@@ -3004,36 +3004,36 @@
             <param name="action">The action to execute on the newly created depot.</param>
             <typeparam name="T">The depot class to consider.</typeparam>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStore.Get``1">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStore.Get``1">
             <summary>
             Gets the depot of the specified type.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStore.Clear">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStore.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStore.LoadLazy(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStore.LoadLazy(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
             <param name="scope">The scope to append.</param>
             <param name="log"></param>
         </member>
-        <member name="T:BindOpen.Meta.Stores.BdoDataStoreExtensions">
+        <member name="T:BindOpen.MetaData.Stores.BdoDataStoreExtensions">
             <summary>
             This class represents an data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Meta.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.MetaData.Stores.IBdoDataStore)">
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
             <param name="dataStore">The data store to consider.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Meta.Stores.IBdoDataStore,System.Action{BindOpen.Meta.Stores.IBdoSourceDepot})">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.MetaData.Stores.IBdoDataStore,System.Action{BindOpen.MetaData.Stores.IBdoSourceDepot})">
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
@@ -3041,7 +3041,7 @@
             <param name="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Meta.Stores.IBdoDataStore,System.Action{BindOpen.Meta.Stores.IBdoSourceDepot,BindOpen.Logging.IBdoLog})">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.MetaData.Stores.IBdoDataStore,System.Action{BindOpen.MetaData.Stores.IBdoSourceDepot,BindOpen.Logging.IBdoLog})">
             <summary>
             Add a data source depot into the specified data store using the specified options.
             </summary>
@@ -3049,59 +3049,59 @@
             <param name="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Meta.Stores.IBdoDataStore)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.MetaData.Stores.IBdoDataStore)">
             <summary>
             Gets the datasource depot of the specified data store.
             </summary>
             <param name="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Runtime.Scopes.IBdoScope)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Runtime.Scopes.IBdoScope)">
             <summary>
             Gets the datasource depot of the specified scope.
             </summary>
             <param name="scope">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified scope.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Stores.BdoDatasourceDepot">
+        <member name="T:BindOpen.MetaData.Stores.BdoDatasourceDepot">
             <summary>
             This class represents a data source depot.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.#ctor">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.#ctor">
             <summary>
             Instantiates a new instance of the BdoDatasourceDepot class.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.Get(System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.GetModuleName(System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.GetModuleName(System.String)">
             <summary>
             Returns the module name of the specified data source.
             </summary>
             <param name="sourceName">The name of the data source to consider.</param>
             <returns>The module name corresponding to the specified data module name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.GetInstanceName(System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.GetInstanceName(System.String)">
             <summary>
             Returns the instance name of the specified data source.
             </summary>
             <param name="sourceName">The name of the data source to consider.</param>
             <returns>The instance name corresponding to the specified data module name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
             <summary>
             Returns the instance name otherwise module name of the specified data source.
             </summary>
             <param name="sourceName">The name of the data source to consider.</param>
             <returns>The instance name corresponding to the specified data module name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
             <summary>
             Gets the specified connector configuration.
             </summary>
@@ -3109,7 +3109,7 @@
             <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
             <summary>
             Indicates whether this instance has the specified connector configuration.
             </summary>
@@ -3117,7 +3117,7 @@
             <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
         </member>
-        <member name="M:BindOpen.Meta.Stores.BdoDatasourceDepot.GetConnectionString(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceDepot.GetConnectionString(System.String,System.String)">
             <summary>
             Returns the connection string corresponding to the specified configuration.
             </summary>
@@ -3125,64 +3125,64 @@
             <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
             <returns>The connection string corresponding to the specified data module name.</returns>
         </member>
-        <member name="T:BindOpen.Meta.Stores.TBdoDepot`1">
+        <member name="T:BindOpen.MetaData.Stores.TBdoDepot`1">
             <summary>
             This class represents a depot.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.#ctor">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.#ctor">
             <summary>
             Instantiates a new instance of the TBdoDepot class.
             </summary>
         </member>
-        <member name="P:BindOpen.Meta.Stores.TBdoDepot`1.Scope">
+        <member name="P:BindOpen.MetaData.Stores.TBdoDepot`1.Scope">
             <summary>
             The scope of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.WithId(System.String)">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Meta.Stores.TBdoDepot`1.LazyLoadFunction">
+        <member name="P:BindOpen.MetaData.Stores.TBdoDepot`1.LazyLoadFunction">
             <summary>
             The initialization function of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.AddFromAllAssemblies(BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.AddFromAllAssemblies(BindOpen.Logging.IBdoLog)">
             <summary>
             Add the items from all the assemblies.
             </summary>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.AddFromAssembly(System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.AddFromAssembly(System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Add the items from the specified assembly.
             </summary>
             <param name="assemblyName">The name of the assembly.</param>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.AddFromAssembly``1(BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.AddFromAssembly``1(BindOpen.Logging.IBdoLog)">
             <summary>
             Add the items from the assembly of the specified type.
             </summary>
             <param name="log">The log to append.</param>
         </member>
-        <member name="M:BindOpen.Meta.Stores.TBdoDepot`1.LoadLazy(BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.MetaData.Stores.TBdoDepot`1.LoadLazy(BindOpen.Logging.IBdoLog)">
             <summary>
             Loads this instance.
             </summary>
             <param name="log">The log to append.</param>
         </member>
-        <member name="T:BindOpen.Meta.AccessibilityLevelExtension">
+        <member name="T:BindOpen.MetaData.AccessibilityLevelExtension">
             <summary>
             This class represents an accessibility level extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Meta.AccessibilityLevelExtension.ToAccessibilityLevel(System.String,System.String)">
+        <member name="M:BindOpen.MetaData.AccessibilityLevelExtension.ToAccessibilityLevel(System.String,System.String)">
             <summary>
             Gets the accessibility level corresponding to the specified string.
             </summary>

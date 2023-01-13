@@ -1,10 +1,10 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element set.
@@ -192,9 +192,9 @@ namespace BindOpen.Meta.Elements
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            BdoMetaElementSet elementSet = base.Clone(areas) as BdoMetaElementSet;
+            BdoMetaElementSet elemSet = base.Clone(areas) as BdoMetaElementSet;
 
-            return elementSet;
+            return elemSet;
         }
 
         #endregion

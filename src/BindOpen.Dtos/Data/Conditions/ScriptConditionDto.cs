@@ -1,8 +1,8 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Conditions
+namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This class represents a script condition DTO.

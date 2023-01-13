@@ -1,14 +1,13 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Runtime.Tests;
-using BindOpen.Runtime.Tests.Extensions.Data;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.Tests.Extensions;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(200)]
     public class CarrierElementSetTests
@@ -33,14 +32,14 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
             };
         }
 
-        private void Test(IBdoElementSet elementSet)
+        private void Test(IBdoElementSet elemSet)
         {
-            var metaCarrier1 = elementSet.GetItem<IBdoMetaCarrier>("carrier1");
-            var metaCarrier2 = elementSet.GetItem<IBdoMetaCarrier>("carrier2");
-            var metaCarrier3 = elementSet.Get<IBdoMetaCarrier>(2);
-            var metaCarrier4 = elementSet.GetItem<IBdoMetaCarrier>("carrier4");
+            var metaCarrier1 = elemSet.GetItem<IBdoMetaCarrier>("carrier1");
+            var metaCarrier2 = elemSet.GetItem<IBdoMetaCarrier>("carrier2");
+            var metaCarrier3 = elemSet.Get<IBdoMetaCarrier>(2);
+            var metaCarrier4 = elemSet.GetItem<IBdoMetaCarrier>("carrier4");
 
-            Assert.That(elementSet?.Count == 4, "Bad carrier element set - Count");
+            Assert.That(elemSet?.Count == 4, "Bad carrier element set - Count");
         }
 
         [Test, Order(1)]
@@ -48,7 +47,7 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
         {
             var metaCarrier1 = BdoMeta.NewCarrier(
                 "carrier1",
-                BdoExtensions.NewCarrierConfiguration(
+                BdoExt.NewCarrierConfig(
                     "tests.core$testCarrier",
                     BdoMeta.NewScalar("path", _testData.path1)));
 
@@ -57,8 +56,8 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
 
             var metaCarrier3 = new CarrierFake(_testData.path3, _testData.folderPath3)?.AsMeta();
 
-            var metaCarrier4 = BdoExtensions.NewCarrier<CarrierFake>(
-                BdoExtensions.NewCarrierConfiguration("tests.core$testCarrier")
+            var metaCarrier4 = BdoExt.NewCarrier<CarrierFake>(
+                BdoExt.NewCarrierConfig("tests.core$testCarrier")
                     .WithItems((new { path = _testData.path4 }).AsElementSet()?.ToArray()))?.AsMeta();
 
             _metaCarrierSet = BdoMeta.NewSet(
@@ -89,9 +88,9 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
                 SaveBdoElementSetTest();
             }
 
-            var elementSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath).ToPoco();
+            var elemSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta.Conditions
+namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This class represents a Xml helper.

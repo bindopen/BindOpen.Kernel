@@ -1,7 +1,7 @@
 ﻿using BindOpen.Runtime;
 using BindOpen.Runtime.Scopes;
 
-namespace BindOpen.Tests.Mango
+namespace BindOpen.Tests.Runtime
 {
     public static class GlobalVariables
     {
@@ -16,8 +16,8 @@ namespace BindOpen.Tests.Mango
             {
                 if (_appScope == null)
                 {
-                    _appScope = BdoRuntime.NewScope();
-                    _appScope.LoadExtensions(new[] { BdoRuntime.ExtensionFromAll() });
+                    _appScope = BdoRtm.NewScope();
+                    _appScope.LoadExtensions(new[] { BdoRtm.AssemblyAsAll() });
                 }
 
                 return _appScope;

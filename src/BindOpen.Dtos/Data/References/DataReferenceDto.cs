@@ -1,9 +1,9 @@
-﻿using BindOpen.Meta.Elements;
+﻿using BindOpen.MetaData.Elements;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.References
+namespace BindOpen.MetaData.References
 {
     /// <summary>
     /// This class represents a data reference DTO.

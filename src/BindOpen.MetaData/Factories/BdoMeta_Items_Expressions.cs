@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta
+namespace BindOpen.MetaData
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.

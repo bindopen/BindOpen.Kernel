@@ -2,7 +2,7 @@
 using BindOpen.Runtime.Scopes;
 using System;
 
-namespace BindOpen.Meta.Stores
+namespace BindOpen.MetaData.Stores
 {
     /// <summary>
     /// This class represents an data source extensions.

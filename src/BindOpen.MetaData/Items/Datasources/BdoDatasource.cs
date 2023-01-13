@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a data source.
@@ -135,7 +135,7 @@ namespace BindOpen.Meta.Items
         /// Adds the specified connector configuration.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public IBdoDataSource AddConfiguration(IBdoConnectorConfiguration config)
+        public IBdoDataSource AddConfig(IBdoConnectorConfiguration config)
         {
             if (config != null)
             {
@@ -150,7 +150,7 @@ namespace BindOpen.Meta.Items
         /// Removes the specified connector configuration.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        public IBdoDataSource RemoveConfiguration(string definitionName)
+        public IBdoDataSource RemoveConfig(string definitionName)
         {
             Configurations ??= new List<IBdoConnectorConfiguration>();
             Configurations?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
@@ -162,11 +162,11 @@ namespace BindOpen.Meta.Items
         /// Sets the specified configurations.
         /// </summary>
         /// <param name="configs">The configurations to consider.</param>
-        public IBdoDataSource WithConfiguration(params IBdoConnectorConfiguration[] configs)
+        public IBdoDataSource WithConfig(params IBdoConnectorConfiguration[] configs)
         {
             foreach (var config in configs)
             {
-                AddConfiguration(config);
+                AddConfig(config);
             }
 
             return this;
@@ -177,7 +177,7 @@ namespace BindOpen.Meta.Items
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IBdoConnectorConfiguration GetConfiguration(string definitionName = null)
+        public IBdoConnectorConfiguration GetConfig(string definitionName = null)
         {
             return Configurations?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
         }
@@ -187,7 +187,7 @@ namespace BindOpen.Meta.Items
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConfiguration(string definitionName = null)
+        public bool HasConfig(string definitionName = null)
         {
             return Configurations?.Any(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName)) == true;
         }

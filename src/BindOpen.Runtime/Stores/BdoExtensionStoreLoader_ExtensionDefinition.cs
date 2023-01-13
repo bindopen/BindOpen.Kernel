@@ -1,9 +1,8 @@
-﻿using BindOpen.Runtime.Definition;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Definition;
 using System;
-using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
-using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -39,21 +38,15 @@ namespace BindOpen.Runtime.Stores
                        assembly.GetManifestResourceNames(), p => p.EndsWith(__DefaultResourceFileName, StringComparison.OrdinalIgnoreCase));
                 }
 
-                Stream stream = null;
                 if (resourceFullName == null)
                 {
-                    log?.AddError("Could not find any library definition in assembly (default named '" + __DefaultResourceFileName.ToLower() + "')");
+                    log?.AddWarning("Could not find any library definition in assembly (default named '" + __DefaultResourceFileName.ToLower() + "')");
                 }
                 else
                 {
                     try
                     {
-                        stream = assembly.GetManifestResourceStream(resourceFullName);
-                        if (stream == null)
-                        {
-                            log?.AddError("Could not find the library definition named '" + resourceFullName + "' in assembly");
-                        }
-                        else
+                        using var stream = assembly.GetManifestResourceStream(resourceFullName);
                         {
                             XmlSerializer serializer = new(typeof(BdoExtensionDefinition));
                             definition = (BdoExtensionDefinition)serializer.Deserialize(stream);
@@ -63,10 +56,6 @@ namespace BindOpen.Runtime.Stores
                     catch (Exception ex)
                     {
                         log?.AddException(ex);
-                    }
-                    finally
-                    {
-                        stream?.Close();
                     }
                 }
             }

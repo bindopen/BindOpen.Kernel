@@ -4,63 +4,63 @@
         <name>BindOpen.Tests.Runtime</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Tests.Mango.Extensions.ScriptInterpreterTests">
+        <member name="T:BindOpen.Tests.Runtime.ScriptInterpreterTests">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake">
+        <member name="T:BindOpen.Tests.Runtime.ScriptWordDefinitionFake">
             <summary>
             This class represents a script word definition fake.
             </summary>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Var_Constant">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Var_Constant">
             <summary>
             Evaluates the script word $Constant.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Fun_Func1(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Fun_Func1(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
             <summary>
             Evaluates the script word $TEXT.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Fun_Func2(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Fun_Func2(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
             <summary>
             Evaluates the script word $ISEQUAL.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Fun_Func3(System.Object,System.Object)">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Fun_Func3(System.Object,System.Object)">
             <summary>
             Evaluates the script word $Func1.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Fun_Func4(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Fun_Func4(BindOpen.Extensions.Scripting.IBdoScriptwordDomain)">
             <summary>
             Evaluates the script word $Func2.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="M:BindOpen.Tests.Mango.Extensions.Scripting.ScriptWordDefinitionFake.Fun_Func5(BindOpen.Extensions.Scripting.IBdoScriptwordDomain,System.Object,System.String[])">
+        <member name="M:BindOpen.Tests.Runtime.ScriptWordDefinitionFake.Fun_Func5(BindOpen.Extensions.Scripting.IBdoScriptwordDomain,System.Object,System.String[])">
             <summary>
             Evaluates the script word $Func5.
             </summary>
             <returns>The interpreted string value.</returns>
         </member>
-        <member name="T:BindOpen.Tests.Mango.GlobalSetUp">
+        <member name="T:BindOpen.Tests.Runtime.GlobalSetUp">
             <summary>
             This class set the global setup.
             </summary>
         </member>
-        <member name="M:BindOpen.Tests.Mango.GlobalSetUp.OneTimeSetUp">
+        <member name="M:BindOpen.Tests.Runtime.GlobalSetUp.OneTimeSetUp">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Mango.GlobalVariables.Scope">
+        <member name="P:BindOpen.Tests.Runtime.GlobalVariables.Scope">
             <summary>
             The global scope.
             </summary>

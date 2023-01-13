@@ -1,5 +1,5 @@
 ﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Meta;
+using BindOpen.MetaData;
 
 namespace BindOpen.Extensions.Connecting
 {

@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
+﻿using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using Microsoft.Extensions.Logging;
@@ -47,7 +47,7 @@ namespace BindOpen.Runtime.Hosts
         /// <summary>
         /// The extension to load.
         /// </summary>
-        IBdoExtensionReferenceCollection ExtensionReferences { get; }
+        IBdoAssemblyReferenceCollection ExtensionReferences { get; }
 
         /// <summary>
         /// The extension load options.
@@ -62,7 +62,7 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        IBdoHostOptions AddExtensions(Action<IBdoExtensionReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null);
+        IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
         // Depots ----------------------
 

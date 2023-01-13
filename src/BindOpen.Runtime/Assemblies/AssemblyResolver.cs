@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System;
 using System.Reflection;
 

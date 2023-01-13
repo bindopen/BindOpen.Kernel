@@ -1,13 +1,12 @@
 ﻿using BindOpen.Extensions.Modeling;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Runtime.Tests;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(201)]
     public class CollectionElementSetTests
@@ -31,12 +30,12 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
             };
         }
 
-        private static void Test(IBdoElementSet elementSet)
+        private static void Test(IBdoElementSet elemSet)
         {
-            _ = elementSet.GetItem<IBdoMetaCarrier>("collection1");
-            _ = elementSet.Get<IBdoMetaCarrier>(1);
+            _ = elemSet.GetItem<IBdoMetaCarrier>("collection1");
+            _ = elemSet.Get<IBdoMetaCarrier>(1);
 
-            Assert.That(elementSet?.Count == 2, "Bad collection element set - Count");
+            Assert.That(elemSet?.Count == 2, "Bad collection element set - Count");
         }
 
         [Test, Order(1)]
@@ -86,9 +85,9 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Elements
                 SaveBdoElementSetTest();
             }
 
-            var elementSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath).ToPoco();
+            var elemSet = XmlHelper.LoadXml<BdoElementSetDto>(_filePath).ToPoco();
 
-            Test(elementSet);
+            Test(elemSet);
         }
     }
 }

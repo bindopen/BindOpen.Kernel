@@ -1,9 +1,9 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
 
     /// <summary>

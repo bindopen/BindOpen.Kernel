@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Items;
 using System.Linq;
 
-namespace BindOpen.Meta.Stores
+namespace BindOpen.MetaData.Stores
 {
     /// <summary>
     /// This class represents a data source depot.
@@ -95,7 +95,7 @@ namespace BindOpen.Meta.Stores
         {
             IBdoDataSource dataSource = Get(sourceName);
 
-            return dataSource?.GetConfiguration(connectorDefinitionUniqueId);
+            return dataSource?.GetConfig(connectorDefinitionUniqueId);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace BindOpen.Meta.Stores
         {
             IBdoDataSource dataSource = Get(sourceName);
 
-            return dataSource?.HasConfiguration(connectorDefinitionUniqueId) == true;
+            return dataSource?.HasConfig(connectorDefinitionUniqueId) == true;
         }
 
         /// <summary>

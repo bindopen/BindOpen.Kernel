@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 
 namespace BindOpen.Extensions
 {

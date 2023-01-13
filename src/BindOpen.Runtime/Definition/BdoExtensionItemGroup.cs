@@ -1,5 +1,5 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;
 
@@ -185,7 +185,7 @@ namespace BindOpen.Runtime.Definition
             return this;
         }
 
-        public string GetTitleText(string key = "*", string defaultKey = "*")
+        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Title?[key, defaultKey];
         }
@@ -227,7 +227,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key"></param>
         /// <param name="defaultKey"></param>
         /// <returns></returns>
-        public string GetDescriptionText(string key = "*", string defaultKey = "*")
+        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Description?[key, defaultKey];
         }

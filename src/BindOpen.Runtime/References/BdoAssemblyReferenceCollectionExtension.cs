@@ -1,0 +1,46 @@
+﻿namespace BindOpen.Runtime.References
+{
+    /// <summary>
+    /// This class represents an extension reference extension.
+    /// </summary>
+    public static class BdoAssemblyReferenceExtension
+    {
+        /// <summary>
+        /// Creates a assembly reference from the specified extension one.
+        /// </summary>
+        /// <param name="references">The reference collection to consider.</param>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="version">The version to consider.</param>
+        /// <returns>Returns the itemized list of the specified library list.</returns>
+        public static IBdoAssemblyReference AddAssembly(this IBdoAssemblyReferenceCollection references, string name, string version = null)
+        {
+            var reference = BdoRtm.Assembly(name, version);
+            references.Add(reference);
+            return reference;
+        }
+
+        /// <summary>
+        /// Creates a assembly reference of the spcefied type.
+        /// </summary>
+        /// <param name="references">The reference collection to consider.</param>
+        /// <returns>Returns the itemized list of the spcefied type</returns>
+        public static IBdoAssemblyReference AddAssembly<T>(this IBdoAssemblyReferenceCollection references)
+        {
+            var reference = BdoRtm.AssemblyFrom<T>();
+            references.Add(reference);
+            return reference;
+        }
+
+        /// <summary>
+        /// Creates a assembly reference that represents all the references.
+        /// </summary>
+        /// <param name="references">The reference collection to consider.</param>
+        /// <returns>Returns a assembly reference that represents all the references.</returns>
+        public static IBdoAssemblyReference AddAllAssemblies(this IBdoAssemblyReferenceCollection references)
+        {
+            var reference = BdoRtm.AssemblyAsAll();
+            references.Add(reference);
+            return reference;
+        }
+    }
+}

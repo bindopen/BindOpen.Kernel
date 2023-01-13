@@ -1,7 +1,7 @@
-﻿using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta.References
+namespace BindOpen.MetaData.References
 {
     /// <summary>
     /// This static class represents a data reference converter.

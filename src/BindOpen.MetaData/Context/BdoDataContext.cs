@@ -1,10 +1,10 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Context
+namespace BindOpen.MetaData.Context
 {
     /// <summary>
     /// This class represents a data context. A data context contains all the data related to a user session.

@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta;
+﻿using BindOpen.MetaData;
 
 namespace BindOpen.Runtime.Hosts
 {
