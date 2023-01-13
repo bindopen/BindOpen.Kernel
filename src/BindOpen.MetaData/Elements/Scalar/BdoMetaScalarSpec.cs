@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta.Elements
+﻿namespace BindOpen.MetaData.Elements
 {
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;

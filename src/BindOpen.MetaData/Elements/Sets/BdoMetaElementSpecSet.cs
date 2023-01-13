@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a set of data element specifications.

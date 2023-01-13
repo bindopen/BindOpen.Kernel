@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Conditions
+namespace BindOpen.MetaData.Conditions
 {
     /// <summary>
     /// This class represents a condition DTO.

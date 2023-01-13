@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Elements;
+﻿using BindOpen.MetaData.Elements;
 using System;
 
 namespace BindOpen.Extensions.Processing

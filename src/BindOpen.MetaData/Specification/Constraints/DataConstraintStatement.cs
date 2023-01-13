@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Processing;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 
-namespace BindOpen.Meta.Specification
+namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This class represents the data constraint statement.

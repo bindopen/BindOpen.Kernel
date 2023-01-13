@@ -1,9 +1,9 @@
-﻿using BindOpen.Meta.Specification;
+﻿using BindOpen.MetaData.Specification;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a catalog element specification.

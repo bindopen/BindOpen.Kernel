@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Elements;
+﻿using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using BindOpen.Logging;

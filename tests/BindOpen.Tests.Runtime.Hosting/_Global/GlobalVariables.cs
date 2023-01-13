@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta;
+﻿using BindOpen.MetaData;
 using BindOpen.Runtime.Hosts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

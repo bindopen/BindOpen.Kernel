@@ -1,14 +1,13 @@
 ﻿using BindOpen.Extensions;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
-using BindOpen.Runtime.Tests;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Stores
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
@@ -52,11 +51,11 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Stores
         [Test, Order(1)]
         public void CreateBdoDatasourceDepotTest()
         {
-            _datasourceDepot = Meta.BdoMeta.NewDatasourceDepot(
-                Meta.BdoMeta.NewDatasource(
+            _datasourceDepot = BdoMeta.NewDatasourceDepot(
+                BdoMeta.NewDatasource(
                     "smtp_default",
                     DatasourceKind.EmailServer,
-                    BdoExtensions.NewConnectorConfiguration(
+                    BdoExt.NewConnectorConfig(
                         "messages$smtp",
                         BdoMeta.NewScalar("host", _testData.host),
                         BdoMeta.NewScalar("port", DataValueTypes.Integer, _testData.port),

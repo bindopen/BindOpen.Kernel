@@ -1,8 +1,7 @@
-﻿using BindOpen.Runtime.Tests;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.Extensions
+namespace BindOpen.Tests.IO.Extensions
 {
     /// <summary>
     /// This class set the global setup.

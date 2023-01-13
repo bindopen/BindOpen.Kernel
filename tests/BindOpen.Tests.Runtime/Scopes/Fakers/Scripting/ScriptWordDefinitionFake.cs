@@ -1,8 +1,8 @@
-﻿using BindOpen.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
+using BindOpen.MetaData;
 using System;
 
-namespace BindOpen.Tests.Mango.Extensions.Scripting
+namespace BindOpen.Tests.Runtime
 {
     /// <summary>
     /// This class represents a script word definition fake.

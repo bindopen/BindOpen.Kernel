@@ -1,4 +1,4 @@
-﻿using BindOpen.Meta.Configuration;
+﻿using BindOpen.MetaData.Configuration;
 
 namespace BindOpen.Runtime.Configuration
 {

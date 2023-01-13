@@ -1,11 +1,11 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Meta;
-using BindOpen.Meta.Items;
-using BindOpen.Runtime.Tests.Extensions.Data;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
+using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System;
 
-namespace BindOpen.Tests.Mango.Extensions
+namespace BindOpen.Tests.Runtime
 {
     /// <summary>
     /// 
@@ -108,7 +108,7 @@ namespace BindOpen.Tests.Mango.Extensions
         public void InterpreteScript7Test()
         {
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
-            var resultScript = interpreter.Evaluate<string>(_script7)?.ToString();
+            var resultScript = interpreter.Evaluate<string>(_script7);
 
             Assert.That(_interpretedScript7.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -121,7 +121,7 @@ namespace BindOpen.Tests.Mango.Extensions
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(
-                _script8, varElementSet: varElementSet)?.ToString();
+                _script8, varElementSet: varElementSet);
 
             Assert.That(_interpretedScript8.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

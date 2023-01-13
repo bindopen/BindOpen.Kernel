@@ -1,9 +1,9 @@
-﻿using BindOpen.Meta.Items;
-using BindOpen.Meta.Specification;
+﻿using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Specification;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data source element specification.

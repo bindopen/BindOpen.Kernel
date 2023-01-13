@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Modeling;
 using BindOpen.Logging;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
@@ -42,7 +42,7 @@ namespace BindOpen.Runtime.Stores
             int count = 0;
             foreach (Type type in types)
             {
-                var definition = BdoRuntime.NewCarrierDefinition(extensionDefinition);
+                var definition = BdoRtm.NewCarrierDefinition(extensionDefinition);
                 definition.ItemClass = type.FullName;
                 definition.LibraryId = extensionDefinition?.Id;
                 definition.RuntimeType = type;

@@ -1,11 +1,11 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Configuration
+namespace BindOpen.MetaData.Configuration
 {
     /// <summary>
     /// This class represents a configuration.
@@ -153,7 +153,7 @@ namespace BindOpen.Meta.Configuration
             return this;
         }
 
-        public string GetDescriptionText(string key = "*", string defaultKey = "*")
+        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Description?[key, defaultKey];
         }

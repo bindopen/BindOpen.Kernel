@@ -1,11 +1,11 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Meta.Context;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
+using BindOpen.Logging;
+using BindOpen.MetaData.Context;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 using BindOpen.Runtime.References;
 using BindOpen.Runtime.Stores;
 using System;
-using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Scopes
 {
@@ -83,7 +83,7 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="references">The extension references to consider.</param>
         public bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            IBdoExtensionReference[] references,
+            IBdoAssemblyReference[] references,
             IBdoLog log = null)
         {
             var loaded = true;
@@ -103,10 +103,30 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
+        /// <param name="loadOptionsAction">The load options action to consider.</param>
         /// <param name="references">The extension references to consider.</param>
         public bool LoadExtensions(
-            IBdoExtensionReference[] references,
-            IBdoLog log = null) => LoadExtensions(null, references, log);
+            Func<IExtensionLoadOptions, bool> loadOptionsAction,
+            params IBdoAssemblyReference[] references)
+            => LoadExtensions(loadOptionsAction, references, null);
+
+        /// <summary>
+        /// Loads the specified extensions.
+        /// </summary>
+        /// <param name="references">The extension references to consider.</param>
+        public bool LoadExtensions(
+            IBdoAssemblyReference[] references,
+            IBdoLog log = null)
+            => LoadExtensions(null, references, log);
+
+        /// <summary>
+        /// Loads the specified extensions.
+        /// </summary>
+        /// <param name="loadOptionsAction">The load options action to consider.</param>
+        /// <param name="references">The extension references to consider.</param>
+        public bool LoadExtensions(
+            params IBdoAssemblyReference[] references)
+            => LoadExtensions(references, null);
 
         /// <summary>
         /// Clears this instance.

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta.Specification
+﻿namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This static class represents a data reference converter.

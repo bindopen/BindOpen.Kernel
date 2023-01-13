@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Logging;

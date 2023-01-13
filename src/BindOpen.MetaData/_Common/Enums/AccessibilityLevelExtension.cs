@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta
+﻿namespace BindOpen.MetaData
 {
     /// <summary>
     /// This class represents an accessibility level extension.

@@ -1,11 +1,11 @@
-﻿using BindOpen.Meta.Items;
-using BindOpen.Meta.References;
+﻿using BindOpen.MetaData.Items;
+using BindOpen.MetaData.References;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element.

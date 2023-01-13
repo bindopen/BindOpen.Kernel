@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Meta.Specification
+﻿namespace BindOpen.MetaData.Specification
 {
     /// <summary>
     /// This static class provides methods to check data elements.

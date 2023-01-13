@@ -1,15 +1,13 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Runtime.Tests;
-using BindOpen.Runtime.Tests.Extensions;
-using BindOpen.Runtime.Tests.Extensions.Data;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.Tests.Extensions;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.Extensions.Data
+namespace BindOpen.Tests.IO.Extensions
 {
     [TestFixture, Order(300)]
     public class IOCarrierTests
@@ -69,7 +67,7 @@ namespace BindOpen.Runtime.IO.Tests.Extensions.Data
             }
 
             var configuration = XmlHelper.LoadXml<BdoCarrierConfigurationDto>(_filePath).ToPoco();
-            var field = BdoExtensions.NewCarrier<CarrierFake>(configuration);
+            var field = BdoExt.NewCarrier<CarrierFake>(configuration);
 
             Assert.That(field != null, "Carrier loading failed");
 
@@ -100,7 +98,7 @@ namespace BindOpen.Runtime.IO.Tests.Extensions.Data
             }
 
             var configuration = JsonHelper.LoadJson<BdoCarrierConfigurationDto>(_filePath).ToPoco();
-            var field = BdoExtensions.NewCarrier<CarrierFake>(configuration);
+            var field = BdoExt.NewCarrier<CarrierFake>(configuration);
 
             Assert.That(field != null, "Carrier loading failed");
 

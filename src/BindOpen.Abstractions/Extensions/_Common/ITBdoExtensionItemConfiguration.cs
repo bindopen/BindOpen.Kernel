@@ -1,5 +1,5 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta;
+using BindOpen.MetaData;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions

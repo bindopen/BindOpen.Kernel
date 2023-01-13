@@ -1,7 +1,7 @@
 ﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Reflection;
@@ -25,7 +25,7 @@ namespace BindOpen.Runtime.Settings
         /// </summary>
         public BdoSettings()
         {
-            Configuration = BdoMeta.NewConfiguration();
+            Configuration = BdoMeta.NewConfig();
         }
 
         /// <summary>

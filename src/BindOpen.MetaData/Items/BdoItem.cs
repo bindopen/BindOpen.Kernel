@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Meta.Items
+namespace BindOpen.MetaData.Items
 {
     /// <summary>
     /// This class represents a data item.

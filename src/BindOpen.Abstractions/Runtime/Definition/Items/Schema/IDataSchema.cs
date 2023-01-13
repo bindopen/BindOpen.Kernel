@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Elements.Schema;
-using BindOpen.Meta.Items;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Elements.Schema;
+using BindOpen.MetaData.Items;
 
 namespace BindOpen.Runtime.Definition
 {

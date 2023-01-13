@@ -1,7 +1,7 @@
-﻿using BindOpen.Meta.Elements;
+﻿using BindOpen.MetaData.Elements;
 using System.Linq;
 
-namespace BindOpen.Meta
+namespace BindOpen.MetaData
 {
     /// <summary>
     /// This static class provides methods to create data element set.
@@ -76,10 +76,10 @@ namespace BindOpen.Meta
         public static BdoMetaElementSet NewSet<T>(params IBdoMetaElement[] elems)
             where T : class, IBdoElementSet, new()
         {
-            var elementSet = NewSet<T>();
-            elementSet.WithItems(elems);
+            var elemSet = NewSet<T>();
+            elemSet.WithItems(elems);
 
-            return elementSet;
+            return elemSet;
         }
 
         /// <summary>
@@ -90,10 +90,10 @@ namespace BindOpen.Meta
         public static BdoMetaElementSet NewSet<T>(params (string Name, object Value)[] pairs)
             where T : class, IBdoElementSet, new()
         {
-            var elementSet = NewSet<T>();
-            elementSet.WithItems(pairs.Select(q => BdoMeta.NewElement(q.Name, q.Value)).ToArray());
+            var elemSet = NewSet<T>();
+            elemSet.WithItems(pairs.Select(q => BdoMeta.NewElement(q.Name, q.Value)).ToArray());
 
-            return elementSet;
+            return elemSet;
         }
 
         /// <summary>
@@ -104,10 +104,10 @@ namespace BindOpen.Meta
         public static BdoMetaElementSet NewSet<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
             where T : class, IBdoElementSet, new()
         {
-            var elementSet = NewSet<T>();
-            elementSet.WithItems(triplets.Select(q => BdoMeta.NewElement(q.Name, q.ValueType, q.Value)).ToArray());
+            var elemSet = NewSet<T>();
+            elemSet.WithItems(triplets.Select(q => BdoMeta.NewElement(q.Name, q.ValueType, q.Value)).ToArray());
 
-            return elementSet;
+            return elemSet;
         }
 
 
@@ -137,7 +137,7 @@ namespace BindOpen.Meta
             string stringObject)
             where T : class, IBdoElementSet, new()
         {
-            var elementSet = new BdoMetaElementSet();
+            var elemSet = new BdoMetaElementSet();
             if (stringObject != null)
             {
                 foreach (var subString in stringObject.Split(';'))
@@ -145,7 +145,7 @@ namespace BindOpen.Meta
                     if (subString.IndexOf("=") > 0)
                     {
                         int i = subString.IndexOf("=");
-                        elementSet.Add(
+                        elemSet.Add(
                             BdoMeta.NewScalar(
                                 subString[..i],
                                 DataValueTypes.Text,
@@ -153,7 +153,7 @@ namespace BindOpen.Meta
                     }
                 }
             }
-            return elementSet;
+            return elemSet;
         }
     }
 }

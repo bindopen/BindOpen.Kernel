@@ -1,8 +1,8 @@
 ﻿using BindOpen.Extensions.Modeling;
 using BindOpen.Logging;
-using BindOpen.Meta;
-using BindOpen.Meta.Elements;
-using BindOpen.Meta.Items;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;

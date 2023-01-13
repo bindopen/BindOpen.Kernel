@@ -1,12 +1,12 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Specification;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Specification;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data element.
@@ -523,7 +523,7 @@ namespace BindOpen.Meta.Elements
             return this;
         }
 
-        public string GetTitleText(string key = "*", string defaultKey = "*")
+        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Title?[key, defaultKey];
         }
@@ -554,7 +554,7 @@ namespace BindOpen.Meta.Elements
             return this;
         }
 
-        public string GetDescriptionText(string key = "*", string defaultKey = "*")
+        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
             return Description?[key, defaultKey];
         }

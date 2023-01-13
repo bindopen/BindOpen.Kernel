@@ -1,7 +1,7 @@
-﻿using BindOpen.Meta.Specification;
+﻿using BindOpen.MetaData.Specification;
 using System.Linq;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a Xml helper.

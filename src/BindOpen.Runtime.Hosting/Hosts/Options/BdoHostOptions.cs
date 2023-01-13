@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta;
-using BindOpen.Meta.Items;
-using BindOpen.Meta.Stores;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
+using BindOpen.MetaData.Stores;
 using BindOpen.Logging;
 using BindOpen.Runtime.Hosting.Exceptions;
 using BindOpen.Runtime.References;
@@ -59,7 +59,7 @@ namespace BindOpen.Runtime.Hosts
         /// <summary>
         /// The extension loading options.
         /// </summary>
-        public IBdoExtensionReferenceCollection ExtensionReferences { get; internal set; } = new BdoExtensionReferenceCollection();
+        public IBdoAssemblyReferenceCollection ExtensionReferences { get; internal set; } = new BdoAssemblyReferenceCollection();
 
         /// <summary>
         /// The extension loading options.
@@ -202,7 +202,7 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="action">The action for adding extensions.</param>
         /// <param name="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
-        public IBdoHostOptions AddExtensions(Action<IBdoExtensionReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null)
+        public IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null)
         {
             if (action != null)
             {

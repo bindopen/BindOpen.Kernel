@@ -1,11 +1,10 @@
 ﻿using BindOpen.Extensions;
-using BindOpen.Meta;
-using BindOpen.Meta.Items;
-using BindOpen.Runtime.Tests;
+using BindOpen.MetaData;
+using BindOpen.MetaData.Items;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Runtime.IO.Tests.MasterData.Items
+namespace BindOpen.Tests.IO.MetaData
 {
     [TestFixture, Order(210)]
     public class DatasourceTests
@@ -23,8 +22,8 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         public void CreateDatasourceTest()
         {
             _datasource = BdoMeta.NewDatasource("name", DatasourceKind.Database)
-                .WithConfiguration(
-                    BdoExtensions.NewConnectorConfiguration("tests.core$test")
+                .WithConfig(
+                    BdoExt.NewConnectorConfig("tests.core$test")
                         ?.WithConnectionString("connectionString"));
 
             Assert.That(
@@ -34,10 +33,10 @@ namespace BindOpen.Runtime.IO.Tests.MasterData.Items
         private void Test(IBdoDataSource source)
         {
             Assert.That(
-                source.GetConfiguration("tests.core$test") != null, "Datasource - Configuration not found");
+                source.GetConfig("tests.core$test") != null, "Datasource - Configuration not found");
 
             Assert.That(
-                source.GetConfiguration("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
+                source.GetConfig("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
         }
 
         // Xml

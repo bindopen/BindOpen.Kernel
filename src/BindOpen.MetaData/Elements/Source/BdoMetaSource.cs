@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions.Connecting;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a data source element.

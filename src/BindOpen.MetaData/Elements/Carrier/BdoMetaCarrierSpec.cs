@@ -1,6 +1,6 @@
-﻿using BindOpen.Meta.Specification;
+﻿using BindOpen.MetaData.Specification;
 
-namespace BindOpen.Meta.Elements
+namespace BindOpen.MetaData.Elements
 {
     /// <summary>
     /// This class represents a carrier element specification.
