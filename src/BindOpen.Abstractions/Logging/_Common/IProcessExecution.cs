@@ -17,7 +17,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSet Detail { get; set; }
+        IBdoMetaElementSet Detail { get; set; }
 
         /// <summary>
         /// 

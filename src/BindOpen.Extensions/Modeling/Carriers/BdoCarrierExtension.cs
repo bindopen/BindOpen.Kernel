@@ -19,7 +19,7 @@ namespace BindOpen.Extensions.Modeling
             string name = null)
         {
             return BdoMeta.NewCarrier(name)
-                .WithItem(carrier?.Configuration);
+                .WithItems(carrier?.Configuration);
         }
     }
 }

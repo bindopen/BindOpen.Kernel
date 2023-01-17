@@ -9,7 +9,7 @@ namespace BindOpen.Tests.MetaData
     public class BdoDictionaryTests
     {
         dynamic _valueSet;
-        private BdoDictionary _dico = null;
+        public BdoDictionary _dico = null;
 
 
         [OneTimeSetUp]

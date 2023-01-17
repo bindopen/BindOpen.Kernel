@@ -13,7 +13,7 @@ namespace BindOpen.MetaData
     /// This enumeration represents the possible update modes.
     /// </summary>
     [Flags]
-    [XmlType("UpdateModes", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("UpdateModes", Namespace = "https://xsd.bindopen.org")]
     public enum UpdateModes
     {
         /// <summary>

@@ -6,7 +6,7 @@ namespace BindOpen.MetaData
     /// <summary>
     /// This enumeration represents the possible levels of inheritance.
     /// </summary>
-    [XmlType("InheritanceLevels", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("InheritanceLevels", Namespace = "https://xsd.bindopen.org")]
     [Flags]
     public enum InheritanceLevels
     {

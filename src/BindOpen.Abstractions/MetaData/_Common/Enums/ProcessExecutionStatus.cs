@@ -6,7 +6,7 @@ namespace BindOpen.MetaData
     /// <summary>
     /// This enumeration represents the possible process execution statuses.
     /// </summary>
-    [XmlType("ProcessExecutionStatus", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("ProcessExecutionStatus", Namespace = "https://xsd.bindopen.org")]
     public enum ProcessExecutionStatus
     {
         /// <summary>

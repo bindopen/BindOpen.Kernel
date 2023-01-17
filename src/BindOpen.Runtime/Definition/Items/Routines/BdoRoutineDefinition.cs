@@ -30,7 +30,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter statement of this instance.
         /// </summary>
-        public IBdoElementSet ParameterStatement { get; set; } = new BdoMetaElementSet();
+        public IBdoMetaElementSet ParameterStatement { get; set; } = new BdoMetaElementSet();
 
         /// <summary>
         /// The runtime type of this instance.

@@ -89,7 +89,7 @@ namespace BindOpen.MetaData.Stores
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IBdoConnectorConfiguration GetConnectorConfiguration(
+        public IBdoConnectorConfiguration GetConnectorConfig(
             string sourceName = null,
             string connectorDefinitionUniqueId = null)
         {
@@ -104,7 +104,7 @@ namespace BindOpen.MetaData.Stores
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConnectorConfiguration(string sourceName = null, string connectorDefinitionUniqueId = null)
+        public bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueId = null)
         {
             IBdoDataSource dataSource = Get(sourceName);
 
@@ -121,9 +121,9 @@ namespace BindOpen.MetaData.Stores
             string sourceName = null,
             string connectorDefinitionUniqueId = null)
         {
-            IBdoConnectorConfiguration configuration = GetConnectorConfiguration(sourceName, connectorDefinitionUniqueId);
+            IBdoConnectorConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueId);
 
-            return configuration?.GetItem<string>("connectionString");
+            return config?.GetItem<string>("connectionString");
         }
 
         #endregion

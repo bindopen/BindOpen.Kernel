@@ -25,7 +25,7 @@ namespace BindOpen.Runtime.Dtos.Extensions
         /// </summary>
         [JsonPropertyName("title")]
         [XmlElement("title")]
-        public DictionaryDataItemDto Title { get; set; }
+        public DictionaryDto Title { get; set; }
 
         #endregion
 

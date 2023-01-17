@@ -7,7 +7,7 @@ namespace BindOpen.MetaData
     /// This enumeration represents the possible data operators.
     /// </summary>
     [Flags]
-    [XmlType("DataOperators", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("DataOperators", Namespace = "https://xsd.bindopen.org")]
     public enum DataOperators
     {
         /// <summary>

@@ -45,7 +45,7 @@ namespace BindOpen.Extensions.Connecting
         /// Gets the connection string.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public string GetConnectionString() => GetItem<string>("connectionString");
+        public string GetConnectionString() => this.GetItem<string>("connectionString");
 
         #endregion
 

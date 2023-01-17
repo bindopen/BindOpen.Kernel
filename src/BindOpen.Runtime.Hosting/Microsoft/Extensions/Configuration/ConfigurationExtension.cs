@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.Configuration
         public static T GetBdoValue<T>(
             this IConfiguration configuration,
             string key, IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
             where T : class
         {
@@ -47,7 +47,7 @@ namespace Microsoft.Extensions.Configuration
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
             where T : class
         {
@@ -87,7 +87,7 @@ namespace Microsoft.Extensions.Configuration
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             if (configuration == default) return default;

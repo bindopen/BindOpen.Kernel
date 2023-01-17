@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Processing
         object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds);
 
@@ -35,7 +35,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="dataElementSpecSet"></param>
         /// <param name="taskEntryKind"></param>
         /// <returns></returns>
-        bool IsCompatibleWith(IBdoElementSpecSet dataElementSpecSet, TaskEntryKind taskEntryKind = TaskEntryKind.Any);
+        bool IsCompatibleWith(IBdoMetaElementSpecSet dataElementSpecSet, TaskEntryKind taskEntryKind = TaskEntryKind.Any);
 
         /// <summary>
         /// 
@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="log"></param>
         IBdoTask Execute(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null);
     }

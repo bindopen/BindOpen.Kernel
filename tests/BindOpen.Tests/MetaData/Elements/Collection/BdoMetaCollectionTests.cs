@@ -56,7 +56,7 @@ namespace BindOpen.Tests.MetaData
             collectionElement2
                 .Add(
                     BdoMeta.NewCarrier("collection2", "tests.core$testCarrier")
-                        .WithItem(
+                        .WithItems(
                             (new { path = "file2.txt" }).AsElementSet<BdoCarrierConfiguration>()));
 
             _collectionElement = BdoMeta.NewCollection(collectionElement1, collectionElement2);

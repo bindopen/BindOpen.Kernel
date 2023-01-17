@@ -33,7 +33,7 @@ namespace BindOpen.MetaData
         /// <param name="id">The ID to consider.</param>
         /// <param name="item">The items to consider.</param>
         public static BdoMetaCollection NewCollection(
-            string name,
+            string name = null,
             params IBdoMetaElement[] elems)
             => NewCollection<BdoMetaCollection>(name, elems);
 
@@ -80,7 +80,7 @@ namespace BindOpen.MetaData
         {
             var el = new T();
             el.WithName(name);
-            el.WithItem(elems);
+            el.WithItems(elems);
 
             return el;
         }

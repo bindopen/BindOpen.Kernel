@@ -22,14 +22,16 @@ namespace BindOpen.Tests.MetaData
             double[] items = _testData.arrayNumber;
 
             var el = BdoMeta.NewScalar("number1", DataValueTypes.Number, items);
-            var itemList = el.GetItemList<double>();
+            var itemList = el.Items<double>();
             Assert.That(
-                itemList?.Intersect(items).Any() ?? false, "Bad scalar element - Number");
+                itemList?.Intersect(items).Any() ?? false
+                && el.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
 
             el = BdoMeta.NewScalar<double>("number1", items);
-            itemList = el.GetItemList<double>();
+            itemList = el.Items<double>();
             Assert.That(
-                itemList?.Intersect(items).Any() ?? false, "Bad scalar element - Number");
+                itemList?.Intersect(items).Any() ?? false
+                && el.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
         }
 
         [Test, Order(2)]
@@ -38,10 +40,11 @@ namespace BindOpen.Tests.MetaData
             string[] items = _testData.arrayString;
             var el = BdoMeta.NewScalar("text2", items);
 
-            var itemList = el.GetItemList<string>();
+            var itemList = el.Items<string>();
 
             Assert.That(
-                itemList?.Intersect(items).Any() ?? false, "Bad scalar element - Text");
+                itemList?.Intersect(items).Any() ?? false
+                && el.ValueType == DataValueTypes.Text, "Bad scalar element - Text");
         }
 
         [Test, Order(3)]
@@ -50,10 +53,11 @@ namespace BindOpen.Tests.MetaData
             int[] items = _testData.arrayInteger;
             var el = BdoMeta.NewScalar("integer3", items);
 
-            var itemList = el.GetItemList<int>();
+            var itemList = el.Items<int>();
 
             Assert.That(
-                itemList?.Intersect(items).Any() ?? false, "Bad scalar element - Integer");
+                itemList?.Intersect(items).Any() ?? false
+                && el.ValueType == DataValueTypes.Integer, "Bad scalar element - Integer");
         }
 
         [Test, Order(3)]
@@ -62,11 +66,12 @@ namespace BindOpen.Tests.MetaData
             byte[][] items = _testData.arrayArrayByte;
             var el = BdoMeta.NewScalar("byteArray4", items);
 
-            var itemList = el.GetItemList<byte[]>();
+            var itemList = el.Items<byte[]>();
 
             Assert.That(
                 itemList[0]?.SequenceEqual(items[0]) == true
                 && itemList[1]?.SequenceEqual(items[1]) == true
+                && el.ValueType == DataValueTypes.ByteArray
                 , "Bad scalar element - Byte array");
         }
 
@@ -74,12 +79,12 @@ namespace BindOpen.Tests.MetaData
         public void ElementToStringTest()
         {
             int[] items_integer = _testData.arrayInteger;
-            var el = BdoMeta.NewScalar().WithItem(items_integer);
+            var el = BdoMeta.NewScalar().WithItems(items_integer);
             var st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
 
             double[] items_number = _testData.arrayNumber;
-            el = BdoMeta.NewScalar().WithItem(items_number);
+            el = BdoMeta.NewScalar().WithItems(items_number);
             st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
         }

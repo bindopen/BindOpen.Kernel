@@ -1,17 +1,16 @@
 ﻿using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Definition;
-using System.Xml.Serialization;
-using System.Text.Json.Serialization;
-using BindOpen.Runtime.Dtos.MetaData.Elements.Configuration;
 using BindOpen.Runtime.Dtos.Extensions;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Scripting
 {
     /// <summary>
     /// This class represents a script word configuration.
     /// </summary>
-    [XmlType("ScriptwordConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptword", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptwordConfiguration", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoScriptwordConfigurationDto
         : TBdoExtensionTitledItemConfigurationDto<BdoScriptwordDefinitionDto>
     {

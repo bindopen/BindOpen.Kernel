@@ -1,4 +1,7 @@
 ﻿using BindOpen.Extensions.Connecting;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System.Collections.Generic;
 
 namespace BindOpen.MetaData.Elements
 {
@@ -58,6 +61,92 @@ namespace BindOpen.MetaData.Elements
             return this;
         }
 
+        // Sub items
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public object SubItem(
+            string key,
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var item = Item(scope, varElementSet, log);
+            if (item != null)
+            {
+                return item.GetItem(key, scope, varElementSet, log);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public Q SubItem<Q>(
+            string key,
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var item = Item(scope, varElementSet, log);
+            if (item != null)
+            {
+                return item.GetItem<Q>(key, scope, varElementSet, log);
+            }
+            return default;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public List<object> SubItems(
+            string key,
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var item = Item(scope, varElementSet, log);
+            if (item != null)
+            {
+                return item.GetItems(key, scope, varElementSet, log);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public List<Q> SubItems<Q>(
+            string key,
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var item = Item(scope, varElementSet, log);
+            if (item != null)
+            {
+                return item.GetItems<Q>(key, scope, varElementSet, log);
+            }
+            return null;
+        }
+
         #endregion
 
         // --------------------------------------------------
@@ -89,7 +178,7 @@ namespace BindOpen.MetaData.Elements
         {
             if (item != null)
             {
-                base.WithItem(item);
+                base.WithItems(item);
 
                 if (_item is IBdoConnectorConfiguration configuration
                     && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))

@@ -13,7 +13,7 @@ namespace BindOpen.MetaData
     /// This enumeration represents the data sorting modes.
     /// </summary>
     [Flags]
-    [XmlType("DataSortingModes", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("DataSortingModes", Namespace = "https://xsd.bindopen.org")]
     public enum DataSortingModes
     {
         /// <summary>

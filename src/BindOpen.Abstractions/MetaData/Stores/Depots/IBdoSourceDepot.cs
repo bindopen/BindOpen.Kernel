@@ -14,7 +14,7 @@ namespace BindOpen.MetaData.Stores
         /// <param name="sourceName"></param>
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <returns></returns>
-        IBdoConnectorConfiguration GetConnectorConfiguration(string sourceName, string connectorDefinitionUniqueId = null);
+        IBdoConnectorConfiguration GetConnectorConfig(string sourceName, string connectorDefinitionUniqueId = null);
 
         /// <summary>
         /// 
@@ -51,6 +51,6 @@ namespace BindOpen.MetaData.Stores
         /// <param name="sourceName"></param>
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <returns></returns>
-        bool HasConnectorConfiguration(string sourceName = null, string connectorDefinitionUniqueId = null);
+        bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueId = null);
     }
 }

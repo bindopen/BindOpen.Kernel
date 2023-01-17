@@ -20,10 +20,9 @@ namespace BindOpen.MetaData.Elements
 
         // Specification -----------------------
 
-        public List<IBdoMetaElement> Items
+        List<IBdoMetaElement> ITBdoItemSet<IBdoMetaElement>.Items
         {
-            get => GetItemList();
-            set { WithItem(value?.ToArray()); }
+            get => Items();
         }
 
         // IDataItemSet -----------------------
@@ -32,7 +31,7 @@ namespace BindOpen.MetaData.Elements
         /// Returns the el with the specified indexed.
         /// </summary>
         public IBdoMetaElement this[int index]
-            => Items.GetAt(index) as IBdoMetaElement;
+            => Items().GetAt(index) as IBdoMetaElement;
 
         /// <summary>
         /// 
@@ -46,7 +45,7 @@ namespace BindOpen.MetaData.Elements
         /// </summary>
         public int Count
         {
-            get => Items?.Count ?? 0;
+            get => Items()?.Count ?? 0;
         }
 
         #endregion
@@ -152,25 +151,17 @@ namespace BindOpen.MetaData.Elements
 
         public ITBdoItemSet<IBdoMetaElement> ClearItems()
         {
-            Items = null;
+            WithItems(null);
             return this;
         }
 
         public ITBdoItemSet<IBdoMetaElement> Add(params IBdoMetaElement[] items)
         {
-            var items_ = Items ?? new List<IBdoMetaElement>();
-
             if (items != null)
             {
                 foreach (var item in items)
                 {
-                    if (item is IReferenced referencedDataItem)
-                    {
-                        var key = referencedDataItem?.Key();
-                        items_?.RemoveAll(p => p.BdoKeyEquals(key));
-                    }
-
-                    items_.Add(item);
+                    Insert(item);
                 }
             }
 
@@ -179,32 +170,43 @@ namespace BindOpen.MetaData.Elements
 
         public IBdoMetaElement Insert(IBdoMetaElement item)
         {
-            Add(item);
+            if (item != null)
+            {
+                if (item is IReferenced referencedDataItem)
+                {
+                    var key = referencedDataItem?.Key();
+                    Remove(key);
+                }
+
+                var items = Items() ?? new List<IBdoMetaElement>();
+                items.Add(item);
+                _item = items;
+            }
 
             return item;
         }
 
         public ITBdoItemSet<IBdoMetaElement> WithItems(params IBdoMetaElement[] items)
         {
-            Items = items?.ToList();
+            base.WithItems(items?.ToList());
             return this;
         }
 
         public bool HasItem(string key = null)
         {
-            var items = Items;
+            var items = Items();
             if (key == null) return items.Count > 0;
             return items?.Any(p => p.BdoKeyEquals(key)) == true;
         }
 
         public ITBdoItemSet<IBdoMetaElement> Remove(params string[] keys)
         {
-            var items = Items;
+            var items = Items();
             if (keys != null)
             {
                 items?.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
             }
-            Items = items;
+            _item = items;
 
             return this;
         }
@@ -216,7 +218,7 @@ namespace BindOpen.MetaData.Elements
         /// <returns>Returns the item of this instance.</returns>
         public virtual IBdoMetaElement Get(string key)
         {
-            var items = Items;
+            var items = Items();
             if (key == null) return items[0];
             return items.FirstOrDefault(q => q.BdoKeyEquals(key));
         }
@@ -247,7 +249,7 @@ namespace BindOpen.MetaData.Elements
         /// <returns></returns>
         public IBdoMetaElement[] ToArray()
         {
-            return Items?.ToArray();
+            return Items()?.ToArray();
         }
 
         /// <summary>
@@ -256,7 +258,7 @@ namespace BindOpen.MetaData.Elements
         /// <returns></returns>
         public List<IBdoMetaElement> ToList()
         {
-            return Items?.ToList();
+            return Items()?.ToList();
         }
 
         #endregion
@@ -271,13 +273,13 @@ namespace BindOpen.MetaData.Elements
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
-        public IEnumerator<IBdoMetaElement> GetEnumerator() => Items.GetEnumerator();
+        public IEnumerator<IBdoMetaElement> GetEnumerator() => Items().GetEnumerator();
 
         /// <summary>
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
-        IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => Items().GetEnumerator();
 
         #endregion
     }

@@ -53,7 +53,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet ParameterSpecification { get; set; }
+        IBdoMetaElementSpecSet ParameterSpecification { get; set; }
 
         /// <summary>
         /// 

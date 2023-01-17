@@ -19,7 +19,7 @@ namespace BindOpen.MetaData.Items
 
             DatasourceDto dto = new()
             {
-                Configurations = poco.Configurations?.Select(q => q?.ToDto()).ToList(),
+                Configurations = poco.ConfigList?.Select(q => q?.ToDto()).ToList(),
                 Id = poco.Id,
                 InstanceName = poco.InstanceName,
                 IsDefault = poco.IsDefault,

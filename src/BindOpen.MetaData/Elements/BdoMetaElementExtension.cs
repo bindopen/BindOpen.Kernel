@@ -18,8 +18,8 @@ namespace BindOpen.MetaData.Elements
         /// <returns>ILog of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoMetaElement element,
-            IBdoMetaElement refElement = null,
+            this IBdoMetaElement el,
+            IBdoMetaElement refEl = null,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
@@ -40,24 +40,24 @@ namespace BindOpen.MetaData.Elements
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
                 || (specificationAreas.Contains(nameof(BdoMetaElementAreaKind.Element))))
             {
-                element.WithName(refElement.Name);
-                element.WithTitle(refElement.Title);
-                element.WithDescription(refElement.Description);
-                element.WithIndex(refElement.Index);
+                el.WithName(refEl.Name);
+                el.WithTitle(refEl.Title);
+                el.WithDescription(refEl.Description);
+                el.WithIndex(refEl.Index);
             }
 
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
                 || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
             {
-                if (element.ValueType == DataValueTypes.Any)
+                if (el.ValueType == DataValueTypes.Any)
                 {
-                    element.WithValueType(refElement.ValueType);
+                    el.WithValueType(refEl.ValueType);
                 }
 
-                element.WithItemScript(refElement.ItemScript);
-                element.WithItemReference(refElement.ItemReference);
+                el.WithItemScript(refEl.ItemScript);
+                el.WithItemReference(refEl.ItemReference);
 
-                element.WithItem(refElement.GetItem(log: log));
+                el.WithItems(refEl.Item(log: log));
             }
 
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
@@ -74,8 +74,8 @@ namespace BindOpen.MetaData.Elements
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this IBdoMetaElement element,
-            IBdoMetaElement refElement = null,
+            this IBdoMetaElement el,
+            IBdoMetaElement refEl = null,
             string[] specificationAreas = null,
             bool isExistenceChecked = true,
             IBdoLog log = null)
@@ -99,7 +99,7 @@ namespace BindOpen.MetaData.Elements
             //    {
             //        foreach (object subItem in Items)
             //        {
-            //            log.AddEvents(Specification?.ConstraintStatement.co(subItem, element, true));
+            //            log.AddEvents(Specification?.ConstraintStatement.co(subItem, el, true));
             //        }
             //    }
 
@@ -117,13 +117,13 @@ namespace BindOpen.MetaData.Elements
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>ILog of the operation.</returns>
         public static void Repair(
-            this IBdoMetaElement element,
-            IBdoMetaElement refElement = null,
+            this IBdoMetaElement el,
+            IBdoMetaElement refEl = null,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            if (element != null)
+            if (el != null)
             {
                 if (specificationAreas == null)
                     specificationAreas = new[] { nameof(DataAreaKind.Any) };
@@ -141,22 +141,22 @@ namespace BindOpen.MetaData.Elements
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(BdoMetaElementAreaKind.Element))))
                 {
-                    if (refElement != null)
+                    if (refEl != null)
                     {
-                        //if (element.Specification != null)
-                        //    if (element.Specification.AvailableItemizationModes.Count == 1)
-                        //        element.WithItemizationMode(refElement.Specification.AvailableItemizationModes[0]);
+                        //if (el.Specification != null)
+                        //    if (el.Specification.AvailableItemizationModes.Count == 1)
+                        //        el.WithItemizationMode(refEl.Specification.AvailableItemizationModes[0]);
                     }
                 }
 
                 if ((specificationAreas.Contains(nameof(DataAreaKind.Any))) ||
                     (specificationAreas.Contains(nameof(DataAreaKind.Items))))
                 {
-                    if (refElement != null)
+                    if (refEl != null)
                     {
-                        if (element.ValueType == DataValueTypes.None || element.ValueType == DataValueTypes.Any)
+                        if (el.ValueType == DataValueTypes.None || el.ValueType == DataValueTypes.Any)
                         {
-                            element.WithValueType(refElement.ValueType);
+                            el.WithValueType(refEl.ValueType);
                         }
                     }
                 }

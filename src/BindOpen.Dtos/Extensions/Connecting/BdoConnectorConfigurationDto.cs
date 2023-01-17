@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Connecting
     /// <summary>
     /// This class represents a connector configuration DTO.
     /// </summary>
-    [XmlType("ConnectorConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connector", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ConnectorConfiguration", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "connector", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoConnectorConfigurationDto
         : TBdoExtensionTitledItemConfigurationDto<BdoConnectorDefinitionDto>
     {

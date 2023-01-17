@@ -1,6 +1,6 @@
 ﻿using BindOpen.MetaData.Items;
 
-namespace BindOpen.Abstractions.Meta.Configuration
+namespace BindOpen.MetaData.Configuration
 {
     /// <summary>
     /// 

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +62,7 @@ namespace BindOpen.MetaData.Elements
         /// </summary>
         public new List<TSpec> Specs
         {
-            get => base.Specs.Cast<TSpec>().ToList();
+            get => base.Specs?.Cast<TSpec>().ToList();
             set { base.WithSpecifications(value?.Cast<IBdoMetaElementSpec>().ToArray()); }
         }
 
@@ -91,9 +91,9 @@ namespace BindOpen.MetaData.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        public new TElement ClearItem()
+        public new TElement ClearItems()
         {
-            return (TElement)base.ClearItem();
+            return (TElement)base.ClearItems();
         }
 
         /// <summary>
@@ -162,41 +162,62 @@ namespace BindOpen.MetaData.Elements
         /// <param name="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public virtual TElement WithItem(params TItem[] objs)
+        public virtual TElement WithItems(params TItem[] objs)
         {
-            return (TElement)base.WithItem(objs);
+            return (TElement)base.WithItems(objs);
         }
 
         /// <summary>
-        /// 
+        /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public List<TItem> GetItemList(
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public new List<TItem> Items(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
-        {
-            var item = GetItem(scope, varElementSet, log);
-            List<object> itemList = item.GetType().IsList() ? item as List<object> : new List<object> { item };
-
-            return itemList.Cast<TItem>().ToList();
-        }
+        => base.Items<TItem>(scope, varElementSet, log);
 
         /// <summary>
-        /// 
+        /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public TItem GetFirstItem(
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        List<Q> ITBdoMetaElement<TElement, TSpec, TItem>.Items<Q>(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
-            => GetItemList(scope, varElementSet, log)?.FirstOrDefault();
+        => base.Items<Q>(scope, varElementSet, log);
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public new TItem Item(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        => base.Item<TItem>(scope, varElementSet, log);
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        Q ITBdoMetaElement<TElement, TSpec, TItem>.Item<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        => base.Item<Q>(scope, varElementSet, log);
 
         #endregion
     }

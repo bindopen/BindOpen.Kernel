@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemDefinition.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSet.xsd" />
+
+  <xs:complexType name="BdoHandlerDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BdoExtensionItemDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="getFunction" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="postFunction" type="xs:string" />
+          <xs:choice>
+            <xs:element name="source-carrier.specification" nillable="true" type="CarrierElementSpec" />
+            <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
+            <xs:element name="source-entity.specification" nillable="true" type="EntityElementSpec" />
+            <xs:element name="source-scalar.specification" nillable="true" type="ScalarElementSpec" />
+            <xs:element name="source-schema.specification" nillable="true" type="SchemaElementSpec" />
+            <xs:element name="source-dataSource.specification" nillable="true" type="SourceElementSpec" />
+          </xs:choice>
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="BdoElementSpecSet" />
+          <xs:choice>
+            <xs:element name="target-carrier.specification" nillable="true" type="CarrierElementSpec" />
+            <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
+            <xs:element name="target-entity.specification" nillable="true" type="EntityElementSpec" />
+            <xs:element name="target-scalar.specification" nillable="true" type="ScalarElementSpec" />
+            <xs:element name="target-schema.specification" nillable="true" type="SchemaElementSpec" />
+            <xs:element name="target-dataSource.specification" nillable="true" type="SourceElementSpec" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

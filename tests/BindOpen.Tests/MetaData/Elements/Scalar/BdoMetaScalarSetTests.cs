@@ -41,19 +41,19 @@ namespace BindOpen.Tests.MetaData
 
             var elSet = BdoMeta.NewSet(el1, el2, el3, el4);
 
-            var itemList1 = elSet.GetItemList<double>("number1");
+            var itemList1 = elSet.GetItems<double>("number1");
             Assert.That(
                 itemList1?.Intersect(arrayNumber).Any() ?? false, "Bad scalar el - Number");
 
-            var itemList2 = elSet.GetItemList<string>("text2");
+            var itemList2 = elSet.GetItems<string>("text2");
             Assert.That(
                 itemList2?.Intersect(arrayString).Any() ?? false, "Bad scalar el - String");
 
-            var itemList3 = elSet.GetItemList<int>("integer3");
+            var itemList3 = elSet.GetItems<int>("integer3");
             Assert.That(
                 itemList3?.Intersect(arrayInteger).Any() ?? false, "Bad scalar el - Integer");
 
-            var item4 = elSet.GetItemList<byte[]>("byteArray4");
+            var item4 = elSet.GetItems<byte[]>("byteArray4");
             Assert.That(
                 item4[0]?.SequenceEqual(arrayArrayByte[0]) == true
                 , "Bad scalar el - Byte array");

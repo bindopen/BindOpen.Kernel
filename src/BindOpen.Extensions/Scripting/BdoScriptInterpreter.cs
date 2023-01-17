@@ -1,7 +1,7 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData;
 using BindOpen.MetaData.Elements;
 using BindOpen.MetaData.Items;
-using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
@@ -146,7 +146,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             int index;
@@ -261,7 +261,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public T Evaluate<T>(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return (T)Evaluate(exp, varElementSet, log);
@@ -281,7 +281,7 @@ namespace BindOpen.Extensions.Scripting
         public object Evaluate(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return Evaluate(
@@ -302,7 +302,7 @@ namespace BindOpen.Extensions.Scripting
         public T Evaluate<T>(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return (T)Evaluate(
@@ -323,7 +323,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public object Evaluate(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return Evaluate(scriptword.AsExpression(), varElementSet, log);
@@ -339,7 +339,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         public T Evaluate<T>(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             return (T)Evaluate(scriptword.AsExpression(), varElementSet, log);
@@ -358,7 +358,7 @@ namespace BindOpen.Extensions.Scripting
             string script,
             ref int index,
             int offsetIndex,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             if (!string.IsNullOrEmpty(script))
@@ -443,7 +443,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             if (parentScriptword != null && parentScriptword.Definition == null)
@@ -685,7 +685,7 @@ namespace BindOpen.Extensions.Scripting
         // Returns the result of the script word scriptword with the specified parameter values
         private object EvaluateScriptword(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null,
             int offsetIndex = 0)
         {
@@ -729,7 +729,7 @@ namespace BindOpen.Extensions.Scripting
                     break;
                 case ScriptItemKinds.Variable:
                     var name = scriptword.Parameters?.FirstOrDefault()?.ToString();
-                    return varElementSet[name].GetItem(_scope, varElementSet, log);
+                    return varElementSet[name].Item(_scope, varElementSet, log);
             }
 
             return null;

@@ -1,7 +1,7 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
+using BindOpen.MetaData.Elements;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections;
@@ -329,9 +329,9 @@ namespace BindOpen.MetaData
         /// <param name="log">The log to consider.</param>
         public static void UpdateFromElementSet(
             this object obj,
-            IBdoElementSet elemSet,
+            IBdoMetaElementSet elemSet,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             obj.UpdateFromElementSet<BdoMetaAttribute>(
@@ -348,9 +348,9 @@ namespace BindOpen.MetaData
         /// <param name="log">The log to consider.</param>
         public static void UpdateFromElementSet<T>(
             this object obj,
-            IBdoElementSet elemSet,
+            IBdoMetaElementSet elemSet,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null) where T : BdoMetaAttribute
         {
             if (obj == null || !elemSet.HasItem()) return;
@@ -476,22 +476,22 @@ namespace BindOpen.MetaData
                     {
                         IEnumerable objEnum;
 
-                        // if object is a singleton of scalar list
+                        //// if object is a singleton of scalar list
 
+                        //if (obj is not byte[]
+                        //    && obj is not string
+                        //    && (objEnum = obj as IEnumerable) != null
+                        //    && objEnum.Cast<object>().Count() == 1
+                        //    && objEnum.Cast<object>().FirstOrDefault() is IEnumerable list
+                        //    && list is not string)
+                        //{
+                        //    item = list.Cast<object>().ToList();
+                        //}
+                        // if object is a scalar list
                         if (obj is not byte[]
-                            && obj is not string
-                            && (objEnum = obj as IEnumerable) != null
-                            && objEnum.Cast<object>().Count() == 1
-                            && objEnum.Cast<object>().FirstOrDefault() is IEnumerable list
-                            && list is not string)
-                        {
-                            item = list.Cast<object>().ToList();
-                        }
-                        // else if object is a scalar list
-                        else if (obj is not byte[]
-                            && obj is not string
-                            && (objEnum = obj as IEnumerable) != null
-                            && objEnum.Cast<object>().FirstOrDefault() is not IBdoItem)
+                           && obj is not string
+                           && (objEnum = obj as IEnumerable) != null
+                           && objEnum.Cast<object>().FirstOrDefault() is not IBdoItem)
                         {
                             if (objEnum.Cast<object>().Count() > 1)
                             {
@@ -539,6 +539,8 @@ namespace BindOpen.MetaData
         public static bool IsList(this Type type)
         {
             if (type == null) { return false; }
+
+            if (type == typeof(string)) { return false; }
 
             return typeof(Array).IsAssignableFrom(type)
                 || typeof(IEnumerable).IsAssignableFrom(type)

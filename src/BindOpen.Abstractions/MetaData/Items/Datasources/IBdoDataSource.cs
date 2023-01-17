@@ -54,12 +54,12 @@ namespace BindOpen.MetaData.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoConnectorConfiguration Configuration { get; }
+        IBdoConnectorConfiguration Config();
 
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoConnectorConfiguration> Configurations { get; set; }
+        List<IBdoConnectorConfiguration> ConfigList { get; set; }
 
         /// <summary>
         /// 

@@ -63,7 +63,7 @@ namespace BindOpen.MetaData
         /// </summary>
         /// <returns>Return this instance.</returns>
         public static BdoMetaElementSet NewSet<T>()
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             return BdoMeta.NewItemSet<BdoMetaElementSet, IBdoMetaElement>();
         }
@@ -74,7 +74,7 @@ namespace BindOpen.MetaData
         /// <param name="elems">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaElementSet NewSet<T>(params IBdoMetaElement[] elems)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             var elemSet = NewSet<T>();
             elemSet.WithItems(elems);
@@ -88,7 +88,7 @@ namespace BindOpen.MetaData
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaElementSet NewSet<T>(params (string Name, object Value)[] pairs)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             var elemSet = NewSet<T>();
             elemSet.WithItems(pairs.Select(q => BdoMeta.NewElement(q.Name, q.Value)).ToArray());
@@ -102,7 +102,7 @@ namespace BindOpen.MetaData
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaElementSet NewSet<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             var elemSet = NewSet<T>();
             elemSet.WithItems(triplets.Select(q => BdoMeta.NewElement(q.Name, q.ValueType, q.Value)).ToArray());
@@ -117,7 +117,7 @@ namespace BindOpen.MetaData
         /// <param name="objects">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaElementSet NewSet<T>(params object[] objects)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             var index = 0;
             return NewSet<T>(objects?.Select(p =>
@@ -135,7 +135,7 @@ namespace BindOpen.MetaData
         /// <returns>The collection.</returns>
         public static BdoMetaElementSet NewSet<T>(
             string stringObject)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             var elemSet = new BdoMetaElementSet();
             if (stringObject != null)

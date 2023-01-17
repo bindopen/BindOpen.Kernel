@@ -28,7 +28,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewCarrier<T>(
             this IBdoScope scope,
             IBdoCarrierConfiguration configuration = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null) where T : BdoCarrier
         {
             return scope.NewCarrier(configuration, varElementSet, log) as T;
@@ -45,7 +45,7 @@ namespace BindOpen.Runtime.Scopes
         public static BdoCarrier NewCarrier(
             this IBdoScope scope,
             IBdoCarrierConfiguration configuration,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             BdoCarrier carrier = null;
@@ -90,7 +90,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewConnector<T>(
             this IBdoScope scope,
             IBdoConnectorConfiguration configuration,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
             return scope.NewConnector(configuration, varElementSet, log) as T;
@@ -107,7 +107,7 @@ namespace BindOpen.Runtime.Scopes
         public static IBdoConnector NewConnector(
             this IBdoScope scope,
             IBdoConnectorConfiguration configuration,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             if (configuration != null && scope?.Check(true, log: log) == true)
@@ -149,7 +149,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewTask<T>(
             this IBdoScope scope,
             IBdoTaskConfiguration configuration = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null) where T : BdoTask
         {
             return scope.NewTask(configuration, varElementSet, log) as T;
@@ -166,7 +166,7 @@ namespace BindOpen.Runtime.Scopes
         public static BdoTask NewTask(
             this IBdoScope scope,
             IBdoTaskConfiguration configuration = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             BdoTask task = null;

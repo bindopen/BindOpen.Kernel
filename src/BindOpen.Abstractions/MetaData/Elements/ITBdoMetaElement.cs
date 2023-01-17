@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 
@@ -33,13 +33,13 @@ namespace BindOpen.MetaData.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        new TElement ClearItem();
+        new TElement ClearItems();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="objs"></param>
-        TElement WithItem(params TItem[] objs);
+        TElement WithItems(params TItem[] objs);
 
         /// <summary>
         /// 
@@ -78,9 +78,9 @@ namespace BindOpen.MetaData.Elements
         /// <param name="varElementSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        List<TItem> GetItemList(
+        new TItem Item(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -90,9 +90,35 @@ namespace BindOpen.MetaData.Elements
         /// <param name="varElementSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        TItem GetFirstItem(
+        Q Item<Q>(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+            where Q : TItem;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        new List<TItem> Items(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        List<Q> Items<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+            where Q : TItem;
     }
 }

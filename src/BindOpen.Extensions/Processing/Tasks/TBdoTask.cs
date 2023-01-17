@@ -73,7 +73,7 @@ namespace BindOpen.Extensions.Processing
         /// <returns>Returns the output value of the execution.</returns>
         public new virtual T Execute(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null)
         {

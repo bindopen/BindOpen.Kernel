@@ -1,14 +1,13 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.MetaData.Elements;
 using System.Collections.Generic;
 
-namespace BindOpen.Abstractions.Meta.Configuration
+namespace BindOpen.MetaData.Configuration
 {
     /// <summary>
     /// 
     /// </summary>
     public interface IBdoConfiguration :
-        IReferenced, IBdoElementSet,
+        IReferenced, IBdoMetaElementSet,
         ITNamedPoco<IBdoConfiguration>,
         ITGloballyDescribedPoco<IBdoConfiguration>,
         ITStorablePoco<IBdoConfiguration>

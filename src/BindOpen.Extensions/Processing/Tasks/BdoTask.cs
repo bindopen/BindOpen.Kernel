@@ -1,9 +1,9 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData;
 using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
-using BindOpen.Logging;
 
 namespace BindOpen.Extensions.Processing
 {
@@ -46,13 +46,13 @@ namespace BindOpen.Extensions.Processing
         public object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
             IBdoMetaElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.GetItem(scope, varElementSet, log);
+            return entry?.Items(scope, varElementSet, log);
         }
 
         // General ---------------------------------------
@@ -64,7 +64,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element collection.</returns>
         public bool IsCompatibleWith(
-            IBdoElementSpecSet dataElementSpecSet,
+            IBdoMetaElementSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
             if (Configuration == null) return false;
@@ -174,7 +174,7 @@ namespace BindOpen.Extensions.Processing
         /// <returns>Returns the output value of the execution.</returns>
         public virtual IBdoTask Execute(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null)
         {

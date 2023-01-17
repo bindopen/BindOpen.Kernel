@@ -22,7 +22,7 @@ namespace BindOpen.Extensions.Processing
         /// <returns></returns>
         IBdoRoutine Execute(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             object item = null,
             IBdoMetaElement dataElement = null,
             IBdoLog log = null,

@@ -13,7 +13,7 @@ namespace BindOpen.MetaData
     /// This enumeration represents the possible levels of specification.
     /// </summary>
     [Flags]
-    [XmlType("SpecificationLevels", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("SpecificationLevels", Namespace = "https://xsd.bindopen.org")]
     public enum SpecificationLevels
     {
         /// <summary>

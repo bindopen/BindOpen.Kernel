@@ -92,11 +92,11 @@ namespace BindOpen.MetaData.Elements
         /// <param name="objs">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public override IBdoMetaObject WithItem(params object[] objs)
+        public override IBdoMetaObject WithItems(params object[] objs)
         {
             if (objs != null)
             {
-                base.WithItem(objs);
+                base.WithItems(objs);
                 if (_item is BdoItem)
                 {
                     var type = _item.GetType();

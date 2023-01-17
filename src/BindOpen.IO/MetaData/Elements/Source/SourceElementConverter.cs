@@ -10,11 +10,11 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SourceElementDto ToDto(this IBdoMetaSource poco)
+        public static MetaSourceDto ToDto(this IBdoMetaSource poco)
         {
             if (poco == null) return null;
 
-            SourceElementDto dto = new()
+            MetaSourceDto dto = new()
             {
             };
 
@@ -26,7 +26,7 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaSource ToPoco(this SourceElementDto dto)
+        public static IBdoMetaSource ToPoco(this MetaSourceDto dto)
         {
             if (dto == null) return null;
 

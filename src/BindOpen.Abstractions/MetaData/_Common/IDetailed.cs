@@ -10,6 +10,6 @@ namespace BindOpen.MetaData
         /// <summary>
         /// The detail of this instance.
         /// </summary>
-        IBdoElementSet Detail { get; set; }
+        IBdoMetaElementSet Detail { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData.Items;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 
@@ -47,7 +47,7 @@ namespace BindOpen.MetaData.Elements
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes ValueType { get; }
+        DataValueTypes ValueType { get; set; }
 
         /// <summary>
         /// 
@@ -86,13 +86,13 @@ namespace BindOpen.MetaData.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaElement ClearItem();
+        IBdoMetaElement ClearItems();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="objs"></param>
-        IBdoMetaElement WithItem(params object[] objs);
+        IBdoMetaElement WithItems(params object[] objs);
 
         /// <summary>
         /// 
@@ -101,22 +101,57 @@ namespace BindOpen.MetaData.Elements
         /// <param name="varElementSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object GetItem(
+        object ItemObject(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
         /// <param name="scope"></param>
         /// <param name="varElementSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        Q GetItem<Q>(
+        object Item(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        Q Item<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        List<object> Items(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varElementSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        List<Q> Items<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
     }
 }

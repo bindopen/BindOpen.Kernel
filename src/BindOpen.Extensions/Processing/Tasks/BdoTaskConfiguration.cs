@@ -22,13 +22,13 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// Input detail of this instance.
         /// </summary>
-        public IBdoElementSet InputDetail { get; set; }
+        public IBdoMetaElementSet InputDetail { get; set; }
 
 
         /// <summary>
         /// Output detail of this instance.
         /// </summary>
-        public IBdoElementSet OutputDetail { get; set; }
+        public IBdoMetaElementSet OutputDetail { get; set; }
 
         #endregion
 

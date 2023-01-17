@@ -64,7 +64,7 @@ namespace BindOpen.MetaData
 
                 if (items != null)
                 {
-                    element?.WithItem(items);
+                    element?.WithItems(items);
                 }
             }
 

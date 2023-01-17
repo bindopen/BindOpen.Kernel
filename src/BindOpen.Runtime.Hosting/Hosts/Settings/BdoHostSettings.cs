@@ -1,9 +1,9 @@
 ﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Configuration;
 using BindOpen.MetaData.Elements;
-using BindOpen.Runtime.Settings;
 using BindOpen.Runtime.Scopes;
+using BindOpen.Runtime.Settings;
 using System.Text.Json.Serialization;
-using BindOpen.Abstractions.Meta.Configuration;
 
 namespace BindOpen.Runtime.Hosts
 {

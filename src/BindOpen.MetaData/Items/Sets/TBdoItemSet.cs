@@ -110,7 +110,7 @@ namespace BindOpen.MetaData.Items
         {
             if (items != null)
             {
-                foreach (T item in items)
+                foreach (var item in items)
                 {
                     Insert(item);
                 }
@@ -128,15 +128,11 @@ namespace BindOpen.MetaData.Items
         /// <remarks>The new item must have a name.</remarks>
         public virtual T Insert(T item)
         {
+            _items ??= new List<T>();
+
             if (item is IReferenced referencedDataItem)
             {
                 var key = referencedDataItem?.Key();
-
-                if (_items == null)
-                {
-                    _items = new List<T>();
-                }
-
                 Remove(key);
             }
 

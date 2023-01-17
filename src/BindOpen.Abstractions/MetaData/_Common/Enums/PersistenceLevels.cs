@@ -6,7 +6,7 @@ namespace BindOpen.MetaData
     /// <summary>
     /// This enumeration represents the possible persistence levels.
     /// </summary>
-    [XmlType("PersistenceLevels", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("PersistenceLevels", Namespace = "https://xsd.bindopen.org")]
     [Flags]
     public enum PersistenceLevels
     {

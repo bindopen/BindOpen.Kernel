@@ -75,7 +75,7 @@ namespace BindOpen.MetaData
             var el = new T();
             el.WithName(name);
             el.WithClassFullName(classFullName);
-            el.WithItem(items);
+            el.WithItems(items);
 
             return el;
         }

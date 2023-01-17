@@ -9,87 +9,56 @@ namespace BindOpen.MetaData
     public static partial class BdoMeta
     {
         /// <summary>
-        /// Initializes a new source el.
+        /// Initializes a new carrier el.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
         /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static BdoMetaSource NewSource(
-            string name,
-            string id = null,
-            string definitionUniqueId = null)
-            => NewSource<BdoMetaSource>(name, id, definitionUniqueId);
+            string name = null,
+            string definitionUniqueId = null,
+            params IBdoConnectorConfiguration[] items)
+            => NewSource<BdoMetaSource>(name, definitionUniqueId, items);
 
         /// <summary>
-        /// Initializes a new source el.
+        /// Initializes a new carrier el.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="item">The items to consider.</param>
         public static BdoMetaSource NewSource(
             string name,
-            IBdoConnectorConfiguration item)
-            => NewSource<BdoMetaSource>(name, item);
-
-        /// <summary>
-        /// Initializes a new source el.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        /// <param name="item">The items to consider.</param>
-        public static BdoMetaSource NewSource(
-            string name,
-            string id,
-            IBdoConnectorConfiguration item)
-            => NewSource<BdoMetaSource>(name, id, item);
+            params IBdoConnectorConfiguration[] items)
+            => NewSource<BdoMetaSource>(name, items);
 
         // Static T creators -------------------------
 
         /// <summary>
-        /// Initializes a new source el.
+        /// Initializes a new carrier el.
         /// </summary>
         /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
         /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static T NewSource<T>(
-            string name,
-            string id = null,
-            string definitionUniqueId = null)
+            string name = null,
+            string definitionUniqueId = null,
+            params IBdoConnectorConfiguration[] items)
             where T : class, IBdoMetaSource, new()
         {
-            var el = new BdoMetaSource(name, id)
-            {
-                DefinitionUniqueId = definitionUniqueId,
-            };
-            return el as T;
-        }
-
-        /// <summary>
-        /// Initializes a new source el.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="item">The items to consider.</param>
-        public static T NewSource<T>(
-            string name,
-            IBdoConnectorConfiguration item)
-            where T : class, IBdoMetaSource, new()
-            => NewSource<T>(name, null, item);
-
-        /// <summary>
-        /// Initializes a new source el.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        /// <param name="item">The items to consider.</param>
-        public static T NewSource<T>(
-            string name,
-            string id,
-            IBdoConnectorConfiguration item)
-            where T : class, IBdoMetaSource, new()
-        {
-            var el = NewSource<T>(name, id, item?.DefinitionUniqueId);
-            el.WithItem(item);
+            var el = new T();
+            el.WithName(name);
+            el.WithDefinitionUniqueId(definitionUniqueId);
+            el.WithItems(items);
 
             return el;
         }
+
+        /// <summary>
+        /// Initializes a new carrier el.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="item">The items to consider.</param>
+        public static T NewSource<T>(
+            string name,
+            params IBdoConnectorConfiguration[] items)
+            where T : class, IBdoMetaSource, new()
+            => NewSource<T>(name, null as string, items);
     }
 }

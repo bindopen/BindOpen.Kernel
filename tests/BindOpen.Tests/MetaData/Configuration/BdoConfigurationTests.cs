@@ -1,5 +1,5 @@
-﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.MetaData;
+﻿using BindOpen.MetaData;
+using BindOpen.MetaData.Configuration;
 using BindOpen.MetaData.Elements;
 using Bogus;
 using NUnit.Framework;
@@ -32,7 +32,7 @@ namespace BindOpen.Tests.MetaData
                 _configName20,
                 BdoMeta.NewScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
                 BdoMeta.NewScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-                BdoMeta.NewScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(0, 100).Select(p => f.PickRandom<byte>())));
+                BdoMeta.NewScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()));
 
             _config21 = BdoMeta.NewConfig(
                 _configName21,
@@ -48,6 +48,14 @@ namespace BindOpen.Tests.MetaData
                 _config21);
 
             bundle.Update(_config1);
+        }
+
+        [Test, Order(2)]
+        public void GetConfigurationItem1()
+        {
+            var text = _config20.GetItem<string>("text1");
+
+            Assert.That(!string.IsNullOrEmpty(text), "Error with configuration");
         }
     }
 }

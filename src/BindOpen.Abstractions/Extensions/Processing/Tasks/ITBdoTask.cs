@@ -26,7 +26,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="log"></param>
         new T Execute(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null);
     }

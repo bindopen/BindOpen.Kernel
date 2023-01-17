@@ -1,6 +1,7 @@
 ﻿using BindOpen.Extensions;
 using BindOpen.MetaData;
 using BindOpen.MetaData.Items;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
@@ -18,6 +19,15 @@ namespace BindOpen.Tests.IO.MetaData
         {
         }
 
+        public static bool Equals(
+            IBdoDataSource source1,
+            IBdoDataSource source2)
+        {
+            var b = source1 != null && source2 != null
+                && source1.IsDeepEqual(source2);
+            return b;
+        }
+
         [Test, Order(1)]
         public void CreateDatasourceTest()
         {
@@ -28,15 +38,6 @@ namespace BindOpen.Tests.IO.MetaData
 
             Assert.That(
                 _datasource != null, "Bad data source creation");
-        }
-
-        private void Test(IBdoDataSource source)
-        {
-            Assert.That(
-                source.GetConfig("tests.core$test") != null, "Datasource - Configuration not found");
-
-            Assert.That(
-                source.GetConfig("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
         }
 
         // Xml
@@ -50,7 +51,6 @@ namespace BindOpen.Tests.IO.MetaData
             }
 
             var isSaved = _datasource.ToDto().SaveXml(_filePath_xml);
-
             Assert.That(isSaved, "Element set saving failed. ");
         }
 
@@ -63,8 +63,7 @@ namespace BindOpen.Tests.IO.MetaData
             }
 
             var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco();
-
-            Test(datasource);
+            Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
 
         // Json
@@ -78,7 +77,6 @@ namespace BindOpen.Tests.IO.MetaData
             }
 
             var isSaved = _datasource.ToDto().SaveJson(_filePath_json);
-
             Assert.That(isSaved, "Element set saving failed. ");
         }
 
@@ -91,8 +89,7 @@ namespace BindOpen.Tests.IO.MetaData
             }
 
             var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco();
-
-            Test(datasource);
+            Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
     }
 }

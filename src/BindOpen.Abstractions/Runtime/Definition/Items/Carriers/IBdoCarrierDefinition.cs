@@ -27,6 +27,6 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet DetailSpec { get; set; }
+        IBdoMetaElementSpecSet DetailSpec { get; set; }
     }
 }

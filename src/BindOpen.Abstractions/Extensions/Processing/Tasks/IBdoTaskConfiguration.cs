@@ -12,7 +12,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// The input detail.
         /// </summary>
-        IBdoElementSet InputDetail { get; set; }
+        IBdoMetaElementSet InputDetail { get; set; }
 
         /// <summary>
         /// 
@@ -29,7 +29,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// The output detail.
         /// </summary>
-        IBdoElementSet OutputDetail { get; set; }
+        IBdoMetaElementSet OutputDetail { get; set; }
 
         /// <summary>
         /// 

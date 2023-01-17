@@ -36,14 +36,14 @@ namespace BindOpen.Tests.MetaData
         private void TestBdoDatasourceDepot(IBdoSourceDepot depot)
         {
             Assert.That(depot.HasItem("smtp_default"), "Error with item existence check");
-            Assert.That(depot.Get("smtp_default")?.Configurations?.Count == 1, "Bad configuration count");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<string>("host") == _testData.host, "Bad string");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<int>("port") == _testData.port, "Bad integer");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<bool>("isSslEnabled") == _testData.isSslEnabled, "Bad boolean");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<int>("timeout") == _testData.timeout, "Bad integer");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<string>("login") == _testData.login, "Bad string");
-            Assert.That(depot.Get("smtp_default")?.Configuration?.GetItem<string>("password") == _testData.password, "Bad string");
+            Assert.That(depot.Get("smtp_default")?.ConfigList?.Count == 1, "Bad configuration count");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<string>("host") == _testData.host, "Bad string");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<int>("port") == _testData.port, "Bad integer");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<bool>("isSslEnabled") == _testData.isSslEnabled, "Bad boolean");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<int>("timeout") == _testData.timeout, "Bad integer");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<string>("login") == _testData.login, "Bad string");
+            Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<string>("password") == _testData.password, "Bad string");
         }
 
         [Test, Order(1)]

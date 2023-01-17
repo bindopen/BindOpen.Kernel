@@ -30,8 +30,8 @@ namespace BindOpen.Runtime.Scopes
                 log?.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
                 return scope.Open<T>(dataSource.GetConfig(connectorDefinitionUniqueId), log);
-            else if (dataSource.Configurations.Count > 0)
-                return scope.Open<T>(dataSource.Configurations[0], log);
+            else if (dataSource.ConfigList.Count > 0)
+                return scope.Open<T>(dataSource.ConfigList[0], log);
 
             return default;
         }

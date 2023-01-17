@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// This class represents a script word configuration.
     /// </summary>
-    [XmlType("BdoScriptwordConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptword", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BdoScriptwordConfiguration", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoScriptwordConfiguration
         : TBdoExtensionTitledItemConfiguration<IBdoScriptwordDefinition>, IBdoScriptwordConfiguration
     {

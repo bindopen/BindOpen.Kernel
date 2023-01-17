@@ -21,7 +21,7 @@ namespace BindOpen.MetaData.Elements
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
         public static T AsElementSet<T>(this object obj)
-            where T : class, IBdoElementSet, new()
+            where T : class, IBdoMetaElementSet, new()
         {
             T elemSet = new();
 
@@ -53,8 +53,8 @@ namespace BindOpen.MetaData.Elements
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoElementSet elemSet,
-            IBdoElementSet refElementSet = null,
+            this IBdoMetaElementSet elemSet,
+            IBdoMetaElementSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)
@@ -75,8 +75,8 @@ namespace BindOpen.MetaData.Elements
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoElementSet elemSet,
-            IBdoElementSpecSet refElementSpecSet = null,
+            this IBdoMetaElementSet elemSet,
+            IBdoMetaElementSpecSet refElementSpecSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)
@@ -96,8 +96,8 @@ namespace BindOpen.MetaData.Elements
         /// <param name="specAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this IBdoElementSet elemSet,
-            IBdoElementSet refElementSet = null,
+            this IBdoMetaElementSet elemSet,
+            IBdoMetaElementSet refElementSet = null,
             string[] specAreas = null,
             bool isExistenceChecked = true,
             IBdoLog log = null)
@@ -114,8 +114,8 @@ namespace BindOpen.MetaData.Elements
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         public static void Repair(
-            this IBdoElementSet elemSet,
-            IBdoElementSet refElementSet = null,
+            this IBdoMetaElementSet elemSet,
+            IBdoMetaElementSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)

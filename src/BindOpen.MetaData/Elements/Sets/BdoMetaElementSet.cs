@@ -1,6 +1,4 @@
-﻿using BindOpen.Logging;
-using BindOpen.MetaData.Items;
-using BindOpen.Runtime.Scopes;
+﻿using BindOpen.MetaData.Items;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +7,7 @@ namespace BindOpen.MetaData.Elements
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public partial class BdoMetaElementSet : TBdoItemSet<IBdoMetaElement>, IBdoElementSet
+    public partial class BdoMetaElementSet : TBdoItemSet<IBdoMetaElement>, IBdoMetaElementSet
     {
         // ------------------------------------------
         // PROPERTIES
@@ -81,101 +79,6 @@ namespace BindOpen.MetaData.Elements
         {
             if (Items == null) return new List<string>();
             return Items.SelectMany(p => p.Specs.Select(q => q.Id)).Distinct().ToList();
-        }
-
-        // Items ------------------------
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="key">The element key to consider.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public virtual object GetItem(
-            string key,
-            IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
-            IBdoLog log = null)
-        {
-            IBdoMetaElement element = base.Get(key);
-            if (element != null)
-            {
-                return element.GetItem(scope, varElementSet, log);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="key">The element key to consider.</param>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public virtual T GetItem<T>(
-            string key,
-            IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
-            IBdoLog log = null)
-        {
-            IBdoMetaElement element = base.Get(key);
-            if (element != null)
-            {
-                return element.GetItem<T>(scope, varElementSet, log);
-            }
-
-            return default;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key">The element key to consider.</param>
-        /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public List<object> GetItemList(
-            string key,
-            IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
-            IBdoLog log = null)
-        {
-            IBdoMetaElement element = base.Get(key);
-            if (element != null)
-            {
-                return element.GetItemList(scope, varElementSet, log);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="Q"></typeparam>
-        /// <param name="key">The element key to consider.</param>
-        /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public List<T> GetItemList<T>(
-            string key,
-            IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
-            IBdoLog log = null)
-        {
-            IBdoMetaElement element = base.Get(key);
-            if (element != null)
-            {
-                return element.GetItemList<T>(scope, varElementSet, log);
-            }
-
-            return null;
         }
 
         #endregion

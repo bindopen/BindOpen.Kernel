@@ -71,7 +71,7 @@ namespace BindOpen.MetaData.Elements
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType => GetSpecification()?.ValueType ?? DataValueTypes.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -153,17 +153,18 @@ namespace BindOpen.MetaData.Elements
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varElementSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public object GetItem(
+        public object ItemObject(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
-            object object1 = default;
+            object obj = default;
 
             switch (ItemizationMode)
             {
                 case DataItemizationMode.Valued:
-                    return _item;
+                    obj = _item;
+                    break;
                 case DataItemizationMode.Referenced:
                     if (scope == null)
                     {
@@ -175,7 +176,7 @@ namespace BindOpen.MetaData.Elements
                     }
                     else
                     {
-                        return ItemReference.Get(scope, varElementSet, log);
+                        obj = ItemReference.Get(scope, varElementSet, log);
                     }
                     break;
                 case DataItemizationMode.Script:
@@ -189,32 +190,87 @@ namespace BindOpen.MetaData.Elements
                     }
                     else
                     {
-                        object1 = scope.NewScriptInterpreter().Evaluate<object>(ItemScript, BdoExpressionKind.Script, varElementSet, log);
-                        if (object1 != null)
-                        {
-                            return object1.GetType().IsList() ? object1 as List<object> : object1;
-                        }
+                        obj = scope.NewScriptInterpreter().Evaluate<object>(ItemScript, BdoExpressionKind.Script, varElementSet, log);
                     }
-
-                    return default;
+                    break;
             }
 
-            return null;
+            return obj;
         }
 
         /// <summary>
-        /// 
+        /// Returns the item object of this instance.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
-        /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public Q GetItem<Q>(
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<object> Items(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
-            => (Q)GetItem(scope, varElementSet, log);
+        {
+            var obj = ItemObject(scope, varElementSet, log);
+
+            var list = obj?.GetType().IsList() == true
+                ? (obj as IEnumerable<object>)?.ToList()
+                : new List<object>() { obj };
+
+            return list;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<Q> Items<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var list = Items(scope, varElementSet, log);
+            return list?.Cast<Q>().ToList();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public object Item(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var list = Items(scope, varElementSet, log);
+            return list?.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public Q Item<Q>(
+            IBdoScope scope = null,
+            IBdoMetaElementSet varElementSet = null,
+            IBdoLog log = null)
+        {
+            var list = Items<Q>(scope, varElementSet, log);
+            if (list == null)
+            {
+                return default;
+            }
+
+            return list.FirstOrDefault();
+        }
 
         // Mutators ---------------------------
 
@@ -253,14 +309,7 @@ namespace BindOpen.MetaData.Elements
         /// </summary>
         public IBdoMetaElement WithValueType(DataValueTypes valueType)
         {
-            var spec = GetSpecification();
-            if (spec == null)
-            {
-                spec = NewSpecification();
-            }
-
-            spec.WithValueType(valueType);
-
+            ValueType = valueType;
             return this;
         }
 
@@ -292,7 +341,7 @@ namespace BindOpen.MetaData.Elements
         /// <summary>
         /// Clears the item of this instance.
         /// </summary>
-        public IBdoMetaElement ClearItem()
+        public IBdoMetaElement ClearItems()
         {
             _item = null;
 
@@ -305,7 +354,7 @@ namespace BindOpen.MetaData.Elements
         /// <param name="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public IBdoMetaElement WithItem(params object[] objs)
+        public IBdoMetaElement WithItems(params object[] objs)
         {
             _item = objs.ToList().ToBdoElementItem(GetSpecification());
 
@@ -371,18 +420,7 @@ namespace BindOpen.MetaData.Elements
         /// <summary>
         /// The index of this instance.
         /// </summary>
-        public int? Index
-        {
-            get => GetSpecification()?.Index;
-            set
-            {
-                var spec = GetSpecification();
-                if (spec != null)
-                {
-                    spec.Index = value;
-                }
-            }
-        }
+        public int? Index { get; set; }
 
         /// <summary>
         /// 
@@ -391,13 +429,7 @@ namespace BindOpen.MetaData.Elements
         /// <returns></returns>
         public IBdoMetaElement WithIndex(int? index)
         {
-            var spec = GetSpecification();
-            if (spec == null)
-            {
-                spec = NewSpecification();
-            }
-
-            spec.WithIndex(index);
+            Index = index;
 
             return this;
         }
@@ -474,14 +506,14 @@ namespace BindOpen.MetaData.Elements
         /// <summary>
         /// 
         /// </summary>
-        public IBdoElementSet Detail { get; set; }
+        public IBdoMetaElementSet Detail { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoMetaElement WithDetail(IBdoElementSet detail)
+        public IBdoMetaElement WithDetail(IBdoMetaElementSet detail)
         {
             Detail = detail;
             return this;

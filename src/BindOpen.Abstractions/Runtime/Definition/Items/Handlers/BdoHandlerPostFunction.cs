@@ -18,6 +18,6 @@ namespace BindOpen.Runtime.Definition
             object targetObject,
             ref IBdoMetaElement sourceBdoElement,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog alog = null);
 }

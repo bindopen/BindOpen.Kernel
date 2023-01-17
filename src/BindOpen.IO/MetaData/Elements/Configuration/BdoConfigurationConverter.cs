@@ -1,5 +1,4 @@
-﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.MetaData.Configuration;
+﻿using BindOpen.MetaData.Configuration;
 
 namespace BindOpen.MetaData.Elements
 {

@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Modeling
     /// <summary>
     /// This class represents the assembly reference DTO.
     /// </summary>
-    [XmlType("AssemblyReference", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "assembly.reference", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("AssemblyReference", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "assembly.reference", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoAssemblyReferenceDto : IDto
     {
         // --------------------------------------------------

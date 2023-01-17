@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="BdoExtensionViewerKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Connector" />
+      <xs:enumeration value="Metrics" />
+      <xs:enumeration value="BdoScriptword" />
+      <xs:enumeration value="Task" />
+      <xs:enumeration value="DataQuery" />
+      <xs:enumeration value="DataClass" />
+      <xs:enumeration value="BdoFormatConfiguration" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

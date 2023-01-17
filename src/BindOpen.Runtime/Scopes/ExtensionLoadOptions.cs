@@ -8,7 +8,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This class represents the extension loading options.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("ExtensionLoadOptions", Namespace = "https://xsd.bindopen.org")]
     public class ExtensionLoadOptions : BdoItem, IExtensionLoadOptions
     {
         // --------------------------------------------------

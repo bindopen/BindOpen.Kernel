@@ -7,7 +7,7 @@ namespace BindOpen.MetaData
     /// This enumeration lists the possible priorities of actions.
     /// </summary>
     [Flags]
-    [XmlType("ActionPriorities", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("ActionPriorities", Namespace = "https://xsd.bindopen.org")]
     public enum ActionPriorities
     {
         /// <summary>

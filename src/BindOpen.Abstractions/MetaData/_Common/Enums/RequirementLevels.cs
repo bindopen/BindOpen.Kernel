@@ -12,7 +12,7 @@ namespace BindOpen.MetaData
     /// <summary>
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
-    [XmlType("RequirementLevels", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("RequirementLevels", Namespace = "https://xsd.bindopen.org")]
     [Flags]
     public enum RequirementLevels
     {

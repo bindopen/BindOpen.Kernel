@@ -7,7 +7,7 @@ namespace BindOpen.MetaData
     /// This enumeration represents the possible data value types.
     /// </summary>
     [Flags]
-    [XmlType("DataValueTypes", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("DataValueTypes", Namespace = "https://xsd.bindopen.org")]
     public enum DataValueTypes
     {
         /// <summary>

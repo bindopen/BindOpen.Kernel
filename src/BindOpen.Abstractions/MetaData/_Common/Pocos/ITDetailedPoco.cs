@@ -11,7 +11,7 @@ namespace BindOpen.MetaData
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        T WithDetail(IBdoElementSet detail);
+        T WithDetail(IBdoMetaElementSet detail);
 
         /// <summary>
         /// 

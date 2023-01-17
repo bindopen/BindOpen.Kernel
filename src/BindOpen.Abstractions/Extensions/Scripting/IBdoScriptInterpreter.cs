@@ -19,7 +19,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         object Evaluate(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         T Evaluate<T>(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace BindOpen.Extensions.Scripting
         object Evaluate(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Scripting
         T Evaluate<T>(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null, IBdoLog log = null);
+            IBdoMetaElementSet varElementSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
@@ -71,7 +71,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         object Evaluate(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         T Evaluate<T>(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null);
 
         /// <summary>

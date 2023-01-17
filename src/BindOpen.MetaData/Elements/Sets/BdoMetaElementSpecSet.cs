@@ -5,7 +5,7 @@ namespace BindOpen.MetaData.Elements
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    public class BdoMetaElementSpecSet : TBdoItemSet<IBdoMetaElementSpec>, IBdoElementSpecSet
+    public class BdoMetaElementSpecSet : TBdoItemSet<IBdoMetaElementSpec>, IBdoMetaElementSpecSet
     {
         // --------------------------------------------------
         // CONSTRUCTORS

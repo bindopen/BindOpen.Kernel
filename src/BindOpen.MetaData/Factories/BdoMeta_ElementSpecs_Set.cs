@@ -23,7 +23,7 @@ namespace BindOpen.MetaData
         /// </summary>
         /// <param name="elements">The elements to consider.</param>
         public static BdoMetaElementSpecSet NewSpecSet<T>(params IBdoMetaElementSpec[] specs)
-            where T : class, IBdoElementSpecSet, new()
+            where T : class, IBdoMetaElementSpecSet, new()
         {
             var elemSpecSet = new BdoMetaElementSpecSet()
                 .WithItems(specs) as BdoMetaElementSpecSet;

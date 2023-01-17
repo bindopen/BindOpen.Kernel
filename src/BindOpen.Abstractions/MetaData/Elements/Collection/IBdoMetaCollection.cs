@@ -9,5 +9,11 @@ namespace BindOpen.MetaData.Elements
         ITBdoMetaElement<IBdoMetaCollection, IBdoMetaCollectionSpec, IBdoMetaElement>,
         ITBdoItemSet<IBdoMetaElement>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objs"></param>
+        new IBdoMetaCollection WithItems(
+            params IBdoMetaElement[] objs);
     }
 }

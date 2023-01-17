@@ -20,7 +20,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        public IBdoElementSpecSet DetailSpec { get; set; } = new BdoMetaElementSpecSet();
+        public IBdoMetaElementSpecSet DetailSpec { get; set; } = new BdoMetaElementSpecSet();
 
         /// <summary>
         /// Formats of this instance.

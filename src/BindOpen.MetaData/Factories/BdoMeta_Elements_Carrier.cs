@@ -14,9 +14,10 @@ namespace BindOpen.MetaData
         /// <param name="name">The name to consider.</param>
         /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static BdoMetaCarrier NewCarrier(
-            string name,
-            string definitionUniqueId = null)
-            => NewCarrier<BdoMetaCarrier>(name, definitionUniqueId);
+            string name = null,
+            string definitionUniqueId = null,
+            params IBdoCarrierConfiguration[] items)
+            => NewCarrier<BdoMetaCarrier>(name, definitionUniqueId, items);
 
         /// <summary>
         /// Initializes a new carrier el.
@@ -25,8 +26,8 @@ namespace BindOpen.MetaData
         /// <param name="item">The items to consider.</param>
         public static BdoMetaCarrier NewCarrier(
             string name,
-            IBdoCarrierConfiguration item)
-            => NewCarrier<BdoMetaCarrier>(name, item);
+            params IBdoCarrierConfiguration[] items)
+            => NewCarrier<BdoMetaCarrier>(name, items);
 
         // Static T creators -------------------------
 
@@ -36,13 +37,15 @@ namespace BindOpen.MetaData
         /// <param name="name">The name to consider.</param>
         /// <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         public static T NewCarrier<T>(
-            string name,
-            string definitionUniqueId = null)
+            string name = null,
+            string definitionUniqueId = null,
+            params IBdoCarrierConfiguration[] items)
             where T : class, IBdoMetaCarrier, new()
         {
             var el = new T();
-            el.WithDefinitionUniqueId(definitionUniqueId);
             el.WithName(name);
+            el.WithDefinitionUniqueId(definitionUniqueId);
+            el.WithItems(items);
 
             return el;
         }
@@ -54,14 +57,8 @@ namespace BindOpen.MetaData
         /// <param name="item">The items to consider.</param>
         public static T NewCarrier<T>(
             string name,
-            IBdoCarrierConfiguration item)
+            params IBdoCarrierConfiguration[] items)
             where T : class, IBdoMetaCarrier, new()
-        {
-            var el = new T();
-            el.WithItem(item);
-            el.WithName(name);
-
-            return el;
-        }
+            => NewCarrier<T>(name, null as string, items);
     }
 }

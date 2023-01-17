@@ -12,7 +12,7 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This enumeration lists all the possible kinds of entities.
     /// </summary>
-    [XmlType("EntityKind", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("EntityKind", Namespace = "https://xsd.bindopen.org")]
     public enum BdoEntityKind
     {
         /// <summary>

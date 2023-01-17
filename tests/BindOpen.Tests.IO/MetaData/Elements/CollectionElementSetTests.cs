@@ -15,7 +15,7 @@ namespace BindOpen.Tests.IO.MetaData
 
         private dynamic _testData;
 
-        private IBdoElementSet _collectionElementSet = null;
+        private IBdoMetaElementSet _collectionElementSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -30,10 +30,11 @@ namespace BindOpen.Tests.IO.MetaData
             };
         }
 
-        private static void Test(IBdoElementSet elemSet)
+        private static void Test(IBdoMetaElementSet elemSet)
         {
-            _ = elemSet.GetItem<IBdoMetaCarrier>("collection1");
+            _ = elemSet.Get<IBdoMetaCarrier>("collection1");
             _ = elemSet.Get<IBdoMetaCarrier>(1);
+            _ = elemSet.GetCarrier();
 
             Assert.That(elemSet?.Count == 2, "Bad collection element set - Count");
         }
@@ -56,7 +57,7 @@ namespace BindOpen.Tests.IO.MetaData
                 (((string Key, double Value)[])_testData.collectionDoubleValues2).Select(p => BdoMeta.NewScalar(p.Key, p.Value)).ToArray());
             collectionElement2.Add(
                 BdoMeta.NewCarrier("collection2", "tests.core$testCarrier")
-                    .WithItem(
+                    .WithItems(
                         (new { path = "file2.txt" }).AsElementSet<BdoCarrierConfiguration>()));
 
             _collectionElementSet = BdoMeta.NewSet(collectionElement1, collectionElement2);

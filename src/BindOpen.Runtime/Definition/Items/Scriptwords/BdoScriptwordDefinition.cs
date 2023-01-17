@@ -53,7 +53,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Parameter specification of this instance.
         /// </summary>
-        public IBdoElementSpecSet ParameterSpecification { get; set; }
+        public IBdoMetaElementSpecSet ParameterSpecification { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

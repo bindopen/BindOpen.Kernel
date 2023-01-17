@@ -1,5 +1,4 @@
-﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.MetaData.Elements;
 using BindOpen.MetaData.Items;
 using System;
 using System.Collections.Generic;

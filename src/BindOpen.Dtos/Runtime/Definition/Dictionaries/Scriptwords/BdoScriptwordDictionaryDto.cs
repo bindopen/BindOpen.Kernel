@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a DTO script word dico.
     /// </summary>
-    [XmlType("ScriptwordDictionaryDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptwordDictionaryDto", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoScriptwordDictionaryDto
         : TBdoExtensionDictionaryDto<BdoScriptwordDefinitionDto>
     {

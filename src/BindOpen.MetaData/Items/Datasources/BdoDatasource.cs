@@ -48,7 +48,7 @@ namespace BindOpen.MetaData.Items
         {
             var dataSource = base.Clone<BdoDatasource>(areas);
 
-            dataSource.Configurations = Configurations?.Select(p => p.Clone<IBdoConnectorConfiguration>()).ToList();
+            dataSource.ConfigList = ConfigList?.Select(p => p.Clone<IBdoConnectorConfiguration>()).ToList();
 
             return dataSource;
         }
@@ -124,12 +124,12 @@ namespace BindOpen.MetaData.Items
         /// <summary>
         /// Description of this instance.
         /// </summary>
-        public IBdoConnectorConfiguration Configuration => Configurations.FirstOrDefault();
+        public IBdoConnectorConfiguration Config() => ConfigList.FirstOrDefault();
 
         /// <summary>
         /// Description of this instance.
         /// </summary>
-        public List<IBdoConnectorConfiguration> Configurations { get; set; }
+        public List<IBdoConnectorConfiguration> ConfigList { get; set; }
 
         /// <summary>
         /// Adds the specified connector configuration.
@@ -139,8 +139,8 @@ namespace BindOpen.MetaData.Items
         {
             if (config != null)
             {
-                Configurations ??= new List<IBdoConnectorConfiguration>();
-                Configurations.Add(config as IBdoConnectorConfiguration);
+                ConfigList ??= new List<IBdoConnectorConfiguration>();
+                ConfigList.Add(config as IBdoConnectorConfiguration);
             }
 
             return this;
@@ -152,8 +152,8 @@ namespace BindOpen.MetaData.Items
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         public IBdoDataSource RemoveConfig(string definitionName)
         {
-            Configurations ??= new List<IBdoConnectorConfiguration>();
-            Configurations?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
+            ConfigList ??= new List<IBdoConnectorConfiguration>();
+            ConfigList?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
 
             return this;
         }
@@ -179,7 +179,7 @@ namespace BindOpen.MetaData.Items
         /// <returns>The specified connector.</returns>
         public IBdoConnectorConfiguration GetConfig(string definitionName = null)
         {
-            return Configurations?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
+            return ConfigList?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace BindOpen.MetaData.Items
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConfig(string definitionName = null)
         {
-            return Configurations?.Any(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName)) == true;
+            return ConfigList?.Any(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName)) == true;
         }
 
         #endregion

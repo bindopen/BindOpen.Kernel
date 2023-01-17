@@ -16,7 +16,7 @@ namespace BindOpen.Tests.IO.MetaData
 
         private dynamic _testData;
 
-        private IBdoElementSet _metaCarrierSet = null;
+        private IBdoMetaElementSet _metaCarrierSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -32,12 +32,12 @@ namespace BindOpen.Tests.IO.MetaData
             };
         }
 
-        private void Test(IBdoElementSet elemSet)
+        private void Test(IBdoMetaElementSet elemSet)
         {
-            var metaCarrier1 = elemSet.GetItem<IBdoMetaCarrier>("carrier1");
-            var metaCarrier2 = elemSet.GetItem<IBdoMetaCarrier>("carrier2");
+            var metaCarrier1 = elemSet.Get<IBdoMetaCarrier>("carrier1");
+            var metaCarrier2 = elemSet.Get<IBdoMetaCarrier>("carrier2");
             var metaCarrier3 = elemSet.Get<IBdoMetaCarrier>(2);
-            var metaCarrier4 = elemSet.GetItem<IBdoMetaCarrier>("carrier4");
+            var metaCarrier4 = elemSet.GetCarrier("carrier4");
 
             Assert.That(elemSet?.Count == 4, "Bad carrier element set - Count");
         }
@@ -52,7 +52,7 @@ namespace BindOpen.Tests.IO.MetaData
                     BdoMeta.NewScalar("path", _testData.path1)));
 
             var metaCarrier2 = BdoMeta.NewCarrier("carrier2", "tests.core$testCarrier")
-                .WithItem((new { path = _testData.path2 }).AsElementSet<BdoCarrierConfiguration>());
+                .WithItems((new { path = _testData.path2 }).AsElementSet<BdoCarrierConfiguration>());
 
             var metaCarrier3 = new CarrierFake(_testData.path3, _testData.folderPath3)?.AsMeta();
 

@@ -1,7 +1,7 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Logging;
+using BindOpen.MetaData.Elements;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
-using BindOpen.Logging;
 
 namespace BindOpen.MetaData.Items
 {
@@ -24,7 +24,7 @@ namespace BindOpen.MetaData.Items
         /// <summary>
         /// Source item of this instance.
         /// </summary>
-        public object SourceObject => SourceElement?.GetItem();
+        public object SourceObject => SourceElement?.Item();
 
         /// <summary>
         /// Target item of this instance.
@@ -39,7 +39,7 @@ namespace BindOpen.MetaData.Items
         /// <summary>
         /// The path detail of this instance.
         /// </summary>
-        public IBdoElementSet PathDetail { get; set; }
+        public IBdoMetaElementSet PathDetail { get; set; }
 
         #endregion
 
@@ -88,7 +88,7 @@ namespace BindOpen.MetaData.Items
         /// <returns>Returns the retrieved items.</returns>
         public object Get(
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaElementSet varElementSet = null,
             IBdoLog log = null)
         {
             //SetDefinition((scope== null ? null : scope.BdoExtension));

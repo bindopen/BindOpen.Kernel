@@ -113,7 +113,7 @@ namespace BindOpen.MetaData
 
             if (items != null)
             {
-                el.WithItem(items);
+                el.WithItems(items);
             }
 
             return el;

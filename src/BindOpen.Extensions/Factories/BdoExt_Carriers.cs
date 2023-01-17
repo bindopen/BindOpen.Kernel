@@ -15,7 +15,8 @@ namespace BindOpen.Extensions
         /// <typeparam name="T">The connector class to return.</typeparam>
         /// <param name="config"></param>
         /// <returns>Returns the created connector.</returns>
-        public static T NewCarrier<T>(IBdoCarrierConfiguration config)
+        public static T NewCarrier<T>(
+            IBdoCarrierConfiguration config)
             where T : class, IBdoCarrier, new()
         {
             T carrier = new();
