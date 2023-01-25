@@ -1,14 +1,27 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
 using System;
 
 namespace BindOpen.Extensions.Modeling
 {
     /// <summary>
-    /// This class represents an attribute of entities.
+    /// This class represents a entity attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public class BdoEntityAttribute : TitledDescribedDataItemAttribute
     {
+        // ------------------------------------------
+        // PROPERTIES
+        // ------------------------------------------
+
+        #region Properties
+
+        /// <summary>
+        /// The data source kind of this instance.
+        /// </summary>
+        public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.None;
+
+        #endregion
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------

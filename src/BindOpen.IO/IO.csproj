@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="MetaData\Elements\Scalar\MetaScalarConverter.cs~RF99d99dc.TMP" />
+    <None Remove="Data\Meta\Scalar\MetaScalarConverter.cs~RF99d99dc.TMP" />
   </ItemGroup>
 
   <ItemGroup>

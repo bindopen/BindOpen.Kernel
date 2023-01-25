@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
 using System;
 using System.Xml.Serialization;
 

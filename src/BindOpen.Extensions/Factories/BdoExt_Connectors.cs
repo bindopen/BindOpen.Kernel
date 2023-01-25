@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions.Connecting;
 
 namespace BindOpen.Extensions
 {
@@ -19,8 +19,8 @@ namespace BindOpen.Extensions
             where T : class, IBdoConnector, new()
         {
             T connector = new();
-            connector.WithConfiguration(config);
-            connector.UpdateFromElementSet<BdoMetaAttribute>(config);
+            connector.WithConfig(config);
+            connector.UpdateFromElementSet<BdoDataAttribute>(config);
 
             return connector;
         }
@@ -29,15 +29,23 @@ namespace BindOpen.Extensions
         /// Creates the instance of the specified configuration.
         /// </summary>
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
-        /// <param name="elements">The configuration elements of the definition to consider.</param>
+        /// <param name="elms">The configuration elms of the definition to consider.</param>
         public static BdoConnectorConfiguration NewConnectorConfig(
             string definitionUniqueId,
-            params IBdoMetaElement[] elements)
+            params IBdoMetaData[] elms)
         {
             var config = new BdoConnectorConfiguration(definitionUniqueId);
-            config.WithItems(elements);
+            config.WithItems(elms);
 
             return config;
         }
+
+        /// <summary>
+        /// Creates the instance of the specified configuration.
+        /// </summary>
+        /// <param name="elms">The configuration elms of the definition to consider.</param>
+        public static BdoConnectorConfiguration NewConnectorConfig(
+            params IBdoMetaData[] elms)
+            => NewConnectorConfig(null, elms);
     }
 }

@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions
@@ -36,16 +36,16 @@ namespace BindOpen.Extensions
         /// <summary>
         /// The configuration of this instance.
         /// </summary>
-        public C Configuration { get; set; }
+        public C Config { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public T WithConfiguration(C config)
+        public T WithConfig(C config)
         {
-            Configuration = config;
+            Config = config;
             return this as T;
         }
 

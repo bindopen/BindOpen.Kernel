@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Dtos.Extensions;
 using System.Text.Json.Serialization;
@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         [JsonPropertyName("inputs")]
         [XmlElement("inputs")]
-        public BdoElementSetDto InputDetail { get; set; }
+        public MetaSetDto InputDetail { get; set; }
 
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         [JsonPropertyName("outputs")]
         [XmlElement("outputs")]
-        public BdoElementSetDto OutputDetail { get; set; }
+        public MetaSetDto OutputDetail { get; set; }
 
         #endregion
 

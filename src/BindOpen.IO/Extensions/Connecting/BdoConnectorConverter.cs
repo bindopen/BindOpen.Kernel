@@ -1,5 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.MetaData;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -17,7 +16,7 @@ namespace BindOpen.Extensions.Connecting
         {
             if (poco == null) return null;
 
-            var dto = poco.Configuration.ToDto();
+            var dto = poco.Config.ToDto();
             dto.Update(dto);
 
             return dto;
@@ -34,7 +33,7 @@ namespace BindOpen.Extensions.Connecting
 
             T poco = new();
             poco
-                .WithConfiguration(dto.ToPoco());
+                .WithConfig(dto.ToPoco());
 
             return poco;
         }

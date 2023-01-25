@@ -2,21 +2,21 @@
 <xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSet.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/DataItem.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/carriers/CarrierDefinition.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/entities/EntityDefinition.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemGroup.xsd" />
 
-  <xs:element name="carriers.dico" type="BdoCarrierDictionary" />
+  <xs:element name="entities.dico" type="BdoEntityDictionary" />
 
-  <xs:complexType name="BdoCarrierDictionary">
+  <xs:complexType name="BdoEntityDictionary">
     <xs:complexContent mixed="false">
-      <xs:extension base="TBdoExtensionDictionary_Carrier" />
+      <xs:extension base="TBdoExtensionDictionary_Entity" />
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="TBdoExtensionDictionary_Carrier">
+  <xs:complexType name="TBdoExtensionDictionary_Entity">
     <xs:complexContent mixed="false">
       <xs:extension base="StoredDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfCarrierDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfEntityDefinition" />
           <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionItemGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
@@ -25,9 +25,9 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="ArrayOfCarrierDefinition">
+  <xs:complexType name="ArrayOfEntityDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoCarrierDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoEntityDefinition" />
     </xs:sequence>
   </xs:complexType>
 

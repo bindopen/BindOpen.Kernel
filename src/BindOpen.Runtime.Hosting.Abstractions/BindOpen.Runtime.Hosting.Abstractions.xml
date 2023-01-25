@@ -84,7 +84,7 @@
             </summary>
             <returns>Returns the bot to consider.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.IBdoHost.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Hosts.IBdoHost.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Ends the process specifying the status.
             </summary>
@@ -151,7 +151,7 @@
             The depot sets of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.IBdoHostOptions.AddDataStore(System.Action{BindOpen.MetaData.Stores.IBdoDataStore})">
+        <member name="M:BindOpen.Runtime.Hosts.IBdoHostOptions.AddDataStore(System.Action{BindOpen.Data.Stores.IBdoDataStore})">
             <summary>
             Adds the data store executing the specified action.
             </summary>
@@ -332,7 +332,7 @@
             The state of the current execution.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Services.IBdoJob.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Services.IBdoJob.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             Sets the execution state of this instance.
             </summary>
@@ -342,7 +342,7 @@
             The status of the current execution.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Services.IBdoJob.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.IBdoJob.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Sets the execution status of this instance.
             </summary>
@@ -353,7 +353,7 @@
             </summary>
             <returns>Returns the job to consider.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.IBdoJob.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.IBdoJob.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Ends the process specifying the status.
             </summary>
@@ -365,12 +365,12 @@
             The interface defines the BindOpen service.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             Sets the execution state of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Sets the execution status of this instance.
             </summary>
@@ -381,7 +381,7 @@
             </summary>
             <returns>Returns the service to consider.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.ITBdoJob`1.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Ends the process specifying the status.
             </summary>

@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Dtos.Extensions;
 using System.Text.Json.Serialization;
@@ -35,7 +35,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         [JsonPropertyName("parameters")]
         [XmlElement("parameters")]
-        public BdoElementSetDto ParameterDetail { get; set; }
+        public MetaSetDto ParameterDetail { get; set; }
 
         // Tree ----------------------------------
 

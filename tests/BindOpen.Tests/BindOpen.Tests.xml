@@ -4,7 +4,7 @@
         <name>BindOpen.Tests</name>
     </assembly>
     <members>
-        <member name="M:BindOpen.Tests.Extensions.BdoCarrierTests.CreateCarrier(System.Object)">
+        <member name="M:BindOpen.Tests.Extensions.BdoEntityTests.CreateEntity(System.Object)">
             <summary>
             
             </summary>
@@ -72,55 +72,55 @@
             </summary>
             <param name="log">The log to consider.</param>
         </member>
-        <member name="T:BindOpen.Tests.Extensions.CarrierFake">
+        <member name="T:BindOpen.Tests.Extensions.EntityFake">
             <summary>
             This class represents a database data field.
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Extensions.CarrierFake.BoolValue">
+        <member name="P:BindOpen.Tests.Extensions.EntityFake.BoolValue">
             <summary>
             The boolean value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Extensions.CarrierFake.StringValue">
+        <member name="P:BindOpen.Tests.Extensions.EntityFake.StringValue">
             <summary>
             The string value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Extensions.CarrierFake.IntValue">
+        <member name="P:BindOpen.Tests.Extensions.EntityFake.IntValue">
             <summary>
             The integer value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Extensions.CarrierFake.EnumValue">
+        <member name="P:BindOpen.Tests.Extensions.EntityFake.EnumValue">
             <summary>
             Enumeration value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Extensions.CarrierFake.Inputs">
+        <member name="P:BindOpen.Tests.Extensions.EntityFake.Inputs">
             <summary>
             Enumeration value of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Tests.Extensions.CarrierFake.#ctor">
+        <member name="M:BindOpen.Tests.Extensions.EntityFake.#ctor">
             <summary>
-            Instantiates a new instance of the CarrierFake class.
+            Instantiates a new instance of the EntityFake class.
             </summary>
         </member>
-        <member name="M:BindOpen.Tests.Extensions.CarrierFake.#ctor(System.String)">
+        <member name="M:BindOpen.Tests.Extensions.EntityFake.#ctor(System.String)">
             <summary>
-            Instantiates a new instance of the CarrierFake class.
+            Instantiates a new instance of the EntityFake class.
             </summary>
             <param name="path">The path of the instance.</param>
         </member>
-        <member name="M:BindOpen.Tests.Extensions.CarrierFake.#ctor(System.String,System.String)">
+        <member name="M:BindOpen.Tests.Extensions.EntityFake.#ctor(System.String,System.String)">
             <summary>
-            Instantiates a new instance of the TestCarrier class.
+            Instantiates a new instance of the TestEntity class.
             </summary>
             <param name="fileName">The file name of the instance.</param>
             <param name="folderPath">The folder path of the instance.</param>
         </member>
-        <member name="M:BindOpen.Tests.Extensions.CarrierFake.ToString">
+        <member name="M:BindOpen.Tests.Extensions.EntityFake.ToString">
             <summary>
             Converts this instance to string.
             </summary>

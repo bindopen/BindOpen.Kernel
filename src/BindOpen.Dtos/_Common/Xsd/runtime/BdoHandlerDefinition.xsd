@@ -13,7 +13,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="getFunction" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="postFunction" type="xs:string" />
           <xs:choice>
-            <xs:element name="source-carrier.specification" nillable="true" type="CarrierElementSpec" />
+            <xs:element name="source-entity.specification" nillable="true" type="EntityElementSpec" />
             <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
             <xs:element name="source-entity.specification" nillable="true" type="EntityElementSpec" />
             <xs:element name="source-scalar.specification" nillable="true" type="ScalarElementSpec" />
@@ -22,7 +22,7 @@
           </xs:choice>
           <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="BdoElementSpecSet" />
           <xs:choice>
-            <xs:element name="target-carrier.specification" nillable="true" type="CarrierElementSpec" />
+            <xs:element name="target-entity.specification" nillable="true" type="EntityElementSpec" />
             <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
             <xs:element name="target-entity.specification" nillable="true" type="EntityElementSpec" />
             <xs:element name="target-scalar.specification" nillable="true" type="ScalarElementSpec" />

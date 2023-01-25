@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
 
@@ -150,7 +150,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public IBdoExtensionItemGroup WithName(string name)
         {
-            Name = BdoMeta.NewName(name, "item_");
+            Name = BdoData.NewName(name, "item_");
             return this;
         }
 
@@ -174,7 +174,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public IBdoExtensionItemGroup AddTitle(KeyValuePair<string, string> item)
         {
-            Title ??= BdoMeta.NewDictionary();
+            Title ??= BdoData.NewDictionary();
             Title.Add(item);
             return this;
         }
@@ -210,7 +210,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public IBdoExtensionItemGroup AddDescription(KeyValuePair<string, string> item)
         {
-            Description ??= BdoMeta.NewDictionary();
+            Description ??= BdoData.NewDictionary();
             Description.Add(item);
             return this;
         }

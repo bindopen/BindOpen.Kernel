@@ -1,7 +1,7 @@
-﻿using BindOpen.Extensions;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
 using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System.IO;

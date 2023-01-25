@@ -1,5 +1,4 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -239,7 +238,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
             scriptWord.WithDefinition(Definition);
-            scriptWord.WithConfiguration(Configuration?.Clone<BdoScriptwordConfiguration>());
+            scriptWord.WithConfig(Config?.Clone<BdoScriptwordConfiguration>());
 
             if (Parameters != null)
             {
@@ -277,7 +276,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         public IBdoScriptword WithName(string name)
         {
-            Name = BdoMeta.NewName(name, "word_");
+            Name = BdoData.NewName(name, "word_");
             return this;
         }
 

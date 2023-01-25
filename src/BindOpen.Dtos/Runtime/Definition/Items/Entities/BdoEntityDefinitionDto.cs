@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -44,9 +44,9 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        [JsonPropertyName("detail.specification")]
-        [XmlElement("detail.specification")]
-        public BdoElementSpecSetDto DetailSpec { get; set; }
+        [JsonPropertyName("detail.spec")]
+        [XmlElement("detail.spec")]
+        public MetaSpecSetDto DetailSpec { get; set; }
 
         /// <summary>
         /// Formats of this instance.

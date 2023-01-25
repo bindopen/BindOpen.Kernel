@@ -6,7 +6,7 @@
       <xs:enumeration value="Any" />
       <xs:enumeration value="None" />
       <xs:enumeration value="Task" />
-      <xs:enumeration value="Carrier" />
+      <xs:enumeration value="Entity" />
       <xs:enumeration value="Command" />
       <xs:enumeration value="Connector" />
       <xs:enumeration value="ContextExtension" />

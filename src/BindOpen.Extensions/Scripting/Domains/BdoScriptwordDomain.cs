@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting
@@ -16,7 +16,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The variable element set of this instance.
         /// </summary>
-        public IBdoMetaElementSet ScriptVariableSet { get; private set; }
+        public IBdoMetaSet ScriptVariableSet { get; private set; }
 
         /// <summary>
         /// The script word of this instance.
@@ -27,15 +27,15 @@ namespace BindOpen.Extensions.Scripting
         /// Initializes a new instance of the BdoScriptwordArea class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="scriptword">The script word to consider.</param>
         public BdoScriptwordDomain(
             IBdoScope scope,
-            IBdoMetaElementSet varElementSet,
+            IBdoMetaSet varSet,
             IBdoScriptword scriptword)
         {
             Scope = scope;
-            ScriptVariableSet = varElementSet;
+            ScriptVariableSet = varSet;
             Scriptword = scriptword;
         }
 
@@ -55,7 +55,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         /// <param name="variableSet"></param>
         /// <returns></returns>
-        public IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaElementSet variableSet)
+        public IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaSet variableSet)
         {
             ScriptVariableSet = variableSet;
             return this;

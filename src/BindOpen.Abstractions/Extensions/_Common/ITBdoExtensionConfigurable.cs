@@ -12,6 +12,6 @@ namespace BindOpen.Extensions
         /// <summary>
         /// 
         /// </summary>
-        C Configuration { get; set; }
+        C Config { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Configuration;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions
@@ -56,7 +56,7 @@ namespace BindOpen.Extensions
         protected TBdoExtensionItemConfiguration(
             BdoExtensionItemKind kind,
             string definitionUniqueId,
-            params IBdoMetaElement[] items)
+            params IBdoMetaData[] items)
         {
             Kind = kind;
             DefinitionUniqueId = definitionUniqueId;

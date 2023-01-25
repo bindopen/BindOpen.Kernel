@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 using System.Xml.Serialization;
 
@@ -66,7 +66,7 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoScriptwordConfiguration Add(params IBdoMetaElement[] items)
+        public new IBdoScriptwordConfiguration Add(params IBdoMetaData[] items)
         {
             base.Add(items);
             return this;
@@ -76,7 +76,7 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoScriptwordConfiguration WithItems(params IBdoMetaElement[] items)
+        public new IBdoScriptwordConfiguration WithItems(params IBdoMetaData[] items)
         {
             base.WithItems(items);
             return this;

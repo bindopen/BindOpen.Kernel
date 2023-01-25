@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -39,7 +39,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("dataSource.specification")]
         [XmlElement("dataSource.specification")]
-        public BdoElementSpecSetDto DatasourceDetailSpec { get; set; }
+        public MetaSpecSetDto DatasourceDetailSpec { get; set; }
 
         #endregion
 

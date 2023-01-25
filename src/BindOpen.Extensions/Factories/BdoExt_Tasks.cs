@@ -1,5 +1,5 @@
 ﻿using BindOpen.Extensions.Processing;
-using BindOpen.MetaData.Elements;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions
 {
@@ -18,7 +18,7 @@ namespace BindOpen.Extensions
             where T : class, IBdoTask, new()
         {
             T task = new();
-            task.WithConfiguration(config);
+            task.WithConfig(config);
 
             return task;
         }
@@ -29,7 +29,7 @@ namespace BindOpen.Extensions
         /// <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         public static BdoTaskConfiguration NewTaskConfig(
             string definitionUniqueId,
-            params IBdoMetaElement[] items)
+            params IBdoMetaData[] items)
         {
             var config = new BdoTaskConfiguration(definitionUniqueId);
             config.WithItems(items);

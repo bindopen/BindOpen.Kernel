@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
@@ -14,7 +14,7 @@ namespace BindOpen.Runtime.Scopes
     /// </summary>
     public static partial class BdoScopeExtension
     {
-        // Carriers ------------------------------------------------
+        // Entities ------------------------------------------------
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -22,16 +22,16 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
-        /// <typeparam name="T">The carrier class to return.</typeparam>
-        /// <returns>Returns the created carrier.</returns>
-        public static T NewCarrier<T>(
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The entity class to return.</typeparam>
+        /// <returns>Returns the created entity.</returns>
+        public static T NewEntity<T>(
             this IBdoScope scope,
-            IBdoCarrierConfiguration configuration = null,
-            IBdoMetaElementSet varElementSet = null,
-            IBdoLog log = null) where T : BdoCarrier
+            IBdoEntityConfiguration configuration = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null) where T : BdoEntity
         {
-            return scope.NewCarrier(configuration, varElementSet, log) as T;
+            return scope.NewEntity(configuration, varSet, log) as T;
         }
 
         /// <summary>
@@ -40,40 +40,40 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
-        /// <returns>Returns the created carrier.</returns>
-        public static BdoCarrier NewCarrier(
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the created entity.</returns>
+        public static BdoEntity NewEntity(
             this IBdoScope scope,
-            IBdoCarrierConfiguration configuration,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoEntityConfiguration configuration,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            BdoCarrier carrier = null;
+            BdoEntity entity = null;
 
             if (configuration != null && scope?.Check(true, log: log) == false)
             {
-                // we get the carrier class reference
+                // we get the entity class reference
 
-                IBdoCarrierDefinition definition = scope.ExtensionStore.GetItemDefinitionWithUniqueId<IBdoCarrierDefinition>(configuration.DefinitionUniqueId);
+                IBdoEntityDefinition definition = scope.ExtensionStore.GetItemDefinitionWithUniqueId<IBdoEntityDefinition>(configuration.DefinitionUniqueId);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension carrier '" + configuration.DefinitionUniqueId + "' definition");
+                    log?.AddError("Could not retrieve the extension entity '" + configuration.DefinitionUniqueId + "' definition");
                 }
                 else
                 {
-                    // we intantiate the carrier
+                    // we intantiate the entity
 
                     AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
 
                     if (item != null)
                     {
-                        carrier = item as BdoCarrier;
-                        carrier.UpdateFromElementSet<BdoMetaAttribute>(configuration, scope, varElementSet);
+                        entity = item as BdoEntity;
+                        entity.UpdateFromElementSet<BdoDataAttribute>(configuration, scope, varSet);
                     }
                 }
             }
 
-            return carrier;
+            return entity;
         }
 
         // Connectors ------------------------------------------------
@@ -84,16 +84,16 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <typeparam name="T">The connector class to return.</typeparam>
         /// <returns>Returns the created connector.</returns>
         public static T NewConnector<T>(
             this IBdoScope scope,
             IBdoConnectorConfiguration configuration,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
-            return scope.NewConnector(configuration, varElementSet, log) as T;
+            return scope.NewConnector(configuration, varSet, log) as T;
         }
 
         /// <summary>
@@ -102,12 +102,12 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the created connector.</returns>
         public static IBdoConnector NewConnector(
             this IBdoScope scope,
             IBdoConnectorConfiguration configuration,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (configuration != null && scope?.Check(true, log: log) == true)
@@ -127,7 +127,7 @@ namespace BindOpen.Runtime.Scopes
                     if (item != null)
                     {
                         var connector = item as IBdoConnector;
-                        connector.UpdateFromElementSet<BdoMetaAttribute>(configuration, scope, varElementSet);
+                        connector.UpdateFromElementSet<BdoDataAttribute>(configuration, scope, varSet);
                     }
                 }
             }
@@ -143,16 +143,16 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
-        /// <typeparam name="T">The carrier class to return.</typeparam>
-        /// <returns>Returns the created carrier.</returns>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The entity class to return.</typeparam>
+        /// <returns>Returns the created entity.</returns>
         public static T NewTask<T>(
             this IBdoScope scope,
             IBdoTaskConfiguration configuration = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : BdoTask
         {
-            return scope.NewTask(configuration, varElementSet, log) as T;
+            return scope.NewTask(configuration, varSet, log) as T;
         }
 
         /// <summary>
@@ -161,12 +161,12 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="scope">The scope to consider.</param>
         /// <param name="configuration">The configuration to consider.</param>
         /// <param name="log">The log to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the created task.</returns>
         public static BdoTask NewTask(
             this IBdoScope scope,
             IBdoTaskConfiguration configuration = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             BdoTask task = null;
@@ -189,8 +189,8 @@ namespace BindOpen.Runtime.Scopes
                     if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) != false)
                     {
                         task = item as BdoTask;
-                        task.UpdateFromElementSet<BdoTaskInputAttribute>(configuration, scope, varElementSet);
-                        task.UpdateFromElementSet<BdoTaskOutputAttribute>(configuration, scope, varElementSet);
+                        task.UpdateFromElementSet<BdoTaskInputAttribute>(configuration, scope, varSet);
+                        task.UpdateFromElementSet<BdoTaskOutputAttribute>(configuration, scope, varSet);
                     }
                 }
             }

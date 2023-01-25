@@ -1,10 +1,10 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Modeling
 {
     /// <summary>
-    /// 
+    /// This interface defines the entity configuration.
     /// </summary>
     public interface IBdoEntityConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoEntityDefinition>
     {
@@ -12,24 +12,12 @@ namespace BindOpen.Extensions.Modeling
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoEntityConfiguration Add(params IBdoMetaElement[] items);
+        new IBdoEntityConfiguration Add(params IBdoMetaData[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
-        new IBdoEntityConfiguration WithItems(params IBdoMetaElement[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IDataSchema Schema { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="schema"></param>
-        /// <returns></returns>
-        IBdoEntityConfiguration WithSchema(IDataSchema schema);
+        new IBdoEntityConfiguration WithItems(params IBdoMetaData[] items);
     }
 }

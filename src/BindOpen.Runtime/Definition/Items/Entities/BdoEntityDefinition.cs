@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 
@@ -18,9 +18,14 @@ namespace BindOpen.Runtime.Definition
         #region Properties
 
         /// <summary>
+        /// The data source kind of this instance.
+        /// </summary>
+        public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.None;
+
+        /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        public IBdoMetaElementSpecSet DetailSpec { get; set; } = new BdoMetaElementSpecSet();
+        public IBdoMetaSpecSet DetailSpec { get; set; } = new BdoMetaSpecSet();
 
         /// <summary>
         /// Formats of this instance.
@@ -36,11 +41,6 @@ namespace BindOpen.Runtime.Definition
         /// The kind of this instance. 
         /// </summary>
         public BdoEntityKind Kind { get; set; } = BdoEntityKind.Any;
-
-        /// <summary>
-        /// The possible meta schemas of this instance.
-        /// </summary>
-        public List<IDataSchema> PossibleMetaSchemas { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
@@ -72,7 +72,8 @@ namespace BindOpen.Runtime.Definition
         /// <param name="extensionDefinition">The extensition definition to consider.</param>
         public BdoEntityDefinition(
             string name,
-            IBdoExtensionDefinition extensionDefinition) : base(name, "entityDef_", extensionDefinition)
+            IBdoExtensionDefinition extensionDefinition)
+            : base(name, "entityDef_", extensionDefinition)
         {
         }
 

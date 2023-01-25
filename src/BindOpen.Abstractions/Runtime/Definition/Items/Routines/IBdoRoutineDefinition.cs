@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 
@@ -28,6 +28,6 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaElementSet ParameterStatement { get; set; }
+        IBdoMetaSet ParameterStatement { get; set; }
     }
 }

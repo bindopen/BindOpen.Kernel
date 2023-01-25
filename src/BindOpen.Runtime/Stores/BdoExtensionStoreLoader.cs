@@ -1,6 +1,6 @@
 ﻿using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.References;
@@ -199,7 +199,7 @@ namespace BindOpen.Runtime.Stores
                         // we load the item definition specifiying the extension definition
 
                         foreach (BdoExtensionItemKind kind in new[] {
-                                BdoExtensionItemKind.Carrier,
+                                BdoExtensionItemKind.Entity,
                                 BdoExtensionItemKind.Connector,
                                 BdoExtensionItemKind.Entity,
                                 BdoExtensionItemKind.Handler,

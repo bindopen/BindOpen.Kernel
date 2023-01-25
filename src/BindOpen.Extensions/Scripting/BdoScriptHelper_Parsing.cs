@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.MetaData.Elements;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 
@@ -475,7 +475,7 @@ namespace BindOpen.Extensions.Scripting
         /// <param name="script">The script to analyse.</param>
         /// <param name="index">The index position of the parent script word.</param>
         /// <param name="isSuggest">False if all the child script words of the parent must be returned.
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// True if only the child script words similar to the child script word present in the script
         /// must be returned.</param>
         /// <returns>Returns the possible child script word definitions.</returns>
@@ -484,7 +484,7 @@ namespace BindOpen.Extensions.Scripting
             string script,
             int index,
             bool isSuggest,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (scriptInterpreter == null) return new Dictionary<string, IBdoScriptwordDefinition>();
@@ -507,7 +507,7 @@ namespace BindOpen.Extensions.Scripting
                 null,
                 ref tempIndex,
                 0,
-                varElementSet,
+                varSet,
                 log);
 
             // if it is not null

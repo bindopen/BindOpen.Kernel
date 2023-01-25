@@ -10,7 +10,7 @@ namespace BindOpen.Runtime.Definition
     #region Enumerations
 
     /// <summary>
-    /// This enumeration lists all the possible kinds of entities.
+    /// This enumeration lists all the possible kinds of carriers.
     /// </summary>
     [XmlType("EntityKind", Namespace = "https://xsd.bindopen.org")]
     public enum BdoEntityKind
@@ -26,9 +26,9 @@ namespace BindOpen.Runtime.Definition
         Any,
 
         /// <summary>
-        /// Data carrier.
+        /// Data entity.
         /// </summary>
-        Carrier,
+        Entity,
 
         /// <summary>
         /// Data zone.

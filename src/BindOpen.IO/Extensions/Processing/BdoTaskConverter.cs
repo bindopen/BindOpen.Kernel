@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Extensions.Processing
 {
@@ -16,7 +16,7 @@ namespace BindOpen.Extensions.Processing
         {
             if (poco == null) return null;
 
-            var dto = poco.Configuration.ToDto();
+            var dto = poco.Config.ToDto();
             dto.Update(dto);
 
             return dto;
@@ -33,7 +33,7 @@ namespace BindOpen.Extensions.Processing
 
             T poco = new();
             poco
-                .WithConfiguration(dto.ToPoco());
+                .WithConfig(dto.ToPoco());
 
             return poco;
         }

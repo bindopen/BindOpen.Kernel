@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.MetaData.Items;
+using BindOpen.Data.Items;
 using System.Data;
 
 namespace BindOpen.Extensions.Connecting

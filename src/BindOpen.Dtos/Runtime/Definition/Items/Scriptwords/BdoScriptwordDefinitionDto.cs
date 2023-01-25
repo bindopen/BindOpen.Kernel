@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -113,7 +113,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public BdoElementSpecSetDto ParameterSpecification { get; set; }
+        public MetaSpecSetDto ParameterSpecification { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

@@ -1,6 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -40,19 +40,19 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         /// <param name="name">The name of the entry to consider.</param>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <param name="log">The log to populate.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         public object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IBdoMetaElement entry = Configuration?.GetEntryWithName(name, taskEntryKinds);
+            IBdoMetaData entry = Config?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.Items(scope, varElementSet, log);
+            return entry?.Items(scope, varSet, log);
         }
 
         // General ---------------------------------------
@@ -64,10 +64,10 @@ namespace BindOpen.Extensions.Processing
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element collection.</returns>
         public bool IsCompatibleWith(
-            IBdoMetaElementSpecSet dataElementSpecSet,
+            IBdoMetaSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
-            if (Configuration == null) return false;
+            if (Config == null) return false;
 
             if (dataElementSpecSet == null)
             {
@@ -75,9 +75,9 @@ namespace BindOpen.Extensions.Processing
             }
             else
             {
-                foreach (IBdoMetaElement entry in Configuration.GetEntries(taskEntryKind))
+                foreach (IBdoMetaData entry in Config.GetEntries(taskEntryKind))
                 {
-                    IBdoMetaElementSpec dataElementSpec = dataElementSpecSet[entry.Key()];
+                    IBdoMetaDataSpec dataElementSpec = dataElementSpecSet[entry.Key()];
                     if (dataElementSpec != null)
                     {
                         bool isCompatible = dataElementSpec.IsCompatibleWithItem(entry);
@@ -95,9 +95,9 @@ namespace BindOpen.Extensions.Processing
         /// <returns>True if this instance is configurable.</returns>
         public bool IsConfigurable(SpecificationLevels specificationLevel = SpecificationLevels.Runtime)
         {
-            var elements = new List<IBdoMetaElement>();
-            elements.AddRange(Configuration?.GetEntries(TaskEntryKind.Input));
-            elements.AddRange(Configuration?.GetEntries(TaskEntryKind.ScalarOutput));
+            var elements = new List<IBdoMetaData>();
+            elements.AddRange(Config?.GetEntries(TaskEntryKind.Input));
+            elements.AddRange(Config?.GetEntries(TaskEntryKind.ScalarOutput));
 
             if (elements.Count == 0)
             {
@@ -132,7 +132,7 @@ namespace BindOpen.Extensions.Processing
         public IBdoTask UpdateAbsolutePaths(string relativePath)
         {
             //foreach (BdoElement currentElement in _Inputs)
-            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
+            //    if (currentElement.EntityKind == DocumentKind.RepositoryFile)
             //    {
             //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
@@ -143,7 +143,7 @@ namespace BindOpen.Extensions.Processing
             //        }
             //    }
             //foreach (BdoElement currentElement in _Outputs)
-            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
+            //    if (currentElement.EntityKind == DocumentKind.RepositoryFile)
             //    {
             //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
@@ -169,12 +169,12 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to use for execution.</param>
+        /// <param name="varSet">The variable element set to use for execution.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public virtual IBdoTask Execute(
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null)
         {

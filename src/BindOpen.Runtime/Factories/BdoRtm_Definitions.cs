@@ -7,18 +7,18 @@ namespace BindOpen.Runtime
     /// </summary>
     public static partial class BdoRtm
     {
-        // Carriers ------------------------------------------------
+        // Entities ------------------------------------------------
 
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
         /// <param name="extensionDefinition">The extension definition DTO to consider.</param>
         /// <param name="name">The name of the definition DTO to consider.</param>
-        public static BdoCarrierDefinition NewCarrierDefinition(
+        public static BdoEntityDefinition NewEntityDefinition(
             this IBdoExtensionDefinition extensionDefinition,
             string name = null)
         {
-            var definition = new BdoCarrierDefinition(name, extensionDefinition);
+            var definition = new BdoEntityDefinition(name, extensionDefinition);
             definition.WithName(name);
 
             return definition;
@@ -36,23 +36,6 @@ namespace BindOpen.Runtime
             string name = null)
         {
             var definition = new BdoConnectorDefinition(name, extensionDefinition);
-            definition.WithName(name);
-
-            return definition;
-        }
-
-        // Entities ------------------------------------------------
-
-        /// <summary>
-        /// Creates the instance of the specified definition DTO.
-        /// </summary>
-        /// <param name="extensionDefinition">The extension definition DTO to consider.</param>
-        /// <param name="name">The name of the definition DTO to consider.</param>
-        public static BdoEntityDefinition NewEntityDefinition(
-            this IBdoExtensionDefinition extensionDefinition,
-            string name = null)
-        {
-            var definition = new BdoEntityDefinition(name, extensionDefinition);
             definition.WithName(name);
 
             return definition;

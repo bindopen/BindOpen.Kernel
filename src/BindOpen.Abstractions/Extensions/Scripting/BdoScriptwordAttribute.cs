@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using System;
 
 namespace BindOpen.Extensions.Scripting
@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The sets of parameters of this instance.
         /// </summary>
-        public IBdoMetaElementSpec[] Parameters { get; set; }
+        public IBdoMetaDataSpec[] Parameters { get; set; }
 
         // Repeated parameters
 

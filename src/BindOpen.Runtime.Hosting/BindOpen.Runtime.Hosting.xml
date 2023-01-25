@@ -44,14 +44,14 @@
             </summary>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             
             </summary>
             <param name="state"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             
             </summary>
@@ -89,7 +89,7 @@
             </summary>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Indicates the application ends.
             </summary>
@@ -257,7 +257,7 @@
             Instantiates a new instance of the BdoHostOptions class.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.Update``1(``0,System.String[],BindOpen.MetaData.UpdateModes[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.Update``1(``0,System.String[],BindOpen.Data.UpdateModes[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -361,7 +361,7 @@
             Throws an exception when start fails.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.AddDataStore(System.Action{BindOpen.MetaData.Stores.IBdoDataStore})">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.AddDataStore(System.Action{BindOpen.Data.Stores.IBdoDataStore})">
             <summary>
             Adds the data store executing the specified action.
             </summary>
@@ -498,14 +498,14 @@
             </summary>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             
             </summary>
             <param name="state"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             
             </summary>
@@ -525,7 +525,7 @@
             <param name="log">The log to consider.</param>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Indicates the application ends.
             </summary>
@@ -611,12 +611,12 @@
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.MetaData.Stores.BdoDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoDatasourceExtensions">
             <summary>
             This class represents an data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceExtensions.AddFromConnectionStrings(BindOpen.MetaData.Stores.IBdoSourceDepot,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.AddFromConnectionStrings(BindOpen.Data.Stores.IBdoSourceDepot,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
             Adds sources from connection strings.
             </summary>
@@ -624,12 +624,12 @@
             <param name="config">The configuration to consider.</param>
             <param name="keyName">The key name to consider.</param>
         </member>
-        <member name="T:BindOpen.MetaData.Stores.BdoRuntimeDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions">
             <summary>
             This class represents a runtime data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.MetaData.Stores.BdoRuntimeDatasourceExtensions.AddDatasource(BindOpen.MetaData.Stores.IBdoSourceDepot,BindOpen.MetaData.Items.BdoDatasource)">
+        <member name="M:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions.AddDatasource(BindOpen.Data.Stores.IBdoSourceDepot,BindOpen.Data.Items.BdoDatasource)">
             <summary>
             Adds the specified source.
             </summary>
@@ -740,7 +740,7 @@
             This static class extends .Net core configuration.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -748,11 +748,11 @@
             <param name="configuration"></param>
             <param name="key"></param>
             <param name="scope"></param>
-            <param name="varElementSet"></param>
+            <param name="varSet"></param>
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -774,7 +774,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -783,7 +783,7 @@
             <param name="key"></param>
             <param name="defaultValue"></param>
             <param name="scope"></param>
-            <param name="varElementSet">The script variable set to consider.</param>
+            <param name="varSet">The script variable set to consider.</param>
             <param name="log"></param>
             <returns></returns>
         </member>

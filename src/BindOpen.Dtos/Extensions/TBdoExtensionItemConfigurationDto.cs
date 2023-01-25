@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Configuration;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Runtime.Definition;
 using System.ComponentModel;
 using System.Text.Json.Serialization;

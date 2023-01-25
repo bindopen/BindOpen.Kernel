@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Extensions.Processing
@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Processing
     /// This class represents a output property attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class BdoTaskOutputAttribute : BdoMetaAttribute
+    public class BdoTaskOutputAttribute : BdoDataAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

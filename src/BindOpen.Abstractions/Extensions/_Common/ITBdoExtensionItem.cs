@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions
@@ -23,7 +23,7 @@ namespace BindOpen.Extensions
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        T WithConfiguration(C config);
+        T WithConfig(C config);
     }
 }
 

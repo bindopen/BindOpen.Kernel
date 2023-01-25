@@ -4,7 +4,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="None" />
       <xs:enumeration value="Any" />
-      <xs:enumeration value="Carrier" />
+      <xs:enumeration value="Entity" />
       <xs:enumeration value="Zone" />
       <xs:enumeration value="SimpleItem" />
     </xs:restriction>

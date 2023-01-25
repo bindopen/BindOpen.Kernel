@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using System.Linq;
 
 namespace BindOpen.Extensions.Processing
@@ -21,20 +21,16 @@ namespace BindOpen.Extensions.Processing
 
             BdoTaskConfigurationDto dto = new()
             {
-                CarrierElements = poco.Items?.Where(q => q is BdoMetaCarrier).Cast<BdoMetaCarrier>().Select(q => q?.ToDto()).ToList(),
-                CollectionElements = poco.Items?.Where(q => q is BdoMetaCollection).Cast<BdoMetaCollection>().Select(q => q?.ToDto()).ToList(),
                 CreationDate = poco.CreationDate.ToString(DataValueTypes.Date),
                 DefinitionUniqueId = poco.DefinitionUniqueId,
                 Description = poco.Description?.ToDto(),
+                Elements = poco.Items?.Select(q => q?.ToDto()).ToList(),
                 GroupId = poco.GroupId,
                 Id = poco.Id,
                 InputDetail = poco.InputDetail?.ToDto(),
                 LastModificationDate = poco.LastModificationDate.ToString(DataValueTypes.Date),
                 Name = poco.Name,
-                ObjectElements = poco.Items?.Where(q => q is BdoMetaObject).Cast<BdoMetaObject>().Select(q => q?.ToDto()).ToList(),
                 OutputDetail = poco.OutputDetail?.ToDto(),
-                ScalarElements = poco.Items?.Where(q => q is BdoMetaScalar).Cast<BdoMetaScalar>().Select(q => q?.ToDto()).ToList(),
-                SourceElements = poco.Items?.Where(q => q is BdoMetaSource).Cast<BdoMetaSource>().Select(q => q?.ToDto()).ToList(),
                 Title = poco.Title?.ToDto()
             };
 
@@ -64,11 +60,7 @@ namespace BindOpen.Extensions.Processing
             };
             poco
                 .WithId(dto.Id)
-                .Add(dto.CarrierElements?.Select(q => q?.ToPoco()).ToArray())
-                .Add(dto.CollectionElements?.Select(q => q?.ToPoco()).ToArray())
-                .Add(dto.ObjectElements?.Select(q => q?.ToPoco()).ToArray())
-                .Add(dto.ScalarElements?.Select(q => q?.ToPoco()).ToArray())
-                .Add(dto.SourceElements?.Select(q => q?.ToPoco()).ToArray());
+                .Add(dto.Elements?.Select(q => q?.ToPoco()).ToArray());
 
             return poco;
         }

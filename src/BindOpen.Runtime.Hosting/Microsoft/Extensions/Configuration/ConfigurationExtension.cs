@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -18,17 +18,17 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="configuration"></param>
         /// <param name="key"></param>
         /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
+        /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(
             this IConfiguration configuration,
             string key, IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             where T : class
         {
-            return configuration?.GetBdoValue<T>(key, default, scope, varElementSet, log);
+            return configuration?.GetBdoValue<T>(key, default, scope, varSet, log);
         }
 
         /// <summary>
@@ -47,11 +47,11 @@ namespace Microsoft.Extensions.Configuration
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             where T : class
         {
-            return configuration?.GetBdoValue(typeof(T), key, defaultValue, scope, varElementSet, log) as T;
+            return configuration?.GetBdoValue(typeof(T), key, defaultValue, scope, varSet, log) as T;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <param name="scope"></param>
-        /// <param name="varElementSet">The script variable set to consider.</param>
+        /// <param name="varSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static object GetBdoValue(
@@ -87,7 +87,7 @@ namespace Microsoft.Extensions.Configuration
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (configuration == default) return default;
@@ -97,7 +97,7 @@ namespace Microsoft.Extensions.Configuration
             {
                 var interpreter = scope.NewScriptInterpreter();
 
-                return Convert.ChangeType(interpreter?.Evaluate(value, BdoExpressionKind.Script, varElementSet, log), type);
+                return Convert.ChangeType(interpreter?.Evaluate(value, BdoExpressionKind.Script, varSet, log), type);
             }
             else if (type == typeof(string))
             {

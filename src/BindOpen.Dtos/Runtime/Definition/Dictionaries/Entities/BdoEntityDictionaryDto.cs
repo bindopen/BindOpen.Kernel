@@ -8,7 +8,7 @@ namespace BindOpen.Runtime.Definition
     /// This class represents a DTO entity dico.
     /// </summary>
     [XmlType("EntityDictionary", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "entities.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoEntityDictionaryDto
         : TBdoExtensionDictionaryDto<BdoEntityDefinitionDto>
     {

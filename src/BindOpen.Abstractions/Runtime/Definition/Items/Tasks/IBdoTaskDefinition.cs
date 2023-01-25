@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.MetaData.Elements;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 
@@ -28,12 +28,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaElementSpecSet InputSpecification { get; set; }
+        IBdoMetaSpecSet InputSpecification { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaElementSpecSet OutputSpecification { get; set; }
+        IBdoMetaSpecSet OutputSpecification { get; set; }
 
         /// <summary>
         /// 
@@ -50,7 +50,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        List<IBdoMetaElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds);
+        List<IBdoMetaDataSpec> GetEntries(params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 
@@ -67,7 +67,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key"></param>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        IBdoMetaElementSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
+        IBdoMetaDataSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Logging;
 
@@ -39,7 +39,7 @@ namespace BindOpen.Extensions.Processing
         public new T UpdateAbsolutePaths(string relativePath)
         {
             //foreach (BdoElement currentElement in _Inputs)
-            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
+            //    if (currentElement.EntityKind == DocumentKind.RepositoryFile)
             //    {
             //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Processing
             //        }
             //    }
             //foreach (BdoElement currentElement in _Outputs)
-            //    if (currentElement.CarrierKind == DocumentKind.RepositoryFile)
+            //    if (currentElement.EntityKind == DocumentKind.RepositoryFile)
             //    {
             //        RepositoryFile aRepositoryFile = (RepositoryFile)currentElement.GetValue();
             //        if (aRepositoryFile != null)
@@ -68,16 +68,16 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         /// <param name="log">The log to consider.</param>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="varElementSet">The variable element set to use for execution.</param>
+        /// <param name="varSet">The variable element set to use for execution.</param>
         /// <param name="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public new virtual T Execute(
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null)
         {
-            return base.Execute(scope, varElementSet, runtimeMode, log) as T;
+            return base.Execute(scope, varSet, runtimeMode, log) as T;
         }
 
         #endregion

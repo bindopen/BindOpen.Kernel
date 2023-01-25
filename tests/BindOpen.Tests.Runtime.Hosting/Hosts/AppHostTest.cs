@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Stores;
+﻿using BindOpen.Data.Stores;
 using NUnit.Framework;
 
 namespace BindOpen.Runtime.Hosting.Tests

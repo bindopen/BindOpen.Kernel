@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Logging;
 
@@ -21,12 +21,12 @@ namespace BindOpen.Extensions.Processing
         /// 
         /// </summary>
         /// <param name="scope"></param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="runtimeMode"></param>
         /// <param name="log"></param>
         new T Execute(
             IBdoScope scope = null,
-            IBdoMetaElementSet varElementSet = null,
+            IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null);
     }

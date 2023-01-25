@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Connecting
@@ -60,7 +60,7 @@ namespace BindOpen.Extensions.Connecting
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoConnectorConfiguration Add(params IBdoMetaElement[] items)
+        public new IBdoConnectorConfiguration Add(params IBdoMetaData[] items)
         {
             base.Add(items);
             return this;
@@ -70,7 +70,7 @@ namespace BindOpen.Extensions.Connecting
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public new IBdoConnectorConfiguration WithItems(params IBdoMetaElement[] items)
+        public new IBdoConnectorConfiguration WithItems(params IBdoMetaData[] items)
         {
             base.WithItems(items);
             return this;
@@ -83,7 +83,7 @@ namespace BindOpen.Extensions.Connecting
         /// <returns>Returns a clone of this instance.</returns>
         public virtual IBdoConnectorConfiguration WithConnectionString(string connectionString = null)
         {
-            Add(BdoMeta.NewScalar("connectionString", DataValueTypes.Text, connectionString));
+            Add(BdoData.NewMetaScalar("connectionString", DataValueTypes.Text, connectionString));
 
             return this;
         }

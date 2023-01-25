@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +17,13 @@ namespace BindOpen.Runtime.Stores
 
         #region Variables
 
-        private readonly Dictionary<string, IBdoCarrierDefinition> _carrierDefinitions = new Dictionary<string, IBdoCarrierDefinition>();
-        private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDefinitions = new Dictionary<string, IBdoConnectorDefinition>();
-        private readonly Dictionary<string, IBdoEntityDefinition> _entityDefinitions = new Dictionary<string, IBdoEntityDefinition>();
-        private readonly Dictionary<string, IBdoHandlerDefinition> _handlerDefinitions = new Dictionary<string, IBdoHandlerDefinition>();
-        private readonly Dictionary<string, IBdoMetricsDefinition> _metricsDefinitions = new Dictionary<string, IBdoMetricsDefinition>();
-        private readonly Dictionary<string, IBdoRoutineDefinition> _routineDefinitions = new Dictionary<string, IBdoRoutineDefinition>();
-        private readonly Dictionary<string, IBdoScriptwordDefinition> _scriptWordDefinitions = new Dictionary<string, IBdoScriptwordDefinition>();
-        private readonly Dictionary<string, IBdoTaskDefinition> _taskDefinitions = new Dictionary<string, IBdoTaskDefinition>();
+        private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDefinitions = new();
+        private readonly Dictionary<string, IBdoEntityDefinition> _entityDefinitions = new();
+        private readonly Dictionary<string, IBdoHandlerDefinition> _handlerDefinitions = new();
+        private readonly Dictionary<string, IBdoMetricsDefinition> _metricsDefinitions = new();
+        private readonly Dictionary<string, IBdoRoutineDefinition> _routineDefinitions = new();
+        private readonly Dictionary<string, IBdoScriptwordDefinition> _scriptWordDefinitions = new();
+        private readonly Dictionary<string, IBdoTaskDefinition> _taskDefinitions = new();
 
         #endregion
 
@@ -66,7 +65,6 @@ namespace BindOpen.Runtime.Stores
         {
             return (typeof(T).GetExtensionItemKind()) switch
             {
-                BdoExtensionItemKind.Carrier => _carrierDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Connector => _connectorDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Entity => _entityDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Format => _entityDefinitions.SelectMany(p => p.Value?.FormatDefinitions).Distinct().ToList() as Dictionary<string, T>,
@@ -92,12 +90,6 @@ namespace BindOpen.Runtime.Stores
             {
                 switch (typeof(T).GetExtensionItemKind())
                 {
-                    case BdoExtensionItemKind.Carrier:
-                        {
-                            _carrierDefinitions.TryGetValue(upperUniqueId, out IBdoCarrierDefinition carrierDefinition);
-                            return (T)carrierDefinition;
-
-                        }
                     case BdoExtensionItemKind.Connector:
                         {
                             _connectorDefinitions.TryGetValue(upperUniqueId, out IBdoConnectorDefinition connectorDefinition);
@@ -174,7 +166,7 @@ namespace BindOpen.Runtime.Stores
         /// </summary>
         public IBdoExtensionStore Clear()
         {
-            _carrierDefinitions.Clear();
+            _entityDefinitions.Clear();
             _connectorDefinitions.Clear();
             _entityDefinitions.Clear();
             _handlerDefinitions.Clear();
@@ -195,11 +187,11 @@ namespace BindOpen.Runtime.Stores
         {
             var uniqueId = definition?.UniqueId?.ToUpper();
 
-            if (definition is IBdoCarrierDefinition carier)
+            if (definition is IBdoEntityDefinition carier)
             {
-                if (!_carrierDefinitions.ContainsKey(uniqueId))
+                if (!_entityDefinitions.ContainsKey(uniqueId))
                 {
-                    _carrierDefinitions.Add(uniqueId, carier);
+                    _entityDefinitions.Add(uniqueId, carier);
                 }
             }
             else if (definition is IBdoConnectorDefinition connector)

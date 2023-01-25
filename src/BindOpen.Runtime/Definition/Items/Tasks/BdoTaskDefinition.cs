@@ -1,7 +1,7 @@
 ﻿using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Input specification of this instance.
         /// </summary>
-        public IBdoMetaElementSpecSet InputSpecification { get; set; }
+        public IBdoMetaSpecSet InputSpecification { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is executable.
@@ -48,7 +48,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public IBdoMetaElementSpecSet OutputSpecification { get; set; }
+        public IBdoMetaSpecSet OutputSpecification { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
@@ -103,12 +103,12 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<IBdoMetaElementSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IBdoMetaDataSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            var dataElements = new List<IBdoMetaElementSpec>();
+            var dataElements = new List<IBdoMetaDataSpec>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
                 dataElements.AddRange(InputSpecification.Items);
@@ -128,7 +128,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public IBdoMetaElementSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
+        public IBdoMetaDataSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
             return GetEntries(taskEntryKinds).Find(p => p.BdoKeyEquals(key));
         }
@@ -144,7 +144,7 @@ namespace BindOpen.Runtime.Definition
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IBdoMetaElementSpec entry = GetEntryWithName(name, taskEntryKinds);
+            IBdoMetaDataSpec entry = GetEntryWithName(name, taskEntryKinds);
 
             return entry?.DefaultItem;
         }

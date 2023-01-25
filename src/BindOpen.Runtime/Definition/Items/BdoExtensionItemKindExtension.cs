@@ -32,11 +32,11 @@ namespace BindOpen.Runtime.Definition
             {
                 return BdoExtensionItemKind.Task;
             }
-            else if ((typeof(IBdoCarrierDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoCarrierConfiguration).IsAssignableFrom(type))
-                || (typeof(IBdoCarrier).IsAssignableFrom(type)))
+            else if ((typeof(IBdoEntityDefinition).IsAssignableFrom(type))
+                || (typeof(IBdoEntityConfiguration).IsAssignableFrom(type))
+                || (typeof(IBdoEntity).IsAssignableFrom(type)))
             {
-                return BdoExtensionItemKind.Carrier;
+                return BdoExtensionItemKind.Entity;
             }
             else if ((typeof(IBdoConnectorDefinition).IsAssignableFrom(type))
                 || (typeof(IBdoConnectorConfiguration).IsAssignableFrom(type))

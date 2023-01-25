@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -56,7 +56,7 @@ namespace BindOpen.Runtime.Definition
         /// <seealso cref="OutputSpecification"/>
         [JsonPropertyName("input.specification")]
         [XmlElement("input.specification")]
-        public BdoElementSpecSetDto InputSpecification { get; set; }
+        public MetaSpecSetDto InputSpecification { get; set; }
 
         /// <summary>
         /// Output specification of this instance.
@@ -64,7 +64,7 @@ namespace BindOpen.Runtime.Definition
         /// <seealso cref="InputSpecification"/>
         [JsonPropertyName("output.specification")]
         [XmlElement("output.specification")]
-        public BdoElementSpecSetDto OutputSpecification { get; set; }
+        public MetaSpecSetDto OutputSpecification { get; set; }
 
         #endregion
 

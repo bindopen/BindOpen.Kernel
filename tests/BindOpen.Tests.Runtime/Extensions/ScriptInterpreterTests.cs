@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System;
@@ -30,7 +30,7 @@ namespace BindOpen.Tests.Runtime
         private readonly string _interpretedScript5 = "abctruedefg";
 
         private readonly IBdoScriptword _scriptword6 =
-            BdoScript.Function("isEqual", "mypath", BdoScript.Function("text", new CarrierFake("mypath")));
+            BdoScript.Function("isEqual", "mypath", BdoScript.Function("text", new EntityFake("mypath")));
         private readonly string _interpretedScript6 = "true";
 
         private readonly string _script7 = "{{$func3($eq($(var1), 'const'), $eq($(var1), 'const'), 'toto', 'titi')}}";
@@ -58,10 +58,10 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(202)]
         public void InterpreteScript2Test()
         {
-            var varElementSet = BdoMeta.NewSet();
+            var varSet = BdoData.NewMetaSet();
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
-            var resultScript = interpreter.Evaluate<bool?>(_script2, BdoExpressionKind.Script, varElementSet)?.ToString();
+            var resultScript = interpreter.Evaluate<bool?>(_script2, BdoExpressionKind.Script, varSet)?.ToString();
 
             Assert.That(_interpretedScript2.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -69,10 +69,10 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(203)]
         public void InterpreteScript3Test()
         {
-            var varElementSet = BdoMeta.NewSet();
+            var varSet = BdoData.NewMetaSet();
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
-            var resultScript = interpreter.Evaluate<string>(_script3, BdoExpressionKind.Script, varElementSet);
+            var resultScript = interpreter.Evaluate<string>(_script3, BdoExpressionKind.Script, varSet);
 
             Assert.That(_interpretedScript3.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -116,12 +116,12 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(208)]
         public void VarElementSetTest()
         {
-            var varElementSet = BdoMeta.NewSet(
+            var varSet = BdoData.NewMetaSet(
                 ((string Name, object Value))("value1", _scriptVarValue81), ((string Name, object Value))("value2", _scriptVarValue82));
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(
-                _script8, varElementSet: varElementSet);
+                _script8, varSet: varSet);
 
             Assert.That(_interpretedScript8.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

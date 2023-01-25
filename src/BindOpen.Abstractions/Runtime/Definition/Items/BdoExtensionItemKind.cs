@@ -19,16 +19,6 @@ namespace BindOpen.Runtime.Definition
         None,
 
         /// <summary>
-        /// Task.
-        /// </summary>
-        Task,
-
-        /// <summary>
-        /// Carrier.
-        /// </summary>
-        Carrier,
-
-        /// <summary>
         /// Connector.
         /// </summary>
         Connector,
@@ -37,6 +27,11 @@ namespace BindOpen.Runtime.Definition
         /// Entity.
         /// </summary>
         Entity,
+
+        /// <summary>
+        /// Task.
+        /// </summary>
+        Task,
 
         /// <summary>
         /// Format.

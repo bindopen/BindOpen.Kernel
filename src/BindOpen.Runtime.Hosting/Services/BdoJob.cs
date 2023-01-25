@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Scopes;
@@ -71,7 +71,7 @@ namespace BindOpen.Runtime.Services
         /// <returns></returns>
         public IBdoJob WithName(string name)
         {
-            Name = BdoMeta.NewName(name, "job_");
+            Name = BdoData.NewName(name, "job_");
             return this;
         }
 

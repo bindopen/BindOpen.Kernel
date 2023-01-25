@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -45,16 +45,9 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public BdoElementSpecSetDto ParameterSpecification { get; set; }
+        public MetaSpecSetDto ParameterSpecification { get; set; }
 
         // Source
-
-        /// <summary>
-        /// The source carrier specification of this instance.
-        /// </summary>
-        [JsonPropertyName("source-carrier.specification")]
-        [XmlElement("source-carrier.specification")]
-        public MetaCarrierSpecDto SourceCarrierSpecification { get; set; }
 
         /// <summary>
         /// The source object specification of this instance.
@@ -70,21 +63,7 @@ namespace BindOpen.Runtime.Definition
         [XmlElement("source-scalar.specification")]
         public MetaScalarSpecDto SourceScalarSpecification { get; set; }
 
-        /// <summary>
-        /// The source specification of this instance.
-        /// </summary>
-        [JsonPropertyName("source-datasource.specification")]
-        [XmlElement("source-datasource.specification")]
-        public MetaSourceSpecDto SourceDataSourceSpecification { get; set; }
-
         // Target
-
-        /// <summary>
-        /// The target carrier specification of this instance.
-        /// </summary>
-        [JsonPropertyName("target-carrier.specification")]
-        [XmlElement("target-carrier.specification")]
-        public MetaCarrierSpecDto TargetCarrierSpecification { get; set; }
 
         /// <summary>
         /// The target object specification of this instance.
@@ -99,13 +78,6 @@ namespace BindOpen.Runtime.Definition
         [JsonPropertyName("target-scalar.specification")]
         [XmlElement("target-scalar.specification")]
         public MetaScalarSpecDto TargetScalarSpecification { get; set; }
-
-        /// <summary>
-        /// The target specification of this instance.
-        /// </summary>
-        [JsonPropertyName("target-datatarget.specification")]
-        [XmlElement("target-datatarget.specification")]
-        public MetaSourceSpecDto TargetDataSourceSpecification { get; set; }
 
         #endregion
 

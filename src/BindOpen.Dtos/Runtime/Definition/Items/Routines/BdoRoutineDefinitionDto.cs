@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -41,7 +41,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameterStatement")]
         [XmlElement("parameterStatement")]
-        public BdoElementSetDto ParameterStatement { get; set; }
+        public MetaSetDto ParameterStatement { get; set; }
 
         #endregion
 

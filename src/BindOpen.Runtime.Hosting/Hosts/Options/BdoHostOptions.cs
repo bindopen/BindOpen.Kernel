@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
-using BindOpen.MetaData.Stores;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Stores;
 using BindOpen.Logging;
 using BindOpen.Runtime.Hosting.Exceptions;
 using BindOpen.Runtime.References;
