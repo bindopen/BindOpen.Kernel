@@ -99,16 +99,6 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public new TElement WithIndex(int? index)
-        {
-            return (TElement)base.WithIndex(index);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
         public new TElement WithItemizationMode(DataItemizationMode mode)

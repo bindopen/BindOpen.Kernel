@@ -167,27 +167,15 @@ namespace BindOpen.Data.Specification
         #endregion
 
         // ------------------------------------------
-        // IIndexedPoco Implementation
+        // IIndexed Implementation
         // ------------------------------------------
 
-        #region IIndexedPoco
+        #region IIndexed
 
         /// <summary>
         /// The index of this instance.
         /// </summary>
         public int? Index { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IDataSpecification WithIndex(int? index)
-        {
-            Index = index;
-            return this;
-        }
 
         #endregion
 
@@ -205,50 +193,28 @@ namespace BindOpen.Data.Specification
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IDataSpecification WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IDataSpecification WithName(string name)
-        {
-            Name = BdoData.NewName(name, "spec_");
-            return this;
-        }
 
         #endregion
 
@@ -262,19 +228,6 @@ namespace BindOpen.Data.Specification
         /// 
         /// </summary>
         public IBdoDictionary Title { get; set; }
-
-        public IDataSpecification AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoData.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        public IDataSpecification WithTitle(IBdoDictionary dico)
-        {
-            Title = dico;
-            return this;
-        }
 
         public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
@@ -293,19 +246,6 @@ namespace BindOpen.Data.Specification
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public IDataSpecification AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoData.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IDataSpecification WithDescription(IBdoDictionary dico)
-        {
-            Description = dico;
-            return this;
-        }
 
         public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {

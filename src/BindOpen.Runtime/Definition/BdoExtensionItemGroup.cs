@@ -60,10 +60,10 @@ namespace BindOpen.Runtime.Definition
         #endregion
 
         // ------------------------------------------
-        // ITStorablePoco Implementation
+        // IStorable Implementation
         // ------------------------------------------
 
-        #region ITStorablePoco
+        #region IStorable
 
         /// <summary>
         /// Creation date of this instance.
@@ -71,27 +71,9 @@ namespace BindOpen.Runtime.Definition
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoExtensionItemGroup WithCreationDate(DateTime? date)
-        {
-            CreationDate = date;
-            return this;
-        }
-
-        /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         public DateTime? LastModificationDate { get; set; }
-
-        /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoExtensionItemGroup WithLastModificationDate(DateTime? date)
-        {
-            LastModificationDate = date;
-            return this;
-        }
 
         #endregion
 
@@ -109,50 +91,28 @@ namespace BindOpen.Runtime.Definition
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemGroup WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemGroup WithName(string name)
-        {
-            Name = BdoData.NewName(name, "item_");
-            return this;
-        }
 
         #endregion
 
@@ -166,24 +126,6 @@ namespace BindOpen.Runtime.Definition
         /// 
         /// </summary>
         public IBdoDictionary Title { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemGroup AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoData.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        public IBdoExtensionItemGroup WithTitle(IBdoDictionary dico)
-        {
-            Title = dico;
-            return this;
-        }
 
         public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
@@ -203,26 +145,6 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public IBdoDictionary Description { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemGroup AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoData.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IBdoExtensionItemGroup WithDescription(IBdoDictionary dico)
-        {
-            Description = dico;
-            return this;
-        }
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="key"></param>
         /// <param name="defaultKey"></param>

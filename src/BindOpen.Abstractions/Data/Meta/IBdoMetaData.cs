@@ -11,9 +11,9 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface IBdoMetaData :
         IBdoItem,
-        ITIdentifiedPoco<IBdoMetaData>, ITNamedPoco<IBdoMetaData>,
-        ITGloballyTitledPoco<IBdoMetaData>, ITGloballyDescribedPoco<IBdoMetaData>, IReferenced,
-        ITIndexedPoco<IBdoMetaData>, ITDetailedPoco<IBdoMetaData>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed, IReferenced,
+        IIndexed, IDetailed
     {
         /// <summary>
         /// The kind of meta data of this instance.

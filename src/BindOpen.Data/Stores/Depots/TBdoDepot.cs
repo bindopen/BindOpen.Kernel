@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
-using BindOpen.Logging;
 
 namespace BindOpen.Data.Stores
 {
@@ -50,17 +50,6 @@ namespace BindOpen.Data.Stores
         // ------------------------------------------
 
         #region ITBdoDepot
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public new IBdoDepot WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
 
         /// <summary>
         /// The initialization function of this instance.

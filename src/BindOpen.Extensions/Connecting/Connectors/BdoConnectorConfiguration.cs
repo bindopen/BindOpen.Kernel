@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Connecting
     /// This class represents a connector configuration.
     /// </summary>
     public class BdoConnectorConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>,
+        : TBdoExtensionItemConfiguration<IBdoConnectorDefinition>,
         IBdoConnectorConfiguration
     {
         // ------------------------------------------
@@ -36,45 +36,34 @@ namespace BindOpen.Extensions.Connecting
 
 
         // ------------------------------------------
-        // ACCESSORS
+        // IBdoConnectorConfiguration Implementation
         // ------------------------------------------
 
-        #region Accesors
+        #region IBdoConnectorConfiguration
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public new IBdoConnectorConfiguration Add(params IBdoMetaData[] items)
+            => base.Add(items) as IBdoConnectorConfiguration;
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public new IBdoConnectorConfiguration WithItems(params IBdoMetaData[] items)
+            => base.WithItems(items) as IBdoConnectorConfiguration;
 
         /// <summary>
         /// Gets the connection string.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
         public string GetConnectionString() => this.GetItem<string>("connectionString");
-
-        #endregion
-
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        public new IBdoConnectorConfiguration Add(params IBdoMetaData[] items)
-        {
-            base.Add(items);
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        public new IBdoConnectorConfiguration WithItems(params IBdoMetaData[] items)
-        {
-            base.WithItems(items);
-            return this;
-        }
 
         /// <summary>
         /// Sets the connection string with the specified string.
@@ -83,7 +72,7 @@ namespace BindOpen.Extensions.Connecting
         /// <returns>Returns a clone of this instance.</returns>
         public virtual IBdoConnectorConfiguration WithConnectionString(string connectionString = null)
         {
-            Add(BdoData.NewMetaScalar("connectionString", DataValueTypes.Text, connectionString));
+            this.Add(BdoMeta.NewScalar("connectionString", DataValueTypes.Text, connectionString));
 
             return this;
         }

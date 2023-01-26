@@ -77,26 +77,15 @@ namespace BindOpen.Extensions.Processing
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IResourceAllocation WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
 
         #endregion
     }

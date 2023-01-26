@@ -1,7 +1,7 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
@@ -452,7 +452,7 @@ namespace BindOpen.Extensions.Scripting
                     title: "Syntax error: Function named '" + parentScriptword.Definition?.Name + "' not defined. Position " + (index + offsetIndex),
                     resultCode: "SCRIPT_NOTEXISTINGWORD")
                         .WithDetail(
-                            BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                            BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                 return null;
             }
@@ -516,7 +516,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -539,7 +539,7 @@ namespace BindOpen.Extensions.Scripting
                                     title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
-                                        BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                        BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                                 return null;
                             }
@@ -573,7 +573,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -636,7 +636,7 @@ namespace BindOpen.Extensions.Scripting
                             ". Position " + (index + offsetIndex),
                         resultCode: "SCRIPT_NOTEXISTINGWORD")
                         .WithDetail(
-                            BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                            BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                 }
                 else
                 {
@@ -658,7 +658,7 @@ namespace BindOpen.Extensions.Scripting
                             resultCode: "SCRIPT_INVALIDARGUMENT"
                             )
                             .WithDetail(
-                                BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                     }
                     else
                     {
@@ -670,7 +670,7 @@ namespace BindOpen.Extensions.Scripting
                                 title: "Invalid definition: Method not defined for function called '" + scriptword.Definition?.Name + "'. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_DEFINITION")
                                 .WithDetail(
-                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
                         }
                         scriptword.WithDefinition(scriptwordDefinition);
 
@@ -724,7 +724,7 @@ namespace BindOpen.Extensions.Scripting
                             "SCRIPT_EVALUATION"
                             )
                             .WithDetail(
-                                BdoData.NewMetaScalar("Position", offsetIndex.ToString()));
+                                BdoMeta.NewScalar("Position", offsetIndex.ToString()));
                     }
                     break;
                 case ScriptItemKinds.Variable:

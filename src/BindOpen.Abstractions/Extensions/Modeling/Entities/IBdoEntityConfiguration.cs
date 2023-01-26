@@ -6,7 +6,7 @@ namespace BindOpen.Extensions.Modeling
     /// <summary>
     /// This interface defines the entity configuration.
     /// </summary>
-    public interface IBdoEntityConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoEntityDefinition>
+    public interface IBdoEntityConfiguration : ITBdoExtensionItemConfiguration<IBdoEntityDefinition>
     {
         /// <summary>
         /// 

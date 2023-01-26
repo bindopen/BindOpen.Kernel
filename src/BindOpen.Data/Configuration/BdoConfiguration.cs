@@ -2,14 +2,13 @@
 using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
     /// This class represents a configuration.
     /// </summary>
-    public class BdoConfiguration : TBdoMetaSet<IBdoConfiguration>, IBdoConfiguration
+    public class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -43,15 +42,22 @@ namespace BindOpen.Data.Configuration
         public IBdoConfiguration UsingConfiguration { get; set; }
 
         /// <summary>
-        /// Sets the file paths of this instance.
+        /// Adds the specified item.
         /// </summary>
-        /// <param name="filePaths">The file paths to consider.</param>
-        public IBdoConfiguration Using(params string[] ids)
-        {
-            UsedItemIds = ids?.ToList();
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public new IBdoConfiguration Add(params IBdoMetaData[] items)
+            => base.Add(items) as IBdoConfiguration;
 
-            return this;
-        }
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public new IBdoConfiguration WithItems(params IBdoMetaData[] items)
+            => base.WithItems(items) as IBdoConfiguration;
 
         #endregion
 
@@ -69,10 +75,10 @@ namespace BindOpen.Data.Configuration
         #endregion
 
         // ------------------------------------------
-        // ITStorablePoco Implementation
+        // IStorable Implementation
         // ------------------------------------------
 
-        #region ITStorablePoco
+        #region IStorable
 
         /// <summary>
         /// Creation date of this instance.
@@ -80,51 +86,22 @@ namespace BindOpen.Data.Configuration
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoConfiguration WithCreationDate(DateTime? date)
-        {
-            CreationDate = date;
-            return this;
-        }
-
-        /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         public DateTime? LastModificationDate { get; set; }
 
-        /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoConfiguration WithLastModificationDate(DateTime? date)
-        {
-            LastModificationDate = date;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoConfiguration WithName(string name)
-        {
-            Name = BdoData.NewName(name, "config_");
-            return this;
-        }
 
         #endregion
 
@@ -138,19 +115,6 @@ namespace BindOpen.Data.Configuration
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public IBdoConfiguration AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoData.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IBdoConfiguration WithDescription(IBdoDictionary dictionary)
-        {
-            Description = dictionary;
-            return this;
-        }
 
         public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {

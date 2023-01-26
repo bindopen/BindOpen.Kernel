@@ -1,6 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
-using System;
+﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,11 +9,29 @@ namespace BindOpen.Data.Context
     /// </summary>
     public class BdoDataContext : BdoItem, IBdoDataContext
     {
-        // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
+        // ------------------------------------------
+        // CONSTRUCTORS
+        // ------------------------------------------
 
-        #region Properties
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of DataContext class.
+        /// </summary>
+        public BdoDataContext()
+        {
+            ScopedItems = new Dictionary<string, object>();
+            SingletonItems = new Dictionary<string, object>();
+            TransientItems = new Dictionary<string, object>();
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IBdoDataContext Implementation
+        // ------------------------------------------
+
+        #region IBdoDataContext
 
         /// <summary>
         /// Singletons.
@@ -37,39 +53,13 @@ namespace BindOpen.Data.Context
         /// </summary>
         public string Id { get; set; }
 
-        #endregion
-
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of DataContext class.
-        /// </summary>
-        public BdoDataContext()
-        {
-            ScopedItems = new Dictionary<string, object>();
-            SingletonItems = new Dictionary<string, object>();
-            TransientItems = new Dictionary<string, object>();
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
         // --------------------------------------------------
 
         /// <summary>
         /// Merges this instance with the specified data context.
         /// </summary>
         /// <param name="dataContext">The data context to consider.</param>
-        public void Merge(IBdoDataContext dataContext)
+        public IBdoDataContext Merge(IBdoDataContext dataContext)
         {
             if (dataContext != null)
             {
@@ -97,16 +87,20 @@ namespace BindOpen.Data.Context
                     }
                 }
             }
+
+            return this;
         }
 
         /// <summary>
         /// Clears all the data of this instance.
         /// </summary>
-        public void Clear()
+        public IBdoDataContext Clear()
         {
             SingletonItems.Clear();
             ScopedItems.Clear();
             TransientItems.Clear();
+
+            return this;
         }
 
         // Items ------------------------------------
@@ -118,7 +112,7 @@ namespace BindOpen.Data.Context
         /// <param name="item">Item to add.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">Persistence level of the item to add.</param>
-        public void AddItem(
+        public IBdoDataContext AddItem(
             string name,
             object item,
             string contextSectionName = null,
@@ -136,6 +130,8 @@ namespace BindOpen.Data.Context
                     AddTransientItem(name, item, contextSectionName);
                     break;
             }
+
+            return this;
         }
 
         /// <summary>
@@ -143,11 +139,13 @@ namespace BindOpen.Data.Context
         /// </summary>
         /// <param name="name">Name of the item to add.</param>
         /// <param name="item">The item to consider.</param>
-        public void AddSystemItem(
+        public IBdoDataContext AddSystemItem(
             string name,
-            Object item)
+            object item)
         {
             AddSingletonItem(name, item, "#system");
+
+            return this;
         }
 
         /// <summary>
@@ -156,7 +154,7 @@ namespace BindOpen.Data.Context
         /// <param name="name">Name of the item to add.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
-        public void AddSingletonItem(
+        public IBdoDataContext AddSingletonItem(
             string name,
             object item,
             string contextSectionName = null)
@@ -165,6 +163,8 @@ namespace BindOpen.Data.Context
 
             SingletonItems.Remove(itemName);
             SingletonItems.Add(itemName, item);
+
+            return this;
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace BindOpen.Data.Context
         /// <param name="name">Name of the item to add.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
-        public void AddScopedItem(
+        public IBdoDataContext AddScopedItem(
             string name,
             object item,
             string contextSectionName = null)
@@ -182,6 +182,8 @@ namespace BindOpen.Data.Context
 
             ScopedItems.Remove(itemName);
             ScopedItems.Add(name, item);
+
+            return this;
         }
 
         /// <summary>
@@ -190,7 +192,7 @@ namespace BindOpen.Data.Context
         /// <param name="name">Name of the item to add.</param>
         /// <param name="item">The item to consider.</param>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
-        public void AddTransientItem(
+        public IBdoDataContext AddTransientItem(
             string name,
             object item,
             string contextSectionName = null)
@@ -199,13 +201,15 @@ namespace BindOpen.Data.Context
 
             TransientItems.Remove(itemName);
             TransientItems.Add(itemName, item);
+
+            return this;
         }
 
         /// <summary>
         /// Clears the specified items of this instance.
         /// </summary>
         /// <param name="persistenceLevel">Persistence level of the item to add.</param>
-        public void ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
+        public IBdoDataContext ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
             switch (persistenceLevel)
             {
@@ -224,6 +228,8 @@ namespace BindOpen.Data.Context
                     TransientItems.Clear();
                     break;
             }
+
+            return this;
         }
 
         /// <summary>
@@ -231,7 +237,7 @@ namespace BindOpen.Data.Context
         /// </summary>
         /// <param name="contextSectionName">Name of the context section to consider.</param>
         /// <param name="persistenceLevel">The persistence level to consider.</param>
-        public void RemoveItems(
+        public IBdoDataContext RemoveItems(
             string contextSectionName = null,
             PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
@@ -245,6 +251,7 @@ namespace BindOpen.Data.Context
                     SingletonItems.Remove(key);
                 }
             }
+
             if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Scoped))
             {
                 var items = ScopedItems.Keys.Where(p =>
@@ -255,6 +262,7 @@ namespace BindOpen.Data.Context
                     ScopedItems.Remove(key);
                 }
             }
+
             if ((persistenceLevel == PersistenceLevels.Any) || (persistenceLevel == PersistenceLevels.Transient))
             {
                 var items = TransientItems.Keys.Where(p =>
@@ -265,15 +273,11 @@ namespace BindOpen.Data.Context
                     TransientItems.Remove(key);
                 }
             }
+
+            return this;
         }
 
-        #endregion
-
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
+        // Accessors
 
         // Items ------------------------------------
 

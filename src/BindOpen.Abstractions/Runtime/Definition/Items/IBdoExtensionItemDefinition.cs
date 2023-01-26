@@ -6,13 +6,9 @@ namespace BindOpen.Runtime.Definition
     /// 
     /// </summary>
     public interface IBdoExtensionItemDefinition :
-        ITIdentifiedPoco<IBdoExtensionItemDefinition>,
-        ITNamedPoco<IBdoExtensionItemDefinition>,
-        ITGloballyTitledPoco<IBdoExtensionItemDefinition>,
-        ITGloballyDescribedPoco<IBdoExtensionItemDefinition>,
-        ITIndexedPoco<IBdoExtensionItemDefinition>,
-        ITStorablePoco<IBdoExtensionItemDefinition>,
-        IReferenced
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed,
+        IIndexed, IStorable, IReferenced
     {
         /// <summary>
         /// 

@@ -80,7 +80,7 @@ namespace BindOpen.Data.Meta
             string id = null) : base()
         {
             _namePreffix = namePreffix ?? "element_";
-            WithName(name);
+            this.WithName(name);
             Id = id;
         }
 
@@ -145,11 +145,11 @@ namespace BindOpen.Data.Meta
         {
             if (this is IBdoMetaObject)
             {
-                return BdoData.NewMetaSpec<BdoMetaObjectSpec>();
+                return BdoMeta.NewSpec<BdoMetaObjectSpec>();
             }
             else if (this is IBdoMetaScalar)
             {
-                return BdoData.NewMetaSpec<BdoMetaScalarSpec>();
+                return BdoMeta.NewSpec<BdoMetaScalarSpec>();
             }
 
             return null;
@@ -428,27 +428,15 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // IIndexedPoco Implementation
+        // IIndexed Implementation
         // ------------------------------------------
 
-        #region IIndexedPoco
+        #region IIndexed
 
         /// <summary>
         /// The index of this instance.
         /// </summary>
         public int? Index { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public IBdoMetaData WithIndex(int? index)
-        {
-            Index = index;
-
-            return this;
-        }
 
         #endregion
 
@@ -466,84 +454,41 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoMetaData WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoMetaData WithName(string name)
-        {
-            Name = BdoData.NewName(name, _namePreffix);
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // ITDetailedPoco Implementation
+        // IDetailed Implementation
         // ------------------------------------------
 
-        #region ITDetailedPoco
+        #region IDetailed
 
         /// <summary>
         /// 
         /// </summary>
         public IBdoMetaSet Detail { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoMetaData WithDetail(IBdoMetaSet detail)
-        {
-            Detail = detail;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="detail"></param>
-        public IBdoMetaData WithDetail(params IBdoMetaData[] elems)
-        {
-            Detail = BdoData.NewMetaSet(elems);
-            return this;
-        }
 
         #endregion
 
@@ -557,19 +502,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public IBdoDictionary Title { get; set; }
-
-        public IBdoMetaData AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoData.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        public IBdoMetaData WithTitle(IBdoDictionary dico)
-        {
-            Title = dico;
-            return this;
-        }
 
         public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {
@@ -588,19 +520,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public IBdoMetaData AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoData.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IBdoMetaData WithDescription(IBdoDictionary dico)
-        {
-            Description = dico;
-            return this;
-        }
 
         public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {

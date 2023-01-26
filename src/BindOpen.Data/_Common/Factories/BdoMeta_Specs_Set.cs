@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This static class provides methods to create element specifications.
     /// </summary>
-    public static partial class BdoData
+    public static partial class BdoMeta
     {
         // Static creators -------------------------
 
@@ -13,8 +13,8 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param name="specs">The elems to consider.</param>
-        public static BdoMetaSpecSet NewMetaSpecSet(params IBdoMetaDataSpec[] specs)
-            => NewMetaSpecSet<BdoMetaSpecSet>(specs);
+        public static BdoMetaSpecSet NewSpecSet(params IBdoMetaDataSpec[] specs)
+            => NewSpecSet<BdoMetaSpecSet>(specs);
 
         // Static T creators -------------------------
 
@@ -22,7 +22,7 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static BdoMetaSpecSet NewMetaSpecSet<T>(params IBdoMetaDataSpec[] specs)
+        public static BdoMetaSpecSet NewSpecSet<T>(params IBdoMetaDataSpec[] specs)
             where T : class, IBdoMetaSpecSet, new()
         {
             var elemSpecSet = new BdoMetaSpecSet()

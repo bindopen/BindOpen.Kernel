@@ -6,7 +6,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDatasource : ITIdentifiedPoco<IBdoDatasource>, ITNamedPoco<IBdoDatasource>, IReferenced
+    public interface IBdoDatasource :
+        IIdentified, INamed, IReferenced
     {
         /// <summary>
         /// 

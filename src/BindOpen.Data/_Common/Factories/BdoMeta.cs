@@ -5,18 +5,18 @@ namespace BindOpen.Data
     /// <summary>
     /// This static class provides methods to create data elems.
     /// </summary>
-    public static partial class BdoData
+    public static partial class BdoMeta
     {
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData NewMeta(
+        public static BdoMetaData New(
             string name,
             params object[] items)
         {
-            return NewMeta(name, DataValueTypes.Any, items);
+            return New(name, DataValueTypes.Any, items);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData NewMeta(
+        public static BdoMetaData New(
             string name,
             DataValueTypes valueType,
             params object[] items)
@@ -36,7 +36,7 @@ namespace BindOpen.Data
 
             if (valueType.IsScalar())
             {
-                var meta = NewMetaScalar(name, valueType, items);
+                var meta = NewScalar(name, valueType, items);
                 return meta;
             }
             else
@@ -44,7 +44,7 @@ namespace BindOpen.Data
                 switch (valueType)
                 {
                     case DataValueTypes.Object:
-                        var meta = NewMetaObject(name, items);
+                        var meta = NewObject(name, items);
                         meta?.WithItems(items);
                         meta.UpdateTree();
                         return meta;
@@ -59,14 +59,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData NewMeta<T>(
+        public static BdoMetaData New<T>(
             string name,
             params object[] items)
         {
             var type = typeof(T);
 
             var valueType = type.GetValueType();
-            var meta = NewMeta(name, valueType, items);
+            var meta = New(name, valueType, items);
 
             if (meta.GetType().IsAssignableFrom(typeof(IBdoMetaObjectSpec)))
             {

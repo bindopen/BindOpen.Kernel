@@ -10,29 +10,8 @@ namespace BindOpen.Extensions.Scripting
     [XmlType("BdoScriptwordConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoScriptwordConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoScriptwordDefinition>, IBdoScriptwordConfiguration
+        : TBdoExtensionItemConfiguration<IBdoScriptwordDefinition>, IBdoScriptwordConfiguration
     {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// Kind of this instance.
-        /// </summary>
-        /// <example>Script word, syntax, text...</example>
-        public ScriptItemKinds WordKind { get; set; } = ScriptItemKinds.None;
-
-        // Tree ----------------------------------
-
-        /// <summary>
-        /// Sub script word of this instance.
-        /// </summary>
-        public IBdoScriptwordConfiguration SubScriptword { get; set; }
-
-        #endregion
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -57,30 +36,34 @@ namespace BindOpen.Extensions.Scripting
         #endregion
 
         // ------------------------------------------
-        // ACCESSORS
+        // IBdoScriptwordConfiguration Implementation
         // ------------------------------------------
 
-        #region Accessors
+        #region IBdoScriptwordConfiguration
 
         /// <summary>
-        /// 
+        /// Adds the specified item.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
         public new IBdoScriptwordConfiguration Add(params IBdoMetaData[] items)
-        {
-            base.Add(items);
-            return this;
-        }
+            => base.Add(items) as IBdoScriptwordConfiguration;
 
         /// <summary>
-        /// 
+        /// Sets the specified single item of this instance.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoScriptwordConfiguration WithItems(params IBdoMetaData[] items)
-        {
-            base.WithItems(items);
-            return this;
-        }
+            => base.WithItems(items) as IBdoScriptwordConfiguration;
+
+        /// <summary>
+        /// Kind of this instance.
+        /// </summary>
+        /// <example>Script word, syntax, text...</example>
+        public ScriptItemKinds WordKind { get; set; } = ScriptItemKinds.None;
 
         /// <summary>
         /// 
@@ -89,16 +72,6 @@ namespace BindOpen.Extensions.Scripting
         public IBdoScriptwordConfiguration WithWordKind(ScriptItemKinds wordKind)
         {
             WordKind = wordKind;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scriptword"></param>
-        public IBdoScriptwordConfiguration WithSubScriptword(IBdoScriptwordConfiguration scriptword)
-        {
-            SubScriptword = scriptword;
             return this;
         }
 
@@ -117,7 +90,6 @@ namespace BindOpen.Extensions.Scripting
         public override object Clone(params string[] areas)
         {
             IBdoScriptwordConfiguration config = base.Clone(areas) as BdoScriptwordConfiguration;
-            config.SubScriptword = SubScriptword?.Clone<BdoScriptwordConfiguration>();
 
             return config;
         }

@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
         /// <param name="elems">The elems to consider.</param>
         public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
         {
-            return BdoData.NewMetaSet(elems);
+            return BdoMeta.NewSet(elems);
         }
 
         /// <summary><<                    
@@ -55,19 +55,6 @@ namespace BindOpen.Data.Meta
         // ------------------------------------------
 
         #region IBdoMetaSet
-
-        // Properties -----------------------------
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public IBdoMetaSet FromObject(object obj)
-        {
-            WithItems(obj.ToMetaArray());
-            return this;
-        }
 
         // Elements -----------------------------
 

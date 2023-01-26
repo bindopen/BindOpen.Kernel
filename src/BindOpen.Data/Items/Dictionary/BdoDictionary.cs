@@ -14,25 +14,10 @@ namespace BindOpen.Data.Items
         IBdoDictionary
     {
         // --------------------------------------------------
-        // CONSTRUCTORS
+        // Converters
         // --------------------------------------------------
 
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the DictionaryDataItem class. 
-        /// </summary>
-        public BdoDictionary()
-        {
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // IDictionaryDataItem Implementation
-        // --------------------------------------------------
-
-        #region IDictionaryDataItem
+        #region Converters
 
         /// <summary>
         /// 
@@ -61,10 +46,41 @@ namespace BindOpen.Data.Items
             return dico;
         }
 
+        #endregion
+
+        // --------------------------------------------------
+        // CONSTRUCTORS
+        // --------------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the DictionaryDataItem class. 
+        /// </summary>
+        public BdoDictionary()
+        {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified Implementation
+
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IDictionaryDataItem Implementation
+        // --------------------------------------------------
+
+        #region IDictionaryDataItem
 
         /// <summary>
         /// Text of the specified key.
@@ -199,14 +215,6 @@ namespace BindOpen.Data.Items
             return this;
         }
 
-        #endregion
-
-        // --------------------------------------------------
-        // ACCESSORS
-        // --------------------------------------------------
-
-        #region Accessors
-
         /// <summary>
         /// Indicates whether this intance equals the specified dico.
         /// </summary>
@@ -321,26 +329,6 @@ namespace BindOpen.Data.Items
             }
 
             _isDisposed = true;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IIdentifiedPoco Implementation
-        // ------------------------------------------
-
-        #region IIdentifiedPoco Implementation
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public IBdoDictionary WithId(string id)
-        {
-            Id = id;
-
-            return this;
         }
 
         #endregion

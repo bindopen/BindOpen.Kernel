@@ -20,13 +20,13 @@ namespace BindOpen.Tests.Data
         {
             double[] items = _testData.arrayNumber;
 
-            var el = BdoData.NewMetaScalar("number1", DataValueTypes.Number, items);
+            var el = BdoMeta.NewScalar("number1", DataValueTypes.Number, items);
             var itemList = el.Items<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
                 && el.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
 
-            el = BdoData.NewMetaScalar<double>("number1", items);
+            el = BdoMeta.NewScalar<double>("number1", items);
             itemList = el.Items<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
@@ -37,7 +37,7 @@ namespace BindOpen.Tests.Data
         public void NewTest_String()
         {
             string[] items = _testData.arrayString;
-            var el = BdoData.NewMetaScalar("text2", items);
+            var el = BdoMeta.NewScalar("text2", items);
 
             var itemList = el.Items<string>();
 
@@ -50,7 +50,7 @@ namespace BindOpen.Tests.Data
         public void NewTest_Integer()
         {
             int[] items = _testData.arrayInteger;
-            var el = BdoData.NewMetaScalar("integer3", items);
+            var el = BdoMeta.NewScalar("integer3", items);
 
             var itemList = el.Items<int>();
 
@@ -63,7 +63,7 @@ namespace BindOpen.Tests.Data
         public void NewTest_ArrayByte()
         {
             byte[][] items = _testData.arrayArrayByte;
-            var el = BdoData.NewMetaScalar("byteArray4", items);
+            var el = BdoMeta.NewScalar("byteArray4", items);
 
             var itemList = el.Items<byte[]>();
 
@@ -78,12 +78,12 @@ namespace BindOpen.Tests.Data
         public void ToStringTest()
         {
             int[] items_integer = _testData.arrayInteger;
-            var el = BdoData.NewMetaScalar().WithItems(items_integer);
+            var el = BdoMeta.NewScalar().WithItems(items_integer);
             var st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
 
             double[] items_number = _testData.arrayNumber;
-            el = BdoData.NewMetaScalar().WithItems(items_number);
+            el = BdoMeta.NewScalar().WithItems(items_number);
             st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
         }

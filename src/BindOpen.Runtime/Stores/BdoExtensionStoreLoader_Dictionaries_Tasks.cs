@@ -56,12 +56,12 @@ namespace BindOpen.Runtime.Stores
 
                 foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoTaskInputAttribute)).Any()))
                 {
-                    definition.InputSpecification.Add(BdoData.NewMetaSpec(property.Name, property.PropertyType));
+                    definition.InputSpecification.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoTaskOutputAttribute)).Any()))
                 {
-                    definition.OutputSpecification.Add(BdoData.NewMetaSpec(property.Name, property.PropertyType));
+                    definition.OutputSpecification.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition

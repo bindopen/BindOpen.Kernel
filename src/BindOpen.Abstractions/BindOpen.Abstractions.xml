@@ -1339,7 +1339,7 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.ITBdoExtensionTitledItemConfiguration`1">
+        <member name="T:BindOpen.Extensions.ITBdoExtensionItemConfiguration`1">
             <summary>
             
             </summary>
@@ -5408,19 +5408,19 @@
             </summary>
             <param name="name"></param>
         </member>
-        <member name="T:BindOpen.Data.ITStorablePoco`1">
+        <member name="T:BindOpen.Data.IStorable`1">
             <summary>
             This interface defines a storable data item.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.ITStorablePoco`1.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Data.IStorable`1.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.ITStorablePoco`1.WithLastModificationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Data.IStorable`1.WithLastModificationDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>

@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
+﻿using BindOpen.Data;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 
@@ -8,7 +8,8 @@ namespace BindOpen.Runtime.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoExtensionStore : ITIdentifiedPoco<IBdoExtensionStore>
+    public interface IBdoExtensionStore :
+        IIdentified
     {
         /// <summary>
         /// Adds the specified definition.

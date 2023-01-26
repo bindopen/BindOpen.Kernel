@@ -1,10 +1,11 @@
 ﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Runtime.Dtos.Extensions
+namespace BindOpen.Extensions
 {
     /// <summary>
     /// This class represents a BindOpen extension item configuration.
@@ -40,6 +41,13 @@ namespace BindOpen.Runtime.Dtos.Extensions
         [XmlElement("group")]
         [DefaultValue("")]
         public string GroupId { get; set; }
+
+        /// <summary>
+        /// The title DTO of this instance.
+        /// </summary>
+        [JsonPropertyName("title")]
+        [XmlElement("title")]
+        public DictionaryDto Title { get; set; }
 
         #endregion
 

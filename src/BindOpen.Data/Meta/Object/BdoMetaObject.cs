@@ -60,7 +60,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public IBdoMetaObject WithSubSet(params IBdoMetaData[] metas)
         {
-            SubSet = BdoData.NewMetaSet(metas);
+            SubSet = BdoMeta.NewSet(metas);
             return this;
         }
 

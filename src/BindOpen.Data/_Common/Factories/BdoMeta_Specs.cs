@@ -7,20 +7,20 @@ namespace BindOpen.Data
     /// <summary>
     /// This static class provides methods to create element specifications.
     /// </summary>
-    public static partial class BdoData
+    public static partial class BdoMeta
     {
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static BdoMetaDataSpec NewMetaSpec(
+        public static BdoMetaDataSpec NewSpec(
             string name,
             DataValueTypes valueType)
         {
             if (valueType.IsScalar())
             {
-                var scalarSpec = NewMetaSpec<BdoMetaScalarSpec>(name);
+                var scalarSpec = NewSpec<BdoMetaScalarSpec>(name);
                 scalarSpec.WithValueType(valueType);
                 return scalarSpec;
             }
@@ -29,7 +29,7 @@ namespace BindOpen.Data
                 switch (valueType)
                 {
                     case DataValueTypes.Object:
-                        return NewMetaSpec<BdoMetaObjectSpec>(name);
+                        return NewSpec<BdoMetaObjectSpec>(name);
                 }
             }
 
@@ -42,12 +42,12 @@ namespace BindOpen.Data
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static BdoMetaDataSpec NewMetaSpec(
+        public static BdoMetaDataSpec NewSpec(
             string name,
             Type type)
         {
             var valueType = type.GetValueType();
-            var spec = NewMetaSpec(name, valueType);
+            var spec = NewSpec(name, valueType);
             spec.AsType(type);
             return spec;
         }
@@ -57,7 +57,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static TElementSpec NewMetaSpec<TElementSpec>(string name = null)
+        public static TElementSpec NewSpec<TElementSpec>(string name = null)
         where TElementSpec : class, IBdoMetaDataSpec, new()
         {
             var spec = new TElementSpec();
@@ -71,11 +71,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="type">The value type to consider.</param>
-        public static TElementSpec NewMetaSpec<TElementSpec, T>(
+        public static TElementSpec NewSpec<TElementSpec, T>(
             string name = null)
             where TElementSpec : class, IBdoMetaDataSpec, new()
         {
-            var spec = NewMetaSpec<TElementSpec>(name, typeof(TElementSpec));
+            var spec = NewSpec<TElementSpec>(name, typeof(TElementSpec));
             return spec;
         }
 
@@ -84,14 +84,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="type">The value type to consider.</param>
-        public static TElementSpec NewMetaSpec<TElementSpec>(
+        public static TElementSpec NewSpec<TElementSpec>(
             string name,
             Type type)
             where TElementSpec : class, IBdoMetaDataSpec, new()
         {
             if (type == null) return default;
 
-            var spec = NewMetaSpec<TElementSpec>(name);
+            var spec = NewSpec<TElementSpec>(name);
             spec.WithValueType(type.GetValueType());
             spec.AsType(type);
 
@@ -135,7 +135,7 @@ namespace BindOpen.Data
         /// <param name="valueType">The value type to consider.</param>
         public static BdoMetaScalarSpec NewMetaScalarSpec<T>(string name = null)
         {
-            return NewMetaSpec<BdoMetaScalarSpec, T>(name);
+            return NewSpec<BdoMetaScalarSpec, T>(name);
         }
     }
 }

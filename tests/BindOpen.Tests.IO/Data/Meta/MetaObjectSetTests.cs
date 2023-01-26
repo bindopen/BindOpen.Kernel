@@ -42,13 +42,13 @@ namespace BindOpen.Tests.IO.Data
         [Test, Order(1)]
         public void CreateTest()
         {
-            //        var metaEntity1 = BdoData.NewMetaEntity(
+            //        var metaEntity1 = BdoMeta.NewEntity(
             //"entity1",
             //        BdoExt.NewEntityConfig(
             //    "tests.core$testEntity",
-            //    BdoData.NewMetaScalar("path", _testData.path1)));
+            //    BdoMeta.NewScalar("path", _testData.path1)));
 
-            //        var metaEntity2 = BdoData.NewMetaEntity("entity2", "tests.core$testEntity")
+            //        var metaEntity2 = BdoMeta.NewEntity("entity2", "tests.core$testEntity")
             //            .WithItems((new { path = _testData.path2 }).ToMetaSet<BdoEntityConfiguration>());
             //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
 
@@ -56,11 +56,11 @@ namespace BindOpen.Tests.IO.Data
             //        BdoExt.NewEntityConfig("tests.core$testEntity")
             //                .WithItems((new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
 
-            var meta1 = BdoData.NewMetaObject("object1", _obj1);
-            var meta2 = BdoData.NewMetaObject("object2", _obj2);
-            var meta3 = BdoData.NewMetaObject("object3", _obj3);
+            var meta1 = BdoMeta.NewObject("object1", _obj1);
+            var meta2 = BdoMeta.NewObject("object2", _obj2);
+            var meta3 = BdoMeta.NewObject("object3", _obj3);
 
-            _metaSet = BdoData.NewMetaSet(meta1, meta2, meta3);
+            _metaSet = BdoMeta.NewSet(meta1, meta2, meta3);
 
             Test(_metaSet);
         }

@@ -5,15 +5,15 @@ namespace BindOpen.Data
     /// <summary>
     /// This static class provides methods to create data elems.
     /// </summary>
-    public static partial class BdoData
+    public static partial class BdoMeta
     {
         /// <summary>
         /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar(
+        public static BdoMetaScalar NewScalar(
             params object[] items)
-            => NewMetaScalar<BdoMetaScalar>(
+            => NewScalar<BdoMetaScalar>(
                 (string)null,
                 DataValueTypes.Any,
                 items);
@@ -23,10 +23,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar(
+        public static BdoMetaScalar NewScalar(
             DataValueTypes valueType,
             params object[] items)
-            => NewMetaScalar<BdoMetaScalar>(
+            => NewScalar<BdoMetaScalar>(
                 (string)null,
                 valueType,
                 items);
@@ -36,10 +36,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar(
+        public static BdoMetaScalar NewScalar(
             string name,
             params object[] items)
-            => NewMetaScalar<BdoMetaScalar>(
+            => NewScalar<BdoMetaScalar>(
                 (string)name,
                 DataValueTypes.Any,
                 items);
@@ -50,11 +50,11 @@ namespace BindOpen.Data
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar(
+        public static BdoMetaScalar NewScalar(
             string name,
             DataValueTypes valueType,
             params object[] items)
-            => NewMetaScalar<BdoMetaScalar>(
+            => NewScalar<BdoMetaScalar>(
                 (string)name,
                 valueType,
                 items);
@@ -65,21 +65,21 @@ namespace BindOpen.Data
         /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar<T>(
+        public static BdoMetaScalar NewScalar<T>(
             params object[] items)
-            => NewMetaScalar<T>(null, items);
+            => NewScalar<T>(null, items);
 
         /// <summary>
         /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaScalar NewMetaScalar<T>(
+        public static BdoMetaScalar NewScalar<T>(
             string name,
             params object[] items)
         {
             var valueType = typeof(T).GetValueType();
-            var el = NewMetaScalar<BdoMetaScalar>(name, valueType, items);
+            var el = NewScalar<BdoMetaScalar>(name, valueType, items);
             return el;
         }
 
@@ -89,7 +89,7 @@ namespace BindOpen.Data
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static T NewMetaScalar<T>(
+        public static T NewScalar<T>(
             string name,
             DataValueTypes valueType,
             params object[] items)

@@ -57,7 +57,7 @@ namespace BindOpen.Runtime.Stores
 
                 foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
                 {
-                    definition.DetailSpec.Add(BdoData.NewMetaSpec(property.Name, property.PropertyType));
+                    definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition

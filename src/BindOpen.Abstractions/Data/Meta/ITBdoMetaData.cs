@@ -64,11 +64,6 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        new TElement WithIndex(int? index);
-
-        /// <summary>
-        /// 
-        /// </summary>
         new TElement WithSpecifications(params IBdoMetaDataSpec[] specs);
 
         /// <summary>

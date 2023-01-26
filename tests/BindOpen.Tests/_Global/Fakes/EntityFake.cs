@@ -127,18 +127,6 @@ namespace BindOpen.Tests
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public IBdoEntity WithCreationDate(DateTime? date)
-        {
-            CreationDate = date;
-
-            return this;
-        }
-
-        /// <summary>
         /// The information flag of this instance.
         /// </summary>
         [BdoData("flag")]

@@ -61,10 +61,10 @@ namespace BindOpen.Extensions.Scripting
 
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 

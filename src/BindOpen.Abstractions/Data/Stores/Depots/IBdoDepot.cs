@@ -1,14 +1,14 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
-using BindOpen.Logging;
 
 namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDepot : ITIdentifiedPoco<IBdoDepot>, ITBdoScoped<IBdoDepot>
+    public interface IBdoDepot :
+        IIdentified, ITBdoScoped<IBdoDepot>
     {
         /// <summary>
         /// Add the items from all the assemblies.

@@ -8,9 +8,9 @@ namespace BindOpen.Data.Specification
     /// </summary>
     public interface IDataSpecification :
         IBdoItem, IReferenced,
-        ITIdentifiedPoco<IDataSpecification>, ITNamedPoco<IDataSpecification>,
-        ITGloballyTitledPoco<IDataSpecification>, ITGloballyDescribedPoco<IDataSpecification>,
-        ITIndexedPoco<IDataSpecification>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed,
+        IIndexed
     {
         /// <summary>
         /// 

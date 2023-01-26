@@ -68,26 +68,15 @@ namespace BindOpen.Extensions
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public T WithId(string id)
-        {
-            Id = id;
-            return this as T;
-        }
 
         #endregion
     }

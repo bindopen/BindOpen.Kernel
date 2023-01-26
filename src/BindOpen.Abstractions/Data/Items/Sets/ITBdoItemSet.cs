@@ -7,9 +7,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITBdoItemSet<T> :
-        IBdoItem,
-        ITIdentifiedPoco<ITBdoItemSet<T>>,
-        IEnumerable<T>
+        IBdoItem, IIdentified, IEnumerable<T>
         where T : IReferenced
     {
         /// <summary>
@@ -56,6 +54,20 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        T Insert(T item);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool HasItem(string key = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
         ITBdoItemSet<T> ClearItems();
 
         /// <summary>
@@ -67,22 +79,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        T Insert(T item);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="items"></param>
         ITBdoItemSet<T> WithItems(params T[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        bool HasItem(string key = null);
 
         /// <summary>
         /// 

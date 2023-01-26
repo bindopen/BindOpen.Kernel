@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Modeling
     /// <summary>
     ///
     /// </summary>
-    public interface IBdoFormatConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoFormatDefinition>
+    public interface IBdoFormatConfiguration : ITBdoExtensionItemConfiguration<IBdoFormatDefinition>
     {
         /// <summary>
         /// 

@@ -1408,30 +1408,30 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1">
+        <member name="T:BindOpen.Extensions.TBdoExtensionItemConfiguration`1">
             <summary>
             This class represents a BindOpen extension titled item configuration.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.#ctor">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor">
             <summary>
-            Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
+            Instantiates a new instance of the TBdoExtensionItemConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String)">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String)">
             <summary>
-            Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
+            Instantiates a new instance of the TBdoExtensionItemConfiguration class.
             </summary>
             <param name="kind">The kind to consider.</param>
             <param name="definitionUniqueId">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.Title">
+        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Title">
             <summary>
             
             </summary>

@@ -1,22 +1,23 @@
-﻿using BindOpen.Extensions;
+﻿using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions.Scripting
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptwordConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoScriptwordDefinition>
+    public interface IBdoScriptwordConfiguration : ITBdoExtensionItemConfiguration<IBdoScriptwordDefinition>
     {
         /// <summary>
         /// 
         /// </summary>
-        IBdoScriptwordConfiguration SubScriptword { get; set; }
+        /// <param name="items"></param>
+        new IBdoScriptwordConfiguration Add(params IBdoMetaData[] items);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scriptword"></param>
-        IBdoScriptwordConfiguration WithSubScriptword(IBdoScriptwordConfiguration scriptword);
+        /// <param name="items"></param>
+        new IBdoScriptwordConfiguration WithItems(params IBdoMetaData[] items);
 
         /// <summary>
         /// 

@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
 using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -39,7 +38,7 @@ namespace BindOpen.Runtime.Definition
             : base()
         {
             preffix = _preffix;
-            WithName(name);
+            this.WithName(name);
             ExtensionDefinition = extensionDefinition;
         }
 
@@ -84,10 +83,10 @@ namespace BindOpen.Runtime.Definition
         #endregion
 
         // ------------------------------------------
-        // ITStorablePoco Implementation
+        // IStorable Implementation
         // ------------------------------------------
 
-        #region ITStorablePoco
+        #region IStorable
 
         /// <summary>
         /// Creation date of this instance.
@@ -95,51 +94,22 @@ namespace BindOpen.Runtime.Definition
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoExtensionItemDefinition WithCreationDate(DateTime? date)
-        {
-            CreationDate = date;
-            return this;
-        }
-
-        /// <summary>
         /// Last modification date of this instance.
         /// </summary>
         public DateTime? LastModificationDate { get; set; }
 
-        /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public IBdoExtensionItemDefinition WithLastModificationDate(DateTime? date)
-        {
-            LastModificationDate = date;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // IIndexedPoco Implementation
+        // IIndexed Implementation
         // ------------------------------------------
 
-        #region IIndexedPoco
+        #region IIndexed
 
         /// <summary>
         /// The index of this instance.
         /// </summary>
         public int? Index { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemDefinition WithIndex(int? index)
-        {
-            Index = index;
-            return this;
-        }
 
         #endregion
 
@@ -157,50 +127,28 @@ namespace BindOpen.Runtime.Definition
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemDefinition WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoExtensionItemDefinition WithName(string name)
-        {
-            Name = BdoData.NewName(name, _preffix);
-            return this;
-        }
 
         #endregion
 
@@ -214,19 +162,6 @@ namespace BindOpen.Runtime.Definition
         /// 
         /// </summary>
         public IBdoDictionary Title { get; set; }
-
-        public IBdoExtensionItemDefinition AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoData.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        public IBdoExtensionItemDefinition WithTitle(IBdoDictionary dico)
-        {
-            Title = dico;
-            return this;
-        }
 
         /// <summary>
         /// 
@@ -251,19 +186,6 @@ namespace BindOpen.Runtime.Definition
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public IBdoExtensionItemDefinition AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoData.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IBdoExtensionItemDefinition WithDescription(IBdoDictionary dico)
-        {
-            Description = dico;
-            return this;
-        }
 
         public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
         {

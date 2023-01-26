@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Runtime.Definition;
+﻿using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -7,25 +6,13 @@ namespace BindOpen.Extensions.Connecting
     /// 
     /// </summary>
     public interface IBdoConnectorConfiguration
-        : ITBdoExtensionTitledItemConfiguration<IBdoConnectorDefinition>
+        : ITBdoExtensionItemConfiguration<IBdoConnectorDefinition>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         string GetConnectionString();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        new IBdoConnectorConfiguration Add(params IBdoMetaData[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        new IBdoConnectorConfiguration WithItems(params IBdoMetaData[] items);
 
         /// <summary>
         /// 

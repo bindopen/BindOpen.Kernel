@@ -6,7 +6,8 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// 
     /// </summary>
-    public interface IScriptItem : IBdoItem, ITNamedPoco<IScriptItem>
+    public interface IScriptItem :
+        IBdoItem, INamed
     {
         /// <summary>
         /// The kind.

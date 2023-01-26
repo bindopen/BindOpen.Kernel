@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using NUnit.Framework;
 using System;
 
@@ -39,7 +39,7 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoMeta.NewSet(
                 ("var1", "sample1"),
                 ("var2", 4.55));
 

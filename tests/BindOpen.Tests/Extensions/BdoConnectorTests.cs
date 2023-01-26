@@ -28,9 +28,9 @@ namespace BindOpen.Tests.Extensions
             IBdoConnectorConfiguration config =
                 BdoExt.NewConnectorConfig("tests.core$testConnector")
                 .WithItems(
-                    BdoData.NewMetaScalar("host", data.host),
-                    BdoData.NewMetaScalar("port", data.port),
-                    BdoData.NewMetaScalar("isSslEnabled", data.isSslEnabled));
+                    BdoMeta.NewScalar("host", data.host),
+                    BdoMeta.NewScalar("port", data.port),
+                    BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled));
 
             return BdoExt.NewConnector<ConnectorFake>(config);
         }

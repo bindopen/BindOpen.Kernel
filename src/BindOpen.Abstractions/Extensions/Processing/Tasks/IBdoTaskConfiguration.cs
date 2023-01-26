@@ -7,8 +7,20 @@ namespace BindOpen.Extensions.Processing
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoTaskConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoTaskDefinition>
+    public interface IBdoTaskConfiguration : ITBdoExtensionItemConfiguration<IBdoTaskDefinition>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoTaskConfiguration Add(params IBdoMetaData[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        new IBdoTaskConfiguration WithItems(params IBdoMetaData[] items);
+
         /// <summary>
         /// The input detail.
         /// </summary>
@@ -57,17 +69,5 @@ namespace BindOpen.Extensions.Processing
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
         IBdoMetaData GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        new IBdoTaskConfiguration Add(params IBdoMetaData[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        new IBdoTaskConfiguration WithItems(params IBdoMetaData[] items);
     }
 }

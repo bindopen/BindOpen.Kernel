@@ -259,26 +259,15 @@ namespace BindOpen.Extensions.Scripting
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco Implementation
+        #region INamed Implementation
 
         /// <summary>
         /// Name of this instance.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoScriptword WithName(string name)
-        {
-            Name = BdoData.NewName(name, "word_");
-            return this;
-        }
 
         #endregion
     }

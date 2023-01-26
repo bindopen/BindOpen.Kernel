@@ -58,7 +58,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(202)]
         public void InterpreteScript2Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoMeta.NewSet();
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<bool?>(_script2, BdoExpressionKind.Script, varSet)?.ToString();
@@ -69,7 +69,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(203)]
         public void InterpreteScript3Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoMeta.NewSet();
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(_script3, BdoExpressionKind.Script, varSet);
@@ -116,7 +116,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(208)]
         public void VarElementSetTest()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoMeta.NewSet(
                 ((string Name, object Value))("value1", _scriptVarValue81), ((string Name, object Value))("value2", _scriptVarValue82));
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();

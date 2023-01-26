@@ -7,11 +7,9 @@ namespace BindOpen.Runtime
     /// 
     /// </summary>
     public interface IBdoExtensionItemGroup :
-        ITIdentifiedPoco<IBdoExtensionItemGroup>,
-        ITNamedPoco<IBdoExtensionItemGroup>,
-        ITGloballyTitledPoco<IBdoExtensionItemGroup>,
-        ITGloballyDescribedPoco<IBdoExtensionItemGroup>,
-        ITStorablePoco<IBdoExtensionItemGroup>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed,
+        IStorable
     {
         /// <summary>
         /// 

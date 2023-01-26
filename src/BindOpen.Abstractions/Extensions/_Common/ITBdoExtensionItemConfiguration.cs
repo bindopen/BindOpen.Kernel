@@ -8,7 +8,8 @@ namespace BindOpen.Extensions
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ITBdoExtensionItemConfiguration<T> : IBdoConfiguration, IReferenced
+    public interface ITBdoExtensionItemConfiguration<T> :
+        IBdoConfiguration, IReferenced, IGloballyTitled
         where T : IBdoExtensionItemDefinition
     {
         /// <summary>

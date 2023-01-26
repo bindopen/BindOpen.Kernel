@@ -11,5 +11,12 @@ namespace BindOpen.Data
         /// The global description of this instance.
         /// </summary>
         IBdoDictionary Description { get; set; }
+
+        /// <summary>
+        /// Returns the description label.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="defaultKey">The default variant name to consider.</param>
+        string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star);
     }
 }

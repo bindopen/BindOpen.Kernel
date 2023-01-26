@@ -44,12 +44,12 @@ namespace BindOpen.Tests.IO.Meta
         [Test, Order(2)]
         public void CreateTest()
         {
-            var el1 = BdoData.NewMetaScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]);
-            var el2 = BdoData.NewMetaScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]);
-            var el3 = BdoData.NewMetaScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]);
-            var el4 = BdoData.NewMetaScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]);
+            var el1 = BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]);
+            var el2 = BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]);
+            var el3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]);
+            var el4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]);
 
-            _metaSet = BdoData.NewMetaSet(el1, el2, el3, el4);
+            _metaSet = BdoMeta.NewSet(el1, el2, el3, el4);
         }
 
         // Xml

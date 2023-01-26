@@ -55,13 +55,13 @@ namespace BindOpen.Tests.Data
                     DatasourceKind.EmailServer,
                     BdoExt.NewConnectorConfig(
                         "messages$smtp",
-                        BdoData.NewMetaScalar("host", _testData.host),
-                        BdoData.NewMetaScalar("port", DataValueTypes.Integer, _testData.port),
-                        BdoData.NewMetaScalar("isDefaultCredentialsUsed", DataValueTypes.Boolean, _testData.isDefaultCredentialsUsed),
-                        BdoData.NewMetaScalar("isSslEnabled", DataValueTypes.Boolean, _testData.isSslEnabled),
-                        BdoData.NewMetaScalar("timeout", DataValueTypes.Integer, _testData.timeout),
-                        BdoData.NewMetaScalar("login", _testData.login),
-                        BdoData.NewMetaScalar("password", _testData.password))));
+                        BdoMeta.NewScalar("host", _testData.host),
+                        BdoMeta.NewScalar("port", DataValueTypes.Integer, _testData.port),
+                        BdoMeta.NewScalar("isDefaultCredentialsUsed", DataValueTypes.Boolean, _testData.isDefaultCredentialsUsed),
+                        BdoMeta.NewScalar("isSslEnabled", DataValueTypes.Boolean, _testData.isSslEnabled),
+                        BdoMeta.NewScalar("timeout", DataValueTypes.Integer, _testData.timeout),
+                        BdoMeta.NewScalar("login", _testData.login),
+                        BdoMeta.NewScalar("password", _testData.password))));
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }

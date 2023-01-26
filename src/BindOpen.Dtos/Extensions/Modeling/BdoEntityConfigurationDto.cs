@@ -1,5 +1,4 @@
-﻿using BindOpen.Runtime.Dtos.Extensions;
-using BindOpen.Runtime.Definition;
+﻿using BindOpen.Runtime.Definition;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Modeling
@@ -10,7 +9,7 @@ namespace BindOpen.Extensions.Modeling
     [XmlType("EntityConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "entity", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoEntityConfigurationDto
-        : TBdoExtensionTitledItemConfigurationDto<BdoEntityDefinitionDto>
+        : TBdoExtensionItemConfigurationDto<BdoEntityDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

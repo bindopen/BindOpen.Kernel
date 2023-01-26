@@ -12,6 +12,23 @@ namespace BindOpen.Data.Items
         where T : IReferenced
     {
         // ------------------------------------------
+        // ITDataItemSet Implementation
+        // ------------------------------------------
+
+        #region ITDataItemSet
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param name="st">The string to consider.</param>
+        public static implicit operator TBdoItemSet<T>(T[] items)
+        {
+            return BdoData.NewItemSet<T>(items);
+        }
+
+        #endregion
+
+        // ------------------------------------------
         // VARIABLES
         // ------------------------------------------
 
@@ -44,15 +61,6 @@ namespace BindOpen.Data.Items
         // ------------------------------------------
 
         #region ITDataItemSet
-
-        /// <summary>
-        /// Converts from string.
-        /// </summary>
-        /// <param name="st">The string to consider.</param>
-        public static implicit operator TBdoItemSet<T>(T[] items)
-        {
-            return BdoData.NewItemSet<T>(items);
-        }
 
         /// <summary>
         /// 
@@ -120,6 +128,19 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public ITBdoItemSet<T> WithItems(params T[] items)
+        {
+            ClearItems();
+            Add(items);
+
+            return this;
+        }
+
+        /// <summary>
         /// Adds the specified item.
         /// </summary>
         /// <param name="item">The item of the item to add.</param>
@@ -139,19 +160,6 @@ namespace BindOpen.Data.Items
             _items.Add(item);
 
             return item;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param name="items">The items to apply to this instance.</param>
-        /// <remarks>_items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public ITBdoItemSet<T> WithItems(params T[] items)
-        {
-            ClearItems();
-            Add(items);
-
-            return this;
         }
 
         /// <summary>
@@ -259,10 +267,10 @@ namespace BindOpen.Data.Items
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 

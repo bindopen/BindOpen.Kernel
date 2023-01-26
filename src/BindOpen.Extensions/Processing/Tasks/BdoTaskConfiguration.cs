@@ -11,27 +11,9 @@ namespace BindOpen.Extensions.Processing
     /// This class represents a task configuration.
     /// </summary>
     public class BdoTaskConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoTaskDefinition>, IBdoTaskConfiguration
+        : TBdoExtensionItemConfiguration<IBdoTaskDefinition>,
+        IBdoTaskConfiguration
     {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// Input detail of this instance.
-        /// </summary>
-        public IBdoMetaSet InputDetail { get; set; }
-
-
-        /// <summary>
-        /// Output detail of this instance.
-        /// </summary>
-        public IBdoMetaSet OutputDetail { get; set; }
-
-        #endregion
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -56,30 +38,42 @@ namespace BindOpen.Extensions.Processing
         #endregion
 
         // ------------------------------------------
-        // MUTATORS
+        // IBdoTaskConfiguration Implementation
         // ------------------------------------------
 
-        #region Mutators
+        #region IBdoTaskConfiguration
+
+        // Properties
 
         /// <summary>
-        /// 
+        /// Input detail of this instance.
         /// </summary>
-        /// <param name="items"></param>
+        public IBdoMetaSet InputDetail { get; set; }
+
+        /// <summary>
+        /// Output detail of this instance.
+        /// </summary>
+        public IBdoMetaSet OutputDetail { get; set; }
+
+        // Methods
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
         public new IBdoTaskConfiguration Add(params IBdoMetaData[] items)
-        {
-            base.Add(items);
-            return this;
-        }
+            => base.Add(items) as IBdoTaskConfiguration;
 
         /// <summary>
-        /// 
+        /// Sets the specified single item of this instance.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoTaskConfiguration WithItems(params IBdoMetaData[] items)
-        {
-            base.WithItems(items);
-            return this;
-        }
+            => base.WithItems(items) as IBdoTaskConfiguration;
 
         /// <summary>
         /// 
@@ -87,7 +81,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="inputs"></param>
         public IBdoTaskConfiguration AddInputs(params IBdoMetaData[] inputs)
         {
-            if (InputDetail == null) InputDetail = new BdoMetaSet();
+            InputDetail ??= new BdoMetaSet();
             InputDetail.Add(inputs);
             return this;
         }
@@ -98,7 +92,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="inputs"></param>
         public IBdoTaskConfiguration WithInputs(params IBdoMetaData[] inputs)
         {
-            if (InputDetail == null) InputDetail = new BdoMetaSet();
+            InputDetail ??= new BdoMetaSet();
             InputDetail.WithItems(inputs);
             return this;
         }
@@ -109,7 +103,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="outputs"></param>
         public IBdoTaskConfiguration AddOutputs(params IBdoMetaData[] outputs)
         {
-            if (OutputDetail == null) OutputDetail = new BdoMetaSet();
+            OutputDetail ??= new BdoMetaSet();
             OutputDetail.Add(outputs);
             return this;
         }
@@ -120,20 +114,12 @@ namespace BindOpen.Extensions.Processing
         /// <param name="outputs"></param>
         public IBdoTaskConfiguration WithOutputs(params IBdoMetaData[] outputs)
         {
-            if (OutputDetail == null) OutputDetail = new BdoMetaSet();
+            OutputDetail ??= new BdoMetaSet();
             OutputDetail.WithItems(outputs);
             return this;
         }
 
-        #endregion
-
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
-
-        // Entries --------------------------------
+        // Accessors --------------------------------
 
         /// <summary>
         /// Gets the specified entries.

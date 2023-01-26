@@ -172,7 +172,7 @@ namespace BindOpen.Runtime.Settings
                 if (attribute is BdoDataAttribute)
                 {
                     Configuration.Add(
-                        BdoData.NewMetaScalar(
+                        BdoMeta.NewScalar(
                             attribute.Name,
                             propertyInfo.PropertyType.GetValueType(),
                             value));

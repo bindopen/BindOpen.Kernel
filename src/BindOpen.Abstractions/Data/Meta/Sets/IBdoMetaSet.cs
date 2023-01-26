@@ -6,15 +6,9 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoMetaSet : ITBdoItemSet<IBdoMetaData>
+    public partial interface IBdoMetaSet :
+        ITBdoItemSet<IBdoMetaData>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        IBdoMetaSet FromObject(object obj);
-
         /// <summary>
         /// 
         /// </summary>

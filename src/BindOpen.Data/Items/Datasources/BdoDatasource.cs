@@ -28,7 +28,7 @@ namespace BindOpen.Data.Items
         /// <param name="name">The name to consider.</param>
         public BdoDatasource(string name) : base()
         {
-            WithName(name);
+            this.WithName(name);
         }
 
         #endregion
@@ -208,50 +208,28 @@ namespace BindOpen.Data.Items
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoDatasource WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoDatasource WithName(string name)
-        {
-            Name = BdoData.NewName(name, "source_");
-            return this;
-        }
 
         #endregion
     }

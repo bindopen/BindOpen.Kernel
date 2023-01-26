@@ -6,8 +6,7 @@ namespace BindOpen.Data.Items
     /// 
     /// </summary>
     public interface IBdoDictionary :
-        IBdoItem,
-        ITIdentifiedPoco<IBdoDictionary>,
+        IBdoItem, IIdentified,
         IDictionary<string, string>
     {
         /// <summary>

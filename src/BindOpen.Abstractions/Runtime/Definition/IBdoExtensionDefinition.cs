@@ -8,10 +8,8 @@ namespace BindOpen.Runtime.Definition
     /// This interface defines the extension definition.
     /// </summary>
     public interface IBdoExtensionDefinition : IReferenced,
-        ITIdentifiedPoco<IBdoExtensionDefinition>,
-        ITNamedPoco<IBdoExtensionDefinition>,
-        ITGloballyTitledPoco<IBdoExtensionDefinition>,
-        ITGloballyDescribedPoco<IBdoExtensionDefinition>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed
     {
         /// <summary>
         /// 

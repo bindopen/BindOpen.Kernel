@@ -7,21 +7,24 @@ namespace BindOpen.Data.Configuration
     /// 
     /// </summary>
     public interface IBdoConfiguration :
-        IReferenced, ITBdoMetaSet<IBdoConfiguration>,
-        ITNamedPoco<IBdoConfiguration>,
-        ITGloballyDescribedPoco<IBdoConfiguration>,
-        ITStorablePoco<IBdoConfiguration>
+        IReferenced, IBdoMetaSet,
+        INamed, IGloballyDescribed, IStorable
     {
         /// <summary>
         /// 
         /// </summary>
-        List<string> UsedItemIds { get; set; }
+        /// <param name="items"></param>
+        new IBdoConfiguration Add(params IBdoMetaData[] items);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        IBdoConfiguration Using(params string[] ids);
+        /// <param name="items"></param>
+        new IBdoConfiguration WithItems(params IBdoMetaData[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        List<string> UsedItemIds { get; set; }
     }
 }

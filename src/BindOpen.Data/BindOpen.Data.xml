@@ -1645,14 +1645,14 @@
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewMeta(System.String,System.Object[])">
+        <member name="M:BindOpen.Data.BdoMeta.New(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewMeta(System.String,BindOpen.Data.DataValueTypes,System.Object[])">
+        <member name="M:BindOpen.Data.BdoMeta.New(System.String,BindOpen.Data.DataValueTypes,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>

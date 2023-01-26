@@ -9,11 +9,9 @@ namespace BindOpen.Logging
     /// 
     /// </summary>
     public interface IBdoLog :
-        ITIdentifiedPoco<IBdoLog>,
-        ITNamedPoco<IBdoLog>,
+        IIdentified, INamed,
         IDisplayNamed, IDescribed,
-        ITDetailedPoco<IBdoLog>,
-        IDisposable
+        IDetailed, IDisposable
     {
         /// <summary>
         /// 

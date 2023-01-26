@@ -6,7 +6,7 @@ namespace BindOpen.Extensions.Processing
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoRoutineConfiguration : ITBdoExtensionTitledItemConfiguration<IBdoRoutineDefinition>
+    public interface IBdoRoutineConfiguration : ITBdoExtensionItemConfiguration<IBdoRoutineDefinition>
     {
         /// <summary>
         /// 

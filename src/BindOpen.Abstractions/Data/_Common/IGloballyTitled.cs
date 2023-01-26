@@ -11,5 +11,12 @@ namespace BindOpen.Data
         /// The global title of this instance.
         /// </summary>
         IBdoDictionary Title { get; set; }
+
+        /// <summary>
+        /// Returns the description label.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="defaultKey">The default variant name to consider.</param>
+        string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star);
     }
 }

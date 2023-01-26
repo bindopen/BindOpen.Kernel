@@ -1,5 +1,4 @@
-﻿using BindOpen.Runtime.Dtos.Extensions;
-using BindOpen.Runtime.Definition;
+﻿using BindOpen.Runtime.Definition;
 using System.Xml.Serialization;
 
 namespace BindOpen.Extensions.Connecting
@@ -10,7 +9,7 @@ namespace BindOpen.Extensions.Connecting
     [XmlType("ConnectorConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "connector", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoConnectorConfigurationDto
-        : TBdoExtensionTitledItemConfigurationDto<BdoConnectorDefinitionDto>
+        : TBdoExtensionItemConfigurationDto<BdoConnectorDefinitionDto>
     {
         // ------------------------------------------
         // CONSTRUCTORS

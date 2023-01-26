@@ -1,41 +1,32 @@
-﻿using System.Reflection;
+﻿using BindOpen.Data.Meta;
+using System.Reflection;
 
-namespace BindOpen.Data.Meta
+namespace BindOpen.Data
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// 
     /// </summary>
-    public static partial class BdoMetaDataExtension
+    public static class BdoMetaSetExtensions
     {
         /// <summary>
-        /// Creates a meta data of the specified object.
+        /// 
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public static BdoMetaData ToMeta(
-            this object obj,
-            string name = null)
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static T FromObject<T>(
+            this T set,
+            object obj)
+            where T : IBdoMetaSet
         {
-            if (obj?.GetType().IsList() == true)
-            {
-                var objList = obj.AsObjectList();
-                return BdoData.NewMeta(name, objList.ToArray());
-            }
-            return BdoData.NewMeta(name, obj);
+            set?.WithItems(obj.ToMetaArray());
+            return set;
         }
 
         /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static IBdoMetaData[] ToMetaArray(this object obj)
-            => obj.ToMetaSet()?.ToArray();
-
-        /// <summary>
-        /// Creates a data element set from a dynamic object.
-        /// </summary>
-        /// <param name="obj">The objet to consider.</param>
-        public static BdoMetaSet ToMetaSet(this object obj)
+        public static IBdoMetaSet ToMetaSet(this object obj)
             => obj.ToMetaSet<BdoMetaSet>();
 
         /// <summary>

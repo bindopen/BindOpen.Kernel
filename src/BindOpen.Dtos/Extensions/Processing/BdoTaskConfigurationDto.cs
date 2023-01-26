@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
-using BindOpen.Runtime.Dtos.Extensions;
+using BindOpen.Extensions;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -12,7 +12,7 @@ namespace BindOpen.Extensions.Processing
     [XmlType("TaskConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "task", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoTaskConfigurationDto
-        : TBdoExtensionTitledItemConfigurationDto<BdoTaskDefinitionDto>
+        : TBdoExtensionItemConfigurationDto<BdoTaskDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES

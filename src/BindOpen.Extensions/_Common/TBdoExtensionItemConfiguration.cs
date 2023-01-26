@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Configuration;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 
@@ -60,7 +62,25 @@ namespace BindOpen.Extensions
         {
             Kind = kind;
             DefinitionUniqueId = definitionUniqueId;
-            WithItems(items);
+            this.WithItems(items);
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IGloballyTitled Implementation
+        // ------------------------------------------
+
+        #region IGloballyTitled
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoDictionary Title { get; set; }
+
+        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
+        {
+            return Title?[key, defaultKey];
         }
 
         #endregion

@@ -6,8 +6,9 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword : ITBdoExtensionItem<IBdoScriptwordDefinition, IBdoScriptwordConfiguration, IBdoScriptword>,
-        ITNamedPoco<IBdoScriptword>
+    public interface IBdoScriptword :
+        ITBdoExtensionItem<IBdoScriptwordDefinition, IBdoScriptwordConfiguration, IBdoScriptword>,
+        INamed
     {
         /// <summary>
         /// 

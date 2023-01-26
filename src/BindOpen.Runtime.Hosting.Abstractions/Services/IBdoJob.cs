@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using Microsoft.Extensions.Logging;
@@ -9,7 +8,7 @@ namespace BindOpen.Runtime.Services
     /// <summary>
     /// The interface defines the BindOpen service.
     /// </summary>
-    public interface IBdoJob : ITIdentifiedPoco<IBdoJob>, IBdoScoped
+    public interface IBdoJob : IIdentified, IBdoScoped
     {
         /// <summary>
         /// The logger.

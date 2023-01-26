@@ -35,7 +35,7 @@ namespace BindOpen.Data.Context
         /// <param name="item"></param>
         /// <param name="contextSectionName"></param>
         /// <param name="persistenceLevel"></param>
-        void AddItem(string name, object item, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
+        IBdoDataContext AddItem(string name, object item, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
@@ -43,7 +43,7 @@ namespace BindOpen.Data.Context
         /// <param name="name"></param>
         /// <param name="item"></param>
         /// <param name="contextSectionName"></param>
-        void AddScopedItem(string name, object item, string contextSectionName = null);
+        IBdoDataContext AddScopedItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
         /// 
@@ -51,14 +51,14 @@ namespace BindOpen.Data.Context
         /// <param name="name"></param>
         /// <param name="item"></param>
         /// <param name="contextSectionName"></param>
-        void AddSingletonItem(string name, object item, string contextSectionName = null);
+        IBdoDataContext AddSingletonItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="item"></param>
-        void AddSystemItem(string name, object item);
+        IBdoDataContext AddSystemItem(string name, object item);
 
         /// <summary>
         /// 
@@ -66,18 +66,18 @@ namespace BindOpen.Data.Context
         /// <param name="name"></param>
         /// <param name="item"></param>
         /// <param name="contextSectionName"></param>
-        void AddTransientItem(string name, object item, string contextSectionName = null);
+        IBdoDataContext AddTransientItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        void Clear();
+        IBdoDataContext Clear();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="persistenceLevel"></param>
-        void ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
+        IBdoDataContext ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
@@ -123,13 +123,13 @@ namespace BindOpen.Data.Context
         /// 
         /// </summary>
         /// <param name="dataContext"></param>
-        void Merge(IBdoDataContext dataContext);
+        IBdoDataContext Merge(IBdoDataContext dataContext);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="contextSectionName"></param>
         /// <param name="persistenceLevel"></param>
-        void RemoveItems(string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
+        IBdoDataContext RemoveItems(string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
     }
 }

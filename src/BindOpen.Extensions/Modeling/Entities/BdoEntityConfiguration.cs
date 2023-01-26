@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Modeling
     /// This class represents a entity configuration.
     /// </summary>
     public class BdoEntityConfiguration
-        : TBdoExtensionTitledItemConfiguration<IBdoEntityDefinition>,
+        : TBdoExtensionItemConfiguration<IBdoEntityDefinition>,
         IBdoEntityConfiguration
     {
         // ------------------------------------------
@@ -34,30 +34,28 @@ namespace BindOpen.Extensions.Modeling
         #endregion
 
         // ------------------------------------------
-        // MUTATORS
+        // IBdoEntityConfiguration Implementation
         // ------------------------------------------
 
-        #region Mutators
+        #region IBdoEntityConfiguration
 
         /// <summary>
-        /// 
+        /// Adds the specified item.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
         public new IBdoEntityConfiguration Add(params IBdoMetaData[] items)
-        {
-            base.Add(items);
-            return this;
-        }
+            => base.Add(items) as IBdoEntityConfiguration;
 
         /// <summary>
-        /// 
+        /// Sets the specified single item of this instance.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoEntityConfiguration WithItems(params IBdoMetaData[] items)
-        {
-            base.WithItems(items);
-            return this;
-        }
+            => base.WithItems(items) as IBdoEntityConfiguration;
 
         #endregion
 

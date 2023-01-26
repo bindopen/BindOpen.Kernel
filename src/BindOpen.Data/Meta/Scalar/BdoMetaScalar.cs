@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="st">The string to consider.</param>
         public static explicit operator BdoMetaScalar(string st)
-            => BdoData.NewMetaScalar(DataValueTypes.Any, st) as BdoMetaScalar;
+            => BdoMeta.NewScalar(DataValueTypes.Any, st) as BdoMetaScalar;
 
         /// <summary>
         /// Converts to string.

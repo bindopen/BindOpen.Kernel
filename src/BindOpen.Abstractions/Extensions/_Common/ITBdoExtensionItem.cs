@@ -6,7 +6,8 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This class represents a BindOpen extension runtime item.
     /// </summary>
-    public interface ITBdoExtensionItem<D, C, T> : IBdoExtensionItem, ITIdentifiedPoco<T>,
+    public interface ITBdoExtensionItem<D, C, T> : IBdoExtensionItem,
+        IIdentified,
         ITBdoExtensionDefinable<D>, ITBdoExtensionConfigurable<D, C>
         where D : IBdoExtensionItemDefinition
         where C : ITBdoExtensionItemConfiguration<D>
