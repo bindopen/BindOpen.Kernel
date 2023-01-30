@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -20,12 +20,12 @@ namespace BindOpen.Data.Items
         #region Properties
 
         /// <summary>
-        /// The configuration items for this instance.
+        /// The config items for this instance.
         /// </summary>
         [JsonPropertyName("config")]
         [XmlArray("config")]
         [XmlArrayItem("add")]
-        public List<BdoConnectorConfigurationDto> Configurations { get; set; }
+        public List<BdoConfigurationDto> Configurations { get; set; }
 
         /// <summary>
         /// Kind of the data module of this instance. 

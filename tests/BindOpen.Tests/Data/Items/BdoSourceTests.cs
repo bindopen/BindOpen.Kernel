@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Extensions;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Data
@@ -20,7 +19,7 @@ namespace BindOpen.Tests.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .WithConfig(
-                    BdoExt.NewConnectorConfig("tests.core$test")
+                    BdoConfig.New("tests.core$test")
                         .WithConnectionString("connectionString"));
 
             Assert.That(

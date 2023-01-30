@@ -190,7 +190,7 @@
         </member>
         <member name="T:BindOpen.Data.Configuration.BdoConfiguration">
             <summary>
-            This class represents a configuration.
+            This class represents a config.
             </summary>
         </member>
         <member name="M:BindOpen.Data.Configuration.BdoConfiguration.#ctor">
@@ -205,7 +205,7 @@
         </member>
         <member name="P:BindOpen.Data.Configuration.BdoConfiguration.UsingConfiguration">
             <summary>
-            The using configuration statement of this instance.
+            The using config statement of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Data.Configuration.BdoConfiguration.Using(System.String[])">
@@ -258,7 +258,7 @@
         </member>
         <member name="T:BindOpen.Data.Configuration.BdoConfigurationBundle">
             <summary>
-            This class represents a configuration.
+            This class represents a config.
             </summary>
         </member>
         <member name="M:BindOpen.Data.Configuration.BdoConfigurationBundle.#ctor">
@@ -858,7 +858,7 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoEntity.WithItem(BindOpen.Extensions.Modeling.IBdoEntityConfiguration[])">
+        <member name="M:BindOpen.Data.Elements.BdoEntity.WithItem(BindOpen.Extensions.Modeling.IBdoConfiguration[])">
             <summary>
             Sets a new single item of this instance.
             </summary>
@@ -1392,7 +1392,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataSource.WithItem(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.Elements.BdoDataSource.WithItem(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Sets a new single item of this instance.
             </summary>
@@ -1550,7 +1550,7 @@
         </member>
         <member name="T:BindOpen.Data.BdoData">
             <summary>
-            This static class provides methods to handle configurations.
+            This static class provides methods to handle configs.
             </summary>
             <summary>
             This static class provides methods to create data elems.
@@ -1599,46 +1599,46 @@
             </summary>
             <example>Titles, Descriptions.</example>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfigBundle(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration[])">
+        <member name="M:BindOpen.Data.BdoConfig.NewBundle(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the BdoConfigurationBundle class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoConfig.New(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
-            <summary>
-            Instantiates a new instance of the BdoBaseConfiguration class.
-            </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
-        </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoConfig.New(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig``1(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoConfig.New(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig``1(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoConfig.New``1(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            Instantiates a new instance of the BdoBaseConfiguration class.
+            </summary>
+            <param name="name">The name to consider.</param>
+            <param name="items">The items to consider.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoConfig.New``1(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewConfig``1(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoConfig.New``1(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
@@ -1728,7 +1728,7 @@
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewEntity(System.String,BindOpen.Extensions.Modeling.IBdoEntityConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewEntity(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Initializes a new entity el.
             </summary>
@@ -1742,7 +1742,7 @@
             <param name="name">The name to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewEntity``1(System.String,BindOpen.Extensions.Modeling.IBdoEntityConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewEntity``1(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Initializes a new entity el.
             </summary>
@@ -1987,14 +1987,14 @@
             <param name="id">The ID to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSource(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewSource(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -2010,14 +2010,14 @@
             <param name="id">The ID to consider.</param>
             <param name="definitionUniqueId ">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="item">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
@@ -2041,21 +2041,21 @@
             <param name="asClone"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewDatasource(BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.Data.BdoData.NewDatasource(BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="kind">The kind of the data source to consider.</param>
-            <param name="configs">The configuration items to consider.</param>
+            <param name="configs">The config items to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewDatasource(System.String,BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.Data.BdoData.NewDatasource(System.String,BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="kind">The kind of the data source to consider.</param>
-            <param name="configs">The configuration items to consider.</param>
+            <param name="configs">The config items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDatasourceDepot(BindOpen.Data.Items.IBdoDataSource[])">
             <summary>
@@ -2240,34 +2240,34 @@
             Description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoDatasource.AddConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.Items.BdoDatasource.AddConfig(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
-            Adds the specified connector configuration.
+            Adds the specified connector config.
             </summary>
             <param name="config">The connector to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.RemoveConfig(System.String)">
             <summary>
-            Removes the specified connector configuration.
+            Removes the specified connector config.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoDatasource.WithConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.Data.Items.BdoDatasource.WithConfig(BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
-            Sets the specified configurations.
+            Sets the specified configs.
             </summary>
-            <param name="configs">The configurations to consider.</param>
+            <param name="configs">The configs to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.GetConfig(System.String)">
             <summary>
-            Gets the specified connector configuration.
+            Gets the specified connector config.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.HasConfig(System.String)">
             <summary>
-            Indicates whether this instance has the specified connector configuration.
+            Indicates whether this instance has the specified connector config.
             </summary>
             <param name="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
@@ -3103,7 +3103,7 @@
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
             <summary>
-            Gets the specified connector configuration.
+            Gets the specified connector config.
             </summary>
             <param name="sourceName">The name of the data module to consider.</param>
             <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
@@ -3111,7 +3111,7 @@
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
             <summary>
-            Indicates whether this instance has the specified connector configuration.
+            Indicates whether this instance has the specified connector config.
             </summary>
             <param name="sourceName">The name of the data module to consider.</param>
             <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
@@ -3119,7 +3119,7 @@
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetConnectionString(System.String,System.String)">
             <summary>
-            Returns the connection string corresponding to the specified configuration.
+            Returns the connection string corresponding to the specified config.
             </summary>
             <param name="sourceName">The name of the data source to consider.</param>
             <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>

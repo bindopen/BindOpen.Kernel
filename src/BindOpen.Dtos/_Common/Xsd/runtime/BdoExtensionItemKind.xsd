@@ -14,7 +14,7 @@
       <xs:enumeration value="Format" />
       <xs:enumeration value="Metrics" />
       <xs:enumeration value="Reference" />
-      <xs:enumeration value="BdoRoutineConfiguration" />
+      <xs:enumeration value="BdoConfiguration" />
       <xs:enumeration value="BdoScriptword" />
     </xs:restriction>
   </xs:simpleType>

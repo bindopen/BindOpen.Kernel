@@ -7,7 +7,7 @@ using System.Xml.Schema;
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
-    /// This static class provides methods to handle configurations.
+    /// This static class provides methods to handle configs.
     /// </summary>
     public static class ConfigurationExtensions
     {

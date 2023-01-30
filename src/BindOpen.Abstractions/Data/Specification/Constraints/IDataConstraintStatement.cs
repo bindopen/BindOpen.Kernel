@@ -1,20 +1,20 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
-using BindOpen.Extensions.Processing;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Data.Specification
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataConstraintStatement : ITBdoItemSet<IBdoRoutineConfiguration>
+    public interface IDataConstraintStatement : ITBdoItemSet<IBdoConfiguration>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IBdoRoutineConfiguration GetConstraint(string name);
+        IBdoConfiguration GetConstraint(string name);
 
         /// <summary>
         /// 

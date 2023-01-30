@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 
@@ -15,10 +15,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configs">The configuration items to consider.</param>
+        /// <param name="configs">The config items to consider.</param>
         public static BdoDatasource NewDatasource(
             DatasourceKind kind = DatasourceKind.Any,
-            params IBdoConnectorConfiguration[] configs)
+            params IBdoConfiguration[] configs)
         {
             var datasource = new BdoDatasource();
             datasource
@@ -33,11 +33,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configs">The configuration items to consider.</param>
+        /// <param name="configs">The config items to consider.</param>
         public static BdoDatasource NewDatasource(
             string name,
             DatasourceKind kind,
-            params IBdoConnectorConfiguration[] configs)
+            params IBdoConfiguration[] configs)
         {
             var datasource = new BdoDatasource(name);
             datasource

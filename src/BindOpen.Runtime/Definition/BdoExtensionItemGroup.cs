@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
 
@@ -127,11 +126,6 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public IBdoDictionary Title { get; set; }
 
-        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Title?[key, defaultKey];
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -144,15 +138,6 @@ namespace BindOpen.Runtime.Definition
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="defaultKey"></param>
-        /// <returns></returns>
-        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Description?[key, defaultKey];
-        }
 
         #endregion
 

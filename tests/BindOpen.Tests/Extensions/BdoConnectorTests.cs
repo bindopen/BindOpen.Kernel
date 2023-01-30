@@ -25,14 +25,14 @@ namespace BindOpen.Tests.Extensions
         /// <returns></returns>
         public static IBdoConnector CreateConnector(dynamic data)
         {
-            IBdoConnectorConfiguration config =
-                BdoExt.NewConnectorConfig("tests.core$testConnector")
+            var config =
+                BdoConfig.New("tests.core$testConnector")
                 .WithItems(
                     BdoMeta.NewScalar("host", data.host),
                     BdoMeta.NewScalar("port", data.port),
                     BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled));
 
-            return BdoExt.NewConnector<ConnectorFake>(config);
+            return Bdo.NewConnector<ConnectorFake>(config);
         }
 
         [Test, Order(1)]

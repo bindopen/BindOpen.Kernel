@@ -37,5 +37,5 @@ Todo list for BindOpen
 * SetConfiguration ExtensionItem
 
 ### v.1.2
-* Integrate .net core logging/configuration
+* Integrate .net core logging/config
 

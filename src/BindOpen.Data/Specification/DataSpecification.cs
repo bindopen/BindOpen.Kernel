@@ -229,11 +229,6 @@ namespace BindOpen.Data.Specification
         /// </summary>
         public IBdoDictionary Title { get; set; }
 
-        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Title?[key, defaultKey];
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -246,11 +241,6 @@ namespace BindOpen.Data.Specification
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Description?[key, defaultKey];
-        }
 
         #endregion
     }

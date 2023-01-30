@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace BindOpen.Runtime.Settings
 {
     /// <summary>
-    /// This class represents a configuration.
+    /// This class represents a config.
     /// </summary>
     public class BdoSettings : BdoItem, IBdoSettings
     {
@@ -25,20 +25,20 @@ namespace BindOpen.Runtime.Settings
         /// </summary>
         public BdoSettings()
         {
-            Configuration = BdoData.NewConfig();
+            Configuration = BdoConfig.New();
         }
 
         /// <summary>
         /// Instantiates a new instance of the TBdoSettings class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="config">The config to consider.</param>
         public BdoSettings(
             IBdoScope scope,
-            IBdoConfiguration configuration)
+            IBdoConfiguration config)
         {
             Scope = scope;
-            Configuration = configuration;
+            Configuration = config;
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,7 +48,7 @@ namespace BindOpen.Data.Items
         {
             var dataSource = base.Clone<BdoDatasource>(areas);
 
-            dataSource.ConfigList = ConfigList?.Select(p => p.Clone<IBdoConnectorConfiguration>()).ToList();
+            dataSource.ConfigList = ConfigList?.Select(p => p.Clone<IBdoConfiguration>()).ToList();
 
             return dataSource;
         }
@@ -124,45 +124,45 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Description of this instance.
         /// </summary>
-        public IBdoConnectorConfiguration Config() => ConfigList.FirstOrDefault();
+        public IBdoConfiguration Config() => ConfigList.FirstOrDefault();
 
         /// <summary>
         /// Description of this instance.
         /// </summary>
-        public List<IBdoConnectorConfiguration> ConfigList { get; set; }
+        public List<IBdoConfiguration> ConfigList { get; set; }
 
         /// <summary>
-        /// Adds the specified connector configuration.
+        /// Adds the specified connector config.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        public IBdoDatasource AddConfig(IBdoConnectorConfiguration config)
+        public IBdoDatasource AddConfig(IBdoConfiguration config)
         {
             if (config != null)
             {
-                ConfigList ??= new List<IBdoConnectorConfiguration>();
-                ConfigList.Add(config as IBdoConnectorConfiguration);
+                ConfigList ??= new List<IBdoConfiguration>();
+                ConfigList.Add(config);
             }
 
             return this;
         }
 
         /// <summary>
-        /// Removes the specified connector configuration.
+        /// Removes the specified connector config.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         public IBdoDatasource RemoveConfig(string definitionName)
         {
-            ConfigList ??= new List<IBdoConnectorConfiguration>();
+            ConfigList ??= new List<IBdoConfiguration>();
             ConfigList?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
 
             return this;
         }
 
         /// <summary>
-        /// Sets the specified configurations.
+        /// Sets the specified configs.
         /// </summary>
-        /// <param name="configs">The configurations to consider.</param>
-        public IBdoDatasource WithConfig(params IBdoConnectorConfiguration[] configs)
+        /// <param name="configs">The configs to consider.</param>
+        public IBdoDatasource WithConfig(params IBdoConfiguration[] configs)
         {
             foreach (var config in configs)
             {
@@ -173,17 +173,17 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Gets the specified connector configuration.
+        /// Gets the specified connector config.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IBdoConnectorConfiguration GetConfig(string definitionName = null)
+        public IBdoConfiguration GetConfig(string definitionName = null)
         {
             return ConfigList?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
         }
 
         /// <summary>
-        /// Indicates whether this instance has the specified connector configuration.
+        /// Indicates whether this instance has the specified connector config.
         /// </summary>
         /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>

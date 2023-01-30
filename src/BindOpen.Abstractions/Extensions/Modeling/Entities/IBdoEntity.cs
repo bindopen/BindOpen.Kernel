@@ -5,7 +5,7 @@ namespace BindOpen.Extensions.Modeling
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoEntity : ITBdoExtensionItem<IBdoEntityDefinition, IBdoEntityConfiguration, IBdoEntity>
+    public interface IBdoEntity : ITBdoExtensionItem<IBdoEntity, IBdoEntityDefinition>
     {
     }
 }

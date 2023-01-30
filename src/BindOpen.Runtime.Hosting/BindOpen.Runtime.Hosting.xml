@@ -6,7 +6,7 @@
     <members>
         <member name="T:BindOpen.Runtime.Configuration.BdoHostConfiguration">
             <summary>
-            This class represents a BindOpen host configuration.
+            This class represents a BindOpen host config.
             </summary>
         </member>
         <member name="M:BindOpen.Runtime.Configuration.BdoHostConfiguration.#ctor">
@@ -193,7 +193,7 @@
         </member>
         <member name="P:BindOpen.Runtime.Hosts.BdoHostOptions.SettingsFilePath">
             <summary>
-            The host configuration file path.
+            The host config file path.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Hosts.BdoHostOptions.IsSettingsFileRequired">
@@ -408,7 +408,7 @@
             Instantiates a new instance of the BdoHostSettings class.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Hosts.BdoHostSettings.WithLibraryFolder(System.String)">
             <summary>
@@ -539,7 +539,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Settings.BdoSettings">
             <summary>
-            This class represents a configuration.
+            This class represents a config.
             </summary>
         </member>
         <member name="M:BindOpen.Runtime.Settings.BdoSettings.#ctor">
@@ -552,7 +552,7 @@
             Instantiates a new instance of the TBdoSettings class.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
         </member>
         <member name="P:BindOpen.Runtime.Settings.BdoSettings.Scope">
             <summary>
@@ -621,7 +621,7 @@
             Adds sources from connection strings.
             </summary>
             <param name="depot">The datasource depot to consider.</param>
-            <param name="config">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="keyName">The key name to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions">
@@ -737,7 +737,7 @@
         </member>
         <member name="T:Microsoft.Extensions.Configuration.ConfigurationExtension">
             <summary>
-            This static class extends .Net core configuration.
+            This static class extends .Net core config.
             </summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
@@ -745,7 +745,7 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="key"></param>
             <param name="scope"></param>
             <param name="varSet"></param>
@@ -757,7 +757,7 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="key"></param>
             <param name="defaultValue"></param>
             <param name="scope"></param>
@@ -769,7 +769,7 @@
             <summary>
             
             </summary>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="type"></param>
             <param name="key"></param>
             <returns></returns>
@@ -778,7 +778,7 @@
             <summary>
             
             </summary>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="type"></param>
             <param name="key"></param>
             <param name="defaultValue"></param>

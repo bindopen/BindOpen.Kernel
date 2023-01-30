@@ -1,16 +1,16 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions
 {
     /// <summary>
-    /// This class represents a BindOpen extension item configuration.
+    /// This class represents a BindOpen extension item config.
     /// </summary>
-    public abstract class TBdoExtensionItem<D, C, T> : BdoItem,
-        ITBdoExtensionItem<D, C, T>
-        where D : IBdoExtensionItemDefinition
-        where C : ITBdoExtensionItemConfiguration<D>
+    public abstract class TBdoExtensionItem<T, D> : BdoItem,
+        ITBdoExtensionItem<T, D>
         where T : class, IBdoExtensionItem
+        where D : IBdoExtensionItemDefinition
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -28,42 +28,20 @@ namespace BindOpen.Extensions
         #endregion
 
         // -----------------------------------------------
-        // ITBdoExtensionItem<D, C, T> Implementation
+        // ITBdoExtensionItem<T, D> Implementation
         // -----------------------------------------------
 
-        #region ITBdoExtensionItem<D, C, T>
+        #region ITBdoExtensionItem<T, D>
 
         /// <summary>
-        /// The configuration of this instance.
+        /// The config of this instance.
         /// </summary>
-        public C Config { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="config"></param>
-        /// <returns></returns>
-        public T WithConfig(C config)
-        {
-            Config = config;
-            return this as T;
-        }
+        public IBdoConfiguration Config { get; set; }
 
         /// <summary>
         /// The definition of this instance.
         /// </summary>
         public D Definition { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="def"></param>
-        /// <returns></returns>
-        public T WithDefinition(D def)
-        {
-            Definition = def;
-            return this as T;
-        }
 
         #endregion
 

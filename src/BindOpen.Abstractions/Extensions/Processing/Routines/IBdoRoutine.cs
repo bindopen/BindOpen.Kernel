@@ -1,15 +1,14 @@
-﻿using BindOpen.Extensions;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
-using BindOpen.Logging;
 
 namespace BindOpen.Extensions.Processing
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoRoutine : ITBdoExtensionItem<IBdoRoutineDefinition, IBdoRoutineConfiguration, IBdoRoutine>
+    public interface IBdoRoutine : ITBdoExtensionItem<IBdoRoutine, IBdoRoutineDefinition>
     {
         /// <summary>
         /// 

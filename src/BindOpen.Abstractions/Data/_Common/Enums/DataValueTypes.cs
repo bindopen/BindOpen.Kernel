@@ -31,9 +31,14 @@ namespace BindOpen.Data
         ByteArray = 0x01 << 2,
 
         /// <summary>
+        /// Connector.
+        /// </summary>
+        Connector = 0x01 << 3,
+
+        /// <summary>
         /// Date.
         /// </summary>
-        Date = 0x01 << 3,
+        Date = 0x01 << 4,
 
         /// <summary>
         /// Document.
@@ -73,12 +78,22 @@ namespace BindOpen.Data
         /// <summary>
         /// Text.
         /// </summary>
-        Text = 0x01 << 12,
+        Task = 0x01 << 12,
+
+        /// <summary>
+        /// Text.
+        /// </summary>
+        Text = 0x01 << 13,
 
         /// <summary>
         /// Time.
         /// </summary>
-        Time = 0x01 << 13,
+        Time = 0x01 << 14,
+
+        /// <summary>
+        /// Text.
+        /// </summary>
+        MetaData = 0x01 << 15,
 
         /// <summary>
         /// Any data value type.

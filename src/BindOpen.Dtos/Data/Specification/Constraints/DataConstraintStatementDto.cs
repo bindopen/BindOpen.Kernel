@@ -21,7 +21,7 @@ namespace BindOpen.Data.Specification
         /// </summary>
         /// <remarks>If empty then all the values are added.</remarks>
         //[XmlElement("add")]
-        //public List<BdoRoutineConfigurationDto> Constraints { get; set; }
+        //public List<BdoConfigurationDto> Constraints { get; set; }
 
         #endregion
 

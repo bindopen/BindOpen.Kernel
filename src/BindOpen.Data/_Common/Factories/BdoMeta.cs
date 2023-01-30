@@ -41,17 +41,9 @@ namespace BindOpen.Data
             }
             else
             {
-                switch (valueType)
-                {
-                    case DataValueTypes.Object:
-                        var meta = NewObject(name, items);
-                        meta?.WithItems(items);
-                        meta.UpdateTree();
-                        return meta;
-                }
+                var meta = NewObject(name, items);
+                return meta;
             }
-
-            return default;
         }
 
         /// <summary>

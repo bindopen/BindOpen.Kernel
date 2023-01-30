@@ -340,7 +340,7 @@
         </member>
         <member name="T:BindOpen.Data.Elements.BdoConfigurationDto">
             <summary>
-            This class represents a configuration DTO.
+            This class represents a config DTO.
             </summary>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoConfigurationDto.CreationDate">
@@ -721,7 +721,7 @@
         </member>
         <member name="P:BindOpen.Data.Items.DatasourceDto.Configurations">
             <summary>
-            The configuration items for this instance.
+            The config items for this instance.
             </summary>
         </member>
         <member name="P:BindOpen.Data.Items.DatasourceDto.Kind">
@@ -1175,7 +1175,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions">
             <summary>
-            This static class provides methods to handle configurations.
+            This static class provides methods to handle configs.
             </summary>
         </member>
         <member name="M:BindOpen.Runtime.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions.LoadXml``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
@@ -1193,7 +1193,7 @@
         </member>
         <member name="T:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1">
             <summary>
-            This class represents a BindOpen extension item configuration.
+            This class represents a BindOpen extension item config.
             </summary>
         </member>
         <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.Kind">
@@ -1218,7 +1218,7 @@
         </member>
         <member name="T:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1">
             <summary>
-            This class represents a BindOpen extension titled item configuration.
+            This class represents a BindOpen extension titled item config.
             </summary>
         </member>
         <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.Title">
@@ -1776,7 +1776,7 @@
             <summary>
             This class represents a task definition.
             </summary>
-            <seealso cref="!:BdoTaskConfiguration"/>
+            <seealso cref="!:BdoConfig"/>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoTaskDefinitionDto.GroupName">
             <summary>
@@ -1815,14 +1815,14 @@
             Instantiates a new instance of the TaskDefinition class. 
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Connecting.BdoConnectorConfigurationDto">
+        <member name="T:BindOpen.Extensions.Connecting.BdoConfigurationDto">
             <summary>
-            This class represents a connector configuration DTO.
+            This class represents a connector config DTO.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfigurationDto.#ctor">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfigurationDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoConnectorConfigurationDto class.
+            Instantiates a new instance of the BdoConfigurationDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Extensions.Modeling.BdoAssemblyReferenceDto">
@@ -1850,60 +1850,60 @@
             Instantiates a new instance of the BdoAssemblyReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoEntityConfigurationDto">
+        <member name="T:BindOpen.Extensions.Modeling.BdoConfigurationDto">
             <summary>
-            This class represents a entity configuration DTO.
+            This class represents a entity config DTO.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConfigurationDto.#ctor">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfigurationDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoEntityConfigurationDto class.
+            Instantiates a new instance of the BdoConfigurationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.BdoTaskConfigurationDto">
+        <member name="T:BindOpen.Extensions.Processing.BdoConfigurationDto">
             <summary>
-            This class represents a task configuration.
+            This class represents a task config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.BdoTaskConfigurationDto.InputDetail">
+        <member name="P:BindOpen.Extensions.Processing.BdoConfigurationDto.InputDetail">
             <summary>
             Input detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.BdoTaskConfigurationDto.OutputDetail">
+        <member name="P:BindOpen.Extensions.Processing.BdoConfigurationDto.OutputDetail">
             <summary>
             Output detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfigurationDto.#ctor">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfigurationDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoTaskConfigurationDto class.
+            Instantiates a new instance of the BdoConfigurationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Scripting.BdoScriptwordConfigurationDto">
+        <member name="T:BindOpen.Extensions.Scripting.BdoConfigurationDto">
             <summary>
-            This class represents a script word configuration.
+            This class represents a script word config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.BdoScriptwordConfigurationDto.WordKind">
+        <member name="P:BindOpen.Extensions.Scripting.BdoConfigurationDto.WordKind">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.BdoScriptwordConfigurationDto.ParameterDetail">
+        <member name="P:BindOpen.Extensions.Scripting.BdoConfigurationDto.ParameterDetail">
             <summary>
             Parameter detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.BdoScriptwordConfigurationDto.SubScriptword">
+        <member name="P:BindOpen.Extensions.Scripting.BdoConfigurationDto.SubScriptword">
             <summary>
             Sub script words of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfigurationDto.#ctor">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfigurationDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoScriptwordConfigurationDto class.
+            Instantiates a new instance of the BdoConfigurationDto class.
             </summary>
         </member>
         <member name="T:System.Xml.Serialization.XmlArrayElementAttribute">

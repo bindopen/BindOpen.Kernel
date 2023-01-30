@@ -33,7 +33,7 @@ namespace BindOpen.Tests.IO.Meta
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .WithConfig(
-                    BdoExt.NewConnectorConfig("tests.core$test")
+                    BdoConfig.New("tests.core$test")
                         ?.WithConnectionString("connectionString"));
 
             Assert.That(

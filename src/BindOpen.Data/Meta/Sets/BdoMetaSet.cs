@@ -28,9 +28,9 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaSet elemSet)
+        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
         {
-            return elemSet?.Items?.ToArray();
+            return metaSet?.Items?.ToArray();
         }
 
         #endregion
@@ -102,9 +102,9 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            BdoMetaSet elemSet = base.Clone(areas) as BdoMetaSet;
+            BdoMetaSet metaSet = base.Clone(areas) as BdoMetaSet;
 
-            return elemSet;
+            return metaSet;
         }
 
         #endregion

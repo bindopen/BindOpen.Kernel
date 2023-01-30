@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoMetaSet elemSet,
+            this IBdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -39,7 +39,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoMetaSet elemSet,
+            this IBdoMetaSet metaSet,
             IBdoMetaSpecSet refElementSpecSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -60,7 +60,7 @@ namespace BindOpen.Data.Meta
         /// <param name="specAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this IBdoMetaSet elemSet,
+            this IBdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             string[] specAreas = null,
             bool isExistenceChecked = true,
@@ -78,7 +78,7 @@ namespace BindOpen.Data.Meta
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         public static void Repair(
-            this IBdoMetaSet elemSet,
+            this IBdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -101,16 +101,16 @@ namespace BindOpen.Data.Meta
 
                     if (refElementSet.Items != null)
                     {
-                        while (i < elemSet.Items.Count)
+                        while (i < metaSet.Items.Count)
                         {
-                            var currentSubItem = elemSet.Items[i];
+                            var currentSubItem = metaSet.Items[i];
 
                             var referenceSubItem = refElementSet.Items.Find(p => p.BdoKeyEquals(currentSubItem));
                             if (referenceSubItem == null)
                             {
                                 if (updateModes.Has(UpdateModes.Incremental_RemoveMissingInSource))
                                 {
-                                    elemSet.Items.RemoveAt(i);
+                                    metaSet.Items.RemoveAt(i);
                                     i--;
                                 }
                             }
@@ -132,7 +132,7 @@ namespace BindOpen.Data.Meta
                     {
                         foreach (var referenceSubItem in refElementSet.Items)
                         {
-                            var currentSubItem = elemSet.Items.Find(p => p.BdoKeyEquals(referenceSubItem));
+                            var currentSubItem = metaSet.Items.Find(p => p.BdoKeyEquals(referenceSubItem));
 
                             //if (currentSubItem == null)
                             //    Add(ElementFactory.CreateFromSpec(referenceSubItem) as BdoElement);

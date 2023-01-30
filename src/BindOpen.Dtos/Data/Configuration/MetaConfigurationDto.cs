@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
-    /// This class represents a configuration DTO.
+    /// This class represents a config DTO.
     /// </summary>
     [XmlType("BaseConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot("config", Namespace = "https://xsd.bindopen.org", IsNullable = false)]

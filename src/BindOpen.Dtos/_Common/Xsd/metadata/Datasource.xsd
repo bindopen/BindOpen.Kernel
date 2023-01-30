@@ -10,7 +10,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="NamedDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="configuration" nillable="true" type="BdoConnectorConfiguration" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="config" nillable="true" type="BdoConfiguration" />
         </xs:sequence>
         <xs:attribute name="kind" type="DatasourceKind" use="required" />
         <xs:attribute name="moduleName" type="xs:string" use="optional" />

@@ -1,13 +1,13 @@
-﻿using BindOpen.Extensions.Processing;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Data.Specification
 {
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    public class DataConstraintStatement : TBdoItemSet<IBdoRoutineConfiguration>,
+    public class DataConstraintStatement : TBdoItemSet<IBdoConfiguration>,
         IDataConstraintStatement
     {
         // ------------------------------------------
@@ -36,7 +36,7 @@ namespace BindOpen.Data.Specification
         /// </summary>
         /// <param name="name">The name of the item to return.</param>
         /// <returns>Returns the item with the specified name.</returns>
-        public IBdoRoutineConfiguration GetConstraint(string name)
+        public IBdoConfiguration GetConstraint(string name)
         {
             return Get(name);
         }
@@ -51,7 +51,7 @@ namespace BindOpen.Data.Specification
             string constraintName,
             string parameterName = null)
         {
-            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoConfiguration routine = GetConstraint(constraintName);
             return routine?[parameterName];
         }
 
@@ -65,7 +65,7 @@ namespace BindOpen.Data.Specification
             string constraintName,
             string parameterName = null)
         {
-            IBdoRoutineConfiguration routine = GetConstraint(constraintName);
+            IBdoConfiguration routine = GetConstraint(constraintName);
             return routine?.GetItem(parameterName);
         }
 

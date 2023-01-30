@@ -9,6 +9,22 @@ namespace BindOpen.Data
     public static class IBdoConfigurationExtensions
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="detail"></param>
+        public static T WithDefinitionUniqueId<T>(
+            this T obj,
+            string definitionUniqueId)
+            where T : BdoConfiguration
+        {
+            if (obj != null)
+            {
+                obj.DefinitionUniqueId = definitionUniqueId;
+            }
+            return obj;
+        }
+
+        /// <summary>
         /// Adds the specified item.
         /// </summary>
         /// <param name="items">The items of the item to add.</param>

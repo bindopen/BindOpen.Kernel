@@ -36,7 +36,7 @@ namespace BindOpen.Tests.Data
         private void TestBdoDatasourceDepot(IBdoSourceDepot depot)
         {
             Assert.That(depot.HasItem("smtp_default"), "Error with item existence check");
-            Assert.That(depot.Get("smtp_default")?.ConfigList?.Count == 1, "Bad configuration count");
+            Assert.That(depot.Get("smtp_default")?.ConfigList?.Count == 1, "Bad config count");
             Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<string>("host") == _testData.host, "Bad string");
             Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<int>("port") == _testData.port, "Bad integer");
             Assert.That(depot.Get("smtp_default")?.Config()?.GetItem<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
@@ -53,7 +53,7 @@ namespace BindOpen.Tests.Data
                 BdoData.NewDatasource(
                     "smtp_default",
                     DatasourceKind.EmailServer,
-                    BdoExt.NewConnectorConfig(
+                    BdoConfig.New(
                         "messages$smtp",
                         BdoMeta.NewScalar("host", _testData.host),
                         BdoMeta.NewScalar("port", DataValueTypes.Integer, _testData.port),

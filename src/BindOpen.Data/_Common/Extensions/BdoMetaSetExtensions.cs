@@ -1,4 +1,8 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace BindOpen.Data
@@ -15,10 +19,12 @@ namespace BindOpen.Data
         /// <returns></returns>
         public static T FromObject<T>(
             this T set,
-            object obj)
+            object obj,
+            Type type = null,
+            bool onlyMetaAttributes = false)
             where T : IBdoMetaSet
         {
-            set?.WithItems(obj.ToMetaArray());
+            set?.WithItems(obj.ToMetaArray(type, onlyMetaAttributes));
             return set;
         }
 
@@ -26,36 +32,120 @@ namespace BindOpen.Data
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static IBdoMetaSet ToMetaSet(this object obj)
-            => obj.ToMetaSet<BdoMetaSet>();
+        public static IBdoMetaSet ToMetaSet(
+            this object obj,
+            Type type = null,
+            bool onlyMetaAttributes = true)
+            => obj.ToMetaSet<BdoMetaSet>(type, onlyMetaAttributes);
 
         /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static T ToMetaSet<T>(this object obj)
+        public static T ToMetaSet<T>(
+            this object obj,
+            Type type = null,
+            bool onlyMetaAttributes = true)
             where T : class, IBdoMetaSet, new()
         {
             T metaSet = default;
 
             if (obj != null)
             {
+                type ??= obj.GetType();
+
                 metaSet = new();
-                foreach (var info in obj.GetType().GetProperties())
+                foreach (var propInfo in type.GetProperties())
                 {
-                    string propertyName = info.Name;
-                    object propertyValue = info.GetValue(obj);
+                    string propName = propInfo.Name;
+                    object propValue = propInfo.GetValue(obj);
 
-                    if (info.GetCustomAttribute(typeof(BdoDataAttribute)) is BdoDataAttribute attribute)
+                    var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
+                    if (bdoAttribute != null || !onlyMetaAttributes)
                     {
-                        propertyName = attribute.Name;
+                        if (!string.IsNullOrEmpty(bdoAttribute?.Name))
+                        {
+                            propName = bdoAttribute.Name;
+                        }
+                        metaSet.Add(propValue.ToMeta(propName));
                     }
-
-                    metaSet.Add(propertyValue.ToMeta(propertyName));
                 }
             }
 
             return metaSet;
+        }
+
+        /// <summary>
+        /// Sets information of the specified prop.
+        /// </summary>
+        /// <param name="obj">The object to update.</param>
+        /// <param name="metaSet">The set of elements to return.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <param name="log">The log to consider.</param>
+        public static void UpdateFromMetaSet(
+            this object obj,
+            IBdoMetaSet metaSet,
+            bool onlyMetaAttributes = true,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (obj == null || !metaSet.HasItem()) return;
+
+            foreach (var propInfo in obj.GetType().GetProperties())
+            {
+                var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
+                if (bdoAttribute != null || !onlyMetaAttributes)
+                {
+                    string name = bdoAttribute.Name;
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        name = propInfo.Name;
+                    }
+
+                    try
+                    {
+                        if (metaSet.HasItem(name))
+                        {
+                            var type = propInfo.PropertyType;
+                            var value = metaSet.GetItem(name, scope, varSet, log);
+                            if (value != null)
+                            {
+                                if (type.IsEnum)
+                                {
+                                    if (!value.GetType().IsEnum && Enum.IsDefined(type, value))
+                                    {
+                                        value = Enum.Parse(type, value as string);
+                                    }
+                                }
+                            }
+                            else if (value?.GetType() == typeof(Dictionary<string, object>)
+                                && type.IsGenericType
+                                && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+                                && type != typeof(Dictionary<string, object>))
+                            {
+                                Type itemType = type.GetGenericArguments()[0];
+
+                                var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+
+                                foreach (var item in (value as Dictionary<string, object>))
+                                {
+                                    method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                }
+                                value = dictionary;
+                            }
+
+                            propInfo.SetValue(obj, value);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log?.AddException(ex);
+                    }
+                }
+            }
         }
     }
 }

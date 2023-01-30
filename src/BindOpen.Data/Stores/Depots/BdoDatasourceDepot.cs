@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using System.Linq;
 
@@ -84,12 +84,12 @@ namespace BindOpen.Data.Stores
         // Configurations ------------------------------------------
 
         /// <summary>
-        /// Gets the specified connector configuration.
+        /// Gets the specified connector config.
         /// </summary>
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
-        public IBdoConnectorConfiguration GetConnectorConfig(
+        public IBdoConfiguration GetConnectorConfig(
             string sourceName = null,
             string connectorDefinitionUniqueId = null)
         {
@@ -99,7 +99,7 @@ namespace BindOpen.Data.Stores
         }
 
         /// <summary>
-        /// Indicates whether this instance has the specified connector configuration.
+        /// Indicates whether this instance has the specified connector config.
         /// </summary>
         /// <param name="sourceName">The name of the data module to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
@@ -112,7 +112,7 @@ namespace BindOpen.Data.Stores
         }
 
         /// <summary>
-        /// Returns the connection string corresponding to the specified configuration.
+        /// Returns the connection string corresponding to the specified config.
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
         /// <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
@@ -121,7 +121,7 @@ namespace BindOpen.Data.Stores
             string sourceName = null,
             string connectorDefinitionUniqueId = null)
         {
-            IBdoConnectorConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueId);
+            IBdoConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueId);
 
             return config?.GetItem<string>("connectionString");
         }

@@ -1,5 +1,8 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
+using BindOpen.Extensions.Processing;
 using System;
 using System.Collections;
 
@@ -29,12 +32,7 @@ namespace BindOpen.Data
                 case DataValueTypes.Long:
                 case DataValueTypes.ULong:
                     return true;
-                case DataValueTypes.Undefined:
-                case DataValueTypes.None:
-                case DataValueTypes.Entity:
-                case DataValueTypes.Document:
-                case DataValueTypes.Object:
-                case DataValueTypes.Any:
+                default:
                     break;
             }
 
@@ -101,10 +99,16 @@ namespace BindOpen.Data
                 return DataValueTypes.Time;
             else if (type == typeof(string))
                 return DataValueTypes.Text;
+            else if (typeof(IBdoMetaData).IsAssignableFrom(type))
+                return DataValueTypes.MetaData;
             else if (typeof(IBdoDocument).IsAssignableFrom(type))
                 return DataValueTypes.Document;
-            else if (typeof(IBdoEntity).IsAssignableFrom(type) || typeof(IBdoEntityConfiguration).IsAssignableFrom(type))
+            else if (typeof(IBdoEntity).IsAssignableFrom(type))
                 return DataValueTypes.Entity;
+            else if (typeof(IBdoTask).IsAssignableFrom(type))
+                return DataValueTypes.Task;
+            else if (typeof(IBdoConnector).IsAssignableFrom(type))
+                return DataValueTypes.Connector;
             else if (type == typeof(long) || type == typeof(long?))
                 return DataValueTypes.Long;
             else if (type == typeof(ulong) || type == typeof(ulong?))

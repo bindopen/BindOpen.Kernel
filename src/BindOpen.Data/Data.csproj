@@ -25,6 +25,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="_Common\Factories\BdoConfig_Extensions.cs~RF14a74429.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

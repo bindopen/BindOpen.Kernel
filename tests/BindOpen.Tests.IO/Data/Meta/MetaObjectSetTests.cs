@@ -44,16 +44,16 @@ namespace BindOpen.Tests.IO.Data
         {
             //        var metaEntity1 = BdoMeta.NewEntity(
             //"entity1",
-            //        BdoExt.NewEntityConfig(
+            //        BdoConfig.New(
             //    "tests.core$testEntity",
             //    BdoMeta.NewScalar("path", _testData.path1)));
 
             //        var metaEntity2 = BdoMeta.NewEntity("entity2", "tests.core$testEntity")
-            //            .WithItems((new { path = _testData.path2 }).ToMetaSet<BdoEntityConfiguration>());
+            //            .WithItems((new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
             //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
 
             //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
-            //        BdoExt.NewEntityConfig("tests.core$testEntity")
+            //        BdoConfig.New("tests.core$testEntity")
             //                .WithItems((new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
 
             var meta1 = BdoMeta.NewObject("object1", _obj1);

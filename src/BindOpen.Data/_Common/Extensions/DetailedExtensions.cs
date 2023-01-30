@@ -12,15 +12,15 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="detail"></param>
         public static T WithDetail<T>(
-            this T detailed,
+            this T obj,
             params IBdoMetaData[] elms)
             where T : IDetailed
         {
-            if (detailed != null)
+            if (obj != null)
             {
-                detailed.Detail = BdoMeta.NewSet(elms);
+                obj.Detail = BdoMeta.NewSet(elms);
             }
-            return detailed;
+            return obj;
         }
     }
 }

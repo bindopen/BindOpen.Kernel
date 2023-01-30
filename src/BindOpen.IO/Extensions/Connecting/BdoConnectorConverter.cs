@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -12,7 +13,7 @@ namespace BindOpen.Extensions.Connecting
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoConnectorConfigurationDto ToDto(this IBdoConnector poco)
+        public static BdoConfigurationDto ToDto(this IBdoConnector poco)
         {
             if (poco == null) return null;
 
@@ -27,7 +28,7 @@ namespace BindOpen.Extensions.Connecting
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static T ToPoco<T>(this BdoConnectorConfigurationDto dto) where T : class, IBdoConnector, new()
+        public static T ToPoco<T>(this BdoConfigurationDto dto) where T : class, IBdoConnector, new()
         {
             if (dto == null) return null;
 

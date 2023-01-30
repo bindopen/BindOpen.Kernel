@@ -44,7 +44,7 @@
         </member>
         <member name="F:BindOpen.Runtime.Hosts.BdoHostPathKind.HostConfigFile">
             <summary>
-            The host configuration file.
+            The host config file.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Hosts.IBdoHost">

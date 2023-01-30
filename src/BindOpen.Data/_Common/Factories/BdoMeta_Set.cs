@@ -76,10 +76,10 @@ namespace BindOpen.Data
         public static BdoMetaSet NewSet<T>(params IBdoMetaData[] elems)
             where T : class, IBdoMetaSet, new()
         {
-            var elemSet = NewSet<T>();
-            elemSet.WithItems(elems);
+            var metaSet = NewSet<T>();
+            metaSet.WithItems(elems);
 
-            return elemSet;
+            return metaSet;
         }
 
         /// <summary>
@@ -90,10 +90,10 @@ namespace BindOpen.Data
         public static BdoMetaSet NewSet<T>(params (string Name, object Value)[] pairs)
             where T : class, IBdoMetaSet, new()
         {
-            var elemSet = NewSet<T>();
-            elemSet.WithItems(pairs.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            var metaSet = NewSet<T>();
+            metaSet.WithItems(pairs.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
 
-            return elemSet;
+            return metaSet;
         }
 
         /// <summary>
@@ -104,10 +104,10 @@ namespace BindOpen.Data
         public static BdoMetaSet NewSet<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
             where T : class, IBdoMetaSet, new()
         {
-            var elemSet = NewSet<T>();
-            elemSet.WithItems(triplets.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            var metaSet = NewSet<T>();
+            metaSet.WithItems(triplets.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
-            return elemSet;
+            return metaSet;
         }
 
 
@@ -137,7 +137,7 @@ namespace BindOpen.Data
             string stringObject)
             where T : class, IBdoMetaSet, new()
         {
-            var elemSet = new BdoMetaSet();
+            var metaSet = new BdoMetaSet();
             if (stringObject != null)
             {
                 foreach (var subString in stringObject.Split(';'))
@@ -145,7 +145,7 @@ namespace BindOpen.Data
                     if (subString.IndexOf("=") > 0)
                     {
                         int i = subString.IndexOf("=");
-                        elemSet.Add(
+                        metaSet.Add(
                             BdoMeta.NewScalar(
                                 subString[..i],
                                 DataValueTypes.Text,
@@ -153,7 +153,7 @@ namespace BindOpen.Data
                     }
                 }
             }
-            return elemSet;
+            return metaSet;
         }
     }
 }

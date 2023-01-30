@@ -3,7 +3,7 @@
 namespace BindOpen.Runtime.Configuration
 {
     /// <summary>
-    /// This class represents a BindOpen host configuration.
+    /// This class represents a BindOpen host config.
     /// </summary>
     public class BdoHostConfiguration : BdoConfiguration
     {

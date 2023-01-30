@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Items
@@ -55,19 +55,19 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoConnectorConfiguration Config();
+        IBdoConfiguration Config();
 
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoConnectorConfiguration> ConfigList { get; set; }
+        List<IBdoConfiguration> ConfigList { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IBdoConnectorConfiguration GetConfig(string name = null);
+        IBdoConfiguration GetConfig(string name = null);
 
         /// <summary>
         /// 
@@ -77,21 +77,21 @@ namespace BindOpen.Data.Items
         bool HasConfig(string name = null);
 
         /// <summary>
-        /// Removes the specified connector configuration.
+        /// Removes the specified connector config.
         /// </summary>
-        /// <param name="name">The name of the connector configuration to consider.</param>
+        /// <param name="name">The name of the connector config to consider.</param>
         IBdoDatasource RemoveConfig(string name);
 
         /// <summary>
-        /// Sets the specified configurations.
+        /// Sets the specified configs.
         /// </summary>
-        /// <param name="configs">The configurations to consider.</param>
-        IBdoDatasource WithConfig(params IBdoConnectorConfiguration[] configs);
+        /// <param name="configs">The configs to consider.</param>
+        IBdoDatasource WithConfig(params IBdoConfiguration[] configs);
 
         /// <summary>
-        /// Adds the specified connector configuration.
+        /// Adds the specified connector config.
         /// </summary>
         /// <param name="config">The connector to add.</param>
-        IBdoDatasource AddConfig(IBdoConnectorConfiguration config);
+        IBdoDatasource AddConfig(IBdoConfiguration config);
     }
 }

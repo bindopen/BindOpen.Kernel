@@ -1,8 +1,8 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Logging;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
 using BindOpen.Data.Stores;
-using BindOpen.Runtime.References;
+using BindOpen.Extensions.Scripting;
+using BindOpen.Logging;
 using BindOpen.Runtime.Stores;
 using System;
 
@@ -38,6 +38,14 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         /// <returns>Returns the new script interpreter.</returns>
         IBdoScriptInterpreter NewScriptInterpreter();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <returns></returns>
+        Type CreateType(
+            IBdoClassReference reference);
 
         /// <summary>
         /// Loads the specified extensions.

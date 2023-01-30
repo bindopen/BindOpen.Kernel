@@ -1,11 +1,13 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Extensions
 {
     /// <summary>
     /// This class represents a BindOpen extension runtime item.
     /// </summary>
-    public interface IBdoExtensionItem : IBdoItem
+    public interface IBdoExtensionItem :
+        IBdoItem, IConfigurable
     {
     }
 }

@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Stores
 {
@@ -14,7 +14,7 @@ namespace BindOpen.Data.Stores
         /// <param name="sourceName"></param>
         /// <param name="connectorDefinitionUniqueId"></param>
         /// <returns></returns>
-        IBdoConnectorConfiguration GetConnectorConfig(string sourceName, string connectorDefinitionUniqueId = null);
+        IBdoConfiguration GetConnectorConfig(string sourceName, string connectorDefinitionUniqueId = null);
 
         /// <summary>
         /// 

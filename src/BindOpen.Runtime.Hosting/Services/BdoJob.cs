@@ -227,7 +227,7 @@ namespace BindOpen.Runtime.Services
         {
             // we initialize the application scope
 
-            Scope = BdoRtm.NewScope();
+            Scope = BdoRuntime.NewScope();
             Scope.Context.AddSystemItem("bdoHost", this);
 
             _isLoaded = true;

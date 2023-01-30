@@ -8,7 +8,7 @@ namespace BindOpen.Tests
     /// This class represents a test connector.
     /// </summary>
     [BdoConnector(Name = "tests.core$testConnector")]
-    public class ConnectorFake : TBdoConnector<ConnectionFake>
+    public class ConnectorFake : BdoConnector
     {
         /// <summary>
         /// The host of this instance.

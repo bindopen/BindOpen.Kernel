@@ -1,4 +1,9 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// 
@@ -24,22 +29,12 @@
         /// <summary>
         /// 
         /// </summary>
-        string ClassFullName { get; set; }
+        IBdoClassReference ClassReference { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithClassFullName(string classFullName);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string DefinitionUniqueId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaObject WithDefinitionUniqueId(string definitionUniqueId);
+        IBdoMetaObject WithClassReference(IBdoClassReference reference);
 
         /// <summary>
         /// 
@@ -52,6 +47,16 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaObject UpdateTree();
+        IBdoMetaObject UpdateTree(
+            IBdoScope scope = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Type GetItemType(
+            IBdoScope scope = null,
+            IBdoLog log = null);
     }
 }

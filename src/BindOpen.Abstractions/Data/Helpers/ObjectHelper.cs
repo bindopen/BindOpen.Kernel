@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Scripting;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -311,97 +309,6 @@ namespace BindOpen.Data
             }
 
             return propertyInfo;
-        }
-
-        /// <summary>
-        /// Sets information of the specified property.
-        /// </summary>
-        /// <param name="obj">The object to update.</param>
-        /// <param name="elemSet">The set of elements to return.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <param name="log">The log to consider.</param>
-        public static void UpdateFromElementSet(
-            this object obj,
-            IBdoMetaSet elemSet,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            obj.UpdateFromElementSet<BdoDataAttribute>(
-                elemSet, scope, varSet, log);
-        }
-
-        /// <summary>
-        /// Sets information of the specified property.
-        /// </summary>
-        /// <param name="obj">The object to update.</param>
-        /// <param name="elemSet">The set of elements to return.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <param name="log">The log to consider.</param>
-        public static void UpdateFromElementSet<T>(
-            this object obj,
-            IBdoMetaSet elemSet,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null) where T : BdoDataAttribute
-        {
-            if (obj == null || !elemSet.HasItem()) return;
-
-            foreach (var propertyInfo in obj.GetType().GetProperties())
-            {
-                if (propertyInfo.GetCustomAttribute(typeof(T)) is Attribute attribute)
-                {
-                    if (attribute is T elementAttribute)
-                    {
-                        string name = elementAttribute.Name;
-                        if (string.IsNullOrEmpty(name))
-                            name = propertyInfo.Name;
-
-                        try
-                        {
-                            if (elemSet.HasItem(name))
-                            {
-                                var type = propertyInfo.PropertyType;
-                                var value = elemSet.GetItem(name, scope, varSet, log);
-                                if (value != null)
-                                {
-                                    if (type.IsEnum)
-                                    {
-                                        if (!value.GetType().IsEnum && Enum.IsDefined(type, value))
-                                        {
-                                            value = Enum.Parse(type, value as string);
-                                        }
-                                    }
-                                }
-                                else if (value?.GetType() == typeof(Dictionary<string, object>)
-                                    && type.IsGenericType
-                                    && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
-                                    && type != typeof(Dictionary<string, object>))
-                                {
-                                    Type itemType = type.GetGenericArguments()[0];
-
-                                    var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
-                                    var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
-
-                                    foreach (var item in (value as Dictionary<string, object>))
-                                    {
-                                        method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
-                                    }
-                                    value = dictionary;
-                                }
-
-                                propertyInfo.SetValue(obj, value);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            log?.AddException(ex);
-                        }
-                    }
-                }
-            }
         }
 
         /// <summary>

@@ -7,9 +7,16 @@ namespace BindOpen.Data.Configuration
     /// 
     /// </summary>
     public interface IBdoConfiguration :
-        IReferenced, IBdoMetaSet,
-        INamed, IGloballyDescribed, IStorable
+        IBdoMetaSet,
+        INamed, IReferenced,
+        IGloballyTitled, IGloballyDescribed,
+        IStorable
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        string DefinitionUniqueId { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

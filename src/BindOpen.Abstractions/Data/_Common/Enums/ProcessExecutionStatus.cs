@@ -45,7 +45,7 @@ namespace BindOpen.Data
         Stopped_Exception,
 
         /// <summary>
-        /// Stopped with errors (configuration error).
+        /// Stopped with errors (config error).
         /// </summary>
         Stopped_Error,
 

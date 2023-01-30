@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Logging;
 using BindOpen.Runtime.Hosting.Exceptions;
-using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Runtime.Services;
 using Microsoft.Extensions.Logging;
@@ -32,7 +32,7 @@ namespace BindOpen.Runtime.Hosts
         public IBdoHostSettings Settings { get; internal set; } = new BdoHostSettings();
 
         /// <summary>
-        /// The host configuration file path.
+        /// The host config file path.
         /// </summary>
         public string SettingsFilePath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultHostConfigFileName).ToPath();
 

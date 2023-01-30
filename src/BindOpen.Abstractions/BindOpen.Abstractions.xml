@@ -106,30 +106,30 @@
             <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Connecting.IBdoConnectorConfiguration">
+        <member name="T:BindOpen.Extensions.Connecting.IBdoConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.IBdoConnectorConfiguration.GetConnectionString">
+        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.GetConnectionString">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.IBdoConnectorConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.IBdoConnectorConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.IBdoConnectorConfiguration.WithConnectionString(System.String)">
+        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.WithConnectionString(System.String)">
             <summary>
             
             </summary>
@@ -329,18 +329,18 @@
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.IBdoEntityConfiguration">
+        <member name="T:BindOpen.Extensions.Modeling.IBdoConfiguration">
             <summary>
-            This interface defines the entity configuration.
+            This interface defines the entity config.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -413,29 +413,29 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.IBdoEntityConfiguration">
+        <member name="T:BindOpen.Extensions.Modeling.IBdoConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
-            <summary>
-            
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.Schema">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="P:BindOpen.Extensions.Modeling.IBdoConfiguration.Schema">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoEntityConfiguration.WithSchema(BindOpen.Runtime.Definition.IDataSchema)">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithSchema(BindOpen.Runtime.Definition.IDataSchema)">
             <summary>
             
             </summary>
@@ -457,18 +457,18 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.IBdoFormatConfiguration">
+        <member name="T:BindOpen.Extensions.Modeling.IBdoConfiguration">
              <summary>
             
              </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoFormatConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoFormatConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -527,18 +527,18 @@
             <param name="objects"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.IBdoRoutineConfiguration">
+        <member name="T:BindOpen.Extensions.Processing.IBdoConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoRoutineConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoRoutineConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -640,53 +640,53 @@
             <param name="runtimeMode"></param>
             <param name="log"></param>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.IBdoTaskConfiguration">
+        <member name="T:BindOpen.Extensions.Processing.IBdoConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.IBdoTaskConfiguration.InputDetail">
+        <member name="P:BindOpen.Extensions.Processing.IBdoConfiguration.InputDetail">
             <summary>
             The input detail.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.AddInputs(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.AddInputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.WithInputs(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithInputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.IBdoTaskConfiguration.OutputDetail">
+        <member name="P:BindOpen.Extensions.Processing.IBdoConfiguration.OutputDetail">
             <summary>
             The output detail.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.AddOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.AddOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.WithOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.GetEntries(BindOpen.Runtime.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntries(BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
             <param name="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.GetEntryWithName(System.String,BindOpen.Runtime.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntryWithName(System.String,BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
@@ -694,13 +694,13 @@
             <param name="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTaskConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -1052,28 +1052,28 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration">
+        <member name="T:BindOpen.Extensions.Scripting.IBdoConfiguration">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration.SubScriptword">
+        <member name="P:BindOpen.Extensions.Scripting.IBdoConfiguration.SubScriptword">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration.WithSubScriptword(BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration)">
+        <member name="M:BindOpen.Extensions.Scripting.IBdoConfiguration.WithSubScriptword(BindOpen.Extensions.Scripting.IBdoConfiguration)">
             <summary>
             
             </summary>
             <param name="scriptword"></param>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration.WordKind">
+        <member name="P:BindOpen.Extensions.Scripting.IBdoConfiguration.WordKind">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration.WithWordKind(BindOpen.Extensions.Scripting.ScriptItemKinds)">
+        <member name="M:BindOpen.Extensions.Scripting.IBdoConfiguration.WithWordKind(BindOpen.Extensions.Scripting.ScriptItemKinds)">
             <summary>
             
             </summary>
@@ -1447,7 +1447,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.WithTask(BindOpen.Extensions.Processing.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Logging.IBdoLog.WithTask(BindOpen.Extensions.Processing.IBdoConfiguration)">
             <summary>
             
             </summary>
@@ -2984,7 +2984,7 @@
             Sets information of the specified property.
             </summary>
             <param name="obj">The object to update.</param>
-            <param name="elemSet">The set of elements to return.</param>
+            <param name="metaSet">The set of elements to return.</param>
             <param name="scope">The scope to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
@@ -2994,7 +2994,7 @@
             Sets information of the specified property.
             </summary>
             <param name="obj">The object to update.</param>
-            <param name="elemSet">The set of elements to return.</param>
+            <param name="metaSet">The set of elements to return.</param>
             <param name="scope">The scope to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
@@ -3612,19 +3612,19 @@
         </member>
         <member name="M:BindOpen.Data.Items.IBdoDataSource.RemoveConfig(System.String)">
             <summary>
-            Removes the specified connector configuration.
+            Removes the specified connector config.
             </summary>
-            <param name="name">The name of the connector configuration to consider.</param>
+            <param name="name">The name of the connector config to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoDataSource.WithConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration[])">
+        <member name="M:BindOpen.Data.Items.IBdoDataSource.WithConfig(BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
-            Sets the specified configurations.
+            Sets the specified configs.
             </summary>
-            <param name="configs">The configurations to consider.</param>
+            <param name="configs">The configs to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoDataSource.AddConfig(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Data.Items.IBdoDataSource.AddConfig(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
-            Adds the specified connector configuration.
+            Adds the specified connector config.
             </summary>
             <param name="config">The connector to add.</param>
         </member>
@@ -4786,7 +4786,7 @@
         </member>
         <member name="F:BindOpen.Data.ProcessExecutionStatus.Stopped_Error">
             <summary>
-            Stopped with errors (configuration error).
+            Stopped with errors (config error).
             </summary>
         </member>
         <member name="F:BindOpen.Data.ProcessExecutionStatus.Stopped_User">

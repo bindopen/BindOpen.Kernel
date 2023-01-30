@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
-    /// This class represents a configuration.
+    /// This class represents a config.
     /// </summary>
     public class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
@@ -32,12 +32,17 @@ namespace BindOpen.Data.Configuration
         #region IBdoBaseConfiguration
 
         /// <summary>
+        /// 
+        /// </summary>
+        public string DefinitionUniqueId { get; set; }
+
+        /// <summary>
         /// The using file paths of this instance.
         /// </summary>
         public List<string> UsedItemIds { get; set; }
 
         /// <summary>
-        /// The using configuration statement of this instance.
+        /// The using config statement of this instance.
         /// </summary>
         public IBdoConfiguration UsingConfiguration { get; set; }
 
@@ -106,6 +111,19 @@ namespace BindOpen.Data.Configuration
         #endregion
 
         // ------------------------------------------
+        // IGloballyTitled Implementation
+        // ------------------------------------------
+
+        #region IGloballyTitled
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoDictionary Title { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
         // IGloballyDescribed Implementation
         // ------------------------------------------
 
@@ -115,11 +133,6 @@ namespace BindOpen.Data.Configuration
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Description?[key, defaultKey];
-        }
 
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Modeling;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Logging;
 
 namespace BindOpen.Data.Items
@@ -11,12 +11,12 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoEntityConfiguration Container { get; set; }
+        IBdoConfiguration Container { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoEntityConfiguration Content { get; set; }
+        IBdoConfiguration Content { get; set; }
 
         /// <summary>
         /// 
@@ -24,7 +24,7 @@ namespace BindOpen.Data.Items
         /// <param name="dataSource"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        IBdoFormatConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoLog log);
+        IBdoConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoLog log);
 
         /// <summary>
         /// 

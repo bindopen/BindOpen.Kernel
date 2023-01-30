@@ -11,7 +11,7 @@
       <xs:enumeration value="Task" />
       <xs:enumeration value="DataQuery" />
       <xs:enumeration value="DataClass" />
-      <xs:enumeration value="BdoFormatConfiguration" />
+      <xs:enumeration value="BdoConfiguration" />
     </xs:restriction>
   </xs:simpleType>
 

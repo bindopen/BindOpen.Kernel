@@ -4,19 +4,19 @@
         <name>BindOpen.IO</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Extensions.Connecting.BdoConnectorConfigurationConverter">
+        <member name="T:BindOpen.Extensions.Connecting.BdoConfigurationConverter">
             <summary>
-            This class represents a connector configuration converter.
+            This class represents a connector config converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfigurationConverter.ToDto(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfigurationConverter.ToPoco(BindOpen.Extensions.Connecting.BdoConnectorConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Connecting.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
@@ -35,26 +35,26 @@
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConverter.ToPoco``1(BindOpen.Extensions.Connecting.BdoConnectorConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConverter.ToPoco``1(BindOpen.Extensions.Connecting.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoEntityConfigurationConverter">
+        <member name="T:BindOpen.Extensions.Modeling.BdoConfigurationConverter">
             <summary>
-            This class represents a entity configuration converter.
+            This class represents a entity config converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConfigurationConverter.ToDto(BindOpen.Extensions.Modeling.IBdoEntityConfiguration)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConfigurationConverter.ToPoco(BindOpen.Extensions.Modeling.BdoEntityConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Modeling.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
@@ -73,26 +73,26 @@
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConverter.ToPoco``1(BindOpen.Extensions.Modeling.BdoEntityConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConverter.ToPoco``1(BindOpen.Extensions.Modeling.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.BdoTaskConfigurationConverter">
+        <member name="T:BindOpen.Extensions.Processing.BdoConfigConverter">
             <summary>
-            This class represents a task configuration converter.
+            This class represents a task config converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfigurationConverter.ToDto(BindOpen.Extensions.Processing.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfigConverter.ToDto(BindOpen.Extensions.Processing.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfigurationConverter.ToPoco(BindOpen.Extensions.Processing.BdoTaskConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfigConverter.ToPoco(BindOpen.Extensions.Processing.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
@@ -111,7 +111,7 @@
             <param name="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConverter.ToPoco``1(BindOpen.Extensions.Processing.BdoTaskConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTaskConverter.ToPoco``1(BindOpen.Extensions.Processing.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>

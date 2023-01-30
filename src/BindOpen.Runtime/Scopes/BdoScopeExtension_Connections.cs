@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -40,22 +41,22 @@ namespace BindOpen.Runtime.Scopes
         /// Creates a connector using the specified data module and connector unique name.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The connector configuration to consider.</param>
+        /// <param name="config">The connector config to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoConnectorConfiguration configuration,
+            IBdoConfiguration config,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (configuration == null)
+            if (config == null)
             {
                 log?.AddError("Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.NewConnector(configuration, log: log);
+                var connector = scope.NewConnector(config, log: log);
 
                 if (connector != null)
                 {

@@ -11,7 +11,7 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a task definition.
     /// </summary>
-    /// <seealso cref="BdoTaskConfiguration"/>
+    /// <seealso cref="BdoConfig"/>
     public class BdoTaskDefinition : BdoExtensionItemDefinition, IBdoTaskDefinition
     {
         // ------------------------------------------

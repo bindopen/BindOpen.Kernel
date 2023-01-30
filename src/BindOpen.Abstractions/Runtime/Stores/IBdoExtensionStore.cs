@@ -44,6 +44,15 @@ namespace BindOpen.Runtime.Stores
         /// 
         /// </summary>
         /// <param name="uniqueId"></param>
+        /// <returns></returns>
+        IBdoExtensionItemDefinition GetItemDefinitionWithUniqueId(
+            BdoExtensionItemKind kind,
+            string uniqueId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniqueId"></param>
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
         IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null);

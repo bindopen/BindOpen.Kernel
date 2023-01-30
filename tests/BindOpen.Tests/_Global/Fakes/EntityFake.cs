@@ -66,6 +66,13 @@ namespace BindOpen.Tests
         [BdoScriptword(Name = "input")]
         public BdoMetaSet Inputs { get; set; }
 
+
+        /// <summary>
+        /// The sub entity of this instance.
+        /// </summary>
+        [BdoData(Name = "subEntity")]
+        public EntityFake SubEntity { get; set; }
+
         // Path --------------------------
 
         /// <summary>
@@ -241,9 +248,13 @@ namespace BindOpen.Tests
         /// </summary>
         /// <param name="fileName">The file name of the instance.</param>
         /// <param name="folderPath">The folder path of the instance.</param>
-        public EntityFake(string fileName, string folderPath) : base()
+        public EntityFake(
+            string fileName,
+            string folderPath,
+            EntityFake subEntity = null) : base()
         {
             WithPath(fileName, folderPath);
+            SubEntity = subEntity;
         }
 
         #endregion

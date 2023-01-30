@@ -1,4 +1,4 @@
-﻿using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Data.Configuration;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -36,7 +36,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [JsonPropertyName("word")]
         [XmlElement("word")]
-        public BdoScriptwordConfigurationDto Word { get; set; }
+        public BdoConfigurationDto Word { get; set; }
 
         #endregion
 

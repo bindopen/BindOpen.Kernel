@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Abstractions.Data._Common.Extensions
+﻿using BindOpen.Data.Items;
+
+namespace BindOpen.Data
 {
     /// <summary>
     /// 

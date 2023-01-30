@@ -1,11 +1,14 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
-using BindOpen.Runtime.References;
+using BindOpen.Extensions.Scripting;
+using BindOpen.Logging;
+using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Stores;
 using System;
+using System.Linq;
 
 namespace BindOpen.Runtime.Scopes
 {
@@ -14,34 +17,6 @@ namespace BindOpen.Runtime.Scopes
     /// </summary>
     public class BdoScope : BdoItem, IBdoScope
     {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The application domain.
-        /// </summary>
-        public AppDomain AppDomain { get; } = null;
-
-        /// <summary>
-        /// The BindOpen extension store of this instance.
-        /// </summary>
-        public IBdoExtensionStore ExtensionStore { get; set; }
-
-        /// <summary>
-        /// The data context of this instance.
-        /// </summary>
-        public IBdoDataContext Context { get; set; }
-
-        /// <summary>
-        /// The data store of this instance.
-        /// </summary>
-        public IBdoDataStore DataStore { get; set; }
-
-        #endregion
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
@@ -64,10 +39,59 @@ namespace BindOpen.Runtime.Scopes
         #endregion
 
         // ------------------------------------------
-        // MUTATORS
+        // IBdoScope Implementation
         // ------------------------------------------
 
-        #region Mutators
+        #region IBdoScope
+
+        /// <summary>
+        /// The application domain.
+        /// </summary>
+        public AppDomain AppDomain { get; } = null;
+
+        /// <summary>
+        /// The BindOpen extension store of this instance.
+        /// </summary>
+        public IBdoExtensionStore ExtensionStore { get; set; }
+
+        /// <summary>
+        /// The data context of this instance.
+        /// </summary>
+        public IBdoDataContext Context { get; set; }
+
+        /// <summary>
+        /// The data store of this instance.
+        /// </summary>
+        public IBdoDataStore DataStore { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reference"></param>
+        public Type CreateType(
+            IBdoClassReference reference)
+        {
+            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueId))
+            {
+                var definition = ExtensionStore?.GetItemDefinitionWithUniqueId<IBdoEntityDefinition>(
+                    reference.DefinitionUniqueId);
+
+                return definition?.RuntimeType;
+            }
+            else
+            {
+                var assembly = AppDomain.GetAssemblies()
+                    .FirstOrDefault(q =>
+                        BdoData.Assembly(q) == reference);
+                var type = assembly.GetTypes()
+                    .FirstOrDefault(q =>
+                        BdoData.Class(
+                            BdoData.Assembly(assembly),
+                            reference.ClassName) == reference);
+
+                return type;
+            }
+        }
 
         /// <summary>
         /// Creates a new script interpreter.

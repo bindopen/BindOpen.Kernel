@@ -3,7 +3,7 @@
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
-    /// This class represents a configuration.
+    /// This class represents a config.
     /// </summary>
     public class BdoConfigurationBundle :
         TBdoItemSet<IBdoConfiguration>,

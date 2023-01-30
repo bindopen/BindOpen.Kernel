@@ -27,37 +27,31 @@ namespace BindOpen.Runtime.Definition
         public static BdoExtensionItemKind GetExtensionItemKind(this Type type)
         {
             if ((typeof(IBdoTaskDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoTaskConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoTask).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Task;
             }
             else if ((typeof(IBdoEntityDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoEntityConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoEntity).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Entity;
             }
             else if ((typeof(IBdoConnectorDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoConnectorConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoConnector).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Connector;
             }
             else if ((typeof(IBdoRoutineDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoRoutineConfiguration).IsAssignableFrom(type))
                 || (typeof(IResourceAllocation).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Routine;
             }
             else if ((typeof(IBdoEntityDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoEntityConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoEntity).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Entity;
             }
             else if ((typeof(IBdoFormatDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoFormatConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoFormat).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Format;

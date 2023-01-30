@@ -1,4 +1,4 @@
-﻿using BindOpen.Runtime.References;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores

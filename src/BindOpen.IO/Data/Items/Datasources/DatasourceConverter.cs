@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Extensions.Connecting;
 using System.Linq;
 
 namespace BindOpen.Data.Items

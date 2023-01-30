@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
@@ -12,7 +13,7 @@ namespace BindOpen.Tests.IO.Extensions
     [TestFixture, Order(300)]
     public class IOEntityTests
     {
-        private EntityFake _carrier = null;
+        private EntityFake _entity = null;
 
         private readonly string _filePath = GlobalVariables.WorkingFolder + "Entity.xml";
 
@@ -31,15 +32,15 @@ namespace BindOpen.Tests.IO.Extensions
             };
         }
 
-        private void Test(EntityFake field)
+        private void Test(EntityFake entity)
         {
-            Assert.That(field != null, "Field missing");
-            if (field != null)
+            Assert.That(entity != null, "Field missing");
+            if (entity != null)
             {
-                Assert.That(field.BoolValue == _testData.boolValue, "Bad carrier - Boolean value");
-                Assert.That(field.EnumValue.ToString() == _testData.enumValue.ToString(), "Bad carrier - Enumeration value");
-                Assert.That(field.IntValue == _testData.intValue, "Bad carrier - Integer value");
-                Assert.That(field.StringValue == _testData.stringValue, "Bad carrier - String value");
+                Assert.That(entity.BoolValue == _testData.boolValue, "Bad carrier - Boolean value");
+                Assert.That(entity.EnumValue.ToString() == _testData.enumValue.ToString(), "Bad carrier - Enumeration value");
+                Assert.That(entity.IntValue == _testData.intValue, "Bad carrier - Integer value");
+                Assert.That(entity.StringValue == _testData.stringValue, "Bad carrier - String value");
             }
         }
 
@@ -48,12 +49,12 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(2)]
         public void SaveXmlEntityTest()
         {
-            if (_carrier == null)
+            if (_entity == null)
             {
-                _carrier = BdoEntityTests.CreateEntity(_testData);
+                _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _carrier.ToDto().SaveXml(_filePath);
+            var isSaved = _entity.ToDto().SaveXml(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -61,17 +62,17 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(3)]
         public void LoadXmlConfigurationTest()
         {
-            if (_carrier == null || !File.Exists(_filePath))
+            if (_entity == null || !File.Exists(_filePath))
             {
                 SaveXmlEntityTest();
             }
 
-            var configuration = XmlHelper.LoadXml<BdoEntityConfigurationDto>(_filePath).ToPoco();
-            var field = BdoExt.NewEntity<EntityFake>(configuration);
+            var config = XmlHelper.LoadXml<BdoConfigurationDto>(_filePath).ToPoco();
+            var entity = Bdo.NewEntity<EntityFake>(config);
 
-            Assert.That(field != null, "Entity loading failed");
+            Assert.That(entity != null, "Entity loading failed");
 
-            Test(field);
+            Test(entity);
         }
 
         // Json
@@ -79,12 +80,12 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(4)]
         public void SaveJsonEntityTest()
         {
-            if (_carrier == null)
+            if (_entity == null)
             {
-                _carrier = BdoEntityTests.CreateEntity(_testData);
+                _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _carrier.ToDto().SaveJson(_filePath);
+            var isSaved = _entity.ToDto().SaveJson(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -92,17 +93,17 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(5)]
         public void LoadJsonConfigurationTest()
         {
-            if (_carrier == null || !File.Exists(_filePath))
+            if (_entity == null || !File.Exists(_filePath))
             {
                 SaveJsonEntityTest();
             }
 
-            var configuration = JsonHelper.LoadJson<BdoEntityConfigurationDto>(_filePath).ToPoco();
-            var field = BdoExt.NewEntity<EntityFake>(configuration);
+            var config = JsonHelper.LoadJson<BdoConfigurationDto>(_filePath).ToPoco();
+            var entity = Bdo.NewEntity<EntityFake>(config);
 
-            Assert.That(field != null, "Entity loading failed");
+            Assert.That(entity != null, "Entity loading failed");
 
-            Test(field);
+            Test(entity);
         }
     }
 

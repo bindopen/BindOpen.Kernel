@@ -1,9 +1,8 @@
-﻿using BindOpen.Extensions;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using BindOpen.Runtime.Scopes;
-using BindOpen.Logging;
 
 namespace BindOpen.Extensions.Processing
 {
@@ -11,7 +10,7 @@ namespace BindOpen.Extensions.Processing
     /// 
     /// </summary>
     public interface IBdoTask :
-        ITBdoExtensionItem<IBdoTaskDefinition, IBdoTaskConfiguration, IBdoTask>
+        ITBdoExtensionItem<IBdoTask, IBdoTaskDefinition>
     {
         /// <summary>
         /// 

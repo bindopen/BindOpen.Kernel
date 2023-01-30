@@ -28,14 +28,14 @@ namespace BindOpen.Tests.Extensions
         public static IBdoEntity CreateEntity(dynamic data)
         {
             var config =
-                BdoExt.NewEntityConfig("tests.core$testEntity")
+                BdoConfig.New("tests.core$testEntity")
                 .WithItems(
                     BdoMeta.NewScalar("boolValue", data.boolValue),
                     BdoMeta.NewScalar("enumValue", data.enumValue),
                     BdoMeta.NewScalar("intValue", data.intValue),
                     BdoMeta.NewScalar("stringValue", data.stringValue));
 
-            return BdoExt.NewEntity<EntityFake>(config);
+            return Bdo.NewEntity<EntityFake>(config);
         }
 
         [Test, Order(1)]

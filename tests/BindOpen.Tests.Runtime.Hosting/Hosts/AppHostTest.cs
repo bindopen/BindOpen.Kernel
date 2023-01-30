@@ -48,10 +48,10 @@ namespace BindOpen.Runtime.Hosting.Tests
                 "Bad data source loading");
 
             var datasourceB = datasourceDepot?["db.testB"];
-            Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core configuration");
+            Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core config");
 
             Assert.That(datasourceDepot?.GetConnectionString("db.testB") != null,
-                "Bad data source loading from .NET Core configuration");
+                "Bad data source loading from .NET Core config");
 
             Assert.That(datasourceDepot.Get()?.Name == "db.testA", "Bad data source loading");
 

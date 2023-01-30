@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data 
     /// </summary>
-    public static partial class BdoMetaDataExtension
+    public static partial class BdoMetaDataExtensions
     {
         /// <summary>
         /// Updates this instance.

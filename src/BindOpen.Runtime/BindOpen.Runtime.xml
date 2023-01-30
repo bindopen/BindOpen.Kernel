@@ -1071,7 +1071,7 @@
             <summary>
             This class represents a task definition.
             </summary>
-            <seealso cref="!:BdoTaskConfiguration"/>
+            <seealso cref="!:BdoConfig"/>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoTaskDefinition.GroupName">
             <summary>
@@ -1204,19 +1204,19 @@
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewEntityConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewTaskConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
@@ -1449,74 +1449,74 @@
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The connector configuration to consider.</param>
+            <param name="config">The connector config to consider.</param>
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoEntityConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoEntityConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <typeparam name="T">The connector class to return.</typeparam>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoTaskConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoTaskConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
             <param name="varSet">The variable element set to use.</param>
             <returns>Returns the created task.</returns>

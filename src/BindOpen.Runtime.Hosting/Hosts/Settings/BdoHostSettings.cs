@@ -47,11 +47,11 @@ namespace BindOpen.Runtime.Hosts
         /// Instantiates a new instance of the BdoHostSettings class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="config">The config to consider.</param>
         public BdoHostSettings(
             IBdoScope scope,
-            IBdoConfiguration configuration)
-            : base(scope, configuration)
+            IBdoConfiguration config)
+            : base(scope, config)
         {
         }
 

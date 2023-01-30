@@ -78,51 +78,68 @@ namespace BindOpen.Runtime.Stores
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniqueId"></param>
+        /// <returns></returns>
+        public T GetItemDefinitionWithUniqueId<T>(
+            string uniqueId)
+            where T : IBdoExtensionItemDefinition
+        {
+            var definition = GetItemDefinitionWithUniqueId(
+                typeof(T).GetExtensionItemKind(),
+                uniqueId);
+            return (T)definition;
+        }
+
+        /// <summary>
         /// Returns the item definition with the specified unique name.
         /// </summary>
-        /// <param name="uniqueName">The unique ID of item to return.</param>
+        /// <param name="uniqueId">The unique ID of item to return.</param>
         /// <returns>The item with the specified unique name.</returns>
-        public T GetItemDefinitionWithUniqueId<T>(string uniqueName) where T : IBdoExtensionItemDefinition
+        public IBdoExtensionItemDefinition GetItemDefinitionWithUniqueId(
+            BdoExtensionItemKind kind,
+            string uniqueId)
         {
-            string upperUniqueId = uniqueName?.ToUpper();
+            string upperUniqueId = uniqueId?.ToUpper();
 
-            if (uniqueName != null)
+            if (uniqueId != null)
             {
-                switch (typeof(T).GetExtensionItemKind())
+                switch (kind)
                 {
                     case BdoExtensionItemKind.Connector:
                         {
                             _connectorDefinitions.TryGetValue(upperUniqueId, out IBdoConnectorDefinition connectorDefinition);
-                            return (T)connectorDefinition;
+                            return connectorDefinition;
                         }
                     case BdoExtensionItemKind.Entity:
                         {
                             _entityDefinitions.TryGetValue(upperUniqueId, out IBdoEntityDefinition entityDefinition);
-                            return (T)entityDefinition;
+                            return entityDefinition;
                         }
                     case BdoExtensionItemKind.Handler:
                         {
                             _handlerDefinitions.TryGetValue(upperUniqueId, out IBdoHandlerDefinition handlerDefinition);
-                            return (T)handlerDefinition;
+                            return handlerDefinition;
                         }
                     case BdoExtensionItemKind.Metrics:
                         {
                             _metricsDefinitions.TryGetValue(upperUniqueId, out IBdoMetricsDefinition metricsDefinition);
-                            return (T)metricsDefinition;
+                            return metricsDefinition;
                         }
                     case BdoExtensionItemKind.Routine:
                         {
                             _routineDefinitions.TryGetValue(upperUniqueId, out IBdoRoutineDefinition routineDefinition);
-                            return (T)routineDefinition;
+                            return routineDefinition;
                         }
                     case BdoExtensionItemKind.Scriptword:
                         {
-                            return (T)GetScriptwordDefinitionWithUniqueName(uniqueName);
+                            return GetScriptwordDefinitionWithUniqueName(uniqueId);
                         }
                     case BdoExtensionItemKind.Task:
                         {
                             _taskDefinitions.TryGetValue(upperUniqueId, out IBdoTaskDefinition taskDefinition);
-                            return (T)taskDefinition;
+                            return taskDefinition;
                         }
                     default:
                         break;
@@ -137,12 +154,12 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Returns the script word definition with the specified unique name.
         /// </summary>
-        /// <param name="uniqueName">The unique ID of script word to return.</param>
+        /// <param name="uniqueId">The unique ID of script word to return.</param>
         /// <param name="parentDefinition"></param>
         /// <returns>The script word with the specified unique name.</returns>
-        public IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueName, IBdoScriptwordDefinition parentDefinition = null)
+        public IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null)
         {
-            if (_scriptWordDefinitions != null || string.IsNullOrEmpty(uniqueName))
+            if (_scriptWordDefinitions != null || string.IsNullOrEmpty(uniqueId))
             {
                 return null;
             }
@@ -151,7 +168,7 @@ namespace BindOpen.Runtime.Stores
 
             foreach (var pair in _scriptWordDefinitions)
             {
-                if (string.Compare(pair.Key, uniqueName) == 0)
+                if (string.Compare(pair.Key, uniqueId) == 0)
                 {
                     scriptWordDefinition = pair.Value;
                     break;

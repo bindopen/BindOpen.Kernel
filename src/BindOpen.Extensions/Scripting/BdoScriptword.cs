@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace BindOpen.Extensions.Scripting
     /// This class represents a script word.
     /// </summary>
     public class BdoScriptword :
-        TBdoExtensionItem<IBdoScriptwordDefinition, IBdoScriptwordConfiguration, IBdoScriptword>,
+        TBdoExtensionItem<IBdoScriptword, IBdoScriptwordDefinition>,
         IBdoScriptword
     {
         // ------------------------------------------
@@ -238,7 +239,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
             scriptWord.WithDefinition(Definition);
-            scriptWord.WithConfig(Config?.Clone<BdoScriptwordConfiguration>());
+            scriptWord.WithConfig(Config?.Clone<BdoConfiguration>());
 
             if (Parameters != null)
             {

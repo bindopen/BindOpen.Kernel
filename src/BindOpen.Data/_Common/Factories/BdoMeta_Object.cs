@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
+using System.Linq;
 
 namespace BindOpen.Data
 {
@@ -15,7 +17,7 @@ namespace BindOpen.Data
         public static BdoMetaObject NewObject(
             string name,
             params object[] items)
-            => NewObject<BdoMetaObject>(name, items);
+            => NewObject(name, null, items);
 
         /// <summary>
         /// Initializes a new object el.
@@ -23,7 +25,7 @@ namespace BindOpen.Data
         /// <param name="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             params object[] items)
-            => NewObject<BdoMetaObject>(items);
+            => NewObject(null, null, items);
 
         /// <summary>
         /// Initializes a new object el.
@@ -33,9 +35,16 @@ namespace BindOpen.Data
         /// <param name="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             string name,
-            string classFullName,
+            IBdoClassReference reference,
             params object[] items)
-            => NewObject<BdoMetaObject>(name, classFullName, items);
+        {
+            var el = new BdoMetaObject();
+            el.WithName(name);
+            el.WithClassReference(reference);
+            el.WithItems(items);
+
+            return el;
+        }
 
         // Static T creators -------------------------
 
@@ -44,40 +53,23 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static T NewObject<T>(
+        public static BdoMetaObject NewObject<T>(
             string name,
-            params object[] items)
-            where T : class, IBdoMetaObject, new()
-            => NewObject<T>(name, null, null, null, items);
-
-        /// <summary>
-        /// Initializes a new object el.
-        /// </summary>
-        /// <param name="items">The items to consider.</param>
-        public static T NewObject<T>(
-            params object[] items)
-            where T : class, IBdoMetaObject, new()
-            => NewObject<T>(null, null, null, items);
-
-        /// <summary>
-        /// Initializes a new object el.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        /// <param name="classFullName">The class full name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public static T NewObject<T>(
-            string name,
-            string classFullName,
-            params object[] items)
-            where T : class, IBdoMetaObject, new()
+            params T[] items)
+            where T : class, new()
         {
-            var el = new T();
-            el.WithName(name);
-            el.WithClassFullName(classFullName);
-            el.WithItems(items);
-
+            var classReference = BdoData.Class<T>();
+            var el = NewObject(name, classReference, items?.Cast<object>().ToArray());
             return el;
         }
+
+        /// <summary>
+        /// Initializes a new object el.
+        /// </summary>
+        /// <param name="items">The items to consider.</param>
+        public static BdoMetaObject NewObject<T>(
+            params T[] items)
+            where T : class, new()
+            => NewObject<T>(null, items);
     }
 }

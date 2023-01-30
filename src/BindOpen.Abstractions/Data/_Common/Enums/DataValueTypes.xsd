@@ -6,7 +6,7 @@
       <xs:enumeration value="Any" />
       <xs:enumeration value="Boolean" />
       <xs:enumeration value="ByteArray" />
-      <xs:enumeration value="BdoEntityConfiguration" />
+      <xs:enumeration value="BdoConfiguration" />
       <xs:enumeration value="Datasource" />
       <xs:enumeration value="Date" />
       <xs:enumeration value="Dictionary" />

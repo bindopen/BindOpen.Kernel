@@ -1,4 +1,7 @@
-﻿using BindOpen.Extensions.Modeling;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -52,6 +55,13 @@ namespace BindOpen.Data.Meta
         public IBdoMetaObject WithSubSet(IBdoMetaSet set)
         {
             SubSet = set;
+            //var item = set?.FirstOrDefault();
+            //if (item is IBdoConfiguration config
+            //    && !string.IsNullOrEmpty(item.DefinitionUniqueId))
+            //{
+            //    ClassReference = BdoData.ClassFromEntity(
+            //        item?.DefinitionUniqueId);
+            //}
             return this;
         }
 
@@ -59,31 +69,16 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public IBdoMetaObject WithSubSet(params IBdoMetaData[] metas)
-        {
-            SubSet = BdoMeta.NewSet(metas);
-            return this;
-        }
-
-        /// <summary>
-        /// The definition unique ID of this instance.
-        /// </summary>
-        public string DefinitionUniqueId { get; set; }
-
-        public IBdoMetaObject WithDefinitionUniqueId(string definitionUniqueId)
-        {
-            DefinitionUniqueId = definitionUniqueId;
-
-            return this;
-        }
+            => WithSubSet(BdoMeta.NewSet(metas));
 
         /// <summary>
         /// The class full name of this instance.
         /// </summary>
-        public string ClassFullName { get; set; }
+        public IBdoClassReference ClassReference { get; set; }
 
-        public IBdoMetaObject WithClassFullName(string classFullName)
+        public IBdoMetaObject WithClassReference(IBdoClassReference reference)
         {
-            ClassFullName = classFullName;
+            ClassReference = reference;
 
             return this;
         }
@@ -92,12 +87,23 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        public IBdoMetaObject UpdateTree()
+        public IBdoMetaObject UpdateTree(
+            IBdoScope scope = null,
+            IBdoLog log = null)
         {
             var obj = Item();
-            SubSet = obj.ToMetaSet();
+            SubSet = obj.ToMetaSet(
+                GetItemType(scope, log));
 
             return this;
+        }
+
+        public Type GetItemType(
+            IBdoScope scope = null,
+            IBdoLog log = null)
+        {
+            var type = scope?.CreateType(ClassReference);
+            return type;
         }
 
         #endregion
@@ -121,12 +127,6 @@ namespace BindOpen.Data.Meta
             if (item != null)
             {
                 base.WithItems(item);
-
-                if (_item is IBdoEntityConfiguration configuration
-                    && !string.IsNullOrEmpty(configuration.DefinitionUniqueId))
-                {
-                    DefinitionUniqueId = configuration?.DefinitionUniqueId;
-                }
             }
 
             return this;
