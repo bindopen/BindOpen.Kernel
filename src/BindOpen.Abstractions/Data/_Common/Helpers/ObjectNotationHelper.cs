@@ -17,10 +17,10 @@ namespace BindOpen.Data
         /// <returns>The cloned data row.</returns>
         public static DataRow CloneDataRow(DataRow dataRow, DataTable dataTable)
         {
-            if ((dataRow==null)|(dataTable==null))
+            if (dataRow == null | dataTable == null)
                 return null;
 
-            DataRow cloneDataRow=dataTable.NewRow();
+            DataRow cloneDataRow = dataTable.NewRow();
             foreach (DataColumn currentDataColumn in dataRow.Table.Columns)
                 cloneDataRow[currentDataColumn.ColumnName] = dataRow[currentDataColumn.ColumnName];
             return cloneDataRow;

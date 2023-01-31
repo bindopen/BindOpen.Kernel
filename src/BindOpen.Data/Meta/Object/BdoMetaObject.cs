@@ -47,14 +47,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaSet SubSet { get; set; }
+        public IBdoMetaSet PropertyMetaSet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaObject WithSubSet(IBdoMetaSet set)
+        public IBdoMetaObject WithMetaProperties(IBdoMetaSet set)
         {
-            SubSet = set;
+            PropertyMetaSet = set;
             //var item = set?.FirstOrDefault();
             //if (item is IBdoConfiguration config
             //    && !string.IsNullOrEmpty(item.DefinitionUniqueId))
@@ -68,8 +68,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaObject WithSubSet(params IBdoMetaData[] metas)
-            => WithSubSet(BdoMeta.NewSet(metas));
+        public IBdoMetaObject WithMetaProperties(
+            params IBdoMetaData[] metas)
+            => WithMetaProperties(BdoMeta.NewSet(metas));
 
         /// <summary>
         /// The class full name of this instance.
@@ -83,22 +84,7 @@ namespace BindOpen.Data.Meta
             return this;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IBdoMetaObject UpdateTree(
-            IBdoScope scope = null,
-            IBdoLog log = null)
-        {
-            var obj = Item();
-            SubSet = obj.ToMetaSet(
-                GetItemType(scope, log));
-
-            return this;
-        }
-
-        public Type GetItemType(
+        public Type GetClassType(
             IBdoScope scope = null,
             IBdoLog log = null)
         {

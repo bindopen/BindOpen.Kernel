@@ -5,6 +5,8 @@ using BindOpen.Data.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BindOpen.Data.Meta;
+using BindOpen.Data;
 
 namespace BindOpen.Runtime.Definition
 {

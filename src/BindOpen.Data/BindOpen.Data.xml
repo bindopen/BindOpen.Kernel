@@ -625,7 +625,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <param name="updateModes">The update modes to consider.</param>
             <returns>ILog of the operation.</returns>
-            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+            <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementExtension.Check(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Data.Elements.IBdoDataElement,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
             <summary>
@@ -1310,7 +1310,7 @@
             <param name="specAreas">The specification areas to consider.</param>
             <param name="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
-            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+            <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
@@ -1320,7 +1320,7 @@
             <param name="specAreas">The specification areas to consider.</param>
             <param name="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
-            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+            <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Check(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoElementSet,System.String[],System.Boolean,BindOpen.Logging.IBdoLog)">
             <summary>
@@ -1781,26 +1781,26 @@
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Initializes a new collection el.
+            Initializes a new set el.
             </summary>
             <param name="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
-            Initializes a new collection el.
+            Initializes a new set el.
             </summary>
             <param name="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Initializes a new collection el.
+            Initializes a new set el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(System.String,BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
-            Initializes a new collection el.
+            Initializes a new set el.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="elems">The elems to consider.</param>
@@ -1936,7 +1936,7 @@
             Creates a new instance of the IBdoElementSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
-            <returns>The collection.</returns>
+            <returns>The set.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1">
             <summary>
@@ -1977,7 +1977,7 @@
             Creates a new instance of the IBdoElementSet class.
             </summary>
             <param name="stringObject">The string to consider.</param>
-            <returns>The collection.</returns>
+            <returns>The set.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource(System.String,System.String,System.String)">
             <summary>

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -22,9 +23,10 @@ namespace BindOpen.Data
             object obj,
             Type type = null,
             bool onlyMetaAttributes = false)
-            where T : IBdoMetaSet
+            where T : ITBdoItemSet<IBdoMetaData>
         {
-            set?.WithItems(obj.ToMetaArray(type, onlyMetaAttributes));
+            set?.WithItems(
+                obj.ToMetaArray(type, onlyMetaAttributes));
             return set;
         }
 
@@ -48,13 +50,13 @@ namespace BindOpen.Data
             bool onlyMetaAttributes = true)
             where T : class, IBdoMetaSet, new()
         {
-            T metaSet = default;
+            T set = default;
 
             if (obj != null)
             {
                 type ??= obj.GetType();
 
-                metaSet = new();
+                set = new();
                 foreach (var propInfo in type.GetProperties())
                 {
                     string propName = propInfo.Name;
@@ -67,31 +69,31 @@ namespace BindOpen.Data
                         {
                             propName = bdoAttribute.Name;
                         }
-                        metaSet.Add(propValue.ToMeta(propName));
+                        set.Add(propValue.ToMetaData(propName));
                     }
                 }
             }
 
-            return metaSet;
+            return set;
         }
 
         /// <summary>
         /// Sets information of the specified prop.
         /// </summary>
         /// <param name="obj">The object to update.</param>
-        /// <param name="metaSet">The set of elements to return.</param>
+        /// <param name="set">The set of elements to return.</param>
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <param name="log">The log to consider.</param>
-        public static void UpdateFromMetaSet(
+        public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaSet metaSet,
+            IBdoMetaSet set,
             bool onlyMetaAttributes = true,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            if (obj == null || !metaSet.HasItem()) return;
+            if (obj == null || !set.HasItem()) return;
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
@@ -106,10 +108,10 @@ namespace BindOpen.Data
 
                     try
                     {
-                        if (metaSet.HasItem(name))
+                        if (set.HasItem(name))
                         {
                             var type = propInfo.PropertyType;
-                            var value = metaSet.GetItem(name, scope, varSet, log);
+                            var value = set.GetSubItem(name, scope, varSet, log);
                             if (value != null)
                             {
                                 if (type.IsEnum)

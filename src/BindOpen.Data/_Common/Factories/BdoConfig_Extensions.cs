@@ -8,16 +8,16 @@ namespace BindOpen.Data
     /// </summary>
     public partial class BdoConfig
     {
+
+        // NewExtension
+
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         /// <param definitionUniqueId="items">The items to consider.</param>
         public static BdoConfiguration NewExtension(
             params IBdoMetaData[] items)
-        {
-            var config = NewExtension<BdoConfiguration>(items);
-            return config;
-        }
+        => NewExtension<BdoConfiguration>(items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -27,10 +27,7 @@ namespace BindOpen.Data
         public static BdoConfiguration NewExtension(
             string definitionUniqueId,
             params IBdoMetaData[] items)
-        {
-            var config = NewExtension<BdoConfiguration>(definitionUniqueId, items);
-            return config;
-        }
+        => NewExtension<BdoConfiguration>(definitionUniqueId, items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -41,21 +38,9 @@ namespace BindOpen.Data
             string definitionUniqueId,
             string[] usingIds,
             params IBdoMetaData[] items)
-        {
-            var config = NewExtension<BdoConfiguration>(definitionUniqueId, usingIds, items);
-            return config;
-        }
+        => NewExtension<BdoConfiguration>(definitionUniqueId, usingIds, items);
 
-        /// <summary>
-        /// Instantiates a new instance of the BdoConfiguration class.
-        /// </summary>
-        /// <param definitionUniqueId="obj">The object to consider.</param>
-        public static BdoConfiguration NewExtensionFrom(object obj)
-        {
-            var config = NewExtension<BdoConfiguration>(obj.ToMetaArray());
-
-            return config;
-        }
+        // NewExtension<T>
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -66,36 +51,30 @@ namespace BindOpen.Data
             string definitionUniqueId,
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
+        => NewExtension<T>(definitionUniqueId, null as string[], items);
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
+        /// </summary>
+        /// <param definitionUniqueId="items">The items to consider.</param>
+        public static T NewExtension<T>(
+            params IBdoMetaData[] items)
+            where T : BdoConfiguration, new()
+        => NewExtension<T>(null as string, null as string[], items);
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
+        /// </summary>
+        /// <param definitionUniqueId="definitionUniqueId">The definitionUniqueId to consider.</param>
+        /// <param definitionUniqueId="items">The items to consider.</param>
+        public static T NewExtension<T>(
+            string definitionUniqueId,
+            string[] usingIds,
+            params IBdoMetaData[] items)
+            where T : BdoConfiguration, new()
         {
-            var config = BdoData.NewItemSet<T, IBdoMetaData>(items);
+            var config = New<T>(definitionUniqueId, items);
             config.WithDefinitionUniqueId(definitionUniqueId);
-            return config;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoBaseConfiguration class.
-        /// </summary>
-        /// <param definitionUniqueId="items">The items to consider.</param>
-        public static T NewExtension<T>(
-            params IBdoMetaData[] items)
-            where T : BdoConfiguration, new()
-        {
-            var config = BdoData.NewItemSet<T, IBdoMetaData>(items);
-            return config;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoBaseConfiguration class.
-        /// </summary>
-        /// <param definitionUniqueId="definitionUniqueId">The definitionUniqueId to consider.</param>
-        /// <param definitionUniqueId="items">The items to consider.</param>
-        public static T NewExtension<T>(
-            string definitionUniqueId,
-            string[] usingIds,
-            params IBdoMetaData[] items)
-            where T : BdoConfiguration, new()
-        {
-            var config = NewExtension<T>(definitionUniqueId, items);
             config.Using(usingIds);
             return config;
         }

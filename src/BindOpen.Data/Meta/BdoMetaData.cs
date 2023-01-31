@@ -226,7 +226,7 @@ namespace BindOpen.Data.Meta
         {
             var obj = ItemObject(scope, varSet, log);
 
-            var list = obj?.AsObjectList();
+            var list = obj?.ToObjectList();
             return list;
         }
 
@@ -373,7 +373,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaData WithItems(params object[] objs)
         {
-            _item = objs.ToList().ToBdoElementItem(GetSpecification());
+            _item = objs?.ToList().ToBdoElementItem(GetSpecification());
 
             return this;
         }

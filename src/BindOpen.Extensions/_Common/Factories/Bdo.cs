@@ -23,7 +23,7 @@ namespace BindOpen.Extensions
         {
             T connector = new();
             connector.WithConfig(config);
-            connector.UpdateFromMetaSet(config);
+            connector.UpdateFromMeta(config);
 
             return connector;
         }
@@ -40,7 +40,7 @@ namespace BindOpen.Extensions
         {
             T entity = new();
             entity.WithConfig(config);
-            entity.UpdateFromMetaSet(config);
+            entity.UpdateFromMeta(config);
 
             return entity;
         }

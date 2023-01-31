@@ -19,7 +19,7 @@ namespace BindOpen.Data.Meta
             MetaSetDto dto = new()
             {
                 Id = poco.Id,
-                Elements = poco.Items?.Select(q => q.ToDto()).ToList()
+                Elements = poco.Items()?.Select(q => q.ToDto()).ToList()
             };
 
             return dto;

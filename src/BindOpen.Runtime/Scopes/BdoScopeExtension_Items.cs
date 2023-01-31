@@ -69,7 +69,7 @@ namespace BindOpen.Runtime.Scopes
                     if (item != null)
                     {
                         entity = item as BdoEntity;
-                        entity.UpdateFromMetaSet(config, true, scope, varSet);
+                        entity.UpdateFromMeta(config, true, scope, varSet);
                     }
                 }
             }
@@ -128,7 +128,7 @@ namespace BindOpen.Runtime.Scopes
                     if (item != null)
                     {
                         var connector = item as IBdoConnector;
-                        connector.UpdateFromMetaSet(config, true, scope, varSet);
+                        connector.UpdateFromMeta(config, true, scope, varSet);
                     }
                 }
             }

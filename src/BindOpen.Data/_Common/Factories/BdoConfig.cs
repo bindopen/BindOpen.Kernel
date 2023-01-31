@@ -19,6 +19,8 @@ namespace BindOpen.Data
             return config;
         }
 
+        // New
+
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
@@ -61,12 +63,11 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoConfiguration class.
         /// </summary>
         /// <param name="obj">The object to consider.</param>
-        public static BdoConfiguration NewFrom(object obj)
-        {
-            var config = New<BdoConfiguration>(obj.ToMetaArray());
+        public static BdoConfiguration NewFrom(
+            object obj)
+        => NewFrom<BdoConfiguration>(obj);
 
-            return config;
-        }
+        // New<T>
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -77,11 +78,7 @@ namespace BindOpen.Data
             string name,
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
-        {
-            var config = BdoData.NewItemSet<T, IBdoMetaData>(items);
-            config.WithName(name);
-            return config;
-        }
+        => New<T>(name, null as string[], items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -90,10 +87,7 @@ namespace BindOpen.Data
         public static T New<T>(
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
-        {
-            var config = BdoData.NewItemSet<T, IBdoMetaData>(items);
-            return config;
-        }
+        => New<T>(null as string, null as string[], items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
@@ -106,8 +100,21 @@ namespace BindOpen.Data
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         {
-            var config = New<T>(name, items);
+            var config = BdoMeta.NewSet<T>(items);
+            config.WithName(name);
             config.Using(usingIds);
+            return config;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoConfiguration class.
+        /// </summary>
+        /// <param name="obj">The object to consider.</param>
+        public static T NewFrom<T>(
+            object obj)
+            where T : BdoConfiguration, new()
+        {
+            var config = New<T>(obj.ToMetaArray());
             return config;
         }
     }

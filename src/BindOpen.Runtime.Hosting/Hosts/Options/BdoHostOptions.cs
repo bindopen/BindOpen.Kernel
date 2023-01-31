@@ -136,7 +136,7 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
-        /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public void Update<T>(
             T item = default,
             string[] specificationAreas = null,

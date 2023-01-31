@@ -39,8 +39,8 @@ namespace BindOpen.Data.Elements
         Scalar,
 
         /// <summary>
-        /// Source.
+        /// Collection.
         /// </summary>
-        Source
+        Collection
     }
 }

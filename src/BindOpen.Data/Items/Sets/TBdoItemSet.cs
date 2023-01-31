@@ -83,7 +83,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Returns the element with the specified indexed.
         /// </summary>
-        public T this[int index] => _items.Get<T>(index);
+        public T this[int index] => _items.Get(index);
 
         /// <summary>
         /// Returns the element with the specified key.

@@ -56,11 +56,11 @@ namespace BindOpen.Data
         {
             if (path == null) return null;
 
-            if ((path?.StartsWith(@".\") == true) || (path?.StartsWith(@"./") == true))
+            if (path?.StartsWith(@".\") == true || path?.StartsWith(@"./") == true)
             {
                 path = (rootPath.EndingWith(@"\") + path.Substring(2)).ToPath();
             }
-            else if ((path?.StartsWith(@"..\") == true) || (path?.StartsWith(@"../") == true))
+            else if (path?.StartsWith(@"..\") == true || path?.StartsWith(@"../") == true)
             {
                 path = (rootPath.EndingWith(@"\") + path).ToPath();
             }

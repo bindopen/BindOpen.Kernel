@@ -39,7 +39,7 @@ namespace BindOpen.Data
             else if (object1 is IReferenced referenced)
                 return referenced.Key() ?? string.Empty;
             else if (object1 is KeyValuePair<string, string> dataKeyValue)
-                return (dataKeyValue).Key ?? string.Empty;
+                return dataKeyValue.Key ?? string.Empty;
             else
                 return object1.ToString();
         }
@@ -59,7 +59,7 @@ namespace BindOpen.Data
         /// <returns></returns>
         public static string ToNotNullString(this object object1)
         {
-            return (object1 == null ? string.Empty : object1.ToString());
+            return object1 == null ? string.Empty : object1.ToString();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace BindOpen.Data
                 switch (valueType)
                 {
                     case DataValueTypes.Boolean:
-                        stringValue = (obj as bool?) == true ? "true" : "false";
+                        stringValue = obj as bool? == true ? "true" : "false";
 
                         if (isScriptMode)
                         {
@@ -106,7 +106,7 @@ namespace BindOpen.Data
                     case DataValueTypes.Date:
                         if (obj is DateTime dateTime)
                         {
-                            stringValue = (dateTime).ToString(StringHelper.__DateFormat);
+                            stringValue = dateTime.ToString(StringHelper.__DateFormat);
 
                             if (isScriptMode)
                             {
@@ -125,7 +125,7 @@ namespace BindOpen.Data
                     case DataValueTypes.Time:
                         if (obj is TimeSpan timeSpan)
                         {
-                            stringValue = (timeSpan).ToString(StringHelper.__TimeFormat);
+                            stringValue = timeSpan.ToString(StringHelper.__TimeFormat);
 
                             if (isScriptMode)
                             {
@@ -187,7 +187,7 @@ namespace BindOpen.Data
         /// <returns>The Xml string serializing the specified object.</returns>
         public static void Update(this object obj, object updateObj)
         {
-            if ((obj != null) && (updateObj != null))
+            if (obj != null && updateObj != null)
             {
                 foreach (PropertyInfo updatePropertyInfo in updateObj.GetType().GetProperties())
                 {
@@ -319,16 +319,16 @@ namespace BindOpen.Data
         /// <returns>Returns the property information.</returns>
         public static PropertyInfo GetProperty<T>(this Expression<Func<T, object>> property)
         {
-            LambdaExpression lambda = (LambdaExpression)property;
+            LambdaExpression lambda = property;
             MemberExpression memberExpression;
 
             if (lambda.Body is UnaryExpression unaryExpression)
             {
-                memberExpression = (MemberExpression)(unaryExpression.Operand);
+                memberExpression = (MemberExpression)unaryExpression.Operand;
             }
             else
             {
-                memberExpression = (MemberExpression)(lambda.Body);
+                memberExpression = (MemberExpression)lambda.Body;
             }
 
             return (PropertyInfo)memberExpression.Member;
@@ -413,10 +413,10 @@ namespace BindOpen.Data
                 {
                     var list = new List<object>();
 
-                    foreach (object subItem in (obj as IEnumerable))
+                    foreach (object subItem in obj as IEnumerable)
                     {
-                        if ((spec.MaximumItemNumber == -1)
-                            || ((list?.Count ?? 0) < spec.MaximumItemNumber))
+                        if (spec.MaximumItemNumber == -1
+                            || (list?.Count ?? 0) < spec.MaximumItemNumber)
                         {
                             if (spec.IsCompatibleWithItem(subItem))
                             {
@@ -437,7 +437,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static List<object> AsObjectList(this object obj)
+        public static List<object> ToObjectList(this object obj)
         {
             List<object> objList = null;
             if (obj?.GetType().IsList() == true)

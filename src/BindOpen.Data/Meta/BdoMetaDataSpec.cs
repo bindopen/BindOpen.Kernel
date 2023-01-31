@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Conditions;
+﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Items;
 using BindOpen.Data.Specification;
 using System.Collections.Generic;

@@ -15,7 +15,7 @@ namespace BindOpen.Data
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
         public static Q NewItemSet<Q, T>(params T[] items)
-            where Q : TBdoItemSet<T>, new()
+            where Q : class, ITBdoItemSet<T>, new()
             where T : IReferenced
         {
             return (new Q()).WithItems(items) as Q;

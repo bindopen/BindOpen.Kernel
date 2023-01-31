@@ -58,11 +58,11 @@ namespace BindOpen.Extensions.Processing
         // General ---------------------------------------
 
         /// <summary>
-        /// Indicates whether this instance has compatible entries with the specified element collection.
+        /// Indicates whether this instance has compatible entries with the specified element set.
         /// </summary>
         /// <param name="dataElementSpecSet">The set of element specifications to consider.</param>
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
-        /// <returns>True if this instance is compatible with the specified element collection.</returns>
+        /// <returns>True if this instance is compatible with the specified element set.</returns>
         public bool IsCompatibleWith(
             IBdoMetaSpecSet dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)

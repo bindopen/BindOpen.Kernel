@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -12,24 +14,39 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IBdoMetaData ToMeta(
+        public static IBdoMetaData ToMetaData(
             this object obj,
             string name = null)
         {
-            IBdoMetaData meta = null;
-            if (obj?.GetType().IsList() == true)
-            {
-                var objList = obj.AsObjectList();
-                meta = BdoMeta.New(name, objList.ToArray());
-            }
-            else
-            {
-                meta = BdoMeta.New(name, obj);
-            }
+            var objList = obj.ToObjectList();
+            var meta = BdoMeta.New(name, objList?.ToArray());
+            meta?.UpdateMetaTree();
 
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static T UpdateMetaTree<T>(
+            this T meta,
+            IBdoScope scope = null,
+            IBdoLog log = null)
+            where T : IBdoMetaData
+        {
             if (meta is IBdoMetaObject metaObj)
             {
-                metaObj.UpdateTree();
+                var obj = metaObj?.Item();
+                metaObj.PropertyMetaSet = obj.ToMetaSet(
+                    metaObj.GetClassType(scope, log));
+            }
+            else if (meta is IBdoMetaSet metaSet)
+            {
+                foreach (var subMeta in metaSet)
+                {
+                    subMeta?.UpdateMetaTree(scope, log);
+                }
             }
 
             return meta;

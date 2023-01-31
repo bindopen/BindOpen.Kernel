@@ -8,7 +8,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents an extension of the DataValueType enumeration.
     /// </summary>
-    public partial interface IBdoMetaSet : ITBdoItemSet<IBdoMetaData>
+    public partial interface IBdoMetaSet :
+        ITBdoItemSet<IBdoMetaData>
     {
         /// <summary>
         /// Returns the specified item of this instance.

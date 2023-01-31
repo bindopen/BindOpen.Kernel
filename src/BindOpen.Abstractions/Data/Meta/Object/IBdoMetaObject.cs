@@ -14,17 +14,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSet SubSet { get; set; }
+        IBdoMetaSet PropertyMetaSet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithSubSet(IBdoMetaSet set);
+        IBdoMetaObject WithMetaProperties(IBdoMetaSet set);
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithSubSet(params IBdoMetaData[] metas);
+        IBdoMetaObject WithMetaProperties(params IBdoMetaData[] metas);
 
         /// <summary>
         /// 
@@ -39,24 +39,16 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        Type GetClassType(
+            IBdoScope scope = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="objs"></param>
         new IBdoMetaObject WithItems(
             params object[] objs);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IBdoMetaObject UpdateTree(
-            IBdoScope scope = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        Type GetItemType(
-            IBdoScope scope = null,
-            IBdoLog log = null);
     }
 }

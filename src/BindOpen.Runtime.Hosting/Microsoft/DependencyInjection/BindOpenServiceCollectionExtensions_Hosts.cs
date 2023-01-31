@@ -15,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// Adds a BindOpen default service.
         /// </summary>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="services">The set of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static IServiceCollection AddBindOpen(

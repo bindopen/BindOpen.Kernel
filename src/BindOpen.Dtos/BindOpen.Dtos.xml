@@ -625,7 +625,7 @@
         </member>
         <member name="P:BindOpen.Data.Elements.BdoElementSetDto.CollectionElementsSpecified">
             <summary>
-            Indicates whether the collections property must be ignored.
+            Indicates whether the sets property must be ignored.
             </summary>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoElementSetDto.#ctor">

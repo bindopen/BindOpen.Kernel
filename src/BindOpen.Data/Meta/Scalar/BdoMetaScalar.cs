@@ -59,10 +59,21 @@
         #endregion
 
         // --------------------------------------------------
-        // ITEMS
+        // IBdoMetaScalar Implementation
         // --------------------------------------------------
 
-        #region Items
+        #region IBdoMetaScalar
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        public new IBdoMetaScalar WithItems(
+            params object[] items)
+        {
+            return base.WithItems(items);
+        }
 
         IBdoMetaDataSpec IBdoMetaData.NewSpecification()
         {
@@ -79,6 +90,7 @@
         {
             return _item.ToString(ValueType);
         }
+        // Items ----------------------------
 
         #endregion
 

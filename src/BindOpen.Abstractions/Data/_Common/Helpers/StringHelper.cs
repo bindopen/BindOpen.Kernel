@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using BindOpen.Data;
 
 namespace BindOpen.Data
 {
@@ -65,7 +66,7 @@ namespace BindOpen.Data
         /// <returns>Returns the generated password.</returns>
         public static string GeneratePassword(int charNumber)
         {
-            return StringHelper.NewGuid()
+            return NewGuid()
                 .Replace("-", string.Empty).Replace("l", string.Empty).Replace("1", string.Empty).Replace("o", string.Empty).Replace("0", string.Empty)
                 [..charNumber];
         }
@@ -123,7 +124,7 @@ namespace BindOpen.Data
         {
             string shortString = string.Empty;
             if (st != null)
-                shortString = (st.Length > charNumber ? st.ToSubstring(0, charNumber - 4) + addedString : st);
+                shortString = st.Length > charNumber ? st.ToSubstring(0, charNumber - 4) + addedString : st;
             return shortString;
         }
 
@@ -159,7 +160,7 @@ namespace BindOpen.Data
 
             if (startIndex < 0) startIndex = 0;
             if (endIndex == -1 || endIndex >= st.Length) endIndex = st.Length - 1;
-            if ((st?.Length == 0) || (startIndex >= st.Length) || (endIndex < startIndex)) return string.Empty;
+            if (st?.Length == 0 || startIndex >= st.Length || endIndex < startIndex) return string.Empty;
 
             return st.Substring(startIndex, endIndex - startIndex + 1);
         }
@@ -173,7 +174,7 @@ namespace BindOpen.Data
         public static string StartingWith(this string st, string startingString)
         {
             return string.IsNullOrEmpty(st) ? string.Empty :
-                (startingString != null && st.StartsWith(startingString) ? st : startingString + st);
+                startingString != null && st.StartsWith(startingString) ? st : startingString + st;
         }
 
         /// <summary>
@@ -185,7 +186,7 @@ namespace BindOpen.Data
         public static string EndingWith(this string st, string endingString)
         {
             return string.IsNullOrEmpty(st) ? string.Empty :
-                (endingString != null && st.EndsWith(endingString) ? st : st + endingString);
+                endingString != null && st.EndsWith(endingString) ? st : st + endingString;
         }
 
         /// <summary>
@@ -251,21 +252,21 @@ namespace BindOpen.Data
         {
             int index = startIndex;
             bool b = false;
-            while ((index >= 0) && !b)
+            while (index >= 0 && !b)
             {
-                if ((st.Substring(index, 1) == "\"") && (stv != "\""))
+                if (st.Substring(index, 1) == "\"" && stv != "\"")
                 {
                     index = st.IndexOfLastString("\"", index - 1) - 1;
                 }
-                if ((st.Substring(index, 1) == "'") && (stv != "'"))
+                if (st.Substring(index, 1) == "'" && stv != "'")
                 {
                     index = st.IndexOfLastString("'", index - 1) - 1;
                 }
-                else if ((st.Substring(index, 1) == ")") && (stv == "("))
+                else if (st.Substring(index, 1) == ")" && stv == "(")
                 {
                     index = st.IndexOfLastString("(", index - 1) - 1;
                 }
-                else if ((st.Substring(index, 1) == "}") && (stv == "{"))
+                else if (st.Substring(index, 1) == "}" && stv == "{")
                 {
                     index = st.IndexOfLastString("{", index - 1) - 1;
                 }
@@ -343,29 +344,29 @@ namespace BindOpen.Data
             bool b = false;
             int st_l = st.Length;
             int stv_l = stv.Length;
-            while ((index < st_l) && index > -1 && !b)
+            while (index < st_l && index > -1 && !b)
             {
-                if ((st.Substring(index, 1) == "\"") && (stv != "\""))
+                if (st.Substring(index, 1) == "\"" && stv != "\"")
                 {
                     index = st.IndexOfNextString("\"", index + 1) + 1;
                 }
-                else if ((st.Substring(index, 1) == "'") && (stv == "'"))
+                else if (st.Substring(index, 1) == "'" && stv == "'")
                 {
                     index = st.IndexOfNextString("'", index + 1) + 1;
                 }
-                else if ((st.Substring(index, 1) == "(") && (stv == ")"))
+                else if (st.Substring(index, 1) == "(" && stv == ")")
                 {
                     index = st.IndexOfNextString(")", index + 1) + 1;
                 }
-                else if ((st.ToSubstring(index, index + 1) == "{{") && (stv == "}}"))
+                else if (st.ToSubstring(index, index + 1) == "{{" && stv == "}}")
                 {
                     index = st.IndexOfNextString("}}", index + 1) + 2;
                 }
-                else if ((st.Substring(index, 1) == "{") && (stv == "}"))
+                else if (st.Substring(index, 1) == "{" && stv == "}")
                 {
                     index = st.IndexOfNextString("}", index + 1) + 1;
                 }
-                else if ((index <= st_l - stv_l) && (string.Equals(st.Substring(index, stv_l), stv, stringComparison)))
+                else if (index <= st_l - stv_l && string.Equals(st.Substring(index, stv_l), stv, stringComparison))
                 {
                     b = true;
                 }
@@ -384,7 +385,7 @@ namespace BindOpen.Data
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime? date)
         {
-            return date?.ToString(StringHelper.__DateFormat);
+            return date?.ToString(__DateFormat);
         }
 
         /// <summary>
@@ -394,7 +395,7 @@ namespace BindOpen.Data
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime date)
         {
-            return date.ToString(StringHelper.__DateFormat);
+            return date.ToString(__DateFormat);
         }
 
         /// <summary>
@@ -537,7 +538,7 @@ namespace BindOpen.Data
         /// <returns>Returns the excluded string items.</returns>
         public static IEnumerable<string> Excluding(this IEnumerable<string> stringItems, params string[] excludingStringItems)
         {
-            return StringHelper.Excluding(stringItems, excludingStringItems.ToList());
+            return stringItems.Excluding(excludingStringItems.ToList());
         }
 
         /// <summary>
@@ -572,7 +573,7 @@ namespace BindOpen.Data
         /// <returns>Returns the added string items.</returns>
         public static IEnumerable<string> Adding(this IEnumerable<string> stringItems, params string[] addingStringItems)
         {
-            return StringHelper.Adding(stringItems, addingStringItems.ToList());
+            return stringItems.Adding(addingStringItems.ToList());
         }
 
         /// <summary>
@@ -672,13 +673,13 @@ namespace BindOpen.Data
                     }
                     return object1;
                 case DataValueTypes.Date:
-                    if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__DateFormat;
+                    if (string.IsNullOrEmpty(textFormat)) textFormat = __DateFormat;
                     DateTime dateTime;
                     if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         return null;
                     return new DateTime?(dateTime);
                 case DataValueTypes.Time:
-                    if (string.IsNullOrEmpty(textFormat)) textFormat = StringHelper.__TimeFormat;
+                    if (string.IsNullOrEmpty(textFormat)) textFormat = __TimeFormat;
                     TimeSpan aTimeSpan;
                     if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out aTimeSpan))
                         return null;
@@ -734,7 +735,7 @@ namespace BindOpen.Data
         public static T ToEnum<T>(this string st, T defaultEnum = default) where T : struct, IConvertible
         {
             T aEnum = defaultEnum;
-            if ((st != null) && (!Enum.TryParse<T>(st, true, out aEnum)))
+            if (st != null && !Enum.TryParse(st, true, out aEnum))
                 aEnum = defaultEnum;
             return aEnum;
         }
@@ -751,7 +752,7 @@ namespace BindOpen.Data
         {
             if (charLists == null)
             {
-                charLists = new String[1]
+                charLists = new string[1]
                    { "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-" };
             }
 

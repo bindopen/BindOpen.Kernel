@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Runtime.Definition

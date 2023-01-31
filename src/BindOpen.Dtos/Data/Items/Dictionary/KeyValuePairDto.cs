@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using BindOpen.Data;
 
 namespace BindOpen.Data.Items
 {

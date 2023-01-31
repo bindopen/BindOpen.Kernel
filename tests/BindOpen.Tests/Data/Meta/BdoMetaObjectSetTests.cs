@@ -58,28 +58,28 @@ namespace BindOpen.Tests.Data
         public void NewTest()
         {
             var metaObj1 = BdoMeta.NewObject("object1")
-                .WithSubSet(
+                .WithMetaProperties(
                     BdoConfig.NewExtension(
                         "tests.core$testEntity",
                         BdoMeta.NewScalar("path", _testData.path1)));
 
             var metaObj2 = BdoMeta.NewObject("object2", "tests.core$testEntity")
-                .WithItems(new
+                .WithItems(new EntityFake()
                 {
                     Path = _testData.path2
                 });
-            metaObj2.UpdateTree();
+            metaObj2.UpdateMetaTree();
 
-            var metaObj3 = new EntityFake(
+            var obj3 = new EntityFake(
                 _testData.path3,
                 _testData.folderPath3,
-                new EntityFake(_testData.path1, _testData.folderPath3))
-                ?.ToMeta();
+                new EntityFake(_testData.path1, _testData.folderPath3));
+            var metaObj3 = obj3?.ToMetaData();
 
-            var metaObj4 = Bdo.NewEntity<EntityFake>(
+            var obj4 = Bdo.NewEntity<EntityFake>(
                 BdoConfig.New("tests.core$testEntity")
-                    .FromObject(new { path = _testData.path4 }))
-                ?.ToMeta("object4");
+                    .FromObject(new { path = _testData.path4 }));
+            var metaObj4 = obj4?.ToMetaData("object4");
 
             _metaObjSet = BdoMeta.NewSet(
                 metaObj1,
