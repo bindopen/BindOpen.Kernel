@@ -66,7 +66,7 @@ namespace BindOpen.Data.Specification
             string parameterName = null)
         {
             IBdoConfiguration routine = GetConstraint(constraintName);
-            return routine?.GetItem(parameterName);
+            return routine?.GetData(parameterName);
         }
 
         #endregion

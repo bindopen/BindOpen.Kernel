@@ -19,12 +19,12 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Source element of this instance.
         /// </summary>
-        public IBdoMetaData SourceMetaData { get; set; }
+        public IBdoMetaData SourceMetaItem { get; set; }
 
         /// <summary>
         /// Source item of this instance.
         /// </summary>
-        public object SourceObject => SourceMetaData?.Item();
+        public object SourceObject => SourceMetaItem?.GetData();
 
         /// <summary>
         /// Target item of this instance.
@@ -68,7 +68,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// The root element of this instance.
         /// </summary>
-        public IBdoMetaData RootElement() => SourceMetaData?.ItemReference?.SourceMetaData;
+        public IBdoMetaData RootElement() => SourceMetaItem?.DataReference?.SourceMetaItem;
 
         /// <summary>
         /// Gets the initial data source of this instance.
@@ -125,7 +125,7 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             BdoReference dataReference = Clone<BdoReference>(areas);
-            dataReference.SourceMetaData = SourceMetaData.Clone<IBdoMetaData>();
+            dataReference.SourceMetaItem = SourceMetaItem.Clone<IBdoMetaData>();
             dataReference.PathDetail = PathDetail.Clone<BdoMetaSet>();
 
             return dataReference;

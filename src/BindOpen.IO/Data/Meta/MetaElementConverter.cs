@@ -30,10 +30,8 @@ namespace BindOpen.Data.Meta
 
             if (dto != null)
             {
-                dto.Description = poco.Description?.ToDto();
-                dto.Detail = poco.Detail?.ToDto();
-                dto.ItemReference = poco.ItemReference?.ToDto();
-                dto.Title = poco.Title?.ToDto();
+                dto.DataExpression = poco.DataExpression?.ToDto();
+                dto.DataReference = poco.DataReference?.ToDto();
             }
 
             return dto;

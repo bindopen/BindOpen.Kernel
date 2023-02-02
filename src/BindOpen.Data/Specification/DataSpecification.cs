@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Data.Specification
 {
@@ -64,19 +63,7 @@ namespace BindOpen.Data.Specification
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="valueType"></param>
-        /// <returns></returns>
-        public IDataSpecification WithValueType(DataValueTypes valueType)
-        {
-            ValueType = valueType;
-
-            return this;
-        }
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The requirement level of this instance.
@@ -84,85 +71,24 @@ namespace BindOpen.Data.Specification
         public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public IDataSpecification WithRequirementLevel(RequirementLevels level)
-        {
-            RequirementLevel = level;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IDataSpecification AsOptional()
-            => WithRequirementLevel(RequirementLevels.Optional);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IDataSpecification AsRequired()
-            => WithRequirementLevel(RequirementLevels.Required);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IDataSpecification AsForbidden()
-            => WithRequirementLevel(RequirementLevels.Forbidden);
-
-        /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        public string RequirementScript { get; set; }
-
-        public IDataSpecification WithRequirementScript(string script)
-        {
-            RequirementScript = script;
-
-            return this;
-        }
+        public IBdoExpression RequirementExpression { get; set; }
 
         /// <summary>
         /// The level of inheritance of this instance.
         /// </summary>
         public InheritanceLevels InheritanceLevel { get; set; } = InheritanceLevels.None;
 
-        public IDataSpecification WithInheritanceLevel(InheritanceLevels level)
-        {
-            InheritanceLevel = level;
-
-            return this;
-        }
-
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
         public List<SpecificationLevels> SpecificationLevels { get; set; }
 
-        public IDataSpecification WithSpecificationLevels(params SpecificationLevels[] levels)
-        {
-            SpecificationLevels = levels.ToList();
-
-            return this;
-        }
-
         /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
-
-        public IDataSpecification WithAccessibilityLevel(AccessibilityLevels level)
-        {
-            AccessibilityLevel = level;
-
-            return this;
-        }
 
         #endregion
 

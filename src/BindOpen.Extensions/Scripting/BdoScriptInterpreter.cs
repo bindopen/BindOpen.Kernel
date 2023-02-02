@@ -729,7 +729,7 @@ namespace BindOpen.Extensions.Scripting
                     break;
                 case ScriptItemKinds.Variable:
                     var name = scriptword.Parameters?.FirstOrDefault()?.ToString();
-                    return varSet[name].Item(_scope, varSet, log);
+                    return varSet[name].GetData(_scope, varSet, log);
             }
 
             return null;
@@ -777,7 +777,7 @@ namespace BindOpen.Extensions.Scripting
                     {
                         return definition.RepeatedParameterValueType.IsCompatibleWith(param.GetValueType());
                     }
-                    else if (paramSpecification.ValueType != DataValueTypes.Any)
+                    else if (paramSpecification.DataValueType != DataValueTypes.Any)
                     {
                         return paramSpecification.IsCompatibleWithItem(param);
                     }

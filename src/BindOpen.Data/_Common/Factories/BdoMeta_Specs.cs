@@ -14,14 +14,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static BdoMetaDataSpec NewSpec(
+        public static BdoMetaSpec NewSpec(
             string name,
             DataValueTypes valueType)
         {
             if (valueType.IsScalar())
             {
                 var scalarSpec = NewSpec<BdoMetaScalarSpec>(name);
-                scalarSpec.WithValueType(valueType);
+                scalarSpec.WithDataValueType(valueType);
                 return scalarSpec;
             }
             else
@@ -42,7 +42,7 @@ namespace BindOpen.Data
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static BdoMetaDataSpec NewSpec(
+        public static BdoMetaSpec NewSpec(
             string name,
             Type type)
         {
@@ -58,7 +58,7 @@ namespace BindOpen.Data
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
         public static TElementSpec NewSpec<TElementSpec>(string name = null)
-        where TElementSpec : class, IBdoMetaDataSpec, new()
+        where TElementSpec : class, IBdoMetaSpec, new()
         {
             var spec = new TElementSpec();
             spec.WithName(name);
@@ -73,7 +73,7 @@ namespace BindOpen.Data
         /// <param name="type">The value type to consider.</param>
         public static TElementSpec NewSpec<TElementSpec, T>(
             string name = null)
-            where TElementSpec : class, IBdoMetaDataSpec, new()
+            where TElementSpec : class, IBdoMetaSpec, new()
         {
             var spec = NewSpec<TElementSpec>(name, typeof(TElementSpec));
             return spec;
@@ -87,19 +87,19 @@ namespace BindOpen.Data
         public static TElementSpec NewSpec<TElementSpec>(
             string name,
             Type type)
-            where TElementSpec : class, IBdoMetaDataSpec, new()
+            where TElementSpec : class, IBdoMetaSpec, new()
         {
             if (type == null) return default;
 
             var spec = NewSpec<TElementSpec>(name);
-            spec.WithValueType(type.GetValueType());
+            spec.WithDataValueType(type.GetValueType());
             spec.AsType(type);
 
             return spec;
         }
 
-        private static IBdoMetaDataSpec AsType(
-            this IBdoMetaDataSpec spec,
+        private static IBdoMetaSpec AsType(
+            this IBdoMetaSpec spec,
             Type type)
         {
             if (spec != null)

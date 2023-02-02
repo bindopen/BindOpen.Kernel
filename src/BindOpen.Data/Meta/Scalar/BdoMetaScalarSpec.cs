@@ -4,7 +4,7 @@
     /// <summary>
     /// This class represents a scalar element specification.
     /// </summary>
-    public class BdoMetaScalarSpec : BdoMetaDataSpec, IBdoMetaScalarSpec
+    public class BdoMetaScalarSpec : BdoMetaSpec, IBdoMetaScalarSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS

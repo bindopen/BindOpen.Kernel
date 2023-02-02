@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace BindOpen.Data.Meta
     public abstract class TBdoMetaData<TElement, TSpec, TItem> : BdoMetaData,
         ITBdoMetaData<TElement, TSpec, TItem>
         where TElement : IBdoMetaData
-        where TSpec : IBdoMetaDataSpec
+        where TSpec : IBdoMetaSpec
         where TItem : class
     {
         // --------------------------------------------------
@@ -63,7 +62,7 @@ namespace BindOpen.Data.Meta
         public new List<TSpec> Specs
         {
             get => base.Specs?.Cast<TSpec>().ToList();
-            set { base.WithSpecifications(value?.Cast<IBdoMetaDataSpec>().ToArray()); }
+            set { base.WithSpecifications(value?.Cast<IBdoMetaSpec>().ToArray()); }
         }
 
         /// <summary>
@@ -85,66 +84,17 @@ namespace BindOpen.Data.Meta
             return (TSpec)base.NewSpecification();
         }
 
-        // Items ----------------------------
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public new TElement ClearItems()
-        {
-            return (TElement)base.ClearItems();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <returns></returns>
-        public new TElement WithItemizationMode(DataItemizationMode mode)
-        {
-            return (TElement)base.WithItemizationMode(mode);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="reference"></param>
-        /// <returns></returns>
-        public new TElement WithItemReference(IBdoReference reference)
-        {
-            return (TElement)base.WithItemReference(reference);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <returns></returns>
-        public new TElement WithItemScript(string script)
-        {
-            return (TElement)base.WithItemScript(script);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="valueType"></param>
-        /// <returns></returns>
-        public new TElement WithValueType(DataValueTypes valueType)
-        {
-            return (TElement)base.WithValueType(valueType);
-        }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public new TElement WithSpecifications(params IBdoMetaDataSpec[] specs)
+        public new TElement WithSpecifications(params IBdoMetaSpec[] specs)
         {
             return (TElement)base.WithSpecifications(specs);
         }
+
+        // Data
 
         /// <summary>
         /// Sets the item of this instance.
@@ -152,9 +102,9 @@ namespace BindOpen.Data.Meta
         /// <param name="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public virtual TElement WithItems(params TItem[] objs)
+        public virtual TElement WithDataList(params TItem[] objs)
         {
-            return (TElement)base.WithItems(objs);
+            return (TElement)base.WithDataList(objs);
         }
 
         /// <summary>
@@ -164,11 +114,11 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public new List<TItem> Items(
+        public new List<TItem> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-        => base.Items<TItem>(scope, varSet, log);
+            => base.GetDataList<TItem>(scope, varSet, log);
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -177,11 +127,11 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        List<Q> ITBdoMetaData<TElement, TSpec, TItem>.Items<Q>(
+        public new List<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-        => base.Items<Q>(scope, varSet, log);
+            => base.GetDataList<Q>(scope, varSet, log);
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -190,11 +140,11 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public new TItem Item(
+        public new TItem GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-        => base.Item<TItem>(scope, varSet, log);
+            => base.GetData<TItem>(scope, varSet, log);
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -203,11 +153,11 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        Q ITBdoMetaData<TElement, TSpec, TItem>.Item<Q>(
+        public new Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-        => base.Item<Q>(scope, varSet, log);
+            => base.GetData<Q>(scope, varSet, log);
 
         #endregion
     }

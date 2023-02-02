@@ -29,9 +29,9 @@ namespace BindOpen.Tests.IO.Data
 
         private void Test(IBdoMetaSet metaSet)
         {
-            var obj1 = metaSet.GetItem("object1");
-            var obj2 = metaSet.GetItem("object2");
-            var obj3 = metaSet["object3"].Item();
+            var obj1 = metaSet.GetData("object1");
+            var obj2 = metaSet.GetData("object2");
+            var obj3 = metaSet["object3"].GetData();
 
             Assert.That(obj1.IsDeepEqual(_obj1) == true, "Bad obj element set - Count");
             Assert.That(obj2.IsDeepEqual(_obj2) == true, "Bad obj element set - Count");

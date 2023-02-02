@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -46,10 +46,9 @@ namespace BindOpen.Data.Specification
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        [JsonPropertyName("requirementScript")]
-        [XmlElement("requirementScript")]
-        [DefaultValue(null)]
-        public string RequirementScript { get; set; }
+        [JsonPropertyName("requirementExp")]
+        [XmlElement("requirementExp")]
+        public ExpressionDto RequirementExpression { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.

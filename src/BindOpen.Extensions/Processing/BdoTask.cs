@@ -52,7 +52,7 @@ namespace BindOpen.Extensions.Processing
         {
             IBdoMetaData entry = null;// Config?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.Items(scope, varSet, log);
+            return entry?.GetDataList(scope, varSet, log);
         }
 
         // General ---------------------------------------
@@ -77,7 +77,7 @@ namespace BindOpen.Extensions.Processing
             {
                 //foreach (IBdoMetaData entry in Config.GetEntries(taskEntryKind))
                 //{
-                //    IBdoMetaDataSpec dataElementSpec = dataElementSpecSet[entry.Key()];
+                //    IBdoMetaSpec dataElementSpec = dataElementSpecSet[entry.Key()];
                 //    if (dataElementSpec != null)
                 //    {
                 //        bool isCompatible = dataElementSpec.IsCompatibleWithItem(entry);

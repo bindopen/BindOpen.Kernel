@@ -365,51 +365,48 @@ namespace BindOpen.Data
         /// <param name="obj"></param>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public static object ToBdoElementItem(this object obj, IBdoMetaDataSpec spec)
+        public static object ToBdoElementItem(this object obj, IBdoMetaSpec spec)
         {
             object item = null;
 
             if (obj != null)
             {
-                if (spec == null || !spec.IsValueList)
+                if (spec == null || spec.IsCompatibleWithItem(obj))
                 {
-                    if (spec == null || spec.IsCompatibleWithItem(obj))
+                    IEnumerable objEnum;
+
+                    //// if object is a singleton of scalar list
+
+                    //if (obj is not byte[]
+                    //    && obj is not string
+                    //    && (objEnum = obj as IEnumerable) != null
+                    //    && objEnum.Cast<object>().Count() == 1
+                    //    && objEnum.Cast<object>().FirstOrDefault() is IEnumerable list
+                    //    && list is not string)
+                    //{
+                    //    item = list.Cast<object>().ToList();
+                    //}
+                    // if object is a scalar list
+                    if (obj is not byte[]
+                       && obj is not string
+                       && (objEnum = obj as IEnumerable) != null
+                       && objEnum.Cast<object>().FirstOrDefault() is not IBdoItem)
                     {
-                        IEnumerable objEnum;
-
-                        //// if object is a singleton of scalar list
-
-                        //if (obj is not byte[]
-                        //    && obj is not string
-                        //    && (objEnum = obj as IEnumerable) != null
-                        //    && objEnum.Cast<object>().Count() == 1
-                        //    && objEnum.Cast<object>().FirstOrDefault() is IEnumerable list
-                        //    && list is not string)
-                        //{
-                        //    item = list.Cast<object>().ToList();
-                        //}
-                        // if object is a scalar list
-                        if (obj is not byte[]
-                           && obj is not string
-                           && (objEnum = obj as IEnumerable) != null
-                           && objEnum.Cast<object>().FirstOrDefault() is not IBdoItem)
+                        if (objEnum.Cast<object>().Count() > 1)
                         {
-                            if (objEnum.Cast<object>().Count() > 1)
-                            {
-                                item = objEnum.Cast<object>().ToList();
-                            }
-                            else
-                            {
-                                item = objEnum.Cast<object>().FirstOrDefault();
-                            }
+                            item = objEnum.Cast<object>().ToList();
                         }
                         else
                         {
-                            item = obj;
+                            item = objEnum.Cast<object>().FirstOrDefault();
                         }
                     }
+                    else
+                    {
+                        item = obj;
+                    }
                 }
-                else if (spec.IsValueList)
+                else
                 {
                     var list = new List<object>();
 

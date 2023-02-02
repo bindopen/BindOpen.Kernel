@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BindOpen.Data;
 using BindOpen.Data.Items;
 using BindOpen.Data.References;
 using System.Linq;
@@ -22,11 +21,8 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
-                    .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
-                    .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDto()))
-                    .ForMember(q => q.ItemReference, opt => opt.MapFrom(q => q.ItemReference.ToDto()))
+                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
                     .ForMember(q => q.Specs, opt => opt.Ignore())
-                    .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDto()))
             );
 
             var mapper = new Mapper(config);
@@ -36,14 +32,14 @@ namespace BindOpen.Data.Meta
 
             if (poco.ItemizationMode == DataItemizationMode.Value)
             {
-                var values = poco.Items<object>().Select(q => q.ToString(poco.ValueType)).ToList();
-                if (values.Count == 1)
+                var dataList = poco.GetDataList<object>().Select(q => q.ToString(poco.DataValueType)).ToList();
+                if (dataList.Count == 1)
                 {
-                    dto.Item = values.FirstOrDefault();
+                    dto.Item = dataList.FirstOrDefault();
                 }
                 else
                 {
-                    dto.Items = values;
+                    dto.Items = dataList;
                 }
             }
 
@@ -61,30 +57,24 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
-                    .ForMember(q => q.Description, opt => opt.Ignore())
-                    .ForMember(q => q.Detail, opt => opt.Ignore())
-                    .ForMember(q => q.ItemReference, opt => opt.Ignore())
+                    .ForMember(q => q.DataReference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
-                    .ForMember(q => q.Title, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.Description = dto.Description.ToPoco();
-            poco.Detail = dto.Detail.ToPoco();
-            poco.ItemReference = dto.ItemReference.ToPoco();
+            poco.DataReference = dto.DataReference.ToPoco();
             poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
-            poco.Title = dto.Title.ToPoco();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {
-                poco.WithItems(dto.Item);
+                poco.WithData(dto.Item);
             }
             else
             {
-                var objects = dto.Items.Select(q => q.ToObject(poco.ValueType)).ToList();
-                poco.WithItems(objects);
+                var objects = dto.Items.Select(q => q.ToObject(poco.DataValueType)).ToList();
+                poco.WithDataList(objects);
             }
 
             return poco;

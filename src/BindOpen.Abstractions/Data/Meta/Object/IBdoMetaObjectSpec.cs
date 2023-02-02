@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaObjectSpec : IBdoMetaDataSpec
+    public interface IBdoMetaObjectSpec : IBdoMetaSpec
     {
         /// <summary>
         /// 

@@ -3,7 +3,6 @@ using BindOpen.Data.Items;
 using BindOpen.Data.Specification;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -86,6 +85,19 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+
+        #endregion
+
         // --------------------------------------------------
         // IBdoElement Implementation
         // --------------------------------------------------
@@ -102,7 +114,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -111,9 +123,14 @@ namespace BindOpen.Data.Meta
         {
             get
             {
-                return _itemizationMode != DataItemizationMode.Any ? _itemizationMode :
-                  (!string.IsNullOrEmpty(ItemScript) ? DataItemizationMode.Script :
-                  (ItemReference != null ? DataItemizationMode.Reference : DataItemizationMode.Value));
+                if (_itemizationMode != DataItemizationMode.Any)
+                    return _itemizationMode;
+                else if (DataExpression != null)
+                    return DataItemizationMode.Expression;
+                else if (DataReference != null)
+                    return DataItemizationMode.Reference;
+
+                return DataItemizationMode.Value;
             }
             set { _itemizationMode = value; }
         }
@@ -121,19 +138,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        public IBdoReference ItemReference { get; set; }
+        public IBdoReference DataReference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public string ItemScript { get; set; }
+        public IBdoExpression DataExpression { get; set; }
 
         // Specification -------------------------------
 
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public List<IBdoMetaDataSpec> Specs { get; set; }
+        public List<IBdoMetaSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -141,7 +158,7 @@ namespace BindOpen.Data.Meta
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public IBdoMetaDataSpec NewSpecification()
+        public IBdoMetaSpec NewSpecification()
         {
             if (this is IBdoMetaObject)
             {
@@ -162,7 +179,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public bool IsCompatibleWithItem(object item)
         {
-            return (ValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(ValueType));
+            return (DataValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(DataValueType));
         }
 
         /// <summary>
@@ -185,31 +202,92 @@ namespace BindOpen.Data.Meta
                     obj = _item;
                     break;
                 case DataItemizationMode.Reference:
-                    if (ItemReference == null)
+                    if (DataReference == null)
                     {
                         log?.AddWarning(title: "Reference missing");
                     }
-                    obj = ItemReference.Get(scope, varSet, log);
+                    obj = DataReference.Get(scope, varSet, log);
                     break;
-                case DataItemizationMode.Script:
+                case DataItemizationMode.Expression:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (string.IsNullOrEmpty(ItemScript))
+                        if (DataExpression == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
                         var interpreter = scope.NewScriptInterpreter();
-                        obj = interpreter.Evaluate<object>(ItemScript, BdoExpressionKind.Script, varSet, log);
+                        obj = interpreter.Evaluate<object>(DataExpression, varSet, log);
                     }
                     break;
             }
 
             return obj;
+        }
+
+        // Specification
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoMetaSpec GetSpecification(string name = null)
+        {
+            return Specs?.FirstOrDefault(
+                q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaData WithSpecifications(params IBdoMetaSpec[] specs)
+        {
+            Specs = specs?.ToList();
+
+            return this;
+        }
+
+        // Clear
+
+        /// <summary>
+        /// Clears the item of this instance.
+        /// </summary>
+        public IBdoMetaData ClearData()
+        {
+            _item = null;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaData WithData(object obj)
+        {
+            _item = obj.ToBdoElementItem(GetSpecification());
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaData WithDataList(params object[] objs)
+        {
+            _item = objs?.ToList().ToBdoElementItem(GetSpecification());
+
+            return this;
         }
 
         /// <summary>
@@ -219,7 +297,7 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public List<object> Items(
+        public List<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -237,12 +315,12 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public List<Q> Items<Q>(
+        public List<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var list = Items(scope, varSet, log);
+            var list = GetDataList(scope, varSet, log);
             return list?.Select(q =>
             {
                 if (q is Q q_Q)
@@ -259,12 +337,12 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public object Item(
+        public object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var list = Items(scope, varSet, log);
+            var list = GetDataList(scope, varSet, log);
             return list?.FirstOrDefault();
         }
 
@@ -275,107 +353,18 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public Q Item<Q>(
+        public Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var list = Items<Q>(scope, varSet, log);
+            var list = GetDataList<Q>(scope, varSet, log);
             if (list == null)
             {
                 return default;
             }
 
             return list.FirstOrDefault();
-        }
-
-        // Mutators ---------------------------
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithItemizationMode(DataItemizationMode mode)
-        {
-            ItemizationMode = mode;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithItemReference(IBdoReference reference)
-        {
-            ItemReference = reference;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithItemScript(string script)
-        {
-            ItemScript = script;
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithValueType(DataValueTypes valueType)
-        {
-            ValueType = valueType;
-            return this;
-        }
-
-        // Specification
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec GetSpecification(string name = null)
-        {
-            return Specs?.FirstOrDefault(
-                q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithSpecifications(params IBdoMetaDataSpec[] specs)
-        {
-            Specs = specs?.ToList();
-
-            return this;
-        }
-
-        // Clear
-
-        /// <summary>
-        /// Clears the item of this instance.
-        /// </summary>
-        public IBdoMetaData ClearItems()
-        {
-            _item = null;
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public IBdoMetaData WithItems(params object[] objs)
-        {
-            _item = objs?.ToList().ToBdoElementItem(GetSpecification());
-
-            return this;
         }
 
         // Accessors --------------------------
@@ -410,17 +399,9 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.ItemReference = ItemReference?.Clone<BdoReference>();
-            el.Specs = Specs?.Select(q => q?.Clone<BdoMetaDataSpec>())
-                .Cast<IBdoMetaDataSpec>().ToList();
-
-            if (Detail != null)
-            {
-                if (areas.Contains(nameof(DataAreaKind.Any)) || areas.Contains(nameof(DataAreaKind.Properties)))
-                {
-                    el.Detail = Detail.Clone() as BdoMetaSet;
-                }
-            }
+            el.DataReference = DataReference?.Clone<BdoReference>();
+            el.Specs = Specs?.Select(q => q?.Clone<BdoMetaSpec>())
+                .Cast<IBdoMetaSpec>().ToList();
 
             return el;
         }
@@ -454,19 +435,6 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // IIdentified Implementation
-        // ------------------------------------------
-
-        #region IIdentified
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Id { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
         // INamed Implementation
         // ------------------------------------------
 
@@ -476,45 +444,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IDetailed Implementation
-        // ------------------------------------------
-
-        #region IDetailed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaSet Detail { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IGloballyTitled Implementation
-        // ------------------------------------------
-
-        #region IGloballyTitled
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoDictionary Title { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IGloballyDescribed Implementation
-        // ------------------------------------------
-
-        #region IGloballyDescribed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoDictionary Description { get; set; }
 
         #endregion
 
@@ -536,9 +465,6 @@ namespace BindOpen.Data.Meta
             {
                 return;
             }
-
-            Detail?.Dispose();
-
 
             _isDisposed = true;
 

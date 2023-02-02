@@ -1,8 +1,8 @@
-﻿using BindOpen.Extensions.Connecting;
-using BindOpen.Logging;
-using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions.Connecting;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
@@ -60,7 +60,8 @@ namespace BindOpen.Runtime.Stores
 
                 foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
                 {
-                    definition.DatasourceDetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    definition.DatasourceDetailSpec.Add(
+                        BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition

@@ -41,7 +41,7 @@ namespace BindOpen.Data
             var el = new BdoMetaObject();
             el.WithName(name);
             el.WithClassReference(reference);
-            el.WithItems(items);
+            el.WithDataList(items);
 
             return el;
         }

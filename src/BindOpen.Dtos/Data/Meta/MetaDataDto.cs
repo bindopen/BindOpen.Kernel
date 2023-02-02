@@ -65,16 +65,16 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        [JsonPropertyName("itemReference")]
-        [XmlElement("itemReference")]
-        public DataReferenceDto ItemReference { get; set; }
+        [JsonPropertyName("dataReference")]
+        [XmlElement("dataReference")]
+        public DataReferenceDto DataReference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        [JsonPropertyName("script")]
-        [XmlAttribute("script")]
-        public string ItemScript { get; set; }
+        [JsonPropertyName("dataExp")]
+        [XmlAttribute("dataExp")]
+        public ExpressionDto DataExpression { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -89,9 +89,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Property detail of this instance.
         /// </summary>
-        [JsonPropertyName("propertyDetail")]
-        [XmlElement("propertyDetail")]
-        public MetaSetDto Detail { get; set; }
+        [JsonPropertyName("propertySet")]
+        [XmlElement("propertySet")]
+        public MetaSetDto PropertySet { get; set; }
 
         // IIndexedDataItem -------------------------------
 

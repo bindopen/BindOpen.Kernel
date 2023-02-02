@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data 
     /// </summary>
-    public static partial class BdoMetaDataExtensions
+    public static partial class BdoMetaItemExtensions
     {
         /// <summary>
         /// Updates this instance.
@@ -41,23 +41,21 @@ namespace BindOpen.Data.Meta
                 || (specificationAreas.Contains(nameof(BdoMetaDataAreaKind.Element))))
             {
                 el.WithName(refEl.Name);
-                el.WithTitle(refEl.Title);
-                el.WithDescription(refEl.Description);
                 el.WithIndex(refEl.Index);
             }
 
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
                 || (specificationAreas.Contains(nameof(DataAreaKind.Items))))
             {
-                if (el.ValueType == DataValueTypes.Any)
+                if (el.DataValueType == DataValueTypes.Any)
                 {
-                    el.WithValueType(refEl.ValueType);
+                    el.WithDataValueType(refEl.DataValueType);
                 }
 
-                el.WithItemScript(refEl.ItemScript);
-                el.WithItemReference(refEl.ItemReference);
+                el.WithDataExpression(refEl.DataExpression);
+                el.WithDataReference(refEl.DataReference);
 
-                el.WithItems(refEl.Item(log: log));
+                el.WithDataList(refEl.GetData(log: log));
             }
 
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))
@@ -154,9 +152,9 @@ namespace BindOpen.Data.Meta
                 {
                     if (refEl != null)
                     {
-                        if (el.ValueType == DataValueTypes.None || el.ValueType == DataValueTypes.Any)
+                        if (el.DataValueType == DataValueTypes.None || el.DataValueType == DataValueTypes.Any)
                         {
-                            el.WithValueType(refEl.ValueType);
+                            el.WithDataValueType(refEl.DataValueType);
                         }
                     }
                 }

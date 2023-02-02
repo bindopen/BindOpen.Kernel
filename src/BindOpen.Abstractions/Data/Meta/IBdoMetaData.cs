@@ -11,9 +11,8 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface IBdoMetaData :
         IBdoItem,
-        IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed, IReferenced,
-        IIndexed, IDetailed
+        INamed, IReferenced,
+        IIndexed
     {
         /// <summary>
         /// The kind of meta data of this instance.
@@ -28,63 +27,23 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        DataItemizationMode ItemizationMode { get; set; }
+        List<IBdoMetaSpec> Specs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaData WithItemizationMode(DataItemizationMode mode);
+        IBdoMetaSpec GetSpecification(string name = null);
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoReference ItemReference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData WithItemReference(IBdoReference reference);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string ItemScript { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData WithItemScript(string script);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes ValueType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData WithValueType(DataValueTypes valueType);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<IBdoMetaDataSpec> Specs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaDataSpec GetSpecification(string name = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData WithSpecifications(params IBdoMetaDataSpec[] specs);
+        IBdoMetaData WithSpecifications(params IBdoMetaSpec[] specs);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaDataSpec NewSpecification();
+        IBdoMetaSpec NewSpecification();
 
         /// <summary>
         /// Indicates whether this instance is compatible with the specified item.
@@ -93,17 +52,39 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         bool IsCompatibleWithItem(object item);
 
+        // Data
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DataItemizationMode ItemizationMode { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DataValueTypes DataValueType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IBdoReference DataReference { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IBdoExpression DataExpression { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaData ClearItems();
+        IBdoMetaData ClearData();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="objs"></param>
-        IBdoMetaData WithItems(params object[] objs);
+        IBdoMetaData WithDataList(params object[] objs);
 
         /// <summary>
         /// 
@@ -112,7 +93,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        object Item(
+        object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
@@ -124,7 +105,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        Q Item<Q>(
+        Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
@@ -136,7 +117,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        List<object> Items(
+        List<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
@@ -148,7 +129,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        List<Q> Items<Q>(
+        List<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

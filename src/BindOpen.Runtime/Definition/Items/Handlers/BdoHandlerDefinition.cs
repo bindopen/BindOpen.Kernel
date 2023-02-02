@@ -46,12 +46,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter specification of this instance.
         /// </summary>
-        public IBdoMetaDataSpec SourceSpecification { get; set; }
+        public IBdoMetaSpec SourceSpecification { get; set; }
 
         /// <summary>
         /// The target specification of this instance.
         /// </summary>
-        public IBdoMetaDataSpec TargetSpecification { get; set; }
+        public IBdoMetaSpec TargetSpecification { get; set; }
 
         /// <summary>
         /// The unique ID of this instance.

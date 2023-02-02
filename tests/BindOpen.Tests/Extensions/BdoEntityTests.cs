@@ -27,6 +27,8 @@ namespace BindOpen.Tests.Extensions
         /// <returns></returns>
         public static IBdoEntity CreateEntity(dynamic data)
         {
+            BdoConfig.New().WithItems(BdoMeta.NewScalar());
+
             var config =
                 BdoConfig.New("tests.core$testEntity")
                 .WithItems(

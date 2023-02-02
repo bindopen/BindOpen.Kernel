@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoAssemblyReferenceExtensions
+    public static partial class IBdoAssemblyReferenceExtensions
     {
         /// <summary>
         /// 

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -9,22 +10,18 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaObject :
-        ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>
+        ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>,
+        ITBdoItemSet<IBdoMetaData>
     {
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSet PropertyMetaSet { get; set; }
+        IBdoMetaSet PropertySet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithMetaProperties(IBdoMetaSet set);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaObject WithMetaProperties(params IBdoMetaData[] metas);
+        IBdoMetaObject WithProperties(params IBdoMetaData[] metas);
 
         /// <summary>
         /// 
@@ -34,7 +31,8 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithClassReference(IBdoClassReference reference);
+        IBdoMetaObject WithClassReference(
+            IBdoClassReference reference);
 
         /// <summary>
         /// 
@@ -47,8 +45,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="objs"></param>
-        new IBdoMetaObject WithItems(
-            params object[] objs);
+        /// <param name="items"></param>
+        /// <returns></returns>
+        new IBdoMetaObject Add(params IBdoMetaData[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        new IBdoMetaObject WithItems(params IBdoMetaData[] items);
     }
 }

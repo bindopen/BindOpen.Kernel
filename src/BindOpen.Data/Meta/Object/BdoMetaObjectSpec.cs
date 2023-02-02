@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog element specification.
     /// </summary>
-    public class BdoMetaObjectSpec : BdoMetaDataSpec, IBdoMetaObjectSpec
+    public class BdoMetaObjectSpec : BdoMetaSpec, IBdoMetaObjectSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS

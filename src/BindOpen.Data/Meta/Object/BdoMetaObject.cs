@@ -1,7 +1,10 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
 {
@@ -33,7 +36,7 @@ namespace BindOpen.Data.Meta
         public BdoMetaObject(string name = null, string id = null)
             : base(name, "object_", id)
         {
-            WithValueType(DataValueTypes.Object);
+            this.WithDataValueType(DataValueTypes.Object);
         }
 
         #endregion
@@ -47,30 +50,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaSet PropertyMetaSet { get; set; }
+        public IBdoMetaSet ItemMetaSet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaObject WithMetaProperties(IBdoMetaSet set)
-        {
-            PropertyMetaSet = set;
-            //var item = set?.FirstOrDefault();
-            //if (item is IBdoConfiguration config
-            //    && !string.IsNullOrEmpty(item.DefinitionUniqueId))
-            //{
-            //    ClassReference = BdoData.ClassFromEntity(
-            //        item?.DefinitionUniqueId);
-            //}
-            return this;
-        }
+        public IBdoMetaSet PropertySet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaObject WithMetaProperties(
+        public IBdoMetaObject WithProperties(
             params IBdoMetaData[] metas)
-            => WithMetaProperties(BdoMeta.NewSet(metas));
+            => this.WithProperties(BdoMeta.NewSet(metas));
 
         /// <summary>
         /// The class full name of this instance.
@@ -103,26 +95,10 @@ namespace BindOpen.Data.Meta
         // Items ----------------------------
 
         /// <summary>
-        /// Sets a new single item of this instance.
-        /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public override IBdoMetaObject WithItems(params object[] item)
-        {
-            if (item != null)
-            {
-                base.WithItems(item);
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaDataSpec IBdoMetaData.NewSpecification()
+        IBdoMetaSpec IBdoMetaData.NewSpecification()
         {
             return NewSpecification();
         }
@@ -155,6 +131,161 @@ namespace BindOpen.Data.Meta
             var el = base.Clone(areas) as BdoMetaObject;
             return el;
         }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IDataItemSet Implementation
+        // --------------------------------------------------
+
+        #region IDataItemSet Implementation
+
+        /// <summary>
+        /// Returns the number of items.
+        /// </summary>
+        public List<IBdoMetaData> Items
+            => ItemMetaSet?.Items;
+
+        /// <summary>
+        /// Returns the el with the specified indexed.
+        /// </summary>
+        public IBdoMetaData this[int index]
+            => ItemMetaSet?.Get(index);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public IBdoMetaData this[string key]
+            => ItemMetaSet?.Get(key);
+
+        /// <summary>
+        /// Returns the number of items.
+        /// </summary>
+        public int Count
+            => ItemMetaSet?.Count ?? 0;
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public IBdoMetaObject Add(
+            params IBdoMetaData[] items)
+        {
+            ItemMetaSet?.Add(items);
+            return this;
+        }
+
+        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.Add(
+            params IBdoMetaData[] items)
+            => ItemMetaSet?.Add(items);
+
+        public IBdoMetaObject WithItems(params IBdoMetaData[] items)
+        {
+            ItemMetaSet?.WithItems(items);
+            return this;
+        }
+
+        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.WithItems(
+            params IBdoMetaData[] items)
+            => ItemMetaSet?.WithItems(items);
+
+        public IBdoMetaData Insert(IBdoMetaData item)
+            => ItemMetaSet?.Insert(item);
+
+        public void ClearItems()
+            => ItemMetaSet?.ClearItems();
+
+        public bool HasItem(string key = null)
+            => ItemMetaSet?.HasItem(key) ?? false;
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual IBdoMetaData Get(string key = null)
+            => ItemMetaSet?.Get(key);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaData Get(int index)
+            => ItemMetaSet?.Get(index);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(string key = null)
+            where Q : IBdoMetaData
+        {
+            if (ItemMetaSet != null)
+            {
+                return ItemMetaSet.Get<Q>(key);
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(int index)
+            where Q : IBdoMetaData
+        {
+            if (ItemMetaSet != null)
+            {
+                return ItemMetaSet.Get<Q>(index);
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IBdoMetaData[] ToArray()
+            => ItemMetaSet?.ToArray();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<IBdoMetaData> ToList()
+            => ItemMetaSet?.ToList();
+
+        #endregion
+
+        // ------------------------------------------
+        // IEnumerator Implementation
+        // ------------------------------------------
+
+        #region IEnumerator
+
+        /// <summary>
+        /// Indicates the enumerator of this instance.
+        /// </summary>
+        /// <returns>Returns the enumerator of this instance.</returns>
+        public IEnumerator<IBdoMetaData> GetEnumerator()
+            => ItemMetaSet?.GetEnumerator();
+
+        /// <summary>
+        /// Indicates the enumerator of this instance.
+        /// </summary>
+        /// <returns>Returns the enumerator of this instance.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+            => ItemMetaSet?.GetEnumerator();
 
         #endregion
     }

@@ -1,7 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -9,8 +6,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoMetaData<IBdoMetaSet, IBdoMetaSetSpec, IBdoMetaData>,
-        IBdoMetaSet
+        TBdoItemSet<IBdoMetaData>, IBdoMetaSet
     {
         // ------------------------------------------
         // CONVERTERS
@@ -33,53 +29,7 @@ namespace BindOpen.Data.Meta
         /// <param name="elems">The elems to consider.</param>
         public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
         {
-            return metaSet?.Items()?.ToArray();
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
-
-        #region Properties
-
-        // Specification -----------------------
-
-        List<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.Items
-        {
-            get => Items();
-        }
-
-        // IDataItemSet -----------------------
-
-        /// <summary>
-        /// Returns the el with the specified indexed.
-        /// </summary>
-        public IBdoMetaData this[int index]
-            => Items().Get(index);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public IBdoMetaData this[string key]
-        {
-            get
-            {
-                var items = Items();
-                if (key == null || items == null) return default;
-                return items.FirstOrDefault(p => p.BdoKeyEquals(key));
-            }
-        }
-
-        /// <summary>
-        /// Returns the number of items.
-        /// </summary>
-        public int Count
-        {
-            get => Items()?.Count ?? 0;
+            return metaSet?.ToArray();
         }
 
         #endregion
@@ -93,46 +43,44 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the CollectionElement class.
         /// </summary>
-        public BdoMetaSet() : this(null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the CollectionElement class.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
-        public BdoMetaSet(string name = null, string id = null)
-            : base(name, "set_", id)
+        public BdoMetaSet() : base()
         {
         }
 
         #endregion
 
         // --------------------------------------------------
-        // ITEMS
+        // IBdoMetaSet Implementation
         // --------------------------------------------------
 
-        #region Items
+        #region IBdoMetaSet
 
         /// <summary>
-        /// 
+        /// Adds the specified item.
         /// </summary>
-        /// <returns></returns>
-        IBdoMetaDataSpec IBdoMetaData.NewSpecification()
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public new IBdoMetaSet Add(
+            params IBdoMetaData[] items)
         {
-            return NewSpecification();
+            base.Add(items);
+
+            return this;
         }
 
-        // Items ----------------------------
-
         /// <summary>
-        /// Returns a text node representing this instance.
+        /// Sets the specified single item of this instance.
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+        /// <param name="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public new IBdoMetaSet WithItems(
+            params IBdoMetaData[] items)
         {
-            return "";
+            base.WithItems(items);
+
+            return this;
         }
 
         #endregion
@@ -152,183 +100,6 @@ namespace BindOpen.Data.Meta
             var el = base.Clone(areas) as BdoMetaSet;
             return el;
         }
-
-        #endregion
-
-
-        // ------------------------------------------
-        // IIdentifiedPoco Implementation
-        // ------------------------------------------
-
-        #region IIdentifiedPoco Implementation
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public new ITBdoItemSet<IBdoMetaData> WithId(string id)
-        {
-            Id = id;
-
-            return this;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // IDataItemSet Implementation
-        // --------------------------------------------------
-
-        #region IBdoElementSet Implementation
-
-        public ITBdoItemSet<IBdoMetaData> Add(params IBdoMetaData[] items)
-        {
-            if (items != null)
-            {
-                foreach (var item in items)
-                {
-                    Insert(item);
-                }
-            }
-
-            return this;
-        }
-
-        public IBdoMetaData Insert(IBdoMetaData item)
-        {
-            var items_ = Items() ?? new List<IBdoMetaData>();
-
-            if (item is IReferenced referencedDataItem)
-            {
-                var key = referencedDataItem?.Key();
-                Remove(key);
-            }
-
-            items_.Add(item);
-
-            return item;
-        }
-
-        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.ClearItems()
-        {
-            return base.ClearItems();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        public new IBdoMetaSet WithItems(
-            params IBdoMetaData[] items)
-        {
-            return base.WithItems(items);
-        }
-
-        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.WithItems(
-            params IBdoMetaData[] items)
-        {
-            return base.WithItems(items);
-        }
-
-        public bool HasItem(string key = null)
-        {
-            var items = Items();
-            if (key == null) return items?.Count > 0;
-            return items?.Any(p => p.BdoKeyEquals(key)) == true;
-        }
-
-        public ITBdoItemSet<IBdoMetaData> Remove(params string[] keys)
-        {
-            var items = Items();
-            if (keys != null)
-            {
-                items?.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
-            }
-            base.WithItems(items);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        public virtual IBdoMetaData Get(string key = null)
-        {
-            if (key == null) return this[0];
-            return this[key];
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key = null)
-            where Q : IBdoMetaData
-        {
-            var obj = Get(key);
-            if (obj is Q obj_Q)
-                return obj_Q;
-
-            return default;
-        }
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param name="index">The index to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(int index)
-            where Q : IBdoMetaData
-        {
-            var obj = this[index];
-            if (obj is Q obj_Q)
-                return obj_Q;
-
-            return default;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IBdoMetaData[] ToArray()
-        {
-            return Items()?.ToArray();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<IBdoMetaData> ToList()
-        {
-            return Items()?.ToList();
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // IEnumerator<T> Implementation
-        // --------------------------------------------------
-
-        #region IEnumerator<T>
-
-        /// <summary>
-        /// Indicates the enumerator of this instance.
-        /// </summary>
-        /// <returns>Returns the enumerator of this instance.</returns>
-        public IEnumerator<IBdoMetaData> GetEnumerator() => Items().GetEnumerator();
-
-        /// <summary>
-        /// Indicates the enumerator of this instance.
-        /// </summary>
-        /// <returns>Returns the enumerator of this instance.</returns>
-        IEnumerator IEnumerable.GetEnumerator() => Items().GetEnumerator();
 
         #endregion
     }

@@ -29,8 +29,8 @@ namespace BindOpen.Data.Items
         Reference,
 
         /// <summary>
-        /// Script.
+        /// Expression.
         /// </summary>
-        Script
+        Expression
     }
 }

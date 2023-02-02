@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Items;
 using BindOpen.Data.Specification;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public abstract class BdoMetaDataSpec : DataSpecification, IBdoMetaDataSpec
+    public abstract class BdoMetaSpec : DataSpecification, IBdoMetaSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -51,7 +50,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the BdoElementSpec class.
         /// </summary>
-        protected BdoMetaDataSpec() : base()
+        protected BdoMetaSpec() : base()
         {
         }
 
@@ -69,10 +68,10 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            var dataElementSpec = base.Clone<BdoMetaDataSpec>(areas);
+            var dataElementSpec = base.Clone<BdoMetaSpec>(areas);
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithAvailableItemizationModes(AvailableItemizationModes?.ToArray());
+            dataElementSpec.WithItemizationModes(ItemizationModes?.ToArray());
             dataElementSpec.WithConstraintStatement(ConstraintStatement.Clone<DataConstraintStatement>());
             dataElementSpec.WithSpecificationLevels(SpecificationLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
@@ -98,7 +97,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public IBdoMetaDataSpec WithCondition(ICondition condition)
+        public IBdoMetaSpec WithCondition(ICondition condition)
         {
             Condition = condition;
             return this;
@@ -110,17 +109,6 @@ namespace BindOpen.Data.Meta
         public List<string> Aliases { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="aliases"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithAliases(params string[] aliases)
-        {
-            Aliases = aliases.ToList();
-            return this;
-        }
-
-        /// <summary>
         /// Indicates whether the instance can be allocated.
         /// </summary>
         public bool IsAllocatable { get; set; } = false;
@@ -130,7 +118,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="isAllocatable"></param>
         /// <returns></returns>
-        public IBdoMetaDataSpec AsAllocatable(bool isAllocatable = true)
+        public IBdoMetaSpec AsAllocatable(bool isAllocatable = true)
         {
             IsAllocatable = isAllocatable;
 
@@ -140,24 +128,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public string ItemScript { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithItemScript(string script)
-        {
-            ItemScript = script;
-
-            return this;
-        }
+        public IBdoExpression ItemExpression { get; set; }
 
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public List<DataItemizationMode> AvailableItemizationModes
+        public List<DataItemizationMode> ItemizationModes
         {
             get => _availableItemizationModes;
             set
@@ -167,18 +143,6 @@ namespace BindOpen.Data.Meta
                 else
                     _availableItemizationModes = value;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="modes"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithAvailableItemizationModes(params DataItemizationMode[] modes)
-        {
-            _availableItemizationModes = modes.ToList();
-
-            return this;
         }
 
         /// <summary>
@@ -192,33 +156,9 @@ namespace BindOpen.Data.Meta
         public int MinimumItemNumber { get; set; } = 1;
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithMaximumItemNumber(int number)
-        {
-            MaximumItemNumber = number;
-
-            return this;
-        }
-
-        /// <summary>
         /// Maximum item number of this instance.
         /// </summary>
         public int MaximumItemNumber { get; set; } = -1;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="number"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithMinimumItemNumber(int number)
-        {
-            MinimumItemNumber = number;
-
-            return this;
-        }
 
         /// <summary>
         /// Indicates whether the value of this instance is a list.
@@ -257,17 +197,6 @@ namespace BindOpen.Data.Meta
         public List<SpecificationLevels> ItemSpecificationLevels { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="levels"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithItemSpecificationLevels(params SpecificationLevels[] levels)
-        {
-            ItemSpecificationLevels = levels.ToList();
-            return this;
-        }
-
-        /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
         public IDataConstraintStatement ConstraintStatement { get; set; }
@@ -275,64 +204,16 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="statement"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithConstraintStatement(IDataConstraintStatement statement)
-        {
-            ConstraintStatement = statement;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<IBdoMetaDataSpec> SubSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="specs"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithSubSpecs(params IBdoMetaDataSpec[] specs)
-        {
-            SubSpecs = new List<IBdoMetaDataSpec>();
-            AddSubSpecs(specs);
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="specs"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec AddSubSpecs(params IBdoMetaDataSpec[] specs)
-        {
-            SubSpecs ??= new List<IBdoMetaDataSpec>();
-            SubSpecs.AddRange(specs);
-
-            return this;
-        }
+        public List<IBdoMetaSpec> SubSpecs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoMetaDataSpec GetSubSpec(string name)
+        public IBdoMetaSpec GetSubSpec(string name)
         {
             return SubSpecs.FirstOrDefault(q => q.BdoKeyEquals(name));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        public IBdoMetaDataSpec WithDefaultItem(object item)
-        {
-            DefaultItem = item;
-            return this;
         }
 
         #endregion

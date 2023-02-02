@@ -41,11 +41,11 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaDataSpec SourceSpecification { get; set; }
+        IBdoMetaSpec SourceSpecification { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaDataSpec TargetSpecification { get; set; }
+        IBdoMetaSpec TargetSpecification { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace BindOpen.Data.References
 
             DataReferenceDto dto = new()
             {
-                SourceMetaData = poco.SourceMetaData?.ToDto(),
+                SourceMetaItem = poco.SourceMetaItem?.ToDto(),
                 DataHandlerUniqueName = poco.DataHandlerUniqueName,
                 PathDetail = poco.PathDetail?.ToDto()
             };
@@ -40,7 +40,7 @@ namespace BindOpen.Data.References
             {
                 DataHandlerUniqueName = dto.DataHandlerUniqueName,
                 PathDetail = dto.PathDetail?.ToPoco(),
-                SourceMetaData = dto.SourceMetaData.ToPoco()
+                SourceMetaItem = dto.SourceMetaItem.ToPoco()
             };
 
             return poco;

@@ -17,7 +17,7 @@ namespace BindOpen.Data
         public static string GetConnectionString<T>(this T obj)
             where T : IBdoConfiguration
         {
-            return obj?.GetItem<string>("connectionString");
+            return obj?.GetData<string>("connectionString");
         }
 
         /// <summary>

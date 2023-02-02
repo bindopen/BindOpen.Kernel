@@ -76,7 +76,7 @@ namespace BindOpen.Runtime.Settings
         public T Get<T>(string name)
             where T : class
         {
-            return Configuration.GetItem<T>(name, Scope);
+            return Configuration.GetData<T>(name, Scope);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace BindOpen.Runtime.Settings
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
-            return Configuration.GetItem(name, Scope);
+            return Configuration.GetData(name, Scope);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace BindOpen.Runtime.Settings
                 IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetItem(propertyName, Scope);
+                    return (T)Configuration.GetData(propertyName, Scope);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace BindOpen.Runtime.Settings
 
                     if (attribute is BdoDataAttribute)
                     {
-                        object value = Configuration.GetItem(attribute.Name, Scope);
+                        object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
                             return t;
                     }
@@ -138,7 +138,7 @@ namespace BindOpen.Runtime.Settings
                 IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetItem(propertyName, Scope);
+                    return (T)Configuration.GetData(propertyName, Scope);
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace BindOpen.Runtime.Settings
                         out BdoDataAttribute attribute);
 
                     if (attribute is BdoDataAttribute)
-                        return (Configuration.GetItem(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
+                        return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 

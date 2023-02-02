@@ -83,7 +83,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Returns the element with the specified indexed.
         /// </summary>
-        public T this[int index] => _items.Get(index);
+        public T this[int index] => Get(index);
 
         /// <summary>
         /// Returns the element with the specified key.
@@ -100,11 +100,31 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clears the items of this instance.
         /// </summary>
-        public ITBdoItemSet<T> ClearItems()
+        public void ClearItems()
         {
             _items = null;
+        }
 
-            return this;
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="item">The item of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public virtual T Insert(T item)
+        {
+            _items ??= new List<T>();
+
+            if (item is IReferenced referencedDataItem)
+            {
+                var key = referencedDataItem?.Key();
+                this.Remove(key);
+            }
+
+            _items.Add(item);
+
+            return item;
         }
 
         /// <summary>
@@ -141,42 +161,6 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param name="item">The item of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public virtual T Insert(T item)
-        {
-            _items ??= new List<T>();
-
-            if (item is IReferenced referencedDataItem)
-            {
-                var key = referencedDataItem?.Key();
-                Remove(key);
-            }
-
-            _items.Add(item);
-
-            return item;
-        }
-
-        /// <summary>
-        /// Removes the item with the specified name.
-        /// </summary>
-        /// <param name="keys">The keys of the item to remove.</param>
-        public virtual ITBdoItemSet<T> Remove(params string[] keys)
-        {
-            if (keys != null)
-            {
-                _items?.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
-            }
-
-            return this;
-        }
-
-        /// <summary>
         /// Checks if this instance has an item with the specified name.
         /// </summary>
         /// <param name="key">The key of the item to check.</param>
@@ -196,6 +180,21 @@ namespace BindOpen.Data.Items
         {
             if (key == null) return this[0];
             return this[key];
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual T Get(int index)
+        {
+            if (_items != null)
+            {
+                return _items.Get(index);
+            }
+
+            return default;
         }
 
         /// <summary>
@@ -277,16 +276,18 @@ namespace BindOpen.Data.Items
         /// </summary>
         public string Id { get; set; }
 
+        #endregion
+
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ITBdoItemSet<T> WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
+        public string Key() => Id;
 
         #endregion
 

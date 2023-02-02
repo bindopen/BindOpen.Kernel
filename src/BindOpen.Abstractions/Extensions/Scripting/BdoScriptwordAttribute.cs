@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The sets of parameters of this instance.
         /// </summary>
-        public IBdoMetaDataSpec[] Parameters { get; set; }
+        public IBdoMetaSpec[] Parameters { get; set; }
 
         // Repeated parameters
 

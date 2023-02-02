@@ -123,7 +123,7 @@ namespace BindOpen.Data.Stores
         {
             IBdoConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueId);
 
-            return config?.GetItem<string>("connectionString");
+            return config?.GetData<string>("connectionString");
         }
 
         #endregion

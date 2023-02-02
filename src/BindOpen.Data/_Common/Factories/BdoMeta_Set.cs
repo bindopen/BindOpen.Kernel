@@ -89,8 +89,8 @@ namespace BindOpen.Data
         public static T NewSet<T>(params (string Name, object Value)[] pairs)
             where T : class, IBdoMetaSet, new()
         {
-            var set = NewSet<T>();
-            set.WithItems(pairs.Select(q => New(q.Name, q.Value)).ToArray());
+            var set = NewSet<T>(
+                pairs.Select(q => New(q.Name, q.Value)).ToArray());
 
             return set;
         }
@@ -103,8 +103,8 @@ namespace BindOpen.Data
         public static T NewSet<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
             where T : class, IBdoMetaSet, new()
         {
-            var set = NewSet<T>();
-            set.WithItems(triplets.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            var set = NewSet<T>(
+                triplets.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return set;
         }

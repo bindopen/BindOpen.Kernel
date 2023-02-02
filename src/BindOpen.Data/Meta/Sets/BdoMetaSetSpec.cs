@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog element specification.
     /// </summary>
-    public class BdoMetaSetSpec : BdoMetaDataSpec, IBdoMetaSetSpec
+    public class BdoMetaSetSpec : BdoMetaSpec, IBdoMetaSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -60,7 +60,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IBdoMetaSetSpec WithClassFilter(IDataValueFilter filter)
+        public IBdoMetaSpec WithClassFilter(IDataValueFilter filter)
         {
             ClassFilter = filter;
 
@@ -77,7 +77,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IBdoMetaSetSpec WithDefinitionFilter(IDataValueFilter filter)
+        public IBdoMetaSpec WithDefinitionFilter(IDataValueFilter filter)
         {
             DefinitionFilter = filter;
 

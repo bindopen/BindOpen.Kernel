@@ -7,14 +7,14 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoMetaDataExtensions
+    public static partial class BdoMetaItemExtensions
     {
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
+        public static IBdoMetaData ToMetaItem(
             this object obj,
             string name = null)
         {
@@ -37,8 +37,8 @@ namespace BindOpen.Data.Meta
         {
             if (meta is IBdoMetaObject metaObj)
             {
-                var obj = metaObj?.Item();
-                metaObj.PropertyMetaSet = obj.ToMetaSet(
+                var obj = metaObj?.GetData();
+                metaObj.PropertySet = obj.ToMetaSet(
                     metaObj.GetClassType(scope, log));
             }
             else if (meta is IBdoMetaSet metaSet)

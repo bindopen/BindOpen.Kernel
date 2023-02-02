@@ -15,86 +15,32 @@ namespace BindOpen.Data.Specification
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes ValueType { get; }
+        DataValueTypes DataValueType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="number"></param>
-        IDataSpecification WithValueType(DataValueTypes valueType);
+        AccessibilityLevels AccessibilityLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        AccessibilityLevels AccessibilityLevel { get; }
+        InheritanceLevels InheritanceLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
-        IDataSpecification WithAccessibilityLevel(AccessibilityLevels level);
+        RequirementLevels RequirementLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        InheritanceLevels InheritanceLevel { get; }
+        IBdoExpression RequirementExpression { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
-        IDataSpecification WithInheritanceLevel(InheritanceLevels level);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        RequirementLevels RequirementLevel { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="level"></param>
-        IDataSpecification WithRequirementLevel(RequirementLevels level);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IDataSpecification AsOptional();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IDataSpecification AsRequired();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IDataSpecification AsForbidden();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string RequirementScript { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        IDataSpecification WithRequirementScript(string script);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<SpecificationLevels> SpecificationLevels { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="levels"></param>
-        IDataSpecification WithSpecificationLevels(params SpecificationLevels[] levels);
+        List<SpecificationLevels> SpecificationLevels { get; set; }
 
         /// <summary>
         /// 

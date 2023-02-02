@@ -8,7 +8,8 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoConfiguration : BdoMetaSet, IBdoConfiguration
+    public class BdoConfiguration : BdoMetaSet,
+        IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -53,8 +54,13 @@ namespace BindOpen.Data.Configuration
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public new IBdoConfiguration Add(params IBdoMetaData[] items)
-            => base.Add(items) as IBdoConfiguration;
+        public new IBdoConfiguration Add(
+            params IBdoMetaData[] items)
+        {
+            base.Add(items);
+
+            return this;
+        }
 
         /// <summary>
         /// Sets the specified single item of this instance.
@@ -62,20 +68,11 @@ namespace BindOpen.Data.Configuration
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoConfiguration WithItems(params IBdoMetaData[] items)
-            => base.WithItems(items) as IBdoConfiguration;
+        {
+            base.WithItems(items);
 
-        #endregion
-
-        // ------------------------------------------
-        // IReferenced Implementation
-        // ------------------------------------------
-
-        #region IReferenced
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Key() => Name;
+            return this;
+        }
 
         #endregion
 

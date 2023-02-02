@@ -7,7 +7,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITBdoItemSet<T> :
-        IBdoItem, IIdentified, IEnumerable<T>
+        IBdoItem, IEnumerable<T>,
+        IIdentified, IReferenced
         where T : IReferenced
     {
         /// <summary>
@@ -40,6 +41,13 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        T Get(int index);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         Q Get<Q>(string key = null) where Q : T;
@@ -61,6 +69,20 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        ITBdoItemSet<T> Add(params T[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
+        ITBdoItemSet<T> WithItems(params T[] items);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
         bool HasItem(string key = null);
@@ -68,25 +90,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        ITBdoItemSet<T> ClearItems();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        ITBdoItemSet<T> Add(params T[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        ITBdoItemSet<T> WithItems(params T[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="keys"></param>
-        ITBdoItemSet<T> Remove(params string[] keys);
+        void ClearItems();
 
         /// <summary>
         /// 

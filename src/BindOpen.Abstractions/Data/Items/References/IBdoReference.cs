@@ -12,7 +12,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaData SourceMetaData { get; set; }
+        IBdoMetaData SourceMetaItem { get; set; }
 
         /// <summary>
         /// 

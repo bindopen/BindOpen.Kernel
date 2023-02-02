@@ -44,8 +44,8 @@ namespace BindOpen.Tests.Extensions
                 ("var2", 4.55));
 
             Assert.That(varSet.Count == 2, "Bad script interpretation");
-            Assert.That(varSet.GetItem<string>("var1") == "sample1", "Bad script interpretation");
-            Assert.That(varSet.GetItem<double>("var2") == 4.55, "Bad script interpretation");
+            Assert.That(varSet.GetData<string>("var1") == "sample1", "Bad script interpretation");
+            Assert.That(varSet.GetData<double>("var2") == 4.55, "Bad script interpretation");
         }
 
         [Test, Order(3)]

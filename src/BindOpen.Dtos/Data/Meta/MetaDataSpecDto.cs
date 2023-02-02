@@ -10,7 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("MetaDataSpec", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("MetaSpec", Namespace = "https://xsd.bindopen.org")]
     [XmlInclude(typeof(MetaObjectSpecDto))]
     [XmlInclude(typeof(MetaScalarSpecDto))]
     public abstract class MetaDataSpecDto : DataSpecificationDto
@@ -68,10 +68,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        [JsonPropertyName("script")]
-        [XmlAttribute("script")]
-        [DefaultValue("")]
-        public string ItemScript { get; set; }
+        [JsonPropertyName("itemExp")]
+        [XmlElement("itemExp")]
+        public ExpressionDto ItemExpression { get; set; }
 
         /// <summary>
         /// The available itemization modes of this instance.

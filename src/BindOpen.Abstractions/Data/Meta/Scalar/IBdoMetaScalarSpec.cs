@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaScalarSpec : IBdoMetaDataSpec
+    public interface IBdoMetaScalarSpec : IBdoMetaSpec
     {
     }
 }

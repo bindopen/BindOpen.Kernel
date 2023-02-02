@@ -20,18 +20,20 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// 
         /// </summary>
+        List<string> UsedItemIds { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="items"></param>
+        /// <returns></returns>
         new IBdoConfiguration Add(params IBdoMetaData[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
+        /// <returns></returns>
         new IBdoConfiguration WithItems(params IBdoMetaData[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<string> UsedItemIds { get; set; }
     }
 }

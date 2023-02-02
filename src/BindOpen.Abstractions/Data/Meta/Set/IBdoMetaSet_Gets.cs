@@ -54,7 +54,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public List<object> GetItems(
+        public List<object> GetDataList(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -69,7 +69,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public List<Q> GetItems<Q>(
+        public List<Q> GetDataList<Q>(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public object GetItem(
+        public object GetData(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public Q GetItem<Q>(
+        public Q GetData<Q>(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

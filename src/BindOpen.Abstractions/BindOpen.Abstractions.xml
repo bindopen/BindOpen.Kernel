@@ -2308,7 +2308,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>
@@ -2609,7 +2609,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>
@@ -4074,7 +4074,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.IDataSpecification.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Specification.IDataSpecification.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>

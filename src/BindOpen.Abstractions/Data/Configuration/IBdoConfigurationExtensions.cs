@@ -1,7 +1,6 @@
-﻿using BindOpen.Data.Configuration;
-using System.Linq;
+﻿using System.Linq;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Configuration
 {
     /// <summary>
     /// 
@@ -21,6 +20,22 @@ namespace BindOpen.Data
             if (obj != null)
             {
                 obj.UsedItemIds = ids?.ToList();
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="detail"></param>
+        public static T WithDefinitionUniqueId<T>(
+            this T obj,
+            string definitionUniqueId)
+            where T : IBdoConfiguration
+        {
+            if (obj != null)
+            {
+                obj.DefinitionUniqueId = definitionUniqueId;
             }
             return obj;
         }

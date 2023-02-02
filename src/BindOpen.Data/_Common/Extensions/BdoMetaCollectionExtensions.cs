@@ -69,7 +69,7 @@ namespace BindOpen.Data
                         {
                             propName = bdoAttribute.Name;
                         }
-                        set.Add(propValue.ToMetaData(propName));
+                        set.Add(propValue.ToMetaItem(propName));
                     }
                 }
             }
@@ -111,7 +111,7 @@ namespace BindOpen.Data
                         if (set.HasItem(name))
                         {
                             var type = propInfo.PropertyType;
-                            var value = set.GetSubItem(name, scope, varSet, log);
+                            var value = set.GetData(name, scope, varSet, log);
                             if (value != null)
                             {
                                 if (type.IsEnum)

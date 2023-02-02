@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Specification;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Specification;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -21,18 +22,18 @@ namespace BindOpen.Data.Meta
             {
                 AccessibilityLevel = poco.AccessibilityLevel,
                 Aliases = poco.Aliases?.ToList(),
-                AvailableItemizationModes = poco.AvailableItemizationModes?.ToList(),
+                AvailableItemizationModes = poco.ItemizationModes?.ToList(),
                 ConstraintStatement = poco.ConstraintStatement?.ToDto(),
                 InheritanceLevel = poco.InheritanceLevel,
                 IsAllocatable = poco.IsAllocatable,
-                ItemScript = poco.ItemScript,
+                ItemExpression = poco.ItemExpression?.ToDto(),
                 ItemSpecificationLevels = poco.ItemSpecificationLevels?.ToList(),
                 MaximumItemNumber = poco.MaximumItemNumber,
                 MinimumItemNumber = poco.MinimumItemNumber,
                 RequirementLevel = poco.RequirementLevel,
-                RequirementScript = poco.RequirementScript,
+                RequirementExpression = poco.RequirementExpression?.ToDto(),
                 SpecificationLevels = poco.SpecificationLevels?.ToList(),
-                ValueType = poco.ValueType
+                ValueType = poco.DataValueType
             };
 
             return dto;

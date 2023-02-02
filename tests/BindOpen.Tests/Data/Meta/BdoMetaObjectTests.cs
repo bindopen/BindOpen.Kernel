@@ -18,22 +18,26 @@ namespace BindOpen.Tests.Data
 
         private void Test(IBdoMetaData meta)
         {
-            var obj = meta?.Item();
+            var obj = meta?.GetData();
             Assert.That(obj?.IsDeepEqual(_obj) == true, "Bad obj element set - Count");
         }
 
         [Test, Order(1)]
         public void ToMetaTest()
         {
-            var meta = _obj.ToMetaData();
+            var meta = _obj.ToMetaItem();
             Test(meta);
         }
 
         [Test, Order(1)]
         public void NewTest()
         {
-            var meta = BdoMeta.NewObject(_obj);
-            Test(meta);
+            var meta1 = BdoMeta.NewObject(_obj);
+            Test(meta1);
+
+            var meta2 = BdoMeta.NewObject()
+                .WithData(_obj);
+            Test(meta2);
         }
     }
 }

@@ -90,8 +90,8 @@ namespace BindOpen.Data.Meta
             if (updateModes == null)
                 updateModes = new[] { UpdateModes.Full };
 
-            var items = metaSet?.Items();
-            var refItems = refElementSet?.Items();
+            var items = metaSet?.Items;
+            var refItems = refElementSet?.Items;
 
             if (refElementSet != null)
             {

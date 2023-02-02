@@ -495,7 +495,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>
@@ -1508,7 +1508,7 @@
             <param name="script"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>
@@ -2801,7 +2801,7 @@
             The value type of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecification.WithValueType(BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.Specification.DataSpecification.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>

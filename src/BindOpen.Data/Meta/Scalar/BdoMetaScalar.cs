@@ -64,18 +64,7 @@
 
         #region IBdoMetaScalar
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        public new IBdoMetaScalar WithItems(
-            params object[] items)
-        {
-            return base.WithItems(items);
-        }
-
-        IBdoMetaDataSpec IBdoMetaData.NewSpecification()
+        IBdoMetaSpec IBdoMetaData.NewSpecification()
         {
             return NewSpecification();
         }
@@ -88,7 +77,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return _item.ToString(ValueType);
+            return _item.ToString(DataValueType);
         }
         // Items ----------------------------
 

@@ -53,7 +53,7 @@ namespace BindOpen.Tests.Data
         [Test, Order(2)]
         public void GetConfigurationItem1()
         {
-            var text = _config20.GetItem<string>("text1");
+            var text = _config20.GetData<string>("text1");
 
             Assert.That(!string.IsNullOrEmpty(text), "Error with config");
         }

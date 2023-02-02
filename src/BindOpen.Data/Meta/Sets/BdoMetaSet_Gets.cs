@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 
@@ -8,8 +9,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element set.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoMetaData<IBdoMetaSet, IBdoMetaSetSpec, IBdoMetaData>,
-        IBdoMetaSet
+        TBdoItemSet<IBdoMetaData>, IBdoMetaSet
     {
 
         /// <summary>
@@ -59,14 +59,13 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public List<object> GetItems(
+        public List<object> GetDataList(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]
-                ?.Items(scope, varSet, log);
+            return this[key]?.GetDataList(scope, varSet, log);
         }
 
         /// <summary>
@@ -78,14 +77,13 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public List<Q> GetItems<Q>(
+        public List<Q> GetDataList<Q>(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]
-                ?.Items<Q>(scope, varSet, log);
+            return this[key]?.GetDataList<Q>(scope, varSet, log);
         }
 
         /// <summary>
@@ -96,14 +94,13 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public object GetItem(
+        public object GetData(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]
-                ?.Item(scope, varSet, log);
+            return this[key]?.GetData(scope, varSet, log);
         }
 
         /// <summary>
@@ -114,7 +111,7 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
-        public Q GetItem<Q>(
+        public Q GetData<Q>(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -124,7 +121,7 @@ namespace BindOpen.Data.Meta
             if (el == default)
                 return default;
 
-            return el.Item<Q>(scope, varSet, log);
+            return el.GetData<Q>(scope, varSet, log);
         }
     }
 }
