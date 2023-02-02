@@ -4,7 +4,7 @@
     /// 
     /// </summary>
     public interface IBdoMetaScalar :
-        ITBdoMetaData<IBdoMetaScalar, IBdoMetaScalarSpec, object>
+        ITBdoMetaItem<IBdoMetaScalar, IBdoMetaScalarSpec, object>
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Scripting;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ namespace BindOpen.Runtime.Stores
     /// <summary>
     /// This class represents a BindOpen extension item store.
     /// </summary>
-    public class BdoExtensionStore : BdoItem, IBdoExtensionStore
+    public class BdoExtensionStore : BdoItem,
+        IBdoExtensionStore
     {
         // ------------------------------------------
         // VARIABLES

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System;
 
@@ -7,7 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    public class BdoConnectorDefinition : BdoExtensionItemDefinition, IBdoConnectorDefinition
+    public class BdoConnectorDefinition : BdoExtensionItemDefinition,
+        IBdoConnectorDefinition
     {
         // --------------------------------------------------
         // PROPERTIES

@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -9,21 +8,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaData :
-        IBdoItem,
-        INamed, IReferenced,
-        IIndexed
+    public interface IBdoMetaData : IBdoMetaItem
     {
-        /// <summary>
-        /// The kind of meta data of this instance.
-        /// </summary>
-        BdoMetaDataKind Kind { get; }
-
-        /// <summary>
-        /// The parent instance.
-        /// </summary>
-        IBdoMetaData Parent { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -32,12 +18,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpec GetSpecification(string name = null);
+        IBdoMetaSpec GetSpec(string name = null);
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaData WithSpecifications(params IBdoMetaSpec[] specs);
+        IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs);
 
         /// <summary>
         /// 

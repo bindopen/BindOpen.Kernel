@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Specification;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -7,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data 
     /// </summary>
-    public static partial class BdoMetaItemExtensions
+    public static partial class IBdoMetaDataExtensions
     {
         /// <summary>
         /// Updates this instance.

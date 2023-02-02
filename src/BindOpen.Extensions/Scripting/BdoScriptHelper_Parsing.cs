@@ -1,7 +1,7 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using System;
 using System.Collections.Generic;
-using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions.Scripting
 {

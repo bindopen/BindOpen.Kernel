@@ -37,7 +37,7 @@ namespace BindOpen.Data.References
         /// </summary>
         [JsonPropertyName("source")]
         [XmlElement("source")]
-        public MetaDataDto SourceMetaItem { get; set; }
+        public MetaDataDto SourceMetaData { get; set; }
 
         #endregion
 

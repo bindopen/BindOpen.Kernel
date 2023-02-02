@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data.Specification
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration lists the possible kinds of data areas.

@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class MetaElementSpecConverter
+    public static class MetaDataSpecConverter
     {
         /// <summary>
         /// Converts to DTO.

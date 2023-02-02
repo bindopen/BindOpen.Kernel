@@ -33,7 +33,7 @@ namespace BindOpen.Logging
         /// <returns>True if the first event kind is greater than the second one.</returns>
         public static EventKinds Max(this EventKinds eventKind1, EventKinds eventKind2)
         {
-            return eventKind2 == EventKinds.Any ? eventKind1 : (eventKind1 > eventKind2 ? eventKind1 : eventKind2);
+            return eventKind2 == EventKinds.Any ? eventKind1 : eventKind1 > eventKind2 ? eventKind1 : eventKind2;
         }
 
         /// <summary>

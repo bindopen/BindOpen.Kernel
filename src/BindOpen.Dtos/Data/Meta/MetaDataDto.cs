@@ -15,42 +15,13 @@ namespace BindOpen.Data.Meta
     [XmlInclude(typeof(MetaScalarDto))]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
-    public class MetaDataDto : IDto
+    public class MetaDataDto : MetaItemDto
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// ID of this instance.
-        /// </summary>
-        [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// Name of this instance.
-        /// </summary>
-        [JsonPropertyName("name")]
-        [XmlAttribute("name")]
-        [DefaultValue(null)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Title of this instance.
-        /// </summary>
-        [JsonPropertyName("title")]
-        [XmlElement("title")]
-        public DictionaryDto Title { get; set; }
-
-        /// <summary>
-        /// Description of this instance.
-        /// </summary>
-        [JsonPropertyName("description")]
-        [XmlElement("description")]
-        public DictionaryDto Description { get; set; }
 
         // Items
 
@@ -92,22 +63,6 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("propertySet")]
         [XmlElement("propertySet")]
         public MetaSetDto PropertySet { get; set; }
-
-        // IIndexedDataItem -------------------------------
-
-        /// <summary>
-        /// The index of this instance.
-        /// </summary>
-        [JsonPropertyName("index")]
-        [XmlElement("index")]
-        public int? Index { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonIgnore()]
-        [XmlIgnore()]
-        public bool IndexSpecified => Index != null;
 
         #endregion
 

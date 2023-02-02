@@ -17,7 +17,7 @@ namespace BindOpen.Runtime.Definition
     /// <returns>Returns the source object.</returns>
     public delegate List<object> BdoHandlerPostFunction(
             object targetObject,
-            ref IBdoMetaData sourceBdoElement,
+            ref IBdoMetaItem sourceBdoElement,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog alog = null);

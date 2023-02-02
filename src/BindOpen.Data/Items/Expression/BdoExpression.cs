@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions.Scripting;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items

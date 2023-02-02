@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Definition
     /// <param name="alog">The log to consider.</param>
     /// <returns>Returns the target objects.</returns>
     public delegate List<object> BdoHandlerGetFunction(
-            IBdoMetaData sourceElement = null,
+            IBdoMetaItem sourceElement = null,
             IBdoMetaSet pathDetail = null,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

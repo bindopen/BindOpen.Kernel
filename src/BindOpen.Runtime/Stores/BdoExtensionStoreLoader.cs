@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Items;
+using BindOpen.Extensions;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Definition;
@@ -34,7 +35,8 @@ namespace BindOpen.Runtime.Stores
 
             if (loadOptions == null)
             {
-                loadOptions = new ExtensionLoadOptions().WithSourceKinds(DatasourceKind.Memory);
+                loadOptions = new ExtensionLoadOptions().WithSourceKinds(
+                    DatasourceKind.Memory);
             }
             _loadOptions = loadOptions;
         }

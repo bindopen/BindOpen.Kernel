@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -6,7 +7,8 @@ namespace BindOpen.Data.Meta
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoItemSet<IBdoMetaData>, IBdoMetaSet
+        TBdoItemSet<IBdoMetaItem>,
+        IBdoMetaSet
     {
         // ------------------------------------------
         // CONVERTERS
@@ -18,7 +20,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
+        public static explicit operator BdoMetaSet(IBdoMetaItem[] elems)
         {
             return BdoMeta.NewSet(elems);
         }
@@ -27,7 +29,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
+        public static explicit operator IBdoMetaItem[](BdoMetaSet metaSet)
         {
             return metaSet?.ToArray();
         }
@@ -50,6 +52,35 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
+        // IBdoMetaItem Implementation
+        // --------------------------------------------------
+
+        #region IBdoMetaItem
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BdoMetaDataKind Kind
+                => BdoMetaDataKind.Set;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaItem Parent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Index { get; set; }
+
+        #endregion
+
+        // --------------------------------------------------
         // IBdoMetaSet Implementation
         // --------------------------------------------------
 
@@ -63,7 +94,7 @@ namespace BindOpen.Data.Meta
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public new IBdoMetaSet Add(
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
         {
             base.Add(items);
 
@@ -76,7 +107,7 @@ namespace BindOpen.Data.Meta
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoMetaSet WithItems(
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
         {
             base.WithItems(items);
 

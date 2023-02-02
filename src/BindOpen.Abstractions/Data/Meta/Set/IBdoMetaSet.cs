@@ -6,20 +6,23 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public partial interface IBdoMetaSet :
-        ITBdoItemSet<IBdoMetaData>
+        ITBdoItemSet<IBdoMetaItem>,
+        IBdoMetaItem
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSet Add(params IBdoMetaData[] items);
+        new IBdoMetaSet Add(
+            params IBdoMetaItem[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSet WithItems(params IBdoMetaData[] items);
+        new IBdoMetaSet WithItems(
+            params IBdoMetaItem[] items);
     }
 }

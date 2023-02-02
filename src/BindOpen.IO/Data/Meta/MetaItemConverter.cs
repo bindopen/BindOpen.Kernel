@@ -1,23 +1,21 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.References;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class MetaElementConverter
+    public static class MetaItemConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaDataDto ToDto(this IBdoMetaData poco)
+        public static MetaItemDto ToDto(
+            this IBdoMetaItem poco)
         {
             if (poco == null) return null;
 
-            MetaDataDto dto = null;
+            MetaItemDto dto = null;
 
             if (poco is IBdoMetaObject obj)
             {
@@ -30,8 +28,6 @@ namespace BindOpen.Data.Meta
 
             if (dto != null)
             {
-                dto.DataExpression = poco.DataExpression?.ToDto();
-                dto.DataReference = poco.DataReference?.ToDto();
             }
 
             return dto;
@@ -42,11 +38,12 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaData ToPoco(this MetaDataDto dto)
+        public static IBdoMetaItem ToPoco(
+            this MetaItemDto dto)
         {
             if (dto == null) return null;
 
-            BdoMetaData poco = null;
+            IBdoMetaItem poco = default;
 
             if (dto is MetaObjectDto obj)
             {
@@ -55,6 +52,10 @@ namespace BindOpen.Data.Meta
             else if (dto is MetaScalarDto scalar)
             {
                 return scalar.ToPoco();
+            }
+            else if (dto is MetaSetDto set)
+            {
+                return set.ToPoco();
             }
 
             return poco;

@@ -365,7 +365,9 @@ namespace BindOpen.Data
         /// <param name="obj"></param>
         /// <param name="spec"></param>
         /// <returns></returns>
-        public static object ToBdoElementItem(this object obj, IBdoMetaSpec spec)
+        public static object ToBdoData(
+            this object obj,
+            IBdoMetaSpec spec)
         {
             object item = null;
 

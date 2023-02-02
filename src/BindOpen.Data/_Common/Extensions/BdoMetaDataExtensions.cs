@@ -14,7 +14,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaItem(
+        public static IBdoMetaData ToMetaData(
             this object obj,
             string name = null)
         {
@@ -33,7 +33,7 @@ namespace BindOpen.Data.Meta
             this T meta,
             IBdoScope scope = null,
             IBdoLog log = null)
-            where T : IBdoMetaData
+            where T : IBdoMetaItem
         {
             if (meta is IBdoMetaObject metaObj)
             {
@@ -56,7 +56,7 @@ namespace BindOpen.Data.Meta
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static IBdoMetaData[] ToMetaArray(
+        public static IBdoMetaItem[] ToMetaArray(
             this object obj,
             Type type = null,
             bool onlyMetaAttributes = true)

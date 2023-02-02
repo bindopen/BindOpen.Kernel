@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Extensions.Processing
+﻿namespace BindOpen.Extensions
 {
     // --------------------------------------------------
     // ENUMERATIONS

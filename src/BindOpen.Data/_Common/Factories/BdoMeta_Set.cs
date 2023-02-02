@@ -64,7 +64,7 @@ namespace BindOpen.Data
         public static T NewSet<T>()
             where T : class, IBdoMetaSet, new()
         {
-            return BdoData.NewItemSet<T, IBdoMetaData>();
+            return BdoData.NewItemSet<T, IBdoMetaItem>();
         }
 
         /// <summary>

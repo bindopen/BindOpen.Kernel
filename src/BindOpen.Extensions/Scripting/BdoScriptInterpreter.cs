@@ -729,7 +729,7 @@ namespace BindOpen.Extensions.Scripting
                     break;
                 case ScriptItemKinds.Variable:
                     var name = scriptword.Parameters?.FirstOrDefault()?.ToString();
-                    return varSet[name].GetData(_scope, varSet, log);
+                    return varSet.GetData(name, _scope, varSet, log);
             }
 
             return null;

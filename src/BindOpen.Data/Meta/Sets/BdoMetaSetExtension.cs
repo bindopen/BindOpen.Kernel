@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Specification;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 
 namespace BindOpen.Data.Meta
 {
@@ -17,7 +16,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoMetaSet metaSet,
+            this BdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -39,7 +38,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this IBdoMetaSet metaSet,
+            this BdoMetaSet metaSet,
             IBdoMetaSpecSet refElementSpecSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -60,7 +59,7 @@ namespace BindOpen.Data.Meta
         /// <param name="specAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this IBdoMetaSet metaSet,
+            this BdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             string[] specAreas = null,
             bool isExistenceChecked = true,
@@ -78,7 +77,7 @@ namespace BindOpen.Data.Meta
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         public static void Repair(
-            this IBdoMetaSet metaSet,
+            this BdoMetaSet metaSet,
             IBdoMetaSet refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
@@ -119,7 +118,7 @@ namespace BindOpen.Data.Meta
                             }
                             else if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                             {
-                                referenceSubItem.Repair(referenceSubItem, specAreas, log: log);
+                                //referenceSubItem.Repair(referenceSubItem, specAreas, log: log);
                             }
 
                             i++;

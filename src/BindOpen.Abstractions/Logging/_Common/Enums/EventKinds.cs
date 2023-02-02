@@ -48,6 +48,6 @@ namespace BindOpen.Logging
         /// <summary>
         /// None.
         /// </summary>
-        Any = EventKinds.Checkpoint | EventKinds.Error | EventKinds.Exception | EventKinds.Message | EventKinds.Other | EventKinds.Warning,
+        Any = Checkpoint | Error | Exception | Message | Other | Warning,
     };
 }

@@ -27,13 +27,15 @@ namespace BindOpen.Data.Configuration
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoConfiguration Add(params IBdoMetaData[] items);
+        new IBdoConfiguration Add(
+            params IBdoMetaItem[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoConfiguration WithItems(params IBdoMetaData[] items);
+        new IBdoConfiguration WithItems(
+            params IBdoMetaItem[] items);
     }
 }

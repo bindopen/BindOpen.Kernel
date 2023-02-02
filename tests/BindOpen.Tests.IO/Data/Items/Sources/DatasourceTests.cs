@@ -1,5 +1,4 @@
-﻿using BindOpen.Extensions;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
 using DeepEqual.Syntax;
 using NUnit.Framework;

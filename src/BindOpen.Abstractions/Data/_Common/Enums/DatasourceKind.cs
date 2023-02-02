@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration represents the data source kinds.

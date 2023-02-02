@@ -9,7 +9,8 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element set.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoItemSet<IBdoMetaData>, IBdoMetaSet
+        TBdoItemSet<IBdoMetaItem>,
+        IBdoMetaSet
     {
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace BindOpen.Data.Meta
             int index)
             => Get<IBdoMetaScalar>(index);
 
-        //
+        // Data
 
         /// <summary>
         /// 
@@ -65,7 +66,11 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]?.GetDataList(scope, varSet, log);
+            var meta = this[key];
+            if (meta is IBdoMetaData metaData)
+                return metaData.GetDataList(scope, varSet, log);
+
+            return default;
         }
 
         /// <summary>
@@ -83,7 +88,11 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]?.GetDataList<Q>(scope, varSet, log);
+            var meta = this[key];
+            if (meta is IBdoMetaData metaData)
+                return metaData.GetDataList<Q>(scope, varSet, log);
+
+            return default;
         }
 
         /// <summary>
@@ -100,7 +109,11 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return this[key]?.GetData(scope, varSet, log);
+            var meta = this[key];
+            if (meta is IBdoMetaData metaData)
+                return metaData.GetData(scope, varSet, log);
+
+            return default;
         }
 
         /// <summary>
@@ -117,11 +130,11 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var el = this[key];
-            if (el == default)
-                return default;
+            var meta = this[key];
+            if (meta is IBdoMetaData metaData)
+                return metaData.GetData<Q>(scope, varSet, log);
 
-            return el.GetData<Q>(scope, varSet, log);
+            return default;
         }
     }
 }

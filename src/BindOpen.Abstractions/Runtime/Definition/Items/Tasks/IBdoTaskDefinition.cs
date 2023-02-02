@@ -1,8 +1,8 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions;
+using BindOpen.Logging;
 using System;
 using System.Collections.Generic;
-using BindOpen.Data.Meta;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -51,7 +51,8 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        List<IBdoMetaSpec> GetEntries(params TaskEntryKind[] taskEntryKinds);
+        List<IBdoMetaSpec> GetEntries(
+            params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 

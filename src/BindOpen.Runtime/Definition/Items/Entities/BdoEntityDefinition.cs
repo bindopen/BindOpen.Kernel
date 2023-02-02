@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +9,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents the entity definition.
     /// </summary>
-    public class BdoEntityDefinition : BdoExtensionItemDefinition, IBdoEntityDefinition
+    public class BdoEntityDefinition : BdoExtensionItemDefinition,
+        IBdoEntityDefinition
     {
         // --------------------------------------------------
         // PROPERTIES

@@ -1,5 +1,4 @@
-﻿
-namespace BindOpen.Data.Specification
+﻿namespace BindOpen.Data
 {
     // ------------------------------------------
     // ENUMERATIONS

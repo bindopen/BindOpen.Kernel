@@ -1,6 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 using System;
-using System.Xml.Serialization;
 
 namespace BindOpen.Runtime.Definition
 {

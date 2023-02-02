@@ -36,21 +36,21 @@ namespace BindOpen.Tests.Data
 
             Assert.That(metaSet?.Count == 4, "Bad object element set - Count");
 
-            var path1 = metaObj1?.GetSubItem<string>("path");
+            var path1 = metaObj1?.GetPropertyData<string>("path");
             Assert.That(
                 path1 == _testData.path1
                 , "Bad object element - Set1");
 
             Assert.That(
-                metaObj2?.GetSubItem<string>("path") == _testData.path2
+                metaObj2?.GetPropertyData<string>("path") == _testData.path2
                 , "Bad object element - Set2");
 
             Assert.That(
-                metaObj3?.GetSubItem<string>("path") == _testData.path3
+                metaObj3?.GetPropertyData<string>("path") == _testData.path3
                 , "Bad object element - Set3");
 
             Assert.That(
-                metaObj4?.GetSubItem<string>("path") == _testData.path4
+                metaObj4?.GetPropertyData<string>("path") == _testData.path4
                 , "Bad object element - Set4");
         }
 
@@ -61,25 +61,25 @@ namespace BindOpen.Tests.Data
                 .WithItems(
                     BdoConfig.NewExtension(
                         "tests.core$testEntity",
-                        BdoMeta.NewScalar("path", _testData.path1)));
+                        BdoMeta.NewScalar("path", _testData.path1 as string)));
 
             var metaObj2 = BdoMeta.NewObject("object2", "tests.core$testEntity")
                 .WithData(new EntityFake()
                 {
-                    Path = _testData.path2
+                    Path = _testData.path2 as string
                 });
             metaObj2.UpdateMetaTree();
 
             var obj3 = new EntityFake(
                 _testData.path3,
                 _testData.folderPath3,
-                new EntityFake(_testData.path1, _testData.folderPath3));
-            var metaObj3 = obj3?.ToMetaItem();
+                new EntityFake(_testData.path1 as string, _testData.folderPath3 as string));
+            var metaObj3 = obj3?.ToMetaData();
 
             var obj4 = Bdo.NewEntity<EntityFake>(
                 BdoConfig.New("tests.core$testEntity")
-                    .FromObject(new { path = _testData.path4 }));
-            var metaObj4 = obj4?.ToMetaItem("object4");
+                    .FromObject(new { path = _testData.path4 as string }));
+            var metaObj4 = obj4?.ToMetaData("object4");
 
             _metaObjSet = BdoMeta.NewSet(
                 metaObj1,

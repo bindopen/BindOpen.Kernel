@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
-using BindOpen.Data.Meta;
 
 namespace Microsoft.Extensions.Configuration
 {
@@ -97,7 +97,8 @@ namespace Microsoft.Extensions.Configuration
             {
                 var interpreter = scope.NewScriptInterpreter();
 
-                return Convert.ChangeType(interpreter?.Evaluate(value, BdoExpressionKind.Script, varSet, log), type);
+                return Convert.ChangeType(interpreter?.Evaluate(
+                    value, BdoExpressionKind.Script, varSet, log), type);
             }
             else if (type == typeof(string))
             {

@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
-using BindOpen.Extensions;
 using Bogus;
 using NUnit.Framework;
 

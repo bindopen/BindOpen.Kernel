@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Runtime.Definition
+namespace BindOpen.Extensions
 {
     /// <summary>
     /// This enumeration represents the possible task entry kinds.

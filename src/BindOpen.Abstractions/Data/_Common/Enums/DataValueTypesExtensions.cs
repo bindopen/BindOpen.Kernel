@@ -99,7 +99,7 @@ namespace BindOpen.Data
                 return DataValueTypes.Time;
             else if (type == typeof(string))
                 return DataValueTypes.Text;
-            else if (typeof(IBdoMetaData).IsAssignableFrom(type))
+            else if (typeof(IBdoMetaItem).IsAssignableFrom(type))
                 return DataValueTypes.MetaData;
             else if (typeof(IBdoDocument).IsAssignableFrom(type))
                 return DataValueTypes.Document;

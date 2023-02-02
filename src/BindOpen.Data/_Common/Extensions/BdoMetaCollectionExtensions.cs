@@ -23,7 +23,7 @@ namespace BindOpen.Data
             object obj,
             Type type = null,
             bool onlyMetaAttributes = false)
-            where T : ITBdoItemSet<IBdoMetaData>
+            where T : ITBdoItemSet<IBdoMetaItem>
         {
             set?.WithItems(
                 obj.ToMetaArray(type, onlyMetaAttributes));
@@ -69,7 +69,7 @@ namespace BindOpen.Data
                         {
                             propName = bdoAttribute.Name;
                         }
-                        set.Add(propValue.ToMetaItem(propName));
+                        set.Add(propValue.ToMetaData(propName));
                     }
                 }
             }

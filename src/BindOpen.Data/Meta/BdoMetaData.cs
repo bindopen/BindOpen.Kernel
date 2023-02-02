@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Elements;
-using BindOpen.Data.Items;
-using BindOpen.Data.Specification;
+﻿using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -50,7 +48,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaData Parent { get; set; }
+        public IBdoMetaItem Parent { get; set; }
 
         #endregion
 
@@ -236,7 +234,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoMetaSpec GetSpecification(string name = null)
+        public IBdoMetaSpec GetSpec(string name = null)
         {
             return Specs?.FirstOrDefault(
                 q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
@@ -245,7 +243,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaData WithSpecifications(params IBdoMetaSpec[] specs)
+        public IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs)
         {
             Specs = specs?.ToList();
 
@@ -272,7 +270,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaData WithData(object obj)
         {
-            _item = obj.ToBdoElementItem(GetSpecification());
+            _item = obj.ToBdoData(GetSpec());
 
             return this;
         }
@@ -285,7 +283,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaData WithDataList(params object[] objs)
         {
-            _item = objs?.ToList().ToBdoElementItem(GetSpecification());
+            _item = objs?.ToList().ToBdoData(GetSpec());
 
             return this;
         }

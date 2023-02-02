@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System;
 
 namespace BindOpen.Extensions.Modeling

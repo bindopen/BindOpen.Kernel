@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data.Items
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration represents the possible kinds for data expression.

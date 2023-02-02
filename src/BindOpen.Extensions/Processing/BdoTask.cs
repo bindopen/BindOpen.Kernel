@@ -93,7 +93,8 @@ namespace BindOpen.Extensions.Processing
         /// Indicates whether this instance is configurable.
         /// </summary>
         /// <returns>True if this instance is configurable.</returns>
-        public bool IsConfigurable(SpecificationLevels specificationLevel = SpecificationLevels.Runtime)
+        public bool IsConfigurable(
+            SpecificationLevels specificationLevel = SpecificationLevels.Runtime)
         {
             var elements = new List<IBdoMetaData>();
             //elements.AddRange(Config?.GetEntries(TaskEntryKind.Input));
@@ -107,7 +108,7 @@ namespace BindOpen.Extensions.Processing
             {
                 foreach (var element in elements)
                 {
-                    if (element.GetSpecification("item")?.SpecificationLevels?.ToArray().Has(specificationLevel) == false)
+                    if (element.GetSpec("item")?.SpecificationLevels?.ToArray().Has(specificationLevel) == false)
                     {
                         return false;
                     }

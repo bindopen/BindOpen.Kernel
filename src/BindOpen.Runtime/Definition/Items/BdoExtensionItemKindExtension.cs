@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Extensions;
+using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
 using BindOpen.Extensions.Scripting;

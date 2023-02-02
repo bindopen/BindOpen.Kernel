@@ -23,7 +23,7 @@ namespace BindOpen.Extensions.Processing
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             object item = null,
-            IBdoMetaData dataElement = null,
+            IBdoMetaItem dataElement = null,
             IBdoLog log = null,
             params object[] objects);
     }

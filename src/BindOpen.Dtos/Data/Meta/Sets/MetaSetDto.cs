@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// </summary>
     [XmlType("MetaSet", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "metaSet", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class MetaSetDto : IDto, IIdentified
+    public class MetaSetDto : MetaItemDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
@@ -27,18 +27,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("elements")]
-        [XmlArray("elements")]
+        [JsonPropertyName("items")]
+        [XmlArray("items")]
+        [XmlArrayItem("set", Type = typeof(MetaSetDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
-        public List<MetaDataDto> Elements { get; set; }
+        public List<MetaItemDto> Items { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool ElementsSpecified => Elements?.Count > 0;
+        public bool ElementsSpecified => Items?.Count > 0;
 
         #endregion
 

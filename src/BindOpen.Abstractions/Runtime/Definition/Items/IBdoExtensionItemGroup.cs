@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
 using System.Collections.Generic;
 
-namespace BindOpen.Runtime
+namespace BindOpen.Runtime.Definition
 {
     /// <summary>
     /// 

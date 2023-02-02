@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;

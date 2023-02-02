@@ -1,7 +1,6 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Tests.Extensions;
+using BindOpen.Extensions.Scripting;
 using NUnit.Framework;
 using System;
 

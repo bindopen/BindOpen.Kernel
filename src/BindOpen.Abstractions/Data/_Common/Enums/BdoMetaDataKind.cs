@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Data.Elements
+namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration represents the meta data kind.
@@ -41,6 +41,11 @@ namespace BindOpen.Data.Elements
         /// <summary>
         /// Collection.
         /// </summary>
-        Collection
+        Collection,
+
+        /// <summary>
+        /// Set.
+        /// </summary>
+        Set
     }
 }

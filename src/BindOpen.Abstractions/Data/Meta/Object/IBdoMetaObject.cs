@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -10,8 +9,8 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaObject :
-        ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>,
-        ITBdoItemSet<IBdoMetaData>
+        ITBdoMetaItem<IBdoMetaObject, IBdoMetaObjectSpec, object>,
+        IBdoMetaSet
     {
         /// <summary>
         /// 
@@ -21,7 +20,8 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithProperties(params IBdoMetaData[] metas);
+        IBdoMetaObject WithProperties(
+            params IBdoMetaData[] metas);
 
         /// <summary>
         /// 
@@ -47,13 +47,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaObject Add(params IBdoMetaData[] items);
+        new IBdoMetaObject Add(
+            params IBdoMetaItem[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaObject WithItems(params IBdoMetaData[] items);
+        new IBdoMetaObject WithItems(
+            params IBdoMetaItem[] items);
     }
 }

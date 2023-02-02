@@ -1,7 +1,6 @@
-﻿using BindOpen.Extensions;
-using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
 using Bogus;
 using NUnit.Framework;

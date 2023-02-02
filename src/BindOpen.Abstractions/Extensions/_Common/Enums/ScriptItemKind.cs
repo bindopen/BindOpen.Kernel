@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Extensions.Scripting
+namespace BindOpen.Extensions
 {
     /// <summary>
     /// This enumeration lists the possible kinds of script items.
@@ -41,7 +41,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Any.
         /// </summary>
-        Any = ScriptItemKinds.Function | ScriptItemKinds.Literal | ScriptItemKinds.Syntax | ScriptItemKinds.Text | ScriptItemKinds.Variable
+        Any = Function | Literal | Syntax | Text | Variable
     }
 
 
@@ -64,7 +64,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>Returns true if the specified element is a script word kind.</returns>
         public static bool IsFunctionOrVariable(this ScriptItemKinds scriptItemKind)
         {
-            return (scriptItemKind == ScriptItemKinds.Function) | (scriptItemKind == ScriptItemKinds.Variable);
+            return scriptItemKind == ScriptItemKinds.Function | scriptItemKind == ScriptItemKinds.Variable;
         }
     }
 

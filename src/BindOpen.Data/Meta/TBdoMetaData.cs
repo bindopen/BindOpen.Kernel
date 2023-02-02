@@ -9,8 +9,8 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element.
     /// </summary>
     public abstract class TBdoMetaData<TElement, TSpec, TItem> : BdoMetaData,
-        ITBdoMetaData<TElement, TSpec, TItem>
-        where TElement : IBdoMetaData
+        ITBdoMetaItem<TElement, TSpec, TItem>
+        where TElement : IBdoMetaItem
         where TSpec : IBdoMetaSpec
         where TItem : class
     {
@@ -62,7 +62,7 @@ namespace BindOpen.Data.Meta
         public new List<TSpec> Specs
         {
             get => base.Specs?.Cast<TSpec>().ToList();
-            set { base.WithSpecifications(value?.Cast<IBdoMetaSpec>().ToArray()); }
+            set { base.WithSpecs(value?.Cast<IBdoMetaSpec>().ToArray()); }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public new TSpec GetSpecification(string name = null)
         {
-            return (TSpec)base.GetSpecification(name);
+            return (TSpec)base.GetSpec(name);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public new TElement WithSpecifications(params IBdoMetaSpec[] specs)
         {
-            return (TElement)base.WithSpecifications(specs);
+            return (TElement)base.WithSpecs(specs);
         }
 
         // Data

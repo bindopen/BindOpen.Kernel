@@ -26,7 +26,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static BdoConfiguration New(
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
         {
             var config = New<BdoConfiguration>(items);
             return config;
@@ -39,7 +39,7 @@ namespace BindOpen.Data
         /// <param name="items">The items to consider.</param>
         public static BdoConfiguration New(
             string name,
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
         {
             var config = New<BdoConfiguration>(name, items);
             return config;
@@ -53,7 +53,7 @@ namespace BindOpen.Data
         public static BdoConfiguration New(
             string name,
             string[] usingIds,
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
         {
             var config = New<BdoConfiguration>(name, usingIds, items);
             return config;
@@ -76,7 +76,7 @@ namespace BindOpen.Data
         /// <param name="items">The items to consider.</param>
         public static T New<T>(
             string name,
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
             where T : BdoConfiguration, new()
         => New<T>(name, null as string[], items);
 
@@ -85,7 +85,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="items">The items to consider.</param>
         public static T New<T>(
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
             where T : BdoConfiguration, new()
         => New<T>(null as string, null as string[], items);
 
@@ -97,7 +97,7 @@ namespace BindOpen.Data
         public static T New<T>(
             string name,
             string[] usingIds,
-            params IBdoMetaData[] items)
+            params IBdoMetaItem[] items)
             where T : BdoConfiguration, new()
         {
             var config = BdoMeta.NewSet<T>(items);

@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace BindOpen.Data.Stores
 {

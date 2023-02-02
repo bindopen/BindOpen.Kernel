@@ -1,8 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Runtime.Definition;
 using BindOpen.Data.Meta;
-using BindOpen.Data;
+using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Scripting
 {

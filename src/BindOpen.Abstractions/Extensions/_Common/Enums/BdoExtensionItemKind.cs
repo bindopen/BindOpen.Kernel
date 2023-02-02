@@ -1,12 +1,12 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Runtime.Definition
+namespace BindOpen.Extensions
 {
     /// <summary>
-    /// This enumeration represents the possible kinds of library item viewers.
+    /// This enumeration represents the possible kinds of library items.
     /// </summary>
-    [XmlType("BdoExtensionViewerKind", Namespace = "https://xsd.bindopen.org")]
-    public enum BdoExtensionViewerKind
+    [XmlType("BdoExtensionItemKind", Namespace = "https://xsd.bindopen.org")]
+    public enum BdoExtensionItemKind
     {
         /// <summary>
         /// Any.
@@ -24,14 +24,9 @@ namespace BindOpen.Runtime.Definition
         Connector,
 
         /// <summary>
-        /// Metrics.
+        /// Entity.
         /// </summary>
-        Metrics,
-
-        /// <summary>
-        /// Script word.
-        /// </summary>
-        Scriptword,
+        Entity,
 
         /// <summary>
         /// Task.
@@ -39,18 +34,28 @@ namespace BindOpen.Runtime.Definition
         Task,
 
         /// <summary>
-        /// Data query.
+        /// Format.
         /// </summary>
-        DataQuery,
+        Format,
 
         /// <summary>
-        /// Data class.
+        /// Handler.
         /// </summary>
-        DataClass,
+        Handler,
 
         /// <summary>
-        /// Data format.
+        /// Metrics.
         /// </summary>
-        FormatConfiguration
+        Metrics,
+
+        /// <summary>
+        /// RoutineConfiguration.
+        /// </summary>
+        Routine,
+
+        /// <summary>
+        /// Script word.
+        /// </summary>
+        Scriptword,
     }
 }
